@@ -12,44 +12,42 @@ type GameMapOptions = {
   cells: { position: Vec3; tileId: TileId }[];
   height: number;
   width: number;
-  // isWalkable(pos: Vec3): boolean;
-  // getDestination(pos: Vec3, direction: Direction): Cell | null;
+  startPositions: [Vec3, Vec3];
 };
 
-class GameMap {
+export class GameMap {
+  height: number;
+  width: number;
+  startPositions: [Vec3, Vec3];
+
   readonly cells: Cell[];
   private cellsMap = new Map<string, Cell>();
 
-  constructor(private definition: GameMapOptions) {
-    this.cells = this.makeCells();
+  constructor(definition: GameMapOptions) {
+    this.height = definition.height;
+    this.width = definition.width;
+    this.startPositions = definition.startPositions;
+    this.cells = this.makeCells(definition.cells);
     this.cells.forEach(cell => {
       this.cellsMap.set(this.getCellMapKey(cell), cell);
     });
-  }
-
-  get height() {
-    return this.definition.height;
-  }
-
-  get width() {
-    return this.definition.width;
   }
 
   private getCellMapKey({ x, y, z }: Vec3) {
     return `${x}:${y}:${z}`;
   }
 
-  private makeCells() {
-    return this.definition.cells.map(({ tileId, position }) => {
-      const tile = new Tile(tileId);
-      return new Cell(tile, position);
+  private makeCells(cells: GameMapOptions['cells']) {
+    return cells.map(({ tileId, position }) => {
+      return new Cell(new Tile(tileId), position);
     });
   }
 
   serialize(): GameMapOptions {
     return {
-      width: this.definition.width,
-      height: this.definition.height,
+      width: this.width,
+      height: this.height,
+      startPositions: this.startPositions,
       cells: this.cells.map(cell => cell.serialize())
     };
   }
