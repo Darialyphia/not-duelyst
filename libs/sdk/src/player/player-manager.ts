@@ -17,11 +17,11 @@ export class PlayerManager {
     return this.playerMap.get(id);
   }
 
-  addEntity(player: Player) {
+  addPlayer(player: Player) {
     this.playerMap.set(player.id, player);
   }
 
-  removeEntity(playerId: PlayerId) {
+  removePlayer(playerId: PlayerId) {
     this.playerMap.delete(playerId);
   }
 

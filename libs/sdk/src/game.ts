@@ -8,7 +8,6 @@ import { Vec3 } from './utils/vector';
 
 type SerializedGameState = {
   map: GameMapOptions;
-  nextEntityId: number;
   entities: Array<{
     id: EntityId;
     position: Point3D;
@@ -19,17 +18,16 @@ type SerializedGameState = {
 
 class Game {
   map: GameMap;
-  entityManager: EntityManager;
-  playerManager: PlayerManager;
+  entityManager = new EntityManager();
+  playerManager = new PlayerManager([]);
 
   constructor(state: SerializedGameState) {
     this.map = new GameMap(state.map);
-    this.playerManager = new PlayerManager(
-      state.players.map(player => new Player(player.id))
-    );
-    this.entityManager = new EntityManager({
-      nextEntityId: state.nextEntityId,
-      entities: state.entities.map(
+    state.players.forEach(player => {
+      this.playerManager.addPlayer(new Player(player.id));
+    });
+    this.entityManager.hydrate(
+      state.entities.map(
         e =>
           new Entity(
             e.id,
@@ -37,7 +35,7 @@ class Game {
             this.playerManager.getPlayerById(e.ownerId)!
           )
       )
-    });
+    );
   }
 
   serialize(): SerializedGameState {

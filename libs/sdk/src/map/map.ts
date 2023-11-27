@@ -1,12 +1,7 @@
 import { Point3D } from '../types';
 import { Cell } from './cell';
-import {
-  Direction,
-  OPPOSITE_DIRECTIONS,
-  Tile,
-  TileId,
-  tileLookup
-} from './tile';
+import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
+import { TileId } from './tile-lookup';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -57,18 +52,8 @@ export class GameMap {
   }
 
   getDestination(from: Point3D, direction: Direction): Point3D | null {
-    const x =
-      direction === 'east'
-        ? from.x + 1
-        : direction === 'west'
-        ? from.x - 1
-        : from.x;
-    const y =
-      direction === 'south'
-        ? from.y + 1
-        : direction === 'north'
-        ? from.y - 1
-        : from.y;
+    const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
+    const y = from.y + (DIRECTIONS_TO_DIFF[direction] ?? 0);
 
     const target = { x, y, z: from.z };
     const targetAbove = { x, y, z: from.z + 1 };
@@ -79,7 +64,8 @@ export class GameMap {
     const cellBelow = this.getCellAt(targetAbove);
     const cellAbove = this.getCellAt(targetBelow);
 
-    if (currentCell?.tile.isHalfTile) {
+    if (currentCell) {
+      if (currentCell?.isHalfTile) return null;
       if (cell && !cellAbove) {
         return cell.isHalfTile ? target : targetAbove;
       }

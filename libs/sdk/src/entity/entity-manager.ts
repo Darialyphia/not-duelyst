@@ -12,12 +12,16 @@ export class EntityManager {
   private entityMap = new Map<EntityId, Entity>();
   private nextEntityId = 1;
 
-  constructor(options: EntityManagerOptions) {
-    this.nextEntityId = options.nextEntityId;
+  constructor() {}
 
-    options.entities.forEach(entity => {
+  hydrate(entities: Entity[]) {
+    this.entityMap.clear();
+
+    entities.forEach(entity => {
       this.entityMap.set(entity.id, entity);
     });
+
+    this.nextEntityId = Math.max(...this.getList().map(e => e.id));
   }
 
   getList() {

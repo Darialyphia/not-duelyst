@@ -1,4 +1,5 @@
 import { Values } from '@hc/shared';
+import { TileId, tileLookup } from './tile-lookup';
 
 export const DIRECTION = {
   NORTH: 'north',
@@ -7,12 +8,12 @@ export const DIRECTION = {
   EAST: 'east'
 } as const;
 
-export const OPPOSITE_DIRECTIONS = {
-  [DIRECTION.NORTH]: 'south',
-  [DIRECTION.SOUTH]: 'north',
-  [DIRECTION.WEST]: 'east',
-  [DIRECTION.EAST]: 'west'
-} as const;
+export const DIRECTIONS_TO_DIFF = {
+  [DIRECTION.NORTH]: -1,
+  [DIRECTION.SOUTH]: 1,
+  [DIRECTION.WEST]: -1,
+  [DIRECTION.EAST]: 1
+} as const satisfies Record<Direction, number>;
 
 export type Direction = Values<typeof DIRECTION>;
 
@@ -22,19 +23,11 @@ export const TERRAIN = {
 };
 
 export type Terrain = Values<typeof TERRAIN>;
-export type TileId = keyof typeof tileLookup;
 
 export type TileDefinition = {
   terrain: Terrain;
   isHalfTile: boolean;
 };
-
-export const tileLookup = {
-  grass: {
-    terrain: TERRAIN.GROUND,
-    isHalfTile: false
-  }
-} as const satisfies Record<string, TileDefinition>;
 
 export class Tile {
   terrain: Terrain;
