@@ -1,0 +1,15 @@
+{
+  "name": "@hc/sdk",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "devDependencies": {
+    "@hc/tsconfig": "workspace:*",
+    "eslint-config-daria": "workspace:*"
+  },
+  "dependencies": {
+    "@hc/shared": "workspace.*"
+  },
+  "scripts": {
+    "dev": "echo 1"
+  }
+}

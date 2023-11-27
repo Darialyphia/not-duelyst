@@ -1,4 +1,5 @@
 {
+  "name": "hero-clash",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -9,9 +10,8 @@
   "devDependencies": {
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
-    "tsconfig": "workspace:*",
+    "@hc/tsconfig": "workspace:*",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.9.0",
-  "name": "hero-clash"
+  "packageManager": "pnpm@8.9.0"
 }
