@@ -1,5 +1,6 @@
+import { isString } from '@hc/shared';
 import { Point3D } from '../types';
-import { Cell } from './cell';
+import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
 
@@ -16,7 +17,7 @@ export class GameMap {
   startPositions: [Point3D, Point3D];
 
   readonly cells: Cell[];
-  private cellsMap = new Map<string, Cell>();
+  private cellsMap = new Map<CellId, Cell>();
 
   constructor(definition: GameMapOptions) {
     this.height = definition.height;
@@ -24,12 +25,8 @@ export class GameMap {
     this.startPositions = definition.startPositions;
     this.cells = this.makeCells(definition.cells);
     this.cells.forEach(cell => {
-      this.cellsMap.set(this.getCellMapKey(cell), cell);
+      this.cellsMap.set(cell.id, cell);
     });
-  }
-
-  private getCellMapKey({ x, y, z }: Point3D) {
-    return `${x}:${y}:${z}`;
   }
 
   private makeCells(cells: GameMapOptions['cells']) {
@@ -47,11 +44,28 @@ export class GameMap {
     };
   }
 
-  getCellAt(pos: Point3D) {
-    return this.cellsMap.get(this.getCellMapKey(pos)) ?? null;
+  getCellAt(posOrKey: CellId | Point3D) {
+    if (isString(posOrKey)) {
+      return this.cellsMap.get(posOrKey) ?? null;
+    }
+
+    return (
+      this.cellsMap.get(`${posOrKey.x}:${posOrKey.y}:${posOrKey.z}`) ?? null
+    );
   }
 
-  getDestination(from: Point3D, direction: Direction): Point3D | null {
+  getDestination(
+    posOrKey: Point3D | CellId,
+    direction: Direction
+  ): Point3D | null {
+    let from: Point3D;
+    if (isString(posOrKey)) {
+      const [x, y, z] = posOrKey.split(':').map(Number);
+      from = { x: x, y, z };
+    } else {
+      from = posOrKey;
+    }
+
     const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
     const y = from.y + (DIRECTIONS_TO_DIFF[direction] ?? 0);
 

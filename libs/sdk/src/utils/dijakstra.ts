@@ -1,0 +1,95 @@
+import { PriorityQueue } from './priority-queue';
+import { isFunction } from '@hc/shared';
+
+export type NodeKey = string | number;
+
+export type Edge<T> = {
+  node: T;
+  weight: number;
+};
+
+type QueueEntry<T> = {
+  node: T;
+  cost: number;
+};
+
+export interface GraphAdapter<T> {
+  getKey?: (node: T) => NodeKey;
+  getEdges: (node: T) => Edge<T>[];
+}
+
+const getNodeKey = <T>(node: T, adapter: GraphAdapter<T>): NodeKey => {
+  if (isFunction(adapter.getKey)) return adapter.getKey(node);
+  if (typeof node === 'string' || typeof node === 'number') return node;
+  throw new Error('Adapter must implement method getKey');
+};
+
+export const dijkstra = <T>(
+  adapter: GraphAdapter<T>,
+  startNode: T,
+  finishNode?: T
+) => {
+  const getKey = (node: T) => getNodeKey(node, adapter);
+  const parents: Record<NodeKey, T> = {};
+  const costs: Record<NodeKey, number> = {};
+  const explored: Record<NodeKey, boolean> = {};
+  const prioQueue = new PriorityQueue<QueueEntry<T>>((a, b) => b.cost - a.cost);
+  prioQueue.enqueue({ node: startNode, cost: 0 });
+
+  do {
+    let node = prioQueue.dequeue().node;
+    let nodeKey = getKey(node);
+    let cost = costs[nodeKey] || 0;
+
+    explored[nodeKey] = true;
+
+    // Early return when the shortest path in our
+    // graph is already the finishNode
+    if (undefined !== finishNode && nodeKey === getKey(finishNode)) break;
+
+    const edges = adapter.getEdges(node);
+    for (let i = 0; i < edges.length; i++) {
+      const childNode = edges[i].node;
+      const childNodeKey = getKey(childNode);
+      let alt = cost + edges[i].weight;
+
+      if (undefined === costs[childNodeKey] || alt < costs[childNodeKey]) {
+        costs[childNodeKey] = alt;
+        parents[childNodeKey] = node;
+
+        if (!explored[childNodeKey]) {
+          prioQueue.enqueue({ node: childNode, cost: alt });
+        }
+      }
+    }
+  } while (!prioQueue.isEmpty);
+
+  return {
+    costs,
+    parents
+  };
+};
+
+export const findShortestPath = <T>(
+  adapter: GraphAdapter<T>,
+  startNode: T,
+  finishNode: T
+) => {
+  const getKey = (node: T) => getNodeKey(node, adapter);
+  const { costs, parents } = dijkstra(adapter, startNode, finishNode);
+
+  let optimalPath = [finishNode];
+  let parent = parents[getKey(finishNode)];
+  while (parent) {
+    optimalPath.push(parent);
+    parent = parents[getKey(parent)];
+  }
+  optimalPath.reverse();
+
+  const results = {
+    distance: costs[getKey(finishNode)],
+    path: optimalPath
+  };
+
+  return results;
+};

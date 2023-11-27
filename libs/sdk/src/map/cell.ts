@@ -1,6 +1,9 @@
 import { Point3D } from '../types';
+import { pointToCellId } from '../utils/helpers';
 import { Vec3 } from '../utils/vector';
 import { Tile } from './tile';
+
+export type CellId = `${string}:${string}:${string}`;
 
 export class Cell {
   public position: Vec3;
@@ -10,6 +13,10 @@ export class Cell {
     position: Point3D
   ) {
     this.position = Vec3.fromPoint3D(position);
+  }
+
+  get id(): CellId {
+    return pointToCellId(this);
   }
 
   get x() {

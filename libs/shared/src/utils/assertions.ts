@@ -1,4 +1,4 @@
-import type { Defined, Nullable } from '../types/utils';
+import type { AnyFunction, Defined, Nullable } from '../types/utils';
 
 export const isObject = (x: unknown): x is object =>
   typeof x === 'object' && x !== null && !Array.isArray(x);
@@ -12,6 +12,9 @@ export const isBoolean = (x: unknown): x is boolean =>
 
 export const isDefined = <T>(arg: Nullable<T>): arg is Defined<T> =>
   arg !== undefined && arg !== null;
+
+export const isFunction = (x: unknown): x is AnyFunction =>
+  typeof x === 'function';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const exhaustiveSwitch = (x: never) => {
