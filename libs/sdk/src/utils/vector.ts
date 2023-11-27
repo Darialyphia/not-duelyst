@@ -18,4 +18,10 @@ export class Vec3 {
   equals(vec: Point3D) {
     return this.x === vec.x && this.y === vec.y && this.z === vec.z;
   }
+
+  add({ x, y, z }: Point3D) {
+    this.x += x;
+    this.y += y;
+    this.z += z;
+  }
 }

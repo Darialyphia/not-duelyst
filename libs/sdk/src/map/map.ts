@@ -8,7 +8,7 @@ import {
   tileLookup
 } from './tile';
 
-type GameMapOptions = {
+export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
   height: number;
   width: number;
@@ -57,20 +57,18 @@ export class GameMap {
   }
 
   getDestination(from: Point3D, direction: Direction): Point3D | null {
-    const { x, y } = {
-      x:
-        direction === 'east'
-          ? from.x + 1
-          : direction === 'west'
-          ? from.x - 1
-          : from.x,
-      y:
-        direction === 'south'
-          ? from.y + 1
-          : direction === 'north'
-          ? from.y - 1
-          : from.y
-    };
+    const x =
+      direction === 'east'
+        ? from.x + 1
+        : direction === 'west'
+        ? from.x - 1
+        : from.x;
+    const y =
+      direction === 'south'
+        ? from.y + 1
+        : direction === 'north'
+        ? from.y - 1
+        : from.y;
 
     const target = { x, y, z: from.z };
     const targetAbove = { x, y, z: from.z + 1 };
@@ -83,7 +81,7 @@ export class GameMap {
 
     if (currentCell?.tile.isHalfTile) {
       if (cell && !cellAbove) {
-        return targetAbove;
+        return cell.isHalfTile ? target : targetAbove;
       }
 
       if (!cellBelow) return null;

@@ -1,3 +1,4 @@
+import { Player } from '../player/player';
 import { Vec3 } from '../utils/vector';
 
 export type EntityId = number;
@@ -5,7 +6,8 @@ export type EntityId = number;
 export class Entity {
   constructor(
     public readonly id: EntityId,
-    public position: Vec3
+    public position: Vec3,
+    public owner: Player
   ) {}
 
   equals(entity: Entity) {
@@ -15,7 +17,8 @@ export class Entity {
   serialize() {
     return {
       id: this.id,
-      position: this.position
+      position: this.position,
+      ownerId: this.owner.id
     };
   }
 }
