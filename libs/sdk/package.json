@@ -7,7 +7,8 @@
     "eslint-config-daria": "workspace:*"
   },
   "dependencies": {
-    "@hc/shared": "workspace.*"
+    "@hc/shared": "workspace.*",
+    "zod": "^3.21.4"
   },
   "scripts": {
     "dev": "echo 1"

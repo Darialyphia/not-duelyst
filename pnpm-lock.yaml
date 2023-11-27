@@ -46,6 +46,9 @@ importers:
       '@hc/shared':
         specifier: workspace.*
         version: link:../shared
+      zod:
+        specifier: ^3.21.4
+        version: 3.22.4
     devDependencies:
       '@hc/tsconfig':
         specifier: workspace:*

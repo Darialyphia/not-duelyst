@@ -80,6 +80,8 @@ export const findShortestPath = <T>(
 
   let optimalPath = [finishNode];
   let parent = parents[getKey(finishNode)];
+  if (!parent) return null;
+
   while (parent) {
     optimalPath.push(parent);
     parent = parents[getKey(parent)];
