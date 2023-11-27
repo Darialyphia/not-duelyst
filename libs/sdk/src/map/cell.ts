@@ -1,11 +1,16 @@
-import { Vec3 } from '../types';
+import { Point3D } from '../types';
+import { Vec3 } from '../utils/vector';
 import { Tile } from './tile';
 
 export class Cell {
+  public position: Vec3;
+
   constructor(
     public tile: Tile,
-    private position: Vec3
-  ) {}
+    position: Point3D
+  ) {
+    this.position = Vec3.fromPoint3D(position);
+  }
 
   get x() {
     return this.position.x;
@@ -23,16 +28,12 @@ export class Cell {
     return this.tile.terrain;
   }
 
-  get ramps() {
-    return this.tile.ramps;
+  get isHalfTile() {
+    return this.tile.isHalfTile;
   }
 
   get isWalkable() {
     return this.tile.isWalkable;
-  }
-
-  get isRamp() {
-    return this.tile.isRamp;
   }
 
   serialize() {

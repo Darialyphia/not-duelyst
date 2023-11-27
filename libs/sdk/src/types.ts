@@ -1,4 +1,4 @@
-export type Vec3 = {
+export type Point3D = {
   x: number;
   y: number;
   z: number;

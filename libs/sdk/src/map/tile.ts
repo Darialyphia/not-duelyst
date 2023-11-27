@@ -26,33 +26,24 @@ export type TileId = keyof typeof tileLookup;
 
 export type TileDefinition = {
   terrain: Terrain;
-  ramps: {
-    [k in Direction]: boolean;
-  };
+  isHalfTile: boolean;
 };
 
 export const tileLookup = {
   grass: {
     terrain: TERRAIN.GROUND,
-    ramps: {
-      east: false,
-      west: false,
-      north: false,
-      south: false
-    }
+    isHalfTile: false
   }
 } as const satisfies Record<string, TileDefinition>;
 
 export class Tile {
-  terrain!: Terrain;
-  ramps!: TileDefinition['ramps'];
+  terrain: Terrain;
+  isHalfTile: boolean;
 
   constructor(readonly id: TileId) {
-    Object.assign(this, tileLookup[id]);
-  }
-
-  get isRamp() {
-    return Object.values(this.ramps).some(Boolean);
+    const tile = tileLookup[id];
+    this.terrain = tile.terrain;
+    this.isHalfTile = tile.isHalfTile;
   }
 
   get isWalkable() {
