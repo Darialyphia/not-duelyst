@@ -2,7 +2,8 @@ import { Values } from '@hc/shared';
 import { GameContext } from '../game';
 
 export const EVENT_NAME = {
-  MOVE: 'MOVE'
+  MOVE: 'MOVE',
+  END_TURN: 'END_TURN'
 } as const;
 
 export type EventName = Values<typeof EVENT_NAME>;

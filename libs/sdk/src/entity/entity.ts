@@ -1,22 +1,41 @@
-import { Player } from '../player/player';
+import { Player, PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitBlueprint, UnitId, unitLookup } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
 
 export type EntityId = number;
 
+export type SerializedEntity = {
+  id: EntityId;
+  position: Point3D;
+  ownerId: PlayerId;
+  unitId: UnitId;
+};
+
 export class Entity {
+  public readonly id: EntityId;
+
+  public ownerId: PlayerId;
+
+  private unitId: UnitId;
+
   private movementSpent = 0;
-  public atb = 0;
+
+  private atbSeed = Math.random();
+
+  public atb = this.atbSeed;
+
   public ap = 0;
+
   public hp = 0;
 
-  constructor(
-    public readonly id: EntityId,
-    public position: Vec3,
-    public owner: Player,
-    private unitId: UnitId
-  ) {
+  public position: Vec3;
+
+  constructor(raw: SerializedEntity) {
+    this.id = raw.id;
+    this.position = Vec3.fromPoint3D(raw.position);
+    this.ownerId = raw.ownerId;
+    this.unitId = raw.unitId;
     this.ap = this.unit.maxAp;
     this.hp = this.unit.maxHp;
   }
@@ -25,11 +44,11 @@ export class Entity {
     return entity.id === this.id;
   }
 
-  serialize() {
+  serialize(): SerializedEntity {
     return {
       id: this.id,
       position: this.position,
-      ownerId: this.owner.id,
+      ownerId: this.ownerId,
       unitId: this.unitId
     };
   }
@@ -69,7 +88,7 @@ export class Entity {
   }
 
   endTurn() {
-    this.atb = 0;
+    this.atb = this.atbSeed;
     this.movementSpent = 0;
   }
 }

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@hc/shared": "workspace.*",
+    "mitt": "^3.0.1",
     "zod": "^3.21.4"
   },
   "scripts": {

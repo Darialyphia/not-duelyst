@@ -1,24 +1,17 @@
+import mitt, { type Emitter } from 'mitt';
 import { ActionReducer, RawAction } from './action/action-reducer';
 import { ATB } from './atb';
-import { EntityId, Entity } from './entity/entity';
+import { EntityId, Entity, SerializedEntity } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
 import { SerializedEvent } from './event/event';
 import { EventHistory } from './event/event-history';
 import { GameMap, GameMapOptions } from './map/map';
-import { Player, PlayerId } from './player/player';
+import { PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
-import { Point3D } from './types';
-import { UnitId, unitLookup } from './units/unit-lookup';
-import { Vec3 } from './utils/vector';
 
 type SerializedGameState = {
   map: GameMapOptions;
-  entities: Array<{
-    id: EntityId;
-    position: Point3D;
-    ownerId: PlayerId;
-    unitId: UnitId;
-  }>;
+  entities: Array<SerializedEntity>;
   players: { id: PlayerId }[];
   history: SerializedEvent<any>[];
   activeEntityId?: EntityId;
@@ -30,6 +23,7 @@ export type GameContext = {
   playerManager: PlayerManager;
   history: EventHistory;
   atb: ATB;
+  emitter: Emitter<any>;
 };
 
 export class Game {
@@ -38,20 +32,13 @@ export class Game {
   private entityManager: EntityManager;
   private history: EventHistory;
   private atb: ATB;
+  private emitter: Emitter<any> = mitt();
 
   constructor(state: SerializedGameState) {
     this.map = new GameMap(state.map);
     this.playerManager = new PlayerManager(state.players);
     this.entityManager = new EntityManager(
-      state.entities.map(
-        e =>
-          new Entity(
-            e.id,
-            Vec3.fromPoint3D(e.position),
-            this.playerManager.getPlayerById(e.ownerId)!,
-            e.unitId
-          )
-      )
+      state.entities.map(e => new Entity(e))
     );
     this.history = new EventHistory(state.history, this.getContext());
     this.atb = new ATB();
@@ -75,7 +62,8 @@ export class Game {
       entityManager: this.entityManager,
       playerManager: this.playerManager,
       history: this.history,
-      atb: this.atb
+      atb: this.atb,
+      emitter: this.emitter
     };
   }
 

@@ -9,7 +9,7 @@ export const getEntityIfOwnerMatches = (
   const entity = ctx.entityManager.getEntityById(entityId);
   if (!entity) return null;
 
-  if (entity.owner.id === playerId) return null;
+  if (entity.ownerId === playerId) return null;
 
   return entity;
 };
@@ -22,12 +22,12 @@ export const ensureEntityBelongsToPlayer = (
   const entity = ctx.entityManager.getEntityById(entityId);
   if (!entity) return false;
 
-  return entity.owner.id === playerId;
+  return entity.ownerId === playerId;
 };
 
 export const ensureActiveEntityBelongsToPlayer = (
   ctx: GameContext,
   playerId: PlayerId
 ) => {
-  return ctx.atb.activeEntity.owner.id === playerId;
+  return ctx.atb.activeEntity.ownerId === playerId;
 };
