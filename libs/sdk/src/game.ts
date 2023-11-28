@@ -1,4 +1,5 @@
 import { ActionReducer, RawAction } from './action/action-reducer';
+import { ATB } from './atb';
 import { EntityId, Entity } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
 import { SerializedEvent } from './event/event';
@@ -27,6 +28,7 @@ export type GameContext = {
   entityManager: EntityManager;
   playerManager: PlayerManager;
   history: EventHistory;
+  atb: ATB;
 };
 
 export class Game {
@@ -34,6 +36,7 @@ export class Game {
   private playerManager: PlayerManager;
   private entityManager: EntityManager;
   private history: EventHistory;
+  private atb: ATB;
 
   constructor(state: SerializedGameState) {
     this.map = new GameMap(state.map);
@@ -50,6 +53,7 @@ export class Game {
       )
     );
     this.history = new EventHistory(state.history, this.getContext());
+    this.atb = new ATB(this.entityManager.getList());
   }
 
   private getContext(): GameContext {
@@ -57,7 +61,8 @@ export class Game {
       map: this.map,
       entityManager: this.entityManager,
       playerManager: this.playerManager,
-      history: this.history
+      history: this.history,
+      atb: this.atb
     };
   }
 
