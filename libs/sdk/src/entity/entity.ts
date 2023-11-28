@@ -7,16 +7,31 @@ export type EntityId = number;
 
 export class Entity {
   private movementSpent = 0;
+  public atb = 0;
+  public ap = 0;
+  public hp = 0;
 
   constructor(
     public readonly id: EntityId,
     public position: Vec3,
     public owner: Player,
     private unitId: UnitId
-  ) {}
+  ) {
+    this.ap = this.unit.maxAp;
+    this.hp = this.unit.maxHp;
+  }
 
   equals(entity: Entity) {
     return entity.id === this.id;
+  }
+
+  serialize() {
+    return {
+      id: this.id,
+      position: this.position,
+      ownerId: this.owner.id,
+      unitId: this.unitId
+    };
   }
 
   private get unit() {
@@ -49,12 +64,7 @@ export class Entity {
     });
   }
 
-  serialize() {
-    return {
-      id: this.id,
-      position: this.position,
-      ownerId: this.owner.id,
-      unitId: this.unitId
-    };
+  resetAp() {
+    this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
   }
 }
