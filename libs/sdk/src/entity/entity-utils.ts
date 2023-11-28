@@ -1,6 +1,6 @@
 import { GameContext } from '../game';
 
-export const ensureEntityBelongsTo = (
+export const getEntityIfOwnerMatches = (
   ctx: GameContext,
   entityId: number,
   playerId: string

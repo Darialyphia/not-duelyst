@@ -1,10 +1,12 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
-import { Entity } from '../entity/entity';
 import { GameContext } from '../game';
 import { Pathfinder } from '../pathfinding';
-import { ensureEntityBelongsTo } from '../entity/entity-utils';
+import { getEntityIfOwnerMatches } from '../entity/entity-utils';
 import { Vec3 } from '../utils/vector';
+import { ACTION_NAME, ActionName, RawAction } from './action-reducer';
+import { MoveEvent } from '../event/move.event';
+import { cellIdToPoint } from '../utils/helpers';
 
 const moveEventSchema = defaultActionSchema.extend({
   entityId: z.number(),
@@ -16,10 +18,12 @@ const moveEventSchema = defaultActionSchema.extend({
 type MoveActionPayload = z.infer<typeof moveEventSchema>;
 
 export class MoveAction extends GameAction<typeof moveEventSchema> {
+  protected name = ACTION_NAME.MOVE;
+
   protected payloadSchema = moveEventSchema;
 
   impl(payload: MoveActionPayload, ctx: GameContext) {
-    const entity = ensureEntityBelongsTo(
+    const entity = getEntityIfOwnerMatches(
       ctx,
       payload.entityId,
       payload.playerId
@@ -29,6 +33,11 @@ export class MoveAction extends GameAction<typeof moveEventSchema> {
     const path = new Pathfinder(ctx).findPath(entity.position, payload);
     if (!path) return;
 
-    entity.position = Vec3.fromPoint3D(payload);
+    if (entity.canMove(path.distance)) {
+      new MoveEvent({
+        entityId: payload.entityId,
+        path: path.path.map(cellIdToPoint)
+      }).execute(ctx);
+    }
   }
 }

@@ -3,6 +3,7 @@ import { Point3D } from '../types';
 import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
+import { cellIdToPoint } from '../utils/helpers';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -58,13 +59,7 @@ export class GameMap {
     posOrKey: Point3D | CellId,
     direction: Direction
   ): Point3D | null {
-    let from: Point3D;
-    if (isString(posOrKey)) {
-      const [x, y, z] = posOrKey.split(':').map(Number);
-      from = { x: x, y, z };
-    } else {
-      from = posOrKey;
-    }
+    let from = isString(posOrKey) ? cellIdToPoint(posOrKey) : posOrKey;
 
     const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
     const y = from.y + (DIRECTIONS_TO_DIFF[direction] ?? 0);

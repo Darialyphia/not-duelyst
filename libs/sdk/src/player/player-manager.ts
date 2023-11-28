@@ -1,12 +1,15 @@
 import { Player, PlayerId } from './player';
 
 export class PlayerManager {
-  playerMap = new Map<PlayerId, Player>();
+  private playerMap = new Map<PlayerId, Player>();
+  private players: Player[] = [];
 
-  constructor(players: Player[]) {
-    players.forEach(player => {
-      this.playerMap.set(player.id, player);
-    });
+  constructor(players: { id: PlayerId }[]) {
+    players
+      .map(p => new Player(p.id))
+      .forEach(player => {
+        this.addPlayer(player);
+      });
   }
 
   getList() {
