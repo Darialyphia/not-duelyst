@@ -5,18 +5,19 @@ import { GameMap } from './map/map';
 import { GraphAdapter, findShortestPath } from './utils/dijakstra';
 import { Point3D } from './types';
 import { pointToCellId } from './utils/helpers';
+import { GameContext } from './game';
 
 export class Pathfinder {
-  graphAdapter: GraphAdapter<CellId> = {
+  private graphAdapter: GraphAdapter<CellId> = {
     getEdges: node => {
       return [
-        this.map.getDestination(node, 'north'),
-        this.map.getDestination(node, 'south'),
-        this.map.getDestination(node, 'west'),
-        this.map.getDestination(node, 'east')
+        this.ctx.map.getDestination(node, 'north'),
+        this.ctx.map.getDestination(node, 'south'),
+        this.ctx.map.getDestination(node, 'west'),
+        this.ctx.map.getDestination(node, 'east')
       ]
         .filter(isDefined)
-        .filter(point => !this.entityManager.getEntityAt(point))
+        .filter(point => !this.ctx.entityManager.getEntityAt(point))
         .map(point => {
           return {
             node: pointToCellId(point),
@@ -26,13 +27,10 @@ export class Pathfinder {
     }
   };
 
-  constructor(
-    private map: GameMap,
-    private entityManager: EntityManager
-  ) {}
+  constructor(private ctx: GameContext) {}
 
   findPath(from: Point3D, to: Point3D) {
-    findShortestPath<CellId>(
+    return findShortestPath<CellId>(
       this.graphAdapter,
       pointToCellId(from),
       pointToCellId(to)

@@ -16,7 +16,13 @@ type SerializedGameState = {
   players: { id: PlayerId }[];
 };
 
-class Game {
+export type GameContext = {
+  map: GameMap;
+  entityManager: EntityManager;
+  playerManager: PlayerManager;
+};
+
+export class Game {
   map: GameMap;
   entityManager = new EntityManager();
   playerManager = new PlayerManager([]);
@@ -36,6 +42,14 @@ class Game {
           )
       )
     );
+  }
+
+  private getContext(): GameContext {
+    return {
+      map: this.map,
+      entityManager: this.entityManager,
+      playerManager: this.playerManager
+    };
   }
 
   serialize(): SerializedGameState {
