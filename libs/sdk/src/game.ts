@@ -21,6 +21,7 @@ type SerializedGameState = {
   }>;
   players: { id: PlayerId }[];
   history: SerializedEvent<any>[];
+  activeEntityId?: EntityId;
 };
 
 export type GameContext = {
@@ -53,9 +54,21 @@ export class Game {
       )
     );
     this.history = new EventHistory(state.history, this.getContext());
-    this.atb = new ATB(this.entityManager.getList());
+    this.atb = new ATB();
+    this.setupATB(state.activeEntityId);
   }
 
+  private setupATB(activeEntityId?: EntityId) {
+    if (activeEntityId) {
+      const activeEntity = this.entityManager.getEntityById(activeEntityId);
+      if (!activeEntity)
+        throw new Error(`Couldnt find active entity with id ${activeEntityId}`);
+
+      this.atb.activeEntity = activeEntity;
+    } else {
+      this.atb.tickUntilActiveEntity(this.entityManager.getList());
+    }
+  }
   private getContext(): GameContext {
     return {
       map: this.map,

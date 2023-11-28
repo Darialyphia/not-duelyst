@@ -67,4 +67,9 @@ export class Entity {
   resetAp() {
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
   }
+
+  endTurn() {
+    this.atb = 0;
+    this.movementSpent = 0;
+  }
 }

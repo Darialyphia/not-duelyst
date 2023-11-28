@@ -5,10 +5,6 @@ export const MAX_ATB = 100;
 export class ATB {
   public activeEntity!: Entity;
 
-  constructor(entities: Entity[]) {
-    this.tickUntilActiveEntity(entities);
-  }
-
   getHighestActiveEntity(entities: Entity[]) {
     return entities
       .filter(e => e.atb >= MAX_ATB)

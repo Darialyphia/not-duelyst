@@ -30,6 +30,8 @@ export class MoveAction extends GameAction<typeof moveEventSchema> {
     );
     if (!entity) return;
 
+    if (!entity.equals(ctx.atb.activeEntity)) return;
+
     const path = new Pathfinder(ctx).findPath(entity.position, payload);
     if (!path) return;
 
