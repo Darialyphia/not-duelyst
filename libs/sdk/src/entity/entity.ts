@@ -1,7 +1,7 @@
 import mitt from 'mitt';
-import { Player, PlayerId } from '../player/player';
+import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
-import { UnitBlueprint, UnitId, unitLookup } from '../units/unit-lookup';
+import { UnitId, unitLookup } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
 import { Values } from '@hc/shared';
 

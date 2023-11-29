@@ -13,11 +13,14 @@ export type GameMapOptions = {
 };
 
 export class GameMap {
-  height: number;
-  width: number;
-  startPositions: [Point3D, Point3D];
+  readonly height: number;
+
+  readonly width: number;
+
+  readonly startPositions: [Point3D, Point3D];
 
   readonly cells: Cell[];
+
   private cellsMap = new Map<CellId, Cell>();
 
   constructor(definition: GameMapOptions) {
