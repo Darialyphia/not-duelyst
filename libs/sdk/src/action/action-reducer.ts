@@ -1,5 +1,5 @@
 import { Values, exhaustiveSwitch } from '@hc/shared';
-import { GameContext, LazyGameContext } from '../game';
+import { GameContext } from '../game';
 import { MoveAction } from './move.action';
 import { EndTurnAction } from './end-turn.action';
 
@@ -16,15 +16,14 @@ export type RawAction = {
 };
 
 export class ActionReducer {
-  constructor(private getContext: LazyGameContext) {}
+  constructor(private ctx: GameContext) {}
 
   reduce(action: RawAction) {
-    const ctx = this.getContext();
     switch (action.type) {
       case ACTION_NAME.MOVE:
-        return new MoveAction(action.payload).execute(ctx);
+        return new MoveAction(action.payload).execute(this.ctx);
       case ACTION_NAME.END_TURN:
-        return new EndTurnAction(action.payload).execute(ctx);
+        return new EndTurnAction(action.payload).execute(this.ctx);
       default:
         exhaustiveSwitch(action.type);
     }

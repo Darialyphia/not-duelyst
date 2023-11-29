@@ -1,4 +1,4 @@
-import { Game, GameContext } from '../game';
+import { GameContext } from '../game';
 import { PlayerId } from '../player/player';
 
 export const getEntityIfOwnerMatches = (

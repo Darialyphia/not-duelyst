@@ -1,7 +1,5 @@
-import { LazyGameContext } from '../game';
-import { Player } from '../player/player';
+import { GameContext } from '../game';
 import { Point3D } from '../types';
-import { Vec3 } from '../utils/vector';
 import { ENTITY_EVENTS, Entity, EntityId, SerializedEntity } from './entity';
 
 export type EntityManagerOptions = {
@@ -13,10 +11,9 @@ export class EntityManager {
   private entityMap = new Map<EntityId, Entity>();
   private nextEntityId = 1;
 
-  constructor(
-    private getContext: LazyGameContext,
-    entities: SerializedEntity[]
-  ) {
+  constructor(private ctx: GameContext) {}
+
+  setup(entities: SerializedEntity[]) {
     entities.forEach(rawEntity => {
       const entity = new Entity(rawEntity);
       this.entityMap.set(entity.id, entity);
@@ -41,25 +38,21 @@ export class EntityManager {
   }
 
   private addListeners(entity: Entity) {
-    const { emitter } = this.getContext();
-
     Object.values(ENTITY_EVENTS).forEach(eventName => {
       entity.on(eventName, () => {
-        emitter.emit(`entity:${eventName}`, entity);
+        this.ctx.emitter.emit(`entity:${eventName}`, entity);
       });
     });
   }
 
   addEntity(entity: SerializedEntity | Entity) {
-    const { emitter } = this.getContext();
-
     const id = ++this.nextEntityId;
     const _entity = entity instanceof Entity ? entity : new Entity(entity);
 
     this.entityMap.set(id, _entity);
     this.addListeners(_entity);
 
-    emitter.emit('entity:created', _entity);
+    this.ctx.emitter.emit('entity:created', _entity);
   }
 
   removeEntity(entity: Entity) {

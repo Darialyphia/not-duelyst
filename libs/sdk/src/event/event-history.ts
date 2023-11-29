@@ -7,7 +7,9 @@ import { EndTurnEvent } from './end-turn.event';
 export class EventHistory {
   private history: GameEvent<any>[] = [];
 
-  constructor(rawHistory: SerializedEvent<any>[], ctx: GameContext) {
+  constructor(private ctx: GameContext) {}
+
+  setup(rawHistory: SerializedEvent<any>[]) {
     rawHistory
       .map(event => {
         switch (event.type) {
@@ -21,7 +23,7 @@ export class EventHistory {
         }
       })
       .forEach(event => {
-        event.execute(ctx);
+        event.execute(this.ctx);
       });
   }
 

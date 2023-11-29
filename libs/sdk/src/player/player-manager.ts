@@ -1,12 +1,11 @@
-import { Player, PlayerId } from './player';
+import { Loadout, Player, PlayerId } from './player';
 
 export class PlayerManager {
   private playerMap = new Map<PlayerId, Player>();
-  private players: Player[] = [];
 
-  constructor(players: { id: PlayerId }[]) {
+  setup(players: { id: PlayerId; loadout: Loadout }[]) {
     players
-      .map(p => new Player(p.id))
+      .map(p => new Player(p.id, p.loadout))
       .forEach(player => {
         this.addPlayer(player);
       });
