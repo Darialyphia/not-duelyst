@@ -1,7 +1,10 @@
+import { GameContext } from '../game';
 import { Loadout, Player, PlayerId } from './player';
 
 export class PlayerManager {
   private playerMap = new Map<PlayerId, Player>();
+
+  constructor(private ctx: GameContext) {}
 
   setup(players: { id: PlayerId; loadout: Loadout }[]) {
     players
@@ -17,6 +20,10 @@ export class PlayerManager {
 
   getPlayerById(id: PlayerId) {
     return this.playerMap.get(id);
+  }
+
+  getActivePlayer() {
+    return this.getPlayerById(this.ctx.atb.activeEntity.playerId)!;
   }
 
   addPlayer(player: Player) {

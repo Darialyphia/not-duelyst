@@ -1,6 +1,5 @@
-import { AnyZodObject, z } from 'zod';
-import { Game, GameContext } from '../game';
-import { Entity } from '../entity/entity';
+import { z } from 'zod';
+import { GameContext } from '../game';
 import { ActionName, RawAction } from './action-reducer';
 
 export const defaultActionSchema = z.object({

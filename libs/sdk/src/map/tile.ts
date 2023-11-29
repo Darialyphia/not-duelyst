@@ -1,5 +1,5 @@
 import { Values } from '@hc/shared';
-import { TileId, tileLookup } from './tile-lookup';
+import { TileId, TILES } from './tile-lookup';
 
 export const DIRECTION = {
   NORTH: 'north',
@@ -34,7 +34,7 @@ export class Tile {
   isHalfTile: boolean;
 
   constructor(readonly id: TileId) {
-    const tile = tileLookup[id];
+    const tile = TILES[id];
     this.terrain = tile.terrain;
     this.isHalfTile = tile.isHalfTile;
   }

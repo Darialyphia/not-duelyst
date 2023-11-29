@@ -1,8 +1,8 @@
 export type Faction = {};
 
-export type FactionId = keyof typeof factionLookup;
+export type FactionId = keyof typeof FACTIONS;
 
-export const factionLookup = {
+export const FACTIONS = {
   haven: {},
   inferno: {},
   necropolis: {},

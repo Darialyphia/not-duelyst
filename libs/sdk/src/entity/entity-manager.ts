@@ -45,14 +45,16 @@ export class EntityManager {
     });
   }
 
-  addEntity(entity: SerializedEntity | Entity) {
+  addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
     const id = ++this.nextEntityId;
-    const _entity = entity instanceof Entity ? entity : new Entity(entity);
+    const entity = new Entity({ ...rawEntity, id });
 
-    this.entityMap.set(id, _entity);
-    this.addListeners(_entity);
+    this.entityMap.set(id, entity);
+    this.addListeners(entity);
 
-    this.ctx.emitter.emit('entity:created', _entity);
+    this.ctx.emitter.emit('entity:created', entity);
+
+    return entity;
   }
 
   removeEntity(entity: Entity) {

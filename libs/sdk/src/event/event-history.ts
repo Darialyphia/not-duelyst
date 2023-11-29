@@ -3,6 +3,7 @@ import { EVENT_NAME, GameEvent, SerializedEvent } from './event';
 import { MoveEvent } from './move.event';
 import { GameContext } from '../game';
 import { EndTurnEvent } from './end-turn.event';
+import { SummonEvent } from './summon.event';
 
 export class EventHistory {
   private history: GameEvent<any>[] = [];
@@ -17,6 +18,8 @@ export class EventHistory {
             return new MoveEvent(event.payload);
           case EVENT_NAME.END_TURN:
             return new EndTurnEvent(event.payload);
+          case EVENT_NAME.SUMMON:
+            return new SummonEvent(event.payload);
           default:
             exhaustiveSwitch(event.type);
             throw new Error(`Unknown event type: ${event.type}`);

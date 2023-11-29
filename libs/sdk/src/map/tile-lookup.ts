@@ -1,6 +1,6 @@
 import { TERRAIN, TileDefinition } from './tile';
 
-export const tileLookup = {
+export const TILES = {
   water: {
     terrain: TERRAIN.WATER,
     isHalfTile: false
@@ -15,4 +15,4 @@ export const tileLookup = {
   }
 } as const satisfies Record<string, TileDefinition>;
 
-export type TileId = keyof typeof tileLookup;
+export type TileId = keyof typeof TILES;

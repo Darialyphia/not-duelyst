@@ -40,7 +40,7 @@ export type GameContext = {
 
 export class Game {
   private map!: GameMap;
-  private playerManager = new PlayerManager();
+  private playerManager = new PlayerManager(this.getContext());
   private entityManager = new EntityManager(this.getContext());
   private history = new EventHistory(this.getContext());
   private atb = new ATB();

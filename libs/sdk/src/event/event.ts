@@ -3,7 +3,8 @@ import { GameContext } from '../game';
 
 export const EVENT_NAME = {
   MOVE: 'MOVE',
-  END_TURN: 'END_TURN'
+  END_TURN: 'END_TURN',
+  SUMMON: 'SUMMON'
 } as const;
 
 export type EventName = Values<typeof EVENT_NAME>;

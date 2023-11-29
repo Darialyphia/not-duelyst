@@ -1,7 +1,7 @@
 import mitt from 'mitt';
 import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
-import { UnitId, unitLookup } from '../units/unit-lookup';
+import { UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
 import { Values } from '@hc/shared';
 
@@ -10,8 +10,9 @@ export type EntityId = number;
 export type SerializedEntity = {
   id: EntityId;
   position: Point3D;
-  ownerId: PlayerId;
+  playerId: PlayerId;
   unitId: UnitId;
+  atbSeed: number;
 };
 
 export const ENTITY_EVENTS = {
@@ -27,7 +28,7 @@ export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 export class Entity {
   public readonly id: EntityId;
 
-  public ownerId: PlayerId;
+  public playerId: PlayerId;
 
   private unitId: UnitId;
 
@@ -39,7 +40,7 @@ export class Entity {
 
   private movementSpent = 0;
 
-  private atbSeed = Math.random();
+  private atbSeed = 0;
 
   public atb = this.atbSeed;
 
@@ -52,7 +53,7 @@ export class Entity {
   constructor(raw: SerializedEntity) {
     this.id = raw.id;
     this.position = Vec3.fromPoint3D(raw.position);
-    this.ownerId = raw.ownerId;
+    this.playerId = raw.playerId;
     this.unitId = raw.unitId;
     this.ap = this.unit.maxAp;
     this.hp = this.unit.maxHp;
@@ -66,13 +67,18 @@ export class Entity {
     return {
       id: this.id,
       position: this.position,
-      ownerId: this.ownerId,
-      unitId: this.unitId
+      playerId: this.playerId,
+      unitId: this.unitId,
+      atbSeed: this.atbSeed
     };
   }
 
   private get unit() {
-    return unitLookup[this.unitId];
+    return UNITS[this.unitId];
+  }
+
+  get kind() {
+    return this.unit.kind;
   }
 
   get speed() {
