@@ -3,7 +3,8 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { Values } from '@hc/shared';
+import { clamp, Values } from '@hc/shared';
+import { Skill, SkillId } from '../skill/skill-builder';
 
 export type EntityId = number;
 
@@ -50,6 +51,8 @@ export class Entity {
 
   public position: Vec3;
 
+  public skillCooldowns: Record<SkillId, number> = {};
+
   constructor(raw: SerializedEntity) {
     this.id = raw.id;
     this.position = Vec3.fromPoint3D(raw.position);
@@ -57,6 +60,9 @@ export class Entity {
     this.unitId = raw.unitId;
     this.ap = this.unit.maxAp;
     this.hp = this.unit.maxHp;
+    this.unit.skills.forEach(skill => {
+      this.skillCooldowns[skill.id] = 0;
+    });
   }
 
   equals(entity: Entity) {
@@ -97,8 +103,23 @@ export class Entity {
     return this.unit.initiative;
   }
 
+  get skills() {
+    return this.unit.skills;
+  }
+
   canMove(distance: number) {
     return distance <= this.speed - this.movementSpent;
+  }
+
+  hasSkill(skillId: SkillId) {
+    return this.skills.some(skill => skill.id === skillId);
+  }
+
+  canUseSkill(skill: Skill) {
+    if (!this.hasSkill(skill.id)) return false;
+    if (this.skillCooldowns[skill.id] > 0) return;
+
+    return skill.cost <= this.ap;
   }
 
   move(path: Point3D[]) {
@@ -113,6 +134,9 @@ export class Entity {
     this.emitter.emit('before-turn-start', this);
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
     this.emitter.emit('after-turn-start', this);
+    Object.keys(this.skillCooldowns).forEach(skillId => {
+      this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
+    });
   }
 
   endTurn() {
