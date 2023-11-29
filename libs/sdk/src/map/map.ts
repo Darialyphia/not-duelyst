@@ -4,6 +4,7 @@ import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
 import { cellIdToPoint } from '../utils/helpers';
+import { GameContext } from '../game';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -13,17 +14,19 @@ export type GameMapOptions = {
 };
 
 export class GameMap {
-  readonly height: number;
+  height!: number;
 
-  readonly width: number;
+  width!: number;
 
-  readonly startPositions: [Point3D, Point3D];
+  startPositions!: [Point3D, Point3D];
 
-  readonly cells: Cell[];
+  cells!: Cell[];
 
-  private cellsMap = new Map<CellId, Cell>();
+  cellsMap = new Map<CellId, Cell>();
 
-  constructor(definition: GameMapOptions) {
+  constructor(private ctx: GameContext) {}
+
+  setup(definition: GameMapOptions) {
     this.height = definition.height;
     this.width = definition.width;
     this.startPositions = definition.startPositions;
@@ -95,4 +98,15 @@ export class GameMap {
 
     return target;
   }
+
+  canSummonAt = (point: Point3D) => {
+    if (this.ctx.entityManager.getEntityAt(point)) return false;
+
+    const cell = this.getCellAt(point);
+    const below = this.getCellAt({ ...point, z: point.z - 1 });
+
+    return cell
+      ? cell.isHalfTile && cell.isWalkable
+      : below && below.isWalkable;
+  };
 }

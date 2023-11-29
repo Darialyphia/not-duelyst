@@ -7,15 +7,13 @@ import { EndTurnEvent } from '../event/end-turn.event';
 
 const endTurnEventSchema = defaultActionSchema;
 
-type EndTurnActionPayload = z.infer<typeof endTurnEventSchema>;
-
 export class EndTurnAction extends GameAction<typeof endTurnEventSchema> {
   protected name = ACTION_NAME.END_TURN;
 
   protected payloadSchema = endTurnEventSchema;
 
-  impl(payload: EndTurnActionPayload, ctx: GameContext) {
-    if (ensureActiveEntityBelongsToPlayer(ctx, payload.playerId)) {
+  impl(ctx: GameContext) {
+    if (ensureActiveEntityBelongsToPlayer(ctx, this.payload.playerId)) {
       new EndTurnEvent({}).execute(ctx);
     }
   }

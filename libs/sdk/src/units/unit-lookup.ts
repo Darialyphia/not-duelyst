@@ -1,5 +1,17 @@
 import { Values } from '@hc/shared';
 import { Faction, FACTIONS } from '../faction/faction-lookup';
+import { keyBy } from 'lodash-es';
+import { GameContext } from '../game';
+import { Point3D } from '../types';
+import { Entity } from '../entity/entity';
+import { Skill, skillBuilder } from '../skill/skill-builder';
+import {
+  ensureTargetIsEnemy,
+  ensureIsWithinCellsOfTarget,
+  ensureIsWithinCellsOfCaster,
+  skillAreaGuard,
+  skillTargetGuard
+} from '../skill/skill-utils';
 
 export const UNIT_KIND = {
   GENERAL: 'GENERAL',
@@ -8,10 +20,12 @@ export const UNIT_KIND = {
 
 export type UnitKind = Values<typeof UNIT_KIND>;
 
-export const isUnitId = (str: string): str is UnitId =>
-  Object.keys(UNITS).includes(str);
+export type UnitId = string;
+
+export const isUnitId = (str: string): str is UnitId => Object.keys(UNITS).includes(str);
 
 export type UnitBlueprint = {
+  id: string;
   kind: UnitKind;
   faction: Faction;
 
@@ -27,22 +41,40 @@ export type UnitBlueprint = {
   defense: number;
   speed: number;
   initiative: number;
+
+  skills: Array<Skill>;
 };
 
-export type UnitId = keyof typeof UNITS;
-
-export const UNITS = {
-  havenGeneral1: {
-    kind: UNIT_KIND.GENERAL,
-    faction: FACTIONS.haven,
-    summonCost: 0,
-    summonCooldown: 0,
-    maxHp: 25,
-    maxAp: 4,
-    apRegenRate: 1,
-    attack: 4,
-    defense: 1,
-    speed: 5,
-    initiative: 8
-  }
-} as const satisfies Record<string, UnitBlueprint>;
+export const UNITS = keyBy(
+  [
+    {
+      id: 'haven_general_1',
+      kind: UNIT_KIND.GENERAL,
+      faction: FACTIONS.haven,
+      summonCost: 0,
+      summonCooldown: 0,
+      maxHp: 25,
+      maxAp: 4,
+      apRegenRate: 1,
+      attack: 4,
+      defense: 1,
+      speed: 5,
+      initiative: 8,
+      skills: [
+        skillBuilder()
+          .id('melee_attack')
+          .cost(0)
+          .cooldown(0)
+          .isTargetable(
+            skillTargetGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfCaster(1))
+          )
+          .isInAreaOfEffect(
+            skillAreaGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfTarget(0))
+          )
+          .execute((ctx, caster) => {})
+          .build()
+      ]
+    }
+  ],
+  'id'
+) satisfies Record<UnitId, UnitBlueprint>;

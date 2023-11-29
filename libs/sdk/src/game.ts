@@ -39,7 +39,7 @@ export type GameContext = {
 };
 
 export class Game {
-  private map!: GameMap;
+  private map = new GameMap(this.getContext());
   private playerManager = new PlayerManager(this.getContext());
   private entityManager = new EntityManager(this.getContext());
   private history = new EventHistory(this.getContext());
@@ -55,11 +55,12 @@ export class Game {
   }
 
   private setupState(state: SerializedGameState) {
-    this.map = new GameMap(state.map);
+    this.map.setup(state.map);
     this.playerManager.setup(state.players);
     this.entityManager.setup(state.entities);
     this.history.setup(state.history);
   }
+
   private setupEvents() {
     this.emitter.on('entity:after-turn-end', () => {
       this.atb.tickUntilActiveEntity(this.entityManager.getList());

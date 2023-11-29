@@ -15,29 +15,27 @@ const moveEventSchema = defaultActionSchema.extend({
   z: z.number()
 });
 
-type MoveActionPayload = z.infer<typeof moveEventSchema>;
-
 export class MoveAction extends GameAction<typeof moveEventSchema> {
   protected name = ACTION_NAME.MOVE;
 
   protected payloadSchema = moveEventSchema;
 
-  impl(payload: MoveActionPayload, ctx: GameContext) {
+  impl(ctx: GameContext) {
     const entity = getEntityIfOwnerMatches(
       ctx,
-      payload.entityId,
-      payload.playerId
+      this.payload.entityId,
+      this.payload.playerId
     );
     if (!entity) return;
 
     if (!entity.equals(ctx.atb.activeEntity)) return;
 
-    const path = new Pathfinder(ctx).findPath(entity.position, payload);
+    const path = new Pathfinder(ctx).findPath(entity.position, this.payload);
     if (!path) return;
 
     if (entity.canMove(path.distance)) {
       new MoveEvent({
-        entityId: payload.entityId,
+        entityId: this.payload.entityId,
         path: path.path.map(cellIdToPoint)
       }).execute(ctx);
     }

@@ -1,7 +1,6 @@
 import { isDefined } from '@hc/shared';
 import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
 import { GameContext } from '../game';
-import { getGeneral } from '../entity/entity-utils';
 
 export type PlayerId = string;
 
@@ -17,14 +16,12 @@ export class Player {
 
   canSummon(ctx: GameContext, unitId: UnitId) {
     const unit = UNITS[unitId];
+    const loadoutUnit = this.loadout.units[unitId];
+    if (!isDefined(loadoutUnit)) return false;
 
-    if (!isDefined(this.loadout.units[unitId])) return false;
+    const general = ctx.entityManager.getGeneral(this.id);
 
-    const general = getGeneral(ctx, this.id);
-
-    return (
-      this.loadout.units[unitId].cooldown > 0 && general.ap >= unit.summonCost
-    );
+    return loadoutUnit.cooldown === 0 && general.ap >= unit.summonCost;
   }
 
   serialize() {

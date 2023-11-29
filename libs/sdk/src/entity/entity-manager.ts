@@ -1,6 +1,9 @@
+import { isDefined } from '@hc/shared';
 import { GameContext } from '../game';
 import { Point3D } from '../types';
 import { ENTITY_EVENTS, Entity, EntityId, SerializedEntity } from './entity';
+import { PlayerId } from '../player/player';
+import { isGeneral } from './entity-utils';
 
 export type EntityManagerOptions = {
   entities: Entity[];
@@ -35,6 +38,59 @@ export class EntityManager {
 
   getEntityAt(position: Point3D) {
     return this.getList().find(e => e.position.equals(position)) ?? null;
+  }
+
+  getNearbyEntities({ x, y, z }: Point3D) {
+    // prettier-ignore
+    return [
+      // Same level
+      this.getEntityAt({ x: x - 1, y: y - 1, z }), // top left
+      this.getEntityAt({ x: x    , y: y - 1, z }), // top
+      this.getEntityAt({ x: x + 1, y: y - 1, z }), // top right
+      this.getEntityAt({ x: x - 1, y: y    , z}),  // left
+      this.getEntityAt({ x: x + 1, y: y    , z}),  // right
+      this.getEntityAt({ x: x - 1, y: y + 1, z }), // bottom left
+      this.getEntityAt({ x: x    , y: y + 1, z }), // bottom
+      this.getEntityAt({ x: x + 1, y: y + 1, z }), // bottom right,
+
+      // below
+      this.getEntityAt({ x: x - 1, y: y - 1, z: z - 1 }), // top left
+      this.getEntityAt({ x: x    , y: y - 1, z: z - 1 }), // top
+      this.getEntityAt({ x: x + 1, y: y - 1, z: z - 1 }), // top right
+      this.getEntityAt({ x: x - 1, y: y    , z: z - 1 }), // left
+      this.getEntityAt({ x: x    , y: y    , z: z - 1 }), // center
+      this.getEntityAt({ x: x + 1, y: y    , z: z - 1 }), // right
+      this.getEntityAt({ x: x - 1, y: y + 1, z: z - 1 }), // bottom left
+      this.getEntityAt({ x: x    , y: y + 1, z: z - 1 }), // bottom
+      this.getEntityAt({ x: x + 1, y: y + 1, z: z - 1 }), // bottom right,
+
+      // Above
+      this.getEntityAt({ x: x - 1, y: y - 1, z: z + 1 }), // top left
+      this.getEntityAt({ x: x    , y: y - 1, z: z + 1 }), // top
+      this.getEntityAt({ x: x + 1, y: y - 1, z: z + 1 }), // top right
+      this.getEntityAt({ x: x - 1, y: y    , z: z + 1 }), // left
+      this.getEntityAt({ x: x    , y: y    , z: z + 1 }), // center
+      this.getEntityAt({ x: x + 1, y: y    , z: z + 1 }), // right
+      this.getEntityAt({ x: x - 1, y: y + 1, z: z + 1 }), // bottom left
+      this.getEntityAt({ x: x    , y: y + 1, z: z + 1 }), // bottom
+      this.getEntityAt({ x: x + 1, y: y + 1, z: z + 1 }), // bottom right,
+    ].filter(isDefined);
+  }
+
+  getNearbyAllies(point: Point3D, playerId: PlayerId) {
+    return this.getNearbyEntities(point).filter(
+      entity => entity.playerId === playerId
+    );
+  }
+
+  hasNearbyAllies(point: Point3D, playerId: PlayerId) {
+    return this.getNearbyAllies(point, playerId).length > 0;
+  }
+
+  getGeneral(playerId: PlayerId) {
+    return this.ctx.entityManager
+      .getList()
+      .find(entity => isGeneral(entity) && entity.playerId === playerId)!;
   }
 
   private addListeners(entity: Entity) {

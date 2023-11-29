@@ -8,17 +8,21 @@ export const defaultActionSchema = z.object({
 
 export abstract class GameAction<TSchema extends typeof defaultActionSchema> {
   protected abstract name: ActionName;
+
   protected abstract payloadSchema: TSchema;
+
+  protected payload!: z.infer<TSchema>;
 
   constructor(protected rawPayload: unknown) {}
 
-  protected abstract impl(payload: z.infer<TSchema>, ctx: GameContext): void;
+  protected abstract impl(ctx: GameContext): void;
 
   execute(ctx: GameContext) {
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
     if (!parsed.success) return;
+    this.payload = parsed.data;
 
-    return this.impl(parsed.data, ctx);
+    return this.impl(ctx);
   }
 
   serialize(): RawAction {
