@@ -2,6 +2,7 @@ import { exhaustiveSwitch } from '@hc/shared';
 import { EVENT_NAME, GameEvent, SerializedEvent } from './event';
 import { MoveEvent } from './move.event';
 import { GameContext } from '../game';
+import { EndTurnEvent } from './end-turn.event';
 
 export class EventHistory {
   private history: GameEvent<any>[] = [];
@@ -12,7 +13,10 @@ export class EventHistory {
         switch (event.type) {
           case EVENT_NAME.MOVE:
             return new MoveEvent(event.payload);
+          case EVENT_NAME.END_TURN:
+            return new EndTurnEvent(event.payload);
           default:
+            exhaustiveSwitch(event.type);
             throw new Error(`Unknown event type: ${event.type}`);
         }
       })

@@ -5,19 +5,21 @@ import { GameMap } from './map/map';
 import { GraphAdapter, findShortestPath } from './utils/dijakstra';
 import { Point3D } from './types';
 import { pointToCellId } from './utils/helpers';
-import { GameContext } from './game';
+import { GameContext, LazyGameContext } from './game';
 
 export class Pathfinder {
   private graphAdapter: GraphAdapter<CellId> = {
     getEdges: node => {
+      const ctx = this.getContext();
+
       return [
-        this.ctx.map.getDestination(node, 'north'),
-        this.ctx.map.getDestination(node, 'south'),
-        this.ctx.map.getDestination(node, 'west'),
-        this.ctx.map.getDestination(node, 'east')
+        ctx.map.getDestination(node, 'north'),
+        ctx.map.getDestination(node, 'south'),
+        ctx.map.getDestination(node, 'west'),
+        ctx.map.getDestination(node, 'east')
       ]
         .filter(isDefined)
-        .filter(point => !this.ctx.entityManager.getEntityAt(point))
+        .filter(point => !this.getContext().entityManager.getEntityAt(point))
         .map(point => {
           return {
             node: pointToCellId(point),
@@ -27,7 +29,7 @@ export class Pathfinder {
     }
   };
 
-  constructor(private ctx: GameContext) {}
+  constructor(private getContext: LazyGameContext) {}
 
   findPath(from: Point3D, to: Point3D) {
     return findShortestPath<CellId>(

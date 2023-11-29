@@ -1,1 +1,1 @@
-# @deungeon-crawler/shared
+# @hc/sdk

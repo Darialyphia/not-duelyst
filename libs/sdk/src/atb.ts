@@ -24,6 +24,6 @@ export class ATB {
     }
 
     this.activeEntity = activeEntity;
-    this.activeEntity.resetAp();
+    this.activeEntity.startTurn();
   }
 }

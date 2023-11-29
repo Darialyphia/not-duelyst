@@ -17,14 +17,26 @@ type SerializedGameState = {
   activeEntityId?: EntityId;
 };
 
+type GlobalGameEvents = {
+  'entity:created': Entity;
+  'entity:before-move': Entity;
+  'entity:after-move': Entity;
+  'entity:before-turn-start': Entity;
+  'entity:after-turn-start': Entity;
+  'entity:before-turn-end': Entity;
+  'entity:after-turn-end': Entity;
+};
+
 export type GameContext = {
   map: GameMap;
   entityManager: EntityManager;
   playerManager: PlayerManager;
   history: EventHistory;
   atb: ATB;
-  emitter: Emitter<any>;
+  emitter: Emitter<GlobalGameEvents>;
 };
+
+export type LazyGameContext = () => GameContext;
 
 export class Game {
   private map: GameMap;
@@ -32,17 +44,17 @@ export class Game {
   private entityManager: EntityManager;
   private history: EventHistory;
   private atb: ATB;
-  private emitter: Emitter<any> = mitt();
+  private emitter: Emitter<GlobalGameEvents> = mitt();
 
   constructor(state: SerializedGameState) {
     this.map = new GameMap(state.map);
     this.playerManager = new PlayerManager(state.players);
-    this.entityManager = new EntityManager(
-      state.entities.map(e => new Entity(e))
-    );
+    this.entityManager = new EntityManager(this.getContext, state.entities);
     this.history = new EventHistory(state.history, this.getContext());
     this.atb = new ATB();
     this.setupATB(state.activeEntityId);
+
+    this.getContext = this.getContext.bind(this);
   }
 
   private setupATB(activeEntityId?: EntityId) {
@@ -68,7 +80,7 @@ export class Game {
   }
 
   dispatch(action: RawAction) {
-    new ActionReducer(this.getContext()).reduce(action);
+    new ActionReducer(this.getContext).reduce(action);
   }
 
   serialize(): SerializedGameState {
