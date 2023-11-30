@@ -34,10 +34,15 @@ export class MoveAction extends GameAction<typeof moveEventSchema> {
     if (!path) return;
 
     if (entity.canMove(path.distance)) {
-      new MoveEvent({
-        entityId: this.payload.entityId,
-        path: path.path.map(cellIdToPoint)
-      }).execute(this.ctx);
+      this.ctx.history.add(
+        new MoveEvent(
+          {
+            entityId: this.payload.entityId,
+            path: path.path.map(cellIdToPoint)
+          },
+          this.ctx
+        ).execute()
+      );
     }
   }
 }

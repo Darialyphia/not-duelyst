@@ -34,15 +34,17 @@ export class UseSkillAction extends GameAction<typeof useSkillEventSchema> {
   }
 
   impl() {
-    if (this.canUseSkill) {
-      return new UseSkillEvent(
+    if (!this.canUseSkill) return;
+
+    this.ctx.history.add(
+      new UseSkillEvent(
         {
           casterId: this.ctx.atb.activeEntity.id,
           target: this.payload.target,
           skillId: this.payload.skillId
         },
         this.ctx
-      );
-    }
+      )
+    );
   }
 }

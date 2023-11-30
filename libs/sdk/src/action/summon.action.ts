@@ -37,11 +37,16 @@ export class SummonAction extends GameAction<typeof summonEventSchema> {
   }
 
   impl() {
-    if (this.canSummon) {
-      return new SummonFromLoadoutEvent({
-        ...this.payload,
-        atbSeed: Math.random()
-      }).execute(this.ctx);
-    }
+    if (!this.canSummon) return;
+
+    this.ctx.history.add(
+      new SummonFromLoadoutEvent(
+        {
+          ...this.payload,
+          atbSeed: Math.random()
+        },
+        this.ctx
+      ).execute()
+    );
   }
 }

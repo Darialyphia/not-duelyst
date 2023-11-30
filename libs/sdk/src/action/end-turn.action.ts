@@ -14,7 +14,7 @@ export class EndTurnAction extends GameAction<typeof endTurnEventSchema> {
 
   impl() {
     if (ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId)) {
-      new EndTurnEvent({}).execute(this.ctx);
+      this.ctx.history.add(new EndTurnEvent({}, this.ctx).execute());
     }
   }
 }

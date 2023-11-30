@@ -25,11 +25,9 @@ export abstract class GameEvent<TPayload extends JSONValue> {
 
   protected abstract impl(): void;
 
-  execute({ transient: transient }: { transient: boolean } = { transient: false }) {
+  execute() {
     this.impl();
-    if (!transient) {
-      this.ctx.history.add(this);
-    }
+    return this;
   }
 
   serialize(): SerializedEvent<TPayload> {
