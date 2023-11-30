@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
 import { GameContext } from '../game';
-import { Pathfinder } from '../pathfinding';
+import { Pathfinder } from '../map/pathfinding';
 import { getEntityIfOwnerMatches } from '../entity/entity-utils';
 import { Vec3 } from '../utils/vector';
 import { ACTION_NAME, ActionName, RawAction } from './action-reducer';

@@ -1,20 +1,22 @@
 import mitt, { type Emitter } from 'mitt';
 import { ActionReducer, RawAction } from './action/action-reducer';
 import { ATB } from './atb';
-import {
-  EntityId,
-  Entity,
-  SerializedEntity,
-  EntityEvent
-} from './entity/entity';
+import { EntityId, Entity, SerializedEntity, EntityEvent } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
 import { SerializedEvent } from './event/event';
 import { EventHistory } from './event/event-history';
 import { GameMap, GameMapOptions } from './map/map';
-import { Loadout, PlayerId } from './player/player';
+import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 
-type SerializedGameState = {
+export type GameState = {
+  map: GameMap;
+  entities: Entity[];
+  players: Player[];
+  activeEntity: Entity;
+};
+
+export type SerializedGameState = {
   map: GameMapOptions;
   entities: Array<SerializedEntity>;
   players: { id: PlayerId; loadout: Loadout }[];
@@ -27,7 +29,7 @@ type GlobalEntityEvents = {
   [Event in EntityEvent | EntityLifecycleEvent as `entity:${Event}`]: Entity;
 };
 
-type GlobalGameEvents = GlobalEntityEvents;
+type GlobalGameEvents = GlobalEntityEvents & { event: any };
 
 export type GameContext = {
   map: GameMap;
@@ -95,6 +97,15 @@ export class Game {
       get emitter() {
         return this.emitter;
       }
+    };
+  }
+
+  getState(): Readonly<GameState> {
+    return {
+      map: this.map,
+      entities: this.entityManager.getList(),
+      players: this.playerManager.getList(),
+      activeEntity: this.atb.activeEntity
     };
   }
 

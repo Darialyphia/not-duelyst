@@ -1,11 +1,10 @@
-import { Point, isDefined } from '@hc/shared';
-import { EntityManager } from './entity/entity-manager';
-import { CellId } from './map/cell';
-import { GameMap } from './map/map';
-import { GraphAdapter, findShortestPath } from './utils/dijakstra';
-import { Point3D } from './types';
-import { pointToCellId } from './utils/helpers';
-import { GameContext } from './game';
+import { isDefined } from '@hc/shared';
+import { CellId } from './cell';
+import { GraphAdapter, findShortestPath } from '../utils/dijakstra';
+import { Point3D } from '../types';
+import { pointToCellId } from '../utils/helpers';
+import { GameContext } from '../game';
+import { isEmpty } from '../entity/entity-utils';
 
 export class Pathfinder {
   private graphAdapter: GraphAdapter<CellId> = {
@@ -17,7 +16,7 @@ export class Pathfinder {
         this.ctx.map.getDestination(node, 'east')
       ]
         .filter(isDefined)
-        .filter(point => !this.ctx.entityManager.getEntityAt(point))
+        .filter(point => !isEmpty(this.ctx, point))
         .map(point => {
           return {
             node: pointToCellId(point),
