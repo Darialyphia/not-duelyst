@@ -12,6 +12,7 @@ import {
   skillAreaGuard,
   skillTargetGuard
 } from '../skill/skill-utils';
+import { DealDamageEvent } from '../event/deal-damage.event';
 
 export const UNIT_KIND = {
   GENERAL: 'GENERAL',
@@ -71,7 +72,18 @@ export const UNITS = keyBy(
           .isInAreaOfEffect(
             skillAreaGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfTarget(0))
           )
-          .execute((ctx, caster) => {})
+          .execute((ctx, caster, target) => {
+            const entity = ctx.entityManager.getEntityAt(target)!;
+
+            new DealDamageEvent(
+              {
+                amount: 1,
+                sourceId: caster.id,
+                targets: [entity.id]
+              },
+              ctx
+            ).execute();
+          })
           .build()
       ]
     }

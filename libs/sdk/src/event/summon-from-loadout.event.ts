@@ -8,7 +8,7 @@ export type SummonFromLoadoutEventPayload = Omit<SerializedEntity, 'id'>;
 export class SummonFromLoadoutEvent extends GameEvent<SummonFromLoadoutEventPayload> {
   protected name = EVENT_NAME.SUMMON_FROM_LOADOUT;
 
-  impl() {
+  protected impl() {
     const player = this.ctx.playerManager.getPlayerById(this.payload.playerId);
     if (!player) throw new Error(`Player not found: ${this.payload.playerId}`);
 

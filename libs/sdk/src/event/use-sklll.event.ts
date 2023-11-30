@@ -12,7 +12,7 @@ export type UseSkillEventPayload = {
 export class UseSkillEvent extends GameEvent<UseSkillEventPayload> {
   protected name = EVENT_NAME.MOVE;
 
-  impl() {
+  protected impl() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.casterId);
     entity?.useSkill(this.ctx, this.payload.skillId, this.payload.target);
   }

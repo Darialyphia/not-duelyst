@@ -10,5 +10,12 @@ export type DealDamageEventPayload = {
 export class DealDamageEvent extends GameEvent<DealDamageEventPayload> {
   protected name = EVENT_NAME.DEAL_DAMAGE;
 
-  impl() {}
+  protected impl() {
+    const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId)!;
+
+    this.payload.targets.forEach(targetId => {
+      const target = this.ctx.entityManager.getEntityById(targetId)!;
+      attacker.dealDamage(this.payload.amount, target);
+    });
+  }
 }

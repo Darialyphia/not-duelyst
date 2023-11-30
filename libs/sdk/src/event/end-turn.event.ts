@@ -5,7 +5,7 @@ export type EndTurnEventPayload = Record<string, never>;
 export class EndTurnEvent extends GameEvent<EndTurnEventPayload> {
   protected name = EVENT_NAME.MOVE;
 
-  impl() {
+  protected impl() {
     this.ctx.atb.activeEntity.endTurn();
   }
 }
