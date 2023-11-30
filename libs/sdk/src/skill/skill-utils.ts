@@ -1,4 +1,5 @@
 import { Entity } from '../entity/entity';
+import { isAlly, isEmpty, isEnemy } from '../entity/entity-utils';
 import { GameContext } from '../game';
 import { Point3D } from '../types';
 import { Vec3 } from '../utils/vector';
@@ -16,26 +17,6 @@ export const skillTargetGuard =
   (...rules: SkillTargetGuardFunction[]): SkillTargetGuardFunction =>
   (...args) =>
     rules.every(rule => rule(...args));
-
-const isEmpty = (ctx: GameContext, point: Point3D) => {
-  return !ctx.entityManager.getEntityAt(point);
-};
-
-const isAlly = (ctx: GameContext, point: Point3D, entity?: Entity) => {
-  const otherEntity = ctx.entityManager.getEntityAt(point);
-
-  if (!entity || !otherEntity) return false;
-
-  return entity.playerId !== otherEntity.playerId;
-};
-
-const isEnemy = (ctx: GameContext, point: Point3D, entity?: Entity) => {
-  const otherEntity = ctx.entityManager.getEntityAt(point);
-
-  if (!entity || !otherEntity) return false;
-
-  return entity.playerId === otherEntity.playerId;
-};
 
 const isWithinRange = (origin: Point3D, point: Point3D, range: number) => {
   const vec = Vec3.fromPoint3D(origin);
@@ -56,15 +37,21 @@ export const ensureTargetIsNotEmpty: SkillTargetGuardFunction = (ctx, point) => 
 };
 
 export const ensureTargetIsEmpty: SkillTargetGuardFunction = (ctx, point) => {
-  return !isEmpty(ctx, point);
+  return isEmpty(ctx, point);
 };
 
 export const ensureTargetIsAlly: SkillTargetGuardFunction = (ctx, point, caster) => {
-  return isAlly(ctx, point, caster);
+  const entity = ctx.entityManager.getEntityAt(point);
+  if (!entity) return false;
+
+  return isAlly(ctx, entity.id, caster.playerId);
 };
 
 export const ensureTargetIsEnemy: SkillTargetGuardFunction = (ctx, point, caster) => {
-  return isEnemy(ctx, point, caster);
+  const entity = ctx.entityManager.getEntityAt(point);
+  if (!entity) return false;
+
+  return isEnemy(ctx, entity.id, caster.playerId);
 };
 
 export const ensureIsWithinRangeOfCaster =
