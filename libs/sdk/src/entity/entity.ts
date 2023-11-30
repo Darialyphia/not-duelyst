@@ -1,10 +1,13 @@
 import mitt from 'mitt';
 import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
-import { UnitId, UNITS } from '../units/unit-lookup';
+import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
 import { clamp, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
+import { Serializable } from '../utils/interfaces';
+import { isGeneral } from './entity-utils';
+import { GameContext } from '../game';
 
 export type EntityId = number;
 
@@ -22,11 +25,14 @@ export const ENTITY_EVENTS = {
   BEFORE_TURN_START: 'before-turn-start',
   AFTER_TURN_START: 'after-turn-start',
   BEFORE_TURN_END: 'before-turn-end',
-  AFTER_TURN_END: 'after-turn-end'
+  AFTER_TURN_END: 'after-turn-end',
+  BEFORE_USE_SKILL: 'before-use-skill',
+  AFTER_USE_SKILL: 'after-use-skill'
 } as const;
+
 export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 
-export class Entity {
+export class Entity implements Serializable {
   public readonly id: EntityId;
 
   public playerId: PlayerId;
@@ -69,14 +75,14 @@ export class Entity {
     return entity.id === this.id;
   }
 
-  serialize(): SerializedEntity {
+  serialize() {
     return {
       id: this.id,
-      position: this.position,
+      position: this.position.serialize(),
       playerId: this.playerId,
       unitId: this.unitId,
       atbSeed: this.atbSeed
-    };
+    } satisfies SerializedEntity;
   }
 
   private get unit() {
@@ -130,19 +136,48 @@ export class Entity {
     });
   }
 
+  summonFromLoadout(unit: UnitBlueprint) {
+    if (!isGeneral(this)) {
+      throw new Error('Only generals can summon, from loadout');
+    }
+
+    this.ap = Math.max(this.ap - unit.summonCost, 0);
+  }
+
+  useSkill(ctx: GameContext, skillId: SkillId, target: Point3D) {
+    this.emitter.emit('before-use-skill', this);
+
+    const skill = this.skills.find(s => s.id === skillId);
+    if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
+
+    this.ap = Math.max(this.ap - skill.cost, 0);
+    skill.execute(
+      ctx,
+      this,
+      target,
+      ctx.map.cells.filter(cell => skill.isInAreaOfEffect(ctx, cell, this, target))
+    );
+
+    this.emitter.emit('after-use-skill', this);
+  }
+
   startTurn() {
     this.emitter.emit('before-turn-start', this);
+
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
-    this.emitter.emit('after-turn-start', this);
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });
+
+    this.emitter.emit('after-turn-start', this);
   }
 
   endTurn() {
     this.emitter.emit('before-turn-end', this);
+
     this.atb = this.atbSeed;
     this.movementSpent = 0;
+
     this.emitter.emit('after-turn-end', this);
   }
 }

@@ -2,8 +2,7 @@ import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
 import { GameContext } from '../game';
 import { ACTION_NAME } from './action-reducer';
-import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
-import { SummonEvent } from '../event/summon.event';
+import { UseSkillEvent } from '../event/use-sklll.event';
 
 const useSkillEventSchema = defaultActionSchema.extend({
   playerId: z.string(),
@@ -24,18 +23,26 @@ export class UseSkillAction extends GameAction<typeof useSkillEventSchema> {
     return ctx.atb.activeEntity.skills.find(skill => skill.id === this.payload.skillId);
   }
 
-  private canUseSkill(ctx: GameContext) {
-    const skill = this.getSkill(ctx);
+  private get canUseSkill() {
+    const skill = this.getSkill(this.ctx);
     if (!skill) return false;
 
     return (
-      ctx.atb.activeEntity.canUseSkill(skill) &&
-      skill.isTargetable(ctx, this.payload.target, ctx.atb.activeEntity)
+      this.ctx.atb.activeEntity.canUseSkill(skill) &&
+      skill.isTargetable(this.ctx, this.payload.target, this.ctx.atb.activeEntity)
     );
   }
 
-  impl(ctx: GameContext) {
-    if (this.canUseSkill(ctx)) {
+  impl() {
+    if (this.canUseSkill) {
+      return new UseSkillEvent(
+        {
+          casterId: this.ctx.atb.activeEntity.id,
+          target: this.payload.target,
+          skillId: this.payload.skillId
+        },
+        this.ctx
+      );
     }
   }
 }

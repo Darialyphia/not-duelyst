@@ -4,7 +4,7 @@ import { GameContext } from '../game';
 import { ACTION_NAME } from './action-reducer';
 import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
 import { UnitId, isUnitId } from '../units/unit-lookup';
-import { SummonEvent } from '../event/summon.event';
+import { SummonFromLoadoutEvent } from '../event/summon-from-loadout.event';
 
 const summonEventSchema = defaultActionSchema.extend({
   unitId: z
@@ -23,19 +23,25 @@ export class SummonAction extends GameAction<typeof summonEventSchema> {
 
   protected payloadSchema = summonEventSchema;
 
-  private canSummon(ctx: GameContext) {
+  private get canSummon() {
     return (
-      ensureActiveEntityBelongsToPlayer(ctx, this.payload.playerId) &&
-      isGeneral(ctx.atb.activeEntity) &&
-      ctx.map.canSummonAt(this.payload.position) &&
-      ctx.entityManager.hasNearbyAllies(this.payload.position, this.payload.playerId) &&
-      ctx.playerManager.getActivePlayer().canSummon(ctx, this.payload.unitId)
+      ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId) &&
+      isGeneral(this.ctx.atb.activeEntity) &&
+      this.ctx.map.canSummonAt(this.payload.position) &&
+      this.ctx.entityManager.hasNearbyAllies(
+        this.payload.position,
+        this.payload.playerId
+      ) &&
+      this.ctx.playerManager.getActivePlayer().canSummon(this.ctx, this.payload.unitId)
     );
   }
 
-  impl(ctx: GameContext) {
-    if (this.canSummon(ctx)) {
-      return new SummonEvent({ ...this.payload, atbSeed: Math.random() }).execute(ctx);
+  impl() {
+    if (this.canSummon) {
+      return new SummonFromLoadoutEvent({
+        ...this.payload,
+        atbSeed: Math.random()
+      }).execute(this.ctx);
     }
   }
 }

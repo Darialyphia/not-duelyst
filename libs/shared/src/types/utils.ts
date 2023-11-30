@@ -61,3 +61,18 @@ export type UnionToIntersection<T> = (
 export type Flatten<T> = {} & {
   [P in keyof T]: T[P];
 };
+/**
+ * An `Omit<>` type that:
+ * 1. Applies to each element of a union.
+ * 2. Preserves the index signature of the underlying type.
+ */
+export type BetterOmit<T, K extends keyof T> = {
+  [Property in keyof T as Property extends K ? never : Property]: T[Property];
+};
+
+export type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>;

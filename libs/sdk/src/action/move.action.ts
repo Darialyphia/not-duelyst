@@ -20,24 +20,24 @@ export class MoveAction extends GameAction<typeof moveEventSchema> {
 
   protected payloadSchema = moveEventSchema;
 
-  impl(ctx: GameContext) {
+  impl() {
     const entity = getEntityIfOwnerMatches(
-      ctx,
+      this.ctx,
       this.payload.entityId,
       this.payload.playerId
     );
     if (!entity) return;
 
-    if (!entity.equals(ctx.atb.activeEntity)) return;
+    if (!entity.equals(this.ctx.atb.activeEntity)) return;
 
-    const path = new Pathfinder(ctx).findPath(entity.position, this.payload);
+    const path = new Pathfinder(this.ctx).findPath(entity.position, this.payload);
     if (!path) return;
 
     if (entity.canMove(path.distance)) {
       new MoveEvent({
         entityId: this.payload.entityId,
         path: path.path.map(cellIdToPoint)
-      }).execute(ctx);
+      }).execute(this.ctx);
     }
   }
 }

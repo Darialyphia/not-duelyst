@@ -1,6 +1,7 @@
 import { Point3D } from '../types';
+import { Serializable } from './interfaces';
 
-export class Vec3 {
+export class Vec3 implements Serializable {
   static fromPoint3D(pt: Point3D) {
     return new Vec3(pt.x, pt.y, pt.z);
   }
@@ -10,6 +11,10 @@ export class Vec3 {
     public y: number,
     public z: number
   ) {}
+
+  serialize() {
+    return { x: this.x, y: this.y, z: this.z };
+  }
 
   clone() {
     return new Vec3(this.x, this.y, this.z);

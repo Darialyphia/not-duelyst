@@ -1,6 +1,7 @@
 import { isDefined } from '@hc/shared';
 import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
 import { GameContext } from '../game';
+import { Serializable } from '../utils/interfaces';
 
 export type PlayerId = string;
 
@@ -8,7 +9,7 @@ export type Loadout = {
   units: Record<UnitId, { cooldown: number }>;
 };
 
-export class Player {
+export class Player implements Serializable {
   constructor(
     public readonly id: PlayerId,
     public readonly loadout: Loadout

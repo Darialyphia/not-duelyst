@@ -30,7 +30,9 @@ const actionDict: Record<ActionName, Constructor<GameAction<any>>> = {
 export class ActionReducer {
   constructor(private ctx: GameContext) {}
 
-  reduce(action: RawAction) {
-    new actionDict[action.type](action.payload).execute(this.ctx);
+  reduce({ type, payload }: RawAction) {
+    const action = actionDict[type];
+
+    new action(payload, this.ctx).execute();
   }
 }

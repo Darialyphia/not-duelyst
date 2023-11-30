@@ -5,6 +5,7 @@ import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
 import { cellIdToPoint } from '../utils/helpers';
 import { GameContext } from '../game';
+import { Serializable } from '../utils/interfaces';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -13,7 +14,7 @@ export type GameMapOptions = {
   startPositions: [Point3D, Point3D];
 };
 
-export class GameMap {
+export class GameMap implements Serializable {
   height!: number;
 
   width!: number;
@@ -56,15 +57,10 @@ export class GameMap {
       return this.cellsMap.get(posOrKey) ?? null;
     }
 
-    return (
-      this.cellsMap.get(`${posOrKey.x}:${posOrKey.y}:${posOrKey.z}`) ?? null
-    );
+    return this.cellsMap.get(`${posOrKey.x}:${posOrKey.y}:${posOrKey.z}`) ?? null;
   }
 
-  getDestination(
-    posOrKey: Point3D | CellId,
-    direction: Direction
-  ): Point3D | null {
+  getDestination(posOrKey: Point3D | CellId, direction: Direction): Point3D | null {
     let from = isString(posOrKey) ? cellIdToPoint(posOrKey) : posOrKey;
 
     const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
@@ -105,8 +101,6 @@ export class GameMap {
     const cell = this.getCellAt(point);
     const below = this.getCellAt({ ...point, z: point.z - 1 });
 
-    return cell
-      ? cell.isHalfTile && cell.isWalkable
-      : below && below.isWalkable;
+    return cell ? cell.isHalfTile && cell.isWalkable : below && below.isWalkable;
   };
 }

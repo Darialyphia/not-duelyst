@@ -12,9 +12,9 @@ export class EndTurnAction extends GameAction<typeof endTurnEventSchema> {
 
   protected payloadSchema = endTurnEventSchema;
 
-  impl(ctx: GameContext) {
-    if (ensureActiveEntityBelongsToPlayer(ctx, this.payload.playerId)) {
-      new EndTurnEvent({}).execute(ctx);
+  impl() {
+    if (ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId)) {
+      new EndTurnEvent({}).execute(this.ctx);
     }
   }
 }

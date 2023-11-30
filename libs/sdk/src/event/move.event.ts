@@ -11,8 +11,8 @@ export type MoveEventPayload = {
 export class MoveEvent extends GameEvent<MoveEventPayload> {
   protected name = EVENT_NAME.MOVE;
 
-  impl(ctx: GameContext) {
-    const entity = ctx.entityManager.getEntityById(this.payload.entityId);
+  impl() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
     if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
 
     entity.move(this.payload.path);
