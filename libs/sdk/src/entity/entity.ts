@@ -20,14 +20,10 @@ export type SerializedEntity = {
 };
 
 export const ENTITY_EVENTS = {
-  BEFORE_MOVE: 'before-move',
-  AFTER_MOVE: 'after-move',
-  BEFORE_TURN_START: 'before-turn-start',
-  AFTER_TURN_START: 'after-turn-start',
-  BEFORE_TURN_END: 'before-turn-end',
-  AFTER_TURN_END: 'after-turn-end',
-  BEFORE_USE_SKILL: 'before-use-skill',
-  AFTER_USE_SKILL: 'after-use-skill',
+  MOVE: 'move',
+  TURN_START: 'turn-start',
+  TURN_END: 'turn-end',
+  USE_SKILL: 'use-skill',
   DEAL_DAMAGE: 'deal-damage',
   TAKE_DAMAGE: 'take-damage'
 } as const;
@@ -35,14 +31,10 @@ export const ENTITY_EVENTS = {
 export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 
 export type EntityEventMap = {
-  [ENTITY_EVENTS.BEFORE_MOVE]: Entity;
-  [ENTITY_EVENTS.AFTER_MOVE]: Entity;
-  [ENTITY_EVENTS.BEFORE_TURN_START]: Entity;
-  [ENTITY_EVENTS.AFTER_TURN_START]: Entity;
-  [ENTITY_EVENTS.BEFORE_TURN_END]: Entity;
-  [ENTITY_EVENTS.AFTER_TURN_END]: Entity;
-  [ENTITY_EVENTS.BEFORE_USE_SKILL]: Entity;
-  [ENTITY_EVENTS.AFTER_USE_SKILL]: Entity;
+  [ENTITY_EVENTS.MOVE]: Entity;
+  [ENTITY_EVENTS.TURN_START]: Entity;
+  [ENTITY_EVENTS.TURN_END]: Entity;
+  [ENTITY_EVENTS.USE_SKILL]: Entity;
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
@@ -155,9 +147,8 @@ export class Entity implements Serializable {
 
   move(path: Point3D[]) {
     path.forEach(point => {
-      this.emitter.emit('before-move', this);
       this.position = Vec3.fromPoint3D(point);
-      this.emitter.emit('after-move', this);
+      this.emitter.emit(ENTITY_EVENTS.MOVE, this);
     });
   }
 
@@ -170,8 +161,6 @@ export class Entity implements Serializable {
   }
 
   useSkill(ctx: GameContext, skillId: SkillId, target: Point3D) {
-    this.emitter.emit('before-use-skill', this);
-
     const skill = this.skills.find(s => s.id === skillId);
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
@@ -183,7 +172,7 @@ export class Entity implements Serializable {
       ctx.map.cells.filter(cell => skill.isInAreaOfEffect(ctx, cell, this, target))
     );
 
-    this.emitter.emit('after-use-skill', this);
+    this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
   private calculateDamage(baseAmount: number, attacker: Entity, defender: Entity) {
@@ -191,40 +180,39 @@ export class Entity implements Serializable {
   }
 
   dealDamage(baseAmount: number, target: Entity) {
-    this.emitter.emit('deal-damage', {
+    target.takeDamage(baseAmount, this);
+    this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
       amount: this.calculateDamage(baseAmount, this, target),
       baseAmount,
       target
     });
-
-    target.takeDamage(baseAmount, this);
   }
 
   takeDamage(baseAmount: number, source: Entity) {
     const amount = this.calculateDamage(baseAmount, source, this);
-    this.emitter.emit('take-damage', { entity: this, amount, baseAmount, source });
-
     this.hp = Math.max(0, this.hp - amount);
+    this.emitter.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
+      entity: this,
+      amount,
+      baseAmount,
+      source
+    });
   }
 
   startTurn() {
-    this.emitter.emit('before-turn-start', this);
-
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });
 
-    this.emitter.emit('after-turn-start', this);
+    this.emitter.emit(ENTITY_EVENTS.TURN_START, this);
   }
 
   endTurn() {
-    this.emitter.emit('before-turn-end', this);
-
     this.atb = this.atbSeed;
     this.movementSpent = 0;
 
-    this.emitter.emit('after-turn-end', this);
+    this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
   }
 }
