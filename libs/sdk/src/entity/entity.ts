@@ -27,10 +27,35 @@ export const ENTITY_EVENTS = {
   BEFORE_TURN_END: 'before-turn-end',
   AFTER_TURN_END: 'after-turn-end',
   BEFORE_USE_SKILL: 'before-use-skill',
-  AFTER_USE_SKILL: 'after-use-skill'
+  AFTER_USE_SKILL: 'after-use-skill',
+  DEAL_DAMAGE: 'deal-damage',
+  TAKE_DAMAGE: 'take-damage'
 } as const;
 
 export type EntityEvent = Values<typeof ENTITY_EVENTS>;
+
+export type EntityEventMap = {
+  [ENTITY_EVENTS.BEFORE_MOVE]: Entity;
+  [ENTITY_EVENTS.AFTER_MOVE]: Entity;
+  [ENTITY_EVENTS.BEFORE_TURN_START]: Entity;
+  [ENTITY_EVENTS.AFTER_TURN_START]: Entity;
+  [ENTITY_EVENTS.BEFORE_TURN_END]: Entity;
+  [ENTITY_EVENTS.AFTER_TURN_END]: Entity;
+  [ENTITY_EVENTS.BEFORE_USE_SKILL]: Entity;
+  [ENTITY_EVENTS.AFTER_USE_SKILL]: Entity;
+  [ENTITY_EVENTS.DEAL_DAMAGE]: {
+    entity: Entity;
+    baseAmount: number;
+    amount: number;
+    target: Entity;
+  };
+  [ENTITY_EVENTS.TAKE_DAMAGE]: {
+    entity: Entity;
+    baseAmount: number;
+    amount: Number;
+    source: Entity;
+  };
+};
 
 export class Entity implements Serializable {
   public readonly id: EntityId;
@@ -39,7 +64,7 @@ export class Entity implements Serializable {
 
   private unitId: UnitId;
 
-  private emitter = mitt<Record<EntityEvent, Entity>>();
+  private emitter = mitt<EntityEventMap>();
 
   public on = this.emitter.on;
 
@@ -159,6 +184,28 @@ export class Entity implements Serializable {
     );
 
     this.emitter.emit('after-use-skill', this);
+  }
+
+  private calculateDamage(baseAmount: number, attacker: Entity, defender: Entity) {
+    return Math.max(1, baseAmount + (attacker.attack - defender.defense));
+  }
+
+  dealDamage(baseAmount: number, target: Entity) {
+    this.emitter.emit('deal-damage', {
+      entity: this,
+      amount: this.calculateDamage(baseAmount, this, target),
+      baseAmount,
+      target
+    });
+
+    target.takeDamage(baseAmount, this);
+  }
+
+  takeDamage(baseAmount: number, source: Entity) {
+    const amount = this.calculateDamage(baseAmount, source, this);
+    this.emitter.emit('take-damage', { entity: this, amount, baseAmount, source });
+
+    this.hp = Math.max(0, this.hp - amount);
   }
 
   startTurn() {

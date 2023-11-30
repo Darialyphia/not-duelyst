@@ -1,12 +1,14 @@
 import { z } from 'zod';
 import { GameContext } from '../game';
 import { ActionName, RawAction } from './action-reducer';
+import { Serializable } from '../utils/interfaces';
+import { JSONValue } from '@hc/shared';
 
 export const defaultActionSchema = z.object({
   playerId: z.string()
 });
-
-export abstract class GameAction<TSchema extends typeof defaultActionSchema> {
+type DefaultSchema = typeof defaultActionSchema;
+export abstract class GameAction<TSchema extends DefaultSchema> implements Serializable {
   protected abstract name: ActionName;
 
   protected abstract payloadSchema: TSchema;
@@ -14,7 +16,7 @@ export abstract class GameAction<TSchema extends typeof defaultActionSchema> {
   protected payload!: z.infer<TSchema>;
 
   constructor(
-    protected rawPayload: unknown,
+    protected rawPayload: JSONValue,
     protected ctx: GameContext
   ) {}
 

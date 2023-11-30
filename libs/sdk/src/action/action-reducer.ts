@@ -1,4 +1,4 @@
-import { Values, exhaustiveSwitch, Constructor } from '@hc/shared';
+import { Values, exhaustiveSwitch, Constructor, JSONValue } from '@hc/shared';
 import { GameContext } from '../game';
 import { MoveAction } from './move.action';
 import { EndTurnAction } from './end-turn.action';
@@ -8,7 +8,7 @@ import { UseSkillAction } from './use-skill.action';
 
 export type RawAction = {
   type: ActionName;
-  payload: unknown;
+  payload: JSONValue;
 };
 
 export const ACTION_NAME = {

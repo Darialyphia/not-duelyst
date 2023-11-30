@@ -1,11 +1,13 @@
 import { JSONValue, Values } from '@hc/shared';
 import { GameContext } from '../game';
+import { Serializable } from '../utils/interfaces';
 
 export const EVENT_NAME = {
   MOVE: 'MOVE',
   END_TURN: 'END_TURN',
   SUMMON_FROM_LOADOUT: 'SUMMON_FROM_LOADOUT',
-  USE_SKILL: 'USE_SKILL'
+  USE_SKILL: 'USE_SKILL',
+  DEAL_DAMAGE: 'DEAL_DAMAGE'
 } as const;
 
 export type EventName = Values<typeof EVENT_NAME>;
@@ -15,7 +17,7 @@ export type SerializedEvent<T> = {
   payload: T;
 };
 
-export abstract class GameEvent<TPayload extends JSONValue> {
+export abstract class GameEvent<TPayload extends JSONValue> implements Serializable {
   protected abstract name: EventName;
 
   constructor(

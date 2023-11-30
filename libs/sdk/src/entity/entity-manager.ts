@@ -78,9 +78,7 @@ export class EntityManager {
   }
 
   getNearbyAllies(point: Point3D, playerId: PlayerId) {
-    return this.getNearbyEntities(point).filter(
-      entity => entity.playerId === playerId
-    );
+    return this.getNearbyEntities(point).filter(entity => entity.playerId === playerId);
   }
 
   hasNearbyAllies(point: Point3D, playerId: PlayerId) {
@@ -94,10 +92,8 @@ export class EntityManager {
   }
 
   private addListeners(entity: Entity) {
-    Object.values(ENTITY_EVENTS).forEach(eventName => {
-      entity.on(eventName, () => {
-        this.ctx.emitter.emit(`entity:${eventName}`, entity);
-      });
+    entity.on('*', type => {
+      this.ctx.emitter.emit(`entity:${type}`, entity);
     });
   }
 
