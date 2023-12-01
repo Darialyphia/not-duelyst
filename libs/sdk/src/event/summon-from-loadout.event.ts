@@ -6,7 +6,7 @@ import { EVENT_NAME, GameEvent } from './event';
 export type SummonFromLoadoutEventPayload = Omit<SerializedEntity, 'id'>;
 
 export class SummonFromLoadoutEvent extends GameEvent<SummonFromLoadoutEventPayload> {
-  protected name = EVENT_NAME.SUMMON_FROM_LOADOUT;
+  readonly name = EVENT_NAME.SUMMON_FROM_LOADOUT;
 
   protected impl() {
     const player = this.ctx.playerManager.getPlayerById(this.payload.playerId);

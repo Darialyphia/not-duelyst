@@ -21,6 +21,7 @@ export type Iterableify<T> = { [K in keyof T]: Iterable<T[K]> };
 export type Defined<T> = Exclude<T, undefined | null>;
 export type Prettify<T> = {
   [K in keyof T]: T[K];
+  // eslint-disable-next-line @typescript-eslint/ban-types
 } & {};
 export type Intersect<X extends any[]> = X extends []
   ? never
@@ -57,7 +58,7 @@ export type UnionToIntersection<T> = (
 ) extends (p: infer U) => void
   ? U
   : never;
-
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type Flatten<T> = {} & {
   [P in keyof T]: T[P];
 };

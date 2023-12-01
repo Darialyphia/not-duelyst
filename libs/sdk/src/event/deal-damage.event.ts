@@ -8,7 +8,7 @@ export type DealDamageEventPayload = {
 };
 
 export class DealDamageEvent extends GameEvent<DealDamageEventPayload> {
-  protected name = EVENT_NAME.DEAL_DAMAGE;
+  readonly name = EVENT_NAME.DEAL_DAMAGE;
 
   protected impl() {
     const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId)!;

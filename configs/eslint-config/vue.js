@@ -5,6 +5,7 @@ module.exports = {
     "@vue/eslint-config-typescript/recommended",
     "@vue/eslint-config-prettier",
     "eslint:recommended",
+    "plugin:import/recommended",
   ],
   parserOptions: {
     ecmaVersion: "latest",
@@ -18,5 +19,13 @@ module.exports = {
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "import/no-cycle": "warn",
+  },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts", ".vue"],
+      },
+    },
   },
 };

@@ -29,7 +29,7 @@ type GlobalEntityEvents = {
   [Event in EntityEvent | EntityLifecycleEvent as `entity:${Event}`]: Entity;
 };
 
-type GlobalGameEvents = GlobalEntityEvents & { event: any };
+type GlobalGameEvents = GlobalEntityEvents & { 'history:update': SerializedEvent<any> };
 
 export type GameContext = {
   map: GameMap;
@@ -64,7 +64,7 @@ export class Game {
   }
 
   private setupEvents() {
-    this.emitter.on('entity:after-turn-end', () => {
+    this.emitter.on('entity:turn-end', () => {
       this.atb.tickUntilActiveEntity(this.entityManager.getList());
     });
   }
