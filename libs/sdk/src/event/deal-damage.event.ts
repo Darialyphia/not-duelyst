@@ -7,7 +7,7 @@ export type DealDamageEventPayload = {
   targets: EntityId[];
 };
 
-export class DealDamageEvent extends GameEvent<DealDamageEventPayload> {
+export class DealDamageEvent extends GameEvent<'DEAL_DAMAGE', DealDamageEventPayload> {
   readonly name = 'DEAL_DAMAGE';
 
   protected impl() {

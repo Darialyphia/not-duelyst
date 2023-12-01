@@ -9,7 +9,7 @@ export type UseSkillEventPayload = {
   target: Point3D;
 };
 
-export class UseSkillEvent extends GameEvent<UseSkillEventPayload> {
+export class UseSkillEvent extends GameEvent<'USE_SKILL', UseSkillEventPayload> {
   readonly name = 'USE_SKILL';
 
   protected impl() {

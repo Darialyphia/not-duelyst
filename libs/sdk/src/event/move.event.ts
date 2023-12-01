@@ -7,7 +7,7 @@ export type MoveEventPayload = {
   path: Point3D[];
 };
 
-export class MoveEvent extends GameEvent<MoveEventPayload> {
+export class MoveEvent extends GameEvent<'MOVE', MoveEventPayload> {
   readonly name = 'MOVE';
 
   protected impl() {

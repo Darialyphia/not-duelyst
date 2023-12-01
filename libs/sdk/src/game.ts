@@ -121,7 +121,7 @@ export class Game {
   }
 
   onEvent(cb: (e: SerializedEvent) => void) {
-    this.emitter.on('history:update', cb);
+    this.emitter.on('game:event', cb);
   }
 
   serialize(): SerializedGameState {

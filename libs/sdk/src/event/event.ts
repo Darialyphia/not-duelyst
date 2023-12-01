@@ -7,8 +7,6 @@ import { MoveEvent } from './move.event';
 import { SummonFromLoadoutEvent } from './summon-from-loadout.event';
 import { UseSkillEvent } from './use-sklll.event';
 
-export type EventName = keyof typeof eventMap;
-
 export const eventMap = {
   END_TURN: EndTurnEvent,
   MOVE: MoveEvent,
@@ -17,22 +15,19 @@ export const eventMap = {
   DEAL_DAMAGE: DealDamageEvent
 } as const;
 
-export type EventMap = typeof eventMap;
+export type EventName = keyof typeof eventMap;
 
-type SerializedEventMap = {
-  [Key in keyof EventMap]: {
-    type: Key;
-    payload: ReturnType<InstanceType<EventMap[Key]>['serialize']>;
-  };
-};
+export type SerializedEvent = ReturnType<
+  InstanceType<Values<typeof eventMap>>['serialize']
+>;
 
-export type SerializedEvent = Values<SerializedEventMap>;
-
-export abstract class GameEvent<TPayload extends JSONValue> implements Serializable {
-  abstract readonly name: EventName;
+export abstract class GameEvent<TName extends EventName, TPayload extends JSONValue>
+  implements Serializable
+{
+  abstract readonly name: TName;
 
   constructor(
-    protected payload: TPayload,
+    public payload: TPayload,
     protected ctx: GameContext
   ) {}
 
@@ -40,12 +35,12 @@ export abstract class GameEvent<TPayload extends JSONValue> implements Serializa
 
   execute() {
     this.impl();
-    this.ctx.emitter.emit('game:event', this.serialize());
+    this.ctx.emitter.emit('game:event', this.serialize() as unknown as SerializedEvent);
 
     return this;
   }
 
-  serialize(): SerializedEvent {
-    return { type: this.name, payload: this.payload } as SerializedEvent;
+  serialize() {
+    return { type: this.name, payload: this.payload };
   }
 }

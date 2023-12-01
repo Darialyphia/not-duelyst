@@ -23,6 +23,7 @@ type UnionToIntersection<T> = (T extends T ? (p: T) => void : never) extends (
 type FromEntries<T extends readonly [PropertyKey, any]> = T extends T
   ? Record<T[0], T[1]>
   : never;
+// eslint-disable-next-line @typescript-eslint/ban-types
 type Flatten<T> = {} & {
   [P in keyof T]: T[P];
 };
@@ -36,3 +37,6 @@ export function fromEntries<
 
 export const objectEntries = <T extends AnyObject>(obj: T) =>
   Object.entries(obj) as Entries<T>;
+
+export const objectKeys = <T extends AnyObject>(obj: T) =>
+  Object.keys(obj) as unknown as keyof T;

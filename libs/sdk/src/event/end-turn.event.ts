@@ -1,8 +1,9 @@
+import { PlayerId } from '../player/player';
 import { GameEvent } from './event';
 
-export type EndTurnEventPayload = Record<string, never>;
+export type EndTurnEventPayload = { playedId: PlayerId };
 
-export class EndTurnEvent extends GameEvent<EndTurnEventPayload> {
+export class EndTurnEvent extends GameEvent<'END_TURN', EndTurnEventPayload> {
   readonly name = 'END_TURN';
 
   protected impl() {

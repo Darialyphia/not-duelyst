@@ -1,21 +1,21 @@
-import { GameEvent, SerializedEvent, eventMap } from './event';
+import { EventName, GameEvent, SerializedEvent, eventMap } from './event';
 import { GameContext } from '../game';
 import { Serializable } from '../utils/interfaces';
 
 export class EventHistory implements Serializable {
-  private history: GameEvent<any>[] = [];
+  private history: GameEvent<EventName, any>[] = [];
 
   constructor(private ctx: GameContext) {}
 
   setup(rawHistory: SerializedEvent[]) {
-    rawHistory.forEach(({ type, payload }: SerializedEvent) => {
+    rawHistory.forEach(({ type, payload }) => {
       const event = eventMap[type];
 
       new event(payload as any, this.ctx).execute();
     });
   }
 
-  add(event: GameEvent<any>) {
+  add(event: GameEvent<EventName, any>) {
     this.history.push(event);
     this.ctx.emitter.emit('history:update', event.serialize());
   }

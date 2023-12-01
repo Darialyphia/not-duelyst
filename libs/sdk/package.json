@@ -12,6 +12,8 @@
     "builder-pattern": "^2.2.0",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
     "zod": "^3.21.4"
   },
   "scripts": {
