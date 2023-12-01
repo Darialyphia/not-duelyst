@@ -1,12 +1,12 @@
 import { SerializedEntity } from '../entity/entity';
 import { GameContext } from '../game';
 import { UNITS } from '../units/unit-lookup';
-import { EVENT_NAME, GameEvent } from './event';
+import { GameEvent } from './event';
 
 export type SummonFromLoadoutEventPayload = Omit<SerializedEntity, 'id'>;
 
 export class SummonFromLoadoutEvent extends GameEvent<SummonFromLoadoutEventPayload> {
-  readonly name = EVENT_NAME.SUMMON_FROM_LOADOUT;
+  readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected impl() {
     const player = this.ctx.playerManager.getPlayerById(this.payload.playerId);

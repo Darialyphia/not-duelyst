@@ -1,5 +1,5 @@
 import { EntityId } from '../entity/entity';
-import { EVENT_NAME, GameEvent } from './event';
+import { GameEvent } from './event';
 
 export type DealDamageEventPayload = {
   amount: number;
@@ -8,7 +8,7 @@ export type DealDamageEventPayload = {
 };
 
 export class DealDamageEvent extends GameEvent<DealDamageEventPayload> {
-  readonly name = EVENT_NAME.DEAL_DAMAGE;
+  readonly name = 'DEAL_DAMAGE';
 
   protected impl() {
     const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId)!;

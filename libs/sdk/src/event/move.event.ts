@@ -1,7 +1,6 @@
 import { EntityId } from '../entity/entity';
-import { GameContext } from '../game';
 import { Point3D } from '../types';
-import { EVENT_NAME, GameEvent } from './event';
+import { GameEvent } from './event';
 
 export type MoveEventPayload = {
   entityId: EntityId;
@@ -9,7 +8,7 @@ export type MoveEventPayload = {
 };
 
 export class MoveEvent extends GameEvent<MoveEventPayload> {
-  readonly name = EVENT_NAME.MOVE;
+  readonly name = 'MOVE';
 
   protected impl() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);

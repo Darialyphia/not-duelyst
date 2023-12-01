@@ -1,9 +1,9 @@
-import { EVENT_NAME, GameEvent } from './event';
+import { GameEvent } from './event';
 
 export type EndTurnEventPayload = Record<string, never>;
 
 export class EndTurnEvent extends GameEvent<EndTurnEventPayload> {
-  readonly name = EVENT_NAME.MOVE;
+  readonly name = 'END_TURN';
 
   protected impl() {
     this.ctx.atb.activeEntity.endTurn();

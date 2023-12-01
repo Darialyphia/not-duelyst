@@ -1,4 +1,4 @@
-import { Constructor, JSONValue, Values } from '@hc/shared';
+import { JSONValue, Values } from '@hc/shared';
 import { GameContext } from '../game';
 import { Serializable } from '../utils/interfaces';
 import { DealDamageEvent } from './deal-damage.event';
@@ -7,22 +7,15 @@ import { MoveEvent } from './move.event';
 import { SummonFromLoadoutEvent } from './summon-from-loadout.event';
 import { UseSkillEvent } from './use-sklll.event';
 
-export const EVENT_NAME = {
-  MOVE: 'MOVE',
-  END_TURN: 'END_TURN',
-  SUMMON_FROM_LOADOUT: 'SUMMON_FROM_LOADOUT',
-  USE_SKILL: 'USE_SKILL',
-  DEAL_DAMAGE: 'DEAL_DAMAGE'
-} as const;
-export type EventName = Values<typeof EVENT_NAME>;
+export type EventName = keyof typeof eventMap;
 
 export const eventMap = {
-  [EVENT_NAME.END_TURN]: EndTurnEvent,
-  [EVENT_NAME.MOVE]: MoveEvent,
-  [EVENT_NAME.SUMMON_FROM_LOADOUT]: SummonFromLoadoutEvent,
-  [EVENT_NAME.USE_SKILL]: UseSkillEvent,
-  [EVENT_NAME.DEAL_DAMAGE]: DealDamageEvent
-} as const satisfies Record<EventName, Constructor<GameEvent<any>>>;
+  END_TURN: EndTurnEvent,
+  MOVE: MoveEvent,
+  SUMMON_FROM_LOADOUT: SummonFromLoadoutEvent,
+  USE_SKILL: UseSkillEvent,
+  DEAL_DAMAGE: DealDamageEvent
+} as const;
 
 export type EventMap = typeof eventMap;
 
@@ -47,10 +40,12 @@ export abstract class GameEvent<TPayload extends JSONValue> implements Serializa
 
   execute() {
     this.impl();
+    this.ctx.emitter.emit('game:event', this.serialize());
+
     return this;
   }
 
-  serialize() {
-    return { type: this.name, payload: this.payload };
+  serialize(): SerializedEvent {
+    return { type: this.name, payload: this.payload } as SerializedEvent;
   }
 }

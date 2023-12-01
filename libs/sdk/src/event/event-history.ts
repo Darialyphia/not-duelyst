@@ -17,6 +17,7 @@ export class EventHistory implements Serializable {
 
   add(event: GameEvent<any>) {
     this.history.push(event);
+    this.ctx.emitter.emit('history:update', event.serialize());
   }
 
   get() {

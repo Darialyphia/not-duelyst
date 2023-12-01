@@ -20,7 +20,7 @@ export type SerializedGameState = {
   map: GameMapOptions;
   entities: Array<SerializedEntity>;
   players: { id: PlayerId; loadout: Loadout }[];
-  history: SerializedEvent<any>[];
+  history: SerializedEvent[];
   activeEntityId?: EntityId;
 };
 
@@ -29,7 +29,10 @@ type GlobalEntityEvents = {
   [Event in EntityEvent | EntityLifecycleEvent as `entity:${Event}`]: Entity;
 };
 
-type GlobalGameEvents = GlobalEntityEvents & { 'history:update': SerializedEvent<any> };
+type GlobalGameEvents = GlobalEntityEvents & {
+  'history:update': SerializedEvent;
+  'game:event': SerializedEvent;
+};
 
 export type GameContext = {
   map: GameMap;
@@ -111,6 +114,14 @@ export class Game {
 
   dispatch(action: RawAction) {
     new ActionReducer(this.getContext()).reduce(action);
+  }
+
+  onHistoryChange(cb: (e: SerializedEvent) => void) {
+    this.emitter.on('history:update', cb);
+  }
+
+  onEvent(cb: (e: SerializedEvent) => void) {
+    this.emitter.on('history:update', cb);
   }
 
   serialize(): SerializedGameState {
