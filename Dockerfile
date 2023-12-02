@@ -4,15 +4,12 @@ WORKDIR /usr/src/app
 
 # Copy root package.json and lockfile
 COPY package.json ./
-COPY package-lock.json ./
+COPY yarn.lock ./
 
-# Copy the docs package.json
-COPY apps/game-server/package.json ./apps/game-server/package.json
-
-RUN npm install
-
-# Copy app source
-COPY . .
+COPY ./configs ./configs
+COPY ./libs ./libs
+COPY /apps/game-server ./apps/game-server
+RUN yarn
 
 EXPOSE 8080
 

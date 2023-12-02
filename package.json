@@ -20,5 +20,6 @@
       "apps/*",
       "configs/*"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
