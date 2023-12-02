@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { InputName, SerializedInput } from './input-reducer';
 import { Serializable } from '../utils/interfaces';
 import { JSONValue } from '@hc/shared';

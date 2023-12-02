@@ -1,5 +1,5 @@
 import { JSONValue } from '@hc/shared';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 
 import { SerializedAction } from './action-reducer';

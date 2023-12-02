@@ -1,7 +1,7 @@
 import { Constructor, JSONValue, Values } from '@hc/shared';
 import { GameAction } from './action';
 import { DealDamageAction } from './deal-damage.action';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { EndTurnAction } from './end-turn.action';
 import { MoveAction } from './move.action';
 import { SummonFromLoadoutAction } from './summon-from-loadout.action';
@@ -28,7 +28,7 @@ export const actionMap = validateActionMap({
   DEAL_DAMAGE: DealDamageAction
 });
 
-export type ActionNae = keyof typeof actionMap;
+export type ActionName = keyof typeof actionMap;
 
 export type SerializedAction = ReturnType<
   InstanceType<Values<typeof actionMap>>['serialize']

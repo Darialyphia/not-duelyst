@@ -1,4 +1,4 @@
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Loadout, Player, PlayerId } from './player';
 
 export class PlayerManager {

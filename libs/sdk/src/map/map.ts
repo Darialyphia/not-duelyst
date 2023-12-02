@@ -4,7 +4,7 @@ import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
 import { cellIdToPoint } from '../utils/helpers';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 
 export type GameMapOptions = {
@@ -61,7 +61,7 @@ export class GameMap implements Serializable {
   }
 
   getDestination(posOrKey: Point3D | CellId, direction: Direction): Point3D | null {
-    let from = isString(posOrKey) ? cellIdToPoint(posOrKey) : posOrKey;
+    const from = isString(posOrKey) ? cellIdToPoint(posOrKey) : posOrKey;
 
     const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
     const y = from.y + (DIRECTIONS_TO_DIFF[direction] ?? 0);

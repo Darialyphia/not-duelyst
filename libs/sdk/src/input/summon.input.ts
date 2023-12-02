@@ -3,7 +3,7 @@ import { PlayerInput, defaultInputSchema } from './input';
 import { INPUT_NAME } from './input-reducer';
 import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
 import { UnitId, isUnitId } from '../units/unit-lookup';
-import { SummonFromLoadoutEvent } from '../action/summon-from-loadout.action';
+import { SummonFromLoadoutAction } from '../action/summon-from-loadout.action';
 
 const summonEventSchema = defaultInputSchema.extend({
   unitId: z
@@ -17,7 +17,7 @@ const summonEventSchema = defaultInputSchema.extend({
   })
 });
 
-export class SummonAction extends PlayerInput<typeof summonEventSchema> {
+export class SummonInput extends PlayerInput<typeof summonEventSchema> {
   readonly name = INPUT_NAME.SUMMON;
 
   protected payloadSchema = summonEventSchema;
@@ -39,7 +39,7 @@ export class SummonAction extends PlayerInput<typeof summonEventSchema> {
     if (!this.canSummon) return;
 
     this.ctx.history.add(
-      new SummonFromLoadoutEvent(
+      new SummonFromLoadoutAction(
         {
           ...this.payload,
           atbSeed: Math.random()

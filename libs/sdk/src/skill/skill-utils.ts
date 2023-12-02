@@ -1,6 +1,6 @@
 import { Entity } from '../entity/entity';
 import { isAlly, isEmpty, isEnemy } from '../entity/entity-utils';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Point3D } from '../types';
 import { Vec3 } from '../utils/vector';
 import { Skill } from './skill-builder';

@@ -43,7 +43,15 @@ export type GameContext = {
   emitter: Emitter<GlobalGameEvents>;
 };
 
-export class Game {
+export class GameSession {
+  static createServerSession(state: SerializedGameState) {
+    return new GameSession(state, true);
+  }
+
+  static createClientSession(state: SerializedGameState) {
+    return new GameSession(state, false);
+  }
+
   private map = new GameMap(this.getContext());
 
   private playerManager = new PlayerManager(this.getContext());
@@ -56,7 +64,7 @@ export class Game {
 
   private emitter = mitt<GlobalGameEvents>();
 
-  constructor(
+  private constructor(
     state: SerializedGameState,
     private isAuthoritative: boolean
   ) {

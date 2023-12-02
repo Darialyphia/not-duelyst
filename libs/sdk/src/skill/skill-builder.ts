@@ -1,6 +1,6 @@
 import { StrictBuilder } from 'builder-pattern';
 import { Entity } from '../entity/entity';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Point3D } from '../types';
 import { Point } from '@hc/shared';
 

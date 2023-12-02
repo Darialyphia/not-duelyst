@@ -7,7 +7,7 @@ import { Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 
 export type EntityId = number;
 

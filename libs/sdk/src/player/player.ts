@@ -1,6 +1,6 @@
 import { isDefined } from '@hc/shared';
 import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 
 export type PlayerId = string;

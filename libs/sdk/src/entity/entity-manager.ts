@@ -1,5 +1,5 @@
 import { isDefined } from '@hc/shared';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Point3D } from '../types';
 import { ENTITY_EVENTS, Entity, EntityId, SerializedEntity } from './entity';
 import { PlayerId } from '../player/player';

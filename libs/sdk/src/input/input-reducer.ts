@@ -1,10 +1,10 @@
 import { Values, Constructor, JSONValue } from '@hc/shared';
-import { GameContext } from '../game';
-import { MoveAction } from './move.input';
-import { EndTurnAction } from './end-turn.input';
-import { SummonAction } from './summon.input';
+import { GameContext } from '../game-session';
+import { MoveInput } from './move.input';
+import { EndTurnInput } from './end-turn.input';
+import { SummonInput } from './summon.input';
 import { DefaultSchema, PlayerInput } from './input';
-import { UseSkillAction } from './use-skill.input';
+import { UseSkillInput } from './use-skill.input';
 
 type GenericInputMap = Record<string, Constructor<PlayerInput<DefaultSchema>>>;
 
@@ -33,10 +33,10 @@ export const INPUT_NAME = {
 export type InputName = Values<typeof INPUT_NAME>;
 
 const inputMap = validateInputMap({
-  [INPUT_NAME.MOVE]: MoveAction,
-  [INPUT_NAME.END_TURN]: EndTurnAction,
-  [INPUT_NAME.SUMMON]: SummonAction,
-  [INPUT_NAME.USE_SKILL]: UseSkillAction
+  [INPUT_NAME.MOVE]: MoveInput,
+  [INPUT_NAME.END_TURN]: EndTurnInput,
+  [INPUT_NAME.SUMMON]: SummonInput,
+  [INPUT_NAME.USE_SKILL]: UseSkillInput
 });
 
 export class InputReducer {

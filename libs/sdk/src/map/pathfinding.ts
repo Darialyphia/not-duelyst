@@ -3,7 +3,7 @@ import { CellId } from './cell';
 import { GraphAdapter, findShortestPath } from '../utils/dijakstra';
 import { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { isEmpty } from '../entity/entity-utils';
 
 export class Pathfinder {

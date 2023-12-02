@@ -1,4 +1,4 @@
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UNIT_KIND, UnitKind } from '../units/unit-lookup';

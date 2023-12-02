@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { PlayerInput, defaultInputSchema } from './input';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { INPUT_NAME } from './input-reducer';
-import { UseSkillEvent } from '../action/use-sklll.action';
+import { UseSkillAction } from '../action/use-sklll.action';
 
 const useSkillEventSchema = defaultInputSchema.extend({
   playerId: z.string(),
@@ -14,7 +14,7 @@ const useSkillEventSchema = defaultInputSchema.extend({
   })
 });
 
-export class UseSkillAction extends PlayerInput<typeof useSkillEventSchema> {
+export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
   readonly name = INPUT_NAME.USE_SKILL;
 
   protected payloadSchema = useSkillEventSchema;
@@ -37,7 +37,7 @@ export class UseSkillAction extends PlayerInput<typeof useSkillEventSchema> {
     if (!this.canUseSkill) return;
 
     this.ctx.history.add(
-      new UseSkillEvent(
+      new UseSkillAction(
         {
           casterId: this.ctx.atb.activeEntity.id,
           target: this.payload.target,

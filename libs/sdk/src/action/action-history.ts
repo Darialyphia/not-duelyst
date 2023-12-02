@@ -1,5 +1,5 @@
 import { GameAction } from './action';
-import { GameContext } from '../game';
+import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 import { ActionReducer, SerializedAction } from './action-reducer';
 

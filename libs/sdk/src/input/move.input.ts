@@ -3,8 +3,8 @@ import { PlayerInput, defaultInputSchema } from './input';
 import { Pathfinder } from '../map/pathfinding';
 import { getEntityIfOwnerMatches } from '../entity/entity-utils';
 import { INPUT_NAME } from './input-reducer';
-import { MoveEvent } from '../action/move.action';
 import { cellIdToPoint } from '../utils/helpers';
+import { MoveAction } from '../action/move.action';
 
 const moveEventSchema = defaultInputSchema.extend({
   entityId: z.number(),
@@ -13,7 +13,7 @@ const moveEventSchema = defaultInputSchema.extend({
   z: z.number()
 });
 
-export class MoveAction extends PlayerInput<typeof moveEventSchema> {
+export class MoveInput extends PlayerInput<typeof moveEventSchema> {
   readonly name = INPUT_NAME.MOVE;
 
   protected payloadSchema = moveEventSchema;
@@ -33,7 +33,7 @@ export class MoveAction extends PlayerInput<typeof moveEventSchema> {
 
     if (entity.canMove(path.distance)) {
       this.ctx.history.add(
-        new MoveEvent(
+        new MoveAction(
           {
             entityId: this.payload.entityId,
             path: path.path.map(cellIdToPoint)
