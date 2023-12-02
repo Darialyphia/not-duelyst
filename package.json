@@ -11,7 +11,7 @@
   "devDependencies": {
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
-    "@hc/tsconfig": "workspace:*",
+    "@hc/tsconfig": "*",
     "turbo": "latest"
   },
   "workspaces": {

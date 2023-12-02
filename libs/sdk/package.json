@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "./src/index.ts",
   "devDependencies": {
-    "@hc/tsconfig": "workspace:*",
-    "eslint-config-daria": "workspace:*"
+    "@hc/tsconfig": "*",
+    "eslint-config-daria": "*"
   },
   "dependencies": {
-    "@hc/shared": "workspace.*",
+    "@hc/shared": "*",
     "@types/lodash-es": "^4.17.12",
     "builder-pattern": "^2.2.0",
     "lodash-es": "^4.17.21",
