@@ -1,15 +1,13 @@
 import { EntityId } from '../entity/entity';
 import { SkillId } from '../skill/skill-builder';
 import { Point3D } from '../types';
-import { GameEvent } from './event';
+import { GameAction } from './action';
 
-export type UseSkillEventPayload = {
+export class UseSkillAction extends GameAction<{
   casterId: EntityId;
   skillId: SkillId;
   target: Point3D;
-};
-
-export class UseSkillEvent extends GameEvent<UseSkillEventPayload> {
+}> {
   readonly name = 'USE_SKILL';
 
   protected impl() {

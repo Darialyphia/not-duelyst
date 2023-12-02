@@ -3,7 +3,7 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { clamp, Values } from '@hc/shared';
+import { Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
@@ -44,7 +44,7 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.TAKE_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
-    amount: Number;
+    amount: number;
     source: Entity;
   };
 };

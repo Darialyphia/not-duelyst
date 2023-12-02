@@ -1,50 +1,45 @@
-import { Values, Constructor, JSONValue } from '@hc/shared';
+import { Constructor, JSONValue, Values } from '@hc/shared';
+import { GameAction } from './action';
+import { DealDamageAction } from './deal-damage.action';
 import { GameContext } from '../game';
-import { MoveAction } from './move.action';
 import { EndTurnAction } from './end-turn.action';
-import { SummonAction } from './summon.action';
-import { DefaultSchema, GameAction } from './action';
-import { UseSkillAction } from './use-skill.action';
+import { MoveAction } from './move.action';
+import { SummonFromLoadoutAction } from './summon-from-loadout.action';
+import { UseSkillAction } from './use-sklll.action';
 
-type GenericEventMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
+type GenericActionMap = Record<string, Constructor<GameAction<JSONValue>>>;
 
-type ValidatedEventMap<T extends GenericEventMap> = {
-  [Name in keyof T]: T[Name] extends Constructor<GameAction<DefaultSchema>>
+type ValidatedActionMap<T extends GenericActionMap> = {
+  [Name in keyof T]: T[Name] extends Constructor<GameAction<JSONValue>>
     ? Name extends InstanceType<T[Name]>['name']
       ? T[Name]
       : never
     : never;
 };
 
-const validateActionMap = <T extends GenericEventMap>(data: ValidatedEventMap<T>) => data;
+const validateActionMap = <T extends GenericActionMap>(data: ValidatedActionMap<T>) =>
+  data;
 
-export type SerializedAction = {
-  type: ActionName;
-  payload: JSONValue;
-};
-
-export const ACTION_NAME = {
-  MOVE: 'MOVE',
-  END_TURN: 'END_TURN',
-  SUMMON: 'SUMMON',
-  USE_SKILL: 'USE_SKILL'
-} as const;
-
-export type ActionName = Values<typeof ACTION_NAME>;
-
-const actionDict = validateActionMap({
-  [ACTION_NAME.MOVE]: MoveAction,
-  [ACTION_NAME.END_TURN]: EndTurnAction,
-  [ACTION_NAME.SUMMON]: SummonAction,
-  [ACTION_NAME.USE_SKILL]: UseSkillAction
+export const actionMap = validateActionMap({
+  END_TURN: EndTurnAction,
+  MOVE: MoveAction,
+  SUMMON_FROM_LOADOUT: SummonFromLoadoutAction,
+  USE_SKILL: UseSkillAction,
+  DEAL_DAMAGE: DealDamageAction
 });
+
+export type ActionNae = keyof typeof actionMap;
+
+export type SerializedAction = ReturnType<
+  InstanceType<Values<typeof actionMap>>['serialize']
+> & { type: keyof typeof actionMap };
 
 export class ActionReducer {
   constructor(private ctx: GameContext) {}
 
   reduce({ type, payload }: SerializedAction) {
-    const action = actionDict[type];
+    const event = actionMap[type];
 
-    new action(payload, this.ctx).execute();
+    new event(payload as any, this.ctx).execute();
   }
 }

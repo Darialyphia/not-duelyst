@@ -1,10 +1,8 @@
 import { SerializedEntity } from '../entity/entity';
 import { UNITS } from '../units/unit-lookup';
-import { GameEvent } from './event';
+import { GameAction } from './action';
 
-export type SummonFromLoadoutEventPayload = Omit<SerializedEntity, 'id'>;
-
-export class SummonFromLoadoutEvent extends GameEvent<SummonFromLoadoutEventPayload> {
+export class SummonFromLoadoutAction extends GameAction<Omit<SerializedEntity, 'id'>> {
   readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected impl() {

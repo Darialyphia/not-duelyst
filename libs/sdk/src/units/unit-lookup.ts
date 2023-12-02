@@ -12,7 +12,7 @@ import {
   skillAreaGuard,
   skillTargetGuard
 } from '../skill/skill-utils';
-import { DealDamageEvent } from '../event/deal-damage.event';
+import { DealDamageAction } from '../action/deal-damage.action';
 
 export const UNIT_KIND = {
   GENERAL: 'GENERAL',
@@ -75,7 +75,7 @@ export const UNITS = keyBy(
           .execute((ctx, caster, target) => {
             const entity = ctx.entityManager.getEntityAt(target)!;
 
-            new DealDamageEvent(
+            new DealDamageAction(
               {
                 amount: 1,
                 sourceId: caster.id,

@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { GameAction, defaultActionSchema } from './action';
-import { ACTION_NAME } from './action-reducer';
+import { PlayerInput, defaultInputSchema } from './input';
+import { INPUT_NAME } from './input-reducer';
 import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
 import { UnitId, isUnitId } from '../units/unit-lookup';
-import { SummonFromLoadoutEvent } from '../event/summon-from-loadout.event';
+import { SummonFromLoadoutEvent } from '../action/summon-from-loadout.action';
 
-const summonEventSchema = defaultActionSchema.extend({
+const summonEventSchema = defaultInputSchema.extend({
   unitId: z
     .string()
     .refine(val => isUnitId(val))
@@ -17,8 +17,8 @@ const summonEventSchema = defaultActionSchema.extend({
   })
 });
 
-export class SummonAction extends GameAction<typeof summonEventSchema> {
-  readonly name = ACTION_NAME.SUMMON;
+export class SummonAction extends PlayerInput<typeof summonEventSchema> {
+  readonly name = INPUT_NAME.SUMMON;
 
   protected payloadSchema = summonEventSchema;
 

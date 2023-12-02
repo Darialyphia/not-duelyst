@@ -1,37 +1,27 @@
-import { z } from 'zod';
-import { GameContext } from '../game';
-import { ActionName, SerializedAction } from './action-reducer';
-import { Serializable } from '../utils/interfaces';
 import { JSONValue } from '@hc/shared';
+import { GameContext } from '../game';
+import { Serializable } from '../utils/interfaces';
 
-export const defaultActionSchema = z.object({
-  playerId: z.string()
-});
-export type DefaultSchema = typeof defaultActionSchema;
+import { SerializedAction } from './action-reducer';
 
-export abstract class GameAction<TSchema extends DefaultSchema> implements Serializable {
-  abstract readonly name: ActionName;
-
-  protected abstract payloadSchema: TSchema;
-
-  protected payload!: z.infer<TSchema>;
+export abstract class GameAction<TPayload extends JSONValue> implements Serializable {
+  abstract readonly name: string;
 
   constructor(
-    protected rawPayload: JSONValue,
+    public payload: TPayload,
     protected ctx: GameContext
   ) {}
 
   protected abstract impl(): void;
 
   execute() {
-    const parsed = this.payloadSchema.safeParse(this.rawPayload);
-    if (!parsed.success) return;
-    this.payload = parsed.data;
+    this.impl();
+    this.ctx.emitter.emit('game:event', this.serialize() as unknown as SerializedAction);
 
-    return this.impl();
+    return this;
   }
 
-  serialize(): SerializedAction {
-    return { type: this.name, payload: this.rawPayload };
+  serialize() {
+    return { type: this.name, payload: this.payload };
   }
 }

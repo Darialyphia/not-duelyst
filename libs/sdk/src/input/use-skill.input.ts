@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { GameAction, defaultActionSchema } from './action';
+import { PlayerInput, defaultInputSchema } from './input';
 import { GameContext } from '../game';
-import { ACTION_NAME } from './action-reducer';
-import { UseSkillEvent } from '../event/use-sklll.event';
+import { INPUT_NAME } from './input-reducer';
+import { UseSkillEvent } from '../action/use-sklll.action';
 
-const useSkillEventSchema = defaultActionSchema.extend({
+const useSkillEventSchema = defaultInputSchema.extend({
   playerId: z.string(),
   skillId: z.string(),
   target: z.object({
@@ -14,8 +14,8 @@ const useSkillEventSchema = defaultActionSchema.extend({
   })
 });
 
-export class UseSkillAction extends GameAction<typeof useSkillEventSchema> {
-  readonly name = ACTION_NAME.USE_SKILL;
+export class UseSkillAction extends PlayerInput<typeof useSkillEventSchema> {
+  readonly name = INPUT_NAME.USE_SKILL;
 
   protected payloadSchema = useSkillEventSchema;
 

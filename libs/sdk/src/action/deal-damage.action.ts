@@ -1,13 +1,11 @@
 import { EntityId } from '../entity/entity';
-import { GameEvent } from './event';
+import { GameAction } from './action';
 
-export type DealDamageEventPayload = {
+export class DealDamageAction extends GameAction<{
   amount: number;
   sourceId: EntityId;
   targets: EntityId[];
-};
-
-export class DealDamageEvent extends GameEvent<DealDamageEventPayload> {
+}> {
   readonly name = 'DEAL_DAMAGE';
 
   protected impl() {
