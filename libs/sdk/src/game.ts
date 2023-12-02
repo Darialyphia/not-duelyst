@@ -1,13 +1,13 @@
 import mitt, { type Emitter } from 'mitt';
-import { ActionReducer, RawAction } from './action/action-reducer';
+import { ActionReducer, SerializedAction } from './action/action-reducer';
 import { ATB } from './atb';
 import { EntityId, Entity, SerializedEntity, EntityEvent } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
-import { SerializedEvent } from './event/event';
 import { EventHistory } from './event/event-history';
 import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
+import { EventReducer, SerializedEvent } from './event/event-reducer';
 
 export type GameState = {
   map: GameMap;
@@ -45,13 +45,21 @@ export type GameContext = {
 
 export class Game {
   private map = new GameMap(this.getContext());
-  private playerManager = new PlayerManager(this.getContext());
-  private entityManager = new EntityManager(this.getContext());
-  private history = new EventHistory(this.getContext());
-  private atb = new ATB();
-  private emitter: Emitter<GlobalGameEvents> = mitt();
 
-  constructor(state: SerializedGameState) {
+  private playerManager = new PlayerManager(this.getContext());
+
+  private entityManager = new EntityManager(this.getContext());
+
+  private history = new EventHistory(this.getContext());
+
+  private atb = new ATB();
+
+  private emitter = mitt<GlobalGameEvents>();
+
+  constructor(
+    state: SerializedGameState,
+    private isAuthoritative: boolean
+  ) {
     this.getContext = this.getContext.bind(this);
 
     this.setupState(state);
@@ -112,16 +120,27 @@ export class Game {
     };
   }
 
-  dispatch(action: RawAction) {
+  dispatchAction(action: SerializedAction) {
+    if (!this.isAuthoritative) {
+      throw new Error(
+        'Non authoritative game session cannot receive actions. Use dispatchEvent instead'
+      );
+    }
     new ActionReducer(this.getContext()).reduce(action);
   }
 
-  onHistoryChange(cb: (e: SerializedEvent) => void) {
-    this.emitter.on('history:update', cb);
+  dispatchEvent(event: SerializedEvent) {
+    if (this.isAuthoritative) {
+      throw new Error(
+        'authoritative game session cannot receive events. Use dispatchAction instead'
+      );
+    }
+    new EventReducer(this.getContext()).reduce(event);
   }
 
-  onEvent(cb: (e: SerializedEvent) => void) {
-    this.emitter.on('game:event', cb);
+  subscribe(cb: (e: SerializedEvent) => void) {
+    const eventName = this.isAuthoritative ? 'history:update' : ('game:event' as const);
+    this.emitter.on(eventName, cb);
   }
 
   serialize(): SerializedGameState {

@@ -1,15 +1,16 @@
 import { z } from 'zod';
 import { GameContext } from '../game';
-import { ActionName, RawAction } from './action-reducer';
+import { ActionName, SerializedAction } from './action-reducer';
 import { Serializable } from '../utils/interfaces';
 import { JSONValue } from '@hc/shared';
 
 export const defaultActionSchema = z.object({
   playerId: z.string()
 });
-type DefaultSchema = typeof defaultActionSchema;
+export type DefaultSchema = typeof defaultActionSchema;
+
 export abstract class GameAction<TSchema extends DefaultSchema> implements Serializable {
-  protected abstract name: ActionName;
+  abstract readonly name: ActionName;
 
   protected abstract payloadSchema: TSchema;
 
@@ -30,7 +31,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
     return this.impl();
   }
 
-  serialize(): RawAction {
+  serialize(): SerializedAction {
     return { type: this.name, payload: this.rawPayload };
   }
 }

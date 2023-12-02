@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
-import { GameContext } from '../game';
 import { ACTION_NAME } from './action-reducer';
 import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
 import { UnitId, isUnitId } from '../units/unit-lookup';
@@ -19,7 +18,7 @@ const summonEventSchema = defaultActionSchema.extend({
 });
 
 export class SummonAction extends GameAction<typeof summonEventSchema> {
-  protected name = ACTION_NAME.END_TURN;
+  readonly name = ACTION_NAME.SUMMON;
 
   protected payloadSchema = summonEventSchema;
 

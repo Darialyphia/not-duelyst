@@ -4,10 +4,7 @@ import { GameEvent } from './event';
 
 export type SummonFromLoadoutEventPayload = Omit<SerializedEntity, 'id'>;
 
-export class SummonFromLoadoutEvent extends GameEvent<
-  'SUMMON_FROM_LOADOUT',
-  SummonFromLoadoutEventPayload
-> {
+export class SummonFromLoadoutEvent extends GameEvent<SummonFromLoadoutEventPayload> {
   readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected impl() {

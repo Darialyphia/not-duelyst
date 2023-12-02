@@ -15,7 +15,7 @@ const useSkillEventSchema = defaultActionSchema.extend({
 });
 
 export class UseSkillAction extends GameAction<typeof useSkillEventSchema> {
-  protected name = ACTION_NAME.USE_SKILL;
+  readonly name = ACTION_NAME.USE_SKILL;
 
   protected payloadSchema = useSkillEventSchema;
 

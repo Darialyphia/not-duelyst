@@ -1,10 +1,8 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
-import { GameContext } from '../game';
 import { Pathfinder } from '../map/pathfinding';
 import { getEntityIfOwnerMatches } from '../entity/entity-utils';
-import { Vec3 } from '../utils/vector';
-import { ACTION_NAME, ActionName, RawAction } from './action-reducer';
+import { ACTION_NAME } from './action-reducer';
 import { MoveEvent } from '../event/move.event';
 import { cellIdToPoint } from '../utils/helpers';
 
@@ -16,7 +14,7 @@ const moveEventSchema = defaultActionSchema.extend({
 });
 
 export class MoveAction extends GameAction<typeof moveEventSchema> {
-  protected name = ACTION_NAME.MOVE;
+  readonly name = ACTION_NAME.MOVE;
 
   protected payloadSchema = moveEventSchema;
 
