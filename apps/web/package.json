@@ -1,0 +1,20 @@
+{
+  "name": "@hc/game-client",
+  "version": "0.0.01",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@hc/tsconfig": "*",
+    "eslint-config-daria": "*",
+    "@nuxt/devtools": "latest",
+    "nuxt": "^3.8.2",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
+  }
+}
