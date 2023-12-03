@@ -1,6 +1,11 @@
-<template>
-  <div>
-    <h1>Hero clash website</h1>
-    <GameView />
-  </div>
-</template>
+<script setup lang="ts">
+import { useUser } from "vue-clerk";
+
+const user = useUser();
+until(user.isLoaded)
+  .toBe(true)
+  .then(() => {
+    navigateTo("/play");
+  });
+</script>
+<template>Authenticating...</template>

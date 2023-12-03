@@ -1,4 +1,4 @@
-import { api } from '../convex/_generated/api';
+import { api } from './convex/_generated/api';
 import { ConvexClient, ConvexHttpClient } from 'convex/browser';
 
 const createApiClient = (url: string) => new ConvexClient(url);

@@ -6,14 +6,7 @@ import url from 'url';
 const PORT = process.env.PORT || 8000;
 
 async function main() {
-  const httpServer = createServer((req, res) => {
-    // Parse the request url
-    const reqUrl = url.parse(req.url!).pathname;
-    if (reqUrl == '/') {
-      res.write('OK');
-      res.end();
-    }
-  });
+  const httpServer = createServer();
   const io = new Server(httpServer, {
     cors: {
       origin: '*',

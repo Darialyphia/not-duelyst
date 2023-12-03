@@ -1,3 +1,3 @@
 <template>
-  <GameView />
+  <NuxtPage />
 </template>

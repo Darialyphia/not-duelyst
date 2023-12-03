@@ -12,9 +12,12 @@
     "prepare": "nuxt prepare .playground"
   },
   "dependencies": {
+    "@hc/api": "*",
     "@hc/sdk": "*",
     "@hc/shared": "*",
-    "@hc/api": "*"
+    "@vueuse/nuxt": "^10.6.1",
+    "h3-clerk": "^0.3.7",
+    "vue-clerk": "^0.1.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, session } from "electron";
 import path from "path";
 
 // The built directory structure
@@ -35,11 +35,22 @@ function bootstrap() {
   win.maximize();
   win.show();
   if (process.env.VITE_DEV_SERVER_URL) {
-    win.loadURL(process.env.VITE_DEV_SERVER_URL);
+    win.loadURL(process.env.VITE_DEV_SERVER_URL + "/play");
     win.webContents.openDevTools();
   } else {
     win.loadFile(path.join(process.env.VITE_PUBLIC!, "index.html"));
   }
 }
 
-app.whenReady().then(bootstrap);
+app.whenReady().then(() => {
+  //proper-lacewing-34.clerk.accounts.dev
+
+  https: session.defaultSession.webRequest.onBeforeSendHeaders(
+    { urls: ["https://proper-lacewing-34.clerk.accounts.dev/*"] },
+    (details, callback) => {
+      details.requestHeaders["Origin"] = "http://localhost:3002";
+      callback({ requestHeaders: details.requestHeaders });
+    }
+  );
+  bootstrap();
+});
