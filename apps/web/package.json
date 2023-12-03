@@ -1,5 +1,5 @@
 {
-  "name": "@hc/game-client",
+  "name": "@hc/web",
   "version": "0.0.01",
   "type": "module",
   "scripts": {
@@ -9,10 +9,14 @@
     "preview": "nuxt preview",
     "prepare": "nuxt prepare"
   },
+  "dependencies": {
+    "@hc/game-client": "*",
+    "@hc/shared": "*"
+  },
   "devDependencies": {
     "@hc/tsconfig": "*",
-    "eslint-config-daria": "*",
     "@nuxt/devtools": "latest",
+    "eslint-config-daria": "*",
     "nuxt": "^3.8.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"

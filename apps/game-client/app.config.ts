@@ -1,14 +1,14 @@
 export default defineAppConfig({
-  myLayer: {
-    name: 'Hello from Nuxt layer'
-  }
-})
+  gameClient: {
+    name: "Hello from Nuxt layer",
+  },
+});
 
-declare module '@nuxt/schema' {
+declare module "@nuxt/schema" {
   interface AppConfigInput {
-    myLayer?: {
+    gameclient?: {
       /** Project name */
-      name?: string
-    }
+      name?: string;
+    };
   }
 }

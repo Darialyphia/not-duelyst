@@ -1,0 +1,5 @@
+{
+  "extends": "@hc/tsconfig/base.json",
+  "include": ["src/**/*.ts", "tsup.config.ts"],
+  "exclude": [".git", "node_modules"]
+}

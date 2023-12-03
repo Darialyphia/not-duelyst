@@ -1,0 +1,16 @@
+{
+  "name": "@hc/api",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "convex dev"
+  },
+  "devDependencies": {
+    "@hc/tsconfig": "*",
+    "eslint-config-daria": "*"
+  },
+  "dependencies": {
+    "@hc/shared": "*",
+    "convex": "^1.6.3"
+  }
+}

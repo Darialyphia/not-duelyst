@@ -1,6 +1,3 @@
 <template>
-  <div>
-    Yeaaaaah my nignog
-    <HelloWorld />
-  </div>
+  <GameView />
 </template>
