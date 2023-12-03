@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { api, createApiClient } from "@hc/api";
+import { api } from "@hc/api";
 
 const config = useAppConfig();
 const client = useConvexClient();
 
-const users = ref<any[]>();
+const users = ref<any[] | null>(null);
 client.onUpdate(api.users.get, {}, (update) => {
   users.value = update;
+});
+
+onServerPrefetch(async () => {
+  users.value = await client.querySSR(api.users.get, {});
 });
 </script>
 

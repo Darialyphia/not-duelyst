@@ -11,13 +11,6 @@ export default defineNuxtRouteMiddleware(async (route) => {
     await until(isClerkLoaded).toBe(true);
   }
   if (process.client && clerk.user?.id) {
-    console.log(
-      "authed !",
-      route.fullPath,
-      clerk.loaded,
-      isClerkLoaded.value,
-      clerk.user?.id,
-    );
     return navigateTo("/play");
   }
 });

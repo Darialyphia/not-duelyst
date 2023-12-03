@@ -1,18 +1,14 @@
 import type { InjectionKey } from "nuxt/dist/app/compat/capi";
 import { useAuth } from "vue-clerk";
-import { createApiClient, createApiHttpClient } from "@hc/api";
-import { ConvexClient, ConvexHttpClient } from "convex/browser";
+import { ConvexClientWithSSR } from "@hc/api";
 
 export const CONVEX_CLIENT = Symbol(
   "convex-client"
-) as InjectionKey<ConvexClient>;
+) as InjectionKey<ConvexClientWithSSR>;
 export const CONVEX_AUTH = Symbol("convex-auth") as InjectionKey<{
   isAuthenticated: Ref<boolean>;
   isLoading: Ref<boolean>;
 }>;
-export const CONVEX_HTTP_CLIENT = Symbol(
-  "convex-http-client"
-) as InjectionKey<ConvexHttpClient>;
 
 export default defineNuxtPlugin(async (nuxt) => {
   const {
@@ -28,18 +24,22 @@ export default defineNuxtPlugin(async (nuxt) => {
     forceRefreshToken: boolean;
   }) => {
     try {
-      return getToken.value({
-        template: "convex",
-        skipCache: forceRefreshToken,
-      });
+      if (process.server) {
+        return nuxt.ssrContext?.event.context.auth.getToken({
+          template: "convex",
+        });
+      } else {
+        return getToken.value({
+          template: "convex",
+          skipCache: forceRefreshToken,
+        });
+      }
     } catch (error) {
       return null;
     }
   };
 
-  const convexUrl = config.public.convexUrl as string;
-  const convexClient = createApiClient(convexUrl);
-  const convexHttpClient = createApiHttpClient(convexUrl);
+  const convexClient = new ConvexClientWithSSR(config.public.convexUrl);
 
   const authState = {
     isLoading: ref(!isClerkLoaded.value),
@@ -47,45 +47,36 @@ export default defineNuxtPlugin(async (nuxt) => {
   };
 
   nuxt.vueApp.provide(CONVEX_CLIENT, convexClient);
-  nuxt.vueApp.provide(CONVEX_HTTP_CLIENT, convexHttpClient);
   nuxt.vueApp.provide(CONVEX_AUTH, {
     isLoading: readonly(authState.isLoading),
     isAuthenticated: readonly(authState.isAuthenticated),
   });
 
-  const syncConvexAuthWithAuth0Auth = async () => {
+  const syncConvexAuthWithClerkAuth = async () => {
     if (!authState.isLoading.value && !isClerkLoaded.value) {
       authState.isLoading.value = true;
     }
 
     if (!isClerkLoaded.value) return;
 
-    if (authState.isAuthenticated.value) {
+    if (isClerkAuthenticated.value) {
       convexClient.setAuth(fetchAccessToken, (isAuth) => {
         authState.isAuthenticated.value = isAuth;
         authState.isLoading.value = false;
       });
-
-      const setHttpAuth = async () => {
-        const token = await fetchAccessToken({ forceRefreshToken: true });
-        if (token) {
-          convexHttpClient.setAuth(token);
-        } else {
-          convexHttpClient.clearAuth();
-        }
-      };
-      const promise = setHttpAuth();
-      if (process.server) {
-        await promise;
-      }
     } else {
       convexClient.client.clearAuth();
-      convexHttpClient.clearAuth();
 
       authState.isAuthenticated.value = false;
       authState.isLoading.value = false;
     }
   };
 
-  watchEffect(syncConvexAuthWithAuth0Auth);
+  if (process.server && nuxt.ssrContext?.event.context.auth.userId) {
+    convexClient.setAuth(fetchAccessToken, (isAuth) => {
+      authState.isAuthenticated.value = isAuth;
+      authState.isLoading.value = false;
+    });
+  }
+  watchEffect(syncConvexAuthWithClerkAuth);
 });
