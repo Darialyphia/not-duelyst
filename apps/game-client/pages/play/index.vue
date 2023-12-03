@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser } from "vue-clerk";
+import { useClerkProvide, useUser, SignOutButton } from "vue-clerk";
 
 definePageMeta({
   middleware: ["auth"],
@@ -10,6 +10,9 @@ const { user } = useUser();
 <template>
   <div>
     <h1>Welcome to hero clash</h1>
-    <pre>{{ user }}</pre>
+    <SignOutButton @sign-out="navigateTo('/play/login')" />
+    <GameView />
+    <pre v-if="user">{{ user }}</pre>
+    <div v-else>Loading user info...</div>
   </div>
 </template>

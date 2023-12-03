@@ -1,11 +1,10 @@
 import { useClerkProvide } from "vue-clerk";
 
-export default defineNuxtRouteMiddleware(async (route) => {
+export default defineNuxtRouteMiddleware(async () => {
   const nuxtApp = useNuxtApp();
   const { clerk, isClerkLoaded } = useClerkProvide();
 
   if (process.server && !nuxtApp.ssrContext?.event.context.auth?.userId) {
-    console.log(nuxtApp.ssrContext?.event.context.auth);
     return navigateTo("/play/login");
   }
 
@@ -13,13 +12,6 @@ export default defineNuxtRouteMiddleware(async (route) => {
     await until(isClerkLoaded).toBe(true);
   }
   if (process.client && clerk.loaded && !clerk.user?.id) {
-    console.log(
-      "not authed !",
-      route.fullPath,
-      clerk.loaded,
-      isClerkLoaded.value,
-      clerk.user?.id,
-    );
     return navigateTo("/play/login");
   }
 });

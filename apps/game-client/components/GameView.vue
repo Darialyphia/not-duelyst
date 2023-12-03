@@ -2,7 +2,7 @@
 import { api, createApiClient } from "@hc/api";
 
 const config = useAppConfig();
-const client = createApiClient("https://scrupulous-mastodon-328.convex.cloud");
+const client = useConvexClient();
 
 const users = ref<any[]>();
 client.onUpdate(api.users.get, {}, (update) => {
@@ -13,7 +13,6 @@ client.onUpdate(api.users.get, {}, (update) => {
 <template>
   <div>
     <h2>Game view</h2>
-    <pre>{{ config.gameClient }}</pre>
     <pre>{{ users }}</pre>
   </div>
 </template>

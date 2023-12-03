@@ -8,6 +8,6 @@ definePageMeta({
 
 <template>
   <div>
-    <SignIn />
+    <SignIn after-sign-in-url="/play" />
   </div>
 </template>
