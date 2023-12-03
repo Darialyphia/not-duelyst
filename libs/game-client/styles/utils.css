@@ -1,0 +1,40 @@
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: var(--container-size, var(--size-lg));
+}
+
+.surface {
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  padding: var(--size-6);
+}
+
+.center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fancy-surface {
+  background: var(--fancy-bg);
+  background-blend-mode: overlay;
+  border: var(--fancy-border);
+  box-shadow:
+    0 5px 15px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}

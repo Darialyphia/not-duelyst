@@ -14,6 +14,7 @@
     "@hc/shared": "*"
   },
   "devDependencies": {
+    "@hc/stylelint-config": "*",
     "@hc/tsconfig": "*",
     "@nuxt/devtools": "latest",
     "electron": "^27.1.3",

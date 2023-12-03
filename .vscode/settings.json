@@ -3,5 +3,25 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+
+  "css.lint.unknownAtRules": "ignore",
+
+  "cssvar.files": [
+    "./node_modules/open-props/open-props.min.css",
+    "./libs/game-client/styles/theme.css"
+  ],
+
+  "cssvar.ignore": [],
+
+  "cssvar.extensions": ["css", "postcss", "vue"],
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true
+  },
+  "stylelint.validate": ["css", "scss", "vue", "html"],
+
+  "css.validate": true,
+  "scss.validate": false
 }
