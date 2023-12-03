@@ -8,7 +8,7 @@ definePageMeta({
 const { user } = useUser();
 </script>
 <template>
-  <div class="bg-red-3">
+  <div>
     <h1>Welcome to hero clash</h1>
     <SignOutButton @sign-out="navigateTo('/play/login')" />
     <GameView />

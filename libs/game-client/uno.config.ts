@@ -6,10 +6,13 @@ import {
   presetIcons,
   type Preset
 } from 'unocss';
-import { presetOpenProps } from './tools/uno-open-props';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
 import * as csstree from 'css-tree';
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url));
 
 const cssTheme = fs.readFileSync(path.join(__dirname, 'styles/theme.css'), {
   encoding: 'utf-8'
@@ -32,7 +35,7 @@ export default defineConfig({
   presets: [presetIcons(), presetUno()],
   transformers: [transformerVariantGroup()],
   content: {
-    filesystem: ['**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}']
+    filesystem: ['**/*.{html,js,ts,vue}', `../../libs/game-client/**/*.{html,js,ts,vue}`]
   },
   theme: {
     colors: themeColors

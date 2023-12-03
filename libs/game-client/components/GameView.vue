@@ -5,7 +5,7 @@ const { data: users } = useConvexQuery(api.users.get, {});
 </script>
 
 <template>
-  <div>
+  <div class="p-5 c-red-6">
     <h2>Game view</h2>
     <pre>{{ users }}</pre>
   </div>

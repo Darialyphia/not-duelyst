@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header><DarkModeToggle /></header>
+    <header class="surface"><DarkModeToggle /></header>
     <NuxtPage />
   </div>
 </template>

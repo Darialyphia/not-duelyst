@@ -25,7 +25,7 @@ button {
   width: var(--size-8);
   height: var(--size-6);
 
-  background: var(--surface-4);
+  background: var(--surface-2);
   border: solid 2px var(--border-dimmed);
   border-radius: var(--radius-pill);
 
