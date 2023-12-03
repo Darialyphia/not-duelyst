@@ -27,11 +27,13 @@ function bootstrap() {
       preload,
       nodeIntegrationInWorker: true,
       contextIsolation: false,
-      nodeIntegration: true,
+      nodeIntegration: false,
       webSecurity: false,
     },
   });
 
+  win.maximize();
+  win.show();
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
     win.webContents.openDevTools();
