@@ -1,5 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <NuxtPage />
+  <div>
+    <UsernameModal />
+    <NuxtPage />
+  </div>
 </template>

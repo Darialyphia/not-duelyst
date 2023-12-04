@@ -1,4 +1,4 @@
-import type { FunctionArgs, FunctionReference } from 'convex/server';
+import type { FunctionArgs, FunctionReference, FunctionReturnType } from 'convex/server';
 import { CONVEX_AUTH, CONVEX_CLIENT } from '../plugins/convex';
 import type { Nullable } from '@hc/shared';
 
@@ -21,7 +21,7 @@ export const useConvexQuery = <Query extends QueryReference>(
 ) => {
   const client = useConvexClient();
 
-  const data = ref();
+  const data = ref<FunctionReturnType<Query>>();
   const error = ref<Nullable<Error>>();
   let unsub: () => void;
 
@@ -52,3 +52,38 @@ export const useConvexQuery = <Query extends QueryReference>(
 
   return { data, error, isLoading: computed(() => data.value === undefined) };
 };
+
+export type MutationReference = FunctionReference<'mutation'>;
+export function useConvexMutation<Mutation extends MutationReference>(
+  mutation: Mutation,
+  {
+    onSuccess,
+    onError
+  }: {
+    onSuccess?: (data: FunctionReturnType<Mutation>) => void;
+    onError?: (err: Error) => void;
+  } = {}
+) {
+  const convex = useConvexClient();
+
+  const isLoading = ref(false);
+  const error = ref<Nullable<Error>>();
+
+  return {
+    isLoading,
+    error,
+    mutate: async (args?: Mutation['_args']) => {
+      try {
+        isLoading.value = true;
+
+        const result = await convex.mutation(mutation, args);
+        onSuccess?.(result);
+      } catch (err) {
+        error.value = err as Error;
+        onError?.(err as Error);
+      } finally {
+        isLoading.value = false;
+      }
+    }
+  };
+}

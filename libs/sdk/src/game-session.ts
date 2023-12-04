@@ -8,6 +8,7 @@ import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 import { ActionReducer, SerializedAction } from './action/action-reducer';
+import { UnitId } from './units/unit-lookup';
 
 export type GameState = {
   map: GameMap;
@@ -19,7 +20,7 @@ export type GameState = {
 export type SerializedGameState = {
   map: GameMapOptions;
   entities: Array<SerializedEntity>;
-  players: { id: PlayerId; loadout: Loadout }[];
+  players: { id: PlayerId; loadout: Loadout; generalId: UnitId }[];
   history: SerializedAction[];
   activeEntityId?: EntityId;
 };

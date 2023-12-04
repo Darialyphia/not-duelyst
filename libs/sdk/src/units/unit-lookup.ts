@@ -86,6 +86,45 @@ export const UNITS = keyBy(
           })
           .build()
       ]
+    },
+    {
+      id: 'haven_soldier_1',
+      kind: UNIT_KIND.SOLDIER,
+      faction: FACTIONS.haven,
+      summonCost: 1,
+      summonCooldown: 1,
+      maxHp: 10,
+      maxAp: 3,
+      apRegenRate: 1,
+      attack: 2,
+      defense: 0,
+      speed: 5,
+      initiative: 7,
+      skills: [
+        skillBuilder()
+          .id('melee_attack')
+          .cost(0)
+          .cooldown(0)
+          .isTargetable(
+            skillTargetGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfCaster(1))
+          )
+          .isInAreaOfEffect(
+            skillAreaGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfTarget(0))
+          )
+          .execute((ctx, caster, target) => {
+            const entity = ctx.entityManager.getEntityAt(target)!;
+
+            new DealDamageAction(
+              {
+                amount: 1,
+                sourceId: caster.id,
+                targets: [entity.id]
+              },
+              ctx
+            ).execute();
+          })
+          .build()
+      ]
     }
   ],
   'id'

@@ -12,7 +12,8 @@ export type Loadout = {
 export class Player implements Serializable {
   constructor(
     public readonly id: PlayerId,
-    public readonly loadout: Loadout
+    public readonly loadout: Loadout,
+    public readonly generalId: UnitId
   ) {}
 
   canSummon(ctx: GameContext, unitId: UnitId) {
@@ -28,7 +29,8 @@ export class Player implements Serializable {
   serialize() {
     return {
       id: this.id,
-      loadout: this.loadout
+      loadout: this.loadout,
+      generalId: this.generalId
     };
   }
 }

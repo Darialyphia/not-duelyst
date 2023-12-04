@@ -1,4 +1,5 @@
 import { GameContext } from '../game-session';
+import { UnitId } from '../units/unit-lookup';
 import { Loadout, Player, PlayerId } from './player';
 
 export class PlayerManager {
@@ -6,9 +7,9 @@ export class PlayerManager {
 
   constructor(private ctx: GameContext) {}
 
-  setup(players: { id: PlayerId; loadout: Loadout }[]) {
+  setup(players: { id: PlayerId; loadout: Loadout; generalId: UnitId }[]) {
     players
-      .map(p => new Player(p.id, p.loadout))
+      .map(p => new Player(p.id, p.loadout, p.generalId))
       .forEach(player => {
         this.addPlayer(player);
       });

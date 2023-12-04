@@ -5,7 +5,7 @@ const isDark = useDarkMode();
 <template>
   <div class="flex items-center gap-1">
     <Icon name="ph:sun-fill" class="icon" />
-    <SwitchRoot id="dark-mode" v-model:checked="isDark" as-child>
+    <SwitchRoot id="dark-mode" v-model:checked="isDark" as-child class="dark-mode">
       <button>
         <SwitchThumb as-child>
           <span />
