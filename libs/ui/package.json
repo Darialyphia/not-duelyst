@@ -1,5 +1,5 @@
 {
-  "name": "@hc/game-client",
+  "name": "@hc/ui",
   "type": "module",
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
@@ -12,9 +12,6 @@
     "prepare": "nuxt prepare .playground"
   },
   "dependencies": {
-    "@hc/ui": "*",
-    "@hc/api": "*",
-    "@hc/sdk": "*",
     "@hc/shared": "*",
     "@types/css-tree": "^2.3.4",
     "@unocss/reset": "^0.53.4",

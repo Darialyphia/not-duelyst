@@ -9,7 +9,7 @@
 
   "cssvar.files": [
     "./node_modules/open-props/open-props.min.css",
-    "./libs/game-client/styles/theme.css"
+    "./libs/ui/styles/theme.css"
   ],
 
   "cssvar.ignore": [],

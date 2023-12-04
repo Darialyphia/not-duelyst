@@ -1,18 +1,9 @@
 // uno.config.ts
-import {
-  defineConfig,
-  presetUno,
-  transformerVariantGroup,
-  presetIcons,
-  type Preset
-} from 'unocss';
+import { defineConfig, presetUno, transformerVariantGroup, presetIcons } from 'unocss';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import * as csstree from 'css-tree';
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
 
 const cssTheme = fs.readFileSync(path.join(__dirname, 'styles/theme.css'), {
   encoding: 'utf-8'
@@ -35,7 +26,11 @@ export default defineConfig({
   presets: [presetIcons(), presetUno()],
   transformers: [transformerVariantGroup()],
   content: {
-    filesystem: ['**/*.{html,js,ts,vue}', `../../libs/game-client/**/*.{html,js,ts,vue}`]
+    filesystem: [
+      '**/*.{html,js,ts,vue}',
+      `../../libs/ui/**/*.{html,js,ts,vue}`,
+      `../../libs/game-client/**/*.{html,js,ts,vue}`
+    ]
   },
   theme: {
     colors: themeColors
