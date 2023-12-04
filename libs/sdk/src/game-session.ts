@@ -8,7 +8,7 @@ import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 import { ActionReducer, SerializedAction } from './action/action-reducer';
-import { UnitId } from './units/unit-lookup';
+import { UNITS, UnitId } from './units/unit-lookup';
 
 export type GameState = {
   map: GameMap;
@@ -81,6 +81,16 @@ export class GameSession {
     this.playerManager.setup(state.players);
     this.entityManager.setup(state.entities);
     this.history.setup(state.history);
+    if (!state.history.length && this.isAuthoritative) {
+      this.playerManager.getList().forEach((player, index) => {
+        this.entityManager.addEntity({
+          atbSeed: Math.random(),
+          playerId: player.id,
+          unitId: player.generalId,
+          position: state.map.startPositions[index]
+        });
+      });
+    }
   }
 
   private setupEvents() {
