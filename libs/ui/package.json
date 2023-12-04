@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@hc/stylelint-config": "*",
+    "@hc/unocss-config": "*",
     "@iconify/json": "^2.2.86",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxtjs/color-mode": "^3.3.0",

@@ -1,38 +1,7 @@
-// uno.config.ts
-import { defineConfig, presetUno, transformerVariantGroup, presetIcons } from 'unocss';
-import fs from 'fs';
 import path from 'path';
+import { createUnoConfig } from '@hc/unocss-config';
 
-import * as csstree from 'css-tree';
-
-const cssTheme = fs.readFileSync(path.join(__dirname, 'styles/theme.css'), {
-  encoding: 'utf-8'
-});
-
-const ast = csstree.parse(cssTheme);
-const themeColors: Record<string, string> = {};
-const colorIdentifierRE = new RegExp('--color-(.+)-hsl$');
-
-csstree.walk(ast, node => {
-  if (node.type !== 'Declaration') return;
-  const { property } = node;
-  const match = property.match(colorIdentifierRE);
-  if (match?.[1]) {
-    themeColors[match[1]] = `hsl(var(${property}) / <alpha-value>)`;
-  }
-});
-export default defineConfig({
-  blocklist: ['container'],
-  presets: [presetIcons(), presetUno()],
-  transformers: [transformerVariantGroup()],
-  content: {
-    filesystem: [
-      '**/*.{html,js,ts,vue}',
-      `../../libs/ui/**/*.{html,js,ts,vue}`,
-      `../../libs/game-client/**/*.{html,js,ts,vue}`
-    ]
-  },
-  theme: {
-    colors: themeColors
-  }
+export default createUnoConfig({
+  themePath: path.join(__dirname, 'styles/theme.css'),
+  additional: [`../../libs/ui`, `../../libs/game-client`]
 });

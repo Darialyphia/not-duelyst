@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@hc/stylelint-config": "*",
+    "@hc/unocss-config": "*",
     "@hc/tsconfig": "*",
     "@nuxt/devtools": "latest",
     "electron": "^27.1.3",

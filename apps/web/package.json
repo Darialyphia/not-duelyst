@@ -17,6 +17,7 @@
   "devDependencies": {
     "@hc/tsconfig": "*",
     "@hc/stylelint-config": "*",
+    "@hc/unocss-config": "*",
     "@nuxt/devtools": "latest",
     "eslint-config-daria": "*",
     "nuxt": "^3.8.2",
