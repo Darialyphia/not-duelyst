@@ -72,8 +72,8 @@ export class GameSession {
     this.getContext = this.getContext.bind(this);
 
     this.setupState(state);
-    this.setupATB(state.activeEntityId);
     this.setupEvents();
+    this.setupATB(state.activeEntityId);
   }
 
   private setupState(state: SerializedGameState) {
@@ -81,7 +81,8 @@ export class GameSession {
     this.playerManager.setup(state.players);
     this.entityManager.setup(state.entities);
     this.history.setup(state.history);
-    if (!state.history.length && this.isAuthoritative) {
+
+    if (!this.entityManager.getList().length) {
       this.playerManager.getList().forEach((player, index) => {
         this.entityManager.addEntity({
           atbSeed: Math.random(),

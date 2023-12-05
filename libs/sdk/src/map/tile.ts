@@ -1,6 +1,11 @@
 import { Values } from '@hc/shared';
 import { TileId, TILES } from './tile-lookup';
 
+export const TERRAIN = {
+  GROUND: 'GROUND',
+  WATER: 'WATER'
+};
+
 export const DIRECTION = {
   NORTH: 'north',
   SOUTH: 'south',
@@ -16,11 +21,6 @@ export const DIRECTIONS_TO_DIFF = {
 } as const satisfies Record<Direction, number>;
 
 export type Direction = Values<typeof DIRECTION>;
-
-export const TERRAIN = {
-  GROUND: 'GROUND',
-  WATER: 'WATER'
-};
 
 export type Terrain = Values<typeof TERRAIN>;
 

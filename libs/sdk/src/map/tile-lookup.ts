@@ -1,4 +1,9 @@
-import { TERRAIN, TileDefinition } from './tile';
+import { TileDefinition } from './tile';
+
+export const TERRAIN = {
+  GROUND: 'GROUND',
+  WATER: 'WATER'
+};
 
 export const TILES = {
   water: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GameSession } from '@hc/sdk';
+import { GameSession, type SerializedGameState } from '@hc/sdk';
 const width = 9;
 const height = 5;
 const mapLayout = Array.from({ length: height }, (_, y) =>
@@ -9,7 +9,7 @@ const mapLayout = Array.from({ length: height }, (_, y) =>
   }))
 ).flat();
 
-const serverSesion = GameSession.createServerSession({
+const initialState: SerializedGameState = {
   entities: [],
   history: [],
   map: {
@@ -41,8 +41,10 @@ const serverSesion = GameSession.createServerSession({
       generalId: 'haven_general_1'
     }
   ]
-});
+};
+const serverSession = GameSession.createServerSession(initialState);
+const clientSession = GameSession.createClientSession(initialState);
 </script>
 <template>
-  <GameView />
+  <GameView :game-session="clientSession" />
 </template>
