@@ -31,10 +31,12 @@ export class MoveInput extends PlayerInput<typeof moveEventSchema> {
     const path = this.ctx.map.getPathTo(entity, this.payload);
     if (!path) return;
 
+    if (!entity.canMove(path.distance)) return null;
+
     new MoveAction(
       {
         entityId: this.payload.entityId,
-        path: path.path.map(cellIdToPoint)
+        path: path.path.map(vec => vec.serialize())
       },
       this.ctx
     ).execute();

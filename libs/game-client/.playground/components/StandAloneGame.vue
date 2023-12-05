@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { GameSession, type SerializedGameState } from '@hc/sdk';
-const width = 20;
-const height = 20;
+const width = 13;
+const height = 13;
 const mapLayout = Array.from({ length: height }, (_, y) =>
   Array.from({ length: width }, (_, x) => ({
     position: { x, y, z: 0 },
@@ -16,8 +16,8 @@ const initialState: SerializedGameState = {
     width,
     height,
     startPositions: [
-      { x: 5, y: 5, z: 1 },
-      { x: 14, y: 5, z: 1 }
+      { x: 4, y: 6, z: 1 },
+      { x: 7, y: 6, z: 1 }
     ],
     cells: mapLayout
   },

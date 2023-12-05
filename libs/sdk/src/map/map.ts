@@ -118,8 +118,9 @@ export class GameMap implements Serializable {
 
     if (!path) return null;
 
-    if (!entity.canMove(path.distance)) return null;
-
-    return path.path.map(p => Vec3.fromPoint3D(cellIdToPoint(p)));
+    return {
+      distance: path.distance,
+      path: path.path.map(p => Vec3.fromPoint3D(cellIdToPoint(p)))
+    };
   }
 }

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src/entity/entity';
-import type { GameSession, GameState } from '../../sdk/src';
+import type { GameSession } from '@hc/sdk';
+import type { Point3D } from '@hc/sdk/src/types';
+import type { Nullable } from '@hc/shared';
+import { pointToCellId } from '@hc/sdk/src/utils/helpers';
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
@@ -17,6 +20,18 @@ onUnmounted(() => {
   unsub?.();
 });
 const activeEntity = computed<Entity>(() => state.value.activeEntity as Entity);
+
+const target = ref<Nullable<Point3D>>(null);
+
+const path = computed(() => {
+  if (!target.value) return [];
+
+  return state.value.map.getPathTo(activeEntity.value, target.value)?.path ?? [];
+});
+
+const isInPath = (pt: Point3D) => {
+  return path.value.some(vec => vec.equals({ x: pt.x, y: pt.y, z: pt.z + 1 }));
+};
 </script>
 
 <template>
@@ -26,7 +41,9 @@ const activeEntity = computed<Entity>(() => state.value.activeEntity as Entity);
         v-for="cell in state.map.cells"
         :key="`${cell.position.toString()}`"
         :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
-        :class="['cell', { 'move-target': state.map.getPathTo(activeEntity, cell) }]"
+        :class="['cell', { 'move-target': isInPath(cell) }]"
+        @mouseenter="target = cell"
+        @mouseleave="target = null"
       />
 
       <div
