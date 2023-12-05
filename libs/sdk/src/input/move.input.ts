@@ -28,19 +28,15 @@ export class MoveInput extends PlayerInput<typeof moveEventSchema> {
 
     if (!entity.equals(this.ctx.atb.activeEntity)) return;
 
-    const path = new Pathfinder(this.ctx).findPath(entity.position, this.payload);
+    const path = this.ctx.map.getPathTo(entity, this.payload);
     if (!path) return;
 
-    if (entity.canMove(path.distance)) {
-      this.ctx.history.add(
-        new MoveAction(
-          {
-            entityId: this.payload.entityId,
-            path: path.path.map(cellIdToPoint)
-          },
-          this.ctx
-        ).execute()
-      );
-    }
+    new MoveAction(
+      {
+        entityId: this.payload.entityId,
+        path: path.path.map(cellIdToPoint)
+      },
+      this.ctx
+    ).execute();
   }
 }

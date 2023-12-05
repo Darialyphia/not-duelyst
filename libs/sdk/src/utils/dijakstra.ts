@@ -1,4 +1,4 @@
-import { PriorityQueue } from './priority-queue';
+import PriorityQueue from 'ts-priority-queue';
 import { isFunction } from '@hc/shared';
 
 export type NodeKey = string | number;
@@ -24,18 +24,15 @@ const getNodeKey = <T>(node: T, adapter: GraphAdapter<T>): NodeKey => {
   throw new Error('Adapter must implement method getKey');
 };
 
-export const dijkstra = <T>(
-  adapter: GraphAdapter<T>,
-  startNode: T,
-  finishNode?: T
-) => {
+export const dijkstra = <T>(adapter: GraphAdapter<T>, startNode: T, finishNode?: T) => {
   const getKey = (node: T) => getNodeKey(node, adapter);
   const parents: Record<NodeKey, T> = {};
   const costs: Record<NodeKey, number> = {};
   const explored: Record<NodeKey, boolean> = {};
-  const prioQueue = new PriorityQueue<QueueEntry<T>>((a, b) => b.cost - a.cost);
-  prioQueue.enqueue({ node: startNode, cost: 0 });
-
+  const prioQueue = new PriorityQueue<QueueEntry<T>>({
+    comparator: (a, b) => b.cost - a.cost
+  });
+  prioQueue.queue({ node: startNode, cost: 0 });
   do {
     let node = prioQueue.dequeue().node;
     let nodeKey = getKey(node);
@@ -58,11 +55,11 @@ export const dijkstra = <T>(
         parents[childNodeKey] = node;
 
         if (!explored[childNodeKey]) {
-          prioQueue.enqueue({ node: childNode, cost: alt });
+          prioQueue.queue({ node: childNode, cost: alt });
         }
       }
     }
-  } while (!prioQueue.isEmpty);
+  } while (prioQueue.length);
 
   return {
     costs,
@@ -77,9 +74,9 @@ export const findShortestPath = <T>(
 ) => {
   const getKey = (node: T) => getNodeKey(node, adapter);
   const { costs, parents } = dijkstra(adapter, startNode, finishNode);
-
   let optimalPath = [finishNode];
   let parent = parents[getKey(finishNode)];
+
   if (!parent) return null;
 
   while (parent) {

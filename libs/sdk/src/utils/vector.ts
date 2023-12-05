@@ -6,6 +6,22 @@ export class Vec3 implements Serializable {
     return new Vec3(pt.x, pt.y, pt.z);
   }
 
+  static add(vec1: Point3D, vec2: Point3D) {
+    return Vec3.fromPoint3D(vec1).add(vec2);
+  }
+
+  static sub(vec1: Point3D, vec2: Point3D) {
+    return Vec3.fromPoint3D(vec1).sub(vec2);
+  }
+
+  static mul(vec1: Point3D, vec2: Point3D) {
+    return Vec3.fromPoint3D(vec1).mul(vec2);
+  }
+
+  static div(vec1: Point3D, vec2: Point3D) {
+    return Vec3.fromPoint3D(vec1).div(vec2);
+  }
+
   constructor(
     public x: number,
     public y: number,
@@ -25,19 +41,35 @@ export class Vec3 implements Serializable {
   }
 
   add({ x, y, z }: Point3D) {
-    return new Vec3(this.x + x, this.y + y, this.z + z);
+    this.x += x;
+    this.y += y;
+    this.z += z;
+
+    return this;
   }
 
   sub({ x, y, z }: Point3D) {
-    return new Vec3(this.x - x, this.y - y, this.z - z);
+    this.x -= x;
+    this.y -= y;
+    this.z -= z;
+
+    return this;
   }
 
   mul({ x, y, z }: Point3D) {
-    return new Vec3(this.x * x, this.y * y, this.z * z);
+    this.x *= x;
+    this.y *= y;
+    this.z *= z;
+
+    return this;
   }
 
   div({ x, y, z }: Point3D) {
-    return new Vec3(this.x / x, this.y / y, this.z / z);
+    this.x /= x;
+    this.y /= y;
+    this.z /= z;
+
+    return this;
   }
 
   dist({ x, y, z }: Point3D) {

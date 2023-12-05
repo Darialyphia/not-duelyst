@@ -6,5 +6,6 @@ export class EndTurnAction extends GameAction<{ playerId: PlayerId }> {
 
   protected impl() {
     this.ctx.atb.activeEntity.endTurn();
+    this.ctx.atb.tickUntilActiveEntity(this.ctx.entityManager.getList());
   }
 }

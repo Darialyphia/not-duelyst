@@ -16,7 +16,7 @@ export abstract class GameAction<TPayload extends JSONValue> implements Serializ
 
   execute() {
     this.impl();
-    this.ctx.emitter.emit('game:event', this.serialize() as unknown as SerializedAction);
+    this.ctx.history.add(this);
 
     return this;
   }

@@ -8,7 +8,7 @@ import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 import { ActionReducer, SerializedAction } from './action/action-reducer';
-import { UNITS, UnitId } from './units/unit-lookup';
+import { UnitId } from './units/unit-lookup';
 
 export type GameState = {
   map: GameMap;
@@ -32,7 +32,6 @@ type GlobalEntityEvents = {
 
 type GlobalGameEvents = GlobalEntityEvents & {
   'history:update': SerializedAction;
-  'game:event': SerializedAction;
 };
 
 export type GameContext = {
@@ -42,6 +41,7 @@ export type GameContext = {
   history: ActionHistory;
   atb: ATB;
   emitter: Emitter<GlobalGameEvents>;
+  isAuthoritative: boolean;
 };
 
 export class GameSession {
@@ -72,7 +72,6 @@ export class GameSession {
     this.getContext = this.getContext.bind(this);
 
     this.setupState(state);
-    this.setupEvents();
     this.setupATB(state.activeEntityId);
   }
 
@@ -94,12 +93,6 @@ export class GameSession {
     }
   }
 
-  private setupEvents() {
-    this.emitter.on('entity:turn-end', () => {
-      this.atb.tickUntilActiveEntity(this.entityManager.getList());
-    });
-  }
-
   private setupATB(activeEntityId?: EntityId) {
     if (activeEntityId) {
       this.atb.activeEntity = this.entityManager.getEntityById(activeEntityId)!;
@@ -108,27 +101,13 @@ export class GameSession {
     }
   }
 
-  private getContext(): GameContext {
-    return {
-      get map() {
-        return this.map;
-      },
-      get entityManager() {
-        return this.entityManager;
-      },
-      get playerManager() {
-        return this.playerManager;
-      },
-      get history() {
-        return this.history;
-      },
-      get atb() {
-        return this.atb;
-      },
-      get emitter() {
-        return this.emitter;
+  getContext(): GameContext {
+    return new Proxy(this, {
+      get(obj, prop) {
+        // @ts-ignore
+        return obj[prop];
       }
-    };
+    }) as unknown as GameContext;
   }
 
   getState(): Readonly<GameState> {
@@ -143,24 +122,23 @@ export class GameSession {
   dispatchPlayerInput(action: SerializedInput) {
     if (!this.isAuthoritative) {
       throw new Error(
-        'Non authoritative game session cannot receive player inputs. Use dispatchEvent instead'
+        'Non authoritative game session cannot receive player inputs. Use dispatchAction instead'
       );
     }
     new InputReducer(this.getContext()).reduce(action);
   }
 
-  dispatchEvent(event: SerializedAction) {
+  dispatchAction(event: SerializedAction) {
     if (this.isAuthoritative) {
       throw new Error(
-        'authoritative game session cannot receive events. Use dispatchPlayerInput instead'
+        'authoritative game session cannot receive actions. Use dispatchPlayerInput instead'
       );
     }
     new ActionReducer(this.getContext()).reduce(event);
   }
 
   subscribe(cb: (e: SerializedAction) => void) {
-    const eventName = this.isAuthoritative ? 'history:update' : ('game:event' as const);
-    this.emitter.on(eventName, cb);
+    this.emitter.on('history:update', cb);
   }
 
   serialize(): SerializedGameState {

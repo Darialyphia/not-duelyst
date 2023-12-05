@@ -12,9 +12,8 @@ export class EndTurnInput extends PlayerInput<typeof endTurnEventSchema> {
 
   impl() {
     if (ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId)) {
-      this.ctx.history.add(
-        new EndTurnAction({ playerId: this.payload.playerId }, this.ctx).execute()
-      );
+      new EndTurnAction({ playerId: this.payload.playerId }, this.ctx).execute();
+      this.ctx.atb.activeEntity.startTurn();
     }
   }
 }

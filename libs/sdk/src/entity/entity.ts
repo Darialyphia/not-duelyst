@@ -76,7 +76,10 @@ export class Entity implements Serializable {
 
   public skillCooldowns: Record<SkillId, number> = {};
 
-  constructor(raw: SerializedEntity) {
+  constructor(
+    raw: SerializedEntity,
+    private isAuthoritative: boolean
+  ) {
     this.id = raw.id;
     this.position = Vec3.fromPoint3D(raw.position);
     this.playerId = raw.playerId;
@@ -86,6 +89,12 @@ export class Entity implements Serializable {
     this.unit.skills.forEach(skill => {
       this.skillCooldowns[skill.id] = 0;
     });
+  }
+
+  private emit<T extends EntityEvent>(event: T, data: EntityEventMap[T]) {
+    if (this.isAuthoritative) {
+      this.emitter.emit(event, data);
+    }
   }
 
   equals(entity: Entity) {
@@ -148,7 +157,7 @@ export class Entity implements Serializable {
   move(path: Point3D[]) {
     path.forEach(point => {
       this.position = Vec3.fromPoint3D(point);
-      this.emitter.emit(ENTITY_EVENTS.MOVE, this);
+      this.emit(ENTITY_EVENTS.MOVE, this);
     });
   }
 
@@ -160,19 +169,12 @@ export class Entity implements Serializable {
     this.ap = Math.max(this.ap - unit.summonCost, 0);
   }
 
-  useSkill(ctx: GameContext, skillId: SkillId, target: Point3D) {
+  useSkill(skillId: SkillId) {
     const skill = this.skills.find(s => s.id === skillId);
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
     this.ap = Math.max(this.ap - skill.cost, 0);
-    skill.execute(
-      ctx,
-      this,
-      target,
-      ctx.map.cells.filter(cell => skill.isInAreaOfEffect(ctx, cell, this, target))
-    );
-
-    this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
+    this.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
   private calculateDamage(baseAmount: number, attacker: Entity, defender: Entity) {
@@ -181,7 +183,7 @@ export class Entity implements Serializable {
 
   dealDamage(baseAmount: number, target: Entity) {
     target.takeDamage(baseAmount, this);
-    this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
+    this.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
       amount: this.calculateDamage(baseAmount, this, target),
       baseAmount,
@@ -192,7 +194,7 @@ export class Entity implements Serializable {
   takeDamage(baseAmount: number, source: Entity) {
     const amount = this.calculateDamage(baseAmount, source, this);
     this.hp = Math.max(0, this.hp - amount);
-    this.emitter.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
+    this.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
       entity: this,
       amount,
       baseAmount,
@@ -206,13 +208,13 @@ export class Entity implements Serializable {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });
 
-    this.emitter.emit(ENTITY_EVENTS.TURN_START, this);
+    this.emit(ENTITY_EVENTS.TURN_START, this);
   }
 
   endTurn() {
     this.atb = this.atbSeed;
     this.movementSpent = 0;
 
-    this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
+    this.emit(ENTITY_EVENTS.TURN_END, this);
   }
 }

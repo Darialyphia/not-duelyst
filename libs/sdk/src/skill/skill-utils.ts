@@ -20,8 +20,9 @@ export const skillTargetGuard =
 
 const isWithinRange = (origin: Point3D, point: Point3D, range: number) => {
   const vec = Vec3.fromPoint3D(origin);
+  const dist = vec.dist(Vec3.add(vec, { x: range, y: range, z: range }));
 
-  return vec.dist(point) <= vec.dist(vec.add({ x: range, y: range, z: range }));
+  return vec.dist(point) <= dist;
 };
 
 const isWithinCells = (origin: Point3D, point: Point3D, range: number) => {

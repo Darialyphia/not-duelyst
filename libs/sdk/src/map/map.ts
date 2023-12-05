@@ -6,6 +6,9 @@ import { TileId } from './tile-lookup';
 import { cellIdToPoint } from '../utils/helpers';
 import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
+import { Entity } from '../entity/entity';
+import { Pathfinder } from './pathfinding';
+import { Vec3 } from '../utils/vector';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -61,19 +64,21 @@ export class GameMap implements Serializable {
   }
 
   getDestination(posOrKey: Point3D | CellId, direction: Direction): Point3D | null {
-    const from = isString(posOrKey) ? cellIdToPoint(posOrKey) : posOrKey;
+    const from = isString(posOrKey)
+      ? Vec3.fromPoint3D(cellIdToPoint(posOrKey))
+      : Vec3.fromPoint3D(posOrKey);
 
-    const x = from.x + (DIRECTIONS_TO_DIFF[direction] ?? 0);
-    const y = from.y + (DIRECTIONS_TO_DIFF[direction] ?? 0);
+    const { x, y } = Vec3.add(from, { ...DIRECTIONS_TO_DIFF[direction], z: 0 });
 
     const target = { x, y, z: from.z };
+
     const targetAbove = { x, y, z: from.z + 1 };
     const targetBelow = { x, y, z: from.z - 1 };
 
     const currentCell = this.getCellAt(from);
     const cell = this.getCellAt(target);
-    const cellBelow = this.getCellAt(targetAbove);
-    const cellAbove = this.getCellAt(targetBelow);
+    const cellBelow = this.getCellAt(targetBelow);
+    const cellAbove = this.getCellAt(targetAbove);
 
     if (currentCell) {
       if (currentCell?.isHalfTile) return null;
@@ -95,12 +100,26 @@ export class GameMap implements Serializable {
     return target;
   }
 
-  canSummonAt = (point: Point3D) => {
+  canSummonAt(point: Point3D) {
     if (this.ctx.entityManager.getEntityAt(point)) return false;
 
     const cell = this.getCellAt(point);
     const below = this.getCellAt({ ...point, z: point.z - 1 });
 
     return cell ? cell.isHalfTile && cell.isWalkable : below && below.isWalkable;
-  };
+  }
+
+  getPathTo(entity: Entity, { x, y, z }: Point3D) {
+    const path = new Pathfinder(this.ctx).findPath(entity.position, {
+      x,
+      y,
+      z: z + 1
+    });
+
+    if (!path) return null;
+
+    if (!entity.canMove(path.distance)) return null;
+
+    return path.path.map(p => Vec3.fromPoint3D(cellIdToPoint(p)));
+  }
 }

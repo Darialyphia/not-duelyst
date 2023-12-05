@@ -12,13 +12,13 @@ export type EntityManagerOptions = {
 
 export class EntityManager {
   private entityMap = new Map<EntityId, Entity>();
-  private nextEntityId = 1;
+  private nextEntityId = 0;
 
   constructor(private ctx: GameContext) {}
 
   setup(entities: SerializedEntity[]) {
     entities.forEach(rawEntity => {
-      const entity = new Entity(rawEntity);
+      const entity = new Entity(rawEntity, this.ctx.isAuthoritative);
       this.entityMap.set(entity.id, entity);
       this.addListeners(entity);
     });
@@ -93,13 +93,14 @@ export class EntityManager {
 
   private addListeners(entity: Entity) {
     entity.on('*', type => {
+      if (!this.ctx.isAuthoritative) return;
       this.ctx.emitter.emit(`entity:${type}`, entity);
     });
   }
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
     const id = ++this.nextEntityId;
-    const entity = new Entity({ ...rawEntity, id });
+    const entity = new Entity({ ...rawEntity, id }, this.ctx.isAuthoritative);
 
     this.entityMap.set(id, entity);
     this.addListeners(entity);

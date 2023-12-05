@@ -9,14 +9,16 @@ import { isEmpty } from '../entity/entity-utils';
 export class Pathfinder {
   private graphAdapter: GraphAdapter<CellId> = {
     getEdges: node => {
-      return [
+      const edges = [
         this.ctx.map.getDestination(node, 'north'),
         this.ctx.map.getDestination(node, 'south'),
         this.ctx.map.getDestination(node, 'west'),
         this.ctx.map.getDestination(node, 'east')
-      ]
+      ];
+
+      return edges
         .filter(isDefined)
-        .filter(point => !isEmpty(this.ctx, point))
+        .filter(point => isEmpty(this.ctx, point))
         .map(point => {
           return {
             node: pointToCellId(point),

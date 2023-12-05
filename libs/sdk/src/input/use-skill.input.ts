@@ -19,12 +19,14 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
 
   protected payloadSchema = useSkillEventSchema;
 
-  private getSkill(ctx: GameContext) {
-    return ctx.atb.activeEntity.skills.find(skill => skill.id === this.payload.skillId);
+  private getSkill() {
+    return this.ctx.atb.activeEntity.skills.find(
+      skill => skill.id === this.payload.skillId
+    );
   }
 
   private get canUseSkill() {
-    const skill = this.getSkill(this.ctx);
+    const skill = this.getSkill();
     if (!skill) return false;
 
     return (
@@ -34,17 +36,35 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
   }
 
   impl() {
+    const skill = this.getSkill();
+    if (!skill) return;
+
     if (!this.canUseSkill) return;
 
     this.ctx.history.add(
       new UseSkillAction(
         {
           casterId: this.ctx.atb.activeEntity.id,
-          target: this.payload.target,
           skillId: this.payload.skillId
         },
         this.ctx
       )
+    );
+
+    const affectedCells = this.ctx.map.cells.filter(cell =>
+      skill.isInAreaOfEffect(
+        this.ctx,
+        cell,
+        this.ctx.atb.activeEntity,
+        this.payload.target
+      )
+    );
+
+    skill.execute(
+      this.ctx,
+      this.ctx.atb.activeEntity,
+      this.payload.target,
+      affectedCells
     );
   }
 }

@@ -14,11 +14,11 @@ export const DIRECTION = {
 } as const;
 
 export const DIRECTIONS_TO_DIFF = {
-  [DIRECTION.NORTH]: -1,
-  [DIRECTION.SOUTH]: 1,
-  [DIRECTION.WEST]: -1,
-  [DIRECTION.EAST]: 1
-} as const satisfies Record<Direction, number>;
+  [DIRECTION.NORTH]: { x: 0, y: -1 },
+  [DIRECTION.SOUTH]: { x: 0, y: 1 },
+  [DIRECTION.WEST]: { x: -1, y: 0 },
+  [DIRECTION.EAST]: { x: 1, y: 0 }
+} as const satisfies Record<Direction, { x: number; y: number }>;
 
 export type Direction = Values<typeof DIRECTION>;
 

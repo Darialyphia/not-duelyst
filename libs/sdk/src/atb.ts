@@ -22,8 +22,6 @@ export class ATB {
 
       activeEntity = this.getHighestActiveEntity(entities);
     }
-
     this.activeEntity = activeEntity;
-    this.activeEntity.startTurn();
   }
 }

@@ -14,6 +14,7 @@
     "mitt": "^3.0.1",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
+    "ts-priority-queue": "^0.1.1",
     "zod": "^3.21.4"
   },
   "scripts": {
