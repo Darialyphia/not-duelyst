@@ -19,19 +19,6 @@ onMounted(() => {
 onUnmounted(() => {
   unsub?.();
 });
-const activeEntity = computed<Entity>(() => state.value.activeEntity as Entity);
-
-const target = ref<Nullable<Point3D>>(null);
-
-const path = computed(() => {
-  if (!target.value) return [];
-
-  return state.value.map.getPathTo(activeEntity.value, target.value)?.path ?? [];
-});
-
-const isInPath = (pt: Point3D) => {
-  return path.value.some(vec => vec.equals({ x: pt.x, y: pt.y, z: pt.z + 1 }));
-};
 </script>
 
 <template>
@@ -41,9 +28,7 @@ const isInPath = (pt: Point3D) => {
         v-for="cell in state.map.cells"
         :key="`${cell.position.toString()}`"
         :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
-        :class="['cell', { 'move-target': isInPath(cell) }]"
-        @mouseenter="target = cell"
-        @mouseleave="target = null"
+        :class="['cell']"
       />
 
       <div
