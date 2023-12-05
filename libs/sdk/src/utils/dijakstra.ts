@@ -1,5 +1,5 @@
 import PriorityQueue from 'ts-priority-queue';
-import { isFunction } from '@hc/shared';
+import { isDefined, isFunction } from '@hc/shared';
 
 export type NodeKey = string | number;
 
@@ -30,7 +30,7 @@ export const dijkstra = <T>(adapter: GraphAdapter<T>, startNode: T, finishNode?:
   const costs: Record<NodeKey, number> = {};
   const explored: Record<NodeKey, boolean> = {};
   const prioQueue = new PriorityQueue<QueueEntry<T>>({
-    comparator: (a, b) => b.cost - a.cost
+    comparator: (a, b) => a.cost - b.cost
   });
   prioQueue.queue({ node: startNode, cost: 0 });
   do {
@@ -42,23 +42,24 @@ export const dijkstra = <T>(adapter: GraphAdapter<T>, startNode: T, finishNode?:
 
     // Early return when the shortest path in our
     // graph is already the finishNode
-    if (undefined !== finishNode && nodeKey === getKey(finishNode)) break;
+    if (isDefined(finishNode) && nodeKey === getKey(finishNode)) break;
 
-    const edges = adapter.getEdges(node);
-    for (let i = 0; i < edges.length; i++) {
-      const childNode = edges[i].node;
+    adapter.getEdges(node).forEach(edge => {
+      const childNode = edge.node;
       const childNodeKey = getKey(childNode);
-      let alt = cost + edges[i].weight;
+      const newCost = cost + edge.weight;
 
-      if (undefined === costs[childNodeKey] || alt < costs[childNodeKey]) {
-        costs[childNodeKey] = alt;
-        parents[childNodeKey] = node;
+      const isTooExpensive =
+        isDefined(costs[childNodeKey]) && newCost > costs[childNodeKey];
+      if (isTooExpensive) return;
 
-        if (!explored[childNodeKey]) {
-          prioQueue.queue({ node: childNode, cost: alt });
-        }
+      costs[childNodeKey] = newCost;
+      parents[childNodeKey] = node;
+
+      if (!explored[childNodeKey]) {
+        prioQueue.queue({ node: childNode, cost: newCost });
       }
-    }
+    });
   } while (prioQueue.length);
 
   return {
