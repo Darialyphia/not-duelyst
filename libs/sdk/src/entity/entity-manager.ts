@@ -1,17 +1,9 @@
 import { isDefined } from '@hc/shared';
-import { GameContext } from '../game-session';
 import { Point3D } from '../types';
-import {
-  ENTITY_EVENTS,
-  Entity,
-  EntityEventMap,
-  EntityId,
-  SerializedEntity
-} from './entity';
+import { Entity, EntityId, SerializedEntity } from './entity';
 import { PlayerId } from '../player/player';
 import { isGeneral } from './entity-utils';
-import { CellId } from '../map/cell';
-import { pointToCellId } from '../utils/helpers';
+import { GameSession } from '../game-session';
 
 export type EntityManagerOptions = {
   entities: Entity[];
@@ -22,11 +14,11 @@ export class EntityManager {
   private entityMap = new Map<EntityId, Entity>();
   private nextEntityId = 0;
 
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   setup(entities: SerializedEntity[]) {
     entities.forEach(rawEntity => {
-      const entity = new Entity(rawEntity, this.ctx.isAuthoritative);
+      const entity = new Entity(this.ctx, rawEntity, this.ctx.isAuthoritative);
       this.entityMap.set(entity.id, entity);
       this.addListeners(entity);
     });
@@ -107,7 +99,7 @@ export class EntityManager {
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
     const id = ++this.nextEntityId;
-    const entity = new Entity({ ...rawEntity, id }, this.ctx.isAuthoritative);
+    const entity = new Entity(this.ctx, { ...rawEntity, id }, this.ctx.isAuthoritative);
 
     this.entityMap.set(id, entity);
 

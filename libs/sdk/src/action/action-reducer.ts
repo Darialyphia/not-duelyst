@@ -1,11 +1,11 @@
 import { Constructor, JSONValue, Values } from '@hc/shared';
 import { GameAction } from './action';
 import { DealDamageAction } from './deal-damage.action';
-import { GameContext } from '../game-session';
 import { EndTurnAction } from './end-turn.action';
 import { MoveAction } from './move.action';
 import { SummonFromLoadoutAction } from './summon-from-loadout.action';
 import { UseSkillAction } from './use-sklll.action';
+import { GameSession } from '../game-session';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONValue>>>;
 
@@ -35,9 +35,15 @@ export type SerializedAction = ReturnType<
 > & { type: keyof typeof actionMap };
 
 export class ActionReducer {
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   reduce({ type, payload }: SerializedAction) {
+    if (this.ctx.isAuthoritative) {
+      throw new Error(
+        'authoritative game session cannot receive actions. Use dispatchPlayerInput instead'
+      );
+    }
+
     const event = actionMap[type];
 
     new event(payload as any, this.ctx).execute();

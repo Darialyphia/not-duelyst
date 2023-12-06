@@ -1,15 +1,13 @@
 import { JSONValue } from '@hc/shared';
-import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
-
-import { SerializedAction } from './action-reducer';
+import { GameSession } from '../game-session';
 
 export abstract class GameAction<TPayload extends JSONValue> implements Serializable {
   abstract readonly name: string;
 
   constructor(
     public payload: TPayload,
-    protected ctx: GameContext
+    protected ctx: GameSession
   ) {}
 
   protected abstract impl(): void;

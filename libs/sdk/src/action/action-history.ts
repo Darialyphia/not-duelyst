@@ -1,12 +1,12 @@
 import { GameAction } from './action';
-import { GameContext } from '../game-session';
+import { GameSession } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 import { ActionReducer, SerializedAction } from './action-reducer';
 
 export class ActionHistory implements Serializable {
   private history: GameAction<any>[] = [];
 
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   setup(rawHistory: SerializedAction[]) {
     const reducer = new ActionReducer(this.ctx);

@@ -1,9 +1,6 @@
 import { Values } from '@hc/shared';
 import { Faction, FACTIONS } from '../faction/faction-lookup';
 import { keyBy } from 'lodash-es';
-import { GameContext } from '../game-session';
-import { Point3D } from '../types';
-import { Entity } from '../entity/entity';
 import { Skill, skillBuilder } from '../skill/skill-builder';
 import {
   ensureTargetIsEnemy,

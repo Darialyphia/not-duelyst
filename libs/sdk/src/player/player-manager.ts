@@ -1,16 +1,15 @@
-import { isGeneral } from '../entity/entity-utils';
-import { GameContext } from '../game-session';
+import { GameSession } from '../game-session';
 import { UnitId } from '../units/unit-lookup';
 import { Loadout, Player, PlayerId } from './player';
 
 export class PlayerManager {
   private playerMap = new Map<PlayerId, Player>();
 
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   setup(players: { id: PlayerId; loadout: Loadout; generalId: UnitId }[]) {
     players
-      .map(p => new Player(p.id, p.loadout, p.generalId))
+      .map(p => new Player(this.ctx, p.id, p.loadout, p.generalId))
       .forEach(player => {
         this.addPlayer(player);
       });

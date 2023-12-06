@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { GameContext } from '../game-session';
 import { InputName, SerializedInput } from './input-reducer';
 import { Serializable } from '../utils/interfaces';
 import { JSONValue } from '@hc/shared';
+import { GameSession } from '../game-session';
 
 export const defaultInputSchema = z.object({
   playerId: z.string()
@@ -18,7 +18,7 @@ export abstract class PlayerInput<TSchema extends DefaultSchema> implements Seri
 
   constructor(
     protected rawPayload: JSONValue,
-    protected ctx: GameContext
+    protected ctx: GameSession
   ) {}
 
   protected abstract impl(): void;

@@ -35,16 +35,6 @@ type GlobalGameEvents = GlobalEntityEvents & {
   'history:update': SerializedAction;
 };
 
-export type GameContext = {
-  map: GameMap;
-  entityManager: EntityManager;
-  playerManager: PlayerManager;
-  history: ActionHistory;
-  atb: ATB;
-  emitter: Emitter<GlobalGameEvents>;
-  isAuthoritative: boolean;
-};
-
 export class GameSession {
   static createServerSession(state: SerializedGameState) {
     return new GameSession(state, true);
@@ -54,24 +44,26 @@ export class GameSession {
     return new GameSession(state, false);
   }
 
-  private map = new GameMap(this.getContext());
+  map = new GameMap(this);
 
-  private playerManager = new PlayerManager(this.getContext());
+  playerManager = new PlayerManager(this);
 
-  private entityManager = new EntityManager(this.getContext());
+  entityManager = new EntityManager(this);
 
-  private history = new ActionHistory(this.getContext());
+  history = new ActionHistory(this);
 
-  private atb = new ATB();
+  actionReducer = new ActionReducer(this);
 
-  private emitter = mitt<GlobalGameEvents>();
+  inputReducer = new InputReducer(this);
+
+  atb = new ATB();
+
+  emitter = mitt<GlobalGameEvents>();
 
   private constructor(
     state: SerializedGameState,
-    private isAuthoritative: boolean
+    readonly isAuthoritative: boolean
   ) {
-    this.getContext = this.getContext.bind(this);
-
     this.setupState(state);
 
     this.emitter.on('entity:turn-start', entity => {
@@ -113,15 +105,6 @@ export class GameSession {
     }
   }
 
-  getContext(): GameContext {
-    return new Proxy(this, {
-      get(obj, prop) {
-        // @ts-ignore
-        return obj[prop];
-      }
-    }) as unknown as GameContext;
-  }
-
   getState(): Readonly<GameState> {
     return {
       map: this.map,
@@ -132,21 +115,11 @@ export class GameSession {
   }
 
   dispatchPlayerInput(action: SerializedInput) {
-    if (!this.isAuthoritative) {
-      throw new Error(
-        'Non authoritative game session cannot receive player inputs. Use dispatchAction instead'
-      );
-    }
-    new InputReducer(this.getContext()).reduce(action);
+    this.inputReducer.reduce(action);
   }
 
   dispatchAction(event: SerializedAction) {
-    if (this.isAuthoritative) {
-      throw new Error(
-        'authoritative game session cannot receive actions. Use dispatchPlayerInput instead'
-      );
-    }
-    new ActionReducer(this.getContext()).reduce(event);
+    this.actionReducer.reduce(event);
   }
 
   subscribe(cb: (e: SerializedAction) => void) {

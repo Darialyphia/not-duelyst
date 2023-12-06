@@ -1,10 +1,10 @@
 import { Values, Constructor, JSONValue } from '@hc/shared';
-import { GameContext } from '../game-session';
 import { MoveInput } from './move.input';
 import { EndTurnInput } from './end-turn.input';
 import { SummonInput } from './summon.input';
 import { DefaultSchema, PlayerInput } from './input';
 import { UseSkillInput } from './use-skill.input';
+import { GameSession } from '../game-session';
 
 type GenericInputMap = Record<string, Constructor<PlayerInput<DefaultSchema>>>;
 
@@ -40,9 +40,15 @@ const inputMap = validateInputMap({
 });
 
 export class InputReducer {
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   reduce({ type, payload }: SerializedInput) {
+    if (!this.ctx.isAuthoritative) {
+      throw new Error(
+        'Non authoritative game session cannot receive player inputs. Use dispatchAction instead'
+      );
+    }
+
     const action = inputMap[type];
 
     new action(payload, this.ctx).execute();

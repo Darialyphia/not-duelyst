@@ -4,11 +4,11 @@ import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
 import { TileId } from './tile-lookup';
 import { cellIdToPoint } from '../utils/helpers';
-import { GameContext } from '../game-session';
 import { Serializable } from '../utils/interfaces';
 import { Entity } from '../entity/entity';
 import { Pathfinder } from './pathfinding';
 import { Vec3 } from '../utils/vector';
+import { GameSession } from '../game-session';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId }[];
@@ -28,7 +28,7 @@ export class GameMap implements Serializable {
 
   cellsMap = new Map<CellId, Cell>();
 
-  constructor(private ctx: GameContext) {}
+  constructor(private ctx: GameSession) {}
 
   setup(definition: GameMapOptions) {
     this.height = definition.height;

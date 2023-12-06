@@ -1,8 +1,8 @@
 import { StrictBuilder } from 'builder-pattern';
 import { Entity } from '../entity/entity';
-import { GameContext } from '../game-session';
 import { Point3D } from '../types';
 import { Point } from '@hc/shared';
+import { GameSession } from '../game-session';
 
 export type SkillId = string;
 
@@ -10,15 +10,15 @@ export type Skill = {
   id: SkillId;
   cost: number;
   cooldown: number;
-  isTargetable(ctx: GameContext, point: Point3D, caster: Entity): boolean;
+  isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
   isInAreaOfEffect(
-    ctx: GameContext,
+    ctx: GameSession,
     point: Point3D,
     caster: Entity,
     target: Point3D
   ): boolean;
   execute(
-    ctx: GameContext,
+    ctx: GameSession,
     caster: Entity,
     target: Point3D,
     affectedPoints: Point[]

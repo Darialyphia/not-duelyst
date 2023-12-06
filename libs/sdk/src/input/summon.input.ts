@@ -31,7 +31,7 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
         this.payload.position,
         this.payload.playerId
       ) &&
-      this.ctx.playerManager.getActivePlayer().canSummon(this.ctx, this.payload.unitId)
+      this.ctx.playerManager.getActivePlayer().canSummon(this.payload.unitId)
     );
   }
 

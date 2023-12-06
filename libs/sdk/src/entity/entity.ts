@@ -7,7 +7,7 @@ import { Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
-import { GameContext } from '../game-session';
+import { GameSession } from '../game-session';
 
 export type EntityId = number;
 
@@ -77,8 +77,8 @@ export class Entity implements Serializable {
   public skillCooldowns: Record<SkillId, number> = {};
 
   constructor(
-    raw: SerializedEntity,
-    private isAuthoritative: boolean
+    private ctx: GameSession,
+    raw: SerializedEntity
   ) {
     this.id = raw.id;
     this.position = Vec3.fromPoint3D(raw.position);
@@ -89,12 +89,6 @@ export class Entity implements Serializable {
     this.unit.skills.forEach(skill => {
       this.skillCooldowns[skill.id] = 0;
     });
-  }
-
-  private emit<T extends EntityEvent>(event: T, data: EntityEventMap[T]) {
-    if (this.isAuthoritative) {
-      this.emitter.emit(event, data);
-    }
   }
 
   equals(entity: Entity) {
@@ -170,7 +164,7 @@ export class Entity implements Serializable {
     path.forEach(point => {
       this.position = Vec3.fromPoint3D(point);
       this.movementSpent++;
-      this.emit(ENTITY_EVENTS.MOVE, this);
+      this.emitter.emit(ENTITY_EVENTS.MOVE, this);
     });
   }
 
@@ -188,7 +182,7 @@ export class Entity implements Serializable {
 
     this.ap = Math.max(this.ap - skill.cost, 0);
     this.skillCooldowns[skillId] = skill.cooldown;
-    this.emit(ENTITY_EVENTS.USE_SKILL, this);
+    this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
   private calculateDamage(baseAmount: number, attacker: Entity, defender: Entity) {
@@ -197,7 +191,7 @@ export class Entity implements Serializable {
 
   dealDamage(baseAmount: number, target: Entity) {
     target.takeDamage(baseAmount, this);
-    this.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
+    this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
       amount: this.calculateDamage(baseAmount, this, target),
       baseAmount,
@@ -208,7 +202,7 @@ export class Entity implements Serializable {
   takeDamage(baseAmount: number, source: Entity) {
     const amount = this.calculateDamage(baseAmount, source, this);
     this.hp = Math.max(0, this.hp - amount);
-    this.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
+    this.emitter.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
       entity: this,
       amount,
       baseAmount,
@@ -222,13 +216,13 @@ export class Entity implements Serializable {
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });
-    this.emit(ENTITY_EVENTS.TURN_START, this);
+    this.emitter.emit(ENTITY_EVENTS.TURN_START, this);
   }
 
   endTurn() {
     this.atb = this.atbSeed;
     this.movementSpent = 0;
 
-    this.emit(ENTITY_EVENTS.TURN_END, this);
+    this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
   }
 }

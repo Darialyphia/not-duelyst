@@ -1,7 +1,7 @@
 import { isDefined } from '@hc/shared';
-import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
-import { GameContext } from '../game-session';
+import { UNITS, UnitId } from '../units/unit-lookup';
 import { Serializable } from '../utils/interfaces';
+import { GameSession } from '../game-session';
 
 export type PlayerId = string;
 
@@ -11,17 +11,18 @@ export type Loadout = {
 
 export class Player implements Serializable {
   constructor(
+    private ctx: GameSession,
     public readonly id: PlayerId,
     public readonly loadout: Loadout,
     public readonly generalId: UnitId
   ) {}
 
-  canSummon(ctx: GameContext, unitId: UnitId) {
+  canSummon(unitId: UnitId) {
     const unit = UNITS[unitId];
     const loadoutUnit = this.loadout.units[unitId];
     if (!isDefined(loadoutUnit)) return false;
 
-    const general = ctx.entityManager.getGeneral(this.id);
+    const general = this.ctx.entityManager.getGeneral(this.id);
 
     return loadoutUnit.cooldown === 0 && general.ap >= unit.summonCost;
   }

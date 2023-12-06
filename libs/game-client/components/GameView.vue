@@ -48,11 +48,7 @@ const isSkillTarget = (point: Point3D) => {
   if (targetMode.value !== 'skill') return false;
   if (!selectedSkill.value) return false;
 
-  return selectedSkill.value.isTargetable(
-    gameSession.getContext(),
-    point,
-    state.value.activeEntity
-  );
+  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
 };
 
 const targetMode = ref<null | 'move' | 'skill' | 'summon'>(null);
@@ -95,10 +91,7 @@ const onEntityClick = (entity: Entity) => {
 };
 
 const activePlayer = computed(
-  () =>
-    gameSession
-      .getContext()
-      .playerManager.getPlayerById(state.value.activeEntity.playerId)!
+  () => gameSession.playerManager.getPlayerById(state.value.activeEntity.playerId)!
 );
 
 const selectedUnit = ref<UnitBlueprint | null>();
@@ -110,11 +103,11 @@ const selectUnit = (unit: UnitBlueprint) => {
 const isSummonTarget = (point: Point3D) => {
   if (targetMode.value !== 'summon') return false;
 
-  const ctx = gameSession.getContext();
   const above = { ...point, z: point.z + 1 };
+
   return (
-    ctx.map.canSummonAt(above) &&
-    ctx.entityManager.hasNearbyAllies(above, state.value.activeEntity.playerId)
+    gameSession.map.canSummonAt(above) &&
+    gameSession.entityManager.hasNearbyAllies(above, state.value.activeEntity.playerId)
   );
 };
 </script>
@@ -138,7 +131,7 @@ const isSummonTarget = (point: Point3D) => {
       <template v-if="state.activeEntity.kind === 'GENERAL'">
         <button
           v-for="unit in activePlayer.summonableUnits"
-          :disabled="!activePlayer.canSummon(gameSession.getContext(), unit.unit.id)"
+          :disabled="!activePlayer.canSummon(unit.unit.id)"
           @click="selectUnit(unit.unit)"
         >
           {{ unit.unit.id }} ({{ unit.unit.summonCost }})
@@ -187,12 +180,6 @@ const isSummonTarget = (point: Point3D) => {
 Movement: {{ state.activeEntity.remainingMovement }} / {{ state.activeEntity.speed }}</pre
       >
       <pre>AP: {{ state.activeEntity.ap }} / {{ state.activeEntity.maxAp }}</pre>
-      <h3>Players</h3>
-      <pre>{{ state.players }}</pre>
-      <h3>Entities</h3>
-      <pre>{{ state.entities }}</pre>
-      <h3>Map</h3>
-      <pre>{{ state.map.cells }}</pre>
     </footer>
   </div>
 </template>

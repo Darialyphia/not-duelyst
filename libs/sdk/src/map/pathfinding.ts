@@ -3,9 +3,9 @@ import { CellId } from './cell';
 import { Edge, GraphAdapter, dijkstra, findShortestPath } from '../utils/dijakstra';
 import { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
-import { GameContext } from '../game-session';
 import { isEmpty } from '../entity/entity-utils';
 import { Vec3 } from '../utils/vector';
+import { GameSession } from '../game-session';
 
 export class Pathfinder {
   private cache = new Map<CellId, Edge<CellId>[]>();
@@ -51,7 +51,7 @@ export class Pathfinder {
   }
 
   constructor(
-    private ctx: GameContext,
+    private ctx: GameSession,
     private boundaries?: [Point3D, Point3D]
   ) {}
 
