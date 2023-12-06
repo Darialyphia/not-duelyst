@@ -1,7 +1,7 @@
 import type { SerializedGameState } from '@hc/sdk';
 
-const width = 17;
-const height = 17;
+const width = 13;
+const height = 13;
 const mapLayout = Array.from({ length: height }, (_, y) =>
   Array.from({ length: width }, (_, x) => ({
     position: { x, y, z: 0 },

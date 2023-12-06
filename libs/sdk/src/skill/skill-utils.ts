@@ -15,8 +15,9 @@ export const skillAreaGuard =
 
 export const skillTargetGuard =
   (...rules: SkillTargetGuardFunction[]): SkillTargetGuardFunction =>
-  (...args) =>
-    rules.every(rule => rule(...args));
+  (...args) => {
+    return rules.every(rule => rule(...args));
+  };
 
 const isWithinRange = (origin: Point3D, point: Point3D, range: number) => {
   const vec = Vec3.fromPoint3D(origin);
@@ -31,6 +32,10 @@ const isWithinCells = (origin: Point3D, point: Point3D, range: number) => {
     Math.abs(point.y - origin.y) <= range &&
     Math.abs(point.z - origin.z) <= range
   );
+};
+
+export const isAxisAligned = (point: Point3D, origin: Point3D) => {
+  return point.x === origin.x || point.y === origin.y;
 };
 
 export const ensureTargetIsNotEmpty: SkillTargetGuardFunction = (ctx, point) => {
@@ -53,6 +58,14 @@ export const ensureTargetIsEnemy: SkillTargetGuardFunction = (ctx, point, caster
   if (!entity) return false;
 
   return isEnemy(ctx, entity.id, caster.playerId);
+};
+
+export const ensureIsAxisAlignedWithCaster: SkillTargetGuardFunction = (
+  _ctx,
+  point,
+  caster
+) => {
+  return isAxisAligned(point, caster.position);
 };
 
 export const ensureIsWithinRangeOfCaster =
@@ -78,3 +91,12 @@ export const ensureIsWithinCellsOfTarget =
   (_ctx, point, _caster, target) => {
     return isWithinCells(target, point, range);
   };
+
+export const ensureIsAxisAlignedWithTarget: SkillAreaGuardFunction = (
+  _ctx,
+  point,
+  caster,
+  target
+) => {
+  return isAxisAligned(point, target);
+};

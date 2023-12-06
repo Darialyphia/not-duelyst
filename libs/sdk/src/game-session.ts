@@ -9,6 +9,7 @@ import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 import { ActionReducer, SerializedAction } from './action/action-reducer';
 import { UnitId } from './units/unit-lookup';
+import { isGeneral } from './entity/entity-utils';
 
 export type GameState = {
   map: GameMap;
@@ -72,6 +73,17 @@ export class GameSession {
     this.getContext = this.getContext.bind(this);
 
     this.setupState(state);
+
+    this.emitter.on('entity:turn-start', entity => {
+      if (isGeneral(entity)) {
+        Object.values(
+          this.playerManager.getPlayerById(entity.playerId)!.loadout.units
+        ).forEach(unit => {
+          unit.cooldown = Math.max(0, unit.cooldown - 1);
+        });
+      }
+    });
+
     this.setupATB(state.activeEntityId);
   }
 

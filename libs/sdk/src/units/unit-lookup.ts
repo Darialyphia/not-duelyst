@@ -10,7 +10,8 @@ import {
   ensureIsWithinCellsOfTarget,
   ensureIsWithinCellsOfCaster,
   skillAreaGuard,
-  skillTargetGuard
+  skillTargetGuard,
+  ensureIsAxisAlignedWithCaster
 } from '../skill/skill-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
 
@@ -67,7 +68,11 @@ export const UNITS = keyBy(
           .cost(0)
           .cooldown(0)
           .isTargetable(
-            skillTargetGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfCaster(1))
+            skillTargetGuard(
+              ensureTargetIsEnemy,
+              ensureIsWithinCellsOfCaster(1),
+              ensureIsAxisAlignedWithCaster
+            )
           )
           .isInAreaOfEffect(
             skillAreaGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfTarget(0))
@@ -106,7 +111,11 @@ export const UNITS = keyBy(
           .cost(0)
           .cooldown(0)
           .isTargetable(
-            skillTargetGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfCaster(1))
+            skillTargetGuard(
+              ensureTargetIsEnemy,
+              ensureIsWithinCellsOfCaster(1),
+              ensureIsAxisAlignedWithCaster
+            )
           )
           .isInAreaOfEffect(
             skillAreaGuard(ensureTargetIsEnemy, ensureIsWithinCellsOfTarget(0))

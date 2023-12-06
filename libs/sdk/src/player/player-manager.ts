@@ -1,3 +1,4 @@
+import { isGeneral } from '../entity/entity-utils';
 import { GameContext } from '../game-session';
 import { UnitId } from '../units/unit-lookup';
 import { Loadout, Player, PlayerId } from './player';

@@ -23,22 +23,11 @@ const dispatch = (
 </script>
 
 <template>
-  <header class="flex gap-3 p-3">
-    <button @click="dispatch('END_TURN', {})">End turn</button>
-  </header>
-  <GameView :game-session="clientSession" @move="dispatch('MOVE', $event)" />
+  <GameView
+    :game-session="clientSession"
+    @move="dispatch('MOVE', $event)"
+    @end-turn="dispatch('END_TURN', {})"
+    @use-skill="dispatch('USE_SKILL', $event)"
+    @summon="dispatch('SUMMON', $event)"
+  />
 </template>
-
-<style scoped>
-header {
-  display: flex;
-  gap: var(--size-3);
-  padding: var(--size-3);
-}
-button {
-  cursor: pointer;
-  padding: var(--size-2) var(--size-3);
-  color: white;
-  background-color: var(--blue-7);
-}
-</style>

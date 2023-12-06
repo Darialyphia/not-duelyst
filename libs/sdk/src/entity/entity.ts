@@ -119,6 +119,14 @@ export class Entity implements Serializable {
     return this.unit.kind;
   }
 
+  get maxHp() {
+    return this.unit.maxHp;
+  }
+
+  get maxAp() {
+    return this.unit.maxAp;
+  }
+
   get speed() {
     return this.unit.speed;
   }
@@ -137,6 +145,10 @@ export class Entity implements Serializable {
 
   get skills() {
     return this.unit.skills;
+  }
+
+  get remainingMovement() {
+    return this.speed - this.movementSpent;
   }
 
   canMove(distance: number) {

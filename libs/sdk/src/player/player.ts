@@ -26,6 +26,13 @@ export class Player implements Serializable {
     return loadoutUnit.cooldown === 0 && general.ap >= unit.summonCost;
   }
 
+  get summonableUnits() {
+    return Object.entries(this.loadout.units).map(([unitId, info]) => ({
+      unit: UNITS[unitId],
+      ...info
+    }));
+  }
+
   serialize() {
     return {
       id: this.id,
