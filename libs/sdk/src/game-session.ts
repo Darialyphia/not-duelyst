@@ -139,6 +139,7 @@ export class GameSession {
 
   subscribe(cb: (e: SerializedAction) => void) {
     this.emitter.on('history:update', cb);
+    return () => this.emitter.off('history:update', cb);
   }
 
   serialize(): SerializedGameState {

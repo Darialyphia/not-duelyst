@@ -109,12 +109,12 @@ export class GameMap implements Serializable {
     return cell ? cell.isHalfTile && cell.isWalkable : below && below.isWalkable;
   }
 
-  getPathTo(entity: Entity, { x, y, z }: Point3D) {
-    const path = new Pathfinder(this.ctx).findPath(entity.position, {
-      x,
-      y,
-      z: z + 1
-    });
+  getDistanceMap(point: Point3D) {
+    return new Pathfinder(this.ctx).getDistanceMap(point);
+  }
+
+  getPathTo(entity: Entity, point: Point3D) {
+    const path = new Pathfinder(this.ctx).findPath(entity.position, point);
 
     if (!path) return null;
 

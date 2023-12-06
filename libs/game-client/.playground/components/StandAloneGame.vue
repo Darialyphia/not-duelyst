@@ -66,7 +66,7 @@ const dispatch = (
   <header class="flex gap-3 p-3">
     <button @click="dispatch('END_TURN', {})">End turn</button>
   </header>
-  <GameView :game-session="clientSession" />
+  <GameView :game-session="clientSession" @move="dispatch('MOVE', $event)" />
 </template>
 
 <style scoped>

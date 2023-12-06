@@ -29,6 +29,7 @@ export class MoveInput extends PlayerInput<typeof moveEventSchema> {
     if (!entity.equals(this.ctx.atb.activeEntity)) return;
 
     const path = this.ctx.map.getPathTo(entity, this.payload);
+
     if (!path) return;
 
     if (!entity.canMove(path.distance)) return null;

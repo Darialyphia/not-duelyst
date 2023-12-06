@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Entity } from '@hc/sdk/src/entity/entity';
+import type { EntityId } from '@hc/sdk/src/entity/entity';
 import type { GameSession } from '@hc/sdk';
 import type { Point3D } from '@hc/sdk/src/types';
-import type { Nullable } from '@hc/shared';
-import { pointToCellId } from '@hc/sdk/src/utils/helpers';
+
+const emit = defineEmits<{
+  move: [Point3D & { entityId: EntityId }];
+}>();
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
@@ -11,7 +13,7 @@ const state = ref(gameSession.getState());
 
 let unsub: () => void | undefined;
 onMounted(() => {
-  gameSession.subscribe(event => {
+  unsub = gameSession.subscribe(event => {
     state.value = gameSession.getState();
   });
 });
@@ -19,6 +21,19 @@ onMounted(() => {
 onUnmounted(() => {
   unsub?.();
 });
+
+const distanceMap = computed(() => {
+  const now = performance.now();
+  const map = state.value.map.getDistanceMap(state.value.activeEntity.position);
+
+  return map;
+});
+
+const isMoveTarget = (point: Point3D) => {
+  return state.value.activeEntity.canMove(
+    distanceMap.value.get({ ...point, z: point.z + 1 })
+  );
+};
 </script>
 
 <template>
@@ -28,8 +43,17 @@ onUnmounted(() => {
         v-for="cell in state.map.cells"
         :key="`${cell.position.toString()}`"
         :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
-        :class="['cell']"
-      />
+        :class="['cell', { 'move-target': isMoveTarget(cell.position) }]"
+        @click="
+          emit('move', {
+            ...cell.position,
+            z: cell.z + 1,
+            entityId: state.activeEntity.id
+          })
+        "
+      >
+        {{ distanceMap.get(cell.position) }}
+      </div>
 
       <div
         v-for="entity in state.entities"
@@ -40,7 +64,7 @@ onUnmounted(() => {
     </div>
     <h2>Game view</h2>
     <h3>Active entity</h3>
-    <pre>{{ state.activeEntity.id }} {{ state.activeEntity.kind }}</pre>
+    <pre>{{ state.activeEntity.id }} {{ state.activeEntity.unitId }}</pre>
     <h3>Players</h3>
     <pre>{{ state.players }}</pre>
     <h3>Entities</h3>

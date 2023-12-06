@@ -12,7 +12,7 @@ export const getEntityIfOwnerMatches = (
   const entity = ctx.entityManager.getEntityById(entityId);
   if (!entity) return null;
 
-  if (entity.playerId === playerId) return null;
+  if (entity.playerId !== playerId) return null;
 
   return entity;
 };

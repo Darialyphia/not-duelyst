@@ -50,11 +50,11 @@ export type EntityEventMap = {
 };
 
 export class Entity implements Serializable {
-  public readonly id: EntityId;
+  readonly id: EntityId;
+
+  readonly unitId: UnitId;
 
   public playerId: PlayerId;
-
-  private unitId: UnitId;
 
   private emitter = mitt<EntityEventMap>();
 
@@ -157,6 +157,7 @@ export class Entity implements Serializable {
   move(path: Point3D[]) {
     path.forEach(point => {
       this.position = Vec3.fromPoint3D(point);
+      this.movementSpent++;
       this.emit(ENTITY_EVENTS.MOVE, this);
     });
   }
@@ -204,6 +205,7 @@ export class Entity implements Serializable {
 
   startTurn() {
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
+    this.movementSpent = 0;
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });

@@ -81,7 +81,9 @@ export const findShortestPath = <T>(
   if (!parent) return null;
 
   while (parent) {
-    optimalPath.push(parent);
+    if (parent !== startNode) {
+      optimalPath.push(parent);
+    }
     parent = parents[getKey(parent)];
   }
   optimalPath.reverse();
