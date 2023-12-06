@@ -1,9 +1,17 @@
 import { isDefined } from '@hc/shared';
 import { GameContext } from '../game-session';
 import { Point3D } from '../types';
-import { ENTITY_EVENTS, Entity, EntityId, SerializedEntity } from './entity';
+import {
+  ENTITY_EVENTS,
+  Entity,
+  EntityEventMap,
+  EntityId,
+  SerializedEntity
+} from './entity';
 import { PlayerId } from '../player/player';
 import { isGeneral } from './entity-utils';
+import { CellId } from '../map/cell';
+import { pointToCellId } from '../utils/helpers';
 
 export type EntityManagerOptions = {
   entities: Entity[];
@@ -93,7 +101,6 @@ export class EntityManager {
 
   private addListeners(entity: Entity) {
     entity.on('*', type => {
-      if (!this.ctx.isAuthoritative) return;
       this.ctx.emitter.emit(`entity:${type}`, entity);
     });
   }
@@ -103,6 +110,7 @@ export class EntityManager {
     const entity = new Entity({ ...rawEntity, id }, this.ctx.isAuthoritative);
 
     this.entityMap.set(id, entity);
+
     this.addListeners(entity);
 
     this.ctx.emitter.emit('entity:created', entity);

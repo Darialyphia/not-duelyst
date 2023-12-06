@@ -24,8 +24,11 @@ onUnmounted(() => {
 
 const distanceMap = computed(() => {
   const now = performance.now();
-  const map = state.value.map.getDistanceMap(state.value.activeEntity.position);
-
+  const map = state.value.map.getDistanceMap(
+    state.value.activeEntity.position,
+    state.value.activeEntity.speed
+  );
+  console.log(performance.now() - now);
   return map;
 });
 

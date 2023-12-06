@@ -109,8 +109,14 @@ export class GameMap implements Serializable {
     return cell ? cell.isHalfTile && cell.isWalkable : below && below.isWalkable;
   }
 
-  getDistanceMap(point: Point3D) {
-    return new Pathfinder(this.ctx).getDistanceMap(point);
+  getDistanceMap(point: Point3D, maxDistance?: number) {
+    const boundaries = maxDistance
+      ? ([
+          Vec3.sub(point, { x: maxDistance, y: maxDistance, z: maxDistance }),
+          Vec3.add(point, { x: maxDistance, y: maxDistance, z: maxDistance })
+        ] as [Vec3, Vec3])
+      : undefined;
+    return new Pathfinder(this.ctx, boundaries).getDistanceMap(point);
   }
 
   getPathTo(entity: Entity, point: Point3D) {
