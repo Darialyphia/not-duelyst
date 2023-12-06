@@ -187,6 +187,7 @@ export class Entity implements Serializable {
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
     this.ap = Math.max(this.ap - skill.cost, 0);
+    this.skillCooldowns[skillId] = skill.cooldown;
     this.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
@@ -221,7 +222,6 @@ export class Entity implements Serializable {
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
     });
-
     this.emit(ENTITY_EVENTS.TURN_START, this);
   }
 

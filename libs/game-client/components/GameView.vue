@@ -132,6 +132,7 @@ const isSummonTarget = (point: Point3D) => {
         @click="selectSkill(skill)"
       >
         {{ skill.id }} ({{ skill.cost }})
+        {{ state.activeEntity.skillCooldowns[skill.id] }}
       </button>
       Loadout
       <template v-if="state.activeEntity.kind === 'GENERAL'">

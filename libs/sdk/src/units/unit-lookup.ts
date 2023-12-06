@@ -66,7 +66,7 @@ export const UNITS = keyBy(
         skillBuilder()
           .id('melee_attack')
           .cost(0)
-          .cooldown(0)
+          .cooldown(1)
           .isTargetable(
             skillTargetGuard(
               ensureTargetIsEnemy,
@@ -109,7 +109,7 @@ export const UNITS = keyBy(
         skillBuilder()
           .id('melee_attack')
           .cost(0)
-          .cooldown(0)
+          .cooldown(1)
           .isTargetable(
             skillTargetGuard(
               ensureTargetIsEnemy,
