@@ -1,7 +1,7 @@
 import type { SerializedGameState } from '@hc/sdk';
 
-const width = 13;
-const height = 13;
+const width = 3;
+const height = 3;
 const mapLayout = Array.from({ length: height }, (_, y) =>
   Array.from({ length: width }, (_, x) => ({
     position: { x, y, z: 0 },
@@ -16,8 +16,8 @@ export const dummyState: SerializedGameState = {
     width,
     height,
     startPositions: [
-      { x: 4, y: 6, z: 1 },
-      { x: 7, y: 6, z: 1 }
+      { x: 0, y: 0, z: 0 },
+      { x: 2, y: 2, z: 0 }
     ],
     cells: mapLayout
   },

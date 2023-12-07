@@ -68,45 +68,74 @@ export class GameMap implements Serializable {
       ? Vec3.fromPoint3D(cellIdToPoint(posOrKey))
       : Vec3.fromPoint3D(posOrKey);
 
-    const { x, y } = Vec3.add(from, { ...DIRECTIONS_TO_DIFF[direction], z: 0 });
-
-    const target = { x, y, z: from.z };
-
-    const targetAbove = { x, y, z: from.z + 1 };
-    const targetBelow = { x, y, z: from.z - 1 };
+    const target = Vec3.add(from, DIRECTIONS_TO_DIFF[direction]);
+    const targetAbove = Vec3.add(target, { x: 0, y: 0, z: 1 });
+    const targetBelow = Vec3.sub(target, { x: 0, y: 0, z: 1 });
 
     const currentCell = this.getCellAt(from);
-    const cell = this.getCellAt(target);
-    const cellBelow = this.getCellAt(targetBelow);
-    const cellAbove = this.getCellAt(targetAbove);
+    const targetCell = this.getCellAt(target);
+    const targetCellBelow = this.getCellAt(targetBelow);
+    const targetCellAbove = this.getCellAt(targetAbove);
 
-    if (currentCell) {
-      if (currentCell?.isHalfTile) return null;
-      if (cell && !cellAbove) {
-        return cell.isHalfTile ? target : targetAbove;
+    // maybe the game will handle things flying one day, but for now let's assume you need to be on a tile to move
+    if (!currentCell) return null;
+    // this normally shouldn't happen
+    if (!currentCell.isWalkable) return null;
+
+    // on a half tile, can only go ahead or below
+    if (currentCell.isHalfTile) {
+      if (!targetCell && !targetCellBelow) return null;
+      // nothing ahead, try to go below
+      if (!targetCell) {
+        if (targetCellBelow?.isHalfTile || !targetCellBelow!.isWalkable) return null;
+        return targetBelow!;
       }
 
-      if (!cellBelow) return null;
-      if (cellBelow.isHalfTile) return null;
+      // we can go ahead if nothing is above
+      if (!targetAbove) return null;
 
+      if (!targetCell.isWalkable) return null;
       return target;
     }
 
-    if (cell?.isHalfTile) return target;
+    if (targetCellAbove && targetCellAbove.isWalkable && targetCellAbove.isHalfTile) {
+      return targetAbove;
+    }
 
-    if (!cellBelow) return null;
-    if (cellBelow.isHalfTile) return targetBelow;
+    if (!targetCell || !targetCell.isWalkable) return null;
 
-    return target;
+    return targetCell;
+
+    // if (currentCell) {
+    //   if (currentCell.isHalfTile) return null;
+    //   if (targetCell && !targetCellAbove) {
+    //     return targetCell.isHalfTile ? target : targetAbove;
+    //   }
+
+    //   if (!targetCellBelow) return null;
+    //   if (targetCellBelow.isHalfTile) return null;
+
+    //   return target;
+    // }
+
+    // if (targetCell?.isHalfTile) return target;
+
+    // if (!targetCellBelow) return null;
+    // if (targetCellBelow.isHalfTile) return targetBelow;
+
+    // return target;
   }
 
   canSummonAt(point: Point3D) {
     if (this.ctx.entityManager.getEntityAt(point)) return false;
 
     const cell = this.getCellAt(point);
-    const below = this.getCellAt({ ...point, z: point.z - 1 });
+    if (!cell) return false;
 
-    return cell ? cell.isHalfTile && cell.isWalkable : below && below.isWalkable;
+    const cellAbove = this.getCellAt(Vec3.add(point, { x: 0, y: 0, z: 1 }));
+    if (cellAbove) return false;
+
+    return cell.isWalkable;
   }
 
   getDistanceMap(point: Point3D, maxDistance?: number) {

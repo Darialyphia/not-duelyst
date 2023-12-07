@@ -1,5 +1,6 @@
 import { Values } from '@hc/shared';
 import { TileId, TILES } from './tile-lookup';
+import { Point3D } from '../types';
 
 export const TERRAIN = {
   GROUND: 'GROUND',
@@ -14,11 +15,11 @@ export const DIRECTION = {
 } as const;
 
 export const DIRECTIONS_TO_DIFF = {
-  [DIRECTION.NORTH]: { x: 0, y: -1 },
-  [DIRECTION.SOUTH]: { x: 0, y: 1 },
-  [DIRECTION.WEST]: { x: -1, y: 0 },
-  [DIRECTION.EAST]: { x: 1, y: 0 }
-} as const satisfies Record<Direction, { x: number; y: number }>;
+  [DIRECTION.NORTH]: { x: 0, y: -1, z: 0 },
+  [DIRECTION.SOUTH]: { x: 0, y: 1, z: 0 },
+  [DIRECTION.WEST]: { x: -1, y: 0, z: 0 },
+  [DIRECTION.EAST]: { x: 1, y: 0, z: 0 }
+} as const satisfies Record<Direction, Point3D>;
 
 export type Direction = Values<typeof DIRECTION>;
 

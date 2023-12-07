@@ -40,9 +40,7 @@ const distanceMap = computed(() => {
 const isMoveTarget = (point: Point3D) => {
   if (targetMode.value !== 'move') return false;
 
-  return state.value.activeEntity.canMove(
-    distanceMap.value.get({ ...point, z: point.z + 1 })
-  );
+  return state.value.activeEntity.canMove(distanceMap.value.get(point));
 };
 const isSkillTarget = (point: Point3D) => {
   if (targetMode.value !== 'skill') return false;
@@ -63,7 +61,6 @@ const onCellClick = (cell: Cell) => {
   if (isMoveTarget(cell.position)) {
     return emit('move', {
       ...cell.position,
-      z: cell.z + 1,
       entityId: state.value.activeEntity.id
     });
   }
@@ -75,7 +72,7 @@ const onCellClick = (cell: Cell) => {
   }
   if (isSummonTarget(cell.position)) {
     return emit('summon', {
-      position: { ...cell.position, z: cell.position.z + 1 },
+      position: cell.position,
       unitId: selectedUnit.value!.id
     });
   }
@@ -103,11 +100,14 @@ const selectUnit = (unit: UnitBlueprint) => {
 const isSummonTarget = (point: Point3D) => {
   if (targetMode.value !== 'summon') return false;
 
-  const above = { ...point, z: point.z + 1 };
-
+  console.log(
+    point,
+    gameSession.map.canSummonAt(point),
+    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
+  );
   return (
-    gameSession.map.canSummonAt(above) &&
-    gameSession.entityManager.hasNearbyAllies(above, state.value.activeEntity.playerId)
+    gameSession.map.canSummonAt(point) &&
+    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
   );
 };
 </script>
