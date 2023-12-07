@@ -3,7 +3,7 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { Values } from '@hc/shared';
+import { clamp, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
@@ -173,14 +173,14 @@ export class Entity implements Serializable {
       throw new Error('Only generals can summon, from loadout');
     }
 
-    this.ap = Math.max(this.ap - unit.summonCost, 0);
+    this.ap = clamp(this.ap - unit.summonCost, 0, Infinity);
   }
 
   useSkill(skillId: SkillId) {
     const skill = this.skills.find(s => s.id === skillId);
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
-    this.ap = Math.max(this.ap - skill.cost, 0);
+    this.ap = clamp(this.ap - skill.cost, 0, Infinity);
     this.skillCooldowns[skillId] = skill.cooldown;
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
@@ -214,7 +214,7 @@ export class Entity implements Serializable {
     this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
     this.movementSpent = 0;
     Object.keys(this.skillCooldowns).forEach(skillId => {
-      this.skillCooldowns[skillId] = Math.max(this.skillCooldowns[skillId], 0);
+      this.skillCooldowns[skillId] = clamp(this.skillCooldowns[skillId] - 1, 0, Infinity);
     });
     this.emitter.emit(ENTITY_EVENTS.TURN_START, this);
   }

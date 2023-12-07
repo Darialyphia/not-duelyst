@@ -40,30 +40,13 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
 
     if (!this.canUseSkill) return;
 
-    this.ctx.history.add(
-      new UseSkillAction(
-        {
-          casterId: this.ctx.atb.activeEntity.id,
-          skillId: this.payload.skillId
-        },
-        this.ctx
-      )
-    );
-
-    const affectedCells = this.ctx.map.cells.filter(cell =>
-      skill.isInAreaOfEffect(
-        this.ctx,
-        cell,
-        this.ctx.atb.activeEntity,
-        this.payload.target
-      )
-    );
-
-    skill.execute(
-      this.ctx,
-      this.ctx.atb.activeEntity,
-      this.payload.target,
-      affectedCells
-    );
+    new UseSkillAction(
+      {
+        casterId: this.ctx.atb.activeEntity.id,
+        skillId: this.payload.skillId,
+        target: this.payload.target
+      },
+      this.ctx
+    ).execute();
   }
 }

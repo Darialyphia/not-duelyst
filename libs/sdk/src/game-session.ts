@@ -10,6 +10,7 @@ import { PlayerManager } from './player/player-manager';
 import { ActionReducer, SerializedAction } from './action/action-reducer';
 import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
+import { clamp } from '@hc/shared';
 
 export type GameState = {
   map: GameMap;
@@ -32,7 +33,7 @@ type GlobalEntityEvents = {
 };
 
 type GlobalGameEvents = GlobalEntityEvents & {
-  'history:update': SerializedAction;
+  'game:event': SerializedAction;
 };
 
 export class GameSession {
@@ -60,6 +61,10 @@ export class GameSession {
 
   emitter = mitt<GlobalGameEvents>();
 
+  nextEventId = 1;
+
+  isExecutingAction = false;
+
   private constructor(
     state: SerializedGameState,
     readonly isAuthoritative: boolean
@@ -71,7 +76,7 @@ export class GameSession {
         Object.values(
           this.playerManager.getPlayerById(entity.playerId)!.loadout.units
         ).forEach(unit => {
-          unit.cooldown = Math.max(0, unit.cooldown - 1);
+          unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
         });
       }
     });
@@ -123,8 +128,8 @@ export class GameSession {
   }
 
   subscribe(cb: (e: SerializedAction) => void) {
-    this.emitter.on('history:update', cb);
-    return () => this.emitter.off('history:update', cb);
+    this.emitter.on('game:event', cb);
+    return () => this.emitter.off('game:event', cb);
   }
 
   serialize(): SerializedGameState {

@@ -37,7 +37,7 @@ export type SerializedAction = ReturnType<
 export class ActionReducer {
   constructor(private ctx: GameSession) {}
 
-  reduce({ type, payload }: SerializedAction) {
+  reduce({ type, payload, id }: SerializedAction) {
     if (this.ctx.isAuthoritative) {
       throw new Error(
         'authoritative game session cannot receive actions. Use dispatchPlayerInput instead'
@@ -46,6 +46,6 @@ export class ActionReducer {
 
     const event = actionMap[type];
 
-    new event(payload as any, this.ctx).execute();
+    new event(payload as any, this.ctx, id).execute();
   }
 }

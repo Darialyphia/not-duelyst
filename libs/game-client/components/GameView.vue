@@ -21,8 +21,8 @@ let unsub: () => void | undefined;
 onMounted(() => {
   unsub = gameSession.subscribe(event => {
     targetMode.value = null;
-    state.value = gameSession.getState();
     selectedSkill.value = null;
+    state.value = gameSession.getState();
   });
 });
 

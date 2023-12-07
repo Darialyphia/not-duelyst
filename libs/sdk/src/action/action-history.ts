@@ -16,7 +16,6 @@ export class ActionHistory implements Serializable {
 
   add(action: GameAction<any>) {
     this.history.push(action);
-    this.ctx.emitter.emit('history:update', action.serialize() as SerializedAction);
   }
 
   get() {
