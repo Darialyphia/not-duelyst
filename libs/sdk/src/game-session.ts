@@ -7,10 +7,11 @@ import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
-import { ActionReducer, SerializedAction } from './action/action-reducer';
+import { ActionDeserializer, SerializedAction } from './action/action-deserializer';
 import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
 import { clamp } from '@hc/shared';
+import { ActionQueue } from './action/action-queue';
 
 export type GameState = {
   map: GameMap;
@@ -53,7 +54,7 @@ export class GameSession {
 
   history = new ActionHistory(this);
 
-  actionReducer = new ActionReducer(this);
+  actionQueue = new ActionQueue(this);
 
   inputReducer = new InputReducer(this);
 
@@ -62,8 +63,6 @@ export class GameSession {
   emitter = mitt<GlobalGameEvents>();
 
   nextEventId = 1;
-
-  isExecutingAction = false;
 
   private constructor(
     state: SerializedGameState,
@@ -123,8 +122,8 @@ export class GameSession {
     this.inputReducer.reduce(action);
   }
 
-  dispatchAction(event: SerializedAction) {
-    this.actionReducer.reduce(event);
+  dispatchAction(action: SerializedAction) {
+    this.actionQueue.push(action);
   }
 
   subscribe(cb: (e: SerializedAction) => void) {

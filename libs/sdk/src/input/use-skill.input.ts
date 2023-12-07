@@ -40,13 +40,15 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
 
     if (!this.canUseSkill) return;
 
-    new UseSkillAction(
-      {
-        casterId: this.ctx.atb.activeEntity.id,
-        skillId: this.payload.skillId,
-        target: this.payload.target
-      },
-      this.ctx
-    ).execute();
+    this.ctx.actionQueue.push(
+      new UseSkillAction(
+        {
+          casterId: this.ctx.atb.activeEntity.id,
+          skillId: this.payload.skillId,
+          target: this.payload.target
+        },
+        this.ctx
+      )
+    );
   }
 }
