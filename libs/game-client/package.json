@@ -16,7 +16,6 @@
     "@hc/sdk": "*",
     "@hc/shared": "*",
     "@hc/ui": "*",
-    "@pixi/layers": "^2.1.0",
     "@types/css-tree": "^2.3.4",
     "@unocss/reset": "^0.53.4",
     "@vee-validate/nuxt": "^4.10.3",

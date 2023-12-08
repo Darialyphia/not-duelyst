@@ -3,7 +3,6 @@ import { Application, BaseTexture, SCALE_MODES, WRAP_MODES } from 'pixi.js';
 import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
-import { Stage } from '@pixi/layers';
 import { GAME_INJECTION_KEY } from '../composables/useGame';
 import PixiRenderer from './PixiRenderer.vue';
 import type { Entity } from '@hc/sdk/src/entity/entity';
@@ -19,7 +18,7 @@ const emit = defineEmits<GameEmits>();
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
 const game = useGameProvider(gameSession, emit);
-const { state } = game;
+const { state, mapRotation } = game;
 
 const distanceMap = computed(() => {
   return state.value.map.getDistanceMap(
@@ -102,9 +101,6 @@ const isSummonTarget = (point: Point3D) => {
   );
 };
 
-const root = ref<HTMLElement>();
-const { width, height } = useElementBounding(root);
-
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
 window.gsap.registerPlugin(PixiPlugin);
@@ -117,13 +113,13 @@ onMounted(() => {
   // and we can forward the providers to it
   const pixiApp = new Application({
     view: canvas.value,
-    width: width.value,
-    height: height.value,
+    width: window.innerWidth,
+    height: window.innerHeight,
     autoDensity: true,
     antialias: false
   });
 
-  pixiApp.stage = new Stage();
+  // pixiApp.stage = new Stage();
 
   if (import.meta.env.DEV) {
     // @ts-ignore  enable PIXI devtools
@@ -143,77 +139,89 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-surface-1" ref="root">
+  <div class="relative">
     <div class="pixi-app-container">
-      <canvas ref="canvas" />
-    </div>
-    <header class="flex gap-3 py-3 items-center">
-      <button @click="emit('end-turn')">End turn</button>
-      <button @click="targetMode = 'move'">Move</button>
-      Skills
-      <button
-        v-for="skill in state.activeEntity.skills"
-        :key="skill.id"
-        :disabled="!state.activeEntity.canUseSkill(skill)"
-        @click="selectSkill(skill)"
-      >
-        {{ skill.id }} ({{ skill.cost }})
-        {{ state.activeEntity.skillCooldowns[skill.id] }}
-      </button>
-      Loadout
-      <template v-if="state.activeEntity.kind === 'GENERAL'">
-        <button
-          v-for="unit in activePlayer.summonableUnits"
-          :disabled="!activePlayer.canSummon(unit.unit.id)"
-          @click="selectUnit(unit.unit)"
-        >
-          {{ unit.unit.id }} ({{ unit.unit.summonCost }})
-        </button>
-      </template>
-    </header>
-
-    <main class="map">
-      <div
-        v-for="cell in state.map.cells"
-        :key="`${cell.position.toString()}`"
-        :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
-        :class="[
-          'cell',
-          {
-            'move-target': isMoveTarget(cell.position),
-            'skill-target': isSkillTarget(cell.position),
-            'summon-target': isSummonTarget(cell.position)
-          }
-        ]"
-        @click="onCellClick(cell)"
-      />
-
-      <div
-        v-for="entity in state.entities"
-        :key="entity.id"
-        :style="{ '--col': entity.position.x + 1, '--row': entity.position.y + 1 }"
-        :class="[
-          'entity',
-          {
-            active: entity.id === state.activeEntity.id,
-            'skill-target': isSkillTarget(entity.position)
-          }
-        ]"
-        @click="onEntityClick(entity)"
-      >
-        {{ entity.hp }}
+      <div class="absolute flex gap-3 justify-end right-0">
+        <button @click="mapRotation = 0">0</button>
+        <button @click="mapRotation = 90">90</button>
+        <button @click="mapRotation = 180">180</button>
+        <button @click="mapRotation = 270">270</button>
       </div>
-    </main>
+      <canvas ref="canvas" @contextmenu.prevent />
+    </div>
+    <!-- <div class="absolute w-full h-full top-0 left-0">
+      <header class="flex gap-3 py-3 items-center">
+        <button @click="emit('end-turn')">End turn</button>
+        <button @click="targetMode = 'move'">Move</button>
+        Skills
+        <button
+          v-for="skill in state.activeEntity.skills"
+          :key="skill.id"
+          :disabled="!state.activeEntity.canUseSkill(skill)"
+          @click="selectSkill(skill)"
+        >
+          {{ skill.id }} ({{ skill.cost }})
+          {{ state.activeEntity.skillCooldowns[skill.id] }}
+        </button>
+        Loadout
+        <template v-if="state.activeEntity.kind === 'GENERAL'">
+          <button
+            v-for="unit in activePlayer.summonableUnits"
+            :disabled="!activePlayer.canSummon(unit.unit.id)"
+            @click="selectUnit(unit.unit)"
+          >
+            {{ unit.unit.id }} ({{ unit.unit.summonCost }})
+          </button>
+        </template>
+      </header>
 
-    <footer>
-      <h2>Game view</h2>
-      <h3>Active entity</h3>
-      <pre>{{ state.activeEntity.id }} {{ state.activeEntity.unitId }}</pre>
-      <pre>
-Movement: {{ state.activeEntity.remainingMovement }} / {{ state.activeEntity.speed }}</pre
-      >
-      <pre>AP: {{ state.activeEntity.ap }} / {{ state.activeEntity.maxAp }}</pre>
-    </footer>
+      <main class="map">
+        <div
+          v-for="cell in state.map.cells"
+          :key="`${cell.position.toString()}`"
+          :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
+          :class="[
+            'cell',
+            {
+              'move-target': isMoveTarget(cell.position),
+              'skill-target': isSkillTarget(cell.position),
+              'summon-target': isSummonTarget(cell.position)
+            }
+          ]"
+          @click="onCellClick(cell)"
+        >
+          {{ cell.x }}:{{ cell.y }}
+        </div>
+
+        <div
+          v-for="entity in state.entities"
+          :key="entity.id"
+          :style="{ '--col': entity.position.x + 1, '--row': entity.position.y + 1 }"
+          :class="[
+            'entity',
+            {
+              active: entity.id === state.activeEntity.id,
+              'skill-target': isSkillTarget(entity.position)
+            }
+          ]"
+          @click="onEntityClick(entity)"
+        >
+          {{ entity.hp }}
+        </div>
+      </main>
+
+      <footer>
+        <h2>Game view</h2>
+        <h3>Active entity</h3>
+        <pre>{{ state.activeEntity.id }} {{ state.activeEntity.unitId }}</pre>
+        <pre>
+  Movement: {{ state.activeEntity.remainingMovement }} / {{
+            state.activeEntity.speed
+          }}</pre
+        >
+        <pre>AP: {{ state.activeEntity.ap }} / {{ state.activeEntity.maxAp }}</pre>
+      </footer>
+    </div> -->
   </div>
 </template>
 
@@ -223,8 +231,7 @@ Movement: {{ state.activeEntity.remainingMovement }} / {{ state.activeEntity.spe
 
   position: relative;
 
-  width: v-bind(width);
-  height: v-bind(height);
+  overflow: hidden;
 
   font-family: monospace;
   color: var(--gray-0);

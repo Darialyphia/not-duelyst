@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 import { isCustomElement, transformAssetUrls } from 'vue3-pixi';
-const currentDir = dirname(fileURLToPath(import.meta.url));
+
+const customElements = ['viewport'];
+const prefix = 'pixi-';
 
 export default defineNuxtConfig({
   extends: ['@hc/ui'],
@@ -25,7 +25,17 @@ export default defineNuxtConfig({
       },
       template: {
         compilerOptions: {
-          isCustomElement
+          isCustomElement(name) {
+            let normalizedName = name.replace(/[A-Z]/g, m => `-${m.toLowerCase()}`);
+            if (normalizedName.startsWith('-')) normalizedName = normalizedName.slice(1);
+
+            const isPixiElement = customElements.includes(normalizedName);
+            const isPrefixElement =
+              normalizedName.startsWith(prefix) &&
+              customElements.includes(normalizedName.slice(prefix.length));
+
+            return isCustomElement(name) || isPixiElement || isPrefixElement;
+          }
         },
         transformAssetUrls
       }

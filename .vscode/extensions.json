@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "antfu.iconify",
+    "antfu.unocss",
+    "antfu.goto-alias",
+    "vue.volar",
+    "garaioag.garaio-vscode-unwanted-recommendations"
+  ],
+  "unwantedRecommendations": [
+    "vscode.typescript-language-features",
+    "octref.vetur",
+    "vue.vscode-typescript-vue-plugin"
+  ]
+}

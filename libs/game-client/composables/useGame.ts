@@ -18,16 +18,16 @@ export type GameEmits = {
   summon: [{ unitId: UnitId; position: Point3D }];
 };
 
-type InputEmitter = ShortEmits<GameEmits>;
-
 export type GameContext = {
   state: Ref<GameState>;
   gameSession: GameSession;
-  sendInput: InputEmitter;
+  sendInput: ShortEmits<GameEmits>;
+  mapRotation: Ref<0 | 90 | 180 | 270>;
 };
+
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 
-export const useGameProvider = (session: GameSession, emit: InputEmitter) => {
+export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
   const state = shallowRef<GameState>(session.getState());
 
   const unsub = session.subscribe(event => {
@@ -38,10 +38,11 @@ export const useGameProvider = (session: GameSession, emit: InputEmitter) => {
     unsub?.();
   });
 
-  const context = {
+  const context: GameContext = {
     state,
     gameSession: session,
-    sendInput: emit
+    sendInput: emit,
+    mapRotation: ref(0)
   };
 
   provide(GAME_INJECTION_KEY, context);
