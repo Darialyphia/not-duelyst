@@ -30,8 +30,6 @@ const debugClient = () => {
 </script>
 
 <template>
-  <button @click="debugServer">Debug server session</button>
-  <button @click="debugClient">Debug client session</button>
   <GameView
     :game-session="clientSession"
     @move="dispatch('MOVE', $event)"

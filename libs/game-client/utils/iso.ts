@@ -10,70 +10,50 @@ const TILE_WIDTH = CELL_SIZE;
 const TILE_HEIGHT = TILE_WIDTH / 2;
 
 export interface TransformOptions {
-  center: boolean;
   rotation: boolean;
   isometric: boolean;
   scale: boolean;
 }
 
-export function apply_transforms(
+export function applyTransforms(
   x: number,
   y: number,
   z: number,
-  rot: number,
-  opts: TransformOptions
-): [number, number, number] {
-  // Center grid on the origin
+  angle: number,
+  gridSize: { width: number; height: number }
+): Point3D {
+  const cosRotation = Math.cos(angle);
+  const sinRotation = Math.sin(angle);
 
-  let cx = x;
-  let cy = y;
-  if (opts.center) {
-    cx -= 5;
-    cy -= 5;
-  }
+  const centered = {
+    x: x - 0,
+    y: y - 0
+  };
 
-  // Rotate around new origin
-  let cos_rot = Math.cos(rot);
-  let sin_rot = Math.sin(rot);
+  const rotated = {
+    x: centered.x * cosRotation - centered.y * sinRotation,
+    y: centered.x * sinRotation + centered.y * cosRotation
+  };
 
-  let rx = cx;
-  let ry = cy;
-  if (opts.rotation) {
-    rx = cx * cos_rot - cy * sin_rot;
-    ry = cx * sin_rot + cy * cos_rot;
-  }
+  const iso = {
+    x: (rotated.x - rotated.y) / 2,
+    y: (rotated.x + rotated.y) / 2
+  };
 
-  // Scale and rotate one last time to get into iso view.
-  // NOTE: Since a rotation of 45 degrees makes it so sin = cos = 0.707, I
-  // factor out the value since all it's doing is scaling the grid down.
-  let px = rx;
-  let py = ry;
-  let pz = z;
-
-  if (opts.isometric) {
-    px = (rx - ry) / 2;
-    py = (rx + ry) / 2;
-  }
-
-  if (opts.scale) {
-    px *= TILE_WIDTH;
-    py *= TILE_HEIGHT;
-    pz *= TILE_HEIGHT;
-  }
-
-  return [px, py, pz];
+  return {
+    x: iso.x * TILE_WIDTH,
+    y: iso.y * TILE_HEIGHT,
+    z: z * TILE_HEIGHT
+  };
 }
+export const toIso = (
+  { x, y, z }: Point3D,
+  angle: 0 | 90 | 180 | 270,
+  gridSize: { width: number; height: number }
+): IsoPoint => {
+  const transformed = applyTransforms(x, y, z, deg2Rad(angle), gridSize);
 
-// https://a5huynh.github.io/posts/2019/isometric-rotation/  math nerd shit
-export const toIso = ({ x, y, z }: Point3D, angle: 0 | 90 | 180 | 270): IsoPoint => {
-  const [px, py, pz] = apply_transforms(x, y, z, deg2Rad(angle), {
-    isometric: true,
-    rotation: true,
-    scale: true,
-    center: false
-  });
-
-  return { isoX: px, isoY: py, isoZ: pz };
+  return { isoX: transformed.x, isoY: transformed.y, isoZ: transformed.z };
 };
 
 export const toCartesian = ({ isoX, isoY, isoZ }: IsoPoint) => {

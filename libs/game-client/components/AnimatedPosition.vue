@@ -42,10 +42,6 @@ const cartesian = computed(() =>
 );
 
 const { autoDestroyRef } = useAutoDestroy();
-
-watchEffect(() => {
-  console.log({ ...cartesian.value }, props.zIndex);
-});
 </script>
 
 <template>

@@ -28,11 +28,10 @@
     "h3-clerk": "^0.3.7",
     "open-props": "^1.6.13",
     "pixi-viewport": "^5.0.2",
-    "pixi.js": "^7.3.2",
+    "pixi.js": "7.2.4",
     "radix-vue": "^1.2.3",
     "vue-clerk": "^0.1.1",
-    "vue3-pixi": "^0.8.4",
-    "yarn": "^1.22.21"
+    "vue3-pixi": "^0.8.4"
   },
   "devDependencies": {
     "@hc/stylelint-config": "*",

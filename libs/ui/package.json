@@ -24,8 +24,7 @@
     "h3-clerk": "^0.3.7",
     "open-props": "^1.6.13",
     "radix-vue": "^1.2.3",
-    "vue-clerk": "^0.1.1",
-    "yarn": "^1.22.21"
+    "vue-clerk": "^0.1.1"
   },
   "devDependencies": {
     "@hc/stylelint-config": "*",

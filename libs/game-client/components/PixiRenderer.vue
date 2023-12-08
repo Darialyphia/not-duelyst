@@ -3,7 +3,8 @@ import { useApplication } from 'vue3-pixi';
 import { tileSpritesPaths } from '../assets/tiles';
 import { Polygon } from 'pixi.js';
 import type { Viewport } from 'pixi-viewport';
-const { state } = useGame();
+
+const { state, mapRotation } = useGame();
 
 const app = useApplication();
 
@@ -21,6 +22,11 @@ const screenViewport = shallowRef<Viewport>();
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
+    const center = toIso(
+      { x: state.value.map.width / 2, y: state.value.map.height / 2, z: 0 },
+      mapRotation.value,
+      state.value.map
+    );
     screenViewport.value
       ?.drag({
         mouseButtons: 'right'
@@ -28,7 +34,7 @@ until(screenViewport)
       .pinch()
       .wheel({ smooth: 3, percent: 0.05 })
       .zoomPercent(1, false)
-      .moveCenter(0, 0);
+      .moveCenter(center.isoX, center.isoY);
   });
 </script>
 
