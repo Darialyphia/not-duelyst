@@ -12,10 +12,11 @@
     "prepare": "nuxt prepare .playground"
   },
   "dependencies": {
-    "@hc/ui": "*",
     "@hc/api": "*",
     "@hc/sdk": "*",
     "@hc/shared": "*",
+    "@hc/ui": "*",
+    "@pixi/layers": "^2.1.0",
     "@types/css-tree": "^2.3.4",
     "@unocss/reset": "^0.53.4",
     "@vee-validate/nuxt": "^4.10.3",
@@ -24,10 +25,14 @@
     "add": "^2.0.6",
     "convex": "^1.6.3",
     "css-tree": "^2.3.1",
+    "gsap": "^3.12.3",
     "h3-clerk": "^0.3.7",
     "open-props": "^1.6.13",
+    "pixi-viewport": "^5.0.2",
+    "pixi.js": "^7.3.2",
     "radix-vue": "^1.2.3",
     "vue-clerk": "^0.1.1",
+    "vue3-pixi": "^0.8.4",
     "yarn": "^1.22.21"
   },
   "devDependencies": {

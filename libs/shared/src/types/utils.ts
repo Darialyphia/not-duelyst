@@ -26,10 +26,10 @@ export type Prettify<T> = {
 export type Intersect<X extends any[]> = X extends []
   ? never
   : X extends [head: infer A]
-  ? A
-  : X extends [head: infer A, ...tail: infer B]
-  ? A & Intersect<[...B]>
-  : never;
+    ? A
+    : X extends [head: infer A, ...tail: infer B]
+      ? A & Intersect<[...B]>
+      : never;
 
 export type ApiError = {
   message: string;

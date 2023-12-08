@@ -1,34 +1,25 @@
 <script setup lang="ts">
-import type { Entity, EntityId } from '@hc/sdk/src/entity/entity';
+import { Application, BaseTexture, SCALE_MODES, WRAP_MODES } from 'pixi.js';
+import { appInjectKey, createApp } from 'vue3-pixi';
+import * as PIXI from 'pixi.js';
+import PixiPlugin from 'gsap/PixiPlugin';
+import { Stage } from '@pixi/layers';
+import { GAME_INJECTION_KEY } from '../composables/useGame';
+import PixiRenderer from './PixiRenderer.vue';
+import type { Entity } from '@hc/sdk/src/entity/entity';
 import type { GameSession } from '@hc/sdk';
 import type { Point3D } from '@hc/sdk/src/types';
-import type { Skill, SkillId } from '../../sdk/src/skill/skill-builder';
+import type { Skill } from '../../sdk/src/skill/skill-builder';
 import type { Cell } from '../../sdk/src/map/cell';
-import type { UnitBlueprint, UnitId } from '../../sdk/src/units/unit-lookup';
+import type { UnitBlueprint } from '../../sdk/src/units/unit-lookup';
+import type { GameEmits } from '../composables/useGame';
 
-const emit = defineEmits<{
-  move: [Point3D & { entityId: EntityId }];
-  'end-turn': [];
-  'use-skill': [{ skillId: SkillId; target: Point3D }];
-  summon: [{ unitId: UnitId; position: Point3D }];
-}>();
+const emit = defineEmits<GameEmits>();
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
-const state = shallowRef(gameSession.getState());
-
-let unsub: () => void | undefined;
-onMounted(() => {
-  unsub = gameSession.subscribe(event => {
-    targetMode.value = null;
-    state.value = gameSession.getState();
-    selectedSkill.value = null;
-  });
-});
-
-onUnmounted(() => {
-  unsub?.();
-});
+const game = useGameProvider(gameSession, emit);
+const { state } = game;
 
 const distanceMap = computed(() => {
   return state.value.map.getDistanceMap(
@@ -110,10 +101,52 @@ const isSummonTarget = (point: Point3D) => {
     gameSession.entityManager.hasNearbyAllies(above, state.value.activeEntity.playerId)
   );
 };
+
+const root = ref<HTMLElement>();
+const { width, height } = useElementBounding(root);
+
+// @ts-ignore  enable PIXI devtools
+window.PIXI = PIXI;
+window.gsap.registerPlugin(PixiPlugin);
+
+const canvas = ref<HTMLCanvasElement>();
+
+onMounted(() => {
+  // We create the pixi app manually instead of using vue3-pixi's <Application /> component
+  // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
+  // and we can forward the providers to it
+  const pixiApp = new Application({
+    view: canvas.value,
+    width: width.value,
+    height: height.value,
+    autoDensity: true,
+    antialias: false
+  });
+
+  pixiApp.stage = new Stage();
+
+  if (import.meta.env.DEV) {
+    // @ts-ignore  enable PIXI devtools
+    window.__PIXI_APP__ = pixiApp;
+  }
+  gsap.registerPlugin(PixiPlugin);
+  gsap.install(window);
+
+  BaseTexture.defaultOptions.wrapMode = WRAP_MODES.CLAMP;
+  BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
+
+  const app = createApp(PixiRenderer);
+  app.provide(appInjectKey, pixiApp);
+  app.provide(GAME_INJECTION_KEY, game);
+  app.mount(pixiApp.stage);
+});
 </script>
 
 <template>
-  <div class="p-5 bg-surface-1 container">
+  <div class="bg-surface-1" ref="root">
+    <div class="pixi-app-container">
+      <canvas ref="canvas" />
+    </div>
     <header class="flex gap-3 py-3 items-center">
       <button @click="emit('end-turn')">End turn</button>
       <button @click="targetMode = 'move'">Move</button>
@@ -185,6 +218,18 @@ Movement: {{ state.activeEntity.remainingMovement }} / {{ state.activeEntity.spe
 </template>
 
 <style scoped lang="postcss">
+.game-app-container {
+  user-select: none;
+
+  position: relative;
+
+  width: v-bind(width);
+  height: v-bind(height);
+
+  font-family: monospace;
+  color: var(--gray-0);
+}
+
 button {
   cursor: pointer;
   padding: var(--size-2) var(--size-3);

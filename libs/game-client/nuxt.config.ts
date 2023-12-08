@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-
+import { isCustomElement, transformAssetUrls } from 'vue3-pixi';
 const currentDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
@@ -22,6 +22,12 @@ export default defineNuxtConfig({
       script: {
         defineModel: true,
         propsDestructure: true
+      },
+      template: {
+        compilerOptions: {
+          isCustomElement
+        },
+        transformAssetUrls
       }
     }
   },
