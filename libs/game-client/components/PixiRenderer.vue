@@ -3,6 +3,7 @@ import { useApplication } from 'vue3-pixi';
 import { tileSpritesPaths } from '../assets/tiles';
 import { Polygon } from 'pixi.js';
 import type { Viewport } from 'pixi-viewport';
+import placeholderSprite from '../assets/sprites/placeholder.png';
 
 const { state, mapRotation } = useGame();
 
@@ -22,11 +23,10 @@ const screenViewport = shallowRef<Viewport>();
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
-    const center = toIso(
-      { x: state.value.map.width / 2, y: state.value.map.height / 2, z: 0 },
-      mapRotation.value,
-      state.value.map
-    );
+    const center = toIso({ x: 0, y: 0, z: 0 }, mapRotation.value, {
+      width: 0,
+      height: 0
+    });
     screenViewport.value
       ?.drag({
         mouseButtons: 'right'
@@ -56,7 +56,21 @@ until(screenViewport)
         :y="cell.position.y"
         :z="cell.position.z"
       >
-        <sprite :texture="tileSpritesPaths[cell.tile.id]" :anchor-x="0.5" />
+        <sprite
+          :texture="tileSpritesPaths[cell.tile.id]"
+          :anchor-x="0.5"
+          :hit-area="cellHitArea"
+        />
+      </IsoPositioner>
+
+      <IsoPositioner
+        v-for="entity in state.entities"
+        :key="entity.id"
+        :x="entity.position.x"
+        :y="entity.position.y"
+        :z="entity.position.z + 0.1"
+      >
+        <sprite :texture="placeholderSprite" :anchor-x="0.5" :y="-CELL_SIZE / 2" />
       </IsoPositioner>
     </container>
   </viewport>

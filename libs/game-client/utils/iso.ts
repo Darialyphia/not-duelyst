@@ -26,8 +26,8 @@ export function applyTransforms(
   const sinRotation = Math.sin(angle);
 
   const centered = {
-    x: x - 0,
-    y: y - 0
+    x: x - gridSize.width,
+    y: y - gridSize.height
   };
 
   const rotated = {

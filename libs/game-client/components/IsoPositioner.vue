@@ -10,7 +10,12 @@ const { x, y, z } = defineProps<{
 
 const app = useApplication();
 const { state, mapRotation } = useGame();
-const position = computed(() => toIso({ x, y, z }, mapRotation.value, state.value.map));
+const position = computed(() =>
+  toIso({ x, y, z }, mapRotation.value, {
+    width: state.value.map.width / 2,
+    height: state.value.map.height / 2
+  })
+);
 
 const rotatedCartesian = computed(() =>
   toCartesian({
