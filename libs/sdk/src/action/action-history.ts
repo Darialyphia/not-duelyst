@@ -1,7 +1,7 @@
 import { GameAction } from './action';
 import { GameSession } from '../game-session';
 import { Serializable } from '../utils/interfaces';
-import { ActionReducer, SerializedAction } from './action-reducer';
+import { SerializedAction } from './action-deserializer';
 
 export class ActionHistory implements Serializable {
   private history: GameAction<any>[] = [];
@@ -9,14 +9,11 @@ export class ActionHistory implements Serializable {
   constructor(private ctx: GameSession) {}
 
   setup(rawHistory: SerializedAction[]) {
-    const reducer = new ActionReducer(this.ctx);
-
-    rawHistory.forEach(reducer.reduce);
+    rawHistory.forEach(this.ctx.actionQueue.push);
   }
 
   add(action: GameAction<any>) {
     this.history.push(action);
-    this.ctx.emitter.emit('history:update', action.serialize() as SerializedAction);
   }
 
   get() {

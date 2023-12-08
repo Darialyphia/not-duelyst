@@ -37,13 +37,14 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
 
   impl() {
     if (!this.canSummon) return;
-
-    new SummonFromLoadoutAction(
-      {
-        ...this.payload,
-        atbSeed: Math.random()
-      },
-      this.ctx
-    ).execute();
+    this.ctx.actionQueue.push(
+      new SummonFromLoadoutAction(
+        {
+          ...this.payload,
+          atbSeed: Math.random()
+        },
+        this.ctx
+      )
+    );
   }
 }

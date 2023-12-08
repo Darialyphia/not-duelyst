@@ -18,7 +18,7 @@ export class EntityManager {
 
   setup(entities: SerializedEntity[]) {
     entities.forEach(rawEntity => {
-      const entity = new Entity(this.ctx, rawEntity, this.ctx.isAuthoritative);
+      const entity = new Entity(this.ctx, rawEntity);
       this.entityMap.set(entity.id, entity);
       this.addListeners(entity);
     });
@@ -99,7 +99,7 @@ export class EntityManager {
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
     const id = ++this.nextEntityId;
-    const entity = new Entity(this.ctx, { ...rawEntity, id }, this.ctx.isAuthoritative);
+    const entity = new Entity(this.ctx, { ...rawEntity, id });
 
     this.entityMap.set(id, entity);
 

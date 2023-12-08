@@ -34,12 +34,14 @@ export class MoveInput extends PlayerInput<typeof moveEventSchema> {
 
     if (!entity.canMove(path.distance)) return null;
 
-    new MoveAction(
-      {
-        entityId: this.payload.entityId,
-        path: path.path.map(vec => vec.serialize())
-      },
-      this.ctx
-    ).execute();
+    this.ctx.actionQueue.push(
+      new MoveAction(
+        {
+          entityId: this.payload.entityId,
+          path: path.path.map(vec => vec.serialize())
+        },
+        this.ctx
+      )
+    );
   }
 }

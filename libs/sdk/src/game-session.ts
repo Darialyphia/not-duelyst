@@ -7,9 +7,11 @@ import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
-import { ActionReducer, SerializedAction } from './action/action-reducer';
+import { ActionDeserializer, SerializedAction } from './action/action-deserializer';
 import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
+import { clamp } from '@hc/shared';
+import { ActionQueue } from './action/action-queue';
 
 export type GameState = {
   map: GameMap;
@@ -32,7 +34,7 @@ type GlobalEntityEvents = {
 };
 
 type GlobalGameEvents = GlobalEntityEvents & {
-  'history:update': SerializedAction;
+  'game:event': SerializedAction;
 };
 
 export class GameSession {
@@ -52,13 +54,15 @@ export class GameSession {
 
   history = new ActionHistory(this);
 
-  actionReducer = new ActionReducer(this);
+  actionQueue = new ActionQueue(this);
 
   inputReducer = new InputReducer(this);
 
   atb = new ATB();
 
   emitter = mitt<GlobalGameEvents>();
+
+  nextEventId = 1;
 
   private constructor(
     state: SerializedGameState,
@@ -71,7 +75,7 @@ export class GameSession {
         Object.values(
           this.playerManager.getPlayerById(entity.playerId)!.loadout.units
         ).forEach(unit => {
-          unit.cooldown = Math.max(0, unit.cooldown - 1);
+          unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
         });
       }
     });
@@ -118,13 +122,13 @@ export class GameSession {
     this.inputReducer.reduce(action);
   }
 
-  dispatchAction(event: SerializedAction) {
-    this.actionReducer.reduce(event);
+  dispatchAction(action: SerializedAction) {
+    this.actionQueue.push(action);
   }
 
   subscribe(cb: (e: SerializedAction) => void) {
-    this.emitter.on('history:update', cb);
-    return () => this.emitter.off('history:update', cb);
+    this.emitter.on('game:event', cb);
+    return () => this.emitter.off('game:event', cb);
   }
 
   serialize(): SerializedGameState {

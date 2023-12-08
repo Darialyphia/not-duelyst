@@ -77,14 +77,16 @@ export const UNITS = keyBy(
           .execute((ctx, caster, target) => {
             const entity = ctx.entityManager.getEntityAt(target)!;
 
-            new DealDamageAction(
-              {
-                amount: 1,
-                sourceId: caster.id,
-                targets: [entity.id]
-              },
-              ctx
-            ).execute();
+            ctx.actionQueue.push(
+              new DealDamageAction(
+                {
+                  amount: 1,
+                  sourceId: caster.id,
+                  targets: [entity.id]
+                },
+                ctx
+              )
+            );
           })
           .build()
       ]
