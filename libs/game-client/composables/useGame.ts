@@ -1,8 +1,8 @@
 import { GameSession, type GameState } from '@hc/sdk';
 import type { EntityId } from '@hc/sdk/src/entity/entity';
-import type { SkillId } from '@hc/sdk/src/skill/skill-builder';
+import type { Skill, SkillId } from '@hc/sdk/src/skill/skill-builder';
 import type { Point3D } from '@hc/sdk/src/types';
-import type { UnitId } from '@hc/sdk/src/units/unit-lookup';
+import type { UnitBlueprint, UnitId } from '@hc/sdk/src/units/unit-lookup';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
 import type { Cell } from '@hc/sdk/src/map/cell';
 
@@ -29,6 +29,8 @@ export type GameContext = {
     hoveredCell: Ref<Nullable<Cell>>;
     distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
+    selectedSkill: Ref<Nullable<Skill>>;
+    selectedSummon: Ref<Nullable<UnitBlueprint>>;
   };
 };
 
@@ -62,10 +64,29 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     ui: {
       distanceMap,
       targetMode: ref(null),
-      hoveredCell: ref(null)
+      hoveredCell: ref(null),
+      selectedSkill: ref(null),
+      selectedSummon: ref(null)
     }
   };
 
+  watchEffect(() => {
+    if (context.ui.selectedSkill.value) {
+      context.ui.targetMode.value = 'skill';
+      context.ui.selectedSummon.value = null;
+    } else if (context.ui.selectedSummon.value) {
+      context.ui.targetMode.value = 'summon';
+      context.ui.selectedSkill.value = null;
+    }
+  });
+
+  watch(
+    () => state.value.activeEntity.id,
+    (newVal, oldVal) => {
+      if (newVal === oldVal) return;
+      context.ui.targetMode.value = null;
+    }
+  );
   provide(GAME_INJECTION_KEY, context);
 
   return context;

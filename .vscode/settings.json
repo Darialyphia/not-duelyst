@@ -23,5 +23,6 @@
   "stylelint.validate": ["css", "scss", "vue", "html"],
 
   "css.validate": true,
-  "scss.validate": false
+  "scss.validate": false,
+  "unocss.root": "libs/ui"
 }

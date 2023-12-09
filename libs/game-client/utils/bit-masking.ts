@@ -21,14 +21,32 @@ export const getBitMask = (
   state: GameState,
   cell: Cell,
   rotation: number,
-  compareFn: (neighbor: Cell | null) => boolean
+  compareFn: (neighbor: Cell | undefined) => boolean
 ) => {
   const rotatedNeighbors = rotate(neighborCoords, rotation as 0 | 90 | 180 | 270).flat();
 
   const getCell = (neighborIndex: number) => {
     const [diffX, diffY] = rotatedNeighbors[neighborIndex];
 
-    return session.map.getCellAt({ x: cell.x + diffX, y: cell.y + diffY, z: cell.z });
+    const neighbor = session.map.getCellAt({
+      x: cell.x + diffX,
+      y: cell.y + diffY,
+      z: cell.z
+    });
+    const neighborAbove = session.map.getCellAt({
+      x: cell.x + diffX,
+      y: cell.y + diffY,
+      z: cell.z + 1
+    });
+    const neighborBelow = session.map.getCellAt({
+      x: cell.x + diffX,
+      y: cell.y + diffY,
+      z: cell.z - 1
+    });
+
+    if (neighborAbove) return neighborAbove;
+    if (neighbor) return neighbor;
+    if (neighborBelow && cell.isHalfTile) return neighborBelow;
   };
 
   const [topLeft, top, topRight, left, center, right, bottomLeft, bottom, bottomRight] =

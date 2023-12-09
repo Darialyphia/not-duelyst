@@ -31,7 +31,7 @@ const onPointerup = () => {
   }
 };
 
-const pathFilter = new ColorOverlayFilter(0x7777ff, 0.5);
+const pathFilter = new ColorOverlayFilter(0x4455bb, 0.5);
 
 const isMovePathHighlighted = computed(() => {
   if (!hoveredCell.value) return false;
@@ -59,22 +59,21 @@ const isMovePathHighlighted = computed(() => {
 <template>
   <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z">
     <container
-      :filters="isMovePathHighlighted ? [pathFilter] : []"
       :hit-area="hitArea"
       @pointerenter="hoveredCell = cell"
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
     >
       <animated-sprite
+        :filters="isMovePathHighlighted ? [pathFilter] : []"
         :textures="assets.getSprite(cell.tile.id).animations['0']"
         :anchor-x="0.5"
-      >
-        <HoveredCell :cell="cell" />
-      </animated-sprite>
+      />
 
       <container :pivot-x="mapRotation % 180 === 90 ? CELL_SIZE : 0">
         <MapCellHighlight v-if="cell" :cell="cell" />
       </container>
     </container>
+    <HoveredCell :cell="cell" />
   </IsoPositioner>
 </template>

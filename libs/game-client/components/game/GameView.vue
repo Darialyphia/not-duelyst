@@ -33,29 +33,22 @@ const isMoveTarget = (point: Point3D) => {
 
 const isSkillTarget = (point: Point3D) => {
   if (ui.targetMode.value !== 'skill') return false;
-  if (!selectedSkill.value) return false;
+  if (!ui.selectedSkill.value) return false;
 
-  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
+  return ui.selectedSkill.value.isTargetable(
+    gameSession,
+    point,
+    state.value.activeEntity
+  );
 };
 
 const isSummonTarget = (point: Point3D) => {
   if (ui.targetMode.value !== 'summon') return false;
 
-  console.log(
-    point,
-    gameSession.map.canSummonAt(point),
-    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-  );
   return (
     gameSession.map.canSummonAt(point) &&
     gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
   );
-};
-
-const selectedSkill = ref<null | Skill>();
-const selectSkill = (skill: Skill) => {
-  selectedSkill.value = skill;
-  ui.targetMode.value = 'skill';
 };
 
 const onCellClick = (cell: Cell) => {
@@ -68,13 +61,13 @@ const onCellClick = (cell: Cell) => {
   if (isSkillTarget(cell.position)) {
     return emit('use-skill', {
       target: cell.position,
-      skillId: selectedSkill.value!.id
+      skillId: ui.selectedSkill.value!.id
     });
   }
   if (isSummonTarget(cell.position)) {
     return emit('summon', {
       position: cell.position,
-      unitId: selectedUnit.value!.id
+      unitId: ui.selectedSummon.value!.id
     });
   }
 };
@@ -83,7 +76,7 @@ const onEntityClick = (entity: Entity) => {
   if (isSkillTarget(entity.position)) {
     emit('use-skill', {
       target: entity.position,
-      skillId: selectedSkill.value!.id
+      skillId: ui.selectedSkill.value!.id
     });
   }
 };
@@ -91,12 +84,6 @@ const onEntityClick = (entity: Entity) => {
 const activePlayer = computed(
   () => gameSession.playerManager.getPlayerById(state.value.activeEntity.playerId)!
 );
-
-const selectedUnit = ref<UnitBlueprint | null>();
-const selectUnit = (unit: UnitBlueprint) => {
-  selectedUnit.value = unit;
-  ui.targetMode.value = 'summon';
-};
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
@@ -154,38 +141,35 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
   <div class="relative">
     <div class="pixi-app-container">
       <canvas ref="canvas" @contextmenu.prevent />
-      <div class="absolute w-full top-0 left-0">
-        <header class="flex gap-3 py-3 items-center">
-          <div class="flex gap-3 justify-end right-0">
-            <button @click="rotateMap(90)">Rotate CW</button>
-            <button @click="rotateMap(-90)">Rotate CCW</button>
-          </div>
-          <button @click="emit('end-turn')">End turn</button>
-          <button @click="setTargetMode('move')">Move</button>
-          Skills
+      <header>
+        <button @click="rotateMap(90)">Rotate CW</button>
+        <button @click="rotateMap(-90)">Rotate CCW</button>
+
+        <button @click="emit('end-turn')">End turn</button>
+        <button @click="setTargetMode('move')">Move</button>
+        Skills
+        <button
+          v-for="skill in state.activeEntity.skills"
+          :key="skill.id"
+          :disabled="!state.activeEntity.canUseSkill(skill)"
+          @click="ui.selectedSkill.value = skill"
+        >
+          {{ skill.id }} ({{ skill.cost }})
+          {{ state.activeEntity.skillCooldowns[skill.id] }}
+        </button>
+        Loadout
+        <template v-if="state.activeEntity.kind === 'GENERAL'">
           <button
-            v-for="skill in state.activeEntity.skills"
-            :key="skill.id"
-            :disabled="!state.activeEntity.canUseSkill(skill)"
-            @click="selectSkill(skill)"
+            v-for="unit in activePlayer.summonableUnits"
+            :disabled="!activePlayer.canSummon(unit.unit.id)"
+            @click="ui.selectedSummon.value = unit.unit"
           >
-            {{ skill.id }} ({{ skill.cost }})
-            {{ state.activeEntity.skillCooldowns[skill.id] }}
+            {{ unit.unit.id }} ({{ unit.unit.summonCost }})
           </button>
-          Loadout
-          <template v-if="state.activeEntity.kind === 'GENERAL'">
-            <button
-              v-for="unit in activePlayer.summonableUnits"
-              :disabled="!activePlayer.canSummon(unit.unit.id)"
-              @click="selectUnit(unit.unit)"
-            >
-              {{ unit.unit.id }} ({{ unit.unit.summonCost }})
-            </button>
-          </template>
-        </header>
-      </div>
-      <div class="map absolute top-10">
-        <div class="floor" v-for="z in maxZ + 1" :key="z">
+        </template>
+      </header>
+      <div class="map">
+        <div v-for="z in maxZ + 1" :key="z">
           <div
             v-for="cell in getCellsByZ(z - 1)"
             :key="`${cell.position.toString()}`"
@@ -236,11 +220,28 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
   color: var(--gray-0);
 }
 
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  gap: var(--size-3);
+  align-items: center;
+
+  width: 100%;
+  padding-block: var(--size-3);
+}
+
 button {
   cursor: pointer;
+
   padding: var(--size-2) var(--size-3);
+
   color: white;
+
   background-color: var(--blue-7);
+  border-radius: var(--radius-1);
 
   &:disabled {
     opacity: 0.5;
@@ -248,7 +249,9 @@ button {
 }
 
 .map {
-  & > .floor {
+  position: absolute;
+  top: var(--size-10);
+  & > div {
     --width: v-bind('state.map.width');
     --height: v-bind('state.map.height');
 

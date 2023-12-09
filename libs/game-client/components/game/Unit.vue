@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src/entity/entity';
+
 import { Polygon } from 'pixi.js';
-import { Cell } from '../../../sdk/src/map/cell';
+import { OutlineFilter } from '@pixi/filter-outline';
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
+import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
+import { GlowFilter } from '@pixi/filter-glow';
+import type { Point3D } from '@hc/sdk/src/types';
 
 const { entity } = defineProps<{
   entity: Entity;
 }>();
 
 const { gameSession, assets, state, mapRotation } = useGame();
-const { hoveredCell } = useGameUi();
+const { hoveredCell, targetMode, selectedSkill } = useGameUi();
 
 const spritesheet = computed(() => assets.getSprite(entity.unitId, 'placeholder'));
 const textures = computed(() => createSpritesheetFrameObject('idle', spritesheet.value));
@@ -68,6 +73,55 @@ const hitArea = computed(() => {
     { x: x - offset.x, y: y + h - offset.y }
   ]);
 });
+
+const isSkillTarget = (point: Point3D) => {
+  if (targetMode.value !== 'skill') return false;
+  if (!selectedSkill.value) return false;
+
+  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
+};
+
+const activeFilter = new OutlineFilter(1.5, 0xffffff, 0.2, 1);
+const selectedfilter = new AdjustmentFilter({
+  gamma: 1.3,
+  contrast: 1.25,
+  saturation: 1.25
+});
+const inSkillAreaFilter = new GlowFilter({
+  outerStrength: 2,
+  innerStrength: 1,
+  color: 0xff0000,
+  alpha: 0.75
+});
+
+const filters = computed(() => {
+  const result = [];
+
+  if (
+    hoveredCell.value &&
+    gameSession.entityManager.getEntityAt(hoveredCell.value.position)?.id === entity.id
+  ) {
+    result.push(selectedfilter);
+  }
+
+  if (state.value.activeEntity.id === entity.id) {
+    result.push(activeFilter);
+  }
+
+  if (
+    hoveredCell.value &&
+    isSkillTarget(hoveredCell.value) &&
+    selectedSkill.value?.isInAreaOfEffect(
+      gameSession,
+      entity.position,
+      state.value.activeEntity,
+      hoveredCell.value.position
+    )
+  ) {
+    result.push(inSkillAreaFilter);
+  }
+  return result;
+});
 </script>
 
 <template>
@@ -82,6 +136,7 @@ const hitArea = computed(() => {
       :anchor-x="0.5"
       :scale-x="scaleX"
       :hit-area="hitArea"
+      :filters="filters"
       @pointerenter="
         () => {
           hoveredCell = gameSession.map.getCellAt(entity.position);
