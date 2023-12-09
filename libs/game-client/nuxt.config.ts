@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     },
     clerkSecretKey: process.env.CLERK_SECRET_KEY
   },
+  components: [
+    {
+      path: './components',
+      pathPrefix: false
+    }
+  ],
   vite: {
     vue: {
       script: {

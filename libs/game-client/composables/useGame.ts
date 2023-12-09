@@ -23,11 +23,13 @@ export type GameContext = {
   gameSession: GameSession;
   sendInput: ShortEmits<GameEmits>;
   mapRotation: Ref<0 | 90 | 180 | 270>;
+  assets: AssetsContext;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 
 export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
+  const assets = useAssetsProvider();
   const state = shallowRef<GameState>(session.getState());
 
   const unsub = session.subscribe(event => {
@@ -42,7 +44,8 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     state,
     gameSession: session,
     sendInput: emit,
-    mapRotation: ref(0)
+    mapRotation: ref(0),
+    assets
   };
 
   provide(GAME_INJECTION_KEY, context);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CELL_SIZE } from '../utils/constants';
+import { CELL_SIZE } from '../../utils/constants';
 import { useApplication } from 'vue3-pixi';
 
 const { x, y, z } = defineProps<{

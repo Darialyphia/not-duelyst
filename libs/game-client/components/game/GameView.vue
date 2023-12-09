@@ -3,22 +3,21 @@ import { Application, BaseTexture, SCALE_MODES, WRAP_MODES } from 'pixi.js';
 import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
-import { GAME_INJECTION_KEY } from '../composables/useGame';
 import PixiRenderer from './PixiRenderer.vue';
 import type { Entity } from '@hc/sdk/src/entity/entity';
 import type { GameSession } from '@hc/sdk';
 import type { Point3D } from '@hc/sdk/src/types';
-import type { Skill } from '../../sdk/src/skill/skill-builder';
-import type { Cell } from '../../sdk/src/map/cell';
-import type { UnitBlueprint } from '../../sdk/src/units/unit-lookup';
-import type { GameEmits } from '../composables/useGame';
+import type { Skill } from '@hc/sdk/src/skill/skill-builder';
+import type { Cell } from '@hc/sdk/src/map/cell';
+import type { UnitBlueprint } from '@hc/sdk/src/units/unit-lookup';
+import type { GameEmits } from '../../composables/useGame';
 
 const emit = defineEmits<GameEmits>();
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
 const game = useGameProvider(gameSession, emit);
-const { state, mapRotation } = game;
+const { state, mapRotation, assets } = game;
 
 const distanceMap = computed(() => {
   return state.value.map.getDistanceMap(
@@ -107,7 +106,7 @@ window.gsap.registerPlugin(PixiPlugin);
 
 const canvas = ref<HTMLCanvasElement>();
 
-onMounted(() => {
+onMounted(async () => {
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
   // and we can forward the providers to it
@@ -134,6 +133,8 @@ onMounted(() => {
   const app = createApp(PixiRenderer);
   app.provide(appInjectKey, pixiApp);
   app.provide(GAME_INJECTION_KEY, game);
+
+  await assets.load();
   app.mount(pixiApp.stage);
 });
 </script>

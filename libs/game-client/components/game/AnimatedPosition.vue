@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import gsap from 'gsap';
-import type { Point3D } from '../../sdk/src/types';
 
 const props = defineProps<{
   x: number;

@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useApplication } from 'vue3-pixi';
-import { tileSpritesPaths } from '../assets/tiles';
 import { Polygon } from 'pixi.js';
 import type { Viewport } from 'pixi-viewport';
 import placeholderSprite from '../assets/sprites/placeholder.png';
 
-const { state, mapRotation } = useGame();
-
+const { state, mapRotation, assets } = useGame();
 const app = useApplication();
 
 const cellHitArea = new Polygon([
@@ -49,19 +47,7 @@ until(screenViewport)
     :disable-on-context-menu="true"
   >
     <container :sortable-children="true">
-      <IsoPositioner
-        v-for="cell in state.map.cells"
-        :key="cell.id"
-        :x="cell.position.x"
-        :y="cell.position.y"
-        :z="cell.position.z"
-      >
-        <sprite
-          :texture="tileSpritesPaths[cell.tile.id]"
-          :anchor-x="0.5"
-          :hit-area="cellHitArea"
-        />
-      </IsoPositioner>
+      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
       <IsoPositioner
         v-for="entity in state.entities"
