@@ -1,5 +1,5 @@
 import { deg2Rad } from '@hc/shared';
-import type { Point3D } from '@hc/sdk/src/types';
+import type { Point3D } from '@hc/sdk';
 
 export type IsoPoint = {
   isoX: number;

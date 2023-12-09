@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
 import type { Container, Cursor } from 'pixi.js';
-import type { Cell } from '@hc/sdk/src/map/cell';
-import type { Point3D } from '@hc/sdk/src/types';
+import type { Cell, Point3D } from '@hc/sdk';
 import { isDefined } from '@hc/shared';
 
 const { cell, cursor } = defineProps<{

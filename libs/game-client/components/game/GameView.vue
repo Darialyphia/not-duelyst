@@ -4,12 +4,7 @@ import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
 import PixiRenderer from './PixiRenderer.vue';
-import type { Entity } from '@hc/sdk/src/entity/entity';
-import type { GameSession } from '@hc/sdk';
-import type { Point3D } from '@hc/sdk/src/types';
-import type { Skill } from '@hc/sdk/src/skill/skill-builder';
-import type { Cell } from '@hc/sdk/src/map/cell';
-import type { UnitBlueprint } from '@hc/sdk/src/units/unit-lookup';
+import type { Cell, Entity, GameSession, Point3D } from '@hc/sdk';
 import type { GameEmits } from '../../composables/useGame';
 
 const emit = defineEmits<GameEmits>();

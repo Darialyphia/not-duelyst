@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Polygon } from 'pixi.js';
-import type { Cell } from '@hc/sdk/src/map/cell';
+import type { Cell } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { cell } = defineProps<{ cell: Cell }>();

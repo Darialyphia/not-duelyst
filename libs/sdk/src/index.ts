@@ -1,3 +1,11 @@
 export { GameSession, type GameState, type SerializedGameState } from './game-session';
 export { type SerializedAction } from './action/action-deserializer';
 export { type SerializedInput } from './input/input-reducer';
+export type { FXContext } from './action/action';
+export type { Entity, EntityId } from './entity/entity';
+export type { Cell } from './map/cell';
+export type { Tile } from './map/tile';
+export type { Skill, SkillId } from './skill/skill-builder';
+export type { Point3D } from './types';
+export type { UnitBlueprint, UnitId } from './units/unit-lookup';
+export { Vec3 } from './utils/vector';

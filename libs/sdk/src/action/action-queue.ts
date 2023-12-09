@@ -11,11 +11,12 @@ export class ActionQueue {
     this.deserializer = new ActionDeserializer(this.ctx);
   }
 
-  private process() {
+  private async process() {
     this.isRunning = true;
     do {
       const action = this.queue.shift();
-      action?.execute();
+
+      await action?.execute();
     } while (this.queue.length);
     this.isRunning = false;
   }

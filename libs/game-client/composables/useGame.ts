@@ -1,10 +1,17 @@
 import { GameSession, type GameState } from '@hc/sdk';
-import type { EntityId } from '@hc/sdk/src/entity/entity';
-import type { Skill, SkillId } from '@hc/sdk/src/skill/skill-builder';
-import type { Point3D } from '@hc/sdk/src/types';
-import type { UnitBlueprint, UnitId } from '@hc/sdk/src/units/unit-lookup';
+import type {
+  Point3D,
+  UnitBlueprint,
+  UnitId,
+  EntityId,
+  Skill,
+  SkillId,
+  Cell,
+  FXContext
+} from '@hc/sdk';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
-import type { Cell } from '@hc/sdk/src/map/cell';
+import type { Viewport } from 'pixi-viewport';
+import type { AnimatedSprite } from 'pixi.js';
 
 type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
   Values<{
@@ -32,13 +39,17 @@ export type GameContext = {
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
   };
+  fx: {
+    viewport?: Viewport;
+    spriteMap: Map<EntityId, MaybeRefOrGetter<AnimatedSprite | undefined>>;
+  };
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 
 export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
   const assets = useAssetsProvider();
-  const state = shallowRef<GameState>(session.getState());
+  const state = ref<GameState>(session.getState());
   const unsub = session.subscribe(event => {
     const newState = session.getState();
     state.value = newState;
@@ -57,9 +68,15 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
 
   const context: GameContext = {
     assets,
-    state: state,
+    state: state as Ref<GameState>,
     gameSession: session,
-    sendInput: emit,
+    sendInput: (type, payload?) => {
+      // @ts-expect-error
+      emit(type, payload);
+      context.ui.targetMode.value = null;
+      context.ui.selectedSkill.value = null;
+      context.ui.selectedSummon.value = null;
+    },
     mapRotation: ref(0),
     ui: {
       distanceMap,
@@ -67,6 +84,123 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       hoveredCell: ref(null),
       selectedSkill: ref(null),
       selectedSummon: ref(null)
+    },
+    fx: {
+      viewport: undefined,
+      spriteMap: new Map()
+    }
+  };
+
+  session.fxContext = {
+    playAnimationOnce(
+      entityId,
+      animationName,
+      { animationNameFallback = 'idle', framePercentage = 1 } = {}
+    ) {
+      return new Promise<void>(resolve => {
+        const entity = session.entityManager.getEntityById(entityId);
+        if (!entity) {
+          console.warn(`FXContext: entity not found for entityId ${entityId}`);
+          return resolve();
+        }
+
+        const sprite = toValue(context.fx.spriteMap.get(entityId));
+        if (!sprite) {
+          console.warn(`FXContext: sprite not found for entity ${entityId}`);
+          return resolve();
+        }
+
+        const sheet = assets.getSprite(entity.unitId, 'placeholder');
+        const hasAnimation = !!sheet.animations[animationName];
+        if (!hasAnimation) {
+          console.warn(
+            `FXContext: animation not found on sprite : ${animationName}. Using fallback ${animationNameFallback}`
+          );
+          return resolve();
+        }
+
+        sprite.textures = createSpritesheetFrameObject(
+          hasAnimation ? animationName : animationNameFallback,
+          sheet
+        );
+        sprite.loop = false;
+        sprite.gotoAndPlay(0);
+
+        sprite.onFrameChange = frame => {
+          if (frame > sprite.totalFrames * framePercentage) {
+            resolve();
+            sprite.onFrameChange = undefined;
+          }
+        };
+
+        sprite.onComplete = () => {
+          sprite.textures = createSpritesheetFrameObject('idle', sheet);
+          sprite.loop = true;
+          sprite.gotoAndPlay(0);
+          sprite.onComplete = undefined;
+          sprite.onFrameChange = undefined;
+          resolve();
+        };
+
+        if (framePercentage === 0) {
+          resolve();
+        }
+      });
+    },
+
+    playAnimationUntil(entityId, animationName, { animationNameFallback = 'idle' } = {}) {
+      const entity = session.entityManager.getEntityById(entityId);
+      if (!entity) {
+        console.warn(`FXContext: entity not found for entityId ${entityId}`);
+        return () => {};
+      }
+
+      const sprite = toValue(context.fx.spriteMap.get(entityId));
+      if (!sprite) {
+        console.warn(`FXContext: sprite not found for entity ${entityId}`);
+        return () => {};
+      }
+
+      const sheet = assets.getSprite(entity.unitId, 'placeholder');
+      const hasAnimation = !!sheet.animations[animationName];
+      if (!hasAnimation) {
+        console.warn(
+          `FXContext: animation not found on sprite : ${animationName}. Using fallback ${animationNameFallback}`
+        );
+        return () => {};
+      }
+
+      sprite.textures = createSpritesheetFrameObject(
+        hasAnimation ? animationName : animationNameFallback,
+        sheet
+      );
+      sprite.loop = true;
+      sprite.gotoAndPlay(0);
+
+      return () => {
+        sprite.textures = createSpritesheetFrameObject('idle', sheet);
+        sprite.loop = true;
+        sprite.gotoAndPlay(0);
+      };
+    },
+
+    moveEntity(entityId, point, duration) {
+      return new Promise<void>(resolve => {
+        // wwe are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be tracked
+        const entity = state.value.entities.find(e => e.id === entityId);
+        if (!entity) {
+          console.warn(`FXContext: entity not found for entityId ${entityId}`);
+          return resolve();
+        }
+
+        entity.position.x = point.x;
+        entity.position.y = point.y;
+        entity.position.z = point.z;
+
+        setTimeout(() => {
+          resolve();
+        }, duration);
+      });
     }
   };
 
@@ -89,15 +223,6 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     }
   });
 
-  watch(
-    () => state.value.activeEntity.id,
-    (newVal, oldVal) => {
-      if (newVal === oldVal) return;
-      context.ui.targetMode.value = null;
-      context.ui.selectedSkill.value = null;
-      context.ui.selectedSummon.value = null;
-    }
-  );
   provide(GAME_INJECTION_KEY, context);
 
   return context;

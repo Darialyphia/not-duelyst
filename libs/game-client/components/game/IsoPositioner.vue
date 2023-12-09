@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Point3D } from '../../../sdk/src/types';
+import type { Point3D } from '@hc/sdk';
 import { CELL_SIZE } from '../../utils/constants';
 import { useApplication } from 'vue3-pixi';
 import { rotate } from '../../utils/rotate-map';

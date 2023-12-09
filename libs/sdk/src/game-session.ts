@@ -12,6 +12,7 @@ import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
 import { clamp } from '@hc/shared';
 import { ActionQueue } from './action/action-queue';
+import { FXContext } from './action/action';
 
 export type GameState = {
   map: Pick<GameMap, 'height' | 'width' | 'cells'>;
@@ -63,6 +64,8 @@ export class GameSession {
   emitter = mitt<GlobalGameEvents>();
 
   nextEventId = 1;
+
+  fxContext?: FXContext;
 
   private constructor(
     state: SerializedGameState,

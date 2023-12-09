@@ -49,8 +49,8 @@ export class InputReducer {
       );
     }
 
-    const action = inputMap[type];
+    const input = inputMap[type];
 
-    new action(payload, this.ctx).execute();
+    new input(payload, this.ctx).execute();
   }
 }

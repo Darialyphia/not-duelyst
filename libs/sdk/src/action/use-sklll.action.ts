@@ -1,7 +1,7 @@
 import { EntityId } from '../entity/entity';
 import { SkillId } from '../skill/skill-builder';
 import { Point3D } from '../types';
-import { GameAction } from './action';
+import { FXContext, GameAction } from './action';
 
 export class UseSkillAction extends GameAction<{
   casterId: EntityId;
@@ -9,6 +9,10 @@ export class UseSkillAction extends GameAction<{
   target: Point3D;
 }> {
   readonly name = 'USE_SKILL';
+
+  protected fxImpl() {
+    return Promise.resolve();
+  }
 
   protected impl() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.casterId);

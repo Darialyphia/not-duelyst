@@ -8,6 +8,10 @@ export class DealDamageAction extends GameAction<{
 }> {
   readonly name = 'DEAL_DAMAGE';
 
+  protected fxImpl() {
+    return Promise.resolve();
+  }
+
   protected impl() {
     const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId)!;
 

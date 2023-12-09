@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Cell } from '@hc/sdk/src/map/cell';
+import type { Cell } from '@hc/sdk';
 
 const { cell } = defineProps<{ cell: Cell }>();
 const { hoveredCell } = useGameUi();

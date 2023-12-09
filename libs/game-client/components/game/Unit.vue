@@ -1,21 +1,27 @@
 <script setup lang="ts">
-import type { Entity } from '@hc/sdk/src/entity/entity';
+import type { Entity, Point3D } from '@hc/sdk';
 import { PTransition } from 'vue3-pixi';
 import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
-import type { Point3D } from '@hc/sdk/src/types';
+import type { AnimatedSprite } from 'pixi.js';
+import type { VNodeRef } from 'nuxt/dist/app/compat/capi';
 
 const { entity } = defineProps<{
   entity: Entity;
 }>();
 
-const { gameSession, assets, state, mapRotation } = useGame();
+const { gameSession, assets, state, mapRotation, fx } = useGame();
 const { hoveredCell, targetMode, selectedSkill } = useGameUi();
 
-const spritesheet = computed(() => assets.getSprite(entity.unitId, 'placeholder'));
-const textures = computed(() => createSpritesheetFrameObject('idle', spritesheet.value));
+const spritesheet = assets.getSprite(entity.unitId, 'placeholder');
+const textures = createSpritesheetFrameObject('idle', spritesheet);
+
+const spriteRef = ref<AnimatedSprite>();
+watchEffect(() => {
+  fx.spriteMap.set(entity.id, spriteRef);
+});
 
 const scaleX = computed(() => {
   if (mapRotation.value === 90 || mapRotation.value === 180) {
@@ -34,8 +40,8 @@ const offset = computed(() => ({
 }));
 
 const hitArea = computed(() => {
-  const meta = spritesheet.value.data.meta as AsepriteMeta;
-  const { data } = spritesheet.value;
+  const meta = spritesheet.data.meta as AsepriteMeta;
+  const { data } = spritesheet;
 
   const frameSize = {
     w: meta.size.w / Object.keys(data.frames).length,
@@ -155,11 +161,13 @@ const onStatbarsEnter = (el: Container, done: () => void) => {
     :offset="offset"
   >
     <animated-sprite
+      ref="spriteRef"
       :textures="textures"
       :anchor-x="0.5"
       :scale-x="scaleX"
       :hit-area="hitArea"
       :filters="filters"
+      loop
       @pointerleave="() => (hoveredCell = null)"
       @pointerenter="
         () => {
