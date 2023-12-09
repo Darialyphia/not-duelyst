@@ -14,7 +14,7 @@ import { clamp } from '@hc/shared';
 import { ActionQueue } from './action/action-queue';
 
 export type GameState = {
-  map: GameMap;
+  map: Pick<GameMap, 'height' | 'width' | 'cells'>;
   entities: Entity[];
   players: Player[];
   activeEntity: Entity;
@@ -111,10 +111,14 @@ export class GameSession {
 
   getState(): Readonly<GameState> {
     return {
-      map: this.map,
-      entities: this.entityManager.getList(),
-      players: this.playerManager.getList(),
-      activeEntity: this.atb.activeEntity
+      map: {
+        height: this.map.height,
+        width: this.map.width,
+        cells: this.map.cells.map(cell => cell.clone())
+      },
+      entities: this.entityManager.getList().map(entity => entity.clone()),
+      players: this.playerManager.getList().map(player => player.clone()),
+      activeEntity: this.atb.activeEntity.clone()
     };
   }
 

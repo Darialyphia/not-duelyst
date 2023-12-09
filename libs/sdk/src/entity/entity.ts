@@ -3,7 +3,7 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { clamp, Values } from '@hc/shared';
+import { clamp, objectKeys, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
@@ -93,6 +93,23 @@ export class Entity implements Serializable {
 
   equals(entity: Entity) {
     return entity.id === this.id;
+  }
+
+  clone() {
+    const clone = new Entity(this.ctx, {
+      id: this.id,
+      position: this.position,
+      atbSeed: this.atbSeed,
+      playerId: this.playerId,
+      unitId: this.unitId
+    });
+
+    Object.keys(this).forEach(key => {
+      // @ts-expect-error cant be arsed
+      clone[key] = this[key];
+    });
+
+    return clone;
   }
 
   serialize() {

@@ -17,6 +17,25 @@ export class Player implements Serializable {
     public readonly generalId: UnitId
   ) {}
 
+  serialize() {
+    return {
+      id: this.id,
+      loadout: this.loadout,
+      generalId: this.generalId
+    };
+  }
+
+  clone() {
+    const clone = new Player(this.ctx, this.id, this.loadout, this.generalId);
+
+    Object.keys(this).forEach(key => {
+      // @ts-expect-error cant be arsed
+      clone[key] = this[key];
+    });
+
+    return clone;
+  }
+
   canSummon(unitId: UnitId) {
     const unit = UNITS[unitId];
     const loadoutUnit = this.loadout.units[unitId];
@@ -32,13 +51,5 @@ export class Player implements Serializable {
       unit: UNITS[unitId],
       ...info
     }));
-  }
-
-  serialize() {
-    return {
-      id: this.id,
-      loadout: this.loadout,
-      generalId: this.generalId
-    };
   }
 }

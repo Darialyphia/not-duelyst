@@ -1,12 +1,7 @@
-import {
-  type FrameObject,
-  Spritesheet,
-  ExtensionType,
-  LoaderParserPriority,
-  Texture
-} from 'pixi.js';
+import { ExtensionType, LoaderParserPriority, Texture } from 'pixi.js';
 import { z } from 'zod';
 import { uiSpritesPaths } from '../assets/ui';
+import { unitSpritesPaths } from '../assets/units';
 import { tileSpritesPaths } from '../assets/tiles';
 
 export const trimExtension = (str: string) => str.replace(/\.[^/.]+$/, '');
@@ -67,7 +62,8 @@ type AsepriteJson = z.infer<typeof asepriteJsonSchema>;
 
 const spriteUrls: string[] = [
   ...Object.values(uiSpritesPaths),
-  ...Object.values(tileSpritesPaths)
+  ...Object.values(tileSpritesPaths),
+  ...Object.values(unitSpritesPaths)
 ];
 const isSprite = (url: string) => !!spriteUrls.find(path => url.includes(path));
 

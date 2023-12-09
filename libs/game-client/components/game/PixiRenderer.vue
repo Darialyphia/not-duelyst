@@ -2,19 +2,9 @@
 import { useApplication } from 'vue3-pixi';
 import { Polygon } from 'pixi.js';
 import type { Viewport } from 'pixi-viewport';
-import placeholderSprite from '../assets/sprites/placeholder.png';
 
-const { state, mapRotation, assets } = useGame();
+const { state, mapRotation } = useGame();
 const app = useApplication();
-
-const cellHitArea = new Polygon([
-  { x: CELL_SIZE / 2, y: 0 },
-  { x: CELL_SIZE, y: CELL_SIZE / 4 },
-  { x: CELL_SIZE, y: CELL_SIZE * 0.75 },
-  { x: CELL_SIZE / 2, y: CELL_SIZE },
-  { x: 0, y: CELL_SIZE * 0.75 },
-  { x: 0, y: CELL_SIZE / 4 }
-]);
 
 const screenViewport = shallowRef<Viewport>();
 
@@ -49,15 +39,7 @@ until(screenViewport)
     <container :sortable-children="true">
       <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
-      <IsoPositioner
-        v-for="entity in state.entities"
-        :key="entity.id"
-        :x="entity.position.x"
-        :y="entity.position.y"
-        :z="entity.position.z + 0.1"
-      >
-        <sprite :texture="placeholderSprite" :anchor-x="0.5" :y="-CELL_SIZE / 2" />
-      </IsoPositioner>
+      <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
     </container>
   </viewport>
 </template>

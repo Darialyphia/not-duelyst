@@ -20,7 +20,7 @@ const game = useGameProvider(gameSession, emit);
 const { state, mapRotation, assets } = game;
 
 const distanceMap = computed(() => {
-  return state.value.map.getDistanceMap(
+  return gameSession.map.getDistanceMap(
     state.value.activeEntity.position,
     state.value.activeEntity.speed
   );
@@ -143,7 +143,7 @@ onMounted(async () => {
   <div class="relative">
     <div class="pixi-app-container">
       <canvas ref="canvas" @contextmenu.prevent />
-      <div class="absolute w-full top-0 left-0">
+      <div class="absolute w-1/2 top-0 left-0">
         <header class="flex gap-3 py-3 items-center">
           <div class="flex gap-3 justify-end right-0">
             <button @click="mapRotation = 0">0</button>

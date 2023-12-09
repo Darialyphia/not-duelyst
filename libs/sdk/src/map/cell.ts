@@ -15,6 +15,17 @@ export class Cell {
     this.position = Vec3.fromPoint3D(position);
   }
 
+  clone() {
+    const clone = new Cell(this.tile, this.position);
+
+    Object.keys(this).forEach(key => {
+      // @ts-expect-error cant be arsed
+      clone[key] = this[key];
+    });
+
+    return clone;
+  }
+
   get id(): CellId {
     return pointToCellId(this);
   }
