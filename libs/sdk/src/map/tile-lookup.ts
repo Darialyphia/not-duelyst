@@ -10,6 +10,10 @@ export const TILES = {
     terrain: TERRAIN.WATER,
     isHalfTile: false
   },
+  dirt: {
+    terrain: TERRAIN.GROUND,
+    isHalfTile: false
+  },
   grass: {
     terrain: TERRAIN.GROUND,
     isHalfTile: false

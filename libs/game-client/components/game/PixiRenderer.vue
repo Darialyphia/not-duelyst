@@ -17,10 +17,12 @@ until(screenViewport)
     });
     screenViewport.value
       ?.drag({
-        mouseButtons: 'right'
+        mouseButtons: 'left'
       })
       .pinch()
+      .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
+      .clampZoom({ minScale: 0.75, maxScale: 4 })
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
   });

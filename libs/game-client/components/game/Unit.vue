@@ -4,7 +4,6 @@ import type { Entity } from '@hc/sdk/src/entity/entity';
 import { Polygon } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
-import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { GlowFilter } from '@pixi/filter-glow';
 import type { Point3D } from '@hc/sdk/src/types';
 
@@ -74,6 +73,12 @@ const hitArea = computed(() => {
   ]);
 });
 
+const isHovered = computed(
+  () =>
+    hoveredCell.value &&
+    gameSession.entityManager.getEntityAt(hoveredCell.value.position)?.id === entity.id
+);
+
 const isSkillTarget = (point: Point3D) => {
   if (targetMode.value !== 'skill') return false;
   if (!selectedSkill.value) return false;
@@ -97,10 +102,7 @@ const inSkillAreaFilter = new GlowFilter({
 const filters = computed(() => {
   const result = [];
 
-  if (
-    hoveredCell.value &&
-    gameSession.entityManager.getEntityAt(hoveredCell.value.position)?.id === entity.id
-  ) {
+  if (isHovered.value) {
     result.push(selectedfilter);
   }
 
@@ -137,23 +139,33 @@ const filters = computed(() => {
       :scale-x="scaleX"
       :hit-area="hitArea"
       :filters="filters"
+      @pointerleave="() => (hoveredCell = null)"
       @pointerenter="
         () => {
           hoveredCell = gameSession.map.getCellAt(entity.position);
         }
       "
-    >
-      <!-- <graphics
-        :alpha="0.25"
-        @render="
-          g => {
-            g.clear();
-            g.beginFill('red');
-            g.drawPolygon(hitArea);
-            g.endFill();
-          }
-        "
-      /> -->
-    </animated-sprite>
+    />
+
+    <template v-if="isHovered">
+      <StatBar
+        :z-index="entity.position.y"
+        :y="CELL_SIZE * 0.65 - 6"
+        :size="3"
+        :value="entity.hp"
+        :max-value="entity.maxHp"
+        :filled-color="0x00cc00"
+        :empty-color="0xcc0000"
+      />
+
+      <StatBar
+        :z-index="entity.position.y"
+        :y="CELL_SIZE * 0.65 - 3"
+        :size="3"
+        :value="entity.ap"
+        :max-value="entity.maxAp"
+        :filled-color="0x0000cc"
+      />
+    </template>
   </IsoPositioner>
 </template>

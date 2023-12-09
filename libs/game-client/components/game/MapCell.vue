@@ -70,9 +70,7 @@ const isMovePathHighlighted = computed(() => {
         :anchor-x="0.5"
       />
 
-      <container :pivot-x="mapRotation % 180 === 90 ? CELL_SIZE : 0">
-        <MapCellHighlight :cell="cell" />
-      </container>
+      <MapCellHighlight :cell="cell" />
     </container>
     <HoveredCell :cell="cell" />
   </IsoPositioner>
