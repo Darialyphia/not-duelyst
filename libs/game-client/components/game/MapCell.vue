@@ -4,8 +4,9 @@ import type { Cell } from '@hc/sdk/src/map/cell';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
-const { assets, ui } = useGame();
-const { hoveredCell } = ui;
+const { assets, state, sendInput } = useGame();
+const { hoveredCell, targetMode, distanceMap } = useGameUi();
+
 const hitArea = new Polygon([
   { x: 0, y: 0 },
   { x: CELL_SIZE / 2, y: CELL_SIZE / 4 },
@@ -14,6 +15,20 @@ const hitArea = new Polygon([
   { x: -CELL_SIZE / 2, y: CELL_SIZE * 0.75 },
   { x: -CELL_SIZE / 2, y: CELL_SIZE / 4 }
 ]);
+
+const isMoveTarget = computed(() => {
+  if (targetMode.value !== 'move') return false;
+  return state.value.activeEntity.canMove(distanceMap.value.get(cell.position));
+});
+
+const onPointerup = () => {
+  if (isMoveTarget.value) {
+    sendInput('move', {
+      ...cell.position,
+      entityId: state.value.activeEntity.id
+    });
+  }
+};
 </script>
 
 <template>
@@ -24,6 +39,7 @@ const hitArea = new Polygon([
       :hit-area="hitArea"
       @pointerenter="hoveredCell = cell"
       @pointerleave="hoveredCell = null"
+      @pointerup="onPointerup"
     >
       <HoveredCell :cell="cell" />
     </animated-sprite>

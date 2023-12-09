@@ -27,6 +27,8 @@ export type GameContext = {
   assets: AssetsContext;
   ui: {
     hoveredCell: Ref<Nullable<Cell>>;
+    distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
+    targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
   };
 };
 
@@ -34,10 +36,17 @@ export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 
 export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
   const assets = useAssetsProvider();
-  const state = ref<GameState>(session.getState());
+  const state = shallowRef<GameState>(session.getState());
   const unsub = session.subscribe(event => {
     const newState = session.getState();
     state.value = newState;
+  });
+
+  const distanceMap = computed(() => {
+    return session.map.getDistanceMap(
+      state.value.activeEntity.position,
+      state.value.activeEntity.speed
+    );
   });
 
   onUnmounted(() => {
@@ -45,13 +54,14 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   });
 
   const context: GameContext = {
-    state: state as Ref<GameState>,
+    assets,
+    state: state,
     gameSession: session,
     sendInput: emit,
     mapRotation: ref(0),
-
-    assets,
     ui: {
+      distanceMap,
+      targetMode: ref(null),
       hoveredCell: ref(null)
     }
   };

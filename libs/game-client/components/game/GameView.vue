@@ -17,7 +17,7 @@ const emit = defineEmits<GameEmits>();
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 
 const game = useGameProvider(gameSession, emit);
-const { state, mapRotation, assets } = game;
+const { state, ui, mapRotation, assets } = game;
 
 const distanceMap = computed(() => {
   return gameSession.map.getDistanceMap(
@@ -27,19 +27,19 @@ const distanceMap = computed(() => {
 });
 
 const isMoveTarget = (point: Point3D) => {
-  if (targetMode.value !== 'move') return false;
+  if (ui.targetMode.value !== 'move') return false;
   return state.value.activeEntity.canMove(distanceMap.value.get(point));
 };
 
 const isSkillTarget = (point: Point3D) => {
-  if (targetMode.value !== 'skill') return false;
+  if (ui.targetMode.value !== 'skill') return false;
   if (!selectedSkill.value) return false;
 
   return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
 };
 
 const isSummonTarget = (point: Point3D) => {
-  if (targetMode.value !== 'summon') return false;
+  if (ui.targetMode.value !== 'summon') return false;
 
   console.log(
     point,
@@ -52,12 +52,10 @@ const isSummonTarget = (point: Point3D) => {
   );
 };
 
-const targetMode = ref<null | 'move' | 'skill' | 'summon'>(null);
-
 const selectedSkill = ref<null | Skill>();
 const selectSkill = (skill: Skill) => {
   selectedSkill.value = skill;
-  targetMode.value = 'skill';
+  ui.targetMode.value = 'skill';
 };
 
 const onCellClick = (cell: Cell) => {
@@ -97,7 +95,7 @@ const activePlayer = computed(
 const selectedUnit = ref<UnitBlueprint | null>();
 const selectUnit = (unit: UnitBlueprint) => {
   selectedUnit.value = unit;
-  targetMode.value = 'summon';
+  ui.targetMode.value = 'summon';
 };
 
 // @ts-ignore  enable PIXI devtools
@@ -146,6 +144,10 @@ const getEntitiesByZ = (z: number) =>
 const rotateMap = (diff: number) => {
   mapRotation.value = ((mapRotation.value + diff) % 360) as any;
 };
+
+const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
+  ui.targetMode.value = mode;
+};
 </script>
 
 <template>
@@ -159,7 +161,7 @@ const rotateMap = (diff: number) => {
             <button @click="rotateMap(-90)">Rotate CCW</button>
           </div>
           <button @click="emit('end-turn')">End turn</button>
-          <button @click="targetMode = 'move'">Move</button>
+          <button @click="setTargetMode('move')">Move</button>
           Skills
           <button
             v-for="skill in state.activeEntity.skills"

@@ -14,7 +14,7 @@ const textures = computed(() =>
   <animated-sprite
     v-if="hoveredCell?.id === cell.id"
     :x="0"
-    :y="CELL_SIZE / 2"
+    :y="cell.isHalfTile ? CELL_SIZE * 0.75 : CELL_SIZE / 2"
     :event-mode="'none'"
     :anchor="0.5"
     playing
