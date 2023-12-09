@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Polygon } from 'pixi.js';
 import type { Cell } from '@hc/sdk/src/map/cell';
+import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
-const { assets, state, sendInput, mapRotation } = useGame();
+const { assets, state, sendInput, mapRotation, gameSession } = useGame();
 const { hoveredCell, targetMode, distanceMap } = useGameUi();
 
 const hitArea = new Polygon([
@@ -29,11 +30,36 @@ const onPointerup = () => {
     });
   }
 };
+
+const pathFilter = new ColorOverlayFilter(0x7777ff, 0.5);
+
+const isMovePathHighlighted = computed(() => {
+  if (!hoveredCell.value) return false;
+  if (targetMode.value !== 'move') return false;
+
+  const entityOnCell = gameSession.entityManager.getEntityAt(cell);
+  const hasAlly = entityOnCell?.playerId === state.value.activeEntity.playerId;
+
+  if (!isMoveTarget.value && !hasAlly) return false;
+
+  const path = gameSession.map.getPathTo(
+    state.value.activeEntity,
+    hoveredCell.value.position,
+    state.value.activeEntity.remainingMovement
+  );
+
+  if (!path) return false;
+
+  const isInPath = path.path.some(vec => vec.equals(cell.position));
+
+  return isInPath || state.value.activeEntity.id === entityOnCell?.id;
+});
 </script>
 
 <template>
   <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z">
     <container
+      :filters="isMovePathHighlighted ? [pathFilter] : []"
       :hit-area="hitArea"
       @pointerenter="hoveredCell = cell"
       @pointerleave="hoveredCell = null"

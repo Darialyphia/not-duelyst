@@ -137,8 +137,15 @@ export class GameMap implements Serializable {
     return new Pathfinder(this.ctx, boundaries).getDistanceMap(point);
   }
 
-  getPathTo(entity: Entity, point: Point3D) {
-    const path = new Pathfinder(this.ctx).findPath(entity.position, point);
+  getPathTo(entity: Entity, point: Point3D, maxDistance?: number) {
+    const boundaries = maxDistance
+      ? ([
+          Vec3.sub(point, { x: maxDistance, y: maxDistance, z: maxDistance }),
+          Vec3.add(point, { x: maxDistance, y: maxDistance, z: maxDistance })
+        ] as [Vec3, Vec3])
+      : undefined;
+
+    const path = new Pathfinder(this.ctx, boundaries).findPath(entity.position, point);
 
     if (!path) return null;
 
