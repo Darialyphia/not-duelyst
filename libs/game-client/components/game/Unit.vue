@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src/entity/entity';
-
-import { Polygon } from 'pixi.js';
+import { PTransition } from 'vue3-pixi';
+import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
@@ -124,6 +124,27 @@ const filters = computed(() => {
   }
   return result;
 });
+
+const onBeforeStatbarsEnter = (el: Container) => {
+  nextTick(() => {
+    gsap.set(el, {
+      pixi: {
+        alpha: 0
+      }
+    });
+  });
+};
+
+const onStatbarsEnter = (el: Container, done: () => void) => {
+  gsap.to(el, {
+    duration: 0.2,
+    ease: Power2.easeOut,
+    onComplete: done,
+    pixi: {
+      alpha: 1
+    }
+  });
+};
 </script>
 
 <template>
@@ -147,25 +168,27 @@ const filters = computed(() => {
       "
     />
 
-    <template v-if="isHovered">
-      <StatBar
-        :z-index="entity.position.y"
-        :y="CELL_SIZE * 0.65 - 6"
-        :size="3"
-        :value="entity.hp"
-        :max-value="entity.maxHp"
-        :filled-color="0x00cc00"
-        :empty-color="0xcc0000"
-      />
+    <PTransition appear @before-enter="onBeforeStatbarsEnter" @enter="onStatbarsEnter">
+      <container v-if="isHovered">
+        <StatBar
+          :z-index="entity.position.y"
+          :y="CELL_SIZE * 0.65 - 6"
+          :size="3"
+          :value="entity.hp"
+          :max-value="entity.maxHp"
+          :filled-color="0x00cc00"
+          :empty-color="0xcc0000"
+        />
 
-      <StatBar
-        :z-index="entity.position.y"
-        :y="CELL_SIZE * 0.65 - 3"
-        :size="3"
-        :value="entity.ap"
-        :max-value="entity.maxAp"
-        :filled-color="0x0000cc"
-      />
-    </template>
+        <StatBar
+          :z-index="entity.position.y"
+          :y="CELL_SIZE * 0.65 - 3"
+          :size="3"
+          :value="entity.ap"
+          :max-value="entity.maxAp"
+          :filled-color="0x0000cc"
+        />
+      </container>
+    </PTransition>
   </IsoPositioner>
 </template>

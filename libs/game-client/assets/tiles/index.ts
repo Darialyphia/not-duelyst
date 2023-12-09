@@ -5,5 +5,3 @@ export const tileSpritesPaths = Object.fromEntries(
     return [key.replace('./', '').replace('.json', ''), module];
   })
 );
-
-console.log(tileSpritesPaths);

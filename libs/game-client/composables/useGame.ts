@@ -74,8 +74,17 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     if (context.ui.selectedSkill.value) {
       context.ui.targetMode.value = 'skill';
       context.ui.selectedSummon.value = null;
-    } else if (context.ui.selectedSummon.value) {
+    }
+  });
+  watchEffect(() => {
+    if (context.ui.selectedSummon.value) {
       context.ui.targetMode.value = 'summon';
+      context.ui.selectedSkill.value = null;
+    }
+  });
+  watchEffect(() => {
+    if (context.ui.targetMode.value === 'move') {
+      context.ui.selectedSummon.value = null;
       context.ui.selectedSkill.value = null;
     }
   });
@@ -85,6 +94,8 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     (newVal, oldVal) => {
       if (newVal === oldVal) return;
       context.ui.targetMode.value = null;
+      context.ui.selectedSkill.value = null;
+      context.ui.selectedSummon.value = null;
     }
   );
   provide(GAME_INJECTION_KEY, context);
