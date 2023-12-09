@@ -28,14 +28,28 @@ const distanceMap = computed(() => {
 
 const isMoveTarget = (point: Point3D) => {
   if (targetMode.value !== 'move') return false;
-
   return state.value.activeEntity.canMove(distanceMap.value.get(point));
 };
+
 const isSkillTarget = (point: Point3D) => {
   if (targetMode.value !== 'skill') return false;
   if (!selectedSkill.value) return false;
 
   return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
+};
+
+const isSummonTarget = (point: Point3D) => {
+  if (targetMode.value !== 'summon') return false;
+
+  console.log(
+    point,
+    gameSession.map.canSummonAt(point),
+    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
+  );
+  return (
+    gameSession.map.canSummonAt(point) &&
+    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
+  );
 };
 
 const targetMode = ref<null | 'move' | 'skill' | 'summon'>(null);
@@ -86,20 +100,6 @@ const selectUnit = (unit: UnitBlueprint) => {
   targetMode.value = 'summon';
 };
 
-const isSummonTarget = (point: Point3D) => {
-  if (targetMode.value !== 'summon') return false;
-
-  console.log(
-    point,
-    gameSession.map.canSummonAt(point),
-    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-  );
-  return (
-    gameSession.map.canSummonAt(point) &&
-    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-  );
-};
-
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
 window.gsap.registerPlugin(PixiPlugin);
@@ -142,6 +142,10 @@ const maxZ = computed(() => Math.max(...state.value.map.cells.map(c => c.z)));
 const getCellsByZ = (z: number) => state.value.map.cells.filter(c => c.z === z);
 const getEntitiesByZ = (z: number) =>
   state.value.entities.filter(c => c.position.z === z);
+
+const rotateMap = (diff: number) => {
+  mapRotation.value = ((mapRotation.value + diff) % 360) as any;
+};
 </script>
 
 <template>
@@ -151,10 +155,8 @@ const getEntitiesByZ = (z: number) =>
       <div class="absolute w-full top-0 left-0">
         <header class="flex gap-3 py-3 items-center">
           <div class="flex gap-3 justify-end right-0">
-            <button @click="mapRotation = 0">0</button>
-            <button @click="mapRotation = 90">90</button>
-            <button @click="mapRotation = 180">180</button>
-            <button @click="mapRotation = 270">270</button>
+            <button @click="rotateMap(90)">Rotate CW</button>
+            <button @click="rotateMap(-90)">Rotate CCW</button>
           </div>
           <button @click="emit('end-turn')">End turn</button>
           <button @click="targetMode = 'move'">Move</button>
@@ -196,7 +198,7 @@ const getEntitiesByZ = (z: number) =>
             ]"
             @click="onCellClick(cell)"
           >
-            {{ cell.x }}:{{ cell.y }}
+            {{ cell.x }}:{{ cell.y }}:{{ cell.z }}
           </div>
 
           <div

@@ -63,6 +63,7 @@ export class GameMap implements Serializable {
     return this.cellsMap.get(`${posOrKey.x}:${posOrKey.y}:${posOrKey.z}`) ?? null;
   }
 
+  // given a position, determine where a unit would land if it were to move from than position
   getDestination(posOrKey: Point3D | CellId, direction: Direction): Point3D | null {
     const from = isString(posOrKey)
       ? Vec3.fromPoint3D(cellIdToPoint(posOrKey))
@@ -70,60 +71,48 @@ export class GameMap implements Serializable {
 
     const target = Vec3.add(from, DIRECTIONS_TO_DIFF[direction]);
     const targetAbove = Vec3.add(target, { x: 0, y: 0, z: 1 });
-    const targetBelow = Vec3.sub(target, { x: 0, y: 0, z: 1 });
+    const targetTwiceAbove = Vec3.add(target, { x: 0, y: 0, z: 2 });
+    const targetBelow = Vec3.add(target, { x: 0, y: 0, z: -1 });
 
     const currentCell = this.getCellAt(from);
-    const targetCell = this.getCellAt(target);
-    const targetCellBelow = this.getCellAt(targetBelow);
-    const targetCellAbove = this.getCellAt(targetAbove);
+    const cell = this.getCellAt(target);
+    const cellBelow = this.getCellAt(targetBelow);
+    const cellAbove = this.getCellAt(targetAbove);
+    const cellTwiceAbove = this.getCellAt(targetTwiceAbove);
 
     // maybe the game will handle things flying one day, but for now let's assume you need to be on a tile to move
     if (!currentCell) return null;
     // this normally shouldn't happen
     if (!currentCell.isWalkable) return null;
 
-    // on a half tile, can only go ahead or below
+    // on a half tile, we can only go ahead or below
     if (currentCell.isHalfTile) {
-      if (!targetCell && !targetCellBelow) return null;
+      if (!cell && !cellBelow) return null;
       // nothing ahead, try to go below
-      if (!targetCell) {
-        if (targetCellBelow?.isHalfTile || !targetCellBelow!.isWalkable) return null;
+      if (!cell) {
+        if (cellBelow?.isHalfTile || !cellBelow!.isWalkable) return null;
         return targetBelow!;
       }
 
       // we can go ahead if nothing is above
-      if (!targetAbove) return null;
+      if (cellAbove) return null;
 
-      if (!targetCell.isWalkable) return null;
+      if (!cell.isWalkable) return null;
+
       return target;
     }
 
-    if (targetCellAbove && targetCellAbove.isWalkable && targetCellAbove.isHalfTile) {
+    // trying to go above
+    if (cellAbove) {
+      if (cellTwiceAbove || !cellAbove.isWalkable || !cellAbove.isHalfTile) {
+        return null;
+      }
       return targetAbove;
     }
 
-    if (!targetCell || !targetCell.isWalkable) return null;
+    if (!cell || !cell.isWalkable) return null;
 
-    return targetCell;
-
-    // if (currentCell) {
-    //   if (currentCell.isHalfTile) return null;
-    //   if (targetCell && !targetCellAbove) {
-    //     return targetCell.isHalfTile ? target : targetAbove;
-    //   }
-
-    //   if (!targetCellBelow) return null;
-    //   if (targetCellBelow.isHalfTile) return null;
-
-    //   return target;
-    // }
-
-    // if (targetCell?.isHalfTile) return target;
-
-    // if (!targetCellBelow) return null;
-    // if (targetCellBelow.isHalfTile) return targetBelow;
-
-    // return target;
+    return cell;
   }
 
   canSummonAt(point: Point3D) {

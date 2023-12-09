@@ -16,7 +16,7 @@ export const dummyState: SerializedGameState = {
     width,
     height,
     startPositions: [
-      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 1, z: 1 },
       { x: 4, y: 0, z: 0 }
     ],
     // cells: mapLayout
@@ -48,7 +48,7 @@ export const dummyState: SerializedGameState = {
       { position: { x: 4, y: 4, z: 0 }, tileId: 'grass' },
 
       { position: { x: 0, y: 1, z: 1 }, tileId: 'grassHalf' },
-      { position: { x: 1, y: 1, z: 1 }, tileId: 'grassHalf' },
+      { position: { x: 1, y: 1, z: 1 }, tileId: 'grass' },
       { position: { x: 2, y: 1, z: 1 }, tileId: 'grassHalf' },
       { position: { x: 3, y: 1, z: 1 }, tileId: 'grassHalf' },
       { position: { x: 4, y: 1, z: 1 }, tileId: 'grassHalf' },
@@ -66,7 +66,9 @@ export const dummyState: SerializedGameState = {
       { position: { x: 1, y: 4, z: 1 }, tileId: 'grass' },
       { position: { x: 2, y: 4, z: 1 }, tileId: 'grass' },
       { position: { x: 3, y: 4, z: 1 }, tileId: 'grass' },
-      { position: { x: 4, y: 4, z: 1 }, tileId: 'grass' }
+      { position: { x: 4, y: 4, z: 1 }, tileId: 'grass' },
+
+      { position: { x: 1, y: 1, z: 2 }, tileId: 'grass' }
     ]
   },
   players: [
