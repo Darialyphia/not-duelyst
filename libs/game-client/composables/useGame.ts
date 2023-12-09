@@ -3,7 +3,8 @@ import type { EntityId } from '@hc/sdk/src/entity/entity';
 import type { SkillId } from '@hc/sdk/src/skill/skill-builder';
 import type { Point3D } from '@hc/sdk/src/types';
 import type { UnitId } from '@hc/sdk/src/units/unit-lookup';
-import type { Values, UnionToIntersection } from '@hc/shared';
+import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
+import type { Cell } from '@hc/sdk/src/map/cell';
 
 type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
   Values<{
@@ -24,6 +25,9 @@ export type GameContext = {
   sendInput: ShortEmits<GameEmits>;
   mapRotation: Ref<0 | 90 | 180 | 270>;
   assets: AssetsContext;
+  ui: {
+    hoveredCell: Ref<Nullable<Cell>>;
+  };
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -45,7 +49,10 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     gameSession: session,
     sendInput: emit,
     mapRotation: ref(0),
-    assets
+    assets,
+    ui: {
+      hoveredCell: ref(null)
+    }
   };
 
   provide(GAME_INJECTION_KEY, context);
@@ -54,3 +61,5 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
 };
 
 export const useGame = () => useSafeInject(GAME_INJECTION_KEY);
+
+export const useGameUi = () => useGame().ui;

@@ -1,6 +1,10 @@
 <script setup lang="ts">
-const { assets } = useGame();
+import type { Cell } from '@hc/sdk/src/map/cell';
 
+const { cell } = defineProps<{ cell: Cell }>();
+const { hoveredCell } = useGameUi();
+
+const { assets } = useGame();
 const textures = computed(() =>
   createSpritesheetFrameObject('idle', assets.getSprite('hovered_cell'))
 );
@@ -8,6 +12,7 @@ const textures = computed(() =>
 
 <template>
   <animated-sprite
+    v-if="hoveredCell?.id === cell.id"
     :x="0"
     :y="CELL_SIZE / 2"
     :event-mode="'none'"
