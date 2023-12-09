@@ -80,7 +80,7 @@ export function useConvexMutation<Mutation extends MutationReference>(
         onSuccess?.(result);
       } catch (err) {
         error.value = err as Error;
-        onError?.(err as Error);
+        onError?.(error.value);
       } finally {
         isLoading.value = false;
       }

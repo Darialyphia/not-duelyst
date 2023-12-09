@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { uiSpritesPaths } from '../assets/ui';
 import { unitSpritesPaths } from '../assets/units';
 import { tileSpritesPaths } from '../assets/tiles';
+import { tilesetsPaths } from '../assets/tilesets';
 
 export const trimExtension = (str: string) => str.replace(/\.[^/.]+$/, '');
 
@@ -65,7 +66,10 @@ const spriteUrls: string[] = [
   ...Object.values(tileSpritesPaths),
   ...Object.values(unitSpritesPaths)
 ];
+const tilesetUrls: string[] = [...Object.values(tilesetsPaths)];
+
 const isSprite = (url: string) => !!spriteUrls.find(path => url.includes(path));
+const isTileset = (url: string) => !!tilesetUrls.find(path => url.includes(path));
 
 const parseSprite = ({ frames, meta }: AsepriteJson) => {
   const sheet = {
@@ -94,6 +98,21 @@ const parseSprite = ({ frames, meta }: AsepriteJson) => {
   return sheet;
 };
 
+const parseTileset = ({ frames, meta }: AsepriteJson) => ({
+  frames: Object.fromEntries(
+    frames.map((frame, index) => {
+      const frameName = `${trimExtension(meta.image)}-${index}`;
+      // avoids console warnings with HMR
+      if (import.meta.env.DEV) {
+        Texture.removeFromCache(frameName);
+      }
+
+      return [frameName, frame];
+    })
+  ),
+  meta
+});
+
 export const spriteSheetParser = {
   extension: {
     name: 'Aseprite spritesheet Parser',
@@ -101,7 +120,7 @@ export const spriteSheetParser = {
     type: ExtensionType.LoadParser
   },
   test(url: string): boolean {
-    return isSprite(url);
+    return isTileset(url) || isSprite(url);
   },
   async load(url: string) {
     const response = await fetch(url);
@@ -109,6 +128,7 @@ export const spriteSheetParser = {
 
     const parsed = asepriteJsonSchema.parse(json);
 
+    if (isTileset(url)) return parseTileset(parsed);
     if (isSprite(url)) return parseSprite(parsed);
   }
 };

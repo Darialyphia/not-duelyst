@@ -4,7 +4,7 @@ import type { Cell } from '@hc/sdk/src/map/cell';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
-const { assets, state, sendInput } = useGame();
+const { assets, state, sendInput, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap } = useGameUi();
 
 const hitArea = new Polygon([
@@ -33,15 +33,22 @@ const onPointerup = () => {
 
 <template>
   <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z">
-    <animated-sprite
-      :textures="assets.getSprite(cell.tile.id).animations['0']"
-      :anchor-x="0.5"
+    <container
       :hit-area="hitArea"
       @pointerenter="hoveredCell = cell"
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
     >
-      <HoveredCell :cell="cell" />
-    </animated-sprite>
+      <animated-sprite
+        :textures="assets.getSprite(cell.tile.id).animations['0']"
+        :anchor-x="0.5"
+      >
+        <HoveredCell :cell="cell" />
+      </animated-sprite>
+
+      <container :pivot-x="mapRotation % 180 === 90 ? CELL_SIZE : 0">
+        <MapCellHighlight v-if="cell" :cell="cell" />
+      </container>
+    </container>
   </IsoPositioner>
 </template>
