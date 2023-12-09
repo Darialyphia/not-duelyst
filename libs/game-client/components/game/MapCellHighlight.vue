@@ -3,6 +3,7 @@ import { PTransition } from 'vue3-pixi';
 import type { Container, Cursor } from 'pixi.js';
 import type { Cell } from '@hc/sdk/src/map/cell';
 import type { Point3D } from '@hc/sdk/src/types';
+import { isDefined } from '@hc/shared';
 
 const { cell, cursor } = defineProps<{
   cursor?: Cursor;
@@ -10,7 +11,7 @@ const { cell, cursor } = defineProps<{
 }>();
 
 const { state, gameSession, mapRotation, assets } = useGame();
-const { hoveredCell, targetMode, distanceMap } = useGameUi();
+const { selectedSkill, hoveredCell, targetMode, distanceMap } = useGameUi();
 const isHoveringActiveEntity = computed(
   () =>
     hoveredCell.value?.id ===
@@ -31,17 +32,11 @@ const isMoveTarget = (point: Point3D) => {
   return state.value.activeEntity.canMove(distanceMap.value.get(point));
 };
 
-const isSkillHighlighted = (cell: Cell) => {
-  return false;
-  // if (!selectedSkill.value) return false;
+const isSkillTarget = (point: Point3D) => {
+  if (targetMode.value !== 'skill') return false;
+  if (!selectedSkill.value) return false;
 
-  // const ability = createSkillAbility(
-  //   state.value,
-  //   selectedSkill.value,
-  //   activeEntity.value
-  // );
-
-  // return ability.can('highlight', subject('cell', { x: cell.x, y: cell.y }));
+  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
 };
 
 const isHighlighted = computed(() => {
@@ -49,7 +44,7 @@ const isHighlighted = computed(() => {
 
   switch (targetMode.value) {
     case 'skill':
-      return isSkillHighlighted(cell);
+      return isSkillTarget(cell.position);
     case 'summon':
       return isSummonTarget(cell.position);
     case 'move':
@@ -67,7 +62,7 @@ const getCellBitmask = () => {
   return getBitMask(gameSession, state.value, cell, mapRotation.value, neighbor => {
     if (!neighbor) return false;
     if (targetMode.value === 'skill') {
-      return isSkillHighlighted(neighbor);
+      return isSkillTarget(neighbor.position);
     }
     if (targetMode.value === 'summon') {
       return (
@@ -88,7 +83,8 @@ const tileset = computed(() =>
 
 const texture = computed(() => {
   const bitMask = getCellBitmask();
-  if (!bitMask) return;
+
+  if (!isDefined(bitMask)) return;
 
   return getTextureIndexFromBitMask(bitMask, tileset.value);
 });

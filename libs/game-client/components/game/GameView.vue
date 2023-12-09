@@ -168,7 +168,7 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
           </button>
         </template>
       </header>
-      <div class="map">
+      <!-- <div class="map">
         <div v-for="z in maxZ + 1" :key="z">
           <div
             v-for="cell in getCellsByZ(z - 1)"
@@ -203,7 +203,7 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
             {{ entity.hp }}
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

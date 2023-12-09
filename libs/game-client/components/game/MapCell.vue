@@ -71,7 +71,7 @@ const isMovePathHighlighted = computed(() => {
       />
 
       <container :pivot-x="mapRotation % 180 === 90 ? CELL_SIZE : 0">
-        <MapCellHighlight v-if="cell" :cell="cell" />
+        <MapCellHighlight :cell="cell" />
       </container>
     </container>
     <HoveredCell :cell="cell" />
