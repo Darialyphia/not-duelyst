@@ -57,6 +57,6 @@ const { autoDestroyRef } = useAutoDestroy();
     :anchor="0.5"
     :y="tweened.y + tileHeight * 4"
   >
-    {{ props.zIndex }}\n{{ cartesian.x }}:{{ cartesian.y }}:{{ cartesian.z }}
+    {{ props.zIndex }}
   </text>
 </template>

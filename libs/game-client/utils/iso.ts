@@ -58,8 +58,8 @@ export const toIso = (
 
 export const toCartesian = ({ isoX, isoY, isoZ }: IsoPoint) => {
   return {
-    x: (2 * isoY + isoX) / 2 + isoZ,
-    y: (2 * isoY - isoX) / 2 + isoZ,
-    z: isoZ
+    x: Math.round((2 * isoY + isoX) / 2 + isoZ),
+    y: Math.round((2 * isoY - isoX) / 2 + isoZ),
+    z: Math.round(isoZ)
   };
 };

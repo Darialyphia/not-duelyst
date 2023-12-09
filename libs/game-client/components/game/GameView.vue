@@ -137,13 +137,18 @@ onMounted(async () => {
   await assets.load();
   app.mount(pixiApp.stage);
 });
+
+const maxZ = computed(() => Math.max(...state.value.map.cells.map(c => c.z)));
+const getCellsByZ = (z: number) => state.value.map.cells.filter(c => c.z === z);
+const getEntitiesByZ = (z: number) =>
+  state.value.entities.filter(c => c.position.z === z);
 </script>
 
 <template>
   <div class="relative">
     <div class="pixi-app-container">
       <canvas ref="canvas" @contextmenu.prevent />
-      <div class="absolute w-1/2 top-0 left-0">
+      <div class="absolute w-full top-0 left-0">
         <header class="flex gap-3 py-3 items-center">
           <div class="flex gap-3 justify-end right-0">
             <button @click="mapRotation = 0">0</button>
@@ -174,10 +179,11 @@ onMounted(async () => {
             </button>
           </template>
         </header>
-
-        <main class="map">
+      </div>
+      <div class="map absolute top-10">
+        <div class="floor" v-for="z in maxZ + 1" :key="z">
           <div
-            v-for="cell in state.map.cells"
+            v-for="cell in getCellsByZ(z - 1)"
             :key="`${cell.position.toString()}`"
             :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
             :class="[
@@ -194,7 +200,7 @@ onMounted(async () => {
           </div>
 
           <div
-            v-for="entity in state.entities"
+            v-for="entity in getEntitiesByZ(z - 1)"
             :key="entity.id"
             :style="{ '--col': entity.position.x + 1, '--row': entity.position.y + 1 }"
             :class="[
@@ -208,19 +214,7 @@ onMounted(async () => {
           >
             {{ entity.hp }}
           </div>
-        </main>
-
-        <footer>
-          <h2>Game view</h2>
-          <h3>Active entity</h3>
-          <pre>{{ state.activeEntity.id }} {{ state.activeEntity.unitId }}</pre>
-          <pre>
-  Movement: {{ state.activeEntity.remainingMovement }} / {{
-              state.activeEntity.speed
-            }}</pre
-          >
-          <pre>AP: {{ state.activeEntity.ap }} / {{ state.activeEntity.maxAp }}</pre>
-        </footer>
+        </div>
       </div>
     </div>
   </div>
@@ -250,21 +244,23 @@ button {
 }
 
 .map {
-  --width: v-bind('state.map.width');
-  --height: v-bind('state.map.height');
+  & > .floor {
+    --width: v-bind('state.map.width');
+    --height: v-bind('state.map.height');
 
-  display: grid;
-  grid-template-columns: repeat(var(--width), 1fr);
-  grid-template-rows: repeat(var(--height), 1fr);
+    display: grid;
+    grid-template-columns: repeat(var(--width), 1fr);
+    grid-template-rows: repeat(var(--height), 1fr);
 
-  width: calc(3rem * var(--width));
-  height: calc(3rem * var(--height));
+    width: calc(3rem * var(--width));
+    height: calc(3rem * var(--height));
 
-  border: solid var(--border-size-1) var(--border);
+    border: solid var(--border-size-1) var(--border);
 
-  & > * {
-    grid-column: var(--col);
-    grid-row: var(--row);
+    & > * {
+      grid-column: var(--col);
+      grid-row: var(--row);
+    }
   }
 }
 

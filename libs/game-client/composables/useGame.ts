@@ -49,6 +49,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     gameSession: session,
     sendInput: emit,
     mapRotation: ref(0),
+
     assets,
     ui: {
       hoveredCell: ref(null)
