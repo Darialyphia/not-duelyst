@@ -1833,6 +1833,11 @@
     "@types/css-font-loading-module" "^0.0.7"
     ismobilejs "^1.1.0"
 
+"@pixi/sound@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@pixi/sound/-/sound-5.2.2.tgz#cc03fc308507fa44bc75b8d9805c11a6ab378423"
+  integrity sha512-WjUDD24nQaAA2+aHbvDbgB/9l/kni3aNlZSmunU99KBGrQ9NfGS/VvAUxA88b7eOLXNvskzW2cvEnGMbltRiFA==
+
 "@pixi/sprite-animated@7.3.2":
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/@pixi/sprite-animated/-/sprite-animated-7.3.2.tgz#a35891380b4c0e4029170fe5cbcbbb9edbba07c5"
@@ -7849,6 +7854,11 @@ pirates@^4.0.1:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
+
+pixi-sound@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/pixi-sound/-/pixi-sound-3.0.5.tgz#b9edc12ee543ac3470c763484e1d1f7c4e842e2b"
+  integrity sha512-I3qDfaDI3xSwMuH8ZbhIyoZiRv0jEDxR60D2rBZTTvlK5owxo5Sx4vDaQlrIyETilTU0xvBtiwh7fPGKBOsCTw==
 
 pixi-viewport@^5.0.2:
   version "5.0.2"

@@ -12,17 +12,20 @@ export class DealDamageAction extends GameAction<{
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
+    this.ctx.fxContext.playSound('hit-placeholder');
+
     await Promise.all(
       this.payload.targets.map(target => {
         this.ctx.fxContext?.addChildSprite('blood_01', target, {
           waitUntilAnimationDone: false,
-          offset: { x: 0, y: 32 }
+          offset: { x: 0, y: 32 },
+          scale: 0.5
         });
         return this.ctx.fxContext?.shakeEntity(target, {
-          count: 8,
+          count: 6,
           totalDuration: 0.4,
           axis: 'x',
-          amount: 2
+          amount: 1
         });
       })
     );

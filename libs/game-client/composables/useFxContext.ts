@@ -1,8 +1,32 @@
 import type { GameSession, GameState } from '@hc/sdk';
 import { AnimatedSprite } from 'pixi.js';
+import { Sound } from '@pixi/sound';
+import { sfxPaths } from '../assets/sfx';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   gameSession.fxContext = {
+    playSound(soundId) {
+      return new Promise<void>(resolve => {
+        if (!sfxPaths[soundId]) {
+          console.log(`FXContext: sound not found: ${soundId}`);
+          return resolve();
+        }
+
+        const sfx = Sound.from({
+          url: sfxPaths[soundId],
+          loaded: function (err, sound) {
+            console.log('loaded');
+          },
+          complete() {
+            console.log('complete');
+            resolve();
+          }
+        });
+
+        sfx.play();
+        console.log(sfx);
+      });
+    },
     playAnimationOnce(
       entityId,
       animationName,
@@ -45,7 +69,6 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         };
 
         sprite.onComplete = () => {
-          console.log('on complete');
           sprite.textures = createSpritesheetFrameObject('idle', sheet);
           sprite.loop = true;
           sprite.gotoAndPlay(0);
@@ -196,7 +219,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       {
         animationName = 'idle',
         offset = { x: 0, y: 0 },
-        waitUntilAnimationDone = true
+        waitUntilAnimationDone = true,
+        scale = 1
       } = {}
     ) {
       return new Promise(resolve => {
@@ -225,7 +249,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         fxSprite.position.set(offset.x, offset.y);
         fxSprite.loop = false;
         fxSprite.anchor.set(0.5);
-
+        fxSprite.scale = { x: scale, y: scale };
         fxSprite.onComplete = () => {
           fxSprite.destroy();
           resolve();

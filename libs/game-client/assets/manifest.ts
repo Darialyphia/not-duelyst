@@ -4,13 +4,15 @@ import { uiSpritesPaths } from './ui';
 import { unitSpritesPaths } from './units';
 import { tilesetsPaths } from './tilesets';
 import { fxSpritesPaths } from './fx';
+import { sfxPaths } from './sfx';
 
 export const ASSET_BUNDLES = {
   TILES: 'tiles',
   UI: 'sprites',
   UNITS: 'units',
   TILESETS: 'tilesets',
-  FX: 'fx'
+  FX: 'fx',
+  SFX: 'sfx'
 } as const;
 
 export type AssetBundle = Values<typeof ASSET_BUNDLES>;

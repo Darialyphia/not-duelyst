@@ -13,8 +13,10 @@ export type FXContext = {
       animationName?: string;
       offset?: { x: number; y: number };
       waitUntilAnimationDone?: boolean;
+      scale?: number;
     }
   ): Promise<void>;
+  playSound(soundId: string): Promise<void>;
   playAnimationOnce(
     entityId: EntityId,
     animationName: string,
