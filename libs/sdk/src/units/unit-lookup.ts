@@ -80,7 +80,7 @@ export const UNITS = keyBy(
             ctx.actionQueue.push(
               new DealDamageAction(
                 {
-                  amount: 1,
+                  amount: 10,
                   sourceId: caster.id,
                   targets: [entity.id]
                 },

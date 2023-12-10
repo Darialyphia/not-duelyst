@@ -25,7 +25,8 @@ export const ENTITY_EVENTS = {
   TURN_END: 'turn-end',
   USE_SKILL: 'use-skill',
   DEAL_DAMAGE: 'deal-damage',
-  TAKE_DAMAGE: 'take-damage'
+  TAKE_DAMAGE: 'take-damage',
+  DIE: 'die'
 } as const;
 
 export type EntityEvent = Values<typeof ENTITY_EVENTS>;
@@ -35,6 +36,7 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.TURN_START]: Entity;
   [ENTITY_EVENTS.TURN_END]: Entity;
   [ENTITY_EVENTS.USE_SKILL]: Entity;
+  [ENTITY_EVENTS.DIE]: Entity;
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
@@ -225,6 +227,11 @@ export class Entity implements Serializable {
       baseAmount,
       source
     });
+  }
+
+  die() {
+    this.hp = 0;
+    this.emitter.emit('die', this);
   }
 
   startTurn() {

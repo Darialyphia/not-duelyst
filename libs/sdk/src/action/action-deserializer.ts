@@ -6,6 +6,7 @@ import { MoveAction } from './move.action';
 import { SummonFromLoadoutAction } from './summon-from-loadout.action';
 import { UseSkillAction } from './use-sklll.action';
 import { GameSession } from '../game-session';
+import { DieAction } from './die.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
 
@@ -25,7 +26,8 @@ export const actionMap = validateActionMap({
   MOVE: MoveAction,
   SUMMON_FROM_LOADOUT: SummonFromLoadoutAction,
   USE_SKILL: UseSkillAction,
-  DEAL_DAMAGE: DealDamageAction
+  DEAL_DAMAGE: DealDamageAction,
+  DIE: DieAction
 });
 
 export type ActionName = keyof typeof actionMap;

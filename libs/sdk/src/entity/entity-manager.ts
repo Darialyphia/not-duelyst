@@ -111,7 +111,7 @@ export class EntityManager {
   }
 
   removeEntity(entity: Entity) {
-    this.entityMap.set(entity.id, entity);
+    this.entityMap.delete(entity.id);
   }
 
   serialize() {

@@ -16,7 +16,9 @@ export class UseSkillAction extends GameAction<{
 
   protected impl() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.casterId);
-    entity?.useSkill(this.payload.skillId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.casterId}`);
+
+    entity.useSkill(this.payload.skillId);
 
     const skill = this.ctx.atb.activeEntity.skills.find(
       skill => skill.id === this.payload.skillId

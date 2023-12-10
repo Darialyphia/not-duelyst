@@ -69,7 +69,7 @@ export const dummyState: SerializedGameState = {
       { position: { x: 4, y: 4, z: 1 }, tileId: 'placeholder-ground' },
 
       { position: { x: 1, y: 1, z: 2 }, tileId: 'placeholder-ground' },
-      { position: { x: 1, y: 2, z: 2 }, tileId: 'placeholder-ground-ramp-south' }
+      { position: { x: 1, y: 2, z: 2 }, tileId: 'placeholder-ground-half' }
     ]
   },
   players: [

@@ -1,5 +1,6 @@
 import { EntityId } from '../entity/entity';
 import { GameAction } from './action';
+import { DieAction } from './die.action';
 
 export class DealDamageAction extends GameAction<{
   amount: number;
@@ -25,11 +26,15 @@ export class DealDamageAction extends GameAction<{
   }
 
   protected impl() {
-    const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId)!;
+    const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId);
+    if (!attacker) throw new Error(`Entity not found: ${this.payload.sourceId}`);
 
     this.payload.targets.forEach(targetId => {
       const target = this.ctx.entityManager.getEntityById(targetId)!;
       attacker.dealDamage(this.payload.amount, target);
+      if (target.hp <= 0) {
+        this.ctx.actionQueue.push(new DieAction({ entityId: targetId }, this.ctx));
+      }
     });
   }
 }

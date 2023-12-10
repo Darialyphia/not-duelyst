@@ -31,6 +31,7 @@ export type FXContext = {
       totalDuration?: number;
     }
   ): Promise<void>;
+  fadeOutEntity(entityId: EntityId, duration: number): Promise<void>;
 };
 
 export abstract class GameAction<TPayload extends JSONObject> implements Serializable {
@@ -61,8 +62,9 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
         console.warn(
           'FXContext not provided on the game session. Skipping FX implementation.'
         );
+      } else {
+        await this.fxImpl();
       }
-      await this.fxImpl();
     }
 
     this.ctx.history.add(this);

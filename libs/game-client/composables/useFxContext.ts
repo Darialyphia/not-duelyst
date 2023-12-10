@@ -121,7 +121,6 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       entityId,
       { count = 5, totalDuration = 1, axis = 'x', amount = 10 } = {}
     ) {
-      console.log(count, totalDuration, axis, amount);
       return new Promise(resolve => {
         fx.isMoving.value = true;
         const entity = gameSession.entityManager.getEntityById(entityId);
@@ -161,6 +160,31 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
             }
           }
         );
+      });
+    },
+
+    fadeOutEntity(entityId, duration) {
+      return new Promise(resolve => {
+        const entity = gameSession.entityManager.getEntityById(entityId);
+        if (!entity) {
+          console.warn(`FXContext: entity not found for entityId ${entityId}`);
+          return resolve();
+        }
+
+        const sprite = toValue(fx.spriteMap.get(entityId));
+        if (!sprite) {
+          console.warn(`FXContext: sprite not found for entity ${entityId}`);
+          return resolve();
+        }
+
+        gsap.to(sprite, {
+          duration,
+          ease: Power2.easeOut,
+          onComplete: resolve,
+          pixi: {
+            alpha: 0
+          }
+        });
       });
     }
   };
