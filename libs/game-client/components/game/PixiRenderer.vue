@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useApplication } from 'vue3-pixi';
-import { Polygon } from 'pixi.js';
 import type { Viewport } from 'pixi-viewport';
 
-const { state, mapRotation } = useGame();
+const { state, mapRotation, ui, sendInput } = useGame();
 const app = useApplication();
 
 const screenViewport = shallowRef<Viewport>();
@@ -13,6 +12,8 @@ onMounted(() => {
     if (e.repeat) return;
     if (e.code === 'KeyQ') mapRotation.value -= 90;
     if (e.code === 'KeyE') mapRotation.value += 90;
+    if (e.code === 'KeyA') ui.targetMode.value = 'move';
+    if (e.code === 'KeyT') sendInput('end-turn');
   });
 });
 until(screenViewport)
