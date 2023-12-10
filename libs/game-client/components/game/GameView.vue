@@ -98,6 +98,9 @@ onMounted(async () => {
     antialias: false
   });
 
+  window.addEventListener('resize', () => {
+    pixiApp.resize();
+  });
   // pixiApp.stage = new Stage();
 
   if (import.meta.env.DEV) {

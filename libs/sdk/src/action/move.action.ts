@@ -21,7 +21,9 @@ export class MoveAction extends GameAction<{
       'walk'
     );
 
-    const stopSound = this.ctx.fxContext.playSoundUntil('walk-placeholder');
+    const stopSound = this.ctx.fxContext.playSoundUntil('walk-placeholder', {
+      slice: [0, 400]
+    });
     for (const point of this.payload.path) {
       await this.ctx.fxContext.moveEntity(this.payload.entityId, point, 200);
     }

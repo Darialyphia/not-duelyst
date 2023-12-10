@@ -5,4 +5,3 @@ export const sfxPaths = Object.fromEntries(
     return [key.replace('./', '').replace('.mp3', '').replace('.m4a', ''), module];
   })
 );
-console.log(sfxPaths);

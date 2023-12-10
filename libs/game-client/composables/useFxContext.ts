@@ -6,7 +6,10 @@ import { Howl } from 'howler';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   gameSession.fxContext = {
-    playSoundOnce(soundId, fallback, { percentage = 1 } = {}) {
+    playSoundOnce(
+      soundId,
+      { fallback, percentage = 1, slice = [0, 0] as [number, number] } = {}
+    ) {
       return new Promise<void>(resolve => {
         const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
         if (!soundPath) {
@@ -29,11 +32,11 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           }
         });
 
-        sfx.play();
+        sfx.play(slice ? 'slice' : undefined);
       });
     },
 
-    playSoundUntil(soundId, fallback) {
+    playSoundUntil(soundId, { fallback, slice = [0, 0] as [number, number] } = {}) {
       const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
       if (!soundPath) {
         console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
@@ -43,7 +46,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       const sfx = new Howl({
         src: [soundPath],
         sprite: {
-          walk: [0, 300]
+          slice
         },
         volume: 0.5,
         loop: true,
@@ -52,10 +55,12 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         }
       });
 
-      sfx.play('walk');
+      sfx.play(slice ? 'slice' : undefined);
 
       return () => {
-        sfx.stop();
+        sfx.on('end', () => {
+          sfx.stop();
+        });
       };
     },
 
