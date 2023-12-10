@@ -20,13 +20,6 @@ const dispatch = (
     }
   });
 };
-
-const debugServer = () => {
-  console.log(serverSession);
-};
-const debugClient = () => {
-  console.log(clientSession);
-};
 </script>
 
 <template>

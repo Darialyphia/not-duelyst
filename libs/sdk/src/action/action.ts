@@ -1,4 +1,4 @@
-import { JSONValue } from '@hc/shared';
+import { AnyObject, JSONObject, JSONValue } from '@hc/shared';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
 import { SerializedAction } from './action-deserializer';
@@ -24,22 +24,29 @@ export type FXContext = {
   ): () => void;
 };
 
-export abstract class GameAction<TPayload extends JSONValue> implements Serializable {
+export abstract class GameAction<TPayload extends JSONObject> implements Serializable {
   abstract readonly name: string;
   // readonly isSideEffect: boolean;
 
   constructor(
     public payload: TPayload,
     protected ctx: GameSession
-  ) {
-    // this.isSideEffect = this.ctx.isExecutingAction;
-  }
+  ) {}
 
   protected abstract impl(): void;
 
   protected abstract fxImpl(): Promise<void>;
 
+  private get isSideEffect() {
+    return !this.ctx.isAuthoritative && !this.payload.isFromAuthoritativeSession;
+  }
+
   async execute() {
+    // discards client side actions generated as side effects of other actions executed client side
+    if (this.isSideEffect) {
+      return;
+    }
+
     if (!this.ctx.isAuthoritative) {
       if (!this.ctx.fxContext) {
         console.warn(
@@ -55,6 +62,9 @@ export abstract class GameAction<TPayload extends JSONValue> implements Serializ
   }
 
   serialize() {
-    return { type: this.name, payload: this.payload };
+    return {
+      type: this.name,
+      payload: { ...this.payload, isFromAuthoritativeSession: this.ctx.isAuthoritative }
+    };
   }
 }

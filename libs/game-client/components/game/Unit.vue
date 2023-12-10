@@ -12,7 +12,7 @@ const { entity } = defineProps<{
   entity: Entity;
 }>();
 
-const { gameSession, assets, state, mapRotation, fx } = useGame();
+const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
 const { hoveredCell, targetMode, selectedSkill } = useGameUi();
 
 const spritesheet = assets.getSprite(entity.unitId, 'placeholder');
@@ -168,6 +168,16 @@ const onStatbarsEnter = (el: Container, done: () => void) => {
       :hit-area="hitArea"
       :filters="filters"
       loop
+      @pointerup="
+        () => {
+          if (isSkillTarget(entity.position)) {
+            sendInput('use-skill', {
+              skillId: selectedSkill!.id,
+              target: entity.position
+            });
+          }
+        }
+      "
       @pointerleave="() => (hoveredCell = null)"
       @pointerenter="
         () => {

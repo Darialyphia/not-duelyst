@@ -15,16 +15,12 @@ export class ActionQueue {
     this.isRunning = true;
     do {
       const action = this.queue.shift();
-
       await action?.execute();
     } while (this.queue.length);
     this.isRunning = false;
   }
 
   push(action: GameAction<any> | SerializedAction) {
-    // prevents from running actions that are "side effects", ie triggered by other actions, on the client side
-    if (!this.ctx.isAuthoritative && this.isRunning) return;
-
     this.queue.push(
       action instanceof GameAction ? action : this.deserializer.deserialize(action)
     );

@@ -1,4 +1,4 @@
-import { Constructor, JSONValue, Values } from '@hc/shared';
+import { Constructor, JSONObject, JSONValue, Values } from '@hc/shared';
 import { GameAction } from './action';
 import { DealDamageAction } from './deal-damage.action';
 import { EndTurnAction } from './end-turn.action';
@@ -7,10 +7,10 @@ import { SummonFromLoadoutAction } from './summon-from-loadout.action';
 import { UseSkillAction } from './use-sklll.action';
 import { GameSession } from '../game-session';
 
-type GenericActionMap = Record<string, Constructor<GameAction<JSONValue>>>;
+type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
 
 type ValidatedActionMap<T extends GenericActionMap> = {
-  [Name in keyof T]: T[Name] extends Constructor<GameAction<JSONValue>>
+  [Name in keyof T]: T[Name] extends Constructor<GameAction<JSONObject>>
     ? Name extends InstanceType<T[Name]>['name']
       ? T[Name]
       : never

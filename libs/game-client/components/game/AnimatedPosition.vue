@@ -13,32 +13,25 @@ const props = defineProps<{
 // const { isPlaying } = useFXSequencer();
 const tweened = ref({ x: props.x, y: props.y });
 
+const { fx } = useGame();
 watch(
   () => ({ x: props.x, y: props.y }),
   newPos => {
     gsap.to(tweened.value, {
       duration: props.speed ?? 0.3,
       x: newPos.x,
-      ease: Power2.easeOut
+      ease: fx.isMoving.value ? Power0.easeNone : Power2.easeOut
     });
     gsap.to(tweened.value, {
       duration: props.speed ?? 0.3,
       y: newPos.y,
-      ease: Power2.easeOut
+      ease: fx.isMoving.value ? Power0.easeNone : Power2.easeOut
     });
   }
 );
 
 const tileWidth = CELL_SIZE;
 const tileHeight = tileWidth / 2;
-
-const cartesian = computed(() =>
-  toCartesian({
-    isoX: tweened.value.x / (CELL_SIZE / 2),
-    isoY: tweened.value.y / (CELL_SIZE / 2),
-    isoZ: props.z / (CELL_SIZE / 2)
-  })
-);
 
 const { autoDestroyRef } = useAutoDestroy();
 </script>

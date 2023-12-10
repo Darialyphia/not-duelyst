@@ -40,6 +40,7 @@ export type GameContext = {
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
   };
   fx: {
+    isMoving: Ref<boolean>;
     viewport?: Viewport;
     spriteMap: Map<EntityId, MaybeRefOrGetter<AnimatedSprite | undefined>>;
   };
@@ -86,6 +87,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       selectedSummon: ref(null)
     },
     fx: {
+      isMoving: ref(false),
       viewport: undefined,
       spriteMap: new Map()
     }
@@ -186,7 +188,9 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
 
     moveEntity(entityId, point, duration) {
       return new Promise<void>(resolve => {
-        // wwe are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be tracked
+        context.fx.isMoving.value = true;
+        // wwe are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be rendered !
+        // It's ok because the position wil be updated when the action execution is flushed after the fx sequence
         const entity = state.value.entities.find(e => e.id === entityId);
         if (!entity) {
           console.warn(`FXContext: entity not found for entityId ${entityId}`);
@@ -198,6 +202,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
         entity.position.z = point.z;
 
         setTimeout(() => {
+          context.fx.isMoving.value = false;
           resolve();
         }, duration);
       });

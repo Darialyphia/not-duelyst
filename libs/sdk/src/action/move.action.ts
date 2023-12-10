@@ -20,7 +20,7 @@ export class MoveAction extends GameAction<{
       this.payload.entityId,
       'walk'
     );
-    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId)!;
+
     for (const point of this.payload.path) {
       await this.ctx.fxContext.moveEntity(this.payload.entityId, point, 200);
     }
