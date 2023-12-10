@@ -1,4 +1,4 @@
-import { EntityId } from '../entity/entity';
+import { Entity, EntityId } from '../entity/entity';
 import { TriggerId } from '../trigger/trigger-builder';
 import { TRIGGERS } from '../trigger/trigger-lookup';
 import { GameAction } from './action';
@@ -22,9 +22,20 @@ export class AddTriggerAction extends GameAction<{
 
     const trigger = triggerBuilder.builder(owner);
 
-    this.ctx.emitter.on('game:action', action => {
+    const run = (action: GameAction<any>) => {
       if (action.name !== trigger.actionName) return;
       trigger.execute(this.ctx, action, trigger);
-    });
+    };
+
+    const updateDuration = () => {
+      trigger.duration--;
+      if (trigger.duration === 0) {
+        owner.off('turn-start', updateDuration);
+        this.ctx.emitter.off('game:action', run);
+      }
+    };
+
+    this.ctx.emitter.on('game:action', run);
+    owner.on('turn-start', updateDuration);
   }
 }
