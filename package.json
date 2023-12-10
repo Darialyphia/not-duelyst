@@ -6,7 +6,7 @@
     "dev": "turbo run dev --concurrency=13",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "hathora:start": "npm run start --workspace @hc/game-server"
+    "hathora:start": "yarn workspace @hc/game-server run start"
   },
   "devDependencies": {
     "eslint": "^8.48.0",

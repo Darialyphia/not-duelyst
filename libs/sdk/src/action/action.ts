@@ -22,6 +22,15 @@ export type FXContext = {
       animationNameFallback?: string;
     }
   ): () => void;
+  shakeEntity(
+    entityId: EntityId,
+    opts?: {
+      count?: number;
+      axis?: 'x' | 'y' | 'both';
+      amount?: number;
+      totalDuration?: number;
+    }
+  ): Promise<void>;
 };
 
 export abstract class GameAction<TPayload extends JSONObject> implements Serializable {

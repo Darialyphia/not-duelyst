@@ -8,8 +8,20 @@ export class DealDamageAction extends GameAction<{
 }> {
   readonly name = 'DEAL_DAMAGE';
 
-  protected fxImpl() {
-    return Promise.resolve();
+  protected async fxImpl() {
+    if (!this.ctx.fxContext) return;
+
+    await Promise.all(
+      this.payload.targets.map(
+        target =>
+          this.ctx.fxContext?.shakeEntity(target, {
+            count: 8,
+            totalDuration: 0.4,
+            axis: 'x',
+            amount: 2
+          })
+      )
+    );
   }
 
   protected impl() {

@@ -1,16 +1,20 @@
-import { Assets, Spritesheet, extensions } from 'pixi.js';
+import { Assets, Spritesheet, Texture, extensions } from 'pixi.js';
 import type { InjectionKey } from 'vue';
 import { ASSET_BUNDLES, assetsManifest } from '../assets/manifest';
 
 export type AssetsContext = {
-  getSprite(key: string, falback?: string): Spritesheet;
+  getSprite(
+    key: string,
+    falback?: string
+  ): Spritesheet & { animations: Record<string, Texture[]> };
   load: () => Promise<void>;
 };
 
 export const ASSETS_INJECTION_KEY = Symbol('assets') as InjectionKey<AssetsContext>;
 
 export const useAssetsProvider = () => {
-  let sprites: Record<string, Spritesheet> = {};
+  let sprites: Record<string, Spritesheet & { animations: Record<string, Texture[]> }> =
+    {};
 
   const load = async () => {
     extensions.add(spriteSheetParser);

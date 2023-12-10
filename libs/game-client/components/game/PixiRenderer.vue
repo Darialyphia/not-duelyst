@@ -8,6 +8,13 @@ const app = useApplication();
 
 const screenViewport = shallowRef<Viewport>();
 
+onMounted(() => {
+  window.addEventListener('keydown', e => {
+    if (e.repeat) return;
+    if (e.code === 'KeyQ') mapRotation.value -= 90;
+    if (e.code === 'KeyE') mapRotation.value += 90;
+  });
+});
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
@@ -22,7 +29,7 @@ until(screenViewport)
       .pinch()
       .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
-      .clampZoom({ minScale: 0.75, maxScale: 4 })
+      .clampZoom({ minScale: 1, maxScale: 4 })
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
   });
