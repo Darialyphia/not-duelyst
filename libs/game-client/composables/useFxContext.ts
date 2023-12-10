@@ -38,13 +38,14 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         sprite.gotoAndPlay(0);
 
         sprite.onFrameChange = frame => {
-          if (frame > sprite.totalFrames * framePercentage) {
+          if (frame >= sprite.totalFrames * framePercentage) {
             resolve();
             sprite.onFrameChange = undefined;
           }
         };
 
         sprite.onComplete = () => {
+          console.log('on complete');
           sprite.textures = createSpritesheetFrameObject('idle', sheet);
           sprite.loop = true;
           sprite.gotoAndPlay(0);

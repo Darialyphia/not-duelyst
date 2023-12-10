@@ -10,8 +10,10 @@ export class UseSkillAction extends GameAction<{
 }> {
   readonly name = 'USE_SKILL';
 
-  protected fxImpl() {
-    return Promise.resolve();
+  protected async fxImpl() {
+    if (!this.ctx.fxContext) return;
+
+    await this.ctx.fxContext.playAnimationOnce(this.payload.casterId, 'use_skill');
   }
 
   protected impl() {
