@@ -32,7 +32,9 @@ const rotatedCartesian = computed(() => {
     const row: any[] = [];
     floor.push(row);
     for (let floorX = 0; floorX <= state.value.map.width; floorX++) {
-      row.push(track.x === floorX && track.y === floorY ? track : null);
+      row.push(
+        Math.round(track.x) === floorX && Math.round(track.y) === floorY ? track : null
+      );
     }
   }
 

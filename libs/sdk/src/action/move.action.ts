@@ -25,7 +25,7 @@ export class MoveAction extends GameAction<{
       slice: [0, 400]
     });
     for (const point of this.payload.path) {
-      await this.ctx.fxContext.moveEntity(this.payload.entityId, point, 200);
+      await this.ctx.fxContext.moveEntity(this.payload.entityId, point, 0.3);
     }
 
     stopSound();

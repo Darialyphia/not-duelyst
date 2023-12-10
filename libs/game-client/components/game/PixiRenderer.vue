@@ -17,6 +17,14 @@ onMounted(() => {
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
     if (e.code === 'KeyA') ui.targetMode.value = 'move';
     if (e.code === 'KeyT') sendInput('end-turn');
+    const skillCodes = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
+    skillCodes.forEach((code, index) => {
+      const skill = state.value.activeEntity.skills[index];
+      if (!skill) return;
+      if (e.code === code) {
+        ui.selectedSkill.value = skill;
+      }
+    });
   });
 
   window.addEventListener('resize', () => {

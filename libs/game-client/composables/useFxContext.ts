@@ -52,10 +52,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
             }
           : undefined,
         volume: 0.5,
-        loop: true,
-        onplay() {
-          console.log(sfx.duration());
-        }
+        loop: true
       });
 
       sfx.play(slice ? 'slice' : undefined);
@@ -172,14 +169,20 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           return resolve();
         }
 
-        entity.position.x = point.x;
-        entity.position.y = point.y;
-        entity.position.z = point.z;
-
-        setTimeout(() => {
-          fx.isMoving.value = false;
-          resolve();
-        }, duration);
+        gsap.to(entity.position, {
+          x: point.x,
+          y: point.y,
+          z: point.z,
+          duration,
+          ease: Power0.easeNone,
+          onComplete() {
+            // we are waiting for nextTick because we dont want the entity position to be tweened again when the state update from the action happens
+            nextTick(() => {
+              fx.isMoving.value = false;
+            });
+            resolve();
+          }
+        });
       });
     },
 

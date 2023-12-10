@@ -18,12 +18,12 @@ watch(
   () => ({ x: props.x, y: props.y }),
   newPos => {
     gsap.to(tweened.value, {
-      duration: props.speed ?? 0.3,
+      duration: fx.isMoving.value ? 0 : props.speed ?? 0.3,
       x: newPos.x,
       ease: fx.isMoving.value ? Power0.easeNone : Power2.easeOut
     });
     gsap.to(tweened.value, {
-      duration: props.speed ?? 0.3,
+      duration: fx.isMoving.value ? 0 : props.speed ?? 0.3,
       y: newPos.y,
       ease: fx.isMoving.value ? Power0.easeNone : Power2.easeOut
     });
