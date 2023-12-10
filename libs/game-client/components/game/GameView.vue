@@ -4,7 +4,7 @@ import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
 import PixiRenderer from './PixiRenderer.vue';
-import type { Cell, Entity, GameSession, Point3D } from '@hc/sdk';
+import type { Cell, Entity, GameSession, Player, Point3D } from '@hc/sdk';
 import type { GameEmits } from '../../composables/useGame';
 
 const emit = defineEmits<GameEmits>();

@@ -57,6 +57,11 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
       return;
     }
 
+    // game is over, can't execute further actions
+    if (this.ctx.winner) {
+      return;
+    }
+
     if (!this.ctx.isAuthoritative) {
       if (!this.ctx.fxContext) {
         console.warn(

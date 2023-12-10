@@ -24,6 +24,11 @@ export abstract class PlayerInput<TSchema extends DefaultSchema> implements Seri
   protected abstract impl(): void;
 
   execute() {
+    // game is over, can't execute further actions
+    if (this.ctx.winner) {
+      return;
+    }
+
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
     if (!parsed.success) return;
     this.payload = parsed.data;

@@ -7,7 +7,8 @@ import type {
   Skill,
   SkillId,
   Cell,
-  FXContext
+  FXContext,
+  Player
 } from '@hc/sdk';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
 import type { Viewport } from 'pixi-viewport';
@@ -24,6 +25,7 @@ export type GameEmits = {
   'end-turn': [];
   'use-skill': [{ skillId: SkillId; target: Point3D }];
   summon: [{ unitId: UnitId; position: Point3D }];
+  end: [{ winner: Player }];
 };
 
 export type GameContext = {
@@ -54,6 +56,10 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   const unsub = session.subscribe(event => {
     const newState = session.getState();
     state.value = newState;
+
+    if (event.type === 'END_GAME') {
+      emit('end', { winner: session.playerManager.getPlayerById(session.winner!)! });
+    }
   });
 
   const distanceMap = computed(() => {

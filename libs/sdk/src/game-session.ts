@@ -19,6 +19,7 @@ export type GameState = {
   entities: Entity[];
   players: Player[];
   activeEntity: Entity;
+  winner?: Player;
 };
 
 export type SerializedGameState = {
@@ -66,6 +67,8 @@ export class GameSession {
   nextEventId = 1;
 
   fxContext?: FXContext;
+
+  winner?: PlayerId;
 
   private constructor(
     state: SerializedGameState,
@@ -121,7 +124,8 @@ export class GameSession {
       },
       entities: this.entityManager.getList().map(entity => entity.clone()),
       players: this.playerManager.getList().map(player => player.clone()),
-      activeEntity: this.atb.activeEntity.clone()
+      activeEntity: this.atb.activeEntity.clone(),
+      winner: this.winner ? this.playerManager.getPlayerById(this.winner) : undefined
     };
   }
 

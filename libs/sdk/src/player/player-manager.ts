@@ -23,6 +23,10 @@ export class PlayerManager {
     return this.playerMap.get(id);
   }
 
+  getOpponent(id: PlayerId) {
+    return this.getList().find(p => p.id !== id)!;
+  }
+
   getActivePlayer() {
     return this.getPlayerById(this.ctx.atb.activeEntity.playerId)!;
   }

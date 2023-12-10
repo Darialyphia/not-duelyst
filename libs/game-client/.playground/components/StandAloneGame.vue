@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GameSession } from '@hc/sdk';
+import { GameSession, type Player } from '@hc/sdk';
 import { dummyState } from '~/dummy-state';
 
 const serverSession = GameSession.createServerSession(dummyState);
@@ -20,6 +20,10 @@ const dispatch = (
     }
   });
 };
+
+const onEnd = ({ winner }: { winner: Player }) => {
+  alert(`Game Over ! ${winner.id} won !`);
+};
 </script>
 
 <template>
@@ -29,5 +33,6 @@ const dispatch = (
     @end-turn="dispatch('END_TURN', {})"
     @use-skill="dispatch('USE_SKILL', $event)"
     @summon="dispatch('SUMMON', $event)"
+    @end="onEnd"
   />
 </template>

@@ -8,4 +8,5 @@ export type { Tile } from './map/tile';
 export type { Skill, SkillId } from './skill/skill-builder';
 export type { Point3D } from './types';
 export type { UnitBlueprint, UnitId } from './units/unit-lookup';
+export type { PlayerId, Player } from './player/player';
 export { Vec3 } from './utils/vector';
