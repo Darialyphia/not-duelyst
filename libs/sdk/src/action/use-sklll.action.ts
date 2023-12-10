@@ -13,7 +13,14 @@ export class UseSkillAction extends GameAction<{
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
-    await this.ctx.fxContext.playAnimationOnce(this.payload.casterId, 'use_skill');
+    await Promise.all([
+      this.ctx.fxContext.playSoundOnce(this.payload.skillId, 'use-skill-placeholder', {
+        percentage: 0.5
+      }),
+      this.ctx.fxContext.playAnimationOnce(this.payload.casterId, this.payload.skillId, {
+        animationNameFallback: 'use_skill'
+      })
+    ]);
   }
 
   protected impl() {

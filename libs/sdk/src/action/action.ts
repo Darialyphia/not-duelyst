@@ -16,7 +16,12 @@ export type FXContext = {
       scale?: number;
     }
   ): Promise<void>;
-  playSound(soundId: string): Promise<void>;
+  playSoundOnce(
+    soundId: string,
+    fallback?: string,
+    options?: { percentage?: number }
+  ): Promise<void>;
+  playSoundUntil(soundId: string, fallback?: string): () => void;
   playAnimationOnce(
     entityId: EntityId,
     animationName: string,

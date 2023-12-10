@@ -2,31 +2,63 @@ import type { GameSession, GameState } from '@hc/sdk';
 import { AnimatedSprite } from 'pixi.js';
 import { Sound } from '@pixi/sound';
 import { sfxPaths } from '../assets/sfx';
+import { Howl } from 'howler';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   gameSession.fxContext = {
-    playSound(soundId) {
+    playSoundOnce(soundId, fallback, { percentage = 1 } = {}) {
       return new Promise<void>(resolve => {
-        if (!sfxPaths[soundId]) {
-          console.log(`FXContext: sound not found: ${soundId}`);
+        const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
+        if (!soundPath) {
+          console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
           return resolve();
         }
 
-        const sfx = Sound.from({
-          url: sfxPaths[soundId],
-          loaded: function (err, sound) {
-            console.log('loaded');
-          },
-          complete() {
-            console.log('complete');
-            resolve();
+        const sfx = new Howl({
+          src: [soundPath],
+          volume: 0.5,
+          onplay() {
+            const durationSeconds = sfx.duration();
+
+            setTimeout(
+              () => {
+                resolve();
+              },
+              durationSeconds * 1000 * percentage
+            );
           }
         });
 
         sfx.play();
-        console.log(sfx);
       });
     },
+
+    playSoundUntil(soundId, fallback) {
+      const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
+      if (!soundPath) {
+        console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
+        return () => {};
+      }
+
+      const sfx = new Howl({
+        src: [soundPath],
+        sprite: {
+          walk: [0, 300]
+        },
+        volume: 0.5,
+        loop: true,
+        onplay() {
+          console.log(sfx.duration());
+        }
+      });
+
+      sfx.play('walk');
+
+      return () => {
+        sfx.stop();
+      };
+    },
+
     playAnimationOnce(
       entityId,
       animationName,
@@ -46,16 +78,17 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         }
 
         const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
-        const hasAnimation = !!sheet.animations[animationName];
-        if (!hasAnimation) {
+        const animation =
+          sheet.animations[animationName] ?? sheet.animations[animationNameFallback];
+        if (!animation) {
           console.warn(
-            `FXContext: animation not found on sprite : ${animationName}. Using fallback ${animationNameFallback}`
+            `FXContext: animation not found on sprite ${entity.unitId}: ${animationName}.`
           );
           return resolve();
         }
 
         sprite.textures = createSpritesheetFrameObject(
-          hasAnimation ? animationName : animationNameFallback,
+          sheet.animations[animationName] ? animationName : animationNameFallback,
           sheet
         );
         sprite.loop = false;
