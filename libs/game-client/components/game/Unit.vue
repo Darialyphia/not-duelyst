@@ -15,12 +15,13 @@ const { entity } = defineProps<{
 const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
 const { hoveredCell, targetMode, selectedSkill } = useGameUi();
 
-const spritesheet = assets.getSprite(entity.unitId, 'placeholder');
+const spritesheet = assets.getSprite(entity.unitId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
 const spriteRef = ref<AnimatedSprite>();
 watchEffect(() => {
   fx.spriteMap.set(entity.id, spriteRef);
+  spriteRef.value?.gotoAndPlay(0);
 });
 
 const scaleX = computed(() => {

@@ -124,7 +124,7 @@ const getEntitiesByZ = (z: number) =>
   state.value.entities.filter(c => c.position.z === z);
 
 const rotateMap = (diff: number) => {
-  mapRotation.value = ((mapRotation.value + diff) % 360) as any;
+  mapRotation.value = ((mapRotation.value + 360 + diff) % 360) as any;
 };
 
 const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {

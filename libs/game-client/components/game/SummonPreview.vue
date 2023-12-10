@@ -57,7 +57,7 @@ const onLeave = (el: Container, done: () => void) => {
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;
-  return assets.getSprite(selectedSummon.value.id, 'placeholder');
+  return assets.getSprite(selectedSummon.value.id, 'placeholder-unit');
 });
 const textures = computed(() =>
   sheet.value ? createSpritesheetFrameObject('idle', sheet.value) : null

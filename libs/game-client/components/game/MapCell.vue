@@ -5,9 +5,14 @@ import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
-const { assets, state, sendInput, gameSession } = useGame();
+const { assets, state, sendInput, gameSession, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
 
+const textures = computed(() => {
+  const sheet = assets.getSprite(cell.tile.id);
+
+  return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
+});
 const hitArea = new Polygon([
   { x: 0, y: 0 },
   { x: CELL_SIZE / 2, y: CELL_SIZE / 4 },
@@ -83,7 +88,7 @@ const isMovePathHighlighted = computed(() => {
     >
       <animated-sprite
         :filters="isMovePathHighlighted ? [pathFilter] : []"
-        :textures="assets.getSprite(cell.tile.id).animations['0']"
+        :textures="textures"
         :anchor-x="0.5"
       />
 

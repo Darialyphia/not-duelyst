@@ -20,7 +20,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           return resolve();
         }
 
-        const sheet = assets.getSprite(entity.unitId, 'placeholder');
+        const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
         const hasAnimation = !!sheet.animations[animationName];
         if (!hasAnimation) {
           console.warn(
@@ -71,7 +71,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         return () => {};
       }
 
-      const sheet = assets.getSprite(entity.unitId, 'placeholder');
+      const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
       sheet.animations;
       const hasAnimation = !!sheet.animations[animationName];
       if (!hasAnimation) {

@@ -10,8 +10,11 @@ const screenViewport = shallowRef<Viewport>();
 onMounted(() => {
   window.addEventListener('keydown', e => {
     if (e.repeat) return;
-    if (e.code === 'KeyQ') mapRotation.value -= 90;
-    if (e.code === 'KeyE') mapRotation.value += 90;
+    if (e.code === 'KeyQ')
+      mapRotation.value = ((mapRotation.value + 360 - 90) % 360) as 0 | 90 | 180 | 270;
+
+    if (e.code === 'KeyE')
+      mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
     if (e.code === 'KeyA') ui.targetMode.value = 'move';
     if (e.code === 'KeyT') sendInput('end-turn');
   });

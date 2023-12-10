@@ -6,7 +6,10 @@ const { hoveredCell } = useGameUi();
 
 const { assets } = useGame();
 const textures = computed(() =>
-  createSpritesheetFrameObject('idle', assets.getSprite('hovered_cell'))
+  createSpritesheetFrameObject(
+    'idle',
+    assets.getSprite(cell.tile.isRamp ? 'hovered_cell_ramp' : 'hovered_cell')
+  )
 );
 </script>
 
