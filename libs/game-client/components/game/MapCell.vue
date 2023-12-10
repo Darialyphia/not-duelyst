@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { Polygon } from 'pixi.js';
+import { Polygon, type Cursor } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
+import { useApplication } from 'vue3-pixi';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
+const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
 
@@ -76,12 +78,23 @@ const isMovePathHighlighted = computed(() => {
 
   return isInPath || state.value.activeEntity.id === entityOnCell?.id;
 });
+
+const cursor = computed(() => {
+  if (isMoveTarget.value) {
+    return app.value.renderer.events.cursorStyles.move as Cursor;
+  }
+  if (isSummonTarget.value) {
+    return app.value.renderer.events.cursorStyles.summon as Cursor;
+  }
+  return undefined;
+});
 </script>
 
 <template>
   <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z">
     <container
       :hit-area="hitArea"
+      :cursor="cursor"
       @pointerenter="hoveredCell = cell"
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
@@ -89,12 +102,13 @@ const isMovePathHighlighted = computed(() => {
       <animated-sprite
         :filters="isMovePathHighlighted ? [pathFilter] : []"
         :textures="textures"
+        :cursor="cursor"
         :anchor-x="0.5"
       />
 
-      <MapCellHighlight :cell="cell" />
+      <MapCellHighlight :cell="cell" :cursor="cursor" />
     </container>
-    <HoveredCell :cell="cell" />
+    <HoveredCell :cell="cell" :cursor="cursor" />
   </IsoPositioner>
   <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z + 0.1">
     <SummonPreview :cell="cell" />

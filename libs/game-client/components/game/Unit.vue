@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import type { Entity, Point3D } from '@hc/sdk';
-import { PTransition } from 'vue3-pixi';
+import { PTransition, useApplication } from 'vue3-pixi';
 import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
-import type { AnimatedSprite } from 'pixi.js';
+import type { AnimatedSprite, Cursor } from 'pixi.js';
 import type { VNodeRef } from 'nuxt/dist/app/compat/capi';
 
 const { entity } = defineProps<{
   entity: Entity;
 }>();
 
+const app = useApplication();
 const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
 const { hoveredCell, targetMode, selectedSkill } = useGameUi();
 
@@ -152,6 +153,15 @@ const onStatbarsEnter = (el: Container, done: () => void) => {
     }
   });
 };
+
+const cursor = computed(() => {
+  const cell = gameSession.map.getCellAt(entity.position);
+
+  if (isSkillTarget(entity.position)) {
+    return app.value.renderer.events.cursorStyles.attack as Cursor;
+  }
+  return undefined;
+});
 </script>
 
 <template>
@@ -168,6 +178,7 @@ const onStatbarsEnter = (el: Container, done: () => void) => {
       :scale-x="scaleX"
       :hit-area="hitArea"
       :filters="filters"
+      :cursor="cursor"
       loop
       @pointerup="
         () => {

@@ -6,75 +6,17 @@ import PixiPlugin from 'gsap/PixiPlugin';
 import PixiRenderer from './PixiRenderer.vue';
 import type { Cell, Entity, GameSession, Player, Point3D } from '@hc/sdk';
 import type { GameEmits } from '../../composables/useGame';
-
-const emit = defineEmits<GameEmits>();
+import cursorUrl from '../../assets/cursors/cursor.png';
+import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
+import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
+import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
+import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
+const emit = defineEmits<GameEmits>();
 
 const game = useGameProvider(gameSession, emit);
 const { state, ui, mapRotation, assets } = game;
-
-const distanceMap = computed(() => {
-  return gameSession.map.getDistanceMap(
-    state.value.activeEntity.position,
-    state.value.activeEntity.speed
-  );
-});
-
-const isMoveTarget = (point: Point3D) => {
-  if (ui.targetMode.value !== 'move') return false;
-  return state.value.activeEntity.canMove(distanceMap.value.get(point));
-};
-
-const isSkillTarget = (point: Point3D) => {
-  if (ui.targetMode.value !== 'skill') return false;
-  if (!ui.selectedSkill.value) return false;
-
-  return ui.selectedSkill.value.isTargetable(
-    gameSession,
-    point,
-    state.value.activeEntity
-  );
-};
-
-const isSummonTarget = (point: Point3D) => {
-  if (ui.targetMode.value !== 'summon') return false;
-
-  return (
-    gameSession.map.canSummonAt(point) &&
-    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-  );
-};
-
-const onCellClick = (cell: Cell) => {
-  if (isMoveTarget(cell.position)) {
-    return emit('move', {
-      ...cell.position,
-      entityId: state.value.activeEntity.id
-    });
-  }
-  if (isSkillTarget(cell.position)) {
-    return emit('use-skill', {
-      target: cell.position,
-      skillId: ui.selectedSkill.value!.id
-    });
-  }
-  if (isSummonTarget(cell.position)) {
-    return emit('summon', {
-      position: cell.position,
-      unitId: ui.selectedSummon.value!.id
-    });
-  }
-};
-
-const onEntityClick = (entity: Entity) => {
-  if (isSkillTarget(entity.position)) {
-    emit('use-skill', {
-      target: entity.position,
-      skillId: ui.selectedSkill.value!.id
-    });
-  }
-};
 
 const activePlayer = computed(
   () => gameSession.playerManager.getPlayerById(state.value.activeEntity.playerId)!
@@ -83,6 +25,14 @@ const activePlayer = computed(
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
 window.gsap.registerPlugin(PixiPlugin);
+
+const cursors = {
+  default: `url('${cursorUrl}'), auto`,
+  disabled: `url('${cursorDisabledUrl}'), auto`,
+  attack: `url('${cursorAttackUrl}'), auto`,
+  move: `url('${cursorMoveUrl}'), auto`,
+  summon: `url('${cursorSummonUrl}'), auto`
+};
 
 const canvas = ref<HTMLCanvasElement>();
 
@@ -99,6 +49,7 @@ onMounted(async () => {
   });
 
   pixiApp.resizeTo = window;
+  pixiApp.renderer.events.cursorStyles = cursors;
 
   // pixiApp.stage = new Stage();
 
@@ -130,87 +81,50 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 </script>
 
 <template>
-  <div class="relative">
-    <div class="pixi-app-container">
-      <canvas ref="canvas" @contextmenu.prevent />
-      <header>
-        <button
-          @click="
-            () => {
-              console.log({ gameSession, state });
-            }
-          "
-        >
-          Debug
-        </button>
-        <button @click="rotateMap(90)">Rotate CW</button>
-        <button @click="rotateMap(-90)">Rotate CCW</button>
+  <div class="pixi-app-container">
+    <canvas ref="canvas" @contextmenu.prevent />
+    <header>
+      <button
+        @click="
+          () => {
+            console.log({ gameSession, state });
+          }
+        "
+      >
+        Debug
+      </button>
+      <button @click="rotateMap(90)">Rotate CW</button>
+      <button @click="rotateMap(-90)">Rotate CCW</button>
 
-        <button @click="emit('end-turn')">End turn</button>
-        <button @click="setTargetMode('move')">Move</button>
-        Skills
+      <button @click="emit('end-turn')">End turn</button>
+      <button @click="setTargetMode('move')">Move</button>
+      Skills
+      <button
+        v-for="skill in state.activeEntity.skills"
+        :key="skill.id"
+        :disabled="!state.activeEntity.canUseSkill(skill)"
+        @click="ui.selectedSkill.value = skill"
+      >
+        {{ skill.id }} ({{ skill.cost }})
+        {{ state.activeEntity.skillCooldowns[skill.id] }}
+      </button>
+      Loadout
+      <template v-if="state.activeEntity.kind === 'GENERAL'">
         <button
-          v-for="skill in state.activeEntity.skills"
-          :key="skill.id"
-          :disabled="!state.activeEntity.canUseSkill(skill)"
-          @click="ui.selectedSkill.value = skill"
+          v-for="unit in activePlayer.summonableUnits"
+          :disabled="!activePlayer.canSummon(unit.unit.id)"
+          @click="ui.selectedSummon.value = unit.unit"
         >
-          {{ skill.id }} ({{ skill.cost }})
-          {{ state.activeEntity.skillCooldowns[skill.id] }}
+          {{ unit.unit.id }} ({{ unit.unit.summonCost }})
         </button>
-        Loadout
-        <template v-if="state.activeEntity.kind === 'GENERAL'">
-          <button
-            v-for="unit in activePlayer.summonableUnits"
-            :disabled="!activePlayer.canSummon(unit.unit.id)"
-            @click="ui.selectedSummon.value = unit.unit"
-          >
-            {{ unit.unit.id }} ({{ unit.unit.summonCost }})
-          </button>
-        </template>
-      </header>
-      <!-- <div class="map">
-        <div v-for="z in maxZ + 1" :key="z">
-          <div
-            v-for="cell in getCellsByZ(z - 1)"
-            :key="`${cell.position.toString()}`"
-            :style="{ '--col': cell.x + 1, '--row': cell.y + 1 }"
-            :class="[
-              'cell',
-              {
-                'move-target': isMoveTarget(cell.position),
-                'skill-target': isSkillTarget(cell.position),
-                'summon-target': isSummonTarget(cell.position)
-              }
-            ]"
-            @click="onCellClick(cell)"
-          >
-            {{ cell.x }}:{{ cell.y }}:{{ cell.z }}
-          </div>
-
-          <div
-            v-for="entity in getEntitiesByZ(z - 1)"
-            :key="entity.id"
-            :style="{ '--col': entity.position.x + 1, '--row': entity.position.y + 1 }"
-            :class="[
-              'entity',
-              {
-                active: entity.id === state.activeEntity.id,
-                'skill-target': isSkillTarget(entity.position)
-              }
-            ]"
-            @click="onEntityClick(entity)"
-          >
-            {{ entity.hp }}
-          </div>
-        </div>
-      </div> -->
-    </div>
+      </template>
+    </header>
   </div>
 </template>
 
 <style scoped lang="postcss">
-.game-app-container {
+.pixi-app-container {
+  cursor: v-bind('cursors.default');
   user-select: none;
 
   position: relative;
@@ -219,6 +133,14 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 
   font-family: monospace;
   color: var(--gray-0);
+}
+
+.pixi-app-container :is(button, input) {
+  cursor: inherit !important;
+
+  &:disabled {
+    cursor: v-bind('cursors.disabled') !important;
+  }
 }
 
 header {
@@ -235,15 +157,14 @@ header {
 }
 
 button {
-  cursor: pointer;
-
   padding: var(--size-2) var(--size-3);
-
   color: white;
-
   background-color: var(--blue-7);
   border-radius: var(--radius-1);
 
+  &:hover {
+    background-color: var(--blue-8);
+  }
   &:disabled {
     opacity: 0.5;
   }

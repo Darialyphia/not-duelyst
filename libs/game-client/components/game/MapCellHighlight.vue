@@ -3,7 +3,6 @@ import { PTransition } from 'vue3-pixi';
 import type { Container, Cursor } from 'pixi.js';
 import type { Cell, Point3D } from '@hc/sdk';
 import { isDefined } from '@hc/shared';
-import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
 const { cell, cursor } = defineProps<{
   cursor?: Cursor;
