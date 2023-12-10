@@ -51,8 +51,8 @@ const hitArea = computed(() => {
 
   // we need to offset the slice because the sprite has its anchor in the center
   const offset = {
-    x: frameSize.w / 2,
-    y: frameSize.h / 2
+    x: CELL_SIZE,
+    y: 0
   };
 
   // default hit area is a square the size of once cell

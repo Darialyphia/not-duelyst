@@ -6,7 +6,15 @@ import { EntityId } from '../entity/entity';
 import { Point3D } from '../types';
 
 export type FXContext = {
-  moveEntity(entityId: EntityId, to: Point3D, duration: number): Promise<void>;
+  addChildSprite(
+    spriteId: string,
+    entityId: EntityId,
+    options?: {
+      animationName?: string;
+      offset?: { x: number; y: number };
+      waitUntilAnimationDone?: boolean;
+    }
+  ): Promise<void>;
   playAnimationOnce(
     entityId: EntityId,
     animationName: string,
@@ -31,6 +39,7 @@ export type FXContext = {
       totalDuration?: number;
     }
   ): Promise<void>;
+  moveEntity(entityId: EntityId, to: Point3D, duration: number): Promise<void>;
   fadeOutEntity(entityId: EntityId, duration: number): Promise<void>;
 };
 

@@ -60,6 +60,7 @@
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
+   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 48, "y": 28, "w": 31, "h": 57 } }, { "frame": 1, "bounds": {"x": 48, "y": 28, "w": 31, "h": 57 } }] }
   ]
  }
 }

@@ -1,4 +1,5 @@
 import type { GameSession, GameState } from '@hc/sdk';
+import { AnimatedSprite } from 'pixi.js';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   gameSession.fxContext = {
@@ -185,6 +186,56 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
             alpha: 0
           }
         });
+      });
+    },
+
+    addChildSprite(
+      spriteId,
+      entityId,
+      {
+        animationName = 'idle',
+        offset = { x: 0, y: 0 },
+        waitUntilAnimationDone = true
+      } = {}
+    ) {
+      return new Promise(resolve => {
+        const entity = gameSession.entityManager.getEntityById(entityId);
+        if (!entity) {
+          console.warn(`FXContext: entity not found for entityId ${entityId}`);
+          return resolve();
+        }
+
+        const sprite = toValue(fx.spriteMap.get(entityId));
+        if (!sprite) {
+          console.warn(`FXContext: sprite not found for entity ${entityId}`);
+          return resolve();
+        }
+
+        const sheet = assets.getSprite(spriteId);
+        const hasAnimation = !!sheet.animations[animationName];
+        if (!hasAnimation) {
+          console.warn(
+            `FXContext: animation not found on sprite ${spriteId} : ${animationName}.`
+          );
+          return resolve();
+        }
+
+        const fxSprite = new AnimatedSprite(createSpritesheetFrameObject('idle', sheet));
+        fxSprite.position.set(offset.x, offset.y);
+        fxSprite.loop = false;
+        fxSprite.anchor.set(0.5);
+
+        fxSprite.onComplete = () => {
+          fxSprite.destroy();
+          resolve();
+        };
+
+        sprite?.addChild(fxSprite);
+        fxSprite.play();
+
+        if (!waitUntilAnimationDone) {
+          resolve();
+        }
       });
     }
   };

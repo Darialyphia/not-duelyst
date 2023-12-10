@@ -4,6 +4,7 @@ import { uiSpritesPaths } from '../assets/ui';
 import { unitSpritesPaths } from '../assets/units';
 import { tileSpritesPaths } from '../assets/tiles';
 import { tilesetsPaths } from '../assets/tilesets';
+import { fxSpritesPaths } from '../assets/fx';
 
 export const trimExtension = (str: string) => str.replace(/\.[^/.]+$/, '');
 
@@ -64,7 +65,8 @@ type AsepriteJson = z.infer<typeof asepriteJsonSchema>;
 const spriteUrls: string[] = [
   ...Object.values(uiSpritesPaths),
   ...Object.values(tileSpritesPaths),
-  ...Object.values(unitSpritesPaths)
+  ...Object.values(unitSpritesPaths),
+  ...Object.values(fxSpritesPaths)
 ];
 const tilesetUrls: string[] = [...Object.values(tilesetsPaths)];
 

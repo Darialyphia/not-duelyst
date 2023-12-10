@@ -1,15 +1,16 @@
-import { type ResolverManifest } from 'pixi.js';
 import { tileSpritesPaths } from './tiles';
 import { objectEntries, type Values } from '@hc/shared';
 import { uiSpritesPaths } from './ui';
 import { unitSpritesPaths } from './units';
 import { tilesetsPaths } from './tilesets';
+import { fxSpritesPaths } from './fx';
 
 export const ASSET_BUNDLES = {
   TILES: 'tiles',
   UI: 'sprites',
   UNITS: 'units',
-  TILESETS: 'tilesets'
+  TILESETS: 'tilesets',
+  FX: 'fx'
 } as const;
 
 export type AssetBundle = Values<typeof ASSET_BUNDLES>;
@@ -43,6 +44,13 @@ export const assetsManifest = {
         name,
         srcs
       }))
+    },
+    {
+      name: ASSET_BUNDLES.FX,
+      assets: objectEntries(fxSpritesPaths).map(([name, srcs]) => ({
+        name,
+        srcs
+      }))
     }
   ]
-} satisfies ResolverManifest;
+};

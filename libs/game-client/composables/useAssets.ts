@@ -24,7 +24,8 @@ export const useAssetsProvider = () => {
       Assets.loadBundle(ASSET_BUNDLES.TILES),
       Assets.loadBundle(ASSET_BUNDLES.UI),
       Assets.loadBundle(ASSET_BUNDLES.UNITS),
-      Assets.loadBundle(ASSET_BUNDLES.TILESETS)
+      Assets.loadBundle(ASSET_BUNDLES.TILESETS),
+      Assets.loadBundle(ASSET_BUNDLES.FX)
     ]);
 
     bundles.forEach(bundle => {
