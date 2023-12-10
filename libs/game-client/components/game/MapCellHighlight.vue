@@ -3,6 +3,7 @@ import { PTransition } from 'vue3-pixi';
 import type { Container, Cursor } from 'pixi.js';
 import type { Cell, Point3D } from '@hc/sdk';
 import { isDefined } from '@hc/shared';
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
 const { cell, cursor } = defineProps<{
   cursor?: Cursor;
@@ -10,7 +11,9 @@ const { cell, cursor } = defineProps<{
 }>();
 
 const { state, gameSession, mapRotation, assets } = useGame();
-const { selectedSkill, hoveredCell, targetMode, distanceMap } = useGameUi();
+const { selectedSummon, selectedSkill, hoveredCell, targetMode, distanceMap } =
+  useGameUi();
+
 const isHoveringActiveEntity = computed(
   () =>
     hoveredCell.value?.id ===

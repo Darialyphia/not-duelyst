@@ -5,8 +5,8 @@ import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
-const { assets, state, sendInput, mapRotation, gameSession } = useGame();
-const { hoveredCell, targetMode, distanceMap } = useGameUi();
+const { assets, state, sendInput, gameSession } = useGame();
+const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
 
 const hitArea = new Polygon([
   { x: 0, y: 0 },
@@ -22,11 +22,28 @@ const isMoveTarget = computed(() => {
   return state.value.activeEntity.canMove(distanceMap.value.get(cell.position));
 });
 
+const isSummonTarget = computed(() => {
+  if (targetMode.value !== 'summon') return false;
+
+  return (
+    gameSession.map.canSummonAt(cell.position) &&
+    gameSession.entityManager.hasNearbyAllies(
+      cell.position,
+      state.value.activeEntity.playerId
+    )
+  );
+});
+
 const onPointerup = () => {
   if (isMoveTarget.value) {
     sendInput('move', {
       ...cell.position,
       entityId: state.value.activeEntity.id
+    });
+  } else if (isSummonTarget.value) {
+    sendInput('summon', {
+      position: cell.position,
+      unitId: selectedSummon.value!.id
     });
   }
 };
@@ -73,5 +90,8 @@ const isMovePathHighlighted = computed(() => {
       <MapCellHighlight :cell="cell" />
     </container>
     <HoveredCell :cell="cell" />
+  </IsoPositioner>
+  <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z + 0.1">
+    <SummonPreview :cell="cell" />
   </IsoPositioner>
 </template>
