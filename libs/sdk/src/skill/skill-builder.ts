@@ -13,8 +13,10 @@ export type Skill = {
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
   isInAreaOfEffect(
     ctx: GameSession,
+    /** The point to check */
     point: Point3D,
     caster: Entity,
+    /** The point where the skill was casted */
     target: Point3D
   ): boolean;
   execute(

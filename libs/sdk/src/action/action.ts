@@ -93,7 +93,7 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
 
     this.ctx.history.add(this);
     this.impl();
-    this.ctx.emitter.emit('game:event', this.serialize() as unknown as SerializedAction); // smh
+    this.ctx.emitter.emit('game:action', this); // smh
   }
 
   serialize() {

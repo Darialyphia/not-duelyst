@@ -8,9 +8,12 @@ import {
   ensureIsWithinCellsOfCaster,
   skillAreaGuard,
   skillTargetGuard,
-  ensureIsAxisAlignedWithCaster
+  ensureIsAxisAlignedWithCaster,
+  ensureSelfCast,
+  ensureTargetIsSelf
 } from '../skill/skill-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
+import { AddTriggerAction } from '../action/add-trigger';
 
 export const UNIT_KIND = {
   GENERAL: 'GENERAL',
@@ -83,6 +86,25 @@ export const UNITS = keyBy(
                   amount: 1,
                   sourceId: caster.id,
                   targets: [entity.id]
+                },
+                ctx
+              )
+            );
+          })
+          .build(),
+
+        skillBuilder()
+          .id('test_trigger')
+          .cost(1)
+          .cooldown(2)
+          .isTargetable(skillTargetGuard(ensureSelfCast))
+          .isInAreaOfEffect(skillAreaGuard(ensureTargetIsSelf))
+          .execute((ctx, caster) => {
+            ctx.actionQueue.push(
+              new AddTriggerAction(
+                {
+                  triggerId: 'test_trigger',
+                  ownerId: caster.id
                 },
                 ctx
               )

@@ -5,7 +5,7 @@ import { dummyState } from '~/dummy-state';
 const serverSession = GameSession.createServerSession(dummyState);
 const clientSession = GameSession.createClientSession(dummyState);
 serverSession.subscribe(action => {
-  clientSession.dispatchAction(action);
+  clientSession.dispatchAction(action.serialize() as any); // @FIXME
 });
 
 const dispatch = (

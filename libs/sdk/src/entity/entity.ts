@@ -8,6 +8,8 @@ import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
+import { ActionName } from '../action/action-deserializer';
+import { Trigger } from '../trigger/trigger-builder';
 
 export type EntityId = number;
 
@@ -204,12 +206,20 @@ export class Entity implements Serializable {
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
-  private calculateDamage(baseAmount: number, attacker: Entity, defender: Entity) {
+  private calculateDamage(
+    baseAmount: number,
+    attacker: Entity,
+    defender: Entity,
+    isTrueDamage?: boolean
+  ) {
+    if (isTrueDamage) return baseAmount;
+
     return Math.max(1, baseAmount + (attacker.attack - defender.defense));
   }
 
-  dealDamage(baseAmount: number, target: Entity) {
-    target.takeDamage(baseAmount, this);
+  dealDamage(baseAmount: number, target: Entity, isTrueDamage?: boolean) {
+    target.takeDamage(baseAmount, this, isTrueDamage);
+
     this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
       amount: this.calculateDamage(baseAmount, this, target),
@@ -218,8 +228,8 @@ export class Entity implements Serializable {
     });
   }
 
-  takeDamage(baseAmount: number, source: Entity) {
-    const amount = this.calculateDamage(baseAmount, source, this);
+  takeDamage(baseAmount: number, source: Entity, isTrueDamage?: boolean) {
+    const amount = this.calculateDamage(baseAmount, source, this, isTrueDamage);
     this.hp = Math.max(0, this.hp - amount);
     this.emitter.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
       entity: this,

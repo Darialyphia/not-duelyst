@@ -18,7 +18,17 @@ onMounted(() => {
     if (e.code === 'KeyA') ui.targetMode.value = 'move';
     if (e.code === 'KeyT') sendInput('end-turn');
   });
+
+  window.addEventListener('resize', () => {
+    const center = toIso({ x: 0, y: 0, z: 0 }, mapRotation.value, {
+      width: 0,
+      height: 0
+    });
+
+    screenViewport.value?.moveCenter(center.isoX, center.isoY);
+  });
 });
+
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {

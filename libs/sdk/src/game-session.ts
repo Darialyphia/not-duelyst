@@ -12,7 +12,7 @@ import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
 import { clamp } from '@hc/shared';
 import { ActionQueue } from './action/action-queue';
-import { FXContext } from './action/action';
+import { FXContext, GameAction } from './action/action';
 
 export type GameState = {
   map: Pick<GameMap, 'height' | 'width' | 'cells'>;
@@ -36,7 +36,7 @@ type GlobalEntityEvents = {
 };
 
 type GlobalGameEvents = GlobalEntityEvents & {
-  'game:event': SerializedAction;
+  'game:action': GameAction<any>;
 };
 
 export class GameSession {
@@ -137,9 +137,9 @@ export class GameSession {
     this.actionQueue.push(action);
   }
 
-  subscribe(cb: (e: SerializedAction) => void) {
-    this.emitter.on('game:event', cb);
-    return () => this.emitter.off('game:event', cb);
+  subscribe(cb: (e: GameAction<any>) => void) {
+    this.emitter.on('game:action', cb);
+    return () => this.emitter.off('game:action', cb);
   }
 
   serialize(): SerializedGameState {

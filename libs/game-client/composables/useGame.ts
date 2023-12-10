@@ -53,11 +53,11 @@ export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
   const assets = useAssetsProvider();
   const state = ref<GameState>(session.getState());
-  const unsub = session.subscribe(event => {
+  const unsub = session.subscribe(action => {
     const newState = session.getState();
     state.value = newState;
 
-    if (event.type === 'END_GAME') {
+    if (action.name === 'END_GAME') {
       emit('end', { winner: session.playerManager.getPlayerById(session.winner!)! });
     }
   });

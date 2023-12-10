@@ -1,4 +1,5 @@
 import { isAlly, isEmpty, isEnemy } from '../entity/entity-utils';
+import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Vec3 } from '../utils/vector';
 import { Skill } from './skill-builder';
@@ -6,6 +7,7 @@ import { Skill } from './skill-builder';
 type SkillTargetGuardFunction = Skill['isTargetable'];
 type SkillAreaGuardFunction = Skill['isInAreaOfEffect'];
 
+// General helpers
 export const skillAreaGuard =
   (...rules: SkillAreaGuardFunction[]): SkillAreaGuardFunction =>
   (...args) =>
@@ -36,12 +38,23 @@ export const isAxisAligned = (point: Point3D, origin: Point3D) => {
   return point.x === origin.x || point.y === origin.y;
 };
 
+/***********************/
+/* SKILL TARGET GUARDS */
+/***********************/
+
 export const ensureTargetIsNotEmpty: SkillTargetGuardFunction = (ctx, point) => {
   return !isEmpty(ctx, point);
 };
 
 export const ensureTargetIsEmpty: SkillTargetGuardFunction = (ctx, point) => {
   return isEmpty(ctx, point);
+};
+
+export const ensureSelfCast: SkillTargetGuardFunction = (ctx, point, caster) => {
+  const entity = ctx.entityManager.getEntityAt(point);
+  if (!entity) return false;
+
+  return entity.equals(caster);
 };
 
 export const ensureTargetIsAlly: SkillTargetGuardFunction = (ctx, point, caster) => {
@@ -78,6 +91,10 @@ export const ensureIsWithinCellsOfCaster =
     return isWithinCells(caster.position, point, range);
   };
 
+/***********************/
+/* SKILL AREA GUARDS */
+/***********************/
+
 export const ensureIsWithinRangeOfTarget =
   (range: number): SkillAreaGuardFunction =>
   (_ctx, point, _caster, target) => {
@@ -93,8 +110,14 @@ export const ensureIsWithinCellsOfTarget =
 export const ensureIsAxisAlignedWithTarget: SkillAreaGuardFunction = (
   _ctx,
   point,
-  caster,
+  _caster,
   target
 ) => {
   return isAxisAligned(point, target);
+};
+
+export const ensureTargetIsSelf: SkillAreaGuardFunction = (ctx, point, caster) => {
+  const entity = ctx.entityManager.getEntityAt(point);
+  if (!entity) return false;
+  return entity.equals(caster);
 };

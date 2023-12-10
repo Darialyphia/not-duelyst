@@ -98,9 +98,8 @@ onMounted(async () => {
     antialias: false
   });
 
-  window.addEventListener('resize', () => {
-    pixiApp.resize();
-  });
+  pixiApp.resizeTo = window;
+
   // pixiApp.stage = new Stage();
 
   if (import.meta.env.DEV) {
@@ -121,11 +120,6 @@ onMounted(async () => {
   app.mount(pixiApp.stage);
 });
 
-const maxZ = computed(() => Math.max(...state.value.map.cells.map(c => c.z)));
-const getCellsByZ = (z: number) => state.value.map.cells.filter(c => c.z === z);
-const getEntitiesByZ = (z: number) =>
-  state.value.entities.filter(c => c.position.z === z);
-
 const rotateMap = (diff: number) => {
   mapRotation.value = ((mapRotation.value + 360 + diff) % 360) as any;
 };
@@ -140,6 +134,15 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
     <div class="pixi-app-container">
       <canvas ref="canvas" @contextmenu.prevent />
       <header>
+        <button
+          @click="
+            () => {
+              console.log({ gameSession, state });
+            }
+          "
+        >
+          Debug
+        </button>
         <button @click="rotateMap(90)">Rotate CW</button>
         <button @click="rotateMap(-90)">Rotate CCW</button>
 

@@ -6,13 +6,14 @@ export class DealDamageAction extends GameAction<{
   amount: number;
   sourceId: EntityId;
   targets: EntityId[];
+  isTrueDamage?: boolean;
 }> {
   readonly name = 'DEAL_DAMAGE';
 
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
-    this.ctx.fxContext.playSound('hit-placeholder');
+    this.ctx.fxContext.playSoundOnce('hit-placeholder');
 
     await Promise.all(
       this.payload.targets.map(target => {
@@ -37,7 +38,7 @@ export class DealDamageAction extends GameAction<{
 
     this.payload.targets.forEach(targetId => {
       const target = this.ctx.entityManager.getEntityById(targetId)!;
-      attacker.dealDamage(this.payload.amount, target);
+      attacker.dealDamage(this.payload.amount, target, this.payload.isTrueDamage);
       if (target.hp <= 0) {
         this.ctx.actionQueue.push(new DieAction({ entityId: targetId }, this.ctx));
       }
