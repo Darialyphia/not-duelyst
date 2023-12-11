@@ -27,7 +27,8 @@ export const ENTITY_EVENTS = {
   TURN_END: 'turn-end',
   USE_SKILL: 'use-skill',
   DEAL_DAMAGE: 'deal-damage',
-  TAKE_DAMAGE: 'take-damage',
+  RECEIVE_DAMAGE: 'receive-damage',
+  HEAL: 'heal',
   DIE: 'die'
 } as const;
 
@@ -45,9 +46,20 @@ export type EntityEventMap = {
     amount: number;
     target: Entity;
   };
-  [ENTITY_EVENTS.TAKE_DAMAGE]: {
+  [ENTITY_EVENTS.RECEIVE_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
+    amount: number;
+    source: Entity;
+  };
+  [ENTITY_EVENTS.RECEIVE_DAMAGE]: {
+    entity: Entity;
+    baseAmount: number;
+    amount: number;
+    source: Entity;
+  };
+  [ENTITY_EVENTS.HEAL]: {
+    entity: Entity;
     amount: number;
     source: Entity;
   };
@@ -231,10 +243,19 @@ export class Entity implements Serializable {
   takeDamage(baseAmount: number, source: Entity, isTrueDamage?: boolean) {
     const amount = this.calculateDamage(baseAmount, source, this, isTrueDamage);
     this.hp = Math.max(0, this.hp - amount);
-    this.emitter.emit(ENTITY_EVENTS.TAKE_DAMAGE, {
+    this.emitter.emit(ENTITY_EVENTS.RECEIVE_DAMAGE, {
       entity: this,
       amount,
       baseAmount,
+      source
+    });
+  }
+
+  heal(amount: number, source: Entity) {
+    this.hp = clamp(this.hp + amount, 0, this.maxHp);
+    this.emitter.emit(ENTITY_EVENTS.HEAL, {
+      entity: this,
+      amount,
       source
     });
   }
