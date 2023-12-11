@@ -71,6 +71,9 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
   }
 
   async execute() {
+    if (this.ctx.isAuthoritative) {
+      console.log('execute', this.name);
+    }
     // discards client side actions generated as side effects of other actions executed client side
     if (this.isSideEffect) {
       return;
@@ -93,6 +96,9 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
 
     this.ctx.history.add(this);
     this.impl();
+    if (this.ctx.isAuthoritative) {
+      console.log('emitting', this.name);
+    }
     this.ctx.emitter.emit('game:action', this); // smh
   }
 

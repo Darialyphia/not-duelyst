@@ -12,9 +12,13 @@ export class ActionQueue {
   }
 
   private async process() {
+    if (this.ctx.isAuthoritative) {
+      console.log('ACTION_QUEUE: process start');
+    }
     this.isRunning = true;
     do {
       const action = this.queue.shift();
+
       await action?.execute();
     } while (this.queue.length);
     this.isRunning = false;
