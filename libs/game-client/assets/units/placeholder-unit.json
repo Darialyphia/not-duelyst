@@ -223,6 +223,24 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
     "sourceSize": { "w": 128, "h": 128 },
     "duration": 7
+   },
+   {
+    "filename": "placeholder-unit-cast-25",
+    "frame": { "x": 3200, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "placeholder-unit--26",
+    "frame": { "x": 3328, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
    }
  ],
  "meta": {
@@ -230,13 +248,13 @@
   "version": "1.3.2-x64",
   "image": "placeholder-unit.png",
   "format": "RGBA8888",
-  "size": { "w": 3200, "h": 128 },
+  "size": { "w": 3456, "h": 128 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
    { "name": "walk", "from": 2, "to": 4, "direction": "forward", "color": "#000000ff" },
    { "name": "attack", "from": 5, "to": 14, "direction": "forward", "color": "#000000ff" },
-   { "name": "cast", "from": 15, "to": 24, "direction": "forward", "color": "#000000ff" }
+   { "name": "cast", "from": 15, "to": 25, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },

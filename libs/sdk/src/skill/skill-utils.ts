@@ -1,36 +1,35 @@
-import { isAlly, isEmpty, isEnemy } from '../entity/entity-utils';
-import { GameSession } from '../game-session';
+import { Nullable, isNumber } from '@hc/shared';
 import { Point3D } from '../types';
 import { Vec3 } from '../utils/vector';
-import { Skill } from './skill-builder';
+import { Entity } from '../entity/entity';
 
-type SkillTargetGuardFunction = Skill['isTargetable'];
-type SkillAreaGuardFunction = Skill['isInAreaOfEffect'];
-
-// General helpers
-export const skillAreaGuard =
-  (...rules: SkillAreaGuardFunction[]): SkillAreaGuardFunction =>
-  (...args) =>
-    rules.every(rule => rule(...args));
-
-export const skillTargetGuard =
-  (...rules: SkillTargetGuardFunction[]): SkillTargetGuardFunction =>
-  (...args) => {
-    return rules.every(rule => rule(...args));
-  };
-
-const isWithinRange = (origin: Point3D, point: Point3D, range: number) => {
+export const isWithinRange = (
+  origin: Point3D,
+  point: Point3D,
+  range: number | Point3D
+) => {
+  if (isNumber(range)) {
+    range = { x: range, y: range, z: range };
+  }
   const vec = Vec3.fromPoint3D(origin);
-  const dist = vec.dist(Vec3.add(vec, { x: range, y: range, z: range }));
+  const dist = vec.dist(Vec3.add(vec, { x: range.x, y: range.y, z: range.z }));
 
   return vec.dist(point) <= dist;
 };
 
-const isWithinCells = (origin: Point3D, point: Point3D, range: number) => {
+export const isWithinCells = (
+  origin: Point3D,
+  point: Point3D,
+  range: number | Point3D
+) => {
+  if (isNumber(range)) {
+    range = { x: range, y: range, z: range };
+  }
+
   return (
-    Math.abs(point.x - origin.x) <= range &&
-    Math.abs(point.y - origin.y) <= range &&
-    Math.abs(point.z - origin.z) <= range
+    Math.abs(point.x - origin.x) <= range.x &&
+    Math.abs(point.y - origin.y) <= range.y &&
+    Math.abs(point.z - origin.z) <= range.z
   );
 };
 
@@ -38,86 +37,7 @@ export const isAxisAligned = (point: Point3D, origin: Point3D) => {
   return point.x === origin.x || point.y === origin.y;
 };
 
-/***********************/
-/* SKILL TARGET GUARDS */
-/***********************/
-
-export const ensureTargetIsNotEmpty: SkillTargetGuardFunction = (ctx, point) => {
-  return !isEmpty(ctx, point);
-};
-
-export const ensureTargetIsEmpty: SkillTargetGuardFunction = (ctx, point) => {
-  return isEmpty(ctx, point);
-};
-
-export const ensureSelfCast: SkillTargetGuardFunction = (ctx, point, caster) => {
-  const entity = ctx.entityManager.getEntityAt(point);
+export const isSelf = (reference: Entity, entity: Nullable<Entity>) => {
   if (!entity) return false;
-
-  return entity.equals(caster);
-};
-
-export const ensureTargetIsAlly: SkillTargetGuardFunction = (ctx, point, caster) => {
-  const entity = ctx.entityManager.getEntityAt(point);
-  if (!entity) return false;
-
-  return isAlly(ctx, entity.id, caster.playerId);
-};
-
-export const ensureTargetIsEnemy: SkillTargetGuardFunction = (ctx, point, caster) => {
-  const entity = ctx.entityManager.getEntityAt(point);
-  if (!entity) return false;
-
-  return isEnemy(ctx, entity.id, caster.playerId);
-};
-
-export const ensureIsAxisAlignedWithCaster: SkillTargetGuardFunction = (
-  _ctx,
-  point,
-  caster
-) => {
-  return isAxisAligned(point, caster.position);
-};
-
-export const ensureIsWithinRangeOfCaster =
-  (range: number): SkillTargetGuardFunction =>
-  (_ctx, point, caster) => {
-    return isWithinRange(caster.position, point, range);
-  };
-
-export const ensureIsWithinCellsOfCaster =
-  (range: number): SkillTargetGuardFunction =>
-  (_ctx, point, caster) => {
-    return isWithinCells(caster.position, point, range);
-  };
-
-/***********************/
-/* SKILL AREA GUARDS */
-/***********************/
-
-export const ensureIsWithinRangeOfTarget =
-  (range: number): SkillAreaGuardFunction =>
-  (_ctx, point, _caster, target) => {
-    return isWithinRange(target, point, range);
-  };
-
-export const ensureIsWithinCellsOfTarget =
-  (range: number): SkillAreaGuardFunction =>
-  (_ctx, point, _caster, target) => {
-    return isWithinCells(target, point, range);
-  };
-
-export const ensureIsAxisAlignedWithTarget: SkillAreaGuardFunction = (
-  _ctx,
-  point,
-  _caster,
-  target
-) => {
-  return isAxisAligned(point, target);
-};
-
-export const ensureTargetIsSelf: SkillAreaGuardFunction = (ctx, point, caster) => {
-  const entity = ctx.entityManager.getEntityAt(point);
-  if (!entity) return false;
-  return entity.equals(caster);
+  return reference.equals(entity);
 };
