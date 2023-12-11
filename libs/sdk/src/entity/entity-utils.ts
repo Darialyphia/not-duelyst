@@ -1,7 +1,7 @@
 import { GameSession } from '../game-session';
 import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
-import { UNIT_KIND, UnitKind } from '../units/unit-lookup';
+import { UnitKind, UNIT_KIND } from '../units/constants';
 import { Entity } from './entity';
 
 export const getEntityIfOwnerMatches = (
