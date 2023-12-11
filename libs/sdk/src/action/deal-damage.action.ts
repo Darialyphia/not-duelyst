@@ -10,19 +10,41 @@ export class DealDamageAction extends GameAction<{
 }> {
   readonly name = 'DEAL_DAMAGE';
 
+  get attacker() {
+    const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId);
+    if (!attacker) throw new Error(`Entity not found: ${this.payload.sourceId}`);
+    return attacker;
+  }
+
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
     this.ctx.fxContext.playSoundOnce('hit-placeholder');
 
     await Promise.all(
-      this.payload.targets.map(target => {
-        this.ctx.fxContext?.addChildSprite('blood_01', target, {
+      this.payload.targets.map(targetId => {
+        const target = this.ctx.entityManager.getEntityById(targetId)!;
+        const amount = target.calculateDamage(
+          this.payload.amount,
+          this.attacker,
+          target,
+          this.payload.isTrueDamage
+        );
+        this.ctx.fxContext?.displayText(String(amount), targetId, {
+          color: 0xff0000,
+          duration: 1.5,
+          path: [
+            { x: 0, y: 25, alpha: 0, scale: 0 },
+            { x: 0, y: -10, alpha: 1, scale: 1 },
+            { x: 0, y: -15, alpha: 0, scale: 1 }
+          ]
+        });
+        this.ctx.fxContext?.addChildSprite('blood_01', targetId, {
           waitUntilAnimationDone: false,
           offset: { x: 0, y: 32 },
           scale: 0.5
         });
-        return this.ctx.fxContext?.shakeEntity(target, {
+        return this.ctx.fxContext?.shakeEntity(targetId, {
           count: 6,
           totalDuration: 0.4,
           axis: 'x',

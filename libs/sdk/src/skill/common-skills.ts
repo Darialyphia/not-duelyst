@@ -12,16 +12,22 @@ import {
 export const createSimpleMeleeAttack = ({
   baseDamage,
   cost,
-  cooldown
+  cooldown,
+  animationFX = 'attack',
+  soundFX = 'attack-placeholder'
 }: {
   baseDamage: number;
   cost: number;
   cooldown: number;
+  animationFX?: string;
+  soundFX?: string;
 }) =>
   skillBuilder()
     .id('melee_attack')
     .cost(cost)
     .cooldown(cooldown)
+    .animationFX(animationFX)
+    .soundFX(soundFX)
     .isTargetable(
       skillTargetGuard(
         ensureTargetIsEnemy,

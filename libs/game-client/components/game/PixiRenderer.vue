@@ -2,7 +2,7 @@
 import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 
-const { state, mapRotation, ui, sendInput } = useGame();
+const { state, mapRotation, ui, sendInput, fx } = useGame();
 const app = useApplication();
 
 const screenViewport = shallowRef<Viewport>();
@@ -44,6 +44,7 @@ until(screenViewport)
       width: 0,
       height: 0
     });
+    fx.viewport = screenViewport.value;
     screenViewport.value
       ?.drag({
         mouseButtons: 'left'
@@ -66,11 +67,10 @@ until(screenViewport)
     :world-height="state.map.height * CELL_SIZE"
     :events="app.renderer.events"
     :disable-on-context-menu="true"
+    :sortable-children="true"
   >
-    <container :sortable-children="true">
-      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
+    <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
-      <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
-    </container>
+    <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
   </viewport>
 </template>

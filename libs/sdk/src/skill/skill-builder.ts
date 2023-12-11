@@ -10,6 +10,8 @@ export type Skill = {
   id: SkillId;
   cost: number;
   cooldown: number;
+  animationFX: string;
+  soundFX: string;
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
   isInAreaOfEffect(
     ctx: GameSession,

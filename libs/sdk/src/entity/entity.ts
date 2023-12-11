@@ -218,7 +218,7 @@ export class Entity implements Serializable {
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
-  private calculateDamage(
+  calculateDamage(
     baseAmount: number,
     attacker: Entity,
     defender: Entity,

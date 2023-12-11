@@ -3,6 +3,7 @@ import { Application, BaseTexture, SCALE_MODES, WRAP_MODES } from 'pixi.js';
 import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
+import MotionPathPlugin from 'gsap/MotionPathPlugin';
 import PixiRenderer from './PixiRenderer.vue';
 import type { Cell, Entity, GameSession, Player, Point3D } from '@hc/sdk';
 import type { GameEmits } from '../../composables/useGame';
@@ -58,6 +59,8 @@ onMounted(async () => {
     window.__PIXI_APP__ = pixiApp;
   }
   gsap.registerPlugin(PixiPlugin);
+  gsap.registerPlugin(MotionPathPlugin);
+
   gsap.install(window);
 
   BaseTexture.defaultOptions.wrapMode = WRAP_MODES.CLAMP;

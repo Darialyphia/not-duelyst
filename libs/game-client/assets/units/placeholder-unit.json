@@ -45,7 +45,7 @@
     "duration": 200
    },
    {
-    "filename": "placeholder-unit-use_skill-5",
+    "filename": "placeholder-unit-attack-5",
     "frame": { "x": 640, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-6",
+    "filename": "placeholder-unit-attack-6",
     "frame": { "x": 768, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-7",
+    "filename": "placeholder-unit-attack-7",
     "frame": { "x": 896, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-8",
+    "filename": "placeholder-unit-attack-8",
     "frame": { "x": 1024, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-9",
+    "filename": "placeholder-unit-attack-9",
     "frame": { "x": 1152, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-10",
+    "filename": "placeholder-unit-attack-10",
     "frame": { "x": 1280, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-11",
+    "filename": "placeholder-unit-attack-11",
     "frame": { "x": 1408, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -108,7 +108,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-12",
+    "filename": "placeholder-unit-attack-12",
     "frame": { "x": 1536, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -117,7 +117,7 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-13",
+    "filename": "placeholder-unit-attack-13",
     "frame": { "x": 1664, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
@@ -126,13 +126,103 @@
     "duration": 75
    },
    {
-    "filename": "placeholder-unit-use_skill-14",
+    "filename": "placeholder-unit-attack-14",
     "frame": { "x": 1792, "y": 0, "w": 128, "h": 128 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
     "sourceSize": { "w": 128, "h": 128 },
     "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-15",
+    "frame": { "x": 1920, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "placeholder-unit-cast-16",
+    "frame": { "x": 2048, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "placeholder-unit-cast-17",
+    "frame": { "x": 2176, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "placeholder-unit-cast-18",
+    "frame": { "x": 2304, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-19",
+    "frame": { "x": 2432, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-20",
+    "frame": { "x": 2560, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-21",
+    "frame": { "x": 2688, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-22",
+    "frame": { "x": 2816, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-23",
+    "frame": { "x": 2944, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 75
+   },
+   {
+    "filename": "placeholder-unit-cast-24",
+    "frame": { "x": 3072, "y": 0, "w": 128, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 128 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 7
    }
  ],
  "meta": {
@@ -140,15 +230,17 @@
   "version": "1.3.2-x64",
   "image": "placeholder-unit.png",
   "format": "RGBA8888",
-  "size": { "w": 1920, "h": 128 },
+  "size": { "w": 3200, "h": 128 },
   "scale": "1",
   "frameTags": [
    { "name": "idle", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" },
    { "name": "walk", "from": 2, "to": 4, "direction": "forward", "color": "#000000ff" },
-   { "name": "use_skill", "from": 5, "to": 14, "direction": "forward", "color": "#000000ff" }
+   { "name": "attack", "from": 5, "to": 14, "direction": "forward", "color": "#000000ff" },
+   { "name": "cast", "from": 15, "to": 24, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 4", "opacity": 177, "blendMode": "overlay" },
    { "name": "Layer 3", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [

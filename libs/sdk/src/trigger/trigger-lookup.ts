@@ -7,10 +7,10 @@ import { isAlly, isEnemy } from '../entity/entity-utils';
 export const TRIGGERS = keyBy(
   [
     {
-      id: 'test_trigger',
+      id: 'retribution',
       builder: (owner: Entity) =>
         triggerBuilder()
-          .id('test_trigger')
+          .id('retribution')
           .duration(3)
           .owner(owner)
           .actionName('DEAL_DAMAGE')

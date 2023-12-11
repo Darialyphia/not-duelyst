@@ -10,17 +10,29 @@ export class UseSkillAction extends GameAction<{
 }> {
   readonly name = 'USE_SKILL';
 
+  private get skill() {
+    const skill = this.ctx.atb.activeEntity.skills.find(
+      skill => skill.id === this.payload.skillId
+    );
+    if (!skill) throw new Error(`Skill not found: ${this.payload.skillId}`);
+    return skill;
+  }
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
     await Promise.all([
-      this.ctx.fxContext.playSoundOnce(this.payload.skillId, {
-        fallback: 'use-skill-placeholder',
+      this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
+        fallback: 'attack-placeholder',
         percentage: 0.5
       }),
-      this.ctx.fxContext.playAnimationOnce(this.payload.casterId, this.payload.skillId, {
-        animationNameFallback: 'use_skill'
-      })
+
+      this.ctx.fxContext.playAnimationOnce(
+        this.payload.casterId,
+        this.skill.animationFX,
+        {
+          animationNameFallback: 'attack'
+        }
+      )
     ]);
   }
 
@@ -30,13 +42,8 @@ export class UseSkillAction extends GameAction<{
 
     entity.useSkill(this.payload.skillId);
 
-    const skill = this.ctx.atb.activeEntity.skills.find(
-      skill => skill.id === this.payload.skillId
-    );
-    if (!skill) throw new Error(`Skill not found : ${this.payload.skillId}`);
-
     const affectedCells = this.ctx.map.cells.filter(cell =>
-      skill.isInAreaOfEffect(
+      this.skill.isInAreaOfEffect(
         this.ctx,
         cell,
         this.ctx.atb.activeEntity,
@@ -44,7 +51,7 @@ export class UseSkillAction extends GameAction<{
       )
     );
 
-    skill.execute(
+    this.skill.execute(
       this.ctx,
       this.ctx.atb.activeEntity,
       this.payload.target,

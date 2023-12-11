@@ -1,5 +1,6 @@
 import { AddTriggerAction } from '../action/add-trigger';
 import { DealDamageAction } from '../action/deal-damage.action';
+import { HealAction } from '../action/heal.action';
 import { FACTIONS } from '../faction/faction-lookup';
 import { createSimpleMeleeAttack } from '../skill/common-skills';
 import { skillBuilder } from '../skill/skill-builder';
@@ -7,7 +8,9 @@ import {
   ensureIsAxisAlignedWithCaster,
   ensureIsWithinCellsOfCaster,
   ensureIsWithinCellsOfTarget,
+  ensureIsWithinRangeOfCaster,
   ensureSelfCast,
+  ensureTargetIsAlly,
   ensureTargetIsEnemy,
   ensureTargetIsSelf,
   skillAreaGuard,
@@ -34,17 +37,45 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       createSimpleMeleeAttack({ cost: 0, cooldown: 1, baseDamage: 1 }),
 
       skillBuilder()
-        .id('test_trigger')
+        .id('retribution')
         .cost(1)
-        .cooldown(2)
+        .cooldown(3)
+        .animationFX('cast')
+        .soundFX('cast-placeholder')
         .isTargetable(skillTargetGuard(ensureSelfCast))
         .isInAreaOfEffect(skillAreaGuard(ensureTargetIsSelf))
         .execute((ctx, caster) => {
           ctx.actionQueue.push(
             new AddTriggerAction(
               {
-                triggerId: 'test_trigger',
+                triggerId: 'retribution',
                 ownerId: caster.id
+              },
+              ctx
+            )
+          );
+        })
+        .build(),
+
+      skillBuilder()
+        .id('heal')
+        .cost(1)
+        .cooldown(2)
+        .animationFX('cast')
+        .soundFX('cast-placeholder')
+        .isTargetable(
+          skillTargetGuard(ensureTargetIsAlly, ensureIsWithinRangeOfCaster(3))
+        )
+        .isInAreaOfEffect(skillAreaGuard(ensureIsWithinCellsOfTarget(0)))
+        .execute((ctx, caster, target) => {
+          const entity = ctx.entityManager.getEntityAt(target)!;
+
+          ctx.actionQueue.push(
+            new HealAction(
+              {
+                amount: 3,
+                sourceId: caster.id,
+                targets: [entity.id]
               },
               ctx
             )

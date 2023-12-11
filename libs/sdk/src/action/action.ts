@@ -1,11 +1,19 @@
-import { AnyObject, JSONObject, JSONValue } from '@hc/shared';
+import { JSONObject } from '@hc/shared';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
-import { SerializedAction } from './action-deserializer';
 import { EntityId } from '../entity/entity';
 import { Point3D } from '../types';
 
 export type FXContext = {
+  displayText(
+    text: string,
+    entityId: EntityId,
+    options: {
+      color: string | string[] | number | number[];
+      path: { x?: number; y?: number; scale?: number; alpha?: number }[];
+      duration: number;
+    }
+  ): Promise<void>;
   addChildSprite(
     spriteId: string,
     entityId: EntityId,
@@ -71,9 +79,6 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
   }
 
   async execute() {
-    if (this.ctx.isAuthoritative) {
-      console.log('execute', this.name);
-    }
     // discards client side actions generated as side effects of other actions executed client side
     if (this.isSideEffect) {
       return;
@@ -96,9 +101,6 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
 
     this.ctx.history.add(this);
     this.impl();
-    if (this.ctx.isAuthoritative) {
-      console.log('emitting', this.name);
-    }
     this.ctx.emitter.emit('game:action', this); // smh
   }
 

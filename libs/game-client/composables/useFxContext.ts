@@ -1,11 +1,64 @@
 import type { GameSession, GameState } from '@hc/sdk';
-import { AnimatedSprite } from 'pixi.js';
+import { Text, AnimatedSprite, Container } from 'pixi.js';
 import { Sound } from '@pixi/sound';
 import { sfxPaths } from '../assets/sfx';
 import { Howl } from 'howler';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   gameSession.fxContext = {
+    displayText(text, entityId, { color, path, duration }) {
+      return new Promise(resolve => {
+        const entity = gameSession.entityManager.getEntityById(entityId);
+        if (!entity) {
+          console.warn(`FXContext: entity not found for entityId ${entityId}`);
+          return resolve();
+        }
+
+        const sprite = toValue(fx.spriteMap.get(entityId));
+        if (!sprite) {
+          console.warn(`FXContext: sprite not found for entity ${entityId}`);
+          return resolve();
+        }
+
+        const container = new Container();
+        container.position.set(sprite.parent.position.x, sprite.parent.position.y);
+        container.zIndex = sprite.parent.zIndex;
+        const textSprite = new Text(text, {
+          fontSize: 24,
+          fontWeight: '700',
+          fill: color,
+          stroke: 'white',
+          strokeThickness: 2
+        });
+        container.addChild(textSprite);
+        // gsap motionpath doesn't work with gsap pixi plugin, so we apply values to a dummy object and update the text on update
+        const sentinel = Object.assign({ x: 0, y: 0, scale: 1, alpha: 1 }, path.shift()!);
+
+        const onUpdate = () => {
+          textSprite.position.set(sentinel.x, sentinel.y);
+
+          // we divide the scale by 2 to avoid pixelated text since the game is zoomed in by default
+          textSprite.scale.set(sentinel.scale * 0.5, sentinel.scale * 0.5);
+          textSprite.alpha = sentinel.alpha;
+        };
+        onUpdate(); // set starting values on sprite
+
+        fx.viewport?.addChild(container);
+        gsap.to(sentinel, {
+          motionPath: {
+            path
+          },
+          duration,
+          onUpdate,
+          ease: Power2.easeOut,
+          onComplete: () => {
+            // container.destroy();
+            resolve();
+          }
+        });
+      });
+    },
+
     playSoundOnce(soundId, { fallback, percentage = 1, slice } = {}) {
       return new Promise<void>(resolve => {
         const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
