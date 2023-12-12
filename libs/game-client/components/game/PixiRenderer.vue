@@ -2,7 +2,7 @@
 import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 
-const { state, mapRotation, ui, sendInput, fx } = useGame();
+const { state, gameSession, mapRotation, ui, sendInput, fx } = useGame();
 const app = useApplication();
 
 const screenViewport = shallowRef<Viewport>();
@@ -17,12 +17,34 @@ onMounted(() => {
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
     if (e.code === 'KeyA') ui.targetMode.value = 'move';
     if (e.code === 'KeyT') sendInput('end-turn');
-    const skillCodes = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'];
-    skillCodes.forEach((code, index) => {
-      const skill = state.value.activeEntity.skills[index];
-      if (!skill) return;
-      if (e.code === code) {
-        ui.selectedSkill.value = skill;
+
+    const actionCodes = [
+      'Digit1',
+      'Digit2',
+      'Digit3',
+      'Digit4',
+      'Digit5',
+      'Digit6',
+      'Digit7',
+      'Digit8',
+      'Digit9'
+    ];
+    actionCodes.forEach((code, index) => {
+      if (e.code !== code) return;
+
+      if (e.shiftKey) {
+        const player = gameSession.playerManager.getPlayerById(
+          state.value.activeEntity.playerId
+        )!;
+
+        const unit = player.summonableUnits[index];
+        if (!unit) return;
+        ui.selectedSummon.value = unit.unit;
+      } else {
+        const skill = state.value.activeEntity.skills[index];
+        if (e.code === code) {
+          ui.selectedSkill.value = skill;
+        }
       }
     });
   });
