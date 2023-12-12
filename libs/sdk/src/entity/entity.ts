@@ -3,13 +3,14 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { clamp, objectKeys, Values } from '@hc/shared';
+import { clamp, objectKeys, Point, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill-builder';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
 import { ActionName } from '../action/action-deserializer';
 import { Trigger } from '../trigger/trigger-builder';
+import { GameAction } from '../action/action';
 
 export type EntityId = number;
 
@@ -91,6 +92,8 @@ export class Entity implements Serializable {
   public position: Vec3;
 
   public skillCooldowns: Record<SkillId, number> = {};
+
+  private triggers: Trigger[] = [];
 
   constructor(
     private ctx: GameSession,
@@ -186,6 +189,10 @@ export class Entity implements Serializable {
     return this.skills.some(skill => skill.id === skillId);
   }
 
+  canUseSkillAt(skill: Skill, target?: Point3D) {
+    return this.canUseSkill(skill);
+  }
+
   canUseSkill(skill: Skill) {
     if (!this.hasSkill(skill.id)) return false;
     if (this.skillCooldowns[skill.id] > 0) return;
@@ -279,5 +286,26 @@ export class Entity implements Serializable {
     this.movementSpent = 0;
 
     this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
+  }
+
+  addTrigger(trigger: Trigger) {
+    this.triggers.push(trigger);
+
+    const run = (action: GameAction<any>) => {
+      if (action.name !== trigger.actionName) return;
+      trigger.execute(this.ctx, action, trigger);
+    };
+
+    const updateDuration = () => {
+      trigger.duration--;
+      if (trigger.duration === 0) {
+        this.off('turn-start', updateDuration);
+        this.ctx.emitter.off('game:action', run);
+        this.triggers.splice(this.triggers.indexOf(trigger));
+      }
+    };
+
+    this.ctx.emitter.on('game:action', run);
+    this.on('turn-start', updateDuration);
   }
 }

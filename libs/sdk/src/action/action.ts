@@ -80,23 +80,13 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
 
   async execute() {
     // discards client side actions generated as side effects of other actions executed client side
-    if (this.isSideEffect) {
-      return;
-    }
+    if (this.isSideEffect) return;
 
     // game is over, can't execute further actions
-    if (this.ctx.winner) {
-      return;
-    }
+    if (this.ctx.winner) return;
 
-    if (!this.ctx.isAuthoritative) {
-      if (!this.ctx.fxContext) {
-        console.warn(
-          'FXContext not provided on the game session. Skipping FX implementation.'
-        );
-      } else {
-        await this.fxImpl();
-      }
+    if (!this.ctx.isAuthoritative && this.ctx.fxContext) {
+      await this.fxImpl();
     }
 
     this.ctx.history.add(this);

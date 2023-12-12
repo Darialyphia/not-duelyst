@@ -29,7 +29,7 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
     if (!skill) return false;
 
     return (
-      this.ctx.atb.activeEntity.canUseSkill(skill) &&
+      this.ctx.atb.activeEntity.canUseSkillAt(skill, this.payload.target) &&
       skill.isTargetable(this.ctx, this.payload.target, this.ctx.atb.activeEntity)
     );
   }

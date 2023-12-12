@@ -7,7 +7,7 @@ import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
 import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
-import { ActionDeserializer, SerializedAction } from './action/action-deserializer';
+import { SerializedAction } from './action/action-deserializer';
 import { UnitId } from './units/unit-lookup';
 import { isGeneral } from './entity/entity-utils';
 import { clamp } from '@hc/shared';
