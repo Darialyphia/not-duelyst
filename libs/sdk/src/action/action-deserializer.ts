@@ -8,7 +8,7 @@ import { UseSkillAction } from './use-sklll.action';
 import { GameSession } from '../game-session';
 import { DieAction } from './die.action';
 import { EndGamection } from './end-game.action';
-import { AddTriggerAction } from './add-trigger';
+import { AddEffectAction } from './add-effect';
 import { HealAction } from './heal.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
@@ -32,7 +32,7 @@ export const actionMap = validateActionMap({
   DEAL_DAMAGE: DealDamageAction,
   DIE: DieAction,
   END_GAME: EndGamection,
-  ADD_TRIGGER: AddTriggerAction,
+  ADD_EFFECT: AddEffectAction,
   HEAL: HealAction
 });
 

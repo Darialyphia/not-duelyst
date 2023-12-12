@@ -8,8 +8,8 @@ import { Skill, SkillId } from '../skill/skill';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
-import { Trigger } from '../trigger/trigger-builder';
 import { GameAction } from '../action/action';
+import { Effect } from '../effect/effect';
 
 export type EntityId = number;
 
@@ -70,29 +70,29 @@ export class Entity implements Serializable {
 
   readonly unitId: UnitId;
 
-  public playerId: PlayerId;
-
   private emitter = mitt<EntityEventMap>();
 
-  public on = this.emitter.on;
+  playerId: PlayerId;
 
-  public off = this.emitter.off;
+  on = this.emitter.on;
+
+  off = this.emitter.off;
 
   private movementSpent = 0;
 
   private atbSeed = 0;
 
-  public atb = this.atbSeed;
+  atb = this.atbSeed;
 
-  public ap = 0;
+  ap = 0;
 
-  public hp = 0;
+  hp = 0;
 
-  public position: Vec3;
+  position: Vec3;
 
-  public skillCooldowns: Record<SkillId, number> = {};
+  skillCooldowns: Record<SkillId, number> = {};
 
-  private triggers: Trigger[] = [];
+  effects: Effect[] = [];
 
   constructor(
     private ctx: GameSession,
@@ -285,26 +285,5 @@ export class Entity implements Serializable {
     this.movementSpent = 0;
 
     this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
-  }
-
-  addTrigger(trigger: Trigger) {
-    this.triggers.push(trigger);
-
-    const run = (action: GameAction<any>) => {
-      if (action.name !== trigger.actionName) return;
-      trigger.execute(this.ctx, action, trigger);
-    };
-
-    const updateDuration = () => {
-      trigger.duration--;
-      if (trigger.duration === 0) {
-        this.off('turn-start', updateDuration);
-        this.ctx.emitter.off('game:action', run);
-        this.triggers.splice(this.triggers.indexOf(trigger));
-      }
-    };
-
-    this.ctx.emitter.on('game:action', run);
-    this.on('turn-start', updateDuration);
   }
 }
