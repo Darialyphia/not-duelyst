@@ -31,8 +31,8 @@ export const createSimpleMeleeAttack = ({
     })
     .isInAreaOfEffect((ctx, point, caster, target) => {
       return isSelf(
-        ctx.entityManager.getEntityAt(point)!,
-        ctx.entityManager.getEntityAt(target)
+        ctx.entityManager.getEntityAt(target)!,
+        ctx.entityManager.getEntityAt(point)
       );
     })
     .execute((ctx, caster, target) => {
