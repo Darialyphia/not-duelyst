@@ -15,13 +15,14 @@ const textures = computed(() => {
 
   return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
 });
+const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
 const hitArea = new Polygon([
-  { x: 0, y: 0 },
-  { x: CELL_SIZE / 2, y: CELL_SIZE / 4 },
+  { x: 0, y: 0 + hitAreaYOffset },
+  { x: CELL_SIZE / 2, y: CELL_SIZE / 4 + hitAreaYOffset },
   { x: CELL_SIZE / 2, y: CELL_SIZE * 0.75 },
   { x: 0, y: CELL_SIZE },
   { x: -CELL_SIZE / 2, y: CELL_SIZE * 0.75 },
-  { x: -CELL_SIZE / 2, y: CELL_SIZE / 4 }
+  { x: -CELL_SIZE / 2, y: CELL_SIZE / 4 + hitAreaYOffset }
 ]);
 
 const isMoveTarget = computed(() => {
