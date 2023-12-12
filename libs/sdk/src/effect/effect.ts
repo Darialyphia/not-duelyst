@@ -8,7 +8,10 @@ export abstract class Effect {
   abstract duration: number;
   entity?: Entity;
 
-  constructor(protected ctx: GameSession) {
+  constructor(
+    protected ctx: GameSession,
+    public source: Entity
+  ) {
     this.tick = this.tick.bind(this);
     this.detach = this.detach.bind(this);
   }

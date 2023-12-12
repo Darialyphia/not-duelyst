@@ -10,6 +10,7 @@ import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
 import { GameAction } from '../action/action';
 import { Effect } from '../effect/effect';
+import { makeInterceptor } from '../utils/interceptor';
 
 export type EntityId = number;
 
@@ -72,15 +73,27 @@ export class Entity implements Serializable {
 
   private emitter = mitt<EntityEventMap>();
 
+  private movementSpent = 0;
+
+  private atbSeed = 0;
+
+  private interceptors = {
+    attack: makeInterceptor<number, Entity>(),
+    defense: makeInterceptor<number, Entity>(),
+    speed: makeInterceptor<number, Entity>(),
+    maxHp: makeInterceptor<number, Entity>(),
+    maxAp: makeInterceptor<number, Entity>(),
+    apRegenRate: makeInterceptor<number, Entity>(),
+    initiative: makeInterceptor<number, Entity>(),
+    canUseSkill: makeInterceptor<boolean, Entity>(),
+    canMove: makeInterceptor<boolean, Entity>()
+  };
+
   playerId: PlayerId;
 
   on = this.emitter.on;
 
   off = this.emitter.off;
-
-  private movementSpent = 0;
-
-  private atbSeed = 0;
 
   atb = this.atbSeed;
 
@@ -148,28 +161,32 @@ export class Entity implements Serializable {
     return this.unit.kind;
   }
 
-  get maxHp() {
-    return this.unit.maxHp;
+  get maxHp(): number {
+    return this.interceptors.maxHp.getValue(this.unit.maxHp, this);
   }
 
-  get maxAp() {
-    return this.unit.maxAp;
+  get maxAp(): number {
+    return this.interceptors.maxAp.getValue(this.unit.maxAp, this);
   }
 
-  get speed() {
-    return this.unit.speed;
+  get apRegenRate(): number {
+    return this.interceptors.apRegenRate.getValue(this.unit.apRegenRate, this);
   }
 
-  get attack() {
-    return this.unit.attack;
+  get speed(): number {
+    return this.interceptors.speed.getValue(this.unit.speed, this);
   }
 
-  get defense() {
-    return this.unit.defense;
+  get attack(): number {
+    return this.interceptors.attack.getValue(this.unit.attack, this);
   }
 
-  get initiative() {
-    return this.unit.initiative;
+  get defense(): number {
+    return this.interceptors.defense.getValue(this.unit.defense, this);
+  }
+
+  get initiative(): number {
+    return this.interceptors.initiative.getValue(this.unit.initiative, this);
   }
 
   get skills() {
@@ -180,8 +197,26 @@ export class Entity implements Serializable {
     return this.speed - this.movementSpent;
   }
 
+  addInterceptor<T extends keyof Entity['interceptors']>(
+    key: T,
+    interceptor: Parameters<Entity['interceptors'][T]['add']>[0]
+  ) {
+    // @ts-expect-error pepega typescript
+    this.interceptors[key].add(interceptor);
+  }
+
+  removeInterceptor<T extends keyof Entity['interceptors']>(
+    key: T,
+    interceptor: Parameters<Entity['interceptors'][T]['remove']>[0]
+  ) {
+    // @ts-expect-error pepega typescript
+    this.interceptors[key].remove(interceptor);
+  }
+
   canMove(distance: number) {
-    return distance <= this.speed - this.movementSpent;
+    const result = distance <= this.speed - this.movementSpent;
+
+    return this.interceptors.canMove.getValue(result, this);
   }
 
   hasSkill(skillId: SkillId) {
@@ -196,7 +231,9 @@ export class Entity implements Serializable {
     if (!this.hasSkill(skill.id)) return false;
     if (this.skillCooldowns[skill.id] > 0) return;
 
-    return skill.cost <= this.ap;
+    const result = skill.cost <= this.ap;
+
+    return this.interceptors.canUseSkill.getValue(result, this);
   }
 
   move(path: Point3D[]) {
@@ -272,7 +309,7 @@ export class Entity implements Serializable {
   }
 
   startTurn() {
-    this.ap = Math.min(this.unit.maxAp, this.ap + this.unit.apRegenRate);
+    this.ap = clamp(this.ap + this.unit.apRegenRate, 0, this.maxAp);
     this.movementSpent = 0;
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = clamp(this.skillCooldowns[skillId] - 1, 0, Infinity);
