@@ -1,5 +1,5 @@
 import { EntityId } from '../entity/entity';
-import { SkillId } from '../skill/skill-builder';
+import { SkillId } from '../skill/skill';
 import { Point3D } from '../types';
 import { FXContext, GameAction } from './action';
 
