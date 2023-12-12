@@ -24,11 +24,11 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         container.position.set(sprite.parent.position.x, sprite.parent.position.y);
         container.zIndex = sprite.parent.zIndex;
         const textSprite = new Text(text, {
-          fontSize: 24,
+          fontSize: 30,
           fontWeight: '700',
           fill: color,
-          stroke: 'white',
-          strokeThickness: 2
+          stroke: 'black',
+          strokeThickness: 4
         });
         container.addChild(textSprite);
         // gsap motionpath doesn't work with gsap pixi plugin, so we apply values to a dummy object and update the text on update
@@ -52,7 +52,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           onUpdate,
           ease: Power2.easeOut,
           onComplete: () => {
-            // container.destroy();
+            container.destroy();
             resolve();
           }
         });

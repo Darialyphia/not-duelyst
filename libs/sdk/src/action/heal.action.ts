@@ -15,11 +15,11 @@ export class HealAction extends GameAction<{
       this.payload.targets.map(target => {
         this.ctx.fxContext?.displayText(String(this.payload.amount), target, {
           color: 0x00ff00,
-          duration: 1.5,
+          duration: 1,
           path: [
             { x: 0, y: 25, alpha: 0, scale: 0 },
-            { x: 0, y: -10, alpha: 1, scale: 1 },
-            { x: 0, y: -15, alpha: 0, scale: 1 }
+            { x: 0, y: 0, alpha: 0, scale: 1 },
+            { x: 0, y: 0, alpha: 1, scale: 1 }
           ]
         });
         return this.ctx.fxContext?.addChildSprite('heal_01', target, {

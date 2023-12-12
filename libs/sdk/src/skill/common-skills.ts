@@ -1,7 +1,7 @@
 import { DealDamageAction } from '../action/deal-damage.action';
 import { isEnemy } from '../entity/entity-utils';
 import { skillBuilder } from './skill-builder';
-import { isAxisAligned, isWithinCells, isWithinRange } from './skill-utils';
+import { isAxisAligned, isSelf, isWithinCells, isWithinRange } from './skill-utils';
 
 export const createSimpleMeleeAttack = ({
   baseDamage,
@@ -30,7 +30,10 @@ export const createSimpleMeleeAttack = ({
       );
     })
     .isInAreaOfEffect((ctx, point, caster, target) => {
-      return isWithinCells(target, point, 1);
+      return isSelf(
+        ctx.entityManager.getEntityAt(point)!,
+        ctx.entityManager.getEntityAt(target)
+      );
     })
     .execute((ctx, caster, target) => {
       const entity = ctx.entityManager.getEntityAt(target)!;

@@ -32,11 +32,11 @@ export class DealDamageAction extends GameAction<{
         );
         this.ctx.fxContext?.displayText(String(amount), targetId, {
           color: 0xff0000,
-          duration: 1.5,
+          duration: 1,
           path: [
             { x: 0, y: 25, alpha: 0, scale: 0 },
-            { x: 0, y: -10, alpha: 1, scale: 1 },
-            { x: 0, y: -15, alpha: 0, scale: 1 }
+            { x: 0, y: 0, alpha: 0, scale: 1 },
+            { x: 0, y: 0, alpha: 1, scale: 1 }
           ]
         });
         this.ctx.fxContext?.addChildSprite('blood_01', targetId, {
