@@ -24,14 +24,14 @@ export class Heal extends Skill {
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
       isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(caster.position, point, this.range)
+      isWithinCells(ctx, caster.position, point, this.range)
     );
   }
 
   isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, target: Point3D) {
     return (
       isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(target, point, 0)
+      isWithinCells(ctx, target, point, 0)
     );
   }
 

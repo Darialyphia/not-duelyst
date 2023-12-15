@@ -46,7 +46,11 @@ export abstract class Effect {
     }
   }
 
-  onApplied() {}
+  onApplied() {
+    return;
+  }
 
-  onExpired() {}
+  onExpired() {
+    return;
+  }
 }

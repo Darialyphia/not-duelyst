@@ -45,11 +45,6 @@ const hitArea = computed(() => {
   const meta = spritesheet.data.meta as AsepriteMeta;
   const { data } = spritesheet;
 
-  const frameSize = {
-    w: meta.size.w / Object.keys(data.frames).length,
-    h: meta.size.h
-  };
-
   // we need to offset the slice because the sprite has its anchor in the center
   const offset = {
     x: CELL_SIZE,
@@ -168,57 +163,60 @@ const cursor = computed(() => {
   <IsoPositioner
     :x="entity.position.x"
     :y="entity.position.y"
-    :z="entity.position.z + 0.1"
+    :z="entity.position.z"
+    :z-index-offset="1"
     :offset="offset"
   >
-    <animated-sprite
-      ref="spriteRef"
-      :textures="textures"
-      :anchor-x="0.5"
-      :scale-x="scaleX"
-      :hit-area="hitArea"
-      :filters="filters"
-      :cursor="cursor"
-      loop
-      @pointerup="
-        () => {
-          if (isSkillTarget(entity.position)) {
-            sendInput('use-skill', {
-              skillId: selectedSkill!.id,
-              target: entity.position
-            });
+    <container :y="-CELL_SIZE / 4">
+      <animated-sprite
+        ref="spriteRef"
+        :textures="textures"
+        :anchor-x="0.5"
+        :scale-x="scaleX"
+        :hit-area="hitArea"
+        :filters="filters"
+        :cursor="cursor"
+        loop
+        @pointerup="
+          () => {
+            if (isSkillTarget(entity.position)) {
+              sendInput('use-skill', {
+                skillId: selectedSkill!.id,
+                target: entity.position
+              });
+            }
           }
-        }
-      "
-      @pointerleave="() => (hoveredCell = null)"
-      @pointerenter="
-        () => {
-          hoveredCell = gameSession.map.getCellAt(entity.position);
-        }
-      "
-    />
+        "
+        @pointerleave="() => (hoveredCell = null)"
+        @pointerenter="
+          () => {
+            hoveredCell = gameSession.map.getCellAt(entity.position);
+          }
+        "
+      />
 
-    <PTransition appear @before-enter="onBeforeStatbarsEnter" @enter="onStatbarsEnter">
-      <container v-if="isHovered">
-        <StatBar
-          :z-index="entity.position.y"
-          :y="CELL_SIZE * 0.65 - 6"
-          :size="3"
-          :value="entity.hp"
-          :max-value="entity.maxHp"
-          :filled-color="0x00cc00"
-          :empty-color="0xcc0000"
-        />
+      <PTransition appear @before-enter="onBeforeStatbarsEnter" @enter="onStatbarsEnter">
+        <container v-if="isHovered" :y="CELL_SIZE / 8">
+          <StatBar
+            :z-index="entity.position.y"
+            :y="CELL_SIZE * 0.65 - 6"
+            :size="3"
+            :value="entity.hp"
+            :max-value="entity.maxHp"
+            :filled-color="0x00cc00"
+            :empty-color="0xcc0000"
+          />
 
-        <StatBar
-          :z-index="entity.position.y"
-          :y="CELL_SIZE * 0.65 - 3"
-          :size="3"
-          :value="entity.ap"
-          :max-value="entity.maxAp"
-          :filled-color="0x0000cc"
-        />
-      </container>
-    </PTransition>
+          <StatBar
+            :z-index="entity.position.y"
+            :y="CELL_SIZE * 0.65 - 3"
+            :size="3"
+            :value="entity.ap"
+            :max-value="entity.maxAp"
+            :filled-color="0x0000cc"
+          />
+        </container>
+      </PTransition>
+    </container>
   </IsoPositioner>
 </template>

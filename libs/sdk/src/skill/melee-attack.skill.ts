@@ -21,7 +21,7 @@ export class MeleeAttack extends Skill {
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
       isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(caster.position, point, 1) &&
+      isWithinCells(ctx, caster.position, point, { x: 1, y: 1, z: 0.5 }) &&
       isAxisAligned(point, caster.position)
     );
   }

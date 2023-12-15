@@ -1,8 +1,6 @@
 import { Assets, Spritesheet, Texture, extensions } from 'pixi.js';
 import type { InjectionKey } from 'vue';
 import { ASSET_BUNDLES, assetsManifest } from '../assets/manifest';
-import { sound } from '@pixi/sound';
-import { sfxPaths } from '../assets/sfx';
 
 export type AssetsContext = {
   getSprite(

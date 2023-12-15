@@ -40,4 +40,8 @@ export abstract class Skill {
     target: Point3D,
     affectedPoints: Point3D[]
   ): void;
+
+  fxImpl(ctx: GameSession, caster: Entity, target: Point3D, affectedPoints: Point3D[]) {
+    return Promise.resolve();
+  }
 }

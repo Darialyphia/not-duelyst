@@ -1,7 +1,7 @@
 import type { SerializedGameState } from '@hc/sdk';
 
-const width = 5;
-const height = 5;
+const width = 6;
+const height = 6;
 // const mapLayout = Array.from({ length: height }, (_, y) =>
 //   Array.from({ length: width }, (_, x) => ({
 //     position: { x, y, z: 0 },
@@ -16,60 +16,54 @@ export const dummyState: SerializedGameState = {
     width,
     height,
     startPositions: [
-      { x: 4, y: 2, z: 1 },
-      { x: 4, y: 3, z: 1 }
+      { x: 4, y: 2, z: 0 },
+      { x: 4, y: 3, z: 0 }
     ],
     // cells: mapLayout
     cells: [
-      { position: { x: 0, y: 0, z: 0 }, tileId: 'grass' },
+      { position: { x: 0, y: 0, z: 0 }, tileId: 'dirt' },
       { position: { x: 1, y: 0, z: 0 }, tileId: 'grass' },
-      { position: { x: 2, y: 0, z: 0 }, tileId: 'water' },
-      { position: { x: 3, y: 0, z: 0 }, tileId: 'water' },
+      { position: { x: 2, y: 0, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 0, z: 0 }, tileId: 'grass' },
       { position: { x: 4, y: 0, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 0, z: 0 }, tileId: 'grass' },
       { position: { x: 0, y: 1, z: 0 }, tileId: 'dirt' },
-      { position: { x: 1, y: 1, z: 0 }, tileId: 'dirt' },
-      { position: { x: 2, y: 1, z: 0 }, tileId: 'dirt' },
-      { position: { x: 3, y: 1, z: 0 }, tileId: 'dirt' },
-      { position: { x: 4, y: 1, z: 0 }, tileId: 'dirt' },
+      { position: { x: 1, y: 1, z: 0 }, tileId: 'grass' },
+      { position: { x: 2, y: 1, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 1, z: 0 }, tileId: 'grass' },
+      { position: { x: 4, y: 1, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 1, z: 0 }, tileId: 'grass' },
       { position: { x: 0, y: 2, z: 0 }, tileId: 'dirt' },
-      { position: { x: 1, y: 2, z: 0 }, tileId: 'dirt' },
-      { position: { x: 2, y: 2, z: 0 }, tileId: 'dirt' },
-      { position: { x: 3, y: 2, z: 0 }, tileId: 'dirt' },
-      { position: { x: 4, y: 2, z: 0 }, tileId: 'dirt' },
+      { position: { x: 1, y: 2, z: 0 }, tileId: 'grass' },
+      { position: { x: 2, y: 2, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 2, z: 0 }, tileId: 'grass' },
+      { position: { x: 4, y: 2, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 2, z: 0 }, tileId: 'grass' },
       { position: { x: 0, y: 3, z: 0 }, tileId: 'dirt' },
-      { position: { x: 1, y: 3, z: 0 }, tileId: 'dirt' },
-      { position: { x: 2, y: 3, z: 0 }, tileId: 'dirt' },
-      { position: { x: 3, y: 3, z: 0 }, tileId: 'dirt' },
-      { position: { x: 4, y: 3, z: 0 }, tileId: 'dirt' },
+      { position: { x: 1, y: 3, z: 0 }, tileId: 'grass' },
+      { position: { x: 2, y: 3, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 3, z: 0 }, tileId: 'grass' },
+      { position: { x: 4, y: 3, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 3, z: 0 }, tileId: 'grass' },
       { position: { x: 0, y: 4, z: 0 }, tileId: 'dirt' },
-      { position: { x: 1, y: 4, z: 0 }, tileId: 'dirt' },
-      { position: { x: 2, y: 4, z: 0 }, tileId: 'dirt' },
-      { position: { x: 3, y: 4, z: 0 }, tileId: 'dirt' },
-      { position: { x: 4, y: 4, z: 0 }, tileId: 'dirt' },
+      { position: { x: 1, y: 4, z: 0 }, tileId: 'grass' },
+      { position: { x: 2, y: 4, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 4, z: 0 }, tileId: 'grass' },
+      { position: { x: 4, y: 4, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 4, z: 0 }, tileId: 'grass' },
+      { position: { x: 0, y: 5, z: 0 }, tileId: 'dirt' },
+      { position: { x: 1, y: 5, z: 0 }, tileId: 'grass' },
+      { position: { x: 2, y: 5, z: 0 }, tileId: 'grass' },
+      { position: { x: 3, y: 5, z: 0 }, tileId: 'grass' },
+      { position: { x: 4, y: 5, z: 0 }, tileId: 'grass' },
+      { position: { x: 5, y: 5, z: 0 }, tileId: 'grass' },
 
-      { position: { x: 0, y: 1, z: 1 }, tileId: 'grassHalf' },
-      { position: { x: 1, y: 1, z: 1 }, tileId: 'dirt' },
-      { position: { x: 2, y: 1, z: 1 }, tileId: 'grassHalf' },
-      { position: { x: 3, y: 1, z: 1 }, tileId: 'grassHalf' },
-      { position: { x: 4, y: 1, z: 1 }, tileId: 'grassHalf' },
+      { position: { x: 0, y: 0, z: 1 }, tileId: 'grass' },
+      { position: { x: 0, y: 1, z: 1 }, tileId: 'grass' },
       { position: { x: 0, y: 2, z: 1 }, tileId: 'grass' },
-      { position: { x: 1, y: 2, z: 1 }, tileId: 'grass' },
-      { position: { x: 2, y: 2, z: 1 }, tileId: 'grass' },
-      { position: { x: 3, y: 2, z: 1 }, tileId: 'grass' },
-      { position: { x: 4, y: 2, z: 1 }, tileId: 'grass' },
       { position: { x: 0, y: 3, z: 1 }, tileId: 'grass' },
-      { position: { x: 1, y: 3, z: 1 }, tileId: 'grass' },
-      { position: { x: 2, y: 3, z: 1 }, tileId: 'grass' },
-      { position: { x: 3, y: 3, z: 1 }, tileId: 'grass' },
-      { position: { x: 4, y: 3, z: 1 }, tileId: 'grass' },
       { position: { x: 0, y: 4, z: 1 }, tileId: 'grass' },
-      { position: { x: 1, y: 4, z: 1 }, tileId: 'grass' },
-      { position: { x: 2, y: 4, z: 1 }, tileId: 'grass' },
-      { position: { x: 3, y: 4, z: 1 }, tileId: 'grass' },
-      { position: { x: 4, y: 4, z: 1 }, tileId: 'grass' },
-
-      { position: { x: 1, y: 1, z: 2 }, tileId: 'grass' },
-      { position: { x: 1, y: 2, z: 2 }, tileId: 'grassHalf' }
+      { position: { x: 0, y: 5, z: 1 }, tileId: 'grass' }
     ]
   },
   players: [
@@ -77,19 +71,23 @@ export const dummyState: SerializedGameState = {
       id: 'Player1',
       loadout: {
         units: {
-          haven_soldier_1: { cooldown: 0 }
+          'haven-melee-placeholder': { cooldown: 0 },
+          'haven-archer-placeholder': { cooldown: 0 },
+          'haven-tank-placeholder': { cooldown: 0 }
         }
       },
-      generalId: 'haven_general_1'
+      generalId: 'haven-hero-placeholder'
     },
     {
       id: 'Player2',
       loadout: {
         units: {
-          haven_soldier_1: { cooldown: 0 }
+          'haven-melee-placeholder': { cooldown: 0 },
+          'haven-archer-placeholder': { cooldown: 0 },
+          'haven-tank-placeholder': { cooldown: 0 }
         }
       },
-      generalId: 'haven_general_1'
+      generalId: 'haven-hero-placeholder'
     }
   ]
 };

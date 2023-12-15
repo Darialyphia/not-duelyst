@@ -17,10 +17,28 @@ export class UseSkillAction extends GameAction<{
     if (!skill) throw new Error(`Skill not found: ${this.payload.skillId}`);
     return skill;
   }
+
+  private get affectedCells() {
+    return this.ctx.map.cells.filter(cell =>
+      this.skill.isInAreaOfEffect(
+        this.ctx,
+        cell,
+        this.ctx.atb.activeEntity,
+        this.payload.target
+      )
+    );
+  }
+
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
     await Promise.all([
+      this.skill.fxImpl(
+        this.ctx,
+        this.ctx.atb.activeEntity,
+        this.payload.target,
+        this.affectedCells
+      ),
       this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
         fallback: 'attack-placeholder',
         percentage: 0.5
@@ -42,20 +60,11 @@ export class UseSkillAction extends GameAction<{
 
     entity.useSkill(this.payload.skillId);
 
-    const affectedCells = this.ctx.map.cells.filter(cell =>
-      this.skill.isInAreaOfEffect(
-        this.ctx,
-        cell,
-        this.ctx.atb.activeEntity,
-        this.payload.target
-      )
-    );
-
     this.skill.execute(
       this.ctx,
       this.ctx.atb.activeEntity,
       this.payload.target,
-      affectedCells
+      this.affectedCells
     );
   }
 }

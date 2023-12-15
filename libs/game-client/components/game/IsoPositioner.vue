@@ -8,12 +8,14 @@ const {
   x,
   y,
   z,
-  offset = { x: 0, y: 0, z: 0 }
+  offset = { x: 0, y: 0, z: 0 },
+  zIndexOffset = 0
 } = defineProps<{
   x: number;
   y: number;
   z: number;
   offset?: Point3D;
+  zIndexOffset?: number;
 }>();
 
 const { state, mapRotation } = useGame();
@@ -55,7 +57,12 @@ const rotatedCartesian = computed(() => {
 });
 
 const zIndex = computed(() => {
-  return rotatedCartesian.value.x + rotatedCartesian.value.y + rotatedCartesian.value.z;
+  return (
+    rotatedCartesian.value.x +
+    rotatedCartesian.value.y +
+    rotatedCartesian.value.z +
+    zIndexOffset
+  );
 });
 </script>
 
