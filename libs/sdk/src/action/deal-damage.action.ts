@@ -41,7 +41,7 @@ export class DealDamageAction extends GameAction<{
         });
         this.ctx.fxContext?.addChildSprite('blood_01', targetId, {
           waitUntilAnimationDone: false,
-          offset: { x: 0, y: 32 },
+          offset: { x: 0, y: 64 },
           scale: 0.5
         });
         return this.ctx.fxContext?.shakeEntity(targetId, {

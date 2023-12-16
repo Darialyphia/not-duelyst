@@ -199,7 +199,7 @@ const cursor = computed(() => {
         <container v-if="isHovered" :y="CELL_SIZE / 8">
           <StatBar
             :z-index="entity.position.y"
-            :y="CELL_SIZE * 0.65 - 6"
+            :y="CELL_SIZE * 0.8"
             :size="3"
             :value="entity.hp"
             :max-value="entity.maxHp"
@@ -209,7 +209,7 @@ const cursor = computed(() => {
 
           <StatBar
             :z-index="entity.position.y"
-            :y="CELL_SIZE * 0.65 - 3"
+            :y="CELL_SIZE * 0.8 + 3"
             :size="3"
             :value="entity.ap"
             :max-value="entity.maxAp"
