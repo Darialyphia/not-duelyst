@@ -30,9 +30,12 @@ const onSummonClick = (summon: UnitBlueprint) => {
       class="skill"
       :class="targetMode === 'skill' && 'active'"
       :data-cost="skill.cost"
+      :data-cooldown="state.activeEntity.skillCooldowns[skill.id]"
       :style="{
         '--bg': `url(${skillImagesPaths[skill.id]})`,
-        '--border': `url(${havenBorder})`
+        '--border': `url(${havenBorder})`,
+        '--cooldown-angle':
+          360 - (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
       }"
       @click="selectedSkill = skill"
     />
@@ -44,7 +47,9 @@ const onSummonClick = (summon: UnitBlueprint) => {
         class="summon"
         :class="targetMode === 'summon' && 'active'"
         :data-cost="unit.unit.summonCost"
+        :data-cooldown="unit.cooldown"
         :style="{
+          '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
           '--bg': `url(${unitImagesPaths[unit.unit.id + '-icon']})`,
           '--border': `url(${havenBorderRounded})`
         }"
@@ -117,8 +122,29 @@ const onSummonClick = (summon: UnitBlueprint) => {
   }
   &:disabled {
     cursor: not-allowed;
-    opacity: 75%;
-    filter: grayscale(75%);
+    &::after {
+      content: attr(data-cooldown);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      display: grid;
+      place-content: center;
+
+      width: 100%;
+      height: 100%;
+
+      font-size: var(--font-size-5);
+      font-weight: var(--font-weight-7);
+      color: white;
+
+      background: conic-gradient(
+        hsl(var(--gray-11-hsl) / 0.1) calc(1deg * var(--cooldown-angle)),
+        hsl(var(--gray-11-hsl) / 0.7) calc(1deg * var(--cooldown-angle))
+      );
+      border: none;
+    }
   }
 }
 

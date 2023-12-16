@@ -20,7 +20,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 1, power: 1 }),
-      new Heal({ cooldown: 1, cost: 1, power: 3, range: 2 })
+      new Heal({ cooldown: 2, cost: 1, power: 3, range: 2 })
     ]
   },
   {
