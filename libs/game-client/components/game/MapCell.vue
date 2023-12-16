@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Polygon, type Cursor } from 'pixi.js';
+import { Polygon, type Cursor, FederatedPointerEvent } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { useApplication } from 'vue3-pixi';
@@ -42,7 +42,9 @@ const isSummonTarget = computed(() => {
   );
 });
 
-const onPointerup = () => {
+const onPointerup = (event: FederatedPointerEvent) => {
+  if (event.button !== 0) return;
+
   if (isMoveTarget.value) {
     sendInput('move', {
       ...cell.position,

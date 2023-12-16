@@ -128,27 +128,6 @@ const filters = computed(() => {
   return result;
 });
 
-const onBeforeStatbarsEnter = (el: Container) => {
-  nextTick(() => {
-    gsap.set(el, {
-      pixi: {
-        alpha: 0
-      }
-    });
-  });
-};
-
-const onStatbarsEnter = (el: Container, done: () => void) => {
-  gsap.to(el, {
-    duration: 0.2,
-    ease: Power2.easeOut,
-    onComplete: done,
-    pixi: {
-      alpha: 1
-    }
-  });
-};
-
 const cursor = computed(() => {
   const cell = gameSession.map.getCellAt(entity.position);
 
@@ -195,28 +174,14 @@ const cursor = computed(() => {
         "
       />
 
-      <PTransition appear @before-enter="onBeforeStatbarsEnter" @enter="onStatbarsEnter">
+      <PTransition
+        appear
+        :duration="{ enter: 100, leave: 100 }"
+        :before-enter="{ alpha: 0 }"
+        :enter="{ alpha: 1 }"
+        :leave="{ alpha: 0 }"
+      >
         <UnitStats :entity="entity" v-if="isHovered" />
-        <!-- <container v-if="isHovered" :y="CELL_SIZE / 8">
-          <StatBar
-            :z-index="entity.position.y"
-            :y="CELL_SIZE * 0.8"
-            :size="3"
-            :value="entity.hp"
-            :max-value="entity.maxHp"
-            :filled-color="0x00cc00"
-            :empty-color="0xcc0000"
-          />
-
-          <StatBar
-            :z-index="entity.position.y"
-            :y="CELL_SIZE * 0.8 + 3"
-            :size="3"
-            :value="entity.ap"
-            :max-value="entity.maxAp"
-            :filled-color="0x0000cc"
-          />
-        </container> -->
       </PTransition>
     </container>
   </IsoPositioner>

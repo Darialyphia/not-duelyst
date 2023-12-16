@@ -7,6 +7,7 @@ const { entity } = defineProps<{ entity: Entity }>();
 
 const { assets } = useGame();
 const spritesheet = assets.getSprite('unit-stats');
+
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
 const COLORS = {
@@ -26,7 +27,7 @@ const containerRef = (_container: any) => {
   if (!container) return;
   if (container.parentLayer) return;
   if (!ui.layers.ui.value) return;
-  autoDestroyRef(container);
+  autoDestroyRef(container, 100);
 
   container.parentLayer = ui.layers.ui.value;
 };
@@ -109,7 +110,6 @@ const containerRef = (_container: any) => {
           "
         />
         <graphics
-          :y="CELL_SIZE / 2 + 3"
           @render="
             g => {
               const atbPercentage = (entity.atb * CELL_SIZE) / 100;
