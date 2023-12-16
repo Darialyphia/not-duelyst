@@ -9,7 +9,9 @@ const { assets, rotation } = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  cellClick: [cell: Cell];
+  cellPointerdown: [cell: Cell];
+  cellPointerup: [cell: Cell];
+  cellPointerenter: [cell: Cell];
 }>();
 const map = defineModel<{
   width: number;
@@ -43,10 +45,6 @@ until(screenViewport)
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
   });
-
-const onCellClick = (cell: Cell) => {
-  emit('cellClick', cell);
-};
 </script>
 
 <template>
@@ -66,7 +64,9 @@ const onCellClick = (cell: Cell) => {
       :cell="cell"
       :map="map"
       :rotation="rotation"
-      @click="onCellClick(cell)"
+      @pointerup="emit('cellPointerup', cell)"
+      @pointerdown="emit('cellPointerdown', cell)"
+      @pointerenter="emit('cellPointerenter', cell)"
     />
   </viewport>
 </template>

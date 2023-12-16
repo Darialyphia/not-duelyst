@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { Polygon, type Cursor, FederatedPointerEvent } from 'pixi.js';
-import type { Cell, Point3D, SerializedGameState } from '@hc/sdk';
+import { Polygon } from 'pixi.js';
+import type { Cell, Point3D } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
-import { useApplication } from 'vue3-pixi';
 
-const { cell } = defineProps<{
+const { cell, rotation, map } = defineProps<{
   cell: Cell;
   map: {
     width: number;
@@ -15,15 +14,16 @@ const { cell } = defineProps<{
   rotation: 0 | 90 | 180 | 270;
 }>();
 
-const app = useApplication();
-
 const assets = useAssets();
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
     const sheet = assets.getSprite(spriteId);
-    return sheet.animations[0];
+    return sheet.animations[Math.abs(rotation)] ?? sheet.animations[0];
   });
 });
+
+const emptyTextures = assets.getSprite('editor-empty-tile').animations[0];
+
 const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
 const hitArea = new Polygon([
   { x: 0, y: 0 + hitAreaYOffset },
@@ -54,8 +54,15 @@ const isHovered = ref(false);
     >
       <animated-sprite
         v-for="(textures, index) in spriteTextures"
-        :ky="index"
+        :key="index"
         :textures="textures"
+        :anchor="0.5"
+        :y="CELL_SIZE / 2"
+      />
+
+      <animated-sprite
+        v-if="!spriteTextures.length && cell.position.z === 0"
+        :textures="emptyTextures"
         :anchor="0.5"
         :y="CELL_SIZE / 2"
       />

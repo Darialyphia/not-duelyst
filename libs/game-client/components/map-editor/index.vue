@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import { Cell, Tile, type Point3D } from '@hc/sdk';
+import { Cell, Tile, type Point3D, Vec3 } from '@hc/sdk';
 import PixiPlugin from 'gsap/PixiPlugin';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
@@ -13,6 +13,7 @@ gsap.install(window);
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
+const MAX_HEIGHT = 8;
 const map = ref<{
   width: number;
   height: number;
@@ -25,7 +26,7 @@ const map = ref<{
     Array.from({ length: 10 }, (_, x) => ({
       position: { x, y, z: 0 },
       tileId: 'ground',
-      spriteIds: ['editor-empty-tile']
+      spriteIds: []
     }))
   )
     .flat()
@@ -35,7 +36,7 @@ const map = ref<{
     { x: 0, y: 1, z: 0 }
   ]
 });
-const { history, undo, redo } = useRefHistory(map, { capacity: 100, deep: true });
+const { undo, redo } = useRefHistory(map, { capacity: 100, deep: true });
 
 const canvasContainer = ref<HTMLElement>();
 
@@ -51,13 +52,15 @@ const selectedTile = ref<string | null>(null);
 
 const isCtrlKeyPressed = ref(false);
 const isShiftKeyPressed = ref(false);
+const isAltKeyPressed = ref(false);
+
 onMounted(() => {
   window.addEventListener('keydown', e => {
-    if (e.ctrlKey && e.code === 'KeyW' && !e.repeat) {
+    if (e.ctrlKey && e.code === 'KeyW') {
       undo();
       return;
     }
-    if (e.ctrlKey && e.code === 'KeyY' && !e.repeat) {
+    if (e.ctrlKey && e.code === 'KeyY') {
       return redo();
     }
     if (e.code === 'ControlLeft') {
@@ -65,6 +68,9 @@ onMounted(() => {
     }
     if (e.code === 'ShiftLeft') {
       isShiftKeyPressed.value = true;
+    }
+    if (e.code === 'AltLeft') {
+      isAltKeyPressed.value = true;
     }
 
     if (e.code === 'KeyQ')
@@ -76,12 +82,14 @@ onMounted(() => {
   window.addEventListener('keyup', () => {
     isCtrlKeyPressed.value = false;
     isShiftKeyPressed.value = false;
+    isAltKeyPressed.value = false;
   });
 });
 
 const mode = ref<'add' | 'remove'>('add');
 
-const onCellClick = (cell: Cell) => {
+const onCellPointerdown = (cell: Cell) => {
+  isDragging.value = true;
   switch (mode.value) {
     case 'add':
       return addTile(cell);
@@ -90,32 +98,61 @@ const onCellClick = (cell: Cell) => {
   }
 };
 
+const onCellPointerenter = (cell: Cell) => {
+  if (!isDragging.value) return;
+  switch (mode.value) {
+    case 'add':
+      return addTile(cell);
+    case 'remove':
+      return removeTile(cell);
+  }
+};
+
+const onCellPointerup = (cell: Cell) => {
+  isDragging.value = false;
+};
+
+const isDragging = ref(false);
+
 const addTile = (cell: Cell) => {
-  if (isShiftKeyPressed.value) return removeTile(cell);
+  if (isCtrlKeyPressed.value) return removeTile(cell);
   if (!selectedTile.value) return;
-  cell.spriteIds = cell.spriteIds.filter(id => id !== 'editor-empty-tile');
-  if (!isCtrlKeyPressed.value) {
-    const idx = cell.spriteIds.indexOf(selectedTile.value);
-    if (cell.spriteIds.includes(selectedTile.value)) {
-      cell.spriteIds.splice(idx, 1);
-    } else {
-      cell.spriteIds.push(selectedTile.value);
-    }
-  } else {
+
+  // try to pile up new cell on top
+  if (isShiftKeyPressed.value) {
     const coords = { x: cell.x, y: cell.y, z: cell.z + 1 };
-    let exists = map.value.cells.find(c => c.position.equals(coords));
-    while (exists) {
+    let existingCell = map.value.cells.find(c =>
+      // vueuse's useRefHistory deserialized class instances son undo >_<
+      Vec3.fromPoint3D(c.position).equals(coords)
+    );
+    while (existingCell && existingCell.spriteIds.length) {
       coords.z++;
-      exists = map.value.cells.find(c => c.position.equals(coords));
+      existingCell = map.value.cells.find(c => c.position.equals(coords));
     }
 
-    map.value.cells.push(new Cell(new Tile('ground'), coords, [selectedTile.value]));
+    if (coords.z >= MAX_HEIGHT) return;
+    if (existingCell) {
+      existingCell.spriteIds.push(selectedTile.value);
+    } else {
+      map.value.cells.push(new Cell(new Tile('ground'), coords, [selectedTile.value]));
+    }
+    // toggle sprite presence on the cell
+  } else if (isAltKeyPressed.value) {
+    const idx = cell.spriteIds.indexOf(selectedTile.value);
+    if (idx >= 0) {
+      cell.spriteIds.splice(idx, 1);
+    } else if (idx < 0) {
+      cell.spriteIds.push(selectedTile.value);
+    }
+    // replace the cell sprites
+  } else {
+    cell.spriteIds = [selectedTile.value];
   }
 };
 
 const removeTile = (cell: Cell) => {
   if (cell.z === 0) {
-    cell.spriteIds = ['editor-empty-tile'];
+    cell.spriteIds = [];
     return;
   }
 
@@ -189,7 +226,9 @@ const removeTile = (cell: Cell) => {
           v-model:map="map"
           :assets="assets"
           :rotation="rotation"
-          @cell-click="onCellClick"
+          @cell-pointerup="onCellPointerup"
+          @cell-pointerdown="onCellPointerdown"
+          @cell-pointerenter="onCellPointerenter"
         />
       </Application>
     </main>
