@@ -10,13 +10,14 @@ export class Cell {
 
   constructor(
     public tile: Tile,
-    position: Point3D
+    position: Point3D,
+    public spriteIds: string[]
   ) {
     this.position = Vec3.fromPoint3D(position);
   }
 
   clone() {
-    const clone = new Cell(this.tile, this.position);
+    const clone = new Cell(this.tile, this.position, this.spriteIds);
 
     Object.keys(this).forEach(key => {
       // @ts-expect-error cant be arsed
@@ -57,7 +58,8 @@ export class Cell {
   serialize() {
     return {
       tileId: this.tile.serialize(),
-      position: this.position
+      position: this.position,
+      spriteIds: this.spriteIds
     };
   }
 }

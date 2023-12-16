@@ -10,10 +10,11 @@ const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
 
-const textures = computed(() => {
-  const sheet = assets.getSprite(cell.tile.id);
-
-  return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
+const spriteTextures = computed(() => {
+  return cell.spriteIds.map(spriteId => {
+    const sheet = assets.getSprite(spriteId);
+    return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
+  });
 });
 const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
 const hitArea = new Polygon([
@@ -102,12 +103,16 @@ const cursor = computed(() => {
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
     >
-      <animated-sprite
-        :filters="isMovePathHighlighted ? [pathFilter] : []"
-        :textures="textures"
-        :cursor="cursor"
-        :anchor-x="0.5"
-      />
+      <container :filters="isMovePathHighlighted ? [pathFilter] : []" :cursor="cursor">
+        <animated-sprite
+          v-for="(textures, index) in spriteTextures"
+          :ky="index"
+          :textures="textures"
+          :cursor="cursor"
+          :anchor="0.5"
+          :y="CELL_SIZE / 2"
+        />
+      </container>
 
       <MapCellHighlight :cell="cell" :cursor="cursor" />
     </container>

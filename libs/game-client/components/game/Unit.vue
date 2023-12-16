@@ -7,6 +7,7 @@ import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
 import type { AnimatedSprite, Cursor } from 'pixi.js';
 import type { VNodeRef } from 'nuxt/dist/app/compat/capi';
+import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { entity } = defineProps<{
   entity: Entity;
@@ -136,6 +137,8 @@ const cursor = computed(() => {
   }
   return undefined;
 });
+
+const shadowFilters = [new ColorOverlayFilter(0x000000)];
 </script>
 
 <template>
@@ -146,7 +149,21 @@ const cursor = computed(() => {
     :z-index-offset="1"
     :offset="offset"
   >
-    <container :y="-CELL_SIZE / 4">
+    <container :y="-CELL_SIZE / 4" :sortable-children="true">
+      <animated-sprite
+        v-if="textures?.length"
+        :textures="textures"
+        :z-index="1"
+        :filters="shadowFilters"
+        :scale-x="scaleX"
+        :scale-y="0.45"
+        :skew-x="-1"
+        :anchor="0.5"
+        :y="CELL_SIZE * 1.45"
+        loop
+        event-mode="none"
+        playing
+      />
       <animated-sprite
         ref="spriteRef"
         :textures="textures"
@@ -155,6 +172,7 @@ const cursor = computed(() => {
         :hit-area="hitArea"
         :filters="filters"
         :cursor="cursor"
+        :z-index="2"
         loop
         @pointerup="
           () => {

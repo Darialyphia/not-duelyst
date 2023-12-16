@@ -11,7 +11,7 @@ import { Vec3 } from '../utils/vector';
 import { GameSession } from '../game-session';
 
 export type GameMapOptions = {
-  cells: { position: Point3D; tileId: TileId }[];
+  cells: { position: Point3D; tileId: TileId; spriteIds: string[] }[];
   height: number;
   width: number;
   startPositions: [Point3D, Point3D];
@@ -41,8 +41,8 @@ export class GameMap implements Serializable {
   }
 
   private makeCells(cells: GameMapOptions['cells']) {
-    return cells.map(({ tileId, position }) => {
-      return new Cell(new Tile(tileId), position);
+    return cells.map(({ tileId, position, spriteIds }) => {
+      return new Cell(new Tile(tileId), position, spriteIds);
     });
   }
 
