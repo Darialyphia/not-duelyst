@@ -7,10 +7,10 @@ import type {
   Skill,
   SkillId,
   Cell,
-  FXContext,
   Player
 } from '@hc/sdk';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
+import { Layer } from '@pixi/layers';
 import type { Viewport } from 'pixi-viewport';
 import type { AnimatedSprite } from 'pixi.js';
 
@@ -40,6 +40,10 @@ export type GameContext = {
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
+    layers: {
+      gameObjects: Ref<Layer | undefined>;
+      ui: Ref<Layer | undefined>;
+    };
   };
   fx: {
     isMoving: Ref<boolean>;
@@ -90,7 +94,11 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       targetMode: ref(null),
       hoveredCell: ref(null),
       selectedSkill: ref(null),
-      selectedSummon: ref(null)
+      selectedSummon: ref(null),
+      layers: {
+        gameObjects: ref(),
+        ui: ref()
+      }
     },
     fx: {
       isMoving: ref(false),

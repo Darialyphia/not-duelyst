@@ -3,6 +3,7 @@ import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 
 const { state, gameSession, mapRotation, ui, sendInput, fx } = useGame();
+const { ui: uiLayer, gameObjects: gameObjectsLayer } = ui.layers;
 const app = useApplication();
 
 const screenViewport = shallowRef<Viewport>();
@@ -78,6 +79,13 @@ until(screenViewport)
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
   });
+
+watchEffect(() => {
+  if (gameObjectsLayer.value) {
+    gameObjectsLayer.value.group.enableSort = true;
+    console.log('sort enabled');
+  }
+});
 </script>
 
 <template>
@@ -91,8 +99,12 @@ until(screenViewport)
     :disable-on-context-menu="true"
     :sortable-children="true"
   >
-    <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
+    <Layer ref="gameObjectsLayer">
+      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
-    <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
+      <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
+    </Layer>
+
+    <Layer ref="uiLayer" />
   </viewport>
 </template>

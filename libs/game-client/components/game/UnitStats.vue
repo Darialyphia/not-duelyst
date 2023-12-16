@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src';
+import type { Container } from 'pixi.js';
+import { clamp } from '@hc/shared';
 
 const { entity } = defineProps<{ entity: Entity }>();
 
@@ -10,15 +12,28 @@ const textures = createSpritesheetFrameObject('idle', spritesheet);
 const COLORS = {
   hp: '#a7ed00',
   ap: '#00b9ff',
-  attack: '#e93100',
+  attack: '#ff2245',
   defense: '#fffc00'
 } as const;
 
 const { autoDestroyRef } = useAutoDestroy();
+const ui = useGameUi();
+
+// ts in unhappy if we type the parameter, because vue expects fucntion refs to take a VNode as argument
+// However, in vue3-pixi, the behavior is different
+const containerRef = (_container: any) => {
+  const container = _container as Container;
+  if (!container) return;
+  if (container.parentLayer) return;
+  if (!ui.layers.ui.value) return;
+  autoDestroyRef(container);
+
+  container.parentLayer = ui.layers.ui.value;
+};
 </script>
 
 <template>
-  <container :ref="autoDestroyRef">
+  <container :ref="containerRef">
     <animated-sprite
       event-mode="none"
       :textures="textures"
@@ -69,6 +84,43 @@ const { autoDestroyRef } = useAutoDestroy();
       >
         {{ entity.defense }}
       </text>
+
+      <container :x="-CELL_SIZE / 2 + 2" :y="CELL_SIZE / 2 + 5">
+        <text
+          :y="2"
+          :style="{
+            fill: 'white',
+            fontSize: 30,
+            fontFamily: 'monospace'
+          }"
+          :anchor="0.5"
+          :scale="0.25"
+        >
+          ATB
+        </text>
+        <graphics
+          @render="
+            g => {
+              g.clear();
+              g.beginFill('black');
+              g.drawRect(10, 0, CELL_SIZE - 10, 2);
+              g.endFill();
+            }
+          "
+        />
+        <graphics
+          :y="CELL_SIZE / 2 + 3"
+          @render="
+            g => {
+              const atbPercentage = (entity.atb * CELL_SIZE) / 100;
+              g.clear();
+              g.beginFill('white');
+              g.drawRect(10, 0, clamp(atbPercentage, 0, CELL_SIZE - 10), 2);
+              g.endFill();
+            }
+          "
+        />
+      </container>
     </animated-sprite>
   </container>
 </template>

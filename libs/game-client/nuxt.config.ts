@@ -1,6 +1,6 @@
 import { isCustomElement, transformAssetUrls } from 'vue3-pixi';
 
-const customElements = ['viewport'];
+const customElements = ['viewport', 'layer'];
 const prefix = 'pixi-';
 
 export default defineNuxtConfig({

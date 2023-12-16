@@ -20,6 +20,7 @@
     "@pixi/filter-color-overlay": "^5.1.1",
     "@pixi/filter-glow": "^5.2.1",
     "@pixi/filter-outline": "^5.2.0",
+    "@pixi/layers": "^2.1.0",
     "@pixi/sound": "^5.2.2",
     "@types/css-tree": "^2.3.4",
     "@types/howler": "^2.2.11",

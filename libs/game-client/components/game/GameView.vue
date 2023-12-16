@@ -5,7 +5,8 @@ import * as PIXI from 'pixi.js';
 import PixiPlugin from 'gsap/PixiPlugin';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
 import PixiRenderer from './PixiRenderer.vue';
-import type { Cell, Entity, GameSession, Player, Point3D } from '@hc/sdk';
+import { Stage } from '@pixi/layers';
+import type { GameSession } from '@hc/sdk';
 import type { GameEmits } from '../../composables/useGame';
 import cursorUrl from '../../assets/cursors/cursor.png';
 import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
@@ -52,7 +53,8 @@ onMounted(async () => {
   pixiApp.resizeTo = window;
   pixiApp.renderer.events.cursorStyles = cursors;
 
-  // pixiApp.stage = new Stage();
+  pixiApp.stage = new Stage();
+  pixiApp.stage.sortableChildren = true;
 
   if (import.meta.env.DEV) {
     // @ts-ignore  enable PIXI devtools
