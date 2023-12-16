@@ -105,7 +105,7 @@ const inSkillAreaFilter = new GlowFilter({
 const filters = computed(() => {
   const result = [];
 
-  if (isHovered.value) {
+  if (selectedEntity.value === entity) {
     result.push(selectedfilter);
   }
 

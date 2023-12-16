@@ -12,7 +12,7 @@ export class ATB {
       .at(0);
   }
 
-  tickUntilActiveEntity(entities: Entity[]) {
+  tickUntilActiveEntity(entities: Entity[], dryRun?: boolean) {
     let activeEntity = this.getHighestActiveEntity(entities);
 
     while (!activeEntity) {
@@ -22,6 +22,24 @@ export class ATB {
 
       activeEntity = this.getHighestActiveEntity(entities);
     }
-    this.activeEntity = activeEntity;
+
+    if (!dryRun) {
+      this.activeEntity = activeEntity;
+    }
+    return activeEntity;
+  }
+
+  getTimeline(entities: Entity[], length: number) {
+    const timeline: Entity[] = [];
+
+    const clones = entities.map(entity => entity.clone());
+
+    for (let i = 0; i <= length; i++) {
+      let active = this.tickUntilActiveEntity(clones, true);
+      timeline.push(active);
+      active.atb = active.atbSeed;
+    }
+
+    return timeline;
   }
 }

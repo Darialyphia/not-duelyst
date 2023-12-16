@@ -75,7 +75,7 @@ export class Entity implements Serializable {
 
   private movementSpent = 0;
 
-  private atbSeed = 0;
+  public atbSeed = 0;
 
   private interceptors = {
     attack: makeInterceptor<number, Entity>(),
