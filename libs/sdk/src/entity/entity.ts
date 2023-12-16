@@ -153,7 +153,7 @@ export class Entity implements Serializable {
     } satisfies SerializedEntity;
   }
 
-  private get unit() {
+  get unit() {
     return UNITS[this.unitId];
   }
 

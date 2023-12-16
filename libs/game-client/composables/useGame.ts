@@ -7,7 +7,8 @@ import type {
   Skill,
   SkillId,
   Cell,
-  Player
+  Player,
+  Entity
 } from '@hc/sdk';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
 import { Layer } from '@pixi/layers';
@@ -40,6 +41,7 @@ export type GameContext = {
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
+    selectedEntity: Ref<Nullable<Entity>>;
     layers: {
       gameObjects: Ref<Layer | undefined>;
       ui: Ref<Layer | undefined>;
@@ -93,6 +95,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       distanceMap,
       targetMode: ref(null),
       hoveredCell: ref(null),
+      selectedEntity: ref(null),
       selectedSkill: ref(null),
       selectedSummon: ref(null),
       layers: {

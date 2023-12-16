@@ -88,7 +88,8 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 <template>
   <div class="pixi-app-container">
     <canvas ref="canvas" @contextmenu.prevent />
-    <header>
+    <GameUi />
+    <!-- <header>
       <button
         @click="
           () => {
@@ -123,7 +124,7 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
           {{ unit.unit.id }} ({{ unit.unit.summonCost }})
         </button>
       </template>
-    </header>
+    </header> -->
   </div>
 </template>
 

@@ -14,7 +14,7 @@ const { entity } = defineProps<{
 
 const app = useApplication();
 const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
-const { hoveredCell, targetMode, selectedSkill } = useGameUi();
+const { hoveredCell, targetMode, selectedSkill, selectedEntity } = useGameUi();
 
 const spritesheet = assets.getSprite(entity.unitId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
@@ -158,17 +158,22 @@ const cursor = computed(() => {
         loop
         @pointerup="
           () => {
-            if (isSkillTarget(entity.position)) {
-              sendInput('use-skill', {
-                skillId: selectedSkill!.id,
-                target: entity.position
-              });
-            }
+            if (!isSkillTarget(entity.position)) return;
+            sendInput('use-skill', {
+              skillId: selectedSkill!.id,
+              target: entity.position
+            });
           }
         "
-        @pointerleave="() => (hoveredCell = null)"
+        @pointerleave="
+          () => {
+            hoveredCell = null;
+            selectedEntity = null;
+          }
+        "
         @pointerenter="
           () => {
+            selectedEntity = entity;
             hoveredCell = gameSession.map.getCellAt(entity.position);
           }
         "

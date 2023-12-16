@@ -21,7 +21,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         }
 
         const container = new Container();
-        container.position.set(sprite.parent.position.x, sprite.parent.position.y);
+        container.position.set(sprite.parent.position.x + 24, sprite.parent.position.y);
         container.zIndex = sprite.parent.zIndex;
         const textSprite = new Text(text, {
           fontSize: 30,
@@ -36,7 +36,6 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
 
         const onUpdate = () => {
           textSprite.position.set(sentinel.x, sentinel.y);
-
           // we divide the scale by 2 to avoid pixelated text since the game is zoomed in by default
           textSprite.scale.set(sentinel.scale * 0.5, sentinel.scale * 0.5);
           textSprite.alpha = sentinel.alpha;
