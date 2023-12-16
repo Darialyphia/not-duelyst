@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
+import { skillImagesPaths } from '../assets/skills';
+import havenBorder from '../assets/ui/icon-border-haven.png';
 
 const { entity } = defineProps<{
   entity: Entity;
@@ -63,9 +65,15 @@ const { entity } = defineProps<{
     </div>
 
     <div v-for="skill in entity.skills" :key="skill.id" class="skill">
-      <div :data-cost="skill.cost">
-        <!-- <img :src="skill.iconUrl" /> -->
-      </div>
+      <div
+        class="skill-img"
+        :data-cost="skill.cost"
+        :style="{
+          '--bg': `url(${skillImagesPaths[skill.id]})`,
+          '--border': `url(${havenBorder})`
+        }"
+      />
+
       <div>{{ skill.id }}</div>
       <!-- <p>{{ skill.description }}</p> -->
     </div>
@@ -115,7 +123,7 @@ const { entity } = defineProps<{
   --attack: var(--red-7);
   --defense: var(--cyan-5);
 
-  width: var(--size-13);
+  width: 18rem;
   padding: 0 var(--size-4) var(--size-4);
   font-size: var(--font-size-2);
   backdrop-filter: blur(5px);
@@ -187,11 +195,11 @@ const { entity } = defineProps<{
   font-size: var(--font-size-1);
   line-height: 1;
 
-  :has(img) {
-    grid-row: 1 / span 2;
+  .skill-img {
     aspect-ratio: 1;
-    width: var(--size-8);
-    border: var(--fancy-border);
+    width: 32px;
+    background-image: var(--border), var(--bg);
+    background-size: contain;
   }
 
   p {

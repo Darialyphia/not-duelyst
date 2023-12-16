@@ -83,7 +83,6 @@ until(screenViewport)
 watchEffect(() => {
   if (gameObjectsLayer.value) {
     gameObjectsLayer.value.group.enableSort = true;
-    console.log('sort enabled');
   }
 });
 </script>

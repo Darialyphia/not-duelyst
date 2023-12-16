@@ -10,10 +10,10 @@ const { selectedEntity } = useGameUi();
     <UnitCard v-if="selectedEntity" :entity="selectedEntity" class="selected-entity" />
   </Transition>
 
-  <!-- <GameActionBar class="game-action-bar" />
-  <GameChat />
+  <ActionBar class="game-action-bar" />
+  <!-- <GameChat /> -->
 
-  <UiIconButton
+  <!-- <UiIconButton
     icon="ic:sharp-emoji-flags"
     :theme="{ size: 'font-size-5' }"
     title="Surrender"
@@ -38,5 +38,12 @@ const { selectedEntity } = useGameUi();
     transform: translateX(-50%);
     opacity: 0;
   }
+}
+
+.game-action-bar {
+  position: absolute;
+  bottom: var(--size-5);
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

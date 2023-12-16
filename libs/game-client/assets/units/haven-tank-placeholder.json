@@ -89,7 +89,8 @@
    { "name": "body", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
-   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 59, "y": 52, "w": 42, "h": 46 } }] }
+   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 59, "y": 52, "w": 42, "h": 46 } }] },
+   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 52, "w": 32, "h": 32 } }] }
   ]
  }
 }

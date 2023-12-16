@@ -87,7 +87,14 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 
 <template>
   <div class="pixi-app-container">
-    <canvas ref="canvas" @contextmenu.prevent />
+    <canvas
+      ref="canvas"
+      @contextmenu.prevent="
+        e => {
+          ui.targetMode.value = null;
+        }
+      "
+    />
     <GameUi />
     <!-- <header>
       <button

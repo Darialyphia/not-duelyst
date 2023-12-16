@@ -86,7 +86,7 @@ const containerRef = (_container: any) => {
         {{ entity.defense }}
       </text>
 
-      <container :x="-CELL_SIZE / 2 + 2" :y="CELL_SIZE / 2 + 5">
+      <container :x="-CELL_SIZE / 2 + 8" :y="CELL_SIZE / 2 + 5">
         <text
           :y="2"
           :style="{
@@ -104,7 +104,7 @@ const containerRef = (_container: any) => {
             g => {
               g.clear();
               g.beginFill('black');
-              g.drawRect(10, 0, CELL_SIZE - 10, 2);
+              g.drawRect(10, 0, CELL_SIZE - 20, 2);
               g.endFill();
             }
           "
@@ -115,7 +115,7 @@ const containerRef = (_container: any) => {
               const atbPercentage = (entity.atb * CELL_SIZE) / 100;
               g.clear();
               g.beginFill('white');
-              g.drawRect(10, 0, clamp(atbPercentage, 0, CELL_SIZE - 10), 2);
+              g.drawRect(10, 0, clamp(atbPercentage, 0, CELL_SIZE - 20), 2);
               g.endFill();
             }
           "

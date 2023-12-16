@@ -1,3 +1,5 @@
+import { clamp } from '@hc/shared';
+import { isGeneral } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { UnitId } from '../units/unit-lookup';
 import { Loadout, Player, PlayerId } from './player';
@@ -13,6 +15,18 @@ export class PlayerManager {
       .forEach(player => {
         this.addPlayer(player);
       });
+
+    if (this.ctx.isAuthoritative) {
+      this.ctx.emitter.on('entity:turn-start', entity => {
+        if (isGeneral(entity)) {
+          Object.entries(this.getPlayerById(entity.playerId)!.loadout.units).forEach(
+            ([name, unit]) => {
+              unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
+            }
+          );
+        }
+      });
+    }
   }
 
   getList() {

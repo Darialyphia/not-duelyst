@@ -1,4 +1,4 @@
-import mitt, { type Emitter } from 'mitt';
+import mitt from 'mitt';
 import { InputReducer, SerializedInput } from './input/input-reducer';
 import { ATB } from './atb';
 import { EntityId, Entity, SerializedEntity, EntityEvent } from './entity/entity';
@@ -9,8 +9,6 @@ import { Loadout, Player, PlayerId } from './player/player';
 import { PlayerManager } from './player/player-manager';
 import { SerializedAction } from './action/action-deserializer';
 import { UnitId } from './units/unit-lookup';
-import { isGeneral } from './entity/entity-utils';
-import { clamp } from '@hc/shared';
 import { ActionQueue } from './action/action-queue';
 import { FXContext, GameAction } from './action/action';
 
@@ -75,16 +73,6 @@ export class GameSession {
     readonly isAuthoritative: boolean
   ) {
     this.setupState(state);
-
-    this.emitter.on('entity:turn-start', entity => {
-      if (isGeneral(entity)) {
-        Object.values(
-          this.playerManager.getPlayerById(entity.playerId)!.loadout.units
-        ).forEach(unit => {
-          unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
-        });
-      }
-    });
 
     this.setupATB(state.activeEntityId);
   }
