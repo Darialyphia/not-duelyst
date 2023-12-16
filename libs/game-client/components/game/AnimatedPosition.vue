@@ -54,12 +54,12 @@ watchEffect(() => {
 </script>
 
 <template>
-  <container :ref="setContainer" :x="tweened.x" :y="tweened.y" :z-order="props.zIndex">
+  <container :ref="setContainer" :x="tweened.x" :y="tweened.y" :z-index="props.zIndex">
     <slot />
   </container>
   <text
     v-if="props.debug"
-    :ref="autoDestroyRef"
+    :ref="el => autoDestroyRef(el)"
     :style="{ fontSize: 20, fill: 'white' }"
     :scale="0.5"
     :z-index="1000"

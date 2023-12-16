@@ -148,6 +148,7 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
     :z="entity.position.z"
     :z-index-offset="1"
     :offset="offset"
+    :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >
     <container :y="-CELL_SIZE / 4" :sortable-children="true">
       <animated-sprite

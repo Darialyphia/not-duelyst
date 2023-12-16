@@ -26,7 +26,9 @@ const activePlayer = computed(
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
-window.gsap.registerPlugin(PixiPlugin);
+gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(PixiPlugin);
+gsap.install(window);
 
 const cursors = {
   default: `url('${cursorUrl}'), auto`,
@@ -60,10 +62,6 @@ onMounted(async () => {
     // @ts-ignore  enable PIXI devtools
     window.__PIXI_APP__ = pixiApp;
   }
-  gsap.registerPlugin(PixiPlugin);
-  gsap.registerPlugin(MotionPathPlugin);
-
-  gsap.install(window);
 
   BaseTexture.defaultOptions.wrapMode = WRAP_MODES.CLAMP;
   BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;

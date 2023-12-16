@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <StandAloneGame />
+    <MapEditor />
 
     <template #fallback>
       <div />

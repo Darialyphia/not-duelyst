@@ -95,7 +95,12 @@ const cursor = computed(() => {
 </script>
 
 <template>
-  <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z">
+  <IsoPositioner
+    :x="cell.position.x"
+    :y="cell.position.y"
+    :z="cell.position.z"
+    :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
+  >
     <container
       :hit-area="hitArea"
       :cursor="cursor"
@@ -106,7 +111,7 @@ const cursor = computed(() => {
       <container :filters="isMovePathHighlighted ? [pathFilter] : []" :cursor="cursor">
         <animated-sprite
           v-for="(textures, index) in spriteTextures"
-          :ky="index"
+          :key="index"
           :textures="textures"
           :cursor="cursor"
           :anchor="0.5"
@@ -118,7 +123,12 @@ const cursor = computed(() => {
     </container>
     <HoveredCell :cell="cell" :cursor="cursor" />
   </IsoPositioner>
-  <IsoPositioner :x="cell.position.x" :y="cell.position.y" :z="cell.position.z + 0.1">
+  <IsoPositioner
+    :x="cell.position.x"
+    :y="cell.position.y"
+    :z="cell.position.z + 0.1"
+    :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
+  >
     <SummonPreview :cell="cell" />
   </IsoPositioner>
 </template>
