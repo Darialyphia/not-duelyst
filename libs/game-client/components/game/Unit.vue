@@ -47,7 +47,7 @@ const hitArea = computed(() => {
 
   // we need to offset the slice because the sprite has its anchor in the center
   const offset = {
-    x: CELL_SIZE,
+    x: CELL_SIZE * 1.25,
     y: 0
   };
 
@@ -196,7 +196,8 @@ const cursor = computed(() => {
       />
 
       <PTransition appear @before-enter="onBeforeStatbarsEnter" @enter="onStatbarsEnter">
-        <container v-if="isHovered" :y="CELL_SIZE / 8">
+        <UnitStats :entity="entity" v-if="isHovered" />
+        <!-- <container v-if="isHovered" :y="CELL_SIZE / 8">
           <StatBar
             :z-index="entity.position.y"
             :y="CELL_SIZE * 0.8"
@@ -215,7 +216,7 @@ const cursor = computed(() => {
             :max-value="entity.maxAp"
             :filled-color="0x0000cc"
           />
-        </container>
+        </container> -->
       </PTransition>
     </container>
   </IsoPositioner>
