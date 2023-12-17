@@ -14,7 +14,6 @@ import {
   SwitchRoot,
   SwitchThumb
 } from 'radix-vue';
-import { createLabel } from 'typescript';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -23,19 +22,24 @@ gsap.install(window);
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
-const MAX_HEIGHT = 8;
+const MAX_X = 20;
+const MAX_Y = 20;
+const MAX_Z = 8;
 const TILE_TO_EDITOR_SPRITE = {
   ground: 'editor-ground',
   groundHalf: 'editor-ground-half',
   water: 'editor-water'
 };
 
-const makeDefaultMap = (): {
+type EditorMap = {
+  name: string;
   width: number;
   height: number;
   cells: Cell[];
   startPositions: [Point3D, Point3D];
-} => ({
+};
+const makeDefaultMap = (): EditorMap => ({
+  name: 'New Map',
   width: 11,
   height: 13,
   cells: Array.from({ length: 13 }, (_, y) =>
@@ -53,8 +57,9 @@ const makeDefaultMap = (): {
   ]
 });
 
-const makeMap = (serializedMap: SerializedGameState['map']) => {
+const makeMap = (serializedMap: SerializedGameState['map'], name: string) => {
   map.value = {
+    name,
     ...serializedMap,
     cells: serializedMap.cells.map(
       cell => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
@@ -64,7 +69,24 @@ const makeMap = (serializedMap: SerializedGameState['map']) => {
 };
 
 const map = ref(makeDefaultMap());
-const { undo, redo } = useRefHistory(map, { capacity: 100, deep: true });
+const { undo, redo } = useRefHistory(map, {
+  capacity: 100,
+  deep: true,
+  dump: (el: EditorMap) =>
+    JSON.stringify({
+      ...el,
+      cells: el.cells.map(cell => cell.serialize())
+    }),
+  parse: (str: string) => {
+    const serialized = JSON.parse(str);
+    return {
+      ...serialized,
+      cells: serialized.cells.map(
+        (cell: any) => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
+      )
+    };
+  }
+});
 
 const canvasContainer = ref<HTMLElement>();
 
@@ -173,16 +195,13 @@ const changeTile = (cell: Cell) => {
   if (!selectedTileId.value) return;
   if (isShiftKeyPressed.value) {
     const coords = { x: cell.x, y: cell.y, z: cell.z + 1 };
-    let existingCell = map.value.cells.find(c =>
-      // vueuse's useRefHistory deserialized class instances son undo >_<
-      Vec3.fromPoint3D(c.position).equals(coords)
-    );
+    let existingCell = map.value.cells.find(c => c.position.equals(coords));
     while (existingCell) {
       coords.z++;
       existingCell = map.value.cells.find(c => c.position.equals(coords));
     }
 
-    if (coords.z >= MAX_HEIGHT) return;
+    if (coords.z >= MAX_Z) return;
     if (existingCell) return;
     else {
       map.value.cells.push(new Cell(new Tile(selectedTileId.value), coords, []));
@@ -219,7 +238,6 @@ const removeSpriteFromTile = (cell: Cell) => {
 };
 
 const visibleFloors = ref<Record<number, boolean>>({ 0: true });
-
 watchEffect(() => {
   const floors = new Set<number>([]);
   map.value.cells.forEach(cell => {
@@ -239,7 +257,51 @@ watchEffect(() => {
   });
 });
 
-const { data: maps } = await useFetch('/api/maps');
+const { data: maps, refresh } = await useFetch('/api/maps');
+watch(
+  () => map.value.width,
+  newX => {
+    map.value.cells = map.value.cells.filter(cell => cell.x < newX);
+    for (let x = 0; x < newX; x++) {
+      for (let y = 0; y < map.value.height; y++) {
+        const pos = { x, y, z: 0 };
+        if (!map.value.cells.some(cell => cell.position.equals(pos))) {
+          map.value.cells.push(new Cell(new Tile('ground'), pos, []));
+        }
+      }
+    }
+  }
+);
+watch(
+  () => map.value.height,
+  newY => {
+    map.value.cells = map.value.cells.filter(cell => cell.y < newY);
+    for (let x = 0; x < map.value.width; x++) {
+      for (let y = 0; y < newY; y++) {
+        const pos = { x, y, z: 0 };
+        if (!map.value.cells.some(cell => cell.position.equals(pos))) {
+          map.value.cells.push(new Cell(new Tile('ground'), pos, []));
+        }
+      }
+    }
+  }
+);
+const save = async () => {
+  if (map.value.cells.some(cell => !cell.spriteIds.length)) {
+    alert('Some tiles have no sprite !');
+    return;
+  }
+
+  await $fetch('/api/maps', {
+    method: 'POST',
+    body: {
+      ...map.value,
+      cells: map.value.cells.map(cell => cell.serialize())
+    }
+  });
+
+  refresh();
+};
 </script>
 
 <template>
@@ -254,8 +316,8 @@ const { data: maps } = await useFetch('/api/maps');
         <PopoverPortal>
           <PopoverContent side="bottom" :side-offset="5" class="surface maps-dropdown">
             <ul v-if="maps">
-              <li v-for="(map, name) in maps" :key="name">
-                <button @click="makeMap(map)">
+              <li v-for="(savedMap, name) in maps" :key="name">
+                <button @click="makeMap(savedMap, name as string)">
                   {{ name }}
                 </button>
               </li>
@@ -263,7 +325,7 @@ const { data: maps } = await useFetch('/api/maps');
           </PopoverContent>
         </PopoverPortal>
       </PopoverRoot>
-      <UiButton>Save</UiButton>
+      <UiButton @click="save">Save</UiButton>
 
       <UiButton
         :style="{ '--d-button-size': 'var(--font-size-4)', transform: 'rotateY(180deg)' }"
@@ -328,6 +390,21 @@ const { data: maps } = await useFetch('/api/maps');
     </header>
 
     <aside class="surface">
+      <h2>Map infos</h2>
+      <fieldset>
+        <label>
+          Name
+          <input v-model="map.name" />
+        </label>
+        <label>
+          xSize
+          <input v-model="map.width" type="number" :max="MAX_X" :min="1" step="1" />
+        </label>
+        <label>
+          ySize
+          <input v-model="map.height" type="number" :max="MAX_Y" :min="1" step="1" />
+        </label>
+      </fieldset>
       <label for="placement-mode">Placement mode</label>
       <div class="flex gap-2 mb-3">
         Tile
@@ -345,7 +422,7 @@ const { data: maps } = await useFetch('/api/maps');
       </div>
 
       <h2>Tiles</h2>
-      <section class="menu-list" style="--list-item-size: 80px">
+      <section class="menu-list">
         <button
           v-for="(tile, name) in TILES"
           :key="name"
@@ -362,7 +439,7 @@ const { data: maps } = await useFetch('/api/maps');
       </section>
 
       <h2>Sprites</h2>
-      <section class="menu-list" style="--list-item-size: 64px">
+      <section class="menu-list">
         <template v-for="(src, name) in tileImagesPaths" :key="name">
           <button
             v-if="isString(name) && !name.startsWith('editor')"
@@ -462,7 +539,7 @@ section {
     cursor: pointer;
 
     aspect-ratio: 1;
-    width: var(--list-item-size);
+    width: 64px;
 
     font-size: var(--font-size-0);
     text-align: left;
