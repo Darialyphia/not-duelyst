@@ -21,8 +21,11 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         }
 
         const container = new Container();
-        container.position.set(sprite.parent.position.x + 24, sprite.parent.position.y);
-        container.zIndex = sprite.parent.zIndex;
+        container.position.set(
+          sprite.parent.parent.position.x,
+          sprite.parent.parent.position.y + 16
+        );
+        container.zIndex = sprite.parent.parent.zIndex;
         const textSprite = new Text(text, {
           fontSize: 30,
           fontWeight: '700',
@@ -93,7 +96,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
       if (!soundPath) {
         console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
-        return () => {};
+        return () => void 0;
       }
 
       const sfx = new Howl({
@@ -177,13 +180,13 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       const entity = gameSession.entityManager.getEntityById(entityId);
       if (!entity) {
         console.warn(`FXContext: entity not found for entityId ${entityId}`);
-        return () => {};
+        return () => void 0;
       }
 
       const sprite = toValue(fx.spriteMap.get(entityId));
       if (!sprite) {
         console.warn(`FXContext: sprite not found for entity ${entityId}`);
-        return () => {};
+        return () => void 0;
       }
 
       const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
@@ -193,7 +196,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         console.warn(
           `FXContext: animation not found on sprite : ${animationName}. Using fallback ${animationNameFallback}`
         );
-        return () => {};
+        return () => void 0;
       }
 
       sprite.textures = createSpritesheetFrameObject(
