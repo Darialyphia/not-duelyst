@@ -3,7 +3,7 @@ import { Polygon } from 'pixi.js';
 import type { Cell, Point3D } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
-const { cell, rotation, map } = defineProps<{
+const { isVisible, cell, rotation, map } = defineProps<{
   cell: Cell;
   map: {
     width: number;
@@ -11,6 +11,7 @@ const { cell, rotation, map } = defineProps<{
     cells: Cell[];
     startPositions: [Point3D, Point3D];
   };
+  isVisible: boolean;
   rotation: 0 | 90 | 180 | 270;
 }>();
 
@@ -45,10 +46,12 @@ const isHovered = ref(false);
     :z="cell.position.z"
     :map="{ width: map.width, height: map.height, rotation: rotation }"
     :animated="false"
+    :event-mode="isVisible ? 'static' : 'none'"
   >
     <container
       :hit-area="hitArea"
       :filters="isHovered ? [hoveredFilter] : []"
+      :alpha="isVisible ? 1 : 0.25"
       @pointerenter="isHovered = true"
       @pointerleave="isHovered = false"
     >

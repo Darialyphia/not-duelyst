@@ -2,6 +2,7 @@
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import { Cell, Tile, type Point3D, Vec3 } from '@hc/sdk';
+import { isString, isDefined } from '@hc/shared';
 import PixiPlugin from 'gsap/PixiPlugin';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
@@ -20,10 +21,10 @@ const map = ref<{
   cells: Cell[];
   startPositions: [Point3D, Point3D];
 }>({
-  width: 10,
-  height: 10,
-  cells: Array.from({ length: 10 }, (_, y) =>
-    Array.from({ length: 10 }, (_, x) => ({
+  width: 11,
+  height: 13,
+  cells: Array.from({ length: 13 }, (_, y) =>
+    Array.from({ length: 11 }, (_, x) => ({
       position: { x, y, z: 0 },
       tileId: 'ground',
       spriteIds: []
@@ -53,6 +54,8 @@ const selectedTile = ref<string | null>(null);
 const isCtrlKeyPressed = ref(false);
 const isShiftKeyPressed = ref(false);
 const isAltKeyPressed = ref(false);
+const isPlacingPlayer1 = ref(false);
+const isPlacingPlayer2 = ref(false);
 
 onMounted(() => {
   window.addEventListener('keydown', e => {
@@ -89,6 +92,8 @@ onMounted(() => {
 const mode = ref<'add' | 'remove'>('add');
 
 const onCellPointerdown = (cell: Cell) => {
+  if (isPlacingPlayer1.value || isPlacingPlayer2.value) return;
+
   isDragging.value = true;
   switch (mode.value) {
     case 'add':
@@ -110,6 +115,12 @@ const onCellPointerenter = (cell: Cell) => {
 
 const onCellPointerup = (cell: Cell) => {
   isDragging.value = false;
+  if (isPlacingPlayer1.value) {
+    map.value.startPositions[0] = cell.position.serialize();
+  }
+  if (isPlacingPlayer2.value) {
+    map.value.startPositions[1] = cell.position.serialize();
+  }
 };
 
 const isDragging = ref(false);
@@ -158,13 +169,24 @@ const removeTile = (cell: Cell) => {
 
   map.value.cells = map.value.cells.filter(c => !c.position.equals(cell.position));
 };
+
+const visibleFloors = ref<Record<number, boolean>>({ 0: true });
+
+watchEffect(() => {
+  map.value.cells.forEach(cell => {
+    if (!isDefined(visibleFloors.value[cell.position.z])) {
+      visibleFloors.value[cell.position.z] = true;
+    }
+  });
+});
 </script>
 
 <template>
   <div class="map-editor">
     <header class="flex gap-3">
       <UiButton>New map</UiButton>
-      <UiButton>Load map</UiButton>
+      <UiButton>Load</UiButton>
+      <UiButton>Save</UiButton>
 
       <UiButton
         :style="{ '--d-button-size': 'var(--font-size-4)', transform: 'rotateY(180deg)' }"
@@ -206,6 +228,26 @@ const removeTile = (cell: Cell) => {
       >
         <Icon name="bi:eraser-fill" />
       </UiButton>
+      <UiButton
+        @click="
+          () => {
+            isPlacingPlayer1 = true;
+            isPlacingPlayer2 = false;
+          }
+        "
+      >
+        Player 1
+      </UiButton>
+      <UiButton
+        @click="
+          () => {
+            isPlacingPlayer1 = false;
+            isPlacingPlayer2 = true;
+          }
+        "
+      >
+        Player 2
+      </UiButton>
     </header>
 
     <aside class="surface">
@@ -216,8 +258,22 @@ const removeTile = (cell: Cell) => {
           :key="name"
           :style="{ '--bg': `url(${src})` }"
           :class="selectedTile === name && 'selected'"
-          @click="selectedTile = name as string"
+          @click="
+            () => {
+              if (isString(name)) selectedTile = name;
+            }
+          "
         />
+      </section>
+
+      <section>
+        <h2>Visible floors</h2>
+        <fieldset class="floors">
+          <label v-for="(_, floor) in visibleFloors">
+            <input type="checkbox" v-model="visibleFloors[floor]" />
+            Floor {{ floor }}
+          </label>
+        </fieldset>
       </section>
     </aside>
     <main ref="canvasContainer" @contextmenu.prevent>
@@ -229,8 +285,25 @@ const removeTile = (cell: Cell) => {
           @cell-pointerup="onCellPointerup"
           @cell-pointerdown="onCellPointerdown"
           @cell-pointerenter="onCellPointerenter"
+          :visible-floors="visibleFloors"
         />
       </Application>
+
+      <div class="help surface">
+        <code>Click: replace / remove sprites on cell</code>
+        <code>
+          <kbd>Ctrl</kbd>
+          + click : remove sprites on cell
+        </code>
+        <code>
+          <kbd>Shift</kbd>
+          + click : add new cell
+        </code>
+        <code>
+          <kbd>Alt</kbd>
+          + click: toggle sprite on cell
+        </code>
+      </div>
     </main>
   </div>
 </template>
@@ -256,8 +329,12 @@ header {
   padding: var(--size-2);
 }
 
-h2 {
+section {
   margin-block-end: var(--size-3);
+}
+
+h2 {
+  margin-block-end: var(--size-2);
   font-size: var(--font-size-2);
   font-weight: var(--font-size-5);
 }
@@ -279,5 +356,42 @@ h2 {
       filter: brightness(120%);
     }
   }
+}
+
+main {
+  position: relative;
+}
+
+.help {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  code {
+    display: block;
+
+    padding-block: var(--size-1);
+    padding-inline: var(--size-3);
+
+    font-size: var(--font-size-0);
+
+    background: transparent;
+    &:first-of-type {
+      padding-block-start: var(--size-3);
+    }
+    &:last-of-type {
+      padding-block-end: var(--size-3);
+    }
+  }
+}
+
+label {
+  display: block;
+  margin-block-end: var(--size-1);
+}
+
+.floors {
+  display: flex;
+  flex-direction: column-reverse;
 }
 </style>

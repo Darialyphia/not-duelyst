@@ -3,9 +3,10 @@ import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 import type { Cell, Point3D } from '@hc/sdk';
 
-const { assets, rotation } = defineProps<{
+const { assets, rotation, visibleFloors } = defineProps<{
   assets: AssetsContext;
   rotation: 0 | 90 | 180 | 270;
+  visibleFloors: Record<number, boolean>;
 }>();
 
 const emit = defineEmits<{
@@ -45,6 +46,11 @@ until(screenViewport)
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
   });
+
+const playerSprites = [
+  assets.getSprite('player_1_start_position').animations.idle,
+  assets.getSprite('player_2_start_position').animations.idle
+];
 </script>
 
 <template>
@@ -64,9 +70,26 @@ until(screenViewport)
       :cell="cell"
       :map="map"
       :rotation="rotation"
+      :is-visible="!!visibleFloors[cell.position.z]"
       @pointerup="emit('cellPointerup', cell)"
       @pointerdown="emit('cellPointerdown', cell)"
       @pointerenter="emit('cellPointerenter', cell)"
     />
+
+    <IsoPositioner
+      v-for="(player, index) in map.startPositions"
+      :key="index"
+      :x="player.x"
+      :y="player.y"
+      :z="player.z"
+      :map="{ width: map.width, height: map.height, rotation: rotation }"
+      :animated="false"
+    >
+      <animated-sprite
+        :textures="playerSprites[index]"
+        :anchor="0.5"
+        :y="CELL_SIZE / 2"
+      />
+    </IsoPositioner>
   </viewport>
 </template>
