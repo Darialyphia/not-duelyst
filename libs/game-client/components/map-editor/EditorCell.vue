@@ -40,7 +40,7 @@ const spriteTextures = computed(() => {
 
 const emptyTextures = computed(() => {
   return assets.getSprite(
-    cell.isHalfTile ? 'editor-empty-tile-half' : 'editor-empty-tile'
+    TILE_TO_EDITOR_SPRITE[cell.tile.id as keyof typeof TILE_TO_EDITOR_SPRITE]
   ).animations[0];
 });
 
@@ -84,6 +84,7 @@ const isHovered = ref(false);
 
       <animated-sprite
         v-if="!spriteTextures.length"
+        :alpha="0.75"
         :textures="emptyTextures"
         :anchor="0.5"
         :y="CELL_SIZE / 2"

@@ -1,6 +1,4 @@
-import type { GameSession, GameState } from '@hc/sdk';
 import { Text, AnimatedSprite, Container } from 'pixi.js';
-import { Sound } from '@pixi/sound';
 import { sfxPaths } from '../assets/sfx';
 import { Howl } from 'howler';
 

@@ -17,9 +17,9 @@ type ButtonStyleVariables =
   | '--d-button-radius';
 
 export type ButtonProps = {
-  isLoading?: boolean;
   leftIcon?: string;
   rightIcon?: string;
+  isLoading?: boolean;
   isInline?: boolean;
   isCta?: boolean;
   style?: StyleProp<ButtonStyleVariables>;

@@ -2,7 +2,7 @@
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
 import { TILES, Cell, Tile, type Point3D, Vec3, type SerializedGameState } from '@hc/sdk';
-import { isString, isDefined } from '@hc/shared';
+import { isString, isDefined, objectEntries } from '@hc/shared';
 import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
@@ -302,6 +302,13 @@ const save = async () => {
 
   refresh();
 };
+
+const spriteSearch = ref('');
+const fitleredSprites = computed(() => {
+  return Object.entries(tileImagesPaths)
+    .map(([name, src]) => ({ name, src }))
+    .filter(({ name }) => name.toLowerCase().includes(spriteSearch.value.toLowerCase()));
+});
 </script>
 
 <template>
@@ -392,76 +399,88 @@ const save = async () => {
     </header>
 
     <aside class="surface">
-      <h2>Map infos</h2>
-      <fieldset>
-        <label>
-          Name
-          <input v-model="map.name" />
-        </label>
-        <label>
-          xSize
-          <input v-model="map.width" type="number" :max="MAX_X" :min="1" step="1" />
-        </label>
-        <label>
-          ySize
-          <input v-model="map.height" type="number" :max="MAX_Y" :min="1" step="1" />
-        </label>
-      </fieldset>
-      <label for="placement-mode">Placement mode</label>
-      <div class="flex gap-2 mb-3">
-        Tile
-        <SwitchRoot
-          id="placement-mode"
-          :checked="placeMode == 'sprite'"
-          class="w-[42px] h-[25px] focus-within:outline focus-within:outline-black flex bg-black/50 shadow-sm rounded-full relative data-[state=checked]:bg-black cursor-default"
-          @update:checked="placeMode = $event ? 'sprite' : 'tile'"
-        >
-          <SwitchThumb
-            class="block w-[21px] h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
-          />
-        </SwitchRoot>
-        Sprite
-      </div>
-
-      <h2>Tiles</h2>
-      <section class="menu-list">
-        <button
-          v-for="(tile, name) in TILES"
-          :key="name"
-          :title="name"
-          :style="{
-            '--bg': `url(${
-              tileImagesPaths[
-                TILE_TO_EDITOR_SPRITE[name as keyof typeof TILE_TO_EDITOR_SPRITE]
-              ]
-            })`
-          }"
-          :class="selectedTileId === name && 'selected'"
-          @click="selectedTileId = name"
-        />
-      </section>
-
-      <h2>Sprites</h2>
-      <section class="menu-list">
-        <template v-for="(src, name) in tileImagesPaths" :key="name">
-          <button
-            v-if="isString(name) && !name.startsWith('editor')"
-            :style="{ '--bg': `url(${src})` }"
-            :title="name"
-            :class="selectedSprite === name && 'selected'"
-            @click="selectedSprite = name"
-          />
-        </template>
-      </section>
-
-      <h2>Visible floors</h2>
       <section>
-        <fieldset class="floors">
-          <label v-for="(_, floor) in visibleFloors" :key="floor">
-            <input v-model="visibleFloors[floor]" type="checkbox" />
-            Floor {{ floor }}
+        <h2>Map infos</h2>
+        <fieldset @keydown.stop>
+          <label>
+            Name
+            <input v-model="map.name" class="flex-1" />
           </label>
+          <div class="flex gap-3">
+            <label>
+              xSize
+              <input v-model="map.width" type="number" :max="MAX_X" :min="1" step="1" />
+            </label>
+            <label>
+              ySize
+              <input v-model="map.height" type="number" :max="MAX_Y" :min="1" step="1" />
+            </label>
+          </div>
         </fieldset>
+        <label for="placement-mode">Placement mode</label>
+        <div class="flex gap-2 mb-3">
+          Tile
+          <SwitchRoot
+            id="placement-mode"
+            :checked="placeMode == 'sprite'"
+            class="w-[42px] h-[25px] focus-within:outline focus-within:outline-black flex bg-black/50 shadow-sm rounded-full relative data-[state=checked]:bg-black cursor-default"
+            @update:checked="placeMode = $event ? 'sprite' : 'tile'"
+          >
+            <SwitchThumb
+              class="block w-[21px] h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
+            />
+          </SwitchRoot>
+          Sprite
+        </div>
+      </section>
+
+      <section>
+        <h2>Tiles</h2>
+        <section class="menu-list">
+          <button
+            v-for="(tile, name) in TILES"
+            :key="name"
+            :title="name"
+            :style="{
+              '--bg': `url(${
+                tileImagesPaths[
+                  TILE_TO_EDITOR_SPRITE[name as keyof typeof TILE_TO_EDITOR_SPRITE]
+                ]
+              })`
+            }"
+            :class="selectedTileId === name && 'selected'"
+            @click="selectedTileId = name"
+          />
+        </section>
+      </section>
+      <section>
+        <h2>Sprites</h2>
+        <label @keydown.stop>
+          Search a sprite
+          <input v-model="spriteSearch" class="flex-1" />
+        </label>
+        <section class="menu-list">
+          <template v-for="{ src, name } in fitleredSprites" :key="name">
+            <button
+              v-if="isString(name) && !name.startsWith('editor')"
+              :style="{ '--bg': `url(${src})` }"
+              :title="name"
+              :class="selectedSprite === name && 'selected'"
+              @click="selectedSprite = name"
+            />
+          </template>
+        </section>
+      </section>
+      <section>
+        <h2>Visible floors</h2>
+        <section>
+          <fieldset class="floors">
+            <label v-for="(_, floor) in visibleFloors" :key="floor">
+              <input v-model="visibleFloors[floor]" type="checkbox" />
+              Floor {{ floor }}
+            </label>
+          </fieldset>
+        </section>
       </section>
     </aside>
     <main ref="canvasContainer" @contextmenu.prevent @mouseleave="isDragging = false">
@@ -519,25 +538,30 @@ header {
 }
 
 aside {
-  overflow-y: auto;
+  overflow-y: hidden;
   height: 100%;
 
-  & > :is(label, h2) {
-    margin-block-end: var(--size-2);
-    font-size: var(--font-size-0);
-    font-weight: var(--font-size-5);
-    color: var(--text-2);
+  > section {
+    margin-block-end: var(--size-3);
+
+    & > :is(label, h2) {
+      margin-block-end: var(--size-2);
+      font-size: var(--font-size-0);
+      font-weight: var(--font-size-5);
+      color: var(--text-2);
+    }
   }
 }
 
-section {
-  margin-block-end: var(--size-3);
-}
-
 .menu-list {
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   gap: var(--size-3);
+
+  max-height: 20rem;
+  margin-right: calc(-1 * var(--size-4));
+  padding: var(--size-1);
 
   > button {
     cursor: pointer;
@@ -591,7 +615,9 @@ main {
 }
 
 label {
-  display: block;
+  display: flex;
+  gap: var(--size-2);
+  align-items: center;
   margin-block-end: var(--size-1);
 }
 

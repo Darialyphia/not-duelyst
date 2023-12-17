@@ -1,4 +1,5 @@
 import { isCustomElement, transformAssetUrls } from 'vue3-pixi';
+import glsl from 'vite-plugin-glsl';
 
 const customElements = ['viewport', 'layer'];
 const prefix = 'pixi-';
@@ -24,6 +25,7 @@ export default defineNuxtConfig({
     }
   ],
   vite: {
+    plugins: [glsl()],
     vue: {
       script: {
         defineModel: true,

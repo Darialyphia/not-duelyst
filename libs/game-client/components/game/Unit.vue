@@ -5,8 +5,7 @@ import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
-import type { AnimatedSprite, Cursor } from 'pixi.js';
-import type { VNodeRef } from 'nuxt/dist/app/compat/capi';
+import { type AnimatedSprite, type Cursor, Filter } from 'pixi.js';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { entity } = defineProps<{
@@ -44,7 +43,6 @@ const offset = computed(() => ({
 
 const hitArea = computed(() => {
   const meta = spritesheet.data.meta as AsepriteMeta;
-  const { data } = spritesheet;
 
   // we need to offset the slice because the sprite has its anchor in the center
   const offset = {
@@ -205,7 +203,7 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         :enter="{ alpha: 1 }"
         :leave="{ alpha: 0 }"
       >
-        <UnitStats :entity="entity" v-if="isHovered" />
+        <UnitStats v-if="isHovered" :entity="entity" />
       </PTransition>
     </container>
   </IsoPositioner>

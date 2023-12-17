@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
 import type { Container, Cursor } from 'pixi.js';
-import type { Cell, Point3D } from '@hc/sdk';
+import type { Cell } from '@hc/sdk';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
 const { cell } = defineProps<{
@@ -23,37 +23,6 @@ const isSummonTarget = computed(() => {
     )
   );
 });
-
-const onBeforeEnter = (el: Container) => {
-  nextTick(() => {
-    gsap.set(el, {
-      pixi: {
-        alpha: 0
-      }
-    });
-  });
-};
-
-const onEnter = (el: Container, done: () => void) => {
-  gsap.to(el, {
-    duration: 0.3,
-    ease: Power2.easeOut,
-    onComplete: done,
-    pixi: {
-      alpha: 1
-    }
-  });
-};
-const onLeave = (el: Container, done: () => void) => {
-  gsap.to(el, {
-    duration: 0.5,
-    ease: Power2.easeOut,
-    onComplete: done,
-    pixi: {
-      alpha: 0
-    }
-  });
-};
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;
@@ -78,7 +47,13 @@ const filters = [
 </script>
 
 <template>
-  <PTransition appear @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
+  <PTransition
+    appear
+    :duration="{ enter: 100, leave: 100 }"
+    :before-enter="{ alpha: 0 }"
+    :enter="{ alpha: 1 }"
+    :leave="{ alpha: 0 }"
+  >
     <animated-sprite
       v-if="isSummonTarget && hoveredCell?.id === cell.id && textures"
       :event-mode="'none'"
@@ -87,6 +62,7 @@ const filters = [
       :anchor="0.5"
       :playing="false"
       :filters="filters"
+      :y="cell.isHalfTile ? CELL_SIZE / 4 : 0"
     />
   </PTransition>
 </template>
