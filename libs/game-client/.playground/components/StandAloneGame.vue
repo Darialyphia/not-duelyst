@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { GameSession, type Player } from '@hc/sdk';
-import { dummyState } from '~/dummy-state';
+import { makeDummyState } from '~/dummy-state';
 
+const dummyState = await makeDummyState('New Map');
 const serverSession = GameSession.createServerSession(dummyState);
 const clientSession = GameSession.createClientSession(dummyState);
 serverSession.subscribe(action => {

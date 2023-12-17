@@ -87,6 +87,7 @@ const playerSprites = [
       :z-index-offset="1"
       :map="{ width: map.width, height: map.height, rotation: rotation }"
       :animated="false"
+      event-mode="none"
     >
       <animated-sprite
         :textures="playerSprites[index]"

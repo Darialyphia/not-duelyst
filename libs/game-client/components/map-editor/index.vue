@@ -387,6 +387,8 @@ const save = async () => {
       >
         Player 2
       </UiButton>
+
+      {{ rotation }}
     </header>
 
     <aside class="surface">
@@ -426,6 +428,7 @@ const save = async () => {
         <button
           v-for="(tile, name) in TILES"
           :key="name"
+          :title="name"
           :style="{
             '--bg': `url(${
               tileImagesPaths[
@@ -444,6 +447,7 @@ const save = async () => {
           <button
             v-if="isString(name) && !name.startsWith('editor')"
             :style="{ '--bg': `url(${src})` }"
+            :title="name"
             :class="selectedSprite === name && 'selected'"
             @click="selectedSprite = name"
           />
