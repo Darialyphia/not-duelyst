@@ -11,14 +11,6 @@ const { selectedSummon, selectedSkill, targetMode } = useGameUi();
 const activePlayer = computed(
   () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
 );
-
-const onSkillClick = (skill: Skill) => {
-  selectedSkill.value = skill;
-};
-
-const onSummonClick = (summon: UnitBlueprint) => {
-  selectedSummon.value = summon;
-};
 </script>
 
 <template>
@@ -28,7 +20,7 @@ const onSummonClick = (summon: UnitBlueprint) => {
       :key="skill.id"
       :disabled="!state.activeEntity.canUseSkill(skill)"
       class="skill"
-      :class="targetMode === 'skill' && 'active'"
+      :class="{ active: selectedSkill?.id === skill.id }"
       :data-cost="skill.cost"
       :data-cooldown="state.activeEntity.skillCooldowns[skill.id]"
       :style="{
@@ -43,9 +35,10 @@ const onSummonClick = (summon: UnitBlueprint) => {
     <template v-if="state.activeEntity.kind === 'GENERAL'">
       <button
         v-for="unit in activePlayer.summonableUnits"
+        :key="unit.unit.id"
         :disabled="!activePlayer.canSummon(unit.unit.id)"
         class="summon"
-        :class="targetMode === 'summon' && 'active'"
+        :class="{ active: selectedSummon?.id === unit.unit.id }"
         :data-cost="unit.unit.summonCost"
         :data-cooldown="unit.cooldown"
         :style="{

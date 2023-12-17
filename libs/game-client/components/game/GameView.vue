@@ -90,6 +90,8 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
       @contextmenu.prevent="
         e => {
           ui.targetMode.value = null;
+          ui.selectedSkill.value = null;
+          ui.selectedSummon.value = null;
         }
       "
     />
