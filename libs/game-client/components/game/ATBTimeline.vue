@@ -8,7 +8,7 @@ const timeline = computed(() => gameSession.atb.getTimeline(state.value.entities
 </script>
 
 <template>
-  <div class="timeline fancy-surface">
+  <div class="timeline content-surface">
     <button
       v-for="(entity, index) in timeline"
       :key="index"
@@ -25,11 +25,6 @@ const timeline = computed(() => gameSession.atb.getTimeline(state.value.entities
 
 <style scoped lang="postcss">
 .timeline {
-  position: absolute;
-  top: var(--size-4);
-  left: 50%;
-  transform: translateX(-50%);
-
   display: flex;
   gap: var(--size-3);
   align-items: center;

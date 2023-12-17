@@ -10,7 +10,7 @@ const { entity } = defineProps<{
 </script>
 
 <template>
-  <article class="entity-card fancy-surface">
+  <article class="entity-card content-surface">
     <div class="avatar-container fancy-surface mx-auto">
       <img :src="unitImagesPaths[entity.unitId]" />
     </div>

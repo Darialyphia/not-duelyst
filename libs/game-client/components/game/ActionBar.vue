@@ -6,7 +6,7 @@ import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 
 const { state, sendInput } = useGame();
-const { selectedSummon, selectedSkill, targetMode } = useGameUi();
+const { selectedSummon, selectedSkill } = useGameUi();
 
 const activePlayer = computed(
   () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
@@ -14,7 +14,7 @@ const activePlayer = computed(
 </script>
 
 <template>
-  <div class="action-bar fancy-surface">
+  <div class="action-bar content-surface">
     <button
       v-for="skill in state.activeEntity.skills"
       :key="skill.id"

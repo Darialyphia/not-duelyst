@@ -2,8 +2,8 @@
 import { Application, BaseTexture, SCALE_MODES, WRAP_MODES } from 'pixi.js';
 import { appInjectKey, createApp } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import PixiPlugin from 'gsap/PixiPlugin';
-import MotionPathPlugin from 'gsap/MotionPathPlugin';
+import { PixiPlugin } from 'gsap/PixiPlugin';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import PixiRenderer from './PixiRenderer.vue';
 import { Stage } from '@pixi/layers';
 import type { GameSession } from '@hc/sdk';
@@ -13,16 +13,13 @@ import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
 import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
 import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
 import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
+import surfaceBg from '../../assets/ui/surface-bg.png';
 
 const { gameSession } = defineProps<{ gameSession: GameSession }>();
 const emit = defineEmits<GameEmits>();
 
 const game = useGameProvider(gameSession, emit);
-const { state, ui, mapRotation, assets } = game;
-
-const activePlayer = computed(
-  () => gameSession.playerManager.getPlayerById(state.value.activeEntity.playerId)!
-);
+const { ui, assets } = game;
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
@@ -73,18 +70,10 @@ onMounted(async () => {
   await assets.load();
   app.mount(pixiApp.stage);
 });
-
-const rotateMap = (diff: number) => {
-  mapRotation.value = ((mapRotation.value + 360 + diff) % 360) as any;
-};
-
-const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
-  ui.targetMode.value = mode;
-};
 </script>
 
 <template>
-  <div class="pixi-app-container">
+  <div class="pixi-app-container" :style="{ '--surface-bg': `url(${surfaceBg})` }">
     <canvas
       ref="canvas"
       @contextmenu.prevent="
@@ -136,6 +125,22 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 </template>
 
 <style scoped lang="postcss">
+:global(.pixi-app-container .content-surface) {
+  position: relative;
+
+  padding: var(--size-6);
+
+  background: transparent;
+
+  /* This here is what actually make the tiling happen */
+  border-image: var(--surface-bg);
+  border-image-slice: 64 fill;
+  border-image-width: 32px;
+  border-image-repeat: repeat;
+
+  image-rendering: pixelated;
+}
+
 .pixi-app-container {
   cursor: v-bind('cursors.default');
   user-select: none;
@@ -146,6 +151,8 @@ const setTargetMode = (mode: (typeof ui)['targetMode']['value']) => {
 
   font-family: monospace;
   color: var(--gray-0);
+
+  image-rendering: pixelated;
 }
 
 .pixi-app-container :is(button, input) {

@@ -4,13 +4,19 @@ const { selectedEntity } = useGameUi();
 
 <template>
   <!-- <PlayersInfos /> -->
-  <ATBTimeline />
+  <div class="atb-timeline">
+    <ATBTimeline />
+  </div>
 
   <Transition>
-    <UnitCard v-if="selectedEntity" :entity="selectedEntity" class="selected-entity" />
+    <div v-if="selectedEntity" class="selected-entity">
+      <UnitCard :entity="selectedEntity" />
+    </div>
   </Transition>
 
-  <ActionBar class="game-action-bar" />
+  <div class="game-action-bar">
+    <ActionBar />
+  </div>
   <!-- <GameChat /> -->
 
   <!-- <UiIconButton
@@ -43,6 +49,13 @@ const { selectedEntity } = useGameUi();
 .game-action-bar {
   position: absolute;
   bottom: var(--size-5);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.atb-timeline {
+  position: absolute;
+  top: var(--size-4);
   left: 50%;
   transform: translateX(-50%);
 }

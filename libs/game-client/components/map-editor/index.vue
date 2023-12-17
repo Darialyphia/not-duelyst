@@ -313,7 +313,7 @@ const fitleredSprites = computed(() => {
 
 <template>
   <div class="map-editor">
-    <header class="flex gap-3">
+    <header class="flex gap-3 items-center">
       <UiButton @click="map = makeDefaultMap()">New map</UiButton>
 
       <PopoverRoot>
@@ -395,7 +395,7 @@ const fitleredSprites = computed(() => {
         Player 2
       </UiButton>
 
-      {{ rotation }}
+      <span>Rotation : {{ rotation }} DEG</span>
     </header>
 
     <aside class="surface">
