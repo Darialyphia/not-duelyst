@@ -34,13 +34,8 @@ const containerRef = (_container: any) => {
 </script>
 
 <template>
-  <container :ref="containerRef">
-    <animated-sprite
-      event-mode="none"
-      :textures="textures"
-      :anchor="0.5"
-      :y="CELL_SIZE * 1.125"
-    >
+  <container :ref="containerRef" event-mode="none">
+    <animated-sprite :textures="textures" :anchor="0.5" :y="CELL_SIZE * 1.125">
       <text
         :anchor="0.5"
         :style="{ fill: COLORS.hp, fontSize: 40, fontFamily: 'monospace' }"
