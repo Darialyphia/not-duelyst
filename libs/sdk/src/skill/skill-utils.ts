@@ -28,7 +28,7 @@ export const isWithinCells = (
     range = { x: range, y: range, z: range };
   }
 
-  const originZOffset = ctx.map.getCellAt(origin)?.isHalfTile ? 0.5 : 0;
+  const originZOffset = ctx.map.getCellAt(origin)?.isHalfTile ? -0.5 : 0;
   const pointZOffset = ctx.map.getCellAt(point)?.isHalfTile ? 0.5 : 0;
 
   return (
