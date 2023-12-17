@@ -3,10 +3,11 @@ import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 import type { Cell, Point3D } from '@hc/sdk';
 
-const { assets, rotation, visibleFloors } = defineProps<{
+const { assets, rotation, visibleFloors, placeMode } = defineProps<{
   assets: AssetsContext;
   rotation: 0 | 90 | 180 | 270;
   visibleFloors: Record<number, boolean>;
+  placeMode: 'sprite' | 'tile';
 }>();
 
 const emit = defineEmits<{
@@ -71,6 +72,7 @@ const playerSprites = [
       :map="map"
       :rotation="rotation"
       :is-visible="!!visibleFloors[cell.position.z]"
+      :place-mode="placeMode"
       @pointerup="emit('cellPointerup', cell)"
       @pointerdown="emit('cellPointerdown', cell)"
       @pointerenter="emit('cellPointerenter', cell)"
@@ -82,6 +84,7 @@ const playerSprites = [
       :x="player.x"
       :y="player.y"
       :z="player.z"
+      :z-index-offset="1"
       :map="{ width: map.width, height: map.height, rotation: rotation }"
       :animated="false"
     >

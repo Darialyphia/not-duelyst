@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import { Cell, Tile, type Point3D, Vec3 } from '@hc/sdk';
+import { TILES, Cell, Tile, type Point3D, Vec3, type SerializedGameState } from '@hc/sdk';
 import { isString, isDefined } from '@hc/shared';
-import PixiPlugin from 'gsap/PixiPlugin';
-import MotionPathPlugin from 'gsap/MotionPathPlugin';
+import { PixiPlugin } from 'gsap/PixiPlugin';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
+import {
+  PopoverContent,
+  PopoverPortal,
+  PopoverRoot,
+  PopoverTrigger,
+  SwitchRoot,
+  SwitchThumb
+} from 'radix-vue';
+import { createLabel } from 'typescript';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -15,12 +24,18 @@ gsap.install(window);
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
 const MAX_HEIGHT = 8;
-const map = ref<{
+const TILE_TO_EDITOR_SPRITE = {
+  ground: 'editor-ground',
+  groundHalf: 'editor-ground-half',
+  water: 'editor-water'
+};
+
+const makeDefaultMap = (): {
   width: number;
   height: number;
   cells: Cell[];
   startPositions: [Point3D, Point3D];
-}>({
+} => ({
   width: 11,
   height: 13,
   cells: Array.from({ length: 13 }, (_, y) =>
@@ -37,6 +52,18 @@ const map = ref<{
     { x: 0, y: 1, z: 0 }
   ]
 });
+
+const makeMap = (serializedMap: SerializedGameState['map']) => {
+  map.value = {
+    ...serializedMap,
+    cells: serializedMap.cells.map(
+      cell => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
+    )
+  };
+  console.log(map.value);
+};
+
+const map = ref(makeDefaultMap());
 const { undo, redo } = useRefHistory(map, { capacity: 100, deep: true });
 
 const canvasContainer = ref<HTMLElement>();
@@ -49,7 +76,8 @@ assets.load().then(() => {
 
 const rotation = ref<0 | 90 | 180 | 270>(0);
 
-const selectedTile = ref<string | null>(null);
+const selectedSprite = ref<string | null>(null);
+const selectedTileId = ref<string | null>(null);
 
 const isCtrlKeyPressed = ref(false);
 const isShiftKeyPressed = ref(false);
@@ -89,28 +117,19 @@ onMounted(() => {
   });
 });
 
-const mode = ref<'add' | 'remove'>('add');
+const placeMode = ref<'tile' | 'sprite'>('tile');
+const actionMode = ref<'add' | 'remove'>('add');
 
 const onCellPointerdown = (cell: Cell) => {
   if (isPlacingPlayer1.value || isPlacingPlayer2.value) return;
-
   isDragging.value = true;
-  switch (mode.value) {
-    case 'add':
-      return addTile(cell);
-    case 'remove':
-      return removeTile(cell);
-  }
+
+  onMouseAction(cell);
 };
 
 const onCellPointerenter = (cell: Cell) => {
   if (!isDragging.value) return;
-  switch (mode.value) {
-    case 'add':
-      return addTile(cell);
-    case 'remove':
-      return removeTile(cell);
-  }
+  onMouseAction(cell);
 };
 
 const onCellPointerup = (cell: Cell) => {
@@ -121,71 +140,129 @@ const onCellPointerup = (cell: Cell) => {
   if (isPlacingPlayer2.value) {
     map.value.startPositions[1] = cell.position.serialize();
   }
+  isPlacingPlayer1.value = false;
+  isPlacingPlayer2.value = false;
 };
 
 const isDragging = ref(false);
 
-const addTile = (cell: Cell) => {
-  if (isCtrlKeyPressed.value) return removeTile(cell);
-  if (!selectedTile.value) return;
+const onMouseAction = (cell: Cell) => {
+  switch (actionMode.value) {
+    case 'add':
+      switch (placeMode.value) {
+        case 'sprite':
+          return AddSpriteToTile(cell);
+        case 'tile':
+          return changeTile(cell);
+      }
+      break;
+    case 'remove':
+      switch (placeMode.value) {
+        case 'sprite':
+          return removeSpriteFromTile(cell);
+        case 'tile':
+          return removeTile(cell);
+      }
+  }
+};
 
-  // try to pile up new cell on top
+const changeTile = (cell: Cell) => {
+  if (isCtrlKeyPressed.value) {
+    return removeTile(cell);
+  }
+  if (!selectedTileId.value) return;
   if (isShiftKeyPressed.value) {
     const coords = { x: cell.x, y: cell.y, z: cell.z + 1 };
     let existingCell = map.value.cells.find(c =>
       // vueuse's useRefHistory deserialized class instances son undo >_<
       Vec3.fromPoint3D(c.position).equals(coords)
     );
-    while (existingCell && existingCell.spriteIds.length) {
+    while (existingCell) {
       coords.z++;
       existingCell = map.value.cells.find(c => c.position.equals(coords));
     }
 
     if (coords.z >= MAX_HEIGHT) return;
-    if (existingCell) {
-      existingCell.spriteIds.push(selectedTile.value);
-    } else {
-      map.value.cells.push(new Cell(new Tile('ground'), coords, [selectedTile.value]));
+    if (existingCell) return;
+    else {
+      map.value.cells.push(new Cell(new Tile(selectedTileId.value), coords, []));
     }
     // toggle sprite presence on the cell
-  } else if (isAltKeyPressed.value) {
-    const idx = cell.spriteIds.indexOf(selectedTile.value);
-    if (idx >= 0) {
-      cell.spriteIds.splice(idx, 1);
-    } else if (idx < 0) {
-      cell.spriteIds.push(selectedTile.value);
-    }
-    // replace the cell sprites
   } else {
-    cell.spriteIds = [selectedTile.value];
+    cell.tile = new Tile(selectedTileId.value);
   }
 };
 
 const removeTile = (cell: Cell) => {
-  if (cell.z === 0) {
-    cell.spriteIds = [];
-    return;
-  }
-
+  if (cell.z === 0) return;
   map.value.cells = map.value.cells.filter(c => !c.position.equals(cell.position));
+};
+
+const AddSpriteToTile = (cell: Cell) => {
+  if (isCtrlKeyPressed.value) return removeSpriteFromTile(cell);
+  if (!selectedSprite.value) return;
+  else if (isAltKeyPressed.value) {
+    const idx = cell.spriteIds.indexOf(selectedSprite.value);
+    if (idx >= 0) {
+      cell.spriteIds.splice(idx, 1);
+    } else if (idx < 0) {
+      cell.spriteIds.push(selectedSprite.value);
+    }
+    // replace the cell sprites
+  } else {
+    cell.spriteIds = [selectedSprite.value];
+  }
+};
+
+const removeSpriteFromTile = (cell: Cell) => {
+  cell.spriteIds = [];
 };
 
 const visibleFloors = ref<Record<number, boolean>>({ 0: true });
 
 watchEffect(() => {
+  const floors = new Set<number>([]);
   map.value.cells.forEach(cell => {
-    if (!isDefined(visibleFloors.value[cell.position.z])) {
-      visibleFloors.value[cell.position.z] = true;
+    floors.add(cell.position.z);
+  });
+
+  floors.forEach(floor => {
+    if (!isDefined(visibleFloors.value[floor])) {
+      visibleFloors.value[floor] = true;
+    }
+  });
+
+  Object.keys(visibleFloors.value).forEach(floor => {
+    if (!floors.has(Number(floor))) {
+      delete visibleFloors.value[Number(floor)];
     }
   });
 });
+
+const { data: maps } = await useFetch('/api/maps');
 </script>
 
 <template>
   <div class="map-editor">
     <header class="flex gap-3">
-      <UiButton>New map</UiButton>
-      <UiButton>Load</UiButton>
+      <UiButton @click="map = makeDefaultMap()">New map</UiButton>
+
+      <PopoverRoot>
+        <PopoverTrigger aria-label="see maps">
+          <UiButton>Load</UiButton>
+        </PopoverTrigger>
+        <PopoverPortal>
+          <PopoverContent side="bottom" :side-offset="5" class="surface maps-dropdown">
+            <ul v-if="maps">
+              <li v-for="(map, name) in maps" :key="name">
+                <button @click="makeMap(map)">
+                  {{ name }}
+                </button>
+              </li>
+            </ul>
+          </PopoverContent>
+        </PopoverPortal>
+      </PopoverRoot>
       <UiButton>Save</UiButton>
 
       <UiButton
@@ -216,15 +293,15 @@ watchEffect(() => {
       </UiButton>
       <UiButton
         :style="{ '--d-button-size': 'var(--font-size-4)' }"
-        :class="mode === 'add' && 'selected'"
-        @click="mode = 'add'"
+        :class="actionMode === 'add' && 'selected'"
+        @click="actionMode = 'add'"
       >
         <Icon name="material-symbols:edit-outline" />
       </UiButton>
       <UiButton
         :style="{ '--d-button-size': 'var(--font-size-4)' }"
-        :class="mode === 'remove' && 'selected'"
-        @click="mode = 'remove'"
+        :class="actionMode === 'remove' && 'selected'"
+        @click="actionMode = 'remove'"
       >
         <Icon name="bi:eraser-fill" />
       </UiButton>
@@ -251,41 +328,72 @@ watchEffect(() => {
     </header>
 
     <aside class="surface">
+      <label for="placement-mode">Placement mode</label>
+      <div class="flex gap-2 mb-3">
+        Tile
+        <SwitchRoot
+          id="placement-mode"
+          :checked="placeMode == 'sprite'"
+          class="w-[42px] h-[25px] focus-within:outline focus-within:outline-black flex bg-black/50 shadow-sm rounded-full relative data-[state=checked]:bg-black cursor-default"
+          @update:checked="placeMode = $event ? 'sprite' : 'tile'"
+        >
+          <SwitchThumb
+            class="block w-[21px] h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
+          />
+        </SwitchRoot>
+        Sprite
+      </div>
+
       <h2>Tiles</h2>
-      <section class="tile-selector">
+      <section class="menu-list" style="--list-item-size: 80px">
         <button
-          v-for="(src, name) in tileImagesPaths"
+          v-for="(tile, name) in TILES"
           :key="name"
-          :style="{ '--bg': `url(${src})` }"
-          :class="selectedTile === name && 'selected'"
-          @click="
-            () => {
-              if (isString(name)) selectedTile = name;
-            }
-          "
+          :style="{
+            '--bg': `url(${
+              tileImagesPaths[
+                TILE_TO_EDITOR_SPRITE[name as keyof typeof TILE_TO_EDITOR_SPRITE]
+              ]
+            })`
+          }"
+          :class="selectedTileId === name && 'selected'"
+          @click="selectedTileId = name"
         />
       </section>
 
+      <h2>Sprites</h2>
+      <section class="menu-list" style="--list-item-size: 64px">
+        <template v-for="(src, name) in tileImagesPaths" :key="name">
+          <button
+            v-if="isString(name) && !name.startsWith('editor')"
+            :style="{ '--bg': `url(${src})` }"
+            :class="selectedSprite === name && 'selected'"
+            @click="selectedSprite = name"
+          />
+        </template>
+      </section>
+
+      <h2>Visible floors</h2>
       <section>
-        <h2>Visible floors</h2>
         <fieldset class="floors">
-          <label v-for="(_, floor) in visibleFloors">
-            <input type="checkbox" v-model="visibleFloors[floor]" />
+          <label v-for="(_, floor) in visibleFloors" :key="floor">
+            <input v-model="visibleFloors[floor]" type="checkbox" />
             Floor {{ floor }}
           </label>
         </fieldset>
       </section>
     </aside>
-    <main ref="canvasContainer" @contextmenu.prevent>
-      <Application :resize-to="canvasContainer" :antialias="false" v-if="isReady">
+    <main ref="canvasContainer" @contextmenu.prevent @mouseleave="isDragging = false">
+      <Application v-if="isReady" :resize-to="canvasContainer" :antialias="false">
         <MapEditorRenderer
           v-model:map="map"
           :assets="assets"
           :rotation="rotation"
+          :visible-floors="visibleFloors"
+          :place-mode="placeMode"
           @cell-pointerup="onCellPointerup"
           @cell-pointerdown="onCellPointerdown"
           @cell-pointerenter="onCellPointerenter"
-          :visible-floors="visibleFloors"
         />
       </Application>
 
@@ -297,7 +405,7 @@ watchEffect(() => {
         </code>
         <code>
           <kbd>Shift</kbd>
-          + click : add new cell
+          + click : add new cell above
         </code>
         <code>
           <kbd>Alt</kbd>
@@ -329,17 +437,23 @@ header {
   padding: var(--size-2);
 }
 
+aside {
+  overflow-y: auto;
+  height: 100%;
+
+  & > :is(label, h2) {
+    margin-block-end: var(--size-2);
+    font-size: var(--font-size-0);
+    font-weight: var(--font-size-5);
+    color: var(--text-2);
+  }
+}
+
 section {
   margin-block-end: var(--size-3);
 }
 
-h2 {
-  margin-block-end: var(--size-2);
-  font-size: var(--font-size-2);
-  font-weight: var(--font-size-5);
-}
-
-.tile-selector {
+.menu-list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--size-3);
@@ -348,12 +462,22 @@ h2 {
     cursor: pointer;
 
     aspect-ratio: 1;
-    width: 64px;
+    width: var(--list-item-size);
+
+    font-size: var(--font-size-0);
+    text-align: left;
+    text-transform: uppercase;
 
     background-image: var(--bg);
     background-position: -16px -16px;
+
     &:hover {
       filter: brightness(120%);
+    }
+
+    > small {
+      font-size: var(--font-size-00);
+      text-transform: lowercase;
     }
   }
 }
@@ -393,5 +517,10 @@ label {
 .floors {
   display: flex;
   flex-direction: column-reverse;
+}
+
+:global(.maps-dropdown) {
+  padding: var(--size-2);
+  box-shadow: var(--shadow-2);
 }
 </style>

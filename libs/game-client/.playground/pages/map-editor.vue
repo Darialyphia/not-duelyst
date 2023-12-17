@@ -1,6 +1,9 @@
 <template>
   <ClientOnly>
-    <MapEditor />
+    <Suspense>
+      <MapEditor />
+      <template #fallback>Loading maps...</template>
+    </Suspense>
 
     <template #fallback>
       <div />

@@ -3,7 +3,7 @@ import { Polygon } from 'pixi.js';
 import type { Cell, Point3D } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
-const { isVisible, cell, rotation, map } = defineProps<{
+const { isVisible, cell, rotation, map, placeMode } = defineProps<{
   cell: Cell;
   map: {
     width: number;
@@ -13,17 +13,36 @@ const { isVisible, cell, rotation, map } = defineProps<{
   };
   isVisible: boolean;
   rotation: 0 | 90 | 180 | 270;
+  placeMode: 'sprite' | 'tile';
 }>();
+
+// mapa Tile key to a sprite to display in tile place mode
+const TILE_TO_EDITOR_SPRITE = {
+  ground: 'editor-ground',
+  groundHalf: 'editor-ground-half',
+  water: 'editor-water'
+};
 
 const assets = useAssets();
 const spriteTextures = computed(() => {
+  if (placeMode === 'tile') {
+    const sheet = assets.getSprite(
+      TILE_TO_EDITOR_SPRITE[cell.tile.id as keyof typeof TILE_TO_EDITOR_SPRITE]
+    );
+    return [sheet.animations[Math.abs(rotation)] ?? sheet.animations[0]];
+  }
+
   return cell.spriteIds.map(spriteId => {
     const sheet = assets.getSprite(spriteId);
     return sheet.animations[Math.abs(rotation)] ?? sheet.animations[0];
   });
 });
 
-const emptyTextures = assets.getSprite('editor-empty-tile').animations[0];
+const emptyTextures = computed(() => {
+  return assets.getSprite(
+    cell.isHalfTile ? 'editor-empty-tile-half' : 'editor-empty-tile'
+  ).animations[0];
+});
 
 const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
 const hitArea = new Polygon([
@@ -64,7 +83,7 @@ const isHovered = ref(false);
       />
 
       <animated-sprite
-        v-if="!spriteTextures.length && cell.position.z === 0"
+        v-if="!spriteTextures.length"
         :textures="emptyTextures"
         :anchor="0.5"
         :y="CELL_SIZE / 2"

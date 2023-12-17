@@ -5,6 +5,7 @@ export type { FXContext } from './action/action';
 export type { Entity, EntityId } from './entity/entity';
 export { Cell } from './map/cell';
 export { Tile } from './map/tile';
+export { TILES } from './map/tile-lookup';
 export type { Skill, SkillId } from './skill/skill';
 export type { Point3D } from './types';
 export type { UnitBlueprint, UnitId } from './units/unit-lookup';

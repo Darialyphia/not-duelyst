@@ -7,7 +7,6 @@ export const tileSpritesPaths = Object.fromEntries(
 );
 
 const tileImagesGlobs = import.meta.glob('./*.png', { as: 'url', eager: true });
-
 export const tileImagesPaths = Object.fromEntries(
   Object.entries(tileImagesGlobs).map(([key, module]) => {
     return [key.replace('./', '').replace('.png', ''), module];

@@ -16,7 +16,7 @@ export const TILES: Record<string, TileDefinition> = {
     terrain: TERRAIN.GROUND,
     isHalfTile: false
   },
-  groudnHalf: {
+  groundHalf: {
     terrain: TERRAIN.GROUND,
     isHalfTile: true
   }
