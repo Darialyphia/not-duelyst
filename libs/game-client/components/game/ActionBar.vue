@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Skill, UnitBlueprint } from '@hc/sdk';
 import { skillImagesPaths } from '../../assets/skills';
 import { unitImagesPaths } from '../../assets/units';
 import havenBorder from '../../assets/ui/icon-border-haven.png';
@@ -40,7 +39,11 @@ const activePlayer = computed(
       class="skill"
       :class="{ active: selectedSkill?.id === skill.id }"
       :data-cost="skill.cost"
-      :data-cooldown="state.activeEntity.skillCooldowns[skill.id]"
+      :data-cooldown="
+        state.activeEntity.skillCooldowns[skill.id] > 0
+          ? state.activeEntity.skillCooldowns[skill.id]
+          : ''
+      "
       :style="{
         '--bg': `url(${skillImagesPaths[skill.id]})`,
         '--border': `url(${havenBorder})`,
@@ -58,7 +61,7 @@ const activePlayer = computed(
         class="summon"
         :class="{ active: selectedSummon?.id === unit.unit.id }"
         :data-cost="unit.unit.summonCost"
-        :data-cooldown="unit.cooldown"
+        :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
         :style="{
           '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
           '--bg': `url(${unitImagesPaths[unit.unit.id + '-icon']})`,
@@ -110,7 +113,7 @@ const activePlayer = computed(
 :is(.skill, .summon) {
   position: relative;
   width: 64px;
-  border: solid 1px var(--primary);
+  border: var(--fancy-border);
 
   &::after {
     content: attr(data-cost);
@@ -119,6 +122,7 @@ const activePlayer = computed(
     right: -12px;
     bottom: -7px;
 
+    overflow: hidden;
     display: grid;
     place-content: center;
 
@@ -136,6 +140,7 @@ const activePlayer = computed(
     filter: brightness(125%);
     box-shadow: 0 0 8px 2px var(--primary);
   }
+
   &:disabled {
     cursor: not-allowed;
     &::after {
@@ -157,7 +162,7 @@ const activePlayer = computed(
 
       background: conic-gradient(
         hsl(var(--gray-11-hsl) / 0.1) calc(1deg * var(--cooldown-angle)),
-        hsl(var(--gray-11-hsl) / 0.7) calc(1deg * var(--cooldown-angle))
+        hsl(var(--gray-11-hsl) / 0.5) calc(1deg * var(--cooldown-angle))
       );
       border: none;
     }

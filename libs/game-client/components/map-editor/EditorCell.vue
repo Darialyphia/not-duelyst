@@ -70,7 +70,7 @@ const isHovered = ref(false);
     <container
       :hit-area="hitArea"
       :filters="isHovered ? [hoveredFilter] : []"
-      :alpha="isVisible ? 1 : 0.25"
+      :alpha="isVisible ? 1 : 0.05"
       @pointerenter="isHovered = true"
       @pointerleave="isHovered = false"
     >
@@ -86,7 +86,7 @@ const isHovered = ref(false);
         v-if="!spriteTextures.length"
         :alpha="0.75"
         :textures="emptyTextures"
-        :anchor="0.5"
+        :anchor="0.35"
         :y="CELL_SIZE / 2"
       />
     </container>

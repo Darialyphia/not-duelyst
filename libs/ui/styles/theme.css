@@ -131,7 +131,7 @@ html.dark {
       hsl(320 100% 60% / 0.5)
     ),
     hsl(250 30% 10%);
-  --fancy-border: solid var(--border-size-2) hsl(var(--color-primary-hsl) / 0.7);
+  --fancy-border: solid var(--border-size-2) hsl(var(--color-primary-hsl) / 0.5);
 }
 
 html.dark {

@@ -8,6 +8,8 @@ const { selectedEntity } = useGameUi();
     <ATBTimeline />
   </div>
 
+  <PlayerInfos />
+
   <Transition>
     <div v-if="selectedEntity" class="selected-entity">
       <UnitCard :entity="selectedEntity" />
