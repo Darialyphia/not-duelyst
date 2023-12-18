@@ -49,6 +49,7 @@ const setContainer = (_container: any) => {
 watchEffect(() => {
   if (containerRef.value) {
     containerRef.value.zOrder = props.zIndex;
+    containerRef.value.zIndex = props.zIndex;
   }
 });
 </script>

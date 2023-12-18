@@ -3,28 +3,38 @@ import { Polygon, type Cursor, FederatedPointerEvent } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { useApplication } from 'vue3-pixi';
+import { CELL_SIZE } from '../../utils/constants';
 
 const { cell } = defineProps<{ cell: Cell }>();
 
 const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
-
+watchEffect(() => {
+  console.log(mapRotation.value);
+});
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
     const sheet = assets.getSprite(spriteId);
     return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
   });
 });
-const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
-const hitArea = new Polygon([
-  { x: 0, y: 0 + hitAreaYOffset },
-  { x: CELL_SIZE / 2, y: CELL_SIZE / 4 + hitAreaYOffset },
-  { x: CELL_SIZE / 2, y: CELL_SIZE * 0.75 },
-  { x: 0, y: CELL_SIZE },
-  { x: -CELL_SIZE / 2, y: CELL_SIZE * 0.75 },
-  { x: -CELL_SIZE / 2, y: CELL_SIZE / 4 + hitAreaYOffset }
-]);
+
+const STEP = CELL_SIZE / 4;
+const hitAreaYOffset = cell.isHalfTile ? STEP / 2 : 0;
+const hitArea = computed(() => {
+  //prettier-ignore
+  const p = new Polygon([
+    { x: STEP * -2, y: STEP + hitAreaYOffset },
+    { x: 0        , y: 0 + hitAreaYOffset },
+    { x: STEP * 2 , y: STEP  + hitAreaYOffset },
+    { x: STEP * 2 , y: STEP * 3 },
+    { x: 0        , y: STEP * 4 },
+    { x: STEP * -2, y: STEP * 3 }
+  ]);
+
+  return p;
+});
 
 const isMoveTarget = computed(() => {
   if (targetMode.value !== 'move') return false;
@@ -120,6 +130,17 @@ const cursor = computed(() => {
       </container>
 
       <MapCellHighlight :cell="cell" :cursor="cursor" />
+      <graphics
+        v-if="hoveredCell === cell"
+        @render="
+          g => {
+            g.clear();
+            g.beginFill('red');
+            g.drawPolygon(hitArea);
+            g.endFill();
+          }
+        "
+      />
     </container>
 
     <HoveredCell :cell="cell" :cursor="cursor" />

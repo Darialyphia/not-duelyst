@@ -99,7 +99,9 @@ watchEffect(() => {
     :sortable-children="true"
   >
     <Layer ref="gameObjectsLayer">
-      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
+      <template v-for="cell in state.map.cells" :key="cell.id">
+        <MapCell v-if="cell.x === 0" :cell="cell" />
+      </template>
 
       <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
     </Layer>

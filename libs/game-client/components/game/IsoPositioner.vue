@@ -70,6 +70,7 @@ const zIndex = computed(() => {
 <template>
   <container
     v-if="!animated"
+    v-bind="$attrs"
     :x="position.isoX + offset.x"
     :y="position.isoY - position.isoZ + offset.y"
     :z-index="zIndex"
@@ -79,6 +80,7 @@ const zIndex = computed(() => {
 
   <AnimatedPosition
     v-else
+    v-bind="$attrs"
     :x="position.isoX + offset.x"
     :y="position.isoY - position.isoZ + offset.y"
     :z="position.isoZ + offset.z"

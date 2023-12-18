@@ -55,8 +55,8 @@ const { selectedEntity } = useGameUi();
 
 .atb-timeline {
   position: absolute;
-  top: var(--size-4);
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: var(--size-4);
+  transform: translateY(-50%);
 }
 </style>

@@ -5,7 +5,7 @@ import { unitImagesPaths } from '../../assets/units';
 import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 
-const { state, sendInput } = useGame();
+const { state, sendInput, fx } = useGame();
 const { selectedSummon, selectedSkill } = useGameUi();
 
 const activePlayer = computed(
@@ -15,6 +15,24 @@ const activePlayer = computed(
 
 <template>
   <div class="action-bar content-surface">
+    <button
+      class="active-entity"
+      :style="{
+        '--bg': `url(${unitImagesPaths[state.activeEntity.unitId + '-icon']})`,
+        '--border': `url(${havenBorder})`
+      }"
+      @click="
+        () => {
+          const spriteRef = fx.spriteMap.get(state.activeEntity.id);
+          if (!spriteRef) return;
+          const sprite = toValue(spriteRef);
+          if (!sprite) return;
+
+          fx.viewport?.moveCenter(sprite.position);
+        }
+      "
+    />
+
     <button
       v-for="skill in state.activeEntity.skills"
       :key="skill.id"
@@ -78,15 +96,20 @@ const activePlayer = computed(
   border-radius: var(--radius-3);
 }
 
-:is(.skill, .summon) {
-  position: relative;
+.active-entity {
+  width: 96px;
+}
 
+:is(.skill, .summon, .active-entity) {
   aspect-ratio: 1;
-  width: 64px;
-
   background-image: var(--border), var(--bg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+:is(.skill, .summon) {
+  position: relative;
+  width: 64px;
   border: solid 1px var(--primary);
 
   &::after {
