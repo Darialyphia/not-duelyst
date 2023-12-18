@@ -3,7 +3,8 @@ import { TileDefinition } from './tile';
 
 export const TERRAIN = {
   GROUND: 'GROUND',
-  WATER: 'WATER'
+  WATER: 'WATER',
+  OBSTACTLE: 'OBSTACLE'
 } as const;
 export type Terrain = Values<typeof TERRAIN>;
 
@@ -12,6 +13,10 @@ export const TILES: Record<string, TileDefinition> = {
     terrain: TERRAIN.WATER,
     isHalfTile: false
   },
+  waterHalf: {
+    terrain: TERRAIN.WATER,
+    isHalfTile: true
+  },
   ground: {
     terrain: TERRAIN.GROUND,
     isHalfTile: false
@@ -19,6 +24,10 @@ export const TILES: Record<string, TileDefinition> = {
   groundHalf: {
     terrain: TERRAIN.GROUND,
     isHalfTile: true
+  },
+  obstacle: {
+    terrain: TERRAIN.OBSTACTLE,
+    isHalfTile: false
   }
 };
 

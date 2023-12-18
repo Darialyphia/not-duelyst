@@ -4,7 +4,8 @@ import { Point3D } from '../types';
 
 export const TERRAIN = {
   GROUND: 'GROUND',
-  WATER: 'WATER'
+  WATER: 'WATER',
+  OBSTACTLE: 'OBSTACLE'
 } as const;
 export type Terrain = Values<typeof TERRAIN>;
 

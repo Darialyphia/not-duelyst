@@ -20,7 +20,9 @@ const { isVisible, cell, rotation, map, placeMode } = defineProps<{
 const TILE_TO_EDITOR_SPRITE = {
   ground: 'editor-ground',
   groundHalf: 'editor-ground-half',
-  water: 'editor-water'
+  water: 'editor-water',
+  waterHalf: 'editor-water-half',
+  obstacle: 'editor-obstacle'
 };
 
 const assets = useAssets();
@@ -84,9 +86,9 @@ const isHovered = ref(false);
 
       <animated-sprite
         v-if="!spriteTextures.length"
-        :alpha="0.75"
+        :alpha="0.5"
         :textures="emptyTextures"
-        :anchor="0.35"
+        :anchor="0.5"
         :y="CELL_SIZE / 2"
       />
     </container>

@@ -28,7 +28,9 @@ const MAX_Z = 8;
 const TILE_TO_EDITOR_SPRITE = {
   ground: 'editor-ground',
   groundHalf: 'editor-ground-half',
-  water: 'editor-water'
+  water: 'editor-water',
+  waterHalf: 'editor-water-half',
+  obstacle: 'editor-obstacle'
 };
 
 type EditorMap = {
@@ -40,10 +42,10 @@ type EditorMap = {
 };
 const makeDefaultMap = (): EditorMap => ({
   name: 'New Map',
-  width: 11,
-  height: 13,
-  cells: Array.from({ length: 13 }, (_, y) =>
-    Array.from({ length: 11 }, (_, x) => ({
+  width: 5,
+  height: 5,
+  cells: Array.from({ length: 5 }, (_, y) =>
+    Array.from({ length: 5 }, (_, x) => ({
       position: { x, y, z: 0 },
       tileId: 'ground',
       spriteIds: []
@@ -309,6 +311,18 @@ const fitleredSprites = computed(() => {
     .map(([name, src]) => ({ name, src }))
     .filter(({ name }) => name.toLowerCase().includes(spriteSearch.value.toLowerCase()));
 });
+
+const getSpriteIconOffset = (name: string) => {
+  const isSymmetrical = !['north', 'east', 'west', 'south'].some(dir =>
+    name.includes(dir)
+  );
+  const spriteSize = 96;
+  if (isSymmetrical) return 0;
+  if (!rotation.value) return 0;
+  if (rotation.value === 90) return -spriteSize;
+  if (rotation.value === 180) return -spriteSize * 2;
+  if (rotation.value === 270) return -spriteSize * 3;
+};
 </script>
 
 <template>
@@ -463,7 +477,7 @@ const fitleredSprites = computed(() => {
           <template v-for="{ src, name } in fitleredSprites" :key="name">
             <button
               v-if="isString(name) && !name.startsWith('editor')"
-              :style="{ '--bg': `url(${src})` }"
+              :style="{ '--bg': `url(${src})`, '--bg-offset': getSpriteIconOffset(name) }"
               :title="name"
               :class="selectedSprite === name && 'selected'"
               @click="selectedSprite = name"
@@ -526,7 +540,7 @@ button {
 .map-editor {
   overflow: hidden;
   display: grid;
-  grid-template-columns: var(--size-xs) 1fr;
+  grid-template-columns: var(--size-sm) 1fr;
   grid-template-rows: auto 1fr;
 
   height: 100vh;
@@ -538,7 +552,7 @@ header {
 }
 
 aside {
-  overflow-y: hidden;
+  overflow-y: auto;
   height: 100%;
 
   > section {
@@ -564,6 +578,8 @@ aside {
   padding: var(--size-1);
 
   > button {
+    --x-offset: calc(-16px + calc(1px * var(--bg-offset, 0)));
+
     cursor: pointer;
 
     aspect-ratio: 1;
@@ -574,7 +590,8 @@ aside {
     text-transform: uppercase;
 
     background-image: var(--bg);
-    background-position: -16px -16px;
+    background-position-x: var(--x-offset);
+    background-position-y: -16px;
 
     &:hover {
       filter: brightness(120%);
