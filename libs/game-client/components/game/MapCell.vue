@@ -10,9 +10,7 @@ const { cell } = defineProps<{ cell: Cell }>();
 const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
-watchEffect(() => {
-  console.log(mapRotation.value);
-});
+
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
     const sheet = assets.getSprite(spriteId);
@@ -118,7 +116,11 @@ const cursor = computed(() => {
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
     >
-      <container :filters="isMovePathHighlighted ? [pathFilter] : []" :cursor="cursor">
+      <container
+        :filters="isMovePathHighlighted ? [pathFilter] : []"
+        :cursor="cursor"
+        event-mode="none"
+      >
         <animated-sprite
           v-for="(textures, index) in spriteTextures"
           :key="index"
@@ -130,17 +132,6 @@ const cursor = computed(() => {
       </container>
 
       <MapCellHighlight :cell="cell" :cursor="cursor" />
-      <graphics
-        v-if="hoveredCell === cell"
-        @render="
-          g => {
-            g.clear();
-            g.beginFill('red');
-            g.drawPolygon(hitArea);
-            g.endFill();
-          }
-        "
-      />
     </container>
 
     <HoveredCell :cell="cell" :cursor="cursor" />

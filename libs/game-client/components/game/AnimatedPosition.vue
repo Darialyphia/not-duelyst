@@ -34,28 +34,22 @@ watch(
 const tileWidth = CELL_SIZE;
 const tileHeight = tileWidth / 2;
 
-const containerRef = ref<Container>();
 const { autoDestroyRef } = useAutoDestroy();
-
-// ts in unhappy if we type the parameter, because vue expects fucntion refs to take a VNode as argument
-// However, in vue3-pixi, the behavior is different
-const setContainer = (_container: any) => {
-  const container = _container as Container;
-  if (!container) return;
-  autoDestroyRef(container);
-  containerRef.value = container;
-};
-
-watchEffect(() => {
-  if (containerRef.value) {
-    containerRef.value.zOrder = props.zIndex;
-    containerRef.value.zIndex = props.zIndex;
-  }
-});
 </script>
 
 <template>
-  <container :ref="setContainer" :x="tweened.x" :y="tweened.y" :z-index="props.zIndex">
+  <container
+    :ref="
+      _container => {
+        if (!_container) return;
+        autoDestroyRef(_container);
+      }
+    "
+    :x="tweened.x"
+    :y="tweened.y"
+    :z-order="props.zIndex"
+    :z-index="props.zIndex"
+  >
     <slot />
   </container>
   <text

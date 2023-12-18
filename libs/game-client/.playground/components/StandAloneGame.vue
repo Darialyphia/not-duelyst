@@ -2,7 +2,7 @@
 import { GameSession, type Player } from '@hc/sdk';
 import { makeDummyState } from '~/dummy-state';
 
-const dummyState = await makeDummyState('test-map');
+const dummyState = await makeDummyState('map1');
 const serverSession = GameSession.createServerSession(dummyState);
 const clientSession = GameSession.createClientSession(dummyState);
 serverSession.subscribe(action => {

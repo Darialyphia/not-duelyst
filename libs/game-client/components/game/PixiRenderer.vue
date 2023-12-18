@@ -83,6 +83,7 @@ until(screenViewport)
 watchEffect(() => {
   if (gameObjectsLayer.value) {
     gameObjectsLayer.value.group.enableSort = true;
+    gameObjectsLayer.value.sortableChildren = true;
   }
 });
 </script>
@@ -99,9 +100,7 @@ watchEffect(() => {
     :sortable-children="true"
   >
     <Layer ref="gameObjectsLayer">
-      <template v-for="cell in state.map.cells" :key="cell.id">
-        <MapCell v-if="cell.x === 0" :cell="cell" />
-      </template>
+      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
       <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
     </Layer>
