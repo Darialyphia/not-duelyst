@@ -85,7 +85,7 @@ export class Entity implements Serializable {
     maxAp: makeInterceptor<number, Entity>(),
     apRegenRate: makeInterceptor<number, Entity>(),
     initiative: makeInterceptor<number, Entity>(),
-    canUseSkill: makeInterceptor<boolean, Entity>(),
+    canUseSkill: makeInterceptor<boolean, { entity: Entity; skill: Skill }>(),
     canMove: makeInterceptor<boolean, Entity>()
   };
 
@@ -95,7 +95,7 @@ export class Entity implements Serializable {
 
   off = this.emitter.off;
 
-  atb = this.atbSeed;
+  atb = 25 + this.atbSeed;
 
   ap = 0;
 
@@ -233,7 +233,7 @@ export class Entity implements Serializable {
 
     const result = skill.cost <= this.ap;
 
-    return this.interceptors.canUseSkill.getValue(result, this);
+    return this.interceptors.canUseSkill.getValue(result, { entity: this, skill: skill });
   }
 
   move(path: Point3D[]) {

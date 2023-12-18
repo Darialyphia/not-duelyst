@@ -1,6 +1,5 @@
-import { keyBy } from 'lodash-es';
-import { Effect, EffectId } from './effect';
-import { Entity } from '../entity/entity';
+import { DotEffect } from './dot.effect';
+import { Effect } from './effect';
 import { Constructor } from '@hc/shared';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
@@ -16,4 +15,6 @@ type ValidatedEffectMap<T extends GenericEffectMap> = {
 const validateEffectMap = <T extends GenericEffectMap>(data: ValidatedEffectMap<T>) =>
   data;
 
-export const EFFECTS = validateEffectMap({});
+export const EFFECTS = validateEffectMap({
+  dot: DotEffect
+});
