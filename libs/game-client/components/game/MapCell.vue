@@ -8,7 +8,7 @@ import { CELL_SIZE } from '../../utils/constants';
 const { cell } = defineProps<{ cell: Cell }>();
 
 const app = useApplication();
-const { assets, state, sendInput, gameSession, mapRotation } = useGame();
+const { assets, state, sendInput, gameSession, mapRotation, utils } = useGame();
 const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
 
 const spriteTextures = computed(() => {
@@ -18,9 +18,9 @@ const spriteTextures = computed(() => {
   });
 });
 
-const STEP = CELL_SIZE / 4;
-const hitAreaYOffset = cell.isHalfTile ? STEP / 2 : 0;
 const hitArea = computed(() => {
+  const STEP = CELL_SIZE / 4;
+  const hitAreaYOffset = cell.isHalfTile ? STEP / 2 : 0;
   //prettier-ignore
   const p = new Polygon([
     { x: STEP * -2, y: STEP + hitAreaYOffset },
@@ -34,22 +34,8 @@ const hitArea = computed(() => {
   return p;
 });
 
-const isMoveTarget = computed(() => {
-  if (targetMode.value !== 'move') return false;
-  return state.value.activeEntity.canMove(distanceMap.value.get(cell.position));
-});
-
-const isSummonTarget = computed(() => {
-  if (targetMode.value !== 'summon') return false;
-
-  return (
-    gameSession.map.canSummonAt(cell.position) &&
-    gameSession.entityManager.hasNearbyAllies(
-      cell.position,
-      state.value.activeEntity.playerId
-    )
-  );
-});
+const isMoveTarget = computed(() => utils.isMoveTarget(cell.position));
+const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
 
 const onPointerup = (event: FederatedPointerEvent) => {
   if (event.button !== 0) return;

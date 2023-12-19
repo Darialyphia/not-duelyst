@@ -112,6 +112,7 @@ export class EntityManager {
 
   removeEntity(entity: Entity) {
     this.entityMap.delete(entity.id);
+    this.ctx.emitter.emit('entity:destroyed', entity);
   }
 
   serialize() {

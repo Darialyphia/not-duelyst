@@ -1,14 +1,15 @@
-import { GameSession, type GameState } from '@hc/sdk';
-import type {
-  Point3D,
-  UnitBlueprint,
-  UnitId,
-  EntityId,
-  Skill,
-  SkillId,
+import {
+  GameSession,
+  type GameState,
+  type Point3D,
+  type UnitBlueprint,
+  type UnitId,
+  type EntityId,
+  type Skill,
+  type SkillId,
   Cell,
-  Player,
-  Entity
+  type Player,
+  type Entity
 } from '@hc/sdk';
 import type { Values, UnionToIntersection, Nullable } from '@hc/shared';
 import { Layer } from '@pixi/layers';
@@ -35,6 +36,11 @@ export type GameContext = {
   sendInput: ShortEmits<GameEmits>;
   mapRotation: Ref<0 | 90 | 180 | 270>;
   assets: AssetsContext;
+  utils: {
+    isMoveTarget(point: Point3D): boolean;
+    isSummonTarget(point: Point3D): boolean;
+    isSkillTarget(point: Point3D): boolean;
+  };
   ui: {
     hoveredCell: Ref<Nullable<Cell>>;
     distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
@@ -67,16 +73,13 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       emit('end', { winner: session.playerManager.getPlayerById(session.winner!)! });
     }
   });
+  onUnmounted(unsub);
 
   const distanceMap = computed(() => {
     return session.map.getDistanceMap(
       state.value.activeEntity.position,
       state.value.activeEntity.speed
     );
-  });
-
-  onUnmounted(() => {
-    unsub?.();
   });
 
   const context: GameContext = {
@@ -101,6 +104,30 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       layers: {
         gameObjects: ref(),
         ui: ref()
+      }
+    },
+    utils: {
+      isMoveTarget(point) {
+        if (context.ui.targetMode.value !== 'move') return false;
+        return state.value.activeEntity.canMove(distanceMap.value.get(point));
+      },
+      isSummonTarget(point) {
+        if (context.ui.targetMode.value !== 'summon') return false;
+
+        return (
+          session.map.canSummonAt(point) &&
+          session.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
+        );
+      },
+      isSkillTarget(point) {
+        if (context.ui.targetMode.value !== 'skill') return false;
+        if (!context.ui.selectedSkill.value) return false;
+
+        return context.ui.selectedSkill.value.isTargetable(
+          session,
+          point,
+          context.state.value.activeEntity
+        );
       }
     },
     fx: {

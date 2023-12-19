@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash-es';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
@@ -33,11 +34,23 @@ export class RangedAttack extends Skill {
     this.maxRange = options.maxRange;
   }
 
+  isMinRange(ctx: GameSession, point: Point3D, caster: Entity) {
+    const { x, y, z } = isNumber(this.minRange)
+      ? { x: this.minRange, y: this.minRange, z: this.minRange }
+      : this.minRange;
+
+    return (
+      isMinCells(ctx, caster.position, point, { x, y: 0, z: 0 }) ||
+      isMinCells(ctx, caster.position, point, { x: 0, y, z: 0 }) ||
+      isMinCells(ctx, caster.position, point, { x: 0, y: 0, z })
+    );
+  }
+
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
       isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
       isWithinCells(ctx, caster.position, point, this.maxRange) &&
-      isMinCells(ctx, caster.position, point, this.minRange) &&
+      this.isMinRange(ctx, point, caster) &&
       isAxisAligned(point, caster.position)
     );
   }

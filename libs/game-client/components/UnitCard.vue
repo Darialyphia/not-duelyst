@@ -78,16 +78,16 @@ const { entity } = defineProps<{
       <!-- <p>{{ skill.description }}</p> -->
     </div>
 
-    <!-- <ul>
+    <ul>
       <li
-        v-for="trigger in entity.triggers"
+        v-for="trigger in entity.effects"
         :key="trigger.id"
         class="flex gap-2 items-center text-0 my-2"
       >
         <div class="i-game-icons-time-trap" />
-        {{ trigger.name }}
+        {{ trigger.id }}
       </li>
-    </ul> -->
+    </ul>
 
     <!-- <ul>
       <li

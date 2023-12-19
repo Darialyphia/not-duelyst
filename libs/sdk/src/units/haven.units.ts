@@ -83,7 +83,48 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     defense: 1,
     speed: 3,
     initiative: 6,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 1 })]
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
+      new (class extends Skill {
+        id = 'bulwark';
+
+        isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
+          return isSelf(caster, ctx.entityManager.getEntityAt(point));
+        }
+
+        isInAreaOfEffect(
+          ctx: GameSession,
+          point: Point3D,
+          caster: Entity,
+          target: Point3D
+        ) {
+          return isSelf(
+            ctx.entityManager.getEntityAt(target)!,
+            ctx.entityManager.getEntityAt(point)
+          );
+        }
+
+        execute(ctx: GameSession, caster: Entity, target: Point3D) {
+          const entity = ctx.entityManager.getEntityAt(target)!;
+          ctx.actionQueue.push(
+            new AddEffectAction(
+              {
+                sourceId: caster.id,
+                attachedTo: entity.id,
+                effectId: 'statModifier',
+                effectArg: { duration: 3, statKey: 'defense', value: 1 }
+              },
+              ctx
+            )
+          );
+        }
+      })({
+        cost: 2,
+        cooldown: 3,
+        animationFX: 'cast',
+        soundFX: 'cast-placeholder'
+      })
+    ]
   },
   {
     id: 'haven-caster-placeholder',
@@ -147,7 +188,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
                 sourceId: caster.id,
                 attachedTo: entity.id,
                 effectId: 'dot',
-                effectArg: { duration: 3, power: 1 }
+                effectArg: { duration: 2, power: 1 }
               },
               ctx
             )
@@ -155,7 +196,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         }
       })({
         cost: 2,
-        cooldown: 3,
+        cooldown: 4,
         animationFX: 'cast',
         soundFX: 'cast-placeholder'
       })

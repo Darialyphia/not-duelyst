@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
-import type { Container, Cursor } from 'pixi.js';
+import type { Cursor } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 
@@ -9,20 +9,10 @@ const { cell } = defineProps<{
   cell: Cell;
 }>();
 
-const { state, gameSession, mapRotation, assets } = useGame();
-const { selectedSummon, hoveredCell, targetMode } = useGameUi();
+const { state, mapRotation, assets, utils } = useGame();
+const { selectedSummon, hoveredCell } = useGameUi();
 
-const isSummonTarget = computed(() => {
-  if (targetMode.value !== 'summon') return false;
-
-  return (
-    gameSession.map.canSummonAt(cell.position) &&
-    gameSession.entityManager.hasNearbyAllies(
-      cell.position,
-      state.value.activeEntity.playerId
-    )
-  );
-});
+const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;

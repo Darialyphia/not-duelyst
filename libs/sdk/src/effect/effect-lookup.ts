@@ -1,6 +1,7 @@
 import { DotEffect } from './dot.effect';
 import { Effect } from './effect';
 import { Constructor } from '@hc/shared';
+import { StatModifierEffect } from './stat-modifier.effect';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
 
@@ -16,5 +17,6 @@ const validateEffectMap = <T extends GenericEffectMap>(data: ValidatedEffectMap<
   data;
 
 export const EFFECTS = validateEffectMap({
-  dot: DotEffect
+  dot: DotEffect,
+  statModifier: StatModifierEffect
 });

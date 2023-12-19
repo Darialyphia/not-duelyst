@@ -9,9 +9,8 @@ const { cell, cursor } = defineProps<{
   cell: Cell;
 }>();
 
-const { state, gameSession, mapRotation, assets } = useGame();
-const { selectedSummon, selectedSkill, hoveredCell, targetMode, distanceMap } =
-  useGameUi();
+const { state, gameSession, mapRotation, assets, utils } = useGame();
+const { hoveredCell, targetMode } = useGameUi();
 
 const isHoveringActiveEntity = computed(
   () =>
@@ -19,41 +18,21 @@ const isHoveringActiveEntity = computed(
     gameSession.map.getCellAt(state.value.activeEntity.position)?.id
 );
 
-const isSummonTarget = (point: Point3D) => {
-  if (targetMode.value !== 'summon') return false;
-
-  return (
-    gameSession.map.canSummonAt(point) &&
-    gameSession.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-  );
-};
-
-const isMoveTarget = (point: Point3D) => {
-  if (targetMode.value !== 'move') return false;
-  return state.value.activeEntity.canMove(distanceMap.value.get(point));
-};
-
-const isSkillTarget = (point: Point3D) => {
-  if (targetMode.value !== 'skill') return false;
-  if (!selectedSkill.value) return false;
-
-  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
-};
-
 const isHighlighted = computed(() => {
   if (!cell) return;
 
   switch (targetMode.value) {
     case 'skill':
-      return isSkillTarget(cell.position);
+      return utils.isSkillTarget(cell.position);
     case 'summon':
-      return isSummonTarget(cell.position);
+      return utils.isSummonTarget(cell.position);
     case 'move':
       return (
-        isMoveTarget(cell.position) && state.value.activeEntity.remainingMovement > 0
+        utils.isMoveTarget(cell.position) &&
+        state.value.activeEntity.remainingMovement > 0
       );
     default:
-      return isHoveringActiveEntity.value && isMoveTarget(cell.position);
+      return isHoveringActiveEntity.value && utils.isMoveTarget(cell.position);
   }
 });
 
@@ -63,16 +42,16 @@ const getCellBitmask = () => {
   return getBitMask(gameSession, state.value, cell, mapRotation.value, neighbor => {
     if (!neighbor) return false;
     if (targetMode.value === 'skill') {
-      return isSkillTarget(neighbor.position);
+      return utils.isSkillTarget(neighbor.position);
     }
     if (targetMode.value === 'summon') {
       return (
-        isSummonTarget(neighbor.position) &&
+        utils.isSummonTarget(neighbor.position) &&
         !gameSession.entityManager.getEntityAt(neighbor.position)
       );
     }
 
-    return isMoveTarget(neighbor);
+    return utils.isMoveTarget(neighbor);
   });
 };
 
@@ -128,7 +107,7 @@ const { autoDestroyRef } = useAutoDestroy();
   <PTransition appear @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
     <container
       v-if="texture && isHighlighted"
-      :ref="autoDestroyRef"
+      :ref="container => autoDestroyRef(container)"
       event-mode="none"
       :x="-CELL_SIZE / 2"
       :y="gameSession.map.getCellAt(cell)?.isHalfTile ? CELL_SIZE / 4 : 0"
