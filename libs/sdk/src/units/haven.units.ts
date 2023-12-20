@@ -4,6 +4,7 @@ import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { GameSession } from '../game-session';
+import { Fireball } from '../skill/fireball.skill';
 import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
@@ -92,8 +93,12 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       new (class extends Skill {
         id = 'bulwark';
 
-        isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
+        isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
           return isSelf(caster, ctx.entityManager.getEntityAt(point));
+        }
+
+        isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
+          return this.isWithinRange(ctx, point, caster);
         }
 
         isInAreaOfEffect(
@@ -147,57 +152,13 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     initiative: 7,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
-      new (class extends Skill {
-        id = 'fireball';
-
-        isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
-          return (
-            isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-            isWithinCells(ctx, caster.position, point, 3)
-          );
-        }
-
-        isInAreaOfEffect(
-          ctx: GameSession,
-          point: Point3D,
-          caster: Entity,
-          target: Point3D
-        ) {
-          return isSelf(
-            ctx.entityManager.getEntityAt(target)!,
-            ctx.entityManager.getEntityAt(point)
-          );
-        }
-
-        execute(ctx: GameSession, caster: Entity, target: Point3D) {
-          const entity = ctx.entityManager.getEntityAt(target)!;
-          ctx.actionQueue.push(
-            new DealDamageAction(
-              {
-                amount: 3,
-                sourceId: caster.id,
-                targets: [entity.id]
-              },
-              ctx
-            )
-          );
-          ctx.actionQueue.push(
-            new AddEffectAction(
-              {
-                sourceId: caster.id,
-                attachedTo: entity.id,
-                effectId: 'dot',
-                effectArg: { duration: 2, power: 1 }
-              },
-              ctx
-            )
-          );
-        }
-      })({
+      new Fireball({
         cost: 2,
         cooldown: 4,
-        animationFX: 'cast',
-        soundFX: 'cast-placeholder',
+        power: 3,
+        range: 3,
+        dotPower: 1,
+        dotDuration: 3,
         spriteId: 'fireball'
       })
     ]

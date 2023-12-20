@@ -24,10 +24,14 @@ export class Heal extends Skill {
     this.range = options.range;
   }
 
+  isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
+    return isWithinCells(ctx, caster.position, point, this.range);
+  }
+
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
-      isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(ctx, caster.position, point, this.range)
+      this.isWithinRange(ctx, point, caster) &&
+      isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId)
     );
   }
 
@@ -38,7 +42,7 @@ export class Heal extends Skill {
     );
   }
 
-  execute(ctx: GameSession, caster: Entity, target: Point3D, affectedPoints: Point3D[]) {
+  execute(ctx: GameSession, caster: Entity, target: Point3D) {
     const entity = ctx.entityManager.getEntityAt(target)!;
 
     ctx.actionQueue.push(

@@ -30,6 +30,8 @@ export abstract class Skill {
 
   abstract isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
 
+  abstract isWithinRange(ctx: GameSession, point: Point3D, caster: Entity): boolean;
+
   abstract isInAreaOfEffect(
     ctx: GameSession,
     point: Point3D,

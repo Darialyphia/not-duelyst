@@ -38,6 +38,7 @@ export type GameContext = {
   assets: AssetsContext;
   utils: {
     isMoveTarget(point: Point3D): boolean;
+    isWithinRangeOfSkill(point: Point3D): boolean;
     isSummonTarget(point: Point3D): boolean;
     isSkillTarget(point: Point3D): boolean;
   };
@@ -110,6 +111,16 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       isMoveTarget(point) {
         if (context.ui.targetMode.value !== 'move') return false;
         return state.value.activeEntity.canMove(distanceMap.value.get(point));
+      },
+      isWithinRangeOfSkill(point) {
+        if (context.ui.targetMode.value !== 'skill') return false;
+        if (!context.ui.selectedSkill.value) return false;
+
+        return context.ui.selectedSkill.value.isWithinRange(
+          session,
+          point,
+          context.state.value.activeEntity
+        );
       },
       isSummonTarget(point) {
         if (context.ui.targetMode.value !== 'summon') return false;

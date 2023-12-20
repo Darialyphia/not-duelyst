@@ -41,7 +41,7 @@ export class UseSkillAction extends GameAction<{
       ),
       this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
         fallback: 'attack-placeholder',
-        percentage: 0.5
+        percentage: 0.25
       }),
 
       this.ctx.fxContext.playAnimationOnce(

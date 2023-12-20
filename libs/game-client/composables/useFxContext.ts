@@ -135,7 +135,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           return resolve();
         }
 
-        const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
+        const sheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
         const animation =
           sheet.animations[animationName] ?? sheet.animations[animationNameFallback];
         if (!animation) {
@@ -187,7 +187,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         return () => void 0;
       }
 
-      const sheet = assets.getSprite(entity.unitId, 'placeholder-unit');
+      const sheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
       sheet.animations;
       const hasAnimation = !!sheet.animations[animationName];
       if (!hasAnimation) {

@@ -1,32 +1,41 @@
 import { PartialBy } from '@hc/shared';
+import { AddEffectAction } from '../action/add-effect';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
-import { isWithinCells, isAxisAligned, isSelf } from './skill-utils';
+import { isWithinCells, isSelf, isAxisAligned } from './skill-utils';
 
-export type MeleeAttackOptions = PartialBy<SkillOptions, 'spriteId'> & { power: number };
+export type FireballOptions = PartialBy<SkillOptions, 'spriteId'> & {
+  power: number;
+  range: number;
+  dotPower: number;
+  dotDuration: number;
+};
+export class Fireball extends Skill {
+  id = 'fireball';
 
-export class MeleeAttack extends Skill {
-  readonly id = 'melee_attack';
+  readonly power: number;
+  readonly range: number;
+  readonly dotDuration: number;
+  readonly dotPower: number;
 
-  public readonly power: number;
-
-  constructor(options: MeleeAttackOptions) {
+  constructor(options: FireballOptions) {
     super({
-      animationFX: 'attack',
-      soundFX: 'attack-placeholder',
-      spriteId: options.spriteId ?? 'melee_attack',
+      spriteId: options.spriteId ?? 'fireball',
       ...options
     });
     this.power = options.power;
+    this.range = options.range;
+    this.dotDuration = options.dotDuration;
+    this.dotPower = options.dotPower;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
-      isWithinCells(ctx, caster.position, point, { x: 1, y: 1, z: 0.5 }) &&
+      isWithinCells(ctx, caster.position, point, this.range) &&
       isAxisAligned(point, caster.position)
     );
   }
@@ -53,6 +62,17 @@ export class MeleeAttack extends Skill {
           amount: this.power,
           sourceId: caster.id,
           targets: [entity.id]
+        },
+        ctx
+      )
+    );
+    ctx.actionQueue.push(
+      new AddEffectAction(
+        {
+          sourceId: caster.id,
+          attachedTo: entity.id,
+          effectId: 'dot',
+          effectArg: { duration: this.dotDuration, power: this.dotPower }
         },
         ctx
       )

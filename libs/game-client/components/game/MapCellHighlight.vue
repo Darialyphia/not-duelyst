@@ -23,7 +23,7 @@ const isHighlighted = computed(() => {
 
   switch (targetMode.value) {
     case 'skill':
-      return utils.isSkillTarget(cell.position);
+      return utils.isWithinRangeOfSkill(cell.position);
     case 'summon':
       return utils.isSummonTarget(cell.position);
     case 'move':
@@ -42,7 +42,7 @@ const getCellBitmask = () => {
   return getBitMask(gameSession, state.value, cell, mapRotation.value, neighbor => {
     if (!neighbor) return false;
     if (targetMode.value === 'skill') {
-      return utils.isSkillTarget(neighbor.position);
+      return utils.isWithinRangeOfSkill(neighbor.position);
     }
     if (targetMode.value === 'summon') {
       return (
@@ -69,42 +69,17 @@ const texture = computed(() => {
   return getTextureIndexFromBitMask(bitMask, tileset.value);
 });
 
-const onBeforeEnter = (el: Container) => {
-  nextTick(() => {
-    gsap.set(el, {
-      pixi: {
-        alpha: 0
-      }
-    });
-  });
-};
-
-const onEnter = (el: Container, done: () => void) => {
-  gsap.to(el, {
-    duration: 0.5,
-    ease: Power2.easeOut,
-    onComplete: done,
-    pixi: {
-      alpha: 1
-    }
-  });
-};
-const onLeave = (el: Container, done: () => void) => {
-  gsap.to(el, {
-    duration: 0.5,
-    ease: Power2.easeOut,
-    onComplete: done,
-    pixi: {
-      alpha: 0
-    }
-  });
-};
-
 const { autoDestroyRef } = useAutoDestroy();
 </script>
 
 <template>
-  <PTransition appear @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
+  <PTransition
+    appear
+    :duration="{ enter: 500, leave: 300 }"
+    :before-enter="{ alpha: 0 }"
+    :enter="{ alpha: 1 }"
+    :leave="{ alpha: 0 }"
+  >
     <container
       v-if="texture && isHighlighted"
       :ref="container => autoDestroyRef(container)"

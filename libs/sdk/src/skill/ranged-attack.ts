@@ -5,7 +5,7 @@ import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
-import { isAxisAligned, isSelf, isMinCells, isWithinCells } from './skill-utils';
+import { isSelf, isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
 
 export type RangedAttackOptions = PartialBy<SkillOptions, 'spriteId'> & {
@@ -45,12 +45,17 @@ export class RangedAttack extends Skill {
     );
   }
 
+  isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
+    return (
+      isWithinCells(ctx, caster.position, point, this.maxRange) &&
+      this.isMinRange(ctx, point, caster)
+    );
+  }
+
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
-      isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(ctx, caster.position, point, this.maxRange) &&
-      this.isMinRange(ctx, point, caster) &&
-      isAxisAligned(point, caster.position)
+      this.isWithinRange(ctx, point, caster) &&
+      isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId)
     );
   }
 
