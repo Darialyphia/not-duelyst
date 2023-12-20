@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { skillImagesPaths } from '../../assets/skills';
 import { unitImagesPaths } from '../../assets/units';
+import { exhaustiveSwitch } from '@hc/shared';
+
 import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
+import chaosBorder from '../../assets/ui/icon-border-chaos.png';
+import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
 const { state, sendInput, fx } = useGame();
 const { selectedSummon, selectedSkill } = useGameUi();
@@ -10,6 +14,17 @@ const { selectedSummon, selectedSkill } = useGameUi();
 const activePlayer = computed(
   () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
 );
+
+const borders = computed(() => {
+  switch (state.value.activeEntity.unit.faction.id) {
+    case 'haven':
+      return { square: havenBorder, rounded: havenBorderRounded };
+    case 'chaos':
+      return { square: chaosBorder, rounded: chaosBorderRounded };
+    default:
+      throw exhaustiveSwitch;
+  }
+});
 </script>
 
 <template>
@@ -18,7 +33,7 @@ const activePlayer = computed(
       class="active-entity"
       :style="{
         '--bg': `url(${unitImagesPaths[state.activeEntity.unitId + '-icon']})`,
-        '--border': `url(${havenBorder})`
+        '--border': `url(${borders.square})`
       }"
       @click="
         () => {
@@ -37,7 +52,10 @@ const activePlayer = computed(
       :key="skill.id"
       :disabled="!state.activeEntity.canUseSkill(skill)"
       class="skill"
-      :class="{ active: selectedSkill?.id === skill.id }"
+      :class="{
+        active: selectedSkill?.id === skill.id,
+        'no-ap': state.activeEntity.ap < skill?.cost ?? 0
+      }"
       :data-cost="skill.cost"
       :data-cooldown="
         state.activeEntity.skillCooldowns[skill.id] > 0
@@ -46,7 +64,7 @@ const activePlayer = computed(
       "
       :style="{
         '--bg': `url(${skillImagesPaths[skill.id]})`,
-        '--border': `url(${havenBorder})`,
+        '--border': `url(${borders.square})`,
         '--cooldown-angle':
           360 - (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
       }"
@@ -59,13 +77,16 @@ const activePlayer = computed(
         :key="unit.unit.id"
         :disabled="!activePlayer.canSummon(unit.unit.id)"
         class="summon"
-        :class="{ active: selectedSummon?.id === unit.unit.id }"
+        :class="{
+          active: selectedSummon?.id === unit.unit.id,
+          'no-ap': state.activeEntity.ap < unit.unit.summonCost
+        }"
         :data-cost="unit.unit.summonCost"
         :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
         :style="{
           '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
           '--bg': `url(${unitImagesPaths[unit.unit.id + '-icon']})`,
-          '--border': `url(${havenBorderRounded})`
+          '--border': `url(${borders.rounded})`
         }"
         @click="selectedSummon = unit.unit"
       />
@@ -113,7 +134,7 @@ const activePlayer = computed(
 :is(.skill, .summon) {
   position: relative;
   width: 64px;
-  border: var(--fancy-border);
+  box-shadow: inset 0 0 0 1px black;
 
   &::after {
     content: attr(data-cost);
@@ -143,7 +164,8 @@ const activePlayer = computed(
 
   &:disabled {
     cursor: not-allowed;
-    &::after {
+
+    &::before {
       content: attr(data-cooldown);
 
       position: absolute;
@@ -165,6 +187,10 @@ const activePlayer = computed(
         hsl(var(--gray-11-hsl) / 0.5) calc(1deg * var(--cooldown-angle))
       );
       border: none;
+    }
+
+    &.no-ap {
+      filter: sepia(100%) hue-rotate(-70deg) saturate(200%) brightness(75%);
     }
   }
 }

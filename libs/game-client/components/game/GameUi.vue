@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { selectedEntity } = useGameUi();
+const { gameSession, state } = useGame();
+const { selectedEntity, hoveredCell } = useGameUi();
 </script>
 
 <template>
@@ -18,6 +19,22 @@ const { selectedEntity } = useGameUi();
 
   <div class="game-action-bar">
     <ActionBar />
+  </div>
+  <div class="debug">
+    <pre>
+x: {{ hoveredCell?.position.x }}, y: {{ hoveredCell?.position.y }}, z: {{
+        hoveredCell?.position.z
+      }}</pre
+    >
+    <button
+      @click="
+        () => {
+          console.log({ gameSession, state });
+        }
+      "
+    >
+      Debug
+    </button>
   </div>
   <!-- <GameChat /> -->
 
@@ -60,5 +77,19 @@ const { selectedEntity } = useGameUi();
   top: 50%;
   right: var(--size-4);
   transform: translateY(-50%);
+}
+
+.debug {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  padding: 1em;
+
+  font-family: monospace;
+  font-size: var(--font-size-0);
+  color: white;
+
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>

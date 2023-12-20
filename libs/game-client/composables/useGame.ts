@@ -114,10 +114,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       isSummonTarget(point) {
         if (context.ui.targetMode.value !== 'summon') return false;
 
-        return (
-          session.map.canSummonAt(point) &&
-          session.entityManager.hasNearbyAllies(point, state.value.activeEntity.playerId)
-        );
+        return session.map.canSummonAt(point);
       },
       isSkillTarget(point) {
         if (context.ui.targetMode.value !== 'skill') return false;

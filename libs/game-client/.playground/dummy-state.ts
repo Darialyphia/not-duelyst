@@ -24,13 +24,13 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
         id: 'Player2',
         loadout: {
           units: {
-            'haven-melee-placeholder': { cooldown: 0 },
-            'haven-archer-placeholder': { cooldown: 0 },
-            'haven-tank-placeholder': { cooldown: 0 },
-            'haven-caster-placeholder': { cooldown: 0 }
+            'chaos-melee-placeholder': { cooldown: 0 },
+            'chaos-archer-placeholder': { cooldown: 0 },
+            'chaos-tank-placeholder': { cooldown: 0 },
+            'chaos-caster-placeholder': { cooldown: 0 }
           }
         },
-        generalId: 'haven-hero-placeholder'
+        generalId: 'chaos-hero-placeholder'
       }
     ]
   };

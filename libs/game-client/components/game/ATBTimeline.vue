@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { unitImagesPaths } from '../../assets/units';
 import havenBorder from '../../assets/ui/icon-border-haven.png';
+import chaosBorder from '../../assets/ui/icon-border-chaos.png';
+import type { Entity } from '@hc/sdk';
+import { exhaustiveSwitch } from '@hc/shared';
 
 const { state, gameSession } = useGame();
 const { selectedEntity } = useGameUi();
@@ -14,6 +17,17 @@ watch(
     scrollableRef.value.scrollTo({ top: 0, behavior: 'smooth' });
   }
 );
+
+const getBorder = (entity: Entity) => {
+  switch (entity.unit.faction.id) {
+    case 'haven':
+      return havenBorder;
+    case 'chaos':
+      return chaosBorder;
+    default:
+      throw exhaustiveSwitch;
+  }
+};
 </script>
 
 <template>
@@ -25,7 +39,7 @@ watch(
         :style="{
           '--rotate-y': entity.playerId === state.players[0].id ? 0 : 180,
           '--bg': `url(${unitImagesPaths[entity.unitId + '-icon']})`,
-          '--border': `url(${havenBorder})`
+          '--border': `url(${getBorder(entity)})`
         }"
         @mouseenter="selectedEntity = state.entities.find(e => e.id === entity.id)"
         @mouseleave="selectedEntity = null"

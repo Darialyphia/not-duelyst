@@ -3,6 +3,7 @@ import { keyBy } from 'lodash-es';
 import { Skill } from '../skill/skill';
 import { UnitKind } from './constants';
 import { HAVEN_UNITS } from './haven.units';
+import { CHAOS_UNITS } from './chaos.units';
 
 export type UnitId = string;
 
@@ -29,7 +30,7 @@ export type UnitBlueprint = {
   skills: Array<Skill>;
 };
 
-export const UNITS = keyBy([...HAVEN_UNITS], 'id') satisfies Record<
+export const UNITS = keyBy([...HAVEN_UNITS, ...CHAOS_UNITS], 'id') satisfies Record<
   UnitId,
   UnitBlueprint
 >;

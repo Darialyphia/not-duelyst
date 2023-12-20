@@ -8,16 +8,16 @@ import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { Skill } from '../skill/skill';
-import { isWithinCells, isAxisAligned, isSelf } from '../skill/skill-utils';
+import { isAxisAligned, isSelf, isWithinCells } from '../skill/skill-utils';
 import { Point3D } from '../types';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 
-export const HAVEN_UNITS: UnitBlueprint[] = [
+export const CHAOS_UNITS: UnitBlueprint[] = [
   {
-    id: 'haven-hero-placeholder',
+    id: 'chaos-hero-placeholder',
     kind: UNIT_KIND.GENERAL,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 0,
     summonCooldown: 0,
     maxHp: 25,
@@ -33,9 +33,9 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-melee-placeholder',
+    id: 'chaos-melee-placeholder',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 2,
     summonCooldown: 1,
     maxHp: 10,
@@ -48,9 +48,9 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
   },
   {
-    id: 'haven-archer-placeholder',
+    id: 'chaos-archer-placeholder',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 2,
     summonCooldown: 2,
     maxHp: 8,
@@ -71,9 +71,9 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-tank-placeholder',
+    id: 'chaos-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 2,
     summonCooldown: 3,
     maxHp: 14,
@@ -127,9 +127,9 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-caster-placeholder',
+    id: 'chaos-caster-placeholder',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 2,
     summonCooldown: 2,
     maxHp: 8,

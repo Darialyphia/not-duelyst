@@ -27,10 +27,6 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
       ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId) &&
       isGeneral(this.ctx.atb.activeEntity) &&
       this.ctx.map.canSummonAt(this.payload.position) &&
-      this.ctx.entityManager.hasNearbyAllies(
-        this.payload.position,
-        this.payload.playerId
-      ) &&
       this.ctx.playerManager.getActivePlayer().canSummon(this.payload.unitId)
     );
   }

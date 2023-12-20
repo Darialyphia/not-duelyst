@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { unitImagesPaths } from '../../assets/units';
-import havenBorder from '../../assets/ui/icon-border-haven.png';
+import { exhaustiveSwitch } from '@hc/shared/';
+import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
+import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
+import type { Entity } from '@hc/sdk';
 
 const { state } = useGame();
 
@@ -12,14 +15,24 @@ const players = computed(() =>
     )!
   }))
 );
+
+const getBorder = (entity: Entity) => {
+  switch (entity.unit.faction.id) {
+    case 'haven':
+      return havenBorderRounded;
+    case 'chaos':
+      return chaosBorderRounded;
+    default:
+      throw exhaustiveSwitch;
+  }
+};
 </script>
 
 <template>
   <div class="player player-1">
-    <img
-      :src="`${unitImagesPaths[players[0].general.unitId + '-icon']}`"
-      class="fancy-surface"
-    />
+    <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[0].general)}` }">
+      <img :src="`${unitImagesPaths[players[0].general.unitId + '-icon']}`" />
+    </div>
     <div>
       <div class="player-name">{{ players[0].id }}</div>
 
@@ -31,10 +44,9 @@ const players = computed(() =>
   </div>
 
   <div class="player player-2">
-    <img
-      :src="`${unitImagesPaths[players[1].general.unitId + '-icon']}`"
-      class="fancy-surface"
-    />
+    <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[1].general)}` }">
+      <img :src="`${unitImagesPaths[players[1].general.unitId + '-icon']}`" />
+    </div>
     <div>
       <div class="player-name">{{ players[1].id }}</div>
 
@@ -60,7 +72,6 @@ const players = computed(() =>
     padding: var(--size-1);
 
     object-fit: cover;
-    border-width: 3px;
     border-radius: var(--radius-round);
 
     image-rendering: pixelated;
@@ -69,6 +80,17 @@ const players = computed(() =>
     font-size: var(--font-size-4);
     color: var(--green-4);
   }
+}
+
+.img-wrapper {
+  overflow: hidden;
+
+  padding: 4px;
+
+  background-image: var(--bg);
+  background-size: cover;
+  border-radius: var(--radius-round);
+  box-shadow: inset 0 0 0 1px black;
 }
 .player-1 {
   position: absolute;

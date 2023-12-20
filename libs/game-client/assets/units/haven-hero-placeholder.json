@@ -6,7 +6,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-idle-1",
@@ -15,7 +15,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-move-2",
@@ -24,7 +24,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-move-3",
@@ -33,7 +33,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-attack-4",
@@ -42,7 +42,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-attack-5",
@@ -51,7 +51,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-cast-6",
@@ -60,7 +60,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    },
    {
     "filename": "haven-hero-placeholder-cast-7",
@@ -69,7 +69,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 160, "h": 160 },
     "sourceSize": { "w": 160, "h": 160 },
-    "duration": 800
+    "duration": 100
    }
  ],
  "meta": {
@@ -91,7 +91,8 @@
    { "name": "Layer 2", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
-   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 54, "y": 53, "w": 50, "h": 48 } }] }
+   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 54, "y": 53, "w": 50, "h": 48 } }] },
+   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 2, "bounds": {"x": 63, "y": 54, "w": 32, "h": 32 } }] }
   ]
  }
 }

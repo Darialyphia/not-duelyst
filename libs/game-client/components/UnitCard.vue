@@ -2,11 +2,25 @@
 import type { Entity } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
+
 import havenBorder from '../assets/ui/icon-border-haven.png';
+import chaosBorder from '../assets/ui/icon-border-chaos.png';
+import { exhaustiveSwitch } from '../../shared/src';
 
 const { entity } = defineProps<{
   entity: Entity;
 }>();
+
+const border = computed(() => {
+  switch (entity.unit.faction.id) {
+    case 'haven':
+      return havenBorder;
+    case 'chaos':
+      return chaosBorder;
+    default:
+      throw exhaustiveSwitch;
+  }
+});
 </script>
 
 <template>
@@ -70,7 +84,7 @@ const { entity } = defineProps<{
         :data-cost="skill.cost"
         :style="{
           '--bg': `url(${skillImagesPaths[skill.id]})`,
-          '--border': `url(${havenBorder})`
+          '--border': `url(${border})`
         }"
       />
 

@@ -124,7 +124,22 @@ export class GameMap implements Serializable {
     const cellAbove = this.getCellAt(Vec3.add(point, { x: 0, y: 0, z: 1 }));
     if (cellAbove) return false;
 
-    return cell.isWalkable;
+    if (!cell.isWalkable) return false;
+
+    return this.ctx.entityManager
+      .getNearbyAllies(point, this.ctx.atb.activeEntity.playerId)
+      .some(ally => {
+        const withOffset = {
+          point: Vec3.sub(point, { x: 0, y: 0, z: cell.isHalfTile ? 0.5 : 0 }),
+          ally: Vec3.sub(ally.position, {
+            x: 0,
+            y: 0,
+            z: this.getCellAt(ally.position)!.isHalfTile ? 0.5 : 0
+          })
+        };
+
+        return Math.abs(withOffset.ally.z - withOffset.point.z) <= 0.5;
+      });
   }
 
   getDistanceMap(point: Point3D, maxDistance?: number) {
