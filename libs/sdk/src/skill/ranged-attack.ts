@@ -5,16 +5,10 @@ import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
-import {
-  isAxisAligned,
-  isSelf,
-  isWithinRange,
-  isMinRange,
-  isMinCells,
-  isWithinCells
-} from './skill-utils';
+import { isAxisAligned, isSelf, isMinCells, isWithinCells } from './skill-utils';
+import { PartialBy } from '@hc/shared';
 
-export type RangedAttackOptions = SkillOptions & {
+export type RangedAttackOptions = PartialBy<SkillOptions, 'spriteId'> & {
   power: number;
   minRange: number | Point3D;
   maxRange: number | Point3D;
@@ -28,7 +22,12 @@ export class RangedAttack extends Skill {
   public readonly maxRange: number | Point3D;
 
   constructor(options: RangedAttackOptions) {
-    super({ animationFX: 'attack', soundFX: 'attack-placeholder', ...options });
+    super({
+      animationFX: 'attack',
+      soundFX: 'attack-placeholder',
+      spriteId: 'ranged_attack',
+      ...options
+    });
     this.power = options.power;
     this.minRange = options.minRange;
     this.maxRange = options.maxRange;

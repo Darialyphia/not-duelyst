@@ -16,7 +16,7 @@ const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;
-  return assets.getSprite(selectedSummon.value.id, 'placeholder-unit');
+  return assets.getSprite(selectedSummon.value.spriteId, 'placeholder-unit');
 });
 const textures = computed(() =>
   sheet.value ? createSpritesheetFrameObject('idle', sheet.value) : null

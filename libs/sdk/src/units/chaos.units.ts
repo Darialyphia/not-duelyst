@@ -126,6 +126,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         cost: 2,
         cooldown: 3,
         animationFX: 'cast',
+        spriteId: 'bulwark',
         soundFX: 'cast-placeholder'
       })
     ]
@@ -145,13 +146,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     speed: 4,
     initiative: 7,
     skills: [
-      new RangedAttack({
-        cooldown: 1,
-        cost: 0,
-        power: 1,
-        minRange: { x: 2, y: 2, z: 1 },
-        maxRange: 3
-      }),
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
       new (class extends Skill {
         id = 'fireball';
 
@@ -203,7 +198,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         cost: 2,
         cooldown: 4,
         animationFX: 'cast',
-        soundFX: 'cast-placeholder'
+        soundFX: 'cast-placeholder',
+        spriteId: 'fireball'
       })
     ]
   }

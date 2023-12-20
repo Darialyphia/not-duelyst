@@ -87,7 +87,7 @@
   ],
   "layers": [
    { "name": "body", "opacity": 255, "blendMode": "normal" },
-   { "name": "light", "opacity": 121, "blendMode": "overlay" },
+   { "name": "light", "opacity": 123, "blendMode": "overlay" },
    { "name": "weapon", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [

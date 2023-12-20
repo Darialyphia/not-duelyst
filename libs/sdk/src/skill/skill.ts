@@ -8,6 +8,7 @@ export type SkillOptions = {
   cost: number;
   animationFX?: string;
   soundFX?: string;
+  spriteId: string;
   cooldown: number;
 };
 
@@ -17,12 +18,14 @@ export abstract class Skill {
   readonly cooldown: number;
   readonly animationFX: string;
   readonly soundFX: string;
+  readonly spriteId: string;
 
   constructor(options: SkillOptions) {
     this.cost = options.cost;
     this.cooldown = options.cooldown;
     this.animationFX = options.animationFX ?? 'cast';
     this.soundFX = options.soundFX ?? 'cast-placeholder';
+    this.spriteId = options.spriteId;
   }
 
   abstract isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;

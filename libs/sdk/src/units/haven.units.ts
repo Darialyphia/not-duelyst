@@ -126,7 +126,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         cost: 2,
         cooldown: 3,
         animationFX: 'cast',
-        soundFX: 'cast-placeholder'
+        soundFX: 'cast-placeholder',
+        spriteId: 'bulwark'
       })
     ]
   },
@@ -145,21 +146,14 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     speed: 4,
     initiative: 7,
     skills: [
-      new RangedAttack({
-        cooldown: 1,
-        cost: 0,
-        power: 1,
-        minRange: { x: 2, y: 2, z: 1 },
-        maxRange: 3
-      }),
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
       new (class extends Skill {
         id = 'fireball';
 
         isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
           return (
             isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-            isWithinCells(ctx, caster.position, point, 3) &&
-            isAxisAligned(point, caster.position)
+            isWithinCells(ctx, caster.position, point, 3)
           );
         }
 
@@ -203,7 +197,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         cost: 2,
         cooldown: 4,
         animationFX: 'cast',
-        soundFX: 'cast-placeholder'
+        soundFX: 'cast-placeholder',
+        spriteId: 'fireball'
       })
     ]
   }

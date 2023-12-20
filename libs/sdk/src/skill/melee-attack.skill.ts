@@ -1,3 +1,4 @@
+import { PartialBy } from '@hc/shared';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
@@ -6,7 +7,7 @@ import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
 import { isWithinCells, isAxisAligned, isSelf } from './skill-utils';
 
-export type MeleeAttackOptions = SkillOptions & { power: number };
+export type MeleeAttackOptions = PartialBy<SkillOptions, 'spriteId'> & { power: number };
 
 export class MeleeAttack extends Skill {
   readonly id = 'melee_attack';
@@ -14,7 +15,12 @@ export class MeleeAttack extends Skill {
   public readonly power: number;
 
   constructor(options: MeleeAttackOptions) {
-    super({ animationFX: 'attack', soundFX: 'attack-placeholder', ...options });
+    super({
+      animationFX: 'attack',
+      soundFX: 'attack-placeholder',
+      spriteId: options.spriteId ?? 'melee_attack',
+      ...options
+    });
     this.power = options.power;
   }
 

@@ -1,13 +1,16 @@
-import { DealDamageAction } from '../action/deal-damage.action';
+import { PartialBy } from '@hc/shared';
 import { HealAction } from '../action/heal.action';
 import { Entity } from '../entity/entity';
-import { isAlly, isEnemy } from '../entity/entity-utils';
+import { isAlly } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
-import { isWithinCells, isAxisAligned, isSelf } from './skill-utils';
+import { isWithinCells } from './skill-utils';
 
-export type HealOptions = SkillOptions & { power: number; range: number };
+export type HealOptions = PartialBy<SkillOptions, 'spriteId'> & {
+  power: number;
+  range: number;
+};
 
 export class Heal extends Skill {
   readonly id = 'heal';
@@ -16,7 +19,7 @@ export class Heal extends Skill {
   public readonly range: number;
 
   constructor(options: HealOptions) {
-    super(options);
+    super({ ...options, spriteId: options.spriteId ?? 'heal' });
     this.power = options.power;
     this.range = options.range;
   }
