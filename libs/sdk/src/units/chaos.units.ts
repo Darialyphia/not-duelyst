@@ -1,7 +1,5 @@
 import { AddEffectAction } from '../action/add-effect';
-import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
-import { isEnemy } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { GameSession } from '../game-session';
 import { Fireball } from '../skill/fireball.skill';
@@ -9,7 +7,7 @@ import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { Skill } from '../skill/skill';
-import { isAxisAligned, isSelf, isWithinCells } from '../skill/skill-utils';
+import { isSelf } from '../skill/skill-utils';
 import { Point3D } from '../types';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
@@ -22,7 +20,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.chaos,
     summonCost: 0,
     summonCooldown: 0,
-    maxHp: 25,
+    maxHp: 20,
     maxAp: 4,
     apRegenRate: 1,
     attack: 3,
@@ -81,7 +79,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.chaos,
     summonCost: 2,
     summonCooldown: 3,
-    maxHp: 14,
+    maxHp: 13,
     maxAp: 3,
     apRegenRate: 1,
     attack: 4,

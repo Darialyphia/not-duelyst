@@ -70,10 +70,13 @@ onMounted(async () => {
   await assets.load();
   app.mount(pixiApp.stage);
 });
+
+const surfaceBgVar = useCssVar('--surface-bg');
+surfaceBgVar.value = `url(${surfaceBg})`;
 </script>
 
 <template>
-  <div class="pixi-app-container" :style="{ '--surface-bg': `url(${surfaceBg})` }">
+  <div class="pixi-app-container">
     <canvas
       ref="canvas"
       @contextmenu.prevent="
@@ -125,22 +128,6 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="postcss">
-:global(.pixi-app-container .content-surface) {
-  position: relative;
-
-  padding: var(--size-6);
-
-  background: transparent;
-
-  /* This here is what actually make the tiling happen */
-  border-image: var(--surface-bg);
-  border-image-slice: 64 fill;
-  border-image-width: 32px;
-  border-image-repeat: repeat;
-
-  image-rendering: pixelated;
-}
-
 .pixi-app-container {
   cursor: v-bind('cursors.default');
   user-select: none;

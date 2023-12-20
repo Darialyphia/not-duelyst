@@ -2,6 +2,14 @@
 import { skillImagesPaths } from '../../assets/skills';
 import { unitImagesPaths } from '../../assets/units';
 import { exhaustiveSwitch } from '@hc/shared';
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger
+} from 'radix-vue';
 
 import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
@@ -47,49 +55,61 @@ const borders = computed(() => {
       "
     />
 
-    <button
-      v-for="skill in state.activeEntity.skills"
-      :key="skill.id"
-      :disabled="!state.activeEntity.canUseSkill(skill)"
-      class="skill"
-      :class="{
-        active: selectedSkill?.id === skill.id,
-        'no-ap': state.activeEntity.ap < skill?.cost ?? 0
-      }"
-      :data-cost="skill.cost"
-      :data-cooldown="
-        state.activeEntity.skillCooldowns[skill.id] > 0
-          ? state.activeEntity.skillCooldowns[skill.id]
-          : ''
-      "
-      :style="{
-        '--bg': `url(${skillImagesPaths[skill.id]})`,
-        '--border': `url(${borders.square})`,
-        '--cooldown-angle':
-          360 - (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
-      }"
-      @click="selectedSkill = skill"
-    />
+    <UiTooltip v-for="skill in state.activeEntity.skills" :key="skill.id">
+      <template #trigger>
+        <button
+          :disabled="!state.activeEntity.canUseSkill(skill)"
+          class="skill"
+          :class="{
+            active: selectedSkill?.id === skill.id,
+            'no-ap': state.activeEntity.ap < skill?.cost ?? 0
+          }"
+          :data-cost="skill.cost"
+          :data-cooldown="
+            state.activeEntity.skillCooldowns[skill.id] > 0
+              ? state.activeEntity.skillCooldowns[skill.id]
+              : ''
+          "
+          :style="{
+            '--bg': `url(${skillImagesPaths[skill.id]})`,
+            '--border': `url(${borders.square})`,
+            '--cooldown-angle':
+              360 - (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
+          }"
+          @click="selectedSkill = skill"
+        />
+      </template>
+
+      {{ skill.id }}
+    </UiTooltip>
 
     <template v-if="state.activeEntity.kind === 'GENERAL'">
-      <button
+      <UiTooltip
         v-for="unit in activePlayer.summonableUnits"
         :key="unit.unit.id"
-        :disabled="!activePlayer.canSummon(unit.unit.id)"
-        class="summon"
-        :class="{
-          active: selectedSummon?.id === unit.unit.id,
-          'no-ap': state.activeEntity.ap < unit.unit.summonCost
-        }"
-        :data-cost="unit.unit.summonCost"
-        :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
-        :style="{
-          '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-          '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
-          '--border': `url(${borders.rounded})`
-        }"
-        @click="selectedSummon = unit.unit"
-      />
+        :side-offset="50"
+        :delay="200"
+      >
+        <template #trigger>
+          <button
+            :disabled="!activePlayer.canSummon(unit.unit.id)"
+            class="summon"
+            :class="{
+              active: selectedSummon?.id === unit.unit.id,
+              'no-ap': state.activeEntity.ap < unit.unit.summonCost
+            }"
+            :data-cost="unit.unit.summonCost"
+            :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
+            :style="{
+              '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
+              '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
+              '--border': `url(${borders.rounded})`
+            }"
+            @click="selectedSummon = unit.unit"
+          />
+        </template>
+        <UnitBlueprintCard :unit="unit.unit" />
+      </UiTooltip>
     </template>
 
     <UiButton
