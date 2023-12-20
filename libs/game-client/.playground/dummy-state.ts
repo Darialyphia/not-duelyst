@@ -12,25 +12,25 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
         id: 'Player1',
         loadout: {
           units: {
-            'haven-melee-placeholder': { cooldown: 0 },
-            'haven-archer-placeholder': { cooldown: 0 },
-            'haven-tank-placeholder': { cooldown: 0 },
-            'haven-caster-placeholder': { cooldown: 0 }
+            'haven-melee': { cooldown: 0 },
+            'haven-archer': { cooldown: 0 },
+            'haven-tank': { cooldown: 0 },
+            'haven-caster': { cooldown: 0 }
           }
         },
-        generalId: 'haven-hero-placeholder'
+        generalId: 'haven-hero'
       },
       {
         id: 'Player2',
         loadout: {
           units: {
-            'chaos-melee-placeholder': { cooldown: 0 },
-            'chaos-archer-placeholder': { cooldown: 0 },
-            'chaos-tank-placeholder': { cooldown: 0 },
-            'chaos-caster-placeholder': { cooldown: 0 }
+            'chaos-melee': { cooldown: 0 },
+            'chaos-archer': { cooldown: 0 },
+            'chaos-tank': { cooldown: 0 },
+            'chaos-caster': { cooldown: 0 }
           }
         },
-        generalId: 'chaos-hero-placeholder'
+        generalId: 'chaos-hero'
       }
     ]
   };

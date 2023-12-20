@@ -26,7 +26,7 @@ const border = computed(() => {
 <template>
   <article class="entity-card content-surface">
     <div class="avatar-container fancy-surface mx-auto">
-      <img :src="unitImagesPaths[entity.unitId]" />
+      <img :src="unitImagesPaths[entity.unit.spriteId]" />
     </div>
     <div class="text-center">{{ entity.unitId }}</div>
 

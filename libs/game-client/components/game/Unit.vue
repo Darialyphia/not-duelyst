@@ -5,7 +5,7 @@ import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
-import { type AnimatedSprite, type Cursor, Filter } from 'pixi.js';
+import { type AnimatedSprite, type Cursor } from 'pixi.js';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { entity } = defineProps<{
@@ -16,7 +16,7 @@ const app = useApplication();
 const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
 const { hoveredCell, targetMode, selectedSkill, selectedEntity } = useGameUi();
 
-const spritesheet = assets.getSprite(entity.unitId, 'placeholder-unit');
+const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
 const spriteRef = ref<AnimatedSprite>();

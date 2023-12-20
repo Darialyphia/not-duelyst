@@ -32,7 +32,7 @@ const borders = computed(() => {
     <button
       class="active-entity"
       :style="{
-        '--bg': `url(${unitImagesPaths[state.activeEntity.unitId + '-icon']})`,
+        '--bg': `url(${unitImagesPaths[state.activeEntity.unit.spriteId + '-icon']})`,
         '--border': `url(${borders.square})`
       }"
       @click="
@@ -85,7 +85,7 @@ const borders = computed(() => {
         :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
         :style="{
           '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-          '--bg': `url(${unitImagesPaths[unit.unit.id + '-icon']})`,
+          '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
           '--border': `url(${borders.rounded})`
         }"
         @click="selectedSummon = unit.unit"

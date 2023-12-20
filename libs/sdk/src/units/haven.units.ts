@@ -15,7 +15,8 @@ import { UnitBlueprint } from './unit-lookup';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
-    id: 'haven-hero-placeholder',
+    id: 'haven-hero',
+    spriteId: 'haven-hero-placeholder',
     kind: UNIT_KIND.GENERAL,
     faction: FACTIONS.haven,
     summonCost: 0,
@@ -33,7 +34,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-melee-placeholder',
+    id: 'haven-melee',
+    spriteId: 'haven-melee-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
@@ -48,7 +50,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
   },
   {
-    id: 'haven-archer-placeholder',
+    id: 'haven-archer',
+    spriteId: 'haven-archer-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
@@ -71,7 +74,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-tank-placeholder',
+    id: 'haven-tank',
+    spriteId: 'haven-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
@@ -127,7 +131,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-caster-placeholder',
+    id: 'haven-caster',
+    spriteId: 'haven-caster-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,

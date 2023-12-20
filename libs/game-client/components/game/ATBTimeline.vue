@@ -38,7 +38,7 @@ const getBorder = (entity: Entity) => {
         :key="index"
         :style="{
           '--rotate-y': entity.playerId === state.players[0].id ? 0 : 180,
-          '--bg': `url(${unitImagesPaths[entity.unitId + '-icon']})`,
+          '--bg': `url(${unitImagesPaths[entity.unit.spriteId + '-icon']})`,
           '--border': `url(${getBorder(entity)})`
         }"
         @mouseenter="selectedEntity = state.entities.find(e => e.id === entity.id)"

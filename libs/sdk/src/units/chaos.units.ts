@@ -15,7 +15,8 @@ import { UnitBlueprint } from './unit-lookup';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
-    id: 'chaos-hero-placeholder',
+    id: 'chaos-hero',
+    spriteId: 'chaos-hero-placeholder',
     kind: UNIT_KIND.GENERAL,
     faction: FACTIONS.chaos,
     summonCost: 0,
@@ -33,7 +34,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'chaos-melee-placeholder',
+    id: 'chaos-melee',
+    spriteId: 'chaos-melee-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
@@ -48,7 +50,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
   },
   {
-    id: 'chaos-archer-placeholder',
+    id: 'chaos-archer',
+    spriteId: 'chaos-archer-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
@@ -71,7 +74,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'chaos-tank-placeholder',
+    id: 'chaos-tank',
+    spriteId: 'chaos-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
@@ -127,7 +131,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'chaos-caster-placeholder',
+    id: 'chaos-caster',
+    spriteId: 'chaos-caster-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,

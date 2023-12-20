@@ -31,7 +31,7 @@ const getBorder = (entity: Entity) => {
 <template>
   <div class="player player-1">
     <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[0].general)}` }">
-      <img :src="`${unitImagesPaths[players[0].general.unitId + '-icon']}`" />
+      <img :src="`${unitImagesPaths[players[0].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
       <div class="player-name">{{ players[0].id }}</div>
@@ -45,7 +45,7 @@ const getBorder = (entity: Entity) => {
 
   <div class="player player-2">
     <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[1].general)}` }">
-      <img :src="`${unitImagesPaths[players[1].general.unitId + '-icon']}`" />
+      <img :src="`${unitImagesPaths[players[1].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
       <div class="player-name">{{ players[1].id }}</div>

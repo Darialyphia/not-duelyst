@@ -11,6 +11,7 @@ export const isUnitId = (str: string): str is UnitId => Object.keys(UNITS).inclu
 
 export type UnitBlueprint = {
   id: string;
+  spriteId: string;
   kind: UnitKind;
   faction: Faction;
 
