@@ -33,6 +33,12 @@ export class RangedAttack extends Skill {
     this.maxRange = options.maxRange;
   }
 
+  getDescription(caster: Entity) {
+    return `Deals ${
+      caster.attack + this.power
+    } damage to an enemy. Cannot be cast in melee range.`;
+  }
+
   isMinRange(ctx: GameSession, point: Point3D, caster: Entity) {
     const { x, y, z } = isNumber(this.minRange)
       ? { x: this.minRange, y: this.minRange, z: this.minRange }

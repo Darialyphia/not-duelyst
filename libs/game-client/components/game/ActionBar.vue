@@ -55,7 +55,12 @@ const borders = computed(() => {
       "
     />
 
-    <UiTooltip v-for="skill in state.activeEntity.skills" :key="skill.id">
+    <UiTooltip
+      v-for="skill in state.activeEntity.skills"
+      :key="skill.id"
+      :side-offset="50"
+      :delay="200"
+    >
       <template #trigger>
         <button
           :disabled="!state.activeEntity.canUseSkill(skill)"
@@ -80,7 +85,7 @@ const borders = computed(() => {
         />
       </template>
 
-      {{ skill.id }}
+      <div class="fancy-surface">{{ skill.getDescription(state.activeEntity) }}</div>
     </UiTooltip>
 
     <template v-if="state.activeEntity.kind === 'GENERAL'">

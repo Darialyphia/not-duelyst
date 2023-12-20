@@ -24,6 +24,10 @@ export class Heal extends Skill {
     this.range = options.range;
   }
 
+  getDescription() {
+    return `Heal ${this.power} damage from a ally unit.`;
+  }
+
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
     return isWithinCells(ctx, caster.position, point, this.range);
   }

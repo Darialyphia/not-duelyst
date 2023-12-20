@@ -34,6 +34,7 @@
   background: var(--fancy-bg);
   background-blend-mode: overlay;
   border: var(--fancy-border);
+  padding: var(--size-4);
   box-shadow:
     0 5px 15px 3px rgba(0, 0, 0, 0.2),
     inset 0 0 10px 5px rgba(0, 0, 0, 0.5);
@@ -44,7 +45,7 @@
 
   padding: var(--size-6);
 
-  background: transparent;
+  /* background: transparent; */
 
   border-image: var(--surface-bg);
   border-image-slice: 64 fill;

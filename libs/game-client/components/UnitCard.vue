@@ -24,7 +24,7 @@ const border = computed(() => {
 </script>
 
 <template>
-  <article class="entity-card content-surface">
+  <article class="entity-card content-surface fancy-surface">
     <div class="avatar-container fancy-surface mx-auto">
       <img :src="unitImagesPaths[entity.unit.spriteId]" />
     </div>
@@ -138,7 +138,7 @@ const border = computed(() => {
   --defense: var(--cyan-5);
 
   width: 18rem;
-  padding: 0 var(--size-4) var(--size-4);
+  padding: 0 var(--size-6) var(--size-6);
   font-size: var(--font-size-2);
   backdrop-filter: blur(5px);
 }

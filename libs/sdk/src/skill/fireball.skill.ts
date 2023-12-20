@@ -33,6 +33,12 @@ export class Fireball extends Skill {
     this.dotPower = options.dotPower;
   }
 
+  getDescription(caster: Entity) {
+    return `Deals ${caster.attack + this.power} damage to a enemy, then ${
+      this.dotPower
+    } damage every turn for ${this.dotDuration} turns`;
+  }
+
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
       isWithinCells(ctx, caster.position, point, this.range) &&

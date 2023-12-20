@@ -14,7 +14,7 @@ const { sideOffset = 15, delay = 400 } = defineProps<{
       <TooltipPortal>
         <TooltipContent
           v-slot="contentProps"
-          class="select-none fancy-surfance"
+          class="select-none"
           :side-offset="sideOffset"
         >
           <slot v-bind="contentProps" />

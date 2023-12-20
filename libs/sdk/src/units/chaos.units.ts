@@ -91,6 +91,10 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       new (class extends Skill {
         id = 'bulwark';
 
+        getDescription() {
+          return `Gain 1 defense for 3 turns.`;
+        }
+
         isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
           return isSelf(caster, ctx.entityManager.getEntityAt(point));
         }
@@ -152,11 +156,11 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
       new Fireball({
         cost: 2,
-        cooldown: 4,
+        cooldown: 3,
         power: 3,
         range: 3,
         dotPower: 1,
-        dotDuration: 3,
+        dotDuration: 2,
         spriteId: 'fireball'
       })
     ]

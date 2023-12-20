@@ -24,6 +24,10 @@ export class MeleeAttack extends Skill {
     this.power = options.power;
   }
 
+  getDescription(caster: Entity) {
+    return `Deals ${caster.attack + this.power} damage to a nearby enemy.`;
+  }
+
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
       isWithinCells(ctx, caster.position, point, { x: 1, y: 1, z: 0.5 }) &&

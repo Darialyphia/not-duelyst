@@ -28,6 +28,8 @@ export abstract class Skill {
     this.spriteId = options.spriteId;
   }
 
+  abstract getDescription(caster: Entity): string;
+
   abstract isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
 
   abstract isWithinRange(ctx: GameSession, point: Point3D, caster: Entity): boolean;
