@@ -25,6 +25,7 @@ export class Fireball extends Skill {
   constructor(options: FireballOptions) {
     super({
       spriteId: options.spriteId ?? 'fireball',
+      maxTargets: 2,
       ...options
     });
     this.power = options.power;
@@ -34,9 +35,9 @@ export class Fireball extends Skill {
   }
 
   getDescription(caster: Entity) {
-    return `Deals ${caster.attack + this.power} damage to a enemy, then ${
-      this.dotPower
-    } damage every turn for ${this.dotDuration} turns`;
+    return `Deals ${caster.attack + this.power} damage to up to ${
+      this.maxTargets
+    } enemies, then ${this.dotPower} damage every turn for ${this.dotDuration} turns`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
@@ -53,35 +54,40 @@ export class Fireball extends Skill {
     );
   }
 
-  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, target: Point3D) {
-    return isSelf(
-      ctx.entityManager.getEntityAt(target)!,
-      ctx.entityManager.getEntityAt(point)
+  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, targets: Point3D[]) {
+    return targets.some(target =>
+      isSelf(
+        ctx.entityManager.getEntityAt(target)!,
+        ctx.entityManager.getEntityAt(point)!
+      )
     );
   }
 
-  execute(ctx: GameSession, caster: Entity, target: Point3D) {
-    const entity = ctx.entityManager.getEntityAt(target)!;
+  execute(ctx: GameSession, caster: Entity, targets: Point3D[]) {
+    const entities = targets.map(t => ctx.entityManager.getEntityAt(t)!);
+
     ctx.actionQueue.push(
       new DealDamageAction(
         {
           amount: this.power,
           sourceId: caster.id,
-          targets: [entity.id]
+          targets: entities.map(e => e.id)
         },
         ctx
       )
     );
-    ctx.actionQueue.push(
-      new AddEffectAction(
-        {
-          sourceId: caster.id,
-          attachedTo: entity.id,
-          effectId: 'dot',
-          effectArg: { duration: this.dotDuration, power: this.dotPower }
-        },
-        ctx
-      )
-    );
+    entities.forEach(entity => {
+      ctx.actionQueue.push(
+        new AddEffectAction(
+          {
+            sourceId: caster.id,
+            attachedTo: entity.id,
+            effectId: 'dot',
+            effectArg: { duration: this.dotDuration, power: this.dotPower }
+          },
+          ctx
+        )
+      );
+    });
   }
 }

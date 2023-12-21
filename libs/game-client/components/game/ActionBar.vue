@@ -9,7 +9,7 @@ import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
 const { state, sendInput, fx } = useGame();
-const { selectedSummon, selectedSkill, targetMode } = useGameUi();
+const { selectedSummon, selectedSkill, targetMode, skillTargets } = useGameUi();
 
 const activePlayer = computed(
   () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
@@ -28,6 +28,30 @@ const borders = computed(() => {
 </script>
 
 <template>
+  <div v-if="selectedSkill" class="targets-indicator">
+    <div class="fancy-surface">
+      Targets: {{ skillTargets.size }} / {{ selectedSkill?.maxTargets }}
+    </div>
+    <UiButton
+      v-if="skillTargets.size >= selectedSkill.minTargets"
+      :style="{
+        '--d-button-bg': 'var(--teal-7)',
+        '--d-button-hover-bg': 'var(--teal-6)',
+        '--d-button-color': 'var(--gray-0)',
+        '--d-button-hover-color': 'var(--gray-0)'
+      }"
+      @click="
+        () => {
+          sendInput('use-skill', {
+            skillId: selectedSkill!.id,
+            targets: [...skillTargets.values()]
+          });
+        }
+      "
+    >
+      Cast
+    </UiButton>
+  </div>
   <div class="action-bar content-surface">
     <button
       class="active-entity"
@@ -47,21 +71,20 @@ const borders = computed(() => {
       "
     />
 
-    <button
-      class="move"
-      :style="{
-        '--bg': `url(${skillImagesPaths.move})`,
-        '--border': `url(${borders.square})`
-      }"
-      @click="
-        () => {
-          targetMode = 'move';
-        }
-      "
-    />
-
     <div class="actions">
       <div>
+        <button
+          class="move"
+          :style="{
+            '--bg': `url(${skillImagesPaths.move})`,
+            '--border': `url(${borders.square})`
+          }"
+          @click="
+            () => {
+              targetMode = 'move';
+            }
+          "
+        />
         <UiTooltip
           v-for="skill in state.activeEntity.skills"
           :key="skill.id"
@@ -139,7 +162,7 @@ const borders = computed(() => {
     <UiButton
       :style="{
         '--d-button-bg': 'var(--red-9)',
-        '--d-button-hover-bg': 'var(--red-9)',
+        '--d-button-hover-bg': 'var(--red-8)',
         '--d-button-color': 'var(--gray-0)',
         '--d-button-hover-color': 'var(--gray-0)'
       }"
@@ -268,6 +291,28 @@ const borders = computed(() => {
   > div {
     display: flex;
     gap: var(--size-3);
+  }
+}
+
+.targets-indicator {
+  position: absolute;
+  top: calc(-1 * var(--size-9));
+
+  display: flex;
+  gap: var(--size-5);
+  justify-content: center;
+  justify-items: center;
+
+  width: 100%;
+
+  font-size: var(--font-size-3);
+
+  > div {
+    padding: var(--size-2);
+  }
+
+  > button {
+    box-shadow: var(--shadow-2);
   }
 }
 </style>

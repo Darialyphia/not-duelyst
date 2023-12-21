@@ -4,6 +4,9 @@ import { Skill } from '../skill/skill';
 import { UnitKind } from './constants';
 import { HAVEN_UNITS } from './haven.units';
 import { CHAOS_UNITS } from './chaos.units';
+import { Point3D } from '../types';
+import { Entity } from '../entity/entity';
+import { GameSession } from '../game-session';
 
 export type UnitId = string;
 
@@ -29,6 +32,11 @@ export type UnitBlueprint = {
   initiative: number;
 
   skills: Array<Skill>;
+
+  // onPlay?: {
+  //   targetCount: number;
+  //   isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
+  // };
 };
 
 export const UNITS = keyBy([...HAVEN_UNITS, ...CHAOS_UNITS], 'id') satisfies Record<

@@ -5,7 +5,7 @@ import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
-import { isWithinCells, isAxisAligned, isSelf } from './skill-utils';
+import { isWithinCells, isSelf } from './skill-utils';
 
 export type MeleeAttackOptions = PartialBy<SkillOptions, 'spriteId'> & { power: number };
 
@@ -39,14 +39,14 @@ export class MeleeAttack extends Skill {
     );
   }
 
-  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, target: Point3D) {
+  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, targets: Point3D[]) {
     return isSelf(
-      ctx.entityManager.getEntityAt(target)!,
+      ctx.entityManager.getEntityAt(targets[0])!,
       ctx.entityManager.getEntityAt(point)
     );
   }
 
-  execute(ctx: GameSession, caster: Entity, target: Point3D) {
+  execute(ctx: GameSession, caster: Entity, [target]: Point3D[]) {
     const entity = ctx.entityManager.getEntityAt(target)!;
 
     ctx.actionQueue.push(

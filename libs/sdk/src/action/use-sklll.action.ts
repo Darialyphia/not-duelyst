@@ -6,7 +6,7 @@ import { FXContext, GameAction } from './action';
 export class UseSkillAction extends GameAction<{
   casterId: EntityId;
   skillId: SkillId;
-  target: Point3D;
+  targets: Point3D[];
 }> {
   readonly name = 'USE_SKILL';
 
@@ -24,7 +24,7 @@ export class UseSkillAction extends GameAction<{
         this.ctx,
         cell,
         this.ctx.atb.activeEntity,
-        this.payload.target
+        this.payload.targets
       )
     );
   }
@@ -36,7 +36,7 @@ export class UseSkillAction extends GameAction<{
       this.skill.fxImpl(
         this.ctx,
         this.ctx.atb.activeEntity,
-        this.payload.target,
+        this.payload.targets,
         this.affectedCells
       ),
       this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
@@ -63,7 +63,7 @@ export class UseSkillAction extends GameAction<{
     this.skill.execute(
       this.ctx,
       this.ctx.atb.activeEntity,
-      this.payload.target,
+      this.payload.targets,
       this.affectedCells
     );
   }

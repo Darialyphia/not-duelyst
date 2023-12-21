@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Entity, Point3D } from '@hc/sdk';
+import type { Entity, Vec3, Point3D } from '@hc/sdk';
 import { PTransition, useApplication } from 'vue3-pixi';
 import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
@@ -13,8 +13,8 @@ const { entity } = defineProps<{
 }>();
 
 const app = useApplication();
-const { gameSession, assets, state, mapRotation, fx, sendInput } = useGame();
-const { hoveredCell, targetMode, selectedSkill, selectedEntity } = useGameUi();
+const { gameSession, assets, state, mapRotation, fx, sendInput, utils } = useGame();
+const { hoveredCell, skillTargets, selectedSkill, selectedEntity } = useGameUi();
 
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
@@ -81,13 +81,6 @@ const isHovered = computed(
     gameSession.entityManager.getEntityAt(hoveredCell.value.position)?.id === entity.id
 );
 
-const isSkillTarget = (point: Point3D) => {
-  if (targetMode.value !== 'skill') return false;
-  if (!selectedSkill.value) return false;
-
-  return selectedSkill.value.isTargetable(gameSession, point, state.value.activeEntity);
-};
-
 const activeFilter = new OutlineFilter(1.5, 0xffffff, 0.2, 1);
 const selectedfilter = new AdjustmentFilter({
   gamma: 1.3,
@@ -114,12 +107,12 @@ const filters = computed(() => {
 
   if (
     hoveredCell.value &&
-    isSkillTarget(hoveredCell.value) &&
+    utils.isSkillTarget(hoveredCell.value) &&
     selectedSkill.value?.isInAreaOfEffect(
       gameSession,
       entity.position,
       state.value.activeEntity,
-      hoveredCell.value.position
+      [...skillTargets.value, hoveredCell.value.position]
     )
   ) {
     result.push(inSkillAreaFilter);
@@ -128,7 +121,7 @@ const filters = computed(() => {
 });
 
 const cursor = computed(() => {
-  if (isSkillTarget(entity.position)) {
+  if (utils.isSkillTarget(entity.position)) {
     return app.value.renderer.events.cursorStyles.attack as Cursor;
   }
   return undefined;
@@ -174,11 +167,17 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         @pointerup="
           (e: FederatedMouseEvent) => {
             if (e.button !== 0) return;
-            if (!isSkillTarget(entity.position)) return;
-            sendInput('use-skill', {
-              skillId: selectedSkill!.id,
-              target: entity.position
-            });
+            if (!utils.isSkillTarget(entity.position)) return;
+
+            if (skillTargets.has(entity.position)) return;
+            skillTargets.add(entity.position);
+
+            if (skillTargets.size === selectedSkill?.maxTargets) {
+              sendInput('use-skill', {
+                skillId: selectedSkill!.id,
+                targets: [...skillTargets.values()]
+              });
+            }
           }
         "
         @pointerleave="

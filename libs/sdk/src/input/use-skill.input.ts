@@ -6,11 +6,13 @@ import { UseSkillAction } from '../action/use-sklll.action';
 const useSkillEventSchema = defaultInputSchema.extend({
   playerId: z.string(),
   skillId: z.string(),
-  target: z.object({
-    x: z.number(),
-    y: z.number(),
-    z: z.number()
-  })
+  targets: z
+    .object({
+      x: z.number(),
+      y: z.number(),
+      z: z.number()
+    })
+    .array()
 });
 
 export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
@@ -29,8 +31,17 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
     if (!skill) return false;
 
     return (
-      this.ctx.atb.activeEntity.canUseSkillAt(skill, this.payload.target) &&
-      skill.isTargetable(this.ctx, this.payload.target, this.ctx.atb.activeEntity)
+      this.ctx.atb.activeEntity.canUseSkillAt(skill, this.payload.targets) &&
+      this.payload.targets.length >= skill.minTargets &&
+      this.payload.targets.length <= skill.maxTargets &&
+      this.payload.targets.every(target =>
+        skill.isTargetable(
+          this.ctx,
+          target,
+          this.ctx.atb.activeEntity,
+          this.payload.targets
+        )
+      )
     );
   }
 
@@ -45,7 +56,7 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
         {
           casterId: this.ctx.atb.activeEntity.id,
           skillId: this.payload.skillId,
-          target: this.payload.target
+          targets: this.payload.targets
         },
         this.ctx
       )

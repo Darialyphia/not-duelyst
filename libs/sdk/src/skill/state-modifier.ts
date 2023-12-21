@@ -62,11 +62,11 @@ export class StatModifier extends Skill {
     }
   }
 
-  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, target: Point3D) {
-    return isWithinCells(ctx, target, point, 0);
+  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, targets: Point3D[]) {
+    return isWithinCells(ctx, targets[0], point, 0);
   }
 
-  execute(ctx: GameSession, caster: Entity, target: Point3D) {
+  execute(ctx: GameSession, caster: Entity, [target]: Point3D[]) {
     const entity = ctx.entityManager.getEntityAt(target)!;
     ctx.actionQueue.push(
       new AddEffectAction(

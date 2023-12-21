@@ -82,12 +82,12 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     ]
   },
   {
-    id: 'haven-tank',
-    spriteId: 'haven-tank-placeholder',
+    id: 'chaos-tank',
+    spriteId: 'chaos-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 2,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 10,
     maxAp: 3,
     apRegenRate: 1,

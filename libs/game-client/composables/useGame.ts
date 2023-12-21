@@ -25,7 +25,7 @@ type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
 export type GameEmits = {
   move: [Point3D & { entityId: EntityId }];
   'end-turn': [];
-  'use-skill': [{ skillId: SkillId; target: Point3D }];
+  'use-skill': [{ skillId: SkillId; targets: Point3D[] }];
   summon: [{ unitId: UnitId; position: Point3D }];
   end: [{ winner: Player }];
 };
@@ -43,6 +43,7 @@ export type GameContext = {
     isSkillTarget(point: Point3D): boolean;
   };
   ui: {
+    skillTargets: Ref<Set<Point3D>>;
     hoveredCell: Ref<Nullable<Cell>>;
     distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
@@ -96,6 +97,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     },
     mapRotation: ref(0),
     ui: {
+      skillTargets: ref(new Set()),
       distanceMap,
       targetMode: ref(null),
       hoveredCell: ref(null),
@@ -119,7 +121,8 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
         return context.ui.selectedSkill.value.isWithinRange(
           session,
           point,
-          context.state.value.activeEntity
+          context.state.value.activeEntity,
+          [...context.ui.skillTargets.value.values()]
         );
       },
       isSummonTarget(point) {
@@ -134,7 +137,8 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
         return context.ui.selectedSkill.value.isTargetable(
           session,
           point,
-          context.state.value.activeEntity
+          context.state.value.activeEntity,
+          [...context.ui.skillTargets.value.values()]
         );
       }
     },
@@ -166,6 +170,11 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     }
   });
 
+  watch(context.ui.targetMode, newMode => {
+    if (newMode !== 'skill') {
+      context.ui.skillTargets.value.clear();
+    }
+  });
   provide(GAME_INJECTION_KEY, context);
 
   return context;

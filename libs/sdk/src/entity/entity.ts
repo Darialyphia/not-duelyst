@@ -228,7 +228,7 @@ export class Entity implements Serializable {
     return this.skills.some(skill => skill.id === skillId);
   }
 
-  canUseSkillAt(skill: Skill, target?: Point3D) {
+  canUseSkillAt(skill: Skill, targets?: Point3D[]) {
     return this.canUseSkill(skill);
   }
 

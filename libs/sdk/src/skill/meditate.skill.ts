@@ -32,10 +32,10 @@ export class Meditate extends Skill {
     );
   }
 
-  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, target: Point3D) {
+  isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, targets: Point3D[]) {
     return (
       isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
-      isWithinCells(ctx, target, point, 0)
+      isWithinCells(ctx, targets[0], point, 0)
     );
   }
 
