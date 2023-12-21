@@ -4,6 +4,7 @@ import { FACTIONS } from '../faction/faction-lookup';
 import { GameSession } from '../game-session';
 import { Fireball } from '../skill/fireball.skill';
 import { Heal } from '../skill/heal.skill';
+import { Meditate } from '../skill/meditate.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { Skill } from '../skill/skill';
@@ -29,6 +30,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new Meditate({ cooldown: 5, cost: 0 }),
       new Heal({ cooldown: 2, cost: 2, power: 3, range: 2 })
     ]
   },
@@ -46,7 +48,10 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     defense: 0,
     speed: 5,
     initiative: 7,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new Meditate({ cooldown: 5, cost: 0 })
+    ]
   },
   {
     id: 'chaos-archer',
@@ -69,7 +74,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         power: 1,
         minRange: { x: 2, y: 2, z: 1 },
         maxRange: 4
-      })
+      }),
+      new Meditate({ cooldown: 5, cost: 0 })
     ]
   },
   {
@@ -82,12 +88,13 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxHp: 13,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 4,
+    attack: 3,
     defense: 1,
     speed: 3,
     initiative: 6,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
+      new Meditate({ cooldown: 5, cost: 0 }),
       new (class extends Skill {
         id = 'bulwark';
 
@@ -154,6 +161,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     initiative: 7,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
+      new Meditate({ cooldown: 5, cost: 0 }),
       new Fireball({
         cost: 2,
         cooldown: 3,

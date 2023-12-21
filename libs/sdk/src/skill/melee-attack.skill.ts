@@ -51,6 +51,7 @@ export class MeleeAttack extends Skill {
 
   execute(ctx: GameSession, caster: Entity, target: Point3D) {
     const entity = ctx.entityManager.getEntityAt(target)!;
+
     ctx.actionQueue.push(
       new DealDamageAction(
         {

@@ -8,7 +8,6 @@ import { Skill, SkillId } from '../skill/skill';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
-import { GameAction } from '../action/action';
 import { Effect } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
 
@@ -74,6 +73,8 @@ export class Entity implements Serializable {
   private emitter = mitt<EntityEventMap>();
 
   private movementSpent = 0;
+
+  public hasUsedSkillThisTurn = false;
 
   public atbSeed = 0;
 
@@ -258,6 +259,7 @@ export class Entity implements Serializable {
 
     this.ap = clamp(this.ap - skill.cost, 0, Infinity);
     this.skillCooldowns[skillId] = skill.cooldown;
+    this.hasUsedSkillThisTurn = true;
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
@@ -320,6 +322,7 @@ export class Entity implements Serializable {
   endTurn() {
     this.atb = this.atbSeed;
     this.movementSpent = 0;
+    this.hasUsedSkillThisTurn = false;
 
     this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
   }

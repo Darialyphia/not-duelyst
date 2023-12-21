@@ -2,14 +2,6 @@
 import { skillImagesPaths } from '../../assets/skills';
 import { unitImagesPaths } from '../../assets/units';
 import { exhaustiveSwitch } from '@hc/shared';
-import {
-  TooltipArrow,
-  TooltipContent,
-  TooltipPortal,
-  TooltipProvider,
-  TooltipRoot,
-  TooltipTrigger
-} from 'radix-vue';
 
 import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';

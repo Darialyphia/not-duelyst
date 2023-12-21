@@ -43,6 +43,7 @@ export class Player implements Serializable {
 
     const general = this.ctx.entityManager.getGeneral(this.id);
 
+    if (general.effects.some(effect => effect.id === 'meditating')) return false;
     return loadoutUnit.cooldown === 0 && general.ap >= unit.summonCost;
   }
 
