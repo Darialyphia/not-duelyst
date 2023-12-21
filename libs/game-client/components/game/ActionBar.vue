@@ -59,7 +59,9 @@ const borders = computed(() => {
           class="skill"
           :class="{
             active: selectedSkill?.id === skill.id,
-            'no-ap': state.activeEntity.ap < skill?.cost ?? 0
+            unavailable:
+              state.activeEntity.ap < skill.cost ||
+              state.activeEntity.hasEffect('meditating')
           }"
           :data-cost="skill.cost"
           :data-cooldown="
@@ -93,7 +95,9 @@ const borders = computed(() => {
             class="summon"
             :class="{
               active: selectedSummon?.id === unit.unit.id,
-              'no-ap': state.activeEntity.ap < unit.unit.summonCost
+              unavailable:
+                state.activeEntity.ap < unit.unit.summonCost ||
+                state.activeEntity.hasEffect('meditating')
             }"
             :data-cost="unit.unit.summonCost"
             :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
@@ -206,7 +210,7 @@ const borders = computed(() => {
       border: none;
     }
 
-    &.no-ap {
+    &.unavailable {
       filter: sepia(100%) hue-rotate(-70deg) saturate(200%) brightness(75%);
     }
   }

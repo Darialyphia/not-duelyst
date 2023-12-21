@@ -8,7 +8,7 @@ import { Skill, SkillId } from '../skill/skill';
 import { Serializable } from '../utils/interfaces';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
-import { Effect } from '../effect/effect';
+import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
 
 export type EntityId = number;
@@ -212,6 +212,10 @@ export class Entity implements Serializable {
   ) {
     // @ts-expect-error pepega typescript
     this.interceptors[key].remove(interceptor);
+  }
+
+  hasEffect(effectId: EffectId) {
+    return this.effects.some(e => e.id === effectId);
   }
 
   canMove(distance: number) {
