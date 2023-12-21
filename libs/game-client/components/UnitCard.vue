@@ -76,6 +76,18 @@ const border = computed(() => {
           {{ entity.initiative }}
         </span>
       </div>
+
+      <div>
+        <div class="i-mdi:run-fast" style="--color: var(--speed)" />
+        <span
+          :class="{
+            'is-buffed': entity.speed > entity.unit.speed,
+            'is-debuffed': entity.speed < entity.unit.speed
+          }"
+        >
+          {{ entity.speed }}
+        </span>
+      </div>
     </div>
 
     <div v-for="skill in entity.skills" :key="skill.id" class="skill">
@@ -136,6 +148,7 @@ const border = computed(() => {
   --ap: var(--indigo-8);
   --attack: var(--red-7);
   --defense: var(--cyan-5);
+  --speed: var(--yellow-3);
 
   width: 18rem;
   padding: 0 var(--size-6) var(--size-6);

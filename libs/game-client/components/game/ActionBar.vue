@@ -9,7 +9,7 @@ import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
 const { state, sendInput, fx } = useGame();
-const { selectedSummon, selectedSkill } = useGameUi();
+const { selectedSummon, selectedSkill, targetMode } = useGameUi();
 
 const activePlayer = computed(
   () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
@@ -47,71 +47,94 @@ const borders = computed(() => {
       "
     />
 
-    <UiTooltip
-      v-for="skill in state.activeEntity.skills"
-      :key="skill.id"
-      :side-offset="50"
-      :delay="200"
-    >
-      <template #trigger>
-        <button
-          :disabled="!state.activeEntity.canUseSkill(skill)"
-          class="skill"
-          :class="{
-            active: selectedSkill?.id === skill.id,
-            unavailable:
-              state.activeEntity.ap < skill.cost ||
-              state.activeEntity.hasEffect('meditating')
-          }"
-          :data-cost="skill.cost"
-          :data-cooldown="
-            state.activeEntity.skillCooldowns[skill.id] > 0
-              ? state.activeEntity.skillCooldowns[skill.id]
-              : ''
-          "
-          :style="{
-            '--bg': `url(${skillImagesPaths[skill.id]})`,
-            '--border': `url(${borders.square})`,
-            '--cooldown-angle':
-              360 - (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
-          }"
-          @click="selectedSkill = skill"
-        />
+    <button
+      class="move"
+      :style="{
+        '--bg': `url(${skillImagesPaths.move})`,
+        '--border': `url(${borders.square})`
+      }"
+      @click="
+        () => {
+          targetMode = 'move';
+        }
+      "
+    />
+
+    <div class="actions">
+      <div>
+        <UiTooltip
+          v-for="skill in state.activeEntity.skills"
+          :key="skill.id"
+          :side-offset="50"
+          :delay="200"
+        >
+          <template #trigger>
+            <button
+              :disabled="!state.activeEntity.canUseSkill(skill)"
+              class="skill"
+              :class="{
+                active: selectedSkill?.id === skill.id,
+                unavailable:
+                  state.activeEntity.ap < skill.cost ||
+                  state.activeEntity.hasEffect('meditating')
+              }"
+              :data-cost="skill.cost"
+              :data-cooldown="
+                state.activeEntity.skillCooldowns[skill.id] > 0
+                  ? state.activeEntity.skillCooldowns[skill.id]
+                  : ''
+              "
+              :style="{
+                '--bg': `url(${skillImagesPaths[skill.id]})`,
+                '--border': `url(${borders.square})`,
+                '--cooldown-angle':
+                  360 -
+                  (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
+              }"
+              @click="selectedSkill = skill"
+            />
+          </template>
+
+          <div class="fancy-surface skill-tooltip">
+            {{ skill.getDescription(state.activeEntity) }}
+          </div>
+        </UiTooltip>
+      </div>
+
+      <template v-if="state.activeEntity.kind === 'GENERAL'">
+        <div>
+          <UiTooltip
+            v-for="unit in activePlayer.summonableUnits"
+            :key="unit.unit.id"
+            :side-offset="50"
+            :delay="200"
+          >
+            <template #trigger>
+              <button
+                :disabled="!activePlayer.canSummon(unit.unit.id)"
+                class="summon"
+                :class="{
+                  active: selectedSummon?.id === unit.unit.id,
+                  unavailable:
+                    state.activeEntity.ap < unit.unit.summonCost ||
+                    state.activeEntity.hasEffect('meditating')
+                }"
+                :data-cost="unit.unit.summonCost"
+                :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
+                :style="{
+                  '--cooldown-angle':
+                    360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
+                  '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
+                  '--border': `url(${borders.rounded})`
+                }"
+                @click="selectedSummon = unit.unit"
+              />
+            </template>
+            <UnitBlueprintCard :unit="unit.unit" />
+          </UiTooltip>
+        </div>
       </template>
-
-      <div class="fancy-surface">{{ skill.getDescription(state.activeEntity) }}</div>
-    </UiTooltip>
-
-    <template v-if="state.activeEntity.kind === 'GENERAL'">
-      <UiTooltip
-        v-for="unit in activePlayer.summonableUnits"
-        :key="unit.unit.id"
-        :side-offset="50"
-        :delay="200"
-      >
-        <template #trigger>
-          <button
-            :disabled="!activePlayer.canSummon(unit.unit.id)"
-            class="summon"
-            :class="{
-              active: selectedSummon?.id === unit.unit.id,
-              unavailable:
-                state.activeEntity.ap < unit.unit.summonCost ||
-                state.activeEntity.hasEffect('meditating')
-            }"
-            :data-cost="unit.unit.summonCost"
-            :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
-            :style="{
-              '--cooldown-angle': 360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-              '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
-              '--border': `url(${borders.rounded})`
-            }"
-            @click="selectedSummon = unit.unit"
-          />
-        </template>
-        <UnitBlueprintCard :unit="unit.unit" />
-      </UiTooltip>
-    </template>
+    </div>
 
     <UiButton
       :style="{
@@ -135,7 +158,7 @@ const borders = computed(() => {
   align-items: center;
 
   min-width: var(--size-sm);
-  padding: var(--size-3);
+  padding: var(--size-6);
 
   backdrop-filter: blur(5px);
   border-radius: var(--radius-3);
@@ -145,7 +168,7 @@ const borders = computed(() => {
   width: 96px;
 }
 
-:is(.skill, .summon, .active-entity) {
+:is(.skill, .summon, .active-entity, .move) {
   aspect-ratio: 1;
   background-image: var(--border), var(--bg);
   background-repeat: no-repeat;
@@ -225,7 +248,26 @@ const borders = computed(() => {
   border-radius: var(--radius-round);
 }
 
+.move {
+  position: relative;
+  width: 64px;
+  box-shadow: inset 0 0 0 1px black;
+}
 .end-turn {
   margin-left: auto;
+}
+
+.skill-tooltip {
+  max-width: var(--size-14);
+}
+
+.actions {
+  display: grid;
+  row-gap: var(--size-3);
+
+  > div {
+    display: flex;
+    gap: var(--size-3);
+  }
 }
 </style>

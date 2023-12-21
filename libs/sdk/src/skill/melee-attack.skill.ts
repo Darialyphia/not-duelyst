@@ -29,10 +29,7 @@ export class MeleeAttack extends Skill {
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
-    return (
-      isWithinCells(ctx, caster.position, point, { x: 1, y: 1, z: 0.5 }) &&
-      isAxisAligned(point, caster.position)
-    );
+    return isWithinCells(ctx, caster.position, point, { x: 1, y: 1, z: 0.5 });
   }
 
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {

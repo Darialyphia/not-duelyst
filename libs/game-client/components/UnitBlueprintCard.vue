@@ -61,6 +61,13 @@ const border = computed(() => {
           {{ unit.initiative }}
         </span>
       </div>
+
+      <div>
+        <div class="i-mdi:run-fast" style="--color: var(--speed)" />
+        <span>
+          {{ unit.speed }}
+        </span>
+      </div>
     </div>
 
     <div v-for="skill in unit.skills" :key="skill.id" class="skill">
@@ -85,6 +92,7 @@ const border = computed(() => {
   --ap: var(--indigo-8);
   --attack: var(--red-7);
   --defense: var(--cyan-5);
+  --speed: var(--yellow-3);
 
   width: 18rem;
   padding: 0 var(--size-6) var(--size-6);

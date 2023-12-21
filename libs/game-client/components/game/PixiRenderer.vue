@@ -60,6 +60,9 @@ onMounted(() => {
   });
 });
 
+const worldSize =
+  Math.sqrt(Math.pow(state.value.map.width, 2) + Math.pow(state.value.map.height, 2)) *
+  CELL_SIZE;
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
@@ -67,6 +70,7 @@ until(screenViewport)
       width: 0,
       height: 0
     });
+
     fx.viewport = screenViewport.value;
     screenViewport.value
       ?.drag({
@@ -75,9 +79,16 @@ until(screenViewport)
       .pinch()
       .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
+      .clamp({
+        top: -screenViewport.value.worldWidth,
+        bottom: screenViewport.value.worldWidth,
+        left: -screenViewport.value.worldWidth * 1.75,
+        right: screenViewport.value.worldWidth * 1.75
+      })
       .clampZoom({ minScale: 1, maxScale: 4 })
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
+    console.log(center);
   });
 
 watchEffect(() => {
@@ -93,18 +104,20 @@ watchEffect(() => {
     ref="screenViewport"
     :screen-width="app.view.width"
     :screen-height="app.view.height"
-    :world-width="state.map.width * CELL_SIZE"
-    :world-height="state.map.height * CELL_SIZE"
+    :world-width="Math.max(app.view.width, worldSize * 2)"
+    :world-height="Math.max(app.view.height, worldSize)"
     :events="app.renderer.events"
     :disable-on-context-menu="true"
     :sortable-children="true"
   >
-    <Layer ref="gameObjectsLayer">
-      <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
+    <container :x="0">
+      <Layer ref="gameObjectsLayer">
+        <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
-      <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
-    </Layer>
+        <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
+      </Layer>
 
-    <Layer ref="uiLayer" />
+      <Layer ref="uiLayer" />
+    </container>
   </viewport>
 </template>

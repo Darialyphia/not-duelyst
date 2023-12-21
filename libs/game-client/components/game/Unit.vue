@@ -5,7 +5,7 @@ import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
-import { type AnimatedSprite, type Cursor } from 'pixi.js';
+import { type AnimatedSprite, type Cursor, FederatedMouseEvent } from 'pixi.js';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { entity } = defineProps<{
@@ -128,8 +128,6 @@ const filters = computed(() => {
 });
 
 const cursor = computed(() => {
-  const cell = gameSession.map.getCellAt(entity.position);
-
   if (isSkillTarget(entity.position)) {
     return app.value.renderer.events.cursorStyles.attack as Cursor;
   }
@@ -174,7 +172,8 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         :z-index="2"
         loop
         @pointerup="
-          () => {
+          (e: FederatedMouseEvent) => {
+            if (e.button !== 0) return;
             if (!isSkillTarget(entity.position)) return;
             sendInput('use-skill', {
               skillId: selectedSkill!.id,

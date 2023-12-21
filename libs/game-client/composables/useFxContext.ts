@@ -244,7 +244,6 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       { count = 5, totalDuration = 1, axis = 'x', amount = 10 } = {}
     ) {
       return new Promise(resolve => {
-        fx.isMoving.value = true;
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
           console.warn(`FXContext: entity not found for entityId ${entityId}`);
@@ -256,6 +255,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           console.warn(`FXContext: sprite not found for entity ${entityId}`);
           return resolve();
         }
+        fx.isMoving.value = true;
 
         const { x, y } = sprite.position;
         gsap.fromTo(
@@ -271,6 +271,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
             ease: Power0.easeNone,
             yoyo: true,
             onComplete: () => {
+              fx.isMoving.value = false;
               sprite.position.x = x;
               sprite.position.y = y;
               resolve();

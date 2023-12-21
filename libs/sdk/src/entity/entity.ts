@@ -262,6 +262,7 @@ export class Entity implements Serializable {
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
     this.ap = clamp(this.ap - skill.cost, 0, Infinity);
+    this.movementSpent = this.speed;
     this.skillCooldowns[skillId] = skill.cooldown;
     this.hasUsedSkillThisTurn = true;
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
