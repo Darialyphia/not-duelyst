@@ -52,6 +52,7 @@ const borders = computed(() => {
       Cast
     </UiButton>
   </div>
+
   <div class="action-bar content-surface">
     <button
       class="active-entity"
@@ -108,7 +109,7 @@ const borders = computed(() => {
                   : ''
               "
               :style="{
-                '--bg': `url(${skillImagesPaths[skill.id]})`,
+                '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
                 '--border': `url(${borders.square})`,
                 '--cooldown-angle':
                   360 -

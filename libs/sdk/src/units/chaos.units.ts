@@ -25,7 +25,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new (class extends StatModifier {
         getDescription() {
-          return `Give an ally ${this.value}.`;
+          return `Give an ally ${this.value} ${this.statKey}.`;
         }
       })({
         cost: 2,
