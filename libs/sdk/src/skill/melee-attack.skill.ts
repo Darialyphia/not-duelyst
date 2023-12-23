@@ -4,7 +4,7 @@ import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillOptions } from './skill';
+import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf } from './skill-utils';
 
 export type MeleeAttackOptions = PartialBy<SkillOptions, 'spriteId'> & { power: number };
@@ -24,7 +24,7 @@ export class MeleeAttack extends Skill {
     this.power = options.power;
   }
 
-  getDescription(caster: Entity) {
+  getDescription(caster: SkillDescriptionContext) {
     return `Deals ${caster.attack + this.power} damage to a nearby enemy.`;
   }
 

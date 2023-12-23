@@ -14,6 +14,12 @@ export type SkillOptions = {
   maxTargets?: number;
 };
 
+export type SkillDescriptionContext = {
+  attack: number;
+  defense: number;
+  speed: number;
+};
+
 export abstract class Skill {
   abstract readonly id: SkillId;
   readonly cost: number;
@@ -34,7 +40,7 @@ export abstract class Skill {
     this.maxTargets = options.maxTargets ?? 1;
   }
 
-  abstract getDescription(caster: Entity): string;
+  abstract getDescription(caster: SkillDescriptionContext): string;
 
   abstract isTargetable(
     ctx: GameSession,

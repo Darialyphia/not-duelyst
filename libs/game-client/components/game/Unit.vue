@@ -161,14 +161,19 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         :cursor="cursor"
         :z-index="2"
         loop
-        @pointerup="
+        @pointerdown="
           (e: FederatedMouseEvent) => {
             if (e.button !== 0) return;
             if (targetMode === null) {
               selectedEntity = entity;
-              return;
+              targetMode = 'move';
             }
-
+          }
+        "
+        @pointerup="
+          (e: FederatedMouseEvent) => {
+            if (e.button !== 0) return;
+            if (targetMode === 'move') targetMode = null;
             if (!selectedEntity) return;
             if (!utils.isSkillTarget(entity.position)) return;
 

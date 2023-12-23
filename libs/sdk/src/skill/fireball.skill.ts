@@ -5,7 +5,7 @@ import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillOptions } from './skill';
+import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf, isAxisAligned } from './skill-utils';
 
 export type FireballOptions = PartialBy<SkillOptions, 'spriteId'> & {
@@ -34,7 +34,7 @@ export class Fireball extends Skill {
     this.dotPower = options.dotPower;
   }
 
-  getDescription(caster: Entity) {
+  getDescription(caster: SkillDescriptionContext) {
     return `Deals ${caster.attack + this.power} damage to up to ${
       this.maxTargets
     } enemies, then ${this.dotPower} damage every turn for ${this.dotDuration} turns`;

@@ -3,7 +3,6 @@ import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
 import { Entity } from '../entity/entity';
-
 export type PlayerId = string;
 
 export type Loadout = {
@@ -17,37 +16,19 @@ export class Player implements Serializable {
     public readonly loadout: Loadout,
     public readonly generalId: UnitId,
     public gold: number
-  ) {
-    this.ctx.emitter.on('game:turn-start', player => {
-      if (ctx.turn <= 1) return;
-
-      if (player.id === this.id) {
-        Object.entries(this.loadout.units).forEach(([, unit]) => {
-          unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
-        });
-        this.gold += 2;
-      }
-    });
-  }
+  ) {}
 
   serialize() {
-    return structuredClone({
+    return {
       id: this.id,
       loadout: this.loadout,
       generalId: this.generalId,
       gold: this.gold
-    });
+    };
   }
 
   clone() {
-    const clone = new Player(this.ctx, this.id, this.loadout, this.generalId, this.gold);
-
-    Object.keys(this).forEach(key => {
-      // @ts-expect-error cant be arsed
-      clone[key] = this[key];
-    });
-
-    return clone;
+    return new Player(this.ctx, this.id, this.loadout, this.generalId, this.gold);
   }
 
   canSummon(unitId: UnitId) {
@@ -62,7 +43,7 @@ export class Player implements Serializable {
     if (!this.canSummon(unit.id)) return;
 
     this.gold = clamp(this.gold - unit.summonCost, 0, Infinity);
-    // this.loadout.units[unit.id].cooldown = unit.summonCooldown;
+    this.loadout.units[unit.id].cooldown = unit.summonCooldown;
   }
 
   get summonableUnits() {
@@ -86,5 +67,12 @@ export class Player implements Serializable {
 
   ownsEntity(entity: Entity) {
     return entity.playerId === this.id;
+  }
+
+  startTurn() {
+    Object.entries(this.loadout.units).forEach(([name, unit]) => {
+      unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
+    });
+    this.gold += 2;
   }
 }

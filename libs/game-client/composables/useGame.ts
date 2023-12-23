@@ -87,6 +87,8 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     return session.map.getDistanceMap(selectedEntity.position, selectedEntity.speed);
   });
 
+  const selectedEntityId = ref<Nullable<number>>(null);
+
   const context: GameContext = {
     assets,
     state: state as Ref<GameState>,
@@ -104,7 +106,16 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       distanceMap,
       targetMode: ref(null),
       hoveredCell: ref(null),
-      selectedEntity: ref(null),
+      selectedEntity: computed<Entity | null>({
+        get() {
+          return selectedEntityId.value
+            ? (state.value.entities.find(e => e.id === selectedEntityId.value)! as Entity)
+            : null;
+        },
+        set(entity) {
+          selectedEntityId.value = entity?.id ?? null;
+        }
+      }),
       selectedSkill: ref(null),
       selectedSummon: ref(null),
       layers: {

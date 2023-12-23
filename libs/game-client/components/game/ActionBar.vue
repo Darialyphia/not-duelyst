@@ -52,24 +52,6 @@ const borders = computed(() => {
   </div>
 
   <div class="action-bar content-surface">
-    <!-- <button
-      class="active-entity"
-      :style="{
-        '--bg': `url(${unitImagesPaths[selectedEntity.unit.spriteId + '-icon']})`,
-        '--border': `url(${borders.square})`
-      }"
-      @click="
-        () => {
-          const spriteRef = fx.spriteMap.get(selectedEntity!.id);
-          if (!spriteRef) return;
-          const sprite = toValue(spriteRef);
-          if (!sprite) return;
-
-          fx.viewport?.moveCenter(sprite.position);
-        }
-      "
-    /> -->
-
     <div class="actions">
       <div>
         <UiTooltip
@@ -94,7 +76,7 @@ const borders = computed(() => {
                 '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
                 '--border': `url(${borders.rounded})`
               }"
-              @click="selectedSummon = unit.unit"
+              @mousedown="selectedSummon = unit.unit"
             />
           </template>
           <UnitBlueprintCard :unit="unit.unit" />

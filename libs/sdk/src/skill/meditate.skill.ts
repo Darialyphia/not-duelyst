@@ -26,9 +26,7 @@ export class Meditate extends Skill {
 
   isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
     return (
-      this.isWithinRange(ctx, point, caster) &&
-      caster.remainingMovement === caster.speed &&
-      !caster.hasUsedSkillThisTurn
+      this.isWithinRange(ctx, point, caster) && caster.remainingMovement === caster.speed
     );
   }
 

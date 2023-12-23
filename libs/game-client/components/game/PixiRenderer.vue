@@ -35,6 +35,13 @@ onMounted(() => {
           ui.selectedEntity.value = entities[index + 1];
         }
       }
+
+      const spriteRef = fx.spriteMap.get(selectedEntity!.id);
+      if (!spriteRef) return;
+      const sprite = toValue(spriteRef);
+      if (!sprite) return;
+
+      fx.viewport?.moveCenter(sprite.position);
     }
 
     if (
@@ -65,8 +72,8 @@ onMounted(() => {
         const unit = player.summonableUnits[index];
         if (!unit) return;
         ui.selectedSummon.value = unit.unit;
-      } else {
-        const skill = ui.selectedEntity.value!.skills[index];
+      } else if (ui.selectedEntity.value) {
+        const skill = ui.selectedEntity.value.skills[index];
         if (e.code === code) {
           ui.selectedSkill.value = skill;
         }
@@ -87,6 +94,11 @@ onMounted(() => {
 const worldSize =
   Math.sqrt(Math.pow(state.value.map.width, 2) + Math.pow(state.value.map.height, 2)) *
   CELL_SIZE;
+
+watchEffect(() => {
+  if (!screenViewport.value) return;
+  screenViewport.value.pause = ui.targetMode.value === 'move';
+});
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {

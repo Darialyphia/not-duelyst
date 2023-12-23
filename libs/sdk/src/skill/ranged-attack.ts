@@ -4,7 +4,7 @@ import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillOptions } from './skill';
+import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isSelf, isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
 
@@ -33,7 +33,7 @@ export class RangedAttack extends Skill {
     this.maxRange = options.maxRange;
   }
 
-  getDescription(caster: Entity) {
+  getDescription(caster: SkillDescriptionContext) {
     return `Deals ${
       caster.attack + this.power
     } damage to an enemy. Cannot be cast in melee range.`;

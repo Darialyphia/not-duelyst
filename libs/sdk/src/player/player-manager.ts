@@ -53,6 +53,13 @@ export class PlayerManager {
 
   addPlayer(player: Player) {
     this.playerMap.set(player.id, player);
+    this.ctx.emitter.on('game:turn-start', newPlayer => {
+      if (this.ctx.turn <= 1) return;
+
+      if (player.id === newPlayer.id) {
+        player.startTurn();
+      }
+    });
   }
 
   removePlayer(playerId: PlayerId) {

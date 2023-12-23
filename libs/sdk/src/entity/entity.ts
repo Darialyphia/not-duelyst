@@ -109,12 +109,6 @@ export class Entity implements Serializable {
     this.unit.skills.forEach(skill => {
       this.skillCooldowns[skill.id] = 0;
     });
-
-    this.ctx.emitter.on('game:turn-start', player => {
-      if (player.id === this.playerId) {
-        this.startTurn();
-      }
-    });
   }
 
   equals(entity: Entity) {
