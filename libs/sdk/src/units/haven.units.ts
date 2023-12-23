@@ -1,4 +1,4 @@
-import { AddEffectAction } from '../action/add-effect';
+import { AddEffectAction } from '../action/add-effect.action';
 import { Entity } from '../entity/entity';
 import { FACTIONS } from '../faction/faction-lookup';
 import { GameSession } from '../game-session';
@@ -39,7 +39,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
-    summonCooldown: 1,
+    summonCooldown: 2,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -67,7 +67,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       new RangedAttack({
         cooldown: 1,
         cost: 0,
-        power: 1,
+        power: 0,
         minRange: { x: 2, y: 2, z: 1 },
         maxRange: 3
       })
@@ -78,7 +78,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     spriteId: 'haven-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
-    summonCost: 2,
+    summonCost: 3,
     summonCooldown: 4,
     maxHp: 10,
     maxAp: 3,
@@ -108,7 +108,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     spriteId: 'haven-caster-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
-    summonCost: 2,
+    summonCost: 3,
     summonCooldown: 3,
     maxHp: 6,
     maxAp: 3,
@@ -118,7 +118,13 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     speed: 4,
     initiative: 7,
     skills: [
-      new MeleeAttack({ cooldown: 1, cost: 0, power: 1 }),
+      new RangedAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
       new Fireball({
         cost: 2,
         cooldown: 2,

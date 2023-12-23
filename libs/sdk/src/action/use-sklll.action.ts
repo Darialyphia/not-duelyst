@@ -1,7 +1,7 @@
 import { EntityId } from '../entity/entity';
 import { SkillId } from '../skill/skill';
 import { Point3D } from '../types';
-import { FXContext, GameAction } from './action';
+import { GameAction } from './action';
 
 export class UseSkillAction extends GameAction<{
   casterId: EntityId;
@@ -10,22 +10,22 @@ export class UseSkillAction extends GameAction<{
 }> {
   readonly name = 'USE_SKILL';
 
+  private get caster() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.casterId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.casterId}`);
+
+    return entity;
+  }
+
   private get skill() {
-    const skill = this.ctx.atb.activeEntity.skills.find(
-      skill => skill.id === this.payload.skillId
-    );
+    const skill = this.caster.skills.find(skill => skill.id === this.payload.skillId);
     if (!skill) throw new Error(`Skill not found: ${this.payload.skillId}`);
     return skill;
   }
 
   private get affectedCells() {
     return this.ctx.map.cells.filter(cell =>
-      this.skill.isInAreaOfEffect(
-        this.ctx,
-        cell,
-        this.ctx.atb.activeEntity,
-        this.payload.targets
-      )
+      this.skill.isInAreaOfEffect(this.ctx, cell, this.caster, this.payload.targets)
     );
   }
 
@@ -33,12 +33,7 @@ export class UseSkillAction extends GameAction<{
     if (!this.ctx.fxContext) return;
 
     await Promise.all([
-      this.skill.fxImpl(
-        this.ctx,
-        this.ctx.atb.activeEntity,
-        this.payload.targets,
-        this.affectedCells
-      ),
+      this.skill.fxImpl(this.ctx, this.caster, this.payload.targets, this.affectedCells),
       this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
         fallback: 'attack-placeholder',
         percentage: 0.25
@@ -60,11 +55,6 @@ export class UseSkillAction extends GameAction<{
 
     entity.useSkill(this.payload.skillId);
 
-    this.skill.execute(
-      this.ctx,
-      this.ctx.atb.activeEntity,
-      this.payload.targets,
-      this.affectedCells
-    );
+    this.skill.execute(this.ctx, this.caster, this.payload.targets, this.affectedCells);
   }
 }

@@ -2,7 +2,6 @@ import { EntityId } from '../entity/entity';
 import { isGeneral } from '../entity/entity-utils';
 import { GameAction } from './action';
 import { EndGamection } from './end-game.action';
-import { EndTurnAction } from './end-turn.action';
 
 export class DieAction extends GameAction<{ entityId: EntityId }> {
   readonly name = 'DIE';
@@ -30,12 +29,6 @@ export class DieAction extends GameAction<{ entityId: EntityId }> {
         )
       );
       return;
-    }
-
-    if (entity.equals(this.ctx.atb.activeEntity)) {
-      this.ctx.actionQueue.push(
-        new EndTurnAction({ playerId: entity.playerId }, this.ctx)
-      );
     }
   }
 }

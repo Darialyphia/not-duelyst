@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
-import type { Container, Cursor } from 'pixi.js';
-import type { Cell, Point3D } from '@hc/sdk';
+import type { Cursor } from 'pixi.js';
+import type { Cell } from '@hc/sdk';
 import { isDefined } from '@hc/shared';
 
 const { cell, cursor } = defineProps<{
@@ -10,13 +10,7 @@ const { cell, cursor } = defineProps<{
 }>();
 
 const { state, gameSession, mapRotation, assets, utils } = useGame();
-const { hoveredCell, targetMode } = useGameUi();
-
-const isHoveringActiveEntity = computed(
-  () =>
-    hoveredCell.value?.id ===
-    gameSession.map.getCellAt(state.value.activeEntity.position)?.id
-);
+const { selectedEntity, targetMode } = useGameUi();
 
 const isHighlighted = computed(() => {
   if (!cell) return;
@@ -29,10 +23,11 @@ const isHighlighted = computed(() => {
     case 'move':
       return (
         utils.isMoveTarget(cell.position) &&
-        state.value.activeEntity.remainingMovement > 0
+        selectedEntity.value &&
+        selectedEntity.value.remainingMovement > 0
       );
     default:
-      return isHoveringActiveEntity.value && utils.isMoveTarget(cell.position);
+      return false;
   }
 });
 

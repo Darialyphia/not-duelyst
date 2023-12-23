@@ -1,5 +1,4 @@
 import { PlayerInput, defaultInputSchema } from './input';
-import { ensureActiveEntityBelongsToPlayer } from '../entity/entity-utils';
 import { INPUT_NAME } from './input-reducer';
 import { EndTurnAction } from '../action/end-turn.action';
 
@@ -11,7 +10,7 @@ export class EndTurnInput extends PlayerInput<typeof endTurnEventSchema> {
   protected payloadSchema = endTurnEventSchema;
 
   impl() {
-    if (ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId)) {
+    if (this.ctx.playerManager.getActivePlayer().id === this.payload.playerId) {
       this.ctx.actionQueue.push(
         new EndTurnAction({ playerId: this.payload.playerId }, this.ctx)
       );

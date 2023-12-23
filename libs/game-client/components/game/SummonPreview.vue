@@ -23,10 +23,10 @@ const textures = computed(() =>
 );
 const scaleX = computed(() => {
   if (mapRotation.value === 90 || mapRotation.value === 180) {
-    return state.value.activeEntity.playerId === state.value.players[0].id ? -1 : 1;
+    return state.value.activePlayer.id === state.value.players[0].id ? -1 : 1;
   }
 
-  return state.value.activeEntity.playerId === state.value.players[0].id ? 1 : -1;
+  return state.value.activePlayer.id === state.value.players[0].id ? 1 : -1;
 });
 const filters = [
   new AdjustmentFilter({

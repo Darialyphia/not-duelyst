@@ -127,7 +127,7 @@ export class GameMap implements Serializable {
     if (!cell.isWalkable) return false;
 
     return this.ctx.entityManager
-      .getNearbyAllies(point, this.ctx.atb.activeEntity.playerId)
+      .getNearbyAllies(point, this.ctx.playerManager.getActivePlayer().id)
       .some(ally => {
         const withOffset = {
           point: Vec3.sub(point, { x: 0, y: 0, z: cell.isHalfTile ? 0.5 : 0 }),

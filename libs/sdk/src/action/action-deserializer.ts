@@ -8,7 +8,7 @@ import { UseSkillAction } from './use-sklll.action';
 import { GameSession } from '../game-session';
 import { DieAction } from './die.action';
 import { EndGamection } from './end-game.action';
-import { AddEffectAction } from './add-effect';
+import { AddEffectAction } from './add-effect.action';
 import { HealAction } from './heal.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;

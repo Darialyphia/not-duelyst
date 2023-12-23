@@ -4,6 +4,7 @@ import { INPUT_NAME } from './input-reducer';
 import { UseSkillAction } from '../action/use-sklll.action';
 
 const useSkillEventSchema = defaultInputSchema.extend({
+  entityId: z.number(),
   playerId: z.string(),
   skillId: z.string(),
   targets: z
@@ -20,10 +21,15 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
 
   protected payloadSchema = useSkillEventSchema;
 
+  private get caster() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+
+    return entity;
+  }
+
   private getSkill() {
-    return this.ctx.atb.activeEntity.skills.find(
-      skill => skill.id === this.payload.skillId
-    );
+    return this.caster.skills.find(skill => skill.id === this.payload.skillId);
   }
 
   private get canUseSkill() {
@@ -31,16 +37,11 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
     if (!skill) return false;
 
     return (
-      this.ctx.atb.activeEntity.canUseSkillAt(skill, this.payload.targets) &&
+      this.caster.canUseSkillAt(skill, this.payload.targets) &&
       this.payload.targets.length >= skill.minTargets &&
       this.payload.targets.length <= skill.maxTargets &&
       this.payload.targets.every(target =>
-        skill.isTargetable(
-          this.ctx,
-          target,
-          this.ctx.atb.activeEntity,
-          this.payload.targets
-        )
+        skill.isTargetable(this.ctx, target, this.caster, this.payload.targets)
       )
     );
   }
@@ -54,7 +55,7 @@ export class UseSkillInput extends PlayerInput<typeof useSkillEventSchema> {
     this.ctx.actionQueue.push(
       new UseSkillAction(
         {
-          casterId: this.ctx.atb.activeEntity.id,
+          casterId: this.caster.id,
           skillId: this.payload.skillId,
           targets: this.payload.targets
         },

@@ -4,9 +4,11 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
   const maps = await $fetch('/api/maps');
 
   return {
+    turn: 0,
     entities: [],
     history: [],
     map: maps[mapName],
+    activePlayerId: 'Player1',
     players: [
       {
         id: 'Player1',
@@ -18,7 +20,8 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
             'haven-caster': { cooldown: 0 }
           }
         },
-        generalId: 'haven-hero'
+        generalId: 'haven-hero',
+        gold: 2
       },
       {
         id: 'Player2',
@@ -30,7 +33,8 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
             'chaos-caster': { cooldown: 0 }
           }
         },
-        generalId: 'chaos-hero'
+        generalId: 'chaos-hero',
+        gold: 2
       }
     ]
   };

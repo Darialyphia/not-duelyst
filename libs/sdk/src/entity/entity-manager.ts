@@ -95,6 +95,12 @@ export class EntityManager {
     entity.on('*', type => {
       this.ctx.emitter.emit(`entity:${type}`, entity);
     });
+
+    this.ctx.emitter.on('game:turn-start', player => {
+      if (player.id === entity.playerId) {
+        entity.startTurn();
+      }
+    });
   }
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {

@@ -56,13 +56,6 @@ const border = computed(() => {
       </div>
 
       <div>
-        <div class="i-ri-hourglass-fill" />
-        <span>
-          {{ unit.initiative }}
-        </span>
-      </div>
-
-      <div>
         <div class="i-mdi:run-fast" style="--color: var(--speed)" />
         <span>
           {{ unit.speed }}
@@ -75,13 +68,15 @@ const border = computed(() => {
         class="skill-img"
         :data-cost="skill.cost"
         :style="{
-          '--bg': `url(${skillImagesPaths[skill.id]})`,
+          '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
           '--border': `url(${border})`
         }"
       />
 
-      <div>{{ skill.id }}</div>
-      <!-- <p>{{ skill.description }}</p> -->
+      <div class="flex flex-col gap-1">
+        {{ skill.id }}
+        <p>{{ skill.getDescription(unit) }}</p>
+      </div>
     </div>
   </article>
 </template>
@@ -148,9 +143,7 @@ const border = computed(() => {
 }
 
 .skill {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  display: flex;
   row-gap: var(--size-1);
   column-gap: var(--size-3);
 
@@ -161,14 +154,21 @@ const border = computed(() => {
   line-height: 1;
 
   .skill-img {
+    transform: translateY(5px);
+
+    flex-shrink: 0;
+    align-self: flex-start;
+
     aspect-ratio: 1;
     width: 32px;
+
     background-image: var(--border), var(--bg);
     background-size: contain;
   }
 
   p {
     grid-column: 2;
+    margin: 0;
     font-size: var(--font-size-00);
     opacity: 0.8;
   }

@@ -21,6 +21,14 @@ const border = computed(() => {
       throw exhaustiveSwitch;
   }
 });
+
+const { state } = useGame();
+watchEffect(() => {
+  console.log(
+    state.value.entities.find(e => e.id === entity.id)?.skillCooldowns,
+    entity.skillCooldowns
+  );
+});
 </script>
 
 <template>
@@ -66,18 +74,6 @@ const border = computed(() => {
       </div>
 
       <div>
-        <div class="i-ri-hourglass-fill" />
-        <span
-          :class="{
-            'is-buffed': entity.initiative > entity.unit.initiative,
-            'is-debuffed': entity.initiative < entity.unit.initiative
-          }"
-        >
-          {{ entity.initiative }}
-        </span>
-      </div>
-
-      <div>
         <div class="i-mdi:run-fast" style="--color: var(--speed)" />
         <span
           :class="{
@@ -94,14 +90,21 @@ const border = computed(() => {
       <div
         class="skill-img"
         :data-cost="skill.cost"
+        :data-cooldown="
+          entity.skillCooldowns[skill.id] > 0 ? entity.skillCooldowns[skill.id] : ''
+        "
         :style="{
-          '--bg': `url(${skillImagesPaths[skill.id]})`,
+          '--cooldown-angle':
+            360 - (360 * entity.skillCooldowns[skill.id]) / skill.cooldown,
+          '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
           '--border': `url(${border})`
         }"
       />
 
-      <div>{{ skill.id }}</div>
-      <!-- <p>{{ skill.description }}</p> -->
+      <div class="flex flex-col gap-1">
+        {{ skill.id }}
+        <p>{{ skill.getDescription(entity) }}</p>
+      </div>
     </div>
 
     <ul>
@@ -210,9 +213,7 @@ const border = computed(() => {
 }
 
 .skill {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  display: flex;
   row-gap: var(--size-1);
   column-gap: var(--size-3);
 
@@ -223,14 +224,45 @@ const border = computed(() => {
   line-height: 1;
 
   .skill-img {
+    transform: translateY(5px);
+
+    flex-shrink: 0;
+    align-self: flex-start;
+
     aspect-ratio: 1;
-    width: 32px;
+    width: 48px;
+
     background-image: var(--border), var(--bg);
     background-size: contain;
+
+    &::before {
+      content: attr(data-cooldown);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      display: grid;
+      place-content: center;
+
+      width: 100%;
+      height: 100%;
+
+      font-size: var(--font-size-5);
+      font-weight: var(--font-weight-7);
+      color: white;
+
+      background: conic-gradient(
+        hsl(var(--gray-11-hsl) / 0.1) calc(1deg * var(--cooldown-angle)),
+        hsl(var(--gray-11-hsl) / 0.5) calc(1deg * var(--cooldown-angle))
+      );
+      border: none;
+    }
   }
 
   p {
     grid-column: 2;
+    margin: 0;
     font-size: var(--font-size-00);
     opacity: 0.8;
   }

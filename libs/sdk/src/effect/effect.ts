@@ -22,7 +22,7 @@ export abstract class Effect {
     this.attachedTo = entity;
     this.attachedTo.effects.push(this);
 
-    this.attachedTo.on('turn-start', this.tick);
+    this.ctx.emitter.on('game:turn-start', this.tick);
     this.attachedTo.on('die', this.detach);
 
     this.onApplied();
@@ -34,7 +34,7 @@ export abstract class Effect {
     const idx = this.attachedTo.effects.indexOf(this);
     this.attachedTo.effects.splice(idx);
 
-    this.attachedTo.off('turn-start', this.tick);
+    this.ctx.emitter.off('game:turn-start', this.tick);
     this.attachedTo.off('die', this.detach);
   }
 

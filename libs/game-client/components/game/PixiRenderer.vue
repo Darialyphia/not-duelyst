@@ -16,8 +16,40 @@ onMounted(() => {
 
     if (e.code === 'KeyE')
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
-    if (e.code === 'KeyA') ui.targetMode.value = 'move';
+
     if (e.code === 'KeyT') sendInput('end-turn');
+    if (e.code === 'Tab') {
+      e.preventDefault();
+      const selectedEntity = ui.selectedEntity.value;
+      const activePlayer = state.value.activePlayer;
+
+      if (!selectedEntity) {
+        ui.selectedEntity.value = activePlayer.general;
+      } else {
+        const player = selectedEntity.player;
+        const entities = player.entities;
+        const index = entities.findIndex(e => e.equals(selectedEntity));
+        if (index === entities.length - 1) {
+          ui.selectedEntity.value = player.opponent.general;
+        } else {
+          ui.selectedEntity.value = entities[index + 1];
+        }
+      }
+
+      const spriteRef = fx.spriteMap.get(selectedEntity!.id);
+      if (!spriteRef) return;
+      const sprite = toValue(spriteRef);
+      if (!sprite) return;
+
+      fx.viewport?.moveCenter(sprite.position);
+    }
+
+    if (
+      ui.selectedEntity.value &&
+      ui.selectedEntity.value?.playerId !== state.value.activePlayer.id
+    ) {
+      return;
+    }
 
     const actionCodes = [
       'Digit1',
@@ -34,15 +66,13 @@ onMounted(() => {
       if (e.code !== code) return;
 
       if (e.shiftKey) {
-        const player = gameSession.playerManager.getPlayerById(
-          state.value.activeEntity.playerId
-        )!;
+        const player = gameSession.playerManager.getActivePlayer();
 
         const unit = player.summonableUnits[index];
         if (!unit) return;
         ui.selectedSummon.value = unit.unit;
-      } else {
-        const skill = state.value.activeEntity.skills[index];
+      } else if (ui.selectedEntity.value) {
+        const skill = ui.selectedEntity.value.skills[index];
         if (e.code === code) {
           ui.selectedSkill.value = skill;
         }
@@ -63,6 +93,11 @@ onMounted(() => {
 const worldSize =
   Math.sqrt(Math.pow(state.value.map.width, 2) + Math.pow(state.value.map.height, 2)) *
   CELL_SIZE;
+
+watchEffect(() => {
+  if (!screenViewport.value) return;
+  screenViewport.value.pause = ui.targetMode.value === 'move';
+});
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
@@ -79,6 +114,11 @@ until(screenViewport)
       .pinch()
       .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
+      .mouseEdges({
+        distance: 10,
+        speed: 18,
+        allowButtons: true
+      })
       .clamp({
         top: -screenViewport.value.worldWidth,
         bottom: screenViewport.value.worldWidth,
@@ -88,7 +128,6 @@ until(screenViewport)
       .clampZoom({ minScale: 1, maxScale: 4 })
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
-    console.log(center);
   });
 
 watchEffect(() => {

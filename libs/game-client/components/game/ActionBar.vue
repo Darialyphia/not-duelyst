@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { skillImagesPaths } from '../../assets/skills';
 import { unitImagesPaths } from '../../assets/units';
+import { skillImagesPaths } from '../../assets/skills';
 import { exhaustiveSwitch } from '@hc/shared';
 
 import havenBorder from '../../assets/ui/icon-border-haven.png';
@@ -8,15 +8,13 @@ import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
-const { state, sendInput, fx } = useGame();
-const { selectedSummon, selectedSkill, targetMode, skillTargets } = useGameUi();
+const { state, sendInput } = useGame();
+const { selectedSummon, selectedEntity, selectedSkill, skillTargets } = useGameUi();
 
-const activePlayer = computed(
-  () => state.value.players.find(p => state.value.activeEntity.playerId === p.id)!
-);
+const activePlayer = computed(() => state.value.activePlayer);
 
 const borders = computed(() => {
-  switch (state.value.activeEntity.unit.faction.id) {
+  switch (state.value.activePlayer.general.unit.faction.id) {
     case 'haven':
       return { square: havenBorder, rounded: havenBorderRounded };
     case 'chaos':
@@ -43,6 +41,7 @@ const borders = computed(() => {
       @click="
         () => {
           sendInput('use-skill', {
+            entityId: selectedEntity!.id,
             skillId: selectedSkill!.id,
             targets: [...skillTargets.values()]
           });
@@ -52,112 +51,63 @@ const borders = computed(() => {
       Cast
     </UiButton>
   </div>
-
-  <div class="action-bar content-surface">
+  <div v-if="selectedEntity" class="flex gap-4 pb-2">
     <button
-      class="active-entity"
+      v-for="skill in selectedEntity.skills"
+      :key="skill.id"
+      class="skill"
+      :class="{
+        active: selectedSkill?.id === skill.id,
+        unavailable: selectedEntity.ap < skill.cost
+      }"
+      :disabled="!selectedEntity.canUseSkill(skill)"
+      :data-cost="skill.cost"
+      :data-cooldown="
+        selectedEntity.skillCooldowns[skill.id] > 0
+          ? selectedEntity.skillCooldowns[skill.id]
+          : ''
+      "
       :style="{
-        '--bg': `url(${unitImagesPaths[state.activeEntity.unit.spriteId + '-icon']})`,
+        '--cooldown-angle':
+          360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
+        '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
         '--border': `url(${borders.square})`
       }"
-      @click="
-        () => {
-          const spriteRef = fx.spriteMap.get(state.activeEntity.id);
-          if (!spriteRef) return;
-          const sprite = toValue(spriteRef);
-          if (!sprite) return;
-
-          fx.viewport?.moveCenter(sprite.position);
-        }
-      "
+      @click="selectedSkill = skill"
     />
+  </div>
 
+  <div class="action-bar content-surface">
     <div class="actions">
       <div>
-        <button
-          class="move"
-          :style="{
-            '--bg': `url(${skillImagesPaths.move})`,
-            '--border': `url(${borders.square})`
-          }"
-          @click="
-            () => {
-              targetMode = 'move';
-            }
-          "
-        />
         <UiTooltip
-          v-for="skill in state.activeEntity.skills"
-          :key="skill.id"
+          v-for="unit in activePlayer.summonableUnits"
+          :key="unit.unit.id"
           :side-offset="50"
           :delay="200"
         >
           <template #trigger>
             <button
-              :disabled="!state.activeEntity.canUseSkill(skill)"
-              class="skill"
+              :disabled="!activePlayer.canSummon(unit.unit.id)"
+              class="summon"
               :class="{
-                active: selectedSkill?.id === skill.id,
-                unavailable:
-                  state.activeEntity.ap < skill.cost ||
-                  state.activeEntity.hasEffect('meditating')
+                active: selectedSummon?.id === unit.unit.id,
+                unavailable: !state.activePlayer.canSummon(unit.unit.id)
               }"
-              :data-cost="skill.cost"
-              :data-cooldown="
-                state.activeEntity.skillCooldowns[skill.id] > 0
-                  ? state.activeEntity.skillCooldowns[skill.id]
-                  : ''
-              "
+              :data-cost="unit.unit.summonCost"
+              :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
               :style="{
-                '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
-                '--border': `url(${borders.square})`,
                 '--cooldown-angle':
-                  360 -
-                  (360 * state.activeEntity.skillCooldowns[skill.id]) / skill.cooldown
+                  360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
+                '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
+                '--border': `url(${borders.rounded})`
               }"
-              @click="selectedSkill = skill"
+              @mousedown="selectedSummon = unit.unit"
             />
           </template>
-
-          <div class="fancy-surface skill-tooltip">
-            {{ skill.getDescription(state.activeEntity) }}
-          </div>
+          <UnitBlueprintCard :unit="unit.unit" />
         </UiTooltip>
       </div>
-
-      <template v-if="state.activeEntity.kind === 'GENERAL'">
-        <div>
-          <UiTooltip
-            v-for="unit in activePlayer.summonableUnits"
-            :key="unit.unit.id"
-            :side-offset="50"
-            :delay="200"
-          >
-            <template #trigger>
-              <button
-                :disabled="!activePlayer.canSummon(unit.unit.id)"
-                class="summon"
-                :class="{
-                  active: selectedSummon?.id === unit.unit.id,
-                  unavailable:
-                    state.activeEntity.ap < unit.unit.summonCost ||
-                    state.activeEntity.hasEffect('meditating')
-                }"
-                :data-cost="unit.unit.summonCost"
-                :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
-                :style="{
-                  '--cooldown-angle':
-                    360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-                  '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
-                  '--border': `url(${borders.rounded})`
-                }"
-                @click="selectedSummon = unit.unit"
-              />
-            </template>
-            <UnitBlueprintCard :unit="unit.unit" />
-          </UiTooltip>
-        </div>
-      </template>
     </div>
 
     <UiButton

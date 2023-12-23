@@ -25,7 +25,7 @@ type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
 export type GameEmits = {
   move: [Point3D & { entityId: EntityId }];
   'end-turn': [];
-  'use-skill': [{ skillId: SkillId; targets: Point3D[] }];
+  'use-skill': [{ entityId: number; skillId: SkillId; targets: Point3D[] }];
   summon: [{ unitId: UnitId; position: Point3D }];
   end: [{ winner: Player }];
 };
@@ -45,7 +45,7 @@ export type GameContext = {
   ui: {
     skillTargets: Ref<Set<Point3D>>;
     hoveredCell: Ref<Nullable<Cell>>;
-    distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
+    distanceMap: ComputedRef<Nullable<ReturnType<GameSession['map']['getDistanceMap']>>>;
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
@@ -71,6 +71,10 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     const newState = session.getState();
     state.value = newState;
 
+    if (action.name === 'END_TURN') {
+      context.ui.selectedEntity.value = null;
+      context.ui.targetMode.value = null;
+    }
     if (action.name === 'END_GAME') {
       emit('end', { winner: session.playerManager.getPlayerById(session.winner!)! });
     }
@@ -78,11 +82,12 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   onUnmounted(unsub);
 
   const distanceMap = computed(() => {
-    return session.map.getDistanceMap(
-      state.value.activeEntity.position,
-      state.value.activeEntity.speed
-    );
+    const selectedEntity = context.ui.selectedEntity.value;
+    if (!selectedEntity) return null;
+    return session.map.getDistanceMap(selectedEntity.position, selectedEntity.speed);
   });
+
+  const selectedEntityId = ref<Nullable<number>>(null);
 
   const context: GameContext = {
     assets,
@@ -101,7 +106,16 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       distanceMap,
       targetMode: ref(null),
       hoveredCell: ref(null),
-      selectedEntity: ref(null),
+      selectedEntity: computed<Entity | null>({
+        get() {
+          return selectedEntityId.value
+            ? (state.value.entities.find(e => e.id === selectedEntityId.value)! as Entity)
+            : null;
+        },
+        set(entity) {
+          selectedEntityId.value = entity?.id ?? null;
+        }
+      }),
       selectedSkill: ref(null),
       selectedSummon: ref(null),
       layers: {
@@ -112,16 +126,20 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     utils: {
       isMoveTarget(point) {
         if (context.ui.targetMode.value !== 'move') return false;
-        return state.value.activeEntity.canMove(distanceMap.value.get(point));
+        if (!context.ui.selectedEntity.value) return false;
+        if (!distanceMap.value) return false;
+
+        return context.ui.selectedEntity.value.canMove(distanceMap.value.get(point));
       },
       isWithinRangeOfSkill(point) {
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
+        if (!context.ui.selectedEntity.value) return false;
 
         return context.ui.selectedSkill.value.isWithinRange(
           session,
           point,
-          context.state.value.activeEntity,
+          context.ui.selectedEntity.value,
           [...context.ui.skillTargets.value.values()]
         );
       },
@@ -133,11 +151,12 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       isSkillTarget(point) {
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
+        if (!context.ui.selectedEntity.value) return false;
 
         return context.ui.selectedSkill.value.isTargetable(
           session,
           point,
-          context.state.value.activeEntity,
+          context.ui.selectedEntity.value,
           [...context.ui.skillTargets.value.values()]
         );
       }

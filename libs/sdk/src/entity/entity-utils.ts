@@ -1,6 +1,5 @@
 import { Nullable, isDefined } from '@hc/shared';
 import { GameSession } from '../game-session';
-import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitKind, UNIT_KIND } from '../units/constants';
 import { Entity, EntityId } from './entity';
@@ -40,13 +39,6 @@ export const isEnemy = (
   if (!entity) return false;
 
   return entity.playerId !== playerId;
-};
-
-export const ensureActiveEntityBelongsToPlayer = (
-  ctx: GameSession,
-  playerId: PlayerId
-) => {
-  return ctx.atb.activeEntity.playerId === playerId;
 };
 
 export const isKind = (kind: UnitKind) => (entity: Entity) => entity.kind === kind;

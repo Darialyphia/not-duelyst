@@ -88,42 +88,6 @@ surfaceBgVar.value = `url(${surfaceBg})`;
       "
     />
     <GameUi />
-    <!-- <header>
-      <button
-        @click="
-          () => {
-            console.log({ gameSession, state });
-          }
-        "
-      >
-        Debug
-      </button>
-      <button @click="rotateMap(90)">Rotate CW</button>
-      <button @click="rotateMap(-90)">Rotate CCW</button>
-
-      <button @click="emit('end-turn')">End turn</button>
-      <button @click="setTargetMode('move')">Move</button>
-      Skills
-      <button
-        v-for="skill in state.activeEntity.skills"
-        :key="skill.id"
-        :disabled="!state.activeEntity.canUseSkill(skill)"
-        @click="ui.selectedSkill.value = skill"
-      >
-        {{ skill.id }} ({{ skill.cost }})
-        {{ state.activeEntity.skillCooldowns[skill.id] }}
-      </button>
-      Loadout
-      <template v-if="state.activeEntity.kind === 'GENERAL'">
-        <button
-          v-for="unit in activePlayer.summonableUnits"
-          :disabled="!activePlayer.canSummon(unit.unit.id)"
-          @click="ui.selectedSummon.value = unit.unit"
-        >
-          {{ unit.unit.id }} ({{ unit.unit.summonCost }})
-        </button>
-      </template>
-    </header> -->
   </div>
 </template>
 

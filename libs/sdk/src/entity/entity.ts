@@ -1,12 +1,11 @@
 import mitt from 'mitt';
 import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
-import { UnitBlueprint, UnitId, UNITS } from '../units/unit-lookup';
+import { UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
 import { clamp, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill';
 import { Serializable } from '../utils/interfaces';
-import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
 import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
@@ -18,13 +17,10 @@ export type SerializedEntity = {
   position: Point3D;
   playerId: PlayerId;
   unitId: UnitId;
-  atbSeed: number;
 };
 
 export const ENTITY_EVENTS = {
   MOVE: 'move',
-  TURN_START: 'turn-start',
-  TURN_END: 'turn-end',
   USE_SKILL: 'use-skill',
   DEAL_DAMAGE: 'deal-damage',
   RECEIVE_DAMAGE: 'receive-damage',
@@ -36,8 +32,6 @@ export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 
 export type EntityEventMap = {
   [ENTITY_EVENTS.MOVE]: Entity;
-  [ENTITY_EVENTS.TURN_START]: Entity;
-  [ENTITY_EVENTS.TURN_END]: Entity;
   [ENTITY_EVENTS.USE_SKILL]: Entity;
   [ENTITY_EVENTS.DIE]: Entity;
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
@@ -74,10 +68,6 @@ export class Entity implements Serializable {
 
   private movementSpent = 0;
 
-  public hasUsedSkillThisTurn = false;
-
-  public atbSeed = 0;
-
   private interceptors = {
     attack: makeInterceptor<number, Entity>(),
     defense: makeInterceptor<number, Entity>(),
@@ -95,8 +85,6 @@ export class Entity implements Serializable {
   on = this.emitter.on;
 
   off = this.emitter.off;
-
-  atb = 25 + this.atbSeed;
 
   ap = 0;
 
@@ -131,7 +119,6 @@ export class Entity implements Serializable {
     const clone = new Entity(this.ctx, {
       id: this.id,
       position: this.position,
-      atbSeed: this.atbSeed,
       playerId: this.playerId,
       unitId: this.unitId
     });
@@ -149,9 +136,12 @@ export class Entity implements Serializable {
       id: this.id,
       position: this.position.serialize(),
       playerId: this.playerId,
-      unitId: this.unitId,
-      atbSeed: this.atbSeed
+      unitId: this.unitId
     } satisfies SerializedEntity;
+  }
+
+  get player() {
+    return this.ctx.playerManager.getPlayerById(this.playerId)!;
   }
 
   get unit() {
@@ -249,14 +239,6 @@ export class Entity implements Serializable {
     });
   }
 
-  summonFromLoadout(unit: UnitBlueprint) {
-    if (!isGeneral(this)) {
-      throw new Error('Only generals can summon, from loadout');
-    }
-
-    this.ap = clamp(this.ap - unit.summonCost, 0, Infinity);
-  }
-
   useSkill(skillId: SkillId) {
     const skill = this.skills.find(s => s.id === skillId);
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
@@ -264,7 +246,6 @@ export class Entity implements Serializable {
     this.ap = clamp(this.ap - skill.cost, 0, Infinity);
     this.movementSpent = this.speed;
     this.skillCooldowns[skillId] = skill.cooldown;
-    this.hasUsedSkillThisTurn = true;
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
@@ -321,14 +302,5 @@ export class Entity implements Serializable {
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = clamp(this.skillCooldowns[skillId] - 1, 0, Infinity);
     });
-    this.emitter.emit(ENTITY_EVENTS.TURN_START, this);
-  }
-
-  endTurn() {
-    this.atb = this.atbSeed;
-    this.movementSpent = 0;
-    this.hasUsedSkillThisTurn = false;
-
-    this.emitter.emit(ENTITY_EVENTS.TURN_END, this);
   }
 }
