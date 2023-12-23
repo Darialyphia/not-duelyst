@@ -16,9 +16,30 @@ onMounted(() => {
 
     if (e.code === 'KeyE')
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
-    if (e.code === 'KeyA') ui.targetMode.value = 'move';
-    if (e.code === 'KeyT') sendInput('end-turn');
 
+    if (e.code === 'KeyT') sendInput('end-turn');
+    if (e.code === 'Tab') {
+      e.preventDefault();
+      const selectedEntity = ui.selectedEntity.value;
+      const activePlayer = state.value.activePlayer;
+
+      if (!selectedEntity) {
+        ui.selectedEntity.value = activePlayer.general;
+      } else {
+        const player = selectedEntity.player;
+        const entities = player.entities;
+        const index = entities.findIndex(e => e.equals(selectedEntity));
+        if (index === entities.length - 1) {
+          ui.selectedEntity.value = player.opponent.general;
+        } else {
+          ui.selectedEntity.value = entities[index + 1];
+        }
+      }
+    }
+
+    if (!ui.selectedEntity.value) return;
+    if (ui.selectedEntity.value.playerId !== state.value.activePlayer.id) return;
+    if (e.code === 'KeyA') ui.targetMode.value = 'move';
     const actionCodes = [
       'Digit1',
       'Digit2',
@@ -34,15 +55,13 @@ onMounted(() => {
       if (e.code !== code) return;
 
       if (e.shiftKey) {
-        const player = gameSession.playerManager.getPlayerById(
-          state.value.activeEntity.playerId
-        )!;
+        const player = gameSession.playerManager.getActivePlayer();
 
         const unit = player.summonableUnits[index];
         if (!unit) return;
         ui.selectedSummon.value = unit.unit;
       } else {
-        const skill = state.value.activeEntity.skills[index];
+        const skill = ui.selectedEntity.value!.skills[index];
         if (e.code === code) {
           ui.selectedSkill.value = skill;
         }

@@ -80,42 +80,6 @@ const containerRef = (_container: any) => {
       >
         {{ entity.defense }}
       </text>
-
-      <container :x="-CELL_SIZE / 2 + 8" :y="CELL_SIZE / 2 + 5">
-        <text
-          :y="2"
-          :style="{
-            fill: 'white',
-            fontSize: 30,
-            fontFamily: 'monospace'
-          }"
-          :anchor="0.5"
-          :scale="0.25"
-        >
-          ATB
-        </text>
-        <graphics
-          @render="
-            g => {
-              g.clear();
-              g.beginFill('black');
-              g.drawRect(10, 0, CELL_SIZE - 20, 2);
-              g.endFill();
-            }
-          "
-        />
-        <graphics
-          @render="
-            g => {
-              const atbPercentage = (entity.atb * CELL_SIZE) / 100;
-              g.clear();
-              g.beginFill('white');
-              g.drawRect(10, 0, clamp(atbPercentage, 0, CELL_SIZE - 20), 2);
-              g.endFill();
-            }
-          "
-        />
-      </container>
     </animated-sprite>
   </container>
 </template>

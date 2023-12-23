@@ -17,7 +17,7 @@ const dispatch = (
     type,
     payload: {
       ...payload,
-      playerId: serverSession.getState().activeEntity.playerId
+      playerId: clientSession.playerManager.getActivePlayer().id
     }
   });
 };

@@ -9,7 +9,7 @@ const { cell } = defineProps<{ cell: Cell }>();
 
 const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation, utils } = useGame();
-const { hoveredCell, targetMode, distanceMap, selectedSummon } = useGameUi();
+const { hoveredCell, targetMode, selectedSummon, selectedEntity } = useGameUi();
 
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
@@ -39,11 +39,15 @@ const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
 
 const onPointerup = (event: FederatedPointerEvent) => {
   if (event.button !== 0) return;
+  if (targetMode.value === null) {
+    selectedEntity.value = null;
+  }
 
+  if (!selectedEntity.value) return;
   if (isMoveTarget.value) {
     sendInput('move', {
       ...cell.position,
-      entityId: state.value.activeEntity.id
+      entityId: selectedEntity.value.id
     });
   } else if (isSummonTarget.value) {
     sendInput('summon', {
@@ -57,24 +61,25 @@ const pathFilter = new ColorOverlayFilter(0x4455bb, 0.5);
 
 const isMovePathHighlighted = computed(() => {
   if (!hoveredCell.value) return false;
+  if (!selectedEntity.value) return false;
   if (targetMode.value !== 'move') return false;
 
   const entityOnCell = gameSession.entityManager.getEntityAt(cell);
-  const hasAlly = entityOnCell?.playerId === state.value.activeEntity.playerId;
+  const hasAlly = entityOnCell?.playerId === selectedEntity.value.playerId;
 
   if (!isMoveTarget.value && !hasAlly) return false;
 
   const path = gameSession.map.getPathTo(
-    state.value.activeEntity,
+    selectedEntity.value,
     hoveredCell.value.position,
-    state.value.activeEntity.remainingMovement
+    selectedEntity.value.remainingMovement
   );
 
   if (!path) return false;
 
   const isInPath = path.path.some(vec => vec.equals(cell.position));
 
-  return isInPath || state.value.activeEntity.id === entityOnCell?.id;
+  return isInPath || selectedEntity.value.id === entityOnCell?.id;
 });
 
 const cursor = computed(() => {

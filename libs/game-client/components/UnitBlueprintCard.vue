@@ -75,7 +75,7 @@ const border = computed(() => {
         class="skill-img"
         :data-cost="skill.cost"
         :style="{
-          '--bg': `url(${skillImagesPaths[skill.id]})`,
+          '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
           '--border': `url(${border})`
         }"
       />

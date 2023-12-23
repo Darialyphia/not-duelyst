@@ -1,7 +1,8 @@
-import { isDefined } from '@hc/shared';
-import { UNITS, UnitId } from '../units/unit-lookup';
+import { clamp, isDefined } from '@hc/shared';
+import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
+import { Entity } from '../entity/entity';
 
 export type PlayerId = string;
 
@@ -14,19 +15,32 @@ export class Player implements Serializable {
     private ctx: GameSession,
     public readonly id: PlayerId,
     public readonly loadout: Loadout,
-    public readonly generalId: UnitId
-  ) {}
+    public readonly generalId: UnitId,
+    public gold: number
+  ) {
+    if (this.ctx.isAuthoritative) {
+      this.ctx.emitter.on('game:turn-start', player => {
+        if (player.id === this.id) {
+          Object.entries(this.loadout.units).forEach(([, unit]) => {
+            unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
+          });
+          this.gold += 2;
+        }
+      });
+    }
+  }
 
   serialize() {
     return {
       id: this.id,
       loadout: this.loadout,
-      generalId: this.generalId
+      generalId: this.generalId,
+      gold: this.gold
     };
   }
 
   clone() {
-    const clone = new Player(this.ctx, this.id, this.loadout, this.generalId);
+    const clone = new Player(this.ctx, this.id, this.loadout, this.generalId, this.gold);
 
     Object.keys(this).forEach(key => {
       // @ts-expect-error cant be arsed
@@ -41,10 +55,14 @@ export class Player implements Serializable {
     const loadoutUnit = this.loadout.units[unitId];
     if (!isDefined(loadoutUnit)) return false;
 
-    const general = this.ctx.entityManager.getGeneral(this.id);
+    return loadoutUnit.cooldown === 0 && this.gold >= unit.summonCost;
+  }
 
-    if (general.effects.some(effect => effect.id === 'meditating')) return false;
-    return loadoutUnit.cooldown === 0 && general.ap >= unit.summonCost;
+  summonFromLoadout(unit: UnitBlueprint) {
+    if (!this.canSummon(unit.id)) return;
+
+    this.gold = clamp(this.gold - unit.summonCost, 0, Infinity);
+    this.loadout.units[unit.id].cooldown = unit.summonCooldown;
   }
 
   get summonableUnits() {
@@ -52,5 +70,21 @@ export class Player implements Serializable {
       unit: UNITS[unitId],
       ...info
     }));
+  }
+
+  get entities() {
+    return this.ctx.entityManager.getList().filter(e => e.playerId === this.id);
+  }
+
+  get general() {
+    return this.ctx.entityManager.getGeneral(this.id);
+  }
+
+  get opponent() {
+    return this.ctx.playerManager.getOpponent(this.id);
+  }
+
+  ownsEntity(entity: Entity) {
+    return entity.playerId === this.id;
   }
 }

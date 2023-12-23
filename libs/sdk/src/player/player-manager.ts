@@ -4,29 +4,34 @@ import { GameSession } from '../game-session';
 import { UnitId } from '../units/unit-lookup';
 import { Loadout, Player, PlayerId } from './player';
 
+export type SerializedPlayer = {
+  id: PlayerId;
+  loadout: Loadout;
+  generalId: UnitId;
+  gold: number;
+};
 export class PlayerManager {
   private playerMap = new Map<PlayerId, Player>();
+  private activePlayerId!: PlayerId;
 
   constructor(private ctx: GameSession) {}
 
-  setup(players: { id: PlayerId; loadout: Loadout; generalId: UnitId }[]) {
+  setup(activePlayerId: PlayerId, players: [SerializedPlayer, SerializedPlayer]) {
+    this.activePlayerId = activePlayerId;
+
     players
-      .map(p => new Player(this.ctx, p.id, p.loadout, p.generalId))
+      .map(p => new Player(this.ctx, p.id, p.loadout, p.generalId, p.gold))
       .forEach(player => {
         this.addPlayer(player);
       });
+  }
 
-    if (this.ctx.isAuthoritative) {
-      this.ctx.emitter.on('entity:turn-start', entity => {
-        if (isGeneral(entity)) {
-          Object.entries(this.getPlayerById(entity.playerId)!.loadout.units).forEach(
-            ([name, unit]) => {
-              unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
-            }
-          );
-        }
-      });
-    }
+  switchActivePlayer() {
+    this.ctx.emitter.emit('game:turn-end', this.getActivePlayer());
+    this.activePlayerId = this.getList().find(
+      player => player.id !== this.activePlayerId
+    )!.id;
+    this.ctx.emitter.emit('game:turn-start', this.getActivePlayer());
   }
 
   getList() {
@@ -42,7 +47,7 @@ export class PlayerManager {
   }
 
   getActivePlayer() {
-    return this.getPlayerById(this.ctx.atb.activeEntity.playerId)!;
+    return this.getPlayerById(this.activePlayerId)!;
   }
 
   addPlayer(player: Player) {
@@ -54,6 +59,12 @@ export class PlayerManager {
   }
 
   serialize() {
-    return this.getList().map(player => player.serialize());
+    return {
+      players: this.getList().map(player => player.serialize()) as [
+        SerializedPlayer,
+        SerializedPlayer
+      ],
+      activePlayerId: this.activePlayerId
+    };
   }
 }

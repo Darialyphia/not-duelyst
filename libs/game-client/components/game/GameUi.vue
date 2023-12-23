@@ -4,11 +4,6 @@ const { selectedEntity, hoveredCell } = useGameUi();
 </script>
 
 <template>
-  <!-- <PlayersInfos /> -->
-  <div class="atb-timeline">
-    <ATBTimeline />
-  </div>
-
   <PlayerInfos />
 
   <Transition>
@@ -70,13 +65,6 @@ x: {{ hoveredCell?.position.x }}, y: {{ hoveredCell?.position.y }}, z: {{
   bottom: var(--size-5);
   left: 50%;
   transform: translateX(-50%);
-}
-
-.atb-timeline {
-  position: absolute;
-  top: 50%;
-  right: var(--size-4);
-  transform: translateY(-50%);
 }
 
 .debug {

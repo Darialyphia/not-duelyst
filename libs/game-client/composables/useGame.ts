@@ -45,7 +45,7 @@ export type GameContext = {
   ui: {
     skillTargets: Ref<Set<Point3D>>;
     hoveredCell: Ref<Nullable<Cell>>;
-    distanceMap: ComputedRef<ReturnType<GameSession['map']['getDistanceMap']>>;
+    distanceMap: ComputedRef<Nullable<ReturnType<GameSession['map']['getDistanceMap']>>>;
     targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
@@ -78,10 +78,9 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   onUnmounted(unsub);
 
   const distanceMap = computed(() => {
-    return session.map.getDistanceMap(
-      state.value.activeEntity.position,
-      state.value.activeEntity.speed
-    );
+    const selectedEntity = context.ui.selectedEntity.value;
+    if (!selectedEntity) return null;
+    return session.map.getDistanceMap(selectedEntity.position, selectedEntity.speed);
   });
 
   const context: GameContext = {
@@ -112,16 +111,20 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     utils: {
       isMoveTarget(point) {
         if (context.ui.targetMode.value !== 'move') return false;
-        return state.value.activeEntity.canMove(distanceMap.value.get(point));
+        if (!context.ui.selectedEntity.value) return false;
+        if (!distanceMap.value) return false;
+
+        return context.ui.selectedEntity.value.canMove(distanceMap.value.get(point));
       },
       isWithinRangeOfSkill(point) {
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
+        if (!context.ui.selectedEntity.value) return false;
 
         return context.ui.selectedSkill.value.isWithinRange(
           session,
           point,
-          context.state.value.activeEntity,
+          context.ui.selectedEntity.value,
           [...context.ui.skillTargets.value.values()]
         );
       },
@@ -133,11 +136,12 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
       isSkillTarget(point) {
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
+        if (!context.ui.selectedEntity.value) return false;
 
         return context.ui.selectedSkill.value.isTargetable(
           session,
           point,
-          context.state.value.activeEntity,
+          context.ui.selectedEntity.value,
           [...context.ui.skillTargets.value.values()]
         );
       }

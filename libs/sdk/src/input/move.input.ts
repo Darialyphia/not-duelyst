@@ -1,9 +1,7 @@
 import { z } from 'zod';
 import { PlayerInput, defaultInputSchema } from './input';
-import { Pathfinder } from '../map/pathfinding';
 import { getEntityIfOwnerMatches } from '../entity/entity-utils';
 import { INPUT_NAME } from './input-reducer';
-import { cellIdToPoint } from '../utils/helpers';
 import { MoveAction } from '../action/move.action';
 
 const moveEventSchema = defaultInputSchema.extend({
@@ -25,8 +23,6 @@ export class MoveInput extends PlayerInput<typeof moveEventSchema> {
       this.payload.playerId
     );
     if (!entity) return;
-
-    if (!entity.equals(this.ctx.atb.activeEntity)) return;
 
     const path = this.ctx.map.getPathTo(entity, this.payload);
 

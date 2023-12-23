@@ -1,14 +1,12 @@
 import mitt from 'mitt';
 import { InputReducer, SerializedInput } from './input/input-reducer';
-import { ATB } from './atb';
-import { EntityId, Entity, SerializedEntity, EntityEvent } from './entity/entity';
+import { Entity, SerializedEntity, EntityEvent } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
 import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
-import { Loadout, Player, PlayerId } from './player/player';
-import { PlayerManager } from './player/player-manager';
+import { Player, PlayerId } from './player/player';
+import { PlayerManager, SerializedPlayer } from './player/player-manager';
 import { SerializedAction } from './action/action-deserializer';
-import { UnitId } from './units/unit-lookup';
 import { ActionQueue } from './action/action-queue';
 import { FXContext, GameAction } from './action/action';
 
@@ -16,16 +14,16 @@ export type GameState = {
   map: Pick<GameMap, 'height' | 'width' | 'cells'>;
   entities: Entity[];
   players: Player[];
-  activeEntity: Entity;
+  activePlayer: Player;
   winner?: Player;
 };
 
 export type SerializedGameState = {
   map: GameMapOptions;
   entities: Array<SerializedEntity>;
-  players: { id: PlayerId; loadout: Loadout; generalId: UnitId }[];
+  players: [SerializedPlayer, SerializedPlayer];
   history: SerializedAction[];
-  activeEntityId?: EntityId;
+  activePlayerId: PlayerId;
 };
 
 type EntityLifecycleEvent = 'created' | 'destroyed';
@@ -35,6 +33,8 @@ type GlobalEntityEvents = {
 
 type GlobalGameEvents = GlobalEntityEvents & {
   'game:action': GameAction<any>;
+  'game:turn-end': Player;
+  'game:turn-start': Player;
 };
 
 export class GameSession {
@@ -58,8 +58,6 @@ export class GameSession {
 
   inputReducer = new InputReducer(this);
 
-  atb = new ATB();
-
   emitter = mitt<GlobalGameEvents>();
 
   nextEventId = 1;
@@ -73,33 +71,22 @@ export class GameSession {
     readonly isAuthoritative: boolean
   ) {
     this.setupState(state);
-
-    this.setupATB(state.activeEntityId);
   }
 
   private setupState(state: SerializedGameState) {
     this.map.setup(state.map);
-    this.playerManager.setup(state.players);
+    this.playerManager.setup(state.activePlayerId, state.players);
     this.entityManager.setup(state.entities);
     this.history.setup(state.history);
 
     if (!this.entityManager.getList().length) {
       this.playerManager.getList().forEach((player, index) => {
         this.entityManager.addEntity({
-          atbSeed: Math.random(),
           playerId: player.id,
           unitId: player.generalId,
           position: state.map.startPositions[index]
         });
       });
-    }
-  }
-
-  private setupATB(activeEntityId?: EntityId) {
-    if (activeEntityId) {
-      this.atb.activeEntity = this.entityManager.getEntityById(activeEntityId)!;
-    } else {
-      this.atb.tickUntilActiveEntity(this.entityManager.getList());
     }
   }
 
@@ -112,7 +99,7 @@ export class GameSession {
       },
       entities: this.entityManager.getList().map(entity => entity.clone()),
       players: this.playerManager.getList().map(player => player.clone()),
-      activeEntity: this.atb.activeEntity.clone(),
+      activePlayer: this.playerManager.getActivePlayer(),
       winner: this.winner ? this.playerManager.getPlayerById(this.winner) : undefined
     };
   }
@@ -133,8 +120,8 @@ export class GameSession {
   serialize(): SerializedGameState {
     return {
       ...this.entityManager.serialize(),
+      ...this.playerManager.serialize(),
       map: this.map.serialize(),
-      players: this.playerManager.serialize(),
       history: this.history.serialize()
     };
   }

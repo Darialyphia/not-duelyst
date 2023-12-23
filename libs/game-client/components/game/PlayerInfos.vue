@@ -36,9 +36,11 @@ const getBorder = (entity: Entity) => {
     <div>
       <div class="player-name">{{ players[0].id }}</div>
 
-      <div class="hp">
-        <div class="i-game-icons:health-normal" />
+      <div class="indicators">
+        <div class="i-game-icons:health-normal color-green-4 hp" />
         {{ players[0].general?.hp.toFixed() }}
+        <div class="i-game-icons:two-coins gold" />
+        {{ players[0].gold }}
       </div>
     </div>
   </div>
@@ -50,7 +52,7 @@ const getBorder = (entity: Entity) => {
     <div>
       <div class="player-name">{{ players[1].id }}</div>
 
-      <div class="hp">
+      <div class="indicators">
         <div class="i-game-icons:health-normal" />
         {{ players[1].general?.hp.toFixed() }}
       </div>
@@ -78,7 +80,13 @@ const getBorder = (entity: Entity) => {
   }
   [class^='i'] {
     font-size: var(--font-size-4);
-    color: var(--green-4);
+
+    &.hp {
+      color: var(--green-4);
+    }
+    &.gold {
+      color: var(--yellow-5);
+    }
   }
 }
 
@@ -109,7 +117,7 @@ const getBorder = (entity: Entity) => {
   img {
     transform: rotateY(0.5turn);
   }
-  .hp {
+  .indicators {
     flex-direction: row-reverse;
   }
 }
@@ -119,9 +127,9 @@ const getBorder = (entity: Entity) => {
   font-weight: var(--font-weight-6);
 }
 
-.hp {
+.indicators {
   display: flex;
-  gap: var(--size-1);
+  gap: var(--size-2);
   align-items: center;
   font-size: var(--font-size-2);
 }

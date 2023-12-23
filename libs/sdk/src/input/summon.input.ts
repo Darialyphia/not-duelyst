@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { PlayerInput, defaultInputSchema } from './input';
 import { INPUT_NAME } from './input-reducer';
-import { ensureActiveEntityBelongsToPlayer, isGeneral } from '../entity/entity-utils';
 import { UnitId, isUnitId } from '../units/unit-lookup';
 import { SummonFromLoadoutAction } from '../action/summon-from-loadout.action';
 
@@ -24,8 +23,6 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
 
   private get canSummon() {
     return (
-      ensureActiveEntityBelongsToPlayer(this.ctx, this.payload.playerId) &&
-      isGeneral(this.ctx.atb.activeEntity) &&
       this.ctx.map.canSummonAt(this.payload.position) &&
       this.ctx.playerManager.getActivePlayer().canSummon(this.payload.unitId)
     );
@@ -35,10 +32,8 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
     if (!this.canSummon) return;
     this.ctx.actionQueue.push(
       new SummonFromLoadoutAction(
-        {
-          ...this.payload,
-          atbSeed: Math.random()
-        },
+        this.payload,
+
         this.ctx
       )
     );

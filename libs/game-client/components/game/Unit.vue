@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Entity, Vec3, Point3D } from '@hc/sdk';
+import type { Entity } from '@hc/sdk';
 import { PTransition, useApplication } from 'vue3-pixi';
 import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
-import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { GlowFilter } from '@pixi/filter-glow';
 import { type AnimatedSprite, type Cursor, FederatedMouseEvent } from 'pixi.js';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
@@ -14,7 +13,8 @@ const { entity } = defineProps<{
 
 const app = useApplication();
 const { gameSession, assets, state, mapRotation, fx, sendInput, utils } = useGame();
-const { hoveredCell, skillTargets, selectedSkill, selectedEntity } = useGameUi();
+const { hoveredCell, skillTargets, selectedSkill, selectedEntity, targetMode } =
+  useGameUi();
 
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
@@ -81,12 +81,12 @@ const isHovered = computed(
     gameSession.entityManager.getEntityAt(hoveredCell.value.position)?.id === entity.id
 );
 
-const activeFilter = new OutlineFilter(1.5, 0xffffff, 0.2, 1);
-const selectedfilter = new AdjustmentFilter({
-  gamma: 1.3,
-  contrast: 1.25,
-  saturation: 1.25
-});
+const selectedFilter = new OutlineFilter(1.5, 0xffffff, 0.2, 1);
+// const selectedfilter = new AdjustmentFilter({
+//   gamma: 1.3,
+//   contrast: 1.25,
+//   saturation: 1.25
+// });
 const inSkillAreaFilter = new GlowFilter({
   outerStrength: 2,
   innerStrength: 1,
@@ -97,21 +97,18 @@ const inSkillAreaFilter = new GlowFilter({
 const filters = computed(() => {
   const result = [];
 
-  if (selectedEntity.value === entity) {
-    result.push(selectedfilter);
-  }
-
-  if (state.value.activeEntity.id === entity.id) {
-    result.push(activeFilter);
+  if (selectedEntity.value?.equals(entity)) {
+    result.push(selectedFilter);
   }
 
   if (
     hoveredCell.value &&
+    selectedEntity.value &&
     utils.isSkillTarget(hoveredCell.value) &&
     selectedSkill.value?.isInAreaOfEffect(
       gameSession,
       entity.position,
-      state.value.activeEntity,
+      selectedEntity.value,
       [...skillTargets.value, hoveredCell.value.position]
     )
   ) {
@@ -167,6 +164,11 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         @pointerup="
           (e: FederatedMouseEvent) => {
             if (e.button !== 0) return;
+            if (targetMode === null) {
+              selectedEntity = entity;
+              return;
+            }
+
             if (!utils.isSkillTarget(entity.position)) return;
 
             if (skillTargets.has(entity.position)) return;
@@ -180,15 +182,8 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
             }
           }
         "
-        @pointerleave="
-          () => {
-            hoveredCell = null;
-            selectedEntity = null;
-          }
-        "
         @pointerenter="
           () => {
-            selectedEntity = entity;
             hoveredCell = gameSession.map.getCellAt(entity.position);
           }
         "
