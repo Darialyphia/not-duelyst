@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { unitImagesPaths } from '../../assets/units';
+import { skillImagesPaths } from '../../assets/skills';
 import { exhaustiveSwitch } from '@hc/shared';
 
 import havenBorder from '../../assets/ui/icon-border-haven.png';
@@ -49,6 +50,31 @@ const borders = computed(() => {
     >
       Cast
     </UiButton>
+  </div>
+  <div v-if="selectedEntity" class="flex gap-4 pb-2">
+    <button
+      v-for="skill in selectedEntity.skills"
+      :key="skill.id"
+      class="skill"
+      :class="{
+        active: selectedSkill?.id === skill.id,
+        unavailable: selectedEntity.ap < skill.cost
+      }"
+      :disabled="!selectedEntity.canUseSkill(skill)"
+      :data-cost="skill.cost"
+      :data-cooldown="
+        selectedEntity.skillCooldowns[skill.id] > 0
+          ? selectedEntity.skillCooldowns[skill.id]
+          : ''
+      "
+      :style="{
+        '--cooldown-angle':
+          360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
+        '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+        '--border': `url(${borders.square})`
+      }"
+      @click="selectedSkill = skill"
+    />
   </div>
 
   <div class="action-bar content-surface">

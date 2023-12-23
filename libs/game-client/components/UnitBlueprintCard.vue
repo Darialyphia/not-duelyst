@@ -154,6 +154,8 @@ const border = computed(() => {
   line-height: 1;
 
   .skill-img {
+    transform: translateY(5px);
+
     flex-shrink: 0;
     align-self: flex-start;
 

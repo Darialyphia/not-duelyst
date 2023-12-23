@@ -224,11 +224,13 @@ watchEffect(() => {
   line-height: 1;
 
   .skill-img {
+    transform: translateY(5px);
+
     flex-shrink: 0;
     align-self: flex-start;
 
     aspect-ratio: 1;
-    width: 32px;
+    width: 48px;
 
     background-image: var(--border), var(--bg);
     background-size: contain;
