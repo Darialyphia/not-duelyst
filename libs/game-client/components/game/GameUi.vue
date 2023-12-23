@@ -62,7 +62,7 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
 
 .game-action-bar {
   position: absolute;
-  bottom: var(--size-5);
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }

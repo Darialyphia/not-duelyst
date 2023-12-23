@@ -1,3 +1,4 @@
+import { EFFECTS } from '../effect/effect-lookup';
 import { SerializedEntity } from '../entity/entity';
 import { UNITS } from '../units/unit-lookup';
 import { GameAction } from './action';
@@ -15,6 +16,8 @@ export class SummonFromLoadoutAction extends GameAction<Omit<SerializedEntity, '
 
     const unit = UNITS[this.payload.unitId];
     player.summonFromLoadout(unit);
-    this.ctx.entityManager.addEntity(this.payload);
+    const entity = this.ctx.entityManager.addEntity(this.payload);
+    const effect = new EFFECTS.exhausted(this.ctx, entity, {});
+    effect.attach(entity);
   }
 }

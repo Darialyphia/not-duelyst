@@ -5,7 +5,7 @@ import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
 import { isSelf, isWithinCells } from './skill-utils';
-import { AddEffectAction } from '../action/add-effect';
+import { AddEffectAction } from '../action/add-effect.action';
 
 export type HealOptions = PartialBy<SkillOptions, 'spriteId'>;
 

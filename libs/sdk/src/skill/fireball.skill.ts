@@ -1,5 +1,5 @@
 import { PartialBy } from '@hc/shared';
-import { AddEffectAction } from '../action/add-effect';
+import { AddEffectAction } from '../action/add-effect.action';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
@@ -25,7 +25,6 @@ export class Fireball extends Skill {
   constructor(options: FireballOptions) {
     super({
       spriteId: options.spriteId ?? 'fireball',
-      maxTargets: 2,
       ...options
     });
     this.power = options.power;

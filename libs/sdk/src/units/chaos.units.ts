@@ -47,7 +47,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
-    summonCooldown: 1,
+    summonCooldown: 2,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -75,7 +75,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       new RangedAttack({
         cooldown: 1,
         cost: 0,
-        power: 1,
+        power: 0,
         minRange: { x: 2, y: 2, z: 1 },
         maxRange: 3
       })
@@ -86,7 +86,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     spriteId: 'chaos-tank-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
-    summonCost: 2,
+    summonCost: 3,
     summonCooldown: 4,
     maxHp: 10,
     maxAp: 3,
@@ -96,7 +96,13 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     speed: 3,
     initiative: 6,
     skills: [
-      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new RangedAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
       new StatModifier({
         cost: 2,
         cooldown: 5,
@@ -116,7 +122,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     spriteId: 'chaos-caster-placeholder',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
-    summonCost: 2,
+    summonCost: 3,
     summonCooldown: 2,
     maxHp: 6,
     maxAp: 3,

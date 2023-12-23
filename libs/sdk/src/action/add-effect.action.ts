@@ -22,6 +22,7 @@ export class AddEffectAction<T extends keyof typeof EFFECTS> extends GameAction<
 
     const effectClass = EFFECTS[this.payload.effectId];
 
+    // @ts-expect-error
     const effect = new effectClass(this.ctx, source, this.payload.effectArg);
     effect.attach(attachedTo);
   }

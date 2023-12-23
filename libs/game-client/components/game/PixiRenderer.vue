@@ -51,7 +51,6 @@ onMounted(() => {
       return;
     }
 
-    if (e.code === 'KeyA') ui.targetMode.value = 'move';
     const actionCodes = [
       'Digit1',
       'Digit2',
@@ -115,6 +114,11 @@ until(screenViewport)
       .pinch()
       .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
+      .mouseEdges({
+        distance: 10,
+        speed: 18,
+        allowButtons: true
+      })
       .clamp({
         top: -screenViewport.value.worldWidth,
         bottom: screenViewport.value.worldWidth,
