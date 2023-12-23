@@ -13,7 +13,7 @@ const { selectedSummon, selectedEntity, selectedSkill, skillTargets } = useGameU
 const activePlayer = computed(() => state.value.activePlayer);
 
 const borders = computed(() => {
-  switch (selectedEntity.value!.unit.faction.id) {
+  switch (state.value.activePlayer.general.unit.faction.id) {
     case 'haven':
       return { square: havenBorder, rounded: havenBorderRounded };
     case 'chaos':
@@ -40,6 +40,7 @@ const borders = computed(() => {
       @click="
         () => {
           sendInput('use-skill', {
+            entityId: selectedEntity!.id,
             skillId: selectedSkill!.id,
             targets: [...skillTargets.values()]
           });
@@ -50,7 +51,7 @@ const borders = computed(() => {
     </UiButton>
   </div>
 
-  <div v-if="selectedEntity" class="action-bar content-surface">
+  <div class="action-bar content-surface">
     <!-- <button
       class="active-entity"
       :style="{
@@ -83,9 +84,7 @@ const borders = computed(() => {
               class="summon"
               :class="{
                 active: selectedSummon?.id === unit.unit.id,
-                unavailable:
-                  selectedEntity.ap < unit.unit.summonCost ||
-                  selectedEntity.hasEffect('meditating')
+                unavailable: !state.activePlayer.canSummon(unit.unit.id)
               }"
               :data-cost="unit.unit.summonCost"
               :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"

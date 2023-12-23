@@ -43,11 +43,10 @@ const onPointerup = (event: FederatedPointerEvent) => {
     selectedEntity.value = null;
   }
 
-  if (!selectedEntity.value) return;
   if (isMoveTarget.value) {
     sendInput('move', {
       ...cell.position,
-      entityId: selectedEntity.value.id
+      entityId: selectedEntity.value!.id
     });
   } else if (isSummonTarget.value) {
     sendInput('summon', {

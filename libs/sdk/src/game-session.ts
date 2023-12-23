@@ -16,6 +16,7 @@ export type GameState = {
   players: Player[];
   activePlayer: Player;
   winner?: Player;
+  turn: number;
 };
 
 export type SerializedGameState = {
@@ -24,6 +25,7 @@ export type SerializedGameState = {
   players: [SerializedPlayer, SerializedPlayer];
   history: SerializedAction[];
   activePlayerId: PlayerId;
+  turn: number;
 };
 
 type EntityLifecycleEvent = 'created' | 'destroyed';
@@ -66,14 +68,13 @@ export class GameSession {
 
   winner?: PlayerId;
 
+  turn: number;
+
   private constructor(
     state: SerializedGameState,
     readonly isAuthoritative: boolean
   ) {
-    this.setupState(state);
-  }
-
-  private setupState(state: SerializedGameState) {
+    this.turn = state.turn;
     this.map.setup(state.map);
     this.playerManager.setup(state.activePlayerId, state.players);
     this.entityManager.setup(state.entities);
@@ -97,6 +98,7 @@ export class GameSession {
         width: this.map.width,
         cells: this.map.cells.map(cell => cell.clone())
       },
+      turn: this.turn,
       entities: this.entityManager.getList().map(entity => entity.clone()),
       players: this.playerManager.getList().map(player => player.clone()),
       activePlayer: this.playerManager.getActivePlayer(),
@@ -122,7 +124,8 @@ export class GameSession {
       ...this.entityManager.serialize(),
       ...this.playerManager.serialize(),
       map: this.map.serialize(),
-      history: this.history.serialize()
+      history: this.history.serialize(),
+      turn: this.turn
     };
   }
 }

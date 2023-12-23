@@ -18,25 +18,25 @@ export class Player implements Serializable {
     public readonly generalId: UnitId,
     public gold: number
   ) {
-    if (this.ctx.isAuthoritative) {
-      this.ctx.emitter.on('game:turn-start', player => {
-        if (player.id === this.id) {
-          Object.entries(this.loadout.units).forEach(([, unit]) => {
-            unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
-          });
-          this.gold += 2;
-        }
-      });
-    }
+    this.ctx.emitter.on('game:turn-start', player => {
+      if (ctx.turn <= 1) return;
+
+      if (player.id === this.id) {
+        Object.entries(this.loadout.units).forEach(([, unit]) => {
+          unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
+        });
+        this.gold += 2;
+      }
+    });
   }
 
   serialize() {
-    return {
+    return structuredClone({
       id: this.id,
       loadout: this.loadout,
       generalId: this.generalId,
       gold: this.gold
-    };
+    });
   }
 
   clone() {
@@ -62,7 +62,7 @@ export class Player implements Serializable {
     if (!this.canSummon(unit.id)) return;
 
     this.gold = clamp(this.gold - unit.summonCost, 0, Infinity);
-    this.loadout.units[unit.id].cooldown = unit.summonCooldown;
+    // this.loadout.units[unit.id].cooldown = unit.summonCooldown;
   }
 
   get summonableUnits() {

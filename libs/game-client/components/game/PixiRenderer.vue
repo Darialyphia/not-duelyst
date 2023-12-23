@@ -37,8 +37,13 @@ onMounted(() => {
       }
     }
 
-    if (!ui.selectedEntity.value) return;
-    if (ui.selectedEntity.value.playerId !== state.value.activePlayer.id) return;
+    if (
+      ui.selectedEntity.value &&
+      ui.selectedEntity.value?.playerId !== state.value.activePlayer.id
+    ) {
+      return;
+    }
+
     if (e.code === 'KeyA') ui.targetMode.value = 'move';
     const actionCodes = [
       'Digit1',
@@ -107,7 +112,6 @@ until(screenViewport)
       .clampZoom({ minScale: 1, maxScale: 4 })
       .zoomPercent(1, false)
       .moveCenter(center.isoX, center.isoY);
-    console.log(center);
   });
 
 watchEffect(() => {

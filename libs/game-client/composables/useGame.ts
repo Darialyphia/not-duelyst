@@ -25,7 +25,7 @@ type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
 export type GameEmits = {
   move: [Point3D & { entityId: EntityId }];
   'end-turn': [];
-  'use-skill': [{ skillId: SkillId; targets: Point3D[] }];
+  'use-skill': [{ entityId: number; skillId: SkillId; targets: Point3D[] }];
   summon: [{ unitId: UnitId; position: Point3D }];
   end: [{ winner: Player }];
 };
@@ -71,6 +71,10 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
     const newState = session.getState();
     state.value = newState;
 
+    if (action.name === 'END_TURN') {
+      context.ui.selectedEntity.value = null;
+      context.ui.targetMode.value = null;
+    }
     if (action.name === 'END_GAME') {
       emit('end', { winner: session.playerManager.getPlayerById(session.winner!)! });
     }

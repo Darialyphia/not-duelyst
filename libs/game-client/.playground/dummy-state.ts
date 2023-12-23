@@ -4,6 +4,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
   const maps = await $fetch('/api/maps');
 
   return {
+    turn: 0,
     entities: [],
     history: [],
     map: maps[mapName],

@@ -17,9 +17,9 @@ const { selectedEntity, hoveredCell } = useGameUi();
   </div>
   <div class="debug">
     <pre>
-x: {{ hoveredCell?.position.x }}, y: {{ hoveredCell?.position.y }}, z: {{
-        hoveredCell?.position.z
-      }}</pre
+turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
+        hoveredCell?.position.y
+      }}, z: {{ hoveredCell?.position.z }}</pre
     >
     <button
       @click="

@@ -169,6 +169,7 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
               return;
             }
 
+            if (!selectedEntity) return;
             if (!utils.isSkillTarget(entity.position)) return;
 
             if (skillTargets.has(entity.position)) return;
@@ -176,6 +177,7 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
 
             if (skillTargets.size === selectedSkill?.maxTargets) {
               sendInput('use-skill', {
+                entityId: selectedEntity.id,
                 skillId: selectedSkill!.id,
                 targets: [...skillTargets.values()]
               });

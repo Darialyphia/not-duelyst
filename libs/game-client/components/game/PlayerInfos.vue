@@ -55,6 +55,8 @@ const getBorder = (entity: Entity) => {
       <div class="indicators">
         <div class="i-game-icons:health-normal" />
         {{ players[1].general?.hp.toFixed() }}
+        <div class="i-game-icons:two-coins gold" />
+        {{ players[1].gold }}
       </div>
     </div>
   </div>
