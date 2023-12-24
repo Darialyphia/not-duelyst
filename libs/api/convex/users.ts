@@ -37,7 +37,6 @@ export const signUp = mutation({
 export const me = query({
   handler: async ctx => {
     const user = await findMe(ctx);
-
     if (!user) return null;
 
     return toUserDto(user);

@@ -45,5 +45,10 @@ export default defineNuxtConfig({
   },
   unocss: {
     autoImport: false
+  },
+  dayjs: {
+    locales: ['en', 'fr'],
+    plugins: ['relativeTime', 'utc', 'timezone', 'duration'],
+    defaultLocale: 'en'
   }
 });

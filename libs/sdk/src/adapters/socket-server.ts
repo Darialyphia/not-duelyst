@@ -1,12 +1,12 @@
 import { Server } from 'socket.io';
 import { GameSession, SerializedGameState } from '../game-session';
 
-export const makeServerSessionSocketAdapter = (
-  io: Server<any, any, any, { userId: string }>
-) => {
+export const makeServerSessionSocketAdapter = (io: Server) => {
   const ongoingGames = new Map<string, GameSession>();
 
   io.on('connection', async socket => {
+    const gameId = socket.handshake.query.gameId as string;
+    const userId = socket.handshake.query.userId as string;
     socket.on(
       'game:input',
       ({ gameId, type, payload }: { gameId: string; type: any; payload: any }) => {

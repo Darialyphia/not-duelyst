@@ -7,7 +7,7 @@ export type UserDto = {
   name: string;
   fullName: string;
   discriminator: string;
-  elo: number;
+  mmr: number;
 };
 
 export const toUserDto = (user: User): UserDto => {
@@ -17,6 +17,6 @@ export const toUserDto = (user: User): UserDto => {
     name: user.name,
     discriminator: user.discriminator,
     fullName: `${user.name}#${user.discriminator}`,
-    elo: user.elo
+    mmr: user.mmr
   };
 };

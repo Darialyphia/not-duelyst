@@ -1,5 +1,5 @@
 {
   "extends": "@hc/tsconfig/base.json",
-  "include": ["src/**/*.ts", "tsup.config.ts", "index.ts"],
+  "include": ["convex/**/*.ts", "src/**/*.ts", "tsup.config.ts", "index.ts"],
   "exclude": [".git", "node_modules"]
 }

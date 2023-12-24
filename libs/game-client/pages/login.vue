@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { SignIn } from "vue-clerk";
+import { SignIn } from 'vue-clerk';
 
 definePageMeta({
-  middleware: ["public"],
+  middleware: ['public'],
+  name: 'Login'
 });
 </script>
 

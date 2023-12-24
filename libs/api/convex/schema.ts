@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { Validator, v } from 'convex/values';
+import { GameStatus } from './game/game.constants';
 
 export default defineSchema({
   users: defineTable({
@@ -10,5 +11,50 @@ export default defineSchema({
   })
     .index('by_token', ['tokenIdentifier'])
     .index('by_fullname', ['name', 'discriminator'])
-    .index('by_mmr', ['mmr'])
+    .index('by_mmr', ['mmr']),
+
+  matchmaking: defineTable({
+    nextInvocationId: v.optional(v.id('_scheduled_functions'))
+  }),
+
+  matchmakingUsers: defineTable({
+    userId: v.id('users')
+  }).index('by_userId', ['userId']),
+
+  games: defineTable({
+    firstPlayer: v.id('users'),
+    mapId: v.id('gameMaps'),
+    status: v.string() as Validator<GameStatus>
+  }),
+
+  gamePlayers: defineTable({
+    userId: v.id('users'),
+    gameId: v.id('games')
+  })
+    .index('by_user_id', ['userId'])
+    .index('by_game_id', ['gameId']),
+
+  gameMaps: defineTable({
+    name: v.string(),
+    width: v.number(),
+    height: v.number(),
+    startPositions: v.array(
+      v.object({
+        x: v.number(),
+        y: v.number(),
+        z: v.number()
+      })
+    ),
+    cells: v.array(
+      v.object({
+        position: v.object({
+          x: v.number(),
+          y: v.number(),
+          z: v.number()
+        }),
+        tileId: v.string(),
+        spriteIds: v.array(v.string())
+      })
+    )
+  }).index('by_name', ['name'])
 });

@@ -27,10 +27,11 @@ export default defineNuxtPlugin(async nuxt => {
           template: 'convex'
         });
       } else {
-        return getToken.value({
+        const token = await getToken.value({
           template: 'convex',
           skipCache: forceRefreshToken
         });
+        return token;
       }
     } catch (error) {
       return null;
@@ -75,6 +76,7 @@ export default defineNuxtPlugin(async nuxt => {
       authState.isAuthenticated.value = isAuth;
       authState.isLoading.value = false;
     });
+  } else {
+    watch(isClerkAuthenticated, syncConvexAuthWithClerkAuth, { immediate: true });
   }
-  watchEffect(syncConvexAuthWithClerkAuth);
 });

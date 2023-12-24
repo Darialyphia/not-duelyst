@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import { TILES, Cell, Tile, type Point3D, Vec3, type SerializedGameState } from '@hc/sdk';
-import { isString, isDefined, objectEntries } from '@hc/shared';
+import { TILES, Cell, Tile, type Point3D, type SerializedGameState } from '@hc/sdk';
+import { isString, isDefined } from '@hc/shared';
 import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
@@ -14,6 +14,7 @@ import {
   SwitchRoot,
   SwitchThumb
 } from 'radix-vue';
+import { api } from '@hc/api';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -67,7 +68,6 @@ const makeMap = (serializedMap: SerializedGameState['map'], name: string) => {
       cell => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
     )
   };
-  console.log(map.value);
 };
 
 const map = ref(makeDefaultMap());
@@ -259,7 +259,8 @@ watchEffect(() => {
   });
 });
 
-const { data: maps, refresh } = await useFetch('/api/maps');
+const { data: maps } = useConvexQuery(api.gameMaps.getAll, {});
+
 watch(
   () => map.value.width,
   newX => {
@@ -288,21 +289,23 @@ watch(
     }
   }
 );
+
+const saveMap = useConvexMutation(api.gameMaps.save, {
+  onError(err) {
+    console.log(err);
+  }
+});
+
 const save = async () => {
   if (map.value.cells.some(cell => !cell.spriteIds.length)) {
     alert('Some tiles have no sprite !');
     return;
   }
 
-  await $fetch('/api/maps', {
-    method: 'POST',
-    body: {
-      ...map.value,
-      cells: map.value.cells.map(cell => cell.serialize())
-    }
+  await saveMap.mutate({
+    ...map.value,
+    cells: map.value.cells.map(cell => cell.serialize())
   });
-
-  refresh();
 };
 
 const spriteSearch = ref('');
@@ -337,9 +340,9 @@ const getSpriteIconOffset = (name: string) => {
         <PopoverPortal>
           <PopoverContent side="bottom" :side-offset="5" class="surface maps-dropdown">
             <ul v-if="maps">
-              <li v-for="(savedMap, name) in maps" :key="name">
-                <button @click="makeMap(savedMap, name as string)">
-                  {{ name }}
+              <li v-for="savedMap in maps" :key="savedMap.name">
+                <button @click="makeMap(savedMap as any, savedMap.name)">
+                  {{ savedMap.name }}
                 </button>
               </li>
             </ul>

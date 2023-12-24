@@ -58,7 +58,7 @@ export class Cell {
   serialize() {
     return {
       tileId: this.tile.serialize(),
-      position: this.position,
+      position: this.position.serialize(),
       spriteIds: this.spriteIds
     };
   }

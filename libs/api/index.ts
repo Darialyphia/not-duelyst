@@ -61,3 +61,4 @@ const createApiWrapper = <T extends object>(obj: T, pathParts: string[] = []): T
 };
 
 export const api = createApiWrapper(convexApi);
+export { convexApi };

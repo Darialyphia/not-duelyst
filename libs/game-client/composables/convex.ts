@@ -20,7 +20,7 @@ export const useConvexQuery = <Query extends QueryReference>(
   options: UseConvexQueryOptions = { ssr: true, enabled: true }
 ) => {
   const client = useConvexClient();
-
+  const nuxt = useNuxtApp();
   // @ts-expect-error
   const queryName = query.__query_name;
 
@@ -34,6 +34,8 @@ export const useConvexQuery = <Query extends QueryReference>(
   let shouldIgnoreNullUpdates = isDefined(data.value);
 
   const bind = () => {
+    if (nuxt.ssrContext) return;
+
     unsub?.();
     if (isEnabled.value) {
       unsub = client.onUpdate(query, toValue(args), newData => {
@@ -51,7 +53,7 @@ export const useConvexQuery = <Query extends QueryReference>(
   };
 
   watch(isEnabled, bind, { immediate: true });
-  watch(() => toValue(args), bind, { deep: true });
+  // watch(() => toValue(args), bind, { deep: true });
 
   onServerPrefetch(async () => {
     if (options.ssr) {
@@ -88,9 +90,9 @@ export function useConvexMutation<Mutation extends MutationReference>(
     mutate: async (args?: Mutation['_args']) => {
       try {
         isLoading.value = true;
-
         const result = await convex.mutation(mutation, args);
         onSuccess?.(result);
+        return result;
       } catch (err) {
         error.value = err as Error;
         onError?.(error.value);
