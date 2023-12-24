@@ -27,6 +27,10 @@ export class Player implements Serializable {
     };
   }
 
+  equals(player: Player) {
+    return player.id === this.id;
+  }
+
   clone() {
     return new Player(this.ctx, this.id, this.loadout, this.generalId, this.gold);
   }

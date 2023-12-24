@@ -51,7 +51,10 @@ const borders = computed(() => {
       Cast
     </UiButton>
   </div>
-  <div v-if="selectedEntity" class="flex gap-4 pb-2">
+  <div
+    v-if="selectedEntity && selectedEntity.player.equals(state.activePlayer)"
+    class="flex gap-4 pb-2"
+  >
     <button
       v-for="skill in selectedEntity.skills"
       :key="skill.id"

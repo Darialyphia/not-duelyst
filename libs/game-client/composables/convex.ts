@@ -1,6 +1,6 @@
 import type { FunctionArgs, FunctionReference, FunctionReturnType } from 'convex/server';
 import { CONVEX_AUTH, CONVEX_CLIENT } from '../plugins/convex';
-import type { Nullable } from '@hc/shared';
+import { type Nullable, isDefined } from '@hc/shared';
 
 export const useConvexClient = () => {
   return useSafeInject(CONVEX_CLIENT);
@@ -21,16 +21,29 @@ export const useConvexQuery = <Query extends QueryReference>(
 ) => {
   const client = useConvexClient();
 
-  const data = ref<FunctionReturnType<Query>>();
+  // @ts-expect-error
+  const queryName = query.__query_name;
+
+  const data = useState<FunctionReturnType<Query>>(queryName, undefined);
+
   const error = ref<Nullable<Error>>();
   let unsub: () => void;
 
   const isEnabled = computed(() => unref(options.enabled) ?? true);
 
+  let shouldIgnoreNullUpdates = isDefined(data.value);
+
   const bind = () => {
     unsub?.();
     if (isEnabled.value) {
       unsub = client.onUpdate(query, toValue(args), newData => {
+        // If we fetched the data during SSR and the cache is populated, ignore the first covnex updates that always return null
+        // until we get a non null value, then we get completely driven by convex reactive state
+        if (newData === null && shouldIgnoreNullUpdates) return;
+        if (newData !== null) {
+          shouldIgnoreNullUpdates = false;
+        }
+
         data.value = newData;
         error.value = undefined;
       });

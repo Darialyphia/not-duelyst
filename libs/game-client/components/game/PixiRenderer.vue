@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useApplication } from 'vue3-pixi';
-import type { Viewport } from 'pixi-viewport';
+import { type Viewport } from 'pixi-viewport';
+import type { Container } from 'pixi.js';
 
 const { state, gameSession, mapRotation, ui, sendInput, fx } = useGame();
 const { ui: uiLayer, gameObjects: gameObjectsLayer } = ui.layers;
@@ -11,6 +12,13 @@ const screenViewport = shallowRef<Viewport>();
 onMounted(() => {
   window.addEventListener('keydown', e => {
     if (e.repeat) return;
+    if (e.code === 'Space') {
+      const center = toIso({ x: 0, y: 0, z: 0 }, mapRotation.value, {
+        width: 0,
+        height: 0
+      });
+      screenViewport.value?.moveCenter({ x: center.isoX, y: center.isoY });
+    }
     if (e.code === 'KeyQ')
       mapRotation.value = ((mapRotation.value + 360 - 90) % 360) as 0 | 90 | 180 | 270;
 
@@ -90,14 +98,13 @@ onMounted(() => {
   });
 });
 
-const worldSize =
-  Math.sqrt(Math.pow(state.value.map.width, 2) + Math.pow(state.value.map.height, 2)) *
-  CELL_SIZE;
+const worldContainer = ref<Container>();
 
 watchEffect(() => {
   if (!screenViewport.value) return;
   screenViewport.value.pause = ui.targetMode.value === 'move';
 });
+
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
@@ -114,11 +121,11 @@ until(screenViewport)
       .pinch()
       .decelerate({ friction: 0.88 })
       .wheel({ smooth: 3, percent: 0.05 })
-      .mouseEdges({
-        distance: 10,
-        speed: 18,
-        allowButtons: true
-      })
+      // .mouseEdges({
+      //   distance: 10,
+      //   speed: 18,
+      //   allowButtons: true
+      // })
       .clamp({
         top: -screenViewport.value.worldWidth,
         bottom: screenViewport.value.worldWidth,
@@ -143,13 +150,13 @@ watchEffect(() => {
     ref="screenViewport"
     :screen-width="app.view.width"
     :screen-height="app.view.height"
-    :world-width="Math.max(app.view.width, worldSize * 2)"
-    :world-height="Math.max(app.view.height, worldSize)"
+    :world-width="app.view.width"
+    :world-height="app.view.height"
     :events="app.renderer.events"
     :disable-on-context-menu="true"
     :sortable-children="true"
   >
-    <container :x="0">
+    <container ref="worldContainer">
       <Layer ref="gameObjectsLayer">
         <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 

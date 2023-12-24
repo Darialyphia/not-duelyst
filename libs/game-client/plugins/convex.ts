@@ -1,37 +1,35 @@
-import type { InjectionKey } from "nuxt/dist/app/compat/capi";
-import { useAuth } from "vue-clerk";
-import { ConvexClientWithSSR } from "@hc/api";
+import type { InjectionKey } from 'nuxt/dist/app/compat/capi';
+import { useAuth } from 'vue-clerk';
+import { ConvexClientWithSSR } from '@hc/api';
 
-export const CONVEX_CLIENT = Symbol(
-  "convex-client"
-) as InjectionKey<ConvexClientWithSSR>;
-export const CONVEX_AUTH = Symbol("convex-auth") as InjectionKey<{
+export const CONVEX_CLIENT = Symbol('convex-client') as InjectionKey<ConvexClientWithSSR>;
+export const CONVEX_AUTH = Symbol('convex-auth') as InjectionKey<{
   isAuthenticated: Ref<boolean>;
   isLoading: Ref<boolean>;
 }>;
 
-export default defineNuxtPlugin(async (nuxt) => {
+export default defineNuxtPlugin(async nuxt => {
   const {
     isLoaded: isClerkLoaded,
     isSignedIn: isClerkAuthenticated,
-    getToken,
+    getToken
   } = useAuth();
   const config = useRuntimeConfig();
 
   const fetchAccessToken = async ({
-    forceRefreshToken,
+    forceRefreshToken
   }: {
     forceRefreshToken: boolean;
   }) => {
     try {
       if (process.server) {
         return nuxt.ssrContext?.event.context.auth.getToken({
-          template: "convex",
+          template: 'convex'
         });
       } else {
         return getToken.value({
-          template: "convex",
-          skipCache: forceRefreshToken,
+          template: 'convex',
+          skipCache: forceRefreshToken
         });
       }
     } catch (error) {
@@ -43,13 +41,13 @@ export default defineNuxtPlugin(async (nuxt) => {
 
   const authState = {
     isLoading: ref(!isClerkLoaded.value),
-    isAuthenticated: ref(isClerkAuthenticated.value ?? false),
+    isAuthenticated: ref(isClerkAuthenticated.value ?? false)
   };
 
   nuxt.vueApp.provide(CONVEX_CLIENT, convexClient);
   nuxt.vueApp.provide(CONVEX_AUTH, {
     isLoading: readonly(authState.isLoading),
-    isAuthenticated: readonly(authState.isAuthenticated),
+    isAuthenticated: readonly(authState.isAuthenticated)
   });
 
   const syncConvexAuthWithClerkAuth = async () => {
@@ -60,7 +58,7 @@ export default defineNuxtPlugin(async (nuxt) => {
     if (!isClerkLoaded.value) return;
 
     if (isClerkAuthenticated.value) {
-      convexClient.setAuth(fetchAccessToken, (isAuth) => {
+      convexClient.setAuth(fetchAccessToken, isAuth => {
         authState.isAuthenticated.value = isAuth;
         authState.isLoading.value = false;
       });
@@ -73,7 +71,7 @@ export default defineNuxtPlugin(async (nuxt) => {
   };
 
   if (process.server && nuxt.ssrContext?.event.context.auth.userId) {
-    convexClient.setAuth(fetchAccessToken, (isAuth) => {
+    convexClient.setAuth(fetchAccessToken, isAuth => {
       authState.isAuthenticated.value = isAuth;
       authState.isLoading.value = false;
     });

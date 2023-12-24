@@ -7,7 +7,12 @@ const { selectedEntity, hoveredCell } = useGameUi();
   <PlayerInfos />
 
   <Transition>
-    <div v-if="selectedEntity" class="selected-entity">
+    <div
+      v-if="selectedEntity"
+      :key="selectedEntity.id"
+      class="selected-entity"
+      :class="selectedEntity.player.equals(state.players[0]) ? 'left' : 'right'"
+    >
       <UnitCard :entity="selectedEntity" />
     </div>
   </Transition>
@@ -46,7 +51,20 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
 .selected-entity {
   position: absolute;
   top: 14rem;
-  left: var(--size-5);
+  &.left {
+    left: var(--size-5);
+    &:is(.v-enter-from, .v-leave-to) {
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+  }
+  &.right {
+    right: var(--size-5);
+    &:is(.v-enter-from, .v-leave-to) {
+      transform: translateX(50%);
+      opacity: 0;
+    }
+  }
 
   &:is(.v-enter-active, .v-leave-active) {
     transition:

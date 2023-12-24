@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       convexUrl: process.env.CONVEX_URL,
       clerkPublishableKey: process.env.CLERK_PUBLISHABLE_KEY
     },
+    hathoraAppId: process.env.HARHOTA_APP_ID,
     clerkSecretKey: process.env.CLERK_SECRET_KEY
   },
   components: [

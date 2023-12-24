@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, SignOutButton } from 'vue-clerk';
+import { SignOutButton } from 'vue-clerk';
 import { api } from '@hc/api';
 
 definePageMeta({

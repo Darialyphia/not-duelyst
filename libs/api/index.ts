@@ -1,5 +1,6 @@
 import { FunctionReference, FunctionReturnType, OptionalRestArgs } from 'convex/server';
-import { api } from './convex/_generated/api';
+import { api as convexApi } from './convex/_generated/api';
+// eslint-disable-next-line import/named
 import { ConvexClient, ConvexClientOptions, ConvexHttpClient } from 'convex/browser';
 import { Nullable, isString } from '@hc/shared';
 
@@ -40,4 +41,23 @@ export class ConvexClientWithSSR extends ConvexClient {
   }
 }
 
-export { api };
+const createApiWrapper = <T extends object>(obj: T, pathParts: string[] = []): T => {
+  const handler: ProxyHandler<object> = {
+    get(_, prop: string | symbol) {
+      if (prop === '__query_name') {
+        return pathParts.join('.');
+      } else if (typeof prop === 'string') {
+        const newParts = [...pathParts, prop];
+        // @ts-expect-error
+        return createApiWrapper(obj[prop], newParts);
+      } else {
+        // @ts-expect-error
+        return obj[prop];
+      }
+    }
+  };
+
+  return new Proxy(obj, handler) as T;
+};
+
+export const api = createApiWrapper(convexApi);
