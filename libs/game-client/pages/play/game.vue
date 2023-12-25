@@ -11,9 +11,10 @@ const { data: socketUrl } = await useFetch('/api/room', {
 });
 const { getToken } = useConvexAuth();
 
-const { data: me } = useConvexQuery(api.users.me, {});
+const { data: game, isLoading: isGameLoading } = useConvexQuery(api.games.getCurrent, {});
+const { data: me, isLoading: isMeLoading } = useConvexQuery(api.users.me, {});
 
-const game = shallowRef<{
+const gameSession = shallowRef<{
   session: GameSession;
   dispatch: (
     type: Parameters<GameSession['dispatchPlayerInput']>[0]['type'],
@@ -35,11 +36,11 @@ onMounted(async () => {
   });
 
   socket.on('game:init', (serializedState: any) => {
-    if (game.value) return;
+    if (gameSession.value) return;
     const session = GameSession.createClientSession(serializedState);
     session.onReady(() => {
       console.log('ready');
-      game.value = {
+      gameSession.value = {
         session,
         dispatch(type, payload) {
           socket.emit('game:input', { type, payload });
@@ -48,25 +49,42 @@ onMounted(async () => {
     });
 
     socket.on('game:action', (arg: any) => {
-      game.value?.session.dispatchAction(arg);
+      gameSession.value?.session.dispatchAction(arg);
     });
   });
+});
+
+const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
+const canSeeGame = computed(() => {
+  if (isLoading.value) return true;
+  return game.value?.players.some(p => p._id === me.value?._id);
 });
 </script>
 
 <template>
   <ClientOnly>
+    <div v-if="isLoading">Loading...</div>
+    <div v-if="!canSeeGame">
+      You are not authorized to see this game
+      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+    </div>
+    <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">Waiting for opponent...</div>
+    <div v-else-if="game?.status === 'FINISHED'">
+      This game is already finished.
+      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+    </div>
+
     <GameView
-      v-if="game && me"
-      :game-session="game.session"
+      v-else-if="gameSession && me"
+      :game-session="gameSession.session"
       :player-id="me._id"
-      @move="game.dispatch('MOVE', $event)"
-      @end-turn="game.dispatch('END_TURN', {})"
-      @use-skill="game.dispatch('USE_SKILL', $event)"
-      @summon="game.dispatch('SUMMON', $event)"
-      @surrender="game.dispatch('SURRENDER', {})"
+      @move="gameSession.dispatch('MOVE', $event)"
+      @end-turn="gameSession.dispatch('END_TURN', {})"
+      @use-skill="gameSession.dispatch('USE_SKILL', $event)"
+      @summon="gameSession.dispatch('SUMMON', $event)"
+      @surrender="gameSession.dispatch('SURRENDER', {})"
     />
-    <div v-else>Waiting for opponent...</div>
-    <template #fallback>Connecting to the game...</template>
+
+    <template #fallback>Loading...</template>
   </ClientOnly>
 </template>

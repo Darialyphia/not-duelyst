@@ -14,8 +14,10 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as game_utils from "../game/utils.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
+import type * as hathora from "../hathora.js";
 import type * as matchmaking_matchmaking from "../matchmaking/matchmaking.js";
 import type * as matchmaking from "../matchmaking.js";
 import type * as users from "../users.js";
@@ -31,8 +33,10 @@ import type * as utils_auth from "../utils/auth.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "game/utils": typeof game_utils;
   gameMaps: typeof gameMaps;
   games: typeof games;
+  hathora: typeof hathora;
   "matchmaking/matchmaking": typeof matchmaking_matchmaking;
   matchmaking: typeof matchmaking;
   users: typeof users;

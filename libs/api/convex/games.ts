@@ -1,56 +1,9 @@
-import { randomInt } from '@hc/shared';
-// eslint-disable-next-line import/no-unresolved
-import { Id } from './_generated/dataModel';
-import { query, mutation, internalAction, internalMutation } from './_generated/server';
+import { internal } from './_generated/api';
+import { query, mutation, internalMutation, action } from './_generated/server';
 import { toUserDto } from './users/user.mapper';
 import { findMe } from './users/user.utils';
 import { ensureAuthenticated } from './utils/auth';
-import { Validator, v } from 'convex/values';
-import { HathoraCloud } from '@hathora/cloud-sdk-typescript';
-import { Region } from '@hathora/cloud-sdk-typescript/dist/sdk/models/shared';
-
-export const getRoomId = internalAction(async () => {
-  if (!process.env.HATHORA_TOKEN) return 'dev';
-  const hathoraSdk = new HathoraCloud({
-    appId: process.env.HATHORA_APP_ID,
-    security: {
-      hathoraDevToken: process.env.HATHORA_TOKEN!
-    }
-  });
-
-  const room = await hathoraSdk.roomV2.createRoom({ region: Region.London });
-  if (room.statusCode !== 200) throw new Error('could not get room Id from Hathora');
-  return room.connectionInfoV2!.roomId;
-});
-
-export const create = internalMutation({
-  args: {
-    playersIds: v.array(v.id('users')) as Validator<[Id<'users'>, Id<'users'>]>,
-    roomId: v.string()
-  },
-  async handler(ctx, arg) {
-    const maps = await ctx.db.query('gameMaps').collect();
-
-    const firstPlayerIndex = Math.round(Math.random());
-    const mapIndex = randomInt(maps.length - 1);
-
-    const gameId = await ctx.db.insert('games', {
-      firstPlayer: arg.playersIds[firstPlayerIndex],
-      mapId: maps[mapIndex]._id,
-      status: 'WAITING_FOR_PLAYERS',
-      roomId: arg.roomId
-    });
-
-    await Promise.all(
-      arg.playersIds.map(playerId =>
-        ctx.db.insert('gamePlayers', {
-          gameId,
-          userId: playerId
-        })
-      )
-    );
-  }
-});
+import { v } from 'convex/values';
 
 export const getCurrent = query(async ctx => {
   await ensureAuthenticated(ctx);
@@ -99,7 +52,7 @@ export const start = mutation({
   }
 });
 
-export const end = mutation({
+export const destroy = internalMutation({
   args: {
     gameId: v.id('games'),
     winnerId: v.id('users')
@@ -117,6 +70,20 @@ export const end = mutation({
       .filter(q => q.eq(q.field('gameId'), args.gameId))
       .unique();
 
-    return ctx.db.patch(game._id, { status: 'FINISHED', winnerId: gamePlayer!._id });
+    await ctx.db.patch(game._id, { status: 'FINISHED', winnerId: gamePlayer!._id });
+
+    return game;
+  }
+});
+
+export const end = action({
+  args: {
+    gameId: v.id('games'),
+    winnerId: v.id('users')
+  },
+  async handler(ctx, args) {
+    const game = await ctx.runMutation(internal.games.destroy, args);
+
+    await ctx.runAction(internal.hathora.destroyRoom, { roomId: game.roomId });
   }
 });

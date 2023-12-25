@@ -3,6 +3,7 @@ import type { GameMap } from './gameMap.entity';
 import { Point3D } from '@hc/sdk';
 
 export type GameMapDto = {
+  id: Id<'gameMaps'>;
   cells: { position: Point3D; tileId: string; spriteIds: string[] }[];
   height: number;
   width: number;
@@ -13,6 +14,7 @@ export type GameMapDto = {
 
 export const toGameMapDto = (gameMap: GameMap): GameMapDto => {
   return {
+    id: gameMap._id,
     cells: gameMap.cells,
     height: gameMap.height,
     width: gameMap.width,

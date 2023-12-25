@@ -63,3 +63,17 @@ export const findMe = async ({ auth, db }: Pick<QueryCtx, 'auth' | 'db'>) => {
     .withIndex('by_token', q => q.eq('tokenIdentifier', identity.tokenIdentifier))
     .unique();
 };
+
+export const ensureUserExists = async (
+  { db }: Pick<QueryCtx, 'auth' | 'db'>,
+  token: string
+) => {
+  const user = await db
+    .query('users')
+    .withIndex('by_token', q => q.eq('tokenIdentifier', token))
+    .unique();
+
+  if (!user) throw new Error('User not found');
+
+  return user;
+};

@@ -1,46 +1,7 @@
-import { FunctionReference, FunctionReturnType, OptionalRestArgs } from 'convex/server';
 import { api as convexApi } from './convex/_generated/api';
-// eslint-disable-next-line import/named
-import { ConvexClient, ConvexClientOptions, ConvexHttpClient } from 'convex/browser';
-import { Nullable, isString } from '@hc/shared';
 
-type AuthTokenFetcher = (args: {
-  forceRefreshToken: boolean;
-}) => Promise<string | null | undefined>;
-
-export class ConvexClientWithSSR extends ConvexClient {
-  private httpClient: ConvexHttpClient;
-  private authTokenFetcher?: AuthTokenFetcher;
-  private ssrAuthToken?: Nullable<string>;
-  private ssrOnTokenChange?: (isAuthenticated: boolean) => void;
-
-  constructor(address: string, options: ConvexClientOptions = {}) {
-    super(address, options);
-    this.httpClient = new ConvexHttpClient(address);
-  }
-
-  setAuth(fetchToken: AuthTokenFetcher, onChange?: (isAuthenticated: boolean) => void) {
-    super.setAuth(fetchToken, onChange);
-    this.authTokenFetcher = fetchToken;
-    this.ssrOnTokenChange = onChange;
-  }
-
-  async querySSR<Query extends FunctionReference<'query'>>(
-    query: Query,
-    ...args: OptionalRestArgs<Query>
-  ): Promise<FunctionReturnType<Query>> {
-    if (this.ssrAuthToken === undefined) {
-      this.ssrAuthToken = await this.authTokenFetcher?.({ forceRefreshToken: true });
-      this.ssrOnTokenChange?.(isString(this.ssrAuthToken));
-      if (isString(this.ssrAuthToken)) {
-        this.httpClient.setAuth(this.ssrAuthToken);
-      }
-    }
-
-    return this.httpClient.query(query, ...args);
-  }
-}
-
+// This allows use to catch the function referenc ename of a convex query
+// This is useful for exmaple in the client where we can cache ConvexHttpClient query result between server and client
 const createApiWrapper = <T extends object>(obj: T, pathParts: string[] = []): T => {
   const handler: ProxyHandler<object> = {
     get(_, prop: string | symbol) {
@@ -62,3 +23,6 @@ const createApiWrapper = <T extends object>(obj: T, pathParts: string[] = []): T
 
 export const api = createApiWrapper(convexApi);
 export { convexApi };
+export { ConvexClientWithSSR } from './convexClientSSR';
+export type { UserDto } from './convex/users/user.mapper';
+export type { GameMapDto } from './convex/gameMap/gameMap.mapper';

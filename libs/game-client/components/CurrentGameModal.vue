@@ -31,7 +31,7 @@ watchEffect(() => {
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
         <div class="fancy-surface">
-          <DialogTitle>Recconecting to your game...</DialogTitle>
+          <DialogTitle>Connecting to your game...</DialogTitle>
         </div>
         <DialogClose />
       </DialogContent>

@@ -15,9 +15,9 @@ async function main() {
   >();
   const httpServer = createServer();
   const io = new Server<
-    any,
-    any,
-    any,
+    any, // @FIXME
+    any, // @FIXME
+    Record<string, never>,
     {
       convexClient: ConvexHttpClient;
       user: UserDto;
@@ -101,12 +101,11 @@ async function main() {
         io.in(game._id).emit('game:action', action.serialize());
         if (action.name !== 'END_GAME') return;
         const { winner } = session.getState();
-        if (winner?.id === socket.data.user._id) {
-          socket.data.convexClient.mutation(api.games.end, {
-            gameId: game._id,
-            winnerId: socket.data.user._id
-          });
-        }
+
+        socket.data.convexClient.action(api.games.end, {
+          gameId: game._id,
+          winnerId: winner!.id as any
+        });
       });
 
       ongoingGames.set(game._id, {

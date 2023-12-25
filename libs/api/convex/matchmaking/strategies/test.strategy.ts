@@ -11,6 +11,7 @@ export class MatchmakingTestStrategy
   sorter(a: TestStrategyParticipant, b: TestStrategyParticipant): number {
     return b.mmr - a.mmr;
   }
+
   matcher(a: TestStrategyParticipant, b: TestStrategyParticipant): boolean {
     return Math.abs(a.mmr - b.mmr) < 9999;
   }

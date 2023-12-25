@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { SignOutButton } from 'vue-clerk';
 import { api } from '@hc/api';
-
+definePageMeta({
+  name: 'ClientHome'
+});
 const { data: me } = useConvexQuery(api.users.me, {});
 </script>
 <template>

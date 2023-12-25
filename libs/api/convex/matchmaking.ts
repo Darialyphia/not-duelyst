@@ -2,40 +2,28 @@ import { api, internal } from './_generated/api';
 import { internalAction, internalMutation, mutation, query } from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
-import { findMe } from './users/user.utils';
+import { ensureUserExists, findMe } from './users/user.utils';
 import { ensureAuthenticated } from './utils/auth';
-import { getMatchmaking } from './matchmaking/matchmaking.utils';
+import {
+  createGameFromMatchmadePair,
+  ensureIsInMatchmaking,
+  ensureIsNotInMatchmaking,
+  getMatchmaking,
+  scheduleNextMatchmakingInvocation,
+  startMatchmakingIfNeeded
+} from './matchmaking/matchmaking.utils';
 import { v } from 'convex/values';
+import { ensureHasNoCurrentGame, getGameInitialState } from './game/utils';
 
 export const join = mutation({
   handler: async ctx => {
-    await ensureAuthenticated(ctx);
-    const user = await findMe(ctx);
-    if (!user) return null;
-
-    const currentGameUser = await ctx.db
-      .query('gamePlayers')
-      .withIndex('by_creation_time')
-      .filter(q => q.eq(q.field('userId'), user._id))
-      .order('desc')
-      .first();
-    if (currentGameUser) throw new Error('Already in game');
-
-    const matchmaking = await getMatchmaking(ctx);
-
-    const matchmakingUser = await ctx.db
-      .query('matchmakingUsers')
-      .withIndex('by_userId', q => q.eq('userId', user!._id))
-      .unique();
-
-    if (matchmakingUser) throw new Error('Already in matchmaking');
+    const identity = await ensureAuthenticated(ctx);
+    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    await ensureHasNoCurrentGame(ctx, user._id);
+    await ensureIsNotInMatchmaking(ctx, user._id);
 
     const result = await ctx.db.insert('matchmakingUsers', { userId: user!._id });
-
-    if (!matchmaking.nextInvocationId) {
-      const next = await ctx.scheduler.runAfter(0, internal.matchmaking.matchPlayers);
-      await ctx.db.patch(matchmaking._id, { nextInvocationId: next });
-    }
+    await startMatchmakingIfNeeded(ctx);
 
     return result;
   }
@@ -43,26 +31,49 @@ export const join = mutation({
 
 export const leave = mutation({
   handler: async ctx => {
-    await ensureAuthenticated(ctx);
-    const user = await findMe(ctx);
-
-    const matchMakingUser = await ctx.db
-      .query('matchmakingUsers')
-      .withIndex('by_userId', q => q.eq('userId', user!._id))
-      .unique();
-
-    if (!matchMakingUser) throw new Error('Not in matchmaking');
+    const identity = await ensureAuthenticated(ctx);
+    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const matchMakingUser = await ensureIsInMatchmaking(ctx, user._id);
 
     return ctx.db.delete(matchMakingUser._id);
   }
 });
 
-export const internalLeave = internalMutation({
+export const handleMatchmadePair = internalMutation({
   args: {
-    playersIds: v.array(v.id('matchmakingUsers'))
+    roomId: v.string(),
+    players: v.array(
+      v.object({
+        matchmakingUserId: v.id('matchmakingUsers'),
+        userId: v.id('users')
+      })
+    )
   },
-  handler(ctx, arg) {
-    return Promise.all(arg.playersIds.map(id => ctx.db.delete(id)));
+  async handler(ctx, arg) {
+    await Promise.all(
+      arg.players.map(({ matchmakingUserId }) => ctx.db.delete(matchmakingUserId))
+    );
+
+    const { mapId, firstPlayer, status } = await getGameInitialState(
+      ctx,
+      arg.players.map(p => p.userId)
+    );
+
+    const gameId = await ctx.db.insert('games', {
+      firstPlayer,
+      mapId,
+      status,
+      roomId: arg.roomId
+    });
+
+    await Promise.all(
+      arg.players.map(({ userId }) =>
+        ctx.db.insert('gamePlayers', {
+          gameId,
+          userId
+        })
+      )
+    );
   }
 });
 
@@ -88,28 +99,23 @@ export const setupNextInvocation = internalMutation({
 });
 
 export const matchPlayers = internalAction(async ctx => {
+  console.log('matching players');
   const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
 
   const strategy = new MatchmakingTestStrategy();
   const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
-
+  console.log(pairs);
   await Promise.allSettled(
-    pairs.map(async pair => {
-      await ctx.runMutation(internal.matchmaking.internalLeave, {
-        playersIds: pair.map(p => p.matchmakingUserId)
-      });
-      const roomId = await ctx.runAction(internal.games.getRoomId);
-      await ctx.runMutation(internal.games.create, {
-        playersIds: [pair[0]._id, pair[1]._id],
-        roomId
-      });
-    })
+    pairs.map(pair =>
+      createGameFromMatchmadePair(
+        ctx,
+        pair.map(p => ({
+          userId: p._id,
+          matchmakingUserId: p.matchmakingUserId
+        }))
+      )
+    )
   );
 
-  await ctx.runMutation(internal.matchmaking.setupNextInvocation, {
-    schedulerId:
-      remaining.length > 1
-        ? await ctx.scheduler.runAfter(0, internal.matchmaking.matchPlayers)
-        : undefined
-  });
+  await scheduleNextMatchmakingInvocation(ctx, remaining.length);
 });

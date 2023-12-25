@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import { TILES, Cell, Tile, type Point3D, type SerializedGameState } from '@hc/sdk';
+import { TILES, Cell, Tile, type Point3D } from '@hc/sdk';
 import { isString, isDefined } from '@hc/shared';
 import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
@@ -15,6 +15,7 @@ import {
   SwitchThumb
 } from 'radix-vue';
 import { api } from '@hc/api';
+import type { GameMapDto } from '@hc/api';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -60,9 +61,8 @@ const makeDefaultMap = (): EditorMap => ({
   ]
 });
 
-const makeMap = (serializedMap: SerializedGameState['map'], name: string) => {
+const makeMap = ({ id, ...serializedMap }: GameMapDto) => {
   map.value = {
-    name,
     ...serializedMap,
     cells: serializedMap.cells.map(
       cell => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
@@ -340,8 +340,8 @@ const getSpriteIconOffset = (name: string) => {
         <PopoverPortal>
           <PopoverContent side="bottom" :side-offset="5" class="surface maps-dropdown">
             <ul v-if="maps">
-              <li v-for="savedMap in maps" :key="savedMap.name">
-                <button @click="makeMap(savedMap as any, savedMap.name)">
+              <li v-for="savedMap in maps" :key="savedMap.id">
+                <button @click="makeMap(savedMap)">
                   {{ savedMap.name }}
                 </button>
               </li>
