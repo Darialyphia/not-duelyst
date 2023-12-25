@@ -9,6 +9,12 @@ const { data: currentGame } = useConvexQuery(
 );
 const route = useRoute();
 const isOpened = computed(() => route.name !== 'Game' && !!currentGame.value);
+const router = useRouter();
+watchEffect(() => {
+  if (isOpened.value) {
+    router.replace({ name: 'Game' });
+  }
+});
 </script>
 
 <template>
@@ -17,12 +23,7 @@ const isOpened = computed(() => route.name !== 'Game' && !!currentGame.value);
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
         <div class="fancy-surface">
-          <DialogTitle>You're in a game !</DialogTitle>
-          <DialogDescription>
-            <NuxtLink :to="{ name: 'Game', params: { id: currentGame!._id } }">
-              Click here to go back to your ongoing game.
-            </NuxtLink>
-          </DialogDescription>
+          <DialogTitle>Recconecting to your game...</DialogTitle>
         </div>
         <DialogClose />
       </DialogContent>

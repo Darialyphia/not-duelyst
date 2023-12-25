@@ -28,6 +28,7 @@ const onEnd = ({ winner }: { winner: Player }) => {
 
 <template>
   <GameView
+    :player-id="null"
     :game-session="clientSession"
     @move="dispatch('MOVE', $event)"
     @end-turn="dispatch('END_TURN', {})"

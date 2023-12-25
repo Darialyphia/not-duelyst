@@ -9,7 +9,7 @@ export class ActionHistory implements Serializable {
   constructor(private ctx: GameSession) {}
 
   setup(rawHistory: SerializedAction[]) {
-    rawHistory.forEach(this.ctx.actionQueue.push);
+    rawHistory.forEach(action => this.ctx.actionQueue.push(action));
   }
 
   add(action: GameAction<any>) {

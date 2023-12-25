@@ -34,6 +34,7 @@ export type GameContext = {
   state: Ref<GameState>;
   gameSession: GameSession;
   sendInput: ShortEmits<GameEmits>;
+  isActivePlayer: ComputedRef<boolean>;
   mapRotation: Ref<0 | 90 | 180 | 270>;
   assets: AssetsContext;
   utils: {
@@ -64,7 +65,11 @@ export type GameContext = {
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 
-export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits>) => {
+export const useGameProvider = (
+  session: GameSession,
+  emit: ShortEmits<GameEmits>,
+  playerId: string | null
+) => {
   const assets = useAssetsProvider();
   const state = ref<GameState>(session.getState());
   const unsub = session.subscribe(action => {
@@ -88,12 +93,17 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   });
 
   const selectedEntityId = ref<Nullable<number>>(null);
-
+  const isActivePlayer = computed(() =>
+    // allows to controlk both player in sandbox mode
+    playerId ? state.value.activePlayer.id === playerId : true
+  );
   const context: GameContext = {
     assets,
+    isActivePlayer,
     state: state as Ref<GameState>,
     gameSession: session,
     sendInput: (type, payload?) => {
+      if (!toValue(isActivePlayer)) return;
       // @ts-expect-error
       emit(type, payload);
       context.ui.targetMode.value = null;
@@ -132,6 +142,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
         return context.ui.selectedEntity.value.canMove(distanceMap.value.get(point));
       },
       isWithinRangeOfSkill(point) {
+        if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
         if (!context.ui.selectedEntity.value) return false;
@@ -144,11 +155,13 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
         );
       },
       isSummonTarget(point) {
+        if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'summon') return false;
 
         return session.map.canSummonAt(point);
       },
       isSkillTarget(point) {
+        if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
         if (!context.ui.selectedEntity.value) return false;
@@ -171,18 +184,21 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   useInstallFxContext(context);
 
   watchEffect(() => {
+    if (!toValue(isActivePlayer)) return;
     if (context.ui.selectedSkill.value) {
       context.ui.targetMode.value = 'skill';
       context.ui.selectedSummon.value = null;
     }
   });
   watchEffect(() => {
+    if (!toValue(isActivePlayer)) return;
     if (context.ui.selectedSummon.value) {
       context.ui.targetMode.value = 'summon';
       context.ui.selectedSkill.value = null;
     }
   });
   watchEffect(() => {
+    if (!toValue(isActivePlayer)) return;
     if (context.ui.targetMode.value === 'move') {
       context.ui.selectedSummon.value = null;
       context.ui.selectedSkill.value = null;
@@ -190,6 +206,7 @@ export const useGameProvider = (session: GameSession, emit: ShortEmits<GameEmits
   });
 
   watch(context.ui.targetMode, newMode => {
+    if (!toValue(isActivePlayer)) return;
     if (newMode !== 'skill') {
       context.ui.skillTargets.value.clear();
     }

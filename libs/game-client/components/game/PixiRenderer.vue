@@ -3,7 +3,7 @@ import { useApplication } from 'vue3-pixi';
 import { type Viewport } from 'pixi-viewport';
 import type { Container } from 'pixi.js';
 
-const { state, gameSession, mapRotation, ui, sendInput, fx } = useGame();
+const { state, gameSession, mapRotation, ui, sendInput, fx, isActivePlayer } = useGame();
 const { ui: uiLayer, gameObjects: gameObjectsLayer } = ui.layers;
 const app = useApplication();
 
@@ -25,7 +25,6 @@ onMounted(() => {
     if (e.code === 'KeyE')
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
 
-    if (e.code === 'KeyT') sendInput('end-turn');
     if (e.code === 'Tab') {
       e.preventDefault();
       const selectedEntity = ui.selectedEntity.value;
@@ -51,6 +50,9 @@ onMounted(() => {
 
       fx.viewport?.moveCenter(sprite.position);
     }
+    if (!toValue(isActivePlayer)) return;
+
+    if (e.code === 'KeyT') sendInput('end-turn');
 
     if (
       ui.selectedEntity.value &&

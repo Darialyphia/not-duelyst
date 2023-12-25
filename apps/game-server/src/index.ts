@@ -125,6 +125,7 @@ async function main() {
     playerJoined.add(socket.data.user._id);
 
     if (playerJoined.size === 2) {
+      console.log('sending state');
       io.in(game._id).emit('game:init', session.serialize());
     }
   });

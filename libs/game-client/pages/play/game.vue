@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { api } from '@hc/api';
 import { GameSession } from '@hc/sdk';
 import { io } from 'socket.io-client';
 definePageMeta({
@@ -6,6 +7,8 @@ definePageMeta({
 });
 const { data: socketUrl } = await useFetch('/api/room');
 const { getToken } = useConvexAuth();
+
+const { data: me } = useConvexQuery(api.users.me, {});
 
 const game = ref<{
   session: GameSession;
@@ -48,8 +51,9 @@ onMounted(async () => {
 <template>
   <ClientOnly>
     <GameView
-      v-if="game"
+      v-if="game && me"
       :game-session="game.session"
+      :player-id="me._id"
       @move="game.dispatch('MOVE', $event)"
       @end-turn="game.dispatch('END_TURN', {})"
       @use-skill="game.dispatch('USE_SKILL', $event)"

@@ -15,10 +15,13 @@ import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
 import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import surfaceBg from '../../assets/ui/surface-bg.png';
 
-const { gameSession } = defineProps<{ gameSession: GameSession }>();
+const { gameSession, playerId } = defineProps<{
+  gameSession: GameSession;
+  playerId: string | null;
+}>();
 const emit = defineEmits<GameEmits>();
 
-const game = useGameProvider(gameSession, emit);
+const game = useGameProvider(gameSession, emit, playerId);
 const { ui, assets } = game;
 
 // @ts-ignore  enable PIXI devtools
