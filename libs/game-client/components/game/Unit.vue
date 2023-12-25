@@ -12,7 +12,8 @@ const { entity } = defineProps<{
 }>();
 
 const app = useApplication();
-const { gameSession, assets, state, mapRotation, fx, sendInput, utils } = useGame();
+const { isActivePlayer, gameSession, assets, state, mapRotation, fx, sendInput, utils } =
+  useGame();
 const { hoveredCell, skillTargets, selectedSkill, selectedEntity, targetMode } =
   useGameUi();
 
@@ -166,7 +167,7 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
             if (e.button !== 0) return;
             if (targetMode === null) {
               selectedEntity = entity;
-              targetMode = 'move';
+              if (entity.player.equals(state.activePlayer)) targetMode = 'move';
             }
           }
         "

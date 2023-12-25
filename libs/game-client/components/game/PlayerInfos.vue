@@ -7,14 +7,7 @@ import type { Entity } from '@hc/sdk';
 
 const { state } = useGame();
 
-const players = computed(() =>
-  state.value.players.map(player => ({
-    ...player,
-    general: state.value.entities.find(
-      e => e.kind === 'GENERAL' && e.playerId === player.id
-    )!
-  }))
-);
+const players = computed(() => state.value.players);
 
 const getBorder = (entity: Entity) => {
   switch (entity.unit.faction.id) {
@@ -30,7 +23,11 @@ const getBorder = (entity: Entity) => {
 
 <template>
   <div class="player player-1">
-    <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[0].general)}` }">
+    <div
+      class="img-wrapper"
+      :style="{ '--bg': `url(${getBorder(players[0].general)}` }"
+      :class="state.activePlayer.equals(players[0]) && 'active'"
+    >
       <img :src="`${unitImagesPaths[players[0].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
@@ -46,7 +43,11 @@ const getBorder = (entity: Entity) => {
   </div>
 
   <div class="player player-2">
-    <div class="img-wrapper" :style="{ '--bg': `url(${getBorder(players[1].general)}` }">
+    <div
+      class="img-wrapper"
+      :style="{ '--bg': `url(${getBorder(players[1].general)}` }"
+      :class="state.activePlayer.equals(players[1]) && 'active'"
+    >
       <img :src="`${unitImagesPaths[players[1].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
@@ -101,6 +102,10 @@ const getBorder = (entity: Entity) => {
   background-size: cover;
   border-radius: var(--radius-round);
   box-shadow: inset 0 0 0 1px black;
+
+  &.active {
+    border: solid var(--border-size-3) var(--primary);
+  }
 }
 .player-1 {
   position: absolute;

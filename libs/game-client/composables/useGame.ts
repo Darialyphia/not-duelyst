@@ -93,10 +93,11 @@ export const useGameProvider = (
   });
 
   const selectedEntityId = ref<Nullable<number>>(null);
-  const isActivePlayer = computed(() =>
+  const isActivePlayer = computed(() => {
+    console.log(playerId, state.value.activePlayer.id);
     // allows to controlk both player in sandbox mode
-    playerId ? state.value.activePlayer.id === playerId : true
-  );
+    return playerId ? state.value.activePlayer.id === playerId : true;
+  });
   const context: GameContext = {
     assets,
     isActivePlayer,

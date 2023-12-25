@@ -9,7 +9,17 @@ export class ActionHistory implements Serializable {
   constructor(private ctx: GameSession) {}
 
   setup(rawHistory: SerializedAction[]) {
-    rawHistory.forEach(action => this.ctx.actionQueue.push(action));
+    return new Promise<void>(resolve => {
+      const done = () => {
+        resolve();
+        this.ctx.actionQueue.emitter.off('processed');
+      };
+      this.ctx.actionQueue.emitter.on('processed', done);
+
+      if (!rawHistory.length) return done();
+
+      rawHistory.forEach(action => this.ctx.actionQueue.push(action));
+    });
   }
 
   add(action: GameAction<any>) {

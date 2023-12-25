@@ -8,7 +8,7 @@ import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
-const { state, sendInput } = useGame();
+const { isActivePlayer, state, sendInput } = useGame();
 const { selectedSummon, selectedEntity, selectedSkill, skillTargets } = useGameUi();
 
 const activePlayer = computed(() => state.value.activePlayer);
@@ -121,6 +121,7 @@ const borders = computed(() => {
         '--d-button-hover-color': 'var(--gray-0)'
       }"
       class="end-turn"
+      :disabled="!isActivePlayer"
       @click="sendInput('end-turn')"
     >
       End Turn

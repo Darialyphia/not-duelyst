@@ -37,6 +37,7 @@ type GlobalGameEvents = GlobalEntityEvents & {
   'game:action': GameAction<any>;
   'game:turn-end': Player;
   'game:turn-start': Player;
+  'game:client-ready': void;
 };
 
 export class GameSession {
@@ -70,24 +71,34 @@ export class GameSession {
 
   turn: number;
 
+  clientReady = false;
+
   private constructor(
-    state: SerializedGameState,
+    private initialState: SerializedGameState,
     readonly isAuthoritative: boolean
   ) {
-    this.turn = state.turn;
-    this.map.setup(state.map);
-    this.playerManager.setup(state.activePlayerId, state.players);
-    this.entityManager.setup(state.entities);
-    this.history.setup(state.history);
+    this.turn = this.initialState.turn;
+    this.setup();
+  }
+
+  private async setup() {
+    this.map.setup(this.initialState.map);
+    this.playerManager.setup(this.initialState.activePlayerId, this.initialState.players);
+    this.entityManager.setup(this.initialState.entities);
 
     if (!this.entityManager.getList().length) {
       this.playerManager.getList().forEach((player, index) => {
         this.entityManager.addEntity({
           playerId: player.id,
           unitId: player.generalId,
-          position: state.map.startPositions[index]
+          position: this.initialState.map.startPositions[index]
         });
       });
+    }
+    await this.history.setup(this.initialState.history);
+    if (!this.isAuthoritative) {
+      this.clientReady = true;
+      this.emitter.emit('game:client-ready');
     }
   }
 
@@ -114,6 +125,12 @@ export class GameSession {
     this.actionQueue.push(action);
   }
 
+  onReady(cb: () => void) {
+    if (this.isAuthoritative) return;
+    if (this.clientReady) return cb();
+    this.emitter.on('game:client-ready', cb);
+  }
+
   subscribe(cb: (e: GameAction<any>) => void) {
     this.emitter.on('game:action', cb);
     return () => this.emitter.off('game:action', cb);
@@ -121,11 +138,8 @@ export class GameSession {
 
   serialize(): SerializedGameState {
     return {
-      ...this.entityManager.serialize(),
-      ...this.playerManager.serialize(),
-      map: this.map.serialize(),
-      history: this.history.serialize(),
-      turn: this.turn
+      ...this.initialState,
+      history: this.history.serialize()
     };
   }
 }

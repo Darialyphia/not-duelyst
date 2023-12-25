@@ -21,14 +21,6 @@ const border = computed(() => {
       throw exhaustiveSwitch;
   }
 });
-
-const { state } = useGame();
-watchEffect(() => {
-  console.log(
-    state.value.entities.find(e => e.id === entity.id)?.skillCooldowns,
-    entity.skillCooldowns
-  );
-});
 </script>
 
 <template>

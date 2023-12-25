@@ -34,12 +34,16 @@ onMounted(async () => {
 
   socket.on('game:init', (serializedState: any) => {
     if (game.value) return;
-    game.value = {
-      session: GameSession.createClientSession(serializedState),
-      dispatch(type, payload) {
-        socket.emit('game:input', { type, payload });
-      }
-    };
+    const session = GameSession.createClientSession(serializedState);
+    session.onReady(() => {
+      console.log('ready');
+      game.value = {
+        session,
+        dispatch(type, payload) {
+          socket.emit('game:input', { type, payload });
+        }
+      };
+    });
 
     socket.on('game:action', (arg: any) => {
       game.value?.session.dispatchAction(arg);
