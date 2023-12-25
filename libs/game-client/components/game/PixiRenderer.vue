@@ -26,6 +26,7 @@ onMounted(() => {
       mapRotation.value = ((mapRotation.value + 360 + 90) % 360) as 0 | 90 | 180 | 270;
 
     if (e.code === 'Tab') {
+      if (ui.isMenuOpened.value) return;
       e.preventDefault();
       const selectedEntity = ui.selectedEntity.value;
       const activePlayer = state.value.activePlayer;

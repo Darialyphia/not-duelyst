@@ -13,7 +13,7 @@ const { getToken } = useConvexAuth();
 
 const { data: me } = useConvexQuery(api.users.me, {});
 
-const game = ref<{
+const game = shallowRef<{
   session: GameSession;
   dispatch: (
     type: Parameters<GameSession['dispatchPlayerInput']>[0]['type'],

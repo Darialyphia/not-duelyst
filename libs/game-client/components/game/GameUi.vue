@@ -38,6 +38,9 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
       Debug
     </button>
   </div>
+  <div class="menu">
+    <GameMenu />
+  </div>
   <!-- <GameChat /> -->
 
   <!-- <UiIconButton
@@ -99,5 +102,11 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   color: white;
 
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+  position: absolute;
+  right: var(--size-3);
+  bottom: var(--size-3);
 }
 </style>

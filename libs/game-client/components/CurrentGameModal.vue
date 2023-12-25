@@ -26,7 +26,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <DialogRoot :open="hasCurrentOngoingGame">
+  <DialogRoot :open="hasCurrentOngoingGame" modal>
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">

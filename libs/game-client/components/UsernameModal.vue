@@ -18,7 +18,7 @@ const schema = toTypedSchema(
 </script>
 
 <template>
-  <DialogRoot :open="isOpened">
+  <DialogRoot :open="isOpened" modal>
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
@@ -28,7 +28,7 @@ const schema = toTypedSchema(
             We just need you to choose a username below
           </DialogDescription>
 
-          <VeeForm @submit="values => signup(values as any)" :validation-schema="schema">
+          <VeeForm :validation-schema="schema" @submit="values => signup(values as any)">
             <VeeField name="name" />
             <VeeErrorMessage name="name" />
 

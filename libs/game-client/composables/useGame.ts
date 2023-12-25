@@ -52,6 +52,7 @@ export type GameContext = {
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
     selectedEntity: Ref<Nullable<Entity>>;
+    isMenuOpened: Ref<boolean>;
     layers: {
       gameObjects: Ref<Layer | undefined>;
       ui: Ref<Layer | undefined>;
@@ -95,7 +96,6 @@ export const useGameProvider = (
 
   const selectedEntityId = ref<Nullable<number>>(null);
   const isActivePlayer = computed(() => {
-    console.log(playerId, state.value.activePlayer.id);
     // allows to controlk both player in sandbox mode
     return playerId ? state.value.activePlayer.id === playerId : true;
   });
@@ -115,6 +115,7 @@ export const useGameProvider = (
     mapRotation: ref(0),
     ui: {
       skillTargets: ref(new Set()),
+      isMenuOpened: ref(false),
       distanceMap,
       targetMode: ref(null),
       hoveredCell: ref(null),

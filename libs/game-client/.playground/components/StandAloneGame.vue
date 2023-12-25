@@ -34,6 +34,7 @@ const onEnd = ({ winner }: { winner: Player }) => {
     @end-turn="dispatch('END_TURN', {})"
     @use-skill="dispatch('USE_SKILL', $event)"
     @summon="dispatch('SUMMON', $event)"
+    @surrender="dispatch('SURRENDER', {})"
     @end="onEnd"
   />
 </template>
