@@ -1,7 +1,14 @@
 <script setup lang="ts">
-const { sideOffset = 15, delay = 400 } = defineProps<{
+const {
+  sideOffset = 15,
+  delay = 400,
+  side = 'top',
+  align = 'center'
+} = defineProps<{
   sideOffset?: number;
   delay?: number;
+  side?: 'top' | 'bottom' | 'left' | 'right';
+  align?: 'start' | 'end' | 'center';
 }>();
 </script>
 
@@ -16,6 +23,8 @@ const { sideOffset = 15, delay = 400 } = defineProps<{
           v-slot="contentProps"
           class="select-none"
           :side-offset="sideOffset"
+          :side="side"
+          :align="align"
         >
           <slot v-bind="contentProps" />
         </TooltipContent>

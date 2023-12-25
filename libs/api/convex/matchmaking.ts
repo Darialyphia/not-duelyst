@@ -1,11 +1,11 @@
-import { internal } from './_generated/api';
-import { internalMutation, mutation } from './_generated/server';
+import { api, internal } from './_generated/api';
+import { internalAction, internalMutation, mutation, query } from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
 import { findMe } from './users/user.utils';
 import { ensureAuthenticated } from './utils/auth';
 import { getMatchmaking } from './matchmaking/matchmaking.utils';
-import { randomInt } from '@hc/shared';
+import { v } from 'convex/values';
 
 export const join = mutation({
   handler: async ctx => {
@@ -57,51 +57,59 @@ export const leave = mutation({
   }
 });
 
-export const matchPlayers = internalMutation(async ctx => {
-  const matchmakingUsers = await ctx.db.query('matchmakingUsers').collect();
+export const internalLeave = internalMutation({
+  args: {
+    playersIds: v.array(v.id('matchmakingUsers'))
+  },
+  handler(ctx, arg) {
+    return Promise.all(arg.playersIds.map(id => ctx.db.delete(id)));
+  }
+});
 
-  const participants = await Promise.all(
-    matchmakingUsers.map(async user => ({
+export const getMatchmakingUsers = query(async ctx => {
+  const users = await ctx.db.query('matchmakingUsers').collect();
+
+  return await Promise.all(
+    users.map(async user => ({
       matchmakingUserId: user._id,
       ...(await ctx.db.get(user.userId))!
     }))
   );
+});
+
+export const setupNextInvocation = internalMutation({
+  args: {
+    schedulerId: v.optional(v.id('_scheduled_functions'))
+  },
+  async handler(ctx, arg) {
+    const matchmaking = await getMatchmaking(ctx);
+    await ctx.db.patch(matchmaking._id, { nextInvocationId: arg.schedulerId });
+  }
+});
+
+export const matchPlayers = internalAction(async ctx => {
+  const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
+
   const strategy = new MatchmakingTestStrategy();
   const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
 
-  await Promise.all(pairs.flat().map(player => ctx.db.delete(player.matchmakingUserId)));
+  await Promise.allSettled(
+    pairs.map(async pair => {
+      await ctx.runMutation(internal.matchmaking.internalLeave, {
+        playersIds: pair.map(p => p.matchmakingUserId)
+      });
+      const roomId = await ctx.runAction(internal.games.getRoomId);
+      await ctx.runMutation(internal.games.create, {
+        playersIds: [pair[0]._id, pair[1]._id],
+        roomId
+      });
+    })
+  );
 
-  const maps = await ctx.db.query('gameMaps').collect();
-  for (const pair of pairs) {
-    const firstPlayerIndex = Math.round(Math.random());
-    const mapIndex = randomInt(maps.length - 1);
-
-    const gameId = await ctx.db.insert('games', {
-      firstPlayer: pair[firstPlayerIndex]._id,
-      mapId: maps[mapIndex]._id,
-      status: 'WAITING_FOR_PLAYERS'
-    });
-
-    await Promise.all(
-      pair.map(player =>
-        ctx.db.insert('gamePlayers', {
-          gameId,
-          userId: player._id
-        })
-      )
-    );
-  }
-
-  for (const player of remaining) {
-    // @TODO
-  }
-
-  const matchmaking = await getMatchmaking(ctx);
-
-  if (remaining.length > 1) {
-    const next = await ctx.scheduler.runAfter(0, internal.matchmaking.matchPlayers);
-    await ctx.db.patch(matchmaking._id, { nextInvocationId: next });
-  } else {
-    await ctx.db.patch(matchmaking._id, { nextInvocationId: undefined });
-  }
+  await ctx.runMutation(internal.matchmaking.setupNextInvocation, {
+    schedulerId:
+      remaining.length > 1
+        ? await ctx.scheduler.runAfter(0, internal.matchmaking.matchPlayers)
+        : undefined
+  });
 });

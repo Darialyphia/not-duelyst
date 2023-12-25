@@ -24,7 +24,9 @@ export default defineSchema({
   games: defineTable({
     firstPlayer: v.id('users'),
     mapId: v.id('gameMaps'),
-    status: v.string() as Validator<GameStatus>
+    status: v.string() as Validator<GameStatus>,
+    roomId: v.string(),
+    winnerId: v.optional(v.id('gamePlayers'))
   }),
 
   gamePlayers: defineTable({

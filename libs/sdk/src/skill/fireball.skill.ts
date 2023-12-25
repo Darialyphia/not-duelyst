@@ -8,7 +8,7 @@ import { Point3D } from '../types';
 import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf, isAxisAligned } from './skill-utils';
 
-export type FireballOptions = PartialBy<SkillOptions, 'spriteId'> & {
+export type FireballOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
   power: number;
   range: number;
   dotPower: number;
@@ -25,6 +25,7 @@ export class Fireball extends Skill {
   constructor(options: FireballOptions) {
     super({
       spriteId: options.spriteId ?? 'fireball',
+      name: options.name ?? 'Fireball',
       ...options
     });
     this.power = options.power;

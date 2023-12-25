@@ -3,6 +3,7 @@ import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
 import { Entity } from '../entity/entity';
+import type { SerializedPlayer } from './player-manager';
 export type PlayerId = string;
 
 export type Loadout = {
@@ -10,17 +11,27 @@ export type Loadout = {
 };
 
 export class Player implements Serializable {
+  public readonly id: PlayerId;
+  public readonly name: string;
+  public readonly loadout: Loadout;
+  public readonly generalId: UnitId;
+  public gold: number;
+
   constructor(
     private ctx: GameSession,
-    public readonly id: PlayerId,
-    public readonly loadout: Loadout,
-    public readonly generalId: UnitId,
-    public gold: number
-  ) {}
+    options: SerializedPlayer
+  ) {
+    this.id = options.id;
+    this.name = options.name;
+    this.loadout = options.loadout;
+    this.generalId = options.generalId;
+    this.gold = options.gold;
+  }
 
   serialize() {
     return {
       id: this.id,
+      name: this.name,
       loadout: this.loadout,
       generalId: this.generalId,
       gold: this.gold
@@ -32,7 +43,7 @@ export class Player implements Serializable {
   }
 
   clone() {
-    return new Player(this.ctx, this.id, this.loadout, this.generalId, this.gold);
+    return new Player(this.ctx, this.serialize());
   }
 
   canSummon(unitId: UnitId) {
@@ -74,7 +85,7 @@ export class Player implements Serializable {
   }
 
   startTurn() {
-    Object.entries(this.loadout.units).forEach(([name, unit]) => {
+    Object.entries(this.loadout.units).forEach(([, unit]) => {
       unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
     });
     this.gold += 2;

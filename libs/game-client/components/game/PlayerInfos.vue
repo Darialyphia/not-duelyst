@@ -31,7 +31,7 @@ const getBorder = (entity: Entity) => {
       <img :src="`${unitImagesPaths[players[0].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
-      <div class="player-name">{{ players[0].id }}</div>
+      <div class="player-name">{{ players[0].name }}</div>
 
       <div class="indicators">
         <div class="i-game-icons:health-normal color-green-4 hp" />
@@ -51,7 +51,7 @@ const getBorder = (entity: Entity) => {
       <img :src="`${unitImagesPaths[players[1].general.unit.spriteId + '-icon']}`" />
     </div>
     <div>
-      <div class="player-name">{{ players[1].id }}</div>
+      <div class="player-name">{{ players[1].name }}</div>
 
       <div class="indicators">
         <div class="i-game-icons:health-normal hp" />

@@ -1,4 +1,4 @@
-import { query, mutation } from './_generated/server';
+import { query, mutation, internalQuery } from './_generated/server';
 import { v } from 'convex/values';
 import { toGameMapDto } from './gameMap/gameMap.mapper';
 
@@ -9,6 +9,10 @@ export const getById = query({
   handler(ctx, args) {
     return ctx.db.get(args.mapId);
   }
+});
+
+export const internalGetAll = internalQuery(async ({ db }) => {
+  return db.query('gameMaps').collect();
 });
 
 export const getAll = query(async ({ db }) => {

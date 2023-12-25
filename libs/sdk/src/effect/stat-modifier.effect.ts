@@ -24,6 +24,11 @@ export class StatModifierEffect extends Effect {
     this.applyModifier = this.applyModifier.bind(this);
   }
 
+  getDescription(): string {
+    const sign = this.meta.value > 0 ? '+' : '-';
+    return `This unis has ${sign}${Math.abs(this.meta.value)} ${this.meta.statKey}}.`;
+  }
+
   applyModifier(value: number) {
     return value + this.meta.value;
   }

@@ -32,6 +32,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         cooldown: 3,
         animationFX: 'cast',
         spriteId: 'bloodlust',
+        name: 'Blood lust',
         soundFX: 'cast-placeholder',
         duration: Infinity,
         range: 3,
@@ -96,19 +97,14 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     speed: 3,
     initiative: 6,
     skills: [
-      new RangedAttack({
-        cooldown: 1,
-        cost: 0,
-        power: 0,
-        minRange: { x: 2, y: 2, z: 1 },
-        maxRange: 3
-      }),
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new StatModifier({
-        cost: 2,
-        cooldown: 5,
+        name: 'Bulwark',
+        spriteId: 'bulwark',
         animationFX: 'cast',
         soundFX: 'cast-placeholder',
-        spriteId: 'bulwark',
+        cost: 2,
+        cooldown: 5,
         duration: 2,
         statKey: 'defense',
         range: 0,
@@ -132,7 +128,13 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     speed: 4,
     initiative: 7,
     skills: [
-      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new RangedAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
       new Fireball({
         cost: 2,
         cooldown: 3,

@@ -25,6 +25,7 @@ type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
 export type GameEmits = {
   move: [Point3D & { entityId: EntityId }];
   'end-turn': [];
+  surrender: [];
   'use-skill': [{ entityId: number; skillId: SkillId; targets: Point3D[] }];
   summon: [{ unitId: UnitId; position: Point3D }];
   end: [{ winner: Player }];

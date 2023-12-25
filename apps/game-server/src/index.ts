@@ -45,22 +45,18 @@ async function main() {
   });
 
   io.on('connection', async socket => {
-    console.log('socket connected');
     const game = await socket.data.convexClient.query(api.games.getCurrent);
     if (!game) {
-      console.log('game not found');
       return socket.disconnect();
     }
     const map = await socket.data.convexClient.query(api.gameMaps.getById, {
       mapId: game.mapId
     });
     if (!map) {
-      console.log('map not found');
       return socket.disconnect();
     }
 
     if (!ongoingGames.has(game._id)) {
-      console.log('creating game session');
       const session = GameSession.createServerSession({
         activePlayerId: game.firstPlayer,
         history: [],
@@ -70,6 +66,7 @@ async function main() {
           {
             gold: 2,
             id: game.players[0]._id,
+            name: game.players[0].name,
             loadout: {
               units: {
                 'haven-melee': { cooldown: 0 },
@@ -83,6 +80,7 @@ async function main() {
           {
             gold: 2,
             id: game.players[1]._id,
+            name: game.players[1].name,
             loadout: {
               units: {
                 'haven-melee': { cooldown: 0 },
@@ -101,6 +99,14 @@ async function main() {
       });
       session.subscribe(action => {
         io.in(game._id).emit('game:action', action.serialize());
+        if (action.name !== 'END_GAME') return;
+        const { winner } = session.getState();
+        if (winner?.id === socket.data.user._id) {
+          socket.data.convexClient.mutation(api.games.end, {
+            gameId: game._id,
+            winnerId: socket.data.user._id
+          });
+        }
       });
 
       ongoingGames.set(game._id, {
@@ -125,8 +131,10 @@ async function main() {
     playerJoined.add(socket.data.user._id);
 
     if (playerJoined.size === 2) {
-      console.log('sending state');
       io.in(game._id).emit('game:init', session.serialize());
+      if (game.status === 'WAITING_FOR_PLAYERS') {
+        socket.data.convexClient.mutation(api.games.start, { gameId: game._id });
+      }
     }
   });
 

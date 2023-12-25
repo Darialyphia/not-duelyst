@@ -17,6 +17,10 @@ export class ExhaustedEffect extends Effect {
     this.preventAction = this.preventAction.bind(this);
   }
 
+  getDescription(): string {
+    return `This unit has been summoned this turn and cannot move of use abilities.`;
+  }
+
   preventAction() {
     return false;
   }

@@ -5,7 +5,10 @@ import { io } from 'socket.io-client';
 definePageMeta({
   name: 'Game'
 });
-const { data: socketUrl } = await useFetch('/api/room');
+const route = useRoute();
+const { data: socketUrl } = await useFetch('/api/room', {
+  query: { roomId: route.query.roomId }
+});
 const { getToken } = useConvexAuth();
 
 const { data: me } = useConvexQuery(api.users.me, {});
@@ -19,7 +22,6 @@ const game = ref<{
 }>();
 
 onMounted(async () => {
-  console.log(socketUrl.value);
   const socket = io(socketUrl.value as string, {
     transports: ['websocket'],
     upgrade: false,
@@ -62,11 +64,7 @@ onMounted(async () => {
       @end-turn="game.dispatch('END_TURN', {})"
       @use-skill="game.dispatch('USE_SKILL', $event)"
       @summon="game.dispatch('SUMMON', $event)"
-      @end="
-        () => {
-          console.log('todo game end');
-        }
-      "
+      @surrender="game.dispatch('SURRENDER', {})"
     />
     <div v-else>Waiting for opponent...</div>
     <template #fallback>Connecting to the game...</template>

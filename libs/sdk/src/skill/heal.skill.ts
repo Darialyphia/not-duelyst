@@ -7,7 +7,7 @@ import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
 import { isWithinCells } from './skill-utils';
 
-export type HealOptions = PartialBy<SkillOptions, 'spriteId'> & {
+export type HealOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
   power: number;
   range: number;
 };
@@ -19,7 +19,11 @@ export class Heal extends Skill {
   public readonly range: number;
 
   constructor(options: HealOptions) {
-    super({ ...options, spriteId: options.spriteId ?? 'heal' });
+    super({
+      ...options,
+      spriteId: options.spriteId ?? 'heal',
+      name: options.name ?? 'Heal'
+    });
     this.power = options.power;
     this.range = options.range;
   }

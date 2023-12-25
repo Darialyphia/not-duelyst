@@ -12,6 +12,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
     players: [
       {
         id: 'Player1',
+        name: 'Player 1',
         loadout: {
           units: {
             'haven-melee': { cooldown: 0 },
@@ -25,6 +26,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
       },
       {
         id: 'Player2',
+        name: 'Player 2',
         loadout: {
           units: {
             'chaos-melee': { cooldown: 0 },

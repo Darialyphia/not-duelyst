@@ -9,6 +9,7 @@ export type SerializedPlayer = {
   loadout: Loadout;
   generalId: UnitId;
   gold: number;
+  name: string;
 };
 export class PlayerManager {
   private playerMap = new Map<PlayerId, Player>();
@@ -20,7 +21,7 @@ export class PlayerManager {
     this.activePlayerId = activePlayerId;
 
     players
-      .map(p => new Player(this.ctx, p.id, p.loadout, p.generalId, p.gold))
+      .map(p => new Player(this.ctx, p))
       .forEach(player => {
         this.addPlayer(player);
       });

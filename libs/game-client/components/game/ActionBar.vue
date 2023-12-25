@@ -55,29 +55,41 @@ const borders = computed(() => {
     v-if="selectedEntity && selectedEntity.player.equals(state.activePlayer)"
     class="flex gap-4 pb-2"
   >
-    <button
+    <UiTooltip
       v-for="skill in selectedEntity.skills"
       :key="skill.id"
-      class="skill"
-      :class="{
-        active: selectedSkill?.id === skill.id,
-        unavailable: selectedEntity.ap < skill.cost
-      }"
-      :disabled="!selectedEntity.canUseSkill(skill)"
-      :data-cost="skill.cost"
-      :data-cooldown="
-        selectedEntity.skillCooldowns[skill.id] > 0
-          ? selectedEntity.skillCooldowns[skill.id]
-          : ''
-      "
-      :style="{
-        '--cooldown-angle':
-          360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
-        '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
-        '--border': `url(${borders.square})`
-      }"
-      @click="selectedSkill = skill"
-    />
+      :side-offset="20"
+      :delay="200"
+    >
+      <template #trigger>
+        <button
+          class="skill"
+          :class="{
+            active: selectedSkill?.id === skill.id,
+            unavailable: selectedEntity.ap < skill.cost
+          }"
+          :disabled="!selectedEntity.canUseSkill(skill)"
+          :data-cost="skill.cost"
+          :data-cooldown="
+            selectedEntity.skillCooldowns[skill.id] > 0
+              ? selectedEntity.skillCooldowns[skill.id]
+              : ''
+          "
+          :style="{
+            '--cooldown-angle':
+              360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
+            '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+            '--border': `url(${borders.square})`
+          }"
+          @click="selectedSkill = skill"
+        />
+      </template>
+
+      <div class="fancy-surface skill-tooltip">
+        <h4>{{ skill.name }}</h4>
+        <p>{{ skill.getDescription(selectedEntity) }}</p>
+      </div>
+    </UiTooltip>
   </div>
 
   <div class="action-bar content-surface">
@@ -237,6 +249,13 @@ const borders = computed(() => {
 
 .skill-tooltip {
   max-width: var(--size-14);
+  > h4 {
+    font-size: var(--font-size-2);
+  }
+  > p {
+    max-inline-size: 100%;
+    font-size: var(--font-size-0);
+  }
 }
 
 .actions {

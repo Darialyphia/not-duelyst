@@ -2,7 +2,6 @@ import { DotEffect } from './dot.effect';
 import { Effect } from './effect';
 import { Constructor } from '@hc/shared';
 import { StatModifierEffect } from './stat-modifier.effect';
-import { MeditatingEffect } from './meditating.effect';
 import { ExhaustedEffect } from './exhausted.effect';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
@@ -21,6 +20,5 @@ const validateEffectMap = <T extends GenericEffectMap>(data: ValidatedEffectMap<
 export const EFFECTS = validateEffectMap({
   dot: DotEffect,
   statModifier: StatModifierEffect,
-  meditating: MeditatingEffect,
   exhausted: ExhaustedEffect
 });

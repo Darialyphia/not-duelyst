@@ -101,12 +101,12 @@ const border = computed(() => {
 
     <ul>
       <li
-        v-for="trigger in entity.effects"
-        :key="trigger.id"
+        v-for="effect in entity.effects"
+        :key="effect.id"
         class="flex gap-2 items-center text-0 my-2"
       >
         <div class="i-game-icons-time-trap" />
-        {{ trigger.id }}
+        {{ effect.id }}
       </li>
     </ul>
 

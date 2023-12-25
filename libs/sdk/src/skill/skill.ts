@@ -6,6 +6,7 @@ export type SkillId = string;
 
 export type SkillOptions = {
   cost: number;
+  name: string;
   animationFX?: string;
   soundFX?: string;
   spriteId: string;
@@ -22,6 +23,7 @@ export type SkillDescriptionContext = {
 
 export abstract class Skill {
   abstract readonly id: SkillId;
+  readonly name: string;
   readonly cost: number;
   readonly cooldown: number;
   readonly animationFX: string;
@@ -31,6 +33,7 @@ export abstract class Skill {
   readonly maxTargets: number;
 
   constructor(options: SkillOptions) {
+    this.name = options.name;
     this.cost = options.cost;
     this.cooldown = options.cooldown;
     this.animationFX = options.animationFX ?? 'cast';

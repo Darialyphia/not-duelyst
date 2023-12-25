@@ -90,11 +90,12 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new StatModifier({
-        cost: 2,
-        cooldown: 5,
+        name: 'Bulwatk',
+        spriteId: 'bulwark',
         animationFX: 'cast',
         soundFX: 'cast-placeholder',
-        spriteId: 'bulwark',
+        cost: 2,
+        cooldown: 5,
         duration: 2,
         statKey: 'defense',
         range: 0,

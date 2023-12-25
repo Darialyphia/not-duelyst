@@ -5,6 +5,7 @@ import { SummonInput } from './summon.input';
 import { DefaultSchema, PlayerInput } from './input';
 import { UseSkillInput } from './use-skill.input';
 import { GameSession } from '../game-session';
+import { SurrenderInput } from './surrender.input';
 
 type GenericInputMap = Record<string, Constructor<PlayerInput<DefaultSchema>>>;
 
@@ -27,7 +28,8 @@ export const INPUT_NAME = {
   MOVE: 'MOVE',
   END_TURN: 'END_TURN',
   SUMMON: 'SUMMON',
-  USE_SKILL: 'USE_SKILL'
+  USE_SKILL: 'USE_SKILL',
+  SURRENDER: 'SURRENDER'
 } as const;
 
 export type InputName = Values<typeof INPUT_NAME>;
@@ -36,7 +38,8 @@ const inputMap = validateInputMap({
   [INPUT_NAME.MOVE]: MoveInput,
   [INPUT_NAME.END_TURN]: EndTurnInput,
   [INPUT_NAME.SUMMON]: SummonInput,
-  [INPUT_NAME.USE_SKILL]: UseSkillInput
+  [INPUT_NAME.USE_SKILL]: UseSkillInput,
+  [INPUT_NAME.SURRENDER]: SurrenderInput
 });
 
 export class InputReducer {

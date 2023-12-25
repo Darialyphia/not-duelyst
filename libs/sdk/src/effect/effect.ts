@@ -1,6 +1,7 @@
 import { AnyObject } from '@hc/shared';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
+import { Player } from '../player/player';
 
 export type EffectId = string;
 
@@ -17,6 +18,8 @@ export abstract class Effect {
     this.tick = this.tick.bind(this);
     this.detach = this.detach.bind(this);
   }
+
+  abstract getDescription(): string;
 
   attach(entity: Entity) {
     this.attachedTo = entity;
@@ -38,8 +41,9 @@ export abstract class Effect {
     this.attachedTo.off('die', this.detach);
   }
 
-  protected tick() {
+  protected tick(player: Player) {
     if (!this.attachedTo) return;
+    if (!player.equals(this.attachedTo.player)) return;
 
     this.duration--;
     if (this.duration === 0) {

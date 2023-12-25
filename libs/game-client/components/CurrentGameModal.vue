@@ -2,23 +2,31 @@
 import { api } from '@hc/api';
 
 const auth = useConvexAuth();
+const route = useRoute();
+const router = useRouter();
+
 const { data: currentGame } = useConvexQuery(
   api.games.getCurrent,
   {},
   { ssr: false, enabled: computed(() => auth.isAuthenticated.value) }
 );
-const route = useRoute();
-const isOpened = computed(() => route.name !== 'Game' && !!currentGame.value);
-const router = useRouter();
+
+const hasCurrentOngoingGame = computed(
+  () =>
+    route.name !== 'Game' &&
+    !!currentGame.value &&
+    currentGame.value.status !== 'FINISHED'
+);
+
 watchEffect(() => {
-  if (isOpened.value) {
-    router.replace({ name: 'Game' });
+  if (hasCurrentOngoingGame.value) {
+    router.replace({ name: 'Game', query: { roomId: currentGame.value?.roomId } });
   }
 });
 </script>
 
 <template>
-  <DialogRoot :open="isOpened">
+  <DialogRoot :open="hasCurrentOngoingGame">
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
