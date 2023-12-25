@@ -2,6 +2,15 @@ import { query, mutation } from './_generated/server';
 import { v } from 'convex/values';
 import { toGameMapDto } from './gameMap/gameMap.mapper';
 
+export const getById = query({
+  args: {
+    mapId: v.id('gameMaps')
+  },
+  handler(ctx, args) {
+    return ctx.db.get(args.mapId);
+  }
+});
+
 export const getAll = query(async ({ db }) => {
   const maps = await db.query('gameMaps').collect();
 

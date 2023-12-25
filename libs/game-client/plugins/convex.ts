@@ -6,6 +6,7 @@ export const CONVEX_CLIENT = Symbol('convex-client') as InjectionKey<ConvexClien
 export const CONVEX_AUTH = Symbol('convex-auth') as InjectionKey<{
   isAuthenticated: Ref<boolean>;
   isLoading: Ref<boolean>;
+  getToken(): Promise<string | null>;
 }>;
 
 export default defineNuxtPlugin(async nuxt => {
@@ -48,7 +49,12 @@ export default defineNuxtPlugin(async nuxt => {
   nuxt.vueApp.provide(CONVEX_CLIENT, convexClient);
   nuxt.vueApp.provide(CONVEX_AUTH, {
     isLoading: readonly(authState.isLoading),
-    isAuthenticated: readonly(authState.isAuthenticated)
+    isAuthenticated: readonly(authState.isAuthenticated),
+    getToken: () =>
+      getToken.value({
+        template: 'convex',
+        skipCache: false
+      })
   });
 
   const syncConvexAuthWithClerkAuth = async () => {
