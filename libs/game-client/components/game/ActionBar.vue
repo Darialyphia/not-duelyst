@@ -3,6 +3,8 @@ import { unitImagesPaths } from '../../assets/units';
 import { skillImagesPaths } from '../../assets/skills';
 import { exhaustiveSwitch } from '@hc/shared';
 
+import neutralBorder from '../../assets/ui/icon-border-neutral.png';
+import neutralBorderRounded from '../../assets/ui/icon-border-neutral-rounded.png';
 import havenBorder from '../../assets/ui/icon-border-haven.png';
 import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 import chaosBorder from '../../assets/ui/icon-border-chaos.png';
@@ -23,12 +25,14 @@ const activePlayer = computed(() => state.value.activePlayer);
 
 const borders = computed(() => {
   switch (state.value.activePlayer.general.unit.faction.id) {
+    case 'neutral':
+      return { square: neutralBorder, rounded: neutralBorderRounded };
     case 'haven':
       return { square: havenBorder, rounded: havenBorderRounded };
     case 'chaos':
       return { square: chaosBorder, rounded: chaosBorderRounded };
     default:
-      throw exhaustiveSwitch;
+      throw exhaustiveSwitch(state.value.activePlayer.general.unit.faction.id);
   }
 });
 

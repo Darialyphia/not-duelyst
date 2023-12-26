@@ -1,18 +1,13 @@
 import { isDefined } from '@hc/shared';
-import { AddEffectAction } from '../action/add-effect.action';
 import { DealDamageAction } from '../action/deal-damage.action';
-import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
-import { GameSession } from '../game-session';
 import { Fireball } from '../skill/fireball.skill';
 import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
-import { Skill } from '../skill/skill';
-import { isSelf, isWithinCells } from '../skill/skill-utils';
+import { isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/state-modifier';
-import { Point3D } from '../types';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 

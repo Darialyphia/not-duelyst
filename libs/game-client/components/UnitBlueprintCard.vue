@@ -3,6 +3,7 @@ import type { UnitBlueprint } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
 
+import neutralBorder from '../assets/ui/icon-border-neutral.png';
 import havenBorder from '../assets/ui/icon-border-haven.png';
 import chaosBorder from '../assets/ui/icon-border-chaos.png';
 import { exhaustiveSwitch } from '../../shared/src';
@@ -13,12 +14,14 @@ const { unit } = defineProps<{
 
 const border = computed(() => {
   switch (unit.faction.id) {
+    case 'neutral':
+      return neutralBorder;
     case 'haven':
       return havenBorder;
     case 'chaos':
       return chaosBorder;
     default:
-      throw exhaustiveSwitch;
+      throw exhaustiveSwitch(unit.faction.id);
   }
 });
 </script>
@@ -63,7 +66,7 @@ const border = computed(() => {
       </div>
     </div>
 
-    <p v-if="unit.onSummoned?.getDescription" class="text-0 py-2">
+    <p v-if="unit.onSummoned?.getDescription" class="text-0">
       On summoned: {{ unit.onSummoned.getDescription(unit) }}
     </p>
 

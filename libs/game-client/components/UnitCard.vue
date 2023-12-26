@@ -4,6 +4,7 @@ import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
 
 import havenBorder from '../assets/ui/icon-border-haven.png';
+import neutralBorder from '../assets/ui/icon-border-neutral.png';
 import chaosBorder from '../assets/ui/icon-border-chaos.png';
 import { exhaustiveSwitch } from '../../shared/src';
 
@@ -13,12 +14,14 @@ const { entity } = defineProps<{
 
 const border = computed(() => {
   switch (entity.unit.faction.id) {
+    case 'neutral':
+      return neutralBorder;
     case 'haven':
       return havenBorder;
     case 'chaos':
       return chaosBorder;
     default:
-      throw exhaustiveSwitch;
+      throw exhaustiveSwitch(entity.unit.faction.id);
   }
 });
 </script>

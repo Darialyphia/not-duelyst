@@ -8,6 +8,7 @@ import { Point3D } from '../types';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Player } from '../player/player';
+import { NEUTRAL_UNITS } from './neutral.units';
 
 export type UnitId = string;
 
@@ -43,7 +44,7 @@ export type UnitBlueprint = {
   };
 };
 
-export const UNITS = keyBy([...HAVEN_UNITS, ...CHAOS_UNITS], 'id') satisfies Record<
-  UnitId,
-  UnitBlueprint
->;
+export const UNITS = keyBy(
+  [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
+  'id'
+) satisfies Record<UnitId, UnitBlueprint>;

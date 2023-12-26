@@ -18,5 +18,5 @@ export const isFunction = (x: unknown): x is AnyFunction =>
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const exhaustiveSwitch = (x: never) => {
-  throw new Error('Missing case in exhaustive switch');
+  throw new Error(`Missing case in exhaustive switch: ${x as any}`);
 };

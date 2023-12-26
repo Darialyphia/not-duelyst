@@ -6,7 +6,8 @@ export type Faction = {
 
 export const FACTION_NAMES = {
   HAVEN: 'haven',
-  CHAOS: 'chaos'
+  CHAOS: 'chaos',
+  NEUTRAL: 'neutral'
 } as const;
 
 export type FactionName = Values<typeof FACTION_NAMES>;
@@ -18,5 +19,8 @@ export const FACTIONS = {
   },
   chaos: {
     id: 'chaos'
+  },
+  neutral: {
+    id: 'neutral'
   }
 } as const satisfies Record<FactionName, Faction>;
