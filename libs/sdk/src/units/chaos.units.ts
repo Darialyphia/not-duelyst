@@ -13,7 +13,7 @@ import { UnitBlueprint } from './unit-lookup';
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
     id: 'chaos-hero',
-    spriteId: 'chaos-hero-placeholder',
+    spriteId: 'chaos-hero',
     kind: UNIT_KIND.GENERAL,
     faction: FACTIONS.chaos,
     summonCost: 0,
@@ -37,7 +37,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         animationFX: 'cast',
         spriteId: 'bloodlust',
         name: 'Blood lust',
-        soundFX: 'cast-placeholder',
+        soundFX: 'cast',
         duration: Infinity,
         range: 3,
         statKey: 'attack',
@@ -48,7 +48,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
   },
   {
     id: 'chaos-melee',
-    spriteId: 'chaos-melee-placeholder',
+    spriteId: 'chaos-melee',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
@@ -92,7 +92,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
   },
   {
     id: 'chaos-archer',
-    spriteId: 'chaos-archer-placeholder',
+    spriteId: 'chaos-archer',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
@@ -116,7 +116,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
   },
   {
     id: 'chaos-tank',
-    spriteId: 'chaos-tank-placeholder',
+    spriteId: 'chaos-tank',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 3,
@@ -147,7 +147,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
   },
   {
     id: 'chaos-caster',
-    spriteId: 'chaos-caster-placeholder',
+    spriteId: 'chaos-caster',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 3,
