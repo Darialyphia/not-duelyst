@@ -1,16 +1,12 @@
 <script setup lang="ts">
 import { Polygon } from 'pixi.js';
-import type { Cell, Point3D } from '@hc/sdk';
+import { INTERACTABLES, type Cell } from '@hc/sdk';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
+import type { EditorMap } from './index.vue';
 
 const { isVisible, cell, rotation, map, placeMode } = defineProps<{
   cell: Cell;
-  map: {
-    width: number;
-    height: number;
-    cells: Cell[];
-    startPositions: [Point3D, Point3D];
-  };
+  map: EditorMap;
   isVisible: boolean;
   rotation: 0 | 90 | 180 | 270;
   placeMode: 'sprite' | 'tile';
@@ -44,6 +40,22 @@ const emptyTextures = computed(() => {
   return assets.getSprite(
     TILE_TO_EDITOR_SPRITE[cell.tile.id as keyof typeof TILE_TO_EDITOR_SPRITE]
   ).animations[0];
+});
+
+const interactableTexture = computed(() => {
+  const interactable = map.interactables.find(i => cell.position.equals(i.position));
+  if (!interactable) return null;
+
+  // @ts-expect-error 💀
+  const ctor = INTERACTABLES[interactable.id];
+
+  const instance = new ctor({}, { position: cell.position });
+  const id = instance.spriteId;
+
+  const sheet = assets.getSprite(id);
+  const textures = createSpritesheetFrameObject('idle', sheet);
+  console.log(textures);
+  return textures;
 });
 
 const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
@@ -90,6 +102,13 @@ const isHovered = ref(false);
         :textures="emptyTextures"
         :anchor="0.5"
         :y="CELL_SIZE / 2"
+      />
+
+      <animated-sprite
+        v-if="interactableTexture"
+        :textures="interactableTexture"
+        :anchor="0.5"
+        :y="CELL_SIZE / 4"
       />
     </container>
   </IsoPositioner>

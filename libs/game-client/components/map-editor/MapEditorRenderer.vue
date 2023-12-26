@@ -2,6 +2,7 @@
 import { useApplication } from 'vue3-pixi';
 import type { Viewport } from 'pixi-viewport';
 import type { Cell, Point3D } from '@hc/sdk';
+import type { EditorMap } from './index.vue';
 
 const { assets, rotation, visibleFloors, placeMode } = defineProps<{
   assets: AssetsContext;
@@ -15,12 +16,7 @@ const emit = defineEmits<{
   cellPointerup: [cell: Cell];
   cellPointerenter: [cell: Cell];
 }>();
-const map = defineModel<{
-  width: number;
-  height: number;
-  cells: Cell[];
-  startPositions: [Point3D, Point3D];
-}>('map', { required: true });
+const map = defineModel<EditorMap>('map', { required: true });
 
 provide(ASSETS_INJECTION_KEY, assets);
 

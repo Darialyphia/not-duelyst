@@ -8,7 +8,7 @@ export type GameMapDto = {
   height: number;
   width: number;
   startPositions: [Point3D, Point3D];
-
+  interactables: { position: Point3D; id: string }[];
   name: string;
 };
 
@@ -19,6 +19,7 @@ export const toGameMapDto = (gameMap: GameMap): GameMapDto => {
     height: gameMap.height,
     width: gameMap.width,
     startPositions: gameMap.startPositions as [Point3D, Point3D],
-    name: gameMap.name
+    name: gameMap.name,
+    interactables: gameMap.interactables
   };
 };

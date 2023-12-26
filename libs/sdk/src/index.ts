@@ -11,3 +11,4 @@ export type { Point3D } from './types';
 export type { UnitBlueprint, UnitId } from './units/unit-lookup';
 export type { PlayerId, Player } from './player/player';
 export { Vec3 } from './utils/vector';
+export { INTERACTABLES } from './interactable/interactable-lookup';

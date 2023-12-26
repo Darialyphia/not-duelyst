@@ -13,7 +13,7 @@ export type AssetsContext = {
 export const ASSETS_INJECTION_KEY = Symbol('assets') as InjectionKey<AssetsContext>;
 
 export const useAssetsProvider = () => {
-  let sprites: Record<string, Spritesheet & { animations: Record<string, Texture[]> }> =
+  const sprites: Record<string, Spritesheet & { animations: Record<string, Texture[]> }> =
     {};
 
   const load = async () => {
@@ -25,6 +25,7 @@ export const useAssetsProvider = () => {
       Assets.loadBundle(ASSET_BUNDLES.UI),
       Assets.loadBundle(ASSET_BUNDLES.UNITS),
       Assets.loadBundle(ASSET_BUNDLES.TILESETS),
+      Assets.loadBundle(ASSET_BUNDLES.INTERACTABLES),
       Assets.loadBundle(ASSET_BUNDLES.FX)
     ]);
 

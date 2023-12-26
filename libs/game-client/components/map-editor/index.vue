@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Application } from 'vue3-pixi';
 import * as PIXI from 'pixi.js';
-import { TILES, Cell, Tile, type Point3D } from '@hc/sdk';
+import { INTERACTABLES, TILES, Cell, Tile, type Point3D } from '@hc/sdk';
 import { isString, isDefined } from '@hc/shared';
 import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { tileImagesPaths } from '../../assets/tiles';
+import { interactableImagesPaths } from '../../assets/interactables';
 import {
   PopoverContent,
   PopoverPortal,
@@ -17,6 +18,7 @@ import {
 import { api } from '@hc/api';
 import type { GameMapDto } from '@hc/api';
 import { parse, stringify } from 'zipson';
+import type { SerializedInteractable } from '@hc/sdk/src/interactable/interactable';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -36,17 +38,19 @@ const TILE_TO_EDITOR_SPRITE = {
   obstacle: 'editor-obstacle'
 };
 
-type EditorMap = {
+export type EditorMap = {
   name: string;
   width: number;
   height: number;
   cells: Cell[];
   startPositions: [Point3D, Point3D];
+  interactables: SerializedInteractable[];
 };
 const makeDefaultMap = (): EditorMap => ({
   name: 'New Map',
   width: 5,
   height: 5,
+  interactables: [],
   cells: Array.from({ length: 5 }, (_, y) =>
     Array.from({ length: 5 }, (_, x) => ({
       position: { x, y, z: 0 },
@@ -63,6 +67,7 @@ const makeDefaultMap = (): EditorMap => ({
 });
 
 type ParsedCell = { position: Point3D; tileId: string; spriteIds: string[] };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const makeMap = ({ id, ...serializedMap }: GameMapDto) => {
   const parsedCells = parse(serializedMap.cells) as ParsedCell[];
 
@@ -149,14 +154,16 @@ const placeMode = ref<'tile' | 'sprite'>('tile');
 const actionMode = ref<'add' | 'remove'>('add');
 
 const onCellPointerdown = (cell: Cell) => {
-  if (isPlacingPlayer1.value || isPlacingPlayer2.value) return;
+  if (isPlacingPlayer1.value || isPlacingPlayer2.value || currentTab.value !== 'tiles') {
+    return;
+  }
   isDragging.value = true;
 
   onMouseAction(cell);
 };
 
 const onCellPointerenter = (cell: Cell) => {
-  if (!isDragging.value) return;
+  if (!isDragging.value || currentTab.value !== 'tiles') return;
   onMouseAction(cell);
 };
 
@@ -164,12 +171,29 @@ const onCellPointerup = (cell: Cell) => {
   isDragging.value = false;
   if (isPlacingPlayer1.value) {
     map.value.startPositions[0] = cell.position.serialize();
+    isPlacingPlayer1.value = false;
   }
   if (isPlacingPlayer2.value) {
     map.value.startPositions[1] = cell.position.serialize();
+    isPlacingPlayer2.value = false;
   }
-  isPlacingPlayer1.value = false;
-  isPlacingPlayer2.value = false;
+  if (currentTab.value === 'interactables' && selectedInteractableId.value) {
+    const existingIndex = map.value.interactables.findIndex(i =>
+      cell.position.equals(i.position)
+    );
+    if (existingIndex >= 0) {
+      if (isCtrlKeyPressed.value) {
+        map.value.interactables.splice(existingIndex, 1);
+      } else {
+        map.value.interactables[existingIndex].id = selectedInteractableId.value;
+      }
+    } else {
+      map.value.interactables.push({
+        position: cell.position.serialize(),
+        id: selectedInteractableId.value
+      });
+    }
+  }
 };
 
 const isDragging = ref(false);
@@ -308,6 +332,7 @@ const save = async () => {
 
   await saveMap.mutate({
     ...map.value,
+    interactables: [],
     cells: stringify(map.value.cells.map(cell => cell.serialize()))
   });
 };
@@ -330,6 +355,36 @@ const getSpriteIconOffset = (name: string) => {
   if (rotation.value === 180) return -spriteSize * 2;
   if (rotation.value === 270) return -spriteSize * 3;
 };
+
+const selectedInteractableId = ref<string | null>(null);
+const interactableSearch = ref('');
+const fitleredInteractables = computed(() => {
+  return Object.entries(INTERACTABLES)
+    .map(([name, ctor]) => {
+      // @ts-expect-error I'm sorry future me but I will go to great lengths to avoid maintaining a lookup table
+      const instance = new ctor({}, { position: { x: 0, y: 0, z: 0 } });
+      const id = instance.spriteId;
+      return {
+        name,
+        src: interactableImagesPaths[id]
+      };
+    })
+    .filter(({ name }) =>
+      name.toLowerCase().includes(interactableSearch.value.toLowerCase())
+    );
+});
+
+const currentTab = ref<'tiles' | 'interactables'>('tiles');
+watchEffect(() => {
+  switch (currentTab.value) {
+    case 'interactables':
+      selectedSprite.value = null;
+      selectedTileId.value = null;
+      break;
+    case 'tiles':
+      selectedInteractableId.value = null;
+  }
+});
 </script>
 
 <template>
@@ -455,55 +510,93 @@ const getSpriteIconOffset = (name: string) => {
         </div>
       </section>
 
-      <section>
-        <h2>Tiles</h2>
-        <section class="menu-list">
-          <button
-            v-for="(tile, name) in TILES"
-            :key="name"
-            :title="name"
-            :style="{
-              '--bg': `url(${
-                tileImagesPaths[
-                  TILE_TO_EDITOR_SPRITE[name as keyof typeof TILE_TO_EDITOR_SPRITE]
-                ]
-              })`
-            }"
-            :class="selectedTileId === name && 'selected'"
-            @click="selectedTileId = name"
-          />
-        </section>
-      </section>
-      <section>
-        <h2>Sprites</h2>
-        <label @keydown.stop>
-          Search a sprite
-          <input v-model="spriteSearch" class="flex-1" />
-        </label>
-        <section class="menu-list">
-          <template v-for="{ src, name } in fitleredSprites" :key="name">
-            <button
-              v-if="isString(name) && !name.startsWith('editor')"
-              :style="{ '--bg': `url(${src})`, '--bg-offset': getSpriteIconOffset(name) }"
-              :title="name"
-              :class="selectedSprite === name && 'selected'"
-              @click="selectedSprite = name"
-            />
-          </template>
-        </section>
-      </section>
-      <section>
-        <h2>Visible floors</h2>
-        <section>
-          <fieldset class="floors">
-            <label v-for="(_, floor) in visibleFloors" :key="floor">
-              <input v-model="visibleFloors[floor]" type="checkbox" />
-              Floor {{ floor }}
+      <TabsRoot v-model="currentTab">
+        <TabsList class="flex gap-2">
+          <TabsTrigger value="tiles" class="tab-trigger">Tiles</TabsTrigger>
+          <TabsTrigger value="interactables" class="tab-trigger">
+            Interactables
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="tiles">
+          <section>
+            <h2>Tiles</h2>
+            <section class="menu-list">
+              <button
+                v-for="(tile, name) in TILES"
+                :key="name"
+                :title="name"
+                :style="{
+                  '--bg': `url(${
+                    tileImagesPaths[
+                      TILE_TO_EDITOR_SPRITE[name as keyof typeof TILE_TO_EDITOR_SPRITE]
+                    ]
+                  })`
+                }"
+                :class="selectedTileId === name && 'selected'"
+                @click="selectedTileId = name"
+              />
+            </section>
+          </section>
+          <section>
+            <h2>Sprites</h2>
+            <label @keydown.stop>
+              Search a sprite
+              <input v-model="spriteSearch" class="flex-1" />
             </label>
-          </fieldset>
-        </section>
-      </section>
+            <section class="menu-list">
+              <template v-for="{ src, name } in fitleredSprites" :key="name">
+                <button
+                  v-if="isString(name) && !name.startsWith('editor')"
+                  :style="{
+                    '--bg': `url(${src})`,
+                    '--bg-offset': getSpriteIconOffset(name)
+                  }"
+                  :title="name"
+                  :class="selectedSprite === name && 'selected'"
+                  @click="selectedSprite = name"
+                />
+              </template>
+            </section>
+          </section>
+          <section>
+            <h2>Visible floors</h2>
+            <section>
+              <fieldset class="floors">
+                <label v-for="(_, floor) in visibleFloors" :key="floor">
+                  <input v-model="visibleFloors[floor]" type="checkbox" />
+                  Floor {{ floor }}
+                </label>
+              </fieldset>
+            </section>
+          </section>
+        </TabsContent>
+
+        <TabsContent value="interactables">
+          <section>
+            <h2>Interactables</h2>
+            <label @keydown.stop>
+              Search an interactable
+              <input v-model="interactableSearch" class="flex-1" />
+            </label>
+            <section class="menu-list">
+              <template v-for="{ src, name } in fitleredInteractables" :key="name">
+                <button
+                  v-if="isString(name) && !name.startsWith('editor')"
+                  :style="{
+                    '--bg': `url(${src})`,
+                    '--bg-offset': -16
+                  }"
+                  :title="name"
+                  :class="selectedInteractableId === name && 'selected'"
+                  @click="selectedInteractableId = name"
+                />
+              </template>
+            </section>
+          </section>
+        </TabsContent>
+      </TabsRoot>
     </aside>
+
     <main ref="canvasContainer" @contextmenu.prevent @mouseleave="isDragging = false">
       <Application v-if="isReady" :resize-to="canvasContainer" :antialias="false">
         <MapEditorRenderer
@@ -562,10 +655,10 @@ aside {
   overflow-y: auto;
   height: 100%;
 
-  > section {
+  section {
     margin-block-end: var(--size-3);
 
-    & > :is(label, h2) {
+    & :is(label, h2) {
       margin-block-end: var(--size-2);
       font-size: var(--font-size-0);
       font-weight: var(--font-size-5);
@@ -653,5 +746,16 @@ label {
 :global(.maps-dropdown) {
   padding: var(--size-2);
   box-shadow: var(--shadow-2);
+}
+
+.tab-trigger {
+  color: var(--text-2);
+  border: solid var(--border-size-1) var(--border-dimmed);
+  border-bottom-color: transparent;
+
+  &[data-state='active'] {
+    color: var(--text-1);
+    border-bottom-color: var(--primary);
+  }
 }
 </style>

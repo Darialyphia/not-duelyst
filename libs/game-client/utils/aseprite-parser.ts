@@ -5,6 +5,7 @@ import { unitSpritesPaths } from '../assets/units';
 import { tileSpritesPaths } from '../assets/tiles';
 import { tilesetsPaths } from '../assets/tilesets';
 import { fxSpritesPaths } from '../assets/fx';
+import { interactableSpritesPaths } from '../assets/interactables';
 
 export const trimExtension = (str: string) => str.replace(/\.[^/.]+$/, '');
 
@@ -66,7 +67,8 @@ const spriteUrls: string[] = [
   ...Object.values(uiSpritesPaths),
   ...Object.values(tileSpritesPaths),
   ...Object.values(unitSpritesPaths),
-  ...Object.values(fxSpritesPaths)
+  ...Object.values(fxSpritesPaths),
+  ...Object.values(interactableSpritesPaths)
 ];
 const tilesetUrls: string[] = [...Object.values(tilesetsPaths)];
 

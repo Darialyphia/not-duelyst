@@ -5,6 +5,8 @@ import { unitSpritesPaths } from './units';
 import { tilesetsPaths } from './tilesets';
 import { fxSpritesPaths } from './fx';
 import { sfxPaths } from './sfx';
+import { INTERACTABLES } from '@hc/sdk';
+import { interactableSpritesPaths } from './interactables';
 
 export const ASSET_BUNDLES = {
   TILES: 'tiles',
@@ -12,7 +14,8 @@ export const ASSET_BUNDLES = {
   UNITS: 'units',
   TILESETS: 'tilesets',
   FX: 'fx',
-  SFX: 'sfx'
+  SFX: 'sfx',
+  INTERACTABLES: 'interactables'
 } as const;
 
 export type AssetBundle = Values<typeof ASSET_BUNDLES>;
@@ -36,6 +39,13 @@ export const assetsManifest = {
     {
       name: ASSET_BUNDLES.UNITS,
       assets: objectEntries(unitSpritesPaths).map(([name, srcs]) => ({
+        name,
+        srcs
+      }))
+    },
+    {
+      name: ASSET_BUNDLES.INTERACTABLES,
+      assets: objectEntries(interactableSpritesPaths).map(([name, srcs]) => ({
         name,
         srcs
       }))

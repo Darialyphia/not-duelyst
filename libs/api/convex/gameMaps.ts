@@ -33,6 +33,16 @@ export const save = mutation({
         z: v.number()
       })
     ),
+    interactables: v.array(
+      v.object({
+        position: v.object({
+          x: v.number(),
+          y: v.number(),
+          z: v.number()
+        }),
+        id: v.string()
+      })
+    ),
     cells: v.string()
   },
   handler: async ({ db }, mapData) => {

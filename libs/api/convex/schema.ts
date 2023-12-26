@@ -47,6 +47,16 @@ export default defineSchema({
         z: v.number()
       })
     ),
-    cells: v.string()
+    cells: v.string(),
+    interactables: v.array(
+      v.object({
+        position: v.object({
+          x: v.number(),
+          y: v.number(),
+          z: v.number()
+        }),
+        id: v.string()
+      })
+    )
   }).index('by_name', ['name'])
 });

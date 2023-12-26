@@ -9,12 +9,15 @@ import { Entity } from '../entity/entity';
 import { Pathfinder } from './pathfinding';
 import { Vec3 } from '../utils/vector';
 import { GameSession } from '../game-session';
+import { Interactable, SerializedInteractable } from '../interactable/interactable';
+import { INTERACTABLES } from '../interactable/interactable-lookup';
 
 export type GameMapOptions = {
   cells: { position: Point3D; tileId: TileId; spriteIds: string[] }[];
   height: number;
   width: number;
   startPositions: [Point3D, Point3D];
+  interactable: SerializedInteractable[];
 };
 
 export class GameMap implements Serializable {
@@ -23,6 +26,8 @@ export class GameMap implements Serializable {
   width!: number;
 
   startPositions!: [Point3D, Point3D];
+
+  interactables!: Interactable[];
 
   cells!: Cell[];
 
@@ -38,6 +43,9 @@ export class GameMap implements Serializable {
     this.cells.forEach(cell => {
       this.cellsMap.set(cell.id, cell);
     });
+    this.interactables = definition.interactable.map(raw => {
+      return new INTERACTABLES[raw.id as keyof typeof INTERACTABLES](this.ctx, raw);
+    });
   }
 
   private makeCells(cells: GameMapOptions['cells']) {
@@ -51,7 +59,8 @@ export class GameMap implements Serializable {
       width: this.width,
       height: this.height,
       startPositions: this.startPositions,
-      cells: this.cells.map(cell => cell.serialize())
+      cells: this.cells.map(cell => cell.serialize()),
+      interactable: this.interactables.map(inter => inter.serialize())
     };
   }
 
