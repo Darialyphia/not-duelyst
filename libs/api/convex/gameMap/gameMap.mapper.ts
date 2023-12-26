@@ -4,7 +4,7 @@ import { Point3D } from '@hc/sdk';
 
 export type GameMapDto = {
   id: Id<'gameMaps'>;
-  cells: { position: Point3D; tileId: string; spriteIds: string[] }[];
+  cells: string;
   height: number;
   width: number;
   startPositions: [Point3D, Point3D];

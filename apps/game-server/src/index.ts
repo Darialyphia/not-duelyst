@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import { api } from '@hc/api';
 import { ConvexHttpClient } from 'convex/browser';
 import { UserDto } from '@hc/api/convex/users/user.mapper';
+import { parse } from 'zipson';
 
 const PORT = process.env.PORT || 8000;
 
@@ -94,6 +95,7 @@ async function main() {
         ],
         map: {
           ...map,
+          cells: parse(map.cells),
           startPositions: [map.startPositions[0], map.startPositions[1]]
         }
       });

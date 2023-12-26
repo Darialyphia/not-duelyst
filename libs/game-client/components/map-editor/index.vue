@@ -16,6 +16,7 @@ import {
 } from 'radix-vue';
 import { api } from '@hc/api';
 import type { GameMapDto } from '@hc/api';
+import { parse, stringify } from 'zipson';
 
 gsap.registerPlugin(PixiPlugin);
 gsap.registerPlugin(MotionPathPlugin);
@@ -61,10 +62,13 @@ const makeDefaultMap = (): EditorMap => ({
   ]
 });
 
+type ParsedCell = { position: Point3D; tileId: string; spriteIds: string[] };
 const makeMap = ({ id, ...serializedMap }: GameMapDto) => {
+  const parsedCells = parse(serializedMap.cells) as ParsedCell[];
+
   map.value = {
     ...serializedMap,
-    cells: serializedMap.cells.map(
+    cells: parsedCells.map(
       cell => new Cell(new Tile(cell.tileId), cell.position, cell.spriteIds)
     )
   };
@@ -304,7 +308,7 @@ const save = async () => {
 
   await saveMap.mutate({
     ...map.value,
-    cells: map.value.cells.map(cell => cell.serialize())
+    cells: stringify(map.value.cells.map(cell => cell.serialize()))
   });
 };
 

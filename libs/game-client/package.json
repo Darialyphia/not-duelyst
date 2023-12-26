@@ -16,6 +16,8 @@
     "@hc/sdk": "*",
     "@hc/shared": "*",
     "@hc/ui": "*",
+    "@nuxt/kit": "^3.9.0",
+    "@pinia/nuxt": "^0.5.1",
     "@pixi/filter-adjustment": "^5.1.1",
     "@pixi/filter-color-overlay": "^5.1.1",
     "@pixi/filter-glow": "^5.2.1",
@@ -43,7 +45,8 @@
     "pixi.js": "7.3.2",
     "radix-vue": "^1.2.3",
     "vue-clerk": "^0.1.1",
-    "vue3-pixi": "^0.8.5"
+    "vue3-pixi": "^0.8.5",
+    "zipson": "^0.2.12"
   },
   "devDependencies": {
     "@hc/stylelint-config": "*",

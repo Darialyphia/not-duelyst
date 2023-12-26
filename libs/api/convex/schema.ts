@@ -47,16 +47,6 @@ export default defineSchema({
         z: v.number()
       })
     ),
-    cells: v.array(
-      v.object({
-        position: v.object({
-          x: v.number(),
-          y: v.number(),
-          z: v.number()
-        }),
-        tileId: v.string(),
-        spriteIds: v.array(v.string())
-      })
-    )
+    cells: v.string()
   }).index('by_name', ['name'])
 });

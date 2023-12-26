@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 import { GameSession } from '@hc/sdk';
-import { io } from 'socket.io-client';
+import { io, type Socket } from 'socket.io-client';
 definePageMeta({
   name: 'Game'
 });
@@ -22,8 +22,9 @@ const gameSession = shallowRef<{
   ) => void;
 }>();
 
+let socket: Socket;
 onMounted(async () => {
-  const socket = io(socketUrl.value as string, {
+  socket = io(socketUrl.value as string, {
     transports: ['websocket'],
     upgrade: false,
     auth: {
@@ -52,6 +53,10 @@ onMounted(async () => {
       gameSession.value?.session.dispatchAction(arg);
     });
   });
+});
+
+onUnmounted(() => {
+  socket?.disconnect();
 });
 
 const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
