@@ -9,7 +9,16 @@ const { cell } = defineProps<{ cell: Cell }>();
 
 const app = useApplication();
 const { assets, state, sendInput, gameSession, mapRotation, utils } = useGame();
-const { hoveredCell, targetMode, selectedSummon, selectedEntity } = useGameUi();
+const {
+  hoveredCell,
+  targetMode,
+  selectedSummon,
+  selectedEntity,
+  selectedSkill,
+  summonSpawnPoint,
+  summonTargets,
+  skillTargets
+} = useGameUi();
 
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
@@ -34,8 +43,10 @@ const hitArea = computed(() => {
   return p;
 });
 
-const isMoveTarget = computed(() => utils.isMoveTarget(cell.position));
-const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
+const canMoveTo = computed(() => utils.canMoveTo(cell.position));
+const canSummonAt = computed(() => utils.canSummonAt(cell.position));
+const isValidSummonTarget = computed(() => utils.isValidSummonTarget(cell.position));
+const canCastSkillAt = computed(() => utils.canCastSkillAt(cell.position));
 
 const onPointerup = (event: FederatedPointerEvent) => {
   if (event.button !== 0) return;
@@ -43,16 +54,27 @@ const onPointerup = (event: FederatedPointerEvent) => {
     selectedEntity.value = null;
   }
 
-  if (isMoveTarget.value) {
+  if (canMoveTo.value) {
     sendInput('move', {
       ...cell.position,
       entityId: selectedEntity.value!.id
     });
-  } else if (isSummonTarget.value) {
-    sendInput('summon', {
-      position: cell.position,
-      unitId: selectedSummon.value!.id
-    });
+  } else if (canSummonAt.value) {
+    if (selectedSummon.value!.onSummoned) {
+      targetMode.value = 'summon-targets';
+      summonSpawnPoint.value = cell.position;
+    } else {
+      sendInput('summon', {
+        position: cell.position,
+        unitId: selectedSummon.value!.id,
+        targets: []
+      });
+    }
+  } else if (isValidSummonTarget.value) {
+    summonTargets.value.add(cell.position);
+  } else if (canCastSkillAt.value) {
+    if (skillTargets.value.has(cell.position)) return;
+    skillTargets.value.add(cell.position);
   }
 };
 
@@ -66,7 +88,7 @@ const isMovePathHighlighted = computed(() => {
   const entityOnCell = gameSession.entityManager.getEntityAt(cell);
   const hasAlly = entityOnCell?.playerId === selectedEntity.value.playerId;
 
-  if (!isMoveTarget.value && !hasAlly) return false;
+  if (!canMoveTo.value && !hasAlly) return false;
 
   const path = gameSession.map.getPathTo(
     selectedEntity.value,
@@ -82,10 +104,10 @@ const isMovePathHighlighted = computed(() => {
 });
 
 const cursor = computed(() => {
-  if (isMoveTarget.value) {
+  if (canMoveTo.value) {
     return app.value.renderer.events.cursorStyles.move as Cursor;
   }
-  if (isSummonTarget.value) {
+  if (canSummonAt.value) {
     return app.value.renderer.events.cursorStyles.summon as Cursor;
   }
   return undefined;

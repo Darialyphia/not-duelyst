@@ -18,6 +18,7 @@ export class DealDamageAction extends GameAction<{
 
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
+    if (!this.payload.targets.length) return;
 
     this.ctx.fxContext.playSoundOnce('hit-placeholder');
 

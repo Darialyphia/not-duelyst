@@ -10,9 +10,9 @@ const { cell } = defineProps<{
 }>();
 
 const { state, mapRotation, assets, utils } = useGame();
-const { selectedSummon, hoveredCell } = useGameUi();
+const { selectedSummon, hoveredCell, summonSpawnPoint, targetMode } = useGameUi();
 
-const isSummonTarget = computed(() => utils.isSummonTarget(cell.position));
+const isSummonTarget = computed(() => utils.canSummonAt(cell.position));
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;
@@ -34,6 +34,15 @@ const filters = [
     alpha: 0.35
   })
 ];
+
+const isDisplayed = computed(() => {
+  return (
+    (isSummonTarget.value && hoveredCell.value?.id === cell.id) ||
+    (targetMode.value === 'summon-targets' &&
+      summonSpawnPoint.value &&
+      cell.position.equals(summonSpawnPoint.value))
+  );
+});
 </script>
 
 <template>
@@ -45,7 +54,7 @@ const filters = [
     :leave="{ alpha: 0 }"
   >
     <animated-sprite
-      v-if="isSummonTarget && hoveredCell?.id === cell.id && textures"
+      v-if="isDisplayed && textures"
       :event-mode="'none'"
       :textures="textures"
       :scale-x="scaleX"

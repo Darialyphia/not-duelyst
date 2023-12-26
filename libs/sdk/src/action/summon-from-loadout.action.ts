@@ -1,9 +1,12 @@
 import { EFFECTS } from '../effect/effect-lookup';
 import { SerializedEntity } from '../entity/entity';
+import { Point3D } from '../types';
 import { UNITS } from '../units/unit-lookup';
 import { GameAction } from './action';
 
-export class SummonFromLoadoutAction extends GameAction<Omit<SerializedEntity, 'id'>> {
+export class SummonFromLoadoutAction extends GameAction<
+  Omit<SerializedEntity, 'id'> & { targets: Point3D[] }
+> {
   readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected fxImpl() {
@@ -19,5 +22,9 @@ export class SummonFromLoadoutAction extends GameAction<Omit<SerializedEntity, '
     const entity = this.ctx.entityManager.addEntity(this.payload);
     const effect = new EFFECTS.exhausted(this.ctx, entity, {});
     effect.attach(entity);
+
+    if (unit.onSummoned) {
+      unit.onSummoned.execute(this.ctx, this.payload.targets, entity);
+    }
   }
 }

@@ -27,7 +27,7 @@ export type GameEmits = {
   'end-turn': [];
   surrender: [];
   'use-skill': [{ entityId: number; skillId: SkillId; targets: Point3D[] }];
-  summon: [{ unitId: UnitId; position: Point3D }];
+  summon: [{ unitId: UnitId; position: Point3D; targets: Point3D[] }];
   end: [{ winner: Player }];
 };
 
@@ -39,16 +39,19 @@ export type GameContext = {
   mapRotation: Ref<0 | 90 | 180 | 270>;
   assets: AssetsContext;
   utils: {
-    isMoveTarget(point: Point3D): boolean;
+    canMoveTo(point: Point3D): boolean;
     isWithinRangeOfSkill(point: Point3D): boolean;
-    isSummonTarget(point: Point3D): boolean;
-    isSkillTarget(point: Point3D): boolean;
+    isValidSummonTarget(point: Point3D): boolean;
+    canSummonAt(point: Point3D): boolean;
+    canCastSkillAt(point: Point3D): boolean;
   };
   ui: {
+    summonSpawnPoint: Ref<Nullable<Point3D>>;
+    summonTargets: Ref<Set<Point3D>>;
     skillTargets: Ref<Set<Point3D>>;
     hoveredCell: Ref<Nullable<Cell>>;
     distanceMap: ComputedRef<Nullable<ReturnType<GameSession['map']['getDistanceMap']>>>;
-    targetMode: Ref<Nullable<'move' | 'skill' | 'summon'>>;
+    targetMode: Ref<Nullable<'move' | 'skill' | 'summon' | 'summon-targets'>>;
     selectedSkill: Ref<Nullable<Skill>>;
     selectedSummon: Ref<Nullable<UnitBlueprint>>;
     selectedEntity: Ref<Nullable<Entity>>;
@@ -111,10 +114,15 @@ export const useGameProvider = (
       context.ui.targetMode.value = null;
       context.ui.selectedSkill.value = null;
       context.ui.selectedSummon.value = null;
+      context.ui.summonSpawnPoint.value = null;
+      context.ui.summonTargets.value.clear();
+      context.ui.skillTargets.value.clear();
     },
     mapRotation: ref(0),
     ui: {
       skillTargets: ref(new Set()),
+      summonTargets: ref(new Set()),
+      summonSpawnPoint: ref(),
       isMenuOpened: ref(false),
       distanceMap,
       targetMode: ref(null),
@@ -137,7 +145,8 @@ export const useGameProvider = (
       }
     },
     utils: {
-      isMoveTarget(point) {
+      canMoveTo(point) {
+        if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'move') return false;
         if (!context.ui.selectedEntity.value) return false;
         if (!distanceMap.value) return false;
@@ -157,13 +166,13 @@ export const useGameProvider = (
           [...context.ui.skillTargets.value.values()]
         );
       },
-      isSummonTarget(point) {
+      canSummonAt(point) {
         if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'summon') return false;
 
         return session.map.canSummonAt(point);
       },
-      isSkillTarget(point) {
+      canCastSkillAt(point) {
         if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'skill') return false;
         if (!context.ui.selectedSkill.value) return false;
@@ -174,6 +183,19 @@ export const useGameProvider = (
           point,
           context.ui.selectedEntity.value,
           [...context.ui.skillTargets.value.values()]
+        );
+      },
+      isValidSummonTarget(point) {
+        if (!toValue(isActivePlayer)) return false;
+        if (context.ui.targetMode.value !== 'summon-targets') return false;
+        if (!context.ui.selectedSummon.value) return false;
+        if (!context.ui.selectedEntity.value) return false;
+        if (!context.ui.selectedSummon.value.onSummoned) return false;
+
+        return context.ui.selectedSummon.value.onSummoned.isTargetable(
+          session,
+          point,
+          context.ui.selectedEntity.value
         );
       }
     },
@@ -208,12 +230,31 @@ export const useGameProvider = (
     }
   });
 
-  watch(context.ui.targetMode, newMode => {
-    if (!toValue(isActivePlayer)) return;
-    if (newMode !== 'skill') {
-      context.ui.skillTargets.value.clear();
+  watchEffect(() => {
+    const { sendInput, ui } = context;
+    if (
+      ui.targetMode.value === 'skill' &&
+      ui.skillTargets.value.size === ui.selectedSkill.value?.maxTargets
+    ) {
+      sendInput('use-skill', {
+        entityId: ui.selectedEntity.value!.id,
+        skillId: ui.selectedSkill.value!.id,
+        targets: [...ui.skillTargets.value]
+      });
+    }
+
+    if (
+      ui.targetMode.value === 'summon-targets' &&
+      ui.summonTargets.value.size === ui.selectedSummon.value?.onSummoned?.maxTargetCount
+    ) {
+      sendInput('summon', {
+        unitId: ui.selectedSummon.value.id,
+        position: ui.summonSpawnPoint.value!,
+        targets: [...ui.summonTargets.value]
+      });
     }
   });
+
   provide(GAME_INJECTION_KEY, context);
 
   return context;

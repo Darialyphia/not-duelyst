@@ -1,7 +1,11 @@
+import { isDefined } from '@hc/shared';
+import { DealDamageAction } from '../action/deal-damage.action';
+import { isEnemy } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { Fireball } from '../skill/fireball.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
+import { isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/state-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
@@ -56,7 +60,35 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     defense: 0,
     speed: 4,
     initiative: 7,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    onSummoned: {
+      getDescription() {
+        return 'Deal 1 damage to a nearby unit.';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 1,
+      isTargetable(ctx, point, caster) {
+        return (
+          isWithinCells(ctx, caster.position, point, 1) &&
+          isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId)
+        );
+      },
+      execute(ctx, targets, caster) {
+        ctx.actionQueue.push(
+          new DealDamageAction(
+            {
+              amount: 1,
+              sourceId: caster.id,
+              targets: targets
+                .map(point => ctx.entityManager.getEntityAt(point)?.id)
+                .filter(isDefined),
+              isTrueDamage: true
+            },
+            ctx
+          )
+        );
+      }
+    }
   },
   {
     id: 'chaos-archer',

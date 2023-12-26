@@ -63,6 +63,10 @@ const border = computed(() => {
       </div>
     </div>
 
+    <p v-if="unit.onSummoned?.getDescription" class="text-0 py-2">
+      On summoned: {{ unit.onSummoned.getDescription(unit) }}
+    </p>
+
     <div v-for="skill in unit.skills" :key="skill.id" class="skill">
       <div
         class="skill-img"

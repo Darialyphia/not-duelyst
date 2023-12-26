@@ -32,12 +32,12 @@ export class UseSkillAction extends GameAction<{
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
+    this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
+      fallback: 'attack-placeholder'
+    });
+
     await Promise.all([
       this.skill.fxImpl(this.ctx, this.caster, this.payload.targets, this.affectedCells),
-      this.ctx.fxContext.playSoundOnce(this.skill.soundFX, {
-        fallback: 'attack-placeholder',
-        percentage: 0.25
-      }),
 
       this.ctx.fxContext.playAnimationOnce(
         this.payload.casterId,

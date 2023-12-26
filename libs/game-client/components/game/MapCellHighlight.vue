@@ -19,10 +19,10 @@ const isHighlighted = computed(() => {
     case 'skill':
       return utils.isWithinRangeOfSkill(cell.position);
     case 'summon':
-      return utils.isSummonTarget(cell.position);
+      return utils.canSummonAt(cell.position);
     case 'move':
       return (
-        utils.isMoveTarget(cell.position) &&
+        utils.canMoveTo(cell.position) &&
         selectedEntity.value &&
         selectedEntity.value.remainingMovement > 0
       );
@@ -41,12 +41,12 @@ const getCellBitmask = () => {
     }
     if (targetMode.value === 'summon') {
       return (
-        utils.isSummonTarget(neighbor.position) &&
+        utils.canSummonAt(neighbor.position) &&
         !gameSession.entityManager.getEntityAt(neighbor.position)
       );
     }
 
-    return utils.isMoveTarget(neighbor);
+    return utils.canMoveTo(neighbor);
   });
 };
 

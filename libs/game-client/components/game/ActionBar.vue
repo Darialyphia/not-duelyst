@@ -9,7 +9,15 @@ import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
 const { isActivePlayer, state, sendInput } = useGame();
-const { selectedSummon, selectedEntity, selectedSkill, skillTargets } = useGameUi();
+const {
+  targetMode,
+  summonTargets,
+  selectedSummon,
+  selectedEntity,
+  selectedSkill,
+  skillTargets,
+  summonSpawnPoint
+} = useGameUi();
 
 const activePlayer = computed(() => state.value.activePlayer);
 
@@ -23,32 +31,77 @@ const borders = computed(() => {
       throw exhaustiveSwitch;
   }
 });
+
+const targetsCount = computed(() => {
+  if (targetMode.value === 'skill') return skillTargets.value.size;
+  if (targetMode.value === 'summon-targets') return summonTargets.value.size;
+  return 0;
+});
+const maxTargetsCount = computed(() => {
+  if (targetMode.value === 'skill') return selectedSkill.value?.maxTargets;
+  if (targetMode.value === 'summon-targets') {
+    return selectedSummon.value?.onSummoned?.maxTargetCount;
+  }
+  return 0;
+});
+
+const isValidateTargetsButtonDisplayed = computed(() => {
+  if (targetMode.value === 'skill') {
+    return skillTargets.value.size >= selectedSkill.value!.minTargets;
+  }
+
+  if (targetMode.value === 'summon-targets') {
+    return summonTargets.value.size >= selectedSummon.value!.onSummoned!.minTargetCount;
+  }
+
+  return false;
+});
+
+const validateTargetButtonLabel = computed(() => {
+  if (targetMode.value === 'skill') {
+    return 'Cast';
+  }
+
+  if (targetMode.value === 'summon-targets') {
+    return 'Summon';
+  }
+
+  return '';
+});
+
+const onValidateTargets = () => {
+  if (targetMode.value === 'skill') {
+    return sendInput('use-skill', {
+      entityId: selectedEntity.value!.id,
+      skillId: selectedSkill.value!.id,
+      targets: [...skillTargets.value]
+    });
+  }
+
+  if (targetMode.value === 'summon-targets') {
+    return sendInput('summon', {
+      position: summonSpawnPoint.value!,
+      unitId: selectedSummon.value!.id,
+      targets: [...summonTargets.value]
+    });
+  }
+};
 </script>
 
 <template>
-  <div v-if="selectedSkill" class="targets-indicator">
-    <div class="fancy-surface">
-      Targets: {{ skillTargets.size }} / {{ selectedSkill?.maxTargets }}
-    </div>
+  <div v-if="selectedSkill || targetMode === 'summon-targets'" class="targets-indicator">
+    <div class="fancy-surface">Targets: {{ targetsCount }} / {{ maxTargetsCount }}</div>
     <UiButton
-      v-if="skillTargets.size >= selectedSkill.minTargets"
+      v-if="isValidateTargetsButtonDisplayed"
       :style="{
         '--d-button-bg': 'var(--teal-7)',
         '--d-button-hover-bg': 'var(--teal-6)',
         '--d-button-color': 'var(--gray-0)',
         '--d-button-hover-color': 'var(--gray-0)'
       }"
-      @click="
-        () => {
-          sendInput('use-skill', {
-            entityId: selectedEntity!.id,
-            skillId: selectedSkill!.id,
-            targets: [...skillTargets.values()]
-          });
-        }
-      "
+      @click="onValidateTargets"
     >
-      Cast
+      {{ validateTargetButtonLabel }}
     </UiButton>
   </div>
   <div

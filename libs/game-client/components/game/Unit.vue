@@ -14,8 +14,14 @@ const { entity } = defineProps<{
 const app = useApplication();
 const { isActivePlayer, gameSession, assets, state, mapRotation, fx, sendInput, utils } =
   useGame();
-const { hoveredCell, skillTargets, selectedSkill, selectedEntity, targetMode } =
-  useGameUi();
+const {
+  hoveredCell,
+  skillTargets,
+  selectedSkill,
+  selectedEntity,
+  targetMode,
+  summonTargets
+} = useGameUi();
 
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
@@ -83,11 +89,7 @@ const isHovered = computed(
 );
 
 const selectedFilter = new OutlineFilter(1.5, 0xffffff, 0.2, 1);
-// const selectedfilter = new AdjustmentFilter({
-//   gamma: 1.3,
-//   contrast: 1.25,
-//   saturation: 1.25
-// });
+
 const inSkillAreaFilter = new GlowFilter({
   outerStrength: 2,
   innerStrength: 1,
@@ -105,7 +107,7 @@ const filters = computed(() => {
   if (
     hoveredCell.value &&
     selectedEntity.value &&
-    utils.isSkillTarget(hoveredCell.value) &&
+    utils.canCastSkillAt(hoveredCell.value) &&
     selectedSkill.value?.isInAreaOfEffect(
       gameSession,
       entity.position,
@@ -119,7 +121,7 @@ const filters = computed(() => {
 });
 
 const cursor = computed(() => {
-  if (utils.isSkillTarget(entity.position)) {
+  if (utils.canCastSkillAt(entity.position)) {
     return app.value.renderer.events.cursorStyles.attack as Cursor;
   }
   return undefined;
@@ -176,17 +178,11 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
             if (e.button !== 0) return;
             if (targetMode === 'move') targetMode = null;
             if (!selectedEntity) return;
-            if (!utils.isSkillTarget(entity.position)) return;
-
-            if (skillTargets.has(entity.position)) return;
-            skillTargets.add(entity.position);
-
-            if (skillTargets.size === selectedSkill?.maxTargets) {
-              sendInput('use-skill', {
-                entityId: selectedEntity.id,
-                skillId: selectedSkill!.id,
-                targets: [...skillTargets.values()]
-              });
+            if (utils.canCastSkillAt(entity.position)) {
+              return skillTargets.add(entity.position);
+            }
+            if (utils.isValidSummonTarget(entity.position)) {
+              return summonTargets.add(entity.position);
             }
           }
         "

@@ -7,6 +7,7 @@ import { CHAOS_UNITS } from './chaos.units';
 import { Point3D } from '../types';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
+import { Player } from '../player/player';
 
 export type UnitId = string;
 
@@ -33,10 +34,13 @@ export type UnitBlueprint = {
 
   skills: Array<Skill>;
 
-  // onPlay?: {
-  //   targetCount: number;
-  //   isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
-  // };
+  onSummoned?: {
+    getDescription(unit: UnitBlueprint): string;
+    minTargetCount: number;
+    maxTargetCount: number;
+    isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
+    execute(ctx: GameSession, targets: Point3D[], caster: Entity): void;
+  };
 };
 
 export const UNITS = keyBy([...HAVEN_UNITS, ...CHAOS_UNITS], 'id') satisfies Record<
