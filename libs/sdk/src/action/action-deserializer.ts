@@ -10,6 +10,7 @@ import { DieAction } from './die.action';
 import { EndGamection } from './end-game.action';
 import { AddEffectAction } from './add-effect.action';
 import { HealAction } from './heal.action';
+import { ModifyGoldAction } from './modify-gold.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
 
@@ -33,7 +34,8 @@ export const actionMap = validateActionMap({
   DIE: DieAction,
   END_GAME: EndGamection,
   ADD_EFFECT: AddEffectAction,
-  HEAL: HealAction
+  HEAL: HealAction,
+  MODIFY_GOLD: ModifyGoldAction
 });
 
 export type ActionName = keyof typeof actionMap;

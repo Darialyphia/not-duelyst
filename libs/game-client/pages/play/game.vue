@@ -6,9 +6,6 @@ definePageMeta({
   name: 'Game'
 });
 const route = useRoute();
-const { data: socketUrl } = await useFetch('/api/room', {
-  query: { roomId: route.query.roomId }
-});
 const { getToken } = useConvexAuth();
 
 const { data: game, isLoading: isGameLoading } = useConvexQuery(api.games.getCurrent, {});
@@ -24,7 +21,11 @@ const gameSession = shallowRef<{
 
 let socket: Socket;
 onMounted(async () => {
-  socket = io(socketUrl.value as string, {
+  const socketUrl = await $fetch('/api/room', {
+    query: { roomId: route.query.roomId }
+  });
+
+  socket = io(socketUrl as string, {
     transports: ['websocket'],
     upgrade: false,
     auth: {
@@ -39,8 +40,8 @@ onMounted(async () => {
   socket.on('game:init', (serializedState: any) => {
     if (gameSession.value) return;
     const session = GameSession.createClientSession(serializedState);
+
     session.onReady(() => {
-      console.log('ready');
       gameSession.value = {
         session,
         dispatch(type, payload) {
