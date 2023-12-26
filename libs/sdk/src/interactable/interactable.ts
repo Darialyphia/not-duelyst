@@ -1,3 +1,4 @@
+import { RemoveInteractableAction } from '../action/removeInteractable.action';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Serializable } from '../utils/interfaces';
@@ -28,6 +29,17 @@ export abstract class Interactable implements Serializable {
       position: this.position.serialize(),
       id: this.id
     };
+  }
+
+  destroy() {
+    this.ctx.actionQueue.push(
+      new RemoveInteractableAction(
+        {
+          position: this.position.serialize()
+        },
+        this.ctx
+      )
+    );
   }
 
   abstract init(): void;

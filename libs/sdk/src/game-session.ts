@@ -11,7 +11,7 @@ import { ActionQueue } from './action/action-queue';
 import { FXContext, GameAction } from './action/action';
 
 export type GameState = {
-  map: Pick<GameMap, 'height' | 'width' | 'cells'>;
+  map: Pick<GameMap, 'height' | 'width' | 'cells' | 'interactables'>;
   entities: Entity[];
   players: Player[];
   activePlayer: Player;
@@ -107,7 +107,8 @@ export class GameSession {
       map: {
         height: this.map.height,
         width: this.map.width,
-        cells: this.map.cells.map(cell => cell.clone())
+        cells: this.map.cells.map(cell => cell.clone()),
+        interactables: this.map.interactables
       },
       turn: this.turn,
       entities: this.entityManager.getList().map(entity => entity.clone()),

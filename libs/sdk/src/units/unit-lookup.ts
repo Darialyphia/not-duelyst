@@ -39,8 +39,8 @@ export type UnitBlueprint = {
     getDescription(unit: UnitBlueprint): string;
     minTargetCount: number;
     maxTargetCount: number;
-    isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean;
-    execute(ctx: GameSession, targets: Point3D[], caster: Entity): void;
+    isTargetable(ctx: GameSession, point: Point3D, summonedPoint: Point3D): boolean;
+    execute(ctx: GameSession, targets: Point3D[], summonedentity: Entity): void;
   };
 };
 

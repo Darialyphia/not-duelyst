@@ -12,8 +12,7 @@ const { entity } = defineProps<{
 }>();
 
 const app = useApplication();
-const { isActivePlayer, gameSession, assets, state, mapRotation, fx, sendInput, utils } =
-  useGame();
+const { gameSession, assets, state, mapRotation, fx, utils } = useGame();
 const {
   hoveredCell,
   skillTargets,

@@ -33,14 +33,14 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
       isTargetable() {
         return false;
       },
-      execute(ctx, targets, caster) {
+      execute(ctx, targets, summonedEntity) {
         ctx.actionQueue.push(
           new HealAction(
             {
               amount: 1,
-              sourceId: caster.id,
+              sourceId: summonedEntity.id,
               targets: ctx.entityManager
-                .getNearbyAllies(caster.position, caster.playerId)
+                .getNearbyAllies(summonedEntity.position, summonedEntity.playerId)
                 .map(ally => ally.id)
             },
             ctx

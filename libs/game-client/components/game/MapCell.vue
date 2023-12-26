@@ -14,7 +14,6 @@ const {
   targetMode,
   selectedSummon,
   selectedEntity,
-  selectedSkill,
   summonSpawnPoint,
   summonTargets,
   skillTargets
@@ -60,15 +59,10 @@ const onPointerup = (event: FederatedPointerEvent) => {
       entityId: selectedEntity.value!.id
     });
   } else if (canSummonAt.value) {
+    console.log('?');
+    summonSpawnPoint.value = cell.position;
     if (selectedSummon.value!.onSummoned) {
       targetMode.value = 'summon-targets';
-      summonSpawnPoint.value = cell.position;
-    } else {
-      sendInput('summon', {
-        position: cell.position,
-        unitId: selectedSummon.value!.id,
-        targets: []
-      });
     }
   } else if (isValidSummonTarget.value) {
     summonTargets.value.add(cell.position);
@@ -79,6 +73,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
 };
 
 const pathFilter = new ColorOverlayFilter(0x4455bb, 0.5);
+const summonTargetFilter = new ColorOverlayFilter(0xbb5577, 0.6);
 
 const isMovePathHighlighted = computed(() => {
   if (!hoveredCell.value) return false;
@@ -112,6 +107,13 @@ const cursor = computed(() => {
   }
   return undefined;
 });
+
+const filters = computed(() => {
+  if (isMovePathHighlighted.value) return [pathFilter];
+  if (isValidSummonTarget.value) return [summonTargetFilter];
+
+  return [];
+});
 </script>
 
 <template>
@@ -128,11 +130,7 @@ const cursor = computed(() => {
       @pointerleave="hoveredCell = null"
       @pointerup="onPointerup"
     >
-      <container
-        :filters="isMovePathHighlighted ? [pathFilter] : []"
-        :cursor="cursor"
-        event-mode="none"
-      >
+      <container :filters="filters" :cursor="cursor" event-mode="none">
         <animated-sprite
           v-for="(textures, index) in spriteTextures"
           :key="index"

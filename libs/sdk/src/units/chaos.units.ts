@@ -67,10 +67,14 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       },
       minTargetCount: 0,
       maxTargetCount: 1,
-      isTargetable(ctx, point, caster) {
+      isTargetable(ctx, point, summonedPoint) {
         return (
-          isWithinCells(ctx, caster.position, point, 1) &&
-          isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId)
+          isWithinCells(ctx, summonedPoint, point, 1) &&
+          isEnemy(
+            ctx,
+            ctx.entityManager.getEntityAt(point)?.id,
+            ctx.playerManager.getActivePlayer().id
+          )
         );
       },
       execute(ctx, targets, caster) {

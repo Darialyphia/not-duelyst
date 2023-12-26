@@ -332,7 +332,6 @@ const save = async () => {
 
   await saveMap.mutate({
     ...map.value,
-    interactables: [],
     cells: stringify(map.value.cells.map(cell => cell.serialize()))
   });
 };

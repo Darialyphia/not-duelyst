@@ -17,7 +17,7 @@ export type GameMapOptions = {
   height: number;
   width: number;
   startPositions: [Point3D, Point3D];
-  interactable: SerializedInteractable[];
+  interactables: SerializedInteractable[];
 };
 
 export class GameMap implements Serializable {
@@ -43,9 +43,10 @@ export class GameMap implements Serializable {
     this.cells.forEach(cell => {
       this.cellsMap.set(cell.id, cell);
     });
-    this.interactables = definition.interactable.map(raw => {
+    this.interactables = definition.interactables.map(raw => {
       return new INTERACTABLES[raw.id as keyof typeof INTERACTABLES](this.ctx, raw);
     });
+    this.interactables.forEach(int => int.init());
   }
 
   private makeCells(cells: GameMapOptions['cells']) {
@@ -60,7 +61,7 @@ export class GameMap implements Serializable {
       height: this.height,
       startPositions: this.startPositions,
       cells: this.cells.map(cell => cell.serialize()),
-      interactable: this.interactables.map(inter => inter.serialize())
+      interactables: this.interactables.map(inter => inter.serialize())
     };
   }
 

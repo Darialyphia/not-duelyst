@@ -189,13 +189,13 @@ export const useGameProvider = (
         if (!toValue(isActivePlayer)) return false;
         if (context.ui.targetMode.value !== 'summon-targets') return false;
         if (!context.ui.selectedSummon.value) return false;
-        if (!context.ui.selectedEntity.value) return false;
         if (!context.ui.selectedSummon.value.onSummoned) return false;
+        if (!context.ui.summonSpawnPoint.value) return false;
 
         return context.ui.selectedSummon.value.onSummoned.isTargetable(
           session,
           point,
-          context.ui.selectedEntity.value
+          context.ui.summonSpawnPoint.value
         );
       }
     },
@@ -251,6 +251,18 @@ export const useGameProvider = (
         unitId: ui.selectedSummon.value.id,
         position: ui.summonSpawnPoint.value!,
         targets: [...ui.summonTargets.value]
+      });
+    }
+
+    if (
+      ui.targetMode.value === 'summon' &&
+      ui.summonSpawnPoint.value &&
+      !ui.selectedSummon.value?.onSummoned
+    ) {
+      sendInput('summon', {
+        unitId: ui.selectedSummon.value!.id,
+        position: ui.summonSpawnPoint.value!,
+        targets: []
       });
     }
   });

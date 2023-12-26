@@ -9,6 +9,7 @@ export class ModifyGoldAction extends GameAction<{ playerId: PlayerId; amount: n
   }
 
   protected impl() {
-    // this.ctx.playerManager.switchActivePlayer();
+    this.ctx.playerManager.getPlayerById(this.payload.playerId)!.gold +=
+      this.payload.amount;
   }
 }

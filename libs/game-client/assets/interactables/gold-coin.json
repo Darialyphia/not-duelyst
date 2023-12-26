@@ -69,6 +69,7 @@
    { "name": "Layer 3", "opacity": 223, "blendMode": "screen" }
   ],
   "slices": [
+   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 48, "y": 34, "w": 34, "h": 34 } }] }
   ]
  }
 }

@@ -163,6 +163,11 @@ watchEffect(() => {
       <Layer ref="gameObjectsLayer">
         <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
+        <Interactable
+          v-for="interactable in state.map.interactables"
+          :key="`${interactable.id}:${interactable.position.x}:${interactable.position.y}:${interactable.position.z}`"
+          :interactable="interactable"
+        />
         <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
       </Layer>
 

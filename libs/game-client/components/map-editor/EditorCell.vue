@@ -53,9 +53,7 @@ const interactableTexture = computed(() => {
   const id = instance.spriteId;
 
   const sheet = assets.getSprite(id);
-  const textures = createSpritesheetFrameObject('idle', sheet);
-  console.log(textures);
-  return textures;
+  return createSpritesheetFrameObject('idle', sheet);
 });
 
 const hitAreaYOffset = cell.isHalfTile ? CELL_SIZE / 4 : 0;
@@ -109,6 +107,7 @@ const isHovered = ref(false);
         :textures="interactableTexture"
         :anchor="0.5"
         :y="CELL_SIZE / 4"
+        :playing="true"
       />
     </container>
   </IsoPositioner>

@@ -2,8 +2,8 @@
 import { GameSession, type Player } from '@hc/sdk';
 import { makeDummyState } from '~/dummy-state';
 
-const serverSession = GameSession.createServerSession(await makeDummyState('map1'));
-const clientSession = GameSession.createClientSession(await makeDummyState('map1'));
+const serverSession = GameSession.createServerSession(await makeDummyState('New Map'));
+const clientSession = GameSession.createClientSession(await makeDummyState('New Map'));
 serverSession.subscribe(action => {
   clientSession.dispatchAction(action.serialize() as any); // @FIXME
 });
