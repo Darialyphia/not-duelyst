@@ -4,6 +4,7 @@ import { MeleeAttack } from '../skill/melee-attack.skill';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { HealAction } from '../action/heal.action';
+import { AddEffectAction } from '../action/add-effect.action';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -14,12 +15,11 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 2,
     summonCooldown: 4,
     maxHp: 8,
-    maxAp: 4,
+    maxAp: 3,
     apRegenRate: 1,
     attack: 1,
     defense: 0,
     speed: 3,
-    initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Heal({ cooldown: 2, cost: 2, power: 2, range: 2 })
@@ -46,6 +46,52 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
             ctx
           )
         );
+      }
+    }
+  },
+
+  {
+    id: 'neutral-tank',
+    spriteId: 'neutral-tank',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 3,
+    summonCooldown: 4,
+    maxHp: 8,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 2,
+    defense: 1,
+    speed: 3,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    onSummoned: {
+      getDescription() {
+        return 'Taunt nearby enemies for 1 turn';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 0,
+      isTargetable() {
+        return false;
+      },
+      execute(ctx, targets, summonedEntity) {
+        const nearby = ctx.entityManager.getNearbyEnemies(
+          summonedEntity.position,
+          summonedEntity.playerId
+        );
+
+        nearby.forEach(entity => {
+          ctx.actionQueue.push(
+            new AddEffectAction(
+              {
+                attachedTo: entity.id,
+                effectId: 'taunted',
+                effectArg: { duration: 1 },
+                sourceId: summonedEntity.id
+              },
+              ctx
+            )
+          );
+        });
       }
     }
   }

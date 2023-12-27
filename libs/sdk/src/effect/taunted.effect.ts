@@ -1,0 +1,64 @@
+import { Entity } from '../entity/entity';
+import { GameSession } from '../game-session';
+import { Skill } from '../skill/skill';
+import { Point3D } from '../types';
+import { Effect } from './effect';
+
+export class TauntedEffect extends Effect {
+  readonly id = 'taunted';
+  duration: number;
+
+  constructor(
+    protected ctx: GameSession,
+    public source: Entity,
+    readonly meta: { duration: number }
+  ) {
+    super(ctx, source, meta);
+    this.duration = this.meta.duration;
+
+    this.applyMoveTaunt = this.applyMoveTaunt.bind(this);
+    this.applySkillTaunt = this.applySkillTaunt.bind(this);
+  }
+
+  getDescription(): string {
+    return `This units cannot move and can only attack the unit that taunted them.`;
+  }
+
+  applyMoveTaunt() {
+    return false;
+  }
+
+  applySkillTaunt(
+    value: boolean,
+    {
+      targets
+    }: {
+      entity: Entity;
+      skill: Skill;
+      targets: Point3D[];
+    }
+  ) {
+    if (!value) return value;
+
+    return targets.every(target => {
+      const targetEntity = this.ctx.entityManager.getEntityAt(target);
+      if (!targetEntity) return false;
+
+      return targetEntity.equals(this.source);
+    });
+  }
+
+  onApplied() {
+    this.attachedTo?.addInterceptor('canUseSkillAt', this.applySkillTaunt);
+    this.attachedTo?.addInterceptor('canMove', this.applyMoveTaunt);
+
+    this.source.on('die', () => {
+      this.detach();
+    });
+  }
+
+  onExpired() {
+    this.attachedTo?.removeInterceptor('canUseSkillAt', this.applySkillTaunt);
+    this.attachedTo?.removeInterceptor('canMove', this.applyMoveTaunt);
+  }
+}

@@ -29,10 +29,12 @@ export class PlayerManager {
 
   switchActivePlayer() {
     this.ctx.emitter.emit('game:turn-end', this.getActivePlayer());
+
     this.activePlayerId = this.getList().find(
       player => player.id !== this.activePlayerId
     )!.id;
     this.ctx.turn++;
+
     this.ctx.emitter.emit('game:turn-start', this.getActivePlayer());
   }
 

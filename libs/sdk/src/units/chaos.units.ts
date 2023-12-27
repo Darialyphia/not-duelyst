@@ -6,7 +6,7 @@ import { Fireball } from '../skill/fireball.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { isWithinCells } from '../skill/skill-utils';
-import { StatModifier } from '../skill/state-modifier';
+import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 
@@ -24,7 +24,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 1,
     speed: 3,
-    initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new (class extends StatModifier {
@@ -59,7 +58,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
       getDescription() {
@@ -107,7 +105,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 2,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [
       new RangedAttack({
         cooldown: 1,
@@ -131,7 +128,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 1,
     speed: 2,
-    initiative: 6,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new StatModifier({
@@ -162,7 +158,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 1,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [
       new RangedAttack({
         cooldown: 1,

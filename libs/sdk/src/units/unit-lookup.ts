@@ -31,7 +31,6 @@ export type UnitBlueprint = {
   attack: number;
   defense: number;
   speed: number;
-  initiative: number;
 
   skills: Array<Skill>;
 

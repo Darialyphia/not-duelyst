@@ -174,28 +174,32 @@ export const useGameProvider = (
       },
       canCastSkillAt(point) {
         if (!toValue(isActivePlayer)) return false;
-        if (context.ui.targetMode.value !== 'skill') return false;
-        if (!context.ui.selectedSkill.value) return false;
-        if (!context.ui.selectedEntity.value) return false;
+        const { selectedEntity, selectedSkill, targetMode, skillTargets } = context.ui;
+        if (targetMode.value !== 'skill') return false;
+        if (!selectedSkill.value) return false;
+        if (!selectedEntity.value) return false;
+        const entityCanCast = selectedEntity.value.canUseSkillAt(selectedSkill.value, [
+          ...skillTargets.value,
+          point
+        ]);
+        if (!entityCanCast) return false;
 
-        return context.ui.selectedSkill.value.isTargetable(
-          session,
-          point,
-          context.ui.selectedEntity.value,
-          [...context.ui.skillTargets.value.values()]
-        );
+        return selectedSkill.value.isTargetable(session, point, selectedEntity.value, [
+          ...skillTargets.value
+        ]);
       },
       isValidSummonTarget(point) {
         if (!toValue(isActivePlayer)) return false;
-        if (context.ui.targetMode.value !== 'summon-targets') return false;
-        if (!context.ui.selectedSummon.value) return false;
-        if (!context.ui.selectedSummon.value.onSummoned) return false;
-        if (!context.ui.summonSpawnPoint.value) return false;
+        const { targetMode, selectedSummon, summonSpawnPoint } = context.ui;
+        if (targetMode.value !== 'summon-targets') return false;
+        if (!selectedSummon.value) return false;
+        if (!selectedSummon.value.onSummoned) return false;
+        if (!summonSpawnPoint.value) return false;
 
-        return context.ui.selectedSummon.value.onSummoned.isTargetable(
+        return selectedSummon.value.onSummoned.isTargetable(
           session,
           point,
-          context.ui.summonSpawnPoint.value
+          summonSpawnPoint.value
         );
       }
     },

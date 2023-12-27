@@ -16,6 +16,7 @@ export abstract class AuraEffect extends Effect {
     this.duration = this.meta.duration;
 
     this.checkAura = this.checkAura.bind(this);
+    this.cleanup = this.cleanup.bind(this);
   }
 
   abstract isElligible(entity: Entity): boolean;
@@ -42,10 +43,17 @@ export abstract class AuraEffect extends Effect {
     });
   }
 
+  cleanup() {
+    this.ctx.entityManager.getList().forEach(entity => {
+      this.removeAura(entity);
+    });
+  }
+
   onApplied() {
     this.ctx.emitter.on('entity:move', this.checkAura);
     this.ctx.emitter.on('entity:destroyed', this.checkAura);
     this.ctx.emitter.on('entity:created', this.checkAura);
+    this.attachedTo?.on('die', this.cleanup);
   }
 
   onExpired() {

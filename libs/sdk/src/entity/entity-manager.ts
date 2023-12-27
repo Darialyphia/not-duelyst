@@ -81,6 +81,10 @@ export class EntityManager {
     return this.getNearbyEntities(point).filter(entity => entity.playerId === playerId);
   }
 
+  getNearbyEnemies(point: Point3D, playerId: PlayerId) {
+    return this.getNearbyEntities(point).filter(entity => entity.playerId !== playerId);
+  }
+
   hasNearbyAllies(point: Point3D, playerId: PlayerId) {
     return this.getNearbyAllies(point, playerId).length > 0;
   }

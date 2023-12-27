@@ -77,6 +77,10 @@ export class Entity implements Serializable {
     apRegenRate: makeInterceptor<number, Entity>(),
     initiative: makeInterceptor<number, Entity>(),
     canUseSkill: makeInterceptor<boolean, { entity: Entity; skill: Skill }>(),
+    canUseSkillAt: makeInterceptor<
+      boolean,
+      { entity: Entity; skill: Skill; targets: Point3D[] }
+    >(),
     canMove: makeInterceptor<boolean, Entity>()
   };
 
@@ -218,13 +222,17 @@ export class Entity implements Serializable {
     return this.skills.some(skill => skill.id === skillId);
   }
 
-  canUseSkillAt(skill: Skill, targets?: Point3D[]) {
-    return this.canUseSkill(skill);
+  canUseSkillAt(skill: Skill, targets: Point3D[]) {
+    return this.interceptors.canUseSkillAt.getValue(this.canUseSkill(skill), {
+      entity: this,
+      skill: skill,
+      targets
+    });
   }
 
   canUseSkill(skill: Skill) {
     if (!this.hasSkill(skill.id)) return false;
-    if (this.skillCooldowns[skill.id] > 0) return;
+    if (this.skillCooldowns[skill.id] > 0) return false;
 
     const result = skill.cost <= this.ap;
 

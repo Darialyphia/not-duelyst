@@ -7,7 +7,7 @@ import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { isWithinCells } from '../skill/skill-utils';
-import { StatModifier } from '../skill/state-modifier';
+import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 
