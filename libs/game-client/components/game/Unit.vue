@@ -176,7 +176,6 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
           (e: FederatedMouseEvent) => {
             if (e.button !== 0) return;
             if (targetMode === 'move') targetMode = null;
-            if (!selectedEntity) return;
             if (utils.canCastSkillAt(entity.position)) {
               return skillTargets.add(entity.position);
             }

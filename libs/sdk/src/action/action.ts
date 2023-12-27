@@ -79,20 +79,27 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
   }
 
   async execute() {
-    // discards client side actions generated as side effects of other actions executed client side
-    // this avoid client sessions from playing those actions twice
-    if (this.isSideEffect) return;
+    try {
+      // discards client side actions generated as side effects of other actions executed client side
+      // this avoid client sessions from playing those actions twice
+      if (this.isSideEffect) return;
 
-    // game is over, can't execute further actions
-    if (this.ctx.winner) return;
+      // game is over, can't execute further actions
+      if (this.ctx.winner) return;
 
-    if (!this.ctx.isAuthoritative && this.ctx.fxContext) {
-      await this.fxImpl();
+      if (!this.ctx.isAuthoritative && this.ctx.fxContext) {
+        await this.fxImpl();
+      }
+
+      this.ctx.history.add(this);
+      this.impl();
+      this.ctx.emitter.emit('game:action', this); // smh
+    } catch (err) {
+      console.error(err);
+      if (!this.ctx.isAuthoritative) {
+        console.log(this);
+      }
     }
-
-    this.ctx.history.add(this);
-    this.impl();
-    this.ctx.emitter.emit('game:action', this); // smh
   }
 
   serialize() {

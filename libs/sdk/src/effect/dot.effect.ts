@@ -43,6 +43,7 @@ export class DotEffect extends Effect {
 
   onApplied() {
     this.ctx.emitter.on('game:turn-start', this.applyDot);
+    this.attachedTo?.on('die', this.onExpired.bind(this));
   }
 
   onExpired() {

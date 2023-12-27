@@ -59,7 +59,6 @@ const onPointerup = (event: FederatedPointerEvent) => {
       entityId: selectedEntity.value!.id
     });
   } else if (canSummonAt.value) {
-    console.log('?');
     summonSpawnPoint.value = cell.position;
     if (selectedSummon.value!.onSummoned) {
       targetMode.value = 'summon-targets';
