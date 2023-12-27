@@ -36,10 +36,6 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
     if (!this.unit) return false;
     if (!this.unit.onSummoned) return true;
 
-    console.log(
-      this.payload.targets.length >= this.unit.onSummoned.minTargetCount,
-      this.payload.targets.length <= this.unit.onSummoned.maxTargetCount
-    );
     return (
       this.payload.targets.length >= this.unit.onSummoned.minTargetCount &&
       this.payload.targets.length <= this.unit.onSummoned.maxTargetCount
@@ -47,7 +43,6 @@ export class SummonInput extends PlayerInput<typeof summonEventSchema> {
   }
 
   private get canSummon() {
-    console.log(this.isTargetCountValid);
     return (
       this.isTargetCountValid &&
       this.ctx.map.canSummonAt(this.payload.position) &&

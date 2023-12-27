@@ -7,8 +7,9 @@ const { interactable } = defineProps<{
 }>();
 
 const { mapRotation, state, gameSession, assets } = useGame();
-const sheet = assets.getSprite(interactable.spriteId);
+const { targetMode } = useGameUi();
 
+const sheet = assets.getSprite(interactable.spriteId);
 const textures = computed(() => {
   return createSpritesheetFrameObject('idle', sheet);
 });
@@ -26,7 +27,7 @@ const hitArea = computed(() => {
 
   // we need to offset the slice because the sprite has its anchor in the center
   const offset = {
-    x: CELL_SIZE * 1.25,
+    x: 0,
     y: 0
   };
 
@@ -66,6 +67,7 @@ const hitArea = computed(() => {
     :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >
     <animated-sprite
+      :event-mode="targetMode ? 'none' : 'static'"
       :x="-CELL_SIZE"
       :y="CELL_SIZE / 4"
       :textures="textures"

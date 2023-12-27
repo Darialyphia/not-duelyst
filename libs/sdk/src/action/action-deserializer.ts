@@ -12,6 +12,7 @@ import { AddEffectAction } from './add-effect.action';
 import { HealAction } from './heal.action';
 import { ModifyGoldAction } from './modify-gold.action';
 import { RemoveInteractableAction } from './removeInteractable.action';
+import { ModifyApAction } from './modify-ap.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
 
@@ -37,7 +38,8 @@ export const actionMap = validateActionMap({
   ADD_EFFECT: AddEffectAction,
   HEAL: HealAction,
   MODIFY_GOLD: ModifyGoldAction,
-  REMOVE_INTERACTABLE: RemoveInteractableAction
+  REMOVE_INTERACTABLE: RemoveInteractableAction,
+  MODIFY_AP: ModifyApAction
 });
 
 export type ActionName = keyof typeof actionMap;

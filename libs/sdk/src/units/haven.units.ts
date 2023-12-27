@@ -24,7 +24,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 3,
     defense: 1,
-    speed: 4,
+    speed: 3,
     initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -38,12 +38,12 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.haven,
     summonCost: 2,
     summonCooldown: 2,
-    maxHp: 8,
+    maxHp: 7,
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
     defense: 0,
-    speed: 4,
+    speed: 3,
     initiative: 7,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
@@ -91,7 +91,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 2,
     defense: 0,
-    speed: 4,
+    speed: 3,
     initiative: 7,
     skills: [
       new RangedAttack({
@@ -115,7 +115,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 3,
     defense: 1,
-    speed: 3,
+    speed: 2,
     initiative: 6,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -146,7 +146,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 1,
     defense: 0,
-    speed: 4,
+    speed: 3,
     initiative: 7,
     skills: [
       new RangedAttack({
