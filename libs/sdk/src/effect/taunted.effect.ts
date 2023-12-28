@@ -1,6 +1,7 @@
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Skill } from '../skill/skill';
+import { isWithinCells } from '../skill/skill-utils';
 import { Point3D } from '../types';
 import { Effect } from './effect';
 
@@ -11,7 +12,7 @@ export class TauntedEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { duration: number }
+    readonly meta: { duration: number; radius: number }
   ) {
     super(ctx, source, meta);
     this.duration = this.meta.duration;
@@ -24,11 +25,24 @@ export class TauntedEffect extends Effect {
     return `This units cannot move and can only attack the unit that taunted them.`;
   }
 
-  applyMoveTaunt() {
+  private get isInTauntRange() {
+    return isWithinCells(
+      this.ctx,
+      this.source.position,
+      this.attachedTo!.position,
+      this.meta.radius
+    );
+  }
+
+  private applyMoveTaunt(value: boolean) {
+    if (!this.isInTauntRange) {
+      return value;
+    }
+
     return false;
   }
 
-  applySkillTaunt(
+  private applySkillTaunt(
     value: boolean,
     {
       targets
@@ -38,6 +52,9 @@ export class TauntedEffect extends Effect {
       targets: Point3D[];
     }
   ) {
+    if (!this.isInTauntRange) {
+      return value;
+    }
     if (!value) return value;
 
     return targets.every(target => {

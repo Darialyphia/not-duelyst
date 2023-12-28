@@ -85,7 +85,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
               {
                 attachedTo: entity.id,
                 effectId: 'taunted',
-                effectArg: { duration: 2 },
+                effectArg: { duration: 2, radius: 1 },
                 sourceId: summonedEntity.id
               },
               ctx
