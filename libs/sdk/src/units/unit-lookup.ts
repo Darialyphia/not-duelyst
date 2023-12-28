@@ -35,9 +35,10 @@ export type UnitBlueprint = {
 
   skills: Array<Skill>;
 
-  triggers?: [
-    { getEffect(ctx: GameSession, entity: Entity): Effect; description: string }
-  ];
+  effects?: {
+    getEffect(ctx: GameSession, entity: Entity): Effect;
+    description: string;
+  }[];
   onSummoned?: {
     getDescription(unit: UnitBlueprint): string;
     minTargetCount: number;

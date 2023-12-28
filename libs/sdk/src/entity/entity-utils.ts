@@ -41,7 +41,8 @@ export const isEnemy = (
   return entity.playerId !== playerId;
 };
 
-export const isKind = (kind: UnitKind) => (entity: Entity) => entity.kind === kind;
+export const isKind = (kind: UnitKind) => (entity: Nullable<Entity>) =>
+  entity?.kind === kind;
 export const isGeneral = isKind(UNIT_KIND.GENERAL);
 
 export const isEmpty = (ctx: GameSession, point: Point3D) => {

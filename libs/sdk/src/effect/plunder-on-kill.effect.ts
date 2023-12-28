@@ -3,7 +3,7 @@ import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Effect } from './effect';
 
-export class PlunderOnKill extends Effect {
+export class PlunderOnKillEffect extends Effect {
   readonly id = 'plunder';
   duration: number;
 
@@ -42,7 +42,7 @@ export class PlunderOnKill extends Effect {
 
   onApplied() {
     this.ctx.emitter.on('entity:die', this.listener);
-    this.attachedTo?.on('die', this.onExpired);
+    this.attachedTo?.on('die', this.onExpired.bind(this));
   }
 
   onExpired() {

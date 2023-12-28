@@ -5,6 +5,7 @@ import { PlayerId } from '../player/player';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
 import { Vec3 } from '../utils/vector';
+import { EFFECTS } from '../effect/effect-lookup';
 
 export type EntityManagerOptions = {
   entities: Entity[];
@@ -106,12 +107,6 @@ export class EntityManager {
         entity.startTurn();
       }
     });
-
-    if (entity.unit.triggers) {
-      entity.unit.triggers.forEach(trigger => {
-        trigger.getEffect(this.ctx, entity).attach(entity);
-      });
-    }
   }
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
@@ -121,6 +116,12 @@ export class EntityManager {
     this.entityMap.set(id, entity);
 
     this.addListeners(entity);
+
+    if (entity.unit.effects) {
+      entity.unit.effects.forEach(trigger => {
+        trigger.getEffect(this.ctx, entity).attach(entity);
+      });
+    }
 
     this.ctx.emitter.emit('entity:created', entity);
 

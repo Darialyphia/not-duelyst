@@ -1,3 +1,4 @@
+import { EFFECTS } from '../effect/effect-lookup';
 import { EntityId } from '../entity/entity';
 import { SkillId } from '../skill/skill';
 import { Point3D } from '../types';
@@ -56,5 +57,7 @@ export class UseSkillAction extends GameAction<{
     entity.useSkill(this.payload.skillId);
 
     this.skill.execute(this.ctx, this.caster, this.payload.targets, this.affectedCells);
+
+    new EFFECTS.exhausted(this.ctx, entity, {}).attach(entity);
   }
 }

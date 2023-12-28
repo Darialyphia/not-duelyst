@@ -1,6 +1,6 @@
 import { isDefined } from '@hc/shared';
 import { DealDamageAction } from '../action/deal-damage.action';
-import { isEnemy } from '../entity/entity-utils';
+import { isEnemy, isGeneral } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { Fireball } from '../skill/fireball.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
@@ -11,6 +11,9 @@ import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { Knockback } from '../skill/knockback.skill';
 import { Thorns } from '../skill/thorns.skill';
+import { Entity } from '../entity/entity';
+import { GameSession } from '../game-session';
+import { Point3D } from '../types';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -21,7 +24,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     summonCost: 0,
     summonCooldown: 0,
     maxHp: 20,
-    maxAp: 4,
+    maxAp: 3,
     apRegenRate: 1,
     attack: 3,
     defense: 1,
@@ -31,6 +34,12 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       new (class extends StatModifier {
         getDescription() {
           return `Give an ally ${this.value} ${this.statKey}.`;
+        }
+        isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean {
+          return (
+            super.isTargetable(ctx, point, caster) &&
+            isGeneral(ctx.entityManager.getEntityAt(point))
+          );
         }
       })({
         cost: 2,

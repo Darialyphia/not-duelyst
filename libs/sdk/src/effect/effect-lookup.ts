@@ -5,6 +5,8 @@ import { StatModifierEffect } from './stat-modifier.effect';
 import { ExhaustedEffect } from './exhausted.effect';
 import { TauntedEffect } from './taunted.effect';
 import { ThornsEffect } from './thorns.effect';
+import { RushEffect } from './rush.effect';
+import { RootedEffect } from './rooted.effect';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
 
@@ -24,5 +26,7 @@ export const EFFECTS = validateEffectMap({
   statModifier: StatModifierEffect,
   exhausted: ExhaustedEffect,
   taunted: TauntedEffect,
-  thorns: ThornsEffect
+  thorns: ThornsEffect,
+  rush: RushEffect,
+  rooted: RootedEffect
 });

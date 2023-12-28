@@ -19,9 +19,13 @@ export class SummonFromLoadoutAction extends GameAction<
 
     const unit = UNITS[this.payload.unitId];
     player.summonFromLoadout(unit);
+
     const entity = this.ctx.entityManager.addEntity(this.payload);
-    const effect = new EFFECTS.exhausted(this.ctx, entity, {});
-    effect.attach(entity);
+
+    const hasRush = entity.effects.some(e => e.id === 'rush');
+    if (!hasRush) {
+      new EFFECTS.exhausted(this.ctx, entity, {}).attach(entity);
+    }
 
     if (unit.onSummoned) {
       unit.onSummoned.execute(this.ctx, this.payload.targets, entity);

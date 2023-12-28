@@ -21,7 +21,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 0,
     summonCooldown: 0,
     maxHp: 20,
-    maxAp: 4,
+    maxAp: 3,
     apRegenRate: 1,
     attack: 3,
     defense: 1,
