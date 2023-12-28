@@ -65,17 +65,21 @@ export class TauntedEffect extends Effect {
     });
   }
 
+  private cleanup() {
+    this.attachedTo?.removeInterceptor('canUseSkillAt', this.applySkillTaunt);
+    this.attachedTo?.removeInterceptor('canMove', this.applyMoveTaunt);
+  }
+
   onApplied() {
     this.attachedTo?.addInterceptor('canUseSkillAt', this.applySkillTaunt);
     this.attachedTo?.addInterceptor('canMove', this.applyMoveTaunt);
 
     this.source.on('die', () => {
-      this.detach();
+      this.cleanup();
     });
   }
 
   onExpired() {
-    this.attachedTo?.removeInterceptor('canUseSkillAt', this.applySkillTaunt);
-    this.attachedTo?.removeInterceptor('canMove', this.applyMoveTaunt);
+    this.cleanup();
   }
 }

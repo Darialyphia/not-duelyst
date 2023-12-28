@@ -38,16 +38,14 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         isTargetable(ctx: GameSession, point: Point3D, caster: Entity): boolean {
           return (
             super.isTargetable(ctx, point, caster) &&
-            isGeneral(ctx.entityManager.getEntityAt(point))
+            !isGeneral(ctx.entityManager.getEntityAt(point))
           );
         }
       })({
         cost: 2,
         cooldown: 3,
-        animationFX: 'cast',
         spriteId: 'bloodlust',
         name: 'Blood lust',
-        soundFX: 'cast',
         duration: Infinity,
         range: 3,
         statKey: 'attack',
