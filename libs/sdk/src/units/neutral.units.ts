@@ -66,7 +66,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
       getDescription() {
-        return 'Taunt nearby enemies for 1 turn';
+        return 'Taunt nearby enemies for 2 turns';
       },
       minTargetCount: 0,
       maxTargetCount: 0,
@@ -85,7 +85,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
               {
                 attachedTo: entity.id,
                 effectId: 'taunted',
-                effectArg: { duration: 1 },
+                effectArg: { duration: 2 },
                 sourceId: summonedEntity.id
               },
               ctx

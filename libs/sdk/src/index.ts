@@ -13,3 +13,4 @@ export type { PlayerId, Player } from './player/player';
 export { Vec3 } from './utils/vector';
 export { INTERACTABLES } from './interactable/interactable-lookup';
 export { Interactable } from './interactable/interactable';
+export { EFFECTS } from './effect/effect-lookup';

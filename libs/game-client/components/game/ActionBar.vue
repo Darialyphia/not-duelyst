@@ -108,6 +108,7 @@ const onValidateTargets = () => {
       {{ validateTargetButtonLabel }}
     </UiButton>
   </div>
+
   <div
     v-if="selectedEntity && selectedEntity.player.equals(state.activePlayer)"
     class="flex gap-4 pb-2"
@@ -123,7 +124,7 @@ const onValidateTargets = () => {
           class="skill"
           :class="{
             active: selectedSkill?.id === skill.id,
-            unavailable: selectedEntity.ap < skill.cost
+            unavailable: !selectedEntity.canUseSkill(skill)
           }"
           :disabled="!selectedEntity.canUseSkill(skill)"
           :data-cost="skill.cost"

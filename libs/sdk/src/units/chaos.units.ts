@@ -9,6 +9,7 @@ import { isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
+import { Knockback } from '../skill/knockback.skill';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -111,6 +112,16 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         cost: 0,
         power: 0,
         minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
+      new Knockback({
+        collisionDamage: 2,
+        cooldown: 4,
+        cost: 2,
+        damage: 1,
+        distance: 2,
+        isTrueDamage: true,
+        minRange: 0,
         maxRange: 3
       })
     ]

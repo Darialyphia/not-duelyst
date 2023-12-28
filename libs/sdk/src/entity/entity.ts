@@ -180,10 +180,6 @@ export class Entity implements Serializable {
     return this.interceptors.defense.getValue(this.unit.defense, this);
   }
 
-  get initiative(): number {
-    return this.interceptors.initiative.getValue(this.unit.initiative, this);
-  }
-
   get skills() {
     return this.unit.skills;
   }

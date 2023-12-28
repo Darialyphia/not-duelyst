@@ -18,6 +18,9 @@ export type AsyncReturnType<T extends (...args: any) => Promise<any>> =
   T extends (...args: any) => Promise<infer R> ? R : any;
 export type MaybePromise<T> = T | Promise<T>;
 export type Iterableify<T> = { [K in keyof T]: Iterable<T[K]> };
+export type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+};
 export type Defined<T> = Exclude<T, undefined | null>;
 export type Prettify<T> = {
   [K in keyof T]: T[K];

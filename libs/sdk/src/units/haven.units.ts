@@ -10,6 +10,7 @@ import { isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
+import { Knockback } from '../skill/knockback.skill';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
@@ -25,7 +26,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 1,
     speed: 3,
-    initiative: 8,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Heal({ cooldown: 2, cost: 2, power: 3, range: 2 })
@@ -44,7 +44,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
       getDescription() {
@@ -92,13 +91,22 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 2,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [
       new RangedAttack({
         cooldown: 1,
         cost: 0,
         power: 0,
         minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
+      new Knockback({
+        collisionDamage: 2,
+        cooldown: 4,
+        cost: 2,
+        damage: 1,
+        distance: 2,
+        isTrueDamage: true,
+        minRange: 0,
         maxRange: 3
       })
     ]
@@ -116,7 +124,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 1,
     speed: 2,
-    initiative: 6,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new StatModifier({
@@ -147,7 +154,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 1,
     defense: 0,
     speed: 3,
-    initiative: 7,
     skills: [
       new RangedAttack({
         cooldown: 1,

@@ -4,6 +4,7 @@ import { Entity, EntityId, SerializedEntity } from './entity';
 import { PlayerId } from '../player/player';
 import { isGeneral } from './entity-utils';
 import { GameSession } from '../game-session';
+import { Vec3 } from '../utils/vector';
 
 export type EntityManagerOptions = {
   entities: Entity[];
@@ -123,6 +124,33 @@ export class EntityManager {
   removeEntity(entity: Entity) {
     this.entityMap.delete(entity.id);
     this.ctx.emitter.emit('entity:destroyed', entity);
+  }
+
+  getEntityFromRay(origin: Point3D, target: Point3D, distance: number) {
+    if (origin.x !== target.x && origin.y !== target.y) {
+      throw new Error('Non axis aligned raycast not supported');
+    }
+
+    const axis = origin.x === target.x ? 'y' : 'x';
+    let step = 1;
+    if (distance < 0) step *= -1;
+    if (target[axis] < origin[axis]) {
+      step *= -1;
+    }
+
+    let entity = null;
+
+    console.log(origin, target);
+    for (let i = 1; i <= Math.abs(distance); i++) {
+      entity = this.ctx.entityManager.getEntityAt({
+        x: axis == 'x' ? target.x + step * i : target.x,
+        y: axis == 'y' ? target.y + step * i : target.y,
+        z: target.z
+      });
+      if (entity) break;
+    }
+
+    return entity;
   }
 
   serialize() {

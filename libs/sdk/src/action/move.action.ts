@@ -2,11 +2,6 @@ import { EntityId } from '../entity/entity';
 import { Point3D } from '../types';
 import { GameAction } from './action';
 
-const waitFor = (duration: number) =>
-  new Promise<void>(resolve => {
-    setTimeout(() => resolve(), duration);
-  });
-
 export class MoveAction extends GameAction<{
   entityId: EntityId;
   path: Point3D[];
