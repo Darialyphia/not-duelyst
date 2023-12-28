@@ -66,8 +66,12 @@ const border = computed(() => {
       </div>
     </div>
 
-    <p v-if="unit.onSummoned?.getDescription" class="text-0">
+    <p v-if="unit.onSummoned?.getDescription">
       On summoned: {{ unit.onSummoned.getDescription(unit) }}
+    </p>
+
+    <p v-for="(trigger, index) in unit.triggers" :key="index">
+      {{ trigger.description }}
     </p>
 
     <div v-for="skill in unit.skills" :key="skill.id" class="skill">
@@ -80,7 +84,7 @@ const border = computed(() => {
         }"
       />
 
-      <div class="flex flex-col gap-1">
+      <div class="grid gap-1">
         {{ skill.id }}
         <p>{{ skill.getDescription(unit) }}</p>
       </div>
@@ -100,6 +104,11 @@ const border = computed(() => {
   padding: 0 var(--size-6) var(--size-6);
   font-size: var(--font-size-2);
   backdrop-filter: blur(5px);
+
+  > p {
+    margin-block: var(--size-1);
+    font-size: var(--font-size-0);
+  }
 }
 
 .avatar-container {
@@ -174,13 +183,9 @@ const border = computed(() => {
   }
 
   p {
-    grid-column: 2;
-
     margin: 0;
     margin: var(--size-1) 0;
-
     font-size: var(--font-size-00);
-
     opacity: 0.8;
   }
 

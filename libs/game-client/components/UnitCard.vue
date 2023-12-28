@@ -81,11 +81,15 @@ const border = computed(() => {
       </div>
     </div>
 
-    <p v-if="entity.unit.onSummoned?.getDescription" class="text-0">
+    <p v-if="entity.unit.onSummoned?.getDescription">
       On summoned: {{ entity.unit.onSummoned.getDescription(entity.unit) }}
     </p>
 
-    <div v-for="skill in entity.skills" :key="skill.id" class="skill">
+    <p v-for="(trigger, index) in entity.unit.triggers" :key="index">
+      {{ trigger.description }}
+    </p>
+
+    <ul v-for="skill in entity.skills" :key="skill.id" class="skill">
       <div
         class="skill-img"
         :data-cost="skill.cost"
@@ -100,20 +104,21 @@ const border = computed(() => {
         }"
       />
 
-      <div class="flex flex-col gap-1">
+      <div class="grid gap-1">
         {{ skill.id }}
         <p>{{ skill.getDescription(entity) }}</p>
       </div>
-    </div>
+    </ul>
 
     <ul>
       <li
         v-for="effect in entity.effects"
         :key="effect.id"
-        class="flex gap-2 items-center text-0 my-2"
+        class="gap-2 items-center text-0 my-2"
       >
         <div class="i-game-icons-time-trap" />
         {{ effect.id }}
+        <span v-if="isFinite(effect.duration)">({{ effect.duration }} turns left)</span>
       </li>
     </ul>
 
@@ -125,20 +130,6 @@ const border = computed(() => {
       >
         <div class="i-game-icons-beams-aura" />
         {{ aura.name }}
-      </li>
-    </ul> -->
-
-    <!-- <ul>
-      <li
-        v-for="modifier in entity.modifiers"
-        :key="modifier.id"
-        class="flex gap-2 items-center text-0 my-2"
-      >
-        <div class="i-game-icons-abstract-086" />
-        {{ modifier.name }}
-        <template v-if="modifier.duration !== Infinity">
-          ({{ modifier.duration.toFixed(1) }} turns left)
-        </template>
       </li>
     </ul> -->
   </article>
@@ -156,6 +147,11 @@ const border = computed(() => {
   padding: 0 var(--size-6) var(--size-6);
   font-size: var(--font-size-2);
   backdrop-filter: blur(5px);
+
+  > p {
+    margin-block: var(--size-1);
+    font-size: var(--font-size-0);
+  }
 }
 
 .avatar-container {
@@ -260,7 +256,6 @@ const border = computed(() => {
   }
 
   p {
-    grid-column: 2;
     margin: var(--size-1) 0;
     font-size: var(--font-size-00);
     opacity: 0.8;

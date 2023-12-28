@@ -100,11 +100,14 @@ surfaceBgVar.value = `url(${surfaceBg})`;
   user-select: none;
 
   position: relative;
+  transform-style: preserve-3d;
 
   overflow: hidden;
 
   font-family: monospace;
   color: var(--gray-0);
+
+  perspective: 1200px;
 
   image-rendering: pixelated;
 }

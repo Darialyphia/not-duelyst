@@ -1,48 +1,42 @@
 import { PartialBy } from '@hc/shared';
 import { Skill, SkillOptions } from './skill';
 import { Entity } from '../entity/entity';
-import { StatModifierEffect } from '../effect/stat-modifier.effect';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { AddEffectAction } from '../action/add-effect.action';
 import { isSelf, isWithinCells } from './skill-utils';
-import { isAlly, isEnemy } from '../entity/entity-utils';
+import { isAlly } from '../entity/entity-utils';
+import { ThornsEffect } from '../effect/thorns.effect';
 
-export type StatModifierOptions = PartialBy<SkillOptions, 'spriteId'> &
-  StatModifierEffect['meta'] & { targetType: 'self' | 'ally' | 'enemy'; range: number };
+export type ThornsOptions = PartialBy<SkillOptions, 'spriteId'> &
+  ThornsEffect['meta'] & { range: number; targetType: 'self' | 'ally' };
 
-export class StatModifier extends Skill {
+export class Thorns extends Skill {
   id = 'stat_modifier';
 
-  public readonly value: StatModifierOptions['value'];
-  public readonly statKey: StatModifierOptions['statKey'];
-  public readonly duration: StatModifierOptions['duration'];
-  public readonly targetType: 'self' | 'ally' | 'enemy';
+  public readonly meta: ThornsEffect['meta'];
   public readonly range: number;
+  public readonly targetType: 'self' | 'ally';
 
-  constructor(options: StatModifierOptions) {
+  constructor(options: ThornsOptions) {
     super({
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
-      spriteId: options.spriteId ?? 'melee_attack',
+      spriteId: options.spriteId ?? 'thorns',
       ...options
     });
-    this.value = options.value;
-    this.statKey = options.statKey;
-    this.duration = options.duration;
-    this.targetType = options.targetType;
     this.range = options.range;
+    this.targetType = options.targetType;
+    this.meta = {
+      damage: options.damage,
+      duration: options.duration,
+      isTrueDamage: options.isTrueDamage
+    };
   }
 
   getDescription() {
-    switch (this.targetType) {
-      case 'self':
-        return `Get ${this.value} ${this.statKey} for ${this.duration} turns.`;
-      case 'ally':
-        return `Give an ally ${this.value} ${this.statKey} for ${this.duration} turns.`;
-      case 'enemy':
-        return `Give an enemy ${this.value} ${this.statKey} for ${this.duration} turns.`;
-    }
+    const duration = isFinite(this.meta.duration) ? `for ${this.meta.duration}` : '';
+    return `Target gets thorns ${this.meta.damage} ${duration}.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
@@ -57,8 +51,6 @@ export class StatModifier extends Skill {
         return isSelf(caster, ctx.entityManager.getEntityAt(point));
       case 'ally':
         return isAlly(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId);
-      case 'enemy':
-        return isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId);
     }
   }
 
@@ -73,8 +65,8 @@ export class StatModifier extends Skill {
         {
           sourceId: caster.id,
           attachedTo: entity.id,
-          effectId: 'statModifier',
-          effectArg: { duration: this.duration, statKey: this.statKey, value: this.value }
+          effectId: 'thorns',
+          effectArg: this.meta
         },
         ctx
       )

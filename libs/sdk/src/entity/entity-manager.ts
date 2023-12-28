@@ -108,8 +108,8 @@ export class EntityManager {
     });
 
     if (entity.unit.triggers) {
-      entity.unit.triggers(this.ctx, entity).forEach(trigger => {
-        trigger.attach(entity);
+      entity.unit.triggers.forEach(trigger => {
+        trigger.getEffect(this.ctx, entity).attach(entity);
       });
     }
   }

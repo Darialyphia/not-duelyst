@@ -10,6 +10,7 @@ import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { Knockback } from '../skill/knockback.skill';
+import { Thorns } from '../skill/thorns.skill';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -141,18 +142,15 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     speed: 2,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
-      new StatModifier({
-        name: 'Bulwark',
-        spriteId: 'bulwark',
-        animationFX: 'cast',
-        soundFX: 'cast-placeholder',
+      new Thorns({
         cost: 2,
         cooldown: 5,
-        duration: 2,
-        statKey: 'defense',
+        name: 'Blood lust',
+        duration: 3,
         range: 0,
         targetType: 'self',
-        value: 1
+        damage: 1,
+        isTrueDamage: true
       })
     ]
   },

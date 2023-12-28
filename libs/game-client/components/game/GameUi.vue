@@ -21,6 +21,7 @@ const { selectedEntity, hoveredCell, targetMode } = useGameUi();
   <div class="game-action-bar">
     <ActionBar />
   </div>
+
   <div class="debug">
     <pre>
 turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
@@ -60,15 +61,13 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   &.left {
     left: var(--size-5);
     &:is(.v-enter-from, .v-leave-to) {
-      transform: translateX(-50%);
-      opacity: 0;
+      transform: translateX(-50%) rotateY(45deg);
     }
   }
   &.right {
     right: var(--size-5);
     &:is(.v-enter-from, .v-leave-to) {
-      transform: translateX(50%);
-      opacity: 0;
+      transform: translateX(50%) rotateY(-45deg);
     }
   }
 
@@ -79,7 +78,6 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   }
 
   &:is(.v-enter-from, .v-leave-to) {
-    transform: translateX(-50%);
     opacity: 0;
   }
 }

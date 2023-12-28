@@ -108,16 +108,19 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 1,
+    defense: 0,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
-    triggers: (ctx, entity) => {
-      return [
-        new PlunderOnKill(ctx, entity, {
-          duration: Infinity,
-          amount: 1
-        })
-      ];
-    }
+    triggers: [
+      {
+        description: `When this unit takes down an enemy, gain 1 gold.`,
+        getEffect: (ctx, entity) => {
+          return new PlunderOnKill(ctx, entity, {
+            duration: Infinity,
+            amount: 1
+          });
+        }
+      }
+    ]
   }
 ];
