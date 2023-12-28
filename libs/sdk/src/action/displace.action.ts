@@ -1,3 +1,4 @@
+import { clamp } from '@hc/shared';
 import { EntityId } from '../entity/entity';
 import { isAxisAligned } from '../skill/skill-utils';
 import { Point3D } from '../types';
@@ -76,7 +77,11 @@ export class DisplaceAction extends GameAction<{
       const obstacle = this.getObstacleAtDistance(step * i);
       if (obstacle) break;
 
-      destination[this.displacementAxis] += step;
+      destination[this.displacementAxis] = clamp(
+        destination[this.displacementAxis] + step,
+        0,
+        this.displacementAxis === 'x' ? this.ctx.map.width - 1 : this.ctx.map.height - 1
+      );
     }
 
     return destination;
