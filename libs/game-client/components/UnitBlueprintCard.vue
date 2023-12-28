@@ -175,8 +175,12 @@ const border = computed(() => {
 
   p {
     grid-column: 2;
+
     margin: 0;
+    margin: var(--size-1) 0;
+
     font-size: var(--font-size-00);
+
     opacity: 0.8;
   }
 

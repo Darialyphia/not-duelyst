@@ -97,8 +97,8 @@ export class EntityManager {
   }
 
   private addListeners(entity: Entity) {
-    entity.on('*', type => {
-      this.ctx.emitter.emit(`entity:${type}`, entity);
+    entity.on('*', (type, payload) => {
+      this.ctx.emitter.emit(`entity:${type}`, payload);
     });
 
     this.ctx.emitter.on('game:turn-start', player => {
@@ -106,6 +106,12 @@ export class EntityManager {
         entity.startTurn();
       }
     });
+
+    if (entity.unit.triggers) {
+      entity.unit.triggers(this.ctx, entity).forEach(trigger => {
+        trigger.attach(entity);
+      });
+    }
   }
 
   addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {

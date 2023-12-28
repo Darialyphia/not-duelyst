@@ -63,7 +63,9 @@ export class DealDamageAction extends GameAction<{
       const target = this.ctx.entityManager.getEntityById(targetId)!;
       attacker.dealDamage(this.payload.amount, target, this.payload.isTrueDamage);
       if (target.hp <= 0) {
-        this.ctx.actionQueue.push(new DieAction({ entityId: targetId }, this.ctx));
+        this.ctx.actionQueue.push(
+          new DieAction({ entityId: targetId, sourceId: this.payload.sourceId }, this.ctx)
+        );
       }
     });
   }

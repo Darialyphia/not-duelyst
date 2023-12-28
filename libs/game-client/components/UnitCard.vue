@@ -81,6 +81,10 @@ const border = computed(() => {
       </div>
     </div>
 
+    <p v-if="entity.unit.onSummoned?.getDescription" class="text-0">
+      On summoned: {{ entity.unit.onSummoned.getDescription(entity.unit) }}
+    </p>
+
     <div v-for="skill in entity.skills" :key="skill.id" class="skill">
       <div
         class="skill-img"
@@ -257,7 +261,7 @@ const border = computed(() => {
 
   p {
     grid-column: 2;
-    margin: 0;
+    margin: var(--size-1) 0;
     font-size: var(--font-size-00);
     opacity: 0.8;
   }

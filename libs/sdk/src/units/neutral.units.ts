@@ -5,6 +5,7 @@ import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { HealAction } from '../action/heal.action';
 import { AddEffectAction } from '../action/add-effect.action';
+import { PlunderOnKill } from '../effect/plunder-on-kill.effect';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -93,6 +94,30 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
           );
         });
       }
+    }
+  },
+
+  {
+    id: 'neutral-thief',
+    spriteId: 'neutral-thief',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 3,
+    summonCooldown: 4,
+    maxHp: 6,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 2,
+    defense: 1,
+    speed: 3,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    triggers: (ctx, entity) => {
+      return [
+        new PlunderOnKill(ctx, entity, {
+          duration: Infinity,
+          amount: 1
+        })
+      ];
     }
   }
 ];

@@ -3,7 +3,7 @@ import { isGeneral } from '../entity/entity-utils';
 import { GameAction } from './action';
 import { EndGamection } from './end-game.action';
 
-export class DieAction extends GameAction<{ entityId: EntityId }> {
+export class DieAction extends GameAction<{ entityId: EntityId; sourceId: EntityId }> {
   readonly name = 'DIE';
 
   protected async fxImpl() {
@@ -15,8 +15,10 @@ export class DieAction extends GameAction<{ entityId: EntityId }> {
   protected impl() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
     if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+    const source = this.ctx.entityManager.getEntityById(this.payload.sourceId);
+    if (!source) throw new Error(`Entity not found: ${this.payload.sourceId}`);
 
-    entity.die();
+    entity.die(source);
     this.ctx.entityManager.removeEntity(entity);
 
     if (isGeneral(entity)) {

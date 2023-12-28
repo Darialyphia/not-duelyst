@@ -9,6 +9,7 @@ import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Player } from '../player/player';
 import { NEUTRAL_UNITS } from './neutral.units';
+import { Effect } from '../effect/effect';
 
 export type UnitId = string;
 
@@ -33,6 +34,8 @@ export type UnitBlueprint = {
   speed: number;
 
   skills: Array<Skill>;
+
+  triggers?: (ctx: GameSession, entity: Entity) => Effect[];
 
   onSummoned?: {
     getDescription(unit: UnitBlueprint): string;

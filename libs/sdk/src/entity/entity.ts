@@ -33,7 +33,7 @@ export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 export type EntityEventMap = {
   [ENTITY_EVENTS.MOVE]: Entity;
   [ENTITY_EVENTS.USE_SKILL]: Entity;
-  [ENTITY_EVENTS.DIE]: Entity;
+  [ENTITY_EVENTS.DIE]: { entity: Entity; source: Entity };
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
@@ -295,9 +295,9 @@ export class Entity implements Serializable {
     });
   }
 
-  die() {
+  die(source: Entity) {
     this.hp = 0;
-    this.emitter.emit('die', this);
+    this.emitter.emit('die', { entity: this, source });
   }
 
   startTurn() {

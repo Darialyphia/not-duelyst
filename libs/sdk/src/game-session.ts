@@ -1,6 +1,6 @@
 import mitt from 'mitt';
 import { InputReducer, SerializedInput } from './input/input-reducer';
-import { Entity, SerializedEntity, EntityEvent } from './entity/entity';
+import { Entity, SerializedEntity, EntityEvent, EntityEventMap } from './entity/entity';
 import { EntityManager } from './entity/entity-manager';
 import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
@@ -30,7 +30,11 @@ export type SerializedGameState = {
 
 type EntityLifecycleEvent = 'created' | 'destroyed';
 type GlobalEntityEvents = {
-  [Event in EntityEvent | EntityLifecycleEvent as `entity:${Event}`]: Entity;
+  [Event in
+    | EntityEvent
+    | EntityLifecycleEvent as `entity:${Event}`]: Event extends EntityEvent
+    ? EntityEventMap[Event]
+    : Entity;
 };
 
 type GlobalGameEvents = GlobalEntityEvents & {

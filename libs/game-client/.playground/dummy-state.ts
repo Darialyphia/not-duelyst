@@ -46,7 +46,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
                 'chaos-archer': { cooldown: 0 },
                 'chaos-tank': { cooldown: 0 },
                 'chaos-caster': { cooldown: 0 },
-                'neutral-healer': { cooldown: 0 },
+                'neutral-thief': { cooldown: 0 },
                 'neutral-tank': { cooldown: 0 }
               }
             },
