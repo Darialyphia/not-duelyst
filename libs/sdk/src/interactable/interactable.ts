@@ -35,7 +35,8 @@ export abstract class Interactable implements Serializable {
     this.ctx.actionQueue.push(
       new RemoveInteractableAction(
         {
-          position: this.position.serialize()
+          position: this.position.serialize(),
+          id: this.id
         },
         this.ctx
       )

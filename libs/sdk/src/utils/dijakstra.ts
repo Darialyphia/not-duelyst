@@ -34,9 +34,9 @@ export const dijkstra = <T>(adapter: GraphAdapter<T>, startNode: T, finishNode?:
   });
   prioQueue.queue({ node: startNode, cost: 0 });
   do {
-    let node = prioQueue.dequeue().node;
-    let nodeKey = getKey(node);
-    let cost = costs[nodeKey] || 0;
+    const node = prioQueue.dequeue().node;
+    const nodeKey = getKey(node);
+    const cost = costs[nodeKey] || 0;
 
     explored[nodeKey] = true;
 
@@ -75,7 +75,7 @@ export const findShortestPath = <T>(
 ) => {
   const getKey = (node: T) => getNodeKey(node, adapter);
   const { costs, parents } = dijkstra(adapter, startNode, finishNode);
-  let optimalPath = [finishNode];
+  const optimalPath = [finishNode];
   let parent = parents[getKey(finishNode)];
 
   if (!parent) return null;

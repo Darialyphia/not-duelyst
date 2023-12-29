@@ -1,7 +1,11 @@
+import { InteractableId } from '../interactable/interactable';
 import { Point3D } from '../types';
 import { GameAction } from './action';
 
-export class RemoveInteractableAction extends GameAction<{ position: Point3D }> {
+export class RemoveInteractableAction extends GameAction<{
+  position: Point3D;
+  id: InteractableId;
+}> {
   readonly name = 'REMOVE_INTERACTABLE';
 
   protected fxImpl() {
@@ -10,7 +14,7 @@ export class RemoveInteractableAction extends GameAction<{ position: Point3D }> 
 
   protected impl() {
     this.ctx.map.interactables = this.ctx.map.interactables.filter(
-      int => !int.position.equals(this.payload.position)
+      int => !int.position.equals(this.payload.position) && int.id === this.payload.id
     );
   }
 }
