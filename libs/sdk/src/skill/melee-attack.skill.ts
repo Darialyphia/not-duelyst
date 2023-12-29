@@ -7,7 +7,10 @@ import { Point3D } from '../types';
 import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf } from './skill-utils';
 
-export type MeleeAttackOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
+export type MeleeAttackOptions = PartialBy<
+  SkillOptions,
+  'spriteId' | 'name' | 'shouldExhaustCaster'
+> & {
   power: number;
 };
 
@@ -22,6 +25,7 @@ export class MeleeAttack extends Skill {
       soundFX: 'attack-placeholder',
       spriteId: options.spriteId ?? 'melee_attack',
       name: options.name ?? 'Melee attack',
+      shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
     this.power = options.power;

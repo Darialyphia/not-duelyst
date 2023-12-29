@@ -8,7 +8,7 @@ import { isSelf, isWithinCells } from './skill-utils';
 import { isAlly } from '../entity/entity-utils';
 import { ThornsEffect } from '../effect/thorns.effect';
 
-export type ThornsOptions = PartialBy<SkillOptions, 'spriteId'> &
+export type ThornsOptions = PartialBy<SkillOptions, 'spriteId' | 'shouldExhaustCaster'> &
   ThornsEffect['meta'] & { range: number; targetType: 'self' | 'ally' };
 
 export class Thorns extends Skill {
@@ -23,6 +23,7 @@ export class Thorns extends Skill {
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
       spriteId: options.spriteId ?? 'thorns',
+      shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
     this.range = options.range;
@@ -36,7 +37,7 @@ export class Thorns extends Skill {
 
   getDescription() {
     const duration = isFinite(this.meta.duration) ? `for ${this.meta.duration}` : '';
-    return `Target gets thorns ${this.meta.damage} ${duration}.`;
+    return `Target gets thorns ${this.meta.damage} ${duration} turns.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {

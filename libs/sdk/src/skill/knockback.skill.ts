@@ -8,7 +8,10 @@ import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf, isAxisAligned, isMinCells } from './skill-utils';
 import { DisplaceAction } from '../action/displace.action';
 
-export type KnockbackOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
+export type KnockbackOptions = PartialBy<
+  SkillOptions,
+  'spriteId' | 'name' | 'shouldExhaustCaster'
+> & {
   damage: number;
   isTrueDamage: boolean;
   collisionDamage: number;
@@ -30,6 +33,7 @@ export class Knockback extends Skill {
     super({
       spriteId: options.spriteId ?? 'knockback',
       name: options.name ?? 'Knock back',
+      shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
     this.damage = options.damage;
@@ -45,6 +49,7 @@ export class Knockback extends Skill {
 
     return this.damage + attack;
   }
+
   getDescription(caster: SkillDescriptionContext) {
     const direction = this.distance > 0 ? 'backwards' : 'forwards';
 

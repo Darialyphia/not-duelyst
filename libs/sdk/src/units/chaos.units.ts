@@ -157,7 +157,8 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         range: 0,
         targetType: 'self',
         damage: 1,
-        isTrueDamage: true
+        isTrueDamage: true,
+        shouldExhaustCaster: false
       })
     ]
   },

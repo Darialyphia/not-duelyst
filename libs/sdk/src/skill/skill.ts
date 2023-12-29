@@ -11,6 +11,7 @@ export type SkillOptions = {
   soundFX?: string;
   spriteId: string;
   cooldown: number;
+  shouldExhaustCaster: boolean;
   minTargets?: number;
   maxTargets?: number;
 };
@@ -31,6 +32,7 @@ export abstract class Skill {
   readonly spriteId: string;
   readonly minTargets: number;
   readonly maxTargets: number;
+  readonly shouldExhaustCaster: boolean;
 
   constructor(options: SkillOptions) {
     this.name = options.name;
@@ -41,9 +43,16 @@ export abstract class Skill {
     this.spriteId = options.spriteId;
     this.minTargets = options.minTargets ?? 1;
     this.maxTargets = options.maxTargets ?? 1;
+    this.shouldExhaustCaster = options.shouldExhaustCaster;
   }
 
   abstract getDescription(caster: SkillDescriptionContext): string;
+
+  getText(caster: SkillDescriptionContext) {
+    return `${this.getDescription(caster)}${
+      this.shouldExhaustCaster ? '' : '\nDoes not exhaust.'
+    }`;
+  }
 
   abstract isTargetable(
     ctx: GameSession,

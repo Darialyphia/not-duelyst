@@ -7,7 +7,10 @@ import { Point3D } from '../types';
 import { Skill, SkillOptions } from './skill';
 import { isWithinCells } from './skill-utils';
 
-export type HealOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
+export type HealOptions = PartialBy<
+  SkillOptions,
+  'spriteId' | 'name' | 'shouldExhaustCaster'
+> & {
   power: number;
   range: number;
 };
@@ -21,6 +24,7 @@ export class Heal extends Skill {
   constructor(options: HealOptions) {
     super({
       ...options,
+      shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       spriteId: options.spriteId ?? 'heal',
       name: options.name ?? 'Heal'
     });
@@ -29,7 +33,7 @@ export class Heal extends Skill {
   }
 
   getDescription() {
-    return `Heal ${this.power} damage from a ally unit.`;
+    return `Restore ${this.power} hp to an ally unit.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {

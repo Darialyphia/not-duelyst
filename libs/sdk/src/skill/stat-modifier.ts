@@ -8,7 +8,10 @@ import { AddEffectAction } from '../action/add-effect.action';
 import { isSelf, isWithinCells } from './skill-utils';
 import { isAlly, isEnemy } from '../entity/entity-utils';
 
-export type StatModifierOptions = PartialBy<SkillOptions, 'spriteId'> &
+export type StatModifierOptions = PartialBy<
+  SkillOptions,
+  'spriteId' | 'shouldExhaustCaster'
+> &
   StatModifierEffect['meta'] & { targetType: 'self' | 'ally' | 'enemy'; range: number };
 
 export class StatModifier extends Skill {
@@ -25,6 +28,7 @@ export class StatModifier extends Skill {
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
       spriteId: options.spriteId ?? 'melee_attack',
+      shouldExhaustCaster: options.shouldExhaustCaster ?? true,
       ...options
     });
     this.value = options.value;

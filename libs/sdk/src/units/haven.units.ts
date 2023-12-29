@@ -137,7 +137,8 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         statKey: 'defense',
         range: 0,
         targetType: 'self',
-        value: 1
+        value: 1,
+        shouldExhaustCaster: false
       })
     ]
   },
@@ -164,7 +165,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       }),
       new Fireball({
         cost: 2,
-        cooldown: 2,
+        cooldown: 3,
         power: 3,
         range: 3,
         dotPower: 1,

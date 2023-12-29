@@ -85,7 +85,7 @@ const border = computed(() => {
       On summoned: {{ entity.unit.onSummoned.getDescription(entity.unit) }}
     </p>
 
-    <p v-for="(trigger, index) in entity.unit.triggers" :key="index">
+    <p v-for="(trigger, index) in entity.unit.effects" :key="index">
       {{ trigger.description }}
     </p>
 
@@ -106,7 +106,7 @@ const border = computed(() => {
 
       <div class="grid gap-1">
         {{ skill.id }}
-        <p>{{ skill.getDescription(entity) }}</p>
+        <p>{{ skill.getText(entity) }}</p>
       </div>
     </ul>
 

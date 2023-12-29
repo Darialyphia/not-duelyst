@@ -144,8 +144,12 @@ const onValidateTargets = () => {
       </template>
 
       <div class="fancy-surface skill-tooltip">
+        <div class="flex justify-between">
+          <span>cost: {{ skill.cost }}</span>
+          <span>cooldown: {{ skill.cooldown }}</span>
+        </div>
         <h4>{{ skill.name }}</h4>
-        <p>{{ skill.getDescription(selectedEntity) }}</p>
+        <p>{{ skill.getText(selectedEntity) }}</p>
       </div>
     </UiTooltip>
   </div>
@@ -307,6 +311,7 @@ const onValidateTargets = () => {
 
 .skill-tooltip {
   max-width: var(--size-14);
+  padding-top: var(--size-2);
   > h4 {
     font-size: var(--font-size-2);
   }

@@ -8,7 +8,10 @@ import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isSelf, isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
 
-export type RangedAttackOptions = PartialBy<SkillOptions, 'spriteId' | 'name'> & {
+export type RangedAttackOptions = PartialBy<
+  SkillOptions,
+  'spriteId' | 'name' | 'shouldExhaustCaster'
+> & {
   power: number;
   minRange: number | Point3D;
   maxRange: number | Point3D;
@@ -27,6 +30,7 @@ export class RangedAttack extends Skill {
       soundFX: 'attack-placeholder',
       spriteId: options.spriteId ?? 'ranged_attack',
       name: options.name ?? 'Ranged attack',
+      shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
     this.power = options.power;
