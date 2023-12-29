@@ -7,6 +7,7 @@ import { HealAction } from '../action/heal.action';
 import { AddEffectAction } from '../action/add-effect.action';
 import { PlunderOnKillEffect } from '../effect/plunder-on-kill.effect';
 import { RushEffect } from '../effect/rush.effect';
+import { AoeOnDeathEffect } from '../effect/aoe-on-death.effect';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -125,6 +126,38 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
           return new PlunderOnKillEffect(ctx, entity, {
             duration: Infinity,
             amount: 1
+          });
+        }
+      }
+    ]
+  },
+
+  {
+    id: 'neutral-willowisp',
+    spriteId: 'neutral-willowisp',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 1,
+    summonCooldown: 3,
+    maxHp: 2,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 1,
+    defense: 0,
+    speed: 4,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    effects: [
+      {
+        description: `Rush`,
+        getEffect: (ctx, entity) => {
+          return new RushEffect(ctx, entity, {});
+        }
+      },
+      {
+        description: `When this unit dies, deal 2 damage to nearby enemies.`,
+        getEffect: (ctx, entity) => {
+          return new AoeOnDeathEffect(ctx, entity, {
+            power: 2
           });
         }
       }
