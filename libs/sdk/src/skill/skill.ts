@@ -12,6 +12,7 @@ export type SkillOptions = {
   spriteId: string;
   cooldown: number;
   shouldExhaustCaster: boolean;
+  shouldPreventMovement?: boolean;
   minTargets?: number;
   maxTargets?: number;
 };
@@ -33,6 +34,7 @@ export abstract class Skill {
   readonly minTargets: number;
   readonly maxTargets: number;
   readonly shouldExhaustCaster: boolean;
+  readonly shouldPreventMovement: boolean;
 
   constructor(options: SkillOptions) {
     this.name = options.name;
@@ -44,6 +46,7 @@ export abstract class Skill {
     this.minTargets = options.minTargets ?? 1;
     this.maxTargets = options.maxTargets ?? 1;
     this.shouldExhaustCaster = options.shouldExhaustCaster;
+    this.shouldPreventMovement = options.shouldPreventMovement ?? true;
   }
 
   abstract getDescription(caster: SkillDescriptionContext): string;

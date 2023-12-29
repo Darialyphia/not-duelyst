@@ -14,6 +14,9 @@ import { ModifyGoldAction } from './modify-gold.action';
 import { RemoveInteractableAction } from './removeInteractable.action';
 import { ModifyApAction } from './modify-ap.action';
 import { DisplaceAction } from './displace.action';
+import { SummonInteractable } from '../skill/summon-interactable.skill';
+import { SummonInteractableAction } from './summon-interactable.action';
+import { TeleportAction } from './teleport.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<JSONObject>>>;
 
@@ -41,7 +44,9 @@ export const actionMap = validateActionMap({
   MODIFY_GOLD: ModifyGoldAction,
   REMOVE_INTERACTABLE: RemoveInteractableAction,
   MODIFY_AP: ModifyApAction,
-  DISPLACE: DisplaceAction
+  DISPLACE: DisplaceAction,
+  SUMMON_INTERACTABLE: SummonInteractableAction,
+  TELEPORT: TeleportAction
 });
 
 export type ActionName = keyof typeof actionMap;

@@ -137,10 +137,11 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
 
 <template>
   <IsoPositioner
+    :animated="fx.isMoving.value"
     :x="entity.position.x"
     :y="entity.position.y"
     :z="entity.position.z"
-    :z-index-offset="1"
+    :z-index-offset="SPRITE_OFFSETS.ENTITY"
     :offset="offset"
     :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >
@@ -172,10 +173,10 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
         @pointerdown="
           (e: FederatedMouseEvent) => {
             if (e.button !== 0) return;
-            if (targetMode === null) {
-              selectedEntity = entity;
-              if (entity.player.equals(state.activePlayer)) targetMode = 'move';
-            }
+            if (targetMode) return;
+
+            selectedEntity = entity;
+            if (entity.player.equals(state.activePlayer)) targetMode = 'move';
           }
         "
         @pointerup="

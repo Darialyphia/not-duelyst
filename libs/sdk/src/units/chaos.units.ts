@@ -14,6 +14,8 @@ import { Thorns } from '../skill/thorns.skill';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
+import { SummonInteractable } from '../skill/summon-interactable.skill';
+import { ImmolateEffect } from '../effect/immolate.effect';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -123,7 +125,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         maxRange: 3
       }),
       new Knockback({
-        collisionDamage: 2,
+        collisionDamage: 1,
         cooldown: 4,
         cost: 2,
         damage: 1,
@@ -147,12 +149,23 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 1,
     speed: 2,
+    effects: [
+      {
+        getEffect: (ctx, entity) =>
+          new ImmolateEffect(ctx, entity, {
+            duration: Infinity,
+            isTrueDamage: true,
+            power: 1
+          }),
+        description: 'Burn nearby enemies at the end of your turn.'
+      }
+    ],
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Thorns({
         cost: 2,
         cooldown: 5,
-        name: 'Blood lust',
+        name: 'Thorns',
         duration: 3,
         range: 0,
         targetType: 'self',
@@ -166,9 +179,9 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     id: 'chaos-caster',
     spriteId: 'chaos-caster',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.chaos,
-    summonCost: 3,
-    summonCooldown: 2,
+    faction: FACTIONS.haven,
+    summonCost: 4,
+    summonCooldown: 3,
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
@@ -191,6 +204,17 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         dotPower: 1,
         dotDuration: 2,
         spriteId: 'fireball'
+      }),
+      new SummonInteractable({
+        cooldown: 4,
+        cost: 3,
+        interactableId: 'FIREWALL',
+        spriteId: 'firewall',
+        minTargets: 1,
+        maxTargets: 3,
+        name: 'Firewall',
+        allowSeparatedTargets: false,
+        allowNonempty: true
       })
     ]
   }

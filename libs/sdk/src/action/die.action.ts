@@ -1,9 +1,13 @@
-import { EntityId } from '../entity/entity';
+import { EntityId, isEntityId } from '../entity/entity';
 import { isGeneral } from '../entity/entity-utils';
+import { InteractableId } from '../interactable/interactable';
 import { GameAction } from './action';
 import { EndGamection } from './end-game.action';
 
-export class DieAction extends GameAction<{ entityId: EntityId; sourceId: EntityId }> {
+export class DieAction extends GameAction<{
+  entityId: EntityId;
+  sourceId: EntityId | InteractableId;
+}> {
   readonly name = 'DIE';
 
   protected async fxImpl() {
@@ -12,13 +16,20 @@ export class DieAction extends GameAction<{ entityId: EntityId; sourceId: Entity
     await this.ctx.fxContext.fadeOutEntity(this.payload.entityId, 0.8);
   }
 
-  protected impl() {
-    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+  get source() {
+    if (!isEntityId(this.payload.sourceId, this.ctx)) return null;
+
     const source = this.ctx.entityManager.getEntityById(this.payload.sourceId);
     if (!source) throw new Error(`Entity not found: ${this.payload.sourceId}`);
 
-    entity.die(source);
+    return source;
+  }
+
+  protected impl() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+
+    entity.die(this.source);
     this.ctx.entityManager.removeEntity(entity);
 
     if (isGeneral(entity)) {

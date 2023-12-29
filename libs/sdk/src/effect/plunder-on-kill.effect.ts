@@ -1,3 +1,4 @@
+import { Nullable } from '@hc/shared';
 import { ModifyGoldAction } from '../action/modify-gold.action';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
@@ -25,7 +26,8 @@ export class PlunderOnKillEffect extends Effect {
     return `When this unit takes down an enemy, gain ${this.meta.amount} gold.`;
   }
 
-  listener({ source }: { entity: Entity; source: Entity }) {
+  listener({ source }: { entity: Entity; source: Nullable<Entity> }) {
+    if (!source) return;
     if (!this.attachedTo) return;
     if (!source.equals(this.attachedTo)) return;
 

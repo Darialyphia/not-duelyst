@@ -1,3 +1,4 @@
+import { Nullable } from '@hc/shared';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
@@ -29,7 +30,8 @@ export class ThornsEffect extends Effect {
     return `When this unit receives damage, it deals ${damage} back.`;
   }
 
-  private applyThorns({ source }: { source: Entity }) {
+  private applyThorns({ source }: { source: Nullable<Entity> }) {
+    if (!source) return;
     this.ctx.actionQueue.push(
       new DealDamageAction(
         {

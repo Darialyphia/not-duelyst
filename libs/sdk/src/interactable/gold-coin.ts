@@ -22,7 +22,7 @@ export class GoldCoin extends Interactable {
       this.ctx.emitter.off('entity:move', this.pickup);
       this.ctx.emitter.off('entity:use-skill', this.pickup);
       this.ctx.emitter.off('entity:created', this.pickup);
-      console.log('pickup gold', this.ctx.isAuthoritative, this.position);
+
       this.ctx.actionQueue.push(
         new ModifyGoldAction({ playerId: entity.playerId, amount: 1 }, this.ctx)
       );

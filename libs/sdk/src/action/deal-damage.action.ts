@@ -1,19 +1,33 @@
-import { EntityId } from '../entity/entity';
+import { Entity, EntityId, isEntityId } from '../entity/entity';
+import { InteractableId } from '../interactable/interactable';
 import { GameAction } from './action';
 import { DieAction } from './die.action';
 
 export class DealDamageAction extends GameAction<{
   amount: number;
-  sourceId: EntityId;
+  sourceId: EntityId | InteractableId;
   targets: EntityId[];
   isTrueDamage?: boolean;
 }> {
   readonly name = 'DEAL_DAMAGE';
 
   get attacker() {
+    if (!isEntityId(this.payload.sourceId, this.ctx)) return null;
+
     const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId);
     if (!attacker) throw new Error(`Entity not found: ${this.payload.sourceId}`);
     return attacker;
+  }
+
+  getDamage(target: Entity) {
+    if (!this.attacker) return this.payload.amount;
+
+    return target.calculateDamage(
+      this.payload.amount,
+      this.attacker,
+      target,
+      this.payload.isTrueDamage
+    );
   }
 
   protected async fxImpl() {
@@ -25,12 +39,8 @@ export class DealDamageAction extends GameAction<{
     await Promise.all(
       this.payload.targets.map(targetId => {
         const target = this.ctx.entityManager.getEntityById(targetId)!;
-        const amount = target.calculateDamage(
-          this.payload.amount,
-          this.attacker,
-          target,
-          this.payload.isTrueDamage
-        );
+        const amount = this.getDamage(target);
+
         this.ctx.fxContext?.displayText(String(amount), targetId, {
           color: 0xff0000,
           duration: 1,
@@ -56,12 +66,15 @@ export class DealDamageAction extends GameAction<{
   }
 
   protected impl() {
-    const attacker = this.ctx.entityManager.getEntityById(this.payload.sourceId);
-    if (!attacker) throw new Error(`Entity not found: ${this.payload.sourceId}`);
-
     this.payload.targets.forEach(targetId => {
       const target = this.ctx.entityManager.getEntityById(targetId)!;
-      attacker.dealDamage(this.payload.amount, target, this.payload.isTrueDamage);
+
+      if (this.attacker) {
+        this.attacker.dealDamage(this.payload.amount, target, this.payload.isTrueDamage);
+      } else {
+        target.takeDamage(this.payload.amount, null, this.payload.isTrueDamage);
+      }
+
       if (target.hp <= 0) {
         this.ctx.actionQueue.push(
           new DieAction({ entityId: targetId, sourceId: this.payload.sourceId }, this.ctx)

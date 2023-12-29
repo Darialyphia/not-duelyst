@@ -54,7 +54,7 @@ export class Knockback extends Skill {
     const direction = this.distance > 0 ? 'backwards' : 'forwards';
 
     const collisionDamageMessage = this.collisionDamage
-      ? `If it collides with a unit, it also takes ${this.collisionDamage} damage.`
+      ? `If it collides with a unit, they both take ${this.collisionDamage} damage.`
       : '';
 
     const damage = this.getDealtDamage(caster.attack);
@@ -142,7 +142,7 @@ export class Knockback extends Skill {
             {
               amount: this.collisionDamage,
               sourceId: caster.id,
-              targets: [entity.id],
+              targets: [entity.id, obstacle.id],
               isTrueDamage: true
             },
             ctx

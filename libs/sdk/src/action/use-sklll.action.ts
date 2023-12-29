@@ -58,6 +58,8 @@ export class UseSkillAction extends GameAction<{
 
     this.skill.execute(this.ctx, this.caster, this.payload.targets, this.affectedCells);
 
-    new EFFECTS.exhausted(this.ctx, entity, {}).attach(entity);
+    if (this.skill.shouldExhaustCaster) {
+      new EFFECTS.exhausted(this.ctx, entity, {}).attach(entity);
+    }
   }
 }

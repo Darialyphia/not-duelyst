@@ -3,7 +3,7 @@ import { PlayerId } from '../player/player';
 import { Point3D } from '../types';
 import { UnitId, UNITS } from '../units/unit-lookup';
 import { Vec3 } from '../utils/vector';
-import { clamp, Values } from '@hc/shared';
+import { clamp, isNumber, Nullable, Values } from '@hc/shared';
 import { Skill, SkillId } from '../skill/skill';
 import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
@@ -11,6 +11,8 @@ import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
 
 export type EntityId = number;
+export const isEntityId = (x: unknown, ctx: GameSession): x is EntityId =>
+  isNumber(x) && !!ctx.entityManager.getEntityById(x);
 
 export type SerializedEntity = {
   id: EntityId;
@@ -33,7 +35,7 @@ export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 export type EntityEventMap = {
   [ENTITY_EVENTS.MOVE]: Entity;
   [ENTITY_EVENTS.USE_SKILL]: Entity;
-  [ENTITY_EVENTS.DIE]: { entity: Entity; source: Entity };
+  [ENTITY_EVENTS.DIE]: { entity: Entity; source: Nullable<Entity> };
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
     baseAmount: number;
@@ -44,13 +46,7 @@ export type EntityEventMap = {
     entity: Entity;
     baseAmount: number;
     amount: number;
-    source: Entity;
-  };
-  [ENTITY_EVENTS.RECEIVE_DAMAGE]: {
-    entity: Entity;
-    baseAmount: number;
-    amount: number;
-    source: Entity;
+    source: Nullable<Entity>;
   };
   [ENTITY_EVENTS.HEAL]: {
     entity: Entity;
@@ -248,18 +244,21 @@ export class Entity implements Serializable {
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
     this.ap = clamp(this.ap - skill.cost, 0, Infinity);
-    this.movementSpent = this.speed;
+    if (skill.shouldPreventMovement) {
+      this.movementSpent = this.speed;
+    }
     this.skillCooldowns[skillId] = skill.cooldown;
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
   calculateDamage(
     baseAmount: number,
-    attacker: Entity,
+    attacker: Nullable<Entity>,
     defender: Entity,
     isTrueDamage?: boolean
   ) {
     if (isTrueDamage) return baseAmount;
+    if (!attacker) return Math.max(1, baseAmount - defender.defense);
 
     return Math.max(1, baseAmount + (attacker.attack - defender.defense));
   }
@@ -275,7 +274,7 @@ export class Entity implements Serializable {
     });
   }
 
-  takeDamage(baseAmount: number, source: Entity, isTrueDamage?: boolean) {
+  takeDamage(baseAmount: number, source: Nullable<Entity>, isTrueDamage?: boolean) {
     const amount = this.calculateDamage(baseAmount, source, this, isTrueDamage);
     this.hp = Math.max(0, this.hp - amount);
     this.emitter.emit(ENTITY_EVENTS.RECEIVE_DAMAGE, {
@@ -295,7 +294,7 @@ export class Entity implements Serializable {
     });
   }
 
-  die(source: Entity) {
+  die(source: Nullable<Entity>) {
     this.hp = 0;
     this.emitter.emit('die', { entity: this, source });
   }

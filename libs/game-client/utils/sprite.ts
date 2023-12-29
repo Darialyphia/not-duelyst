@@ -18,3 +18,8 @@ export const createSpritesheetFrameObject = (
     };
   });
 };
+
+export const SPRITE_OFFSETS = {
+  INTERACTABLE: 1,
+  ENTITY: 1.1
+} as const;

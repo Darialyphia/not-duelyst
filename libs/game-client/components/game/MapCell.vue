@@ -8,7 +8,7 @@ import { CELL_SIZE } from '../../utils/constants';
 const { cell } = defineProps<{ cell: Cell }>();
 
 const app = useApplication();
-const { assets, state, sendInput, gameSession, mapRotation, utils } = useGame();
+const { assets, state, sendInput, gameSession, mapRotation, utils, fx } = useGame();
 const {
   hoveredCell,
   targetMode,
@@ -117,6 +117,7 @@ const filters = computed(() => {
 
 <template>
   <IsoPositioner
+    :animated="fx.isMoving.value"
     :x="cell.position.x"
     :y="cell.position.y"
     :z="cell.position.z"
@@ -146,6 +147,7 @@ const filters = computed(() => {
     <HoveredCell :cell="cell" :cursor="cursor" />
   </IsoPositioner>
   <IsoPositioner
+    :animated="false"
     :x="cell.position.x"
     :y="cell.position.y"
     :z="cell.position.z + 0.1"

@@ -85,7 +85,7 @@ const border = computed(() => {
       />
 
       <div class="grid gap-1">
-        {{ skill.id }}
+        {{ skill.name }}
         <p>{{ skill.getText(unit) }}</p>
       </div>
     </div>

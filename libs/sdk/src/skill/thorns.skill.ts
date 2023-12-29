@@ -12,7 +12,7 @@ export type ThornsOptions = PartialBy<SkillOptions, 'spriteId' | 'shouldExhaustC
   ThornsEffect['meta'] & { range: number; targetType: 'self' | 'ally' };
 
 export class Thorns extends Skill {
-  id = 'stat_modifier';
+  id = 'thorns';
 
   public readonly meta: ThornsEffect['meta'];
   public readonly range: number;

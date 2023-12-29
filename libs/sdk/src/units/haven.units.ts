@@ -11,6 +11,9 @@ import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { Knockback } from '../skill/knockback.skill';
+import { SummonInteractable } from '../skill/summon-interactable.skill';
+import { Taunt } from '../skill/taunt.skill';
+import { Teleport } from '../skill/teleport.skill';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
@@ -44,7 +47,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 0,
     speed: 3,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
       getDescription() {
         return 'Deal 1 damage to a nearby unit.';
@@ -76,7 +78,16 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
           )
         );
       }
-    }
+    },
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new Teleport({
+        cooldown: 3,
+        cost: 2,
+        maxRange: 2,
+        minRange: 0
+      })
+    ]
   },
   {
     id: 'haven-archer',
@@ -100,7 +111,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         maxRange: 3
       }),
       new Knockback({
-        collisionDamage: 2,
+        collisionDamage: 1,
         cooldown: 4,
         cost: 2,
         damage: 1,
@@ -127,7 +138,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new StatModifier({
-        name: 'Bulwatk',
+        name: 'Bulwark',
         spriteId: 'bulwark',
         animationFX: 'cast',
         soundFX: 'cast-placeholder',
@@ -139,6 +150,13 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         targetType: 'self',
         value: 1,
         shouldExhaustCaster: false
+      }),
+      new Taunt({
+        name: 'Taunt',
+        cooldown: 3,
+        cost: 2,
+        duration: 1,
+        radius: 1
       })
     ]
   },
@@ -147,7 +165,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     spriteId: 'haven-caster',
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
-    summonCost: 3,
+    summonCost: 4,
     summonCooldown: 3,
     maxHp: 6,
     maxAp: 3,
@@ -171,6 +189,17 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         dotPower: 1,
         dotDuration: 2,
         spriteId: 'fireball'
+      }),
+      new SummonInteractable({
+        cooldown: 4,
+        cost: 3,
+        interactableId: 'FIREWALL',
+        spriteId: 'firewall',
+        minTargets: 1,
+        maxTargets: 3,
+        name: 'Firewall',
+        allowSeparatedTargets: false,
+        allowNonempty: true
       })
     ]
   }

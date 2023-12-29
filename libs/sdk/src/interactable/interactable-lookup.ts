@@ -1,9 +1,10 @@
 import { Constructor } from '@hc/shared';
-import { Interactable } from './interactable';
+import { Interactable, InteractableId } from './interactable';
 import { GoldCoin } from './gold-coin';
 import { ManaSpring } from './mana-spring';
+import { Firewall } from './firewall';
 
-type GenericInteractableMap = Record<string, Constructor<Interactable>>;
+type GenericInteractableMap = Record<InteractableId, Constructor<Interactable>>;
 
 type ValidatedInteractableMap<T extends GenericInteractableMap> = {
   [Name in keyof T]: T[Name] extends Constructor<Interactable>
@@ -19,5 +20,6 @@ const validateInteractableMap = <T extends GenericInteractableMap>(
 
 export const INTERACTABLES = validateInteractableMap({
   GOLD_COIN: GoldCoin,
-  MANA_SPRING: ManaSpring
+  MANA_SPRING: ManaSpring,
+  FIREWALL: Firewall
 });

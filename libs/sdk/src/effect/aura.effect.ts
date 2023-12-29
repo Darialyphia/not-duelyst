@@ -3,6 +3,7 @@ import { GameSession } from '../game-session';
 import { isWithinCells } from '../skill/skill-utils';
 import { Effect } from './effect';
 
+export type AuraMeta = { duration: number; range: number };
 export abstract class AuraEffect extends Effect {
   abstract readonly id: string;
   duration: number;
@@ -10,7 +11,7 @@ export abstract class AuraEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { duration: number; range: number }
+    readonly meta: AuraMeta
   ) {
     super(ctx, source, meta);
     this.duration = this.meta.duration;

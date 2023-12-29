@@ -1,4 +1,4 @@
-import { isString } from '@hc/shared';
+import { isDefined, isString } from '@hc/shared';
 import { Point3D } from '../types';
 import { Cell, CellId } from './cell';
 import { DIRECTIONS_TO_DIFF, Direction, Tile } from './tile';
@@ -160,6 +160,47 @@ export class GameMap implements Serializable {
         ] as [Vec3, Vec3])
       : undefined;
     return new Pathfinder(this.ctx, boundaries).getDistanceMap(point);
+  }
+
+  getInteractableAt(point: Point3D) {
+    return this.interactables.find(int => int.position.equals(point));
+  }
+
+  getNearbyInteractables({ x, y, z }: Point3D) {
+    // prettier-ignore
+    return [
+      // Same level
+      this.getInteractableAt({ x: x - 1, y: y - 1, z }), // top left
+      this.getInteractableAt({ x: x    , y: y - 1, z }), // top
+      this.getInteractableAt({ x: x + 1, y: y - 1, z }), // top right
+      this.getInteractableAt({ x: x - 1, y: y    , z}),  // left
+      this.getInteractableAt({ x: x + 1, y: y    , z}),  // right
+      this.getInteractableAt({ x: x - 1, y: y + 1, z }), // bottom left
+      this.getInteractableAt({ x: x    , y: y + 1, z }), // bottom
+      this.getInteractableAt({ x: x + 1, y: y + 1, z }), // bottom right,
+
+      // below
+      this.getInteractableAt({ x: x - 1, y: y - 1, z: z - 1 }), // top left
+      this.getInteractableAt({ x: x    , y: y - 1, z: z - 1 }), // top
+      this.getInteractableAt({ x: x + 1, y: y - 1, z: z - 1 }), // top right
+      this.getInteractableAt({ x: x - 1, y: y    , z: z - 1 }), // left
+      this.getInteractableAt({ x: x    , y: y    , z: z - 1 }), // center
+      this.getInteractableAt({ x: x + 1, y: y    , z: z - 1 }), // right
+      this.getInteractableAt({ x: x - 1, y: y + 1, z: z - 1 }), // bottom left
+      this.getInteractableAt({ x: x    , y: y + 1, z: z - 1 }), // bottom
+      this.getInteractableAt({ x: x + 1, y: y + 1, z: z - 1 }), // bottom right,
+
+      // Above
+      this.getInteractableAt({ x: x - 1, y: y - 1, z: z + 1 }), // top left
+      this.getInteractableAt({ x: x    , y: y - 1, z: z + 1 }), // top
+      this.getInteractableAt({ x: x + 1, y: y - 1, z: z + 1 }), // top right
+      this.getInteractableAt({ x: x - 1, y: y    , z: z + 1 }), // left
+      this.getInteractableAt({ x: x    , y: y    , z: z + 1 }), // center
+      this.getInteractableAt({ x: x + 1, y: y    , z: z + 1 }), // right
+      this.getInteractableAt({ x: x - 1, y: y + 1, z: z + 1 }), // bottom left
+      this.getInteractableAt({ x: x    , y: y + 1, z: z + 1 }), // bottom
+      this.getInteractableAt({ x: x + 1, y: y + 1, z: z + 1 }), // bottom right,
+    ].filter(isDefined);
   }
 
   getPathTo(entity: Entity, point: Point3D, maxDistance?: number) {

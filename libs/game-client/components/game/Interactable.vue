@@ -6,7 +6,7 @@ const { interactable } = defineProps<{
   interactable: Interactable;
 }>();
 
-const { mapRotation, state, gameSession, assets } = useGame();
+const { mapRotation, state, gameSession, assets, fx } = useGame();
 const { targetMode } = useGameUi();
 
 const sheet = assets.getSprite(interactable.spriteId);
@@ -62,7 +62,8 @@ const hitArea = computed(() => {
     :x="interactable.position.x"
     :y="interactable.position.y"
     :z="interactable.position.z"
-    :z-index-offset="1"
+    :animated="fx.isMoving.value"
+    :z-index-offset="SPRITE_OFFSETS.INTERACTABLE"
     :offset="offset"
     :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >
