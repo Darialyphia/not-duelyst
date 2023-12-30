@@ -1,8 +1,8 @@
-import { api, internal } from './_generated/api';
+import { api } from './_generated/api';
 import { internalAction, internalMutation, mutation, query } from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
-import { ensureUserExists, findMe } from './users/user.utils';
+import { ensureUserExists } from './users/user.utils';
 import { ensureAuthenticated } from './utils/auth';
 import {
   createGameFromMatchmadePair,
@@ -99,12 +99,11 @@ export const setupNextInvocation = internalMutation({
 });
 
 export const matchPlayers = internalAction(async ctx => {
-  console.log('matching players');
   const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
 
   const strategy = new MatchmakingTestStrategy();
   const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
-  console.log(pairs);
+
   await Promise.allSettled(
     pairs.map(pair =>
       createGameFromMatchmadePair(

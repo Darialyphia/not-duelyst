@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useApplication } from 'vue3-pixi';
 import { type Viewport } from 'pixi-viewport';
-import type { Container } from 'pixi.js';
+import { CELL_SIZE } from '../../utils/constants';
 
 const { state, gameSession, mapRotation, ui, sendInput, fx, isActivePlayer } = useGame();
 const { ui: uiLayer, gameObjects: gameObjectsLayer } = ui.layers;
@@ -101,21 +101,40 @@ onMounted(() => {
   });
 });
 
-const worldContainer = ref<Container>();
-
 watchEffect(() => {
   if (!screenViewport.value) return;
   screenViewport.value.pause = ui.targetMode.value === 'move';
 });
 
+const { width, height, cells } = state.value.map;
+
+const side = width + height;
+
+const corners = [
+  { x: 0, y: 0 },
+  { x: 0, y: height - 1 },
+  { x: width - 1, y: 0 },
+  { x: width - 1, y: height - 1 }
+];
+const highestZ = Math.max(
+  ...corners.map(corner =>
+    Math.max(
+      ...cells
+        .filter(cell => cell.x === corner.x && cell.y === corner.y)
+        .map(cell => cell.z)
+    )
+  )
+);
+const PADDING = CELL_SIZE;
+const TOP_PADDING = (CELL_SIZE * highestZ) / 2;
+const worldSize = {
+  width: side * (CELL_SIZE / 2) + PADDING,
+  height: side * (CELL_SIZE / 4) + TOP_PADDING + PADDING
+};
+
 until(screenViewport)
   .not.toBe(undefined)
   .then(() => {
-    const center = toIso({ x: 0, y: 0, z: 0 }, mapRotation.value, {
-      width: 0,
-      height: 0
-    });
-
     fx.viewport = screenViewport.value;
     screenViewport.value
       ?.drag({
@@ -130,14 +149,11 @@ until(screenViewport)
       //   allowButtons: true
       // })
       .clamp({
-        top: -screenViewport.value.worldWidth,
-        bottom: screenViewport.value.worldWidth,
-        left: -screenViewport.value.worldWidth * 1.75,
-        right: screenViewport.value.worldWidth * 1.75
+        direction: 'all'
       })
-      .clampZoom({ minScale: 1, maxScale: 4 })
-      .zoomPercent(1, false)
-      .moveCenter(center.isoX, center.isoY);
+      .clampZoom({ minScale: 1, maxScale: 3 })
+      .zoomPercent(1, false);
+    // .moveCenter(center.isoX, cente r.isoY);
   });
 
 watchEffect(() => {
@@ -153,13 +169,17 @@ watchEffect(() => {
     ref="screenViewport"
     :screen-width="app.view.width"
     :screen-height="app.view.height"
-    :world-width="app.view.width"
-    :world-height="app.view.height"
+    :world-width="worldSize.width"
+    :world-height="worldSize.height"
     :events="app.renderer.events"
     :disable-on-context-menu="true"
     :sortable-children="true"
   >
-    <container ref="worldContainer">
+    <container
+      :x="worldSize.width / 2"
+      :y="worldSize.height / 2 + TOP_PADDING / 2 - PADDING / 2"
+      :sortable-children="true"
+    >
       <Layer ref="gameObjectsLayer">
         <MapCell v-for="cell in state.map.cells" :key="cell.id" :cell="cell" />
 
@@ -170,8 +190,8 @@ watchEffect(() => {
         />
         <Unit v-for="entity in state.entities" :key="entity.id" :entity="entity" />
       </Layer>
-
-      <Layer ref="uiLayer" />
     </container>
+
+    <Layer ref="uiLayer" />
   </viewport>
 </template>

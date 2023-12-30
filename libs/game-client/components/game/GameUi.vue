@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { playerId } = defineProps<{ playerId: string | null }>();
-const { gameSession, state } = useGame();
+const { gameSession, state, mapRotation } = useGame();
 const { selectedEntity, hoveredCell, targetMode } = useGameUi();
 </script>
 
@@ -28,7 +28,7 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
         hoveredCell?.position.y
       }}, z: {{ hoveredCell?.position.z }}</pre
     >
-    <pre>playerId: {{ playerId }}</pre>
+    <pre>rotation: {{ mapRotation }}</pre>
     <pre>Target mode: {{ targetMode }}</pre>
     <button
       @click="

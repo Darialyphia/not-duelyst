@@ -18,6 +18,7 @@ import type * as game_utils from "../game/utils.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
+import type * as loadout from "../loadout.js";
 import type * as matchmaking_matchmaking from "../matchmaking/matchmaking.js";
 import type * as matchmaking from "../matchmaking.js";
 import type * as users from "../users.js";
@@ -37,6 +38,7 @@ declare const fullApi: ApiFromModules<{
   gameMaps: typeof gameMaps;
   games: typeof games;
   hathora: typeof hathora;
+  loadout: typeof loadout;
   "matchmaking/matchmaking": typeof matchmaking_matchmaking;
   matchmaking: typeof matchmaking;
   users: typeof users;

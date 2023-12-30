@@ -23,7 +23,9 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           sprite.parent.parent.position.x,
           sprite.parent.parent.position.y + 16
         );
-        container.zIndex = sprite.parent.parent.zIndex;
+        container.zIndex = sprite.parent.parent.zIndex + 1;
+        container.zOrder = sprite.parent.parent.zIndex + 1;
+
         const textSprite = new Text(text, {
           fontSize: 30,
           fontWeight: '700',
@@ -43,7 +45,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         };
         onUpdate(); // set starting values on sprite
 
-        fx.viewport?.addChild(container);
+        (fx.viewport?.children[0] as Container).addChild(container);
         gsap.to(sentinel, {
           motionPath: {
             path

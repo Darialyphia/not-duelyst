@@ -35,14 +35,15 @@ const containerY = computed(() => position.value.isoY - position.value.isoZ + of
 const rotatedCartesian = computed(() => {
   const track = { x, y, z };
 
-  const hack = map.rotation === 90 || map.rotation === 180 ? Math.floor : Math.ceil;
+  const hackX = map.rotation === 270 || map.rotation === 180 ? Math.floor : Math.ceil;
+  const hackY = map.rotation === 90 || map.rotation === 180 ? Math.floor : Math.ceil;
 
   const floor: any[][] = [];
   for (let floorY = 0; floorY <= map.height; floorY++) {
     const row: any[] = [];
     floor.push(row);
     for (let floorX = 0; floorX <= map.width; floorX++) {
-      row.push(hack(track.x) === floorX && hack(track.y) === floorY ? track : null);
+      row.push(hackX(track.x) === floorX && hackY(track.y) === floorY ? track : null);
     }
   }
 

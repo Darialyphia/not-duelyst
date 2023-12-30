@@ -59,7 +59,7 @@ export const destroy = internalMutation({
   },
   async handler(ctx, args) {
     const game = await ctx.db.get(args.gameId);
-    if (!game) throw new Error('Not Found');
+    if (!game) throw new Error('Game Not Found');
     if (game?.status !== 'ONGOING') {
       throw new Error('Game is not ongoing');
     }

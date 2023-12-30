@@ -47,10 +47,10 @@ export class ImmolateEffect extends Effect {
   }
 
   onApplied() {
-    this.ctx.emitter.on('game:turn-end', this.applyDamage);
+    this.ctx.emitter.on('game:turn-start', this.applyDamage);
   }
 
   onExpired() {
-    this.ctx.emitter.off('game:turn-end', this.applyDamage);
+    this.ctx.emitter.off('game:turn-start', this.applyDamage);
   }
 }

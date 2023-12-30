@@ -58,5 +58,19 @@ export default defineSchema({
         id: v.string()
       })
     )
-  }).index('by_name', ['name'])
+  }).index('by_name', ['name']),
+
+  loadouts: defineTable({
+    name: v.string(),
+    ownerId: v.id('users'),
+    generalId: v.string(),
+    units: v.array(v.string())
+  }).index('by_owner_id', ['ownerId']),
+
+  collectionItems: defineTable({
+    itemId: v.string(),
+    ownerId: v.id('users')
+  })
+    .index('by_owner_id', ['ownerId'])
+    .index('by_item_id', ['itemId'])
 });
