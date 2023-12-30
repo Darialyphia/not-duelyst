@@ -54,7 +54,7 @@ export abstract class Skill {
   getText(caster: SkillDescriptionContext) {
     return `${this.getDescription(caster)}${
       this.shouldExhaustCaster ? '' : '\nDoes not exhaust.'
-    }`;
+    }${this.shouldPreventMovement ? '' : '\nDoes not prevent movement.'}`;
   }
 
   abstract isTargetable(

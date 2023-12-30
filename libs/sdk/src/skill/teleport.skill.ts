@@ -48,7 +48,7 @@ export class Teleport extends Skill {
       return `Move this unit up to ${this.maxRange} tiles.`;
     }
 
-    return `Move this unit up betwen ${this.minRange} ans ${this.maxRange} tiles.`;
+    return `Move this unit up between ${this.minRange} and ${this.maxRange} tiles.`;
   }
 
   isMinRange(ctx: GameSession, point: Point3D, caster: Entity) {

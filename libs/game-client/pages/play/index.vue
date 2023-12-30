@@ -11,7 +11,12 @@ const { data: me } = useConvexQuery(api.users.me, {});
   <div>
     <h1>Welcome to hero clash, {{ me?.fullName }}</h1>
 
-    <NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink>
-    <SignOutButton @sign-out="navigateTo('/play/login')" />
+    <nav>
+      <ul>
+        <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
+        <li><SignOutButton @sign-out="navigateTo('/play/login')" /></li>
+      </ul>
+    </nav>
   </div>
 </template>

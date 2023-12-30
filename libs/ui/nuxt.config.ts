@@ -34,12 +34,13 @@ export default defineNuxtConfig({
       'postcss-nesting': { noIsPseudoSelector: false },
       'postcss-custom-media': {
         preserve: false
-      }
+      },
+      'postcss-scrollbar': {}
     }
   },
   colorMode: {
     preference: 'system',
-    fallback: 'light',
+    fallback: 'dark',
     classPrefix: '',
     classSuffix: ''
   },

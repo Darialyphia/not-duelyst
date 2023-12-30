@@ -21,7 +21,7 @@ export class ImmolateEffect extends Effect {
   }
 
   getDescription(): string {
-    return `This units deals ${this.meta.power} damage to all nearby enemies at the end of your turn.`;
+    return `This units deals ${this.meta.power} damage to all nearby enemies at the beginning of your turn.`;
   }
 
   applyDamage(player: Player) {

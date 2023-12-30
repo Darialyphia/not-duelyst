@@ -179,7 +179,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     id: 'chaos-caster',
     spriteId: 'chaos-caster',
     kind: UNIT_KIND.SOLDIER,
-    faction: FACTIONS.haven,
+    faction: FACTIONS.chaos,
     summonCost: 4,
     summonCooldown: 3,
     maxHp: 6,
