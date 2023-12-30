@@ -30,7 +30,7 @@ const border = computed(() => {
   <article class="entity-card content-surface fancy-surface">
     <div class="flex justify-between">
       <div class="avatar-container fancy-surface">
-        <img :src="unitImagesPaths[unit.spriteId]" />
+        <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
       </div>
 
       <div class="stats">
@@ -66,7 +66,7 @@ const border = computed(() => {
         </div>
       </div>
     </div>
-    <div class="text-center text-4 font-600 my-3">{{ unit.id }}</div>
+    <div class="unit-name">{{ unit.id }}</div>
 
     <p v-if="unit.onSummoned?.getDescription">
       On summoned: {{ unit.onSummoned.getDescription(unit) }}
@@ -109,7 +109,7 @@ const border = computed(() => {
   grid-template-rows: auto auto auto;
 
   width: 18rem;
-  padding: var(--size-3) var(--size-6) var(--size-6);
+  padding: var(--size-3) var(--size-6) 0;
 
   font-size: var(--font-size-2);
   color: white;
@@ -124,19 +124,17 @@ const border = computed(() => {
 
 .avatar-container {
   overflow: hidden;
-  aspect-ratio: 1;
+  align-self: center;
+  padding: 0;
   border-radius: var(--radius-round);
 
   > img {
-    transform: scale(5);
-
     display: block;
 
-    width: 64px;
-    height: 64px;
+    aspect-ratio: 1;
+    width: 96px;
 
     object-fit: cover;
-    object-position: 0 0;
 
     image-rendering: pixelated;
   }
@@ -237,5 +235,14 @@ ul > li {
   overflow-y: auto;
   margin-inline: calc(-1 * var(--size-6));
   padding-inline: var(--size-6);
+}
+
+.unit-name {
+  margin-top: var(--size-3);
+  margin-bottom: var(--size-3);
+
+  font-size: var(--font-size-4);
+  font-weight: 600;
+  text-align: center;
 }
 </style>

@@ -72,3 +72,21 @@
     background: var(--scrollbar-background);
   }
 }
+
+.primary-button {
+  --d-button-bg: var(--primary);
+  --d-button-hover-bg: var(--primary-hover);
+
+  --d-button-color: var(--text-on-primary);
+}
+
+.ghost-button {
+  --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
+}
+
+.error-button {
+  --d-button-bg: var(--error);
+  --d-button-hover-bg: var(--error-hover);
+
+  --d-button-color: var(--text-on-error);
+}

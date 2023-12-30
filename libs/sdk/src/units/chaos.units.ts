@@ -16,6 +16,7 @@ import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { ImmolateEffect } from '../effect/immolate.effect';
+import { Teleport } from '../skill/teleport.skill';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -69,7 +70,15 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     attack: 3,
     defense: 0,
     speed: 3,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new Teleport({
+        cooldown: 3,
+        cost: 2,
+        maxRange: 2,
+        minRange: 0
+      })
+    ],
     onSummoned: {
       getDescription() {
         return 'Deal 1 damage to a nearby unit.';

@@ -43,8 +43,8 @@ html.dark {
   --color-primary-hover-hsl: var(--yellow-5-hsl);
   --color-text-on-primary-hsl: var(--gray-11-hsl);
 
-  --color-error-hsl: var(--pink-5-hsl);
-  --color-error-hover-hsl: var(--pink-4-hsl);
+  --color-error-hsl: var(--red-7-hsl);
+  --color-error-hover-hsl: var(--red-6-hsl);
 
   --color-disabled-hsl: var(--gray-8-hsl);
   --color-text-on-disabled-hsl: var(--gray-6-hsl);

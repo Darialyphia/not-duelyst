@@ -1,6 +1,6 @@
 {
   "folders": [],
   "settings": {
-    "unocss.root": "libs/ui"
+    "unocss.root": ["libs/ui", "libs/game-client"]
   }
 }

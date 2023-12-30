@@ -198,6 +198,32 @@ const spacing = Object.fromEntries(
     .flat()
 );
 
+const sizeVars = {
+  ...spacing,
+  "content-1": "var(--size-content-1)",
+  "content-2": "var(--size-content-2)",
+  "content-3": "var(--size-content-3)",
+  "content-4": "var(--size-content-4)",
+  "1-fluid": "var(--size-1-fluid)",
+  "2-fluid": "var(--size-2-fluid)",
+  "3-fluid": "var(--size-3-fluid)",
+  "4-fluid": "var(--size-4-fluid)",
+  "5-fluid": "var(--size-5-fluid)",
+  "6-fluid": "var(--size-6-fluid)",
+  "7-fluid": "var(--size-7-fluid)",
+  "8-fluid": "var(--size-8-fluid)",
+  "9-fluid": "var(--size-9-fluid)",
+  "10-fluid": "var(--size-10-fluid)",
+
+  xxs: "var(--size-xxs)",
+  xs: "var(--size-xxs)",
+  sm: "var(--size-xxs)",
+  md: "var(--size-xxs)",
+  lg: "var(--size-xxs)",
+  xl: "var(--size-xxs)",
+  xxl: "var(--size-xxs)",
+};
+
 export const presetOpenProps = () =>
   definePreset({
     name: "open-props",
@@ -238,31 +264,13 @@ export const presetOpenProps = () =>
         round: "var(--radius-round)",
         pill: "var(--radius-pill)",
       },
-      spacing: {
-        ...spacing,
-        "content-1": "var(--size-content-1)",
-        "content-2": "var(--size-content-2)",
-        "content-3": "var(--size-content-3)",
-        "content-4": "var(--size-content-4)",
-        "1-fluid": "var(--size-1-fluid)",
-        "2-fluid": "var(--size-2-fluid)",
-        "3-fluid": "var(--size-3-fluid)",
-        "4-fluid": "var(--size-4-fluid)",
-        "5-fluid": "var(--size-5-fluid)",
-        "6-fluid": "var(--size-6-fluid)",
-        "7-fluid": "var(--size-7-fluid)",
-        "8-fluid": "var(--size-8-fluid)",
-        "9-fluid": "var(--size-9-fluid)",
-        "10-fluid": "var(--size-10-fluid)",
-
-        xxs: "var(--size-xxs)",
-        xs: "var(--size-xxs)",
-        sm: "var(--size-xxs)",
-        md: "var(--size-xxs)",
-        lg: "var(--size-xxs)",
-        xl: "var(--size-xxs)",
-        xxl: "var(--size-xxs)",
-      },
+      spacing,
+      height: sizeVars,
+      minHeight: sizeVars,
+      maxHeight: sizeVars,
+      width: sizeVars,
+      minWidth: sizeVars,
+      maxWidth: sizeVars,
       fontSize: {
         ...fontSizes,
         "0-fluid": "var(--font-size-fluid-0)",
