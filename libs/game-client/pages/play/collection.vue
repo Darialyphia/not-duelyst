@@ -5,6 +5,8 @@ import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
 import { unitImagesPaths } from '../../assets/units';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
+import cardBack from '../../assets/ui/card-back.png';
+import bg from '../../assets/backgrounds/spire.jpg';
 
 definePageMeta({
   name: 'Collection'
@@ -17,7 +19,7 @@ const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuer
 
 const factions: FactionId[] = ['haven', 'chaos', 'neutral'];
 const page = ref(0);
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 10;
 const LOADOUT_MAX_SIZE = 6;
 
 const factionFilter = ref<FactionId>('haven');
@@ -31,8 +33,15 @@ const filteredUnits = computed(() =>
         .filter(({ unit }) =>
           sidebarView.value === 'list' || general.value ? true : unit.kind === 'GENERAL'
         )
+        .sort((a, b) => {
+          const factionDiff =
+            factions.indexOf(b.unit.faction.id) - factions.indexOf(a.unit.faction.id);
+          if (factionDiff !== 0) return factionDiff;
+          return a.unit.summonCost - b.unit.summonCost;
+        })
     : []
 );
+
 const displayedUnits = computed(() =>
   filteredUnits.value.slice(
     page.value * ITEMS_PER_PAGE,
@@ -66,7 +75,10 @@ const nextPage = () => {
   }
 };
 
-const { data: loadouts } = useConvexAuthedQuery(api.loadout.myLoadouts, {});
+const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
+  api.loadout.myLoadouts,
+  {}
+);
 
 const sidebarView = ref<'list' | 'form'>('list');
 
@@ -195,8 +207,10 @@ const getGeneralImage = (generalId: string) => {
 </script>
 
 <template>
-  <div class="collection-page">
-    <header>
+  <div v-if="isCollectionLoading || isLoadoutsLoading" class="loader">Loading...</div>
+
+  <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
+    <header class="fancy-surface border-none">
       <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
         <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
         Go Back
@@ -208,33 +222,40 @@ const getGeneralImage = (generalId: string) => {
           :key="faction"
           class="capitalize"
           :class="faction === factionFilter ? 'primary-button' : 'ghost-button'"
-          :style="{
-            '--d-button-border-size': 'var(--border-size-2)',
-            '--d-button-border-color': 'var(--primary)'
-          }"
           @click="factionFilter = faction"
         >
           {{ faction }}
         </UiButton>
       </div>
     </header>
-    <div v-if="isCollectionLoading" class="loader">Loading...</div>
 
-    <section v-else class="card-list">
+    <section class="card-list">
       <div
         v-for="item in displayedUnits"
         :key="item._id"
         :tabindex="sidebarView === 'form' && !canAddCardToLoadout(item.unitId) ? -1 : 0"
         class="card"
+        :style="{ '--bg': `url(${cardBack})` }"
         :class="{
           disabled: sidebarView === 'form' && !canAddCardToLoadout(item.unitId),
           used: sidebarView === 'form' && isInLoadout(item.unitId)
         }"
         @click="toggleLoadoutCard(item.unit)"
+        @keyup.enter="toggleLoadoutCard(item.unit)"
       >
         <UnitBlueprintCard :unit="item.unit" />
       </div>
     </section>
+
+    <footer class="fancy-surface border-none">
+      <UiButton class="ghost-button p-0" @click="prevPage">
+        <Icon name="ic:baseline-keyboard-arrow-left" size="2em" />
+      </UiButton>
+      {{ page + 1 }} / {{ pageCount }}
+      <UiButton class="ghost-button p-0" @click="nextPage">
+        <Icon name="ic:baseline-keyboard-arrow-right" size="2em" />
+      </UiButton>
+    </footer>
 
     <section class="sidebar">
       <template v-if="sidebarView === 'form'">
@@ -247,10 +268,11 @@ const getGeneralImage = (generalId: string) => {
             First, select a general.
           </p>
           <ul v-if="loadoutForm" class="flex-1">
-            <li v-for="unit in sortedLoadoutUnits" :key="unit.id" class="py-2 flex gap-2">
+            <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
               </div>
+              <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
               {{ unit.id }}
 
               <UiButton
@@ -307,28 +329,21 @@ const getGeneralImage = (generalId: string) => {
         </UiButton>
       </template>
     </section>
-
-    <footer>
-      <UiButton class="ghost-button p-0" @click="prevPage">
-        <Icon name="ic:baseline-keyboard-arrow-left" size="2em" />
-      </UiButton>
-      {{ page + 1 }} / {{ pageCount }}
-      <UiButton class="ghost-button p-0" @click="nextPage">
-        <Icon name="ic:baseline-keyboard-arrow-right" size="2em" />
-      </UiButton>
-    </footer>
   </div>
 </template>
 
 <style scoped lang="postcss">
 .collection-page {
   display: grid;
-  grid-template-columns: 1fr var(--size-sm);
+  grid-template-columns: 1fr var(--size-xs);
   grid-template-rows: auto 1fr auto;
 
   height: 100vh;
 
+  background: var(--bg);
   background-color: var(--surface-3);
+  background-repeat: no-repeat;
+  background-size: cover;
 
   > .loader {
     grid-column: 1 / -1;
@@ -358,18 +373,32 @@ const getGeneralImage = (generalId: string) => {
   overflow: auto;
   display: grid;
   grid-auto-rows: calc(50% - 2 * var(--size-2));
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   row-gap: var(--size-3);
   column-gap: var(--size-4);
   justify-items: center;
 
-  padding-block: var(--size-2);
+  padding-block-start: var(--size-2);
+  padding-inline: var(--size-2);
 
+  background: var(--fancy-bg-transparency);
+  backdrop-filter: blur(5px);
   border-radius: var(--radius-2);
+  box-shadow: inset 0 0 5rem 1rem hsl(0 0% 100% / 0.2);
 }
+
 .card {
   overflow-y: hidden;
   transition: all 0.2s;
+  > * {
+    height: 100%;
+
+    background: linear-gradient(transparent, #111), var(--bg), var(--fancy-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-blend-mode: soft-light;
+  }
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
   }
@@ -387,10 +416,6 @@ const getGeneralImage = (generalId: string) => {
   &:not(.disabled):hover {
     box-shadow: 0 0 1rem 0.5rem hsl(var(--color-primary-hsl) / 0.3);
   }
-
-  > * {
-    height: 100%;
-  }
 }
 
 .loadout {
@@ -400,7 +425,7 @@ const getGeneralImage = (generalId: string) => {
 
   width: 100%;
   padding: var(--size-3);
-  padding-left: var(--size-9);
+  padding-left: calc(64px + var(--size-2));
 
   text-align: left;
 
@@ -471,10 +496,30 @@ form {
     justify-content: space-between;
   }
 
-  li > button {
-    margin-left: auto;
-    padding: var(--size-2);
-    border-radius: var(--radius-round);
+  li {
+    display: flex;
+    gap: var(--size-2);
+    align-items: center;
+
+    padding-block: var(--size-2);
+
+    border-bottom: solid var(--border-size-1) var(--border-dimmed);
+    > img {
+      overflow: hidden;
+
+      aspect-ratio: 1;
+      width: 32px;
+
+      border: solid var(--border-size-1) var(--primary);
+      border-radius: var(--radius-round);
+    }
+
+    > button {
+      margin-left: auto;
+      padding: var(--size-1);
+      font-size: var(--font-size-0);
+      border-radius: var(--radius-round);
+    }
   }
 }
 </style>

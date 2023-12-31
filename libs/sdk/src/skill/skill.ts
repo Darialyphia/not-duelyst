@@ -1,5 +1,6 @@
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
+import { Cell } from '../map/cell';
 import { Point3D } from '../types';
 
 export type SkillId = string;
@@ -82,7 +83,7 @@ export abstract class Skill {
     ctx: GameSession,
     caster: Entity,
     targets: Point3D[],
-    affectedPoints: Point3D[]
+    affectedCells: Cell[]
   ): void;
 
   fxImpl(

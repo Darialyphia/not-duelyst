@@ -48,6 +48,7 @@ export class ImmolateEffect extends Effect {
 
   onApplied() {
     this.ctx.emitter.on('game:turn-start', this.applyDamage);
+    this.attachedTo?.on('die', this.onExpired.bind(this));
   }
 
   onExpired() {

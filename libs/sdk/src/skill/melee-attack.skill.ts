@@ -6,18 +6,21 @@ import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf } from './skill-utils';
+import { Cell } from '../map/cell';
 
 export type MeleeAttackOptions = PartialBy<
   SkillOptions,
   'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   power: number;
+  splash?: boolean;
 };
 
 export class MeleeAttack extends Skill {
   readonly id = 'melee_attack';
 
   public readonly power: number;
+  public readonly splash: boolean;
 
   constructor(options: MeleeAttackOptions) {
     super({
@@ -29,10 +32,12 @@ export class MeleeAttack extends Skill {
       ...options
     });
     this.power = options.power;
+    this.splash = options.splash ?? false;
   }
 
   getDescription(caster: SkillDescriptionContext) {
-    return `Deals ${caster.attack + this.power} damage to a nearby enemy.`;
+    const splash = this.splash ? ' and all enemies around it.' : '';
+    return `Deals ${caster.attack + this.power} damage to a nearby enemy${splash}.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
@@ -47,21 +52,26 @@ export class MeleeAttack extends Skill {
   }
 
   isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity, targets: Point3D[]) {
-    return isSelf(
-      ctx.entityManager.getEntityAt(targets[0])!,
-      ctx.entityManager.getEntityAt(point)
+    const splashCondition = this.splash
+      ? isEnemy(ctx, ctx.entityManager.getEntityAt(point)?.id, caster.playerId) &&
+        isWithinCells(ctx, targets[0], point, { x: 1, y: 1, z: 0.5 })
+      : false;
+
+    return (
+      isSelf(
+        ctx.entityManager.getEntityAt(targets[0])!,
+        ctx.entityManager.getEntityAt(point)
+      ) || splashCondition
     );
   }
 
-  execute(ctx: GameSession, caster: Entity, [target]: Point3D[]) {
-    const entity = ctx.entityManager.getEntityAt(target)!;
-
+  execute(ctx: GameSession, caster: Entity, targets: Point3D[], affectedCells: Cell[]) {
     ctx.actionQueue.push(
       new DealDamageAction(
         {
           amount: this.power,
           sourceId: caster.id,
-          targets: [entity.id]
+          targets: affectedCells.map(target => ctx.entityManager.getEntityAt(target)!.id)
         },
         ctx
       )

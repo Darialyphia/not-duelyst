@@ -152,7 +152,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.chaos,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 10,
+    maxHp: 9,
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,

@@ -3,34 +3,33 @@ import type { UnitBlueprint } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
 
-import neutralBorder from '../assets/ui/icon-border-neutral.png';
-import havenBorder from '../assets/ui/icon-border-haven.png';
-import chaosBorder from '../assets/ui/icon-border-chaos.png';
-import { exhaustiveSwitch } from '../../shared/src';
+import unitCostBg from '../assets/ui/unit-cost-background.png';
 
 const { unit } = defineProps<{
   unit: UnitBlueprint;
 }>();
 
-const border = computed(() => {
-  switch (unit.faction.id) {
-    case 'neutral':
-      return neutralBorder;
-    case 'haven':
-      return havenBorder;
-    case 'chaos':
-      return chaosBorder;
-    default:
-      throw exhaustiveSwitch(unit.faction.id);
-  }
-});
+const borders = computed(() => factionUtils[unit.faction.id].borders);
 </script>
 
 <template>
-  <article class="entity-card content-surface fancy-surface">
+  <article
+    class="entity-card content-surface fancy-surface"
+    :style="{ '--border': `url(${borders.square})` }"
+  >
     <div class="flex justify-between">
-      <div class="avatar-container fancy-surface">
-        <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
+      <div class="relative">
+        <div
+          v-if="unit.kind !== 'GENERAL'"
+          class="cost"
+          :style="{ '--bg': `url(${unitCostBg})` }"
+        >
+          {{ unit.summonCost }}
+        </div>
+
+        <div class="avatar-container fancy-surface">
+          <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
+        </div>
       </div>
 
       <div class="stats">
@@ -83,7 +82,7 @@ const border = computed(() => {
           :data-cost="skill.cost"
           :style="{
             '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
-            '--border': `url(${border})`
+            '--border': `url(${borders.square})`
           }"
         />
 
@@ -110,13 +109,17 @@ const border = computed(() => {
   display: grid;
   grid-template-rows: auto auto auto;
 
-  width: 18rem;
+  width: 17rem;
   padding: var(--size-3) var(--size-6) 0;
 
   font-size: var(--font-size-2);
   color: white;
 
   backdrop-filter: blur(5px);
+  border-image: var(--border);
+  border-image-slice: 16 fill;
+  border-image-width: 16px;
+  border-image-repeat: repeat;
 
   > p {
     margin-block: var(--size-1);
@@ -124,6 +127,22 @@ const border = computed(() => {
   }
 }
 
+.cost {
+  position: absolute;
+  transform: translate(-25%, -25%);
+
+  display: grid;
+  place-content: center;
+
+  aspect-ratio: 1;
+  width: var(--size-7);
+
+  font-weight: var(--font-weight-5);
+  color: black;
+
+  background: var(--bg);
+  border-radius: var(--radius-round);
+}
 .avatar-container {
   overflow: hidden;
   align-self: center;

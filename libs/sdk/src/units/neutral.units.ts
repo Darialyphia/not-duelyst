@@ -162,5 +162,21 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         }
       }
     ]
+  },
+
+  {
+    id: 'neutral-titan',
+    spriteId: 'neutral-titan',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 5,
+    summonCooldown: 6,
+    maxHp: 12,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 5,
+    defense: 0,
+    speed: 3,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0, splash: true })]
   }
 ];

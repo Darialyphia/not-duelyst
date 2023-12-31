@@ -125,12 +125,13 @@ html.dark {
 
   --fancy-bg: linear-gradient(130deg, hsl(200 100% 60%), hsl(320 100% 60%)),
     hsl(250 30% 10%);
+
   --fancy-bg-transparency: linear-gradient(
       130deg,
-      hsl(200 100% 60% / 0.5),
-      hsl(320 100% 60% / 0.5)
+      hsl(200 100% 35% / 0.3),
+      hsl(320 100% 35% / 0.3)
     ),
-    hsl(250 30% 10%);
+    hsl(250 30% 0% / 0.6);
   --fancy-border: solid var(--border-size-2) hsl(var(--color-primary-hsl) / 0.5);
 }
 
