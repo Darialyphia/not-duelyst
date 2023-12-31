@@ -18,7 +18,8 @@ export default defineSchema({
   }),
 
   matchmakingUsers: defineTable({
-    userId: v.id('users')
+    userId: v.id('users'),
+    loadoutId: v.id('loadouts')
   }).index('by_userId', ['userId']),
 
   games: defineTable({
@@ -31,6 +32,7 @@ export default defineSchema({
 
   gamePlayers: defineTable({
     userId: v.id('users'),
+    loadoutId: v.id('loadouts'),
     gameId: v.id('games')
   })
     .index('by_user_id', ['userId'])

@@ -50,15 +50,16 @@ export const ensureIsNotInMatchmaking = async (
 
 export const createGameFromMatchmadePair = async (
   ctx: ActionCtx,
-  pair: { userId: Id<'users'>; matchmakingUserId: Id<'matchmakingUsers'> }[]
+  pair: {
+    userId: Id<'users'>;
+    matchmakingUserId: Id<'matchmakingUsers'>;
+    loadoutId: Id<'loadouts'>;
+  }[]
 ) => {
   const roomId = await ctx.runAction(internal.hathora.getRoomId);
   await ctx.runMutation(internal.matchmaking.handleMatchmadePair, {
     roomId,
-    players: pair.map(p => ({
-      userId: p.userId,
-      matchmakingUserId: p.matchmakingUserId
-    }))
+    players: pair
   });
 };
 

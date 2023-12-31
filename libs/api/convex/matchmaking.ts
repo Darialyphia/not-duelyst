@@ -16,13 +16,19 @@ import { v } from 'convex/values';
 import { ensureHasNoCurrentGame, getGameInitialState } from './game/utils';
 
 export const join = mutation({
-  handler: async ctx => {
+  args: {
+    loadoutId: v.id('loadouts')
+  },
+  handler: async (ctx, args) => {
     const identity = await ensureAuthenticated(ctx);
     const user = await ensureUserExists(ctx, identity.tokenIdentifier);
     await ensureHasNoCurrentGame(ctx, user._id);
     await ensureIsNotInMatchmaking(ctx, user._id);
 
-    const result = await ctx.db.insert('matchmakingUsers', { userId: user!._id });
+    const result = await ctx.db.insert('matchmakingUsers', {
+      loadoutId: args.loadoutId,
+      userId: user!._id
+    });
     await startMatchmakingIfNeeded(ctx);
 
     return result;
@@ -44,6 +50,7 @@ export const handleMatchmadePair = internalMutation({
     roomId: v.string(),
     players: v.array(
       v.object({
+        loadoutId: v.id('loadouts'),
         matchmakingUserId: v.id('matchmakingUsers'),
         userId: v.id('users')
       })
@@ -67,8 +74,9 @@ export const handleMatchmadePair = internalMutation({
     });
 
     await Promise.all(
-      arg.players.map(({ userId }) =>
+      arg.players.map(({ userId, loadoutId }) =>
         ctx.db.insert('gamePlayers', {
+          loadoutId,
           gameId,
           userId
         })
@@ -78,12 +86,12 @@ export const handleMatchmadePair = internalMutation({
 });
 
 export const getMatchmakingUsers = query(async ctx => {
-  const users = await ctx.db.query('matchmakingUsers').collect();
+  const matchmakingUsers = await ctx.db.query('matchmakingUsers').collect();
 
   return await Promise.all(
-    users.map(async user => ({
-      matchmakingUserId: user._id,
-      ...(await ctx.db.get(user.userId))!
+    matchmakingUsers.map(async matchmakingUser => ({
+      matchmakingUser,
+      user: (await ctx.db.get(matchmakingUser.userId))!
     }))
   );
 });
@@ -109,8 +117,9 @@ export const matchPlayers = internalAction(async ctx => {
       createGameFromMatchmadePair(
         ctx,
         pair.map(p => ({
-          userId: p._id,
-          matchmakingUserId: p.matchmakingUserId
+          userId: p.user._id,
+          matchmakingUserId: p.matchmakingUser._id,
+          loadoutId: p.matchmakingUser.loadoutId
         }))
       )
     )

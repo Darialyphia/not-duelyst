@@ -102,7 +102,7 @@ export function useConvexMutation<Mutation extends MutationReference>(
   return {
     isLoading,
     error,
-    mutate: async (args?: Mutation['_args']) => {
+    mutate: async (args: Mutation['_args']) => {
       try {
         isLoading.value = true;
         const result = await convex.mutation(mutation, args);

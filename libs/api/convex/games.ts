@@ -31,7 +31,10 @@ export const getCurrent = query(async ctx => {
     players: await Promise.all(
       gamePlayers.map(async gamePlayer => {
         const user = await ctx.db.get(gamePlayer.userId);
-        return toUserDto(user!);
+        return {
+          ...toUserDto(user!),
+          loadout: await ctx.db.get(gamePlayer.loadoutId)
+        };
       })
     )
   };
