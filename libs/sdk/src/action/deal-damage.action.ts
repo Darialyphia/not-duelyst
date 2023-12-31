@@ -1,4 +1,5 @@
 import { Entity, EntityId, isEntityId } from '../entity/entity';
+import { calculateDamage } from '../entity/entity-utils';
 import { InteractableId } from '../interactable/interactable';
 import { GameAction } from './action';
 import { DieAction } from './die.action';
@@ -22,10 +23,9 @@ export class DealDamageAction extends GameAction<{
   getDamage(target: Entity) {
     if (!this.attacker) return this.payload.amount;
 
-    return target.calculateDamage(
+    return calculateDamage(
       this.payload.amount,
-      this.attacker,
-      target,
+      target.defense,
       this.payload.isTrueDamage
     );
   }

@@ -1,26 +1,24 @@
 import { isNumber } from 'lodash-es';
-import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
+import { SkillDescriptionContext, SkillOptions } from './skill';
 import { isSelf, isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
+import { Attack, AttackOptions } from './attack.skill';
 
 export type RangedAttackOptions = PartialBy<
-  SkillOptions,
+  AttackOptions,
   'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
-  power: number;
   minRange: number | Point3D;
   maxRange: number | Point3D;
 };
 
-export class RangedAttack extends Skill {
+export class RangedAttack extends Attack {
   readonly id = 'ranged_attack';
 
-  public readonly power: number;
   public readonly minRange: number | Point3D;
   public readonly maxRange: number | Point3D;
 
@@ -33,7 +31,6 @@ export class RangedAttack extends Skill {
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
-    this.power = options.power;
     this.minRange = options.minRange;
     this.maxRange = options.maxRange;
   }
@@ -74,20 +71,6 @@ export class RangedAttack extends Skill {
     return isSelf(
       ctx.entityManager.getEntityAt(targets[0])!,
       ctx.entityManager.getEntityAt(point)
-    );
-  }
-
-  execute(ctx: GameSession, caster: Entity, [target]: Point3D[]) {
-    const entity = ctx.entityManager.getEntityAt(target)!;
-    ctx.actionQueue.push(
-      new DealDamageAction(
-        {
-          amount: this.power,
-          sourceId: caster.id,
-          targets: [entity.id]
-        },
-        ctx
-      )
     );
   }
 }

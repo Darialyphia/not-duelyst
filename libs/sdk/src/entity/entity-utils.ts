@@ -48,3 +48,12 @@ export const isGeneral = isKind(UNIT_KIND.GENERAL);
 export const isEmpty = (ctx: GameSession, point: Point3D) => {
   return !ctx.entityManager.getEntityAt(point);
 };
+
+export const calculateDamage = (
+  power: number,
+  defense: number,
+  isTrueDamage?: boolean
+) => {
+  if (isTrueDamage) return power;
+  return Math.max(1, power - defense);
+};

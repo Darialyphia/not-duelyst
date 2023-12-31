@@ -1,25 +1,23 @@
 import { PartialBy } from '@hc/shared';
-import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
+import { SkillDescriptionContext } from './skill';
 import { isWithinCells, isSelf } from './skill-utils';
-import { Cell } from '../map/cell';
+import { Attack, AttackOptions } from './attack.skill';
 
 export type MeleeAttackOptions = PartialBy<
-  SkillOptions,
+  AttackOptions,
   'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   power: number;
   splash?: boolean;
 };
 
-export class MeleeAttack extends Skill {
+export class MeleeAttack extends Attack {
   readonly id = 'melee_attack';
 
-  public readonly power: number;
   public readonly splash: boolean;
 
   constructor(options: MeleeAttackOptions) {
@@ -31,7 +29,6 @@ export class MeleeAttack extends Skill {
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
-    this.power = options.power;
     this.splash = options.splash ?? false;
   }
 
@@ -62,19 +59,6 @@ export class MeleeAttack extends Skill {
         ctx.entityManager.getEntityAt(targets[0])!,
         ctx.entityManager.getEntityAt(point)
       ) || splashCondition
-    );
-  }
-
-  execute(ctx: GameSession, caster: Entity, targets: Point3D[], affectedCells: Cell[]) {
-    ctx.actionQueue.push(
-      new DealDamageAction(
-        {
-          amount: this.power,
-          sourceId: caster.id,
-          targets: affectedCells.map(target => ctx.entityManager.getEntityAt(target)!.id)
-        },
-        ctx
-      )
     );
   }
 }

@@ -13,6 +13,7 @@ export type KnockbackOptions = PartialBy<
   'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   damage: number;
+  attackRatio?: number;
   isTrueDamage: boolean;
   collisionDamage: number;
   distance: number;
@@ -22,12 +23,13 @@ export type KnockbackOptions = PartialBy<
 export class Knockback extends Skill {
   id = 'knockback';
 
-  readonly damage: number;
+  readonly power: number;
+  readonly attackRatio: number;
   readonly isTrueDamage: boolean;
   readonly collisionDamage: number;
   readonly distance: number;
-  public readonly minRange: number | Point3D;
-  public readonly maxRange: number | Point3D;
+  readonly minRange: number | Point3D;
+  readonly maxRange: number | Point3D;
 
   constructor(options: KnockbackOptions) {
     super({
@@ -36,7 +38,8 @@ export class Knockback extends Skill {
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });
-    this.damage = options.damage;
+    this.power = options.damage;
+    this.attackRatio = options.attackRatio ?? 1;
     this.isTrueDamage = options.isTrueDamage;
     this.collisionDamage = options.collisionDamage;
     this.distance = options.distance;
@@ -44,10 +47,8 @@ export class Knockback extends Skill {
     this.maxRange = options.maxRange;
   }
 
-  getDealtDamage(attack: number) {
-    if (this.isTrueDamage) return this.damage;
-
-    return this.damage + attack;
+  getDamageAmount(attack: number) {
+    return this.power + Math.ceil(attack * this.attackRatio);
   }
 
   getDescription(caster: SkillDescriptionContext) {
@@ -57,7 +58,7 @@ export class Knockback extends Skill {
       ? `If it collides with a unit, they both take ${this.collisionDamage} damage.`
       : '';
 
-    const damage = this.getDealtDamage(caster.attack);
+    const damage = this.getDamageAmount(caster.attack);
     if (!damage) {
       return `Knocks a unit ${this.distance} tiles ${direction}. ${collisionDamageMessage}`;
     }
@@ -107,7 +108,7 @@ export class Knockback extends Skill {
     ctx.actionQueue.push(
       new DealDamageAction(
         {
-          amount: this.damage,
+          amount: this.getDamageAmount(caster.attack),
           sourceId: caster.id,
           targets: entities.map(e => e.id),
           isTrueDamage: this.isTrueDamage

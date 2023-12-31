@@ -139,6 +139,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         cost: 2,
         damage: 1,
         distance: 2,
+        attackRatio: 0,
         isTrueDamage: true,
         minRange: 0,
         maxRange: 3
@@ -178,8 +179,9 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         duration: 3,
         range: 0,
         targetType: 'self',
-        damage: 1,
+        power: 1,
         isTrueDamage: true,
+        attackRatio: 0,
         shouldExhaustCaster: false
       })
     ]

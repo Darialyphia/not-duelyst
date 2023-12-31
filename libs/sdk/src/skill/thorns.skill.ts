@@ -1,5 +1,5 @@
 import { PartialBy } from '@hc/shared';
-import { Skill, SkillOptions } from './skill';
+import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
@@ -29,15 +29,26 @@ export class Thorns extends Skill {
     this.range = options.range;
     this.targetType = options.targetType;
     this.meta = {
-      damage: options.damage,
+      power: options.power,
       duration: options.duration,
-      isTrueDamage: options.isTrueDamage
+      isTrueDamage: options.isTrueDamage,
+      attackRatio: options.attackRatio
     };
   }
 
-  getDescription() {
-    const duration = isFinite(this.meta.duration) ? `for ${this.meta.duration}` : '';
-    return `Target gets thorns ${this.meta.damage} ${duration} turns.`;
+  get attackRatio() {
+    return this.meta.attackRatio ?? 1;
+  }
+
+  getDamageAmount(attack: number) {
+    return this.meta.power + Math.ceil(attack * this.attackRatio);
+  }
+
+  getDescription(caster: SkillDescriptionContext) {
+    const duration = isFinite(this.meta.duration)
+      ? `for ${this.meta.duration} turns`
+      : '';
+    return `Target gets thorns ${this.getDamageAmount(caster.attack)} ${duration}.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {

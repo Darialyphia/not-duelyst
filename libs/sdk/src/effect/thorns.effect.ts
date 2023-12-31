@@ -2,9 +2,6 @@ import { Nullable } from '@hc/shared';
 import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
-import { Skill } from '../skill/skill';
-import { isWithinCells } from '../skill/skill-utils';
-import { Point3D } from '../types';
 import { Effect } from './effect';
 
 export class ThornsEffect extends Effect {
@@ -14,7 +11,12 @@ export class ThornsEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { duration: number; damage: number; isTrueDamage: boolean }
+    readonly meta: {
+      duration: number;
+      power: number;
+      attackRatio?: number;
+      isTrueDamage?: boolean;
+    }
   ) {
     super(ctx, source, meta);
     this.duration = this.meta.duration;
@@ -22,12 +24,16 @@ export class ThornsEffect extends Effect {
     this.applyThorns = this.applyThorns.bind(this);
   }
 
-  getDescription(): string {
-    const damage = this.meta.isTrueDamage
-      ? this.meta.damage
-      : this.meta.damage + this.attachedTo!.attack;
+  get attackRatio() {
+    return this.meta.attackRatio ?? 1;
+  }
 
-    return `When this unit receives damage, it deals ${damage} back.`;
+  get damage() {
+    return this.meta.power + Math.ceil(this.attachedTo!.attack * this.attackRatio);
+  }
+
+  getDescription(): string {
+    return `When this unit receives damage, it deals ${this.damage} back.`;
   }
 
   private applyThorns({ source }: { source: Nullable<Entity> }) {
@@ -35,7 +41,7 @@ export class ThornsEffect extends Effect {
     this.ctx.actionQueue.push(
       new DealDamageAction(
         {
-          amount: this.meta.damage,
+          amount: this.damage,
           sourceId: this.attachedTo!.id,
           targets: [source.id],
           isTrueDamage: this.meta.isTrueDamage

@@ -117,6 +117,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         damage: 1,
         distance: 2,
         isTrueDamage: true,
+        attackRatio: 0,
         minRange: 0,
         maxRange: 3
       })

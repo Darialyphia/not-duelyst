@@ -9,6 +9,8 @@ import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
 import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
+import { calculateDamage } from './entity-utils';
+import { SummonInteractableAction } from '../action/summon-interactable.action';
 
 export type EntityId = number;
 export const isEntityId = (x: unknown, ctx: GameSession): x is EntityId =>
@@ -251,36 +253,25 @@ export class Entity implements Serializable {
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
-  calculateDamage(
-    baseAmount: number,
-    attacker: Nullable<Entity>,
-    defender: Entity,
-    isTrueDamage?: boolean
-  ) {
-    if (isTrueDamage) return baseAmount;
-    if (!attacker) return Math.max(1, baseAmount - defender.defense);
-
-    return Math.max(1, baseAmount + (attacker.attack - defender.defense));
-  }
-
-  dealDamage(baseAmount: number, target: Entity, isTrueDamage?: boolean) {
-    target.takeDamage(baseAmount, this, isTrueDamage);
+  dealDamage(power: number, target: Entity, isTrueDamage?: boolean) {
+    target.takeDamage(power, this, isTrueDamage);
 
     this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
-      amount: this.calculateDamage(baseAmount, this, target),
-      baseAmount,
+      amount: calculateDamage(power, target.defense, isTrueDamage),
+      baseAmount: power,
       target
     });
   }
 
-  takeDamage(baseAmount: number, source: Nullable<Entity>, isTrueDamage?: boolean) {
-    const amount = this.calculateDamage(baseAmount, source, this, isTrueDamage);
+  takeDamage(power: number, source: Nullable<Entity>, isTrueDamage?: boolean) {
+    const amount = calculateDamage(power, this.defense, isTrueDamage);
+
     this.hp = Math.max(0, this.hp - amount);
     this.emitter.emit(ENTITY_EVENTS.RECEIVE_DAMAGE, {
       entity: this,
       amount,
-      baseAmount,
+      baseAmount: power,
       source
     });
   }
@@ -297,6 +288,15 @@ export class Entity implements Serializable {
   die(source: Nullable<Entity>) {
     this.hp = 0;
     this.emitter.emit('die', { entity: this, source });
+    this.ctx.actionQueue.push(
+      new SummonInteractableAction(
+        {
+          id: 'GOLD_COIN',
+          position: this.position
+        },
+        this.ctx
+      )
+    );
   }
 
   startTurn() {

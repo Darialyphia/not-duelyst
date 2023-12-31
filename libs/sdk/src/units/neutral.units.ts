@@ -142,7 +142,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxHp: 1,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 2,
+    attack: 1,
     defense: 0,
     speed: 4,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
@@ -157,7 +157,9 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         description: `When this unit dies, deal 2 damage to nearby enemies.`,
         getEffect: (ctx, entity) => {
           return new AoeOnDeathEffect(ctx, entity, {
-            power: 2
+            power: 2,
+            attackRatio: 0,
+            isTrueDamage: false
           });
         }
       }

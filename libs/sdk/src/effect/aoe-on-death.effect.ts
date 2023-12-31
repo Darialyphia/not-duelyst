@@ -10,30 +10,38 @@ export class AoeOnDeathEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { power: number }
+    readonly meta: { power: number; attackRatio?: number; isTrueDamage?: boolean }
   ) {
     super(ctx, source, meta);
 
     this.onDeath = this.onDeath.bind(this);
   }
 
-  getDescription(): string {
-    return `This units deals ${this.meta.power} damage to nearby enemies when it dies.`;
+  get attackRatio() {
+    return this.meta.attackRatio ?? 1;
   }
 
-  onDeath({ entity }: { entity: Entity }) {
+  get damage() {
+    return this.meta.power + Math.ceil(this.attachedTo!.attack * this.attackRatio);
+  }
+
+  getDescription(): string {
+    return `This units deals ${this.damage} damage to nearby enemies when it dies.`;
+  }
+
+  onDeath() {
     const enemies = this.ctx.entityManager.getNearbyEnemies(
-      entity.position,
-      entity.playerId
+      this.attachedTo!.position,
+      this.attachedTo!.playerId
     );
 
     this.ctx.actionQueue.push(
       new DealDamageAction(
         {
-          amount: this.meta.power,
-          sourceId: entity.id,
+          amount: this.damage,
+          sourceId: this.attachedTo!.id,
           targets: enemies.map(e => e.id),
-          isTrueDamage: true
+          isTrueDamage: this.meta.isTrueDamage
         },
         this.ctx
       )

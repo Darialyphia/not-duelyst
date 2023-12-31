@@ -17,6 +17,9 @@ export const makeInterceptor = <
     },
 
     remove(interceptor: Interceptor<TValue, TContext>) {
+      const idx = listeners.indexOf(interceptor);
+      if (idx < 0) return;
+
       listeners.splice(listeners.indexOf(interceptor), 1);
     },
 

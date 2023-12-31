@@ -11,12 +11,20 @@ export class DotEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { duration: number; power: number }
+    readonly meta: {
+      duration: number;
+      power: number;
+      attackRatio?: number;
+      isTrueDamage?: boolean;
+    }
   ) {
     super(ctx, source, meta);
     this.duration = this.meta.duration;
-
     this.applyDot = this.applyDot.bind(this);
+  }
+
+  get attackRatio() {
+    return this.meta.attackRatio ?? 1;
   }
 
   getDescription(): string {
