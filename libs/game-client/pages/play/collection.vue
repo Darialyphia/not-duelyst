@@ -267,7 +267,7 @@ const getGeneralImage = (generalId: string) => {
           <p v-if="!sortedLoadoutUnits.length" class="text-center p-4">
             First, select a general.
           </p>
-          <ul v-if="loadoutForm" class="flex-1">
+          <ul v-if="loadoutForm" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
@@ -302,7 +302,7 @@ const getGeneralImage = (generalId: string) => {
       </template>
 
       <template v-else>
-        <ul v-if="loadouts">
+        <ul v-if="loadouts" v-auto-animate>
           <li
             v-for="loadout in loadouts"
             :key="loadout._id"

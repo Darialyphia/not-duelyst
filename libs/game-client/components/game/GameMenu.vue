@@ -7,6 +7,8 @@ useEventListener('keydown', e => {
     isMenuOpened.value = true;
   }
 });
+
+const { playerId } = useGame();
 </script>
 
 <template>
@@ -20,7 +22,8 @@ useEventListener('keydown', e => {
       <DialogContent class="modal-content" @escape-key-down="isMenuOpened = false">
         <DialogTitle>Menu</DialogTitle>
         <div class="fancy-surface grid gap-4">
-          <UiButton @click="sendInput('surrender')">Surrender</UiButton>
+          <UiButton v-if="playerId" @click="sendInput('surrender')">Surrender</UiButton>
+          <NuxtLink v-else :to="{ name: 'ClientHome' }">Quit spectating</NuxtLink>
           <DialogClose as-child>
             <UiButton @click="isMenuOpened = false" @keydown.stop>Resume</UiButton>
           </DialogClose>

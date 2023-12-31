@@ -8,8 +8,11 @@ definePageMeta({
 const route = useRoute();
 const { getToken } = useConvexAuth();
 
-const { data: game, isLoading: isGameLoading } = useConvexQuery(api.games.getCurrent, {});
-const { data: me, isLoading: isMeLoading } = useConvexQuery(api.users.me, {});
+const { data: game, isLoading: isGameLoading } = useConvexAuthedQuery(
+  api.games.getCurrent,
+  {}
+);
+const { data: me, isLoading: isMeLoading } = useConvexAuthedQuery(api.users.me, {});
 
 const gameSession = shallowRef<{
   session: GameSession;
@@ -22,6 +25,7 @@ const gameSession = shallowRef<{
 let socket: Socket;
 onMounted(async () => {
   const socketUrl = await $fetch('/api/room', {
+    baseURL: window.location.origin,
     query: { roomId: route.query.roomId }
   });
 

@@ -18,9 +18,9 @@
   --color-primary-hover-hsl: var(--gray-8-hsl);
   --color-text-on-primary-hsl: var(--gray-0-hsl);
 
-  --color-error-hsl: var(--red-7-hsl);
-  --color-error-hover-hsl: var(--red-8-hsl);
-  --color-text-on-error-hsl: var(--gray-11-hsl);
+  --color-error-hsl: var(--red-10-hsl);
+  --color-error-hover-hsl: var(--red-11-hsl);
+  --color-text-on-error-hsl: var(--gray-0-hsl);
 
   --color-disabled-hsl: var(--gray-3-hsl);
   --color-text-on-disabled-hsl: var(--gray-6-hsl);
@@ -43,8 +43,8 @@ html.dark {
   --color-primary-hover-hsl: var(--yellow-5-hsl);
   --color-text-on-primary-hsl: var(--gray-11-hsl);
 
-  --color-error-hsl: var(--red-7-hsl);
-  --color-error-hover-hsl: var(--red-6-hsl);
+  --color-error-hsl: var(--red-9-hsl);
+  --color-error-hover-hsl: var(--red-10-hsl);
 
   --color-disabled-hsl: var(--gray-8-hsl);
   --color-text-on-disabled-hsl: var(--gray-6-hsl);

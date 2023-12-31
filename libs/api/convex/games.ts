@@ -90,3 +90,60 @@ export const end = action({
     await ctx.runAction(internal.hathora.destroyRoom, { roomId: game.roomId });
   }
 });
+
+export const getById = query({
+  args: {
+    gameId: v.id('games')
+  },
+  async handler(ctx, args) {
+    const game = await ctx.db.get(args.gameId);
+    if (!game) return null;
+
+    const gamePlayers = await ctx.db
+      .query('gamePlayers')
+      .withIndex('by_game_id', q => q.eq('gameId', game?._id))
+      .collect();
+
+    return {
+      ...game,
+      players: await Promise.all(
+        gamePlayers.map(async gamePlayer => {
+          const user = await ctx.db.get(gamePlayer.userId);
+          return {
+            ...toUserDto(user!),
+            loadout: await ctx.db.get(gamePlayer.loadoutId)
+          };
+        })
+      )
+    };
+  }
+});
+
+export const getAllOngoing = query(async ctx => {
+  const games = await ctx.db
+    .query('games')
+    .withIndex('by_status', q => q.eq('status', 'ONGOING'))
+    .collect();
+
+  return Promise.all(
+    games.map(async game => {
+      const gamePlayers = await ctx.db
+        .query('gamePlayers')
+        .withIndex('by_game_id', q => q.eq('gameId', game?._id))
+        .collect();
+
+      return {
+        ...game,
+        players: await Promise.all(
+          gamePlayers.map(async gamePlayer => {
+            const user = await ctx.db.get(gamePlayer.userId);
+            return {
+              ...toUserDto(user!),
+              loadout: await ctx.db.get(gamePlayer.loadoutId)
+            };
+          })
+        )
+      };
+    })
+  );
+});

@@ -33,6 +33,7 @@ export type GameEmits = {
 
 export type GameContext = {
   state: Ref<GameState>;
+  playerId: string | null;
   gameSession: GameSession;
   sendInput: ShortEmits<GameEmits>;
   isActivePlayer: ComputedRef<boolean>;
@@ -104,6 +105,7 @@ export const useGameProvider = (
   });
   const context: GameContext = {
     assets,
+    playerId,
     isActivePlayer,
     state: state as Ref<GameState>,
     gameSession: session,

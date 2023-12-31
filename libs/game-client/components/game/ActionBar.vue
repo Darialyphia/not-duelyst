@@ -10,7 +10,7 @@ import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
 import chaosBorder from '../../assets/ui/icon-border-chaos.png';
 import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 
-const { isActivePlayer, state, sendInput } = useGame();
+const { playerId, isActivePlayer, state, sendInput } = useGame();
 const {
   targetMode,
   summonTargets,
@@ -21,7 +21,11 @@ const {
   summonSpawnPoint
 } = useGameUi();
 
-const activePlayer = computed(() => state.value.activePlayer);
+const player = computed(() => {
+  if (!playerId) return state.value.activePlayer;
+
+  return state.value.players.find(p => p.id === playerId)!;
+});
 
 const borders = computed(() => {
   switch (state.value.activePlayer.general.unit.faction.id) {
@@ -97,12 +101,7 @@ const onValidateTargets = () => {
     <div class="fancy-surface">Targets: {{ targetsCount }} / {{ maxTargetsCount }}</div>
     <UiButton
       v-if="isValidateTargetsButtonDisplayed"
-      :style="{
-        '--d-button-bg': 'var(--teal-7)',
-        '--d-button-hover-bg': 'var(--teal-6)',
-        '--d-button-color': 'var(--gray-0)',
-        '--d-button-hover-color': 'var(--gray-0)'
-      }"
+      class="primary-button"
       @click="onValidateTargets"
     >
       {{ validateTargetButtonLabel }}
@@ -158,14 +157,14 @@ const onValidateTargets = () => {
     <div class="actions">
       <div>
         <UiTooltip
-          v-for="unit in activePlayer.summonableUnits"
+          v-for="unit in player.summonableUnits"
           :key="unit.unit.id"
           :side-offset="50"
           :delay="200"
         >
           <template #trigger>
             <button
-              :disabled="!activePlayer.canSummon(unit.unit.id)"
+              :disabled="!player.canSummon(unit.unit.id)"
               class="summon"
               :class="{
                 active: selectedSummon?.id === unit.unit.id,
@@ -188,13 +187,7 @@ const onValidateTargets = () => {
     </div>
 
     <UiButton
-      :style="{
-        '--d-button-bg': 'var(--red-9)',
-        '--d-button-hover-bg': 'var(--red-8)',
-        '--d-button-color': 'var(--gray-0)',
-        '--d-button-hover-color': 'var(--gray-0)'
-      }"
-      class="end-turn"
+      class="end-turn error-button"
       :disabled="!isActivePlayer"
       @click="sendInput('end-turn')"
     >

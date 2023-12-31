@@ -84,8 +84,8 @@ const tag = computed(() => {
     --_d-button-focus-color: var(--d-button-focus-color, var(--_d-button-color));
     --_d-button-focus-bg: var(--d-button-focus-bg, var(--_d-button-bg));
 
-    --_d-button-disabled-color: var(--d-button-color, var(--color-on-disabled));
-    --_d-button-disabled-bg: var(--d-button-bg, var(--color-disabled));
+    --_d-button-disabled-color: var(--d-button-disabled-color, var(--text-on-disabled));
+    --_d-button-disabled-bg: var(--d-button-bg-disabled-bg, var(--disabled));
 
     cursor: pointer;
 

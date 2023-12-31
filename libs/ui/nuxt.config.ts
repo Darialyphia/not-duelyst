@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     'dayjs-nuxt',
     'nuxt-icon',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@formkit/auto-animate/nuxt'
   ],
   vite: {
     vue: {

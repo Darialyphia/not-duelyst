@@ -73,16 +73,20 @@
   }
 }
 
+.ghost-button {
+  --d-button-bg: transparent;
+  --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
+}
+
+button:is(.primary-button, .error-button) {
+  --d-button-disabled-color: var(--text-on-disabled);
+  --d-button-disabled-bg: var(--disabled);
+}
 .primary-button {
   --d-button-bg: var(--primary);
   --d-button-hover-bg: var(--primary-hover);
 
   --d-button-color: var(--text-on-primary);
-}
-
-.ghost-button {
-  --d-button-bg: transparent;
-  --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
 }
 
 .error-button {

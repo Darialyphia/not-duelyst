@@ -12,6 +12,7 @@ definePageMeta({
         <ul class="grid gap-2">
           <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
           <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
+          <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
           <li><SignOutButton @sign-out="navigateTo('/play/login')" /></li>
         </ul>
       </nav>

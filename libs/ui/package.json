@@ -12,6 +12,7 @@
     "prepare": "nuxt prepare .playground"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@hc/shared": "*",
     "@types/css-tree": "^2.3.4",
     "@unocss/reset": "^0.53.4",
