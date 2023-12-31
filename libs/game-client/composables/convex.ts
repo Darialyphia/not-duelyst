@@ -68,6 +68,21 @@ export const useConvexQuery = <Query extends QueryReference>(
   return { data, error, isLoading: computed(() => data.value === undefined) };
 };
 
+export const useConvexAuthedQuery = <Query extends QueryReference>(
+  query: Query,
+  args: MaybeRefOrGetter<FunctionArgs<Query>>,
+  options: UseConvexQueryOptions = { ssr: true, enabled: true }
+) => {
+  const auth = useConvexAuth();
+  return useConvexQuery(query, args, {
+    ssr: options.ssr,
+    enabled: computed(() => {
+      const enabled = unref(options.enabled);
+      return !!(enabled && auth.isAuthenticated.value);
+    })
+  });
+};
+
 export type MutationReference = FunctionReference<'mutation'>;
 export function useConvexMutation<Mutation extends MutationReference>(
   mutation: Mutation,

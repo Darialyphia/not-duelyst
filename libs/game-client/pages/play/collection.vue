@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
-import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import { FACTIONS, UNITS, type UnitBlueprint } from '@hc/sdk';
 import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
-import type { Nullable, PartialBy } from '@hc/shared';
+import { unitImagesPaths } from '../../assets/units';
+import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
+import type { Id } from '@hc/api/convex/_generated/dataModel';
 
 definePageMeta({
   name: 'Collection'
 });
 
-const { data: collection, isLoading: isCollectionLoading } = useConvexQuery(
+const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
   api.collection.myCollection,
-  {},
-  { ssr: true }
+  {}
 );
 
 const factions: FactionId[] = ['haven', 'chaos', 'neutral'];
@@ -66,12 +66,12 @@ const nextPage = () => {
   }
 };
 
-const { data: loadouts } = useConvexQuery(api.loadout.myLoadouts, {});
+const { data: loadouts } = useConvexAuthedQuery(api.loadout.myLoadouts, {});
 
 const sidebarView = ref<'list' | 'form'>('list');
 
 const loadoutForm = ref<{
-  _id?: string;
+  loadoutId?: Id<'loadouts'>;
   name: string;
   generalId: string | null;
   unitIds: Set<string>;
@@ -84,13 +84,24 @@ const createEmptyLoadout = () => {
   loadoutForm.value = {
     generalId: null,
     unitIds: new Set(),
-    name: ''
+    name: `My New Loadout ${loadouts.value.length || ''}`
+  };
+};
+
+const selectLoadout = (loadout: LoadoutDto) => {
+  sidebarView.value = 'form';
+  factionFilter.value = UNITS[loadout.generalId].faction.id;
+  loadoutForm.value = {
+    loadoutId: loadout._id,
+    generalId: loadout.generalId,
+    unitIds: new Set(loadout.unitIds),
+    name: loadout.name
   };
 };
 
 const isInLoadout = (unitId: string) => {
   if (UNITS[unitId].kind === 'GENERAL') {
-    return !!loadoutForm.value?.generalId;
+    return loadoutForm.value?.generalId === unitId;
   }
   return loadoutForm.value?.unitIds.has(unitId);
 };
@@ -100,11 +111,10 @@ const canAddCardToLoadout = (unitId: string) => {
   const unit = UNITS[unitId];
   if (!general.value) return unit.kind === 'GENERAL';
 
-  return (
-    loadoutForm.value!.unitIds.size < LOADOUT_MAX_SIZE &&
-    (unit.faction === FACTIONS.neutral || unit.faction === general.value.faction)
-  );
+  return unit.faction === FACTIONS.neutral || unit.faction === general.value.faction;
 };
+
+const loadoutIsFull = computed(() => loadoutForm.value!.unitIds.size >= LOADOUT_MAX_SIZE);
 
 const toggleLoadoutCard = (unit: UnitBlueprint) => {
   if (sidebarView.value === 'list') return;
@@ -112,8 +122,10 @@ const toggleLoadoutCard = (unit: UnitBlueprint) => {
 
   switch (unit.kind) {
     case 'GENERAL':
-      if (isInLoadout(unit.id) && loadoutForm.value?.unitIds.size === 0) {
-        loadoutForm.value.generalId = null;
+      if (isInLoadout(unit.id)) {
+        if (loadoutForm.value?.unitIds.size === 0) {
+          loadoutForm.value.generalId = null;
+        }
       } else {
         loadoutForm.value!.generalId = unit.id;
       }
@@ -121,7 +133,7 @@ const toggleLoadoutCard = (unit: UnitBlueprint) => {
     case 'SOLDIER':
       if (isInLoadout(unit.id)) {
         loadoutForm.value!.unitIds.delete(unit.id);
-      } else {
+      } else if (!loadoutIsFull.value) {
         loadoutForm.value!.unitIds.add(unit.id);
       }
       break;
@@ -138,6 +150,48 @@ const sortedLoadoutUnits = computed(() =>
       return a.summonCost - b.summonCost;
     })
 );
+
+const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexMutation(
+  api.loadout.create,
+  {
+    onSuccess() {
+      sidebarView.value = 'list';
+    }
+  }
+);
+const { mutate: updateDeck, isLoading: isUpdatingDeck } = useConvexMutation(
+  api.loadout.update,
+  {
+    onSuccess() {
+      sidebarView.value = 'list';
+    }
+  }
+);
+
+const isSaving = computed(() => isSavingNewDeck.value || isUpdatingDeck.value);
+
+const onSubmit = () => {
+  if (!loadoutForm.value) return;
+  if (loadoutForm.value.loadoutId) {
+    updateDeck({
+      loadoutId: loadoutForm.value.loadoutId,
+      name: loadoutForm.value!.name,
+      generalId: loadoutForm.value.generalId!,
+      units: [...loadoutForm.value.unitIds]
+    });
+  } else {
+    saveNewDeck({
+      name: loadoutForm.value!.name,
+      generalId: loadoutForm.value.generalId!,
+      units: [...loadoutForm.value.unitIds]
+    });
+  }
+};
+
+const getGeneralImage = (generalId: string) => {
+  const unit = UNITS[generalId];
+  return unitImagesPaths[`${unit.spriteId}-icon`];
+};
 </script>
 
 <template>
@@ -184,9 +238,16 @@ const sortedLoadoutUnits = computed(() =>
 
     <section class="sidebar">
       <template v-if="sidebarView === 'form'">
-        <div class="flex flex-col h-full">
+        <form @submit.prevent="onSubmit">
+          <header>
+            <input v-model="loadoutForm!.name" class="py-3 flex-1" contenteditable />
+            {{ loadoutForm?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
+          </header>
+          <p v-if="!sortedLoadoutUnits.length" class="text-center p-4">
+            First, select a general.
+          </p>
           <ul v-if="loadoutForm" class="flex-1">
-            <li v-for="unit in sortedLoadoutUnits" :key="unit.id" class="p-2 flex gap-2">
+            <li v-for="unit in sortedLoadoutUnits" :key="unit.id" class="py-2 flex gap-2">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
               </div>
@@ -194,7 +255,8 @@ const sortedLoadoutUnits = computed(() =>
 
               <UiButton
                 aria-label="remove from loadout"
-                class="ml-auto rounded-round error-button p-2"
+                class="error-button"
+                type="button"
                 @click="toggleLoadoutCard(unit)"
               >
                 <Icon name="mdi:minus" />
@@ -206,23 +268,39 @@ const sortedLoadoutUnits = computed(() =>
             <UiButton
               class="ghost-button"
               left-icon="mdi:undo"
+              type="button"
+              :is-loading="isSaving"
               @click="sidebarView = 'list'"
             >
               Back
             </UiButton>
-            <UiButton class="primary-button">Save</UiButton>
+            <UiButton class="primary-button" :is-loading="isSaving">Save</UiButton>
           </footer>
-        </div>
+        </form>
       </template>
 
       <template v-else>
         <ul v-if="loadouts">
-          <li v-for="loadout in loadouts" :key="loadout._id">{{ loadout.name }}</li>
+          <li
+            v-for="loadout in loadouts"
+            :key="loadout._id"
+            class="p-2 border-primary border-1 m-2"
+          >
+            <button
+              class="loadout"
+              :style="{ '--bg': `url(${getGeneralImage(loadout.generalId)}` }"
+              @click="selectLoadout(loadout)"
+            >
+              {{ loadout.name }}
+            </button>
+          </li>
         </ul>
+        <p v-if="!loadouts.length" class="py-3 text-center">
+          You don't have any loadout yet
+        </p>
         <UiButton
-          class="primary-button"
+          class="primary-button mx-auto"
           left-icon="material-symbols:add"
-          is-cta
           @click="createEmptyLoadout"
         >
           Create new Loadout
@@ -247,9 +325,12 @@ const sortedLoadoutUnits = computed(() =>
   display: grid;
   grid-template-columns: 1fr var(--size-sm);
   grid-template-rows: auto 1fr auto;
+
   height: 100vh;
 
-  > :is(header, .loader) {
+  background-color: var(--surface-3);
+
+  > .loader {
     grid-column: 1 / -1;
   }
 
@@ -276,7 +357,7 @@ const sortedLoadoutUnits = computed(() =>
 .card-list {
   overflow: auto;
   display: grid;
-  grid-auto-rows: calc(50% - 2 * var(--sizeè2));
+  grid-auto-rows: calc(50% - 2 * var(--size-2));
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   row-gap: var(--size-3);
   column-gap: var(--size-4);
@@ -284,7 +365,7 @@ const sortedLoadoutUnits = computed(() =>
 
   padding-block: var(--size-2);
 
-  background-color: var(--surface-3);
+  border-radius: var(--radius-2);
 }
 .card {
   overflow-y: hidden;
@@ -300,6 +381,7 @@ const sortedLoadoutUnits = computed(() =>
   &.used {
     opacity: 0.8;
     filter: contrast(120%);
+    outline: solid var(--border-size-2) var(--primary);
   }
 
   &:not(.disabled):hover {
@@ -311,14 +393,51 @@ const sortedLoadoutUnits = computed(() =>
   }
 }
 
+.loadout {
+  --mask: linear-gradient(to right, hsl(0 0% 0% / 0.75), transparent 25%);
+
+  position: relative;
+
+  width: 100%;
+  padding: var(--size-3);
+  padding-left: var(--size-9);
+
+  text-align: left;
+
+  transition: 0.3s;
+  &::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background-image: var(--bg);
+    background-repeat: no-repeat;
+    background-position: left;
+
+    mask-image: var(--mask);
+  }
+
+  &:hover {
+    --mask: linear-gradient(to right, black, transparent 35%);
+
+    filter: brightness(125%) contrast(125%);
+  }
+}
+
 .sidebar {
-  grid-row: span 2;
+  grid-column: 2;
+  grid-row: 1 / -1;
+
+  background: var(--fancy-bg);
+  background-blend-mode: overlay;
+  border-left: var(--fancy-border);
 
   footer {
     display: flex;
     gap: var(--size-3);
     justify-content: flex-end;
-    padding: var(--size-3) var(--size-4);
+    padding-block: var(--size-3);
   }
 }
 
@@ -334,5 +453,28 @@ const sortedLoadoutUnits = computed(() =>
 
   background-color: var(--blue-9);
   border-radius: var(--radius-round);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  padding-top: var(--size-5);
+  padding-right: var(--size-3);
+  padding-left: var(--size-3);
+
+  > header {
+    display: flex;
+    gap: var(--size-3);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  li > button {
+    margin-left: auto;
+    padding: var(--size-2);
+    border-radius: var(--radius-round);
+  }
 }
 </style>

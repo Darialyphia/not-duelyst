@@ -81,6 +81,7 @@
 }
 
 .ghost-button {
+  --d-button-bg: transparent;
   --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
 }
 

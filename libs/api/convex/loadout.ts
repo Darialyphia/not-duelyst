@@ -9,7 +9,7 @@ import {
 } from './loadout/loadout.utils';
 import { toLoadoutDto } from './loadout/loadout.mapper';
 
-export const createLoadout = mutation({
+export const create = mutation({
   args: {
     name: v.string(),
     generalId: v.string(),
@@ -27,7 +27,7 @@ export const createLoadout = mutation({
   }
 });
 
-export const updateLoadout = mutation({
+export const update = mutation({
   args: {
     loadoutId: v.id('loadouts'),
     name: v.string(),
@@ -46,11 +46,12 @@ export const updateLoadout = mutation({
       unitIds: args.units
     });
 
-    ctx.db.replace(args.loadoutId, { ...args, ownerId: user._id });
+    const { loadoutId, ...body } = args;
+    ctx.db.replace(loadoutId, { ...body, ownerId: user._id });
   }
 });
 
-export const deleteLoadout = mutation({
+export const remove = mutation({
   args: {
     loadoutId: v.id('loadouts')
   },

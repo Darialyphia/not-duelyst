@@ -105,6 +105,8 @@ const border = computed(() => {
   --defense: var(--cyan-5);
   --speed: var(--yellow-3);
 
+  user-select: none;
+
   display: grid;
   grid-template-rows: auto auto auto;
 
