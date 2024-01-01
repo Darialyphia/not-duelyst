@@ -14,7 +14,7 @@ definePageMeta({
   <div class="page">
     <nav>
       <ul class="grid gap-2">
-        <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'MyProfile' }">Profile</NuxtLink></li>
@@ -31,7 +31,7 @@ definePageMeta({
 }
 .client-home-enter-from,
 .client-home-leave-to {
-  transform: scale(0.5);
+  transform: translateY(-1.5rem);
   opacity: 0;
 }
 </style>
