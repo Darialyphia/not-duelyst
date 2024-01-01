@@ -47,6 +47,7 @@ definePageMeta({
   > header {
     grid-column: 1 / -1;
     padding-block: var(--size-6);
+    text-shadow: black 0px 4px 1px;
   }
 }
 

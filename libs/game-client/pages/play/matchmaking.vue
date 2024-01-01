@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
+import { UNITS } from '@hc/sdk';
+import { unitImagesPaths } from '../../assets/units';
 
 definePageMeta({
   name: 'Matchmaking'
@@ -8,7 +10,11 @@ definePageMeta({
 
 const { count, inc, reset } = useCounter();
 
-const { pause, resume, isActive } = useIntervalFn(
+const {
+  pause,
+  resume,
+  isActive: isInMatchmaking
+} = useIntervalFn(
   () => {
     inc();
   },
@@ -46,31 +52,95 @@ const { data: loadouts, isLoading: isLoadingLoadouts } = useConvexAuthedQuery(
   {}
 );
 const selectedLoadoutId = ref<Id<'loadouts'>>();
+
+const getGeneralImage = (generalId: string) => {
+  const unit = UNITS[generalId];
+  return unitImagesPaths[`${unit.spriteId}-icon`];
+};
 </script>
 
 <template>
-  <div>
-    <header class="flex">
-      <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
-        <span class="i-material-symbols-arrow-back-rounded w-5 h-5" />
-        Go Back
-      </NuxtLink>
+  <div class="page container">
+    <header>
+      <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
+      <h1 class="text-5">Select game mode</h1>
     </header>
+
     <h2 class="text-3">Select your loadout</h2>
     <div v-if="isLoadingLoadouts">Loading...</div>
-    <label v-for="loadout in loadouts" :key="loadout._id">
-      <input v-model="selectedLoadoutId" type="radio" :value="loadout._id" />
-      {{ loadout.name }}
-    </label>
-    <div v-if="isActive">{{ duration }}</div>
-    <UiButton v-if="isActive" class="error-button" @click="leave({})">Leave</UiButton>
-    <UiButton
-      v-else
-      :disabled="!selectedLoadoutId"
-      class="primary-button"
-      @click="join({ loadoutId: selectedLoadoutId! })"
-    >
-      Join
-    </UiButton>
+    <div class="loadouts">
+      <label
+        v-for="loadout in loadouts"
+        :key="loadout._id"
+        class="fancy-surface flex items-center gap-4"
+      >
+        <img :src="getGeneralImage(loadout.generalId)" />
+        <input
+          v-model="selectedLoadoutId"
+          :disabled="isInMatchmaking"
+          type="radio"
+          :value="loadout._id"
+          class="sr-only"
+        />
+        {{ loadout.name }}
+      </label>
+    </div>
+
+    <footer class="flex gap-3 items-center">
+      <UiButton v-if="isInMatchmaking" class="error-button" @click="leave({})">
+        Leave
+      </UiButton>
+      <UiButton
+        v-else
+        :disabled="!selectedLoadoutId"
+        class="primary-button"
+        @click="join({ loadoutId: selectedLoadoutId! })"
+      >
+        Join
+      </UiButton>
+      <div v-if="isInMatchmaking">Searching for opponent...{{ duration }}</div>
+    </footer>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.page {
+  height: 100vh;
+
+  > header {
+    padding-block: var(--size-6);
+    text-shadow: black 0px 4px 1px;
+  }
+
+  > footer > button {
+    --d-button-size: var(--font-size-3);
+
+    min-width: var(--size-12);
+  }
+
+  > footer > div {
+    font-size: var(--font-size-5);
+    text-shadow: black 0px 4px 1px;
+  }
+}
+
+.loadouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--size-3);
+  margin-block: var(--size-4);
+
+  > label {
+    cursor: pointer;
+
+    &:has(input:checked) {
+      filter: brightness(120%);
+      outline: solid var(--border-size-2) var(--primary);
+    }
+
+    &:has(input:disabled) {
+      filter: grayscale(50%);
+    }
+  }
+}
+</style>
