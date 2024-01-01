@@ -44,7 +44,7 @@ const next = () => {
   gameSession.value?.dispatchAction(parsedReplay.value.replay[currentStep.value]);
   currentStep.value++;
 };
-let unsub: () => void = () => {};
+let unsub: () => void = () => void 0;
 
 onUnmounted(() => {
   unsub();
