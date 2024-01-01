@@ -1,4 +1,4 @@
-import { GameSession } from '@hc/sdk';
+import { GameSession, SerializedGameState } from '@hc/sdk';
 import 'dotenv/config';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 async function main() {
   const ongoingGames = new Map<
     string,
-    { session: GameSession; playerJoined: Set<string> }
+    { session: GameSession; playerJoined: Set<string>; initialState: SerializedGameState }
   >();
   const httpServer = createServer();
   const io = new Server<

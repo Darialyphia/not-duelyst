@@ -76,6 +76,7 @@
 .ghost-button {
   --d-button-bg: transparent;
   --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
+  --d-button-disabled-bg: transparent;
 }
 
 button:is(.primary-button, .error-button) {

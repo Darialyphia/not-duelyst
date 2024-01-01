@@ -74,10 +74,13 @@ export const useConvexAuthedQuery = <Query extends QueryReference>(
   options: UseConvexQueryOptions = { ssr: true, enabled: true }
 ) => {
   const auth = useConvexAuth();
+
   return useConvexQuery(query, args, {
     ssr: options.ssr,
     enabled: computed(() => {
-      const enabled = unref(options.enabled);
+      let enabled = unref(options.enabled);
+      if (enabled === undefined) enabled = true;
+
       return !!(enabled && auth.isAuthenticated.value);
     })
   });

@@ -28,8 +28,6 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
         hoveredCell?.position.y
       }}, z: {{ hoveredCell?.position.z }}</pre
     >
-    <pre>rotation: {{ mapRotation }}</pre>
-    <pre>Target mode: {{ targetMode }}</pre>
     <button
       @click="
         () => {

@@ -17,6 +17,7 @@ import type {
 import type * as collection from "../collection.js";
 import type * as game_utils from "../game/utils.js";
 import type * as gameMaps from "../gameMaps.js";
+import type * as gameReplays from "../gameReplays.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
 import type * as loadout from "../loadout.js";
@@ -38,6 +39,7 @@ declare const fullApi: ApiFromModules<{
   collection: typeof collection;
   "game/utils": typeof game_utils;
   gameMaps: typeof gameMaps;
+  gameReplays: typeof gameReplays;
   games: typeof games;
   hathora: typeof hathora;
   loadout: typeof loadout;

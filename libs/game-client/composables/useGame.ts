@@ -37,6 +37,7 @@ export type GameContext = {
   gameSession: GameSession;
   sendInput: ShortEmits<GameEmits>;
   isActivePlayer: ComputedRef<boolean>;
+  isReplay: boolean;
   mapRotation: Ref<0 | 90 | 180 | 270>;
   assets: AssetsContext;
   utils: {
@@ -74,7 +75,8 @@ export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
 export const useGameProvider = (
   session: GameSession,
   emit: ShortEmits<GameEmits>,
-  playerId: string | null
+  playerId: string | null,
+  isReplay: boolean
 ) => {
   const assets = useAssetsProvider();
   const state = ref<GameState>(session.getState());
@@ -100,12 +102,14 @@ export const useGameProvider = (
 
   const selectedEntityId = ref<Nullable<number>>(null);
   const isActivePlayer = computed(() => {
+    if (isReplay) return false;
     // allows to controlk both player in sandbox mode
     return playerId ? state.value.activePlayer.id === playerId : true;
   });
   const context: GameContext = {
     assets,
     playerId,
+    isReplay,
     isActivePlayer,
     state: state as Ref<GameState>,
     gameSession: session,

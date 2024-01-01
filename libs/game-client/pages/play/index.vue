@@ -13,7 +13,8 @@ definePageMeta({
           <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
           <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
           <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
-          <li><SignOutButton @sign-out="navigateTo('/play/login')" /></li>
+          <li><NuxtLink :to="{ name: 'MyProfile' }">Profile</NuxtLink></li>
+          <li><SignOutButton @sign-out="navigateTo('/login')" /></li>
         </ul>
       </nav>
     </div>

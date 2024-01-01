@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { unitImagesPaths } from '../../assets/units';
 import { skillImagesPaths } from '../../assets/skills';
-import { exhaustiveSwitch } from '@hc/shared';
 
-import neutralBorder from '../../assets/ui/icon-border-neutral.png';
-import neutralBorderRounded from '../../assets/ui/icon-border-neutral-rounded.png';
-import havenBorder from '../../assets/ui/icon-border-haven.png';
-import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
-import chaosBorder from '../../assets/ui/icon-border-chaos.png';
-import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
-
-const { playerId, isActivePlayer, state, sendInput } = useGame();
+const { playerId, isActivePlayer, state, sendInput, isReplay } = useGame();
 const {
   targetMode,
   summonTargets,
@@ -27,18 +19,9 @@ const player = computed(() => {
   return state.value.players.find(p => p.id === playerId)!;
 });
 
-const borders = computed(() => {
-  switch (state.value.activePlayer.general.unit.faction.id) {
-    case 'neutral':
-      return { square: neutralBorder, rounded: neutralBorderRounded };
-    case 'haven':
-      return { square: havenBorder, rounded: havenBorderRounded };
-    case 'chaos':
-      return { square: chaosBorder, rounded: chaosBorderRounded };
-    default:
-      throw exhaustiveSwitch(state.value.activePlayer.general.unit.faction.id);
-  }
-});
+const borders = computed(
+  () => factionUtils[player.value.general.unit.faction.id].borders
+);
 
 const targetsCount = computed(() => {
   if (targetMode.value === 'skill') return skillTargets.value.size;
@@ -187,6 +170,7 @@ const onValidateTargets = () => {
     </div>
 
     <UiButton
+      v-if="!isReplay"
       class="end-turn error-button"
       :disabled="!isActivePlayer"
       @click="sendInput('end-turn')"

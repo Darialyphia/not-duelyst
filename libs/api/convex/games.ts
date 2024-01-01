@@ -1,7 +1,7 @@
 import { internal } from './_generated/api';
 import { query, mutation, internalMutation, action } from './_generated/server';
 import { toUserDto } from './users/user.mapper';
-import { findMe } from './users/user.utils';
+import { ensureUserExists, findMe } from './users/user.utils';
 import { ensureAuthenticated } from './utils/auth';
 import { v } from 'convex/values';
 
@@ -82,11 +82,15 @@ export const destroy = internalMutation({
 export const end = action({
   args: {
     gameId: v.id('games'),
-    winnerId: v.id('users')
+    winnerId: v.id('users'),
+    replay: v.string()
   },
-  async handler(ctx, args) {
+  async handler(ctx, { replay, ...args }) {
     const game = await ctx.runMutation(internal.games.destroy, args);
-
+    await ctx.runMutation(internal.gameReplays.createReplay, {
+      gameId: args.gameId,
+      replay: replay
+    });
     await ctx.runAction(internal.hathora.destroyRoom, { roomId: game.roomId });
   }
 });
@@ -139,6 +143,44 @@ export const getAllOngoing = query(async ctx => {
             const user = await ctx.db.get(gamePlayer.userId);
             return {
               ...toUserDto(user!),
+              loadout: await ctx.db.get(gamePlayer.loadoutId)
+            };
+          })
+        )
+      };
+    })
+  );
+});
+
+export const getMyGameHistory = query(async ctx => {
+  const identity = await ensureAuthenticated(ctx);
+  const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+
+  const gameUsers = await ctx.db
+    .query('gamePlayers')
+    .withIndex('by_creation_time')
+    .filter(q => q.eq(q.field('userId'), user._id))
+    .collect();
+
+  return Promise.all(
+    gameUsers.map(async gu => {
+      const game = await ctx.db.get(gu.gameId);
+      if (!game) throw new Error('Game not found.');
+
+      const gamePlayers = await ctx.db
+        .query('gamePlayers')
+        .withIndex('by_game_id', q => q.eq('gameId', game?._id))
+        .collect();
+
+      return {
+        ...game,
+
+        players: await Promise.all(
+          gamePlayers.map(async gamePlayer => {
+            const user = await ctx.db.get(gamePlayer.userId);
+            return {
+              ...toUserDto(user!),
+              gamePlayerId: gamePlayer._id,
               loadout: await ctx.db.get(gamePlayer.loadoutId)
             };
           })

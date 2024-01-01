@@ -1,8 +1,8 @@
 import { UserDto, api } from '@hc/api';
 import { Server, Socket } from 'socket.io';
 import { ConvexHttpClient } from 'convex/browser';
-import { GameSession } from '@hc/sdk';
-import { parse } from 'zipson';
+import { GameSession, SerializedGameState } from '@hc/sdk';
+import { parse, stringify } from 'zipson';
 
 export const handlePlayerSocket = async (
   io: Server<
@@ -23,7 +23,10 @@ export const handlePlayerSocket = async (
       user: UserDto;
     }
   >,
-  ongoingGames: Map<string, { session: GameSession; playerJoined: Set<string> }>
+  ongoingGames: Map<
+    string,
+    { session: GameSession; playerJoined: Set<string>; initialState: SerializedGameState }
+  >
 ) => {
   const game = await socket.data.convexClient.query(api.games.getCurrent);
   if (!game) {
@@ -37,7 +40,7 @@ export const handlePlayerSocket = async (
   }
 
   if (!ongoingGames.has(game._id)) {
-    const session = GameSession.createServerSession({
+    const initialState: SerializedGameState = {
       activePlayerId: game.firstPlayer,
       history: [],
       entities: [],
@@ -71,7 +74,8 @@ export const handlePlayerSocket = async (
         cells: parse(map.cells),
         startPositions: [map.startPositions[0], map.startPositions[1]]
       }
-    });
+    };
+    const session = GameSession.createServerSession(initialState);
     session.subscribe(action => {
       io.in(game._id).emit('game:action', action.serialize());
       if (action.name !== 'END_GAME') return;
@@ -79,12 +83,14 @@ export const handlePlayerSocket = async (
 
       socket.data.convexClient.action(api.games.end, {
         gameId: game._id,
-        winnerId: winner!.id as any
+        winnerId: winner!.id as any,
+        replay: stringify({ initialState, replay: session.history.serialize() })
       });
     });
 
     ongoingGames.set(game._id, {
       session,
+      initialState,
       playerJoined: new Set()
     });
   }

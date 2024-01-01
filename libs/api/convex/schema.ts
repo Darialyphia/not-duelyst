@@ -38,6 +38,11 @@ export default defineSchema({
     .index('by_user_id', ['userId'])
     .index('by_game_id', ['gameId']),
 
+  gameReplays: defineTable({
+    gameId: v.id('games'),
+    replay: v.string()
+  }).index('by_game_id', ['gameId']),
+
   gameMaps: defineTable({
     name: v.string(),
     width: v.number(),
