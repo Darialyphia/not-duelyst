@@ -49,26 +49,28 @@ const selectedLoadoutId = ref<Id<'loadouts'>>();
 </script>
 
 <template>
-  <header class="flex">
-    <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
-      <span class="i-material-symbols-arrow-back-rounded w-5 h-5" />
-      Go Back
-    </NuxtLink>
-  </header>
-  <h2 class="text-3">Select your loadout</h2>
-  <div v-if="isLoadingLoadouts">Loading...</div>
-  <label v-for="loadout in loadouts" :key="loadout._id">
-    <input v-model="selectedLoadoutId" type="radio" :value="loadout._id" />
-    {{ loadout.name }}
-  </label>
-  <div v-if="isActive">{{ duration }}</div>
-  <UiButton v-if="isActive" class="error-button" @click="leave({})">Leave</UiButton>
-  <UiButton
-    v-else
-    :disabled="!selectedLoadoutId"
-    class="primary-button"
-    @click="join({ loadoutId: selectedLoadoutId! })"
-  >
-    Join
-  </UiButton>
+  <div>
+    <header class="flex">
+      <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
+        <span class="i-material-symbols-arrow-back-rounded w-5 h-5" />
+        Go Back
+      </NuxtLink>
+    </header>
+    <h2 class="text-3">Select your loadout</h2>
+    <div v-if="isLoadingLoadouts">Loading...</div>
+    <label v-for="loadout in loadouts" :key="loadout._id">
+      <input v-model="selectedLoadoutId" type="radio" :value="loadout._id" />
+      {{ loadout.name }}
+    </label>
+    <div v-if="isActive">{{ duration }}</div>
+    <UiButton v-if="isActive" class="error-button" @click="leave({})">Leave</UiButton>
+    <UiButton
+      v-else
+      :disabled="!selectedLoadoutId"
+      class="primary-button"
+      @click="join({ loadoutId: selectedLoadoutId! })"
+    >
+      Join
+    </UiButton>
+  </div>
 </template>

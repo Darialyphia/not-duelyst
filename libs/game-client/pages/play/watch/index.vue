@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
-import bg from '../../../assets/backgrounds/palace.jpg';
 import { unitImagesPaths } from '../../../assets/units';
 
 definePageMeta({
@@ -11,60 +10,38 @@ const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing,
 </script>
 
 <template>
-  <div class="page" :style="{ '--bg': `url(${bg})` }">
-    <div>
-      <div v-if="isLoading">Loading games...</div>
-      <div v-else-if="games" class="container">
-        <header>
-          <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
-            <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
-            Go Back
-          </NuxtLink>
-          <h1 class="text-5">Ongoing games</h1>
-        </header>
+  <div v-if="isLoading">Loading games...</div>
+  <div v-else-if="games" class="container">
+    <header>
+      <BackButton />
+      <h1 class="text-5">Ongoing games</h1>
+    </header>
 
-        <p v-if="!games.length">
-          There are no ongoing game at the moment. Check back later !
-        </p>
+    <p v-if="!games.length">
+      There are no ongoing game at the moment. Check back later !
+    </p>
 
-        <article v-for="game in games" :key="game._id">
-          <div class="flex-1 flex gap-4 items-center">
-            <img :src="unitImagesPaths[`${game.players[0].loadout?.generalId}-icon`]" />
+    <article v-for="game in games" :key="game._id">
+      <div class="flex-1 flex gap-4 items-center">
+        <img :src="unitImagesPaths[`${game.players[0].loadout?.generalId}-icon`]" />
 
-            {{ game.players[0].name }}
-            <span class="mx-auto">VS</span>
-            {{ game.players[1].name }}
-            <img :src="unitImagesPaths[`${game.players[1].loadout?.generalId}-icon`]" />
-          </div>
-          <NuxtLink
-            v-slot="{ navigate, href }"
-            :to="{ name: 'WatchGame', params: { id: game._id } }"
-            custom
-          >
-            <UiButton class="primary-button" :href="href" @click="navigate">
-              Watch
-            </UiButton>
-          </NuxtLink>
-        </article>
+        {{ game.players[0].name }}
+        <span class="mx-auto">VS</span>
+        {{ game.players[1].name }}
+        <img :src="unitImagesPaths[`${game.players[1].loadout?.generalId}-icon`]" />
       </div>
-    </div>
+      <NuxtLink
+        v-slot="{ navigate, href }"
+        :to="{ name: 'WatchGame', params: { id: game._id } }"
+        custom
+      >
+        <UiButton class="primary-button" :href="href" @click="navigate">Watch</UiButton>
+      </NuxtLink>
+    </article>
   </div>
 </template>
 
 <style scoped lang="postcss">
-.page {
-  min-height: 100vh;
-  background: var(--bg);
-  background-attachment: fixed;
-  background-size: cover;
-
-  > div {
-    height: 100%;
-    min-height: 100vh;
-    background: var(--fancy-bg-transparency);
-  }
-}
-
 header {
   display: flex;
   gap: var(--size-3);

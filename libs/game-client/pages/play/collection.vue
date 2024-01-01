@@ -9,7 +9,11 @@ import cardBack from '../../assets/ui/card-back.png';
 import bg from '../../assets/backgrounds/spire.jpg';
 
 definePageMeta({
-  name: 'Collection'
+  name: 'Collection',
+  pageTransition: {
+    name: 'collection',
+    mode: 'out-in'
+  }
 });
 
 const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
@@ -211,11 +215,7 @@ const getGeneralImage = (generalId: string) => {
 
   <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
     <header class="fancy-surface border-none">
-      <NuxtLink :to="{ name: 'ClientHome' }" class="flex gap-1 items-center">
-        <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
-        Go Back
-      </NuxtLink>
-
+      <BackButton class="flex-self-center" />
       <div class="flex gap-2">
         <UiButton
           v-for="faction in factions"
@@ -331,6 +331,18 @@ const getGeneralImage = (generalId: string) => {
     </section>
   </div>
 </template>
+
+<style lang="postcss">
+.collection-enter-active,
+.collection-leave-active {
+  transition: all 0.4s;
+}
+.collection-enter-from,
+.collection-leave-to {
+  opacity: 0;
+  filter: blur(5px);
+}
+</style>
 
 <style scoped lang="postcss">
 .collection-page {

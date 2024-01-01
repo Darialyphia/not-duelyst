@@ -1,42 +1,45 @@
 <script setup lang="ts">
 import { SignOutButton } from 'vue-clerk';
-import bg from '../../assets/backgrounds/palace.jpg';
 definePageMeta({
-  name: 'ClientHome'
+  name: 'ClientHome',
+  pageTransition: {
+    name: 'client-home',
+    mode: 'out-in',
+    appear: true
+  }
 });
 </script>
+
 <template>
-  <div class="page" :style="{ '--bg': `url(${bg})` }">
-    <div>
-      <nav>
-        <ul class="grid gap-2">
-          <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
-          <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
-          <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
-          <li><NuxtLink :to="{ name: 'MyProfile' }">Profile</NuxtLink></li>
-          <li><SignOutButton @sign-out="navigateTo('/login')" /></li>
-        </ul>
-      </nav>
-    </div>
+  <div class="page">
+    <nav>
+      <ul class="grid gap-2">
+        <li><NuxtLink :to="{ name: 'Matchmaking' }">Play</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'MyProfile' }">Profile</NuxtLink></li>
+        <li><SignOutButton @sign-out="navigateTo('/login')" /></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
+<style lang="postcss">
+.client-home-enter-active,
+.client-home-leave-active {
+  transition: all 0.3s;
+}
+.client-home-enter-from,
+.client-home-leave-to {
+  transform: scale(0.5);
+  opacity: 0;
+}
+</style>
 <style scoped lang="postcss">
 .page {
+  display: grid;
+  place-content: center;
   min-height: 100vh;
-  background: var(--bg);
-  background-attachment: fixed;
-  background-size: cover;
-
-  > div {
-    display: grid;
-    place-content: center;
-
-    height: 100%;
-    min-height: 100vh;
-
-    background: var(--fancy-bg-transparency);
-  }
 }
 
 li > * {
