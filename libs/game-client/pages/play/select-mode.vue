@@ -21,12 +21,9 @@ definePageMeta({
     </div>
 
     <div class="mode" style="--hue-shift: 45">
-      <NuxtLink :to="{ name: 'Matchmaking' }" @click.prevent>
+      <NuxtLink :to="{ name: 'Sandbox' }" @click.prevent>
         <div class="fancy-surface">
-          <h2>
-            Sandbox
-            <sup>soon</sup>
-          </h2>
+          <h2>Sandbox</h2>
 
           <p>Play a practice game where you control both players.</p>
         </div>
@@ -65,16 +62,6 @@ definePageMeta({
       place-content: center;
       filter: hue-rotate(calc(1deg * var(--hue-shift)));
     }
-  }
-
-  h2 > sup {
-    padding: 0 var(--size-2);
-
-    font-size: var(--font-size-0);
-    font-weight: var(--font-weight-5);
-
-    border: solid var(--border-size-1) currentColor;
-    border-radius: var(--radius-pill);
   }
 }
 </style>

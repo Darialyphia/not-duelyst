@@ -1,4 +1,4 @@
-import { Constructor, JSONObject, JSONValue, Values } from '@hc/shared';
+import { Constructor, JSONObject, Values } from '@hc/shared';
 import { GameAction } from './action';
 import { DealDamageAction } from './deal-damage.action';
 import { EndTurnAction } from './end-turn.action';
@@ -14,7 +14,6 @@ import { ModifyGoldAction } from './modify-gold.action';
 import { RemoveInteractableAction } from './removeInteractable.action';
 import { ModifyApAction } from './modify-ap.action';
 import { DisplaceAction } from './displace.action';
-import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { SummonInteractableAction } from './summon-interactable.action';
 import { TeleportAction } from './teleport.action';
 

@@ -84,7 +84,7 @@ export const handlePlayerSocket = async (
       socket.data.convexClient.action(api.games.end, {
         gameId: game._id,
         winnerId: winner!.id as any,
-        replay: stringify({ initialState, replay: session.history.serialize() })
+        replay: stringify(session.history.serialize())
       });
     });
 

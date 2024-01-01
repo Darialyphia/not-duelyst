@@ -2,7 +2,6 @@
 import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import { GameSession, type SerializedAction, type SerializedGameState } from '@hc/sdk';
-import type { Nullable } from '@hc/shared';
 import { parse } from 'zipson';
 
 definePageMeta({
@@ -12,7 +11,7 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { data: replay, isLoading } = useConvexQuery(
+const { data: gameInfos, isLoading } = useConvexQuery(
   api.gameReplays.byGameId,
   {
     gameId: route.params.id as Id<'games'>
@@ -21,12 +20,7 @@ const { data: replay, isLoading } = useConvexQuery(
 );
 
 const parsedReplay = computed(() =>
-  replay.value
-    ? (parse(replay.value.replay) as {
-        initialState: SerializedGameState;
-        replay: SerializedAction[];
-      })
-    : null
+  gameInfos.value ? (parse(gameInfos.value.replay.replay) as SerializedAction[]) : null
 );
 
 const currentStep = ref(0);
@@ -36,12 +30,12 @@ const gameSession = shallowRef<GameSession>();
 
 const next = () => {
   if (!parsedReplay.value) return;
-  if (currentStep.value === parsedReplay.value.replay.length - 1) {
+  if (currentStep.value === parsedReplay.value.length - 1) {
     isPlaying.value = false;
     return;
   }
 
-  gameSession.value?.dispatchAction(parsedReplay.value.replay[currentStep.value]);
+  gameSession.value?.dispatchAction(parsedReplay.value[currentStep.value]);
   currentStep.value++;
 };
 let unsub: () => void = () => void 0;
@@ -51,8 +45,44 @@ onUnmounted(() => {
 });
 until(parsedReplay)
   .not.toBeNull()
-  .then(replay => {
-    gameSession.value = GameSession.createClientSession(replay.initialState);
+  .then(parsedReplay => {
+    const { game, map, replay } = gameInfos.value!;
+    const initialState: SerializedGameState = {
+      activePlayerId: game.firstPlayer,
+      history: [],
+      entities: [],
+      turn: 0,
+      players: [
+        {
+          gold: 2,
+          id: game.players[0]._id,
+          name: game.players[0].name,
+          loadout: {
+            units: Object.fromEntries(
+              game.players[0].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+            )
+          },
+          generalId: game.players[0].loadout!.generalId
+        },
+        {
+          gold: 2,
+          id: game.players[1]._id,
+          name: game.players[1].name,
+          loadout: {
+            units: Object.fromEntries(
+              game.players[1].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+            )
+          },
+          generalId: game.players[1].loadout!.generalId
+        }
+      ],
+      map: {
+        ...map,
+        cells: parse(map.cells),
+        startPositions: [map.startPositions[0], map.startPositions[1]]
+      }
+    };
+    gameSession.value = GameSession.createClientSession(initialState);
 
     unsub = gameSession.value.subscribe(() => {
       if (isPlaying.value) {
