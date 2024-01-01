@@ -191,6 +191,10 @@ const onValidateTargets = () => {
 
   backdrop-filter: blur(5px);
   border-radius: var(--radius-3);
+
+  @screen lt-lg {
+    padding: var(--size-3);
+  }
 }
 
 .active-entity {
@@ -208,6 +212,10 @@ const onValidateTargets = () => {
   position: relative;
   width: 64px;
   box-shadow: inset 0 0 0 1px black;
+
+  @screen lt-lg {
+    width: 48px;
+  }
 
   &::after {
     content: attr(data-cost);
@@ -271,6 +279,10 @@ const onValidateTargets = () => {
 .skill {
   width: 64px;
   border-radius: 4px;
+
+  @screen lt-lg {
+    width: 48px;
+  }
 }
 
 .summon {
@@ -284,6 +296,10 @@ const onValidateTargets = () => {
 }
 .end-turn {
   margin-left: auto;
+
+  @screen lt-lg {
+    --d-button-size: var(--font-size-0);
+  }
 }
 
 .skill-tooltip {

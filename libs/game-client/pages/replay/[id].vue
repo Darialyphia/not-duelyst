@@ -45,8 +45,8 @@ onUnmounted(() => {
 });
 until(parsedReplay)
   .not.toBeNull()
-  .then(parsedReplay => {
-    const { game, map, replay } = gameInfos.value!;
+  .then(() => {
+    const { game, map } = gameInfos.value!;
     const initialState: SerializedGameState = {
       activePlayerId: game.firstPlayer,
       history: [],

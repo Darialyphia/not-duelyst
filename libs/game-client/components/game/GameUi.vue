@@ -99,6 +99,10 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   color: white;
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  @screen lt-lg {
+    display: none;
+  }
 }
 
 .menu {

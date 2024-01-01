@@ -73,18 +73,7 @@ const getBorder = (entity: Entity) => {
   padding: var(--size-3);
   text-shadow: black 1px 0 5px;
 
-  img {
-    aspect-ratio: 1;
-    width: var(--size-11);
-    margin-inline: auto;
-    padding: var(--size-1);
-
-    object-fit: cover;
-    border-radius: var(--radius-round);
-
-    image-rendering: pixelated;
-  }
-  [class^='i'] {
+  [class^='i-'] {
     font-size: var(--font-size-4);
 
     &.hp {
@@ -106,14 +95,43 @@ const getBorder = (entity: Entity) => {
   border-radius: var(--radius-round);
   box-shadow: inset 0 0 0 1px black;
 
+  @screen lt-lg {
+    align-self: flex-start;
+  }
+
+  > img {
+    aspect-ratio: 1;
+    width: var(--size-11);
+    margin-inline: auto;
+    padding: var(--size-1);
+
+    object-fit: cover;
+    border-radius: var(--radius-round);
+
+    image-rendering: pixelated;
+
+    @screen lt-lg {
+      width: var(--size-7);
+    }
+  }
+
   &.active {
     border: solid var(--border-size-3) var(--primary);
+
+    @screen lt-lg {
+      border: solid var(--border-size-1) var(--primary);
+    }
   }
 }
 .player-1 {
   position: absolute;
   top: var(--size-3);
   left: var(--size-5);
+
+  @screen lt-sm {
+    top: 0;
+    left: 0;
+  }
 }
 .player-2 {
   position: absolute;
@@ -123,6 +141,11 @@ const getBorder = (entity: Entity) => {
   flex-direction: row-reverse;
 
   text-align: right;
+
+  @screen lt-sm {
+    top: 0;
+    right: 0;
+  }
 
   img {
     transform: rotateY(0.5turn);
@@ -135,6 +158,10 @@ const getBorder = (entity: Entity) => {
 .player-name {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
+
+  @screen lt-lg {
+    font-size: var(--font-size-2);
+  }
 }
 
 .indicators {
@@ -142,5 +169,10 @@ const getBorder = (entity: Entity) => {
   gap: var(--size-2);
   align-items: center;
   font-size: var(--font-size-2);
+
+  @screen lt-lg {
+    gap: var(--size-1);
+    font-size: var(--font-size-0);
+  }
 }
 </style>
