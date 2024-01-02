@@ -1,6 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
-  name: 'SelectGameMode'
+  name: 'SelectGameMode',
+  pageTransition: {
+    name: 'select-mode',
+    mode: 'out-in'
+  }
 });
 </script>
 
@@ -32,6 +36,18 @@ definePageMeta({
   </div>
 </template>
 
+<style lang="postcss">
+.select-mode-enter-active,
+.select-mode-leave.active {
+  transition: all 0.4s;
+}
+
+.select-mode-enter-from,
+.select-mode-leave-to {
+  transform: translateY(-1.5rem);
+  opacity: 0;
+}
+</style>
 <style scoped lang="postcss">
 .page {
   display: grid;
@@ -53,6 +69,7 @@ definePageMeta({
     display: grid;
     height: 100%;
     font-size: var(--font-size-4);
+
     &:hover {
       filter: brightness(130%);
     }

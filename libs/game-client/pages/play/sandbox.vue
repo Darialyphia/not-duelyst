@@ -77,7 +77,7 @@ const createGameState = () => {
 <template>
   <div v-if="!initialState" class="page container">
     <header>
-      <BackButton class="inline-flex" :to="{ name: 'SelectameMode' }" />
+      <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
       <h1 class="text-5">Create sandbox game</h1>
     </header>
 
