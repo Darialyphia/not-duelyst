@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { GameSession, type Player } from '@hc/sdk';
-import { makeDummyState } from '~/dummy-state';
+import { GameSession, type Player, type SerializedGameState } from '@hc/sdk';
 
-const serverSession = GameSession.createServerSession(await makeDummyState('New Map'));
-const clientSession = GameSession.createClientSession(await makeDummyState('New Map'));
+const { initialState } = defineProps<{ initialState: SerializedGameState }>();
+const serverSession = GameSession.createServerSession(initialState);
+const clientSession = GameSession.createClientSession(initialState);
 serverSession.subscribe(action => {
   clientSession.dispatchAction(action.serialize() as any); // @FIXME
 });
