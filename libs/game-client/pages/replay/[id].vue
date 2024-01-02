@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
-import { GameSession, type SerializedAction, type SerializedGameState } from '@hc/sdk';
+import {
+  GameSession,
+  type SerializedAction,
+  type SerializedGameState,
+  type ActionName
+} from '@hc/sdk';
+import type { PartialRecord } from '@hc/shared';
 import { parse } from 'zipson';
 
 definePageMeta({
@@ -10,6 +16,12 @@ definePageMeta({
   name: 'Replay'
 });
 
+const ACTION_TIMEOUTS: PartialRecord<ActionName, number> = {
+  REMOVE_INTERACTABLE: 0,
+  END_TURN: 0,
+  ADD_EFFECT: 0,
+  SUMMON_INTERACTABLE: 0
+};
 const route = useRoute();
 const { data: gameInfos, isLoading } = useConvexQuery(
   api.gameReplays.byGameId,
@@ -84,11 +96,14 @@ until(parsedReplay)
     };
     gameSession.value = GameSession.createClientSession(initialState);
 
-    unsub = gameSession.value.subscribe(() => {
+    unsub = gameSession.value.subscribe(action => {
       if (isPlaying.value) {
-        setTimeout(() => {
-          next();
-        }, 1000);
+        setTimeout(
+          () => {
+            next();
+          },
+          ACTION_TIMEOUTS[action.name as ActionName] ?? 1000
+        );
       }
     });
   });

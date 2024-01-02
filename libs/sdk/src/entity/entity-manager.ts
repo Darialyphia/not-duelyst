@@ -147,7 +147,6 @@ export class EntityManager {
 
     let entity = null;
 
-    console.log(origin, target);
     for (let i = 1; i <= Math.abs(distance); i++) {
       entity = this.ctx.entityManager.getEntityAt({
         x: axis == 'x' ? target.x + step * i : target.x,

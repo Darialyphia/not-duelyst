@@ -3,6 +3,8 @@ import { EntityId } from '../entity/entity';
 import { isAxisAligned } from '../skill/skill-utils';
 import { Point3D } from '../types';
 import { GameAction } from './action';
+import { Direction } from '../map/tile';
+import { Vec3 } from '../utils/vector';
 
 export class DisplaceAction extends GameAction<{
   targetId: EntityId;
@@ -62,6 +64,10 @@ export class DisplaceAction extends GameAction<{
     return null;
   }
 
+  getDirection(step: number): Direction {
+    if (this.displacementAxis === 'x') return step < 0 ? 'west' : 'east';
+    return step < 0 ? 'north' : 'south';
+  }
   get destination() {
     let step = 1;
     if (this.payload.distance < 0) step *= -1;
@@ -72,16 +78,13 @@ export class DisplaceAction extends GameAction<{
       step *= -1;
     }
 
-    const destination = this.target.position.serialize();
+    let destination = this.target.position.serialize();
+
     for (let i = 1; i <= Math.abs(this.payload.distance); i++) {
       const obstacle = this.getObstacleAtDistance(step * i);
       if (obstacle) break;
 
-      destination[this.displacementAxis] = clamp(
-        destination[this.displacementAxis] + step,
-        0,
-        this.displacementAxis === 'x' ? this.ctx.map.width - 1 : this.ctx.map.height - 1
-      );
+      destination = this.ctx.map.getDestination(destination, this.getDirection(step))!;
     }
 
     return destination;
@@ -92,6 +95,6 @@ export class DisplaceAction extends GameAction<{
       throw new Error('Knock back points must be axis aligned !');
     }
 
-    this.target.position[this.displacementAxis] = this.destination[this.displacementAxis];
+    this.target.position = Vec3.fromPoint3D(this.destination);
   }
 }
