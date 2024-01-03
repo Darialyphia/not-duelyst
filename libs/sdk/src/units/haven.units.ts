@@ -1,12 +1,12 @@
 import { isDefined } from '@hc/shared';
 import { DealDamageAction } from '../action/deal-damage.action';
-import { isEnemy } from '../entity/entity-utils';
+import { isAlly, isEnemy } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { Fireball } from '../skill/fireball.skill';
 import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
-import { isWithinCells } from '../skill/skill-utils';
+import { isSelf, isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
@@ -14,6 +14,12 @@ import { Knockback } from '../skill/knockback.skill';
 import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { Taunt } from '../skill/taunt.skill';
 import { Teleport } from '../skill/teleport.skill';
+import { Skill, SkillDescriptionContext } from '../skill/skill';
+import { Entity } from '../entity/entity';
+import { GameSession } from '../game-session';
+import { Cell } from '../map/cell';
+import { Point3D } from '../types';
+import { HealAction } from '../action/heal.action';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
@@ -201,6 +207,92 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         name: 'Firewall',
         allowSeparatedTargets: false,
         allowNonempty: true
+      })
+    ]
+  },
+  {
+    id: 'haven-paladin',
+    spriteId: 'haven-paladin',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.haven,
+    summonCost: 4,
+    summonCooldown: 4,
+    maxHp: 8,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 3,
+    defense: 0,
+    speed: 3,
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new (class extends Skill {
+        id = 'consecration';
+
+        isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
+          return isSelf(caster, ctx.entityManager.getEntityAt(point));
+        }
+
+        isTargetable(ctx: GameSession, point: Point3D, caster: Entity) {
+          return isSelf(caster, ctx.entityManager.getEntityAt(point));
+        }
+
+        isInAreaOfEffect(ctx: GameSession, point: Point3D, caster: Entity) {
+          return (
+            isWithinCells(ctx, caster.position, point, 1) &&
+            !isSelf(caster, ctx.entityManager.getEntityAt(point))
+          );
+        }
+
+        getDescription() {
+          return 'Deals 2 true damage to nearby enemies and heal 2hp to nearby allies';
+        }
+
+        execute(
+          ctx: GameSession,
+          caster: Entity,
+          targets: Point3D[],
+          affectedCells: Cell[]
+        ) {
+          const entities = affectedCells
+            .map(cell => ctx.entityManager.getEntityAt(cell.position))
+            .filter(isDefined);
+
+          ctx.actionQueue.push(
+            new DealDamageAction(
+              {
+                amount: 2,
+                isTrueDamage: true,
+                sourceId: caster.id,
+                targets: entities
+                  .filter(e => isEnemy(ctx, e.id, caster.playerId))
+                  .map(e => e.id)
+              },
+              ctx
+            )
+          );
+          ctx.actionQueue.push(
+            new HealAction(
+              {
+                amount: 2,
+                sourceId: caster.id,
+                targets: entities
+                  .filter(e => isAlly(ctx, e.id, caster.playerId))
+                  .map(e => e.id)
+              },
+              ctx
+            )
+          );
+        }
+      })({
+        cooldown: 3,
+        cost: 3,
+        name: 'Consecration',
+        shouldExhaustCaster: true,
+        spriteId: 'consection',
+        animationFX: 'cast',
+        minTargets: 1,
+        maxTargets: 1,
+        soundFX: 'cast-placeholder'
       })
     ]
   }

@@ -33,10 +33,9 @@ const form = reactive<{
   player2Loadout: null
 });
 
-const initialState = ref<SerializedGameState>();
-
-const createGameState = () => {
-  initialState.value = {
+const isReady = ref(false);
+const createGameState = (): Promise<SerializedGameState> => {
+  return Promise.resolve({
     activePlayerId: 'Player1',
     history: [],
     entities: [],
@@ -70,19 +69,19 @@ const createGameState = () => {
       cells: parse(form.map!.cells),
       startPositions: [form.map!.startPositions[0], form.map!.startPositions[1]]
     }
-  };
+  });
 };
 </script>
 
 <template>
-  <div v-if="!initialState" class="page container">
+  <div v-if="!isReady" class="page container">
     <header>
       <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
       <h1 class="text-5">Create sandbox game</h1>
     </header>
 
     <div v-if="isLoading">Loading...</div>
-    <form v-else @submit.prevent="createGameState">
+    <form v-else @submit.prevent="isReady = true">
       <fieldset>
         <legend>Map</legend>
         <label v-for="map in maps" :key="map.id">
@@ -114,7 +113,7 @@ const createGameState = () => {
     </form>
   </div>
 
-  <SandboxGame v-else :initial-state="initialState" />
+  <SandboxGame v-else :initial-state-factory="createGameState" />
 </template>
 
 <style scoped lang="postcss">

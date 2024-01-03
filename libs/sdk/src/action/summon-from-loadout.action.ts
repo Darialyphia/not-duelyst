@@ -30,5 +30,9 @@ export class SummonFromLoadoutAction extends GameAction<
     if (unit.onSummoned) {
       unit.onSummoned.execute(this.ctx, this.payload.targets, entity);
     }
+
+    if (!this.ctx.isAuthoritative) {
+      console.log(player.gold);
+    }
   }
 }

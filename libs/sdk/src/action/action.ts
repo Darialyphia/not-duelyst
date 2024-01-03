@@ -82,6 +82,7 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
     try {
       // discards client side actions generated as side effects of other actions executed client side
       // this avoid client sessions from playing those actions twice
+
       if (this.isSideEffect) return;
 
       // game is over, can't execute further actions
@@ -92,6 +93,7 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
       }
 
       this.ctx.history.add(this);
+
       this.impl();
       this.ctx.emitter.emit('game:action', this); // smh
     } catch (err) {

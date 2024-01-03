@@ -138,13 +138,13 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.neutral,
     summonCost: 1,
-    summonCooldown: 1,
+    summonCooldown: 2,
     maxHp: 1,
     maxAp: 3,
     apRegenRate: 1,
     attack: 1,
     defense: 0,
-    speed: 4,
+    speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
       {

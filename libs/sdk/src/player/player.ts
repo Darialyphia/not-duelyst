@@ -58,6 +58,7 @@ export class Player implements Serializable {
     if (!this.canSummon(unit.id)) return;
 
     this.gold = clamp(this.gold - unit.summonCost, 0, Infinity);
+
     this.loadout.units[unit.id].cooldown = unit.summonCooldown;
   }
 

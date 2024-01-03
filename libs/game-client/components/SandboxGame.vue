@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { GameSession, type Player, type SerializedGameState } from '@hc/sdk';
 
-const { initialState } = defineProps<{ initialState: SerializedGameState }>();
-const serverSession = GameSession.createServerSession(initialState);
-const clientSession = GameSession.createClientSession(initialState);
+const { initialStateFactory } = defineProps<{
+  initialStateFactory: () => Promise<SerializedGameState>;
+}>();
+const serverSession = GameSession.createServerSession(await initialStateFactory());
+const clientSession = GameSession.createClientSession(await initialStateFactory());
 serverSession.subscribe(action => {
   clientSession.dispatchAction(action.serialize() as any); // @FIXME
 });
