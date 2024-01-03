@@ -107,7 +107,7 @@ const borders = computed(() => factionUtils[unit.faction.id].borders);
   user-select: none;
 
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto 1fr;
 
   width: 17rem;
   padding: var(--size-3) var(--size-6) 0;

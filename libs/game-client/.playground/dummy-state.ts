@@ -1,6 +1,5 @@
 import { api } from '@hc/api';
 import type { SerializedGameState } from '@hc/sdk';
-import { ConvexHttpClient } from 'convex/browser';
 import { parse } from 'zipson';
 
 export const makeDummyState = async (mapName: string): Promise<SerializedGameState> => {
@@ -26,22 +25,6 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
             name: 'Player 1',
             loadout: {
               units: {
-                'haven-melee': { cooldown: 0 },
-                'haven-archer': { cooldown: 0 },
-                'neutral-willowisp': { cooldown: 0 },
-                'haven-paladin': { cooldown: 0 },
-                'neutral-titan': { cooldown: 0 },
-                'neutral-tank': { cooldown: 0 }
-              }
-            },
-            generalId: 'haven-hero',
-            gold: 2
-          },
-          {
-            id: 'Player2',
-            name: 'Player 2',
-            loadout: {
-              units: {
                 'chaos-melee': { cooldown: 0 },
                 'chaos-archer': { cooldown: 0 },
                 'chaos-tank': { cooldown: 0 },
@@ -51,6 +34,23 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
               }
             },
             generalId: 'chaos-hero',
+            gold: 2
+          },
+          {
+            id: 'Player2',
+            name: 'Player 2',
+            loadout: {
+              units: {
+                'haven-melee': { cooldown: 0 },
+                'haven-archer': { cooldown: 0 },
+                'neutral-willowisp': { cooldown: 0 },
+                'haven-paladin': { cooldown: 0 },
+                'neutral-titan': { cooldown: 0 },
+                'neutral-tank': { cooldown: 0 }
+              }
+            },
+            generalId: 'haven-hero',
+
             gold: 2
           }
         ]

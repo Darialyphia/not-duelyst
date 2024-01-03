@@ -7,6 +7,7 @@ import { GameSession } from '../game-session';
 import { Point3D } from '../types';
 import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { isWithinCells, isSelf, isAxisAligned } from './skill-utils';
+import { Attack } from './attack.skill';
 
 export type FireballOptions = PartialBy<
   SkillOptions,
@@ -17,7 +18,7 @@ export type FireballOptions = PartialBy<
   dotPower: number;
   dotDuration: number;
 };
-export class Fireball extends Skill {
+export class Fireball extends Attack {
   id = 'fireball';
 
   readonly power: number;
@@ -39,7 +40,7 @@ export class Fireball extends Skill {
   }
 
   getDescription(caster: SkillDescriptionContext) {
-    return `Deals ${caster.attack + this.power} damage to up to ${
+    return `Deals ${this.getDamageAmount(caster.attack)} damage to up to ${
       this.maxTargets
     } enemies, then ${this.dotPower} damage every turn for ${this.dotDuration} turns`;
   }
@@ -73,7 +74,7 @@ export class Fireball extends Skill {
     ctx.actionQueue.push(
       new DealDamageAction(
         {
-          amount: this.power,
+          amount: this.getDamageAmount(caster.attack),
           sourceId: caster.id,
           targets: entities.map(e => e.id)
         },
