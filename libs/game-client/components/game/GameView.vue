@@ -88,6 +88,8 @@ surfaceBgVar.value = `url(${surfaceBg})`;
           ui.targetMode.value = null;
           ui.selectedSkill.value = null;
           ui.selectedSummon.value = null;
+          ui.summonTargets.value.clear();
+          ui.skillTargets.value.clear();
         }
       "
     />

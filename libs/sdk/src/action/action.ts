@@ -98,9 +98,6 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
       this.ctx.emitter.emit('game:action', this); // smh
     } catch (err) {
       console.error(err);
-      if (!this.ctx.isAuthoritative) {
-        console.log(this);
-      }
     }
   }
 

@@ -14,7 +14,7 @@ export class RemoveInteractableAction extends GameAction<{
 
   protected impl() {
     this.ctx.map.interactables = this.ctx.map.interactables.filter(
-      int => !int.position.equals(this.payload.position) && int.id === this.payload.id
+      int => !int.position.equals(this.payload.position) || int.id !== this.payload.id
     );
   }
 }

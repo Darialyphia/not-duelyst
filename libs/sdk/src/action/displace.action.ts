@@ -33,29 +33,25 @@ export class DisplaceAction extends GameAction<{
   }
 
   getObstacleAtDistance(distance: number) {
+    const x =
+      this.displacementAxis == 'x'
+        ? this.target.position.x + distance
+        : this.target.position.x;
+    const y =
+      this.displacementAxis == 'y'
+        ? this.target.position.y + distance
+        : this.target.position.y;
     const entity = this.ctx.entityManager.getEntityAt({
-      x:
-        this.displacementAxis == 'x'
-          ? this.target.position.x + distance
-          : this.target.position.x,
-      y:
-        this.displacementAxis == 'y'
-          ? this.target.position.y + distance
-          : this.target.position.y,
+      x,
+      y,
       z: this.target.position.z
     });
 
     if (entity) return entity;
 
     const cell = this.ctx.map.getCellAt({
-      x:
-        this.displacementAxis == 'x'
-          ? this.target.position.x + distance
-          : this.target.position.x,
-      y:
-        this.displacementAxis == 'y'
-          ? this.target.position.y + distance
-          : this.target.position.y,
+      x,
+      y,
       z: this.target.position.z + 1
     });
 

@@ -12,7 +12,7 @@ export class ActionHistory implements Serializable {
     return new Promise<void>(resolve => {
       const done = () => {
         resolve();
-        this.ctx.actionQueue.emitter.off('processed');
+        this.ctx.actionQueue.emitter.off('processed', done);
       };
       this.ctx.actionQueue.emitter.on('processed', done);
 
