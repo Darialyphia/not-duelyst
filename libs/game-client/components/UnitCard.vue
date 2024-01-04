@@ -2,32 +2,20 @@
 import type { Entity } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
-
-import havenBorder from '../assets/ui/icon-border-haven.png';
-import neutralBorder from '../assets/ui/icon-border-neutral.png';
-import chaosBorder from '../assets/ui/icon-border-chaos.png';
-import { exhaustiveSwitch } from '../../shared/src';
+import cardBack from '../assets/ui/card-back.png';
 
 const { entity } = defineProps<{
   entity: Entity;
 }>();
 
-const border = computed(() => {
-  switch (entity.unit.faction.id) {
-    case 'neutral':
-      return neutralBorder;
-    case 'haven':
-      return havenBorder;
-    case 'chaos':
-      return chaosBorder;
-    default:
-      throw exhaustiveSwitch(entity.unit.faction.id);
-  }
-});
+const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
 </script>
 
 <template>
-  <article class="entity-card content-surface fancy-surface">
+  <article
+    class="entity-card fancy-surface"
+    :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
+  >
     <div class="avatar-container fancy-surface mx-auto">
       <img :src="unitImagesPaths[entity.unit.spriteId]" />
     </div>
@@ -100,7 +88,7 @@ const border = computed(() => {
           '--cooldown-angle':
             360 - (360 * entity.skillCooldowns[skill.id]) / skill.cooldown,
           '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
-          '--border': `url(${border})`
+          '--border': `url(${borders.square})`
         }"
       />
 
@@ -145,8 +133,19 @@ const border = computed(() => {
 
   width: 18rem;
   padding: 0 var(--size-6) var(--size-6);
+
   font-size: var(--font-size-2);
+
+  background: linear-gradient(transparent, #111), var(--bg), var(--fancy-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-blend-mode: soft-light;
   backdrop-filter: blur(5px);
+  border-image: var(--border);
+  border-image-slice: 31;
+  border-image-width: 32px;
+  border-image-repeat: repeat;
 
   > p {
     margin-block: var(--size-1);

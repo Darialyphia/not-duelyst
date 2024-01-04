@@ -2,6 +2,7 @@
 import type { UnitBlueprint } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
+import cardBack from '../assets/ui/card-back.png';
 
 import unitCostBg from '../assets/ui/unit-cost-background.png';
 
@@ -14,8 +15,8 @@ const borders = computed(() => factionUtils[unit.faction.id].borders);
 
 <template>
   <article
-    class="entity-card content-surface fancy-surface"
-    :style="{ '--border': `url(${borders.square})` }"
+    class="entity-card fancy-surface"
+    :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
   >
     <div class="flex justify-between">
       <div class="relative">
@@ -115,12 +116,16 @@ const borders = computed(() => factionUtils[unit.faction.id].borders);
   font-size: var(--font-size-2);
   color: white;
 
-  backdrop-filter: blur(5px);
+  background: linear-gradient(transparent, #111), var(--bg), var(--fancy-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-blend-mode: soft-light;
   border-image: var(--border);
-  border-image-slice: 16 fill;
-  border-image-width: 16px;
-  border-image-repeat: repeat;
+  border-image-slice: 31;
+  border-image-width: 32px;
 
+  image-rendering: pixelated;
   > p {
     margin-block: var(--size-1);
     font-size: var(--font-size-0);

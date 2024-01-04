@@ -17,6 +17,7 @@ import { Point3D } from '../types';
 import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { ImmolateEffect } from '../effect/immolate.effect';
 import { Teleport } from '../skill/teleport.skill';
+import { ExecuteEffect } from '../effect/execute.effect';
 
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
@@ -135,7 +136,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       }),
       new Knockback({
         collisionDamage: 1,
-        cooldown: 4,
+        cooldown: 2,
         cost: 2,
         damage: 1,
         distance: 2,
@@ -227,6 +228,29 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         allowSeparatedTargets: false,
         allowNonempty: true
       })
+    ]
+  },
+  {
+    id: 'chaos-executioner',
+    spriteId: 'chaos-executioner',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.chaos,
+    summonCost: 4,
+    summonCooldown: 4,
+    maxHp: 8,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 3,
+    defense: 0,
+    speed: 3,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    effects: [
+      {
+        getEffect(ctx, entity) {
+          return new ExecuteEffect(ctx, entity, { duration: Infinity });
+        },
+        description: 'Whenever  a unit drops below 25% nearby this unit, kill it.'
+      }
     ]
   }
 ];

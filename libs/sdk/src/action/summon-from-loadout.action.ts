@@ -10,6 +10,7 @@ export class SummonFromLoadoutAction extends GameAction<
   readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected fxImpl() {
+    // this.ctx.fxContext.
     return Promise.resolve();
   }
 

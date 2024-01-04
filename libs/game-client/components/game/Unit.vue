@@ -25,6 +25,10 @@ const {
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
+const onSummonedSpritesheet = assets.getSprite(`summon-${entity.unit.faction.id}`);
+const onSummonedTextures = createSpritesheetFrameObject('idle', onSummonedSpritesheet);
+const onSummonedSpriteRef = ref<AnimatedSprite>();
+
 const spriteRef = ref<AnimatedSprite>();
 watchEffect(() => {
   fx.spriteMap.set(entity.id, spriteRef);
@@ -133,6 +137,8 @@ const cursor = computed(() => {
 });
 
 const shadowFilters = [new ColorOverlayFilter(0x000000)];
+const isSummoned = ref(false);
+const isSummonAnimationDone = ref(false);
 </script>
 
 <template>
@@ -145,68 +151,94 @@ const shadowFilters = [new ColorOverlayFilter(0x000000)];
     :offset="offset"
     :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >
-    <container :y="-CELL_SIZE / 4" :sortable-children="true">
-      <animated-sprite
-        v-if="textures?.length"
-        :textures="textures"
-        :z-index="1"
-        :filters="shadowFilters"
-        :scale-x="scaleX"
-        :scale-y="0.45"
-        :skew-x="-1"
-        :anchor="0.5"
-        :y="CELL_SIZE * 1.45"
-        loop
-        event-mode="none"
-        playing
-      />
-      <animated-sprite
-        ref="spriteRef"
-        :textures="textures"
-        :anchor-x="0.5"
-        :scale-x="scaleX"
-        :hit-area="hitArea"
-        :filters="filters"
-        :cursor="cursor"
-        :z-index="2"
-        loop
-        @pointerdown="
-          (e: FederatedMouseEvent) => {
-            if (e.button !== 0) return;
-            if (targetMode) return;
+    <PTransition
+      v-if="isSummoned"
+      appear
+      :duration="{ enter: 300, leave: 0 }"
+      :before-enter="{ alpha: 0, y: 8 }"
+      :enter="{ alpha: 1, y: -CELL_SIZE / 4 }"
+    >
+      <container :y="-CELL_SIZE / 4" :sortable-children="true">
+        <animated-sprite
+          v-if="textures?.length"
+          :textures="textures"
+          :z-index="1"
+          :filters="shadowFilters"
+          :scale-x="scaleX"
+          :scale-y="0.45"
+          :skew-x="-1"
+          :anchor="0.5"
+          :y="CELL_SIZE * 1.45"
+          loop
+          event-mode="none"
+          playing
+        />
+        <animated-sprite
+          ref="spriteRef"
+          :textures="textures"
+          :anchor-x="0.5"
+          :scale-x="scaleX"
+          :hit-area="hitArea"
+          :filters="filters"
+          :cursor="cursor"
+          :z-index="2"
+          loop
+          @pointerdown="
+            (e: FederatedMouseEvent) => {
+              if (e.button !== 0) return;
+              if (targetMode) return;
 
-            selectedEntity = entity;
-            if (entity.player.equals(state.activePlayer)) targetMode = 'move';
-          }
-        "
-        @pointerup="
-          (e: FederatedMouseEvent) => {
-            if (e.button !== 0) return;
-            if (targetMode === 'move') targetMode = null;
-            if (utils.canCastSkillAt(entity.position)) {
-              return skillTargets.add(entity.position);
+              selectedEntity = entity;
+              if (entity.player.equals(state.activePlayer)) targetMode = 'move';
             }
-            if (utils.isValidSummonTarget(entity.position)) {
-              return summonTargets.add(entity.position);
+          "
+          @pointerup="
+            (e: FederatedMouseEvent) => {
+              if (e.button !== 0) return;
+              if (targetMode === 'move') targetMode = null;
+              if (utils.canCastSkillAt(entity.position)) {
+                return skillTargets.add(entity.position);
+              }
+              if (utils.isValidSummonTarget(entity.position)) {
+                return summonTargets.add(entity.position);
+              }
             }
-          }
-        "
-        @pointerenter="
-          () => {
-            hoveredCell = gameSession.map.getCellAt(entity.position);
-          }
-        "
-      />
+          "
+          @pointerenter="
+            () => {
+              hoveredCell = gameSession.map.getCellAt(entity.position);
+            }
+          "
+        />
 
-      <PTransition
-        appear
-        :duration="{ enter: 100, leave: 100 }"
-        :before-enter="{ alpha: 0 }"
-        :enter="{ alpha: 1 }"
-        :leave="{ alpha: 0 }"
-      >
-        <UnitStats v-if="isHovered" :entity="entity" />
-      </PTransition>
-    </container>
+        <PTransition
+          appear
+          :duration="{ enter: 100, leave: 100 }"
+          :before-enter="{ alpha: 0 }"
+          :enter="{ alpha: 1 }"
+          :leave="{ alpha: 0 }"
+        >
+          <UnitStats v-if="isHovered" :entity="entity" />
+        </PTransition>
+      </container>
+    </PTransition>
+
+    <AnimatedSprite
+      v-if="!isSummonAnimationDone"
+      ref="onSummonedSpriteRef"
+      :textures="onSummonedTextures"
+      playing
+      :x="-CELL_SIZE / 2"
+      :y="CELL_SIZE / 2"
+      :loop="false"
+      @frame-change="
+        (frame: number) => {
+          if (frame >= onSummonedSpriteRef!.totalFrames * 0.5) {
+            isSummoned = true;
+          }
+        }
+      "
+      @complete="isSummonAnimationDone = true"
+    />
   </IsoPositioner>
 </template>

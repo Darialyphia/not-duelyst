@@ -34,7 +34,7 @@ export class Taunt extends Skill {
 
   getDescription() {
     const duration = isFinite(this.meta.duration) ? `for ${this.meta.duration}` : '';
-    return `Taunts enemies in a ${this.meta.radius} range ${duration}.`;
+    return `Taunts enemies in a ${this.meta.radius} cell range for ${duration} turns.`;
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {

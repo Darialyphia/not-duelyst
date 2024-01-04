@@ -136,7 +136,7 @@ const onValidateTargets = () => {
     </UiTooltip>
   </div>
 
-  <div class="action-bar content-surface">
+  <div class="action-bar">
     <div class="actions">
       <div>
         <UiTooltip

@@ -118,7 +118,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       }),
       new Knockback({
         collisionDamage: 1,
-        cooldown: 4,
+        cooldown: 2,
         cost: 2,
         damage: 1,
         distance: 2,

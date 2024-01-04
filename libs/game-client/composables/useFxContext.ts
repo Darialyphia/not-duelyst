@@ -345,17 +345,27 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           return resolve();
         }
 
+        const container = new Container();
+        container.position.set(
+          sprite.parent.parent.position.x,
+          sprite.parent.parent.position.y
+        );
+        container.zIndex = sprite.parent.parent.zIndex + 1;
+        container.zOrder = sprite.parent.parent.zIndex + 1;
+        (fx.viewport?.children[0] as Container).addChild(container);
+
         const fxSprite = new AnimatedSprite(createSpritesheetFrameObject('idle', sheet));
         fxSprite.position.set(offset.x, offset.y);
         fxSprite.loop = false;
         fxSprite.anchor.set(0.5);
         fxSprite.scale = { x: scale, y: scale };
         fxSprite.onComplete = () => {
-          fxSprite.destroy();
+          container.destroy();
           resolve();
         };
 
-        sprite?.addChild(fxSprite);
+        container.addChild(fxSprite);
+
         fxSprite.play();
 
         if (!waitUntilAnimationDone) {

@@ -235,7 +235,6 @@ const getGeneralImage = (generalId: string) => {
         :key="item._id"
         :tabindex="sidebarView === 'form' && !canAddCardToLoadout(item.unitId) ? -1 : 0"
         class="card"
-        :style="{ '--bg': `url(${cardBack})` }"
         :class="{
           disabled: sidebarView === 'form' && !canAddCardToLoadout(item.unitId),
           used: sidebarView === 'form' && isInLoadout(item.unitId)
@@ -404,12 +403,6 @@ const getGeneralImage = (generalId: string) => {
   transition: all 0.2s;
   > * {
     height: 100%;
-
-    background: linear-gradient(transparent, #111), var(--bg), var(--fancy-bg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-blend-mode: soft-light;
   }
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
