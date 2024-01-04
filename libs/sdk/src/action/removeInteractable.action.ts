@@ -8,6 +8,10 @@ export class RemoveInteractableAction extends GameAction<{
 }> {
   readonly name = 'REMOVE_INTERACTABLE';
 
+  get logMessage() {
+    return `${this.payload.id} dissappears.`;
+  }
+
   protected fxImpl() {
     return Promise.resolve();
   }

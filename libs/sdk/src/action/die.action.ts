@@ -25,18 +25,25 @@ export class DieAction extends GameAction<{
     return source;
   }
 
-  protected impl() {
+  get entity() {
     const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
     if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
 
-    entity.die(this.source);
-    this.ctx.entityManager.removeEntity(entity);
+    return entity;
+  }
 
-    if (isGeneral(entity)) {
+  get logMessage() {
+    return `${this.entity.unitId} died.`;
+  }
+  protected impl() {
+    this.entity.die(this.source);
+    this.ctx.entityManager.removeEntity(this.entity);
+
+    if (isGeneral(this.entity)) {
       this.ctx.actionQueue.push(
         new EndGamection(
           {
-            winnerId: this.ctx.playerManager.getOpponent(entity.playerId).id
+            winnerId: this.ctx.playerManager.getOpponent(this.entity.playerId).id
           },
           this.ctx
         )

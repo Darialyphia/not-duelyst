@@ -32,6 +32,10 @@ export class DisplaceAction extends GameAction<{
     return this.target.position.x === this.payload.origin.x ? 'y' : 'x';
   }
 
+  get logMessage() {
+    return `${this.target.unitId} got displaced.`;
+  }
+
   getObstacleAtDistance(distance: number) {
     const x =
       this.displacementAxis == 'x'

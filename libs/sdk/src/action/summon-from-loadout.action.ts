@@ -14,12 +14,19 @@ export class SummonFromLoadoutAction extends GameAction<
     return Promise.resolve();
   }
 
-  protected impl() {
+  get logMessage() {
+    return `${this.payload.playerId} summons ${UNITS[this.payload.unitId].id}`;
+  }
+
+  get player() {
     const player = this.ctx.playerManager.getPlayerById(this.payload.playerId);
     if (!player) throw new Error(`Player not found: ${this.payload.playerId}`);
+    return player;
+  }
 
+  protected impl() {
     const unit = UNITS[this.payload.unitId];
-    player.summonFromLoadout(unit);
+    this.player.summonFromLoadout(unit);
 
     const entity = this.ctx.entityManager.addEntity(this.payload);
 
@@ -30,10 +37,6 @@ export class SummonFromLoadoutAction extends GameAction<
 
     if (unit.onSummoned) {
       unit.onSummoned.execute(this.ctx, this.payload.targets, entity);
-    }
-
-    if (!this.ctx.isAuthoritative) {
-      console.log(player.gold);
     }
   }
 }

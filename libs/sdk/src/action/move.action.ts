@@ -8,6 +8,15 @@ export class MoveAction extends GameAction<{
 }> {
   readonly name = 'MOVE';
 
+  get logMessage() {
+    return `${this.entity.unitId} moves.`;
+  }
+  get entity() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+    return entity;
+  }
+
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
@@ -28,9 +37,6 @@ export class MoveAction extends GameAction<{
   }
 
   protected impl() {
-    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
-
-    entity.move(this.payload.path);
+    this.entity.move(this.payload.path);
   }
 }

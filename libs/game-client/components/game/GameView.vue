@@ -93,7 +93,7 @@ surfaceBgVar.value = `url(${surfaceBg})`;
         }
       "
     />
-    <GameUi :player-id="playerId" />
+    <GameUi />
   </div>
 </template>
 

@@ -20,6 +20,20 @@ export class DealDamageAction extends GameAction<{
     return attacker;
   }
 
+  get targets() {
+    return this.payload.targets.map(targetId => {
+      const target = this.ctx.entityManager.getEntityById(targetId);
+      if (!target) throw new Error(`Entity not found: ${targetId}`);
+      return target;
+    });
+  }
+
+  get logMessage() {
+    return `${this.attacker?.id ?? this.payload.sourceId} deals damage to ${this.targets
+      .map(t => t.unitId)
+      .join(', ')}.`;
+  }
+
   getDamage(target: Entity) {
     if (!this.attacker) return this.payload.amount;
 

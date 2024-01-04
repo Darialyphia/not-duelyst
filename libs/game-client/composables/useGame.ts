@@ -80,6 +80,7 @@ export const useGameProvider = (
 ) => {
   const assets = useAssetsProvider();
   const state = ref<GameState>(session.getState());
+
   const unsub = session.subscribe(action => {
     const newState = session.getState();
     state.value = newState;

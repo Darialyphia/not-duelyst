@@ -9,6 +9,10 @@ export class SummonInteractableAction extends GameAction<SerializedInteractable>
     return Promise.resolve();
   }
 
+  get logMessage() {
+    return `A ${this.payload.id} appears.`;
+  }
+
   protected impl() {
     const ctor = INTERACTABLES[this.payload.id as keyof typeof INTERACTABLES];
 

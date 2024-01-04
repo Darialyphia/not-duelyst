@@ -64,11 +64,17 @@ export type FXContext = {
 export abstract class GameAction<TPayload extends JSONObject> implements Serializable {
   abstract readonly name: string;
   // readonly isSideEffect: boolean;
-
+  readonly message: string;
   constructor(
     public payload: TPayload,
     protected ctx: GameSession
-  ) {}
+  ) {
+    this.message = this.logMessage;
+  }
+
+  protected get logMessage() {
+    return `Log message not implemented for ${this.payload.name}`;
+  }
 
   protected abstract impl(): void;
 

@@ -1,7 +1,18 @@
 <script setup lang="ts">
-const { playerId } = defineProps<{ playerId: string | null }>();
-const { gameSession, state, mapRotation } = useGame();
-const { selectedEntity, hoveredCell, targetMode } = useGameUi();
+const { gameSession, state } = useGame();
+const { selectedEntity, hoveredCell } = useGameUi();
+
+const historyRef = ref<HTMLElement>();
+watch(
+  () => state.value.history.length,
+  () => {
+    nextTick(() => {
+      [...(historyRef.value?.children ?? [])]
+        .at(-1)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    });
+  }
+);
 </script>
 
 <template>
@@ -40,6 +51,20 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   </div>
   <div class="menu">
     <GameMenu />
+  </div>
+
+  <div class="history fancy-surface">
+    <label class="fancy-surface">
+      <input type="checkbox" class="sr-only" />
+      <Icon name="material-symbols:arrow-forward-ios" size="2rem" />
+    </label>
+
+    <div class="pt-3 text-3 text-center">Combat log</div>
+    <ul ref="historyRef" class="fancy-scrollbar">
+      <li v-for="(action, index) in state.history" :key="index">
+        {{ action.message }}
+      </li>
+    </ul>
   </div>
   <!-- <GameChat /> -->
 
@@ -109,5 +134,41 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   position: absolute;
   right: var(--size-3);
   bottom: var(--size-3);
+}
+
+.history {
+  position: absolute;
+  top: 33%;
+  left: 0;
+
+  width: 20rem;
+  padding: 0;
+
+  transition: transform 0.3s;
+
+  &:has(input:not(:checked)) {
+    transform: translateX(-100%);
+  }
+
+  ul {
+    overflow-y: auto;
+    height: 20rem;
+    padding: 0;
+
+    li {
+      padding: var(--size-3);
+    }
+  }
+
+  label {
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(100%, -50%);
+
+    padding: var(--size-2);
+  }
 }
 </style>

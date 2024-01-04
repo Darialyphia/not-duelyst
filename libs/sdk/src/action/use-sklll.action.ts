@@ -24,6 +24,10 @@ export class UseSkillAction extends GameAction<{
     return skill;
   }
 
+  get logMessage() {
+    return `${this.caster.unitId} casts ${this.skill.name}`;
+  }
+
   private get affectedCells() {
     return this.ctx.map.cells.filter(cell =>
       this.skill.isInAreaOfEffect(this.ctx, cell, this.caster, this.payload.targets)

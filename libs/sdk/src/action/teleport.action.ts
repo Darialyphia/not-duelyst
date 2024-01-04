@@ -9,14 +9,21 @@ export class TeleportAction extends GameAction<{
 }> {
   readonly name = 'TELEPORT';
 
+  get entity() {
+    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
+    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
+
+    return entity;
+  }
+
+  get logMessage() {
+    return `${this.entity.unitId} teleports.`;
+  }
   protected async fxImpl() {
     return Promise.resolve();
   }
 
   protected impl() {
-    const entity = this.ctx.entityManager.getEntityById(this.payload.entityId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
-
-    entity.position = Vec3.fromPoint3D(this.payload.point);
+    this.entity.position = Vec3.fromPoint3D(this.payload.point);
   }
 }

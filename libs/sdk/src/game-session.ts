@@ -17,6 +17,7 @@ export type GameState = {
   activePlayer: Player;
   winner?: Player;
   turn: number;
+  history: GameAction<any>[];
 };
 
 export type SerializedGameState = {
@@ -118,7 +119,8 @@ export class GameSession {
       entities: this.entityManager.getList().map(entity => entity.clone()),
       players: this.playerManager.getList().map(player => player.clone()),
       activePlayer: this.playerManager.getActivePlayer(),
-      winner: this.winner ? this.playerManager.getPlayerById(this.winner) : undefined
+      winner: this.winner ? this.playerManager.getPlayerById(this.winner) : undefined,
+      history: this.history.get()
     };
   }
 

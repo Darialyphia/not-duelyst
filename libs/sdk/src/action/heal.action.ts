@@ -8,12 +8,26 @@ export class HealAction extends GameAction<{
 }> {
   readonly name = 'HEAL';
 
+  get source() {
+    const source = this.ctx.entityManager.getEntityById(this.payload.sourceId);
+    if (!source) throw new Error(`Entity not found: ${this.payload.sourceId}`);
+    return source;
+  }
+
+  get targets() {
+    return this.payload.targets.map(targetId => {
+      const target = this.ctx.entityManager.getEntityById(targetId);
+      if (!target) throw new Error(`Entity not found: ${targetId}`);
+      return target;
+    });
+  }
+
   protected async fxImpl() {
     if (!this.ctx.fxContext) return;
 
     await Promise.all(
-      this.payload.targets.map(target => {
-        this.ctx.fxContext?.displayText(String(this.payload.amount), target, {
+      this.targets.map(target => {
+        this.ctx.fxContext?.displayText(String(this.payload.amount), target.id, {
           color: 0x00ff00,
           duration: 1,
           path: [
@@ -22,7 +36,7 @@ export class HealAction extends GameAction<{
             { x: 0, y: 0, alpha: 1, scale: 1 }
           ]
         });
-        return this.ctx.fxContext?.addChildSprite('heal_01', target, {
+        return this.ctx.fxContext?.addChildSprite('heal_01', target.id, {
           waitUntilAnimationDone: false,
           offset: { x: 0, y: 24 },
           scale: 1
@@ -32,12 +46,8 @@ export class HealAction extends GameAction<{
   }
 
   protected impl() {
-    const source = this.ctx.entityManager.getEntityById(this.payload.sourceId);
-    if (!source) throw new Error(`Entity not found: ${this.payload.sourceId}`);
-
-    this.payload.targets.forEach(targetId => {
-      const target = this.ctx.entityManager.getEntityById(targetId)!;
-      target.heal(this.payload.amount, source);
+    this.targets.forEach(target => {
+      target.heal(this.payload.amount, this.source);
     });
   }
 }
