@@ -17,7 +17,8 @@ export const useAssetsProvider = () => {
     {};
 
   const load = async () => {
-    extensions.add(spriteSheetParser);
+    extensions.add(asepriteSpriteSheetParser, asepriteTilesetParser);
+
     Assets.init({ manifest: assetsManifest });
 
     const bundles = await Promise.all([

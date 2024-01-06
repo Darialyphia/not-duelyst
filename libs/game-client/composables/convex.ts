@@ -1,4 +1,9 @@
-import type { FunctionArgs, FunctionReference, FunctionReturnType } from 'convex/server';
+import {
+  getFunctionName,
+  type FunctionArgs,
+  type FunctionReference,
+  type FunctionReturnType
+} from 'convex/server';
 import { CONVEX_AUTH, CONVEX_CLIENT } from '../plugins/convex';
 import { type Nullable, isDefined } from '@hc/shared';
 
@@ -21,8 +26,7 @@ export const useConvexQuery = <Query extends QueryReference>(
 ) => {
   const client = useConvexClient();
   const nuxt = useNuxtApp();
-  // @ts-expect-error
-  const queryName = query.__query_name;
+  const queryName = getFunctionName(query);
 
   const data = useState<FunctionReturnType<Query>>(queryName, undefined);
 

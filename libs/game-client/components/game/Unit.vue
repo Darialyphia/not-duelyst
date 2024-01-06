@@ -25,10 +25,6 @@ const {
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
-const onSummonedSpritesheet = assets.getSprite(`summon-${entity.unit.faction.id}`);
-const onSummonedTextures = createSpritesheetFrameObject('idle', onSummonedSpritesheet);
-const onSummonedSpriteRef = ref<AnimatedSprite>();
-
 const spriteRef = ref<AnimatedSprite>();
 watchEffect(() => {
   fx.spriteMap.set(entity.id, spriteRef);
@@ -137,8 +133,7 @@ const cursor = computed(() => {
 });
 
 const shadowFilters = [new ColorOverlayFilter(0x000000)];
-const isSummoned = ref(false);
-const isSummonAnimationDone = ref(false);
+const isSummoned = ref(entity.kind === 'GENERAL');
 </script>
 
 <template>
@@ -223,22 +218,6 @@ const isSummonAnimationDone = ref(false);
       </container>
     </PTransition>
 
-    <AnimatedSprite
-      v-if="!isSummonAnimationDone"
-      ref="onSummonedSpriteRef"
-      :textures="onSummonedTextures"
-      playing
-      :x="-CELL_SIZE / 2"
-      :y="CELL_SIZE / 2"
-      :loop="false"
-      @frame-change="
-        (frame: number) => {
-          if (frame >= onSummonedSpriteRef!.totalFrames * 0.5) {
-            isSummoned = true;
-          }
-        }
-      "
-      @complete="isSummonAnimationDone = true"
-    />
+    <SummonBubble :entity="entity" @done="isSummoned = true" />
   </IsoPositioner>
 </template>

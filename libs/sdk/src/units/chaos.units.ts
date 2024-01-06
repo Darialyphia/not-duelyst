@@ -249,7 +249,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         getEffect(ctx, entity) {
           return new ExecuteEffect(ctx, entity, { duration: Infinity });
         },
-        description: 'Whenever  a unit drops below 25% nearby this unit, kill it.'
+        description: 'Whenever a unit drops below 25% HP nearby this unit, kill it.'
       }
     ]
   }

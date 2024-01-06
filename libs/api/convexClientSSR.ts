@@ -1,4 +1,9 @@
-import { FunctionReference, FunctionReturnType, OptionalRestArgs } from 'convex/server';
+import {
+  FunctionReference,
+  FunctionReturnType,
+  OptionalRestArgs,
+  getFunctionName
+} from 'convex/server';
 import { ConvexClient, type ConvexClientOptions, ConvexHttpClient } from 'convex/browser';
 import { Nullable, isString } from '@hc/shared';
 
@@ -38,8 +43,7 @@ export class ConvexClientWithSSR extends ConvexClient {
     query: Query,
     ...args: OptionalRestArgs<Query>
   ): Promise<FunctionReturnType<Query>> {
-    // @ts-expect-error convex expose function reference symbol when pepeHands
-    const queryName = query.__query_name;
+    const queryName = getFunctionName(query);
 
     if (!this.ssrQueriesCache.has(queryName)) {
       console.log('create cache for', queryName);

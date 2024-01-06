@@ -10,7 +10,7 @@ export class SummonFromLoadoutAction extends GameAction<
   readonly name = 'SUMMON_FROM_LOADOUT';
 
   protected fxImpl() {
-    // this.ctx.fxContext.
+    this.ctx.fxContext?.playSoundOnce('summon-placeholder');
     return Promise.resolve();
   }
 

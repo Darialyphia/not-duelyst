@@ -1,11 +1,5 @@
 import { ExtensionType, LoaderParserPriority, Texture } from 'pixi.js';
 import { z } from 'zod';
-import { uiSpritesPaths } from '../assets/ui';
-import { unitSpritesPaths } from '../assets/units';
-import { tileSpritesPaths } from '../assets/tiles';
-import { tilesetsPaths } from '../assets/tilesets';
-import { fxSpritesPaths } from '../assets/fx';
-import { interactableSpritesPaths } from '../assets/interactables';
 
 export const trimExtension = (str: string) => str.replace(/\.[^/.]+$/, '');
 
@@ -63,18 +57,6 @@ const asepriteJsonSchema = z.object({
 });
 type AsepriteJson = z.infer<typeof asepriteJsonSchema>;
 
-const spriteUrls: string[] = [
-  ...Object.values(uiSpritesPaths),
-  ...Object.values(tileSpritesPaths),
-  ...Object.values(unitSpritesPaths),
-  ...Object.values(fxSpritesPaths),
-  ...Object.values(interactableSpritesPaths)
-];
-const tilesetUrls: string[] = [...Object.values(tilesetsPaths)];
-
-const isSprite = (url: string) => !!spriteUrls.find(path => url.includes(path));
-const isTileset = (url: string) => !!tilesetUrls.find(path => url.includes(path));
-
 const parseSprite = ({ frames, meta }: AsepriteJson) => {
   const sheet = {
     frames: Object.fromEntries(
@@ -117,22 +99,43 @@ const parseTileset = ({ frames, meta }: AsepriteJson) => ({
   meta
 });
 
-export const spriteSheetParser = {
+export const ASEPRITE_SPRITESHEET_PARSER = 'Aseprite_spritesheet_Parser';
+export const ASEPRITE_TILESET_PARSER = 'Aseprite_tileset_Parser';
+
+export const asepriteSpriteSheetParser = {
   extension: {
-    name: 'Aseprite spritesheet Parser',
+    name: ASEPRITE_SPRITESHEET_PARSER,
     priority: LoaderParserPriority.Normal,
     type: ExtensionType.LoadParser
   },
-  test(url: string): boolean {
-    return isTileset(url) || isSprite(url);
-  },
+
+  name: ASEPRITE_SPRITESHEET_PARSER,
+
   async load(url: string) {
     const response = await fetch(url);
     const json = await response.json();
 
     const parsed = asepriteJsonSchema.parse(json);
 
-    if (isTileset(url)) return parseTileset(parsed);
-    if (isSprite(url)) return parseSprite(parsed);
+    return parseSprite(parsed);
+  }
+};
+
+export const asepriteTilesetParser = {
+  extension: {
+    name: ASEPRITE_TILESET_PARSER,
+    priority: LoaderParserPriority.Normal,
+    type: ExtensionType.LoadParser
+  },
+
+  name: ASEPRITE_TILESET_PARSER,
+
+  async load(url: string) {
+    const response = await fetch(url);
+    const json = await response.json();
+
+    const parsed = asepriteJsonSchema.parse(json);
+
+    return parseTileset(parsed);
   }
 };

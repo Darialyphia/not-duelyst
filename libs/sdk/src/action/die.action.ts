@@ -37,13 +37,14 @@ export class DieAction extends GameAction<{
   }
   protected impl() {
     this.entity.die(this.source);
-    this.ctx.entityManager.removeEntity(this.entity);
+    const entity = this.entity;
+    this.ctx.entityManager.removeEntity(entity);
 
-    if (isGeneral(this.entity)) {
+    if (isGeneral(entity)) {
       this.ctx.actionQueue.push(
         new EndGamection(
           {
-            winnerId: this.ctx.playerManager.getOpponent(this.entity.playerId).id
+            winnerId: this.ctx.playerManager.getOpponent(entity.playerId).id
           },
           this.ctx
         )

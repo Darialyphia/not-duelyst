@@ -19,6 +19,7 @@
     "@nuxt/kit": "^3.9.0",
     "@pinia/nuxt": "^0.5.1",
     "@pixi/filter-adjustment": "^5.1.1",
+    "@pixi/filter-advanced-bloom": "^5.1.1",
     "@pixi/filter-color-overlay": "^5.1.1",
     "@pixi/filter-glow": "^5.2.1",
     "@pixi/filter-outline": "^5.2.0",

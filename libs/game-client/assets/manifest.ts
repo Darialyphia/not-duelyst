@@ -4,9 +4,8 @@ import { uiSpritesPaths } from './ui';
 import { unitSpritesPaths } from './units';
 import { tilesetsPaths } from './tilesets';
 import { fxSpritesPaths } from './fx';
-import { sfxPaths } from './sfx';
-import { INTERACTABLES } from '@hc/sdk';
 import { interactableSpritesPaths } from './interactables';
+import type { AssetsManifest } from 'pixi.js';
 
 export const ASSET_BUNDLES = {
   TILES: 'tiles',
@@ -20,48 +19,54 @@ export const ASSET_BUNDLES = {
 
 export type AssetBundle = Values<typeof ASSET_BUNDLES>;
 
-export const assetsManifest = {
+export const assetsManifest: AssetsManifest = {
   bundles: [
     {
       name: ASSET_BUNDLES.TILES,
-      assets: objectEntries(tileSpritesPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(tileSpritesPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_SPRITESHEET_PARSER
       }))
     },
     {
       name: ASSET_BUNDLES.UI,
-      assets: objectEntries(uiSpritesPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(uiSpritesPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_SPRITESHEET_PARSER
       }))
     },
     {
       name: ASSET_BUNDLES.UNITS,
-      assets: objectEntries(unitSpritesPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(unitSpritesPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_SPRITESHEET_PARSER
       }))
     },
     {
       name: ASSET_BUNDLES.INTERACTABLES,
-      assets: objectEntries(interactableSpritesPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(interactableSpritesPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_SPRITESHEET_PARSER
       }))
     },
     {
       name: ASSET_BUNDLES.TILESETS,
-      assets: objectEntries(tilesetsPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(tilesetsPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_TILESET_PARSER
       }))
     },
     {
       name: ASSET_BUNDLES.FX,
-      assets: objectEntries(fxSpritesPaths).map(([name, srcs]) => ({
-        name,
-        srcs
+      assets: objectEntries(fxSpritesPaths).map(([alias, src]) => ({
+        alias,
+        src,
+        loadParser: ASEPRITE_SPRITESHEET_PARSER
       }))
     }
   ]

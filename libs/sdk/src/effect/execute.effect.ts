@@ -1,6 +1,6 @@
 import { DieAction } from '../action/die.action';
 import { Entity } from '../entity/entity';
-import { isAlly } from '../entity/entity-utils';
+import { isAlly, isGeneral } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { isWithinCells } from '../skill/skill-utils';
 import { Effect } from './effect';
@@ -26,14 +26,13 @@ export class ExecuteEffect extends Effect {
   }
 
   onDamage({ entity }: { entity: Entity; amount: number }) {
-    console.log('on damage');
+    if (isGeneral(entity)) return;
     if (isAlly(this.ctx, entity.id, this.attachedTo!.playerId)) return;
 
     if (!isWithinCells(this.ctx, this.attachedTo!.position, entity.position, 1)) return;
 
     if (entity.hp === 0) return; // dont proc, a die action will already trigger
 
-    console.log(entity.hp, entity.maxHp * 0.25);
     if (entity.hp <= entity.maxHp * 0.25) {
       this.ctx.actionQueue.push(
         new DieAction(
