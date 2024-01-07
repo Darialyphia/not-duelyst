@@ -126,10 +126,10 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
 <style scoped lang="postcss">
 .entity-card {
   --hp: var(--green-5);
-  --ap: var(--indigo-8);
+  --ap: var(--cyan-5);
   --attack: var(--red-7);
-  --defense: var(--cyan-5);
-  --speed: var(--yellow-3);
+  --defense: var(--yellow-3);
+  --speed: var(--blue-6);
 
   width: 18rem;
   padding: 0 var(--size-6) var(--size-6);

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { UnitBlueprint } from '@hc/sdk';
+import type { Skill, UnitBlueprint } from '@hc/sdk';
 import { unitImagesPaths } from '../assets/units';
 import { skillImagesPaths } from '../assets/skills';
 import cardBack from '../assets/ui/card-back.png';
-
 import unitCostBg from '../assets/ui/unit-cost-background.png';
 
 const { unit } = defineProps<{
@@ -11,6 +10,8 @@ const { unit } = defineProps<{
 }>();
 
 const borders = computed(() => factionUtils[unit.faction.id].borders);
+
+const selectedSkill = ref<Skill>(unit.skills[0]);
 </script>
 
 <template>
@@ -80,30 +81,33 @@ const borders = computed(() => factionUtils[unit.faction.id].borders);
       <li v-for="skill in unit.skills" :key="skill.id" class="skill">
         <div
           class="skill-img"
+          tabindex="0"
           :data-cost="skill.cost"
           :style="{
             '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
             '--border': `url(${borders.square})`
           }"
+          :class="selectedSkill === skill && 'selected'"
+          @mouseenter="selectedSkill = skill"
+          @focus="selectedSkill = skill"
         />
-
-        <div class="grid gap-1">
-          {{ skill.name }}
-          <p>{{ skill.getText(unit) }}</p>
-          <p class="text-0">Cooldown: {{ skill.cooldown }}</p>
-        </div>
       </li>
     </ul>
+    <div class="selected-skill">
+      {{ selectedSkill.name }}
+      <p>{{ selectedSkill.getText(unit) }}</p>
+      <p class="text-0">Cooldown: {{ selectedSkill.cooldown }}</p>
+    </div>
   </article>
 </template>
 
 <style scoped lang="postcss">
 .entity-card {
   --hp: var(--green-5);
-  --ap: var(--indigo-8);
+  --ap: var(--cyan-5);
   --attack: var(--red-7);
-  --defense: var(--cyan-5);
-  --speed: var(--yellow-3);
+  --defense: var(--yellow-3);
+  --speed: var(--blue-6);
 
   user-select: none;
 
@@ -207,16 +211,10 @@ const borders = computed(() => factionUtils[unit.faction.id].borders);
 
     background-image: var(--border), var(--bg);
     background-size: contain;
-  }
-
-  p {
-    margin: 0;
-    margin: var(--size-1) 0;
-
-    font-size: var(--font-size-00);
-    white-space: break-spaces;
-
-    opacity: 0.8;
+    &.selected {
+      filter: contrast(150%) brightness(110%);
+      outline: var(--fancy-border);
+    }
   }
 
   [data-cost] {
@@ -259,8 +257,24 @@ ul > li {
 
 .skills-list {
   overflow-y: auto;
+  display: flex;
+  justify-content: space-evenly;
+
   margin-inline: calc(-1 * var(--size-6));
   padding-inline: var(--size-6);
+}
+
+.selected-skill {
+  height: var(--size-11);
+  p {
+    margin: 0;
+    margin: var(--size-1) 0;
+
+    font-size: var(--font-size-00);
+    white-space: break-spaces;
+
+    opacity: 0.8;
+  }
 }
 
 .unit-name {

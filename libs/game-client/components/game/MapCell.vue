@@ -22,6 +22,7 @@ const {
 const spriteTextures = computed(() => {
   return cell.spriteIds.map(spriteId => {
     const sheet = assets.getSprite(spriteId);
+
     return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
   });
 });
