@@ -9,14 +9,12 @@ import { handlePlayerSocket } from './player';
 import { handleSpectatorSocket } from './spectator';
 // eslint-disable-next-line import/no-unresolved
 import { Id } from '@hc/api/convex/_generated/dataModel';
+import { Game } from './game';
 
 const PORT = process.env.PORT || 8000;
 
 async function main() {
-  const ongoingGames = new Map<
-    string,
-    { session: GameSession; playerJoined: Set<string>; initialState: SerializedGameState }
-  >();
+  const ongoingGames = new Map<string, Game>();
   const httpServer = createServer();
   const io = new Server<
     any, // @FIXME
