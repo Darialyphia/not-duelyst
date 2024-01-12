@@ -30,6 +30,7 @@ export abstract class PlayerInput<TSchema extends DefaultSchema> implements Seri
     }
 
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
+
     if (!parsed.success) return;
     this.payload = parsed.data;
 

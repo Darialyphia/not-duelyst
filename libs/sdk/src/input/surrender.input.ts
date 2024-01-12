@@ -11,15 +11,13 @@ export class SurrenderInput extends PlayerInput<typeof surrenderEventSchema> {
   protected payloadSchema = surrenderEventSchema;
 
   impl() {
-    if (this.ctx.playerManager.getActivePlayer().id === this.payload.playerId) {
-      this.ctx.actionQueue.push(
-        new EndGamection(
-          {
-            winnerId: this.ctx.playerManager.getActivePlayer().opponent.id
-          },
-          this.ctx
-        )
-      );
-    }
+    this.ctx.actionQueue.push(
+      new EndGamection(
+        {
+          winnerId: this.ctx.playerManager.getActivePlayer().opponent.id
+        },
+        this.ctx
+      )
+    );
   }
 }

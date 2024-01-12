@@ -64,12 +64,19 @@ export type FXContext = {
 export abstract class GameAction<TPayload extends JSONObject> implements Serializable {
   abstract readonly name: string;
   // readonly isSideEffect: boolean;
-  readonly message: string;
+  protected cachedMessage?: string;
+
   constructor(
     public payload: TPayload,
     protected ctx: GameSession
-  ) {
-    this.message = this.logMessage;
+  ) {}
+
+  get message() {
+    if (!this.cachedMessage) {
+      this.cachedMessage = this.logMessage;
+    }
+
+    return this.cachedMessage;
   }
 
   protected get logMessage() {

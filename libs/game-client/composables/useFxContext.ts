@@ -216,7 +216,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     moveEntity(entityId, point, duration) {
       return new Promise<void>(resolve => {
         fx.isMoving.value = true;
-        // wwe are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be rendered !
+        // we are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be rendered !
         // It's ok because the position wil be updated when the action execution is flushed after the fx sequence
         const entity = state.value.entities.find(e => e.id === entityId);
         if (!entity) {

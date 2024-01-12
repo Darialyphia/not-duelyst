@@ -115,7 +115,7 @@ export const useGameProvider = (
     state: state as Ref<GameState>,
     gameSession: session,
     sendInput: (type, payload?) => {
-      if (!toValue(isActivePlayer)) return;
+      if (!toValue(isActivePlayer) && type !== 'surrender') return;
       // @ts-expect-error
       emit(type, payload);
       context.ui.targetMode.value = null;

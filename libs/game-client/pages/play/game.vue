@@ -72,29 +72,33 @@ const canSeeGame = computed(() => {
 </script>
 
 <template>
-  <ClientOnly>
-    <div v-if="isLoading">Loading...</div>
-    <div v-if="!canSeeGame">
-      You are not authorized to see this game
-      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
-    </div>
-    <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">Waiting for opponent...</div>
-    <div v-else-if="game?.status === 'FINISHED'">
-      This game is already finished.
-      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
-    </div>
+  <div>
+    <ClientOnly>
+      <div v-if="isLoading">Loading...</div>
+      <div v-if="!canSeeGame">
+        You are not authorized to see this game
+        <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+      </div>
+      <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">
+        Waiting for opponent...
+      </div>
+      <div v-else-if="game?.status === 'FINISHED'">
+        This game is already finished.
+        <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+      </div>
 
-    <GameView
-      v-else-if="gameSession && me"
-      :game-session="gameSession.session"
-      :player-id="me._id"
-      @move="gameSession.dispatch('MOVE', $event)"
-      @end-turn="gameSession.dispatch('END_TURN', {})"
-      @use-skill="gameSession.dispatch('USE_SKILL', $event)"
-      @summon="gameSession.dispatch('SUMMON', $event)"
-      @surrender="gameSession.dispatch('SURRENDER', {})"
-    />
+      <GameView
+        v-else-if="gameSession && me"
+        :game-session="gameSession.session"
+        :player-id="me._id"
+        @move="gameSession.dispatch('MOVE', $event)"
+        @end-turn="gameSession.dispatch('END_TURN', {})"
+        @use-skill="gameSession.dispatch('USE_SKILL', $event)"
+        @summon="gameSession.dispatch('SUMMON', $event)"
+        @surrender="gameSession.dispatch('SURRENDER', {})"
+      />
 
-    <template #fallback>Loading...</template>
-  </ClientOnly>
+      <template #fallback>Loading...</template>
+    </ClientOnly>
+  </div>
 </template>

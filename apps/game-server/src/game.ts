@@ -76,6 +76,9 @@ export class Game {
   }
 
   private getInitialState(): SerializedGameState {
+    const players = this.game.players
+      .slice()
+      .sort(a => (a._id === this.game.firstPlayer ? -1 : 1));
     return {
       activePlayerId: this.game.firstPlayer,
       history: [],
@@ -84,25 +87,25 @@ export class Game {
       players: [
         {
           gold: 2,
-          id: this.game.players[0]._id,
-          name: this.game.players[0].name,
+          id: players[0]._id,
+          name: players[0].name,
           loadout: {
             units: Object.fromEntries(
-              this.game.players[0].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+              players[0].loadout!.units.map(unit => [unit, { cooldown: 0 }])
             )
           },
-          generalId: this.game.players[0].loadout!.generalId
+          generalId: players[0].loadout!.generalId
         },
         {
           gold: 2,
-          id: this.game.players[1]._id,
-          name: this.game.players[1].name,
+          id: players[1]._id,
+          name: players[1].name,
           loadout: {
             units: Object.fromEntries(
-              this.game.players[1].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+              players[1].loadout!.units.map(unit => [unit, { cooldown: 0 }])
             )
           },
-          generalId: this.game.players[1].loadout!.generalId
+          generalId: players[1].loadout!.generalId
         }
       ],
       map: {

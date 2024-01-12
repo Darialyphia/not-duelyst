@@ -59,6 +59,9 @@ until(parsedReplay)
   .not.toBeNull()
   .then(() => {
     const { game, map } = gameInfos.value!;
+
+    const players = game.players.slice().sort(a => (a._id === game.firstPlayer ? -1 : 1));
+
     const initialState: SerializedGameState = {
       activePlayerId: game.firstPlayer,
       history: [],
@@ -67,25 +70,25 @@ until(parsedReplay)
       players: [
         {
           gold: 2,
-          id: game.players[0]._id,
-          name: game.players[0].name,
+          id: players[0]._id,
+          name: players[0].name,
           loadout: {
             units: Object.fromEntries(
-              game.players[0].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+              players[0].loadout!.units.map(unit => [unit, { cooldown: 0 }])
             )
           },
-          generalId: game.players[0].loadout!.generalId
+          generalId: players[0].loadout!.generalId
         },
         {
           gold: 2,
-          id: game.players[1]._id,
-          name: game.players[1].name,
+          id: players[1]._id,
+          name: players[1].name,
           loadout: {
             units: Object.fromEntries(
-              game.players[1].loadout!.units.map(unit => [unit, { cooldown: 0 }])
+              players[1].loadout!.units.map(unit => [unit, { cooldown: 0 }])
             )
           },
-          generalId: game.players[1].loadout!.generalId
+          generalId: players[1].loadout!.generalId
         }
       ],
       map: {
