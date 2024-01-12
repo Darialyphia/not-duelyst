@@ -154,57 +154,45 @@ const isSummoned = ref(entity.kind === 'GENERAL');
       :enter="{ alpha: 1, y: -CELL_SIZE / 4 }"
     >
       <container :y="-CELL_SIZE / 4" :sortable-children="true">
-        <animated-sprite
-          v-if="textures?.length"
-          :textures="textures"
-          :z-index="1"
-          :filters="shadowFilters"
-          :scale-x="scaleX"
-          :scale-y="0.45"
-          :skew-x="-1"
-          :anchor="0.5"
-          :y="CELL_SIZE * 1.45"
-          loop
-          event-mode="none"
-          playing
-        />
-        <animated-sprite
-          ref="spriteRef"
-          :textures="textures"
-          :anchor-x="0.5"
-          :scale-x="scaleX"
-          :hit-area="hitArea"
-          :filters="filters"
-          :cursor="cursor"
-          :z-index="2"
-          loop
-          @pointerdown="
-            (e: FederatedMouseEvent) => {
-              if (e.button !== 0) return;
-              if (targetMode) return;
+        <Shadow v-if="textures?.length" :textures="textures" :scale-x="scaleX">
+          <animated-sprite
+            ref="spriteRef"
+            :textures="textures"
+            :anchor-x="0.5"
+            :scale-x="scaleX"
+            :hit-area="hitArea"
+            :filters="filters"
+            :cursor="cursor"
+            :z-index="2"
+            loop
+            @pointerdown="
+              (e: FederatedMouseEvent) => {
+                if (e.button !== 0) return;
+                if (targetMode) return;
 
-              selectedEntity = entity;
-              if (entity.player.equals(state.activePlayer)) targetMode = 'move';
-            }
-          "
-          @pointerup="
-            (e: FederatedMouseEvent) => {
-              if (e.button !== 0) return;
-              if (targetMode === 'move') targetMode = null;
-              if (utils.canCastSkillAt(entity.position)) {
-                return skillTargets.add(entity.position);
+                selectedEntity = entity;
+                if (entity.player.equals(state.activePlayer)) targetMode = 'move';
               }
-              if (utils.isValidSummonTarget(entity.position)) {
-                return summonTargets.add(entity.position);
+            "
+            @pointerup="
+              (e: FederatedMouseEvent) => {
+                if (e.button !== 0) return;
+                if (targetMode === 'move') targetMode = null;
+                if (utils.canCastSkillAt(entity.position)) {
+                  return skillTargets.add(entity.position);
+                }
+                if (utils.isValidSummonTarget(entity.position)) {
+                  return summonTargets.add(entity.position);
+                }
               }
-            }
-          "
-          @pointerenter="
-            () => {
-              hoveredCell = gameSession.map.getCellAt(entity.position);
-            }
-          "
-        />
+            "
+            @pointerenter="
+              () => {
+                hoveredCell = gameSession.map.getCellAt(entity.position);
+              }
+            "
+          />
+        </Shadow>
 
         <PTransition
           appear

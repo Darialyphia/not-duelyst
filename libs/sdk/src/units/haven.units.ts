@@ -14,7 +14,7 @@ import { Knockback } from '../skill/knockback.skill';
 import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { Taunt } from '../skill/taunt.skill';
 import { Teleport } from '../skill/teleport.skill';
-import { Skill, SkillDescriptionContext } from '../skill/skill';
+import { Skill } from '../skill/skill';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Cell } from '../map/cell';
@@ -24,7 +24,7 @@ import { HealAction } from '../action/heal.action';
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
     id: 'haven-hero',
-    spriteId: 'haven-hero',
+    spriteId: 'haven-hero2',
     kind: UNIT_KIND.GENERAL,
     faction: FACTIONS.haven,
     summonCost: 0,
