@@ -22,6 +22,8 @@ const gameSession = shallowRef<{
   ) => void;
 }>();
 
+const timeRemainingForTurn = ref(0);
+
 let socket: Socket;
 onMounted(async () => {
   const socketUrl = await $fetch('/api/room', {
@@ -38,7 +40,7 @@ onMounted(async () => {
   });
 
   socket.on('connect_error', err => {
-    console.log(err.message);
+    console.log(err);
   });
 
   socket.on('game:init', (serializedState: any) => {
@@ -52,12 +54,17 @@ onMounted(async () => {
           socket.emit('game:input', { type, payload });
         }
       };
-
-      console.log(gameSession.value.session);
     });
 
     socket.on('game:action', (arg: any) => {
       gameSession.value?.session.dispatchAction(arg);
+      if (arg.type === 'END_TURN') {
+        timeRemainingForTurn.value = 0;
+      }
+    });
+
+    socket.on('time-remaining', time => {
+      timeRemainingForTurn.value = time;
     });
   });
 });
@@ -89,18 +96,48 @@ const canSeeGame = computed(() => {
         <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
       </div>
 
-      <GameView
-        v-else-if="gameSession && me"
-        :game-session="gameSession.session"
-        :player-id="me._id"
-        @move="gameSession.dispatch('MOVE', $event)"
-        @end-turn="gameSession.dispatch('END_TURN', {})"
-        @use-skill="gameSession.dispatch('USE_SKILL', $event)"
-        @summon="gameSession.dispatch('SUMMON', $event)"
-        @surrender="gameSession.dispatch('SURRENDER', {})"
-      />
+      <template v-else-if="gameSession && me">
+        <GameView
+          :game-session="gameSession.session"
+          :player-id="me._id"
+          @move="gameSession.dispatch('MOVE', $event)"
+          @end-turn="gameSession.dispatch('END_TURN', {})"
+          @use-skill="gameSession.dispatch('USE_SKILL', $event)"
+          @summon="gameSession.dispatch('SUMMON', $event)"
+          @surrender="gameSession.dispatch('SURRENDER', {})"
+        />
+
+        <div v-if="timeRemainingForTurn" class="remaining" />
+      </template>
 
       <template #fallback>Loading...</template>
     </ClientOnly>
   </div>
 </template>
+
+<style scoped lang="postcss">
+@keyframes remaining-time {
+  from {
+    transform: scaleX(1);
+    background-color: var(--red-4);
+  }
+  to {
+    transform: scaleX(0);
+    background-color: var(--red-7);
+  }
+}
+.remaining {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--size-2);
+
+  background-color: var(--red-7);
+
+  animation: remaining-time;
+  animation-duration: calc(v-bind(timeRemainingForTurn) * 1ms);
+}
+</style>

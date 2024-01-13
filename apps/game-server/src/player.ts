@@ -10,12 +10,14 @@ export const handlePlayerSocket = async (
 ) => {
   const game = await socket.data.convexClient.query(api.games.getCurrent);
   if (!game) {
+    console.log('Game not found');
     return socket.disconnect();
   }
   const map = await socket.data.convexClient.query(api.gameMaps.getById, {
     mapId: game.mapId
   });
   if (!map) {
+    console.log('Map not found');
     return socket.disconnect();
   }
 

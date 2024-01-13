@@ -28,11 +28,11 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
-      new Heal({ cooldown: 2, cost: 2, power: 2, range: 2 })
+      new Heal({ cooldown: 2, cost: 2, power: 3, range: 2 })
     ],
     onSummoned: {
       getDescription() {
-        return 'Restore 1 hp to all nearby allies.';
+        return 'Restore 2 hp to all nearby allies.';
       },
       minTargetCount: 0,
       maxTargetCount: 0,
@@ -43,7 +43,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         ctx.actionQueue.push(
           new HealAction(
             {
-              amount: 1,
+              amount: 2,
               sourceId: summonedEntity.id,
               targets: ctx.entityManager
                 .getNearbyAllies(summonedEntity.position, summonedEntity.playerId)
@@ -109,7 +109,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.neutral,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 5,
+    maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
@@ -124,11 +124,11 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         }
       },
       {
-        description: `When this unit takes down an enemy, gain 1 gold.`,
+        description: `When this unit takes down an enemy, gain 2 gold.`,
         getEffect: (ctx, entity) => {
           return new PlunderOnKillEffect(ctx, entity, {
             duration: Infinity,
-            amount: 1
+            amount: 2
           });
         }
       }
@@ -199,7 +199,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     defense: 0,
     speed: 3,
     skills: [
-      new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 1, maxRange: 4 })
+      new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 4 })
     ],
     onSummoned: {
       getDescription() {
@@ -207,7 +207,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
       },
       minTargetCount: 0,
       maxTargetCount: 0,
-      isTargetable(ctx, point, summonedPoint) {
+      isTargetable() {
         return false;
       },
       execute(ctx, targets, caster) {

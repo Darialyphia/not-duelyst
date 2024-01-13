@@ -57,9 +57,9 @@ export class Game {
 
     this.turnWarningTimeout = setTimeout(
       () => {
-        this.io.in(this.game._id).emit('time-remaining', 15000);
+        this.io.in(this.game._id).emit('time-remaining', 20000);
       },
-      (Number(process.env.TURN_LIMIT_IN_SECONDS) - 15) * 1000
+      (Number(process.env.TURN_LIMIT_IN_SECONDS) - 20) * 1000
     );
 
     this.turnTimeout = setTimeout(
@@ -119,7 +119,9 @@ export class Game {
   private start() {
     if (this.isStarted) return;
     this.isStarted = true;
-    this.convexClient.mutation(api.games.start, { gameId: this.game._id });
+    if (this.game.status === 'WAITING_FOR_PLAYERS') {
+      this.convexClient.mutation(api.games.start, { gameId: this.game._id });
+    }
 
     this.session.emitter.on('game:turn-start', this.onTurnStart.bind(this));
     this.onTurnStart(this.session.playerManager.getActivePlayer());

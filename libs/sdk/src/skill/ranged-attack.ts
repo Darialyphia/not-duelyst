@@ -35,10 +35,15 @@ export class RangedAttack extends Attack {
     this.maxRange = options.maxRange;
   }
 
+  get hasMinRange() {
+    if (isNumber(this.minRange)) return this.minRange > 1;
+
+    return this.minRange.x > 1 && this.minRange.y > 1 && this.minRange.z > 1;
+  }
   getDescription(caster: SkillDescriptionContext) {
-    return `Deals ${
-      caster.attack + this.power
-    } damage to an enemy. Cannot be cast in melee range.`;
+    return `Deals ${caster.attack + this.power} damage to an enemy. ${
+      this.hasMinRange ? 'Cannot be cast in melee range.' : ''
+    }`;
   }
 
   isMinRange(ctx: GameSession, point: Point3D, caster: Entity) {
