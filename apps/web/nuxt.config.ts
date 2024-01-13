@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: "./src",
+  srcDir: './src',
   devtools: { enabled: true },
-  extends: ["@hc/game-client"],
+  extends: ['@hc/game-client'],
+  devServer: {
+    port: 3000
+  }
 });

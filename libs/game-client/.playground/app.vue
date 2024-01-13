@@ -1,7 +1,4 @@
-<script setup lang="ts">
-const isDark = useDarkMode();
-isDark.value = true;
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <NuxtPage />

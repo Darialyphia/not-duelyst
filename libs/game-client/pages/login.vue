@@ -8,7 +8,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
+  <div class="grid place-content-center h-screen">
     <SignIn after-sign-in-url="/play" />
   </div>
 </template>

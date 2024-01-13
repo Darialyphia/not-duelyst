@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { query, mutation } from './_generated/server';
+import { query, mutation, internalQuery } from './_generated/server';
 import { ensureAuthenticated } from './utils/auth';
 import { createUserAbility } from './users/user.ability';
 import { ensureAuthorized } from './utils/ability';
@@ -42,3 +42,5 @@ export const me = query({
     return toUserDto(user);
   }
 });
+
+export const all = internalQuery(({ db }) => db.query('users').collect());

@@ -1,9 +1,10 @@
 import { v } from 'convex/values';
-import { internalMutation, query } from './_generated/server';
+import { internalAction, internalMutation, query } from './_generated/server';
 import { UNITS } from '@hc/sdk';
 import { ensureAuthenticated } from './utils/auth';
 import { ensureUserExists } from './users/user.utils';
 import { toLCollectionItemDto } from './collection/collection.utils';
+import { internal } from './_generated/api';
 
 export const grantAllCollection = internalMutation({
   args: {
@@ -28,6 +29,20 @@ export const grantAllCollection = internalMutation({
       )
     );
   }
+});
+
+export const grantAllCollectionToAllPlayers = internalAction(async ctx => {
+  const users = await ctx.runQuery(internal.users.all);
+
+  await Promise.all(
+    users.map(user => {
+      return ctx.runMutation(internal.collection.grantAllCollection, {
+        userId: user._id
+      });
+    })
+  );
+
+  return true;
 });
 
 export const myCollection = query(async ctx => {

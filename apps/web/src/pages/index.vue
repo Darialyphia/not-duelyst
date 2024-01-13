@@ -5,9 +5,77 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <h1>Hero clash website</h1>
-    <NuxtLink to="/play">Play now</NuxtLink>
-    <NuxtLink to="/signup">Get started</NuxtLink>
+  <div class="hero">
+    <div class="fancy-surface container">
+      <h2>
+        <span>Not duelyst</span>
+        is a multiplayer turn-based strategy game inspired by the game...
+        <a href="https://duelyst2.com/" target="_blank">Duelyst</a>
+        (shocking, I know)
+      </h2>
+
+      <p>
+        This is a pre-pre(-pre) alpha version of the game (if it wasn't obvious seeing the
+        look of this website).
+        <br />
+        This means that:
+      </p>
+      <ul>
+        <li>Any account can (and will) be wiped out at any moment.</li>
+        <li>Bugs can (and will most probably) happen.</li>
+        <li>Features, gameplay and game balance are lacking.</li>
+        <li>
+          For the time being, any created account will start with all the units collection
+          unlocked, and will automatically get any new units added after the accoutn
+          creation.
+        </li>
+      </ul>
+
+      <div
+        class="flex gap-4"
+        style="--d-button-bg: var(--primary); --d-button-color: var(--text-on-primary)"
+      >
+        <NuxtLink v-slot="{ href, navigate }" to="/play" custom>
+          <UiButton :href="href" @click="navigate">Play now</UiButton>
+        </NuxtLink>
+        <NuxtLink v-slot="{ href, navigate }" to="/signup" custom>
+          <UiButton :href="href" @click="navigate">Get started</UiButton>
+        </NuxtLink>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.hero {
+  padding: var(--size-8);
+  background: var(--gradient-1);
+
+  > div {
+    display: grid;
+    gap: var(--size-3);
+  }
+
+  ul {
+    padding-left: var(--size-4);
+    list-style: initial;
+  }
+}
+
+h2 {
+  max-inline-size: 100%;
+  text-wrap: balance;
+
+  > span {
+    color: transparent;
+    background: var(--gradient-1);
+    background-clip: text;
+
+    -webkit-text-stroke: 1px white;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+</style>

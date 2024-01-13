@@ -77,26 +77,28 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
       {{ trigger.description }}
     </p>
 
-    <ul class="skills-list fancy-scrollbar">
-      <li v-for="skill in unit.skills" :key="skill.id" class="skill">
-        <div
-          class="skill-img"
-          tabindex="0"
-          :data-cost="skill.cost"
-          :style="{
-            '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
-            '--border': `url(${borders.square})`
-          }"
-          :class="selectedSkill === skill && 'selected'"
-          @mouseenter="selectedSkill = skill"
-          @focus="selectedSkill = skill"
-        />
-      </li>
-    </ul>
-    <div class="selected-skill">
-      {{ selectedSkill.name }}
-      <p>{{ selectedSkill.getText(unit) }}</p>
-      <p class="text-0">Cooldown: {{ selectedSkill.cooldown }}</p>
+    <div class="skills-container fancy-scrollbar">
+      <ul class="skills-list">
+        <li v-for="skill in unit.skills" :key="skill.id" class="skill">
+          <div
+            class="skill-img"
+            tabindex="0"
+            :data-cost="skill.cost"
+            :style="{
+              '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+              '--border': `url(${borders.square})`
+            }"
+            :class="selectedSkill === skill && 'selected'"
+            @mouseenter="selectedSkill = skill"
+            @focus="selectedSkill = skill"
+          />
+        </li>
+      </ul>
+      <div class="selected-skill">
+        {{ selectedSkill.name }}
+        <p>{{ selectedSkill.getText(unit) }}</p>
+        <p class="text-0 pt-2">Cooldown: {{ selectedSkill.cooldown }}</p>
+      </div>
     </div>
   </article>
 </template>
@@ -255,11 +257,13 @@ ul > li {
   line-height: 1;
 }
 
-.skills-list {
+.skills-container {
+  overflow-x: hidden;
   overflow-y: auto;
+}
+.skills-list {
   display: flex;
   justify-content: space-evenly;
-
   margin-inline: calc(-1 * var(--size-6));
   padding-inline: var(--size-6);
 }

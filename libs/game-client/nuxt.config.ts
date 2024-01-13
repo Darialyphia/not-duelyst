@@ -1,13 +1,9 @@
 import { isCustomElement, transformAssetUrls } from 'vue3-pixi';
-// eslint-disable-next-line import/no-unresolved
-import { createResolver } from '@nuxt/kit';
 
 import glsl from 'vite-plugin-glsl';
 
 const customElements = ['viewport', 'layer'];
 const prefix = 'pixi-';
-
-const resolver = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
   extends: ['@hc/ui'],

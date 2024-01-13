@@ -90,7 +90,7 @@
   ],
   "slices": [
    { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 6, "bounds": {"x": 61, "y": 54, "w": 38, "h": 47 } }] },
-   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 6, "bounds": {"x": 63, "y": 54, "w": 32, "h": 32 } }] }
+   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 63, "y": 52, "w": 32, "h": 32 } }, { "frame": 6, "bounds": {"x": 63, "y": 54, "w": 32, "h": 32 } }, { "frame": 7, "bounds": {"x": 63, "y": 50, "w": 32, "h": 32 } }] }
   ]
  }
 }

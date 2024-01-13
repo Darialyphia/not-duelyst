@@ -52,6 +52,8 @@ onMounted(async () => {
           socket.emit('game:input', { type, payload });
         }
       };
+
+      console.log(gameSession.value.session);
     });
 
     socket.on('game:action', (arg: any) => {
