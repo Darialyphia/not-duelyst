@@ -1,23 +1,21 @@
 import { v } from 'convex/values';
-import { mutation, query } from './_generated/server';
-import { ensureAuthenticated } from './utils/auth';
-import { ensureUserExists } from './users/user.utils';
 import {
   ensureLoadoutExists,
   ensureOwnsLoadout,
   validateLoadout
 } from './loadout/loadout.utils';
 import { toLoadoutDto } from './loadout/loadout.mapper';
+import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 
-export const create = mutation({
+export const create = mutationWithAuth({
   args: {
     name: v.string(),
     generalId: v.string(),
     units: v.array(v.string())
   },
   async handler(ctx, args) {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = ensureAuthenticated(ctx.session);
+
     await validateLoadout(ctx, {
       userId: user._id,
       generalId: args.generalId,
@@ -27,7 +25,7 @@ export const create = mutation({
   }
 });
 
-export const update = mutation({
+export const update = mutationWithAuth({
   args: {
     loadoutId: v.id('loadouts'),
     name: v.string(),
@@ -35,8 +33,7 @@ export const update = mutation({
     units: v.array(v.string())
   },
   async handler(ctx, args) {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
     await ensureOwnsLoadout(loadout, user._id);
 
@@ -51,13 +48,12 @@ export const update = mutation({
   }
 });
 
-export const remove = mutation({
+export const remove = mutationWithAuth({
   args: {
     loadoutId: v.id('loadouts')
   },
   async handler(ctx, args) {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = await ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
     await ensureOwnsLoadout(loadout, user._id);
 
@@ -65,25 +61,26 @@ export const remove = mutation({
   }
 });
 
-export const myLoadouts = query(async ctx => {
-  const identity = await ensureAuthenticated(ctx);
-  const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+export const myLoadouts = queryWithAuth({
+  args: {},
+  handler: async ctx => {
+    const user = await ensureAuthenticated(ctx.session);
 
-  const loadouts = await ctx.db
-    .query('loadouts')
-    .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
-    .collect();
+    const loadouts = await ctx.db
+      .query('loadouts')
+      .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
+      .collect();
 
-  return loadouts.map(toLoadoutDto);
+    return loadouts.map(toLoadoutDto);
+  }
 });
 
-export const getById = query({
+export const getById = queryWithAuth({
   args: {
     loadoutId: v.id('loadouts')
   },
   async handler(ctx, args) {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = await ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
 
     ensureOwnsLoadout(loadout, user._id);

@@ -6,7 +6,7 @@ export type CollectionItemDto = {
   unitId: string;
 };
 
-export const toLCollectionItemDto = (
+export const toCollectionItemDto = (
   collecttionItem: CollectionItem
 ): CollectionItemDto => {
   return {

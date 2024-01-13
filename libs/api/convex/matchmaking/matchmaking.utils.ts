@@ -1,32 +1,36 @@
 // eslint-disable-next-line import/no-unresolved
 import { internal } from '../_generated/api';
 import { Doc, Id } from '../_generated/dataModel';
-import type { ActionCtx, MutationCtx } from '../_generated/server';
+import type { ActionCtx, DatabaseWriter, MutationCtx } from '../_generated/server';
 import { MATCHMAKING_SCHEDULER_INTERVAL_MS } from './matchmaking.constants';
 
-export const getMatchmaking = async (ctx: MutationCtx): Promise<Doc<'matchmaking'>> => {
-  let matchmaking = await ctx.db.query('matchmaking').first();
+export const getMatchmaking = async (db: DatabaseWriter): Promise<Doc<'matchmaking'>> => {
+  let matchmaking = await db.query('matchmaking').first();
   if (!matchmaking) {
-    const id = await ctx.db.insert('matchmaking', {
+    const id = await db.insert('matchmaking', {
       nextInvocationId: undefined
     });
-    matchmaking = await ctx.db.get(id)!;
+    matchmaking = await db.get(id)!;
   }
 
   return matchmaking!;
 };
 
-export const startMatchmakingIfNeeded = async (ctx: MutationCtx) => {
-  const matchmaking = await getMatchmaking(ctx);
+export const startMatchmakingIfNeeded = async ({
+  db,
+  scheduler
+}: Pick<MutationCtx, 'db' | 'scheduler'>) => {
+  const matchmaking = await getMatchmaking(db);
   if (!matchmaking.nextInvocationId) {
-    console.log('scheduling machmaking');
-    const next = await ctx.scheduler.runAfter(0, internal.matchmaking.matchPlayers);
-    console.log('scheduled', next);
-    await ctx.db.patch(matchmaking._id, { nextInvocationId: next });
+    const next = await scheduler.runAfter(0, internal.matchmaking.matchPlayers);
+    await db.patch(matchmaking._id, { nextInvocationId: next });
   }
 };
 
-export const ensureIsInMatchmaking = async ({ db }: MutationCtx, userId: Id<'users'>) => {
+export const ensureIsInMatchmaking = async (
+  { db }: Pick<MutationCtx, 'db'>,
+  userId: Id<'users'>
+) => {
   const matchmakingUser = await db
     .query('matchmakingUsers')
     .withIndex('by_userId', q => q.eq('userId', userId))
@@ -37,7 +41,7 @@ export const ensureIsInMatchmaking = async ({ db }: MutationCtx, userId: Id<'use
   return matchmakingUser;
 };
 export const ensureIsNotInMatchmaking = async (
-  { db }: MutationCtx,
+  { db }: Pick<MutationCtx, 'db'>,
   userId: Id<'users'>
 ) => {
   const matchmakingUser = await db

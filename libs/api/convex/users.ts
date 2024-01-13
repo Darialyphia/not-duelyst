@@ -3,43 +3,29 @@ import { query, mutation, internalQuery } from './_generated/server';
 import { ensureAuthenticated } from './utils/auth';
 import { createUserAbility } from './users/user.ability';
 import { ensureAuthorized } from './utils/ability';
-import { DEFAULT_MMR, findMe, generateDiscriminator } from './users/user.utils';
-import { toUserDto } from './users/user.mapper';
+import { DEFAULT_MMR, generateDiscriminator } from './users/user.utils';
+import { mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 
-export const get = query({
-  args: {},
-  handler: async ctx => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) return undefined;
-
-    return await ctx.db.query('users').collect();
-  }
-});
-
-export const signUp = mutation({
+export const completeSignUp = mutationWithAuth({
   args: {
     name: v.string()
   },
-  handler: async ({ auth, db }, { name }) => {
-    const identity = await ensureAuthenticated({ auth });
-    const userAbility = await createUserAbility({ auth, db });
+  handler: async ({ session, db }, { name }) => {
+    const userAbility = await createUserAbility(session);
     await ensureAuthorized(userAbility.can('create', 'user'));
 
-    return db.insert('users', {
+    return db.patch(session?.user_id, {
       name: name,
       discriminator: await generateDiscriminator({ db }, name),
-      tokenIdentifier: identity.tokenIdentifier,
       mmr: DEFAULT_MMR
     });
   }
 });
 
-export const me = query({
+export const me = queryWithAuth({
+  args: {},
   handler: async ctx => {
-    const user = await findMe(ctx);
-    if (!user) return null;
-
-    return toUserDto(user);
+    return ctx.session?.user;
   }
 });
 

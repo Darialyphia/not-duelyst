@@ -13,6 +13,7 @@
   "dependencies": {
     "@casl/ability": "^6.5.0",
     "@hc/shared": "*",
-    "convex": "^1.6.3"
+    "convex": "^1.6.3",
+    "lucia": "^2.7.6"
   }
 }

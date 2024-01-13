@@ -4,14 +4,31 @@ import { GameStatus } from './game/game.constants';
 
 export default defineSchema({
   users: defineTable({
-    name: v.string(),
-    discriminator: v.string(),
-    tokenIdentifier: v.string(),
+    id: v.string(),
+    email: v.string(),
+    name: v.optional(v.string()),
+    discriminator: v.optional(v.string()),
     mmr: v.number()
   })
-    .index('by_token', ['tokenIdentifier'])
+    .index('byId', ['id'])
     .index('by_fullname', ['name', 'discriminator'])
     .index('by_mmr', ['mmr']),
+
+  sessions: defineTable({
+    id: v.string(),
+    user_id: v.string(),
+    active_expires: v.float64(),
+    idle_expires: v.float64()
+  })
+    .index('byId', ['id'])
+    .index('byUserId', ['user_id']),
+  auth_keys: defineTable({
+    id: v.string(),
+    hashed_password: v.union(v.string(), v.null()),
+    user_id: v.string()
+  })
+    .index('byId', ['id'])
+    .index('byUserId', ['user_id']),
 
   matchmaking: defineTable({
     nextInvocationId: v.optional(v.id('_scheduled_functions'))

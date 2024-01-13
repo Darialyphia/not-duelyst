@@ -14,6 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as game_utils from "../game/utils.js";
 import type * as gameMaps from "../gameMaps.js";
@@ -21,11 +22,11 @@ import type * as gameReplays from "../gameReplays.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
 import type * as loadout from "../loadout.js";
+import type * as lucia from "../lucia.js";
 import type * as matchmaking_matchmaking from "../matchmaking/matchmaking.js";
 import type * as matchmaking from "../matchmaking.js";
 import type * as users from "../users.js";
 import type * as utils_ability from "../utils/ability.js";
-import type * as utils_auth from "../utils/auth.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -36,6 +37,7 @@ import type * as utils_auth from "../utils/auth.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  auth: typeof auth;
   collection: typeof collection;
   "game/utils": typeof game_utils;
   gameMaps: typeof gameMaps;
@@ -43,11 +45,11 @@ declare const fullApi: ApiFromModules<{
   games: typeof games;
   hathora: typeof hathora;
   loadout: typeof loadout;
+  lucia: typeof lucia;
   "matchmaking/matchmaking": typeof matchmaking_matchmaking;
   matchmaking: typeof matchmaking;
   users: typeof users;
   "utils/ability": typeof utils_ability;
-  "utils/auth": typeof utils_auth;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

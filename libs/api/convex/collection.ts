@@ -1,10 +1,9 @@
 import { v } from 'convex/values';
-import { internalAction, internalMutation, query } from './_generated/server';
+import { internalAction, internalMutation } from './_generated/server';
 import { UNITS } from '@hc/sdk';
-import { ensureAuthenticated } from './utils/auth';
-import { ensureUserExists } from './users/user.utils';
-import { toLCollectionItemDto } from './collection/collection.utils';
+import { toCollectionItemDto } from './collection/collection.utils';
 import { internal } from './_generated/api';
+import { ensureAuthenticated, queryWithAuth } from './auth/auth.utils';
 
 export const grantAllCollection = internalMutation({
   args: {
@@ -45,14 +44,16 @@ export const grantAllCollectionToAllPlayers = internalAction(async ctx => {
   return true;
 });
 
-export const myCollection = query(async ctx => {
-  const identity = await ensureAuthenticated(ctx);
-  const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+export const myCollection = queryWithAuth({
+  args: {},
+  handler: async ctx => {
+    const user = await ensureAuthenticated(ctx.session);
 
-  const collection = await ctx.db
-    .query('collectionItems')
-    .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
-    .collect();
+    const collection = await ctx.db
+      .query('collectionItems')
+      .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
+      .collect();
 
-  return collection.map(toLCollectionItemDto);
+    return collection.map(toCollectionItemDto);
+  }
 });

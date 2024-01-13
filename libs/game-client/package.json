@@ -40,6 +40,7 @@
     "gsap": "^3.12.3",
     "h3-clerk": "^0.3.7",
     "howler": "^2.2.4",
+    "lucia": "^2.7.6",
     "open-props": "^1.6.13",
     "pixi-sound": "^3.0.5",
     "pixi-viewport": "^5.0.2",

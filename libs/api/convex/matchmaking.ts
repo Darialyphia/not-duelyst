@@ -2,8 +2,6 @@ import { api } from './_generated/api';
 import { internalAction, internalMutation, mutation, query } from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
-import { ensureUserExists } from './users/user.utils';
-import { ensureAuthenticated } from './utils/auth';
 import {
   createGameFromMatchmadePair,
   ensureIsInMatchmaking,
@@ -14,14 +12,15 @@ import {
 } from './matchmaking/matchmaking.utils';
 import { v } from 'convex/values';
 import { ensureHasNoCurrentGame, getGameInitialState } from './game/utils';
+import { ensureAuthenticated, mutationWithAuth } from './auth/auth.utils';
 
-export const join = mutation({
+export const join = mutationWithAuth({
   args: {
     loadoutId: v.id('loadouts')
   },
   handler: async (ctx, args) => {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = ensureAuthenticated(ctx.session);
+
     await ensureHasNoCurrentGame(ctx, user._id);
     await ensureIsNotInMatchmaking(ctx, user._id);
 
@@ -35,10 +34,10 @@ export const join = mutation({
   }
 });
 
-export const leave = mutation({
+export const leave = mutationWithAuth({
+  args: {},
   handler: async ctx => {
-    const identity = await ensureAuthenticated(ctx);
-    const user = await ensureUserExists(ctx, identity.tokenIdentifier);
+    const user = ensureAuthenticated(ctx.session);
     const matchMakingUser = await ensureIsInMatchmaking(ctx, user._id);
 
     return ctx.db.delete(matchMakingUser._id);
@@ -101,7 +100,7 @@ export const setupNextInvocation = internalMutation({
     schedulerId: v.optional(v.id('_scheduled_functions'))
   },
   async handler(ctx, arg) {
-    const matchmaking = await getMatchmaking(ctx);
+    const matchmaking = await getMatchmaking(ctx.db);
     await ctx.db.patch(matchmaking._id, { nextInvocationId: arg.schedulerId });
   }
 });
