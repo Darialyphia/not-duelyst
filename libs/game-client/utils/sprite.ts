@@ -20,6 +20,7 @@ export const createSpritesheetFrameObject = (
 };
 
 export const SPRITE_OFFSETS = {
-  INTERACTABLE: 1,
-  ENTITY: 1.1
+  INTERACTABLE: 2,
+  ENTITY: 2.1,
+  HALF_TILE: -1
 } as const;

@@ -87,6 +87,8 @@ watch([containerX, containerY], ([newX, newY]) => {
     ease: animated ? Power0.easeNone : Power2.easeOut
   });
 });
+
+const showDebug = ref(false);
 </script>
 
 <template>
@@ -102,7 +104,18 @@ watch([containerX, containerY], ([newX, newY]) => {
     :y="tweened.y"
     :z-order="zIndex"
     :z-index="zIndex"
+    @pointerenter="showDebug = true"
+    @pointerleave="showDebug = false"
   >
     <slot />
+    <!-- <text
+      v-if="showDebug"
+      :style="{ fill: 'white', fontSize: 35, fontFamily: 'monospace' }"
+      :scale="0.25"
+      :anchor="0.5"
+      event-mode="none"
+    >
+      x:{{ x }} y:{{ y }} z{{ z }}{{ '\n' }}z-index:{{ zIndex.toFixed(1) }}
+    </text> -->
   </container>
 </template>

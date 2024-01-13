@@ -29,9 +29,9 @@ export class DealDamageAction extends GameAction<{
   }
 
   get logMessage() {
-    return `${
-      this.attacker?.unitId ?? this.payload.sourceId
-    } deals damage to ${this.targets.map(t => t.unitId).join(', ')}.`;
+    return `${this.attacker?.unitId ?? this.payload.sourceId} deals ${this.targets
+      .map(t => `${this.getDamage(t)} damage to ${t.unitId}`)
+      .join(', ')}.`;
   }
 
   getDamage(target: Entity) {

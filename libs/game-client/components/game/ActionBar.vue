@@ -187,9 +187,8 @@ const onValidateTargets = () => {
   align-items: center;
 
   min-width: var(--size-sm);
-  padding: var(--size-6);
+  padding-block: var(--size-5);
 
-  backdrop-filter: blur(5px);
   border-radius: var(--radius-3);
 
   @screen lt-lg {

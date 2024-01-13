@@ -95,8 +95,8 @@ export abstract class GameAction<TPayload extends JSONObject> implements Seriali
     try {
       // discards client side actions generated as side effects of other actions executed client side
       // this avoid client sessions from playing those actions twice
-
       if (this.isSideEffect) return;
+      this.message; // troggers caching of the log message. Dirty hack because evaluating the message later could be unsafe (entity not existing anymore, etc).
 
       // game is over, can't execute further actions
       if (this.ctx.winner) return;

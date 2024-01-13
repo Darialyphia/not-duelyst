@@ -5,7 +5,6 @@ import { Polygon, Container } from 'pixi.js';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { GlowFilter } from '@pixi/filter-glow';
 import { type AnimatedSprite, type Cursor, FederatedMouseEvent } from 'pixi.js';
-import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 
 const { entity } = defineProps<{
   entity: Entity;
@@ -132,8 +131,14 @@ const cursor = computed(() => {
   return undefined;
 });
 
-const shadowFilters = [new ColorOverlayFilter(0x000000)];
 const isSummoned = ref(entity.kind === 'GENERAL');
+
+const zIndexOffset = computed(() => {
+  if (gameSession.map.getCellAt(entity.position)?.isHalfTile) {
+    return SPRITE_OFFSETS.ENTITY + SPRITE_OFFSETS.HALF_TILE;
+  }
+  return SPRITE_OFFSETS.ENTITY;
+});
 </script>
 
 <template>
@@ -142,7 +147,7 @@ const isSummoned = ref(entity.kind === 'GENERAL');
     :x="entity.position.x"
     :y="entity.position.y"
     :z="entity.position.z"
-    :z-index-offset="SPRITE_OFFSETS.ENTITY"
+    :z-index-offset="zIndexOffset"
     :offset="offset"
     :map="{ width: state.map.width, height: state.map.height, rotation: mapRotation }"
   >

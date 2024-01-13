@@ -2,7 +2,6 @@ import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Player } from '../player/player';
-import { AuraMeta } from './aura.effect';
 import { Effect } from './effect';
 
 export class ImmolateEffect extends Effect {

@@ -17,7 +17,7 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
     :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
   >
     <div class="avatar-container fancy-surface mx-auto">
-      <img :src="unitImagesPaths[entity.unit.spriteId]" />
+      <img :src="unitImagesPaths[`${entity.unit.spriteId}-icon`]" />
     </div>
     <div class="text-center">{{ entity.unitId }}</div>
 
@@ -165,8 +165,6 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
   border-radius: var(--radius-round);
 
   > img {
-    transform: scale(3);
-
     display: block;
 
     width: 100%;

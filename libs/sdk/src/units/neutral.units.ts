@@ -8,6 +8,9 @@ import { AddEffectAction } from '../action/add-effect.action';
 import { PlunderOnKillEffect } from '../effect/plunder-on-kill.effect';
 import { RushEffect } from '../effect/rush.effect';
 import { AoeOnDeathEffect } from '../effect/aoe-on-death.effect';
+import { RangedAttack } from '../skill/ranged-attack';
+import { SummonInteractableAction } from '../action/summon-interactable.action';
+import { Vec3 } from '../utils/vector';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -180,5 +183,54 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     defense: 0,
     speed: 2,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0, splash: true })]
+  },
+
+  {
+    id: 'neutral-midas',
+    spriteId: 'neutral-midas',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 5,
+    summonCooldown: 6,
+    maxHp: 8,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 4,
+    defense: 0,
+    speed: 3,
+    skills: [
+      new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 1, maxRange: 4 })
+    ],
+    onSummoned: {
+      getDescription() {
+        return 'Create a gold coin on each unoccupied side of this unit.';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 0,
+      isTargetable(ctx, point, summonedPoint) {
+        return false;
+      },
+      execute(ctx, targets, caster) {
+        const cells = [
+          ctx.map.getCellAt(Vec3.add(caster.position, { x: 1, y: 0, z: 0 })),
+          ctx.map.getCellAt(Vec3.add(caster.position, { x: -1, y: 0, z: 0 })),
+          ctx.map.getCellAt(Vec3.add(caster.position, { x: 0, y: 1, z: 0 })),
+          ctx.map.getCellAt(Vec3.add(caster.position, { x: 0, y: -1, z: 0 }))
+        ];
+        cells.forEach(cell => {
+          if (!cell?.isWalkable) return;
+          if (ctx.entityManager.getEntityAt(cell)) return;
+          ctx.actionQueue.push(
+            new SummonInteractableAction(
+              {
+                id: 'GOLD_COIN',
+                position: cell.position
+              },
+              ctx
+            )
+          );
+        });
+      }
+    }
   }
 ];

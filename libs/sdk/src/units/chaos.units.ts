@@ -22,7 +22,7 @@ import { ExecuteEffect } from '../effect/execute.effect';
 export const CHAOS_UNITS: UnitBlueprint[] = [
   {
     id: 'chaos-hero',
-    spriteId: 'chaos-hero',
+    spriteId: 'chaos-hero2',
     kind: UNIT_KIND.GENERAL,
     faction: FACTIONS.chaos,
     summonCost: 0,
@@ -168,7 +168,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
             isTrueDamage: true,
             power: 1
           }),
-        description: 'Burn nearby enemies at the end of your turn.'
+        description: 'Deals 1 damage to nearby enemies at the beginning of your turn.'
       }
     ],
     skills: [
