@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "./index.ts",
   "scripts": {
-    "dev": "convex dev"
+    "dev": "convex dev",
+    "build": "convex deploy"
   },
   "devDependencies": {
     "@hc/tsconfig": "*",

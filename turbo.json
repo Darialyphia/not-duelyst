@@ -4,7 +4,15 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "env": [
+        "CONVEX_URL",
+
+        "CLERK_PUBLISHABLE_KEY",
+        "CLERK_SECRET_KEY",
+
+        "HATHORA_APP_ID"
+      ],
+      "outputs": ["dist/**", ".output/**"]
     },
     "lint": {},
     "dev": {
