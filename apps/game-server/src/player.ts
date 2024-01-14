@@ -1,5 +1,4 @@
 import { api } from '@hc/api';
-import { stringify } from 'zipson';
 import { GameServer, GameSocket } from './types';
 import { Game } from './game';
 
@@ -8,7 +7,9 @@ export const handlePlayerSocket = async (
   socket: GameSocket,
   ongoingGames: Map<string, Game>
 ) => {
-  const game = await socket.data.convexClient.query(api.games.getCurrent);
+  const game = await socket.data.convexClient.query(api.games.getCurrent, {
+    sessionId: socket.data.sessionId
+  });
   if (!game) {
     console.log('Game not found');
     return socket.disconnect();

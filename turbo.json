@@ -4,7 +4,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "env": ["CONVEX_URL", "HATHORA_APP_ID"],
+      "env": ["HATHORA_APP_ID"],
       "outputs": ["dist/**", ".output/**"]
     },
     "lint": {},

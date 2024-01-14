@@ -116,11 +116,11 @@ export class Game {
     };
   }
 
-  private start() {
+  private start(sessionId: string) {
     if (this.isStarted) return;
     this.isStarted = true;
     if (this.game.status === 'WAITING_FOR_PLAYERS') {
-      this.convexClient.mutation(api.games.start, { gameId: this.game._id });
+      this.convexClient.mutation(api.games.start, { gameId: this.game._id, sessionId });
     }
 
     this.session.emitter.on('game:turn-start', this.onTurnStart.bind(this));
@@ -138,7 +138,7 @@ export class Game {
     this.playerJoined.add(socket.data.user._id);
 
     if (this.playerJoined.size === this.minPlayers) {
-      this.start();
+      this.start(socket.data.sessionId);
     }
   }
 
