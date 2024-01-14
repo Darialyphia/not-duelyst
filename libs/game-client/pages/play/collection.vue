@@ -210,7 +210,9 @@ const getGeneralImage = (generalId: string) => {
 </script>
 
 <template>
-  <div v-if="isCollectionLoading || isLoadoutsLoading" class="loader">Loading...</div>
+  <div v-if="isCollectionLoading || isLoadoutsLoading" class="loader">
+    Loading collection page...
+  </div>
 
   <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
     <header class="fancy-surface border-none">
