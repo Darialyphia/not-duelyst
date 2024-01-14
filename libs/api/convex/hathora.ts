@@ -19,6 +19,7 @@ export const getRoomId = internalAction(async () => {
   if (room.statusCode !== 201) {
     throw new Error('could not get room Id from Hathora');
   }
+
   return room.connectionInfoV2!.roomId;
 });
 

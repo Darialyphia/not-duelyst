@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 import { GameSession } from '@hc/sdk';
-import { io, type Socket } from 'socket.io-client';
 definePageMeta({
   name: 'Game'
 });
 
 const route = useRoute();
-const sessionId = useSessionId();
 
 const { data: game, isLoading: isGameLoading } = useConvexAuthedQuery(
   api.games.getCurrent,
@@ -25,23 +23,13 @@ const gameSession = shallowRef<{
 
 const timeRemainingForTurn = ref(0);
 const isCreatingRoom = ref(true);
-let socket: Socket;
+
+const { connect, error } = useGameSocket(route.query.roomId as string);
 onMounted(async () => {
-  const socketUrl = await $fetch('/api/room', {
-    baseURL: window.location.origin,
-    query: { roomId: route.query.roomId }
-  });
+  const socket = await connect();
   isCreatingRoom.value = false;
 
-  socket = io(socketUrl as string, {
-    transports: ['websocket'],
-    upgrade: false,
-    auth: {
-      token: sessionId.value
-    }
-  });
-
-  socket.on('game:init', (serializedState: any) => {
+  socket?.on('game:init', (serializedState: any) => {
     if (gameSession.value) return;
     const session = GameSession.createClientSession(serializedState);
 
@@ -67,10 +55,6 @@ onMounted(async () => {
   });
 });
 
-onUnmounted(() => {
-  socket?.disconnect();
-});
-
 const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
 const canSeeGame = computed(() => {
   if (isLoading.value) return true;
@@ -81,17 +65,30 @@ const canSeeGame = computed(() => {
 <template>
   <div>
     <ClientOnly>
-      <div v-if="isLoading">Loading...</div>
-      <div v-if="!canSeeGame">
+      <div v-if="isLoading" class="full-page">Loading...</div>
+
+      <div v-if="!canSeeGame" class="full-page">
         You are not authorized to see this game
         <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
       </div>
-      <div v-else-if="isCreatingRoom">Creating game room...</div>
-      <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">
+
+      <div v-else-if="isCreatingRoom" class="full-page">Creating game room...</div>
+
+      <div v-else-if="error" class="full-page">
+        An error has occured while creating the room.
+        <div>
+          TODO: Clean up game so users don't get stuck forever in a broken game 🤡
+        </div>
+
+        <code>{{ error }}</code>
+      </div>
+
+      <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'" class="full-page">
         Waiting for opponent to connect...
       </div>
-      <div v-else-if="game?.status === 'FINISHED'">
-        This game is already finished.
+
+      <div v-else-if="game?.status === 'FINISHED'" class="full-page">
+        This game is already finished. (TODO: Add end game screen)
         <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
       </div>
 
@@ -124,6 +121,13 @@ const canSeeGame = computed(() => {
     transform: scaleX(0);
     background-color: var(--red-7);
   }
+}
+
+.full-page {
+  display: grid;
+  place-content: center;
+  height: 100dvh;
+  font-size: var(--font-size-5);
 }
 .remaining {
   position: fixed;

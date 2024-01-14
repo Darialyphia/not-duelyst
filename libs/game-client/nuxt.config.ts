@@ -11,12 +11,9 @@ export default defineNuxtConfig({
   modules: ['@vee-validate/nuxt' /*'@pinia/nuxt'*/],
   runtimeConfig: {
     public: {
-      convexUrl: ''
-    },
-    hathoraAppId: ''
-  },
-  build: {
-    transpile: ['ts-priority-queue']
+      convexUrl: '',
+      hathoraAppId: ''
+    }
   },
   components: [
     {

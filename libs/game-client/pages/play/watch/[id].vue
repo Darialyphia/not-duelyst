@@ -16,28 +16,14 @@ const { data: game, isLoading: isGameLoading } = useConvexQuery(
   { gameId: route.params.id as Id<'games'> },
   {}
 );
-
 const gameSession = shallowRef<GameSession>();
-let socket: Socket;
+
+const { connect, error } = useGameSocket(route.query.roomId as string);
+
 onMounted(async () => {
-  const socketUrl = await $fetch('/api/room', {
-    baseURL: window.location.origin,
-    query: { roomId: route.query.roomId }
-  });
+  const socket = await connect();
 
-  socket = io(`${socketUrl}?spectator=true&gameId=${route.params.id}` as string, {
-    transports: ['websocket'],
-    upgrade: false,
-    auth: {
-      token: sessionId.value
-    }
-  });
-
-  socket.on('connect_error', err => {
-    console.log(err.message);
-  });
-
-  socket.on('game:init', (serializedState: any) => {
+  socket?.on('game:init', (serializedState: any) => {
     if (gameSession.value) return;
     const session = GameSession.createClientSession(serializedState);
 
@@ -50,16 +36,13 @@ onMounted(async () => {
     });
   });
 });
-
-onUnmounted(() => {
-  socket?.disconnect();
-});
 </script>
 
 <template>
   <ClientOnly>
     <div v-if="isGameLoading">Loading...</div>
 
+    <div v-else-if="error">{{ error }}</div>
     <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">Waiting for opponent...</div>
     <div v-else-if="game?.status === 'FINISHED'">
       This game is already finished.
