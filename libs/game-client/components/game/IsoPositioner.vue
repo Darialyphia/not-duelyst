@@ -104,8 +104,6 @@ const showDebug = ref(false);
     :y="tweened.y"
     :z-order="zIndex"
     :z-index="zIndex"
-    @pointerenter="showDebug = true"
-    @pointerleave="showDebug = false"
   >
     <slot />
     <!-- <text

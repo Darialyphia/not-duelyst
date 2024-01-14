@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 # Copy root package.json and lockfile
 COPY package.json ./
-COPY package-lock.json ./
+COPY yarn.lock ./
 
 COPY ./configs ./configs
 COPY ./libs ./libs

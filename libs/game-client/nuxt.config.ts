@@ -11,9 +11,9 @@ export default defineNuxtConfig({
   modules: ['@vee-validate/nuxt' /*'@pinia/nuxt'*/],
   runtimeConfig: {
     public: {
-      convexUrl: process.env.CONVEX_URL
+      convexUrl: ''
     },
-    hathoraAppId: process.env.HARHOTA_APP_ID
+    hathoraAppId: ''
   },
   components: [
     {
