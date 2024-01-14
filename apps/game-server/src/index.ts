@@ -29,6 +29,7 @@ async function main() {
     const token = socket.handshake.auth.token;
     const client = new ConvexHttpClient(process.env.CONVEX_URL!);
 
+    console.log('new connection', token);
     const user = await client.query(api.users.me, { sessionId: token });
     if (!user) return next(new Error('Unauthorized'));
 

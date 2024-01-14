@@ -40,7 +40,8 @@ export const completeSignUp = mutationWithAuth({
 
 export const me = queryWithAuth({
   args: {},
-  handler: async ctx => {
+  handler: async (ctx, args) => {
+    console.log(ctx.session, args);
     const user = ensureAuthenticated(ctx.session);
 
     return toUserDto(user);
