@@ -8,12 +8,14 @@ const formData = reactive({
   email: '',
   password: ''
 });
-
-const onSubmit = () => {
-  $fetch('/api/signin', {
+const sessionId = useSessionId();
+const { push } = useRouter();
+const onSubmit = async () => {
+  sessionId.value = await $fetch('/api/signin', {
     method: 'POST',
     body: formData
   });
+  push({ name: 'ClientHome' });
 };
 </script>
 
@@ -27,7 +29,7 @@ const onSubmit = () => {
       <label>Password</label>
       <input v-model="formData.password" type="password" />
 
-      <UiButton>Login</UiButton>
+      <UiButton class="primary-button">Login</UiButton>
     </form>
   </div>
 </template>

@@ -22,6 +22,7 @@ export default defineSchema({
   })
     .index('byId', ['id'])
     .index('byUserId', ['user_id']),
+
   auth_keys: defineTable({
     id: v.string(),
     hashed_password: v.union(v.string(), v.null()),
@@ -29,6 +30,11 @@ export default defineSchema({
   })
     .index('byId', ['id'])
     .index('byUserId', ['user_id']),
+
+  featureFlags: defineTable({
+    key: v.string(),
+    value: v.boolean()
+  }),
 
   matchmaking: defineTable({
     nextInvocationId: v.optional(v.id('_scheduled_functions'))

@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
       secure: import.meta.env.PROD
     });
 
-    return sendRedirect(event, '/play');
+    return sessionId;
   } catch (e) {
     console.log(e);
     throw createError({
