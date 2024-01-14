@@ -5,7 +5,6 @@
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev .playground --port=3001",
-    "build": "nuxt build .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
