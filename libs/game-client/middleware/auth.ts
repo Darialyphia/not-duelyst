@@ -1,17 +1,9 @@
-import { useClerkProvide } from 'vue-clerk';
+import { useSessionId } from '../composables/useSession';
 
 export default defineNuxtRouteMiddleware(async () => {
-  const nuxtApp = useNuxtApp();
-  const { clerk, isClerkLoaded } = useClerkProvide();
+  const sessionId = useSessionId();
 
-  if (process.server && !nuxtApp.ssrContext?.event.context.auth?.userId) {
-    return navigateTo({ name: 'Login' });
-  }
-
-  if (process.client) {
-    await until(isClerkLoaded).toBe(true);
-  }
-  if (process.client && clerk.loaded && !clerk.user?.id) {
+  if (!sessionId.value) {
     return navigateTo({ name: 'Login' });
   }
 });

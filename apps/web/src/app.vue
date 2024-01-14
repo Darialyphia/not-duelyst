@@ -9,3 +9,7 @@ colorMode.preference = 'dark';
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<style>
+@layer base, components, utilities;
+</style>

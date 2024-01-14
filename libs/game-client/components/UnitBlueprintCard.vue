@@ -282,11 +282,11 @@ ul > li {
 }
 
 .unit-name {
-  margin-top: var(--size-3);
-  margin-bottom: var(--size-3);
+  margin-block: var(--size-1);
 
   font-size: var(--font-size-4);
   font-weight: 600;
   text-align: center;
+  text-transform: capitalize;
 }
 </style>

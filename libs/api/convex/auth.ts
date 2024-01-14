@@ -3,6 +3,17 @@ import { Id } from './_generated/dataModel';
 import { mutationWithAuth } from './auth/auth.utils';
 import { DEFAULT_MMR } from './users/user.utils';
 
+export const signOff = mutationWithAuth({
+  args: {},
+  handler: async ctx => {
+    if (ctx.session) {
+      await ctx.auth.invalidateSession(ctx.session.sessionId);
+    }
+
+    return null;
+  }
+});
+
 export const signIn = mutationWithAuth({
   args: {
     email: v.string(),

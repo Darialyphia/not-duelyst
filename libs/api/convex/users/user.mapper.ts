@@ -4,9 +4,9 @@ import type { User } from './user.entity';
 export type UserDto = {
   _id: Id<'users'>;
   _creationTime: number;
-  name: string;
+  name?: string;
   fullName: string;
-  discriminator: string;
+  discriminator?: string;
   mmr: number;
 };
 

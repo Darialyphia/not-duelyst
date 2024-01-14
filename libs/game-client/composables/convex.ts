@@ -4,14 +4,12 @@ import {
   type FunctionReference,
   type FunctionReturnType
 } from 'convex/server';
-import { CONVEX_AUTH, CONVEX_CLIENT } from '../plugins/convex';
+import { CONVEX_CLIENT } from '../plugins/convex';
 import { type Nullable, isDefined } from '@hc/shared';
 
 export const useConvexClient = () => {
   return useSafeInject(CONVEX_CLIENT);
 };
-
-export const useConvexAuth = () => useSafeInject(CONVEX_AUTH);
 
 type UseConvexQueryOptions = {
   ssr?: boolean;
@@ -74,20 +72,24 @@ export const useConvexQuery = <Query extends QueryReference>(
 
 export const useConvexAuthedQuery = <Query extends QueryReference>(
   query: Query,
-  args: MaybeRefOrGetter<FunctionArgs<Query>>,
+  args: MaybeRefOrGetter<Omit<FunctionArgs<Query>, 'sessionId'>>,
   options: UseConvexQueryOptions = { ssr: true, enabled: true }
 ) => {
-  const auth = useConvexAuth();
+  const sessionId = useSessionId();
 
-  return useConvexQuery(query, args, {
-    ssr: options.ssr,
-    enabled: computed(() => {
-      let enabled = unref(options.enabled);
-      if (enabled === undefined) enabled = true;
+  return useConvexQuery(
+    query,
+    computed(() => ({ ...toValue(args), sessionId: sessionId.value })),
+    {
+      ssr: options.ssr,
+      enabled: computed(() => {
+        let enabled = unref(options.enabled);
+        if (enabled === undefined) enabled = true;
 
-      return !!(enabled && auth.isAuthenticated.value);
-    })
-  });
+        return !!(enabled && sessionId.value);
+      })
+    }
+  );
 };
 
 export type MutationReference = FunctionReference<'mutation'>;
@@ -124,3 +126,20 @@ export function useConvexMutation<Mutation extends MutationReference>(
     }
   };
 }
+
+export const useConvexAuthedMutation = <Mutation extends MutationReference>(
+  ...args: Parameters<typeof useConvexMutation<Mutation>>
+) => {
+  const { mutate, ...rest } = useConvexMutation(...args);
+  const sessionId = useSessionId();
+
+  return {
+    ...rest,
+    mutate(mutationArgs: Omit<Mutation['_args'], 'sessionId'>) {
+      return mutate({
+        ...mutationArgs,
+        sessionId: sessionId.value
+      });
+    }
+  };
+};

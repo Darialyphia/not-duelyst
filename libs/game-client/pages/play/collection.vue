@@ -5,7 +5,6 @@ import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
 import { unitImagesPaths } from '../../assets/units';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
-import cardBack from '../../assets/ui/card-back.png';
 import bg from '../../assets/backgrounds/spire.jpg';
 
 definePageMeta({
@@ -167,7 +166,7 @@ const sortedLoadoutUnits = computed(() =>
     })
 );
 
-const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexMutation(
+const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexAuthedMutation(
   api.loadout.create,
   {
     onSuccess() {
@@ -175,7 +174,7 @@ const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexMutation(
     }
   }
 );
-const { mutate: updateDeck, isLoading: isUpdatingDeck } = useConvexMutation(
+const { mutate: updateDeck, isLoading: isUpdatingDeck } = useConvexAuthedMutation(
   api.loadout.update,
   {
     onSuccess() {

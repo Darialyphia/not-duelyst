@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SignOutButton } from 'vue-clerk';
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -18,7 +17,7 @@ definePageMeta({
         <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'MyProfile' }">Profile</NuxtLink></li>
-        <li><SignOutButton @sign-out="navigateTo('/login')" /></li>
+        <li><a href="/api/signoff">Sign off</a></li>
       </ul>
     </nav>
   </div>

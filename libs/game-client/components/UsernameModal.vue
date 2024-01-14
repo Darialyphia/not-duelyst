@@ -2,13 +2,20 @@
 import { api } from '@hc/api';
 import { object, string } from 'zod';
 
-const { data: me } = useConvexQuery(api.users.me, {});
-const { isAuthenticated } = useConvexAuth();
+const sessionId = useSessionId();
+const { data: me, isLoading } = useConvexQuery(
+  api.users.me,
+  computed(() => ({ sessionId: sessionId.value }))
+);
+
 const isOpened = computed(() => {
-  return isAuthenticated.value && me.value === null;
+  if (isLoading.value) return false;
+  return !!sessionId.value && !me.value?.name;
 });
 
-const { mutate: signup, isLoading } = useConvexMutation(api.users.signUp);
+const { mutate: signup, isLoading: isSubmitting } = useConvexMutation(
+  api.users.completeSignUp
+);
 
 const schema = toTypedSchema(
   object({
@@ -22,17 +29,20 @@ const schema = toTypedSchema(
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
-        <div class="surface">
+        <div class="fancy-surface">
           <DialogTitle>Almost there !</DialogTitle>
           <DialogDescription>
             We just need you to choose a username below
           </DialogDescription>
 
-          <VeeForm :validation-schema="schema" @submit="values => signup(values as any)">
+          <VeeForm
+            :validation-schema="schema"
+            @submit="values => signup({ ...(values as any), sessionId })"
+          >
             <VeeField name="name" />
-            <VeeErrorMessage name="name" />
+            <VeeErrorMessage name="name" class="text-red-5" />
 
-            <button :disbaled="isLoading">Continue</button>
+            <UiButton :disbaled="isSubmitting" class="primary-button">Continue</UiButton>
           </VeeForm>
         </div>
         <DialogClose />
@@ -56,5 +66,10 @@ const schema = toTypedSchema(
 
   display: grid;
   place-content: center;
+}
+
+input {
+  display: block;
+  border: var(--fancy-border);
 }
 </style>

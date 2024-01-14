@@ -5,8 +5,9 @@ import { io, type Socket } from 'socket.io-client';
 definePageMeta({
   name: 'Game'
 });
+
 const route = useRoute();
-const { getToken } = useConvexAuth();
+const sessionId = useSessionId();
 
 const { data: game, isLoading: isGameLoading } = useConvexAuthedQuery(
   api.games.getCurrent,
@@ -35,7 +36,7 @@ onMounted(async () => {
     transports: ['websocket'],
     upgrade: false,
     auth: {
-      token: await getToken()
+      token: sessionId.value
     }
   });
 

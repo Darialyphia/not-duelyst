@@ -288,7 +288,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         cost: 3,
         name: 'Consecration',
         shouldExhaustCaster: true,
-        spriteId: 'consection',
+        spriteId: 'consecration',
         animationFX: 'cast',
         minTargets: 1,
         maxTargets: 1,

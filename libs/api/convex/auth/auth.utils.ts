@@ -70,8 +70,9 @@ export function mutationWithAuth<ArgsValidator extends PropertyValidators, Outpu
     args: { ...args, sessionId: v.union(v.null(), v.string()) },
     handler: async (ctx, args: any) => {
       const auth = getAuth(ctx.db);
-      const session = await getValidSessionAndRenew(auth, args.sessionId);
-      return handler({ ...ctx, session, auth }, args);
+      const { sessionId, ...otherArgs } = args;
+      const session = await getValidSessionAndRenew(auth, sessionId);
+      return handler({ ...ctx, session, auth }, otherArgs);
     }
   });
 }

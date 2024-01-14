@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 
-const auth = useConvexAuth();
 const route = useRoute();
 const router = useRouter();
-
+const sessionId = useSessionId();
 const { data: currentGame } = useConvexQuery(
   api.games.getCurrent,
-  {},
-  { ssr: false, enabled: computed(() => auth.isAuthenticated.value) }
+  computed(() => ({ sessionId: sessionId.value })),
+  { ssr: false, enabled: computed(() => !!sessionId.value) }
 );
 
 const hasCurrentOngoingGame = computed(

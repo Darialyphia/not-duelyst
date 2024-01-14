@@ -1,3 +1,3 @@
 import type { Doc } from '../_generated/dataModel';
 
-export type User = Doc<'users'>;
+export type User = Omit<Doc<'users'>, 'id'>;

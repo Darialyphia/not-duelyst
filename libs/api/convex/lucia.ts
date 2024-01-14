@@ -21,6 +21,7 @@ export function getAuth(db: DatabaseWriter) {
       return {
         _id: user._id,
         _creationTime: user._creationTime,
+        id: user.id,
         email: user.email,
         name: user.name,
         mmr: user.mmr,

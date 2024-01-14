@@ -22,7 +22,7 @@ const {
   { immediate: false }
 );
 
-const { mutate: join } = useConvexMutation(api.matchmaking.join, {
+const { mutate: join } = useConvexAuthedMutation(api.matchmaking.join, {
   onSuccess() {
     reset();
     resume();
@@ -31,7 +31,7 @@ const { mutate: join } = useConvexMutation(api.matchmaking.join, {
     console.error(err);
   }
 });
-const { mutate: leave } = useConvexMutation(api.matchmaking.leave, {
+const { mutate: leave } = useConvexAuthedMutation(api.matchmaking.leave, {
   onSuccess() {
     pause();
     reset();

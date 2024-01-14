@@ -8,12 +8,9 @@ definePageMeta({
   name: 'WatchGame'
 });
 
+const sessionId = useSessionId();
 const route = useRoute();
 
-const { getToken, isAuthenticated } = useConvexAuth();
-watchEffect(() => {
-  console.log(isAuthenticated.value);
-});
 const { data: game, isLoading: isGameLoading } = useConvexQuery(
   api.games.getById,
   { gameId: route.params.id as Id<'games'> },
@@ -21,7 +18,6 @@ const { data: game, isLoading: isGameLoading } = useConvexQuery(
 );
 
 const gameSession = shallowRef<GameSession>();
-
 let socket: Socket;
 onMounted(async () => {
   const socketUrl = await $fetch('/api/room', {
@@ -33,7 +29,7 @@ onMounted(async () => {
     transports: ['websocket'],
     upgrade: false,
     auth: {
-      token: await getToken()
+      token: sessionId.value
     }
   });
 

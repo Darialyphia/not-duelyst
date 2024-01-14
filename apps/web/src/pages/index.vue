@@ -26,20 +26,24 @@ definePageMeta({
         <li>Features, gameplay and game balance are lacking.</li>
         <li>
           For the time being, any created account will start with all the units collection
-          unlocked, and will automatically get any new units added after the accoutn
+          unlocked, and will automatically get any new units added after the account
           creation.
         </li>
       </ul>
 
-      <div
-        class="flex gap-4"
-        style="--d-button-bg: var(--primary); --d-button-color: var(--text-on-primary)"
-      >
+      <p>
+        Also good luck finding a game since matchmaking will most likely always be empty.
+      </p>
+      <div class="flex gap-4">
         <NuxtLink v-slot="{ href, navigate }" to="/play" custom>
-          <UiButton :href="href" @click="navigate">Play now</UiButton>
+          <UiButton :href="href" class="primary-button" @click="navigate">
+            Play now
+          </UiButton>
         </NuxtLink>
         <NuxtLink v-slot="{ href, navigate }" to="/signup" custom>
-          <UiButton :href="href" @click="navigate">Get started</UiButton>
+          <UiButton :href="href" class="primary-button" @click="navigate">
+            Get started
+          </UiButton>
         </NuxtLink>
       </div>
     </div>
