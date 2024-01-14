@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     },
     hathoraAppId: ''
   },
+  build: {
+    transpile: ['ts-priority-queue']
+  },
   components: [
     {
       path: './components',
