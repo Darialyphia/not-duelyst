@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { useUser } from 'vue-clerk';
+const sessionId = useSessionId();
 
-const user = useUser();
-until(user.isLoaded)
-  .toBe(true)
+until(sessionId)
+  .not.toBe(null)
   .then(() => {
     navigateTo('/play');
   });

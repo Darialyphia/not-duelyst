@@ -24,13 +24,14 @@ const gameSession = shallowRef<{
 }>();
 
 const timeRemainingForTurn = ref(0);
-
+const isCreatingRoom = ref(true);
 let socket: Socket;
 onMounted(async () => {
   const socketUrl = await $fetch('/api/room', {
     baseURL: window.location.origin,
     query: { roomId: route.query.roomId }
   });
+  isCreatingRoom.value = false;
 
   socket = io(socketUrl as string, {
     transports: ['websocket'],
@@ -38,10 +39,6 @@ onMounted(async () => {
     auth: {
       token: sessionId.value
     }
-  });
-
-  socket.on('connect_error', err => {
-    console.log(err);
   });
 
   socket.on('game:init', (serializedState: any) => {
@@ -89,8 +86,9 @@ const canSeeGame = computed(() => {
         You are not authorized to see this game
         <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
       </div>
+      <div v-else-if="isCreatingRoom">Creating game room...</div>
       <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">
-        Waiting for opponent...
+        Waiting for opponent to connect...
       </div>
       <div v-else-if="game?.status === 'FINISHED'">
         This game is already finished.
