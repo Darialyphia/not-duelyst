@@ -23,7 +23,9 @@ export default defineEventHandler(async (event): Promise<string> => {
         if (response.connectionInfoV2?.status === 'active') {
           exposedPort = response.connectionInfoV2!.exposedPort!;
         } else {
-          console.log(`Room not activer, try ${tries} of ${GET_ROOM_POLLING_MAX_TRIES}`);
+          console.log(
+            `Room not active yet, try ${tries} of ${GET_ROOM_POLLING_MAX_TRIES}`
+          );
           tries++;
           if (tries > GET_ROOM_POLLING_MAX_TRIES) {
             throw new Error(`could not get the room url after ${tries} tries.`);
@@ -38,7 +40,10 @@ export default defineEventHandler(async (event): Promise<string> => {
       return `wss://${exposedPort?.host}:${exposedPort?.port}`;
     } catch (err) {
       throw createError({
-        message: `Could not get the connextion info for room ${roomId}`,
+        message:
+          err instanceof Error
+            ? err.message
+            : `Could not get the connextion info for room ${roomId}`,
         cause: err,
         statusCode: 500
       });

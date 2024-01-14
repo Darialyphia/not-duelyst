@@ -5,7 +5,7 @@
     "build": {
       "dependsOn": ["^build"],
       "env": ["HATHORA_APP_ID"],
-      "outputs": ["dist/**", ".output/**"]
+      "outputs": ["dist/**", ".output/**", "./playground/.nuxt/*"]
     },
     "lint": {},
     "dev": {
