@@ -4,6 +4,7 @@ const colorMode = useColorMode();
 colorMode.preference = 'dark';
 
 useHead({
+  title: 'Not Duelyst (but kinda)',
   style: [
     {
       // this solve a weird issue i ndev mode where the components and base layers are ivnerted, probably due to dynamic style blocks insertion order
