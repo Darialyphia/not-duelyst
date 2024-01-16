@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { Skill, UnitBlueprint } from '@hc/sdk';
-import { unitImagesPaths } from '../assets/units';
-import { skillImagesPaths } from '../assets/skills';
-import cardBack from '../assets/ui/card-back.png';
-import unitCostBg from '../assets/ui/unit-cost-background.png';
+import cardBack from '../assets/ui{m}/card-back.png';
+import unitCostBg from '../assets/ui{m}/unit-cost-background.png';
 
 const { unit } = defineProps<{
   unit: UnitBlueprint;
@@ -30,7 +28,7 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
         </div>
 
         <div class="avatar-container fancy-surface">
-          <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
+          <img :src="`/assets/units/${unit.spriteId}-icon.png`" />
         </div>
       </div>
 
@@ -85,7 +83,7 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
             tabindex="0"
             :data-cost="skill.cost"
             :style="{
-              '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+              '--bg': `url('/assets/skills/${skill.spriteId}.png')`,
               '--border': `url(${borders.square})`
             }"
             :class="selectedSkill === skill && 'selected'"

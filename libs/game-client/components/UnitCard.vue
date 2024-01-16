@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk';
-import { unitImagesPaths } from '../assets/units';
-import { skillImagesPaths } from '../assets/skills';
-import cardBack from '../assets/ui/card-back.png';
+import cardBack from '../assets/ui{m}/card-back.png';
 
 const { entity } = defineProps<{
   entity: Entity;
@@ -17,7 +15,7 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
     :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
   >
     <div class="avatar-container fancy-surface mx-auto">
-      <img :src="unitImagesPaths[`${entity.unit.spriteId}-icon`]" />
+      <img :src="`/assets/units/${entity.unit.spriteId}-icon.png`" />
     </div>
     <div class="text-center">{{ entity.unitId }}</div>
 
@@ -87,7 +85,7 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
         :style="{
           '--cooldown-angle':
             360 - (360 * entity.skillCooldowns[skill.id]) / skill.cooldown,
-          '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+          '--bg': `url('/assets/skills/${skill.spriteId}.png')`,
           '--border': `url(${borders.square})`
         }"
       />
@@ -296,3 +294,4 @@ ul > li {
   line-height: 1;
 }
 </style>
+../assets/units{m} ../assets/skills{}

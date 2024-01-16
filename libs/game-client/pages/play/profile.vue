@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
-import { unitImagesPaths } from '../../assets/units';
 
 definePageMeta({
   name: 'MyProfile'
@@ -38,12 +37,12 @@ const getResult = (game: (typeof gameHistory)['value'][number]) =>
           {{ getResult(game) }}
         </div>
 
-        <img :src="unitImagesPaths[`${game.players[0].loadout?.generalId}-icon`]" />
+        <img :src="`/assets/units/${game.players[0].loadout?.generalId}-icon.png`" />
 
         {{ game.players[0].name }}
         <span class="mx-auto">VS</span>
         {{ game.players[1].name }}
-        <img :src="unitImagesPaths[`${game.players[1].loadout?.generalId}-icon`]" />
+        <img :src="`/assets/units/${game.players[1].loadout?.generalId}-icon.png`" />
       </div>
 
       <NuxtLink
@@ -104,3 +103,4 @@ article {
   color: var(--red-8);
 }
 </style>
+../../assets/units{m}

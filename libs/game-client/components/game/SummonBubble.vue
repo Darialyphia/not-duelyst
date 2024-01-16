@@ -10,10 +10,10 @@ const { entity } = defineProps<{
 const emit = defineEmits<{ done: [] }>();
 const { assets } = useGame();
 
-const onSummonedSpritesheet = assets.getSprite(`summon-${entity.unit.faction.id}`);
-const onSummonedTextures = createSpritesheetFrameObject('idle', onSummonedSpritesheet);
-const onSummonedSpriteRef = ref<AnimatedSprite>();
-const onSummonedFilters = [
+const sheet = assets.getSprite(`summon-${entity.unit.faction.id}`);
+const textures = createSpritesheetFrameObject('idle', sheet);
+const spriteRef = ref<AnimatedSprite>();
+const filters = [
   new AdvancedBloomFilter({
     threshold: 0.5,
     bloomScale: 1,
@@ -29,17 +29,17 @@ const isSummonAnimationDone = ref(false);
 <template>
   <AnimatedSprite
     v-if="!isSummonAnimationDone && entity.kind !== 'GENERAL'"
-    ref="onSummonedSpriteRef"
-    :textures="onSummonedTextures"
+    ref="spriteRef"
+    :textures="textures"
     playing
     :x="-CELL_SIZE / 2"
     :y="CELL_SIZE / 2"
     :loop="false"
-    :filters="onSummonedFilters"
+    :filters="filters"
     @frame-change="
       (frame: number) => {
-        if (frame >= onSummonedSpriteRef!.totalFrames * 0.5) {
-          $emit('done');
+        if (frame >= spriteRef!.totalFrames * 0.5) {
+          emit('done');
         }
       }
     "

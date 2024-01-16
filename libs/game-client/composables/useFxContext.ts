@@ -1,5 +1,5 @@
 import { Text, AnimatedSprite, Container } from 'pixi.js';
-import { sfxPaths } from '../assets/sfx';
+import { sfxPaths } from '../assets/sfx{m}';
 import { Howl } from 'howler';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {

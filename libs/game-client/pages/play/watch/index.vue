@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
-import { unitImagesPaths } from '../../../assets/units';
 
 definePageMeta({
   name: 'WatchList'
@@ -23,12 +22,12 @@ const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing,
 
     <article v-for="game in games" :key="game._id">
       <div class="flex-1 flex gap-4 items-center">
-        <img :src="unitImagesPaths[`${game.players[0].loadout?.generalId}-icon`]" />
+        <img :src="`/assets/units/${game.players[0].loadout?.generalId}-icon.png`" />
 
         {{ game.players[0].name }}
         <span class="mx-auto">VS</span>
         {{ game.players[1].name }}
-        <img :src="unitImagesPaths[`${game.players[1].loadout?.generalId}-icon`]" />
+        <img :src="`/assets/units/${game.players[1].loadout?.generalId}-icon.png`" />
       </div>
       <NuxtLink
         v-slot="{ navigate, href }"
@@ -78,3 +77,4 @@ article {
   }
 }
 </style>
+../../../assets/units{m}

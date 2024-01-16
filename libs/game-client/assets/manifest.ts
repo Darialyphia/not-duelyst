@@ -1,10 +1,10 @@
-import { tileSpritesPaths } from './tiles';
+import { tileSpritesPaths } from './tiles{m}';
 import { objectEntries, type Values } from '@hc/shared';
-import { uiSpritesPaths } from './ui';
-import { unitSpritesPaths } from './units';
-import { tilesetsPaths } from './tilesets';
-import { fxSpritesPaths } from './fx';
-import { interactableSpritesPaths } from './interactables';
+import { uiSpritesPaths } from './ui{m}';
+import { unitSpritesPaths } from './units{m}';
+import { tilesetsPaths } from './tilesets{m}';
+import { fxSpritesPaths } from './fx{m}';
+import { interactableSpritesPaths } from './interactables{m}';
 import type { AssetsManifest } from 'pixi.js';
 
 export const ASSET_BUNDLES = {

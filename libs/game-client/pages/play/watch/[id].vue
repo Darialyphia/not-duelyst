@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { io, type Socket } from 'socket.io-client';
 import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import { GameSession } from '@hc/sdk';
@@ -8,7 +7,6 @@ definePageMeta({
   name: 'WatchGame'
 });
 
-const sessionId = useSessionId();
 const route = useRoute();
 
 const { data: game, isLoading: isGameLoading } = useConvexQuery(

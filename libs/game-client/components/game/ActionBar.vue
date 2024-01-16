@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { unitImagesPaths } from '../../assets/units';
-import { skillImagesPaths } from '../../assets/skills';
-
 const { playerId, isActivePlayer, state, sendInput, isReplay } = useGame();
 const {
   targetMode,
@@ -118,7 +115,7 @@ const onValidateTargets = () => {
           :style="{
             '--cooldown-angle':
               360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
-            '--bg': `url(${skillImagesPaths[skill.spriteId]})`,
+            '--bg': `url('/assets/skills/${skill.spriteId}.png')`,
             '--border': `url(${borders.square})`
           }"
           @click="selectedSkill = skill"
@@ -158,7 +155,7 @@ const onValidateTargets = () => {
               :style="{
                 '--cooldown-angle':
                   360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-                '--bg': `url(${unitImagesPaths[unit.unit.spriteId + '-icon']})`,
+                '--bg': `url('/assets/units/${unit.unit.spriteId}-icon.png')`,
                 '--border': `url(${borders.rounded})`
               }"
               @mousedown="selectedSummon = unit.unit"

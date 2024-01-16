@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev .playground --port=3001",
+    "dev:server": "nuxi dev .playground --port=3001",
+    "dev:assets": "assetpack -c .assetpack.js -w",
+    "dev": "npm-run-all --parallel dev:assets dev:server",
     "build": "nuxt build .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
@@ -12,6 +14,12 @@
     "prepare": "nuxt prepare .playground"
   },
   "dependencies": {
+    "@assetpack/cli": "^0.8.0",
+    "@assetpack/core": "^0.8.0",
+    "@assetpack/plugin-compress": "^0.8.0",
+    "@assetpack/plugin-ffmpeg": "^0.8.0",
+    "@assetpack/plugin-json": "^0.8.0",
+    "@assetpack/plugin-manifest": "^0.8.0",
     "@hc/api": "*",
     "@hc/sdk": "*",
     "@hc/shared": "*",
@@ -51,6 +59,7 @@
   "devDependencies": {
     "@hc/stylelint-config": "*",
     "@hc/unocss-config": "*",
+    "@hc/assetpack": "*",
     "@iconify/json": "^2.2.86",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxtjs/color-mode": "^3.3.0",
@@ -59,6 +68,7 @@
     "@unocss/postcss": "^0.53.4",
     "dayjs-nuxt": "^1.1.2",
     "eslint": "^8.28.0",
+    "npm-run-all": "^4.1.5",
     "nuxt": "^3.6.2",
     "nuxt-icon": "^0.4.1",
     "postcss-custom-media": "^10.0.0",

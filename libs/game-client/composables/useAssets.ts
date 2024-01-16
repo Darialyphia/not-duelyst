@@ -1,6 +1,5 @@
-import { Assets, Spritesheet, Texture, extensions } from 'pixi.js';
+import { Assets, type AssetsManifest, Spritesheet, Texture, extensions } from 'pixi.js';
 import type { InjectionKey } from 'vue';
-import { ASSET_BUNDLES, assetsManifest } from '../assets/manifest';
 
 export type AssetsContext = {
   getSprite(
@@ -19,15 +18,15 @@ export const useAssetsProvider = () => {
   const load = async () => {
     extensions.add(asepriteSpriteSheetParser, asepriteTilesetParser);
 
-    Assets.init({ manifest: assetsManifest });
-
+    const manifest = await $fetch<AssetsManifest>('/assets/assets-manifest.json');
+    Assets.init({ manifest });
     const bundles = await Promise.all([
-      Assets.loadBundle(ASSET_BUNDLES.TILES),
-      Assets.loadBundle(ASSET_BUNDLES.UI),
-      Assets.loadBundle(ASSET_BUNDLES.UNITS),
-      Assets.loadBundle(ASSET_BUNDLES.TILESETS),
-      Assets.loadBundle(ASSET_BUNDLES.INTERACTABLES),
-      Assets.loadBundle(ASSET_BUNDLES.FX)
+      Assets.loadBundle('tiles'),
+      Assets.loadBundle('ui'),
+      Assets.loadBundle('units'),
+      Assets.loadBundle('tilesets'),
+      Assets.loadBundle('interactables'),
+      Assets.loadBundle('fx')
     ]);
 
     bundles.forEach(bundle => {

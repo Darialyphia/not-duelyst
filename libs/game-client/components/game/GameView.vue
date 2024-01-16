@@ -13,7 +13,7 @@ import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
 import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
 import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
 import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
-import surfaceBg from '../../assets/ui/surface-bg.png';
+import surfaceBg from '../../assets/ui{m}/surface-bg.png';
 
 const { gameSession, playerId, isReplay } = defineProps<{
   gameSession: GameSession;

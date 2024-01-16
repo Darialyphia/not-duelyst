@@ -2,7 +2,6 @@
 import { api } from '@hc/api';
 import { FACTIONS, UNITS, type UnitBlueprint } from '@hc/sdk';
 import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
-import { unitImagesPaths } from '../../assets/units';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import bg from '../../assets/backgrounds/spire.jpg';
@@ -205,7 +204,7 @@ const onSubmit = () => {
 
 const getGeneralImage = (generalId: string) => {
   const unit = UNITS[generalId];
-  return unitImagesPaths[`${unit.spriteId}-icon`];
+  return `/assets/units/${unit.spriteId}-icon.png`;
 };
 </script>
 
@@ -272,7 +271,7 @@ const getGeneralImage = (generalId: string) => {
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
               </div>
-              <img :src="unitImagesPaths[`${unit.spriteId}-icon`]" />
+              <img :src="`/assets/units/${unit.spriteId}-icon.png`" />
               {{ unit.id }}
 
               <UiButton
@@ -529,3 +528,4 @@ form {
   }
 }
 </style>
+../../assets/units{m}

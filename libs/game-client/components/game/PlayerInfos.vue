@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { unitImagesPaths } from '../../assets/units';
-import { exhaustiveSwitch } from '@hc/shared/';
-import neutralBorderRounded from '../../assets/ui/icon-border-neutral-rounded.png';
-import havenBorderRounded from '../../assets/ui/icon-border-haven-rounded.png';
-import chaosBorderRounded from '../../assets/ui/icon-border-chaos-rounded.png';
 import type { Entity } from '@hc/sdk';
 
 const { state } = useGame();
@@ -11,16 +6,7 @@ const { state } = useGame();
 const players = computed(() => state.value.players);
 
 const getBorder = (entity: Entity) => {
-  switch (entity.unit.faction.id) {
-    case 'neutral':
-      return neutralBorderRounded;
-    case 'haven':
-      return havenBorderRounded;
-    case 'chaos':
-      return chaosBorderRounded;
-    default:
-      throw exhaustiveSwitch;
-  }
+  return factionUtils[entity.unit.faction.id].borders.rounded;
 };
 </script>
 
@@ -31,7 +17,7 @@ const getBorder = (entity: Entity) => {
       :style="{ '--bg': `url(${getBorder(players[0].general)}` }"
       :class="state.activePlayer.equals(players[0]) && 'active'"
     >
-      <img :src="`${unitImagesPaths[players[0].general.unit.spriteId + '-icon']}`" />
+      <img :src="`/assets/units/${players[0].general.unit.spriteId}-icon.png`" />
     </div>
     <div>
       <div class="player-name">{{ players[0].name }}</div>
@@ -51,7 +37,7 @@ const getBorder = (entity: Entity) => {
       :style="{ '--bg': `url(${getBorder(players[1].general)}` }"
       :class="state.activePlayer.equals(players[1]) && 'active'"
     >
-      <img :src="`${unitImagesPaths[players[1].general.unit.spriteId + '-icon']}`" />
+      <img :src="`/assets/units/${players[1].general.unit.spriteId}-icon.png`" />
     </div>
     <div>
       <div class="player-name">{{ players[1].name }}</div>

@@ -2,7 +2,6 @@
 import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import { UNITS } from '@hc/sdk';
-import { unitImagesPaths } from '../../assets/units';
 
 definePageMeta({
   name: 'Matchmaking'
@@ -55,7 +54,7 @@ const selectedLoadoutId = ref<Id<'loadouts'>>();
 
 const getGeneralImage = (generalId: string) => {
   const unit = UNITS[generalId];
-  return unitImagesPaths[`${unit.spriteId}-icon`];
+  return `/assets/units/${unit.spriteId}-icon.png`;
 };
 </script>
 
@@ -144,3 +143,4 @@ const getGeneralImage = (generalId: string) => {
   }
 }
 </style>
+../../assets/units{m}

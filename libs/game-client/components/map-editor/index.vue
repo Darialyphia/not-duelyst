@@ -5,8 +5,8 @@ import { INTERACTABLES, TILES, Cell, Tile, type Point3D } from '@hc/sdk';
 import { isString, isDefined } from '@hc/shared';
 import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import { tileImagesPaths } from '../../assets/tiles';
-import { interactableImagesPaths } from '../../assets/interactables';
+import { tileImagesPaths } from '../../assets/tiles{m}';
+import { interactableImagesPaths } from '../../assets/interactables{m}';
 import {
   PopoverContent,
   PopoverPortal,
@@ -758,3 +758,4 @@ label {
   }
 }
 </style>
+../../assets/tiles{m} ../../assets/interactables{m}
