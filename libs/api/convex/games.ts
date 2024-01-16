@@ -1,6 +1,7 @@
 import { internal } from './_generated/api';
 import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
+import { getCurrentGame } from './game/utils';
 import { toUserDto } from './users/user.mapper';
 import { v } from 'convex/values';
 
@@ -9,35 +10,7 @@ export const getCurrent = queryWithAuth({
   handler: async ctx => {
     const user = ensureAuthenticated(ctx.session);
 
-    const currentGameUser = await ctx.db
-      .query('gamePlayers')
-      .withIndex('by_creation_time')
-      .filter(q => q.eq(q.field('userId'), user!._id))
-      .order('desc')
-      .first();
-
-    if (!currentGameUser) return null;
-
-    const game = await ctx.db.get(currentGameUser?.gameId);
-    if (!game) return null;
-
-    const gamePlayers = await ctx.db
-      .query('gamePlayers')
-      .withIndex('by_game_id', q => q.eq('gameId', game?._id))
-      .collect();
-
-    return {
-      ...game,
-      players: await Promise.all(
-        gamePlayers.map(async gamePlayer => {
-          const user = await ctx.db.get(gamePlayer.userId);
-          return {
-            ...toUserDto(user!),
-            loadout: await ctx.db.get(gamePlayer.loadoutId)
-          };
-        })
-      )
-    };
+    return getCurrentGame({ db: ctx.db }, user._id);
   }
 });
 
@@ -77,6 +50,31 @@ export const destroy = internalMutation({
     await ctx.db.patch(game._id, { status: 'FINISHED', winnerId: gamePlayer!._id });
 
     return game;
+  }
+});
+
+export const internalCancel = internalMutation({
+  args: {
+    roomId: v.string()
+  },
+  async handler(ctx, args) {
+    const game = await ctx.db
+      .query('games')
+      .withIndex('by_roomId', q => q.eq('roomId', args.roomId))
+      .first();
+    if (!game) throw new Error('Game Not Found');
+
+    await ctx.db.patch(game._id, { status: 'CANCELLED' });
+  }
+});
+
+export const cancel = action({
+  args: {
+    roomId: v.string()
+  },
+  async handler(ctx, { roomId }) {
+    await ctx.runMutation(internal.games.internalCancel, { roomId });
+    await ctx.runAction(internal.hathora.destroyRoom, { roomId });
   }
 });
 

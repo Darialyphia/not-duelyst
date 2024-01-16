@@ -22,7 +22,8 @@ export class Game {
     private io: GameServer,
     private convexClient: ConvexHttpClient,
     private game: GameDto,
-    private map: MapDto
+    private map: MapDto,
+    public roomId: string
   ) {
     this.session = GameSession.createServerSession(this.getInitialState());
 
@@ -145,5 +146,13 @@ export class Game {
   spectate(socket: GameSocket) {
     socket.join(this.game._id);
     socket.emit('game:init', this.session.serialize());
+  }
+
+  async shutdown() {
+    try {
+      await this.convexClient.action(api.games.cancel, { roomId: this.roomId });
+    } catch (err) {
+      console.error(`Could not cancel game of roomID ${this.roomId}`);
+    }
   }
 }

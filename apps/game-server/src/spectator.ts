@@ -10,17 +10,21 @@ export const handleSpectatorSocket = async (
   ongoingGames: Map<string, Game>,
   gameId: Id<'games'>
 ) => {
-  const game = await socket.data.convexClient.query(api.games.getById, {
-    gameId
-  });
-  if (!game) {
-    return socket.disconnect();
-  }
+  try {
+    const game = await socket.data.convexClient.query(api.games.getById, {
+      gameId
+    });
+    if (!game) {
+      return socket.disconnect();
+    }
 
-  if (!ongoingGames.has(game._id)) {
-    socket.disconnect();
-  }
+    if (!ongoingGames.has(game._id)) {
+      socket.disconnect();
+    }
 
-  const gameSession = ongoingGames.get(game._id)!;
-  gameSession.spectate(socket);
+    const gameSession = ongoingGames.get(game._id)!;
+    gameSession.spectate(socket);
+  } catch (err) {
+    console.error(err);
+  }
 };

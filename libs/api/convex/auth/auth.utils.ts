@@ -11,7 +11,6 @@ import {
 } from '../_generated/server';
 import { Auth, getAuth } from '../lucia';
 import { Nullable } from '@hc/shared';
-import { Doc } from '../_generated/dataModel';
 
 export type QueryWithAuthCtx = QueryCtx & { session: Nullable<Session> };
 
@@ -32,6 +31,7 @@ export function queryWithAuth<ArgsValidator extends PropertyValidators, Output>(
     },
     handler: async (ctx, args: any) => {
       const session = await getValidExistingSession(ctx, args.sessionId);
+
       return handler({ ...ctx, session }, args);
     }
   });
@@ -107,10 +107,13 @@ async function getValidExistingSession(ctx: QueryCtx, sessionId: string | null) 
   // The cast is OK because we will only expose the existing session
   const auth = getAuth(ctx.db as DatabaseWriter);
   try {
-    const session = (await auth.getSession(sessionId)) as Session | null;
-    if (session === null || session.state === 'idle') {
-      return null;
-    }
+    // const session = (await auth.getSession(sessionId)) as Session | null;
+    const session = await auth.validateSession(sessionId);
+
+    // TODO find a wait to handle sesison refreshed
+    // if (session === null || !session.fresh) {
+    //   return null;
+    // }
     return session;
   } catch (error) {
     // Invalid session ID

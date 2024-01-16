@@ -24,7 +24,11 @@ const gameSession = shallowRef<{
 const timeRemainingForTurn = ref(0);
 const isCreatingRoom = ref(true);
 
-const { connect, error } = useGameSocket(route.query.roomId as string);
+const { connect, error } = useGameSocket(
+  route.query.roomId as string,
+  () => game.value?._id,
+  { spectator: false }
+);
 onMounted(async () => {
   const socket = await connect();
   isCreatingRoom.value = false;

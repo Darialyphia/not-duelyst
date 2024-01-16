@@ -3,8 +3,8 @@
   "version": "0.0.01",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "nuxi dev --port=3002",
-    "build": "nuxi build --prerender && electron-builder",
+    "ddev": "nuxi dev --port=3002",
+    "bbuild": "nuxi build --prerender && electron-builder",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "prepare": "nuxt prepare"

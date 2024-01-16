@@ -1,7 +1,8 @@
 import { randomInt } from '@hc/shared';
 import { Id } from '../_generated/dataModel';
 import type { QueryCtx } from '../_generated/server';
-import { GAME_STATUS, GameStatus } from './game.constants';
+import { GAME_STATUS } from './game.constants';
+import { toUserDto } from '../users/user.mapper';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -18,7 +19,9 @@ export const getCurrentGame = async (
 
   const game = await db.get(currentGameUser?.gameId);
   if (!game) return null;
-  if (game.status === 'FINISHED') return null;
+  if (game.status === 'FINISHED' || game.status === 'CANCELLED') {
+    return null;
+  }
 
   const gamePlayers = await db
     .query('gamePlayers')
@@ -27,7 +30,15 @@ export const getCurrentGame = async (
 
   return {
     ...game,
-    players: await Promise.all(gamePlayers.map(gamePlayer => db.get(gamePlayer.userId)))
+    players: await Promise.all(
+      gamePlayers.map(async gamePlayer => {
+        const user = await db.get(gamePlayer.userId);
+        return {
+          ...toUserDto(user!),
+          loadout: await db.get(gamePlayer.loadoutId)
+        };
+      })
+    )
   };
 };
 
@@ -36,7 +47,7 @@ export const ensureHasNoCurrentGame = async (
   userId: Id<'users'>
 ) => {
   const game = await getCurrentGame({ db }, userId);
-  if (game) throw new Error('Already in game');
+  if (game && game.status !== 'CANCELLED') throw new Error('Already in game');
 };
 
 export const getGameInitialState = async (

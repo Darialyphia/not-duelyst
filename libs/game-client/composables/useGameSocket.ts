@@ -2,18 +2,26 @@ import { io, type Socket } from 'socket.io-client';
 
 const POLLING_INTERVAL = 3000;
 
-export const useGameSocket = (roomId: string) => {
+export const useGameSocket = (
+  roomId: string,
+  gameId: MaybeRefOrGetter<string | undefined>,
+  { spectator }: { spectator: boolean }
+) => {
   const sessionId = useSessionId();
   const { $hathora } = useNuxtApp();
   const config = useRuntimeConfig();
+
+  const _gameId = computed(() => toValue(gameId));
 
   let socket: Socket;
   const error = ref<string>();
   const connect = async () => {
     try {
+      await until(_gameId).not.toBe(undefined);
+
       const getUrl = async (): Promise<string> => {
         if (!config.public.hathoraAppId) {
-          return 'ws://localhost:8000';
+          return `ws://localhost:8000?spectator=${spectator}`;
         }
 
         const response = await $hathora.roomV2.getConnectionInfo(roomId);
@@ -26,7 +34,7 @@ export const useGameSocket = (roomId: string) => {
         }
         const exposedPort = response.connectionInfoV2!.exposedPort!;
 
-        return `wss://${exposedPort?.host}:${exposedPort?.port}`;
+        return `wss://${exposedPort?.host}:${exposedPort?.port}?spectator=${spectator}&roomId=${roomId}&gameId=${_gameId.value}`;
       };
 
       const socketUrl = await getUrl();

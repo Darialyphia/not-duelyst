@@ -16,7 +16,11 @@ const { data: game, isLoading: isGameLoading } = useConvexQuery(
 );
 const gameSession = shallowRef<GameSession>();
 
-const { connect, error } = useGameSocket(route.query.roomId as string);
+const { connect, error } = useGameSocket(
+  route.query.roomId as string,
+  () => game.value?._id,
+  { spectator: true }
+);
 
 onMounted(async () => {
   const socket = await connect();

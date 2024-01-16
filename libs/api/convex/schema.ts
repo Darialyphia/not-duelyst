@@ -51,7 +51,9 @@ export default defineSchema({
     status: v.string() as Validator<GameStatus>,
     roomId: v.string(),
     winnerId: v.optional(v.id('gamePlayers'))
-  }).index('by_status', ['status']),
+  })
+    .index('by_status', ['status'])
+    .index('by_roomId', ['roomId']),
 
   gamePlayers: defineTable({
     userId: v.id('users'),
