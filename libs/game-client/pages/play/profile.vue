@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
+import { UNITS } from '@hc/sdk';
 
 definePageMeta({
   name: 'MyProfile'
@@ -18,6 +19,11 @@ const getOpponent = (game: (typeof gameHistory)['value'][number]) => {
 
 const getResult = (game: (typeof gameHistory)['value'][number]) =>
   getOpponent(game)?.gamePlayerId === game.winnerId ? 'loss' : 'win';
+
+const getGeneralImage = (generalId: string) => {
+  const unit = UNITS[generalId];
+  return `/assets/units/${unit.spriteId}-icon.png`;
+};
 </script>
 
 <template>
@@ -37,12 +43,13 @@ const getResult = (game: (typeof gameHistory)['value'][number]) =>
           {{ getResult(game) }}
         </div>
 
-        <img :src="`/assets/units/${game.players[0].loadout?.generalId}-icon.png`" />
-
+        <img :src="getGeneralImage(game.players[0].loadout!.generalId)" />
         {{ game.players[0].name }}
+
         <span class="mx-auto">VS</span>
+
         {{ game.players[1].name }}
-        <img :src="`/assets/units/${game.players[1].loadout?.generalId}-icon.png`" />
+        <img :src="getGeneralImage(game.players[1].loadout!.generalId)" />
       </div>
 
       <NuxtLink

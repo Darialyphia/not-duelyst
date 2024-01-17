@@ -46,6 +46,10 @@ onMounted(async () => {
 
     <div v-else-if="error">{{ error }}</div>
     <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">Waiting for opponent...</div>
+    <div v-else-if="game?.status === 'CANCELLED'">
+      The game has been cancelled
+      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+    </div>
     <div v-else-if="game?.status === 'FINISHED'">
       This game is already finished.
       <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>

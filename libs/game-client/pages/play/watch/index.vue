@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
+import { UNITS } from '@hc/sdk';
 
 definePageMeta({
   name: 'WatchList'
 });
 
 const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing, {});
+
+const getGeneralImage = (generalId: string) => {
+  const unit = UNITS[generalId];
+  return `/assets/units/${unit.spriteId}-icon.png`;
+};
 </script>
 
 <template>
@@ -22,12 +28,13 @@ const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing,
 
     <article v-for="game in games" :key="game._id">
       <div class="flex-1 flex gap-4 items-center">
-        <img :src="`/assets/units/${game.players[0].loadout?.generalId}-icon.png`" />
-
+        <img :src="getGeneralImage(game.players[0].loadout!.generalId)" />
         {{ game.players[0].name }}
+
         <span class="mx-auto">VS</span>
+
         {{ game.players[1].name }}
-        <img :src="`/assets/units/${game.players[1].loadout?.generalId}-icon.png`" />
+        <img :src="getGeneralImage(game.players[1].loadout!.generalId)" />
       </div>
       <NuxtLink
         v-slot="{ navigate, href }"

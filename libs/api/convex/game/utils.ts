@@ -19,9 +19,6 @@ export const getCurrentGame = async (
 
   const game = await db.get(currentGameUser?.gameId);
   if (!game) return null;
-  if (game.status === 'FINISHED' || game.status === 'CANCELLED') {
-    return null;
-  }
 
   const gamePlayers = await db
     .query('gamePlayers')

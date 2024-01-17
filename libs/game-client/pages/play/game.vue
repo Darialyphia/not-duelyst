@@ -60,8 +60,10 @@ onMounted(async () => {
 });
 
 const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
+
 const canSeeGame = computed(() => {
   if (isLoading.value) return true;
+
   return game.value?.players.some(p => p._id === me.value?._id);
 });
 </script>
@@ -78,7 +80,7 @@ const canSeeGame = computed(() => {
 
       <div v-else-if="isCreatingRoom" class="full-page">Creating game room...</div>
 
-      <div v-else-if="error" class="full-page">
+      <div v-else-if="error || game?.status === 'CANCELLED'" class="full-page">
         An error has occured while creating the room.
         <div>
           TODO: Clean up game so users don't get stuck forever in a broken game 🤡
