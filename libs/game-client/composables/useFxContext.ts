@@ -3,8 +3,13 @@ import { sfxPaths } from '../assets/sfx{m}';
 import { Howl } from 'howler';
 
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
+  const visibility = useDocumentVisibility();
+  const isHidden = computed(() => visibility.value === 'hidden');
+
   gameSession.fxContext = {
     displayText(text, entityId, { color, path, duration }) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise(resolve => {
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
@@ -62,7 +67,11 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     },
 
     playSoundOnce(soundId, { fallback, percentage = 1, slice } = {}) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise<void>(resolve => {
+        if (isHidden.value) return resolve();
+
         const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
         if (!soundPath) {
           console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
@@ -93,6 +102,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     },
 
     playSoundUntil(soundId, { fallback, slice } = {}) {
+      if (isHidden.value) return () => void 0;
+
       const soundPath = sfxPaths[soundId] ?? sfxPaths[fallback ?? ''];
       if (!soundPath) {
         console.log(`FXContext: sound not found: ${soundId}, fallback ${fallback}`);
@@ -124,6 +135,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       animationName,
       { animationNameFallback = 'idle', framePercentage = 1 } = {}
     ) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise<void>(resolve => {
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
@@ -177,6 +190,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     },
 
     playAnimationUntil(entityId, animationName, { animationNameFallback = 'idle' } = {}) {
+      if (isHidden.value) return () => void 0;
+
       const entity = gameSession.entityManager.getEntityById(entityId);
       if (!entity) {
         console.warn(`FXContext: entity not found for entityId ${entityId}`);
@@ -214,6 +229,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     },
 
     moveEntity(entityId, point, duration) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise<void>(resolve => {
         fx.isMoving.value = true;
         // we are grabbing the entity from the reactive state instead of entityManager otherwise the movement won't be rendered !
@@ -245,6 +262,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
       entityId,
       { count = 5, totalDuration = 1, axis = 'x', amount = 10 } = {}
     ) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise(resolve => {
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
@@ -289,6 +308,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     },
 
     fadeOutEntity(entityId, duration) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise(resolve => {
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
@@ -323,6 +344,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
         scale = 1
       } = {}
     ) {
+      if (isHidden.value) return Promise.resolve();
+
       return new Promise(resolve => {
         const entity = gameSession.entityManager.getEntityById(entityId);
         if (!entity) {
