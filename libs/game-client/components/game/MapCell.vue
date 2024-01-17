@@ -144,7 +144,6 @@ const filters = computed(() => {
 
       <MapCellHighlight :cell="cell" :cursor="cursor" />
     </container>
-
     <HoveredCell :cell="cell" :cursor="cursor" />
   </IsoPositioner>
   <IsoPositioner
