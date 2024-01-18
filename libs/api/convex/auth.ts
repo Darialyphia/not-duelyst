@@ -1,7 +1,8 @@
 import { v } from 'convex/values';
 import { Id } from './_generated/dataModel';
-import { mutationWithAuth } from './auth/auth.utils';
+import { internalMutationWithAuth, mutationWithAuth } from './auth/auth.utils';
 import { DEFAULT_MMR } from './users/user.utils';
+import { internalMutation } from './_generated/server';
 
 export const signOff = mutationWithAuth({
   args: {},
@@ -62,5 +63,12 @@ export const signUp = mutationWithAuth({
       }
     });
     return session.sessionId;
+  }
+});
+
+export const validateSession = mutationWithAuth({
+  args: {},
+  handler(ctx) {
+    return { ok: !!ctx.session };
   }
 });

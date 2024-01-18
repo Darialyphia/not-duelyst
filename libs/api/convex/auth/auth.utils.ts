@@ -109,10 +109,10 @@ async function getValidExistingSession(ctx: QueryCtx, sessionId: string | null) 
   try {
     const session = (await auth.getSession(sessionId)) as Session | null;
 
-    //TODO find a wait to handle session refreshed
-    // if (session === null || !session.fresh) {
-    //   return null;
-    // }
+    if (session === null || session.state !== 'active') {
+      return null;
+    }
+
     return session;
   } catch (error) {
     console.log(error);
