@@ -10,12 +10,24 @@ const formData = reactive({
 });
 const sessionId = useSessionId();
 const { push } = useRouter();
+
+const error = ref<string>('');
+const isLoading = ref(false);
 const onSubmit = async () => {
-  sessionId.value = await $fetch('/api/signin', {
-    method: 'POST',
-    body: formData
-  });
-  push({ name: 'ClientHome' });
+  try {
+    isLoading.value = true;
+    error.value = '';
+
+    sessionId.value = await $fetch('/api/signin', {
+      method: 'POST',
+      body: formData
+    });
+    push({ name: 'ClientHome' });
+  } catch (err) {
+    error.value = (err as any).statusMessage;
+  } finally {
+    isLoading.value = false;
+  }
 };
 </script>
 
@@ -29,7 +41,11 @@ const onSubmit = async () => {
       <label>Password</label>
       <input v-model="formData.password" type="password" />
 
-      <UiButton class="primary-button">Login</UiButton>
+      <UiButton :is-loading="isLoading" is-cta class="primary-button">Login</UiButton>
+
+      <Transition>
+        <p v-if="error" class="color-red-5 mt-2">{{ error }}</p>
+      </Transition>
     </form>
   </div>
 </template>
@@ -41,6 +57,17 @@ form {
   > input {
     margin-block-end: var(--size-3);
     border: var(--fancy-border);
+  }
+}
+
+p {
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.3s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: translateY(calc(-1 * var(--size-2)));
+    opacity: 0;
   }
 }
 </style>

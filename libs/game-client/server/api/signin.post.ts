@@ -19,10 +19,9 @@ export default defineEventHandler(async event => {
 
     return sessionId;
   } catch (e) {
-    console.log(e);
     throw createError({
-      message: 'Incorrect email or password',
-      statusCode: 400
+      statusCode: 401,
+      statusMessage: 'Invalid email or password'
     });
   }
 });
