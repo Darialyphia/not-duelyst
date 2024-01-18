@@ -1,5 +1,5 @@
 import { v } from 'convex/values';
-import { query, mutation, internalQuery } from './_generated/server';
+import { internalQuery } from './_generated/server';
 import { createUserAbility } from './users/user.ability';
 import { ensureAuthorized } from './utils/ability';
 import { DEFAULT_MMR, generateDiscriminator } from './users/user.utils';

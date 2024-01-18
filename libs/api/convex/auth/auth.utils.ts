@@ -107,15 +107,15 @@ async function getValidExistingSession(ctx: QueryCtx, sessionId: string | null) 
   // The cast is OK because we will only expose the existing session
   const auth = getAuth(ctx.db as DatabaseWriter);
   try {
-    // const session = (await auth.getSession(sessionId)) as Session | null;
-    const session = await auth.validateSession(sessionId);
+    const session = (await auth.getSession(sessionId)) as Session | null;
 
-    // TODO find a wait to handle sesison refreshed
+    //TODO find a wait to handle session refreshed
     // if (session === null || !session.fresh) {
     //   return null;
     // }
     return session;
   } catch (error) {
+    console.log(error);
     // Invalid session ID
     return null;
   }
