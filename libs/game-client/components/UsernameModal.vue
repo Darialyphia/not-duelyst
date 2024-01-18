@@ -25,64 +25,27 @@ const schema = toTypedSchema(
 </script>
 
 <template>
-  <DialogRoot :open="isOpened" modal>
-    <DialogPortal>
-      <DialogOverlay class="modal-overlay" />
-      <Transition appear>
-        <DialogContent class="modal-content">
-          <div class="fancy-surface grid gap-3">
-            <DialogTitle>Almost there !</DialogTitle>
-            <DialogDescription>
-              We just need you to choose a username below
-            </DialogDescription>
+  <UiModal
+    :is-opened="isOpened"
+    title="Almost there!"
+    description="We just need you to choose a username below"
+  >
+    <VeeForm
+      :validation-schema="schema"
+      class="grid gap-3"
+      @submit="values => signup({ ...(values as any), sessionId })"
+    >
+      <div class="flex gap-3 items-center mt-4">
+        <VeeField name="name" />
+        <VeeErrorMessage name="name" class="text-red-5" />
+      </div>
 
-            <VeeForm
-              :validation-schema="schema"
-              class="grid gap-3"
-              @submit="values => signup({ ...(values as any), sessionId })"
-            >
-              <div class="flex gap-3 items-center">
-                <VeeField name="name" />
-                <VeeErrorMessage name="name" class="text-red-5" />
-              </div>
-
-              <UiButton :disbaled="isSubmitting" class="primary-button">
-                Continue
-              </UiButton>
-            </VeeForm>
-          </div>
-          <DialogClose />
-        </DialogContent>
-      </Transition>
-    </DialogPortal>
-  </DialogRoot>
+      <UiButton :disbaled="isSubmitting" class="primary-button">Continue</UiButton>
+    </VeeForm>
+  </UiModal>
 </template>
 
 <style scoped>
-.modal-overlay {
-  position: fixed;
-  z-index: 1;
-  inset: 0;
-  background-color: hsl(var(--gray-12-hsl) / 0.5);
-}
-
-.modal-content {
-  position: fixed;
-  z-index: 2;
-  inset: 0;
-
-  display: grid;
-  place-content: center;
-  &:is(.v-enter-active, .v-leave-active) {
-    transition: all 0.5s;
-  }
-
-  &:is(.v-enter-from, .V-leave-to) {
-    transform: translateY(calc(-1 * var(--size-8)));
-    opacity: 0;
-  }
-}
-
 input {
   display: block;
   border: var(--fancy-border);

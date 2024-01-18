@@ -25,33 +25,14 @@ watchEffect(() => {
 </script>
 
 <template>
-  <DialogRoot :open="hasCurrentOngoingGame" modal>
+  <UiModal :is-opened="hasCurrentOngoingGame" title="Connecting to your game..." modal>
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
       <DialogContent class="modal-content">
         <div class="fancy-surface">
           <DialogTitle>Connecting to your game...</DialogTitle>
         </div>
-        <DialogClose />
       </DialogContent>
     </DialogPortal>
-  </DialogRoot>
+  </UiModal>
 </template>
-
-<style scoped>
-.modal-overlay {
-  position: fixed;
-  z-index: 1;
-  inset: 0;
-  background-color: hsl(var(--gray-12-hsl) / 0.5);
-}
-
-.modal-content {
-  position: fixed;
-  z-index: 2;
-  inset: 0;
-
-  display: grid;
-  place-content: center;
-}
-</style>
