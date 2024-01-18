@@ -10,7 +10,7 @@ const { data: me, isLoading } = useConvexQuery(
 
 const isOpened = computed(() => {
   if (isLoading.value) return false;
-  return !!sessionId.value && !me.value?.name;
+  return !!sessionId.value && !me.value?.hasOnboarded;
 });
 
 const { mutate: signup, isLoading: isSubmitting } = useConvexMutation(
@@ -28,25 +28,32 @@ const schema = toTypedSchema(
   <DialogRoot :open="isOpened" modal>
     <DialogPortal>
       <DialogOverlay class="modal-overlay" />
-      <DialogContent class="modal-content">
-        <div class="fancy-surface">
-          <DialogTitle>Almost there !</DialogTitle>
-          <DialogDescription>
-            We just need you to choose a username below
-          </DialogDescription>
+      <Transition appear>
+        <DialogContent class="modal-content">
+          <div class="fancy-surface grid gap-3">
+            <DialogTitle>Almost there !</DialogTitle>
+            <DialogDescription>
+              We just need you to choose a username below
+            </DialogDescription>
 
-          <VeeForm
-            :validation-schema="schema"
-            @submit="values => signup({ ...(values as any), sessionId })"
-          >
-            <VeeField name="name" />
-            <VeeErrorMessage name="name" class="text-red-5" />
+            <VeeForm
+              :validation-schema="schema"
+              class="grid gap-3"
+              @submit="values => signup({ ...(values as any), sessionId })"
+            >
+              <div class="flex gap-3 items-center">
+                <VeeField name="name" />
+                <VeeErrorMessage name="name" class="text-red-5" />
+              </div>
 
-            <UiButton :disbaled="isSubmitting" class="primary-button">Continue</UiButton>
-          </VeeForm>
-        </div>
-        <DialogClose />
-      </DialogContent>
+              <UiButton :disbaled="isSubmitting" class="primary-button">
+                Continue
+              </UiButton>
+            </VeeForm>
+          </div>
+          <DialogClose />
+        </DialogContent>
+      </Transition>
     </DialogPortal>
   </DialogRoot>
 </template>
@@ -66,6 +73,14 @@ const schema = toTypedSchema(
 
   display: grid;
   place-content: center;
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.5s;
+  }
+
+  &:is(.v-enter-from, .V-leave-to) {
+    transform: translateY(calc(-1 * var(--size-8)));
+    opacity: 0;
+  }
 }
 
 input {

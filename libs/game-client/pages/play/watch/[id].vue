@@ -41,22 +41,25 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ClientOnly>
-    <div v-if="isGameLoading">Loading...</div>
+  <div>
+    <ClientOnly>
+      <div v-if="isGameLoading">Loading...</div>
 
-    <div v-else-if="error">{{ error }}</div>
-    <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">Waiting for opponent...</div>
-    <div v-else-if="game?.status === 'CANCELLED'">
-      The game has been cancelled
-      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
-    </div>
-    <div v-else-if="game?.status === 'FINISHED'">
-      This game is already finished.
-      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
-    </div>
+      <div v-else-if="error">{{ error }}</div>
+      <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'">
+        Waiting for opponent...
+      </div>
+      <div v-else-if="game?.status === 'CANCELLED'">
+        The game has been cancelled
+        <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+      </div>
+      <div v-else-if="game?.status === 'FINISHED'">
+        This game is already finished.
+        <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
+      </div>
 
-    <GameView v-else-if="gameSession" :game-session="gameSession" :player-id="null" />
-
-    <template #fallback>Loading...</template>
-  </ClientOnly>
+      <GameView v-else-if="gameSession" :game-session="gameSession" :player-id="null" />
+      <template #fallback>Loading...</template>
+    </ClientOnly>
+  </div>
 </template>
