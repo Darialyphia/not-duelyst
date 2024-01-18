@@ -74,46 +74,53 @@ const createGameState = (): Promise<SerializedGameState> => {
 </script>
 
 <template>
-  <div v-if="!isReady" class="page container">
-    <header>
-      <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
-      <h1 class="text-5">Create sandbox game</h1>
-    </header>
+  <div>
+    <div v-if="!isReady" class="page container">
+      <header>
+        <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
+        <h1 class="text-5">Create sandbox game</h1>
+      </header>
 
-    <div v-if="isLoading">Loading...</div>
-    <form v-else @submit.prevent="isReady = true">
-      <fieldset>
-        <legend>Map</legend>
-        <label v-for="map in maps" :key="map.id">
-          <input v-model="form.map" type="radio" :value="map" />
-          {{ map.name }}
-        </label>
-      </fieldset>
-      <fieldset>
-        <legend>Player 2 loadout</legend>
-        <label v-for="loadout in loadouts" :key="loadout._id">
-          <input v-model="form.player1Loadout" type="radio" :value="loadout" />
-          {{ loadout.name }}
-        </label>
-      </fieldset>
-      <fieldset>
-        <legend>Player 2 loadout</legend>
-        <label v-for="loadout in loadouts" :key="loadout._id">
-          <input v-model="form.player2Loadout" type="radio" :value="loadout" />
-          {{ loadout.name }}
-        </label>
-      </fieldset>
+      <div v-if="isLoading">Loading...</div>
+      <form v-else @submit.prevent="isReady = true">
+        <fieldset>
+          <legend>Map</legend>
+          <label v-for="map in maps" :key="map.id">
+            <input v-model="form.map" type="radio" :value="map" />
+            {{ map.name }}
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Player 2 loadout</legend>
+          <label v-for="loadout in loadouts" :key="loadout._id">
+            <input v-model="form.player1Loadout" type="radio" :value="loadout" />
+            {{ loadout.name }}
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Player 2 loadout</legend>
+          <label v-for="loadout in loadouts" :key="loadout._id">
+            <input v-model="form.player2Loadout" type="radio" :value="loadout" />
+            {{ loadout.name }}
+          </label>
+        </fieldset>
 
-      <UiButton
-        class="primary-button"
-        :disabled="!form.map || !form.player1Loadout || !form.player2Loadout"
-      >
-        Play
-      </UiButton>
-    </form>
+        <UiButton
+          class="primary-button"
+          :disabled="!form.map || !form.player1Loadout || !form.player2Loadout"
+        >
+          Play
+        </UiButton>
+      </form>
+    </div>
+
+    <ClientOnly v-else>
+      <SandboxGame :initial-state-factory="createGameState" />
+      <template #fallback>
+        <div />
+      </template>
+    </ClientOnly>
   </div>
-
-  <SandboxGame v-else :initial-state-factory="createGameState" />
 </template>
 
 <style scoped lang="postcss">
