@@ -13,10 +13,12 @@
   "dependencies": {
     "@hathora/cli": "^1.12.0",
     "@hathora/cloud-sdk-typescript": "^2.2.4",
+    "@hc/api": "*",
     "@hc/sdk": "*",
     "@hc/shared": "*",
     "dotenv": "^16.3.1",
-    "socket.io": "^4.5.3"
+    "socket.io": "^4.5.3",
+    "zipson": "^0.2.12"
   },
   "devDependencies": {
     "@hc/tsconfig": "*",
