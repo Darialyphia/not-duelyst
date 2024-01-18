@@ -23,6 +23,7 @@ export const useGameSocket = (
         if (!config.public.hathoraAppId) {
           return `ws://localhost:8000?spectator=${spectator}&gameId=${_gameId.value}`;
         }
+        console.log(roomId, _gameId.value, spectator);
 
         const response = await $hathora.roomV2.getConnectionInfo(roomId);
         if (response.connectionInfoV2?.status !== 'active') {

@@ -38,7 +38,11 @@ const getGeneralImage = (generalId: string) => {
       </div>
       <NuxtLink
         v-slot="{ navigate, href }"
-        :to="{ name: 'WatchGame', params: { id: game._id } }"
+        :to="{
+          name: 'WatchGame',
+          params: { id: game._id },
+          query: { roomId: game.roomId }
+        }"
         custom
       >
         <UiButton class="primary-button" :href="href" @click="navigate">Watch</UiButton>
