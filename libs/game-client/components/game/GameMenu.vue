@@ -3,10 +3,8 @@ const { sendInput } = useGame();
 const { isMenuOpened } = useGameUi();
 
 useEventListener('keydown', e => {
-  console.log(e);
-  if (e.code === 'Escape') {
-    isMenuOpened.value = !isMenuOpened.value;
-    console.log(isMenuOpened.value);
+  if (e.code === 'Escape' && !isMenuOpened.value) {
+    isMenuOpened.value = true;
   }
 });
 

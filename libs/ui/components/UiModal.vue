@@ -4,7 +4,7 @@ const { title, description } = defineProps<{ title: string; description?: string
 </script>
 
 <template>
-  <DialogRoot :open="isOpened" modal>
+  <DialogRoot v-model:open="isOpened" modal>
     <DialogPortal>
       <Transition appear>
         <DialogOverlay class="modal-overlay" />
@@ -19,7 +19,6 @@ const { title, description } = defineProps<{ title: string; description?: string
             </DialogDescription>
             <slot />
           </div>
-          <DialogClose />
         </DialogContent>
       </Transition>
     </DialogPortal>
