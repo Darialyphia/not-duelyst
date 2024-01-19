@@ -8,6 +8,7 @@ import { toUserDto } from './users/user.mapper';
 import { getFeatureFlag } from './featureFlags/featureFlags.utils';
 import { FEATURE_FLAGS } from './featureFlags/featureFlags.constants';
 import { internal } from './_generated/api';
+import { AnyObject } from '@hc/shared';
 
 export const completeSignUp = mutationWithAuth({
   args: {
@@ -40,7 +41,7 @@ export const completeSignUp = mutationWithAuth({
 
 export const me = queryWithAuth({
   args: {},
-  handler: async (ctx, args) => {
+  handler: async ctx => {
     const user = ensureAuthenticated(ctx.session);
 
     return toUserDto(user);
@@ -48,3 +49,40 @@ export const me = queryWithAuth({
 });
 
 export const all = internalQuery(({ db }) => db.query('users').collect());
+
+export const settings = queryWithAuth({
+  args: {},
+  async handler({ db, session }) {
+    const user = ensureAuthenticated(session);
+
+    const settings = await db
+      .query('userSettings')
+      .withIndex('by_user_id', q => q.eq('userId', user._id))
+      .unique();
+
+    return (settings?.settings ?? {}) as AnyObject;
+  }
+});
+
+export const saveSettings = mutationWithAuth({
+  args: {
+    settings: v.any()
+  },
+  async handler({ db, session }, args) {
+    const user = ensureAuthenticated(session);
+
+    const settings = await db
+      .query('userSettings')
+      .withIndex('by_user_id', q => q.eq('userId', user._id))
+      .unique();
+
+    if (!settings) {
+      await db.insert('userSettings', {
+        userId: user._id,
+        settings: args.settings
+      });
+    } else {
+      await db.patch(settings._id, { settings: args.settings });
+    }
+  }
+});

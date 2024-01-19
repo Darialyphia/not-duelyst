@@ -19,6 +19,7 @@ onMounted(() => {
       });
       screenViewport.value?.moveCenter({ x: center.isoX, y: center.isoY });
     }
+
     if (e.code === 'KeyQ')
       mapRotation.value = ((mapRotation.value + 360 - 90) % 360) as 0 | 90 | 180 | 270;
 

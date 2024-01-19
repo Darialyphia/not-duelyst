@@ -104,5 +104,10 @@ export default defineSchema({
     ownerId: v.id('users')
   })
     .index('by_owner_id', ['ownerId'])
-    .index('by_item_id', ['itemId'])
+    .index('by_item_id', ['itemId']),
+
+  userSettings: defineTable({
+    userId: v.id('users'),
+    settings: v.any()
+  }).index('by_user_id', ['userId'])
 });

@@ -9,6 +9,8 @@ useEventListener('keydown', e => {
 });
 
 const { playerId } = useGame();
+
+const isSettingsOpoened = ref(false);
 </script>
 
 <template>
@@ -18,6 +20,7 @@ const { playerId } = useGame();
 
   <UiModal v-model:is-opened="isMenuOpened" title="Menu">
     <div class="grid gap-4">
+      <UiButton is-cta @click="isSettingsOpoened = true">Settings</UiButton>
       <UiButton v-if="playerId" @click="sendInput('surrender')">Surrender</UiButton>
       <NuxtLink v-else v-slot="{ navigate, href }" :to="{ name: 'ClientHome' }" custom>
         <UiButton is-cta :href="href" @click="navigate">Quit spectating</UiButton>
@@ -28,12 +31,17 @@ const { playerId } = useGame();
       </DialogClose>
     </div>
   </UiModal>
+
+  <UiModal v-model:is-opened="isSettingsOpoened" title="Settings">
+    <SettingsEditor @close="isSettingsOpoened = false" />
+  </UiModal>
 </template>
 
 <style scoped>
 :is(a, button) {
   --d-button-border-color: var(--primary);
   --ui-button-bg-hover: var(--primary-hover);
+  --d-button-bg: transparent;
 
   &:hover:not(:disabled) {
     color: var(--text-on-primary);

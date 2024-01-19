@@ -83,6 +83,7 @@ button:is(.primary-button, .error-button) {
   --d-button-disabled-color: var(--text-on-disabled);
   --d-button-disabled-bg: var(--disabled);
 }
+
 .primary-button {
   --d-button-bg: var(--primary);
   --d-button-hover-bg: var(--primary-hover);

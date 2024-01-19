@@ -14,9 +14,10 @@ const { title, description } = defineProps<{ title: string; description?: string
         <DialogContent class="modal-content">
           <div class="fancy-surface">
             <DialogTitle class="pb-5">{{ title }}</DialogTitle>
-            <DialogDescription v-if="description">
+            <DialogDescription v-if="description" class="">
               {{ description }}
             </DialogDescription>
+
             <slot />
           </div>
         </DialogContent>
@@ -33,6 +34,10 @@ const { title, description } = defineProps<{ title: string; description?: string
 
   background-color: hsl(var(--gray-12-hsl) / 0.5);
   backdrop-filter: blur(5px);
+
+  &:focus {
+    outline: none;
+  }
   &:is(.v-enter-active, .v-leave-active) {
     transition: opacity 0.3s;
   }
@@ -49,6 +54,7 @@ const { title, description } = defineProps<{ title: string; description?: string
 
   display: grid;
   place-content: center;
+
   &:is(.v-enter-active, .v-leave-active) {
     transition: all 0.2s;
   }

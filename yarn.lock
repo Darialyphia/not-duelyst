@@ -6639,6 +6639,11 @@ jwt-decode@^3.1.2:
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
+key-display-names@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/key-display-names/-/key-display-names-1.2.0.tgz#5c29daf4987c84bf5daf6457b51c322456b74c26"
+  integrity sha512-aDBBloOEgjGEKLmQWJn2W0lWa8FIo6/PH/ySEjC2TIOOeFd3ul111cbo8XTeffMdvvjvAI4dtRR9vFJRaSXVaA==
+
 keyv@^4.0.0, keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
