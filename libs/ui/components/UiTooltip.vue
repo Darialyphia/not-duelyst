@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import type { TooltipContentProps } from 'radix-vue';
+
+export type UITooltipProps = {
+  sideOffset?: number;
+  delay?: number;
+  side?: TooltipContentProps['side'];
+  align?: TooltipContentProps['align'];
+};
+
 const {
   sideOffset = 15,
   delay = 400,
@@ -7,8 +16,8 @@ const {
 } = defineProps<{
   sideOffset?: number;
   delay?: number;
-  side?: 'top' | 'bottom' | 'left' | 'right';
-  align?: 'start' | 'end' | 'center';
+  side?: TooltipContentProps['side'];
+  align?: TooltipContentProps['align'];
 }>();
 </script>
 

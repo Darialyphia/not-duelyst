@@ -33,36 +33,55 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
       </div>
 
       <div class="stats">
-        <div>
-          <div class="i-game-icons:health-normal" style="--color: var(--hp)" />
-          {{ unit.maxHp }}
-        </div>
+        <UiSimpleTooltip text="hit points" side="left">
+          <div>
+            <div class="i-game-icons:health-normal" style="--color: var(--hp)" />
+            {{ unit.maxHp }}
+          </div>
+        </UiSimpleTooltip>
 
-        <div>
-          <div class="i-game-icons-drop" style="--color: var(--ap)" />
-          {{ unit.maxAp }}
-        </div>
+        <UiSimpleTooltip text="action points" side="right">
+          <div>
+            <div class="i-game-icons-drop" style="--color: var(--ap)" />
+            {{ unit.maxAp }}
+          </div>
+        </UiSimpleTooltip>
 
-        <div>
-          <div class="i-game-icons-broadsword" style="--color: var(--attack)" />
-          <span>
-            {{ unit.attack }}
-          </span>
-        </div>
+        <UiSimpleTooltip text="attack" side="left">
+          <div>
+            <div class="i-game-icons-broadsword" style="--color: var(--attack)" />
+            <span>
+              {{ unit.attack }}
+            </span>
+          </div>
+        </UiSimpleTooltip>
 
-        <div>
-          <div class="i-game-icons-rosa-shield" style="--color: var(--defense)" />
-          <span>
-            {{ unit.defense }}
-          </span>
-        </div>
+        <UiSimpleTooltip text="defense" side="right">
+          <div>
+            <div class="i-game-icons-rosa-shield" style="--color: var(--defense)" />
+            <span>
+              {{ unit.defense }}
+            </span>
+          </div>
+        </UiSimpleTooltip>
 
-        <div>
-          <div class="i-mdi:run-fast" style="--color: var(--speed)" />
-          <span>
-            {{ unit.speed }}
-          </span>
-        </div>
+        <UiSimpleTooltip text="speed" side="left">
+          <div>
+            <div class="i-mdi:run-fast" style="--color: var(--speed)" />
+            <span>
+              {{ unit.speed }}
+            </span>
+          </div>
+        </UiSimpleTooltip>
+
+        <UiSimpleTooltip text="cooldown" side="right">
+          <div>
+            <div class="i-tabler:hourglass" />
+            <span>
+              {{ unit.summonCooldown }}
+            </span>
+          </div>
+        </UiSimpleTooltip>
       </div>
     </div>
     <div class="unit-name">{{ unit.id }}</div>
