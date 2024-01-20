@@ -31,7 +31,13 @@ export const useCollection = ({
 
   const page = ref(0);
 
-  const factionFilter = ref<FactionId>('haven');
+  const factionFilter = ref<FactionId>(factions[0]);
+  watchEffect(() => {
+    const general = toValue(selectedGeneral);
+    if (general) {
+      factionFilter.value = general?.faction.id;
+    }
+  });
   const factionIndex = computed(() => allowedFactions.value.indexOf(factionFilter.value));
 
   const allUnits = computed(() =>
