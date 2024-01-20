@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
-import type { KeyBinding } from '../../ui/components/UiKeyInput.vue';
 import { merge } from 'lodash-es';
 
 const emit = defineEmits<{
@@ -13,9 +12,6 @@ const { mutate: saveSettings } = useConvexAuthedMutation(api.users.saveSettings,
     emit('close');
   }
 });
-
-const bindings =
-  ref<{ id: string; label: string; control: KeyBinding }[]>(defaultBindings);
 
 const formData = ref({
   bindings: defaultBindings
@@ -32,7 +28,7 @@ until(settings)
   <section class="fancy-scrollbar">
     <fieldset class="controls">
       <legend>Controls</legend>
-      <template v-for="binding in bindings" :key="binding.id">
+      <template v-for="binding in formData.bindings" :key="binding.id">
         <label :for="binding.id" class="mr-4">{{ binding.label }}</label>
         <UiKeyInput v-model="binding.control" />
       </template>

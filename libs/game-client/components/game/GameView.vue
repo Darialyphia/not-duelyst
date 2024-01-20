@@ -71,6 +71,12 @@ onMounted(async () => {
   app.provide(appInjectKey, pixiApp);
   app.provide(GAME_INJECTION_KEY, game);
 
+  const { appContext } = getCurrentInstance()!;
+
+  const parent = appContext?.app;
+  app.config.globalProperties = parent.config.globalProperties;
+  Object.assign(app._context.provides, parent._context.provides);
+
   await assets.load();
   app.mount(pixiApp.stage);
 });
