@@ -19,12 +19,30 @@ const {
   skillTargets
 } = useGameUi();
 
-const spriteTextures = computed(() => {
-  return cell.spriteIds.map(spriteId => {
-    const sheet = assets.getSprite(spriteId);
+// map a Tile key to a simplified sprite used when a11y settings are toggled on
+const TILE_TO_SIMPLIFIED_SPRITE = {
+  ground: 'editor-ground',
+  groundHalf: 'editor-ground-half',
+  water: 'editor-water',
+  waterHalf: 'editor-water-half',
+  obstacle: 'editor-obstacle'
+};
 
+const settings = useUserSettings();
+
+const spriteTextures = computed(() => {
+  const getTextures = (spriteId: string) => {
+    const sheet = assets.getSprite(spriteId);
     return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
-  });
+  };
+
+  if (settings.value.a11y.simplifiedMapTextures) {
+    const spriteId =
+      TILE_TO_SIMPLIFIED_SPRITE[cell.tile.id as keyof typeof TILE_TO_SIMPLIFIED_SPRITE];
+    return [getTextures(spriteId)];
+  }
+
+  return cell.spriteIds.map(getTextures);
 });
 
 const hitArea = computed(() => {

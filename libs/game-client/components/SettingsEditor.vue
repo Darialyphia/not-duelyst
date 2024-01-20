@@ -8,11 +8,7 @@ const emit = defineEmits<{
 }>();
 
 const { data: settings } = useConvexAuthedQuery(api.users.settings, {});
-const { mutate: saveSettings } = useConvexAuthedMutation(api.users.saveSettings, {
-  onSuccess() {
-    emit('close');
-  }
-});
+const { mutate: saveSettings } = useConvexAuthedMutation(api.users.saveSettings);
 
 const formData = ref(defaultSettings);
 
@@ -51,13 +47,25 @@ until(settings)
       </fieldset>
       <fieldset>
         <legend>Accessibility</legend>
+        <label>Color coded units</label>
+        <UiSwitch v-model="formData.a11y.colorCodeUnits" />
+        <label>Simplified map textures</label>
+        <UiSwitch v-model="formData.a11y.simplifiedMapTextures" />
       </fieldset>
     </div>
   </section>
 
   <footer>
     <UiButton class="ghost-button" @click="emit('close')">Cancel</UiButton>
-    <UiButton class="primary-button" @click="saveSettings({ settings: formData })">
+    <UiButton
+      class="primary-button"
+      @click="
+        () => {
+          emit('close');
+          saveSettings({ settings: formData });
+        }
+      "
+    >
       Apply
     </UiButton>
   </footer>

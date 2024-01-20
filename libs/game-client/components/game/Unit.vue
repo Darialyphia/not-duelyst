@@ -11,7 +11,8 @@ const { entity } = defineProps<{
 }>();
 
 const app = useApplication();
-const { gameSession, assets, state, mapRotation, fx, utils } = useGame();
+const settings = useUserSettings();
+const { gameSession, assets, state, mapRotation, fx, utils, playerId } = useGame();
 const {
   hoveredCell,
   skillTargets,
@@ -95,9 +96,22 @@ const inSkillAreaFilter = new GlowFilter({
   alpha: 0.75
 });
 
+const a11yColorcodeFilter = computed(() => {
+  if (playerId) {
+    return new OutlineFilter(2, entity.playerId === playerId ? 0x00ff00 : 0xff0000);
+  } else {
+    return new OutlineFilter(
+      2,
+      entity.playerId === state.value.activePlayer.id ? 0x00ff00 : 0xff0000
+    );
+  }
+});
 const filters = computed(() => {
   const result = [];
 
+  if (settings.value.a11y.colorCodeUnits) {
+    result.push(a11yColorcodeFilter.value);
+  }
   if (selectedEntity.value?.equals(entity)) {
     result.push(selectedFilter);
   }

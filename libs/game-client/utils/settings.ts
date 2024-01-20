@@ -3,6 +3,10 @@ export const defaultSettings = {
   sound: {
     musicVolume: [50],
     sfxVolume: [50]
+  },
+  a11y: {
+    colorCodeUnits: false,
+    simplifiedMapTextures: false
   }
 };
 
