@@ -46,7 +46,7 @@ const {
   isCollectionLoading
 } = useCollection({
   itemsPerPage: ITEMS_PER_PAGE,
-  hasSelectedGenral: computed(() => !!general.value)
+  selectedGeneral: general
 });
 
 const sortedLoadoutUnits = computed(() =>
@@ -71,6 +71,11 @@ const canAddToLoadout = (unitId: string) => {
 };
 
 const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
+
+const editLoadout = (loadout: LoadoutDto) => {
+  initFromLoadout(loadout);
+  sidebarView.value = 'form';
+};
 </script>
 
 <template>
@@ -80,7 +85,11 @@ const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
 
   <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
-    <CollectionHeader v-model:filter="factionFilter" />
+    <CollectionHeader
+      v-model:filter="factionFilter"
+      :sidebar-view="sidebarView"
+      :selected-general="general"
+    />
 
     <section class="card-list">
       <div
@@ -89,7 +98,6 @@ const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
         :tabindex="sidebarView === 'form' && !canAddToLoadout(item.unitId) ? -1 : 0"
         class="card"
         :class="{
-          disabled: sidebarView === 'form' && !canAddToLoadout(item.unitId),
           used: sidebarView === 'form' && isInLoadout(item.unitId)
         }"
         @click="toggleLoadoutCard(item.unit)"
@@ -156,8 +164,8 @@ const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
             <LoadoutCard
               :loadout="loadout"
               tabindex="0"
-              @click="initFromLoadout(loadout)"
-              @keydown.enter="initFromLoadout(loadout)"
+              @click="editLoadout(loadout)"
+              @keydown.enter="editLoadout(loadout)"
             />
 
             <div class="grid absolute right-0 top-0 h-full items-end">
@@ -253,10 +261,6 @@ const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
   }
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
-  }
-  &.disabled {
-    opacity: 0.3;
-    filter: grayscale(1);
   }
 
   &.used {

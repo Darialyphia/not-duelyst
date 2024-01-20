@@ -1,10 +1,24 @@
 <script setup lang="ts">
-import { FACTIONS } from '@hc/sdk';
+import { FACTIONS, type UnitBlueprint } from '@hc/sdk';
 import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
+import type { Nullable } from '@hc/shared';
+
+const { selectedGeneral, sidebarView } = defineProps<{
+  sidebarView: 'form' | 'list';
+  selectedGeneral: Nullable<UnitBlueprint>;
+}>();
 
 const factions: FactionId[] = Object.values(FACTIONS).map(f => f.id);
-
 const filter = defineModel<string>('filter', { required: true });
+
+const isDisabled = (faction: FactionId) => {
+  if (sidebarView === 'list') return false;
+  if (faction === 'neutral') return false;
+
+  if (!selectedGeneral) return false;
+
+  return selectedGeneral.faction.id !== faction;
+};
 </script>
 
 <template>
@@ -16,6 +30,7 @@ const filter = defineModel<string>('filter', { required: true });
         :key="faction"
         class="capitalize"
         :class="faction === filter ? 'primary-button' : 'ghost-button'"
+        :disabled="isDisabled(faction)"
         @click="filter = faction"
       >
         {{ faction }}
