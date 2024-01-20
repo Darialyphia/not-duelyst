@@ -24,7 +24,7 @@ export const useGameControls = () => {
         .control as KeyBinding;
       if (e.code !== control.key) return false;
       const match =
-        control.modifier === null ||
+        (control.modifier === null && !e.shiftKey && !e.ctrlKey && !e.altKey) ||
         (control.modifier == 'shift' && e.shiftKey) ||
         (control.modifier == 'alt' && e.altKey) ||
         (control.modifier == 'ctrl' && e.ctrlKey);
@@ -46,6 +46,7 @@ export const useGameControls = () => {
         const entities = player.entities;
         const index = entities.findIndex(e => e.equals(selectedEntity));
         let newIndex = index + diff;
+        console.log(newIndex);
         if (newIndex >= entities.length) {
           ui.selectedEntity.value = player.general;
         } else {
