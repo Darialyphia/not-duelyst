@@ -39,9 +39,9 @@ const isSettingsOpoened = ref(false);
 
 <style scoped>
 :is(a, button) {
-  --d-button-border-color: var(--primary);
+  --ui-button-border-color: var(--primary);
   --ui-button-bg-hover: var(--primary-hover);
-  --d-button-bg: transparent;
+  --ui-button-bg: transparent;
 
   &:hover:not(:disabled) {
     color: var(--text-on-primary);

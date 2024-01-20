@@ -108,7 +108,7 @@ const getGeneralImage = (generalId: string) => {
   }
 
   > footer > button {
-    --d-button-size: var(--font-size-3);
+    --ui-button-size: var(--font-size-3);
 
     min-width: var(--size-12);
   }

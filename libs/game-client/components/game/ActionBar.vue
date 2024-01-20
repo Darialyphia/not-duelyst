@@ -139,7 +139,7 @@ const onValidateTargets = () => {
         <UiTooltip
           v-for="unit in player.summonableUnits"
           :key="unit.unit.id"
-          :side-offset="50"
+          :side-offset="20"
           :delay="200"
         >
           <template #trigger>
@@ -294,7 +294,7 @@ const onValidateTargets = () => {
   margin-left: auto;
 
   @screen lt-lg {
-    --d-button-size: var(--font-size-0);
+    --ui-button-size: var(--font-size-0);
   }
 }
 

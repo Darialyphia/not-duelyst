@@ -131,7 +131,7 @@
 }
 
 :where(input, button, textarea, select),
-:where(input[type='file'])::-webkit-file-upload-button {
+:where(input[type='file'])::-webkit-file-uploaui-button {
   font: inherit;
   font-size: inherit;
   color: inherit;

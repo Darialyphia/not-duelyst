@@ -74,26 +74,26 @@
 }
 
 .ghost-button {
-  --d-button-bg: transparent;
-  --d-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
-  --d-button-disabled-bg: transparent;
+  --ui-button-bg: transparent;
+  --ui-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
+  --ui-button-disabled-bg: transparent;
 }
 
 button:is(.primary-button, .error-button) {
-  --d-button-disabled-color: var(--text-on-disabled);
-  --d-button-disabled-bg: var(--disabled);
+  --ui-button-disabled-color: var(--text-on-disabled);
+  --ui-button-disabled-bg: var(--disabled);
 }
 
 .primary-button {
-  --d-button-bg: var(--primary);
-  --d-button-hover-bg: var(--primary-hover);
+  --ui-button-bg: var(--primary);
+  --ui-button-hover-bg: var(--primary-hover);
 
-  --d-button-color: var(--text-on-primary);
+  --ui-button-color: var(--text-on-primary);
 }
 
 .error-button {
-  --d-button-bg: var(--error);
-  --d-button-hover-bg: var(--error-hover);
+  --ui-button-bg: var(--error);
+  --ui-button-hover-bg: var(--error-hover);
 
-  --d-button-color: var(--text-on-error);
+  --ui-button-color: var(--text-on-error);
 }

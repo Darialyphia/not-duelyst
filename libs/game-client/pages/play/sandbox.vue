@@ -10,15 +10,10 @@ definePageMeta({
   name: 'Sandbox'
 });
 
-const { data: maps, isLoading: isMapsLoading } = useConvexQuery(
-  api.gameMaps.getAll,
-  {},
-  { ssr: false }
-);
+const { data: maps, isLoading: isMapsLoading } = useConvexQuery(api.gameMaps.getAll, {});
 const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
   api.loadout.myLoadouts,
-  {},
-  { ssr: false }
+  {}
 );
 
 const isLoading = computed(() => isMapsLoading.value || isLoadoutsLoading.value);
@@ -168,7 +163,7 @@ fieldset {
 }
 
 form > button {
-  --d-button-size: var(--font-size-4);
+  --ui-button-size: var(--font-size-4);
 
   width: var(--size-12);
   margin-block-start: var(--size-4);

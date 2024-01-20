@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import type { StyleProp } from '../utils/types';
 
-type ButtonStyleVariables =
-  | '--d-button-color'
-  | '--d-button-bg'
-  | '--d-button-hover-color'
-  | '--d-button-hover-bg'
-  | '--d-button-focus-color'
-  | '--d-button-focus-bg'
-  | '--d-button-disabled-color'
-  | '--d-button-disabled-bg'
-  | '--d-button-size'
-  | '--d-button-weight'
-  | '--d-button-border-color'
-  | '--d-button-border-size'
-  | '--d-button-radius';
+export type ButtonStyleVariables =
+  | '--ui-button-color'
+  | '--ui-button-bg'
+  | '--ui-button-hover-color'
+  | '--ui-button-hover-bg'
+  | '--ui-button-focus-color'
+  | '--ui-button-focus-bg'
+  | '--ui-button-disabled-color'
+  | '--ui-button-disabled-bg'
+  | '--ui-button-size'
+  | '--ui-button-weight'
+  | '--ui-button-border-color'
+  | '--ui-button-border-size'
+  | '--ui-button-radius';
 
 export type ButtonProps = {
   leftIcon?: string;
@@ -46,7 +46,7 @@ const tag = computed(() => {
 <template>
   <component
     :is="tag"
-    class="d-button"
+    class="ui-button"
     :class="{
       'is-inline': isInline,
       'is-cta': isCta,
@@ -68,24 +68,24 @@ const tag = computed(() => {
 @import 'open-props/media';
 
 @layer components {
-  .d-button {
-    --_d-button-size: var(--d-button-size, var(--font-size-1));
-    --_d-button-weight: var(--d-button-weight, var(--font-weight-6));
-    --_d-button-border-color: var(--d-button-border-color, transparent);
-    --_d-button-border-size: var(--d-button-border-size, var(--border-size-1));
-    --_d-button-radius: var(--d-button-radius, var(--radius-2));
+  .ui-button {
+    --_ui-button-size: var(--ui-button-size, var(--font-size-1));
+    --_ui-button-weight: var(--ui-button-weight, var(--font-weight-6));
+    --_ui-button-border-color: var(--ui-button-border-color, transparent);
+    --_ui-button-border-size: var(--ui-button-border-size, var(--border-size-1));
+    --_ui-button-radius: var(--ui-button-radius, var(--radius-2));
 
-    --_d-button-color: var(--d-button-color, white);
-    --_d-button-bg: var(--d-button-bg, var(--gray-10));
+    --_ui-button-color: var(--ui-button-color, white);
+    --_ui-button-bg: var(--ui-button-bg, var(--gray-10));
 
-    --_d-button-hover-color: var(--d-button-hover-color, var(--_d-button-color));
-    --_d-button-hover-bg: var(--d-button-hover-bg, var(--_d-button-bg));
+    --_ui-button-hover-color: var(--ui-button-hover-color, var(--_ui-button-color));
+    --_ui-button-hover-bg: var(--ui-button-hover-bg, var(--_ui-button-bg));
 
-    --_d-button-focus-color: var(--d-button-focus-color, var(--_d-button-color));
-    --_d-button-focus-bg: var(--d-button-focus-bg, var(--_d-button-bg));
+    --_ui-button-focus-color: var(--ui-button-focus-color, var(--_ui-button-color));
+    --_ui-button-focus-bg: var(--ui-button-focus-bg, var(--_ui-button-bg));
 
-    --_d-button-disabled-color: var(--d-button-disabled-color, var(--text-on-disabled));
-    --_d-button-disabled-bg: var(--d-button-disabled-bg, var(--disabled));
+    --_ui-button-disabled-color: var(--ui-button-disabled-color, var(--text-on-disabled));
+    --_ui-button-disabled-bg: var(--ui-button-disabled-bg, var(--disabled));
 
     cursor: pointer;
 
@@ -97,20 +97,20 @@ const tag = computed(() => {
     width: fit-content;
     padding: var(--size-2-em) var(--size-3-em);
 
-    font-size: var(--_d-button-size);
-    font-weight: var(--_d-button-weight);
-    color: var(--_d-button-color);
+    font-size: var(--_ui-button-size);
+    font-weight: var(--_ui-button-weight);
+    color: var(--_ui-button-color);
     white-space: nowrap;
     vertical-align: middle;
 
-    background-color: var(--_d-button-bg);
-    border: solid var(--_d-button-border-size) var(--_d-button-border-color);
-    border-radius: var(--_d-button-radius);
+    background-color: var(--_ui-button-bg);
+    border: solid var(--_ui-button-border-size) var(--_ui-button-border-color);
+    border-radius: var(--_ui-button-radius);
 
     &:disabled {
       cursor: not-allowed;
-      color: var(--_d-button-disabled-color);
-      background-color: var(--_d-button-disabled-bg);
+      color: var(--_ui-button-disabled-color);
+      background-color: var(--_ui-button-disabled-bg);
     }
 
     &,
@@ -124,8 +124,8 @@ const tag = computed(() => {
     }
 
     &:focus-visible {
-      color: var(--_d-button-focus-color);
-      background-color: var(--_d-button-focus-bg);
+      color: var(--_ui-button-focus-color);
+      background-color: var(--_ui-button-focus-bg);
     }
     &.is-inline {
       display: inline-flex;
@@ -144,8 +144,8 @@ const tag = computed(() => {
 
     @media (--mouse) {
       &:hover:not(:disabled) {
-        color: var(--_d-button-hover-color);
-        background-color: var(--_d-button-hover-bg);
+        color: var(--_ui-button-hover-color);
+        background-color: var(--_ui-button-hover-bg);
       }
     }
   }

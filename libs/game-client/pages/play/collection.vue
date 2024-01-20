@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { api } from '@hc/api';
-import { FACTIONS, UNITS, type UnitBlueprint } from '@hc/sdk';
-import type { FactionId } from '@hc/sdk/src/faction/faction-lookup';
-import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
-import type { Id } from '@hc/api/convex/_generated/dataModel';
+import { UNITS, type UnitBlueprint } from '@hc/sdk';
 import bg from '../../assets/backgrounds/spire.jpg';
+import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
+import type { Nullable } from '@hc/shared';
 
 definePageMeta({
   name: 'Collection',
@@ -14,148 +12,45 @@ definePageMeta({
   }
 });
 
-const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
-  api.collection.myCollection,
-  {}
-);
-
-const factions: FactionId[] = ['haven', 'chaos', 'neutral'];
-const page = ref(0);
 const ITEMS_PER_PAGE = 10;
 const LOADOUT_MAX_SIZE = 6;
 
-const factionFilter = ref<FactionId>('haven');
-const factionIndex = computed(() => factions.indexOf(factionFilter.value));
-
-const filteredUnits = computed(() =>
-  collection.value
-    ? collection.value
-        .map(item => ({ ...item, unit: UNITS[item.unitId] }))
-        .filter(({ unit }) => unit.faction.id === factionFilter.value)
-        .filter(({ unit }) =>
-          sidebarView.value === 'list' || general.value ? true : unit.kind === 'GENERAL'
-        )
-        .sort((a, b) => {
-          const factionDiff =
-            factions.indexOf(b.unit.faction.id) - factions.indexOf(a.unit.faction.id);
-          if (factionDiff !== 0) return factionDiff;
-          return a.unit.summonCost - b.unit.summonCost;
-        })
-    : []
-);
-
-const displayedUnits = computed(() =>
-  filteredUnits.value.slice(
-    page.value * ITEMS_PER_PAGE,
-    page.value * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-  )
-);
-
-const pageCount = computed(() => Math.ceil(filteredUnits.value.length / ITEMS_PER_PAGE));
-
-const prevPage = () => {
-  if (page.value > 0) {
-    page.value--;
-  } else {
-    const newIndex =
-      factionIndex.value === 0 ? factions.length - 1 : factionIndex.value - 1;
-    factionFilter.value = factions[newIndex];
-    nextTick(() => {
-      page.value = pageCount.value - 1;
-    });
+const {
+  values,
+  general,
+  initEmpty,
+  initFromLoadout,
+  canAddUnit,
+  isInLoadout,
+  toggleUnit,
+  save,
+  isSaving
+} = useLoadoutForm({
+  defaultName: computed(() => `My New Loadout ${loadouts.value.length || ''}`),
+  maxSize: LOADOUT_MAX_SIZE,
+  onSuccess() {
+    sidebarView.value = 'list';
   }
-};
+});
 
-const nextPage = () => {
-  if (page.value < pageCount.value - 1) {
-    page.value++;
-  } else {
-    const newIndex =
-      factionIndex.value === factions.length - 1 ? 0 : factionIndex.value + 1;
-    factionFilter.value = factions[newIndex];
-    page.value = 0;
-  }
-};
-
-const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
-  api.loadout.myLoadouts,
-  {}
-);
-
-const sidebarView = ref<'list' | 'form'>('list');
-
-const loadoutForm = ref<{
-  loadoutId?: Id<'loadouts'>;
-  name: string;
-  generalId: string | null;
-  unitIds: Set<string>;
-}>();
-const general = computed(() =>
-  loadoutForm.value?.generalId ? UNITS[loadoutForm.value.generalId] : null
-);
-const createEmptyLoadout = () => {
-  sidebarView.value = 'form';
-  loadoutForm.value = {
-    generalId: null,
-    unitIds: new Set(),
-    name: `My New Loadout ${loadouts.value.length || ''}`
-  };
-};
-
-const selectLoadout = (loadout: LoadoutDto) => {
-  sidebarView.value = 'form';
-  factionFilter.value = UNITS[loadout.generalId].faction.id;
-  loadoutForm.value = {
-    loadoutId: loadout._id,
-    generalId: loadout.generalId,
-    unitIds: new Set(loadout.unitIds),
-    name: loadout.name
-  };
-};
-
-const isInLoadout = (unitId: string) => {
-  if (UNITS[unitId].kind === 'GENERAL') {
-    return loadoutForm.value?.generalId === unitId;
-  }
-  return loadoutForm.value?.unitIds.has(unitId);
-};
-
-const canAddCardToLoadout = (unitId: string) => {
-  if (sidebarView.value === 'list') return false;
-  const unit = UNITS[unitId];
-  if (!general.value) return unit.kind === 'GENERAL';
-
-  return unit.faction === FACTIONS.neutral || unit.faction === general.value.faction;
-};
-
-const loadoutIsFull = computed(() => loadoutForm.value!.unitIds.size >= LOADOUT_MAX_SIZE);
-
-const toggleLoadoutCard = (unit: UnitBlueprint) => {
-  if (sidebarView.value === 'list') return;
-  if (!canAddCardToLoadout(unit.id)) return;
-
-  switch (unit.kind) {
-    case 'GENERAL':
-      if (isInLoadout(unit.id)) {
-        if (loadoutForm.value?.unitIds.size === 0) {
-          loadoutForm.value.generalId = null;
-        }
-      } else {
-        loadoutForm.value!.generalId = unit.id;
-      }
-      break;
-    case 'SOLDIER':
-      if (isInLoadout(unit.id)) {
-        loadoutForm.value!.unitIds.delete(unit.id);
-      } else if (!loadoutIsFull.value) {
-        loadoutForm.value!.unitIds.add(unit.id);
-      }
-      break;
-  }
-};
+const {
+  factionFilter,
+  page,
+  pageCount,
+  prevPage,
+  nextPage,
+  displayedUnits,
+  sidebarView,
+  loadouts,
+  isLoadoutsLoading,
+  isCollectionLoading
+} = useCollection({
+  itemsPerPage: ITEMS_PER_PAGE,
+  hasSelectedGenral: computed(() => !!general.value)
+});
 
 const sortedLoadoutUnits = computed(() =>
-  [...(loadoutForm.value?.unitIds ?? [])]
+  [...(values.value?.unitIds ?? [])]
     .map(id => UNITS[id])
     .concat(general.value ? [general.value] : [])
     .sort((a, b) => {
@@ -165,47 +60,17 @@ const sortedLoadoutUnits = computed(() =>
     })
 );
 
-const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexAuthedMutation(
-  api.loadout.create,
-  {
-    onSuccess() {
-      sidebarView.value = 'list';
-    }
-  }
-);
-const { mutate: updateDeck, isLoading: isUpdatingDeck } = useConvexAuthedMutation(
-  api.loadout.update,
-  {
-    onSuccess() {
-      sidebarView.value = 'list';
-    }
-  }
-);
-
-const isSaving = computed(() => isSavingNewDeck.value || isUpdatingDeck.value);
-
-const onSubmit = () => {
-  if (!loadoutForm.value) return;
-  if (loadoutForm.value.loadoutId) {
-    updateDeck({
-      loadoutId: loadoutForm.value.loadoutId,
-      name: loadoutForm.value!.name,
-      generalId: loadoutForm.value.generalId!,
-      units: [...loadoutForm.value.unitIds]
-    });
-  } else {
-    saveNewDeck({
-      name: loadoutForm.value!.name,
-      generalId: loadoutForm.value.generalId!,
-      units: [...loadoutForm.value.unitIds]
-    });
-  }
+const toggleLoadoutCard = (unit: UnitBlueprint) => {
+  if (sidebarView.value === 'list') return;
+  toggleUnit(unit);
 };
 
-const getGeneralImage = (generalId: string) => {
-  const unit = UNITS[generalId];
-  return `/assets/units/${unit.spriteId}-icon.png`;
+const canAddToLoadout = (unitId: string) => {
+  if (sidebarView.value === 'list') return false;
+  return canAddUnit(unitId);
 };
+
+const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
 </script>
 
 <template>
@@ -214,29 +79,17 @@ const getGeneralImage = (generalId: string) => {
   </div>
 
   <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
-    <header class="fancy-surface border-none">
-      <BackButton class="flex-self-center" />
-      <div class="flex gap-2">
-        <UiButton
-          v-for="faction in factions"
-          :key="faction"
-          class="capitalize"
-          :class="faction === factionFilter ? 'primary-button' : 'ghost-button'"
-          @click="factionFilter = faction"
-        >
-          {{ faction }}
-        </UiButton>
-      </div>
-    </header>
+    <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
+    <CollectionHeader v-model:filter="factionFilter" />
 
     <section class="card-list">
       <div
         v-for="item in displayedUnits"
         :key="item._id"
-        :tabindex="sidebarView === 'form' && !canAddCardToLoadout(item.unitId) ? -1 : 0"
+        :tabindex="sidebarView === 'form' && !canAddToLoadout(item.unitId) ? -1 : 0"
         class="card"
         :class="{
-          disabled: sidebarView === 'form' && !canAddCardToLoadout(item.unitId),
+          disabled: sidebarView === 'form' && !canAddToLoadout(item.unitId),
           used: sidebarView === 'form' && isInLoadout(item.unitId)
         }"
         @click="toggleLoadoutCard(item.unit)"
@@ -246,27 +99,24 @@ const getGeneralImage = (generalId: string) => {
       </div>
     </section>
 
-    <footer class="fancy-surface border-none">
-      <UiButton class="ghost-button p-0" @click="prevPage">
-        <Icon name="ic:baseline-keyboard-arrow-left" size="2em" />
-      </UiButton>
-      {{ page + 1 }} / {{ pageCount }}
-      <UiButton class="ghost-button p-0" @click="nextPage">
-        <Icon name="ic:baseline-keyboard-arrow-right" size="2em" />
-      </UiButton>
-    </footer>
+    <CollectionFooter
+      :page="page"
+      :page-count="pageCount"
+      @prev="prevPage"
+      @next="nextPage"
+    />
 
     <section class="sidebar">
       <template v-if="sidebarView === 'form'">
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="save">
           <header>
-            <input v-model="loadoutForm!.name" class="py-3 flex-1" contenteditable />
-            {{ loadoutForm?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
+            <input v-model="values!.name" class="py-3 flex-1" contenteditable />
+            {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
           </header>
           <p v-if="!sortedLoadoutUnits.length" class="text-center p-4">
             First, select a general.
           </p>
-          <ul v-if="loadoutForm" v-auto-animate class="flex-1">
+          <ul v-if="values" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
@@ -302,18 +152,25 @@ const getGeneralImage = (generalId: string) => {
 
       <template v-else>
         <ul v-if="loadouts" v-auto-animate>
-          <li
-            v-for="loadout in loadouts"
-            :key="loadout._id"
-            class="p-2 border-primary border-1 m-2"
-          >
-            <button
-              class="loadout"
-              :style="{ '--bg': `url(${getGeneralImage(loadout.generalId)}` }"
-              @click="selectLoadout(loadout)"
-            >
-              {{ loadout.name }}
-            </button>
+          <li v-for="loadout in loadouts" :key="loadout._id" class="m-2 relative">
+            <LoadoutCard
+              :loadout="loadout"
+              tabindex="0"
+              @click="initFromLoadout(loadout)"
+              @keydown.enter="initFromLoadout(loadout)"
+            />
+
+            <div class="grid absolute right-0 top-0 h-full items-end">
+              <UiIconButton
+                name="material-symbols:delete-outline"
+                class="error-button"
+                :style="{
+                  '--ui-icon-button-size': 'var(--font-size-4)',
+                  '--ui-icon-button-radius': '0'
+                }"
+                @click="loadoutToDelete = loadout"
+              />
+            </div>
           </li>
         </ul>
         <p v-if="!loadouts.length" class="py-3 text-center">
@@ -322,7 +179,12 @@ const getGeneralImage = (generalId: string) => {
         <UiButton
           class="primary-button mx-auto"
           left-icon="material-symbols:add"
-          @click="createEmptyLoadout"
+          @click="
+            () => {
+              initEmpty();
+              sidebarView = 'form';
+            }
+          "
         >
           Create new Loadout
         </UiButton>
@@ -358,21 +220,6 @@ const getGeneralImage = (generalId: string) => {
 
   > .loader {
     grid-column: 1 / -1;
-  }
-
-  > header {
-    display: flex;
-    gap: var(--size-8);
-    padding: var(--size-3) var(--size-6);
-  }
-
-  > footer {
-    display: flex;
-    gap: var(--size-3);
-    align-items: center;
-    justify-content: center;
-
-    padding: var(--size-2);
   }
 }
 
@@ -424,35 +271,14 @@ const getGeneralImage = (generalId: string) => {
 }
 
 .loadout {
-  --mask: linear-gradient(to right, hsl(0 0% 0% / 0.75), transparent 25%);
-
   position: relative;
 
   width: 100%;
-  padding: var(--size-3);
-  padding-left: calc(64px + var(--size-2));
+  padding: 0;
 
   text-align: left;
 
   transition: 0.3s;
-  &::after {
-    content: '';
-
-    position: absolute;
-    inset: 0;
-
-    background-image: var(--bg);
-    background-repeat: no-repeat;
-    background-position: left;
-
-    mask-image: var(--mask);
-  }
-
-  &:hover {
-    --mask: linear-gradient(to right, black, transparent 35%);
-
-    filter: brightness(125%) contrast(125%);
-  }
 }
 
 .sidebar {

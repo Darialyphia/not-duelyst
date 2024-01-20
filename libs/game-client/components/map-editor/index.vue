@@ -410,7 +410,10 @@ watchEffect(() => {
       <UiButton @click="save">Save</UiButton>
 
       <UiButton
-        :style="{ '--d-button-size': 'var(--font-size-4)', transform: 'rotateY(180deg)' }"
+        :style="{
+          '--ui-button-size': 'var(--font-size-4)',
+          transform: 'rotateY(180deg)'
+        }"
         @click="
           () => {
             rotation = ((rotation + 360 - 90) % 360) as 0 | 90 | 180 | 270;
@@ -420,7 +423,7 @@ watchEffect(() => {
         <Icon name="mdi:rotate-360" />
       </UiButton>
       <UiButton
-        :style="{ '--d-button-size': 'var(--font-size-4)' }"
+        :style="{ '--ui-button-size': 'var(--font-size-4)' }"
         @click="
           () => {
             rotation = ((rotation + 360 + 90) % 360) as 0 | 90 | 180 | 270;
@@ -429,21 +432,21 @@ watchEffect(() => {
       >
         <Icon name="mdi:rotate-360" />
       </UiButton>
-      <UiButton :style="{ '--d-button-size': 'var(--font-size-4)' }" @click="undo">
+      <UiButton :style="{ '--ui-button-size': 'var(--font-size-4)' }" @click="undo">
         <Icon name="mdi:undo" />
       </UiButton>
-      <UiButton :style="{ '--d-button-size': 'var(--font-size-4)' }" @click="redo">
+      <UiButton :style="{ '--ui-button-size': 'var(--font-size-4)' }" @click="redo">
         <Icon name="mdi:redo" />
       </UiButton>
       <UiButton
-        :style="{ '--d-button-size': 'var(--font-size-4)' }"
+        :style="{ '--ui-button-size': 'var(--font-size-4)' }"
         :class="actionMode === 'add' && 'selected'"
         @click="actionMode = 'add'"
       >
         <Icon name="material-symbols:edit-outline" />
       </UiButton>
       <UiButton
-        :style="{ '--d-button-size': 'var(--font-size-4)' }"
+        :style="{ '--ui-button-size': 'var(--font-size-4)' }"
         :class="actionMode === 'remove' && 'selected'"
         @click="actionMode = 'remove'"
       >
