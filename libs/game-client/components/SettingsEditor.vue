@@ -26,13 +26,26 @@ until(settings)
 
 <template>
   <section class="fancy-scrollbar">
-    <fieldset class="controls">
+    <fieldset>
       <legend>Controls</legend>
       <template v-for="binding in formData.bindings" :key="binding.id">
         <label :for="binding.id" class="mr-4">{{ binding.label }}</label>
         <UiKeyInput v-model="binding.control" />
       </template>
     </fieldset>
+
+    <div>
+      <fieldset>
+        <legend>Sound</legend>
+        <label>Sound effects</label>
+        <UiSliderInput :model-value="[50]" label="sound effects volume" class="w-full" />
+        <label>Music</label>
+        <UiSliderInput :model-value="[50]" label="sound effects volume" class="w-full" />
+      </fieldset>
+      <fieldset>
+        <legend>Accessibility</legend>
+      </fieldset>
+    </div>
   </section>
 
   <footer>
@@ -44,13 +57,16 @@ until(settings)
 </template>
 
 <style scoped lang="postcss">
-.controls {
+fieldset {
+  user-select: none;
+
   display: grid;
   grid-template-columns: max-content 1fr;
   row-gap: var(--size-2);
+  column-gap: var(--size-3);
   align-items: center;
 
-  padding: var(--size-3);
+  padding: var(--size-4);
 
   border: var(--fancy-border);
 
@@ -62,8 +78,13 @@ until(settings)
 
 section {
   overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--size-3);
+
   max-height: 60vh;
   max-height: 60dvh;
+  padding-inline: var(--size-2);
 }
 
 footer {

@@ -68,12 +68,9 @@ const getGeneralImage = (generalId: string) => {
     <h2 class="text-3">Select your loadout</h2>
     <div v-if="isLoadingLoadouts">Loading...</div>
     <div class="loadouts">
-      <label
-        v-for="loadout in loadouts"
-        :key="loadout._id"
-        class="fancy-surface flex items-center gap-4"
-      >
-        <img :src="getGeneralImage(loadout.generalId)" />
+      <label v-for="loadout in loadouts" :key="loadout._id">
+        <LoadoutCard :loadout="loadout"></LoadoutCard>
+
         <input
           v-model="selectedLoadoutId"
           :disabled="isInMatchmaking"
@@ -81,7 +78,6 @@ const getGeneralImage = (generalId: string) => {
           :value="loadout._id"
           class="sr-only"
         />
-        {{ loadout.name }}
       </label>
     </div>
 
@@ -125,7 +121,7 @@ const getGeneralImage = (generalId: string) => {
 
 .loadouts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--size-3);
   margin-block: var(--size-4);
 

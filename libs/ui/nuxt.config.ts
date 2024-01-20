@@ -29,9 +29,11 @@ export default defineNuxtConfig({
   ],
   postcss: {
     plugins: {
+      autoprefixer: true,
       '@unocss/postcss': {
         configOrPath: join(currentDir, './uno.config.ts')
       },
+      'postcss-viewport-unit-fallback': {},
       'postcss-nesting': { noIsPseudoSelector: false },
       'postcss-custom-media': {
         preserve: false

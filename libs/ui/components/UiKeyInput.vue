@@ -61,4 +61,14 @@ button {
     filter: brightness(130%);
   }
 }
+:global(kbd) {
+  min-width: 0.75rem;
+
+  font-weight: var(--font-weight-5);
+  color: var(--primary);
+
+  border-color: hsl(var(--color-primary-hsl) / 0.25);
+  border-width: var(--border-size-1);
+  box-shadow: 0 2px 0 1px hsl(var(--color-primary-hsl) / 0.2);
+}
 </style>
