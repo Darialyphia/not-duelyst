@@ -33,11 +33,6 @@ const form = reactive<{
   player2Loadout: null
 });
 
-const getGeneralImage = (generalId: string) => {
-  const unit = UNITS[generalId];
-  return `/assets/units/${unit.spriteId}-icon.png`;
-};
-
 const isReady = ref(false);
 const createGameState = (): Promise<SerializedGameState> => {
   return Promise.resolve({
@@ -105,7 +100,7 @@ const createGameState = (): Promise<SerializedGameState> => {
                 <input
                   v-model="form.player1Loadout"
                   type="radio"
-                  :value="loadout._id"
+                  :value="loadout"
                   class="sr-only"
                 />
               </label>
@@ -119,7 +114,7 @@ const createGameState = (): Promise<SerializedGameState> => {
                 <input
                   v-model="form.player2Loadout"
                   type="radio"
-                  :value="loadout._id"
+                  :value="loadout"
                   class="sr-only"
                 />
               </label>

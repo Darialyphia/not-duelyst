@@ -9,19 +9,17 @@ export const useGameControls = () => {
   const { state, gameSession, mapRotation, ui, sendInput, fx, isActivePlayer } =
     useGame();
 
-  const { data: settings } = useConvexAuthedQuery(api.users.settings, {});
+  const settings = useUserSettings();
 
   const rotateMap = (diff: number) => {
     mapRotation.value = ((mapRotation.value + 360 + diff) % 360) as Angle;
   };
 
   watchEffect(onCleanup => {
-    if (!settings.value) return;
-    const controls = merge(defaultBindings, settings.value.bindings);
+    const controls = settings.value.bindings;
 
     const isMatch = (e: KeyboardEvent, id: ControlId) => {
-      const control = controls.find((c: (typeof defaultBindings)[number]) => c.id === id)
-        .control as KeyBinding;
+      const control = controls.find(c => c.id === id)!.control;
       if (e.code !== control.key) return false;
       const match =
         (control.modifier === null && !e.shiftKey && !e.ctrlKey && !e.altKey) ||

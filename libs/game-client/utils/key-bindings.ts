@@ -1,6 +1,6 @@
 import type { KeyBinding } from '@hc/ui/components/UiKeyInput.vue';
 
-export const defaultBindings = [
+export const defaultBindings: { id: string; label: string; control: KeyBinding }[] = [
   {
     id: 'rotateMapLeft',
     label: 'Rotate map Left',
@@ -76,6 +76,6 @@ export const defaultBindings = [
     label: 'Previous unit',
     control: { key: 'Tab', modifier: 'shift' }
   }
-] as const satisfies { id: string; label: string; control: KeyBinding }[];
+];
 
 export type ControlId = (typeof defaultBindings)[number]['id'];

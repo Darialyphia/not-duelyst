@@ -6,16 +6,18 @@ const { label } = defineProps<{
 </script>
 
 <template>
-  <SliderRoot v-model="vmodel" class="slider-root" :max="100" :step="1">
-    <SliderTrack class="slider-track">
-      <SliderRange class="slider-range" />
+  <SliderRoot v-model="vmodel" class="ui-slider-root" :max="100" :step="1">
+    <SliderTrack class="ui-slider-track">
+      <SliderRange class="ui-slider-range" />
     </SliderTrack>
-    <SliderThumb class="slider-thumb" :aria-label="label" />
+    <SliderThumb class="ui-slider-thumb" :aria-label="label" as-child>
+      <div class="ui-slider-thumb" :data-value="vmodel[0]"></div>
+    </SliderThumb>
   </SliderRoot>
 </template>
 
 <style lang="postcss">
-.slider-root {
+.ui-slider-root {
   touch-action: none;
   user-select: none;
 
@@ -27,7 +29,7 @@ const { label } = defineProps<{
   height: var(--size-4);
 }
 
-.slider-track {
+.ui-slider-track {
   position: relative;
 
   flex-grow: 1;
@@ -38,14 +40,16 @@ const { label } = defineProps<{
   border-radius: var(--radius-pill);
 }
 
-.slider-range {
+.ui-slider-range {
   position: absolute;
   height: 100%;
   background-color: hsl(var(--color-primary-hsl) / 0.5);
   border-radius: var(--radius-pill);
 }
 
-.slider-thumb {
+.ui-slider-thumb {
+  position: relative;
+
   display: block;
 
   aspect-ratio: 1;
@@ -61,6 +65,12 @@ const { label } = defineProps<{
 
   &:focus {
     box-shadow: var(--shadow-3);
+  }
+
+  &:after {
+    content: attr(data-value);
+    position: absolute;
+    top: calc(-1 * var(--size-5));
   }
 }
 </style>

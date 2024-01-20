@@ -139,4 +139,3 @@ const getGeneralImage = (generalId: string) => {
   }
 }
 </style>
-../../assets/units{m}

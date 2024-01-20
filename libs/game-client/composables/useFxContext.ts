@@ -5,6 +5,7 @@ import { Howl } from 'howler';
 export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameContext) => {
   const visibility = useDocumentVisibility();
   const isHidden = computed(() => visibility.value === 'hidden');
+  const settings = useUserSettings();
 
   gameSession.fxContext = {
     displayText(text, entityId, { color, path, duration }) {
@@ -80,7 +81,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
 
         const sfx = new Howl({
           src: [soundPath],
-          volume: 0.5,
+          volume: settings.value.sound.musicVolume[0] / 100,
           sprite: slice
             ? {
                 slice: slice
@@ -117,7 +118,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
               slice: slice
             }
           : undefined,
-        volume: 0.5,
+        volume: settings.value.sound.musicVolume[0] / 100,
         loop: true
       });
 

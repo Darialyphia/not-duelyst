@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { api } from '@hc/api';
 import { merge } from 'lodash-es';
+import { defaultSettings } from '../utils/settings';
 
 const emit = defineEmits<{
   close: [];
@@ -13,9 +14,7 @@ const { mutate: saveSettings } = useConvexAuthedMutation(api.users.saveSettings,
   }
 });
 
-const formData = ref({
-  bindings: defaultBindings
-});
+const formData = ref(defaultSettings);
 
 until(settings)
   .not.toBeUndefined()
@@ -38,9 +37,17 @@ until(settings)
       <fieldset>
         <legend>Sound</legend>
         <label>Sound effects</label>
-        <UiSliderInput :model-value="[50]" label="sound effects volume" class="w-full" />
+        <UiSliderInput
+          v-model="formData.sound.musicVolume"
+          label="sound effects volume"
+          class="w-full"
+        />
         <label>Music</label>
-        <UiSliderInput :model-value="[50]" label="sound effects volume" class="w-full" />
+        <UiSliderInput
+          v-model="formData.sound.sfxVolume"
+          label="sound effects volume"
+          class="w-full"
+        />
       </fieldset>
       <fieldset>
         <legend>Accessibility</legend>
