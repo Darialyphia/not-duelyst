@@ -2,12 +2,16 @@
 import { api } from '@hc/api';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import type { GameMapDto } from '@hc/api/convex/gameMap/gameMap.mapper';
-import { UNITS, type SerializedGameState } from '@hc/sdk';
+import { type SerializedGameState } from '@hc/sdk';
 import type { Nullable } from '@hc/shared';
 import { parse } from 'zipson';
 
 definePageMeta({
-  name: 'Sandbox'
+  name: 'Sandbox',
+  pageTransition: {
+    name: 'sandbox',
+    mode: 'out-in'
+  }
 });
 
 const { data: maps, isLoading: isMapsLoading } = useConvexQuery(api.gameMaps.getAll, {});
@@ -70,7 +74,7 @@ const createGameState = (): Promise<SerializedGameState> => {
 
 <template>
   <div class="overflow-hidden">
-    <section v-if="!isReady" class="container fancy-surface mt-10">
+    <section v-if="!isReady" class="container mt-10">
       <header>
         <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
         <h1 class="text-5">Create sandbox game</h1>
@@ -78,22 +82,33 @@ const createGameState = (): Promise<SerializedGameState> => {
 
       <div v-if="isLoading">Loading...</div>
       <form v-else @submit.prevent="isReady = true">
-        <fieldset>
+        <fieldset class="fancy-surface">
           <legend>Map</legend>
 
-          <label v-for="map in maps" :key="map.id">
-            <input v-model="form.map" type="radio" :value="map" />
+          <label v-for="map in maps" :key="map.id" class="cursor-pointer">
+            <input
+              v-model="form.map"
+              type="radio"
+              :value="map"
+              class="sr-only"
+              name="map"
+            />
             {{ map.name }}
           </label>
         </fieldset>
         <div class="grid grid-cols-2 gap-2">
-          <fieldset>
+          <fieldset class="fancy-surface player-loadout">
             <legend>Player 1 loadout</legend>
             <div>
-              <label v-for="loadout in loadouts" :key="loadout._id">
+              <label
+                v-for="loadout in loadouts"
+                :key="loadout._id"
+                class="cursor-pointer"
+              >
                 <LoadoutCard :loadout="loadout" />
                 <input
                   v-model="form.player1Loadout"
+                  name="playr-1-loadout"
                   type="radio"
                   :value="loadout"
                   class="sr-only"
@@ -101,13 +116,14 @@ const createGameState = (): Promise<SerializedGameState> => {
               </label>
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="fancy-surface player-loadout">
             <legend>Player 2 loadout</legend>
             <div>
               <label v-for="loadout in loadouts" :key="loadout._id">
                 <LoadoutCard :loadout="loadout" />
                 <input
                   v-model="form.player2Loadout"
+                  name="playr-2-loadout"
                   type="radio"
                   :value="loadout"
                   class="sr-only"
@@ -117,12 +133,14 @@ const createGameState = (): Promise<SerializedGameState> => {
           </fieldset>
         </div>
 
-        <UiButton
-          class="primary-button"
-          :disabled="!form.map || !form.player1Loadout || !form.player2Loadout"
-        >
-          Start
-        </UiButton>
+        <Transition>
+          <UiButton
+            v-if="form.map && form.player1Loadout && form.player2Loadout"
+            class="primary-button start-button"
+          >
+            Start
+          </UiButton>
+        </Transition>
       </form>
     </section>
 
@@ -134,6 +152,36 @@ const createGameState = (): Promise<SerializedGameState> => {
     </ClientOnly>
   </div>
 </template>
+
+<style lang="postcss">
+.sandbox-enter-active,
+.sandbox-leave.active {
+  transition: all 0.3s;
+
+  .player-loadout {
+    transition: all 0.3s;
+    transition-timing-function: var(--ease-out-2);
+  }
+}
+
+.sandbox-enter-from,
+.sandbox-leave-to {
+  transform: translateY(-1.5rem);
+  opacity: 0;
+
+  .player-loadout {
+    &:first-of-type {
+      transform: translateX(-25%);
+      opacity: 0;
+    }
+    &:last-of-type {
+      transform: translateX(25%);
+      opacity: 0;
+      filter: sepia(100%);
+    }
+  }
+}
+</style>
 
 <style scoped lang="postcss">
 header {
@@ -148,16 +196,10 @@ fieldset {
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
-
-    label:has(input:checked) {
-      filter: brightness(125%);
-      outline: solid var(--border-size-2) var(--primary);
-      outline-offset: var(--size-1);
-    }
   }
 
   > legend {
-    font-size: -fs3;
+    font-size: var(--font-size-3);
     color: var(--primary);
   }
 }
@@ -168,5 +210,47 @@ form > button {
   width: var(--size-12);
   margin-block-start: var(--size-4);
   margin-inline: auto;
+}
+
+form > fieldset > label {
+  display: block;
+
+  width: var(--size-12);
+  height: var(--size-11);
+  padding: var(--size-1) var(--size-2);
+
+  background: linear-gradient(black, transparent), url('/assets/maps/test-map.png');
+  background-size: cover;
+  border: var(--fancy-border);
+}
+
+label {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  &:hover,
+  &:focus-within {
+    transform: scale(1.02);
+    filter: brightness(120%);
+    box-shadow: var(--shadow-3);
+  }
+
+  &:has(input:checked) {
+    filter: brightness(125%);
+    outline: solid var(--border-size-2) var(--primary);
+    outline-offset: var(--size-1);
+  }
+}
+
+.start-button {
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.3s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: translateY(var(--size-4));
+    opacity: 0;
+    filter: grayscale(100%);
+  }
 }
 </style>

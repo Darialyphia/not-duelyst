@@ -48,6 +48,7 @@ definePageMeta({
   opacity: 0;
 }
 </style>
+
 <style scoped lang="postcss">
 .page {
   display: grid;

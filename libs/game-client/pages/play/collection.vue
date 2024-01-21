@@ -116,9 +116,11 @@ const editLoadout = (loadout: LoadoutDto) => {
             <input v-model="values!.name" class="py-3 flex-1" contenteditable />
             {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
           </header>
+
           <p v-if="!sortedLoadoutUnits.length" class="text-center p-4">
             First, select a general.
           </p>
+
           <ul v-if="values" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
@@ -163,7 +165,7 @@ const editLoadout = (loadout: LoadoutDto) => {
               @keydown.enter="editLoadout(loadout)"
             />
 
-            <div class="grid absolute right-0 top-0 h-full items-end">
+            <div class="delete-loadout">
               <UiIconButton
                 name="material-symbols:delete-outline"
                 class="error-button"
@@ -176,9 +178,11 @@ const editLoadout = (loadout: LoadoutDto) => {
             </div>
           </li>
         </ul>
+
         <p v-if="!loadouts.length" class="py-3 text-center">
           You don't have any loadout yet
         </p>
+
         <UiButton
           class="primary-button mx-auto"
           left-icon="material-symbols:add"
@@ -233,7 +237,8 @@ const editLoadout = (loadout: LoadoutDto) => {
   place-content: center;
 }
 .card-list {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: grid;
   grid-auto-rows: calc(50% - 2 * var(--size-2));
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
@@ -336,5 +341,29 @@ form {
     }
   }
 }
+
+.delete-loadout {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: grid;
+  align-items: flex-end;
+
+  height: 100%;
+  padding: 2px;
+
+  > button {
+    border-top: var(--fancy-border);
+    border-left: var(--fancy-border);
+    border-top-left-radius: var(--radius-3);
+    box-shadow: inset 0 0 3px 4px rgba(0, 0, 0, 0.35);
+
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(2px);
+    }
+  }
+}
 </style>
-../../assets/units{m}

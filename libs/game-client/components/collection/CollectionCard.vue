@@ -50,9 +50,19 @@ const onMousemove = (e: MouseEvent) => {
 </template>
 
 <style scoped lang="postcss">
+@keyframes test {
+  from {
+    transform: translateX(var(--size-4));
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .perspective-wrapper {
   transform-style: preserve-3d;
   perspective: 40rem;
+  animation: test 0.3s;
   > * {
     height: 100%;
   }
