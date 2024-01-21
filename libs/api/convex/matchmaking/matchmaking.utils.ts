@@ -40,6 +40,7 @@ export const ensureIsInMatchmaking = async (
 
   return matchmakingUser;
 };
+
 export const ensureIsNotInMatchmaking = async (
   { db }: Pick<MutationCtx, 'db'>,
   userId: Id<'users'>

@@ -33,22 +33,6 @@ watch(
     <ActionBar />
   </div>
 
-  <div class="debug">
-    <pre>
-turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
-        hoveredCell?.position.y
-      }}, z: {{ hoveredCell?.position.z }}</pre
-    >
-    <button
-      @click="
-        () => {
-          console.log({ gameSession, state });
-        }
-      "
-    >
-      Debug
-    </button>
-  </div>
   <div class="menu">
     <GameMenu />
   </div>
@@ -110,24 +94,6 @@ turn: {{ state.turn }} x: {{ hoveredCell?.position.x }}, y: {{
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.debug {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  padding: 1em;
-
-  font-family: monospace;
-  font-size: var(--font-size-0);
-  color: white;
-
-  background-color: rgba(0, 0, 0, 0.5);
-
-  @screen lt-lg {
-    display: none;
-  }
 }
 
 .menu {

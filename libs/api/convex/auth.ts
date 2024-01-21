@@ -1,6 +1,10 @@
 import { v } from 'convex/values';
 import { Id } from './_generated/dataModel';
-import { internalMutationWithAuth, mutationWithAuth } from './auth/auth.utils';
+import {
+  ensureAuthenticated,
+  internalMutationWithAuth,
+  mutationWithAuth
+} from './auth/auth.utils';
 import { DEFAULT_MMR } from './users/user.utils';
 import { internalMutation } from './_generated/server';
 
@@ -30,7 +34,10 @@ export const signIn = mutationWithAuth({
         _creationTime: 0
       }
     });
-    return session.sessionId;
+    return {
+      sessionId: session.sessionId,
+      expiresAt: session.activePeriodExpiresAt.getTime()
+    };
   }
 });
 
@@ -68,7 +75,12 @@ export const signUp = mutationWithAuth({
 
 export const validateSession = mutationWithAuth({
   args: {},
-  handler(ctx) {
-    return { ok: !!ctx.session };
+  handler({ session }) {
+    if (!session) return null;
+
+    return {
+      sessionId: session.sessionId,
+      expiresAt: session.activePeriodExpiresAt.getTime()
+    };
   }
 });

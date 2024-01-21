@@ -44,6 +44,28 @@ export const leave = mutationWithAuth({
   }
 });
 
+export const matchPlayers = internalAction(async ctx => {
+  const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
+
+  const strategy = new MatchmakingTestStrategy();
+  const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
+
+  await Promise.allSettled(
+    pairs.map(pair =>
+      createGameFromMatchmadePair(
+        ctx,
+        pair.map(p => ({
+          userId: p.user._id,
+          matchmakingUserId: p.matchmakingUser._id,
+          loadoutId: p.matchmakingUser.loadoutId
+        }))
+      )
+    )
+  );
+
+  await scheduleNextMatchmakingInvocation(ctx, remaining.length);
+});
+
 export const handleMatchmadePair = internalMutation({
   args: {
     roomId: v.string(),
@@ -103,26 +125,4 @@ export const setupNextInvocation = internalMutation({
     const matchmaking = await getMatchmaking(ctx.db);
     await ctx.db.patch(matchmaking._id, { nextInvocationId: arg.schedulerId });
   }
-});
-
-export const matchPlayers = internalAction(async ctx => {
-  const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
-
-  const strategy = new MatchmakingTestStrategy();
-  const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
-
-  await Promise.allSettled(
-    pairs.map(pair =>
-      createGameFromMatchmadePair(
-        ctx,
-        pair.map(p => ({
-          userId: p.user._id,
-          matchmakingUserId: p.matchmakingUser._id,
-          loadoutId: p.matchmakingUser.loadoutId
-        }))
-      )
-    )
-  );
-
-  await scheduleNextMatchmakingInvocation(ctx, remaining.length);
 });

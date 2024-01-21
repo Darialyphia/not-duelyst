@@ -14,6 +14,7 @@ export default defineEventHandler(async event => {
 
     await convexClient.mutation(api.auth.signOff, { sessionId });
     deleteCookie(event, 'sessionId');
+    deleteCookie(event, 'sessionExpiresAt');
 
     return sendRedirect(event, '/login');
   } catch (e) {
