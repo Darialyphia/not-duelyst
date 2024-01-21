@@ -166,14 +166,15 @@ const onValidateTargets = () => {
       </div>
     </div>
 
-    <UiButton
+    <UiFancyButton
       v-if="!isReplay"
-      class="end-turn error-button"
+      class="end-turn"
       :disabled="!isActivePlayer"
+      style="--hue: 0deg"
       @click="sendInput('end-turn')"
     >
       End Turn
-    </UiButton>
+    </UiFancyButton>
   </div>
 </template>
 

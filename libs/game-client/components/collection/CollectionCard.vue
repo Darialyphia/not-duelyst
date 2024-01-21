@@ -52,7 +52,7 @@ const onMousemove = (e: MouseEvent) => {
 <style scoped lang="postcss">
 @keyframes test {
   from {
-    transform: translateX(var(--size-4));
+    transform: translateX(calc(-1 * var(--size-4)));
     opacity: 0.5;
   }
   to {

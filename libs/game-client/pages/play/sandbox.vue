@@ -134,12 +134,12 @@ const createGameState = (): Promise<SerializedGameState> => {
         </div>
 
         <Transition>
-          <UiButton
+          <UiFancyButton
             v-if="form.map && form.player1Loadout && form.player2Loadout"
             class="primary-button start-button"
           >
             Start
-          </UiButton>
+          </UiFancyButton>
         </Transition>
       </form>
     </section>
@@ -204,24 +204,28 @@ fieldset {
   }
 }
 
-form > button {
-  --ui-button-size: var(--font-size-4);
+form {
+  padding-block-end: var(--size-5);
 
-  width: var(--size-12);
-  margin-block-start: var(--size-4);
-  margin-inline: auto;
-}
+  & > button {
+    --ui-button-size: var(--font-size-4);
 
-form > fieldset > label {
-  display: block;
+    width: var(--size-12);
+    margin-block-start: var(--size-4);
+    margin-inline: auto;
+  }
 
-  width: var(--size-12);
-  height: var(--size-11);
-  padding: var(--size-1) var(--size-2);
+  & > fieldset > label {
+    display: block;
 
-  background: linear-gradient(black, transparent), url('/assets/maps/test-map.png');
-  background-size: cover;
-  border: var(--fancy-border);
+    width: var(--size-12);
+    height: var(--size-11);
+    padding: var(--size-1) var(--size-2);
+
+    background: linear-gradient(black, transparent), url('/assets/maps/test-map.png');
+    background-size: cover;
+    border: var(--fancy-border);
+  }
 }
 
 label {
@@ -250,7 +254,6 @@ label {
   &:is(.v-enter-from, .v-leave-to) {
     transform: translateY(var(--size-4));
     opacity: 0;
-    filter: grayscale(100%);
   }
 }
 </style>

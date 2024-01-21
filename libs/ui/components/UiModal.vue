@@ -55,25 +55,20 @@ const { title, description } = defineProps<{ title: string; description?: string
   display: grid;
   place-content: center;
 
-  &.v-enter-active {
-    transition:
-      transform 0.2s,
-      opacity 0.2s 0.1s;
-  }
-  &.v-leave-active {
+  &:is(.v-enter-active, .v-leave-active) {
     transition:
       transform 0.3s,
-      opacity 0.15s,
-      filter 0.3s;
+      opacity 0.2s 0.1s;
   }
 
-  &:is(.v-enter-from, .v-leave-to) {
+  &.v-enter-from {
     transform: scale(3);
     opacity: 0;
   }
 
   &.v-leave-to {
-    filter: blur(10px);
+    transform: translateY(-3rem);
+    opacity: 0;
   }
 }
 </style>

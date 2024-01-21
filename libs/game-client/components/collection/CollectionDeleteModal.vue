@@ -25,6 +25,7 @@ const { mutate } = useConvexAuthedMutation(api.loadout.remove, {
   <UiConfirmationModal
     v-model:is-opened="isOpened"
     title="Delete loadout"
+    is-destructive
     :description="`Are you sure you want to delete ${loadout?.name} ?`"
     @ok="
       mutate({

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const isOpened = defineModel<boolean>('isOpened', { required: true });
-const { description } = defineProps<{ description: string }>();
+const { description, isDestructive } = defineProps<{
+  description: string;
+  isDestructive?: boolean;
+}>();
 const emit = defineEmits<{ ok: [] }>();
 </script>
 
@@ -8,7 +11,15 @@ const emit = defineEmits<{ ok: [] }>();
   <UiModal v-model:is-opened="isOpened" title="Delete loadout" :description="description">
     <div class="flex gap-5 justify-around mt-6">
       <UiButton class="ghost-button" @click="isOpened = false">Cancel</UiButton>
-      <UiButton class="error-button" @click="emit('ok')">OK</UiButton>
+      <UiFancyButton
+        class="error-button"
+        :style="{
+          '--hue': isDestructive ? '0deg' : undefined
+        }"
+        @click="emit('ok')"
+      >
+        OK
+      </UiFancyButton>
     </div>
   </UiModal>
 </template>

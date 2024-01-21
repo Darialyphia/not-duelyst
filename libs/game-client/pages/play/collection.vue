@@ -150,7 +150,7 @@ const editLoadout = (loadout: LoadoutDto) => {
             >
               Back
             </UiButton>
-            <UiButton class="primary-button" :is-loading="isSaving">Save</UiButton>
+            <UiFancyButton :is-loading="isSaving">Save</UiFancyButton>
           </footer>
         </form>
       </template>
@@ -183,7 +183,7 @@ const editLoadout = (loadout: LoadoutDto) => {
           You don't have any loadout yet
         </p>
 
-        <UiButton
+        <UiFancyButton
           class="primary-button mx-auto"
           left-icon="material-symbols:add"
           @click="
@@ -194,7 +194,7 @@ const editLoadout = (loadout: LoadoutDto) => {
           "
         >
           Create new Loadout
-        </UiButton>
+        </UiFancyButton>
       </template>
     </section>
   </div>
