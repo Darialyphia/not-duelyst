@@ -30,5 +30,7 @@ footer {
   justify-content: center;
 
   padding: var(--size-2);
+
+  box-shadow: none;
 }
 </style>

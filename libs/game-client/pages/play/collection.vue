@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { UNITS, type UnitBlueprint } from '@hc/sdk';
-import bg from '../../assets/backgrounds/spire.jpg';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import type { Nullable } from '@hc/shared';
 
@@ -83,7 +82,7 @@ const editLoadout = (loadout: LoadoutDto) => {
     Loading collection page...
   </div>
 
-  <div v-else class="collection-page" :style="{ '--bg': `url(${bg})` }">
+  <div v-else class="collection-page">
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
     <CollectionHeader
       v-model:filter="factionFilter"
@@ -91,20 +90,16 @@ const editLoadout = (loadout: LoadoutDto) => {
       :selected-general="general"
     />
 
-    <section class="card-list">
-      <div
+    <section name="card-list" class="card-list">
+      <CollectionCard
         v-for="item in displayedUnits"
         :key="item._id"
-        :tabindex="sidebarView === 'form' && !canAddToLoadout(item.unitId) ? -1 : 0"
-        class="card"
-        :class="{
-          used: sidebarView === 'form' && isInLoadout(item.unitId)
-        }"
-        @click="toggleLoadoutCard(item.unit)"
-        @keyup.enter="toggleLoadoutCard(item.unit)"
-      >
-        <UnitBlueprintCard :unit="item.unit" />
-      </div>
+        :card="item"
+        :is-in-loadout="!!isInLoadout(item.unitId)"
+        :is-editing-loadout="sidebarView === 'form'"
+        :can-add-to-loadout="canAddToLoadout(item.unitId)"
+        @toggle="toggleLoadoutCard(item.unit)"
+      />
     </section>
 
     <CollectionFooter
@@ -210,21 +205,23 @@ const editLoadout = (loadout: LoadoutDto) => {
 .collection-leave-to {
   opacity: 0;
   filter: blur(5px);
+
+  .sidebar {
+    transform: translateX(100%);
+  }
 }
 </style>
 
 <style scoped lang="postcss">
 .collection-page {
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: 1fr var(--size-xs);
   grid-template-rows: auto 1fr auto;
 
   height: 100vh;
 
-  background: var(--bg);
-  background-color: var(--surface-3);
-  background-repeat: no-repeat;
-  background-size: cover;
+  backdrop-filter: blur(5px);
 
   > .loader {
     grid-column: 1 / -1;
@@ -247,31 +244,7 @@ const editLoadout = (loadout: LoadoutDto) => {
   padding-block-start: var(--size-2);
   padding-inline: var(--size-2);
 
-  background: var(--fancy-bg-transparency);
-  backdrop-filter: blur(5px);
   border-radius: var(--radius-2);
-  box-shadow: inset 0 0 5rem 1rem hsl(0 0% 100% / 0.2);
-}
-
-.card {
-  overflow-y: hidden;
-  transition: all 0.2s;
-  > * {
-    height: 100%;
-  }
-  &:focus-visible {
-    outline: solid var(--border-size-3) var(--primary);
-  }
-
-  &.used {
-    opacity: 0.8;
-    filter: contrast(120%);
-    outline: solid var(--border-size-2) var(--primary);
-  }
-
-  &:not(.disabled):hover {
-    box-shadow: 0 0 1rem 0.5rem hsl(var(--color-primary-hsl) / 0.3);
-  }
 }
 
 .loadout {
@@ -286,12 +259,18 @@ const editLoadout = (loadout: LoadoutDto) => {
 }
 
 .sidebar {
+  will-change: transform;
+
   grid-column: 2;
   grid-row: 1 / -1;
 
   background: var(--fancy-bg);
   background-blend-mode: overlay;
   border-left: var(--fancy-border);
+
+  transition: transform 0.7s;
+  transition-delay: 0.3s;
+  transition-timing-function: var(--ease-bounce-1);
 
   footer {
     display: flex;
