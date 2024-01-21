@@ -62,7 +62,7 @@ const { title, description } = defineProps<{ title: string; description?: string
   }
 
   &.v-enter-from {
-    transform: scale(3);
+    transform: scale(2);
     opacity: 0;
   }
 

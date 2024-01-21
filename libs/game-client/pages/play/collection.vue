@@ -129,14 +129,13 @@ const editLoadout = (loadout: LoadoutDto) => {
               <img :src="`/assets/units/${unit.spriteId}-icon.png`" />
               {{ unit.id }}
 
-              <UiButton
+              <UiIconButton
+                name="mdi:minus"
                 aria-label="remove from loadout"
                 class="error-button"
                 type="button"
                 @click="toggleLoadoutCard(unit)"
-              >
-                <Icon name="mdi:minus" />
-              </UiButton>
+              />
             </li>
           </ul>
 
@@ -336,8 +335,11 @@ form {
     > button {
       margin-left: auto;
       padding: var(--size-1);
+
       font-size: var(--font-size-0);
+
       border-radius: var(--radius-round);
+      box-shadow: inset 0 0 3px 4px rgba(0, 0, 0, 0.35);
     }
   }
 }

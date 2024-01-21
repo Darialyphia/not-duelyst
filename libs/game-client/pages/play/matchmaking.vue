@@ -62,7 +62,7 @@ const getGeneralImage = (generalId: string) => {
   <div class="page container">
     <header>
       <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
-      <h1 class="text-5">Select game mode</h1>
+      <h1 class="text-5">Ranked Game</h1>
     </header>
 
     <h2 class="text-3">Select your loadout</h2>

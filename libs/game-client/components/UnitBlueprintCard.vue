@@ -281,8 +281,10 @@ ul > li {
 .skills-list {
   display: flex;
   justify-content: space-evenly;
-  margin-inline: calc(-1 * var(--size-6));
-  padding-inline: var(--size-6);
+
+  &:not(:has(> *:nth-of-type(2))) {
+    justify-content: flex-start;
+  }
 }
 
 .selected-skill {

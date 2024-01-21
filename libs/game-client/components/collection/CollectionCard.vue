@@ -18,11 +18,12 @@ const angle = ref({
 });
 
 const { left, top, width, height } = useElementBounding(rootEl);
+const MAX_ANGLE = 15;
 const onMousemove = (e: MouseEvent) => {
   const { clientX, clientY } = e;
   angle.value = {
-    x: ((clientX - left.value) / width.value - 0.5) * 15,
-    y: ((clientY - top.value) / height.value - 0.5) * 15
+    x: ((clientX - left.value) / width.value - 0.5) * MAX_ANGLE,
+    y: ((clientY - top.value) / height.value - 0.5) * MAX_ANGLE
   };
 };
 </script>
@@ -45,6 +46,14 @@ const onMousemove = (e: MouseEvent) => {
       @keyup.enter="emit('toggle')"
     >
       <UnitBlueprintCard :unit="card.unit" />
+      <Transition>
+        <Icon
+          v-if="isInLoadout && isEditingLoadout"
+          name="material-symbols-light:arrow-drop-down-circle-rounded"
+          size="2rem"
+          class="used-indicator"
+        />
+      </Transition>
     </div>
   </div>
 </template>
@@ -68,23 +77,43 @@ const onMousemove = (e: MouseEvent) => {
   }
 }
 .card {
+  position: relative;
   overflow-y: hidden;
-  > * {
-    height: 100%;
-  }
+  display: grid;
+  transition: filter 0.3s;
+
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
   }
 
   &.used {
-    opacity: 0.8;
-    filter: contrast(120%);
     outline: solid var(--border-size-2) var(--primary);
   }
 
   &:not(.disabled):hover {
     /* transform: rotateY(calc(1deg * var(--rotate-y))); */
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
+  }
+}
+
+.used-indicator {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  margin: var(--size-2);
+
+  color: var(--green-5);
+
+  border: solid var(--border-size-2) var(--green-2);
+  border-radius: var(--radius-round);
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.3s;
+  }
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: scale(0);
+    opacity: 0;
   }
 }
 </style>
