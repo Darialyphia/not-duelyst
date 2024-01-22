@@ -136,7 +136,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.haven,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 9,
+    maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
@@ -160,7 +160,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       }),
       new Taunt({
         name: 'Taunt',
-        cooldown: 3,
+        cooldown: 2,
         cost: 2,
         duration: 1,
         radius: 1

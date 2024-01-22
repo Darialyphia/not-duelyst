@@ -1,5 +1,5 @@
-import { internal } from './_generated/api';
-import { query, internalMutation, action } from './_generated/server';
+import { api, internal } from './_generated/api';
+import { query, internalMutation, action, internalAction } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 import { getCurrentGame } from './game/utils';
 import { toUserDto } from './users/user.mapper';
@@ -25,7 +25,27 @@ export const start = mutationWithAuth({
       throw new Error('Game is already started');
     }
 
-    return ctx.db.patch(game._id, { status: 'ONGOING' });
+    await ctx.db.patch(game._id, { status: 'ONGOING' });
+
+    ctx.scheduler.runAfter(30_000, internal.games.timeout, { roomId: game.roomId });
+  }
+});
+
+export const timeout = internalMutation({
+  args: {
+    roomId: v.string()
+  },
+  async handler(ctx, { roomId }) {
+    const game = await ctx.db
+      .query('games')
+      .withIndex('by_roomId', q => q.eq('roomId', roomId))
+      .first();
+    if (!game) throw new Error('Game Not Found');
+    if (game.status === 'WAITING_FOR_PLAYERS') {
+      ctx.scheduler.runAfter(0, api.games.cancel, {
+        roomId
+      });
+    }
   }
 });
 

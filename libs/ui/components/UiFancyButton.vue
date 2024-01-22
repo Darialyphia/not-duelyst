@@ -85,11 +85,6 @@ const tag = computed(() => {
     background-size: 100% 200%;
     border: var(--fancy-border);
     border-radius: var(--radius-pill);
-    /* box-shadow:
-      0 -0.5em 0.5em transparent,
-      0 0.5em 0.5em transparent,
-      0 0.25em 0.3em -0.2em hsla(var(--_hue), var(--_sat), 50%, 0.46),
-      0 0.25em 0.75em hsla(var(--_hue), calc(var(--_sat) - 10%), 40%, 0.3); */
 
     transition: all 0.3s ease;
 

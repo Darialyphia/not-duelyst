@@ -12,6 +12,12 @@ export default defineNuxtRouteMiddleware(async () => {
   const convex = useConvexClient();
 
   try {
+    if (!sessionExpiresAt.value) {
+      await $fetch('/api/signoff');
+      sessionId.value = null;
+      return navigateTo({ name: 'Login' });
+    }
+
     const isExpired = Date.now() >= Number(sessionExpiresAt.value);
     if (!isExpired) return;
 

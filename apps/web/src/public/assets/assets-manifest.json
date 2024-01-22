@@ -301,6 +301,24 @@
       ]
     },
     {
+      "name": "maps",
+      "assets": [
+        {
+          "alias": [
+            "test-map.png"
+          ],
+          "src": [
+            "/assets/maps/test-map.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "sfx",
       "assets": [
         {

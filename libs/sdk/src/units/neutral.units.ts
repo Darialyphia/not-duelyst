@@ -63,7 +63,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.neutral,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 8,
+    maxHp: 7,
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
@@ -109,7 +109,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.neutral,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 6,
+    maxHp: 5,
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
@@ -145,17 +145,11 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxHp: 1,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 1,
+    attack: 2,
     defense: 0,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
-      {
-        description: `Rush`,
-        getEffect: (ctx, entity) => {
-          return new RushEffect(ctx, entity, {});
-        }
-      },
       {
         description: `When this unit dies, deal 2 damage to nearby enemies.`,
         getEffect: (ctx, entity) => {
