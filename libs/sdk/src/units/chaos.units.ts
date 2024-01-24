@@ -27,11 +27,10 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.chaos,
     summonCost: 0,
     summonCooldown: 0,
-    maxHp: 20,
+    maxHp: 25,
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 1,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -69,7 +68,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 0,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -104,8 +102,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
               sourceId: caster.id,
               targets: targets
                 .map(point => ctx.entityManager.getEntityAt(point)?.id)
-                .filter(isDefined),
-              isTrueDamage: true
+                .filter(isDefined)
             },
             ctx
           )
@@ -124,7 +121,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({
@@ -141,7 +137,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         damage: 1,
         distance: 2,
         attackRatio: 0,
-        isTrueDamage: true,
         minRange: 0,
         maxRange: 3
       })
@@ -158,14 +153,12 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 1,
     speed: 2,
     effects: [
       {
         getEffect: (ctx, entity) =>
           new ImmolateEffect(ctx, entity, {
             duration: Infinity,
-            isTrueDamage: true,
             power: 1
           }),
         description: 'Deals 1 damage to nearby enemies at the beginning of your turn.'
@@ -181,7 +174,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         range: 0,
         targetType: 'self',
         power: 1,
-        isTrueDamage: true,
         attackRatio: 0,
         shouldExhaustCaster: false
       })
@@ -198,7 +190,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 1,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({
@@ -241,7 +232,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 0,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
@@ -249,7 +239,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         getEffect(ctx, entity) {
           return new ExecuteEffect(ctx, entity, { duration: Infinity });
         },
-        description: 'Whenever a unit drops below 25% HP nearby this unit, kill it.'
+        description: 'Whenever a unit drops below 25% HP nearby this unit, destroy it.'
       }
     ]
   }

@@ -84,8 +84,7 @@ export class MeleeAttack extends Attack {
         {
           amount: this.getDamageAmount(caster.attack),
           sourceId: caster.id,
-          targets: targetEntities.map(target => target.id),
-          isTrueDamage: this.isTrueDamage
+          targets: targetEntities.map(target => target.id)
         },
         ctx
       )
@@ -100,8 +99,7 @@ export class MeleeAttack extends Attack {
         {
           amount: this.getSplashAmount(caster.attack),
           sourceId: caster.id,
-          targets: enemies.map(enemy => enemy.id),
-          isTrueDamage: this.isTrueDamage
+          targets: enemies.map(enemy => enemy.id)
         },
         ctx
       )

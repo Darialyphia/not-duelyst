@@ -1,5 +1,4 @@
-import { Entity, EntityId, isEntityId } from '../entity/entity';
-import { calculateDamage } from '../entity/entity-utils';
+import { EntityId, isEntityId } from '../entity/entity';
 import { InteractableId } from '../interactable/interactable';
 import { GameAction } from './action';
 import { DieAction } from './die.action';
@@ -8,7 +7,6 @@ export class DealDamageAction extends GameAction<{
   amount: number;
   sourceId: EntityId | InteractableId;
   targets: EntityId[];
-  isTrueDamage?: boolean;
 }> {
   readonly name = 'DEAL_DAMAGE';
 
@@ -30,18 +28,8 @@ export class DealDamageAction extends GameAction<{
 
   get logMessage() {
     return `${this.attacker?.unitId ?? this.payload.sourceId} deals ${this.targets
-      .map(t => `${this.getDamage(t)} damage to ${t.unitId}`)
+      .map(t => `${this.payload.amount} damage to ${t.unitId}`)
       .join(', ')}.`;
-  }
-
-  getDamage(target: Entity) {
-    if (!this.attacker) return this.payload.amount;
-
-    return calculateDamage(
-      this.payload.amount,
-      target.defense,
-      this.payload.isTrueDamage
-    );
   }
 
   protected async fxImpl() {
@@ -52,18 +40,22 @@ export class DealDamageAction extends GameAction<{
 
     await Promise.all(
       this.payload.targets.map(targetId => {
-        const target = this.ctx.entityManager.getEntityById(targetId)!;
-        const amount = this.getDamage(target);
+        const target = this.ctx.entityManager.getEntityById(targetId);
+        const amount = this.payload.amount;
 
-        this.ctx.fxContext?.displayText(String(amount), targetId, {
-          color: 0xff0000,
-          duration: 1,
-          path: [
-            { x: 0, y: 25, alpha: 0, scale: 0 },
-            { x: 0, y: 0, alpha: 0, scale: 1 },
-            { x: 0, y: 0, alpha: 1, scale: 1 }
-          ]
-        });
+        this.ctx.fxContext?.displayText(
+          String(target?.getTakenDamage(amount)),
+          targetId,
+          {
+            color: 0xff0000,
+            duration: 1,
+            path: [
+              { x: 0, y: 25, alpha: 0, scale: 0 },
+              { x: 0, y: 0, alpha: 0, scale: 1 },
+              { x: 0, y: 0, alpha: 1, scale: 1 }
+            ]
+          }
+        );
         this.ctx.fxContext?.addChildSprite('blood_01', targetId, {
           waitUntilAnimationDone: false,
           offset: { x: 0, y: 32 },
@@ -84,9 +76,9 @@ export class DealDamageAction extends GameAction<{
       const target = this.ctx.entityManager.getEntityById(targetId)!;
 
       if (this.attacker) {
-        this.attacker.dealDamage(this.payload.amount, target, this.payload.isTrueDamage);
+        this.attacker.dealDamage(this.payload.amount, target);
       } else {
-        target.takeDamage(this.payload.amount, null, this.payload.isTrueDamage);
+        target.takeDamage(this.payload.amount, null);
       }
 
       if (target.hp <= 0) {

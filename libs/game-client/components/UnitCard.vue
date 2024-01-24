@@ -43,18 +43,6 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
       </div>
 
       <div>
-        <div class="i-game-icons-rosa-shield" style="--color: var(--defense)" />
-        <span
-          :class="{
-            'is-buffed': entity.defense > entity.unit.defense,
-            'is-debuffed': entity.defense < entity.unit.defense
-          }"
-        >
-          {{ entity.defense }}
-        </span>
-      </div>
-
-      <div>
         <div class="i-mdi:run-fast" style="--color: var(--speed)" />
         <span
           :class="{
@@ -126,7 +114,6 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
   --hp: var(--green-5);
   --ap: var(--cyan-5);
   --attack: var(--red-7);
-  --defense: var(--yellow-3);
   --speed: var(--blue-6);
 
   width: 18rem;

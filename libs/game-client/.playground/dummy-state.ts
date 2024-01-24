@@ -10,6 +10,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
   return until(map)
     .not.toBe(undefined)
     .then(() => {
+      console.log('hello');
       return {
         turn: 0,
         entities: [],
@@ -23,22 +24,16 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
           {
             id: 'Player1',
             name: 'Player 1',
-            //{
-            loadout:
-              // units: {
-              //   'chaos-melee': { cooldown: 0 },
-              //   'chaos-archer': { cooldown: 0 },
-              //   'chaos-tank': { cooldown: 0 },
-              //   'neutral-midas': { cooldown: 0 },
-              //   'chaos-executioner': { cooldown: 0 },
-              //   'neutral-willowisp': { cooldown: 0 }
-              // }
-              //},
-              {
-                units: Object.fromEntries(
-                  Object.values(UNITS).map(u => [u.id, { cooldown: 0 }])
-                )
-              },
+            loadout: {
+              units: {
+                'chaos-melee': { cooldown: 0 },
+                'chaos-archer': { cooldown: 0 },
+                'chaos-tank': { cooldown: 0 },
+                'neutral-midas': { cooldown: 0 },
+                'chaos-executioner': { cooldown: 0 },
+                'neutral-willowisp': { cooldown: 0 }
+              }
+            },
             generalId: 'chaos-hero',
             gold: 2
           },

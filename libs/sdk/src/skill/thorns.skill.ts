@@ -31,7 +31,6 @@ export class Thorns extends Skill {
     this.meta = {
       power: options.power,
       duration: options.duration,
-      isTrueDamage: options.isTrueDamage,
       attackRatio: options.attackRatio
     };
   }

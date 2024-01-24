@@ -11,7 +11,7 @@ export class ImmolateEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { duration: number; power: number; isTrueDamage: boolean }
+    readonly meta: { duration: number; power: number }
   ) {
     super(ctx, source, meta);
     this.duration = meta.duration;
@@ -37,8 +37,7 @@ export class ImmolateEffect extends Effect {
         {
           amount: this.meta.power,
           targets: enemies.map(e => e.id),
-          sourceId: this.attachedTo.id,
-          isTrueDamage: this.meta.isTrueDamage
+          sourceId: this.attachedTo.id
         },
         this.ctx
       )

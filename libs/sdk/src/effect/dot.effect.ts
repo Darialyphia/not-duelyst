@@ -15,7 +15,6 @@ export class DotEffect extends Effect {
       duration: number;
       power: number;
       attackRatio?: number;
-      isTrueDamage?: boolean;
     }
   ) {
     super(ctx, source, meta);
@@ -40,8 +39,7 @@ export class DotEffect extends Effect {
           {
             amount: this.meta.power,
             sourceId: this.source.id,
-            targets: [this.attachedTo.id],
-            isTrueDamage: true
+            targets: [this.attachedTo.id]
           },
           this.ctx
         )

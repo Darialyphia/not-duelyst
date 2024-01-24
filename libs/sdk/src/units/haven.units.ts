@@ -7,7 +7,6 @@ import { Heal } from '../skill/heal.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
 import { isSelf, isWithinCells } from '../skill/skill-utils';
-import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
 import { Knockback } from '../skill/knockback.skill';
@@ -20,6 +19,7 @@ import { GameSession } from '../game-session';
 import { Cell } from '../map/cell';
 import { Point3D } from '../types';
 import { HealAction } from '../action/heal.action';
+import { ToughEffect } from '../effect/tough.effect';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
@@ -29,11 +29,10 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.haven,
     summonCost: 0,
     summonCooldown: 0,
-    maxHp: 20,
+    maxHp: 25,
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 1,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -51,7 +50,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 0,
     speed: 3,
     onSummoned: {
       getDescription() {
@@ -77,8 +75,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
               sourceId: caster.id,
               targets: targets
                 .map(point => ctx.entityManager.getEntityAt(point)?.id)
-                .filter(isDefined),
-              isTrueDamage: true
+                .filter(isDefined)
             },
             ctx
           )
@@ -106,7 +103,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({
@@ -122,7 +118,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         cost: 2,
         damage: 1,
         distance: 2,
-        isTrueDamage: true,
         attackRatio: 0,
         minRange: 0,
         maxRange: 3
@@ -140,31 +135,25 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 3,
-    defense: 1,
     speed: 2,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
-      new StatModifier({
-        name: 'Bulwark',
-        spriteId: 'bulwark',
-        animationFX: 'cast',
-        soundFX: 'cast-placeholder',
-        cost: 1,
-        cooldown: 5,
-        duration: 3,
-        statKey: 'defense',
-        range: 0,
-        targetType: 'self',
-        value: 1,
-        shouldExhaustCaster: false
-      }),
       new Taunt({
         name: 'Taunt',
         cooldown: 2,
         cost: 2,
-        duration: 1,
+        duration: 2,
         radius: 1
       })
+    ],
+    effects: [
+      {
+        description: 'Tough',
+        getEffect: (ctx, entity) =>
+          new ToughEffect(ctx, entity, {
+            duration: Infinity
+          })
+      }
     ]
   },
   {
@@ -178,7 +167,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 1,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({
@@ -221,7 +209,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -261,7 +248,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
             new DealDamageAction(
               {
                 amount: 3,
-                isTrueDamage: true,
                 sourceId: caster.id,
                 targets: entities
                   .filter(e => isEnemy(ctx, e.id, caster.playerId))

@@ -9,7 +9,6 @@ import { Serializable } from '../utils/interfaces';
 import { GameSession } from '../game-session';
 import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
-import { calculateDamage } from './entity-utils';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
 
 export type EntityId = number;
@@ -40,7 +39,6 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.DIE]: { entity: Entity; source: Nullable<Entity> };
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
-    baseAmount: number;
     amount: number;
     target: Entity;
   };
@@ -68,7 +66,6 @@ export class Entity implements Serializable {
 
   private interceptors = {
     attack: makeInterceptor<number, Entity>(),
-    defense: makeInterceptor<number, Entity>(),
     speed: makeInterceptor<number, Entity>(),
     maxHp: makeInterceptor<number, Entity>(),
     maxAp: makeInterceptor<number, Entity>(),
@@ -79,7 +76,8 @@ export class Entity implements Serializable {
       boolean,
       { entity: Entity; skill: Skill; targets: Point3D[] }
     >(),
-    canMove: makeInterceptor<boolean, Entity>()
+    canMove: makeInterceptor<boolean, Entity>(),
+    takeDamage: makeInterceptor<number, { entity: Entity; amount: number }>()
   };
 
   playerId: PlayerId;
@@ -174,10 +172,6 @@ export class Entity implements Serializable {
     return this.interceptors.attack.getValue(this.unit.attack, this);
   }
 
-  get defense(): number {
-    return this.interceptors.defense.getValue(this.unit.defense, this);
-  }
-
   get skills() {
     return this.unit.skills;
   }
@@ -253,24 +247,28 @@ export class Entity implements Serializable {
     this.emitter.emit(ENTITY_EVENTS.USE_SKILL, this);
   }
 
-  dealDamage(power: number, target: Entity, isTrueDamage?: boolean) {
-    target.takeDamage(power, this, isTrueDamage);
+  dealDamage(power: number, target: Entity) {
+    target.takeDamage(power, this);
 
     this.emitter.emit(ENTITY_EVENTS.DEAL_DAMAGE, {
       entity: this,
-      amount: calculateDamage(power, target.defense, isTrueDamage),
-      baseAmount: power,
+      amount: power,
       target
     });
   }
 
-  takeDamage(power: number, source: Nullable<Entity>, isTrueDamage?: boolean) {
-    const amount = calculateDamage(power, this.defense, isTrueDamage);
+  getTakenDamage(amount: number) {
+    return this.interceptors.takeDamage.getValue(amount, {
+      entity: this,
+      amount
+    });
+  }
 
-    this.hp = Math.max(0, this.hp - amount);
+  takeDamage(power: number, source: Nullable<Entity>) {
+    this.hp = Math.max(0, this.hp - power);
     this.emitter.emit(ENTITY_EVENTS.RECEIVE_DAMAGE, {
       entity: this,
-      amount,
+      amount: this.getTakenDamage(power),
       baseAmount: power,
       source
     });

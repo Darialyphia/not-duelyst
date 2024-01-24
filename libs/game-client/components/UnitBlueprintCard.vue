@@ -56,15 +56,6 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
           </div>
         </UiSimpleTooltip>
 
-        <UiSimpleTooltip text="defense" side="right">
-          <div>
-            <div class="i-game-icons-rosa-shield" style="--color: var(--defense)" />
-            <span>
-              {{ unit.defense }}
-            </span>
-          </div>
-        </UiSimpleTooltip>
-
         <UiSimpleTooltip text="speed" side="left">
           <div>
             <div class="i-mdi:run-fast" style="--color: var(--speed)" />
@@ -125,7 +116,6 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
   --hp: var(--green-5);
   --ap: var(--cyan-5);
   --attack: var(--red-7);
-  --defense: var(--yellow-3);
   --speed: var(--blue-6);
 
   user-select: none;

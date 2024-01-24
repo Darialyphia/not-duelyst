@@ -15,7 +15,6 @@ export class ThornsEffect extends Effect {
       duration: number;
       power: number;
       attackRatio?: number;
-      isTrueDamage?: boolean;
     }
   ) {
     super(ctx, source, meta);
@@ -43,8 +42,7 @@ export class ThornsEffect extends Effect {
         {
           amount: this.damage,
           sourceId: this.attachedTo!.id,
-          targets: [source.id],
-          isTrueDamage: this.meta.isTrueDamage
+          targets: [source.id]
         },
         this.ctx
       )

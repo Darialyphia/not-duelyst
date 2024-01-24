@@ -12,13 +12,11 @@ export type AttackOptions = PartialBy<
 > & {
   power: number;
   attackRatio?: number;
-  isTrueDamage?: boolean;
 };
 
 export abstract class Attack extends Skill {
   public readonly power: number;
   public readonly attackRatio: number;
-  public readonly isTrueDamage: boolean;
 
   constructor(options: AttackOptions) {
     super({
@@ -31,7 +29,6 @@ export abstract class Attack extends Skill {
     });
     this.power = options.power;
     this.attackRatio = options.attackRatio ?? 1;
-    this.isTrueDamage = options.isTrueDamage ?? false;
   }
 
   getDamageAmount(attack: number) {
@@ -48,8 +45,7 @@ export abstract class Attack extends Skill {
         {
           amount: this.getDamageAmount(caster.attack),
           sourceId: caster.id,
-          targets: affectedCells.map(target => ctx.entityManager.getEntityAt(target)!.id),
-          isTrueDamage: this.isTrueDamage
+          targets: affectedCells.map(target => ctx.entityManager.getEntityAt(target)!.id)
         },
         ctx
       )

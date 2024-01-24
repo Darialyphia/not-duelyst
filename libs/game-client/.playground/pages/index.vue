@@ -5,7 +5,7 @@ import { makeDummyState } from '~/dummy-state';
 
 <template>
   <ClientOnly>
-    <SandboxGame :initial-state-factory="() => makeDummyState('flat map')" />
+    <SandboxGame :initial-state-factory="() => makeDummyState('flat')" />
 
     <template #fallback>
       <div />

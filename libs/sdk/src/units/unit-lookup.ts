@@ -7,7 +7,6 @@ import { CHAOS_UNITS } from './chaos.units';
 import { Point3D } from '../types';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
-import { Player } from '../player/player';
 import { NEUTRAL_UNITS } from './neutral.units';
 import { Effect } from '../effect/effect';
 
@@ -30,7 +29,6 @@ export type UnitBlueprint = {
   apRegenRate: number;
 
   attack: number;
-  defense: number;
   speed: number;
 
   skills: Array<Skill>;

@@ -14,7 +14,6 @@ export type KnockbackOptions = PartialBy<
 > & {
   damage: number;
   attackRatio?: number;
-  isTrueDamage: boolean;
   collisionDamage: number;
   distance: number;
   minRange: number;
@@ -25,7 +24,6 @@ export class Knockback extends Skill {
 
   readonly power: number;
   readonly attackRatio: number;
-  readonly isTrueDamage: boolean;
   readonly collisionDamage: number;
   readonly distance: number;
   readonly minRange: number | Point3D;
@@ -40,7 +38,6 @@ export class Knockback extends Skill {
     });
     this.power = options.damage;
     this.attackRatio = options.attackRatio ?? 1;
-    this.isTrueDamage = options.isTrueDamage;
     this.collisionDamage = options.collisionDamage;
     this.distance = options.distance;
     this.minRange = options.minRange;
@@ -110,8 +107,7 @@ export class Knockback extends Skill {
         {
           amount: this.getDamageAmount(caster.attack),
           sourceId: caster.id,
-          targets: entities.map(e => e.id),
-          isTrueDamage: this.isTrueDamage
+          targets: entities.map(e => e.id)
         },
         ctx
       )
@@ -143,8 +139,7 @@ export class Knockback extends Skill {
             {
               amount: this.collisionDamage,
               sourceId: caster.id,
-              targets: [entity.id, obstacle.id],
-              isTrueDamage: true
+              targets: [entity.id, obstacle.id]
             },
             ctx
           )

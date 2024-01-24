@@ -11,7 +11,7 @@ import { AoeOnDeathEffect } from '../effect/aoe-on-death.effect';
 import { RangedAttack } from '../skill/ranged-attack';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { Vec3 } from '../utils/vector';
-import { isGeneral, isSoldier } from '../entity/entity-utils';
+import { isSoldier } from '../entity/entity-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
@@ -26,7 +26,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 1,
-    defense: 0,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
@@ -69,12 +68,11 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 1,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     onSummoned: {
       getDescription() {
-        return 'Taunt nearby enemies for 2 turns';
+        return 'Taunt nearby enemies for 1 turn';
       },
       minTargetCount: 0,
       maxTargetCount: 0,
@@ -93,7 +91,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
               {
                 attachedTo: entity.id,
                 effectId: 'taunted',
-                effectArg: { duration: 2, radius: 1 },
+                effectArg: { duration: 1, radius: 1 },
                 sourceId: summonedEntity.id
               },
               ctx
@@ -115,7 +113,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
@@ -148,7 +145,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 4,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
@@ -157,8 +153,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         getEffect: (ctx, entity) => {
           return new AoeOnDeathEffect(ctx, entity, {
             power: 2,
-            attackRatio: 0,
-            isTrueDamage: false
+            attackRatio: 0
           });
         }
       }
@@ -176,7 +171,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 5,
-    defense: 0,
     speed: 2,
     skills: [
       new MeleeAttack({
@@ -200,7 +194,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 4,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 4 })
@@ -249,7 +242,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
-    defense: 0,
     speed: 3,
     skills: [
       new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 3 })
@@ -272,8 +264,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
             {
               amount: 2,
               sourceId: caster.id,
-              targets: enemies.map(e => e.id),
-              isTrueDamage: true
+              targets: enemies.map(e => e.id)
             },
             ctx
           )

@@ -10,7 +10,7 @@ export class AoeOnDeathEffect extends Effect {
   constructor(
     protected ctx: GameSession,
     public source: Entity,
-    readonly meta: { power: number; attackRatio?: number; isTrueDamage?: boolean }
+    readonly meta: { power: number; attackRatio?: number }
   ) {
     super(ctx, source, meta);
 
@@ -40,8 +40,7 @@ export class AoeOnDeathEffect extends Effect {
         {
           amount: this.damage,
           sourceId: this.attachedTo!.id,
-          targets: enemies.map(e => e.id),
-          isTrueDamage: this.meta.isTrueDamage
+          targets: enemies.map(e => e.id)
         },
         this.ctx
       )

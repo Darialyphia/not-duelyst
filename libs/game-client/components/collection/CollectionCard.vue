@@ -82,6 +82,10 @@ const onMousemove = (e: MouseEvent) => {
   display: grid;
   transition: filter 0.3s;
 
+  > * {
+    overflow-y: hidden;
+  }
+
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
   }

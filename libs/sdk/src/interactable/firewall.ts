@@ -27,8 +27,7 @@ export class Firewall extends Interactable {
           {
             amount: 2,
             sourceId: this.id,
-            targets: [entity.id],
-            isTrueDamage: false
+            targets: [entity.id]
           },
           this.ctx
         )
@@ -44,8 +43,7 @@ export class Firewall extends Interactable {
           {
             amount: 2,
             sourceId: this.id,
-            targets: [entity.id],
-            isTrueDamage: false
+            targets: [entity.id]
           },
           this.ctx
         )

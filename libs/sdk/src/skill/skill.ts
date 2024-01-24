@@ -20,7 +20,6 @@ export type SkillOptions = {
 
 export type SkillDescriptionContext = {
   attack: number;
-  defense: number;
   speed: number;
 };
 
