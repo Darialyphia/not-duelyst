@@ -44,6 +44,7 @@ export const isEnemy = (
 export const isKind = (kind: UnitKind) => (entity: Nullable<Entity>) =>
   entity?.kind === kind;
 export const isGeneral = isKind(UNIT_KIND.GENERAL);
+export const isSoldier = isKind(UNIT_KIND.SOLDIER);
 
 export const isEmpty = (ctx: GameSession, point: Point3D) => {
   return !ctx.entityManager.getEntityAt(point);

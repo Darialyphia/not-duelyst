@@ -9,6 +9,7 @@ import { RushEffect } from './rush.effect';
 import { RootedEffect } from './rooted.effect';
 import { ImmolateEffect } from './immolate.effect';
 import { ExecuteEffect } from './execute.effect';
+import { FrozenEffect } from './frozen.effect';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
 
@@ -32,5 +33,6 @@ export const EFFECTS = validateEffectMap({
   rush: RushEffect,
   rooted: RootedEffect,
   immolate: ImmolateEffect,
-  execute: ExecuteEffect
+  execute: ExecuteEffect,
+  frozen: FrozenEffect
 });

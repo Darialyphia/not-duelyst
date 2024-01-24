@@ -11,6 +11,8 @@ import { AoeOnDeathEffect } from '../effect/aoe-on-death.effect';
 import { RangedAttack } from '../skill/ranged-attack';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { Vec3 } from '../utils/vector';
+import { isGeneral, isSoldier } from '../entity/entity-utils';
+import { DealDamageAction } from '../action/deal-damage.action';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -219,6 +221,65 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
               {
                 id: 'GOLD_COIN',
                 position: cell.position
+              },
+              ctx
+            )
+          );
+        });
+      }
+    }
+  },
+
+  {
+    id: 'neutral-ice-queen',
+    spriteId: 'neutral-ice-queen',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 4,
+    summonCooldown: 5,
+    maxHp: 6,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 2,
+    defense: 0,
+    speed: 3,
+    skills: [
+      new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 3 })
+    ],
+    onSummoned: {
+      getDescription() {
+        return 'Freezes all nearby enemy soldiers for 2 turns ans deal 2 true damage to them.';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 0,
+      isTargetable() {
+        return false;
+      },
+      execute(ctx, targets, caster) {
+        const enemies = ctx.entityManager
+          .getNearbyEnemies(caster.position, caster.playerId)
+          .filter(isSoldier);
+        ctx.actionQueue.push(
+          new DealDamageAction(
+            {
+              amount: 2,
+              sourceId: caster.id,
+              targets: enemies.map(e => e.id),
+              isTrueDamage: true
+            },
+            ctx
+          )
+        );
+        enemies.forEach(enemy => {
+          ctx.actionQueue.push(
+            new AddEffectAction(
+              {
+                effectId: 'frozen',
+                attachedTo: enemy.id,
+                sourceId: caster.id,
+                effectArg: {
+                  duration: 2
+                }
               },
               ctx
             )

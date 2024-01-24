@@ -220,7 +220,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 3,
+    attack: 2,
     defense: 0,
     speed: 3,
     skills: [
@@ -244,7 +244,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         }
 
         getDescription() {
-          return 'Deals 2 true damage to nearby enemies and heal 2hp to nearby allies';
+          return 'Deals 3 true damage to nearby enemies and heal 3hp to nearby allies';
         }
 
         execute(
@@ -260,7 +260,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
           ctx.actionQueue.push(
             new DealDamageAction(
               {
-                amount: 2,
+                amount: 3,
                 isTrueDamage: true,
                 sourceId: caster.id,
                 targets: entities
@@ -273,7 +273,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
           ctx.actionQueue.push(
             new HealAction(
               {
-                amount: 2,
+                amount: 3,
                 sourceId: caster.id,
                 targets: entities
                   .filter(e => isAlly(ctx, e.id, caster.playerId))

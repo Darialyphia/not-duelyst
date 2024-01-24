@@ -2459,6 +2459,46 @@
         },
         {
           "alias": [
+            "neutral-ice-queen-icon.png"
+          ],
+          "src": [
+            "/assets/units/neutral-ice-queen-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "neutral-ice-queen"
+          ],
+          "src": [
+            "/assets/units/neutral-ice-queen.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "neutral-ice-queen.png"
+          ],
+          "src": [
+            "/assets/units/neutral-ice-queen.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "neutral-midas-icon.png"
           ],
           "src": [
