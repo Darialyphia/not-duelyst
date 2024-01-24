@@ -19,7 +19,7 @@ export class FrozenEffect extends Effect {
   }
 
   getDescription(): string {
-    return `This units cannot move, cannot cast abilities, and had +2 defense.`;
+    return `This units cannot move, cannot cast abilities, and has +1 defense.`;
   }
 
   applyRoot() {
@@ -27,7 +27,7 @@ export class FrozenEffect extends Effect {
   }
 
   applyDefenseModifier(value: number) {
-    return value + 2;
+    return value + 1;
   }
 
   onApplied() {
