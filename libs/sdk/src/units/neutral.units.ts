@@ -64,7 +64,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     faction: FACTIONS.neutral,
     summonCost: 3,
     summonCooldown: 4,
-    maxHp: 7,
+    maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
