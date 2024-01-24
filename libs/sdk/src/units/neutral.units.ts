@@ -149,7 +149,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 2,
     defense: 0,
-    speed: 3,
+    speed: 4,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [
       {
@@ -178,7 +178,15 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     attack: 5,
     defense: 0,
     speed: 2,
-    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0, splash: true })]
+    skills: [
+      new MeleeAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        splash: true,
+        splashAttackRatio: 0.5
+      })
+    ]
   },
 
   {

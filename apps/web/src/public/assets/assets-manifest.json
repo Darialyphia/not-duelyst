@@ -305,10 +305,23 @@
       "assets": [
         {
           "alias": [
-            "test-map.png"
+            "flat.png"
           ],
           "src": [
-            "/assets/maps/test-map.png"
+            "/assets/maps/flat.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "Test.png"
+          ],
+          "src": [
+            "/assets/maps/Test.png"
           ],
           "data": {
             "tags": {

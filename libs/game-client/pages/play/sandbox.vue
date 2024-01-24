@@ -85,7 +85,12 @@ const createGameState = (): Promise<SerializedGameState> => {
         <fieldset class="fancy-surface">
           <legend>Map</legend>
 
-          <label v-for="map in maps" :key="map.id" class="cursor-pointer">
+          <label
+            v-for="map in maps"
+            :key="map.id"
+            class="cursor-pointer"
+            :style="{ '--bg': `url('/assets/maps/${map.name}.png')` }"
+          >
             <input
               v-model="form.map"
               type="radio"
@@ -207,6 +212,12 @@ fieldset {
 form {
   padding-block-end: var(--size-5);
 
+  & > fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-3);
+  }
+
   & > button {
     --ui-button-size: var(--font-size-4);
 
@@ -222,7 +233,7 @@ form {
     height: var(--size-11);
     padding: var(--size-1) var(--size-2);
 
-    background: linear-gradient(black, transparent), url('/assets/maps/test-map.png');
+    background: linear-gradient(black, transparent), var(--bg);
     background-size: cover;
     border: var(--fancy-border);
   }

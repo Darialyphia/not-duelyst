@@ -6,6 +6,8 @@ import { Point3D } from '../types';
 import { SkillDescriptionContext } from './skill';
 import { isWithinCells, isSelf } from './skill-utils';
 import { Attack, AttackOptions } from './attack.skill';
+import { Cell } from '../map/cell';
+import { DealDamageAction } from '../action/deal-damage.action';
 
 export type MeleeAttackOptions = PartialBy<
   AttackOptions,
@@ -13,12 +15,14 @@ export type MeleeAttackOptions = PartialBy<
 > & {
   power: number;
   splash?: boolean;
+  splashAttackRatio?: number;
 };
 
 export class MeleeAttack extends Attack {
   readonly id = 'melee_attack';
 
   public readonly splash: boolean;
+  public readonly splashAttackRatio: number;
 
   constructor(options: MeleeAttackOptions) {
     super({
@@ -30,11 +34,20 @@ export class MeleeAttack extends Attack {
       ...options
     });
     this.splash = options.splash ?? false;
+    this.splashAttackRatio = options.splashAttackRatio ?? 1;
   }
 
   getDescription(caster: SkillDescriptionContext) {
-    const splash = this.splash ? ' and all enemies around it.' : '';
-    return `Deals ${caster.attack + this.power} damage to a nearby enemy${splash}.`;
+    const splash = this.splash
+      ? ` and ${this.getSplashAmount(caster.attack)} all enemies around it.`
+      : '';
+    return `Deals ${this.getDamageAmount(
+      caster.attack
+    )} damage to a nearby enemy${splash}.`;
+  }
+
+  getSplashAmount(attack: number) {
+    return this.power + Math.ceil(attack * this.splashAttackRatio);
   }
 
   isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
@@ -59,6 +72,39 @@ export class MeleeAttack extends Attack {
         ctx.entityManager.getEntityAt(targets[0])!,
         ctx.entityManager.getEntityAt(point)
       ) || splashCondition
+    );
+  }
+
+  execute(ctx: GameSession, caster: Entity, targets: Point3D[], affectedCells: Cell[]) {
+    if (!this.splash) return super.execute(ctx, caster, targets, affectedCells);
+
+    const targetEntities = targets.map(target => ctx.entityManager.getEntityAt(target)!);
+    ctx.actionQueue.push(
+      new DealDamageAction(
+        {
+          amount: this.getDamageAmount(caster.attack),
+          sourceId: caster.id,
+          targets: targetEntities.map(target => target.id),
+          isTrueDamage: this.isTrueDamage
+        },
+        ctx
+      )
+    );
+
+    const enemies = targetEntities
+      .map(target => ctx.entityManager.getNearbyAllies(target.position, target.playerId))
+      .flat();
+
+    ctx.actionQueue.push(
+      new DealDamageAction(
+        {
+          amount: this.getSplashAmount(caster.attack),
+          sourceId: caster.id,
+          targets: enemies.map(enemy => enemy.id),
+          isTrueDamage: this.isTrueDamage
+        },
+        ctx
+      )
     );
   }
 }
