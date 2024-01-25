@@ -49,39 +49,39 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxHp: 7,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 3,
+    attack: 2,
     speed: 3,
-    onSummoned: {
-      getDescription() {
-        return 'Deal 1 damage to a nearby unit.';
-      },
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      isTargetable(ctx, point, summonedPoint) {
-        return (
-          isWithinCells(ctx, summonedPoint, point, 1) &&
-          isEnemy(
-            ctx,
-            ctx.entityManager.getEntityAt(point)?.id,
-            ctx.playerManager.getActivePlayer().id
-          )
-        );
-      },
-      execute(ctx, targets, caster) {
-        ctx.actionQueue.push(
-          new DealDamageAction(
-            {
-              amount: 1,
-              sourceId: caster.id,
-              targets: targets
-                .map(point => ctx.entityManager.getEntityAt(point)?.id)
-                .filter(isDefined)
-            },
-            ctx
-          )
-        );
-      }
-    },
+    // onSummoned: {
+    //   getDescription() {
+    //     return 'Deal 1 damage to a nearby unit.';
+    //   },
+    //   minTargetCount: 0,
+    //   maxTargetCount: 1,
+    //   isTargetable(ctx, point, summonedPoint) {
+    //     return (
+    //       isWithinCells(ctx, summonedPoint, point, 1) &&
+    //       isEnemy(
+    //         ctx,
+    //         ctx.entityManager.getEntityAt(point)?.id,
+    //         ctx.playerManager.getActivePlayer().id
+    //       )
+    //     );
+    //   },
+    //   execute(ctx, targets, caster) {
+    //     ctx.actionQueue.push(
+    //       new DealDamageAction(
+    //         {
+    //           amount: 1,
+    //           sourceId: caster.id,
+    //           targets: targets
+    //             .map(point => ctx.entityManager.getEntityAt(point)?.id)
+    //             .filter(isDefined)
+    //         },
+    //         ctx
+    //       )
+    //     );
+    //   }
+    // },
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Teleport({
@@ -102,7 +102,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 2,
+    attack: 1,
     speed: 3,
     skills: [
       new RangedAttack({

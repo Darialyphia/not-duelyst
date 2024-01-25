@@ -265,10 +265,11 @@ export class Entity implements Serializable {
   }
 
   takeDamage(power: number, source: Nullable<Entity>) {
-    this.hp = Math.max(0, this.hp - power);
+    const amount = this.getTakenDamage(power);
+    this.hp = Math.max(0, this.hp - amount);
     this.emitter.emit(ENTITY_EVENTS.RECEIVE_DAMAGE, {
       entity: this,
-      amount: this.getTakenDamage(power),
+      amount,
       baseAmount: power,
       source
     });

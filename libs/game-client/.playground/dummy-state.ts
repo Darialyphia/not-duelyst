@@ -44,10 +44,10 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
               units: {
                 'haven-melee': { cooldown: 0 },
                 'haven-archer': { cooldown: 0 },
-                'neutral-willowisp': { cooldown: 0 },
+                'neutral-tank': { cooldown: 0 },
                 'haven-paladin': { cooldown: 0 },
                 'neutral-titan': { cooldown: 0 },
-                'neutral-tank': { cooldown: 0 }
+                'haven-tank': { cooldown: 0 }
               }
             },
             generalId: 'haven-hero',
