@@ -144,7 +144,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxHp: 1,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 2,
+    attack: 1,
     speed: 4,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
     effects: [

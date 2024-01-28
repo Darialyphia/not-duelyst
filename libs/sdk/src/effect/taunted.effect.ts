@@ -26,12 +26,11 @@ export class TauntedEffect extends Effect {
   }
 
   private get isInTauntRange() {
-    return isWithinCells(
-      this.ctx,
-      this.source.position,
-      this.attachedTo!.position,
-      this.meta.radius
-    );
+    return isWithinCells(this.ctx, this.source.position, this.attachedTo!.position, {
+      x: this.meta.radius,
+      y: this.meta.radius,
+      z: this.meta.radius - 0.5
+    });
   }
 
   private applyMoveTaunt(value: boolean) {

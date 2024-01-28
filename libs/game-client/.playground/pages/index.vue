@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { SerializedGameState } from '@hc/sdk';
 import { makeDummyState } from '~/dummy-state';
 </script>
 
 <template>
   <ClientOnly>
-    <SandboxGame :initial-state-factory="() => makeDummyState('flat')" />
+    <SandboxGame :initial-state-factory="() => makeDummyState('Test')" />
 
     <template #fallback>
       <div />

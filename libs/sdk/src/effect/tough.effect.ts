@@ -22,7 +22,7 @@ export class ToughEffect extends Effect {
   }
 
   applyTough(amount: number) {
-    return amount - 1;
+    return Math.max(amount - 1, 1);
   }
 
   onApplied() {

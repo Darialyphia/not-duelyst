@@ -7,22 +7,22 @@ useHead({
   title: 'Not Duelyst (but kinda)',
   style: [
     {
-      // this solve a weird issue i ndev mode where the components and base layers are ivnerted, probably due to dynamic style blocks insertion order
+      // this solve a weird issue in dev mode where the components and base layers are inverted, probably due to dynamic style blocks insertion order
       innerHTML: `
     @layer base, components, utilities;
 
     @layer base {
-      .some-selector: {
+      .wtf-hack: {
         color: initial;
       }
     }
     @layer components {
-      .some-selector: {
+      .wtf-hack: {
         color: initial;
       }
     }
     @layer utilities {
-      .some-selector: {
+      .wtf-hack: {
         color: initial;
       }
     }

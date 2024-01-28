@@ -32,7 +32,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     maxHp: 25,
     maxAp: 3,
     apRegenRate: 1,
-    attack: 3,
+    attack: 2,
     speed: 3,
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),

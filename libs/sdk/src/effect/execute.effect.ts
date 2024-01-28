@@ -14,6 +14,7 @@ export class ExecuteEffect extends Effect {
     public source: Entity,
     readonly meta: {
       duration: number;
+      threshold: number;
     }
   ) {
     super(ctx, source, meta);
@@ -22,7 +23,9 @@ export class ExecuteEffect extends Effect {
   }
 
   getDescription(): string {
-    throw new Error('Whenever a nearby unit drops below 25% hp, destroy it');
+    return `Whenever a nearby unit drops below ${
+      this.meta.threshold * 100
+    }5% hp, destroy it`;
   }
 
   onDamage({ entity }: { entity: Entity; amount: number }) {
@@ -33,7 +36,7 @@ export class ExecuteEffect extends Effect {
 
     if (entity.hp === 0) return; // dont proc, a die action will already trigger
 
-    if (entity.hp <= entity.maxHp * 0.25) {
+    if (entity.hp <= entity.maxHp * this.meta.threshold) {
       this.ctx.actionQueue.push(
         new DieAction(
           {
