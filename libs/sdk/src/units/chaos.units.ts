@@ -231,6 +231,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
       }),
       new RangedAttack({
         id: 'bomb',
+        spriteId: 'bomb',
         cooldown: 3,
         cost: 2,
         power: 1,

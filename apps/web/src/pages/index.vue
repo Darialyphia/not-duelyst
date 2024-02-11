@@ -52,8 +52,18 @@ definePageMeta({
 
 <style scoped lang="postcss">
 .hero {
-  padding: var(--size-8);
-  background: var(--gradient-1);
+  padding: var(--size-11) var(--size-8);
+  background: linear-gradient(
+      to bottom,
+      var(--surface-2),
+      hsl(var(--gray-10-hsl) / 0.25) 20%,
+      hsl(var(--gray-10-hsl) / 0.25) 80%,
+      var(--surface-2)
+    ),
+    radial-gradient(circle at center, transparent, var(--surface-2)),
+    linear-gradient(130deg, hsl(var(--pink-6-hsl) / 0.5), hsl(var(--blue-6-hsl) / 0.5)),
+    url('/home-hero.png');
+  background-size: cover;
 
   > div {
     display: grid;

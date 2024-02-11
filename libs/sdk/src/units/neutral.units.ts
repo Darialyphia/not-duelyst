@@ -298,7 +298,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxHp: 5,
     maxAp: 1,
     apRegenRate: 1,
-    attack: 1,
+    attack: 2,
     speed: 4,
     skills: [
       new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 3 })
