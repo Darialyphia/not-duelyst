@@ -16,6 +16,7 @@ export type SkillOptions = {
   shouldPreventMovement?: boolean;
   minTargets?: number;
   maxTargets?: number;
+  id: string;
 };
 
 export type SkillDescriptionContext = {
@@ -24,7 +25,7 @@ export type SkillDescriptionContext = {
 };
 
 export abstract class Skill {
-  abstract readonly id: SkillId;
+  readonly id: SkillId;
   readonly name: string;
   readonly cost: number;
   readonly cooldown: number;
@@ -37,6 +38,7 @@ export abstract class Skill {
   readonly shouldPreventMovement: boolean;
 
   constructor(options: SkillOptions) {
+    this.id = options.id;
     this.name = options.name;
     this.cost = options.cost;
     this.cooldown = options.cooldown;

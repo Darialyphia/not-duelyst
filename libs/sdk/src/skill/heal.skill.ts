@@ -9,21 +9,20 @@ import { isWithinCells } from './skill-utils';
 
 export type HealOptions = PartialBy<
   SkillOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   power: number;
   range: number;
 };
 
 export class Heal extends Skill {
-  readonly id = 'heal';
-
   public readonly power: number;
   public readonly range: number;
 
   constructor(options: HealOptions) {
     super({
       ...options,
+      id: options.id ?? 'heal',
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       spriteId: options.spriteId ?? 'heal',
       name: options.name ?? 'Heal'

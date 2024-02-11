@@ -11,7 +11,7 @@ import { Attack } from './attack.skill';
 
 export type FireballOptions = PartialBy<
   SkillOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   power: number;
   range: number;
@@ -19,8 +19,6 @@ export type FireballOptions = PartialBy<
   dotDuration: number;
 };
 export class Fireball extends Attack {
-  id = 'fireball';
-
   readonly power: number;
   readonly range: number;
   readonly dotDuration: number;
@@ -28,6 +26,7 @@ export class Fireball extends Attack {
 
   constructor(options: FireballOptions) {
     super({
+      id: options.id ?? 'fireball',
       spriteId: options.spriteId ?? 'fireball',
       name: options.name ?? 'Fireball',
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,

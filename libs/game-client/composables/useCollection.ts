@@ -41,7 +41,9 @@ export const useCollection = ({
   const factionIndex = computed(() => allowedFactions.value.indexOf(factionFilter.value));
 
   const allUnits = computed(() =>
-    collection.value.map(item => ({ ...item, unit: UNITS[item.unitId] }))
+    collection.value.map(item => {
+      return { ...item, unit: UNITS[item.unitId] };
+    })
   );
 
   type CollectionItemWithUnit = CollectionItemDto & { unit: UnitBlueprint };

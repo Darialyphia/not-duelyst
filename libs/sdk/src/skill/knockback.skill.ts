@@ -10,7 +10,7 @@ import { DisplaceAction } from '../action/displace.action';
 
 export type KnockbackOptions = PartialBy<
   SkillOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   damage: number;
   attackRatio?: number;
@@ -20,8 +20,6 @@ export type KnockbackOptions = PartialBy<
   maxRange: number;
 };
 export class Knockback extends Skill {
-  id = 'knockback';
-
   readonly power: number;
   readonly attackRatio: number;
   readonly collisionDamage: number;
@@ -31,6 +29,7 @@ export class Knockback extends Skill {
 
   constructor(options: KnockbackOptions) {
     super({
+      id: options.id ?? 'knockback',
       spriteId: options.spriteId ?? 'knockback',
       name: options.name ?? 'Knock back',
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,

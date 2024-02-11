@@ -6,10 +6,7 @@ import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
 import { PartialBy } from '@hc/shared';
 import { Cell } from '../map/cell';
 
-export type AttackOptions = PartialBy<
-  SkillOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
-> & {
+export type AttackOptions = PartialBy<SkillOptions, 'shouldExhaustCaster' | 'id'> & {
   power: number;
   attackRatio?: number;
 };
@@ -20,10 +17,9 @@ export abstract class Attack extends Skill {
 
   constructor(options: AttackOptions) {
     super({
+      id: options.id ?? 'attack',
       animationFX: 'attack',
       soundFX: 'attack-placeholder',
-      spriteId: options.spriteId ?? 'ranged_attack',
-      name: options.name ?? 'Ranged attack',
       shouldExhaustCaster: options?.shouldExhaustCaster ?? true,
       ...options
     });

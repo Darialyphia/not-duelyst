@@ -1,11 +1,8 @@
-import { isDefined } from '@hc/shared';
-import { DealDamageAction } from '../action/deal-damage.action';
-import { isEnemy, isGeneral } from '../entity/entity-utils';
+import { isGeneral } from '../entity/entity-utils';
 import { FACTIONS } from '../faction/faction-lookup';
 import { Fireball } from '../skill/fireball.skill';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { RangedAttack } from '../skill/ranged-attack';
-import { isWithinCells } from '../skill/skill-utils';
 import { StatModifier } from '../skill/stat-modifier';
 import { UNIT_KIND } from './constants';
 import { UnitBlueprint } from './unit-lookup';
@@ -63,7 +60,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 7,
     maxAp: 3,
     apRegenRate: 1,
@@ -78,37 +75,6 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         minRange: 0
       })
     ]
-    // onSummoned: {
-    //   getDescription() {
-    //     return 'Deal 1 damage to a nearby unit.';
-    //   },
-    //   minTargetCount: 0,
-    //   maxTargetCount: 1,
-    //   isTargetable(ctx, point, summonedPoint) {
-    //     return (
-    //       isWithinCells(ctx, summonedPoint, point, 1) &&
-    //       isEnemy(
-    //         ctx,
-    //         ctx.entityManager.getEntityAt(point)?.id,
-    //         ctx.playerManager.getActivePlayer().id
-    //       )
-    //     );
-    //   },
-    //   execute(ctx, targets, caster) {
-    //     ctx.actionQueue.push(
-    //       new DealDamageAction(
-    //         {
-    //           amount: 1,
-    //           sourceId: caster.id,
-    //           targets: targets
-    //             .map(point => ctx.entityManager.getEntityAt(point)?.id)
-    //             .filter(isDefined)
-    //         },
-    //         ctx
-    //       )
-    //     );
-    //   }
-    // }
   },
   {
     id: 'chaos-archer',
@@ -116,7 +82,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 2,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
@@ -148,7 +114,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 3,
-    summonCooldown: 4,
+    summonCooldown: 5,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -185,7 +151,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 4,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
@@ -227,7 +193,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.chaos,
     summonCost: 4,
-    summonCooldown: 4,
+    summonCooldown: 5,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -241,6 +207,37 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         },
         description: 'Whenever a unit drops below 25% HP nearby this unit, destroy it.'
       }
+    ]
+  },
+  {
+    id: 'chaos-bomber',
+    spriteId: 'chaos-bomber',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.chaos,
+    summonCost: 3,
+    summonCooldown: 5,
+    maxHp: 6,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 1,
+    speed: 3,
+    skills: [
+      new RangedAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
+      }),
+      new RangedAttack({
+        id: 'bomb',
+        cooldown: 3,
+        cost: 2,
+        power: 1,
+        minRange: { x: 3, y: 3, z: 1 },
+        maxRange: 4,
+        splash: true
+      })
     ]
   }
 ];

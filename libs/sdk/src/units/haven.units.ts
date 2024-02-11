@@ -45,43 +45,12 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 7,
     maxAp: 3,
     apRegenRate: 1,
     attack: 2,
     speed: 3,
-    // onSummoned: {
-    //   getDescription() {
-    //     return 'Deal 1 damage to a nearby unit.';
-    //   },
-    //   minTargetCount: 0,
-    //   maxTargetCount: 1,
-    //   isTargetable(ctx, point, summonedPoint) {
-    //     return (
-    //       isWithinCells(ctx, summonedPoint, point, 1) &&
-    //       isEnemy(
-    //         ctx,
-    //         ctx.entityManager.getEntityAt(point)?.id,
-    //         ctx.playerManager.getActivePlayer().id
-    //       )
-    //     );
-    //   },
-    //   execute(ctx, targets, caster) {
-    //     ctx.actionQueue.push(
-    //       new DealDamageAction(
-    //         {
-    //           amount: 1,
-    //           sourceId: caster.id,
-    //           targets: targets
-    //             .map(point => ctx.entityManager.getEntityAt(point)?.id)
-    //             .filter(isDefined)
-    //         },
-    //         ctx
-    //       )
-    //     );
-    //   }
-    // },
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Teleport({
@@ -98,7 +67,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 2,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
@@ -130,7 +99,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 3,
-    summonCooldown: 4,
+    summonCooldown: 5,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -140,7 +109,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new Taunt({
         name: 'Taunt',
-        cooldown: 2,
+        cooldown: 3,
         cost: 2,
         duration: 2,
         radius: 1
@@ -162,7 +131,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 4,
-    summonCooldown: 3,
+    summonCooldown: 4,
     maxHp: 6,
     maxAp: 3,
     apRegenRate: 1,
@@ -204,7 +173,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     kind: UNIT_KIND.SOLDIER,
     faction: FACTIONS.haven,
     summonCost: 4,
-    summonCooldown: 4,
+    summonCooldown: 5,
     maxHp: 8,
     maxAp: 3,
     apRegenRate: 1,
@@ -213,8 +182,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     skills: [
       new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
       new (class extends Skill {
-        id = 'consecration';
-
         isWithinRange(ctx: GameSession, point: Point3D, caster: Entity) {
           return isSelf(caster, ctx.entityManager.getEntityAt(point));
         }
@@ -270,6 +237,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
           );
         }
       })({
+        id: 'consecration',
         cooldown: 3,
         cost: 3,
         name: 'Consecration',
@@ -279,6 +247,56 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         minTargets: 1,
         maxTargets: 1,
         soundFX: 'cast-placeholder'
+      })
+    ]
+  },
+  {
+    id: 'haven-caster-2',
+    spriteId: 'haven-caster-2',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.haven,
+    summonCost: 3,
+    summonCooldown: 4,
+    maxHp: 6,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 1,
+    speed: 3,
+    onSummoned: {
+      getDescription() {
+        return 'Deal 2 damage to a unit.';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 1,
+      isTargetable(ctx, point) {
+        return isEnemy(
+          ctx,
+          ctx.entityManager.getEntityAt(point)?.id,
+          ctx.playerManager.getActivePlayer().id
+        );
+      },
+      execute(ctx, targets, caster) {
+        ctx.actionQueue.push(
+          new DealDamageAction(
+            {
+              amount: 2,
+              sourceId: caster.id,
+              targets: targets
+                .map(point => ctx.entityManager.getEntityAt(point)?.id)
+                .filter(isDefined)
+            },
+            ctx
+          )
+        );
+      }
+    },
+    skills: [
+      new RangedAttack({
+        cooldown: 1,
+        cost: 0,
+        power: 0,
+        minRange: { x: 2, y: 2, z: 1 },
+        maxRange: 3
       })
     ]
   }

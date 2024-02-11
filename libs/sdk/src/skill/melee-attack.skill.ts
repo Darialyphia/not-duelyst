@@ -11,7 +11,7 @@ import { DealDamageAction } from '../action/deal-damage.action';
 
 export type MeleeAttackOptions = PartialBy<
   AttackOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   power: number;
   splash?: boolean;
@@ -19,13 +19,12 @@ export type MeleeAttackOptions = PartialBy<
 };
 
 export class MeleeAttack extends Attack {
-  readonly id = 'melee_attack';
-
   public readonly splash: boolean;
   public readonly splashAttackRatio: number;
 
   constructor(options: MeleeAttackOptions) {
     super({
+      id: options.id ?? 'melee_attack',
       animationFX: 'attack',
       soundFX: 'attack-placeholder',
       spriteId: options.spriteId ?? 'melee_attack',

@@ -20,6 +20,7 @@ export const grantAllCollection = internalMutation({
       unit => !collection.some(item => item.itemId === unit.id)
     );
 
+    console.log(unitsToAdd.map(u => u.id));
     return Promise.all(
       unitsToAdd.map(unit =>
         ctx.db.insert('collectionItems', {

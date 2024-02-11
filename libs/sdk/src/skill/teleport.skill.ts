@@ -1,17 +1,16 @@
 import { isNumber } from 'lodash-es';
-import { DealDamageAction } from '../action/deal-damage.action';
 import { Entity } from '../entity/entity';
-import { isEmpty, isEnemy } from '../entity/entity-utils';
+import { isEmpty } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { Skill, SkillDescriptionContext, SkillOptions } from './skill';
-import { isSelf, isMinCells, isWithinCells } from './skill-utils';
+import { Skill, SkillOptions } from './skill';
+import { isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
 import { TeleportAction } from '../action/teleport.action';
 
 export type TeleportOptions = PartialBy<
   SkillOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster' | 'minTargets' | 'maxTargets'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster' | 'minTargets' | 'maxTargets'
 > & {
   minRange: number | Point3D;
   maxRange: number | Point3D;
@@ -25,6 +24,7 @@ export class Teleport extends Skill {
 
   constructor(options: TeleportOptions) {
     super({
+      id: options.id ?? 'teleport',
       animationFX: 'cast',
       soundFX: 'cast-placeholder',
       spriteId: options.spriteId ?? 'teleport',

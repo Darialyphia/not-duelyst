@@ -8,18 +8,20 @@ import { isSelf, isWithinCells } from './skill-utils';
 import { isAlly } from '../entity/entity-utils';
 import { ThornsEffect } from '../effect/thorns.effect';
 
-export type ThornsOptions = PartialBy<SkillOptions, 'spriteId' | 'shouldExhaustCaster'> &
+export type ThornsOptions = PartialBy<
+  SkillOptions,
+  'id' | 'spriteId' | 'shouldExhaustCaster'
+> &
   ThornsEffect['meta'] & { range: number; targetType: 'self' | 'ally' };
 
 export class Thorns extends Skill {
-  id = 'thorns';
-
   public readonly meta: ThornsEffect['meta'];
   public readonly range: number;
   public readonly targetType: 'self' | 'ally';
 
   constructor(options: ThornsOptions) {
     super({
+      id: options.id ?? 'thorns',
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
       spriteId: options.spriteId ?? 'thorns',

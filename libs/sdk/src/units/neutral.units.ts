@@ -11,7 +11,7 @@ import { AoeOnDeathEffect } from '../effect/aoe-on-death.effect';
 import { RangedAttack } from '../skill/ranged-attack';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { Vec3 } from '../utils/vector';
-import { isSoldier } from '../entity/entity-utils';
+import { isEnemy, isSoldier } from '../entity/entity-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
@@ -278,6 +278,55 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
                 sourceId: caster.id,
                 effectArg: {
                   duration: 2
+                }
+              },
+              ctx
+            )
+          );
+        });
+      }
+    }
+  },
+
+  {
+    id: 'neutral-ice-mage',
+    spriteId: 'neutral-ice-mage',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 3,
+    summonCooldown: 4,
+    maxHp: 5,
+    maxAp: 1,
+    apRegenRate: 1,
+    attack: 1,
+    speed: 4,
+    skills: [
+      new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 3 })
+    ],
+    onSummoned: {
+      getDescription() {
+        return 'Freeze an enemy for one turn';
+      },
+      minTargetCount: 0,
+      maxTargetCount: 1,
+      isTargetable(ctx, point) {
+        return isEnemy(
+          ctx,
+          ctx.entityManager.getEntityAt(point)?.id,
+          ctx.playerManager.getActivePlayer().id
+        );
+      },
+      execute(ctx, targets, summonedentity) {
+        targets.forEach(target => {
+          const entity = ctx.entityManager.getEntityAt(target)!;
+          ctx.actionQueue.push(
+            new AddEffectAction(
+              {
+                effectId: 'frozen',
+                attachedTo: entity.id,
+                sourceId: summonedentity.id,
+                effectArg: {
+                  duration: 1
                 }
               },
               ctx

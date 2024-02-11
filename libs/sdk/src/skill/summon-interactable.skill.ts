@@ -11,7 +11,7 @@ import { isWithinCells } from './skill-utils';
 
 export type SummonInteractableOptions = PartialBy<
   SkillOptions,
-  'name' | 'shouldExhaustCaster'
+  'id' | 'name' | 'shouldExhaustCaster'
 > & {
   interactableId: InteractableId;
   allowSeparatedTargets: boolean;
@@ -19,14 +19,13 @@ export type SummonInteractableOptions = PartialBy<
 };
 
 export class SummonInteractable extends Skill {
-  readonly id = 'summon_interactable';
-
   public readonly interactableId: InteractableId;
   public readonly allowSeparatedTargets: boolean;
   public readonly allowNonempty: boolean;
 
   constructor(options: SummonInteractableOptions) {
     super({
+      id: options.id ?? 'summon_interactable',
       animationFX: 'cast',
       soundFX: 'cast-placeholder',
       name: options.name ?? 'Summon interactable',

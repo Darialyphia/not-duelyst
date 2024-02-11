@@ -10,13 +10,11 @@ import { isAlly, isEnemy } from '../entity/entity-utils';
 
 export type StatModifierOptions = PartialBy<
   SkillOptions,
-  'spriteId' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'shouldExhaustCaster'
 > &
   StatModifierEffect['meta'] & { targetType: 'self' | 'ally' | 'enemy'; range: number };
 
 export class StatModifier extends Skill {
-  id = 'stat_modifier';
-
   public readonly value: StatModifierOptions['value'];
   public readonly statKey: StatModifierOptions['statKey'];
   public readonly duration: StatModifierOptions['duration'];
@@ -25,6 +23,7 @@ export class StatModifier extends Skill {
 
   constructor(options: StatModifierOptions) {
     super({
+      id: options.id ?? 'sta_modifier',
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
       spriteId: options.spriteId ?? 'melee_attack',

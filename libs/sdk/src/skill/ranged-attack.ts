@@ -3,27 +3,32 @@ import { Entity } from '../entity/entity';
 import { isEnemy } from '../entity/entity-utils';
 import { GameSession } from '../game-session';
 import { Point3D } from '../types';
-import { SkillDescriptionContext, SkillOptions } from './skill';
+import { SkillDescriptionContext } from './skill';
 import { isSelf, isMinCells, isWithinCells } from './skill-utils';
 import { PartialBy } from '@hc/shared';
 import { Attack, AttackOptions } from './attack.skill';
+import { DealDamageAction } from '../action/deal-damage.action';
+import { Cell } from '../map/cell';
 
 export type RangedAttackOptions = PartialBy<
   AttackOptions,
-  'spriteId' | 'name' | 'shouldExhaustCaster'
+  'id' | 'spriteId' | 'name' | 'shouldExhaustCaster'
 > & {
   minRange: number | Point3D;
   maxRange: number | Point3D;
+  splash?: boolean;
+  splashAttackRatio?: number;
 };
 
 export class RangedAttack extends Attack {
-  readonly id = 'ranged_attack';
-
   public readonly minRange: number | Point3D;
   public readonly maxRange: number | Point3D;
+  public readonly splash: boolean;
+  public readonly splashAttackRatio: number;
 
   constructor(options: RangedAttackOptions) {
     super({
+      id: options.id ?? 'ranged_attack',
       animationFX: 'attack',
       soundFX: 'attack-placeholder',
       spriteId: options.spriteId ?? 'ranged_attack',
@@ -33,6 +38,8 @@ export class RangedAttack extends Attack {
     });
     this.minRange = options.minRange;
     this.maxRange = options.maxRange;
+    this.splash = options.splash ?? false;
+    this.splashAttackRatio = options.splashAttackRatio ?? 1;
   }
 
   get hasMinRange() {
@@ -40,8 +47,17 @@ export class RangedAttack extends Attack {
 
     return this.minRange.x > 1 && this.minRange.y > 1 && this.minRange.z > 1;
   }
+
+  getSplashAmount(attack: number) {
+    return this.power + Math.ceil(attack * this.splashAttackRatio);
+  }
+
   getDescription(caster: SkillDescriptionContext) {
-    return `Deals ${caster.attack + this.power} damage to an enemy. ${
+    const splash = this.splash
+      ? ` and ${this.getSplashAmount(caster.attack)} all enemies around it.`
+      : '';
+
+    return `Deals ${caster.attack + this.power} damage to an enemy${splash}. ${
       this.hasMinRange ? 'Cannot be cast in melee range.' : ''
     }`;
   }
@@ -76,6 +92,37 @@ export class RangedAttack extends Attack {
     return isSelf(
       ctx.entityManager.getEntityAt(targets[0])!,
       ctx.entityManager.getEntityAt(point)
+    );
+  }
+
+  execute(ctx: GameSession, caster: Entity, targets: Point3D[], affectedCells: Cell[]) {
+    if (!this.splash) return super.execute(ctx, caster, targets, affectedCells);
+
+    const targetEntities = targets.map(target => ctx.entityManager.getEntityAt(target)!);
+    ctx.actionQueue.push(
+      new DealDamageAction(
+        {
+          amount: this.getDamageAmount(caster.attack),
+          sourceId: caster.id,
+          targets: targetEntities.map(target => target.id)
+        },
+        ctx
+      )
+    );
+
+    const enemies = targetEntities
+      .map(target => ctx.entityManager.getNearbyAllies(target.position, target.playerId))
+      .flat();
+
+    ctx.actionQueue.push(
+      new DealDamageAction(
+        {
+          amount: this.getSplashAmount(caster.attack),
+          sourceId: caster.id,
+          targets: enemies.map(enemy => enemy.id)
+        },
+        ctx
+      )
     );
   }
 }

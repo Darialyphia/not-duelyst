@@ -8,17 +8,19 @@ import { isSelf, isWithinCells } from './skill-utils';
 import { TauntedEffect } from '../effect/taunted.effect';
 import { isEnemy } from '../entity/entity-utils';
 
-export type TauntOptions = PartialBy<SkillOptions, 'spriteId' | 'shouldExhaustCaster'> &
+export type TauntOptions = PartialBy<
+  SkillOptions,
+  'id' | 'spriteId' | 'shouldExhaustCaster'
+> &
   TauntedEffect['meta'];
 
 export class Taunt extends Skill {
-  id = 'taunt';
-
   public readonly meta: TauntedEffect['meta'];
   public readonly duration: number;
 
   constructor(options: TauntOptions) {
     super({
+      id: options.id ?? 'taunt',
       animationFX: options.animationFX ?? 'cast',
       soundFX: options.soundFX ?? 'cast-placeholder',
       spriteId: options.spriteId ?? 'taunt',
