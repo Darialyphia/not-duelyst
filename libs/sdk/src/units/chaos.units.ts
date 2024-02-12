@@ -66,15 +66,7 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 2,
     speed: 3,
-    skills: [
-      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
-      new Teleport({
-        cooldown: 3,
-        cost: 2,
-        maxRange: 2,
-        minRange: 0
-      })
-    ]
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
   },
   {
     id: 'chaos-archer',
@@ -238,6 +230,28 @@ export const CHAOS_UNITS: UnitBlueprint[] = [
         minRange: { x: 3, y: 3, z: 1 },
         maxRange: 4,
         splash: true
+      })
+    ]
+  },
+  {
+    id: 'chaos-assasin',
+    spriteId: 'chaos-assasin',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.chaos,
+    summonCost: 3,
+    summonCooldown: 5,
+    maxHp: 5,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 3,
+    speed: 3,
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0, shouldExhaustCaster: false }),
+      new Teleport({
+        cooldown: 3,
+        cost: 2,
+        maxRange: 3,
+        minRange: 0
       })
     ]
   }

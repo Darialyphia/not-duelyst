@@ -11,6 +11,8 @@ import { ImmolateEffect } from './immolate.effect';
 import { ExecuteEffect } from './execute.effect';
 import { FrozenEffect } from './frozen.effect';
 import { ToughEffect } from './tough.effect';
+import { PlunderOnKillEffect } from './plunder-on-kill.effect';
+import { VulnerableEffect } from './vulnerable.effect';
 
 type GenericEffectMap = Record<string, Constructor<Effect>>;
 
@@ -36,5 +38,7 @@ export const EFFECTS = validateEffectMap({
   immolate: ImmolateEffect,
   execute: ExecuteEffect,
   frozen: FrozenEffect,
-  tough: ToughEffect
+  tough: ToughEffect,
+  plunderOnKill: PlunderOnKillEffect,
+  vulnerable: VulnerableEffect
 });

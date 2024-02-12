@@ -13,6 +13,8 @@ import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { Vec3 } from '../utils/vector';
 import { isEnemy, isSoldier } from '../entity/entity-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
+import { isWithinCells } from '../skill/skill-utils';
+import { Knockback } from '../skill/knockback.skill';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
   {
@@ -299,7 +301,7 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     maxAp: 1,
     apRegenRate: 1,
     attack: 2,
-    speed: 4,
+    speed: 3,
     skills: [
       new RangedAttack({ cooldown: 1, cost: 0, power: 0, minRange: 2, maxRange: 3 })
     ],
@@ -335,5 +337,40 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
         });
       }
     }
+  },
+
+  {
+    id: 'neutral-blind-monk',
+    spriteId: 'neutral-blind-monk',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.neutral,
+    summonCost: 4,
+    summonCooldown: 4,
+    maxHp: 7,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 2,
+    speed: 3,
+    skills: [
+      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+      new Knockback({
+        name: 'IKOU !',
+        collisionDamage: 3,
+        cooldown: 3,
+        cost: 3,
+        damage: 2,
+        distance: 3,
+        minRange: 0,
+        maxRange: 1
+      })
+    ],
+    effects: [
+      {
+        description: `Rush`,
+        getEffect: (ctx, entity) => {
+          return new RushEffect(ctx, entity, {});
+        }
+      }
+    ]
   }
 ];

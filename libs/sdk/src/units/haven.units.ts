@@ -12,7 +12,6 @@ import { UnitBlueprint } from './unit-lookup';
 import { Knockback } from '../skill/knockback.skill';
 import { SummonInteractable } from '../skill/summon-interactable.skill';
 import { Taunt } from '../skill/taunt.skill';
-import { Teleport } from '../skill/teleport.skill';
 import { Skill } from '../skill/skill';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
@@ -20,6 +19,8 @@ import { Cell } from '../map/cell';
 import { Point3D } from '../types';
 import { HealAction } from '../action/heal.action';
 import { ToughEffect } from '../effect/tough.effect';
+import { Vulnerable } from '../skill/vulnerable.skill';
+import { AddEffectAction } from '../action/add-effect.action';
 
 export const HAVEN_UNITS: UnitBlueprint[] = [
   {
@@ -51,15 +52,7 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     apRegenRate: 1,
     attack: 2,
     speed: 3,
-    skills: [
-      new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
-      new Teleport({
-        cooldown: 3,
-        cost: 2,
-        maxRange: 2,
-        minRange: 0
-      })
-    ]
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
   },
   {
     id: 'haven-archer',
@@ -297,7 +290,64 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
         power: 0,
         minRange: { x: 2, y: 2, z: 1 },
         maxRange: 3
+      }),
+      new Vulnerable({
+        cooldown: 3,
+        cost: 2,
+        duration: 3,
+        name: 'Weaken',
+        range: 4,
+        maxTargets: 1
       })
     ]
+  },
+
+  {
+    id: 'haven-smasher',
+    spriteId: 'haven-smasher',
+    kind: UNIT_KIND.SOLDIER,
+    faction: FACTIONS.haven,
+    summonCost: 4,
+    summonCooldown: 5,
+    maxHp: 7,
+    maxAp: 3,
+    apRegenRate: 1,
+    attack: 3,
+    speed: 3,
+    skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
+    onSummoned: {
+      minTargetCount: 0,
+      maxTargetCount: 0,
+      isTargetable() {
+        return false;
+      },
+      getDescription() {
+        return 'Grant nearby allies +1 Attack this turn';
+      },
+      execute(ctx, targets, summonedentity) {
+        const nearby = ctx.entityManager.getNearbyAllies(
+          summonedentity.position,
+          summonedentity.playerId
+        );
+
+        nearby.forEach(entity => {
+          ctx.actionQueue.push(
+            new AddEffectAction(
+              {
+                attachedTo: entity.id,
+                sourceId: summonedentity.id,
+                effectId: 'statModifier',
+                effectArg: {
+                  duration: 1,
+                  statKey: 'attack',
+                  value: 1
+                }
+              },
+              ctx
+            )
+          );
+        });
+      }
+    }
   }
 ];

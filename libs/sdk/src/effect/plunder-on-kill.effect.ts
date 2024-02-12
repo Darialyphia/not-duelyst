@@ -5,7 +5,7 @@ import { GameSession } from '../game-session';
 import { Effect } from './effect';
 
 export class PlunderOnKillEffect extends Effect {
-  readonly id = 'plunder';
+  readonly id = 'plunderOnKill';
   duration: number;
 
   constructor(
