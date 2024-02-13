@@ -25,9 +25,6 @@ export type UnitBlueprint = {
 
   maxHp: number;
 
-  maxAp: number;
-  apRegenRate: number;
-
   attack: number;
   speed: number;
 

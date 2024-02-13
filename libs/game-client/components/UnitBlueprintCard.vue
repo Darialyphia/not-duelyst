@@ -2,6 +2,7 @@
 import type { Skill, UnitBlueprint } from '@hc/sdk';
 import cardBack from '../assets/ui{m}/card-back.png';
 import unitCostBg from '../assets/ui{m}/unit-cost-background.png';
+import type { Nullable } from '@hc/shared';
 
 const { unit } = defineProps<{
   unit: UnitBlueprint;
@@ -9,7 +10,7 @@ const { unit } = defineProps<{
 
 const borders = computed(() => factionUtils[unit.faction.id].borders);
 
-const selectedSkill = ref<Skill>(unit.skills[0]);
+const selectedSkill = ref<Nullable<Skill>>(null);
 </script>
 
 <template>
@@ -37,13 +38,6 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
           <div>
             <div class="i-game-icons:health-normal" style="--color: var(--hp)" />
             {{ unit.maxHp }}
-          </div>
-        </UiSimpleTooltip>
-
-        <UiSimpleTooltip text="action points" side="right">
-          <div>
-            <div class="i-game-icons-drop" style="--color: var(--ap)" />
-            {{ unit.maxAp }}
           </div>
         </UiSimpleTooltip>
 
@@ -77,37 +71,39 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
     </div>
     <div class="unit-name">{{ unit.id }}</div>
 
-    <p v-if="unit.onSummoned?.getDescription">
-      On summoned: {{ unit.onSummoned.getDescription(unit) }}
-    </p>
+    <div class="px-2">
+      <p v-if="selectedSkill">{{ selectedSkill.getText(unit) }}</p>
+      <template v-else>
+        <p v-if="unit.onSummoned?.getDescription">
+          On summoned: {{ unit.onSummoned.getDescription(unit) }}
+        </p>
+        <p v-for="(trigger, index) in unit.effects" :key="index">
+          {{ trigger.description }}
+        </p>
+      </template>
+    </div>
 
-    <p v-for="(trigger, index) in unit.effects" :key="index">
-      {{ trigger.description }}
-    </p>
-
-    <div class="skills-container fancy-scrollbar">
-      <ul class="skills-list">
-        <li v-for="skill in unit.skills" :key="skill.id" class="skill">
+    <ul class="skills-list">
+      <li v-for="skill in unit.skills" :key="skill.id" class="skill">
+        <div
+          class="px-2"
+          @mouseenter="selectedSkill = skill"
+          @mouseleave="selectedSkill = null"
+        >
           <div
             class="skill-img"
             tabindex="0"
-            :data-cost="skill.cost"
+            :data-cooldown="skill.cooldown"
             :style="{
               '--bg': `url('/assets/skills/${skill.spriteId}.png')`,
               '--border': `url(${borders.square})`
             }"
-            :class="selectedSkill === skill && 'selected'"
-            @mouseenter="selectedSkill = skill"
+            :class="selectedSkill?.id === skill.id && 'selected'"
             @focus="selectedSkill = skill"
           />
-        </li>
-      </ul>
-      <div class="selected-skill">
-        {{ selectedSkill.name }}
-        <p>{{ selectedSkill.getText(unit) }}</p>
-        <p class="text-0 pt-2">Cooldown: {{ selectedSkill.cooldown }}</p>
-      </div>
-    </div>
+        </div>
+      </li>
+    </ul>
   </article>
 </template>
 
@@ -121,10 +117,10 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
   user-select: none;
 
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr auto;
 
   width: 17rem;
-  padding: var(--size-3) var(--size-6) 0;
+  padding: var(--size-3) var(--size-4) var(--size-6);
 
   font-size: var(--font-size-2);
   color: white;
@@ -139,7 +135,7 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
   border-image-width: 32px;
 
   image-rendering: pixelated;
-  > p {
+  p {
     margin-block: var(--size-1);
     font-size: var(--font-size-0);
   }
@@ -203,9 +199,6 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
   row-gap: var(--size-1);
   column-gap: var(--size-3);
 
-  margin-top: var(--size-2);
-  margin-bottom: var(--size-4);
-
   font-size: var(--font-size-1);
   line-height: 1;
 
@@ -221,15 +214,15 @@ const selectedSkill = ref<Skill>(unit.skills[0]);
     background-image: var(--border), var(--bg);
     background-size: contain;
     &.selected {
-      filter: contrast(150%) brightness(110%);
+      filter: contrast(130%) brightness(110%);
       outline: var(--fancy-border);
     }
   }
 
-  [data-cost] {
+  [data-cooldown] {
     position: relative;
     &::after {
-      content: attr(data-cost);
+      content: attr(data-cooldown);
 
       position: absolute;
       right: 0;
@@ -264,17 +257,9 @@ ul > li {
   line-height: 1;
 }
 
-.skills-container {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
 .skills-list {
   display: flex;
-  justify-content: space-evenly;
-
-  &:not(:has(> *:nth-of-type(2))) {
-    justify-content: flex-start;
-  }
+  justify-content: center;
 }
 
 .selected-skill {
@@ -291,7 +276,7 @@ ul > li {
 }
 
 .unit-name {
-  margin-block: var(--size-1);
+  margin-block: var(--size-2);
 
   font-size: var(--font-size-4);
   font-weight: 600;
