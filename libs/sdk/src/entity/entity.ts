@@ -68,7 +68,6 @@ export class Entity implements Serializable {
     attack: makeInterceptor<number, Entity>(),
     speed: makeInterceptor<number, Entity>(),
     maxHp: makeInterceptor<number, Entity>(),
-    maxAp: makeInterceptor<number, Entity>(),
     apRegenRate: makeInterceptor<number, Entity>(),
     initiative: makeInterceptor<number, Entity>(),
     canUseSkill: makeInterceptor<boolean, { entity: Entity; skill: Skill }>(),
@@ -86,8 +85,6 @@ export class Entity implements Serializable {
 
   off = this.emitter.off;
 
-  ap = 0;
-
   hp = 0;
 
   position: Vec3;
@@ -104,7 +101,6 @@ export class Entity implements Serializable {
     this.position = Vec3.fromPoint3D(raw.position);
     this.playerId = raw.playerId;
     this.unitId = raw.unitId;
-    this.ap = this.unit.maxAp;
     this.hp = this.unit.maxHp;
     this.unit.skills.forEach(skill => {
       this.skillCooldowns[skill.id] = 0;
@@ -154,14 +150,6 @@ export class Entity implements Serializable {
 
   get maxHp(): number {
     return this.interceptors.maxHp.getValue(this.unit.maxHp, this);
-  }
-
-  get maxAp(): number {
-    return this.interceptors.maxAp.getValue(this.unit.maxAp, this);
-  }
-
-  get apRegenRate(): number {
-    return this.interceptors.apRegenRate.getValue(this.unit.apRegenRate, this);
   }
 
   get speed(): number {
@@ -222,7 +210,7 @@ export class Entity implements Serializable {
     if (!this.hasSkill(skill.id)) return false;
     if (this.skillCooldowns[skill.id] > 0) return false;
 
-    const result = skill.cost <= this.ap;
+    const result = true;
 
     return this.interceptors.canUseSkill.getValue(result, { entity: this, skill: skill });
   }
@@ -239,7 +227,6 @@ export class Entity implements Serializable {
     const skill = this.skills.find(s => s.id === skillId);
     if (!skill) throw new Error(`Skill not found on entity ${this.unit.id}: ${skillId}`);
 
-    this.ap = clamp(this.ap - skill.cost, 0, Infinity);
     if (skill.shouldPreventMovement) {
       this.movementSpent = this.speed;
     }
@@ -299,7 +286,6 @@ export class Entity implements Serializable {
   }
 
   startTurn() {
-    this.ap = clamp(this.ap + this.unit.apRegenRate, 0, this.maxAp);
     this.movementSpent = 0;
     Object.keys(this.skillCooldowns).forEach(skillId => {
       this.skillCooldowns[skillId] = clamp(this.skillCooldowns[skillId] - 1, 0, Infinity);

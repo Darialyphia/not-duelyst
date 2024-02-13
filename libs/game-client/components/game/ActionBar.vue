@@ -106,7 +106,6 @@ const onValidateTargets = () => {
             unavailable: !selectedEntity.canUseSkill(skill)
           }"
           :disabled="!selectedEntity.canUseSkill(skill)"
-          :data-cost="skill.cost"
           :data-cooldown="
             selectedEntity.skillCooldowns[skill.id] > 0
               ? selectedEntity.skillCooldowns[skill.id]
@@ -124,7 +123,6 @@ const onValidateTargets = () => {
 
       <div class="fancy-surface skill-tooltip">
         <div class="flex justify-between">
-          <span>cost: {{ skill.cost }}</span>
           <span>cooldown: {{ skill.cooldown }}</span>
         </div>
         <h4>{{ skill.name }}</h4>

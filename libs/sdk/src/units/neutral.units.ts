@@ -13,7 +13,6 @@ import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { Vec3 } from '../utils/vector';
 import { isEnemy, isSoldier } from '../entity/entity-utils';
 import { DealDamageAction } from '../action/deal-damage.action';
-import { isWithinCells } from '../skill/skill-utils';
 import { Knockback } from '../skill/knockback.skill';
 
 export const NEUTRAL_UNITS: UnitBlueprint[] = [
@@ -25,8 +24,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 2,
     summonCooldown: 4,
     maxHp: 7,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 1,
     speed: 3,
     skills: [
@@ -67,8 +64,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 3,
     summonCooldown: 4,
     maxHp: 8,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
@@ -112,8 +107,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 3,
     summonCooldown: 4,
     maxHp: 5,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
@@ -144,8 +137,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 1,
     summonCooldown: 2,
     maxHp: 1,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 1,
     speed: 4,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
@@ -170,8 +161,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 5,
     summonCooldown: 6,
     maxHp: 12,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 5,
     speed: 2,
     skills: [
@@ -193,8 +182,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 5,
     summonCooldown: 6,
     maxHp: 8,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 4,
     speed: 3,
     skills: [
@@ -241,8 +228,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 4,
     summonCooldown: 5,
     maxHp: 6,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [
@@ -298,8 +283,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 3,
     summonCooldown: 4,
     maxHp: 5,
-    maxAp: 1,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [
@@ -347,8 +330,6 @@ export const NEUTRAL_UNITS: UnitBlueprint[] = [
     summonCost: 4,
     summonCooldown: 4,
     maxHp: 7,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [

@@ -26,11 +26,6 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
       </div>
 
       <div>
-        <div class="i-game-icons-drop" style="--color: var(--ap)" />
-        {{ entity.ap }} / {{ entity.maxAp }}
-      </div>
-
-      <div>
         <div class="i-game-icons-broadsword" style="--color: var(--attack)" />
         <span
           :class="{
@@ -66,7 +61,6 @@ const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
     <ul v-for="skill in entity.skills" :key="skill.id" class="skill">
       <div
         class="skill-img"
-        :data-cost="skill.cost"
         :data-cooldown="
           entity.skillCooldowns[skill.id] > 0 ? entity.skillCooldowns[skill.id] : ''
         "

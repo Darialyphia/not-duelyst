@@ -27,7 +27,6 @@ export type SkillDescriptionContext = {
 export abstract class Skill {
   readonly id: SkillId;
   readonly name: string;
-  readonly cost: number;
   readonly cooldown: number;
   readonly animationFX: string;
   readonly soundFX: string;
@@ -40,7 +39,6 @@ export abstract class Skill {
   constructor(options: SkillOptions) {
     this.id = options.id;
     this.name = options.name;
-    this.cost = options.cost;
     this.cooldown = options.cooldown;
     this.animationFX = options.animationFX ?? 'cast';
     this.soundFX = options.soundFX ?? 'cast-placeholder';

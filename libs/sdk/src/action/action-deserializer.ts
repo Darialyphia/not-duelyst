@@ -12,7 +12,6 @@ import { AddEffectAction } from './add-effect.action';
 import { HealAction } from './heal.action';
 import { ModifyGoldAction } from './modify-gold.action';
 import { RemoveInteractableAction } from './removeInteractable.action';
-import { ModifyApAction } from './modify-ap.action';
 import { DisplaceAction } from './displace.action';
 import { SummonInteractableAction } from './summon-interactable.action';
 import { TeleportAction } from './teleport.action';
@@ -42,7 +41,6 @@ export const actionMap = validateActionMap({
   HEAL: HealAction,
   MODIFY_GOLD: ModifyGoldAction,
   REMOVE_INTERACTABLE: RemoveInteractableAction,
-  MODIFY_AP: ModifyApAction,
   DISPLACE: DisplaceAction,
   SUMMON_INTERACTABLE: SummonInteractableAction,
   TELEPORT: TeleportAction

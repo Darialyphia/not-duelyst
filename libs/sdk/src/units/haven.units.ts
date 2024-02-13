@@ -31,8 +31,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 0,
     summonCooldown: 0,
     maxHp: 25,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [
@@ -48,8 +46,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 2,
     summonCooldown: 4,
     maxHp: 7,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
@@ -62,8 +58,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 2,
     summonCooldown: 4,
     maxHp: 6,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 1,
     speed: 3,
     skills: [
@@ -94,8 +88,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 3,
     summonCooldown: 5,
     maxHp: 8,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 3,
     speed: 2,
     skills: [
@@ -126,8 +118,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 4,
     summonCooldown: 4,
     maxHp: 6,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 1,
     speed: 3,
     skills: [
@@ -168,8 +158,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 4,
     summonCooldown: 5,
     maxHp: 8,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 2,
     speed: 3,
     skills: [
@@ -251,8 +239,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 3,
     summonCooldown: 4,
     maxHp: 6,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 1,
     speed: 3,
     onSummoned: {
@@ -310,8 +296,6 @@ export const HAVEN_UNITS: UnitBlueprint[] = [
     summonCost: 4,
     summonCooldown: 5,
     maxHp: 7,
-    maxAp: 3,
-    apRegenRate: 1,
     attack: 3,
     speed: 3,
     skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })],
