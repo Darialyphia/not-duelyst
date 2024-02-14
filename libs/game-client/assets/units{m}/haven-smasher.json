@@ -86,6 +86,7 @@
    { "name": "cast", "from": 6, "to": 7, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },
    { "name": "Layer 2", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
