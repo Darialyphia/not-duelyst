@@ -106,11 +106,12 @@ const onValidateTargets = () => {
             unavailable: !selectedEntity.canUseSkill(skill)
           }"
           :disabled="!selectedEntity.canUseSkill(skill)"
-          :data-cooldown="
+          :data-remaining-cooldown="
             selectedEntity.skillCooldowns[skill.id] > 0
               ? selectedEntity.skillCooldowns[skill.id]
               : ''
           "
+          :data-cooldown="skill.cooldown"
           :style="{
             '--cooldown-angle':
               360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
@@ -122,9 +123,6 @@ const onValidateTargets = () => {
       </template>
 
       <div class="fancy-surface skill-tooltip">
-        <div class="flex justify-between">
-          <span>cooldown: {{ skill.cooldown }}</span>
-        </div>
         <h4>{{ skill.name }}</h4>
         <p>{{ skill.getText(selectedEntity) }}</p>
       </div>
@@ -149,7 +147,7 @@ const onValidateTargets = () => {
                 unavailable: !state.activePlayer.canSummon(unit.unit.id)
               }"
               :data-cost="unit.unit.summonCost"
-              :data-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
+              :data-remaining-cooldown="unit.cooldown > 0 ? unit.cooldown : ''"
               :style="{
                 '--cooldown-angle':
                   360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
@@ -213,8 +211,6 @@ const onValidateTargets = () => {
   }
 
   &::after {
-    content: attr(data-cost);
-
     position: absolute;
     right: -12px;
     bottom: -7px;
@@ -242,7 +238,7 @@ const onValidateTargets = () => {
     cursor: not-allowed;
 
     &::before {
-      content: attr(data-cooldown);
+      content: attr(data-remaining-cooldown);
 
       position: absolute;
       top: 0;
@@ -275,6 +271,10 @@ const onValidateTargets = () => {
   width: 64px;
   border-radius: 4px;
 
+  &::after {
+    content: attr(data-cooldown);
+  }
+
   @screen lt-lg {
     width: 48px;
   }
@@ -282,6 +282,9 @@ const onValidateTargets = () => {
 
 .summon {
   border-radius: var(--radius-round);
+  &::after {
+    content: attr(data-cost);
+  }
 }
 
 .move {

@@ -8,16 +8,11 @@ const { unit } = defineProps<{
   unit: UnitBlueprint;
 }>();
 
-const borders = computed(() => factionUtils[unit.faction.id].borders);
-
 const selectedSkill = ref<Nullable<Skill>>(null);
 </script>
 
 <template>
-  <article
-    class="entity-card fancy-surface"
-    :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
-  >
+  <article class="entity-card fancy-surface">
     <div class="flex justify-between">
       <div class="relative">
         <div

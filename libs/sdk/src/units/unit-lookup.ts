@@ -18,7 +18,7 @@ export type UnitBlueprint = {
   id: string;
   spriteId: string;
   kind: UnitKind;
-  faction: Faction;
+  factions: [] | [Faction] | [Faction, Faction] | [Faction, Faction, Faction];
 
   summonCost: number;
   summonCooldown: number;
@@ -44,6 +44,7 @@ export type UnitBlueprint = {
 };
 
 export const UNITS = keyBy(
-  [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
+  // [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
+  [],
   'id'
 ) satisfies Record<UnitId, UnitBlueprint>;

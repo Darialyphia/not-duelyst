@@ -36,15 +36,16 @@ export const ensureLoadoutUnitsMatchWithGeneral = (
   generalId: string,
   unitIds: string[]
 ) => {
-  const general = ensureUnitExist(generalId);
-  const isValid = unitIds.every(unitId => {
-    const unit = ensureUnitExist(unitId);
-    return unit.faction === general.faction || unit.faction === FACTIONS.neutral;
-  });
+  // const general = ensureUnitExist(generalId);
+  // const isValid = unitIds.every(unitId => {
+  //   const unit = ensureUnitExist(unitId);
+  //   return unit.faction === general.faction || unit.faction === FACTIONS.neutral;
+  // });
 
-  if (!isValid) {
-    throw new Error("Illegal loadout : some units do not match the general's faction");
-  }
+  // if (!isValid) {
+  //   throw new Error("Illegal loadout : some units do not match the general's faction");
+  // }
+  return true;
 };
 
 export const validateLoadout = async (

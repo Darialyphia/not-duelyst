@@ -5,15 +5,10 @@ import cardBack from '../assets/ui{m}/card-back.png';
 const { entity } = defineProps<{
   entity: Entity;
 }>();
-
-const borders = computed(() => factionUtils[entity.unit.faction.id].borders);
 </script>
 
 <template>
-  <article
-    class="entity-card fancy-surface"
-    :style="{ '--border': `url(${borders.square})`, '--bg': `url(${cardBack})` }"
-  >
+  <article class="entity-card fancy-surface" :style="{ '--bg': `url(${cardBack})` }">
     <div class="avatar-container fancy-surface mx-auto">
       <img :src="`/assets/units/${entity.unit.spriteId}-icon.png`" />
     </div>
