@@ -1,5 +1,5 @@
-import { api } from './_generated/api';
-import { internalAction, internalMutation, mutation, query } from './_generated/server';
+import { api, internal } from './_generated/api';
+import { internalAction, internalMutation, query } from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
 import {
@@ -103,6 +103,8 @@ export const handleMatchmadePair = internalMutation({
         })
       )
     );
+
+    ctx.scheduler.runAfter(45_000, internal.games.timeout, { roomId: arg.roomId });
   }
 });
 

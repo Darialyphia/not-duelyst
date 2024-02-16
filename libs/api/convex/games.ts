@@ -1,5 +1,5 @@
 import { api, internal } from './_generated/api';
-import { query, internalMutation, action, internalAction } from './_generated/server';
+import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 import { getCurrentGame } from './game/utils';
 import { toUserDto } from './users/user.mapper';
@@ -26,8 +26,6 @@ export const start = mutationWithAuth({
     }
 
     await ctx.db.patch(game._id, { status: 'ONGOING' });
-
-    ctx.scheduler.runAfter(30_000, internal.games.timeout, { roomId: game.roomId });
   }
 });
 

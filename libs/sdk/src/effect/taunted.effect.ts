@@ -75,6 +75,7 @@ export class TauntedEffect extends Effect {
 
     this.source.on('die', () => {
       this.cleanup();
+      this.detach();
     });
   }
 

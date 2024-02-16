@@ -17,13 +17,15 @@ const angle = ref({
   y: 0
 });
 
-const { left, top, width, height } = useElementBounding(rootEl);
 const MAX_ANGLE = 15;
 const onMousemove = (e: MouseEvent) => {
+  if (!rootEl.value) return;
+
   const { clientX, clientY } = e;
+  const { left, top, width, height } = rootEl.value.getBoundingClientRect();
   angle.value = {
-    x: ((clientX - left.value) / width.value - 0.5) * MAX_ANGLE,
-    y: ((clientY - top.value) / height.value - 0.5) * MAX_ANGLE
+    x: ((clientX - left) / width - 0.5) * MAX_ANGLE,
+    y: ((clientY - top) / height - 0.5) * MAX_ANGLE
   };
 };
 </script>
