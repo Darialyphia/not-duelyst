@@ -11,17 +11,25 @@ export const create = mutationWithAuth({
   args: {
     name: v.string(),
     generalId: v.string(),
-    units: v.array(v.string())
+    units: v.array(v.string()),
+    factions: v.array(v.string())
   },
   async handler(ctx, args) {
     const user = ensureAuthenticated(ctx.session);
 
-    await validateLoadout(ctx, {
+    const validData = await validateLoadout(ctx, {
       userId: user._id,
       generalId: args.generalId,
-      unitIds: args.units
+      unitIds: args.units,
+      factions: args.factions
     });
-    ctx.db.insert('loadouts', { ...args, ownerId: user._id });
+
+    ctx.db.insert('loadouts', {
+      ...validData,
+      name: args.name,
+      units: validData.unitIds,
+      ownerId: user._id
+    });
   }
 });
 
@@ -30,21 +38,27 @@ export const update = mutationWithAuth({
     loadoutId: v.id('loadouts'),
     name: v.string(),
     generalId: v.string(),
-    units: v.array(v.string())
+    units: v.array(v.string()),
+    factions: v.array(v.string())
   },
   async handler(ctx, args) {
     const user = ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
     await ensureOwnsLoadout(loadout, user._id);
 
-    await validateLoadout(ctx, {
+    const validData = await validateLoadout(ctx, {
       userId: user._id,
       generalId: args.generalId,
-      unitIds: args.units
+      unitIds: args.units,
+      factions: args.factions
     });
 
-    const { loadoutId, ...body } = args;
-    ctx.db.replace(loadoutId, { ...body, ownerId: user._id });
+    ctx.db.replace(args.loadoutId, {
+      ...validData,
+      name: args.name,
+      units: validData.unitIds,
+      ownerId: user._id
+    });
   }
 });
 

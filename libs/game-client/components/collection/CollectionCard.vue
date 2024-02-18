@@ -2,6 +2,10 @@
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import type { UnitBlueprint } from '@hc/sdk';
 
+defineOptions({
+  inheritAttrs: false
+});
+
 const { canAddToLoadout, isEditingLoadout, card, isInLoadout } = defineProps<{
   canAddToLoadout: boolean;
   isInLoadout: boolean;
@@ -9,7 +13,7 @@ const { canAddToLoadout, isEditingLoadout, card, isInLoadout } = defineProps<{
   card: { unit: UnitBlueprint; _id: Id<'collectionItems'>; unitId: string };
 }>();
 
-const emit = defineEmits<{ toggle: [] }>();
+const emit = defineEmits<{ click: [] }>();
 const rootEl = ref<HTMLElement>();
 
 const angle = ref({
@@ -44,8 +48,8 @@ const onMousemove = (e: MouseEvent) => {
         '--rotate-x': angle.y.toFixed(2)
       }"
       @mousemove="onMousemove"
-      @click="emit('toggle')"
-      @keyup.enter="emit('toggle')"
+      @click="emit('click')"
+      @keyup.enter="emit('click')"
     >
       <UnitBlueprintCard :unit="card.unit" />
       <Transition>

@@ -14,6 +14,7 @@ definePageMeta({
 const ITEMS_PER_PAGE = 10;
 const LOADOUT_MAX_SIZE = 6;
 
+const sidebarView = ref<'list' | 'form'>('list');
 const {
   values,
   general,
@@ -39,13 +40,11 @@ const {
   prevPage,
   nextPage,
   displayedUnits,
-  sidebarView,
   loadouts,
   isLoadoutsLoading,
   isCollectionLoading
 } = useCollection({
-  itemsPerPage: ITEMS_PER_PAGE,
-  selectedGeneral: general
+  itemsPerPage: ITEMS_PER_PAGE
 });
 
 const sortedLoadoutUnits = computed(() =>
@@ -98,7 +97,7 @@ const editLoadout = (loadout: LoadoutDto) => {
         :is-in-loadout="!!isInLoadout(item.unitId)"
         :is-editing-loadout="sidebarView === 'form'"
         :can-add-to-loadout="canAddToLoadout(item.unitId)"
-        @toggle="toggleLoadoutCard(item.unit)"
+        @click="toggleLoadoutCard(item.unit)"
       />
     </section>
 

@@ -2,12 +2,12 @@ import { Faction } from '../faction/faction-lookup';
 import { keyBy } from 'lodash-es';
 import { Skill } from '../skill/skill';
 import { UnitKind } from './constants';
-import { HAVEN_UNITS } from './haven.units';
-import { CHAOS_UNITS } from './chaos.units';
+// import { HAVEN_UNITS } from './haven.units';
+// import { CHAOS_UNITS } from './chaos.units';
 import { Point3D } from '../types';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
-import { NEUTRAL_UNITS } from './neutral.units';
+// import { NEUTRAL_UNITS } from './neutral.units';
 import { Effect } from '../effect/effect';
 
 export type UnitId = string;
@@ -18,7 +18,7 @@ export type UnitBlueprint = {
   id: string;
   spriteId: string;
   kind: UnitKind;
-  factions: [] | [Faction] | [Faction, Faction] | [Faction, Faction, Faction];
+  factions: Faction[];
 
   summonCost: number;
   summonCooldown: number;
@@ -45,6 +45,6 @@ export type UnitBlueprint = {
 
 export const UNITS = keyBy(
   // [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
-  [],
+  [] as UnitBlueprint[],
   'id'
 ) satisfies Record<UnitId, UnitBlueprint>;
