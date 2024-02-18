@@ -11,6 +11,7 @@ import { GameSession } from '../game-session';
 import { Effect } from '../effect/effect';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { Fireball } from '../skill/fireball.skill';
+import { RARITY, Rarity } from '../enums';
 
 export type UnitId = string;
 
@@ -21,6 +22,7 @@ export type UnitBlueprint = {
   spriteId: string;
   kind: UnitKind;
   factions: Faction[];
+  rarity: Rarity;
 
   summonCost: number;
   summonCooldown: number;
@@ -50,9 +52,10 @@ export const UNITS = keyBy(
   [
     {
       id: 'melee-fire-air',
-      spriteId: 'chaos-melee',
+      spriteId: 'midas',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.FIRE, FACTIONS.AIR],
+      rarity: RARITY.COMMON,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -62,9 +65,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-fire-fire-air',
-      spriteId: 'chaos-melee',
+      spriteId: 'haven-hero2',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK, FACTIONS.DARK, FACTIONS.FIRE],
+      rarity: RARITY.LEGENDARY,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 10,
@@ -92,9 +96,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-fire',
-      spriteId: 'chaos-melee',
+      spriteId: 'assasin',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.FIRE],
+      rarity: RARITY.EPIC,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -104,9 +109,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-water',
-      spriteId: 'chaos-melee',
+      spriteId: 'blind-monk',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.WATER],
+      rarity: RARITY.RARE,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -116,9 +122,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-air',
-      spriteId: 'chaos-melee',
+      spriteId: 'bomber',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.AIR],
+      rarity: RARITY.RARE,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -128,9 +135,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-earth',
-      spriteId: 'chaos-melee',
+      spriteId: 'chaos-hero',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.EARTH],
+      rarity: RARITY.COMMON,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -140,9 +148,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-light',
-      spriteId: 'chaos-melee',
+      spriteId: 'chaos-hero2',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.LIGHT],
+      rarity: RARITY.COMMON,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
@@ -152,9 +161,10 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-dark',
-      spriteId: 'chaos-melee',
+      spriteId: 'titan',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK],
+      rarity: RARITY.COMMON,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,

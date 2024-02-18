@@ -1628,6 +1628,58 @@
       "assets": [
         {
           "alias": [
+            "card-back-common.png"
+          ],
+          "src": [
+            "/assets/ui/card-back-common.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "card-back-epic.png"
+          ],
+          "src": [
+            "/assets/ui/card-back-epic.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "card-back-legendary.png"
+          ],
+          "src": [
+            "/assets/ui/card-back-legendary.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "card-back-rare.png"
+          ],
+          "src": [
+            "/assets/ui/card-back-rare.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "card-back-v2.png"
           ],
           "src": [
@@ -2067,10 +2119,10 @@
       "assets": [
         {
           "alias": [
-            "chaos-archer-icon.png"
+            "aeromancer-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-archer-icon.png"
+            "/assets/units/aeromancer-icon.png"
           ],
           "data": {
             "tags": {
@@ -2080,10 +2132,10 @@
         },
         {
           "alias": [
-            "chaos-archer"
+            "aeromancer"
           ],
           "src": [
-            "/assets/units/chaos-archer.json"
+            "/assets/units/aeromancer.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2094,10 +2146,10 @@
         },
         {
           "alias": [
-            "chaos-archer.png"
+            "aeromancer.png"
           ],
           "src": [
-            "/assets/units/chaos-archer.png"
+            "/assets/units/aeromancer.png"
           ],
           "data": {
             "tags": {
@@ -2107,10 +2159,10 @@
         },
         {
           "alias": [
-            "chaos-assasin-icon.png"
+            "archer-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-assasin-icon.png"
+            "/assets/units/archer-icon.png"
           ],
           "data": {
             "tags": {
@@ -2120,10 +2172,10 @@
         },
         {
           "alias": [
-            "chaos-assasin"
+            "archer"
           ],
           "src": [
-            "/assets/units/chaos-assasin.json"
+            "/assets/units/archer.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2134,10 +2186,10 @@
         },
         {
           "alias": [
-            "chaos-assasin.png"
+            "archer.png"
           ],
           "src": [
-            "/assets/units/chaos-assasin.png"
+            "/assets/units/archer.png"
           ],
           "data": {
             "tags": {
@@ -2147,10 +2199,10 @@
         },
         {
           "alias": [
-            "chaos-bomber-icon.png"
+            "assasin-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-bomber-icon.png"
+            "/assets/units/assasin-icon.png"
           ],
           "data": {
             "tags": {
@@ -2160,10 +2212,10 @@
         },
         {
           "alias": [
-            "chaos-bomber"
+            "assasin"
           ],
           "src": [
-            "/assets/units/chaos-bomber.json"
+            "/assets/units/assasin.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2174,10 +2226,10 @@
         },
         {
           "alias": [
-            "chaos-bomber.png"
+            "assasin.png"
           ],
           "src": [
-            "/assets/units/chaos-bomber.png"
+            "/assets/units/assasin.png"
           ],
           "data": {
             "tags": {
@@ -2187,10 +2239,10 @@
         },
         {
           "alias": [
-            "chaos-caster-icon.png"
+            "blind-monk-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-caster-icon.png"
+            "/assets/units/blind-monk-icon.png"
           ],
           "data": {
             "tags": {
@@ -2200,10 +2252,10 @@
         },
         {
           "alias": [
-            "chaos-caster"
+            "blind-monk"
           ],
           "src": [
-            "/assets/units/chaos-caster.json"
+            "/assets/units/blind-monk.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2214,10 +2266,10 @@
         },
         {
           "alias": [
-            "chaos-caster.png"
+            "blind-monk.png"
           ],
           "src": [
-            "/assets/units/chaos-caster.png"
+            "/assets/units/blind-monk.png"
           ],
           "data": {
             "tags": {
@@ -2227,10 +2279,10 @@
         },
         {
           "alias": [
-            "chaos-executioner-icon.png"
+            "bomber-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-executioner-icon.png"
+            "/assets/units/bomber-icon.png"
           ],
           "data": {
             "tags": {
@@ -2240,10 +2292,10 @@
         },
         {
           "alias": [
-            "chaos-executioner"
+            "bomber"
           ],
           "src": [
-            "/assets/units/chaos-executioner.json"
+            "/assets/units/bomber.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2254,10 +2306,10 @@
         },
         {
           "alias": [
-            "chaos-executioner.png"
+            "bomber.png"
           ],
           "src": [
-            "/assets/units/chaos-executioner.png"
+            "/assets/units/bomber.png"
           ],
           "data": {
             "tags": {
@@ -2347,10 +2399,10 @@
         },
         {
           "alias": [
-            "chaos-melee-icon.png"
+            "executioner-icon.png"
           ],
           "src": [
-            "/assets/units/chaos-melee-icon.png"
+            "/assets/units/executioner-icon.png"
           ],
           "data": {
             "tags": {
@@ -2360,10 +2412,10 @@
         },
         {
           "alias": [
-            "chaos-melee"
+            "executioner"
           ],
           "src": [
-            "/assets/units/chaos-melee.json"
+            "/assets/units/executioner.json"
           ],
           "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
@@ -2374,770 +2426,10 @@
         },
         {
           "alias": [
-            "chaos-melee.png"
+            "executioner.png"
           ],
           "src": [
-            "/assets/units/chaos-melee.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "chaos-tank-icon.png"
-          ],
-          "src": [
-            "/assets/units/chaos-tank-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "chaos-tank"
-          ],
-          "src": [
-            "/assets/units/chaos-tank.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "chaos-tank.png"
-          ],
-          "src": [
-            "/assets/units/chaos-tank.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-archer-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-archer-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-archer"
-          ],
-          "src": [
-            "/assets/units/haven-archer.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-archer.png"
-          ],
-          "src": [
-            "/assets/units/haven-archer.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster-2-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-caster-2-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster-2"
-          ],
-          "src": [
-            "/assets/units/haven-caster-2.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster-2.png"
-          ],
-          "src": [
-            "/assets/units/haven-caster-2.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-caster-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster"
-          ],
-          "src": [
-            "/assets/units/haven-caster.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-caster.png"
-          ],
-          "src": [
-            "/assets/units/haven-caster.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-hero-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero"
-          ],
-          "src": [
-            "/assets/units/haven-hero.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero.png"
-          ],
-          "src": [
-            "/assets/units/haven-hero.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero2-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-hero2-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero2"
-          ],
-          "src": [
-            "/assets/units/haven-hero2.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-hero2.png"
-          ],
-          "src": [
-            "/assets/units/haven-hero2.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-melee-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-melee-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-melee"
-          ],
-          "src": [
-            "/assets/units/haven-melee.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-melee.png"
-          ],
-          "src": [
-            "/assets/units/haven-melee.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-paladin-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-paladin-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-paladin"
-          ],
-          "src": [
-            "/assets/units/haven-paladin.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-paladin.png"
-          ],
-          "src": [
-            "/assets/units/haven-paladin.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-smasher-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-smasher-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-smasher"
-          ],
-          "src": [
-            "/assets/units/haven-smasher.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-smasher.png"
-          ],
-          "src": [
-            "/assets/units/haven-smasher.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-tank-icon.png"
-          ],
-          "src": [
-            "/assets/units/haven-tank-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-tank"
-          ],
-          "src": [
-            "/assets/units/haven-tank.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "haven-tank.png"
-          ],
-          "src": [
-            "/assets/units/haven-tank.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-blind-monk-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-blind-monk-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-blind-monk"
-          ],
-          "src": [
-            "/assets/units/neutral-blind-monk.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-blind-monk.png"
-          ],
-          "src": [
-            "/assets/units/neutral-blind-monk.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-healer-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-healer-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-healer"
-          ],
-          "src": [
-            "/assets/units/neutral-healer.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-healer.png"
-          ],
-          "src": [
-            "/assets/units/neutral-healer.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-mage-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-mage-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-mage"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-mage.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-mage.png"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-mage.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-queen-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-queen-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-queen"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-queen.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-ice-queen.png"
-          ],
-          "src": [
-            "/assets/units/neutral-ice-queen.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-midas-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-midas-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-midas"
-          ],
-          "src": [
-            "/assets/units/neutral-midas.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-midas.png"
-          ],
-          "src": [
-            "/assets/units/neutral-midas.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-tank-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-tank-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-tank"
-          ],
-          "src": [
-            "/assets/units/neutral-tank.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-tank.png"
-          ],
-          "src": [
-            "/assets/units/neutral-tank.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-thief-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-thief-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-thief"
-          ],
-          "src": [
-            "/assets/units/neutral-thief.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-thief.png"
-          ],
-          "src": [
-            "/assets/units/neutral-thief.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-titan-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-titan-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-titan"
-          ],
-          "src": [
-            "/assets/units/neutral-titan.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-titan.png"
-          ],
-          "src": [
-            "/assets/units/neutral-titan.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-willowisp-icon.png"
-          ],
-          "src": [
-            "/assets/units/neutral-willowisp-icon.png"
-          ],
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-willowisp"
-          ],
-          "src": [
-            "/assets/units/neutral-willowisp.json"
-          ],
-          "loadParser": "Aseprite_spritesheet_Parser",
-          "data": {
-            "tags": {
-              "m": true
-            }
-          }
-        },
-        {
-          "alias": [
-            "neutral-willowisp.png"
-          ],
-          "src": [
-            "/assets/units/neutral-willowisp.png"
+            "/assets/units/executioner.png"
           ],
           "data": {
             "tags": {

@@ -99,7 +99,8 @@ const editLoadout = (loadout: LoadoutDto) => {
             {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
           </header>
 
-          <div class="flex gap-2">
+          <div class="flex gap-2 items-center">
+            Runes
             <img
               v-for="(faction, index) in values?.factions"
               :key="index"

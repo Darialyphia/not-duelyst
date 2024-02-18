@@ -80,12 +80,6 @@ export class DealDamageAction extends GameAction<{
       } else {
         target.takeDamage(this.payload.amount, null);
       }
-
-      if (target.hp <= 0) {
-        this.ctx.actionQueue.push(
-          new DieAction({ entityId: targetId, sourceId: this.payload.sourceId }, this.ctx)
-        );
-      }
     });
   }
 }

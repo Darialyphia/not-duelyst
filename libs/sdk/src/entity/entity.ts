@@ -10,6 +10,7 @@ import { GameSession } from '../game-session';
 import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
+import { DieAction } from '../action/die.action';
 
 export type EntityId = number;
 export const isEntityId = (x: unknown, ctx: GameSession): x is EntityId =>
@@ -36,7 +37,7 @@ export type EntityEvent = Values<typeof ENTITY_EVENTS>;
 export type EntityEventMap = {
   [ENTITY_EVENTS.MOVE]: Entity;
   [ENTITY_EVENTS.USE_SKILL]: Entity;
-  [ENTITY_EVENTS.DIE]: { entity: Entity; source: Nullable<Entity> };
+  [ENTITY_EVENTS.DIE]: { entity: Entity };
   [ENTITY_EVENTS.DEAL_DAMAGE]: {
     entity: Entity;
     amount: number;
@@ -85,7 +86,18 @@ export class Entity implements Serializable {
 
   off = this.emitter.off;
 
-  hp = 0;
+  #hp = 0;
+  get hp() {
+    return this.#hp;
+  }
+
+  set hp(val) {
+    this.#hp = val;
+
+    if (this.#hp <= 0) {
+      this.ctx.actionQueue.push(new DieAction({ entityId: this.id }, this.ctx));
+    }
+  }
 
   position: Vec3;
 
@@ -271,9 +283,9 @@ export class Entity implements Serializable {
     });
   }
 
-  die(source: Nullable<Entity>) {
+  die() {
     this.hp = 0;
-    this.emitter.emit('die', { entity: this, source });
+    this.emitter.emit('die', { entity: this });
     this.ctx.actionQueue.push(
       new SummonInteractableAction(
         {

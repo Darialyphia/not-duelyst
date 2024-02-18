@@ -13,7 +13,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
   <article
     class="entity-card"
     :style="{
-      '--bg': `url('/assets/ui/card-back-v2.png')`,
+      '--bg': `url('/assets/ui/card-back-${unit.rarity}.png')`,
       '--sprite': `url('/assets/units/${unit.spriteId}-icon.png')`
     }"
   >
@@ -36,7 +36,10 @@ const selectedSkill = ref<Nullable<Skill>>(null);
 
     <div class="cooldown">{{ unit.summonCooldown }}</div>
 
-    <div class="unit-name">{{ unit.id }}</div>
+    <div class="unit-name">
+      <div>{{ unit.kind }}</div>
+      <div>{{ unit.id }}</div>
+    </div>
 
     <div>
       <ul class="skills-list">
@@ -134,7 +137,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-30%, -30%);
+  transform: translate(-30%, -20%);
 
   display: grid;
   place-content: center;
@@ -169,6 +172,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
   background: url('/assets/ui/unit-cooldown.png');
   background-size: cover;
 }
+
 .rune {
   width: 18px;
   height: 20px;
@@ -179,6 +183,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
     transform: translateY(5px);
   }
 }
+
 .avatar-container {
   transform: translateY(-8px);
 
@@ -306,12 +311,22 @@ ul > li {
 .unit-name {
   margin-top: 140px;
   margin-inline: var(--size-3);
+  line-height: 1.1;
+  > div:first-child {
+    font-size: var(--font-size-00);
+    color: var(--text-2);
+    text-align: center;
+    text-shadow: 0 2px black;
+    text-transform: capitalize;
+  }
 
-  font-size: var(--font-size-3);
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 0 2px black;
-  text-transform: capitalize;
+  > div:last-child {
+    font-size: var(--font-size-3);
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px black;
+    text-transform: capitalize;
+  }
 }
 
 .unit-text {

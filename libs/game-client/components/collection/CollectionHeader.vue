@@ -52,7 +52,7 @@ label {
     color: var(--primary);
   }
 
-  &:has(input:checked) {
+  &:has(input:is(:checked, :focus-visible)) {
     border-bottom: solid var(--border-size-1) var(--primary);
     > img {
       transform: scale(1.25);
