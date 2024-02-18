@@ -76,6 +76,7 @@ const onMousemove = (e: MouseEvent) => {
 }
 .perspective-wrapper {
   transform-style: preserve-3d;
+  padding: var(--size-1);
   perspective: 40rem;
   animation: test 0.3s;
   > * {
@@ -84,13 +85,8 @@ const onMousemove = (e: MouseEvent) => {
 }
 .card {
   position: relative;
-  overflow-y: hidden;
   display: grid;
   transition: filter 0.3s;
-
-  > * {
-    overflow-y: hidden;
-  }
 
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);

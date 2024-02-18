@@ -66,6 +66,7 @@ export const useLoadoutForm = ({
     if (UNITS[unitId].kind === 'GENERAL') {
       return values.value?.generalId === unitId;
     }
+
     return values.value?.unitIds.has(unitId);
   };
 
@@ -74,12 +75,27 @@ export const useLoadoutForm = ({
     const result: Nullable<FactionName>[] = [];
 
     for (const unitId of values.value.unitIds.values()) {
+      const available = [...result];
       const unit = UNITS[unitId];
-      unit.factions.forEach(faction => {});
+
+      unit.factions.forEach(faction => {
+        const index = available.findIndex(
+          value => value === faction.id || value === null
+        );
+        if (index === -1) {
+          result.push(faction.id);
+        } else {
+          available.splice(index, 1);
+        }
+      });
 
       const isFull = result.length == 3;
       if (isFull) break;
     }
+
+    values.value.factions = result.concat(
+      Array.from({ length: 3 - result.length }, () => null)
+    ) as [FactionName, FactionName, FactionName];
   };
 
   const toggleUnit = (unit: UnitBlueprint) => {

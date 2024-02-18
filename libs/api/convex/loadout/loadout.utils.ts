@@ -64,6 +64,7 @@ export const ensureCorrectFactions = (
     return name;
   }) as [FactionName, FactionName, FactionName];
 };
+
 export const ensureValidUnitsFactions = (factions: FactionName[], unitIds: string[]) => {
   for (const unitId of unitIds) {
     const available = [...factions];

@@ -1,7 +1,7 @@
-import { Faction } from '../faction/faction-lookup';
+import { FACTIONS, FACTION_NAMES, Faction } from '../faction/faction-lookup';
 import { keyBy } from 'lodash-es';
 import { Skill } from '../skill/skill';
-import { UnitKind } from './constants';
+import { UNIT_KIND, UnitKind } from './constants';
 // import { HAVEN_UNITS } from './haven.units';
 // import { CHAOS_UNITS } from './chaos.units';
 import { Point3D } from '../types';
@@ -9,6 +9,7 @@ import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 // import { NEUTRAL_UNITS } from './neutral.units';
 import { Effect } from '../effect/effect';
+import { MeleeAttack } from '../skill/melee-attack.skill';
 
 export type UnitId = string;
 
@@ -45,6 +46,55 @@ export type UnitBlueprint = {
 
 export const UNITS = keyBy(
   // [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
-  [] as UnitBlueprint[],
+  [
+    {
+      id: 'melee-fire',
+      spriteId: 'haven-hero2',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.FIRE],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-water',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.WATER],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-air',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.AIR],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-earth',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.EARTH],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    }
+  ] as UnitBlueprint[],
   'id'
 ) satisfies Record<UnitId, UnitBlueprint>;

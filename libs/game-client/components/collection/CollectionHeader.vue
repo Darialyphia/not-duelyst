@@ -43,7 +43,7 @@ const isDisabled = (faction: FactionId) => {
 header {
   display: flex;
   gap: var(--size-8);
-  padding: var(--size-3) var(--size-6);
+  padding: var(--size-2) var(--size-6);
   box-shadow: none;
 }
 </style>

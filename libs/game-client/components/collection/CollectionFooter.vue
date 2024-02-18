@@ -29,7 +29,7 @@ footer {
   align-items: center;
   justify-content: center;
 
-  padding: var(--size-2);
+  padding: var(--size-1);
 
   box-shadow: none;
 }

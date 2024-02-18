@@ -8,7 +8,9 @@ export const FACTION_NAMES = {
   FIRE: 'FIRE',
   WATER: 'WATER',
   AIR: 'AIR',
-  EARTH: 'EARTH'
+  EARTH: 'EARTH',
+  LIGHT: 'LIGHT',
+  DARK: 'DARK'
 } as const;
 
 export type FactionName = Values<typeof FACTION_NAMES>;
@@ -26,5 +28,11 @@ export const FACTIONS = {
   },
   [FACTION_NAMES.EARTH]: {
     id: FACTION_NAMES.EARTH
+  },
+  [FACTION_NAMES.LIGHT]: {
+    id: FACTION_NAMES.LIGHT
+  },
+  [FACTION_NAMES.DARK]: {
+    id: FACTION_NAMES.DARK
   }
 } as const satisfies Record<FactionName, Faction>;

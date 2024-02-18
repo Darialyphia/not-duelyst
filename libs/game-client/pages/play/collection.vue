@@ -116,9 +116,7 @@ const editLoadout = (loadout: LoadoutDto) => {
             {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
           </header>
 
-          <p v-if="!sortedLoadoutUnits.length" class="text-center p-4">
-            First, select a general.
-          </p>
+          <p>{{ values?.factions }}</p>
 
           <ul v-if="values" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
@@ -244,7 +242,7 @@ const editLoadout = (loadout: LoadoutDto) => {
   column-gap: var(--size-4);
   justify-items: center;
 
-  padding-block-start: var(--size-2);
+  padding-block-start: var(--size-4);
   padding-inline: var(--size-2);
 
   border-radius: var(--radius-2);
