@@ -59,18 +59,19 @@ const selectedSkill = ref<Nullable<Skill>>(null);
         </li>
       </ul>
 
-      <div class="unit-text">
-        <p v-if="selectedSkill">
+      <div v-if="selectedSkill" class="unit-text">
+        <p>
           {{ selectedSkill.getText(unit) }}
         </p>
-        <template v-else>
-          <p v-if="unit.onSummoned?.getDescription">
-            On summoned: {{ unit.onSummoned.getDescription(unit) }}
-          </p>
-          <p v-for="(trigger, index) in unit.effects" :key="index">
-            {{ trigger.description }}
-          </p>
-        </template>
+      </div>
+
+      <div v-else-if="unit.onSummoned || unit.effects?.length" class="unit-text">
+        <p v-if="unit.onSummoned?.getDescription">
+          On summoned: {{ unit.onSummoned.getDescription(unit) }}
+        </p>
+        <p v-for="(trigger, index) in unit.effects" :key="index">
+          {{ trigger.description }}
+        </p>
       </div>
     </div>
 
@@ -330,9 +331,15 @@ ul > li {
 }
 
 .unit-text {
+  width: 90%;
   margin-inline: auto;
-  padding-inline: var(--size-4);
+  padding: var(--size-1) var(--size-3);
+
+  font-size: var(--font-size-00);
   line-height: 1.1;
   text-shadow: 0 2px black;
+
+  background-color: hsl(var(--gray-11-hsl) / 0.8);
+  border: var(--fancy-border);
 }
 </style>

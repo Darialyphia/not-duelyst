@@ -234,6 +234,8 @@ const editLoadout = (loadout: LoadoutDto) => {
   place-content: center;
 }
 .card-list {
+  scroll-snap-type: y mandatory;
+
   overflow-x: hidden;
   overflow-y: auto;
   display: grid;
@@ -247,6 +249,10 @@ const editLoadout = (loadout: LoadoutDto) => {
   padding-inline: var(--size-4);
 
   border-radius: var(--radius-2);
+
+  > * {
+    scroll-snap-align: start;
+  }
 }
 
 .loadout {

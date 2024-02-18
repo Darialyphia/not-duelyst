@@ -171,6 +171,19 @@ export const UNITS = keyBy(
       attack: 2,
       speed: 3,
       skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'necromancer',
+      spriteId: 'necromancer',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.DARK, FACTIONS.DARK],
+      rarity: RARITY.COMMON,
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
     }
   ] as UnitBlueprint[],
   'id'
