@@ -49,9 +49,9 @@ export const useLoadoutForm = ({
   const canAddUnit = (unitId: string) => {
     const unit = UNITS[unitId];
 
+    if (!values.value) return false;
+    const available = [...values.value.factions];
     return unit.factions.every(faction => {
-      if (!values.value) return false;
-      const available = [...values.value.factions];
       const index = available.findIndex(value => value === faction.id || value === null);
       if (index === -1) {
         return false;

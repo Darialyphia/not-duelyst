@@ -10,6 +10,7 @@ import { GameSession } from '../game-session';
 // import { NEUTRAL_UNITS } from './neutral.units';
 import { Effect } from '../effect/effect';
 import { MeleeAttack } from '../skill/melee-attack.skill';
+import { Fireball } from '../skill/fireball.skill';
 
 export type UnitId = string;
 
@@ -48,8 +49,50 @@ export const UNITS = keyBy(
   // [...NEUTRAL_UNITS, ...HAVEN_UNITS, ...CHAOS_UNITS],
   [
     {
+      id: 'melee-fire-air',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.FIRE, FACTIONS.AIR],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-fire-fire-air',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.DARK, FACTIONS.DARK, FACTIONS.FIRE],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 10,
+      attack: 2,
+      speed: 3,
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new Fireball({
+          cooldown: 1,
+          cost: 0,
+          power: 0,
+          dotDuration: 2,
+          dotPower: 1,
+          range: 2,
+          spriteId: 'fireball'
+        }),
+        new MeleeAttack({
+          cooldown: 1,
+          cost: 0,
+          power: 0,
+          spriteId: 'vulnerable',
+          id: 'test'
+        })
+      ]
+    },
+    {
       id: 'melee-fire',
-      spriteId: 'haven-hero2',
+      spriteId: 'chaos-melee',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.FIRE],
       summonCost: 2,
@@ -88,6 +131,30 @@ export const UNITS = keyBy(
       spriteId: 'chaos-melee',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.EARTH],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-light',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.LIGHT],
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 2,
+      speed: 3,
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+    },
+    {
+      id: 'melee-dark',
+      spriteId: 'chaos-melee',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.DARK],
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,

@@ -41,7 +41,8 @@ const onMousemove = (e: MouseEvent) => {
       :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
       class="card"
       :class="{
-        used: isEditingLoadout && isInLoadout
+        used: isEditingLoadout && isInLoadout,
+        disabled: isEditingLoadout && !canAddToLoadout
       }"
       :style="{
         '--rotate-y': angle.x.toFixed(2),
@@ -52,14 +53,10 @@ const onMousemove = (e: MouseEvent) => {
       @keyup.enter="emit('click')"
     >
       <UnitBlueprintCard :unit="card.unit" />
-      <Transition>
-        <Icon
-          v-if="isInLoadout && isEditingLoadout"
-          name="material-symbols-light:arrow-drop-down-circle-rounded"
-          size="2rem"
-          class="used-indicator"
-        />
-      </Transition>
+
+      <div v-if="isEditingLoadout && !canAddToLoadout" class="wrong-runes-warning">
+        Incompatible runes.
+      </div>
     </div>
   </div>
 </template>
@@ -88,6 +85,11 @@ const onMousemove = (e: MouseEvent) => {
   display: grid;
   transition: filter 0.3s;
 
+  > * {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
   }
@@ -96,30 +98,27 @@ const onMousemove = (e: MouseEvent) => {
     outline: solid var(--border-size-2) var(--primary);
   }
 
+  &.disabled {
+    opacity: 0.8;
+    filter: grayscale(0.5);
+  }
+
   &:not(.disabled):hover {
     /* transform: rotateY(calc(1deg * var(--rotate-y))); */
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
   }
 }
 
-.used-indicator {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.wrong-runes-warning {
+  z-index: 1;
 
-  margin: var(--size-2);
+  place-self: center;
 
-  color: var(--green-5);
+  width: 200px;
+  margin-top: -30px;
+  padding: var(--size-2) var(--size-3);
 
-  border: solid var(--border-size-2) var(--green-2);
-  border-radius: var(--radius-round);
-
-  &:is(.v-enter-active, .v-leave-active) {
-    transition: all 0.3s;
-  }
-  &:is(.v-enter-from, .v-leave-to) {
-    transform: scale(0);
-    opacity: 0;
-  }
+  background: hsl(0 0 0 / 0.9);
+  border-radius: var(--radius-2);
 }
 </style>

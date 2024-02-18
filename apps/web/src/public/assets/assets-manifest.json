@@ -1879,6 +1879,19 @@
         },
         {
           "alias": [
+            "rune-empty.png"
+          ],
+          "src": [
+            "/assets/ui/rune-empty.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "rune-fire.png"
           ],
           "src": [
@@ -1918,6 +1931,19 @@
         },
         {
           "alias": [
+            "skill-border.png"
+          ],
+          "src": [
+            "/assets/ui/skill-border.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "surface-bg.png"
           ],
           "src": [
@@ -1931,10 +1957,75 @@
         },
         {
           "alias": [
+            "unit-attack.png"
+          ],
+          "src": [
+            "/assets/ui/unit-attack.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "unit-cooldown.png"
+          ],
+          "src": [
+            "/assets/ui/unit-cooldown.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "unit-cost-background.png"
           ],
           "src": [
             "/assets/ui/unit-cost-background.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "unit-cost-bg-v2.png"
+          ],
+          "src": [
+            "/assets/ui/unit-cost-bg-v2.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "unit-defense.png"
+          ],
+          "src": [
+            "/assets/ui/unit-defense.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "unit-speed.png"
+          ],
+          "src": [
+            "/assets/ui/unit-speed.png"
           ],
           "data": {
             "tags": {

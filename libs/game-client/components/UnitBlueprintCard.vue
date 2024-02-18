@@ -159,8 +159,8 @@ const selectedSkill = ref<Nullable<Skill>>(null);
   display: grid;
   place-content: center;
 
-  width: 64px;
-  height: 64px;
+  width: 76px;
+  height: 76px;
 
   font-size: var(--font-size-5);
   font-weight: 700;
@@ -215,7 +215,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
     place-content: center;
 
     aspect-ratio: 1;
-    width: 64px;
+    width: 76px;
 
     font-size: var(--font-size-5);
     font-weight: 700;
@@ -286,6 +286,7 @@ ul > li {
 
 .skills-list {
   display: flex;
+  gap: var(--size-4);
   justify-content: center;
 }
 
@@ -309,11 +310,14 @@ ul > li {
   font-size: var(--font-size-3);
   font-weight: 600;
   text-align: center;
+  text-shadow: 0 2px black;
   text-transform: capitalize;
 }
 
 .unit-text {
   margin-inline: auto;
   padding-inline: var(--size-4);
+  line-height: 1.1;
+  text-shadow: 0 2px black;
 }
 </style>

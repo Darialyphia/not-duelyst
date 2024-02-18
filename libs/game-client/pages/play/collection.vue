@@ -35,17 +35,11 @@ const {
 
 const {
   factionFilter,
-  page,
-  pageCount,
-  prevPage,
-  nextPage,
   displayedUnits,
   loadouts,
   isLoadoutsLoading,
   isCollectionLoading
-} = useCollection({
-  itemsPerPage: ITEMS_PER_PAGE
-});
+} = useCollection();
 
 const sortedLoadoutUnits = computed(() =>
   [...(values.value?.unitIds ?? [])]
@@ -83,13 +77,9 @@ const editLoadout = (loadout: LoadoutDto) => {
 
   <div v-else class="collection-page">
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
-    <CollectionHeader
-      v-model:filter="factionFilter"
-      :sidebar-view="sidebarView"
-      :selected-general="general"
-    />
+    <CollectionHeader v-model:filter="factionFilter" />
 
-    <section name="card-list" class="card-list">
+    <section class="card-list fancy-scrollbar">
       <CollectionCard
         v-for="item in displayedUnits"
         :key="item._id"
@@ -101,13 +91,6 @@ const editLoadout = (loadout: LoadoutDto) => {
       />
     </section>
 
-    <CollectionFooter
-      :page="page"
-      :page-count="pageCount"
-      @prev="prevPage"
-      @next="nextPage"
-    />
-
     <section class="sidebar">
       <template v-if="sidebarView === 'form'">
         <form @submit.prevent="save">
@@ -116,16 +99,33 @@ const editLoadout = (loadout: LoadoutDto) => {
             {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
           </header>
 
-          <p>{{ values?.factions }}</p>
+          <div class="flex gap-2">
+            <img
+              v-for="(faction, index) in values?.factions"
+              :key="index"
+              :src="`/assets/ui/rune-${faction?.toLocaleLowerCase() ?? 'empty'}.png`"
+              class="faction-rune"
+            />
+          </div>
 
           <ul v-if="values" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
                 {{ unit.summonCost }}
               </div>
+
               <img :src="`/assets/units/${unit.spriteId}-icon.png`" />
               {{ unit.id }}
-
+              <div class="flex gap-2">
+                <img
+                  v-for="(faction, index) in unit.factions"
+                  :key="index"
+                  :src="`/assets/ui/rune-${
+                    faction?.id.toLocaleLowerCase() ?? 'empty'
+                  }.png`"
+                  class="faction-rune"
+                />
+              </div>
               <UiIconButton
                 name="mdi:minus"
                 aria-label="remove from loadout"
@@ -237,13 +237,13 @@ const editLoadout = (loadout: LoadoutDto) => {
   overflow-y: auto;
   display: grid;
   grid-auto-rows: calc(50% - 2 * var(--size-2));
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  row-gap: var(--size-3);
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  row-gap: var(--size-6);
   column-gap: var(--size-4);
   justify-items: center;
 
-  padding-block-start: var(--size-4);
-  padding-inline: var(--size-2);
+  padding-block-start: var(--size-3);
+  padding-inline: var(--size-4);
 
   border-radius: var(--radius-2);
 }
@@ -364,5 +364,11 @@ form {
       transform: translateY(2px);
     }
   }
+}
+
+.faction-rune {
+  width: 18px;
+  height: 20px;
+  image-rendering: pixelated;
 }
 </style>

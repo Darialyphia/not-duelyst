@@ -3,7 +3,7 @@ import type { CollectionItemDto } from '@hc/api/convex/collection/collection.uti
 import { UNITS, type UnitBlueprint } from '@hc/sdk';
 import { FACTIONS, type FactionId } from '@hc/sdk/src/faction/faction-lookup';
 
-export const useCollection = ({ itemsPerPage }: { itemsPerPage: number }) => {
+export const useCollection = () => {
   const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
     api.collection.myCollection,
     {}
@@ -11,9 +11,7 @@ export const useCollection = ({ itemsPerPage }: { itemsPerPage: number }) => {
 
   const factions: FactionId[] = Object.values(FACTIONS).map(f => f.id);
 
-  const page = ref(0);
-
-  const factionFilter = ref<FactionId>(factions[0]);
+  const factionFilter = ref<FactionId[]>([]);
 
   const allUnits = computed(() =>
     collection.value.map(item => {
@@ -40,40 +38,16 @@ export const useCollection = ({ itemsPerPage }: { itemsPerPage: number }) => {
     return a.unit.summonCost - b.unit.summonCost;
   };
 
-  const filteredUnits = computed(() => {
+  const displayedUnits = computed(() => {
     if (!collection.value) return [];
+    if (!factionFilter.value.length) return allUnits.value;
 
     return allUnits.value
-      .filter(({ unit }) => unit.factions.some(({ id }) => id === factionFilter.value))
+      .filter(({ unit }) =>
+        unit.factions.some(({ id }) => factionFilter.value.includes(id))
+      )
       .sort(sortUnitFunction);
   });
-
-  const displayedUnits = computed(() =>
-    filteredUnits.value.slice(
-      page.value * itemsPerPage,
-      page.value * itemsPerPage + itemsPerPage
-    )
-  );
-
-  const pageCount = computed(() => Math.ceil(filteredUnits.value.length / itemsPerPage));
-
-  const prevPage = () => {
-    if (page.value > 0) {
-      page.value--;
-    } else {
-      nextTick(() => {
-        page.value = pageCount.value - 1;
-      });
-    }
-  };
-
-  const nextPage = () => {
-    if (page.value < pageCount.value - 1) {
-      page.value++;
-    } else {
-      page.value = 0;
-    }
-  };
 
   const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
     api.loadout.myLoadouts,
@@ -81,10 +55,6 @@ export const useCollection = ({ itemsPerPage }: { itemsPerPage: number }) => {
   );
 
   return {
-    page,
-    pageCount,
-    prevPage,
-    nextPage,
     factionFilter,
     loadouts,
     isLoadoutsLoading,
