@@ -2,7 +2,7 @@ import { api } from '@hc/api';
 import type { Id } from '@hc/api/convex/_generated/dataModel';
 import type { LoadoutDto } from '@hc/api/convex/loadout/loadout.mapper';
 import { UNITS, type FactionName, type UnitBlueprint } from '@hc/sdk';
-import type { Nullable } from '@hc/shared';
+import { isDefined, type Nullable } from '@hc/shared';
 
 export const useLoadoutForm = ({
   defaultName,
@@ -74,7 +74,10 @@ export const useLoadoutForm = ({
     if (!values.value) return;
     const result: Nullable<FactionName>[] = [];
 
-    for (const unitId of values.value.unitIds.values()) {
+    const all = [...values.value.unitIds.values(), values.value.generalId].filter(
+      isDefined
+    );
+    for (const unitId of all) {
       const available = [...result];
       const unit = UNITS[unitId];
 
