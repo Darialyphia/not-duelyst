@@ -135,7 +135,7 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-earth',
-      spriteId: 'aeromancer',
+      spriteId: 'barbarian',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.EARTH],
       rarity: RARITY.COMMON,
