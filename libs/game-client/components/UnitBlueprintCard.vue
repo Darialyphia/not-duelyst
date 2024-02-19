@@ -11,14 +11,15 @@ const selectedSkill = ref<Nullable<Skill>>(null);
 
 <template>
   <article
-    class="entity-card"
+    class="unit-blueprint-card"
+    :class="unit.kind.toLocaleLowerCase()"
     :style="{
       '--bg': `url('/assets/ui/card-back-${unit.rarity}.png')`,
       '--sprite': `url('/assets/units/${unit.spriteId}-icon.png')`
     }"
   >
-    <div v-if="unit.kind !== 'GENERAL'" class="cost relative">
-      {{ unit.summonCost }}
+    <div class="cost relative">
+      <span v-if="unit.kind !== 'GENERAL'">{{ unit.summonCost }}</span>
 
       <div class="flex justify-center gap-1 absolute bottom-0 w-full">
         <div
@@ -34,7 +35,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
       </div>
     </div>
 
-    <div class="cooldown">{{ unit.summonCooldown }}</div>
+    <div v-if="unit.kind !== 'GENERAL'" class="cooldown">{{ unit.summonCooldown }}</div>
 
     <div class="unit-name">
       <div>{{ unit.kind }}</div>
@@ -90,7 +91,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
 </template>
 
 <style scoped lang="postcss">
-.entity-card {
+.unit-blueprint-card {
   user-select: none;
 
   position: relative;
@@ -333,7 +334,7 @@ ul > li {
 .unit-text {
   width: 90%;
   margin-inline: auto;
-  padding: var(--size-1) var(--size-3);
+  padding: var(--size-1) var(--size-2);
 
   font-size: var(--font-size-00);
   line-height: 1.1;

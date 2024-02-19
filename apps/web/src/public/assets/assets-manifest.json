@@ -2159,6 +2159,46 @@
         },
         {
           "alias": [
+            "air-dark-dragon-icon.png"
+          ],
+          "src": [
+            "/assets/units/air-dark-dragon-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "air-dark-dragon"
+          ],
+          "src": [
+            "/assets/units/air-dark-dragon.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "air-dark-dragon.png"
+          ],
+          "src": [
+            "/assets/units/air-dark-dragon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
             "archer-icon.png"
           ],
           "src": [
@@ -2430,6 +2470,673 @@
           ],
           "src": [
             "/assets/units/executioner.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "footman-icon.png"
+          ],
+          "src": [
+            "/assets/units/footman-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "footman"
+          ],
+          "src": [
+            "/assets/units/footman.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "footman.png"
+          ],
+          "src": [
+            "/assets/units/footman.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero.-icon.png"
+          ],
+          "src": [
+            "/assets/units/haven-hero.-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero"
+          ],
+          "src": [
+            "/assets/units/haven-hero.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero.png"
+          ],
+          "src": [
+            "/assets/units/haven-hero.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero2-icon.png"
+          ],
+          "src": [
+            "/assets/units/haven-hero2-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero2"
+          ],
+          "src": [
+            "/assets/units/haven-hero2.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "haven-hero2.png"
+          ],
+          "src": [
+            "/assets/units/haven-hero2.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "ice-queen-icon.png"
+          ],
+          "src": [
+            "/assets/units/ice-queen-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "ice-queen"
+          ],
+          "src": [
+            "/assets/units/ice-queen.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "ice-queen.png"
+          ],
+          "src": [
+            "/assets/units/ice-queen.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "ice-ranger"
+          ],
+          "src": [
+            "/assets/units/ice-ranger.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "ice-ranger.png"
+          ],
+          "src": [
+            "/assets/units/ice-ranger.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "midas-icon.png"
+          ],
+          "src": [
+            "/assets/units/midas-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "midas"
+          ],
+          "src": [
+            "/assets/units/midas.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "midas.png"
+          ],
+          "src": [
+            "/assets/units/midas.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "necromancer-icon.png"
+          ],
+          "src": [
+            "/assets/units/necromancer-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "necromancer"
+          ],
+          "src": [
+            "/assets/units/necromancer.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "necromancer.png"
+          ],
+          "src": [
+            "/assets/units/necromancer.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "paladin-icon.gif"
+          ],
+          "src": [
+            "/assets/units/paladin-icon.gif"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "paladin"
+          ],
+          "src": [
+            "/assets/units/paladin.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "paladin.png"
+          ],
+          "src": [
+            "/assets/units/paladin.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "priest-icon.png"
+          ],
+          "src": [
+            "/assets/units/priest-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "priest"
+          ],
+          "src": [
+            "/assets/units/priest.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "priest.png"
+          ],
+          "src": [
+            "/assets/units/priest.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "pyromancer-icon.png"
+          ],
+          "src": [
+            "/assets/units/pyromancer-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "pyromancer"
+          ],
+          "src": [
+            "/assets/units/pyromancer.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "pyromancer.png"
+          ],
+          "src": [
+            "/assets/units/pyromancer.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "shield-icon.png"
+          ],
+          "src": [
+            "/assets/units/shield-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "shield"
+          ],
+          "src": [
+            "/assets/units/shield.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "shield.png"
+          ],
+          "src": [
+            "/assets/units/shield.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "smasher-icon.png"
+          ],
+          "src": [
+            "/assets/units/smasher-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "smasher"
+          ],
+          "src": [
+            "/assets/units/smasher.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "smasher.png"
+          ],
+          "src": [
+            "/assets/units/smasher.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank-icon.png"
+          ],
+          "src": [
+            "/assets/units/tank-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank"
+          ],
+          "src": [
+            "/assets/units/tank.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank.png"
+          ],
+          "src": [
+            "/assets/units/tank.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank2-icon.png"
+          ],
+          "src": [
+            "/assets/units/tank2-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank2"
+          ],
+          "src": [
+            "/assets/units/tank2.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "tank2.png"
+          ],
+          "src": [
+            "/assets/units/tank2.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "thief-icon.png"
+          ],
+          "src": [
+            "/assets/units/thief-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "thief"
+          ],
+          "src": [
+            "/assets/units/thief.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "thief.png"
+          ],
+          "src": [
+            "/assets/units/thief.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "titan-icon.png"
+          ],
+          "src": [
+            "/assets/units/titan-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "titan"
+          ],
+          "src": [
+            "/assets/units/titan.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "titan.png"
+          ],
+          "src": [
+            "/assets/units/titan.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "willowisp-icon.png"
+          ],
+          "src": [
+            "/assets/units/willowisp-icon.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "willowisp"
+          ],
+          "src": [
+            "/assets/units/willowisp.json"
+          ],
+          "loadParser": "Aseprite_spritesheet_Parser",
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "willowisp.png"
+          ],
+          "src": [
+            "/assets/units/willowisp.png"
           ],
           "data": {
             "tags": {
