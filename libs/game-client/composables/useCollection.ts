@@ -24,23 +24,16 @@ export const useCollection = () => {
   const sortUnitFunction = (a: CollectionItemWithUnit, b: CollectionItemWithUnit) => {
     const aFaction = a.unit.factions[0];
     const bFaction = b.unit.factions[0];
-    if (aFaction && !bFaction) {
-      return 1;
-    }
-    if (!aFaction && bFaction) {
-      return -1;
-    }
-    if (aFaction && bFaction) {
-      const factionDiff = factions.indexOf(bFaction.id) - factions.indexOf(aFaction.id);
-      if (factionDiff !== 0) return factionDiff;
-    }
+
+    const factionDiff = factions.indexOf(bFaction.id) - factions.indexOf(aFaction.id);
+    if (factionDiff !== 0) return factionDiff;
 
     return a.unit.summonCost - b.unit.summonCost;
   };
 
   const displayedUnits = computed(() => {
     if (!collection.value) return [];
-    if (!factionFilter.value.length) return allUnits.value;
+    if (!factionFilter.value.length) return allUnits.value.sort(sortUnitFunction);
 
     return allUnits.value
       .filter(({ unit }) =>

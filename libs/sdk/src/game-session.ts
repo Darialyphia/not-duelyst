@@ -4,7 +4,7 @@ import { Entity, SerializedEntity, EntityEvent, EntityEventMap } from './entity/
 import { EntityManager } from './entity/entity-manager';
 import { ActionHistory } from './action/action-history';
 import { GameMap, GameMapOptions } from './map/map';
-import { Player, PlayerId } from './player/player';
+import { PlayerId, Player } from './player/player';
 import { PlayerManager, SerializedPlayer } from './player/player-manager';
 import { SerializedAction } from './action/action-deserializer';
 import { ActionQueue } from './action/action-queue';

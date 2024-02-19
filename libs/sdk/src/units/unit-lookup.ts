@@ -1,4 +1,4 @@
-import { FACTIONS, FACTION_NAMES, Faction } from '../faction/faction-lookup';
+import { FACTIONS, Faction } from '../faction/faction-lookup';
 import { keyBy } from 'lodash-es';
 import { Skill } from '../skill/skill';
 import { UNIT_KIND, UnitKind } from './constants';
@@ -12,6 +12,7 @@ import { Effect } from '../effect/effect';
 import { MeleeAttack } from '../skill/melee-attack.skill';
 import { Fireball } from '../skill/fireball.skill';
 import { RARITY, Rarity } from '../enums';
+import { Teleport } from '../skill/teleport.skill';
 
 export type UnitId = string;
 
@@ -124,14 +125,31 @@ export const UNITS = keyBy(
       id: 'melee-air',
       spriteId: 'air-dark-dragon',
       kind: UNIT_KIND.SOLDIER,
-      factions: [FACTIONS.AIR],
+      factions: [FACTIONS.DARK, FACTIONS.AIR, FACTIONS.AIR],
       rarity: RARITY.LEGENDARY,
-      summonCost: 2,
-      summonCooldown: 4,
-      maxHp: 7,
-      attack: 2,
+      summonCost: 5,
+      summonCooldown: 5,
+      maxHp: 10,
+      attack: 4,
       speed: 3,
-      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new Fireball({
+          cooldown: 2,
+          cost: 0,
+          power: 0,
+          dotDuration: 2,
+          dotPower: 1,
+          range: 2,
+          spriteId: 'fireball'
+        }),
+        new Teleport({
+          cooldown: 3,
+          maxRange: 3,
+          minRange: 0,
+          cost: 0
+        })
+      ]
     },
     {
       id: 'melee-earth',

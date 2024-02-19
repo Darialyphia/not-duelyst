@@ -1,14 +1,15 @@
-import { clamp, isDefined } from '@hc/shared';
-import { UNITS, UnitBlueprint, UnitId } from '../units/unit-lookup';
-import { Serializable } from '../utils/interfaces';
-import { GameSession } from '../game-session';
-import { Entity } from '../entity/entity';
-import type { SerializedPlayer } from './player-manager';
+import { UnitId, UNITS, UnitBlueprint } from '../units/unit-lookup';
 export type PlayerId = string;
 
 export type Loadout = {
   units: Record<UnitId, { cooldown: number }>;
 };
+import { clamp, isDefined } from '@hc/shared';
+import { Serializable } from '../utils/interfaces';
+import { GameSession } from '../game-session';
+import { Entity } from '../entity/entity';
+import type { SerializedPlayer } from './player-manager';
+import { config } from '../config';
 
 export class Player implements Serializable {
   public readonly id: PlayerId;
@@ -89,6 +90,6 @@ export class Player implements Serializable {
     Object.entries(this.loadout.units).forEach(([, unit]) => {
       unit.cooldown = clamp(unit.cooldown - 1, 0, Infinity);
     });
-    this.gold += 2;
+    this.gold += config.GOLD_PER_TURN;
   }
 }
