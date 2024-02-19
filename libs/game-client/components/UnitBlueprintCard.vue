@@ -117,7 +117,7 @@ const selectedSkill = ref<Nullable<Skill>>(null);
     content: '';
 
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -125,8 +125,11 @@ const selectedSkill = ref<Nullable<Skill>>(null);
     aspect-ratio: 1;
     width: 128px;
 
-    background: var(--sprite), linear-gradient(135deg, var(--gray-9), var(--gray-12));
+    background: var(--sprite);
     background-size: cover;
+
+    mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
+      linear-gradient(to bottom, black, black 66%, transparent 66%);
   }
 
   p {

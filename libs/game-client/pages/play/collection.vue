@@ -96,7 +96,7 @@ const editLoadout = (loadout: LoadoutDto) => {
         <form @submit.prevent="save">
           <header>
             <input v-model="values!.name" class="py-3 flex-1" contenteditable />
-            {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }} units
+            {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }}
           </header>
 
           <div class="flex gap-2 items-center">

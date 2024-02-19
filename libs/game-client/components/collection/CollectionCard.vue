@@ -118,7 +118,7 @@ const onMousemove = (e: MouseEvent) => {
   margin-top: -30px;
   padding: var(--size-2) var(--size-3);
 
-  background: hsl(0 0 0 / 0.9);
+  background: hsl(0 0% 0% / 0.9);
   border-radius: var(--radius-2);
 }
 </style>
