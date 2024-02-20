@@ -15,17 +15,16 @@ const selectedSkill = ref<Nullable<Skill>>(null);
     :class="unit.kind.toLocaleLowerCase()"
     :style="{
       '--bg': `url('/assets/ui/card-back-${unit.rarity}.png')`,
-      '--sprite': `url('/assets/units/${unit.spriteId}-icon.png')`
+      '--sprite': `url('/assets/units/${unit.spriteId}-card.png')`
     }"
   >
     <div class="cost relative">
-      <span v-if="unit.kind !== 'GENERAL'">{{ unit.summonCost }}</span>
+      <template v-if="unit.kind !== 'GENERAL'">{{ unit.summonCost }}</template>
 
-      <div class="flex justify-center gap-1 absolute bottom-0 w-full">
+      <div class="runes">
         <div
           v-for="(_, i) in 3"
           :key="i"
-          class="rune"
           :style="{
             '--bg': `url('/assets/ui/rune-${
               unit.factions[i]?.id.toLowerCase() ?? 'empty'
@@ -60,20 +59,22 @@ const selectedSkill = ref<Nullable<Skill>>(null);
         </li>
       </ul>
 
-      <div v-if="selectedSkill" class="unit-text">
-        <p>
-          {{ selectedSkill.getText(unit) }}
-        </p>
-      </div>
+      <Transition mode="out-in">
+        <div v-if="selectedSkill" class="unit-text">
+          <p>
+            {{ selectedSkill.getText(unit) }}
+          </p>
+        </div>
 
-      <div v-else-if="unit.onSummoned || unit.effects?.length" class="unit-text">
-        <p v-if="unit.onSummoned?.getDescription">
-          On summoned: {{ unit.onSummoned.getDescription(unit) }}
-        </p>
-        <p v-for="(trigger, index) in unit.effects" :key="index">
-          {{ trigger.description }}
-        </p>
-      </div>
+        <div v-else-if="unit.onSummoned || unit.effects?.length" class="unit-text">
+          <p v-if="unit.onSummoned?.getDescription">
+            On summoned: {{ unit.onSummoned.getDescription(unit) }}
+          </p>
+          <p v-for="(trigger, index) in unit.effects" :key="index">
+            {{ trigger.description }}
+          </p>
+        </div>
+      </Transition>
     </div>
 
     <div class="stats">
@@ -113,23 +114,40 @@ const selectedSkill = ref<Nullable<Skill>>(null);
 
   image-rendering: pixelated;
 
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    top: 20px;
+    left: 60px;
+
+    aspect-ratio: 1;
+    width: 128px;
+
+    background: linear-gradient(135deg, var(--gray-9), var(--gray-10));
+  }
+
   &::before {
+    pointer-events: none;
     content: '';
 
     position: absolute;
     z-index: 1;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-99px);
 
     aspect-ratio: 1;
-    width: 128px;
+    width: 320px;
 
     background: var(--sprite);
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 320px 320px;
 
     mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
-      linear-gradient(to bottom, black, black 66%, transparent 66%);
+      linear-gradient(to bottom, black, black 180px, transparent 180px);
   }
 
   p {
@@ -178,14 +196,24 @@ const selectedSkill = ref<Nullable<Skill>>(null);
   background-size: cover;
 }
 
-.rune {
-  width: 18px;
-  height: 20px;
-  background-image: var(--bg);
-  background-size: contain;
+.runes {
+  position: absolute;
+  bottom: 0;
 
-  &:nth-of-type(2) {
-    transform: translateY(5px);
+  display: flex;
+  gap: var(--size-1);
+  justify-content: center;
+
+  width: 100%;
+  > div {
+    width: 18px;
+    height: 20px;
+    background-image: var(--bg);
+    background-size: contain;
+
+    &:nth-of-type(2) {
+      transform: translateY(5px);
+    }
   }
 }
 
@@ -345,5 +373,13 @@ ul > li {
 
   background-color: hsl(var(--gray-11-hsl) / 0.8);
   border: var(--fancy-border);
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: opacity 0.2s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    opacity: 0;
+  }
 }
 </style>

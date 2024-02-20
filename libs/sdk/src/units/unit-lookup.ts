@@ -68,7 +68,7 @@ export const UNITS = keyBy(
       id: 'melee-fire-fire-air',
       spriteId: 'haven-hero2',
       kind: UNIT_KIND.GENERAL,
-      factions: [FACTIONS.DARK, FACTIONS.DARK, FACTIONS.FIRE],
+      factions: [FACTIONS.AIR, FACTIONS.DARK, FACTIONS.FIRE],
       rarity: RARITY.LEGENDARY,
       summonCost: 2,
       summonCooldown: 4,
@@ -192,7 +192,7 @@ export const UNITS = keyBy(
     },
     {
       id: 'necromancer',
-      spriteId: 'necromancer',
+      spriteId: 'midas',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK, FACTIONS.DARK],
       rarity: RARITY.COMMON,
