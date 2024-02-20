@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { gameSession, state } = useGame();
-const { selectedEntity, hoveredCell } = useGameUi();
+const { state } = useGame();
+const { selectedEntity } = useGameUi();
 
 const historyRef = ref<HTMLElement>();
 watch(

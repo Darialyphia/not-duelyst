@@ -11,6 +11,7 @@ import { Effect, EffectId } from '../effect/effect';
 import { makeInterceptor } from '../utils/interceptor';
 import { SummonInteractableAction } from '../action/summon-interactable.action';
 import { DieAction } from '../action/die.action';
+import { observableValue } from '../utils/helpers';
 
 export type EntityId = number;
 export const isEntityId = (x: unknown, ctx: GameSession): x is EntityId =>
@@ -86,17 +87,18 @@ export class Entity implements Serializable {
 
   off = this.emitter.off;
 
-  #hp = 0;
-  get hp() {
-    return this.#hp;
-  }
-
-  set hp(val) {
-    this.#hp = val;
-
-    if (this.#hp <= 0) {
+  #hp = observableValue(0, hp => {
+    if (hp <= 0) {
       this.ctx.actionQueue.push(new DieAction({ entityId: this.id }, this.ctx));
     }
+  });
+
+  get hp() {
+    return this.#hp.value;
+  }
+
+  set hp(val: number) {
+    this.#hp.value = val;
   }
 
   position: Vec3;

@@ -305,10 +305,10 @@
       "assets": [
         {
           "alias": [
-            "flat.png"
+            "Test.png"
           ],
           "src": [
-            "/assets/maps/flat.png"
+            "/assets/maps/Test.png"
           ],
           "data": {
             "tags": {
@@ -318,10 +318,10 @@
         },
         {
           "alias": [
-            "Test.png"
+            "flat.png"
           ],
           "src": [
-            "/assets/maps/Test.png"
+            "/assets/maps/flat.png"
           ],
           "data": {
             "tags": {
@@ -605,6 +605,19 @@
           ],
           "src": [
             "/assets/skills/vulnerable.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "waterball.png"
+          ],
+          "src": [
+            "/assets/skills/waterball.png"
           ],
           "data": {
             "tags": {
@@ -1838,11 +1851,12 @@
         },
         {
           "alias": [
-            "player_1start_position.png"
+            "player_1_start_position"
           ],
           "src": [
-            "/assets/ui/player_1start_position.png"
+            "/assets/ui/player_1_start_position.json"
           ],
+          "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
             "tags": {
               "m": true
@@ -1851,12 +1865,11 @@
         },
         {
           "alias": [
-            "player_1_start_position"
+            "player_1start_position.png"
           ],
           "src": [
-            "/assets/ui/player_1_start_position.json"
+            "/assets/ui/player_1start_position.png"
           ],
-          "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
             "tags": {
               "m": true
@@ -3024,6 +3037,19 @@
           ],
           "src": [
             "/assets/units/paladin-card.png"
+          ],
+          "data": {
+            "tags": {
+              "m": true
+            }
+          }
+        },
+        {
+          "alias": [
+            "paladin-icon.png"
+          ],
+          "src": [
+            "/assets/units/paladin-icon.png"
           ],
           "data": {
             "tags": {

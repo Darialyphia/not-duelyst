@@ -9,3 +9,16 @@ export const cellIdToPoint = (cellId: CellId): Point3D => {
 
   return { x, y, z };
 };
+
+export const observableValue = <T>(value: T, onChange: (val: T) => void) => {
+  const refObject = {
+    get value() {
+      return value;
+    },
+    set value(newValue) {
+      value = newValue;
+      onChange(this.value);
+    }
+  };
+  return refObject;
+};

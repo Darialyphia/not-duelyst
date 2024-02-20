@@ -17,22 +17,22 @@ export type FactionName = Values<typeof FACTION_NAMES>;
 export type FactionId = keyof typeof FACTIONS;
 
 export const FACTIONS = {
-  [FACTION_NAMES.FIRE]: {
+  FIRE: {
     id: FACTION_NAMES.FIRE
   },
-  [FACTION_NAMES.WATER]: {
+  WATER: {
     id: FACTION_NAMES.WATER
   },
-  [FACTION_NAMES.AIR]: {
+  AIR: {
     id: FACTION_NAMES.AIR
   },
-  [FACTION_NAMES.EARTH]: {
+  EARTH: {
     id: FACTION_NAMES.EARTH
   },
-  [FACTION_NAMES.LIGHT]: {
+  LIGHT: {
     id: FACTION_NAMES.LIGHT
   },
-  [FACTION_NAMES.DARK]: {
+  DARK: {
     id: FACTION_NAMES.DARK
   }
 } as const satisfies Record<FactionName, Faction>;
