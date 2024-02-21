@@ -86,13 +86,15 @@
    { "name": "cast", "from": 6, "to": 7, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
+   { "name": "background", "opacity": 255, "blendMode": "normal" },
+   { "name": "icon", "opacity": 255, "blendMode": "normal" },
    { "name": "body", "opacity": 255, "blendMode": "normal" },
    { "name": "light", "opacity": 123, "blendMode": "overlay" },
    { "name": "weapon", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
    { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 63, "y": 55, "w": 34, "h": 44 } }, { "frame": 7, "bounds": {"x": 63, "y": 43, "w": 34, "h": 56 } }] },
-   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 48, "y": 48, "w": 64, "h": 64 } }, { "frame": 4, "bounds": {"x": 63, "y": 55, "w": 32, "h": 32 } }] }
+   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 65, "y": 51, "w": 32, "h": 32 } }, { "frame": 4, "bounds": {"x": 63, "y": 55, "w": 32, "h": 32 } }] }
   ]
  }
 }

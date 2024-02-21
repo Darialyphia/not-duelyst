@@ -86,12 +86,11 @@
    { "name": "cast", "from": 6, "to": 7, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" },
-   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+   { "name": "body", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
-   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 6, "bounds": {"x": 61, "y": 58, "w": 32, "h": 32 } }] },
-   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 48, "y": 47, "w": 64, "h": 64 } }, { "frame": 6, "bounds": {"x": 60, "y": 56, "w": 42, "h": 43 } }] }
+   { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 63, "y": 52, "w": 32, "h": 32 } }, { "frame": 6, "bounds": {"x": 61, "y": 58, "w": 32, "h": 32 } }] },
+   { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 57, "y": 47, "w": 46, "h": 54 } }, { "frame": 6, "bounds": {"x": 60, "y": 56, "w": 42, "h": 43 } }] }
   ]
  }
 }

@@ -97,16 +97,20 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-fire',
-      spriteId: 'assasin',
+      spriteId: 'pegasus-knight',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.FIRE],
-      rarity: RARITY.EPIC,
+      rarity: RARITY.LEGENDARY,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
       attack: 2,
       speed: 3,
-      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'waterball' }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'thorns' })
+      ]
     },
     {
       id: 'melee-water',
@@ -141,7 +145,7 @@ export const UNITS = keyBy(
           dotDuration: 2,
           dotPower: 1,
           range: 2,
-          spriteId: 'fireball'
+          spriteId: 'waterball2'
         }),
         new Teleport({
           cooldown: 3,
@@ -179,7 +183,7 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-dark',
-      spriteId: 'titan',
+      spriteId: 'necromancer2',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK],
       rarity: RARITY.COMMON,
@@ -188,7 +192,7 @@ export const UNITS = keyBy(
       maxHp: 7,
       attack: 2,
       speed: 3,
-      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'fire2' })]
     },
     {
       id: 'necromancer',

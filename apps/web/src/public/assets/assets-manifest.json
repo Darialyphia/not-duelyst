@@ -305,10 +305,10 @@
       "assets": [
         {
           "alias": [
-            "Test.png"
+            "flat.png"
           ],
           "src": [
-            "/assets/maps/Test.png"
+            "/assets/maps/flat.png"
           ],
           "data": {
             "tags": {
@@ -318,10 +318,10 @@
         },
         {
           "alias": [
-            "flat.png"
+            "Test.png"
           ],
           "src": [
-            "/assets/maps/flat.png"
+            "/assets/maps/Test.png"
           ],
           "data": {
             "tags": {
@@ -1851,12 +1851,11 @@
         },
         {
           "alias": [
-            "player_1_start_position"
+            "player_1start_position.png"
           ],
           "src": [
-            "/assets/ui/player_1_start_position.json"
+            "/assets/ui/player_1start_position.png"
           ],
-          "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
             "tags": {
               "m": true
@@ -1865,11 +1864,12 @@
         },
         {
           "alias": [
-            "player_1start_position.png"
+            "player_1_start_position"
           ],
           "src": [
-            "/assets/ui/player_1start_position.png"
+            "/assets/ui/player_1_start_position.json"
           ],
+          "loadParser": "Aseprite_spritesheet_Parser",
           "data": {
             "tags": {
               "m": true

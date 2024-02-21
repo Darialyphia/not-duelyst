@@ -11,7 +11,6 @@ definePageMeta({
   }
 });
 
-const ITEMS_PER_PAGE = 10;
 const LOADOUT_MAX_SIZE = 6;
 
 const sidebarView = ref<'list' | 'form'>('list');
@@ -251,6 +250,7 @@ const editLoadout = (loadout: LoadoutDto) => {
   border-radius: var(--radius-2);
 
   > * {
+    scroll-margin-block-start: var(--size-4);
     scroll-snap-align: start;
   }
 }
