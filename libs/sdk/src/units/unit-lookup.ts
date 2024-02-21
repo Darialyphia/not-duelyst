@@ -116,14 +116,17 @@ export const UNITS = keyBy(
       id: 'melee-water',
       spriteId: 'blind-monk',
       kind: UNIT_KIND.SOLDIER,
-      factions: [FACTIONS.WATER],
+      factions: [FACTIONS.WATER, FACTIONS.AIR],
       rarity: RARITY.RARE,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
       attack: 2,
       speed: 3,
-      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'inner_fire' })
+      ]
     },
     {
       id: 'melee-air',
@@ -151,7 +154,8 @@ export const UNITS = keyBy(
           cooldown: 3,
           maxRange: 3,
           minRange: 0,
-          cost: 0
+          cost: 0,
+          spriteId: 'shatter'
         })
       ]
     },
@@ -183,7 +187,7 @@ export const UNITS = keyBy(
     },
     {
       id: 'melee-dark',
-      spriteId: 'necromancer2',
+      spriteId: 'footman',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK],
       rarity: RARITY.COMMON,
@@ -196,16 +200,36 @@ export const UNITS = keyBy(
     },
     {
       id: 'necromancer',
-      spriteId: 'midas',
+      spriteId: 'necromancer2',
       kind: UNIT_KIND.SOLDIER,
       factions: [FACTIONS.DARK, FACTIONS.DARK],
-      rarity: RARITY.COMMON,
+      rarity: RARITY.RARE,
       summonCost: 2,
       summonCooldown: 4,
       maxHp: 7,
       attack: 2,
       speed: 3,
-      skills: [new MeleeAttack({ cooldown: 1, cost: 0, power: 0 })]
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'soul_siphon' })
+      ]
+    },
+    {
+      id: 'kirin-fighter',
+      spriteId: 'water-kirin-fighter',
+      kind: UNIT_KIND.SOLDIER,
+      factions: [FACTIONS.WATER, FACTIONS.WATER],
+      rarity: RARITY.LEGENDARY,
+      summonCost: 2,
+      summonCooldown: 4,
+      maxHp: 7,
+      attack: 3,
+      speed: 3,
+      skills: [
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0 }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'waterball2' }),
+        new MeleeAttack({ cooldown: 1, cost: 0, power: 0, spriteId: 'waterball' })
+      ]
     }
   ] as UnitBlueprint[],
   'id'
