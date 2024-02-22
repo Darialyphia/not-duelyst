@@ -1,22 +1,37 @@
 <script setup lang="ts">
 import type { Skill, UnitBlueprint } from '@hc/sdk';
 import type { Nullable } from '@hc/shared';
+import { useFloating } from '@floating-ui/vue';
+import { offset, flip, autoUpdate } from '@floating-ui/dom';
 
 const { unit } = defineProps<{
   unit: UnitBlueprint;
 }>();
 
 const selectedSkill = ref<Nullable<Skill>>(null);
+
+const reference = ref(null);
+const floating = ref(null);
+const { floatingStyles } = useFloating(reference, floating, {
+  strategy: 'fixed',
+  middleware: [offset({ mainAxis: 15 }), flip()],
+  whileElementsMounted: autoUpdate,
+  placement: 'right-start'
+});
+const isHovered = ref(false);
 </script>
 
 <template>
   <article
+    ref="reference"
     class="unit-blueprint-card"
     :class="unit.kind.toLocaleLowerCase()"
     :style="{
       '--bg': `url('/assets/ui/card-back-${unit.rarity}.png')`,
       '--sprite': `url('/assets/units/${unit.spriteId}-card.png')`
     }"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
   >
     <div class="cost relative">
       <template v-if="unit.kind !== 'GENERAL'">{{ unit.summonCost }}</template>
@@ -88,6 +103,14 @@ const selectedSkill = ref<Nullable<Skill>>(null);
         {{ unit.maxHp }}
       </div>
     </div>
+
+    <Teleport to="body">
+      <Transition>
+        <div v-if="isHovered" ref="floating" class="keywords" :style="floatingStyles">
+          Some keywords here
+        </div>
+      </Transition>
+    </Teleport>
   </article>
 </template>
 
@@ -376,6 +399,21 @@ ul > li {
 
   &:is(.v-enter-active, .v-leave-active) {
     transition: opacity 0.2s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    opacity: 0;
+  }
+}
+
+.keywords {
+  z-index: 10;
+  width: var(--size-13);
+  padding: var(--size-3);
+  background-color: black;
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: opacity 0.15s;
   }
 
   &:is(.v-enter-from, .v-leave-to) {

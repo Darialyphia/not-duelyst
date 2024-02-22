@@ -104,8 +104,10 @@ const onMousemove = (e: MouseEvent) => {
   }
 
   &:not(.disabled):hover {
-    /* transform: rotateY(calc(1deg * var(--rotate-y))); */
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
+  }
+  &:not(:hover) {
+    transition: transform 0.3s;
   }
 }
 
