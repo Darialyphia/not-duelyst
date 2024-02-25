@@ -4,20 +4,23 @@ import type { Entity } from '@hc/sdk';
 const { state } = useGame();
 
 const players = computed(() => state.value.players);
-
-const getBorder = (entity: Entity) => {
-  return factionUtils[entity.unit.faction.id].borders.rounded;
-};
 </script>
 
 <template>
   <div class="player player-1">
-    <div
-      class="img-wrapper"
-      :style="{ '--bg': `url(${getBorder(players[0].general)}` }"
-      :class="state.activePlayer.equals(players[0]) && 'active'"
-    >
+    <div class="img-wrapper" :class="state.activePlayer.equals(players[0]) && 'active'">
       <img :src="`/assets/units/${players[0].general.unit.spriteId}-icon.png`" />
+      <div class="runes">
+        <div
+          v-for="(_, i) in 3"
+          :key="i"
+          :style="{
+            '--bg': `url('/assets/ui/rune-${players[0].general.unit.factions[
+              i
+            ]?.id.toLowerCase()}.png')`
+          }"
+        />
+      </div>
     </div>
     <div>
       <div class="player-name">{{ players[0].name }}</div>
@@ -32,12 +35,19 @@ const getBorder = (entity: Entity) => {
   </div>
 
   <div class="player player-2">
-    <div
-      class="img-wrapper"
-      :style="{ '--bg': `url(${getBorder(players[1].general)}` }"
-      :class="state.activePlayer.equals(players[1]) && 'active'"
-    >
+    <div class="img-wrapper" :class="state.activePlayer.equals(players[1]) && 'active'">
       <img :src="`/assets/units/${players[1].general.unit.spriteId}-icon.png`" />
+      <div class="runes">
+        <div
+          v-for="(_, i) in 3"
+          :key="i"
+          :style="{
+            '--bg': `url('/assets/ui/rune-${players[1].general.unit.factions[
+              i
+            ]?.id.toLowerCase()}.png')`
+          }"
+        />
+      </div>
     </div>
     <div>
       <div class="player-name">{{ players[1].name }}</div>
@@ -72,12 +82,11 @@ const getBorder = (entity: Entity) => {
 }
 
 .img-wrapper {
-  overflow: hidden;
+  position: relative;
 
   padding: 4px;
 
-  background-image: var(--bg);
-  background-size: cover;
+  border: var(--fancy-border);
   border-radius: var(--radius-round);
   box-shadow: inset 0 0 0 1px black;
 
@@ -159,6 +168,29 @@ const getBorder = (entity: Entity) => {
   @screen lt-lg {
     gap: var(--size-1);
     font-size: var(--font-size-0);
+  }
+}
+
+.runes {
+  position: absolute;
+  z-index: 1;
+  bottom: calc(-1 * var(--size-3));
+  left: -2px;
+
+  display: flex;
+  gap: var(--size-1);
+  justify-content: center;
+
+  width: 100%;
+  > div {
+    width: 20px;
+    height: 24px;
+    background-image: var(--bg);
+    background-size: contain;
+
+    &:nth-of-type(2) {
+      transform: translateY(5px);
+    }
   }
 }
 </style>

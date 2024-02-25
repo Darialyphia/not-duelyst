@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src';
-import type { Container } from 'pixi.js';
+import type { Layer } from '@pixi/layers';
+import type { FederatedPointerEvent, Container } from 'pixi.js';
 
-const { entity } = defineProps<{ entity: Entity }>();
+const { entity, isHovered } = defineProps<{ entity: Entity; isHovered: boolean }>();
 
 const { assets } = useGame();
 const spritesheet = assets.getSprite('unit-stats');
@@ -15,23 +16,25 @@ const COLORS = {
 } as const;
 
 const { autoDestroyRef } = useAutoDestroy();
-const ui = useGameUi();
 
+const root = ref<Container>();
 // ts in unhappy if we type the parameter, because vue expects fucntion refs to take a VNode as argument
 // However, in vue3-pixi, the behavior is different
 const containerRef = (_container: any) => {
-  const container = _container as Container;
-  if (!container) return;
-  if (container.parentLayer) return;
-  if (!ui.layers.ui.value) return;
-  autoDestroyRef(container, 100);
-
-  container.parentLayer = ui.layers.ui.value;
+  root.value = _container;
+  autoDestroyRef(root.value, 100);
 };
+
+const { layers } = useGameUi();
+watchEffect(() => {
+  if (root.value) {
+    root.value.parentLayer = isHovered ? layers.ui.value : undefined;
+  }
+});
 </script>
 
 <template>
-  <container :ref="containerRef" event-mode="none">
+  <container :ref="containerRef" :z-index="isHovered ? 99 : 1" event-mode="none">
     <animated-sprite :textures="textures" :anchor="0.5" :y="CELL_SIZE * 1.125">
       <text
         :anchor="0.5"

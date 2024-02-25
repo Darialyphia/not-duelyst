@@ -19,7 +19,8 @@ const {
   selectedSkill,
   selectedEntity,
   targetMode,
-  summonTargets
+  summonTargets,
+  layers
 } = useGameUi();
 
 const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
@@ -101,7 +102,7 @@ const a11yColorcodeFilter = computed(() => {
     return new OutlineFilter(2, entity.playerId === playerId ? 0x00ff00 : 0xff0000);
   } else {
     return new OutlineFilter(
-      2,
+      1.5,
       entity.playerId === state.value.activePlayer.id ? 0x00ff00 : 0xff0000
     );
   }
@@ -213,15 +214,11 @@ const zIndexOffset = computed(() => {
           />
         </Shadow>
 
-        <PTransition
-          appear
-          :duration="{ enter: 100, leave: 100 }"
-          :before-enter="{ alpha: 0 }"
-          :enter="{ alpha: 1 }"
-          :leave="{ alpha: 0 }"
-        >
-          <UnitStats v-if="isHovered" :entity="entity" />
-        </PTransition>
+        <UnitStats
+          v-if="layers.ui.value && layers.gameObjects.value"
+          :entity="entity"
+          :is-hovered="!!isHovered"
+        />
       </container>
     </PTransition>
 

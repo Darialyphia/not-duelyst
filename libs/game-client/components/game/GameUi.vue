@@ -64,6 +64,7 @@ watch(
 <style scoped>
 .selected-entity {
   position: absolute;
+  z-index: 1;
   top: 14rem;
   &.left {
     left: var(--size-5);

@@ -46,7 +46,7 @@ const isHovered = ref(false);
               unit.factions[i]?.id.toLowerCase() ?? 'empty'
             }.png')`
           }"
-        ></div>
+        />
       </div>
     </div>
 

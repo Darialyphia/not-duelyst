@@ -17,16 +17,14 @@ export const create = mutationWithAuth({
     const user = ensureAuthenticated(ctx.session);
 
     const validData = await validateLoadout(ctx, {
-      userId: user._id,
+      ownerId: user._id,
       generalId: args.generalId,
       unitIds: args.units
     });
 
     ctx.db.insert('loadouts', {
       ...validData,
-      name: args.name,
-      units: validData.unitIds,
-      ownerId: user._id
+      name: args.name
     });
   }
 });
@@ -45,7 +43,7 @@ export const update = mutationWithAuth({
     await ensureOwnsLoadout(loadout, user._id);
 
     const validData = await validateLoadout(ctx, {
-      userId: user._id,
+      ownerId: user._id,
       generalId: args.generalId,
       unitIds: args.units
       // factions: args.factions
@@ -53,9 +51,7 @@ export const update = mutationWithAuth({
 
     ctx.db.replace(args.loadoutId, {
       ...validData,
-      name: args.name,
-      units: validData.unitIds,
-      ownerId: user._id
+      name: args.name
     });
   }
 });

@@ -16,10 +16,6 @@ const player = computed(() => {
   return state.value.players.find(p => p.id === playerId)!;
 });
 
-const borders = computed(
-  () => factionUtils[player.value.general.unit.faction.id].borders
-);
-
 const targetsCount = computed(() => {
   if (targetMode.value === 'skill') return skillTargets.value.size;
   if (targetMode.value === 'summon-targets') return summonTargets.value.size;
@@ -115,8 +111,7 @@ const onValidateTargets = () => {
           :style="{
             '--cooldown-angle':
               360 - (360 * selectedEntity.skillCooldowns[skill.id]) / skill.cooldown,
-            '--bg': `url('/assets/skills/${skill.spriteId}.png')`,
-            '--border': `url(${borders.square})`
+            '--bg': `url('/assets/skills/${skill.spriteId}.png')`
           }"
           @click="selectedSkill = skill"
         />
@@ -151,8 +146,7 @@ const onValidateTargets = () => {
               :style="{
                 '--cooldown-angle':
                   360 - (360 * unit.cooldown) / unit.unit.summonCooldown,
-                '--bg': `url('/assets/units/${unit.unit.spriteId}-icon.png')`,
-                '--border': `url(${borders.rounded})`
+                '--bg': `url('/assets/units/${unit.unit.spriteId}-icon.png')`
               }"
               @mousedown="selectedSummon = unit.unit"
             />
@@ -196,9 +190,11 @@ const onValidateTargets = () => {
 
 :is(.skill, .summon, .active-entity, .move) {
   aspect-ratio: 1;
-  background-image: var(--border), var(--bg);
+
+  background-image: var(--bg);
   background-repeat: no-repeat;
   background-size: cover;
+  border: var(--fancy-border);
 }
 
 :is(.skill, .summon) {

@@ -87,18 +87,18 @@ export class Entity implements Serializable {
 
   off = this.emitter.off;
 
-  #hp = observableValue(0, hp => {
+  private currentHp = observableValue(0, hp => {
     if (hp <= 0) {
       this.ctx.actionQueue.push(new DieAction({ entityId: this.id }, this.ctx));
     }
   });
 
   get hp() {
-    return this.#hp.value;
+    return this.currentHp.value;
   }
 
   set hp(val: number) {
-    this.#hp.value = val;
+    this.currentHp.value = val;
   }
 
   position: Vec3;

@@ -81,30 +81,30 @@ export const ensureLoadoutUnitsMatchWithGeneral = (
 export const validateLoadout = async (
   { db }: { db: MutationCtx['db'] },
   {
-    userId,
+    ownerId,
     unitIds,
     generalId
     // factions
   }: {
     unitIds: string[];
-    userId: Id<'users'>;
+    ownerId: Id<'users'>;
     generalId: string;
     // factions: string[];
   }
 ): Promise<{
   unitIds: UnitId[];
-  userId: Id<'users'>;
+  ownerId: Id<'users'>;
   generalId: string;
   // factions: [FactionName, FactionName, FactionName];
 }> => {
-  await Promise.all(unitIds.map(unit => ensureOwnsUnit({ db }, userId, unit)));
+  await Promise.all(unitIds.map(unit => ensureOwnsUnit({ db }, ownerId, unit)));
 
   ensureNoDuplicates(unitIds);
   ensureLoadoutUnitsMatchWithGeneral(generalId, unitIds);
   // const validFactions = ensureCorrectFactions(factions);
   // ensureValidUnitsFactions(validFactions, unitIds);
 
-  return { unitIds, userId, generalId };
+  return { unitIds, ownerId, generalId };
 };
 
 export const ensureLoadoutExists = async (
