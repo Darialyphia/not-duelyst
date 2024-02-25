@@ -28,7 +28,8 @@ const isHovered = ref(false);
     :class="unit.kind.toLocaleLowerCase()"
     :style="{
       '--bg': `url('/assets/ui/card-back-${unit.rarity}.png')`,
-      '--sprite': `url('/assets/units/${unit.spriteId}-card.png')`
+      '--sprite': `url('/assets/units/${unit.spriteId}-card.png')`,
+      '--sprite-mask': `url('/assets/units/${unit.spriteId}-mask.png')`
     }"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
@@ -143,13 +144,13 @@ const isHovered = ref(false);
 
     position: absolute;
     z-index: -1;
-    top: 20px;
-    left: 60px;
+    top: 23px;
+    left: 65px;
 
     aspect-ratio: 1;
     width: 128px;
 
-    background: linear-gradient(135deg, var(--gray-9), var(--gray-10));
+    background: linear-gradient(135deg, var(--gray-8), var(--gray-10));
   }
 
   &::before {
@@ -160,7 +161,7 @@ const isHovered = ref(false);
     z-index: 1;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%) translateY(-99px);
+    transform: translateX(-50%) translateY(-92px);
 
     aspect-ratio: 1;
     width: 320px;
@@ -169,8 +170,10 @@ const isHovered = ref(false);
     background-repeat: no-repeat;
     background-size: 320px 320px;
 
-    mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
-      linear-gradient(to bottom, black, black 180px, transparent 180px);
+    mask-image: var(--sprite-mask);
+    mask-size: 320px 320px;
+    /* mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
+      linear-gradient(to bottom, black, black 180px, transparent 180px); */
   }
 
   p {

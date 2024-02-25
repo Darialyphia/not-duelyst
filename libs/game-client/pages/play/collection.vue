@@ -98,16 +98,6 @@ const editLoadout = (loadout: LoadoutDto) => {
             {{ values?.unitIds.size }} / {{ LOADOUT_MAX_SIZE }}
           </header>
 
-          <div class="flex gap-2 items-center">
-            Runes
-            <img
-              v-for="(faction, index) in values?.factions"
-              :key="index"
-              :src="`/assets/ui/rune-${faction?.toLocaleLowerCase() ?? 'empty'}.png`"
-              class="faction-rune"
-            />
-          </div>
-
           <ul v-if="values" v-auto-animate class="flex-1">
             <li v-for="unit in sortedLoadoutUnits" :key="unit.id">
               <div v-if="unit.kind === 'SOLDIER'" class="cost">
@@ -115,17 +105,18 @@ const editLoadout = (loadout: LoadoutDto) => {
               </div>
 
               <img :src="`/assets/units/${unit.spriteId}-icon.png`" />
-              {{ unit.id }}
               <div class="flex gap-2">
                 <img
-                  v-for="(faction, index) in unit.factions"
+                  v-for="(_, index) in 3"
                   :key="index"
                   :src="`/assets/ui/rune-${
-                    faction?.id.toLocaleLowerCase() ?? 'empty'
+                    unit.factions[index]?.id.toLocaleLowerCase() ?? 'empty'
                   }.png`"
                   class="faction-rune"
                 />
               </div>
+              {{ unit.id }}
+
               <UiIconButton
                 name="mdi:minus"
                 aria-label="remove from loadout"

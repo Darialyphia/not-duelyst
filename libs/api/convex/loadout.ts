@@ -11,8 +11,7 @@ export const create = mutationWithAuth({
   args: {
     name: v.string(),
     generalId: v.string(),
-    units: v.array(v.string()),
-    factions: v.array(v.string())
+    units: v.array(v.string())
   },
   async handler(ctx, args) {
     const user = ensureAuthenticated(ctx.session);
@@ -20,8 +19,7 @@ export const create = mutationWithAuth({
     const validData = await validateLoadout(ctx, {
       userId: user._id,
       generalId: args.generalId,
-      unitIds: args.units,
-      factions: args.factions
+      unitIds: args.units
     });
 
     ctx.db.insert('loadouts', {
@@ -38,8 +36,8 @@ export const update = mutationWithAuth({
     loadoutId: v.id('loadouts'),
     name: v.string(),
     generalId: v.string(),
-    units: v.array(v.string()),
-    factions: v.array(v.string())
+    units: v.array(v.string())
+    // factions: v.array(v.string())
   },
   async handler(ctx, args) {
     const user = ensureAuthenticated(ctx.session);
@@ -49,8 +47,8 @@ export const update = mutationWithAuth({
     const validData = await validateLoadout(ctx, {
       userId: user._id,
       generalId: args.generalId,
-      unitIds: args.units,
-      factions: args.factions
+      unitIds: args.units
+      // factions: args.factions
     });
 
     ctx.db.replace(args.loadoutId, {

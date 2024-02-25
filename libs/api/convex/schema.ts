@@ -97,8 +97,8 @@ export default defineSchema({
     name: v.string(),
     ownerId: v.id('users'),
     generalId: v.string(),
-    units: v.array(v.string()),
-    factions: v.array(v.string()) as Validator<[FactionName, FactionName, FactionName]>
+    units: v.array(v.string())
+    // factions: v.array(v.string()) as Validator<[FactionName, FactionName, FactionName]>
   }).index('by_owner_id', ['ownerId']),
 
   collectionItems: defineTable({

@@ -2,6 +2,7 @@ import { api } from '@hc/api';
 import type { CollectionItemDto } from '@hc/api/convex/collection/collection.utils';
 import { UNITS, type UnitBlueprint } from '@hc/sdk';
 import { FACTIONS, type FactionId } from '@hc/sdk/src/faction/faction-lookup';
+import { UNIT_KIND } from '@hc/sdk/src/units/constants';
 
 export const useCollection = () => {
   const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
@@ -22,11 +23,13 @@ export const useCollection = () => {
   type CollectionItemWithUnit = CollectionItemDto & { unit: UnitBlueprint };
 
   const sortUnitFunction = (a: CollectionItemWithUnit, b: CollectionItemWithUnit) => {
+    if (a.unit.kind === UNIT_KIND.GENERAL && b.unit.kind === UNIT_KIND.SOLDIER) return -1;
+    if (b.unit.kind === UNIT_KIND.GENERAL && a.unit.kind === UNIT_KIND.SOLDIER) return 1;
     const aFaction = a.unit.factions[0];
     const bFaction = b.unit.factions[0];
 
     const factionDiff = factions.indexOf(bFaction.id) - factions.indexOf(aFaction.id);
-    if (factionDiff !== 0) return factionDiff;
+    if (factionDiff !== 0) return factionDiff * -1;
 
     return a.unit.summonCost - b.unit.summonCost;
   };
