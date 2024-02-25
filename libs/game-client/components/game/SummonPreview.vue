@@ -3,6 +3,7 @@ import { PTransition } from 'vue3-pixi';
 import type { Cursor } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
+import { TextStyle } from 'pixi.js';
 
 const { cell } = defineProps<{
   cursor?: Cursor;
@@ -31,7 +32,7 @@ const scaleX = computed(() => {
 const filters = [
   new AdjustmentFilter({
     brightness: 2,
-    alpha: 0.35
+    alpha: 0.5
   })
 ];
 
@@ -43,6 +44,19 @@ const isDisplayed = computed(() => {
       cell.position.equals(summonSpawnPoint.value))
   );
 });
+
+const textStyle = new TextStyle({
+  fontSize: 20,
+  fontWeight: '700',
+  fill: 'red',
+  stroke: 'black',
+  strokeThickness: 4
+});
+
+const hpCost = computed(() => {
+  if (!selectedSummon.value) return 0;
+  return state.value.activePlayer.getSumonHpCost(selectedSummon.value);
+});
 </script>
 
 <template>
@@ -53,15 +67,46 @@ const isDisplayed = computed(() => {
     :enter="{ alpha: 1 }"
     :leave="{ alpha: 0 }"
   >
-    <animated-sprite
-      v-if="isDisplayed && textures"
-      :event-mode="'none'"
-      :textures="textures"
-      :scale-x="scaleX"
-      :anchor="0.5"
-      :playing="false"
-      :filters="filters"
-      :y="cell.isHalfTile ? CELL_SIZE / 4 : 0"
-    />
+    <container v-if="isDisplayed" :y="cell.isHalfTile ? CELL_SIZE / 4 : 0">
+      <animated-sprite
+        v-if="textures"
+        :event-mode="'none'"
+        :textures="textures"
+        :scale-x="scaleX"
+        :anchor="0.5"
+        :playing="false"
+        :filters="filters"
+      />
+
+      <container :x="CELL_SIZE * 0.5" :y="-10">
+        <text :scale="0.5" :style="textStyle as any" :anchor="0.5">
+          - {{ selectedSummon?.summonCost }}
+        </text>
+        <animated-sprite
+          :x="15"
+          :event-mode="'none'"
+          :textures="
+            createSpritesheetFrameObject('idle', assets.getSprite('summon-cost-gold'))
+          "
+          :scale-x="scaleX"
+          :anchor="0.5"
+          :playing="false"
+        />
+      </container>
+
+      <container v-if="hpCost" :x="CELL_SIZE * 0.5" :y="5">
+        <text :scale="0.5" :style="textStyle as any" :anchor="0.5">- {{ hpCost }}</text>
+        <animated-sprite
+          :x="15"
+          :event-mode="'none'"
+          :textures="
+            createSpritesheetFrameObject('idle', assets.getSprite('summon-cost-hp'))
+          "
+          :scale-x="scaleX"
+          :anchor="0.5"
+          :playing="false"
+        />
+      </container>
+    </container>
   </PTransition>
 </template>
