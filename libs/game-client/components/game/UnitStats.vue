@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Entity } from '@hc/sdk/src';
-import type { Layer } from '@pixi/layers';
-import type { FederatedPointerEvent, Container } from 'pixi.js';
+import type { Container } from 'pixi.js';
 
 const { entity, isHovered } = defineProps<{ entity: Entity; isHovered: boolean }>();
 
@@ -34,13 +33,18 @@ watchEffect(() => {
 </script>
 
 <template>
-  <container :ref="containerRef" :z-index="isHovered ? 99 : 1" event-mode="none">
+  <container :ref="containerRef" :z-index="isHovered ? 99 : 2" event-mode="none">
     <animated-sprite :textures="textures" :anchor="0.5" :y="CELL_SIZE * 1.125">
       <text
         :anchor="0.5"
-        :style="{ fill: COLORS.hp, fontSize: 40, fontFamily: 'monospace' }"
-        :x="+CELL_SIZE / 2 - 8"
-        :y="CELL_SIZE / 2 - 8"
+        :style="{
+          fill: COLORS.hp,
+          fontSize: 36,
+          fontFamily: 'monospace',
+          textAlign: 'center'
+        }"
+        :x="+CELL_SIZE / 2 - 9"
+        :y="CELL_SIZE / 2 - 10"
         :scale="0.25"
       >
         {{ entity.hp }}
@@ -49,12 +53,13 @@ watchEffect(() => {
       <text
         :style="{
           fill: COLORS.attack,
-          fontSize: 40,
+          fontSize: 36,
+          textAlign: 'center',
           fontFamily: 'monospace'
         }"
         :anchor="0.5"
-        :x="-CELL_SIZE / 2 + 8"
-        :y="CELL_SIZE / 2 - 8"
+        :x="-CELL_SIZE / 2 + 10"
+        :y="CELL_SIZE / 2 - 10"
         :scale="0.25"
       >
         {{ entity.attack }}

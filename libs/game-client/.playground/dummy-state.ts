@@ -33,7 +33,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
                 'dark-elemental': { cooldown: 0 }
               }
             },
-            generalId: 'air-general',
+            generalId: 'dark-general',
             gold: 2
           },
           {
@@ -49,7 +49,7 @@ export const makeDummyState = async (mapName: string): Promise<SerializedGameSta
                 'dark-elemental': { cooldown: 0 }
               }
             },
-            generalId: 'fire-general',
+            generalId: 'earth-general',
 
             gold: 2
           }
