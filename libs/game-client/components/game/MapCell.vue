@@ -32,7 +32,7 @@ const settings = useUserSettings();
 
 const spriteTextures = computed(() => {
   const getTextures = (spriteId: string) => {
-    const sheet = assets.getSprite(spriteId);
+    const sheet = assets.getSpritesheet(spriteId);
     return sheet.animations[Math.abs(mapRotation.value)] ?? sheet.animations[0];
   };
 

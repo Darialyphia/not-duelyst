@@ -23,7 +23,7 @@ const {
   layers
 } = useGameUi();
 
-const spritesheet = assets.getSprite(entity.unit.spriteId, 'placeholder-unit');
+const spritesheet = assets.getSpritesheet(entity.unit.spriteId, 'placeholder-unit');
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 
 const spriteRef = ref<AnimatedSprite>();

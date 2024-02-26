@@ -5,7 +5,7 @@ import type { Container } from 'pixi.js';
 const { entity, isHovered } = defineProps<{ entity: Entity; isHovered: boolean }>();
 
 const { assets } = useGame();
-const spritesheet = assets.getSprite('unit-stats');
+const spritesheet = assets.getSpritesheet('unit-stats');
 
 const textures = createSpritesheetFrameObject('idle', spritesheet);
 

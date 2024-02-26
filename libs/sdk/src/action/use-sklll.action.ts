@@ -43,7 +43,14 @@ export class UseSkillAction extends GameAction<{
 
     await Promise.all([
       this.skill.fxImpl(this.ctx, this.caster, this.payload.targets, this.affectedCells),
-
+      this.ctx.fxContext.addChildSpriteFor(this.skill.spriteId, this.caster.id, {
+        duration: 1500,
+        scale: 1,
+        offset: {
+          x: 0,
+          y: 10
+        }
+      }),
       this.ctx.fxContext.playAnimationOnce(
         this.payload.casterId,
         this.skill.animationFX,

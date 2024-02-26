@@ -14,7 +14,24 @@ export type FXContext = {
       duration: number;
     }
   ): Promise<void>;
-  addChildSprite(
+  addChildSpriteUntil(
+    spriteId: string,
+    entityId: EntityId,
+    options?: {
+      offset?: { x: number; y: number };
+      scale?: number;
+    }
+  ): () => void;
+  addChildSpriteFor(
+    spriteId: string,
+    entityId: EntityId,
+    options?: {
+      duration?: number;
+      offset?: { x: number; y: number };
+      scale?: number;
+    }
+  ): Promise<void>;
+  addChildAnimatedSprite(
     spriteId: string,
     entityId: EntityId,
     options?: {

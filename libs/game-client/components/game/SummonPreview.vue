@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
-import type { Cursor } from 'pixi.js';
+import type { Cursor, Container } from 'pixi.js';
 import type { Cell } from '@hc/sdk';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { TextStyle } from 'pixi.js';
@@ -17,7 +17,7 @@ const isSummonTarget = computed(() => utils.canSummonAt(cell.position));
 
 const sheet = computed(() => {
   if (!selectedSummon.value) return null;
-  return assets.getSprite(selectedSummon.value.spriteId, 'placeholder-unit');
+  return assets.getSpritesheet(selectedSummon.value.spriteId, 'placeholder-unit');
 });
 const textures = computed(() =>
   sheet.value ? createSpritesheetFrameObject('idle', sheet.value) : null
@@ -57,6 +57,15 @@ const hpCost = computed(() => {
   if (!selectedSummon.value) return 0;
   return state.value.activePlayer.getSumonHpCost(selectedSummon.value);
 });
+
+const ui = useGameUi();
+// ts in unhappy if we type the parameter, because vue expects fucntion refs to take a VNode as argument
+// However, in vue3-pixi, the behavior is different
+const addToUiLayerRef = (_container: any) => {
+  const container = _container as Container;
+  if (!container) return;
+  container.parentLayer = ui.layers.ui.value;
+};
 </script>
 
 <template>
@@ -67,7 +76,11 @@ const hpCost = computed(() => {
     :enter="{ alpha: 1 }"
     :leave="{ alpha: 0 }"
   >
-    <container v-if="isDisplayed" :y="cell.isHalfTile ? CELL_SIZE / 4 : 0">
+    <container
+      v-if="isDisplayed"
+      :ref="addToUiLayerRef"
+      :y="cell.isHalfTile ? CELL_SIZE / 4 : 0"
+    >
       <animated-sprite
         v-if="textures"
         :event-mode="'none'"
@@ -86,7 +99,10 @@ const hpCost = computed(() => {
           :x="15"
           :event-mode="'none'"
           :textures="
-            createSpritesheetFrameObject('idle', assets.getSprite('summon-cost-gold'))
+            createSpritesheetFrameObject(
+              'idle',
+              assets.getSpritesheet('summon-cost-gold')
+            )
           "
           :scale-x="scaleX"
           :anchor="0.5"
@@ -100,7 +116,7 @@ const hpCost = computed(() => {
           :x="15"
           :event-mode="'none'"
           :textures="
-            createSpritesheetFrameObject('idle', assets.getSprite('summon-cost-hp'))
+            createSpritesheetFrameObject('idle', assets.getSpritesheet('summon-cost-hp'))
           "
           :scale-x="scaleX"
           :anchor="0.5"
