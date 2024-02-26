@@ -338,7 +338,7 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
     addChildSpriteFor(
       spriteId,
       entityId,
-      { duration = 2000, offset = { x: 0, y: 0 }, scale = 1 } = {}
+      { onEnter, onLeave, duration = 2000, offset = { x: 0, y: 0 }, scale = 1 } = {}
     ) {
       return new Promise<void>(resolve => {
         if (isHidden.value) return resolve();
@@ -349,8 +349,8 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
           return resolve();
         }
 
-        const sprite = toValue(fx.spriteMap.get(entityId));
-        if (!sprite) {
+        const entitySprite = toValue(fx.spriteMap.get(entityId));
+        if (!entitySprite) {
           console.warn(`FXContext: sprite not found for entity ${entityId}`);
           return resolve();
         }
@@ -359,11 +359,11 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
 
         const container = new Container();
         container.position.set(
-          sprite.parent.parent.position.x,
-          sprite.parent.parent.position.y
+          entitySprite.parent.parent.position.x,
+          entitySprite.parent.parent.position.y
         );
-        container.zIndex = sprite.parent.parent.zIndex + 1;
-        container.zOrder = sprite.parent.parent.zIndex + 1;
+        container.zIndex = entitySprite.parent.parent.zIndex + 1;
+        container.zOrder = entitySprite.parent.parent.zIndex + 1;
         (fx.viewport?.children[0] as Container).addChild(container);
 
         const fxSprite = new Sprite(texture);
@@ -373,8 +373,39 @@ export const useInstallFxContext = ({ gameSession, state, fx, assets }: GameCont
 
         container.addChild(fxSprite);
 
+        if (onEnter) {
+          gsap.fromTo(
+            fxSprite,
+            {
+              pixi: {
+                alpha: onEnter.animation.includes('fade-in') ? 0 : 1,
+                x: onEnter.animation.includes('slide-in-left')
+                  ? offset.x - 15
+                  : onEnter.animation.includes('slide-in-right')
+                    ? offset.x + 15
+                    : offset.x,
+                y: onEnter.animation.includes('slide-in-top')
+                  ? offset.y - 15
+                  : onEnter.animation.includes('slide-in-bottom')
+                    ? offset.y + 15
+                    : offset.y
+              }
+            },
+            {
+              duration: onEnter.duration / 1000,
+              ease: Power2.easeOut,
+              pixi: {
+                x: offset.x,
+                y: offset.y,
+                alpha: 1
+              }
+            }
+          );
+        }
+
         setTimeout(() => {
           container.destroy();
+          resolve();
         }, duration);
       });
     },

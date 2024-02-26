@@ -55,7 +55,6 @@ export const useAssetsProvider = () => {
       return sprite;
     },
     getTexture(key) {
-      console.log(textures);
       const texture = textures[key];
       if (!texture) {
         throw new Error(`Unknown texture: ${key}.`);

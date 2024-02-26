@@ -41,16 +41,21 @@ export class UseSkillAction extends GameAction<{
       fallback: 'attack-placeholder'
     });
 
+    this.ctx.fxContext.addChildSpriteFor(this.skill.spriteId, this.caster.id, {
+      duration: 1500,
+      scale: 0.75,
+      offset: {
+        x: 0,
+        y: 10
+      },
+      onEnter: {
+        animation: ['fade-in', 'slide-in-bottom'] as const,
+        duration: 500
+      }
+    });
+
     await Promise.all([
       this.skill.fxImpl(this.ctx, this.caster, this.payload.targets, this.affectedCells),
-      this.ctx.fxContext.addChildSpriteFor(this.skill.spriteId, this.caster.id, {
-        duration: 1500,
-        scale: 1,
-        offset: {
-          x: 0,
-          y: 10
-        }
-      }),
       this.ctx.fxContext.playAnimationOnce(
         this.payload.casterId,
         this.skill.animationFX,
