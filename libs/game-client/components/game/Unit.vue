@@ -40,13 +40,15 @@ const scaleX = computed(() => {
   return entity.playerId === state.value.players[0].id ? 1 : -1;
 });
 
-const offset = computed(() => ({
-  x: 0,
-  z: 0,
-  y: gameSession.map.getCellAt(entity.position)?.isHalfTile
-    ? -CELL_SIZE * 0.75
-    : -CELL_SIZE
-}));
+const offset = computed(() => {
+  return {
+    x: 0,
+    z: 0,
+    y: gameSession.map.getCellAt(entity.position.clone().round())?.isHalfTile
+      ? -CELL_SIZE * 0.75
+      : -CELL_SIZE
+  };
+});
 
 const hitArea = computed(() => {
   const meta = spritesheet.data.meta as AsepriteMeta;

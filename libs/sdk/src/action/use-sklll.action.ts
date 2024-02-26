@@ -43,10 +43,10 @@ export class UseSkillAction extends GameAction<{
 
     this.ctx.fxContext.addChildSpriteFor(this.skill.spriteId, this.caster.id, {
       duration: 1500,
-      scale: 0.75,
+      scale: 0.5,
       offset: {
         x: 0,
-        y: 10
+        y: 15
       },
       onEnter: {
         animation: ['fade-in', 'slide-in-bottom'] as const,
