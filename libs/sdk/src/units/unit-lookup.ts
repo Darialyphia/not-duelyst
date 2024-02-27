@@ -8,6 +8,7 @@ import { GameSession } from '../game-session';
 import { Effect } from '../effect/effect';
 import { Rarity } from '../enums';
 import { coreSet } from './sets/core';
+import { Keyword } from '../utils/keywords';
 
 export type UnitId = string;
 
@@ -32,6 +33,7 @@ export type UnitBlueprint = {
 
   effects?: {
     getEffect(ctx: GameSession, entity: Entity): Effect;
+    getKeywords(): Keyword[];
     description: string;
   }[];
   onSummoned?: {

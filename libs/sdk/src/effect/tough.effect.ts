@@ -21,6 +21,10 @@ export class ToughEffect extends Effect {
     return `This units takes 1 less damage from all sources.`;
   }
 
+  getKeywords() {
+    return [];
+  }
+
   applyTough(amount: number) {
     return Math.max(amount - 1, 1);
   }

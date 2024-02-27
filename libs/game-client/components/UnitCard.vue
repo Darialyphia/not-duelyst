@@ -86,13 +86,7 @@ const isHovered = ref(false);
           </p>
         </div>
 
-        <div
-          v-else-if="entity.unit.onSummoned || entity.unit.effects?.length"
-          class="unit-text"
-        >
-          <p v-if="entity.unit.onSummoned?.getDescription">
-            On summoned: {{ entity.unit.onSummoned.getDescription(entity.unit) }}
-          </p>
+        <div v-else-if="entity.unit.effects?.length" class="unit-text">
           <p v-for="(trigger, index) in entity.unit.effects" :key="index">
             {{ trigger.description }}
           </p>

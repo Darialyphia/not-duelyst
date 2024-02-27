@@ -35,8 +35,8 @@ export class SummonFromLoadoutAction extends GameAction<
       new EFFECTS.exhausted(this.ctx, entity, {}).attach(entity);
     }
 
-    if (unit.onSummoned) {
-      unit.onSummoned.execute(this.ctx, this.payload.targets, entity);
-    }
+    // if (unit.onSummoned) {
+    //   unit.onSummoned.execute(this.ctx, this.payload.targets, entity);
+    // }
   }
 }

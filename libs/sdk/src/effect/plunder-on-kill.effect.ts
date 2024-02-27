@@ -26,6 +26,10 @@ export class PlunderOnKillEffect extends Effect {
     return `When this unit takes down an enemy, gain ${this.meta.amount} gold.`;
   }
 
+  getKeywords() {
+    return [];
+  }
+
   listener({ source }: { entity: Entity; source: Nullable<Entity> }) {
     if (!source) return;
     if (!this.attachedTo) return;

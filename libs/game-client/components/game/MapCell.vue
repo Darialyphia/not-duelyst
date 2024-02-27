@@ -79,9 +79,9 @@ const onPointerup = (event: FederatedPointerEvent) => {
     });
   } else if (canSummonAt.value) {
     summonSpawnPoint.value = cell.position;
-    if (selectedSummon.value!.onSummoned) {
-      targetMode.value = 'summon-targets';
-    }
+    // if (selectedSummon.value!.onSummoned) {
+    //   targetMode.value = 'summon-targets';
+    // }
   } else if (isValidSummonTarget.value) {
     summonTargets.value.add(cell.position);
   } else if (canCastSkillAt.value) {

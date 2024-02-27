@@ -2,6 +2,7 @@ import { AnyObject } from '@hc/shared';
 import { Entity } from '../entity/entity';
 import { GameSession } from '../game-session';
 import { Player } from '../player/player';
+import { Keyword } from '../utils/keywords';
 
 export type EffectId = string;
 
@@ -9,6 +10,8 @@ export abstract class Effect {
   abstract readonly id: EffectId;
   abstract duration: number;
   attachedTo?: Entity;
+
+  static keywords: Keyword[];
 
   constructor(
     protected ctx: GameSession,
@@ -19,7 +22,15 @@ export abstract class Effect {
     this.detach = this.detach.bind(this);
   }
 
-  abstract getDescription(): string;
+  static getDescription() {
+    return 'Not implemented';
+  }
+
+  getDescription() {
+    return (this.constructor as typeof Effect).getDescription();
+  }
+
+  abstract getKeywords(): Keyword[];
 
   attach(entity: Entity) {
     this.attachedTo = entity;
