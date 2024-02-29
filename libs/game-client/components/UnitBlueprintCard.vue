@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Skill, UnitBlueprint } from '@hc/sdk';
+import { GameSession, type Skill, type UnitBlueprint } from '@hc/sdk';
 import type { Nullable } from '@hc/shared';
 import { useFloating } from '@floating-ui/vue';
 import { offset, flip, autoUpdate } from '@floating-ui/dom';
+import { uniqBy } from 'lodash-es';
 
 const { unit } = defineProps<{
   unit: UnitBlueprint;
@@ -19,6 +20,16 @@ const { floatingStyles } = useFloating(reference, floating, {
   placement: 'right-start'
 });
 const isHovered = ref(false);
+
+const keywords = computed(() => {
+  return uniqBy(
+    [
+      ...(unit.effects?.map(effect => effect.keywords) ?? []),
+      ...unit.skills.map(skill => skill.keywords)
+    ].flat(),
+    'name'
+  );
+});
 </script>
 
 <template>
@@ -57,9 +68,15 @@ const isHovered = ref(false);
       <div>{{ unit.id }}</div>
     </div>
 
-    <div>
+    <div class="flex flex-col pb-3">
       <ul class="skills-list">
-        <li v-for="skill in unit.skills" :key="skill.id" class="skill">
+        <li
+          v-for="skill in unit.skills"
+          :key="skill.id"
+          class="skill"
+          @mouseenter="selectedSkill = skill"
+          @mouseleave="selectedSkill = null"
+        >
           <div
             class="skill-img"
             tabindex="0"
@@ -69,8 +86,7 @@ const isHovered = ref(false);
             }"
             :class="selectedSkill?.id === skill.id && 'selected'"
             @focus="selectedSkill = skill"
-            @mouseenter="selectedSkill = skill"
-            @mouseleave="selectedSkill = null"
+            @blur="selectedSkill = null"
           />
         </li>
       </ul>
@@ -83,8 +99,8 @@ const isHovered = ref(false);
         </div>
 
         <div v-else-if="unit.effects?.length" class="unit-text">
-          <p v-for="(trigger, index) in unit.effects" :key="index">
-            {{ trigger.description }}
+          <p v-for="(effect, index) in unit.effects" :key="index">
+            {{ effect.description }}
           </p>
         </div>
       </Transition>
@@ -103,11 +119,17 @@ const isHovered = ref(false);
     </div>
 
     <Teleport to="body">
-      <Transition>
-        <div v-if="isHovered" ref="floating" class="keywords" :style="floatingStyles">
-          Some keywords here
-        </div>
-      </Transition>
+      <ul
+        v-if="isHovered && keywords.length"
+        ref="floating"
+        class="keywords"
+        :style="floatingStyles"
+      >
+        <li v-for="keyword in keywords" :key="keyword.name" class="grid">
+          <div class="font-600">{{ keyword.name }}</div>
+          <p class="text-0">{{ keyword.description }}</p>
+        </li>
+      </ul>
     </Teleport>
   </article>
 </template>
@@ -171,11 +193,6 @@ const isHovered = ref(false);
     mask-size: 320px 320px;
     /* mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
       linear-gradient(to bottom, black, black 180px, transparent 180px); */
-  }
-
-  p {
-    margin-block: var(--size-1);
-    font-size: var(--font-size-0);
   }
 }
 
@@ -292,6 +309,8 @@ const isHovered = ref(false);
   row-gap: var(--size-1);
   column-gap: var(--size-3);
 
+  padding-inline: var(--size-2);
+
   font-size: var(--font-size-1);
   line-height: 1;
 
@@ -333,22 +352,20 @@ const isHovered = ref(false);
   }
 }
 
-ul > li {
-  display: flex;
-  gap: var(--size-2);
-  align-items: center;
-
-  margin-top: var(--size-2);
-  margin-bottom: var(--size-2);
-
-  font-size: var(--font-size-0);
-  line-height: 1;
-}
-
 .skills-list {
   display: flex;
-  gap: var(--size-4);
   justify-content: center;
+  > li {
+    display: flex;
+    gap: var(--size-2);
+    align-items: center;
+
+    margin-top: var(--size-2);
+    margin-bottom: var(--size-2);
+
+    font-size: var(--font-size-0);
+    line-height: 1;
+  }
 }
 
 .selected-skill {
@@ -386,30 +403,33 @@ ul > li {
 }
 
 .unit-text {
-  width: 90%;
+  align-self: stretch;
+
   margin-inline: auto;
   padding: var(--size-1) var(--size-2);
 
-  font-size: var(--font-size-00);
+  font-size: var(--font-size-1);
   line-height: 1.1;
+  text-align: center;
   text-shadow: 0 2px black;
 
-  background-color: hsl(var(--gray-11-hsl) / 0.8);
-  border: var(--fancy-border);
+  /* background-color: hsl(var(--gray-11-hsl) / 0.8); */
+  backdrop-filter: blur(3px);
 
-  &:is(.v-enter-active, .v-leave-active) {
-    transition: opacity 0.2s;
-  }
-
-  &:is(.v-enter-from, .v-leave-to) {
-    opacity: 0;
+  > * {
+    font-size: inherit;
   }
 }
 
 .keywords {
   z-index: 10;
-  width: var(--size-13);
+
+  display: grid;
+  gap: var(--size-4);
+
+  width: var(--size-14);
   padding: var(--size-3);
+
   background-color: black;
 
   &:is(.v-enter-active, .v-leave-active) {

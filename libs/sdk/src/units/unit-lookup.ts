@@ -32,8 +32,8 @@ export type UnitBlueprint = {
   skills: Array<Skill>;
 
   effects?: {
-    getEffect(ctx: GameSession, entity: Entity): Effect;
-    getKeywords(): Keyword[];
+    execute(ctx: GameSession, entity: Entity): void;
+    keywords: Keyword[];
     description: string;
   }[];
   onSummoned?: {

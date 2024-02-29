@@ -10,15 +10,18 @@ export const cellIdToPoint = (cellId: CellId): Point3D => {
   return { x, y, z };
 };
 
-export const observableValue = <T>(value: T, onChange: (val: T) => void) => {
-  const refObject = {
-    get value() {
-      return value;
-    },
-    set value(newValue) {
-      value = newValue;
-      onChange(this.value);
-    }
-  };
-  return refObject;
-};
+export class ReactiveValue<T> {
+  constructor(
+    private internalValue: T,
+    private onChange: (val: T) => void
+  ) {}
+
+  get value() {
+    return this.internalValue;
+  }
+
+  set value(newVal) {
+    this.internalValue = newVal;
+    this.onChange(this.internalValue);
+  }
+}

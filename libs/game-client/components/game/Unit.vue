@@ -59,7 +59,7 @@ const hitArea = computed(() => {
     y: 0
   };
 
-  // default hit area is a square the size of once cell
+  // default hit area is a square the size of one cell
   const defaultHitArea = new Polygon(
     { x: -CELL_SIZE / 2, y: CELL_SIZE / 2 },
     { x: CELL_SIZE / 2, y: CELL_SIZE / 2 },

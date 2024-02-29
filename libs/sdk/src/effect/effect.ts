@@ -22,13 +22,7 @@ export abstract class Effect {
     this.detach = this.detach.bind(this);
   }
 
-  static getDescription() {
-    return 'Not implemented';
-  }
-
-  getDescription() {
-    return (this.constructor as typeof Effect).getDescription();
-  }
+  abstract getDescription(): string;
 
   abstract getKeywords(): Keyword[];
 
