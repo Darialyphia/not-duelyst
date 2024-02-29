@@ -3,6 +3,7 @@ import type { Entity, Skill } from '@hc/sdk';
 import type { Nullable } from '@hc/shared';
 import { useFloating } from '@floating-ui/vue';
 import { offset, flip, autoUpdate } from '@floating-ui/dom';
+import { uniqBy } from 'lodash-es';
 
 const { entity } = defineProps<{
   entity: Entity;
@@ -19,6 +20,17 @@ const { floatingStyles } = useFloating(reference, floating, {
   placement: 'right-start'
 });
 const isHovered = ref(false);
+
+const keywords = computed(() => {
+  return uniqBy(
+    [
+      ...(entity.unit.effects?.map(effect => effect.keywords) ?? []),
+      ...entity.unit.skills.map(skill => skill.keywords),
+      ...entity.effects.map(effect => effect.getKeywords())
+    ].flat(),
+    'name'
+  );
+});
 </script>
 
 <template>
@@ -87,8 +99,8 @@ const isHovered = ref(false);
         </div>
 
         <div v-else-if="entity.unit.effects?.length" class="unit-text">
-          <p v-for="(trigger, index) in entity.unit.effects" :key="index">
-            {{ trigger.description }}
+          <p v-for="(effect, index) in entity.unit.effects" :key="index">
+            {{ effect.description }}
           </p>
         </div>
       </Transition>
@@ -107,13 +119,25 @@ const isHovered = ref(false);
     </div>
 
     <Teleport to="body">
-      <Transition>
-        <div v-if="isHovered" ref="floating" class="keywords" :style="floatingStyles">
-          Some keywords here
-        </div>
-      </Transition>
+      <ul
+        v-if="isHovered && keywords.length"
+        ref="floating"
+        class="keywords"
+        :style="floatingStyles"
+      >
+        <li v-for="keyword in keywords" :key="keyword.name" class="grid">
+          <div class="font-600">{{ keyword.name }}</div>
+          <p class="text-0">{{ keyword.description }}</p>
+        </li>
+      </ul>
     </Teleport>
   </article>
+  <ul class="mt-4 pointer-none">
+    <li v-for="effect in entity.effects" :key="effect.id" class="w-14 mb-2 p-2 bg-black">
+      <div class="capitalize">{{ effect.id }}</div>
+      <p class="text-0">{{ effect.getDescription() }}</p>
+    </li>
+  </ul>
 </template>
 
 <style scoped lang="postcss">
@@ -175,11 +199,6 @@ const isHovered = ref(false);
     mask-size: 320px 320px;
     /* mask-image: radial-gradient(circle at center, black, black 64px, transparent 64px),
       linear-gradient(to bottom, black, black 180px, transparent 180px); */
-  }
-
-  p {
-    margin-block: var(--size-1);
-    font-size: var(--font-size-0);
   }
 }
 
@@ -337,22 +356,22 @@ const isHovered = ref(false);
   }
 }
 
-ul > li {
-  display: flex;
-  gap: var(--size-2);
-  align-items: center;
-
-  margin-top: var(--size-2);
-  margin-bottom: var(--size-2);
-
-  font-size: var(--font-size-0);
-  line-height: 1;
-}
-
 .skills-list {
   display: flex;
   gap: var(--size-4);
   justify-content: center;
+
+  > li {
+    display: flex;
+    gap: var(--size-2);
+    align-items: center;
+
+    margin-top: var(--size-2);
+    margin-bottom: var(--size-2);
+
+    font-size: var(--font-size-0);
+    line-height: 1;
+  }
 }
 
 .selected-skill {
@@ -390,30 +409,33 @@ ul > li {
 }
 
 .unit-text {
-  width: 90%;
+  align-self: stretch;
+
   margin-inline: auto;
   padding: var(--size-1) var(--size-2);
 
-  font-size: var(--font-size-00);
+  font-size: var(--font-size-1);
   line-height: 1.1;
+  text-align: center;
   text-shadow: 0 2px black;
 
-  background-color: hsl(var(--gray-11-hsl) / 0.8);
-  border: var(--fancy-border);
+  /* background-color: hsl(var(--gray-11-hsl) / 0.8); */
+  backdrop-filter: blur(3px);
 
-  &:is(.v-enter-active, .v-leave-active) {
-    transition: opacity 0.2s;
-  }
-
-  &:is(.v-enter-from, .v-leave-to) {
-    opacity: 0;
+  > * {
+    font-size: inherit;
   }
 }
 
 .keywords {
   z-index: 10;
-  width: var(--size-13);
+
+  display: grid;
+  gap: var(--size-4);
+
+  width: var(--size-14);
   padding: var(--size-3);
+
   background-color: black;
 
   &:is(.v-enter-active, .v-leave-active) {

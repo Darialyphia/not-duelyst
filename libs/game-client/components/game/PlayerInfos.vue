@@ -84,10 +84,15 @@ const players = computed(() => state.value.players);
 .img-wrapper {
   position: relative;
 
+  display: grid;
+  place-content: center;
+
+  aspect-ratio: 1;
+  width: 140px;
   padding: 4px;
 
-  border: var(--fancy-border);
-  border-radius: var(--radius-round);
+  background-image: url('/assets/ui/hero-portrait-border.png');
+  /* border: var(--fancy-border); */
   box-shadow: inset 0 0 0 1px black;
 
   @screen lt-lg {
@@ -96,7 +101,7 @@ const players = computed(() => state.value.players);
 
   > img {
     aspect-ratio: 1;
-    width: var(--size-11);
+    width: 132px;
     margin-inline: auto;
     padding: var(--size-1);
 
@@ -111,7 +116,7 @@ const players = computed(() => state.value.players);
   }
 
   &.active {
-    border: solid var(--border-size-3) var(--primary);
+    /* border: solid var(--border-size-3) var(--primary); */
 
     @screen lt-lg {
       border: solid var(--border-size-1) var(--primary);
@@ -174,22 +179,30 @@ const players = computed(() => state.value.players);
 .runes {
   position: absolute;
   z-index: 1;
-  bottom: calc(-1 * var(--size-3));
-  left: -2px;
+  bottom: calc(-1 * var(--size-2));
+  left: 50%;
+  transform: translateX(-50%);
 
   display: flex;
-  gap: var(--size-1);
+  gap: 6px;
   justify-content: center;
 
-  width: 100%;
+  width: fit-content;
+  padding: 6px 3px;
+
+  background-image: url('/assets/ui/runes-bg.png');
+  background-size: contain;
   > div {
+    transform: translateY(-2px);
+
     width: 20px;
     height: 24px;
+
     background-image: var(--bg);
     background-size: contain;
 
     &:nth-of-type(2) {
-      transform: translateY(5px);
+      transform: translateY(2px);
     }
   }
 }
