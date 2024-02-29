@@ -175,9 +175,11 @@ const onValidateTargets = () => {
   gap: var(--size-4);
   align-items: center;
 
-  min-width: var(--size-sm);
+  width: 615px;
+  padding-left: 3px;
   padding-block: var(--size-5);
 
+  background: url('/assets/ui/action-bar.png');
   border-radius: var(--radius-3);
 
   @screen lt-lg {
@@ -185,23 +187,15 @@ const onValidateTargets = () => {
   }
 }
 
-.active-entity {
-  width: 96px;
-}
+:is(.skill, .summon) {
+  position: relative;
 
-:is(.skill, .summon, .active-entity, .move) {
   aspect-ratio: 1;
+  width: 64px;
 
   background-image: var(--bg);
   background-repeat: no-repeat;
   background-size: cover;
-  border: var(--fancy-border);
-}
-
-:is(.skill, .summon) {
-  position: relative;
-  width: 64px;
-  box-shadow: inset 0 0 0 1px black;
 
   @screen lt-lg {
     width: 48px;
@@ -228,7 +222,10 @@ const onValidateTargets = () => {
   &:hover,
   &.active {
     filter: brightness(125%);
-    box-shadow: 0 0 8px 2px var(--primary);
+  }
+
+  &.active {
+    box-shadow: 0 0 1px 2px var(--primary);
   }
 
   &:disabled {
@@ -256,6 +253,7 @@ const onValidateTargets = () => {
         hsl(var(--gray-11-hsl) / 0.5) calc(1deg * var(--cooldown-angle))
       );
       border: none;
+      border-radius: 50%;
     }
 
     &.unavailable {
@@ -266,7 +264,9 @@ const onValidateTargets = () => {
 
 .skill {
   width: 64px;
+  border: var(--fancy-border);
   border-radius: 4px;
+  box-shadow: inset 0 0 0 1px black;
 
   &::after {
     content: attr(data-cooldown);
@@ -278,7 +278,9 @@ const onValidateTargets = () => {
 }
 
 .summon {
+  border: none;
   border-radius: var(--radius-round);
+  transition: transform 0.2s;
   &::after {
     content: attr(data-cost);
   }

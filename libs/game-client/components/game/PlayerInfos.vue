@@ -26,10 +26,12 @@ const players = computed(() => state.value.players);
       <div class="player-name">{{ players[0].name }}</div>
 
       <div class="indicators">
-        <div class="i-game-icons:health-normal color-green-4 hp" />
-        {{ players[0].general?.hp.toFixed() }}
-        <div class="i-game-icons:two-coins gold" />
-        {{ players[0].gold }}
+        <div class="hp">
+          {{ players[0].general?.hp.toFixed() }}
+        </div>
+        <div class="gold">
+          {{ players[0].gold }}
+        </div>
       </div>
     </div>
   </div>
@@ -53,10 +55,12 @@ const players = computed(() => state.value.players);
       <div class="player-name">{{ players[1].name }}</div>
 
       <div class="indicators">
-        <div class="i-game-icons:health-normal hp" />
-        {{ players[1].general?.hp.toFixed() }}
-        <div class="i-game-icons:two-coins gold" />
-        {{ players[1].gold }}
+        <div class="hp">
+          {{ players[0].general?.hp.toFixed() }}
+        </div>
+        <div class="gold">
+          {{ players[0].gold }}
+        </div>
       </div>
     </div>
   </div>
@@ -150,9 +154,6 @@ const players = computed(() => state.value.players);
   img {
     transform: rotateY(0.5turn);
   }
-  .indicators {
-    flex-direction: row-reverse;
-  }
 }
 
 .player-name {
@@ -165,17 +166,36 @@ const players = computed(() => state.value.players);
 }
 
 .indicators {
-  display: flex;
+  display: grid;
   gap: var(--size-2);
-  align-items: center;
   font-size: var(--font-size-2);
 
   @screen lt-lg {
     gap: var(--size-1);
     font-size: var(--font-size-0);
   }
+
+  .player-2 & {
+    justify-items: end;
+  }
+}
+.hp {
+  background-image: url('/assets/ui/hero-portrait-hp.png');
 }
 
+.gold {
+  background-image: url('/assets/ui/hero-portrait-gold.png');
+}
+
+:is(.gold, .hp) {
+  display: grid;
+  place-content: center;
+
+  aspect-ratio: 1;
+  width: 48px;
+
+  background-size: cover;
+}
 .runes {
   position: absolute;
   z-index: 1;

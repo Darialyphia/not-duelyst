@@ -24,6 +24,10 @@ export const KEYWORDS = {
     name: 'Burn(x)',
     description: 'This unit X receives damage at the beginning of its turn.'
   },
+  REGENRATION: {
+    name: 'Regeneration(X)',
+    description: 'This unit recovers X hp at the beginning of its turn.'
+  },
   TOUGH: {
     name: 'Tough',
     description: 'This unit takes 1 less damage from all sources (min. 1).'
