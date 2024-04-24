@@ -1,0 +1,19 @@
+{
+  "name": "eslint-config-daria",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "prettier": "^3.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

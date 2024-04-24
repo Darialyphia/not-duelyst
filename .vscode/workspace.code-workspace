@@ -1,0 +1,6 @@
+{
+  "folders": [],
+  "settings": {
+    "unocss.root": ["packages/client"],
+  },
+}

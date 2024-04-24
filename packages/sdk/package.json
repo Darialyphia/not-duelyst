@@ -1,0 +1,26 @@
+{
+  "name": "@game/sdk",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "devDependencies": {
+    "@game/tsconfig": "*",
+    "eslint-config-daria": "*"
+  },
+  "dependencies": {
+    "@game/shared": "*",
+    "@types/lodash-es": "^4.17.12",
+    "@types/seedrandom": "^3.0.8",
+    "eventemitter3": "^5.0.1",
+    "lodash-es": "^4.17.21",
+    "mitt": "^3.0.1",
+    "nanoid": "^5.0.6",
+    "seedrandom": "^3.0.5",
+    "ts-pattern": "^5.0.8",
+    "ts-priority-queue": "^0.1.1",
+    "zod": "^3.21.4"
+  },
+  "scripts": {
+    "dev": "echo 1",
+    "type-check": "tsc --noEmit"
+  }
+}

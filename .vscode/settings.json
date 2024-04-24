@@ -1,0 +1,30 @@
+{
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+
+  "css.lint.unknownAtRules": "ignore",
+
+  "cssvar.files": [
+    "./node_modules/open-props/open-props.min.css",
+    "./packages/client/src/styles/theme.css"
+  ],
+
+  "cssvar.ignore": [],
+
+  "cssvar.extensions": ["css", "postcss", "vue"],
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "stylelint.validate": ["css", "scss", "vue", "html"],
+
+  "css.validate": true,
+  "scss.validate": false,
+  "unocss.root": "packages/client",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router$"]
+}

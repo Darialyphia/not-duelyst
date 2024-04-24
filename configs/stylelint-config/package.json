@@ -1,0 +1,11 @@
+{
+  "name": "@game/stylelint-config",
+  "main": "index.cjs",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@game/unocss-config",
+  "main": "uno.config.ts",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@unocss/preset-mini": "^0.58.0",
+    "open-props": "^1.6.13",
+    "unocss": "^0.58.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

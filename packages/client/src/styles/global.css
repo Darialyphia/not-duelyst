@@ -1,0 +1,21 @@
+@layer base, components, utilities;
+
+/* @import url('open-props/postcss/normalize') layer(base); */
+@import url('./reset.css') layer(base);
+@import url('./utils.css') layer(utilities);
+@import './theme.css';
+
+@layer base {
+  @unocss preflights;
+}
+
+@layer components {
+  .some-class {
+    color: blue;
+  }
+}
+
+@layer utilities {
+  @unocss default;
+  @unocss;
+}

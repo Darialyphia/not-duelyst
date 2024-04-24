@@ -1,0 +1,99 @@
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: var(--container-size, var(--size-lg));
+}
+
+.surface {
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  padding: var(--size-6);
+}
+
+.center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fancy-surface {
+  background: var(--fancy-bg);
+  background-blend-mode: overlay;
+  border: var(--fancy-border);
+  padding: var(--size-4);
+  box-shadow:
+    0 5px 15px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.content-surface {
+  position: relative;
+
+  padding: var(--size-6);
+
+  /* background: transparent; */
+
+  border-image: var(--surface-bg);
+  border-image-slice: 64 fill;
+  border-image-width: 32px;
+  border-image-repeat: repeat;
+
+  image-rendering: pixelated;
+}
+
+.fancy-scrollbar {
+  --scrollbar-foreground: hsl(var(--color-primary-hsl) / 0.75);
+  --scrollbar-background: transparent scrollbar-color: var(--scrollbar-foreground)
+    var(--scrollbar-background);
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--scrollbar-foreground);
+  }
+  &::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--scrollbar-background);
+  }
+}
+
+.ghost-button {
+  --ui-button-bg: transparent;
+  --ui-button-hover-bg: hsl(var(--color-primary-hover-hsl) / 0.2);
+  --ui-button-disabled-bg: transparent;
+}
+
+button:is(.primary-button, .error-button) {
+  --ui-button-disabled-color: var(--text-on-disabled);
+  --ui-button-disabled-bg: var(--disabled);
+}
+
+.primary-button {
+  --ui-button-bg: var(--primary);
+  --ui-button-hover-bg: var(--primary-hover);
+
+  --ui-button-color: var(--text-on-primary);
+}
+
+.error-button {
+  --ui-button-bg: var(--error);
+  --ui-button-hover-bg: var(--error-hover);
+
+  --ui-button-color: var(--text-on-error);
+}

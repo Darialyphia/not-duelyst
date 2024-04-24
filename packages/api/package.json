@@ -1,0 +1,20 @@
+{
+  "name": "@game/api",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy"
+  },
+  "devDependencies": {
+    "@game/tsconfig": "*",
+    "eslint-config-daria": "*"
+  },
+  "dependencies": {
+    "@casl/ability": "^6.5.0",
+    "@game/sdk": "*",
+    "@game/shared": "*",
+    "convex": "^1.10.0",
+    "lucia": "^2.7.6"
+  }
+}
