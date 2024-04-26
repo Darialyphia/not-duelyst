@@ -143,17 +143,20 @@ header {
 
 .text {
   margin-top: 52px;
+  margin-bottom: var(--size-1);
+
   font-weight: 400;
   line-height: 1;
   text-align: center;
 
   > .kind {
-    font-size: var(--font-size-0);
+    font-size: var(--font-size-00);
     color: var(--gray-5);
   }
 
   > .name {
     font-size: var(--font-size-3);
+    font-weight: var(--font-weight-7);
   }
 }
 
@@ -165,8 +168,11 @@ footer {
 
   height: 76px;
   margin-top: auto;
+
+  font-weight: var(--font-weight-7);
   > * {
     aspect-ratio: 1;
+    padding-bottom: 5px;
   }
 }
 

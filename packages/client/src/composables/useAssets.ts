@@ -31,6 +31,7 @@ export const ASSETS_INJECTION_KEY = Symbol('assets') as InjectionKey<AssetsConte
 const splitBundle = (manifest: AssetsManifest, name: string) => {
   const bundle = manifest.bundles.find(b => b.name === name)!;
   manifest.bundles.splice(manifest.bundles.indexOf(bundle), 1);
+
   (bundle.assets as UnresolvedAsset[]).forEach(asset => {
     manifest.bundles.push({
       name: asset.alias?.[0] ?? '',
@@ -73,6 +74,7 @@ export const useAssetsProvider = () => {
     splitBundle(manifest, 'icons');
     splitBundle(manifest, 'sfx');
     splitBundle(manifest, 'normals');
+    splitBundle(manifest, 'obstacles');
     Assets.init({ manifest });
 
     await Promise.all([

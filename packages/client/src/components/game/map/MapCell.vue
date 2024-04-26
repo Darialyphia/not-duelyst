@@ -76,7 +76,7 @@ const summon = () => {
 };
 
 const highlightTarget = () => {
-  ui.mouseLightStrength.value = 12;
+  ui.mouseLightStrength.value = 5;
   ui.mouseLightColor.value = cell.value.entity?.player.equals(activePlayer.value)
     ? '#77ff77'
     : '#ff7777';
@@ -118,7 +118,7 @@ const highlightTarget = () => {
               })
               .with(TARGETING_MODES.SKILL, () => {
                 if (!cell.entity) return;
-                if (!ui.selectedCard.value) return;
+                if (!ui.selectedSkill.value) return;
                 if (isSkillTargetable) {
                   highlightTarget();
                 }

@@ -7,7 +7,7 @@ import type { InjectionKey } from 'vue';
 export const DEFAULT_MOUSE_LIGHT_STRENGTH = 0;
 export const DEFAULT_MOUSE_LIGHT_COLOR = '#ffffff';
 
-export const DEFAULT_AMBIENT_LIGHT_STRENGTH = 0.9;
+export const DEFAULT_AMBIENT_LIGHT_STRENGTH = 1;
 export const DEFAULT_AMBIENT_LIGHT_COLOR = '#ffffff';
 
 export const TARGETING_MODES = {

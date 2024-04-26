@@ -11,6 +11,7 @@ const { ui } = useGame();
 
 const cells = useGameSelector(session => session.boardSystem.cells);
 const entities = useGameSelector(session => session.entitySystem.getList());
+const isDev = import.meta.env.DEV;
 </script>
 
 <template>
@@ -37,8 +38,9 @@ const entities = useGameSelector(session => session.entitySystem.getList());
     />
   </Camera>
 
-  <Tint />
+  <!-- <Tint /> -->
   <TargetingOverlay />
   <Layer :ref="(layer: any) => ui.registerLayer(layer, 'ui')" />
-  <Fps />
+
+  <Fps v-if="isDev" />
 </template>

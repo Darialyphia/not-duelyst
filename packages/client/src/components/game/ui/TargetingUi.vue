@@ -27,6 +27,7 @@ const commitSkill = () => {
     entityId: ui.selectedEntity.value!.id,
     targets: ui.skillTargets.value
   });
+  ui.unselectCard();
   ui.unselectSkill();
 };
 

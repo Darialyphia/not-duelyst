@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
+import type { FrameObject } from 'pixi.js';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { assets, camera, fx } = useGame();
+const { camera, fx } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
-const tileDiffuseTexture = computed(() => {
-  if (!cell.value.tile) return null;
-  const sheet = assets.getSpritesheet(cell.value.tile.blueprint.spriteId);
-  return createSpritesheetFrameObject('idle', sheet);
-});
-const tileNormalTextures = computed(() => {
-  if (!cell.value.tile) return null;
-  const sheet = assets.getSpritesheet(cell.value.tile.blueprint.spriteId);
-  return createSpritesheetFrameObject('idle', sheet);
-});
+const textures = useIlluminatedTexture(() => cell.value.tile?.blueprint.spriteId, 'idle');
 
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,
@@ -33,7 +25,7 @@ const boardDimensions = useGameSelector(session => ({
     :z-index-offset="1"
   >
     <container
-      v-if="cell.tile && tileDiffuseTexture && tileNormalTextures"
+      v-if="cell.tile && textures.diffuse && textures.normal"
       :y="-CELL_HEIGHT * 0.4"
       event-mode="none"
     >
@@ -46,8 +38,8 @@ const boardDimensions = useGameSelector(session => ({
       />
 
       <IlluminatedSprite
-        :diffuse-textures="tileDiffuseTexture"
-        :normal-textures="tileNormalTextures"
+        :diffuse-textures="textures.diffuse as FrameObject[]"
+        :normal-textures="textures.normal as FrameObject[]"
         :anchor="0.5"
         playing
         loop

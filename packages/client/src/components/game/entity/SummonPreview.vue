@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AnimatedSprite } from 'pixi.js';
+import { AnimatedSprite, TextStyle } from 'pixi.js';
 import { match } from 'ts-pattern';
 
 const { camera, assets, ui } = useGame();
@@ -50,6 +50,17 @@ const position = computed(() => {
     .with(TARGETING_MODES.FOLLOWUP, () => ui.summonTarget.value)
     .exhaustive();
 });
+
+const textStyle = new TextStyle({
+  fontSize: 20,
+  fontWeight: '700',
+  fill: 'red',
+  stroke: 'black',
+  strokeThickness: 4
+});
+
+const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
+const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
 </script>
 
 <template>
@@ -76,5 +87,37 @@ const position = computed(() => {
       :anchor-y="0"
       :y="-CELL_HEIGHT * 0.6"
     />
+
+    <container :x="CELL_WIDTH * 0.25" :y="-10">
+      <pixi-text :scale="0.5" :style="textStyle" :anchor="0.5">
+        - {{ ui.selectedCard.value!.cost }}
+      </pixi-text>
+      <IlluminatedSprite
+        v-if="goldCostTextures.diffuse && goldCostTextures.normal"
+        :x="15"
+        :event-mode="'none'"
+        :diffuse-textures="goldCostTextures.diffuse"
+        :normal-textures="goldCostTextures.normal"
+        :scale-x="scaleX"
+        :anchor="0.5"
+        :playing="false"
+      />
+    </container>
+
+    <container v-if="ui.selectedCard.value?.hpCost" :x="CELL_WIDTH * 0.25" :y="5">
+      <pixi-text :scale="0.5" :style="textStyle" :anchor="0.5">
+        - {{ ui.selectedCard.value!.hpCost }}
+      </pixi-text>
+      <IlluminatedSprite
+        v-if="hpCostTextures.diffuse && hpCostTextures.normal"
+        :x="15"
+        :event-mode="'none'"
+        :diffuse-textures="hpCostTextures.diffuse"
+        :normal-textures="hpCostTextures.normal"
+        :scale-x="scaleX"
+        :anchor="0.5"
+        :playing="false"
+      />
+    </container>
   </IsoPositioner>
 </template>

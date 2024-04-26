@@ -53,13 +53,14 @@ watch(sprite, newSprite => {
 const lightColor = computed(() => {
   const faction = entity.value.player.general.card.blueprint.factions[0]!.id;
   return match(faction)
-    .with(FACTIONS.F1.id, () => 0xffcc00)
-    .with(FACTIONS.F2.id, () => 0xff6600)
-    .with(FACTIONS.F3.id, () => 0x88aa00)
-    .with(FACTIONS.F4.id, () => 0x770099)
-    .with(FACTIONS.F5.id, () => 0x00ff77)
+    .with(FACTIONS.F1.id, () => 0x6df7b1)
+    .with(FACTIONS.F2.id, () => 0xf92045)
+    .with(FACTIONS.F3.id, () => 0x00b9ff)
+    .with(FACTIONS.F4.id, () => 0xb63dbb)
+    .with(FACTIONS.F5.id, () => 0xefcb3a)
     .run();
 });
+
 const MIN_LIGHTNESS = 0;
 const MAX_LIGHTNESS = 1;
 const lightBrightness = ref(MIN_LIGHTNESS);
