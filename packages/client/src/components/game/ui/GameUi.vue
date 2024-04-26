@@ -1,8 +1,9 @@
 <script setup lang="ts">
-const { ui, session } = useGame();
+const { ui } = useGame();
 
-const entity = computed(() => ui.hoveredEntity.value);
-// const entity = computed(() => session.playerSystem.getList()[0].general);
+const entity = computed(() => {
+  return ui.highlightedEntity.value ?? ui.hoveredEntity.value;
+});
 </script>
 
 <template>

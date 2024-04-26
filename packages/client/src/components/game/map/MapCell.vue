@@ -138,9 +138,13 @@ const highlightTarget = () => {
             if (event.button !== 0) {
               ui.unselectEntity();
               ui.unselectCard();
+              ui.highlightEntity(null);
               return;
             }
 
+            if (event.ctrlKey && cell.entity) {
+              ui.highlightEntity(cell.entity.id);
+            }
             match(ui.targetingMode.value)
               .with(TARGETING_MODES.BASIC, () => {
                 if (cell.entity) {
