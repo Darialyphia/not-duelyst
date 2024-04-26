@@ -71,8 +71,9 @@ const hand = useGameSelector(session => session.playerSystem.activePlayer.hand);
   display: flex;
   gap: var(--size-5);
   align-items: center;
+  justify-content: center;
 
-  width: var(--size-lg);
+  width: fit-content;
 
   button {
     align-self: stretch;
@@ -86,7 +87,12 @@ const hand = useGameSelector(session => session.playerSystem.activePlayer.hand);
   left: 50%;
   transform: translateX(-50%);
 
-  width: var(--size-lg);
+  display: flex;
+  gap: var(--size-5);
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
 
   button {
     position: relative;
