@@ -87,8 +87,8 @@ until(camera.viewport)
       .clamp({
         direction: 'all'
       })
-      .clampZoom({ minScale: 2, maxScale: 3 })
-      .zoomPercent(0, false)
+      .clampZoom({ minScale: 1, maxScale: 3 })
+      .zoomPercent(1, false)
       .moveCenter(
         isoCenter.value.isoX + camera.offset.value.x,
         isoCenter.value.isoY + camera.offset.value.y - CELL_HEIGHT / 2

@@ -12,6 +12,7 @@ export type SerializedCell = {
   spriteId: string;
   position: Point3D;
   tileBlueprintId: string | null;
+  isWalkable: boolean;
 };
 
 export class Cell implements Serializable {
@@ -21,7 +22,7 @@ export class Cell implements Serializable {
 
   constructor(
     private session: GameSession,
-    options: SerializedCell
+    public options: SerializedCell
   ) {
     this.position = Vec3.fromPoint3D(options.position);
     this.spriteId = options.spriteId;
@@ -59,6 +60,8 @@ export class Cell implements Serializable {
   }
 
   get isWalkable() {
+    if (!this.options.isWalkable) return false;
+
     const above = this.session.boardSystem.getCellAt({
       ...this.position,
       z: this.position.z + 1
@@ -73,10 +76,6 @@ export class Cell implements Serializable {
   }
 
   serialize(): SerializedCell {
-    return {
-      position: this.position.serialize(),
-      spriteId: this.spriteId,
-      tileBlueprintId: this.tile?.blueprintId ?? null
-    };
+    return this.options;
   }
 }

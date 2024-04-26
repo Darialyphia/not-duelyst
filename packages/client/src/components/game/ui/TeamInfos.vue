@@ -6,9 +6,8 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
 <template>
   <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
     <div class="img-wrapper">
-      <AnimatedCardIcon
+      <CardSprite
         :sprite-id="players[0].general.card.blueprint.spriteId"
-        sprite-only
         class="portrait"
       />
 
@@ -48,9 +47,8 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
 
   <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
     <div class="img-wrapper">
-      <AnimatedCardIcon
+      <CardSprite
         :sprite-id="players[1].general.card.blueprint.spriteId"
-        sprite-only
         class="portrait"
       />
       <div class="runes">
@@ -145,6 +143,7 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
 
 .portrait {
   transform: scale(3);
+  background-position: 0 16px;
 
   mask-image: radial-gradient(
     circle at center,
