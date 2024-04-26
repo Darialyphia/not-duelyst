@@ -5,6 +5,7 @@ import { CELL_HEIGHT, CELL_WIDTH } from '@/utils/constants';
 import { pointToIndex, type Point } from '@game/shared';
 import { Container } from 'pixi.js';
 import type { FederatedPointerEvent } from 'pixi.js';
+import { throttle } from 'lodash-es';
 
 const app = useApplication();
 
@@ -93,6 +94,14 @@ until(camera.viewport)
         isoCenter.value.isoY + camera.offset.value.y - CELL_HEIGHT / 2
       );
   });
+
+const onMousemove = throttle((e: FederatedPointerEvent) => {
+  const pos = camera.viewport.value!.toWorld(e.global);
+  ui.mousePosition.value = {
+    x: pos.x - camera.offset.value.x,
+    y: pos.y - camera.offset.value.y
+  };
+}, 50);
 </script>
 
 <template>
@@ -111,15 +120,7 @@ until(camera.viewport)
     :events="app.renderer.events"
     :disable-on-context-menu="true"
     :sortable-children="true"
-    @pointermove="
-      (e: FederatedPointerEvent) => {
-        const pos = camera.viewport.value!.toWorld(e.global);
-        ui.mousePosition.value = {
-          x: pos.x - camera.offset.value.x,
-          y: pos.y - camera.offset.value.y
-        };
-      }
-    "
+    @pointermove="onMousemove"
     @pointerup="
       (e: FederatedPointerEvent) => {
         if (e.target === camera.viewport.value) {

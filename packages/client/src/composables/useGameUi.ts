@@ -4,7 +4,7 @@ import type { Layer } from '@pixi/layers';
 import type { DisplayObject } from 'pixi.js';
 import type { InjectionKey } from 'vue';
 
-export const DEFAULT_MOUSE_LIGHT_STRENGTH = 15;
+export const DEFAULT_MOUSE_LIGHT_STRENGTH = 0;
 export const DEFAULT_MOUSE_LIGHT_COLOR = '#ffffff';
 
 export const DEFAULT_AMBIENT_LIGHT_STRENGTH = 0.9;

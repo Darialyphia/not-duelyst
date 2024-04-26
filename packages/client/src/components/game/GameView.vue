@@ -15,7 +15,6 @@ const entities = useGameSelector(session => session.entitySystem.getList());
 
 <template>
   <!-- <Sky /> -->
-
   <Layer :group="diffuseGroup" />
   <Layer :group="normalGroup" />
   <Layer :group="lightGroup" />
@@ -30,12 +29,12 @@ const entities = useGameSelector(session => session.entitySystem.getList());
 
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
-    <!-- <PointLight
-      :brightness="10"
+    <PointLight
+      v-if="ui.mouseLightStrength.value > 0"
+      :brightness="ui.mouseLightStrength.value"
       :color="ui.mouseLightColor.value"
       :position="ui.mousePosition.value"
-      :falloff="[ui.mouseLightStrength.value, 3, 10]"
-    /> -->
+    />
   </Camera>
 
   <Tint />

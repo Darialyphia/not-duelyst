@@ -7,7 +7,7 @@ import { Hitbox } from '~/utils/hitbox';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { assets, ui, pathfinding, fx, session, camera } = useGame();
+const { assets, ui, pathfinding, fx, camera } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const diffuseTextures = computed(() => {
@@ -34,30 +34,7 @@ const normalTextures = computed(() => {
 const shape = assets.getHitbox('tile');
 const hitArea = Hitbox.from(shape.shapes[0].points, shape.shapes[0].source, 0.5);
 
-const pathFilter = new ColorOverlayFilter(0x4455bb, 0.5);
 const attackFilter = new ColorOverlayFilter(0xff0000, 0.5);
-
-const isMovePathHighlighted = computed(() => {
-  if (!ui.hoveredCell.value) return false;
-  if (ui.targetingMode.value !== TARGETING_MODES.BASIC) return false;
-
-  const entityOnCell = session.entitySystem.getEntityAt(cell.value);
-  if (!ui.selectedEntity.value) return false;
-
-  const canMoveTo = pathfinding.canMoveTo(ui.selectedEntity.value, cell.value);
-  if (!canMoveTo) return false;
-
-  const path = pathfinding.getPath(
-    ui.selectedEntity.value,
-    ui.hoveredCell.value,
-    ui.selectedEntity.value.speed
-  );
-
-  if (!path) return false;
-
-  const isInPath = path.some(vec => vec.equals(cell.value.position));
-  return isInPath || entityOnCell?.equals(ui.selectedEntity.value);
-});
 
 const filters = computed(() => {
   const result: Filter[] = [];
@@ -96,10 +73,12 @@ const pathSheets = reactive<{
   normal: null
 });
 
-const loadPathSheet = async (key: string) => {
-  const diffuse = assets.getSpritesheet(key);
+const textureName = ref<'path-straight' | 'path-end' | 'path-turn'>('path-straight');
+
+const loadPathSheet = async () => {
+  const diffuse = assets.getSpritesheet(textureName.value);
   pathSheets.diffuse = diffuse;
-  pathSheets.normal = await assets.loadNormalSpritesheet(key, diffuse);
+  pathSheets.normal = await assets.loadNormalSpritesheet(textureName.value, diffuse);
 };
 
 const positionInPath = computed(() => {
@@ -164,21 +143,21 @@ const pathFrameTag = computed(() => {
   return String((tag + rotation) % 4);
 });
 
-watchEffect(async () => {
+watchEffect(() => {
   if (!movePath.value) return;
   if (positionInPath.value === -1) return;
-
   if (positionInPath.value === movePath.value.length - 1) {
-    return loadPathSheet('path-end');
+    textureName.value = 'path-end';
+    return;
   }
   const nextStep = movePath.value[positionInPath.value + 1];
   const prevStep =
     movePath.value[positionInPath.value - 1] ?? ui.selectedEntity.value!.position;
-
   const isStraight = nextStep.x === prevStep.x || nextStep.y === prevStep.y;
-
-  return isStraight ? loadPathSheet('path-straight') : loadPathSheet('path-turn');
+  textureName.value = isStraight ? 'path-straight' : 'path-turn';
 });
+
+watch(textureName, loadPathSheet);
 
 const pathTextures = computed(() => {
   if (!pathSheets.diffuse || !pathSheets.normal || !isDefined(pathFrameTag.value)) return;
@@ -208,15 +187,12 @@ const pathTextures = computed(() => {
   />
 
   <IlluminatedSprite
-    v-if="normalTextures"
-    :diffuse-textures="diffuseTextures"
-    :normal-textures="normalTextures"
-    :anchor="0.5"
-    :hit-area="hitArea"
-    :filters="filters"
-  />
-  <IlluminatedSprite
-    v-if="pathTextures && positionInPath >= 0 && !fx.isPlaying.value"
+    v-if="
+      ui.selectedEntity.value?.canMove(1) &&
+      pathTextures &&
+      positionInPath >= 0 &&
+      !fx.isPlaying.value
+    "
     :diffuse-textures="pathTextures.diffuse"
     :normal-textures="pathTextures.normal"
     :anchor="0.5"

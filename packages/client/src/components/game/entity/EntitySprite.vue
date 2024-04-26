@@ -38,8 +38,8 @@ watchEffect(() => {
 });
 
 const filters = computed(() => {
-  const result: Filter[] = [outlineFilter];
-
+  const result: Filter[] = [];
+  if (isSelected.value || isHovered.value) result.push(outlineFilter);
   if (entity.value.hasKeyword(KEYWORDS.EXHAUSTED)) {
     result.push(exhaustedFilter);
   }
@@ -60,7 +60,7 @@ const lightColor = computed(() => {
     .with(FACTIONS.F5.id, () => 0x00ff77)
     .run();
 });
-const MIN_LIGHTNESS = 0.1;
+const MIN_LIGHTNESS = 0;
 const MAX_LIGHTNESS = 1;
 const lightBrightness = ref(MIN_LIGHTNESS);
 watchEffect(() => {
@@ -97,7 +97,13 @@ const isFlipped = computed(() => {
       }
     "
   >
-    <PointLight :color="lightColor" :brightness="lightBrightness" :x="0" :y="50" />
+    <PointLight
+      v-if="lightBrightness > 0"
+      :color="lightColor"
+      :brightness="lightBrightness"
+      :x="0"
+      :y="50"
+    />
 
     <IlluminatedSprite
       v-if="diffuseTextures && normalTextures"
@@ -106,9 +112,9 @@ const isFlipped = computed(() => {
       :anchor-x="0.5"
       :anchor-y="0"
       :playing="true"
-      :filters="filters"
       :y="-CELL_HEIGHT * 0.6"
-      :is-flipped
+      :is-flipped="isFlipped"
+      :filters="filters"
     />
   </container>
 </template>

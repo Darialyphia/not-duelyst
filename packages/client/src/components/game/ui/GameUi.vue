@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { ui } = useGame();
+const { ui, session } = useGame();
 
 const entity = computed(() => ui.hoveredEntity.value);
+// const entity = computed(() => session.playerSystem.getList()[0].general);
 </script>
 
 <template>
@@ -24,7 +25,10 @@ const entity = computed(() => ui.hoveredEntity.value);
         rarity: entity.card.blueprint.rarity,
         attack: entity.attack,
         hp: entity.hp,
-        cost: entity.card.cost
+        speed: entity.speed,
+        cost: entity.card.cost,
+        cooldown: entity.card.cooldown,
+        skills: entity.card.blueprint.skills
       }"
     />
   </div>

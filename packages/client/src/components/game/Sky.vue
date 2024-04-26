@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import bg from '@/assets/tiles{m}/background.png';
+import sky1 from '@/assets/backgrounds/sky-1.png';
 import sky2 from '@/assets/backgrounds/sky-2.png';
 import sky4 from '@/assets/backgrounds/sky-4.png';
 
@@ -23,6 +24,13 @@ onTick(() => {
 
 <template>
   <container>
+    <tiling-sprite
+      :texture="sky1"
+      :width="screen.width"
+      :height="screen.height"
+      :scale="scaleY"
+      event-mode="static"
+    />
     <tiling-sprite
       :texture="sky2"
       :width="screen.width"

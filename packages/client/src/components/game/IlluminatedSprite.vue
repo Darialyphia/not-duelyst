@@ -40,14 +40,14 @@ const normalFilters = computed(() => {
     :ref="
       (el: any) => {
         if (!el) return;
-        // el.parentGroup = diffuseGroup;
+        el.parentGroup = diffuseGroup;
       }
     "
     :filters="filters"
     :textures="diffuseTextures"
   />
 
-  <!-- <animated-sprite
+  <animated-sprite
     v-bind="attrs"
     :ref="
       (el: any) => {
@@ -57,5 +57,5 @@ const normalFilters = computed(() => {
     "
     :filters="normalFilters"
     :textures="normalTextures"
-  /> -->
+  />
 </template>

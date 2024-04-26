@@ -95,6 +95,15 @@ onMounted(async () => {
       })
     );
 
+    // gameSession.boardSystem.cells.forEach(cell => {
+    //   if (!cell.entity && cell.isWalkable) {
+    //     gameSession.entitySystem.addEntity({
+    //       cardIndex: 1,
+    //       playerId: '1',
+    //       position: cell.position
+    //     });
+    //   }
+    // });
     ready.value = true;
     app.mount(pixiApp.stage);
   });

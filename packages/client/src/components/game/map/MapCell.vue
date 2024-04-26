@@ -9,20 +9,9 @@ import {
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { assets, camera, ui, dispatch, pathfinding, fx, session } = useGame();
+const { camera, ui, dispatch, pathfinding, fx, session } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-
-const tileDiffuseTexture = computed(() => {
-  if (!cell.value.tile) return null;
-  const sheet = assets.getSpritesheet(cell.value.tile.blueprint.spriteId);
-  return createSpritesheetFrameObject('idle', sheet);
-});
-const tileNormalTextures = computed(() => {
-  if (!cell.value.tile) return null;
-  const sheet = assets.getSpritesheet(cell.value.tile.blueprint.spriteId);
-  return createSpritesheetFrameObject('idle', sheet);
-});
 
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,
@@ -85,6 +74,13 @@ const summon = () => {
     ui.unselectCard();
   }
 };
+
+const highlightTarget = () => {
+  ui.mouseLightStrength.value = 12;
+  ui.mouseLightColor.value = cell.value.entity?.player.equals(activePlayer.value)
+    ? '#77ff77'
+    : '#ff7777';
+};
 </script>
 
 <template>
@@ -105,33 +101,26 @@ const summon = () => {
               .with(TARGETING_MODES.BASIC, () => {
                 if (
                   ui.selectedEntity.value &&
-                  ui.hoveredCell.value?.equals(cell) &&
+                  isHovered &&
                   ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
-                  ui.selectedEntity.value.canAttack(ui.hoveredEntity.value) &&
-                  ui.targetingMode.value === TARGETING_MODES.BASIC
+                  ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
                 ) {
                   ui.mouseLightColor.value = '#ff0000';
-                  ui.mouseLightStrength.value = 8;
+                  ui.mouseLightStrength.value = 12;
                 }
               })
               .with(TARGETING_MODES.FOLLOWUP, () => {
                 if (!cell.entity) return;
                 if (!ui.selectedCard.value) return;
                 if (isFollowupTargetable) {
-                  ui.mouseLightStrength.value = 8;
-                  ui.mouseLightColor.value = cell.entity?.player.equals(activePlayer)
-                    ? '#77ff77'
-                    : '#ff7777';
+                  highlightTarget();
                 }
               })
               .with(TARGETING_MODES.SKILL, () => {
                 if (!cell.entity) return;
                 if (!ui.selectedCard.value) return;
                 if (isSkillTargetable) {
-                  ui.mouseLightStrength.value = 8;
-                  ui.mouseLightColor.value = cell.entity?.player.equals(activePlayer)
-                    ? '#77ff77'
-                    : '#ff7777';
+                  highlightTarget();
                 }
               })
               .exhaustive();
@@ -192,34 +181,5 @@ const summon = () => {
     </container>
   </IsoPositioner>
 
-  <IsoPositioner
-    :animated="!fx.isPlaying.value"
-    v-bind="cell.position"
-    :angle="camera.angle.value"
-    :height="boardDimensions.height"
-    :width="boardDimensions.width"
-    :z-index-offset="1"
-  >
-    <container
-      v-if="cell.tile && tileDiffuseTexture && tileNormalTextures"
-      :y="-CELL_HEIGHT * 0.4"
-      event-mode="none"
-    >
-      <PointLight
-        v-if="cell.tile.blueprint.lightColor"
-        :color="cell.tile.blueprint.lightColor"
-        :brightness="0.5"
-        :x="0"
-        :y="0"
-      />
-
-      <IlluminatedSprite
-        :diffuse-textures="tileDiffuseTexture"
-        :normal-textures="tileNormalTextures"
-        :anchor="0.5"
-        playing
-        loop
-      />
-    </container>
-  </IsoPositioner>
+  <Tile v-if="cell.tile" :cell-id="cellId" />
 </template>

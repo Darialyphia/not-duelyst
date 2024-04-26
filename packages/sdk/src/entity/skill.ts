@@ -74,7 +74,7 @@ export class Skill {
   }
 
   isInAreaOfEffect(point: Point3D, castPoints: Point3D[]) {
-    return this.blueprint.isTargetable(point, {
+    return this.blueprint.isInAreaOfEffect(point, {
       session: this.session,
       skill: this,
       castPoints: castPoints

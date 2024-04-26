@@ -17,19 +17,16 @@ const screen = useScreen();
 
 const scaleY = ref(-0.5);
 watchEffect(() => {
-  const root = fx.getEntityRoot(entityId);
-
-  const dist = root
-    ? ui.mousePosition.value.y - root.position.y
-    : ui.mousePosition.value.y;
-
-  const val = mapRange(
-    dist,
-    [-screen.value.height / 2, screen.value.height / 2],
-    [-0.5, 0.5]
-  );
-
-  scaleY.value = clamp(val * 5, -0.5, 0.5);
+  // const root = fx.getEntityRoot(entityId);
+  // const dist = root
+  //   ? ui.mousePosition.value.y - root.position.y
+  //   : ui.mousePosition.value.y;
+  // const val = mapRange(
+  //   dist,
+  //   [-screen.value.height / 2, screen.value.height / 2],
+  //   [-0.5, 0.5]
+  // );
+  // scaleY.value = clamp(val * 5, -0.5, 0.5);
 });
 
 const getSkewX = () => {
@@ -56,7 +53,7 @@ const getSkewX = () => {
 
 const skewX = ref(getSkewX());
 watchEffect(() => {
-  skewX.value = getSkewX();
+  // skewX.value = getSkewX();
 });
 
 const distanceFromMouse = computed(() => {
@@ -104,14 +101,12 @@ void main() {
 `
 );
 
-const alphaFilter = new AlphaFilter(0.5);
-const blurFilter = new BlurFilter(2);
+// const alphaFilter = new AlphaFilter(0.5);
+// const blurFilter = new BlurFilter(2);
 
-watchEffect(() => {
-  alphaFilter.alpha = alpha.value;
-});
-
-const shadowFilters = computed(() => []);
+// watchEffect(() => {
+//   alphaFilter.alpha = alpha.value;
+// });
 
 const isFlipped = computed(() => {
   let value = entity.value.player.isPlayer1 ? false : true;
@@ -142,7 +137,6 @@ const isFlipped = computed(() => {
       ref="sprite"
       :diffuse-textures="diffuseTextures"
       :normal-textures="normalTextures"
-      :filters="shadowFilters"
       :scale-y="-0.5"
       :skew-x="isFlipped ? 0.8 : -0.8"
       :anchor-x="0.5"

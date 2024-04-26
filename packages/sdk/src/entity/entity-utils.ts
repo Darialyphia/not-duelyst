@@ -30,6 +30,18 @@ export const isAlly = (
   return entity.player.id === playerId;
 };
 
+export const isAllyMinion = (
+  session: GameSession,
+  entityId: Nullable<EntityId>,
+  playerId: string
+) => {
+  if (!isDefined(entityId)) return false;
+  const entity = session.entitySystem.getEntityById(entityId);
+
+  if (!entity) return false;
+  return entity.player.id === playerId && !entity.isGeneral;
+};
+
 export const isEnemy = (
   session: GameSession,
   entityId: Nullable<EntityId>,
@@ -40,6 +52,18 @@ export const isEnemy = (
   if (!entity) return false;
 
   return entity.player.id !== playerId;
+};
+
+export const isEnemyMinion = (
+  session: GameSession,
+  entityId: Nullable<EntityId>,
+  playerId: string
+) => {
+  if (!isDefined(entityId)) return false;
+  const entity = session.entitySystem.getEntityById(entityId);
+  if (!entity) return false;
+
+  return entity.player.id !== playerId && !entity.isGeneral;
 };
 
 export const isEmpty = (session: GameSession, point: Point3D) => {

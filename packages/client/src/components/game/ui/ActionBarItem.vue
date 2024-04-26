@@ -47,7 +47,10 @@ const hoveredIndex = ref<number | null>(null);
         rarity: card.blueprint.rarity,
         attack: card.blueprint.attack,
         hp: card.blueprint.maxHp,
-        cost: card.cost
+        speed: card.blueprint.speed,
+        cost: card.cost,
+        cooldown: card.cooldown,
+        skills: card.blueprint.skills
       }"
     />
   </UiTooltip>
