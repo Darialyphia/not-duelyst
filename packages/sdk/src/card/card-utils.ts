@@ -20,10 +20,10 @@ export class Faction {
 
 export const FACTIONS = {
   F1: new Faction('f1', 'Life'),
-  F2: new Faction('f2', 'Death'),
+  F2: new Faction('f2', 'Chaos'),
   F3: new Faction('f3', 'Order'),
-  F4: new Faction('f4', 'Chaos'),
-  F5: new Faction('f5', 'Elemental')
+  F4: new Faction('f4', 'Death'),
+  F5: new Faction('f5', 'Prime')
 } as const satisfies Record<string, Faction>;
 
 export const RARITIES = {

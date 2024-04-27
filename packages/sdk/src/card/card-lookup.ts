@@ -3,15 +3,14 @@ import type { CardBlueprintId } from './card';
 import type { CardBlueprint } from './card-blueprint';
 import { CARD_KINDS, FACTIONS, RARITIES } from './card-utils';
 import { config } from '../config';
-import { isAlly, isAllyMinion, isEnemy } from '../entity/entity-utils';
+import { isAllyMinion, isEnemy } from '../entity/entity-utils';
 import { Vec3 } from '@game/shared';
-import { isWithinCells } from '../utils/targeting';
 
 const allCards: CardBlueprint[] = [
   {
     id: 'f1_general',
     name: 'F1 General',
-    description: '',
+    description: 'Fuck up once: die',
     rarity: RARITIES.BASIC,
     factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
     spriteId: 'f1_general',

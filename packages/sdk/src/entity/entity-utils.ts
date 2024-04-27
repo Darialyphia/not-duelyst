@@ -2,7 +2,7 @@ import { type Nullable, isDefined } from '@game/shared';
 import { GameSession } from '../game-session';
 import { type Point3D } from '../types';
 import { Entity, type EntityId } from './entity';
-import { isAxisAligned, isWithinCells } from '../utils/targeting';
+import { isWithinCells } from '../utils/targeting';
 import { match } from 'ts-pattern';
 
 export const getEntityIfOwnerMatches = (

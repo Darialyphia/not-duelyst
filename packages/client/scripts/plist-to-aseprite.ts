@@ -98,7 +98,9 @@ const parsePlist = (url: string, raw: string) => {
 };
 
 (async function () {
-  const paths = await fg('src/assets/duelyst/fx/*.plist');
+  const paths = await fg('src/assets/duelyst/units/*.plist');
+  const outDir = path.join(process.cwd(), 'src/assets/duelyst/aseprite');
+  await fs.ensureDir(outDir);
   for (const p of paths) {
     const file = await fs.readFileSync(path.join(process.cwd(), p), {
       encoding: 'utf-8'
@@ -124,16 +126,8 @@ const parsePlist = (url: string, raw: string) => {
       );
 
       await fs.move(
-        path.join(process.cwd(), p.replace('.plist', '.png')),
-        path.join(process.cwd(), 'src/assets/fx{m}', `${name}.png`)
-      );
-      await fs.move(
-        path.join(process.cwd(), p.replace('.plist', '.json')),
-        path.join(process.cwd(), 'src/assets/fx{m}', `${name}.json`)
-      );
-      await fs.move(
         path.join(process.cwd(), p.replace('.plist', '.ase')),
-        path.join(process.cwd(), 'src/assets/fx{m}', `${name}.ase`)
+        path.join(outDir, `${name}.ase`)
       );
     } catch (err) {
       console.log(`Error while generating ${name}`);

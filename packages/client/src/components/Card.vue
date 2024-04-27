@@ -91,8 +91,8 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(card.skills[0]);
 .card {
   position: relative;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
 
   width: 286px;
   height: 396px;
@@ -112,6 +112,8 @@ header {
 }
 
 .cost {
+  transform: translateY(calc(-1 * var(--size-2)));
+
   justify-self: start;
 
   width: 76px;
@@ -151,9 +153,7 @@ header {
 }
 
 .text {
-  margin-top: 52px;
-  margin-bottom: var(--size-1);
-
+  margin-block: calc(var(--size-8) + var(--size-2)) var(--size-1);
   font-weight: 400;
   line-height: 1;
   text-align: center;
@@ -268,7 +268,7 @@ footer {
 }
 
 .description {
-  align-self: center;
+  justify-self: center;
 
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
