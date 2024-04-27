@@ -9,7 +9,6 @@ const sheet = ref<SpritesheetWithAnimations>();
 watchEffect(async () => {
   if (!assets.loaded.value) return;
   sheet.value = await assets.loadSpritesheet(spriteId);
-  console.log('loaded sheet', spriteId, sheet.value);
 });
 
 const el = ref<HTMLElement>();

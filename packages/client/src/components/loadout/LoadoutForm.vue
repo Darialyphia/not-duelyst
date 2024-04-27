@@ -24,6 +24,17 @@ const sortedUnits = computed(() => {
       return a.card.cost - b.card.cost;
     });
 });
+
+// TODO load user owned cosmetics from api
+const pedestals = ['pedestal-default', 'pedestal-stone', 'pedestal-grass'];
+const changePedestal = (id: string, diff: number) => {
+  const card = cards.find(c => c.id === id)!;
+  const index = pedestals.indexOf(card.pedestalId);
+  let newIndex = (index + diff) % pedestals.length;
+  if (newIndex < 0) newIndex = pedestals.length - 1;
+
+  emit('setPedestal', { id, pedestalId: pedestals[newIndex] });
+};
 </script>
 
 <template>
@@ -34,23 +45,47 @@ const sortedUnits = computed(() => {
     </header>
 
     <ul v-if="cards.length" v-auto-animate class="flex-1">
-      <li v-for="card in sortedUnits" :key="card.card.id">
-        <div v-if="card.card.kind === CARD_KINDS.MINION" class="cost">
+      <li
+        v-for="card in sortedUnits"
+        :key="card.card.id"
+        :class="card.card.kind.toLowerCase()"
+      >
+        <div class="cost">
           {{ card.card.cost }}
         </div>
 
-        <img :src="`/assets/units/${card.card.spriteId}-icon.png`" />
+        <div>
+          <div class="flex gap-2">
+            <img
+              v-for="(_, index) in 3"
+              :key="index"
+              :src="`/assets/ui/rune-${
+                card.card.factions[index]?.id.toLocaleLowerCase() ?? 'empty'
+              }.png`"
+              class="rune"
+            />
+          </div>
+          <div class="text-0 mt-2 text-center">{{ card.card.name }}</div>
+        </div>
 
-        <img
-          v-for="(_, index) in 3"
-          :key="index"
-          :src="`/assets/ui/rune-${
-            card.card.factions[index]?.id.toLocaleLowerCase() ?? 'empty'
-          }.png`"
-          class="rune"
-        />
-
-        <span>{{ card.card.name }}</span>
+        <div class="flex items-center ml-auto">
+          <UiIconButton
+            name="ph:caret-left-fill"
+            class="pedestal-nav"
+            type="button"
+            @click="changePedestal(card.id, -1)"
+          />
+          <div class="sprite mx-auto">
+            <PedestalSprite :pedestal-id="card.pedestalId" />
+            <CardSprite :sprite-id="card.card.spriteId" />
+          </div>
+          <UiIconButton
+            name="ph:caret-right-fill"
+            class="pedestal-nav"
+            type="button"
+            @click="changePedestal(card.id, 1)"
+          />
+        </div>
 
         <UiIconButton
           name="mdi:minus"
@@ -107,33 +142,25 @@ footer {
 }
 
 li {
+  overflow: hidden;
   display: flex;
   gap: var(--size-2);
   align-items: center;
 
+  height: 88px;
   padding-block: var(--size-2);
 
   font-size: var(--font-size-3);
 
   border-bottom: solid var(--border-size-1) var(--border-dimmed);
+  &.general .cost {
+    visibility: hidden;
+  }
 
   span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  > img {
-    flex-shrink: 0;
-  }
-  > img:not(.rune) {
-    overflow: hidden;
-
-    aspect-ratio: 1;
-    width: 48px;
-
-    border: solid var(--border-size-1) var(--primary);
-    border-radius: var(--radius-round);
   }
 
   > .rune {
@@ -142,11 +169,8 @@ li {
   }
 
   > button {
-    margin-left: auto;
     padding: var(--size-1);
-
     font-size: var(--font-size-0);
-
     border-radius: var(--radius-round);
     box-shadow: inset 0 0 3px 4px rgba(0, 0, 0, 0.35);
   }
@@ -167,8 +191,29 @@ li {
 }
 
 .rune {
-  width: 24px;
-  height: 28px;
+  width: 11px;
+  height: 13px;
   image-rendering: pixelated;
+}
+
+.sprite {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  > * {
+    transform: translateY(12px);
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+  }
+}
+
+.pedestal-nav {
+  --ui-button-hover-bg: var(--gray-9);
+  --ui-button-focus-bg: var(--gray-9);
+  --ui-button-hover-color: var(--primary);
+  --ui-button-focus-color: var(--primary);
+
+  margin-top: var(--size-5);
 }
 </style>

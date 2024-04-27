@@ -71,6 +71,7 @@ const editLoadout = (loadout: LoadoutDto) => {
         :is-in-loadout="isInLoadout"
         :can-add-to-loadout="canAddToLoadout"
         :is-editing="sidebarView === 'form'"
+        @toggle="toggleLoadoutCard($event)"
       >
         <template #sidebar>
           <template v-if="sidebarView === 'form'">
@@ -82,6 +83,11 @@ const editLoadout = (loadout: LoadoutDto) => {
               @back="sidebarView = 'list'"
               @save="save"
               @toggle-unit="toggleLoadoutCard($event)"
+              @set-pedestal="
+                ({ id, pedestalId }) => {
+                  formValues!.cards.find(c => c.id === id)!.pedestalId = pedestalId;
+                }
+              "
             />
           </template>
 
