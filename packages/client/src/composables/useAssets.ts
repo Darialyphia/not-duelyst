@@ -82,6 +82,7 @@ export const useAssetsProvider = () => {
       Assets.loadBundle('ui'),
       Assets.loadBundle('obstacles'),
       Assets.loadBundle('tilesets'),
+      Assets.loadBundle('pedestals'),
       Assets.loadBundle('hitboxes'),
       Assets.loadBundle('modifiers')
     ]);

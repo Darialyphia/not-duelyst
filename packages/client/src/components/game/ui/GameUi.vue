@@ -30,7 +30,8 @@ const entity = computed(() => {
           speed: entity.speed,
           cost: entity.card.cost,
           cooldown: entity.card.cooldown,
-          skills: entity.card.blueprint.skills
+          skills: entity.card.blueprint.skills,
+          pedestalId: entity.card.pedestalId
         }"
       />
     </div>

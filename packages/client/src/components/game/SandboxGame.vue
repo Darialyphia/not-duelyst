@@ -12,13 +12,13 @@ const state: SerializedGameState = {
       id: '1',
       name: 'Player 1',
       cards: [
-        { blueprintId: 'f1_general' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' }
+        { blueprintId: 'f1_general', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' }
       ],
       isPlayer1: true,
       graveyard: []
@@ -27,13 +27,13 @@ const state: SerializedGameState = {
       id: '2',
       name: 'Player 2',
       cards: [
-        { blueprintId: 'f1_general' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' },
-        { blueprintId: 'f1_placeholder' }
+        { blueprintId: 'f1_general', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
+        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' }
       ],
       isPlayer1: false,
       graveyard: []

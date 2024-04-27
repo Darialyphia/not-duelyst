@@ -87,23 +87,9 @@ const blur = computed(() =>
   )
 );
 
-const colorOverlayFilter = new ColorOverlayFilter(0x000000);
-const tintFilter = new Filter(
-  undefined,
-  /*glsl*/ `
-varying vec2 vTextureCoord;
-uniform sampler2D uSampler;
-
-void main() {
-  vec4 original = texture2D(uSampler, vTextureCoord);
-  gl_FragColor = vec4(0.0,0.0,0.0,original.a);
-}
-`
-);
-
 // const alphaFilter = new AlphaFilter(0.5);
-// const blurFilter = new BlurFilter(2);
-
+const blurFilter = new BlurFilter(2);
+const filters = [blurFilter];
 // watchEffect(() => {
 //   alphaFilter.alpha = alpha.value;
 // });
@@ -137,6 +123,7 @@ const isFlipped = computed(() => {
       ref="sprite"
       :diffuse-textures="diffuseTextures"
       :normal-textures="normalTextures"
+      :filters="filters"
       :scale-y="-0.5"
       :skew-x="isFlipped ? 0.8 : -0.8"
       :anchor-x="0.5"

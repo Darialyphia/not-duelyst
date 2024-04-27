@@ -62,7 +62,7 @@ const lightColor = computed(() => {
 });
 
 const MIN_LIGHTNESS = 0;
-const MAX_LIGHTNESS = 1;
+const MAX_LIGHTNESS = 0.6;
 const lightBrightness = ref(MIN_LIGHTNESS);
 watchEffect(() => {
   const isAlly = activePlayer.value.equals(entity.value.player);
@@ -82,6 +82,11 @@ const isFlipped = computed(() => {
 
   return value;
 });
+
+const pedestalTextures = useIlluminatedTexture(
+  () => entity.value.card.pedestalId,
+  'idle'
+);
 </script>
 
 <template>
@@ -103,9 +108,19 @@ const isFlipped = computed(() => {
       :color="lightColor"
       :brightness="lightBrightness"
       :x="0"
-      :y="50"
+      :y="-30"
     />
 
+    <IlluminatedSprite
+      v-if="pedestalTextures.diffuse && pedestalTextures.normal"
+      :diffuse-textures="pedestalTextures.diffuse"
+      :normal-textures="pedestalTextures.normal"
+      :anchor-x="0.5"
+      :anchor-y="0"
+      :playing="true"
+      :y="-CELL_HEIGHT * 0.6"
+      :is-flipped="isFlipped"
+    />
     <IlluminatedSprite
       v-if="diffuseTextures && normalTextures"
       :diffuse-textures="diffuseTextures"

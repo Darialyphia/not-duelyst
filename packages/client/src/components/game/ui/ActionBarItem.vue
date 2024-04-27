@@ -50,7 +50,8 @@ const hoveredIndex = ref<number | null>(null);
         speed: card.blueprint.speed,
         cost: card.cost,
         cooldown: card.cooldown,
-        skills: card.blueprint.skills
+        skills: card.blueprint.skills,
+        pedestalId: card.pedestalId
       }"
     />
   </UiTooltip>

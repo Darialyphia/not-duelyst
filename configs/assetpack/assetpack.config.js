@@ -17,6 +17,7 @@ const loadParserByAssetType = {
   obstacles: SPRITESHEET_PARSER,
   fx: SPRITESHEET_PARSER,
   modifiers: SPRITESHEET_PARSER,
+  pedestals: SPRITESHEET_PARSER,
   hitboxes: undefined,
 };
 
@@ -31,6 +32,7 @@ const prefixByAssetType = {
   fx: "",
   normals: "",
   modifiers: "",
+  pedestals: "",
   hitboxes: "hitbox-",
 };
 

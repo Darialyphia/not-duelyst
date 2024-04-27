@@ -12,6 +12,7 @@ export type CardBlueprintId = string;
 
 export type SerializedCard = {
   blueprintId: CardBlueprintId;
+  pedestralId: string;
 };
 
 export type CardInterceptor = Card['interceptors'];
@@ -30,6 +31,7 @@ export type CardEventMap = {
 
 export class Card extends EventEmitter implements Serializable {
   readonly blueprintId: CardBlueprintId;
+  public readonly pedestalId: string;
   modifiers: CardModifier[] = [];
   currentCooldown: number;
 
@@ -41,6 +43,7 @@ export class Card extends EventEmitter implements Serializable {
   ) {
     super();
     this.blueprintId = options.blueprintId;
+    this.pedestalId = options.pedestralId;
     this.currentCooldown = this.blueprint.initialCooldown;
   }
 
@@ -153,8 +156,9 @@ export class Card extends EventEmitter implements Serializable {
   canPlayAt(point: Point3D) {
     if (this.hpCost >= this.player.general.hp) return false;
 
-    const isOccupied = !!this.session.entitySystem.getEntityAt(point);
-    if (isOccupied) return false;
+    const cell = this.session.boardSystem.getCellAt(point);
+    if (!cell) return false;
+    if (cell.entity || !cell.isWalkable) return false;
     const nearby = this.session.boardSystem.getNeighbors3D(point);
     const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
 
@@ -189,6 +193,6 @@ export class Card extends EventEmitter implements Serializable {
   }
 
   serialize(): SerializedCard {
-    return { blueprintId: this.blueprintId };
+    return { blueprintId: this.blueprintId, pedestralId: this.pedestalId };
   }
 }

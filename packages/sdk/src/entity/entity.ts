@@ -323,7 +323,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       this.id,
       path.map(point => ({
         point,
-        duration: 0.3
+        duration: 0.4
       }))
     );
     stopRunning();

@@ -16,6 +16,7 @@ type ICard = {
   cooldown: number;
   speed: number;
   skills: SkillBlueprint[];
+  pedestalId?: string;
 };
 
 const { card } = defineProps<{ card: ICard }>();
@@ -30,6 +31,7 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(card.skills[0]);
     <header>
       <UiCenter class="cost">{{ card.cost }}</UiCenter>
       <div class="sprite">
+        <PedestalSprite :pedestal-id="card.pedestalId ?? 'pedestal-default'" />
         <CardSprite :sprite-id="card.spriteId" />
       </div>
       <UiCenter v-if="card.cooldown" class="cooldown">
@@ -136,10 +138,15 @@ header {
 }
 
 .sprite {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   justify-self: center;
   > div {
     transform-origin: bottom center;
     transform: scale(2) translateY(40%);
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
   }
 }
 
