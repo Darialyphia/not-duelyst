@@ -1,0 +1,1232 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_bbs_husk_000",
+      "frame": {
+        "x": 905,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_001",
+      "frame": {
+        "x": 1810,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_002",
+      "frame": {
+        "x": 1629,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_003",
+      "frame": {
+        "x": 1629,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_004",
+      "frame": {
+        "x": 1629,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_005",
+      "frame": {
+        "x": 1629,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_006",
+      "frame": {
+        "x": 1629,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_007",
+      "frame": {
+        "x": 1448,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_008",
+      "frame": {
+        "x": 1448,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_009",
+      "frame": {
+        "x": 1448,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_010",
+      "frame": {
+        "x": 1448,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_011",
+      "frame": {
+        "x": 1448,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_012",
+      "frame": {
+        "x": 1267,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_013",
+      "frame": {
+        "x": 1267,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_014",
+      "frame": {
+        "x": 1267,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_015",
+      "frame": {
+        "x": 1267,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_016",
+      "frame": {
+        "x": 1267,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_017",
+      "frame": {
+        "x": 1086,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_018",
+      "frame": {
+        "x": 1086,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_019",
+      "frame": {
+        "x": 1086,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_020",
+      "frame": {
+        "x": 1086,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_021",
+      "frame": {
+        "x": 1086,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_022",
+      "frame": {
+        "x": 905,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_023",
+      "frame": {
+        "x": 905,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_024",
+      "frame": {
+        "x": 905,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_025",
+      "frame": {
+        "x": 905,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_026",
+      "frame": {
+        "x": 1810,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_027",
+      "frame": {
+        "x": 724,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_028",
+      "frame": {
+        "x": 724,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_029",
+      "frame": {
+        "x": 724,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_030",
+      "frame": {
+        "x": 724,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_031",
+      "frame": {
+        "x": 724,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_032",
+      "frame": {
+        "x": 543,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_033",
+      "frame": {
+        "x": 543,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_034",
+      "frame": {
+        "x": 543,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_035",
+      "frame": {
+        "x": 543,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_036",
+      "frame": {
+        "x": 543,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_037",
+      "frame": {
+        "x": 362,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_038",
+      "frame": {
+        "x": 362,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_039",
+      "frame": {
+        "x": 362,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_040",
+      "frame": {
+        "x": 362,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_041",
+      "frame": {
+        "x": 362,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_042",
+      "frame": {
+        "x": 181,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_043",
+      "frame": {
+        "x": 181,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_044",
+      "frame": {
+        "x": 181,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_045",
+      "frame": {
+        "x": 181,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_046",
+      "frame": {
+        "x": 181,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_047",
+      "frame": {
+        "x": 0,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_048",
+      "frame": {
+        "x": 0,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_049",
+      "frame": {
+        "x": 0,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_050",
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_051",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_052",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_053",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_husk_054",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_bbs_husk.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 54,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

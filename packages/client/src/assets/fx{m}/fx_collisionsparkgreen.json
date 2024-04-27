@@ -1,0 +1,330 @@
+{
+  "frames": [
+    {
+      "filename": "fx_collisionsparksgreen_000",
+      "frame": {
+        "x": 81,
+        "y": 114,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_001",
+      "frame": {
+        "x": 243,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_002",
+      "frame": {
+        "x": 162,
+        "y": 171,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_003",
+      "frame": {
+        "x": 162,
+        "y": 114,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_004",
+      "frame": {
+        "x": 162,
+        "y": 57,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_005",
+      "frame": {
+        "x": 162,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_006",
+      "frame": {
+        "x": 81,
+        "y": 171,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_007",
+      "frame": {
+        "x": 243,
+        "y": 57,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_008",
+      "frame": {
+        "x": 81,
+        "y": 57,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_009",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_010",
+      "frame": {
+        "x": 0,
+        "y": 171,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_011",
+      "frame": {
+        "x": 0,
+        "y": 114,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_012",
+      "frame": {
+        "x": 0,
+        "y": 57,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_collisionsparksgreen_013",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 56
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_collisionsparkgreen.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "collisionsparksgreen",
+        "from": 0,
+        "to": 13,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

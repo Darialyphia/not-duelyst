@@ -1,0 +1,990 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_bbs_shadowspawn_000",
+      "frame": {
+        "x": 724,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_001",
+      "frame": {
+        "x": 1448,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_002",
+      "frame": {
+        "x": 1448,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_003",
+      "frame": {
+        "x": 1448,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_004",
+      "frame": {
+        "x": 1267,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_005",
+      "frame": {
+        "x": 1267,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_006",
+      "frame": {
+        "x": 1267,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_007",
+      "frame": {
+        "x": 1267,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_008",
+      "frame": {
+        "x": 1267,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_009",
+      "frame": {
+        "x": 1086,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_010",
+      "frame": {
+        "x": 1086,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_011",
+      "frame": {
+        "x": 1086,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_012",
+      "frame": {
+        "x": 1086,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_013",
+      "frame": {
+        "x": 1086,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_014",
+      "frame": {
+        "x": 905,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_015",
+      "frame": {
+        "x": 905,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_016",
+      "frame": {
+        "x": 905,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_017",
+      "frame": {
+        "x": 905,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_018",
+      "frame": {
+        "x": 905,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_019",
+      "frame": {
+        "x": 724,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_020",
+      "frame": {
+        "x": 724,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_021",
+      "frame": {
+        "x": 724,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_022",
+      "frame": {
+        "x": 1448,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_023",
+      "frame": {
+        "x": 724,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_024",
+      "frame": {
+        "x": 543,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_025",
+      "frame": {
+        "x": 543,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_026",
+      "frame": {
+        "x": 543,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_027",
+      "frame": {
+        "x": 543,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_028",
+      "frame": {
+        "x": 543,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_029",
+      "frame": {
+        "x": 362,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_030",
+      "frame": {
+        "x": 362,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_031",
+      "frame": {
+        "x": 362,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_032",
+      "frame": {
+        "x": 362,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_033",
+      "frame": {
+        "x": 362,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_034",
+      "frame": {
+        "x": 181,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_035",
+      "frame": {
+        "x": 181,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_036",
+      "frame": {
+        "x": 181,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_037",
+      "frame": {
+        "x": 181,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_038",
+      "frame": {
+        "x": 181,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_039",
+      "frame": {
+        "x": 0,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_040",
+      "frame": {
+        "x": 0,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_041",
+      "frame": {
+        "x": 0,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_042",
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_bbs_shadowspawn_043",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_bbs_shadowspawn.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 43,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,748 @@
+{
+  "frames": [
+    {
+      "filename": "fx_beamlaser_000",
+      "frame": {
+        "x": 648,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_001",
+      "frame": {
+        "x": 1215,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_002",
+      "frame": {
+        "x": 1215,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_003",
+      "frame": {
+        "x": 1134,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_004",
+      "frame": {
+        "x": 1134,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_005",
+      "frame": {
+        "x": 1053,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_006",
+      "frame": {
+        "x": 1053,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_007",
+      "frame": {
+        "x": 972,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_008",
+      "frame": {
+        "x": 972,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_009",
+      "frame": {
+        "x": 891,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_010",
+      "frame": {
+        "x": 891,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_011",
+      "frame": {
+        "x": 810,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_012",
+      "frame": {
+        "x": 810,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_013",
+      "frame": {
+        "x": 729,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_014",
+      "frame": {
+        "x": 729,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_015",
+      "frame": {
+        "x": 648,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_016",
+      "frame": {
+        "x": 1296,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_017",
+      "frame": {
+        "x": 567,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_018",
+      "frame": {
+        "x": 567,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_019",
+      "frame": {
+        "x": 486,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_020",
+      "frame": {
+        "x": 486,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_021",
+      "frame": {
+        "x": 405,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_022",
+      "frame": {
+        "x": 405,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_023",
+      "frame": {
+        "x": 324,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_024",
+      "frame": {
+        "x": 324,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_025",
+      "frame": {
+        "x": 243,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_026",
+      "frame": {
+        "x": 243,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_027",
+      "frame": {
+        "x": 162,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_028",
+      "frame": {
+        "x": 162,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_029",
+      "frame": {
+        "x": 81,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_030",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_031",
+      "frame": {
+        "x": 0,
+        "y": 351,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamlaser_032",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 350
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_beamlaser.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 32,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_shadownova_000",
+      "frame": {
+        "x": 394,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_001",
+      "frame": {
+        "x": 788,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_002",
+      "frame": {
+        "x": 591,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_003",
+      "frame": {
+        "x": 591,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_004",
+      "frame": {
+        "x": 591,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_005",
+      "frame": {
+        "x": 591,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_006",
+      "frame": {
+        "x": 591,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_007",
+      "frame": {
+        "x": 394,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_008",
+      "frame": {
+        "x": 394,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_009",
+      "frame": {
+        "x": 394,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_010",
+      "frame": {
+        "x": 394,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_011",
+      "frame": {
+        "x": 788,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_012",
+      "frame": {
+        "x": 197,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_013",
+      "frame": {
+        "x": 197,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_014",
+      "frame": {
+        "x": 197,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_015",
+      "frame": {
+        "x": 197,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_016",
+      "frame": {
+        "x": 197,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_017",
+      "frame": {
+        "x": 0,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_018",
+      "frame": {
+        "x": 0,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_019",
+      "frame": {
+        "x": 0,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_020",
+      "frame": {
+        "x": 0,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadownova_021",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_shadownova.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 21,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

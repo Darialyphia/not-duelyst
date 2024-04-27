@@ -1,0 +1,902 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_consumingrebirth_000",
+      "frame": {
+        "x": 453,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_001",
+      "frame": {
+        "x": 906,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_002",
+      "frame": {
+        "x": 906,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_003",
+      "frame": {
+        "x": 906,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_004",
+      "frame": {
+        "x": 755,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_005",
+      "frame": {
+        "x": 755,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_006",
+      "frame": {
+        "x": 755,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_007",
+      "frame": {
+        "x": 755,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_008",
+      "frame": {
+        "x": 755,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_009",
+      "frame": {
+        "x": 755,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_010",
+      "frame": {
+        "x": 604,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_011",
+      "frame": {
+        "x": 604,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_012",
+      "frame": {
+        "x": 604,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_013",
+      "frame": {
+        "x": 604,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_014",
+      "frame": {
+        "x": 604,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_015",
+      "frame": {
+        "x": 604,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_016",
+      "frame": {
+        "x": 453,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_017",
+      "frame": {
+        "x": 453,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_018",
+      "frame": {
+        "x": 453,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_019",
+      "frame": {
+        "x": 453,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_020",
+      "frame": {
+        "x": 906,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_021",
+      "frame": {
+        "x": 453,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_022",
+      "frame": {
+        "x": 302,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_023",
+      "frame": {
+        "x": 302,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_024",
+      "frame": {
+        "x": 302,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_025",
+      "frame": {
+        "x": 302,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_026",
+      "frame": {
+        "x": 302,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_027",
+      "frame": {
+        "x": 302,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_028",
+      "frame": {
+        "x": 151,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_029",
+      "frame": {
+        "x": 151,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_030",
+      "frame": {
+        "x": 151,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_031",
+      "frame": {
+        "x": 151,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_032",
+      "frame": {
+        "x": 151,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_033",
+      "frame": {
+        "x": 151,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_034",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_035",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_036",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_037",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_038",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_consumingrebirth_039",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_consumingrebirth.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 39,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

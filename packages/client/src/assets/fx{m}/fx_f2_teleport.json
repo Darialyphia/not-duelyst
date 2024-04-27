@@ -1,0 +1,198 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_teleport_000",
+      "frame": {
+        "x": 126,
+        "y": 126,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_001",
+      "frame": {
+        "x": 378,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_002",
+      "frame": {
+        "x": 252,
+        "y": 126,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_003",
+      "frame": {
+        "x": 252,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_004",
+      "frame": {
+        "x": 378,
+        "y": 126,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_005",
+      "frame": {
+        "x": 126,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_006",
+      "frame": {
+        "x": 0,
+        "y": 126,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_teleport_007",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 125,
+        "h": 125
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_teleport.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 7,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

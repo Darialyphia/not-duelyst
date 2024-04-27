@@ -1,0 +1,572 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_manavortex_000",
+      "frame": {
+        "x": 362,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_001",
+      "frame": {
+        "x": 724,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_002",
+      "frame": {
+        "x": 724,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_003",
+      "frame": {
+        "x": 724,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_004",
+      "frame": {
+        "x": 724,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_005",
+      "frame": {
+        "x": 543,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_006",
+      "frame": {
+        "x": 543,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_007",
+      "frame": {
+        "x": 543,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_008",
+      "frame": {
+        "x": 543,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_009",
+      "frame": {
+        "x": 543,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_010",
+      "frame": {
+        "x": 362,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_011",
+      "frame": {
+        "x": 362,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_012",
+      "frame": {
+        "x": 724,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_013",
+      "frame": {
+        "x": 362,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_014",
+      "frame": {
+        "x": 362,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_015",
+      "frame": {
+        "x": 181,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_016",
+      "frame": {
+        "x": 181,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_017",
+      "frame": {
+        "x": 181,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_018",
+      "frame": {
+        "x": 181,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_019",
+      "frame": {
+        "x": 181,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_020",
+      "frame": {
+        "x": 0,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_021",
+      "frame": {
+        "x": 0,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_022",
+      "frame": {
+        "x": 0,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_023",
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_manavortex_024",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_manavortex.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,880 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_nethersummoning_000",
+      "frame": {
+        "x": 543,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_001",
+      "frame": {
+        "x": 1267,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_002",
+      "frame": {
+        "x": 1267,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_003",
+      "frame": {
+        "x": 1267,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_004",
+      "frame": {
+        "x": 1086,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_005",
+      "frame": {
+        "x": 1086,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_006",
+      "frame": {
+        "x": 1086,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_007",
+      "frame": {
+        "x": 1086,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_008",
+      "frame": {
+        "x": 1086,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_009",
+      "frame": {
+        "x": 905,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_010",
+      "frame": {
+        "x": 905,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_011",
+      "frame": {
+        "x": 905,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_012",
+      "frame": {
+        "x": 905,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_013",
+      "frame": {
+        "x": 905,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_014",
+      "frame": {
+        "x": 724,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_015",
+      "frame": {
+        "x": 724,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_016",
+      "frame": {
+        "x": 724,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_017",
+      "frame": {
+        "x": 724,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_018",
+      "frame": {
+        "x": 724,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_019",
+      "frame": {
+        "x": 1267,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_020",
+      "frame": {
+        "x": 543,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_021",
+      "frame": {
+        "x": 543,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_022",
+      "frame": {
+        "x": 543,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_023",
+      "frame": {
+        "x": 543,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_024",
+      "frame": {
+        "x": 362,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_025",
+      "frame": {
+        "x": 362,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_026",
+      "frame": {
+        "x": 362,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_027",
+      "frame": {
+        "x": 362,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_028",
+      "frame": {
+        "x": 362,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_029",
+      "frame": {
+        "x": 181,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_030",
+      "frame": {
+        "x": 181,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_031",
+      "frame": {
+        "x": 181,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_032",
+      "frame": {
+        "x": 181,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_033",
+      "frame": {
+        "x": 181,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_034",
+      "frame": {
+        "x": 0,
+        "y": 724,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_035",
+      "frame": {
+        "x": 0,
+        "y": 543,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_036",
+      "frame": {
+        "x": 0,
+        "y": 362,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_037",
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_nethersummoning_038",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 180
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_nethersummoning.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 38,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

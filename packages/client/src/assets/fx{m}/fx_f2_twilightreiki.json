@@ -1,0 +1,726 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_twilightreiki_000",
+      "frame": {
+        "x": 603,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_001",
+      "frame": {
+        "x": 1206,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_002",
+      "frame": {
+        "x": 1005,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_003",
+      "frame": {
+        "x": 1005,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_004",
+      "frame": {
+        "x": 1005,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_005",
+      "frame": {
+        "x": 1005,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_006",
+      "frame": {
+        "x": 1005,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_007",
+      "frame": {
+        "x": 804,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_008",
+      "frame": {
+        "x": 804,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_009",
+      "frame": {
+        "x": 804,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_010",
+      "frame": {
+        "x": 804,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_011",
+      "frame": {
+        "x": 804,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_012",
+      "frame": {
+        "x": 603,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_013",
+      "frame": {
+        "x": 603,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_014",
+      "frame": {
+        "x": 603,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_015",
+      "frame": {
+        "x": 603,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_016",
+      "frame": {
+        "x": 1206,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_017",
+      "frame": {
+        "x": 402,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_018",
+      "frame": {
+        "x": 402,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_019",
+      "frame": {
+        "x": 402,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_020",
+      "frame": {
+        "x": 402,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_021",
+      "frame": {
+        "x": 402,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_022",
+      "frame": {
+        "x": 201,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_023",
+      "frame": {
+        "x": 201,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_024",
+      "frame": {
+        "x": 201,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_025",
+      "frame": {
+        "x": 201,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_026",
+      "frame": {
+        "x": 201,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_027",
+      "frame": {
+        "x": 0,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_028",
+      "frame": {
+        "x": 0,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_029",
+      "frame": {
+        "x": 0,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_030",
+      "frame": {
+        "x": 0,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twilightreiki_031",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_twilightreiki.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 31,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,924 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f3_blindscorch_000",
+      "frame": {
+        "x": 562,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_001",
+      "frame": {
+        "x": 1124,
+        "y": 1405,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_002",
+      "frame": {
+        "x": 1124,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_003",
+      "frame": {
+        "x": 1124,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_004",
+      "frame": {
+        "x": 1124,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_005",
+      "frame": {
+        "x": 1124,
+        "y": 281,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_006",
+      "frame": {
+        "x": 1124,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_007",
+      "frame": {
+        "x": 843,
+        "y": 1686,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_008",
+      "frame": {
+        "x": 843,
+        "y": 1405,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_009",
+      "frame": {
+        "x": 843,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_010",
+      "frame": {
+        "x": 843,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_011",
+      "frame": {
+        "x": 843,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_012",
+      "frame": {
+        "x": 843,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_013",
+      "frame": {
+        "x": 843,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_014",
+      "frame": {
+        "x": 843,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_015",
+      "frame": {
+        "x": 843,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_016",
+      "frame": {
+        "x": 843,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_017",
+      "frame": {
+        "x": 843,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_018",
+      "frame": {
+        "x": 843,
+        "y": 281,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_019",
+      "frame": {
+        "x": 843,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_020",
+      "frame": {
+        "x": 562,
+        "y": 1686,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_021",
+      "frame": {
+        "x": 562,
+        "y": 1405,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_022",
+      "frame": {
+        "x": 562,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_023",
+      "frame": {
+        "x": 1124,
+        "y": 1686,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_024",
+      "frame": {
+        "x": 562,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_025",
+      "frame": {
+        "x": 562,
+        "y": 281,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_026",
+      "frame": {
+        "x": 562,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_027",
+      "frame": {
+        "x": 281,
+        "y": 1686,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_028",
+      "frame": {
+        "x": 281,
+        "y": 1405,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_029",
+      "frame": {
+        "x": 281,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_030",
+      "frame": {
+        "x": 281,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_031",
+      "frame": {
+        "x": 281,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_032",
+      "frame": {
+        "x": 281,
+        "y": 281,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_033",
+      "frame": {
+        "x": 281,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_034",
+      "frame": {
+        "x": 0,
+        "y": 1686,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_035",
+      "frame": {
+        "x": 0,
+        "y": 1405,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_036",
+      "frame": {
+        "x": 0,
+        "y": 1124,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_037",
+      "frame": {
+        "x": 0,
+        "y": 843,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_038",
+      "frame": {
+        "x": 0,
+        "y": 562,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_039",
+      "frame": {
+        "x": 0,
+        "y": 281,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_blindscorch_040",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 280,
+        "h": 280
+      },
+      "sourceSize": {
+        "w": 280,
+        "h": 280
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f3_blindscorch.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 40,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1298 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_riteundervault_000",
+      "frame": {
+        "x": 450,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_001",
+      "frame": {
+        "x": 1125,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_002",
+      "frame": {
+        "x": 1125,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_003",
+      "frame": {
+        "x": 1125,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_004",
+      "frame": {
+        "x": 1125,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_005",
+      "frame": {
+        "x": 1125,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_006",
+      "frame": {
+        "x": 1125,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_007",
+      "frame": {
+        "x": 1125,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_008",
+      "frame": {
+        "x": 1125,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_009",
+      "frame": {
+        "x": 900,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_010",
+      "frame": {
+        "x": 900,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_011",
+      "frame": {
+        "x": 900,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_012",
+      "frame": {
+        "x": 900,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_013",
+      "frame": {
+        "x": 900,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_014",
+      "frame": {
+        "x": 900,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_015",
+      "frame": {
+        "x": 900,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_016",
+      "frame": {
+        "x": 900,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_017",
+      "frame": {
+        "x": 900,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_018",
+      "frame": {
+        "x": 675,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_019",
+      "frame": {
+        "x": 675,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_020",
+      "frame": {
+        "x": 675,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_021",
+      "frame": {
+        "x": 675,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_022",
+      "frame": {
+        "x": 675,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_023",
+      "frame": {
+        "x": 675,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_024",
+      "frame": {
+        "x": 675,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_025",
+      "frame": {
+        "x": 675,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_026",
+      "frame": {
+        "x": 675,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_027",
+      "frame": {
+        "x": 1125,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_028",
+      "frame": {
+        "x": 450,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_029",
+      "frame": {
+        "x": 450,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_030",
+      "frame": {
+        "x": 450,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_031",
+      "frame": {
+        "x": 450,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_032",
+      "frame": {
+        "x": 450,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_033",
+      "frame": {
+        "x": 450,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_034",
+      "frame": {
+        "x": 450,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_035",
+      "frame": {
+        "x": 450,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_036",
+      "frame": {
+        "x": 225,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_037",
+      "frame": {
+        "x": 225,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_038",
+      "frame": {
+        "x": 225,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_039",
+      "frame": {
+        "x": 225,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_040",
+      "frame": {
+        "x": 225,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_041",
+      "frame": {
+        "x": 225,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_042",
+      "frame": {
+        "x": 675,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_043",
+      "frame": {
+        "x": 675,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_044",
+      "frame": {
+        "x": 675,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_045",
+      "frame": {
+        "x": 675,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_046",
+      "frame": {
+        "x": 225,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_047",
+      "frame": {
+        "x": 225,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_048",
+      "frame": {
+        "x": 225,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_049",
+      "frame": {
+        "x": 0,
+        "y": 1800,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_050",
+      "frame": {
+        "x": 0,
+        "y": 1575,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_051",
+      "frame": {
+        "x": 0,
+        "y": 1350,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_052",
+      "frame": {
+        "x": 0,
+        "y": 1125,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_053",
+      "frame": {
+        "x": 0,
+        "y": 900,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_054",
+      "frame": {
+        "x": 0,
+        "y": 675,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_055",
+      "frame": {
+        "x": 0,
+        "y": 450,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_056",
+      "frame": {
+        "x": 0,
+        "y": 225,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_riteundervault_057",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 224,
+        "h": 224
+      },
+      "sourceSize": {
+        "w": 224,
+        "h": 224
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_riteundervault.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 57,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "frames": [
+    {
+      "filename": "fx_energyhaloground_000",
+      "frame": {
+        "x": 0,
+        "y": 66,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_energyhaloground_001",
+      "frame": {
+        "x": 81,
+        "y": 33,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_energyhaloground_002",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_energyhaloground_003",
+      "frame": {
+        "x": 81,
+        "y": 66,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_energyhaloground_004",
+      "frame": {
+        "x": 0,
+        "y": 33,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_energyhaloground_005",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 32
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_energyhaloground.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 128
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 5,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "frames": [
+    {
+      "filename": "fx_bladestorm_000",
+      "frame": {
+        "x": 63,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_001",
+      "frame": {
+        "x": 126,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_002",
+      "frame": {
+        "x": 63,
+        "y": 196,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_003",
+      "frame": {
+        "x": 63,
+        "y": 147,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_004",
+      "frame": {
+        "x": 63,
+        "y": 98,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_005",
+      "frame": {
+        "x": 63,
+        "y": 49,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_006",
+      "frame": {
+        "x": 126,
+        "y": 49,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_007",
+      "frame": {
+        "x": 0,
+        "y": 196,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_008",
+      "frame": {
+        "x": 0,
+        "y": 147,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_009",
+      "frame": {
+        "x": 0,
+        "y": 98,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_010",
+      "frame": {
+        "x": 0,
+        "y": 49,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bladestorm_011",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 48
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_bladestorm.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 11,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "frames": [
+    {
+      "filename": "fx_crossslash_x_000",
+      "frame": {
+        "x": 181,
+        "y": 755,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_001",
+      "frame": {
+        "x": 543,
+        "y": 453,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_002",
+      "frame": {
+        "x": 543,
+        "y": 302,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_003",
+      "frame": {
+        "x": 543,
+        "y": 151,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_004",
+      "frame": {
+        "x": 543,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_005",
+      "frame": {
+        "x": 362,
+        "y": 755,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_006",
+      "frame": {
+        "x": 362,
+        "y": 604,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_007",
+      "frame": {
+        "x": 362,
+        "y": 453,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_008",
+      "frame": {
+        "x": 362,
+        "y": 302,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_009",
+      "frame": {
+        "x": 362,
+        "y": 151,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_010",
+      "frame": {
+        "x": 362,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_011",
+      "frame": {
+        "x": 543,
+        "y": 604,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_012",
+      "frame": {
+        "x": 181,
+        "y": 604,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_013",
+      "frame": {
+        "x": 181,
+        "y": 453,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_014",
+      "frame": {
+        "x": 181,
+        "y": 302,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_015",
+      "frame": {
+        "x": 181,
+        "y": 151,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_016",
+      "frame": {
+        "x": 181,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_017",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_018",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_019",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_020",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_021",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_crossslash_x_022",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_crossslash_x.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 22,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

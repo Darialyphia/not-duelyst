@@ -1,0 +1,704 @@
+{
+  "frames": [
+    {
+      "filename": "fluid-card-shape001",
+      "frame": {
+        "x": 121,
+        "y": 847,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape010",
+      "frame": {
+        "x": 242,
+        "y": 605,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape011",
+      "frame": {
+        "x": 242,
+        "y": 484,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape012",
+      "frame": {
+        "x": 242,
+        "y": 363,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape013",
+      "frame": {
+        "x": 242,
+        "y": 242,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape014",
+      "frame": {
+        "x": 242,
+        "y": 121,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape015",
+      "frame": {
+        "x": 242,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape016",
+      "frame": {
+        "x": 363,
+        "y": 726,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape017",
+      "frame": {
+        "x": 121,
+        "y": 726,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape018",
+      "frame": {
+        "x": 121,
+        "y": 605,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape019",
+      "frame": {
+        "x": 121,
+        "y": 484,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape002",
+      "frame": {
+        "x": 363,
+        "y": 605,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape020",
+      "frame": {
+        "x": 121,
+        "y": 363,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape021",
+      "frame": {
+        "x": 121,
+        "y": 242,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape022",
+      "frame": {
+        "x": 121,
+        "y": 121,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape023",
+      "frame": {
+        "x": 121,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape024",
+      "frame": {
+        "x": 0,
+        "y": 847,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape025",
+      "frame": {
+        "x": 0,
+        "y": 726,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape026",
+      "frame": {
+        "x": 0,
+        "y": 605,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape027",
+      "frame": {
+        "x": 0,
+        "y": 484,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape028",
+      "frame": {
+        "x": 0,
+        "y": 363,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape029",
+      "frame": {
+        "x": 0,
+        "y": 242,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape003",
+      "frame": {
+        "x": 363,
+        "y": 484,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape030",
+      "frame": {
+        "x": 0,
+        "y": 121,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape031",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape004",
+      "frame": {
+        "x": 363,
+        "y": 363,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape005",
+      "frame": {
+        "x": 363,
+        "y": 242,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape006",
+      "frame": {
+        "x": 363,
+        "y": 121,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape007",
+      "frame": {
+        "x": 363,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape008",
+      "frame": {
+        "x": 242,
+        "y": 847,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fluid-card-shape009",
+      "frame": {
+        "x": 242,
+        "y": 726,
+        "w": 120,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 120
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_fluid_card_shape_puff.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 30,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_inmolation_000",
+      "frame": {
+        "x": 213,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_001",
+      "frame": {
+        "x": 355,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_002",
+      "frame": {
+        "x": 355,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_003",
+      "frame": {
+        "x": 355,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_004",
+      "frame": {
+        "x": 284,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_005",
+      "frame": {
+        "x": 284,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_006",
+      "frame": {
+        "x": 284,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_007",
+      "frame": {
+        "x": 213,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_008",
+      "frame": {
+        "x": 213,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_009",
+      "frame": {
+        "x": 355,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_010",
+      "frame": {
+        "x": 426,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_011",
+      "frame": {
+        "x": 284,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_012",
+      "frame": {
+        "x": 355,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_013",
+      "frame": {
+        "x": 142,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_014",
+      "frame": {
+        "x": 284,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_015",
+      "frame": {
+        "x": 142,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_016",
+      "frame": {
+        "x": 142,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_017",
+      "frame": {
+        "x": 71,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_018",
+      "frame": {
+        "x": 71,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_019",
+      "frame": {
+        "x": 71,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_020",
+      "frame": {
+        "x": 0,
+        "y": 142,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_021",
+      "frame": {
+        "x": 0,
+        "y": 71,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_inmolation_022",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 70
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_inmolation.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 22,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

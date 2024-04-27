@@ -1,0 +1,498 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_general_attack_000",
+      "frame": {
+        "x": 0,
+        "y": 150,
+        "w": 44,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_general_attack_001",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_general_attack_002",
+      "frame": {
+        "x": 0,
+        "y": 114,
+        "w": 44,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_general_attack_003",
+      "frame": {
+        "x": 44,
+        "y": 153,
+        "w": 26,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_general_attack_004",
+      "frame": {
+        "x": 0,
+        "y": 242,
+        "w": 18,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_000",
+      "frame": {
+        "x": 44,
+        "y": 114,
+        "w": 28,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_001",
+      "frame": {
+        "x": 28,
+        "y": 199,
+        "w": 28,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_002",
+      "frame": {
+        "x": 0,
+        "y": 199,
+        "w": 28,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_003",
+      "frame": {
+        "x": 44,
+        "y": 174,
+        "w": 22,
+        "h": 19
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_004",
+      "frame": {
+        "x": 44,
+        "y": 174,
+        "w": 22,
+        "h": 19
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_005",
+      "frame": {
+        "x": 44,
+        "y": 174,
+        "w": 22,
+        "h": 19
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_006",
+      "frame": {
+        "x": 48,
+        "y": 71,
+        "w": 22,
+        "h": 21
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_special_devour_007",
+      "frame": {
+        "x": 48,
+        "y": 48,
+        "w": 22,
+        "h": 23
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 44
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_000",
+      "frame": {
+        "x": 0,
+        "y": 112,
+        "w": 48,
+        "h": 2
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_001",
+      "frame": {
+        "x": 0,
+        "y": 107,
+        "w": 48,
+        "h": 5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_002",
+      "frame": {
+        "x": 0,
+        "y": 99,
+        "w": 48,
+        "h": 8
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_003",
+      "frame": {
+        "x": 0,
+        "y": 87,
+        "w": 48,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_004",
+      "frame": {
+        "x": 0,
+        "y": 74,
+        "w": 48,
+        "h": 13
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_005",
+      "frame": {
+        "x": 0,
+        "y": 60,
+        "w": 48,
+        "h": 14
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_006",
+      "frame": {
+        "x": 0,
+        "y": 48,
+        "w": 48,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_support_syphon_007",
+      "frame": {
+        "x": 0,
+        "y": 187,
+        "w": 44,
+        "h": 12
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "attack",
+        "from": 0,
+        "to": 4,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "devour",
+        "from": 5,
+        "to": 12,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "syphon",
+        "from": 13,
+        "to": 20,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

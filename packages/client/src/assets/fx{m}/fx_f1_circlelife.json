@@ -1,0 +1,1144 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_circlelife_000",
+      "frame": {
+        "x": 394,
+        "y": 985,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_001",
+      "frame": {
+        "x": 788,
+        "y": 1773,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_002",
+      "frame": {
+        "x": 788,
+        "y": 1576,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_003",
+      "frame": {
+        "x": 788,
+        "y": 1379,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_004",
+      "frame": {
+        "x": 788,
+        "y": 1182,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_005",
+      "frame": {
+        "x": 788,
+        "y": 985,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_006",
+      "frame": {
+        "x": 788,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_007",
+      "frame": {
+        "x": 788,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_008",
+      "frame": {
+        "x": 788,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_009",
+      "frame": {
+        "x": 788,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_010",
+      "frame": {
+        "x": 788,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_011",
+      "frame": {
+        "x": 591,
+        "y": 1773,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_012",
+      "frame": {
+        "x": 591,
+        "y": 1576,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_013",
+      "frame": {
+        "x": 591,
+        "y": 1379,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_014",
+      "frame": {
+        "x": 591,
+        "y": 1182,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_015",
+      "frame": {
+        "x": 591,
+        "y": 985,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_016",
+      "frame": {
+        "x": 591,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_017",
+      "frame": {
+        "x": 591,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_018",
+      "frame": {
+        "x": 591,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_019",
+      "frame": {
+        "x": 591,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_020",
+      "frame": {
+        "x": 591,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_021",
+      "frame": {
+        "x": 394,
+        "y": 1773,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_022",
+      "frame": {
+        "x": 394,
+        "y": 1576,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_023",
+      "frame": {
+        "x": 394,
+        "y": 1379,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_024",
+      "frame": {
+        "x": 394,
+        "y": 1182,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_025",
+      "frame": {
+        "x": 985,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_026",
+      "frame": {
+        "x": 394,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_027",
+      "frame": {
+        "x": 394,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_028",
+      "frame": {
+        "x": 394,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_029",
+      "frame": {
+        "x": 394,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_030",
+      "frame": {
+        "x": 394,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_031",
+      "frame": {
+        "x": 197,
+        "y": 1773,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_032",
+      "frame": {
+        "x": 197,
+        "y": 1576,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_033",
+      "frame": {
+        "x": 197,
+        "y": 1379,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_034",
+      "frame": {
+        "x": 197,
+        "y": 1182,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_035",
+      "frame": {
+        "x": 197,
+        "y": 985,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_036",
+      "frame": {
+        "x": 197,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_037",
+      "frame": {
+        "x": 197,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_038",
+      "frame": {
+        "x": 197,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_039",
+      "frame": {
+        "x": 197,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_040",
+      "frame": {
+        "x": 197,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_041",
+      "frame": {
+        "x": 0,
+        "y": 1773,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_042",
+      "frame": {
+        "x": 0,
+        "y": 1576,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_043",
+      "frame": {
+        "x": 0,
+        "y": 1379,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_044",
+      "frame": {
+        "x": 0,
+        "y": 1182,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_045",
+      "frame": {
+        "x": 0,
+        "y": 985,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_046",
+      "frame": {
+        "x": 0,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_047",
+      "frame": {
+        "x": 0,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_048",
+      "frame": {
+        "x": 0,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_049",
+      "frame": {
+        "x": 0,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_circlelife_050",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_circlelife.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 50,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

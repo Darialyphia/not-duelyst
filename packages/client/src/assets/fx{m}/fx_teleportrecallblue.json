@@ -1,0 +1,330 @@
+{
+  "frames": [
+    {
+      "filename": "fx_teleportrecallblue_000",
+      "frame": {
+        "x": 162,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_001",
+      "frame": {
+        "x": 324,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_002",
+      "frame": {
+        "x": 243,
+        "y": 162,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_003",
+      "frame": {
+        "x": 243,
+        "y": 81,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_004",
+      "frame": {
+        "x": 243,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_005",
+      "frame": {
+        "x": 162,
+        "y": 162,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_006",
+      "frame": {
+        "x": 162,
+        "y": 81,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_007",
+      "frame": {
+        "x": 324,
+        "y": 81,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_008",
+      "frame": {
+        "x": 81,
+        "y": 162,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_009",
+      "frame": {
+        "x": 81,
+        "y": 81,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_010",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_011",
+      "frame": {
+        "x": 0,
+        "y": 162,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_012",
+      "frame": {
+        "x": 0,
+        "y": 81,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_teleportrecallblue_013",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_teleportrecallblue.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 13,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

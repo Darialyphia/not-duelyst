@@ -1,0 +1,696 @@
+{
+  "frames": [
+    {
+      "filename": "fx_doom_1turn_000",
+      "frame": {
+        "x": 82,
+        "y": 82,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_001",
+      "frame": {
+        "x": 164,
+        "y": 164,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_002",
+      "frame": {
+        "x": 164,
+        "y": 123,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_003",
+      "frame": {
+        "x": 164,
+        "y": 82,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_004",
+      "frame": {
+        "x": 164,
+        "y": 41,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_005",
+      "frame": {
+        "x": 164,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_006",
+      "frame": {
+        "x": 123,
+        "y": 205,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_007",
+      "frame": {
+        "x": 123,
+        "y": 164,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_008",
+      "frame": {
+        "x": 123,
+        "y": 123,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_1turn_009",
+      "frame": {
+        "x": 123,
+        "y": 82,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_000",
+      "frame": {
+        "x": 123,
+        "y": 41,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_001",
+      "frame": {
+        "x": 123,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_002",
+      "frame": {
+        "x": 82,
+        "y": 205,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_003",
+      "frame": {
+        "x": 82,
+        "y": 164,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_004",
+      "frame": {
+        "x": 82,
+        "y": 123,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_005",
+      "frame": {
+        "x": 164,
+        "y": 205,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_006",
+      "frame": {
+        "x": 82,
+        "y": 41,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_007",
+      "frame": {
+        "x": 82,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_008",
+      "frame": {
+        "x": 41,
+        "y": 205,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_2turns_009",
+      "frame": {
+        "x": 41,
+        "y": 164,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_000",
+      "frame": {
+        "x": 41,
+        "y": 123,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_001",
+      "frame": {
+        "x": 41,
+        "y": 82,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_002",
+      "frame": {
+        "x": 41,
+        "y": 41,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_003",
+      "frame": {
+        "x": 41,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_004",
+      "frame": {
+        "x": 0,
+        "y": 205,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_005",
+      "frame": {
+        "x": 0,
+        "y": 164,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_006",
+      "frame": {
+        "x": 0,
+        "y": 123,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_007",
+      "frame": {
+        "x": 0,
+        "y": 82,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_008",
+      "frame": {
+        "x": 0,
+        "y": 41,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_doom_3turns_009",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 40
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_doom.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "1turn",
+        "from": 0,
+        "to": 9,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "2turns",
+        "from": 10,
+        "to": 19,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "3turns",
+        "from": 20,
+        "to": 29,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

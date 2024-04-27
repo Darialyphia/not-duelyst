@@ -1,0 +1,704 @@
+{
+  "frames": [
+    {
+      "filename": "fx_beamfire_000",
+      "frame": {
+        "x": 423,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_001",
+      "frame": {
+        "x": 705,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_002",
+      "frame": {
+        "x": 705,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_003",
+      "frame": {
+        "x": 705,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_004",
+      "frame": {
+        "x": 705,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_005",
+      "frame": {
+        "x": 705,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_006",
+      "frame": {
+        "x": 564,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_007",
+      "frame": {
+        "x": 564,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_008",
+      "frame": {
+        "x": 564,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_009",
+      "frame": {
+        "x": 564,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_010",
+      "frame": {
+        "x": 564,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_011",
+      "frame": {
+        "x": 423,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_012",
+      "frame": {
+        "x": 423,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_013",
+      "frame": {
+        "x": 423,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_014",
+      "frame": {
+        "x": 423,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_015",
+      "frame": {
+        "x": 846,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_016",
+      "frame": {
+        "x": 282,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_017",
+      "frame": {
+        "x": 282,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_018",
+      "frame": {
+        "x": 282,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_019",
+      "frame": {
+        "x": 282,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_020",
+      "frame": {
+        "x": 282,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_021",
+      "frame": {
+        "x": 141,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_022",
+      "frame": {
+        "x": 141,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_023",
+      "frame": {
+        "x": 141,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_024",
+      "frame": {
+        "x": 141,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_025",
+      "frame": {
+        "x": 141,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_026",
+      "frame": {
+        "x": 0,
+        "y": 1524,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_027",
+      "frame": {
+        "x": 0,
+        "y": 1143,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_028",
+      "frame": {
+        "x": 0,
+        "y": 762,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_029",
+      "frame": {
+        "x": 0,
+        "y": 381,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_beamfire_030",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 380
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 380
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_beamfire.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 30,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

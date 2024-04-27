@@ -1,0 +1,154 @@
+{
+  "frames": [
+    {
+      "filename": "fx_chainlightningblue_000",
+      "frame": {
+        "x": 0,
+        "y": 34,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_chainlightningblue_001",
+      "frame": {
+        "x": 49,
+        "y": 17,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_chainlightningblue_002",
+      "frame": {
+        "x": 49,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_chainlightningblue_003",
+      "frame": {
+        "x": 49,
+        "y": 34,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_chainlightningblue_004",
+      "frame": {
+        "x": 0,
+        "y": 17,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_chainlightningblue_005",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 16
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 16
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_chainlightning.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 64
+    },
+    "frameTags": [
+      {
+        "name": "chainlightningblue",
+        "from": 0,
+        "to": 5,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

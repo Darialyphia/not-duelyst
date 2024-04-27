@@ -1,0 +1,242 @@
+{
+  "frames": [
+    {
+      "filename": "fx_firefallground_000",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_001",
+      "frame": {
+        "x": 2,
+        "y": 126,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_002",
+      "frame": {
+        "x": 2,
+        "y": 250,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_003",
+      "frame": {
+        "x": 2,
+        "y": 374,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_004",
+      "frame": {
+        "x": 2,
+        "y": 374,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_005",
+      "frame": {
+        "x": 2,
+        "y": 374,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_006",
+      "frame": {
+        "x": 2,
+        "y": 250,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_007",
+      "frame": {
+        "x": 2,
+        "y": 126,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_008",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firefallground_009",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 130,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 130,
+        "h": 130
+      },
+      "sourceSize": {
+        "w": 130,
+        "h": 130
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_firefallground.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 512
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 9,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

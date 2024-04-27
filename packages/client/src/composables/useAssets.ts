@@ -72,18 +72,16 @@ export const useAssetsProvider = () => {
     // transform the manifest to add separate bundles for units and icons, as loading everything at once is way too expensive
     splitBundle(manifest, 'units');
     splitBundle(manifest, 'icons');
-    splitBundle(manifest, 'sfx');
     splitBundle(manifest, 'normals');
+    splitBundle(manifest, 'fx');
     splitBundle(manifest, 'obstacles');
     Assets.init({ manifest });
 
     await Promise.all([
       Assets.loadBundle('tiles'),
       Assets.loadBundle('ui'),
-      // Assets.loadBundle('units'),
       Assets.loadBundle('obstacles'),
       Assets.loadBundle('tilesets'),
-      Assets.loadBundle('interactables'),
       Assets.loadBundle('hitboxes'),
       Assets.loadBundle('modifiers')
     ]);

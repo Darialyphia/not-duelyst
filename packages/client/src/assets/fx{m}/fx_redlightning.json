@@ -1,0 +1,154 @@
+{
+  "frames": [
+    {
+      "filename": "fx_redlightning_000",
+      "frame": {
+        "x": 0,
+        "y": 42,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_redlightning_001",
+      "frame": {
+        "x": 49,
+        "y": 21,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_redlightning_002",
+      "frame": {
+        "x": 49,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_redlightning_003",
+      "frame": {
+        "x": 49,
+        "y": 42,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_redlightning_004",
+      "frame": {
+        "x": 0,
+        "y": 21,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_redlightning_005",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 20
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_redlightning.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 64
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 5,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

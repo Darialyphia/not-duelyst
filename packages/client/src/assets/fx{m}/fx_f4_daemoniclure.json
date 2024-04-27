@@ -1,0 +1,682 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_daemoniclure_000",
+      "frame": {
+        "x": 352,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_001",
+      "frame": {
+        "x": 880,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_002",
+      "frame": {
+        "x": 880,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_003",
+      "frame": {
+        "x": 880,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_004",
+      "frame": {
+        "x": 880,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_005",
+      "frame": {
+        "x": 704,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_006",
+      "frame": {
+        "x": 704,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_007",
+      "frame": {
+        "x": 704,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_008",
+      "frame": {
+        "x": 704,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_009",
+      "frame": {
+        "x": 704,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_010",
+      "frame": {
+        "x": 528,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_011",
+      "frame": {
+        "x": 528,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_012",
+      "frame": {
+        "x": 528,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_013",
+      "frame": {
+        "x": 528,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_014",
+      "frame": {
+        "x": 528,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_015",
+      "frame": {
+        "x": 880,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_016",
+      "frame": {
+        "x": 352,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_017",
+      "frame": {
+        "x": 352,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_018",
+      "frame": {
+        "x": 352,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_019",
+      "frame": {
+        "x": 352,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_020",
+      "frame": {
+        "x": 176,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_021",
+      "frame": {
+        "x": 176,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_022",
+      "frame": {
+        "x": 176,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_023",
+      "frame": {
+        "x": 176,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_024",
+      "frame": {
+        "x": 176,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_025",
+      "frame": {
+        "x": 0,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_026",
+      "frame": {
+        "x": 0,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_027",
+      "frame": {
+        "x": 0,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_028",
+      "frame": {
+        "x": 0,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_daemoniclure_029",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_daemoniclure.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 29,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

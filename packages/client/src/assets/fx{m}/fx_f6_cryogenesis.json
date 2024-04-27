@@ -1,0 +1,616 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f6_cryogenesis_000",
+      "frame": {
+        "x": 483,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_001",
+      "frame": {
+        "x": 805,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_002",
+      "frame": {
+        "x": 805,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_003",
+      "frame": {
+        "x": 805,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_004",
+      "frame": {
+        "x": 805,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_005",
+      "frame": {
+        "x": 644,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_006",
+      "frame": {
+        "x": 644,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_007",
+      "frame": {
+        "x": 644,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_008",
+      "frame": {
+        "x": 644,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_009",
+      "frame": {
+        "x": 483,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_010",
+      "frame": {
+        "x": 483,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_011",
+      "frame": {
+        "x": 483,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_012",
+      "frame": {
+        "x": 966,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_013",
+      "frame": {
+        "x": 322,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_014",
+      "frame": {
+        "x": 322,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_015",
+      "frame": {
+        "x": 322,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_016",
+      "frame": {
+        "x": 322,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_017",
+      "frame": {
+        "x": 322,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_018",
+      "frame": {
+        "x": 161,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_019",
+      "frame": {
+        "x": 161,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_020",
+      "frame": {
+        "x": 161,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_021",
+      "frame": {
+        "x": 161,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_022",
+      "frame": {
+        "x": 0,
+        "y": 1353,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_023",
+      "frame": {
+        "x": 0,
+        "y": 902,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_024",
+      "frame": {
+        "x": 0,
+        "y": 451,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_025",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_cryogenesis_026",
+      "frame": {
+        "x": 483,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 450
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f6_cryogenesis.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 26,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

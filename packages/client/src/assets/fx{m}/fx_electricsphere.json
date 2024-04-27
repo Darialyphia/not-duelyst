@@ -1,0 +1,924 @@
+{
+  "frames": [
+    {
+      "filename": "fx_electricsphere_000",
+      "frame": {
+        "x": 273,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_001",
+      "frame": {
+        "x": 546,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_002",
+      "frame": {
+        "x": 546,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_003",
+      "frame": {
+        "x": 546,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_004",
+      "frame": {
+        "x": 546,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_005",
+      "frame": {
+        "x": 455,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_006",
+      "frame": {
+        "x": 455,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_007",
+      "frame": {
+        "x": 455,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_008",
+      "frame": {
+        "x": 455,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_009",
+      "frame": {
+        "x": 455,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_010",
+      "frame": {
+        "x": 455,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_011",
+      "frame": {
+        "x": 364,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_012",
+      "frame": {
+        "x": 364,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_013",
+      "frame": {
+        "x": 364,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_014",
+      "frame": {
+        "x": 364,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_015",
+      "frame": {
+        "x": 364,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_016",
+      "frame": {
+        "x": 364,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_017",
+      "frame": {
+        "x": 273,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_018",
+      "frame": {
+        "x": 273,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_019",
+      "frame": {
+        "x": 273,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_020",
+      "frame": {
+        "x": 546,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_021",
+      "frame": {
+        "x": 273,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_022",
+      "frame": {
+        "x": 273,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_023",
+      "frame": {
+        "x": 182,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_024",
+      "frame": {
+        "x": 182,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_025",
+      "frame": {
+        "x": 182,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_026",
+      "frame": {
+        "x": 182,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_027",
+      "frame": {
+        "x": 182,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_028",
+      "frame": {
+        "x": 182,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_029",
+      "frame": {
+        "x": 91,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_030",
+      "frame": {
+        "x": 91,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_031",
+      "frame": {
+        "x": 91,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_032",
+      "frame": {
+        "x": 91,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_033",
+      "frame": {
+        "x": 91,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_034",
+      "frame": {
+        "x": 91,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_035",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_036",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_037",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_038",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_039",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_electricsphere_040",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_electricsphere.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 40,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

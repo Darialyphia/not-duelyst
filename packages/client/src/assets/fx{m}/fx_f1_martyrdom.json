@@ -1,0 +1,572 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_martyrdom_000",
+      "frame": {
+        "x": 394,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_001",
+      "frame": {
+        "x": 788,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_002",
+      "frame": {
+        "x": 788,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_003",
+      "frame": {
+        "x": 788,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_004",
+      "frame": {
+        "x": 788,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_005",
+      "frame": {
+        "x": 591,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_006",
+      "frame": {
+        "x": 591,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_007",
+      "frame": {
+        "x": 591,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_008",
+      "frame": {
+        "x": 591,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_009",
+      "frame": {
+        "x": 591,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_010",
+      "frame": {
+        "x": 394,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_011",
+      "frame": {
+        "x": 394,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_012",
+      "frame": {
+        "x": 788,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_013",
+      "frame": {
+        "x": 394,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_014",
+      "frame": {
+        "x": 394,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_015",
+      "frame": {
+        "x": 197,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_016",
+      "frame": {
+        "x": 197,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_017",
+      "frame": {
+        "x": 197,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_018",
+      "frame": {
+        "x": 197,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_019",
+      "frame": {
+        "x": 197,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_020",
+      "frame": {
+        "x": 0,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_021",
+      "frame": {
+        "x": 0,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_022",
+      "frame": {
+        "x": 0,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_023",
+      "frame": {
+        "x": 0,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_martyrdom_024",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_martyrdom.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

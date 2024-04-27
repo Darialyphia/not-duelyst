@@ -1,0 +1,616 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f6_mesmerize_000",
+      "frame": {
+        "x": 402,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_001",
+      "frame": {
+        "x": 804,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_002",
+      "frame": {
+        "x": 804,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_003",
+      "frame": {
+        "x": 804,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_004",
+      "frame": {
+        "x": 603,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_005",
+      "frame": {
+        "x": 603,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_006",
+      "frame": {
+        "x": 603,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_007",
+      "frame": {
+        "x": 603,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_008",
+      "frame": {
+        "x": 603,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_009",
+      "frame": {
+        "x": 402,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_010",
+      "frame": {
+        "x": 402,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_011",
+      "frame": {
+        "x": 402,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_012",
+      "frame": {
+        "x": 804,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_013",
+      "frame": {
+        "x": 402,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_014",
+      "frame": {
+        "x": 201,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_015",
+      "frame": {
+        "x": 201,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_016",
+      "frame": {
+        "x": 201,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_017",
+      "frame": {
+        "x": 201,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_018",
+      "frame": {
+        "x": 201,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_019",
+      "frame": {
+        "x": 0,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_020",
+      "frame": {
+        "x": 0,
+        "y": 603,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_021",
+      "frame": {
+        "x": 0,
+        "y": 402,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_022",
+      "frame": {
+        "x": 201,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_023",
+      "frame": {
+        "x": 201,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_024",
+      "frame": {
+        "x": 0,
+        "y": 804,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_025",
+      "frame": {
+        "x": 0,
+        "y": 201,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f6_mesmerize_026",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 200,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 200,
+        "h": 200
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f6_mesmerize.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 26,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

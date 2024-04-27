@@ -1,0 +1,902 @@
+{
+  "frames": [
+    {
+      "filename": "fx_vortexswirl_000",
+      "frame": {
+        "x": 513,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_001",
+      "frame": {
+        "x": 1197,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_002",
+      "frame": {
+        "x": 1197,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_003",
+      "frame": {
+        "x": 1197,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_004",
+      "frame": {
+        "x": 1197,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_005",
+      "frame": {
+        "x": 1026,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_006",
+      "frame": {
+        "x": 1026,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_007",
+      "frame": {
+        "x": 1026,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_008",
+      "frame": {
+        "x": 1026,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_009",
+      "frame": {
+        "x": 1026,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_010",
+      "frame": {
+        "x": 855,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_011",
+      "frame": {
+        "x": 855,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_012",
+      "frame": {
+        "x": 855,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_013",
+      "frame": {
+        "x": 855,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_014",
+      "frame": {
+        "x": 855,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_015",
+      "frame": {
+        "x": 684,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_016",
+      "frame": {
+        "x": 684,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_017",
+      "frame": {
+        "x": 684,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_018",
+      "frame": {
+        "x": 684,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_019",
+      "frame": {
+        "x": 684,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_020",
+      "frame": {
+        "x": 1197,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_021",
+      "frame": {
+        "x": 513,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_022",
+      "frame": {
+        "x": 513,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_023",
+      "frame": {
+        "x": 513,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_024",
+      "frame": {
+        "x": 513,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_025",
+      "frame": {
+        "x": 342,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_026",
+      "frame": {
+        "x": 342,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_027",
+      "frame": {
+        "x": 342,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_028",
+      "frame": {
+        "x": 342,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_029",
+      "frame": {
+        "x": 342,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_030",
+      "frame": {
+        "x": 171,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_031",
+      "frame": {
+        "x": 171,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_032",
+      "frame": {
+        "x": 171,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_033",
+      "frame": {
+        "x": 171,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_034",
+      "frame": {
+        "x": 171,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_035",
+      "frame": {
+        "x": 0,
+        "y": 684,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_036",
+      "frame": {
+        "x": 0,
+        "y": 513,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_037",
+      "frame": {
+        "x": 0,
+        "y": 342,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_038",
+      "frame": {
+        "x": 0,
+        "y": 171,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_vortexswirl_039",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 170
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 170
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_vortexswirl.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 39,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

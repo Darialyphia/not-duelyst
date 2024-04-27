@@ -11,7 +11,6 @@ const { diffuseTextures, normalTextures, isFlipped, filters } = defineProps<{
   normalTextures: (Texture | FrameObject)[];
   filters?: Filter[];
   isFlipped?: boolean;
-  alpha?: number;
 }>();
 
 const fragShader = /*glsl*/ `

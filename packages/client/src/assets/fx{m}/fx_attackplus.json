@@ -1,0 +1,88 @@
+{
+  "frames": [
+    {
+      "filename": "fx_attackplus_000",
+      "frame": {
+        "x": 33,
+        "y": 49,
+        "w": 16,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_attackplus_001",
+      "frame": {
+        "x": 0,
+        "y": 49,
+        "w": 33,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_attackplus_002",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 50
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_attackplus.png",
+    "scale": "1",
+    "size": {
+      "w": 64,
+      "h": 128
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 2,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

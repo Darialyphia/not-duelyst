@@ -11,7 +11,8 @@
     "dev:assets": "assetpack -c .assetpack.js -w",
     "dev": "npm-run-all --parallel dev:assets dev:server",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "generate:fx": "tsx scripts/plist-to-aseprite.ts"
   },
   "dependencies": {
     "@assetpack/cli": "^0.8.0",
@@ -84,6 +85,7 @@
     "dayjs-nuxt": "^1.1.2",
     "eslint": "^8.28.0",
     "eslint-config-daria": "*",
+    "fast-glob": "^3.3.2",
     "npm-run-all": "^4.1.5",
     "nuxt": "^3.6.2",
     "nuxt-icon": "^0.4.1",
@@ -95,6 +97,7 @@
     "stylelint-config-clean-order": "^5.0.1",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recommended-vue": "^1.4.0",
+    "tsx": "^4.7.3",
     "typescript": "^5.3.3",
     "vite-plugin-glsl": "^1.2.1",
     "vue": "^3.3.8",

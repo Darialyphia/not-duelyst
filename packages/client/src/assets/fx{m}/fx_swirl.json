@@ -1,0 +1,176 @@
+{
+  "frames": [
+    {
+      "filename": "fx_swirlloop_000",
+      "frame": {
+        "x": 0,
+        "y": 87,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_001",
+      "frame": {
+        "x": 55,
+        "y": 29,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_002",
+      "frame": {
+        "x": 55,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_003",
+      "frame": {
+        "x": 55,
+        "y": 58,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_004",
+      "frame": {
+        "x": 0,
+        "y": 58,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_005",
+      "frame": {
+        "x": 0,
+        "y": 29,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_swirlloop_006",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 28
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_swirl.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 128
+    },
+    "frameTags": [
+      {
+        "name": "swirlloop",
+        "from": 0,
+        "to": 6,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

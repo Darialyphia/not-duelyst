@@ -1,0 +1,872 @@
+{
+  "frames": [
+    {
+      "filename": "f6_flashfreeze_appear_000",
+      "frame": {
+        "x": 101,
+        "y": 808,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_001",
+      "frame": {
+        "x": 303,
+        "y": 505,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_002",
+      "frame": {
+        "x": 303,
+        "y": 404,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_003",
+      "frame": {
+        "x": 303,
+        "y": 303,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_004",
+      "frame": {
+        "x": 303,
+        "y": 202,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_005",
+      "frame": {
+        "x": 303,
+        "y": 101,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_006",
+      "frame": {
+        "x": 303,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_007",
+      "frame": {
+        "x": 202,
+        "y": 909,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_008",
+      "frame": {
+        "x": 202,
+        "y": 808,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_009",
+      "frame": {
+        "x": 202,
+        "y": 707,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_010",
+      "frame": {
+        "x": 202,
+        "y": 606,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_011",
+      "frame": {
+        "x": 202,
+        "y": 505,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_appear_012",
+      "frame": {
+        "x": 202,
+        "y": 404,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_000",
+      "frame": {
+        "x": 202,
+        "y": 303,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_001",
+      "frame": {
+        "x": 202,
+        "y": 202,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_002",
+      "frame": {
+        "x": 202,
+        "y": 101,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_003",
+      "frame": {
+        "x": 202,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_004",
+      "frame": {
+        "x": 101,
+        "y": 909,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_005",
+      "frame": {
+        "x": 303,
+        "y": 606,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_006",
+      "frame": {
+        "x": 101,
+        "y": 707,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_007",
+      "frame": {
+        "x": 101,
+        "y": 606,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_008",
+      "frame": {
+        "x": 101,
+        "y": 505,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_009",
+      "frame": {
+        "x": 101,
+        "y": 404,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_010",
+      "frame": {
+        "x": 101,
+        "y": 303,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_disappear_011",
+      "frame": {
+        "x": 101,
+        "y": 202,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_000",
+      "frame": {
+        "x": 101,
+        "y": 101,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_001",
+      "frame": {
+        "x": 101,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_002",
+      "frame": {
+        "x": 0,
+        "y": 909,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_003",
+      "frame": {
+        "x": 0,
+        "y": 808,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_004",
+      "frame": {
+        "x": 0,
+        "y": 707,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_005",
+      "frame": {
+        "x": 0,
+        "y": 606,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_006",
+      "frame": {
+        "x": 0,
+        "y": 505,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_007",
+      "frame": {
+        "x": 0,
+        "y": 404,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_008",
+      "frame": {
+        "x": 0,
+        "y": 303,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_009",
+      "frame": {
+        "x": 0,
+        "y": 202,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_010",
+      "frame": {
+        "x": 0,
+        "y": 101,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_011",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "f6_flashfreeze_idle_012",
+      "frame": {
+        "x": 202,
+        "y": 404,
+        "w": 100,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 100
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "f6_flashfreeze.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "appear",
+        "from": 0,
+        "to": 12,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "disappear",
+        "from": 13,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "idle",
+        "from": 25,
+        "to": 37,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

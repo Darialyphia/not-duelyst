@@ -1,0 +1,528 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_koanofhorns_000",
+      "frame": {
+        "x": 442,
+        "y": 663,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_001",
+      "frame": {
+        "x": 1105,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_002",
+      "frame": {
+        "x": 1105,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_003",
+      "frame": {
+        "x": 884,
+        "y": 663,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_004",
+      "frame": {
+        "x": 884,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_005",
+      "frame": {
+        "x": 884,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_006",
+      "frame": {
+        "x": 884,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_007",
+      "frame": {
+        "x": 663,
+        "y": 663,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_008",
+      "frame": {
+        "x": 663,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_009",
+      "frame": {
+        "x": 663,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_010",
+      "frame": {
+        "x": 663,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_011",
+      "frame": {
+        "x": 1105,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_012",
+      "frame": {
+        "x": 442,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_013",
+      "frame": {
+        "x": 442,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_014",
+      "frame": {
+        "x": 442,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_015",
+      "frame": {
+        "x": 221,
+        "y": 663,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_016",
+      "frame": {
+        "x": 221,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_017",
+      "frame": {
+        "x": 221,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_018",
+      "frame": {
+        "x": 221,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_019",
+      "frame": {
+        "x": 0,
+        "y": 663,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_020",
+      "frame": {
+        "x": 0,
+        "y": 442,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_021",
+      "frame": {
+        "x": 0,
+        "y": 221,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_koanofhorns_022",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 220,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 220,
+        "h": 220
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_koanofhorns.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 22,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

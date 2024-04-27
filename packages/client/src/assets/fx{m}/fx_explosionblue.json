@@ -1,0 +1,220 @@
+{
+  "frames": [
+    {
+      "filename": "fx_explosionmediumblue_ground_000",
+      "frame": {
+        "x": 0,
+        "y": 172,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_001",
+      "frame": {
+        "x": 57,
+        "y": 86,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_002",
+      "frame": {
+        "x": 57,
+        "y": 43,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_003",
+      "frame": {
+        "x": 57,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_004",
+      "frame": {
+        "x": 57,
+        "y": 129,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_005",
+      "frame": {
+        "x": 0,
+        "y": 129,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_006",
+      "frame": {
+        "x": 0,
+        "y": 86,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_007",
+      "frame": {
+        "x": 0,
+        "y": 43,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmediumblue_ground_008",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 42
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_explosionblue.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "ground",
+        "from": 0,
+        "to": 8,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

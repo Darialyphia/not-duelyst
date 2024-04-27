@@ -1,0 +1,682 @@
+{
+  "frames": [
+    {
+      "filename": "fx_multislash_full_000",
+      "frame": {
+        "x": 242,
+        "y": 302,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_001",
+      "frame": {
+        "x": 484,
+        "y": 604,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_002",
+      "frame": {
+        "x": 484,
+        "y": 453,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_003",
+      "frame": {
+        "x": 484,
+        "y": 302,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_004",
+      "frame": {
+        "x": 484,
+        "y": 151,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_005",
+      "frame": {
+        "x": 484,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_006",
+      "frame": {
+        "x": 363,
+        "y": 755,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_007",
+      "frame": {
+        "x": 363,
+        "y": 604,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_008",
+      "frame": {
+        "x": 363,
+        "y": 453,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_009",
+      "frame": {
+        "x": 363,
+        "y": 302,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_010",
+      "frame": {
+        "x": 363,
+        "y": 151,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_011",
+      "frame": {
+        "x": 363,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_012",
+      "frame": {
+        "x": 242,
+        "y": 755,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_013",
+      "frame": {
+        "x": 242,
+        "y": 604,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_014",
+      "frame": {
+        "x": 242,
+        "y": 453,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_015",
+      "frame": {
+        "x": 484,
+        "y": 755,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_016",
+      "frame": {
+        "x": 242,
+        "y": 151,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_017",
+      "frame": {
+        "x": 242,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_018",
+      "frame": {
+        "x": 121,
+        "y": 755,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_019",
+      "frame": {
+        "x": 121,
+        "y": 604,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_020",
+      "frame": {
+        "x": 121,
+        "y": 453,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_021",
+      "frame": {
+        "x": 121,
+        "y": 302,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_022",
+      "frame": {
+        "x": 121,
+        "y": 151,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_023",
+      "frame": {
+        "x": 121,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_024",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_025",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_026",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_027",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_028",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_multislash_full_029",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_multislash_full.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 29,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_decimate_000",
+      "frame": {
+        "x": 77,
+        "y": 225,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_001",
+      "frame": {
+        "x": 154,
+        "y": 375,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_002",
+      "frame": {
+        "x": 154,
+        "y": 300,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_003",
+      "frame": {
+        "x": 154,
+        "y": 225,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_004",
+      "frame": {
+        "x": 154,
+        "y": 150,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_005",
+      "frame": {
+        "x": 154,
+        "y": 75,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_006",
+      "frame": {
+        "x": 154,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_007",
+      "frame": {
+        "x": 77,
+        "y": 375,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_008",
+      "frame": {
+        "x": 77,
+        "y": 300,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_009",
+      "frame": {
+        "x": 231,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_010",
+      "frame": {
+        "x": 77,
+        "y": 150,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_011",
+      "frame": {
+        "x": 77,
+        "y": 75,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_012",
+      "frame": {
+        "x": 77,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_013",
+      "frame": {
+        "x": 0,
+        "y": 375,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_014",
+      "frame": {
+        "x": 0,
+        "y": 300,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_015",
+      "frame": {
+        "x": 0,
+        "y": 225,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_016",
+      "frame": {
+        "x": 0,
+        "y": 150,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_017",
+      "frame": {
+        "x": 0,
+        "y": 75,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_decimate_018",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 76,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 76,
+        "h": 74
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_decimate.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 18,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

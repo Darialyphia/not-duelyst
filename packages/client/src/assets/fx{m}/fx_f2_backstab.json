@@ -1,0 +1,198 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_backstab_000",
+      "frame": {
+        "x": 145,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_001",
+      "frame": {
+        "x": 290,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_002",
+      "frame": {
+        "x": 145,
+        "y": 290,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_003",
+      "frame": {
+        "x": 145,
+        "y": 145,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_004",
+      "frame": {
+        "x": 290,
+        "y": 145,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_005",
+      "frame": {
+        "x": 0,
+        "y": 290,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_006",
+      "frame": {
+        "x": 0,
+        "y": 145,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_backstab_007",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 144
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_backstab.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 7,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

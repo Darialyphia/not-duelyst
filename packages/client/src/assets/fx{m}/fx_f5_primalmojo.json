@@ -1,0 +1,579 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f5_primalmojo_000",
+      "frame": {
+        "x": 151,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_001",
+      "frame": {
+        "x": 453,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_002",
+      "frame": {
+        "x": 453,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_003",
+      "frame": {
+        "x": 453,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_004",
+      "frame": {
+        "x": 453,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_005",
+      "frame": {
+        "x": 453,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_006",
+      "frame": {
+        "x": 302,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_007",
+      "frame": {
+        "x": 302,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_008",
+      "frame": {
+        "x": 302,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_009",
+      "frame": {
+        "x": 302,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_010",
+      "frame": {
+        "x": 302,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_011",
+      "frame": {
+        "x": 302,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_012",
+      "frame": {
+        "x": 453,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_013",
+      "frame": {
+        "x": 151,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_014",
+      "frame": {
+        "x": 151,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_015",
+      "frame": {
+        "x": 151,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_016",
+      "frame": {
+        "x": 151,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_017",
+      "frame": {
+        "x": 151,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_018",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_019",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_020",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_021",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_022",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_023",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f5_primalmojo_idle_000",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f5_primalmojo.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 23,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "idle",
+        "from": 24,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

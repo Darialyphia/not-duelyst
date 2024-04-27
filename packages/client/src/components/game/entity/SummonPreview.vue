@@ -4,14 +4,6 @@ import { match } from 'ts-pattern';
 
 const { camera, assets, ui } = useGame();
 
-const textures = computed(() => {
-  const id = ui.selectedCard.value?.blueprint.spriteId;
-  if (!id) return null;
-  const sheet = assets.getSpritesheet(id);
-
-  return createSpritesheetFrameObject('breathing', sheet);
-});
-
 const scaleX = computed(() => {
   let value = ui.selectedCard.value!.player.isPlayer1 ? 1 : -1;
   if (camera.angle.value === 90 || camera.angle.value === 180) {
@@ -27,8 +19,6 @@ const boardDimensions = useGameSelector(session => ({
 }));
 
 const isDisplayed = computed(() => {
-  if (!textures) return false;
-
   return match(ui.targetingMode.value)
     .with(TARGETING_MODES.NONE, TARGETING_MODES.BASIC, TARGETING_MODES.SKILL, () => false)
     .with(TARGETING_MODES.SUMMON, () => {
@@ -59,6 +49,10 @@ const textStyle = new TextStyle({
   strokeThickness: 4
 });
 
+const entityTextures = useIlluminatedTexture(
+  () => ui.selectedCard.value?.blueprint.spriteId,
+  'breathing'
+);
 const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
 const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
 </script>
@@ -78,9 +72,11 @@ const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
     }"
     event-mode="none"
   >
-    <animated-sprite
+    <IlluminatedSprite
+      v-if="entityTextures.diffuse && entityTextures.normal"
       :alpha="0.5"
-      :textures="textures"
+      :diffuse-textures="entityTextures.diffuse"
+      :normal-textures="entityTextures.normal"
       :scale-x="scaleX"
       :playing="true"
       :anchor-x="0.5"

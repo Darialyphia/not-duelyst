@@ -1,0 +1,586 @@
+{
+  "frames": [
+    {
+      "filename": "fx_explosiondarkplume_000",
+      "frame": {
+        "x": 0,
+        "y": 175,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_001",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_002",
+      "frame": {
+        "x": 0,
+        "y": 35,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_003",
+      "frame": {
+        "x": 0,
+        "y": 70,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_004",
+      "frame": {
+        "x": 0,
+        "y": 105,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_005",
+      "frame": {
+        "x": 0,
+        "y": 140,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_006",
+      "frame": {
+        "x": 0,
+        "y": 210,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_007",
+      "frame": {
+        "x": 57,
+        "y": 35,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosiondarkplume_008",
+      "frame": {
+        "x": 57,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_000",
+      "frame": {
+        "x": 112,
+        "y": 111,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_001",
+      "frame": {
+        "x": 112,
+        "y": 70,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_002",
+      "frame": {
+        "x": 57,
+        "y": 193,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_003",
+      "frame": {
+        "x": 114,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_004",
+      "frame": {
+        "x": 114,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_005",
+      "frame": {
+        "x": 57,
+        "y": 111,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_006",
+      "frame": {
+        "x": 57,
+        "y": 152,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_007",
+      "frame": {
+        "x": 112,
+        "y": 193,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_008",
+      "frame": {
+        "x": 112,
+        "y": 152,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionwhitesmokemedium_009",
+      "frame": {
+        "x": 57,
+        "y": 70,
+        "w": 54,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 40
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_000",
+      "frame": {
+        "x": 26,
+        "y": 245,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_001",
+      "frame": {
+        "x": 0,
+        "y": 245,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_002",
+      "frame": {
+        "x": 13,
+        "y": 245,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_003",
+      "frame": {
+        "x": 57,
+        "y": 234,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_004",
+      "frame": {
+        "x": 39,
+        "y": 245,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_footstepdust_005",
+      "frame": {
+        "x": 52,
+        "y": 245,
+        "w": 12,
+        "h": 10
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 10
+      },
+      "sourceSize": {
+        "w": 12,
+        "h": 10
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_smoke.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "explosiondarkplume",
+        "from": 0,
+        "to": 8,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "explosionwhitesmokemedium",
+        "from": 9,
+        "to": 18,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "footstepdust",
+        "from": 19,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

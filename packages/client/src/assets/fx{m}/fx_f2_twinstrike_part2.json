@@ -1,0 +1,506 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_twinstrike_part2_000",
+      "frame": {
+        "x": 702,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_001",
+      "frame": {
+        "x": 1404,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_002",
+      "frame": {
+        "x": 1053,
+        "y": 724,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_003",
+      "frame": {
+        "x": 1053,
+        "y": 543,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_004",
+      "frame": {
+        "x": 1053,
+        "y": 362,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_005",
+      "frame": {
+        "x": 1053,
+        "y": 181,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_006",
+      "frame": {
+        "x": 1053,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_007",
+      "frame": {
+        "x": 702,
+        "y": 724,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_008",
+      "frame": {
+        "x": 702,
+        "y": 543,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_009",
+      "frame": {
+        "x": 702,
+        "y": 362,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_010",
+      "frame": {
+        "x": 702,
+        "y": 181,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_011",
+      "frame": {
+        "x": 1404,
+        "y": 181,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_012",
+      "frame": {
+        "x": 351,
+        "y": 724,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_013",
+      "frame": {
+        "x": 351,
+        "y": 543,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_014",
+      "frame": {
+        "x": 351,
+        "y": 362,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_015",
+      "frame": {
+        "x": 351,
+        "y": 181,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_016",
+      "frame": {
+        "x": 351,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_017",
+      "frame": {
+        "x": 0,
+        "y": 724,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_018",
+      "frame": {
+        "x": 0,
+        "y": 543,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_019",
+      "frame": {
+        "x": 0,
+        "y": 362,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_020",
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_twinstrike_part2_021",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 180
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 180
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_twinstrike_part2.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 21,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

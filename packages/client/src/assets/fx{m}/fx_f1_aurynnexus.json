@@ -1,0 +1,616 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_aurynnexus_000",
+      "frame": {
+        "x": 322,
+        "y": 161,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_001",
+      "frame": {
+        "x": 644,
+        "y": 161,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_002",
+      "frame": {
+        "x": 644,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_003",
+      "frame": {
+        "x": 483,
+        "y": 805,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_004",
+      "frame": {
+        "x": 483,
+        "y": 644,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_005",
+      "frame": {
+        "x": 483,
+        "y": 483,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_006",
+      "frame": {
+        "x": 483,
+        "y": 322,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_007",
+      "frame": {
+        "x": 483,
+        "y": 161,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_008",
+      "frame": {
+        "x": 483,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_009",
+      "frame": {
+        "x": 322,
+        "y": 805,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_010",
+      "frame": {
+        "x": 322,
+        "y": 644,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_011",
+      "frame": {
+        "x": 322,
+        "y": 483,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_012",
+      "frame": {
+        "x": 322,
+        "y": 322,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_013",
+      "frame": {
+        "x": 644,
+        "y": 322,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_014",
+      "frame": {
+        "x": 322,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_015",
+      "frame": {
+        "x": 161,
+        "y": 805,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_016",
+      "frame": {
+        "x": 161,
+        "y": 644,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_017",
+      "frame": {
+        "x": 161,
+        "y": 483,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_018",
+      "frame": {
+        "x": 161,
+        "y": 322,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_019",
+      "frame": {
+        "x": 161,
+        "y": 161,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_020",
+      "frame": {
+        "x": 161,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_021",
+      "frame": {
+        "x": 0,
+        "y": 805,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_022",
+      "frame": {
+        "x": 0,
+        "y": 644,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_023",
+      "frame": {
+        "x": 0,
+        "y": 483,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_024",
+      "frame": {
+        "x": 0,
+        "y": 322,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_025",
+      "frame": {
+        "x": 0,
+        "y": 161,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_aurynnexus_026",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 160,
+        "h": 160
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 160
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_aurynnexus.png",
+    "scale": "1",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 26,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

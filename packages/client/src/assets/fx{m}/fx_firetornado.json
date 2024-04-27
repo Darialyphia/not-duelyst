@@ -1,0 +1,308 @@
+{
+  "frames": [
+    {
+      "filename": "fx_firetornado_000",
+      "frame": {
+        "x": 130,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_001",
+      "frame": {
+        "x": 195,
+        "y": 142,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_002",
+      "frame": {
+        "x": 195,
+        "y": 71,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_003",
+      "frame": {
+        "x": 195,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_004",
+      "frame": {
+        "x": 130,
+        "y": 142,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_005",
+      "frame": {
+        "x": 130,
+        "y": 71,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_006",
+      "frame": {
+        "x": 260,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_007",
+      "frame": {
+        "x": 65,
+        "y": 142,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_008",
+      "frame": {
+        "x": 65,
+        "y": 71,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_009",
+      "frame": {
+        "x": 65,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_010",
+      "frame": {
+        "x": 0,
+        "y": 142,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_011",
+      "frame": {
+        "x": 0,
+        "y": 71,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_firetornado_012",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 70
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 70
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_firetornado.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 12,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

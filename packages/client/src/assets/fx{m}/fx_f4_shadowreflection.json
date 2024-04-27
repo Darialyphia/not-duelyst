@@ -1,0 +1,660 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f4_shadowreflection_000",
+      "frame": {
+        "x": 352,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_001",
+      "frame": {
+        "x": 880,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_002",
+      "frame": {
+        "x": 880,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_003",
+      "frame": {
+        "x": 880,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_004",
+      "frame": {
+        "x": 704,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_005",
+      "frame": {
+        "x": 704,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_006",
+      "frame": {
+        "x": 704,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_007",
+      "frame": {
+        "x": 704,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_008",
+      "frame": {
+        "x": 704,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_009",
+      "frame": {
+        "x": 528,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_010",
+      "frame": {
+        "x": 528,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_011",
+      "frame": {
+        "x": 528,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_012",
+      "frame": {
+        "x": 528,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_013",
+      "frame": {
+        "x": 528,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_014",
+      "frame": {
+        "x": 880,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_015",
+      "frame": {
+        "x": 352,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_016",
+      "frame": {
+        "x": 352,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_017",
+      "frame": {
+        "x": 352,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_018",
+      "frame": {
+        "x": 352,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_019",
+      "frame": {
+        "x": 176,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_020",
+      "frame": {
+        "x": 176,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_021",
+      "frame": {
+        "x": 176,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_022",
+      "frame": {
+        "x": 176,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_023",
+      "frame": {
+        "x": 176,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_024",
+      "frame": {
+        "x": 0,
+        "y": 704,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_025",
+      "frame": {
+        "x": 0,
+        "y": 528,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_026",
+      "frame": {
+        "x": 0,
+        "y": 352,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_027",
+      "frame": {
+        "x": 0,
+        "y": 176,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f4_shadowreflection_028",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 175,
+        "h": 175
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f4_shadowreflection.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 28,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

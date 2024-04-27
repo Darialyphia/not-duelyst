@@ -1,0 +1,682 @@
+{
+  "frames": [
+    {
+      "filename": "fx_animalslash_000",
+      "frame": {
+        "x": 151,
+        "y": 404,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_001",
+      "frame": {
+        "x": 302,
+        "y": 808,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_002",
+      "frame": {
+        "x": 302,
+        "y": 707,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_003",
+      "frame": {
+        "x": 302,
+        "y": 606,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_004",
+      "frame": {
+        "x": 302,
+        "y": 505,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_005",
+      "frame": {
+        "x": 302,
+        "y": 404,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_006",
+      "frame": {
+        "x": 302,
+        "y": 303,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_007",
+      "frame": {
+        "x": 302,
+        "y": 202,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_008",
+      "frame": {
+        "x": 302,
+        "y": 101,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_009",
+      "frame": {
+        "x": 302,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_010",
+      "frame": {
+        "x": 151,
+        "y": 909,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_011",
+      "frame": {
+        "x": 151,
+        "y": 808,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_012",
+      "frame": {
+        "x": 151,
+        "y": 707,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_013",
+      "frame": {
+        "x": 151,
+        "y": 606,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_014",
+      "frame": {
+        "x": 151,
+        "y": 505,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_015",
+      "frame": {
+        "x": 302,
+        "y": 909,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_016",
+      "frame": {
+        "x": 151,
+        "y": 303,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_017",
+      "frame": {
+        "x": 151,
+        "y": 202,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_018",
+      "frame": {
+        "x": 151,
+        "y": 101,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_019",
+      "frame": {
+        "x": 151,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_020",
+      "frame": {
+        "x": 0,
+        "y": 909,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_021",
+      "frame": {
+        "x": 0,
+        "y": 808,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_022",
+      "frame": {
+        "x": 0,
+        "y": 707,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_023",
+      "frame": {
+        "x": 0,
+        "y": 606,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_024",
+      "frame": {
+        "x": 0,
+        "y": 505,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_025",
+      "frame": {
+        "x": 0,
+        "y": 404,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_026",
+      "frame": {
+        "x": 0,
+        "y": 303,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_027",
+      "frame": {
+        "x": 0,
+        "y": 202,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_028",
+      "frame": {
+        "x": 0,
+        "y": 101,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_animalslash_029",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 100
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 100
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_animalslash.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 29,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

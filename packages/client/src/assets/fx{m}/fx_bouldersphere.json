@@ -1,0 +1,792 @@
+{
+  "frames": [
+    {
+      "filename": "fx_bouldersphere_000",
+      "frame": {
+        "x": 301,
+        "y": 1768,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_001",
+      "frame": {
+        "x": 903,
+        "y": 1326,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_002",
+      "frame": {
+        "x": 903,
+        "y": 1105,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_003",
+      "frame": {
+        "x": 903,
+        "y": 884,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_004",
+      "frame": {
+        "x": 903,
+        "y": 663,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_005",
+      "frame": {
+        "x": 903,
+        "y": 442,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_006",
+      "frame": {
+        "x": 903,
+        "y": 221,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_007",
+      "frame": {
+        "x": 903,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_008",
+      "frame": {
+        "x": 602,
+        "y": 1768,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_009",
+      "frame": {
+        "x": 602,
+        "y": 1547,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_010",
+      "frame": {
+        "x": 602,
+        "y": 1326,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_011",
+      "frame": {
+        "x": 602,
+        "y": 1105,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_012",
+      "frame": {
+        "x": 602,
+        "y": 884,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_013",
+      "frame": {
+        "x": 602,
+        "y": 663,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_014",
+      "frame": {
+        "x": 602,
+        "y": 442,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_015",
+      "frame": {
+        "x": 602,
+        "y": 221,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_016",
+      "frame": {
+        "x": 602,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_017",
+      "frame": {
+        "x": 903,
+        "y": 1547,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_018",
+      "frame": {
+        "x": 301,
+        "y": 1547,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_019",
+      "frame": {
+        "x": 301,
+        "y": 1326,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_020",
+      "frame": {
+        "x": 301,
+        "y": 1105,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_021",
+      "frame": {
+        "x": 301,
+        "y": 884,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_022",
+      "frame": {
+        "x": 301,
+        "y": 663,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_023",
+      "frame": {
+        "x": 301,
+        "y": 442,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_024",
+      "frame": {
+        "x": 301,
+        "y": 221,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_025",
+      "frame": {
+        "x": 301,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_026",
+      "frame": {
+        "x": 0,
+        "y": 1768,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_027",
+      "frame": {
+        "x": 0,
+        "y": 1547,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_028",
+      "frame": {
+        "x": 0,
+        "y": 1326,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_029",
+      "frame": {
+        "x": 0,
+        "y": 1105,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_030",
+      "frame": {
+        "x": 0,
+        "y": 884,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_031",
+      "frame": {
+        "x": 0,
+        "y": 663,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_032",
+      "frame": {
+        "x": 0,
+        "y": 442,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_033",
+      "frame": {
+        "x": 0,
+        "y": 221,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bouldersphere_034",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 220
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_bouldersphere.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 34,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

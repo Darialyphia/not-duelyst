@@ -1,0 +1,557 @@
+{
+  "frames": [
+    {
+      "filename": "fx_whitehotbig_000",
+      "frame": {
+        "x": 0,
+        "y": 138,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_001",
+      "frame": {
+        "x": 73,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_002",
+      "frame": {
+        "x": 73,
+        "y": 69,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_003",
+      "frame": {
+        "x": 73,
+        "y": 138,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_004",
+      "frame": {
+        "x": 146,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_005",
+      "frame": {
+        "x": 146,
+        "y": 69,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_006",
+      "frame": {
+        "x": 146,
+        "y": 138,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_007",
+      "frame": {
+        "x": 292,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_008",
+      "frame": {
+        "x": 219,
+        "y": 138,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_009",
+      "frame": {
+        "x": 292,
+        "y": 138,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_010",
+      "frame": {
+        "x": 292,
+        "y": 69,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_011",
+      "frame": {
+        "x": 0,
+        "y": 69,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_012",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_013",
+      "frame": {
+        "x": 219,
+        "y": 69,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotbig_014",
+      "frame": {
+        "x": 219,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 68
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_000",
+      "frame": {
+        "x": 365,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_001",
+      "frame": {
+        "x": 365,
+        "y": 51,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_002",
+      "frame": {
+        "x": 365,
+        "y": 102,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_003",
+      "frame": {
+        "x": 365,
+        "y": 153,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_004",
+      "frame": {
+        "x": 365,
+        "y": 204,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_005",
+      "frame": {
+        "x": 422,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_006",
+      "frame": {
+        "x": 422,
+        "y": 51,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_007",
+      "frame": {
+        "x": 422,
+        "y": 102,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_whitehotmedium_008",
+      "frame": {
+        "x": 422,
+        "y": 153,
+        "w": 56,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 50
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_whiteexplosion.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "whitehotbig",
+        "from": 0,
+        "to": 14,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "whitehotmedium",
+        "from": 15,
+        "to": 23,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

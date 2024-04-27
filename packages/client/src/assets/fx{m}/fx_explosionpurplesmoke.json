@@ -1,0 +1,176 @@
+{
+  "frames": [
+    {
+      "filename": "fx_explosionpurplesmoke_000",
+      "frame": {
+        "x": 41,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_001",
+      "frame": {
+        "x": 41,
+        "y": 70,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_002",
+      "frame": {
+        "x": 41,
+        "y": 35,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_003",
+      "frame": {
+        "x": 82,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_004",
+      "frame": {
+        "x": 0,
+        "y": 70,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_005",
+      "frame": {
+        "x": 0,
+        "y": 35,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionpurplesmoke_006",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 34
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_explosionpurplesmoke.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 128
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 6,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

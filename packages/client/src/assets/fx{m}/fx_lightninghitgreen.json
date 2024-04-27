@@ -1,0 +1,198 @@
+{
+  "frames": [
+    {
+      "filename": "fx_lightninghitgreen_000",
+      "frame": {
+        "x": 0,
+        "y": 159,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_001",
+      "frame": {
+        "x": 47,
+        "y": 106,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_002",
+      "frame": {
+        "x": 47,
+        "y": 53,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_003",
+      "frame": {
+        "x": 47,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_004",
+      "frame": {
+        "x": 47,
+        "y": 159,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_005",
+      "frame": {
+        "x": 0,
+        "y": 106,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_006",
+      "frame": {
+        "x": 0,
+        "y": 53,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_lightninghitgreen_007",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 52
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_lightninghitgreen.png",
+    "scale": "1",
+    "size": {
+      "w": 128,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 7,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

@@ -98,6 +98,8 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(card.skills[0]);
   font-size: var(--font-size-4);
 
   background: v-bind(bg);
+
+  image-rendering: pixelated;
 }
 
 header {

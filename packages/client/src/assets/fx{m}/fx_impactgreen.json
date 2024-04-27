@@ -1,0 +1,432 @@
+{
+  "frames": [
+    {
+      "filename": "fx_impactgreenbig_000",
+      "frame": {
+        "x": 73,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_001",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_002",
+      "frame": {
+        "x": 0,
+        "y": 57,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_003",
+      "frame": {
+        "x": 0,
+        "y": 114,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_004",
+      "frame": {
+        "x": 0,
+        "y": 171,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_005",
+      "frame": {
+        "x": 73,
+        "y": 114,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenbig_006",
+      "frame": {
+        "x": 73,
+        "y": 57,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_000",
+      "frame": {
+        "x": 116,
+        "y": 206,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_001",
+      "frame": {
+        "x": 116,
+        "y": 171,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_002",
+      "frame": {
+        "x": 146,
+        "y": 35,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_003",
+      "frame": {
+        "x": 73,
+        "y": 171,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_004",
+      "frame": {
+        "x": 73,
+        "y": 206,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreenmedium_005",
+      "frame": {
+        "x": 146,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreensmall_000",
+      "frame": {
+        "x": 146,
+        "y": 70,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreensmall_001",
+      "frame": {
+        "x": 0,
+        "y": 228,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreensmall_002",
+      "frame": {
+        "x": 25,
+        "y": 228,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreensmall_003",
+      "frame": {
+        "x": 146,
+        "y": 120,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactgreensmall_004",
+      "frame": {
+        "x": 146,
+        "y": 95,
+        "w": 24,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 24,
+        "h": 24
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_impactgreen.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "impactgreenbig",
+        "from": 0,
+        "to": 6,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "impactgreenmedium",
+        "from": 7,
+        "to": 12,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "impactgreensmall",
+        "from": 13,
+        "to": 17,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

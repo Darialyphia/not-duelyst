@@ -1,0 +1,425 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1casterprojectile_000",
+      "frame": {
+        "x": 0,
+        "y": 33,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_001",
+      "frame": {
+        "x": 282,
+        "y": 33,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_002",
+      "frame": {
+        "x": 141,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_003",
+      "frame": {
+        "x": 282,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_004",
+      "frame": {
+        "x": 282,
+        "y": 66,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_005",
+      "frame": {
+        "x": 141,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_006",
+      "frame": {
+        "x": 282,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_007",
+      "frame": {
+        "x": 282,
+        "y": 66,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_008",
+      "frame": {
+        "x": 141,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_009",
+      "frame": {
+        "x": 282,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_010",
+      "frame": {
+        "x": 0,
+        "y": 66,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_011",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_012",
+      "frame": {
+        "x": 141,
+        "y": 66,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectile_013",
+      "frame": {
+        "x": 141,
+        "y": 33,
+        "w": 140,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectilecharge_000",
+      "frame": {
+        "x": 423,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectilecharge_001",
+      "frame": {
+        "x": 423,
+        "y": 66,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectilecharge_002",
+      "frame": {
+        "x": 456,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1casterprojectilecharge_003",
+      "frame": {
+        "x": 423,
+        "y": 33,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 32
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_casterprojectile.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 128
+    },
+    "frameTags": [
+      {
+        "name": "f1casterprojectile",
+        "from": 0,
+        "to": 13,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "f1casterprojectilecharge",
+        "from": 14,
+        "to": 17,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

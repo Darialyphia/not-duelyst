@@ -1,0 +1,835 @@
+{
+  "frames": [
+    {
+      "filename": "fx_bloodground2_000",
+      "frame": {
+        "x": 133,
+        "y": 100,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_001",
+      "frame": {
+        "x": 133,
+        "y": 125,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_002",
+      "frame": {
+        "x": 129,
+        "y": 205,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_003",
+      "frame": {
+        "x": 129,
+        "y": 180,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_004",
+      "frame": {
+        "x": 129,
+        "y": 230,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_005",
+      "frame": {
+        "x": 133,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_006",
+      "frame": {
+        "x": 133,
+        "y": 25,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_007",
+      "frame": {
+        "x": 133,
+        "y": 50,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground2_008",
+      "frame": {
+        "x": 133,
+        "y": 75,
+        "w": 34,
+        "h": 24
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 24
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 24
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_000",
+      "frame": {
+        "x": 90,
+        "y": 149,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_001",
+      "frame": {
+        "x": 90,
+        "y": 118,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_002",
+      "frame": {
+        "x": 90,
+        "y": 87,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_003",
+      "frame": {
+        "x": 47,
+        "y": 211,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_004",
+      "frame": {
+        "x": 47,
+        "y": 180,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_005",
+      "frame": {
+        "x": 47,
+        "y": 149,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_006",
+      "frame": {
+        "x": 47,
+        "y": 118,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground3_007",
+      "frame": {
+        "x": 47,
+        "y": 87,
+        "w": 42,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_000",
+      "frame": {
+        "x": 0,
+        "y": 145,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_001",
+      "frame": {
+        "x": 47,
+        "y": 29,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_002",
+      "frame": {
+        "x": 47,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_003",
+      "frame": {
+        "x": 0,
+        "y": 203,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_004",
+      "frame": {
+        "x": 0,
+        "y": 174,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_005",
+      "frame": {
+        "x": 47,
+        "y": 58,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_006",
+      "frame": {
+        "x": 0,
+        "y": 116,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_007",
+      "frame": {
+        "x": 0,
+        "y": 87,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_008",
+      "frame": {
+        "x": 0,
+        "y": 58,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_009",
+      "frame": {
+        "x": 0,
+        "y": 29,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground4_010",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 28
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_000",
+      "frame": {
+        "x": 0,
+        "y": 232,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_001",
+      "frame": {
+        "x": 90,
+        "y": 180,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_002",
+      "frame": {
+        "x": 90,
+        "y": 201,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_003",
+      "frame": {
+        "x": 90,
+        "y": 222,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_004",
+      "frame": {
+        "x": 94,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_005",
+      "frame": {
+        "x": 94,
+        "y": 21,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_006",
+      "frame": {
+        "x": 94,
+        "y": 42,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodground_007",
+      "frame": {
+        "x": 94,
+        "y": 63,
+        "w": 38,
+        "h": 20
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 38,
+        "h": 20
+      },
+      "sourceSize": {
+        "w": 38,
+        "h": 20
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_bloodground.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "bloodground2",
+        "from": 0,
+        "to": 8,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "bloodground3",
+        "from": 9,
+        "to": 16,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "bloodground4",
+        "from": 17,
+        "to": 27,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "default",
+        "from": 28,
+        "to": 35,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

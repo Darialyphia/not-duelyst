@@ -1,0 +1,594 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f1_sunbloom_000",
+      "frame": {
+        "x": 394,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_001",
+      "frame": {
+        "x": 788,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_002",
+      "frame": {
+        "x": 788,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_003",
+      "frame": {
+        "x": 788,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_004",
+      "frame": {
+        "x": 788,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_005",
+      "frame": {
+        "x": 788,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_006",
+      "frame": {
+        "x": 591,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_007",
+      "frame": {
+        "x": 591,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_008",
+      "frame": {
+        "x": 591,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_009",
+      "frame": {
+        "x": 591,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_010",
+      "frame": {
+        "x": 591,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_011",
+      "frame": {
+        "x": 394,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_012",
+      "frame": {
+        "x": 394,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_013",
+      "frame": {
+        "x": 985,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_014",
+      "frame": {
+        "x": 394,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_015",
+      "frame": {
+        "x": 394,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_016",
+      "frame": {
+        "x": 197,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_017",
+      "frame": {
+        "x": 197,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_018",
+      "frame": {
+        "x": 197,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_019",
+      "frame": {
+        "x": 197,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_020",
+      "frame": {
+        "x": 197,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_021",
+      "frame": {
+        "x": 0,
+        "y": 788,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_022",
+      "frame": {
+        "x": 0,
+        "y": 591,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_023",
+      "frame": {
+        "x": 0,
+        "y": 394,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_024",
+      "frame": {
+        "x": 0,
+        "y": 197,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f1_sunbloom_025",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 196,
+        "h": 196
+      },
+      "sourceSize": {
+        "w": 196,
+        "h": 196
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f1_sunbloom.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 1024
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 25,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

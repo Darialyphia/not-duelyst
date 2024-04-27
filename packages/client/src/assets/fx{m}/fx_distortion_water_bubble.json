@@ -1,0 +1,44 @@
+{
+  "frames": [
+    {
+      "filename": "distortion_water_bubble_001",
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 272,
+        "h": 272
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 272,
+        "h": 272
+      },
+      "sourceSize": {
+        "w": 272,
+        "h": 272
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_distortion_water_bubble.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "frameTags": [
+      {
+        "name": "bubble",
+        "from": 0,
+        "to": 0,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

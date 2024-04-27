@@ -1,0 +1,432 @@
+{
+  "frames": [
+    {
+      "filename": "fx_impactbluemedium_000",
+      "frame": {
+        "x": 159,
+        "y": 140,
+        "w": 32,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactbluemedium_001",
+      "frame": {
+        "x": 159,
+        "y": 175,
+        "w": 32,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactbluemedium_002",
+      "frame": {
+        "x": 159,
+        "y": 210,
+        "w": 32,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactbluemedium_003",
+      "frame": {
+        "x": 146,
+        "y": 105,
+        "w": 32,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactbluemedium_004",
+      "frame": {
+        "x": 146,
+        "y": 70,
+        "w": 32,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_000",
+      "frame": {
+        "x": 73,
+        "y": 57,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_001",
+      "frame": {
+        "x": 73,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_002",
+      "frame": {
+        "x": 73,
+        "y": 114,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_003",
+      "frame": {
+        "x": 0,
+        "y": 57,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_004",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_005",
+      "frame": {
+        "x": 0,
+        "y": 171,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangebig_006",
+      "frame": {
+        "x": 0,
+        "y": 114,
+        "w": 72,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 56
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_000",
+      "frame": {
+        "x": 73,
+        "y": 206,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_001",
+      "frame": {
+        "x": 73,
+        "y": 171,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_002",
+      "frame": {
+        "x": 116,
+        "y": 206,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_003",
+      "frame": {
+        "x": 146,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_004",
+      "frame": {
+        "x": 116,
+        "y": 171,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_impactorangemedium_005",
+      "frame": {
+        "x": 146,
+        "y": 35,
+        "w": 42,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 34
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_impact.png",
+    "scale": "1",
+    "size": {
+      "w": 256,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "impactbluemedium",
+        "from": 0,
+        "to": 4,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "impactorangebig",
+        "from": 5,
+        "to": 11,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "impactorangemedium",
+        "from": 12,
+        "to": 17,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

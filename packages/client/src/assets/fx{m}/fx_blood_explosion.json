@@ -1,0 +1,1077 @@
+{
+  "frames": [
+    {
+      "filename": "fx_bloodbig_000",
+      "frame": {
+        "x": 329,
+        "y": 98,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_001",
+      "frame": {
+        "x": 0,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_002",
+      "frame": {
+        "x": 324,
+        "y": 49,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_003",
+      "frame": {
+        "x": 43,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_004",
+      "frame": {
+        "x": 86,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_005",
+      "frame": {
+        "x": 129,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_006",
+      "frame": {
+        "x": 172,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_007",
+      "frame": {
+        "x": 344,
+        "y": 147,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_008",
+      "frame": {
+        "x": 344,
+        "y": 196,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_009",
+      "frame": {
+        "x": 324,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_010",
+      "frame": {
+        "x": 301,
+        "y": 183,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_011",
+      "frame": {
+        "x": 215,
+        "y": 201,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_012",
+      "frame": {
+        "x": 243,
+        "y": 134,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_013",
+      "frame": {
+        "x": 258,
+        "y": 183,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodbig_014",
+      "frame": {
+        "x": 286,
+        "y": 134,
+        "w": 42,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 48
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_000",
+      "frame": {
+        "x": 441,
+        "y": 31,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_001",
+      "frame": {
+        "x": 424,
+        "y": 195,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_002",
+      "frame": {
+        "x": 441,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_003",
+      "frame": {
+        "x": 461,
+        "y": 155,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_004",
+      "frame": {
+        "x": 461,
+        "y": 124,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_005",
+      "frame": {
+        "x": 461,
+        "y": 93,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_006",
+      "frame": {
+        "x": 446,
+        "y": 62,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_007",
+      "frame": {
+        "x": 459,
+        "y": 195,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_008",
+      "frame": {
+        "x": 476,
+        "y": 31,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_bloodmedium_009",
+      "frame": {
+        "x": 476,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 30
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_000",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_001",
+      "frame": {
+        "x": 0,
+        "y": 67,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_002",
+      "frame": {
+        "x": 0,
+        "y": 134,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_003",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_004",
+      "frame": {
+        "x": 81,
+        "y": 67,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_005",
+      "frame": {
+        "x": 243,
+        "y": 67,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_006",
+      "frame": {
+        "x": 162,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_007",
+      "frame": {
+        "x": 162,
+        "y": 67,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_008",
+      "frame": {
+        "x": 162,
+        "y": 134,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_009",
+      "frame": {
+        "x": 243,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionbig_010",
+      "frame": {
+        "x": 81,
+        "y": 134,
+        "w": 80,
+        "h": 66
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 66
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 66
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_000",
+      "frame": {
+        "x": 424,
+        "y": 156,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_001",
+      "frame": {
+        "x": 367,
+        "y": 39,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_002",
+      "frame": {
+        "x": 372,
+        "y": 78,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_003",
+      "frame": {
+        "x": 424,
+        "y": 117,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_004",
+      "frame": {
+        "x": 409,
+        "y": 78,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_005",
+      "frame": {
+        "x": 404,
+        "y": 39,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_006",
+      "frame": {
+        "x": 404,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_007",
+      "frame": {
+        "x": 387,
+        "y": 195,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_008",
+      "frame": {
+        "x": 387,
+        "y": 156,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_009",
+      "frame": {
+        "x": 387,
+        "y": 117,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_explosionmedium_010",
+      "frame": {
+        "x": 367,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 36,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 36,
+        "h": 38
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_blood_explosion.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 256
+    },
+    "frameTags": [
+      {
+        "name": "bloodbig",
+        "from": 0,
+        "to": 14,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "bloodmedium",
+        "from": 15,
+        "to": 24,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "explosionbig",
+        "from": 25,
+        "to": 35,
+        "direction": "forwards",
+        "color": "#000000ff"
+      },
+      {
+        "name": "explosionmedium",
+        "from": 36,
+        "to": 46,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

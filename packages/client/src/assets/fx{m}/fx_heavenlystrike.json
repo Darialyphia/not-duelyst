@@ -1,0 +1,264 @@
+{
+  "frames": [
+    {
+      "filename": "fx_heavenlystrike_000",
+      "frame": {
+        "x": 162,
+        "y": 241,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_001",
+      "frame": {
+        "x": 324,
+        "y": 241,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_002",
+      "frame": {
+        "x": 324,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_003",
+      "frame": {
+        "x": 243,
+        "y": 241,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_004",
+      "frame": {
+        "x": 243,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_005",
+      "frame": {
+        "x": 405,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_006",
+      "frame": {
+        "x": 162,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_007",
+      "frame": {
+        "x": 81,
+        "y": 241,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_008",
+      "frame": {
+        "x": 81,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_009",
+      "frame": {
+        "x": 0,
+        "y": 241,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_heavenlystrike_010",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 240
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 240
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_heavenlystrike.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 10,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

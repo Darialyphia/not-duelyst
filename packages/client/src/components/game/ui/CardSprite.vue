@@ -28,7 +28,10 @@ const item = computed(() => {
 .card-sprite {
   width: 96px;
   height: 112px;
+
   background: var(--bg);
   background-size: cover;
+
+  image-rendering: pixelated;
 }
 </style>

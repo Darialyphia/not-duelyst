@@ -6,13 +6,9 @@ import type { CardIndex, PlayerId } from '../player/player';
 import { Interceptable, ReactiveValue, type inferInterceptor } from '../utils/helpers';
 import { isAlly, isEnemy } from './entity-utils';
 import { isWithinCells } from '../utils/targeting';
-import {
-  createEntityModifier,
-  type EntityModifier,
-  type ModifierId
-} from '../modifier/entity-modifier';
+import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
 import { CARD_KINDS } from '../card/card-utils';
-import { KEYWORDS, type Keyword } from '../utils/keywords';
+import { type Keyword } from '../utils/keywords';
 import { Tile } from '../tile/tile';
 import { Skill } from './skill';
 
@@ -383,15 +379,18 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 
     const bloodFx = this.session.rngSystem.nextInt(4);
-    // this.session.fxSystem.playSfxOnEntity(this.id, {
-    //   resourceName: 'fx_bloodground',
-    //   animationName: `bloodground${bloodFx ? bloodFx : ''}`,
-    //   offset: {
-    //     x: 0,
-    //     y: 20
-    //   }
-    // });
-    await this.session.fxSystem.playAnimation(this.id, 'hit');
+    await Promise.all([
+      this.session.fxSystem.playSfxOnEntity(this.id, {
+        resourceName: 'fx_bloodground',
+        animationName: `bloodground${bloodFx ? bloodFx : ''}`,
+        offset: {
+          x: 0,
+          y: 20
+        }
+      }),
+      this.session.fxSystem.playAnimation(this.id, 'hit')
+    ]);
+
     this.hp = this.currentHp.value - amount;
     this.emit(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
   }

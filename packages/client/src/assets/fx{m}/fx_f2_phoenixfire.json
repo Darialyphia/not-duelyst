@@ -1,0 +1,858 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f2_phoenixfire_000",
+      "frame": {
+        "x": 151,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_001",
+      "frame": {
+        "x": 302,
+        "y": 1510,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_002",
+      "frame": {
+        "x": 302,
+        "y": 1359,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_003",
+      "frame": {
+        "x": 302,
+        "y": 1208,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_004",
+      "frame": {
+        "x": 302,
+        "y": 1057,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_005",
+      "frame": {
+        "x": 302,
+        "y": 906,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_006",
+      "frame": {
+        "x": 302,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_007",
+      "frame": {
+        "x": 302,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_008",
+      "frame": {
+        "x": 302,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_009",
+      "frame": {
+        "x": 302,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_010",
+      "frame": {
+        "x": 302,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_011",
+      "frame": {
+        "x": 302,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_012",
+      "frame": {
+        "x": 151,
+        "y": 1812,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_013",
+      "frame": {
+        "x": 151,
+        "y": 1661,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_014",
+      "frame": {
+        "x": 151,
+        "y": 1510,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_015",
+      "frame": {
+        "x": 151,
+        "y": 1359,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_016",
+      "frame": {
+        "x": 151,
+        "y": 1208,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_017",
+      "frame": {
+        "x": 151,
+        "y": 1057,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_018",
+      "frame": {
+        "x": 151,
+        "y": 906,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_019",
+      "frame": {
+        "x": 302,
+        "y": 1661,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_020",
+      "frame": {
+        "x": 151,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_021",
+      "frame": {
+        "x": 151,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_022",
+      "frame": {
+        "x": 151,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_023",
+      "frame": {
+        "x": 151,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_024",
+      "frame": {
+        "x": 151,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_025",
+      "frame": {
+        "x": 0,
+        "y": 1812,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_026",
+      "frame": {
+        "x": 0,
+        "y": 1661,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_027",
+      "frame": {
+        "x": 0,
+        "y": 1510,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_028",
+      "frame": {
+        "x": 0,
+        "y": 1359,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_029",
+      "frame": {
+        "x": 0,
+        "y": 1208,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_030",
+      "frame": {
+        "x": 0,
+        "y": 1057,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_031",
+      "frame": {
+        "x": 0,
+        "y": 906,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_032",
+      "frame": {
+        "x": 0,
+        "y": 755,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_033",
+      "frame": {
+        "x": 0,
+        "y": 604,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_034",
+      "frame": {
+        "x": 0,
+        "y": 453,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_035",
+      "frame": {
+        "x": 0,
+        "y": 302,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_036",
+      "frame": {
+        "x": 0,
+        "y": 151,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f2_phoenixfire_037",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 150,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 150
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f2_phoenixfire.png",
+    "scale": "1",
+    "size": {
+      "w": 512,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 37,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}

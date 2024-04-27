@@ -1,0 +1,770 @@
+{
+  "frames": [
+    {
+      "filename": "fx_f3_dominatewill_000",
+      "frame": {
+        "x": 682,
+        "y": 1364,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_001",
+      "frame": {
+        "x": 1705,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_002",
+      "frame": {
+        "x": 1705,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_003",
+      "frame": {
+        "x": 1705,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_004",
+      "frame": {
+        "x": 1364,
+        "y": 1705,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_005",
+      "frame": {
+        "x": 1364,
+        "y": 1364,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_006",
+      "frame": {
+        "x": 1364,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_007",
+      "frame": {
+        "x": 1364,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_008",
+      "frame": {
+        "x": 1364,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_009",
+      "frame": {
+        "x": 1364,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_010",
+      "frame": {
+        "x": 1023,
+        "y": 1705,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_011",
+      "frame": {
+        "x": 1023,
+        "y": 1364,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_012",
+      "frame": {
+        "x": 1023,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_013",
+      "frame": {
+        "x": 1023,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_014",
+      "frame": {
+        "x": 1023,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_015",
+      "frame": {
+        "x": 1023,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_016",
+      "frame": {
+        "x": 682,
+        "y": 1705,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_017",
+      "frame": {
+        "x": 1705,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_018",
+      "frame": {
+        "x": 682,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_019",
+      "frame": {
+        "x": 682,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_020",
+      "frame": {
+        "x": 682,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_021",
+      "frame": {
+        "x": 682,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_022",
+      "frame": {
+        "x": 341,
+        "y": 1705,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_023",
+      "frame": {
+        "x": 341,
+        "y": 1364,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_024",
+      "frame": {
+        "x": 341,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_025",
+      "frame": {
+        "x": 341,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_026",
+      "frame": {
+        "x": 341,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_027",
+      "frame": {
+        "x": 341,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_028",
+      "frame": {
+        "x": 0,
+        "y": 1705,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_029",
+      "frame": {
+        "x": 0,
+        "y": 1364,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_030",
+      "frame": {
+        "x": 0,
+        "y": 1023,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_031",
+      "frame": {
+        "x": 0,
+        "y": 682,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_032",
+      "frame": {
+        "x": 0,
+        "y": 341,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    },
+    {
+      "filename": "fx_f3_dominatewill_033",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 340,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 340,
+        "h": 340
+      },
+      "duration": 80
+    }
+  ],
+  "meta": {
+    "app": "https://www.aseprite.org/",
+    "image": "fx_f3_dominatewill.png",
+    "scale": "1",
+    "size": {
+      "w": 2048,
+      "h": 2048
+    },
+    "frameTags": [
+      {
+        "name": "default",
+        "from": 0,
+        "to": 33,
+        "direction": "forwards",
+        "color": "#000000ff"
+      }
+    ]
+  }
+}
