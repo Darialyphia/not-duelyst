@@ -62,7 +62,8 @@ const getNormalAssetData = (
 
 export const useAssetsProvider = () => {
   const loaded = ref(false);
-  const load = async () => {
+
+  const init = async () => {
     extensions.add(asepriteSpriteSheetParser, asepriteTilesetParser);
 
     Assets.cache.reset();
@@ -76,7 +77,10 @@ export const useAssetsProvider = () => {
     splitBundle(manifest, 'fx');
     splitBundle(manifest, 'obstacles');
     Assets.init({ manifest });
+  };
 
+  const load = async () => {
+    await init();
     await Promise.all([
       Assets.loadBundle('tiles'),
       Assets.loadBundle('ui'),
@@ -87,6 +91,7 @@ export const useAssetsProvider = () => {
       Assets.loadBundle('modifiers')
     ]);
     loaded.value = true;
+    console.log('assets loaded');
   };
 
   const bundlesPromises = new Map<string, Promise<any>>();

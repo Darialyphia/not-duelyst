@@ -3,18 +3,24 @@ const { spriteId } = defineProps<{
   spriteId: string;
 }>();
 
-const { assets } = useGame();
+const assets = useAssets();
+
+const sheet = ref<SpritesheetWithAnimations>();
+watchEffect(async () => {
+  if (!assets.loaded.value) return;
+  sheet.value = await assets.loadSpritesheet(spriteId);
+  console.log('loaded sheet', spriteId, sheet.value);
+});
 
 const el = ref<HTMLElement>();
 const item = computed(() => {
-  if (!assets.loaded.value) return null;
+  if (!sheet.value) return null;
 
-  const sheet = assets.getSpritesheet(spriteId);
   return {
     style: {
       '--bg': `url(/assets/units/${spriteId}.png)`,
-      '--width': `${sheet.data.meta.size!.w}px`,
-      '--height': `${sheet.data.meta.size!.h}px`
+      '--width': `${sheet.value.data.meta.size!.w}px`,
+      '--height': `${sheet.value.data.meta.size!.h}px`
     }
   };
 });

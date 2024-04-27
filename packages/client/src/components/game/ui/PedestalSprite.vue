@@ -3,18 +3,23 @@ const { pedestalId } = defineProps<{
   pedestalId: string;
 }>();
 
-const { assets } = useGame();
+const assets = useAssets();
+
+const sheet = ref<SpritesheetWithAnimations>();
+watchEffect(async () => {
+  if (!assets.loaded.value) return;
+  sheet.value = await assets.loadSpritesheet(pedestalId);
+});
 
 const el = ref<HTMLElement>();
 const item = computed(() => {
-  if (!assets.loaded.value) return null;
+  if (!sheet.value) return null;
 
-  const sheet = assets.getSpritesheet(pedestalId);
   return {
     style: {
       '--bg': `url(/assets/pedestals/${pedestalId}.png)`,
-      '--width': `${sheet.data.meta.size!.w}px`,
-      '--height': `${sheet.data.meta.size!.h}px`
+      '--width': `${sheet.value.data.meta.size!.w}px`,
+      '--height': `${sheet.value.data.meta.size!.h}px`
     }
   };
 });

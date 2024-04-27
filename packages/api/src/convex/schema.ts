@@ -1,5 +1,6 @@
+import type { Faction } from '@game/sdk';
 import { defineSchema, defineTable } from 'convex/server';
-import { v } from 'convex/values';
+import { v, Validator } from 'convex/values';
 
 export default defineSchema({
   users: defineTable({
@@ -86,20 +87,23 @@ export default defineSchema({
   //   )
   // }).index('by_name', ['name']),
 
-  // loadouts: defineTable({
-  //   name: v.string(),
-  //   ownerId: v.id('users'),
-  //   generalId: v.string(),
-  //   unitIds: v.array(v.string()),
-  //   factions: v.array(v.string()) as Validator<FactionName[]>
-  // }).index('by_owner_id', ['ownerId']),
+  loadouts: defineTable({
+    name: v.string(),
+    ownerId: v.id('users'),
+    cards: v.array(
+      v.object({
+        id: v.string(),
+        pedestalId: v.string()
+      })
+    )
+  }).index('by_owner_id', ['ownerId']),
 
-  // collectionItems: defineTable({
-  //   itemId: v.string(),
-  //   ownerId: v.id('users')
-  // })
-  //   .index('by_owner_id', ['ownerId'])
-  //   .index('by_item_id', ['itemId']),
+  collectionItems: defineTable({
+    itemId: v.string(),
+    ownerId: v.id('users')
+  })
+    .index('by_owner_id', ['ownerId'])
+    .index('by_item_id', ['itemId']),
 
   userSettings: defineTable({
     userId: v.id('users'),

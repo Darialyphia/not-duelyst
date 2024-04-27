@@ -14,3 +14,5 @@ export { CARD_KINDS, type CardKind } from './card/card-utils';
 export { type Animation } from './fx-system';
 export { Skill } from './entity/skill';
 export { type Faction, FACTIONS } from './card/card-utils';
+export { CARDS } from './card/card-lookup';
+export type { CardBlueprint } from './card/card-blueprint';

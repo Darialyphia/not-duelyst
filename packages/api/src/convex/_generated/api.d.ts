@@ -15,6 +15,8 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as auth from "../auth.js";
+import type * as collection from "../collection.js";
+import type * as loadout from "../loadout.js";
 import type * as lucia from "../lucia.js";
 import type * as users from "../users.js";
 import type * as utils_ability from "../utils/ability.js";
@@ -29,6 +31,8 @@ import type * as utils_ability from "../utils/ability.js";
  */
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  collection: typeof collection;
+  loadout: typeof loadout;
   lucia: typeof lucia;
   users: typeof users;
   "utils/ability": typeof utils_ability;
