@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "f1_ranged.breathing.0",
+    "filename": "f1_dancer.breathing.0",
     "frame": { "x": 0, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.breathing.1",
+    "filename": "f1_dancer.breathing.1",
     "frame": { "x": 96, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.idle.2",
+    "filename": "f1_dancer.idle.2",
     "frame": { "x": 192, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -27,7 +27,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.idle.3",
+    "filename": "f1_dancer.idle.3",
     "frame": { "x": 288, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -36,7 +36,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.run.4",
+    "filename": "f1_dancer.run.4",
     "frame": { "x": 384, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -45,7 +45,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.run.5",
+    "filename": "f1_dancer.run.5",
     "frame": { "x": 480, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.attack.6",
+    "filename": "f1_dancer.attack.6",
     "frame": { "x": 576, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.attack.7",
+    "filename": "f1_dancer.attack.7",
     "frame": { "x": 672, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.hit.8",
+    "filename": "f1_dancer.hit.8",
     "frame": { "x": 768, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.hit.9",
+    "filename": "f1_dancer.hit.9",
     "frame": { "x": 864, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.death.10",
+    "filename": "f1_dancer.death.10",
     "frame": { "x": 960, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 100
    },
    {
-    "filename": "f1_ranged.death.11",
+    "filename": "f1_dancer.death.11",
     "frame": { "x": 1056, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -111,7 +111,7 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.6-x64",
-  "image": "f1_ranged.png",
+  "image": "f1_dancer.png",
   "format": "RGBA8888",
   "size": { "w": 1152, "h": 112 },
   "scale": "1",

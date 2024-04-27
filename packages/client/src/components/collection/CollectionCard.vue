@@ -21,8 +21,10 @@ const angle = ref({
   y: 0
 });
 
+const isDisabled = computed(() => isEditingLoadout && !canAddToLoadout);
 const MAX_ANGLE = 15;
 const onMousemove = (e: MouseEvent) => {
+  if (isDisabled.value) return;
   if (!rootEl.value) return;
 
   const { clientX, clientY } = e;
@@ -39,10 +41,10 @@ const onMousemove = (e: MouseEvent) => {
     <div
       ref="rootEl"
       :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
-      class="card"
+      class="collection-card"
       :class="{
         used: isEditingLoadout && isInLoadout,
-        disabled: isEditingLoadout && !canAddToLoadout
+        disabled: isDisabled
       }"
       :style="{
         '--rotate-y': angle.x.toFixed(2),
@@ -64,7 +66,8 @@ const onMousemove = (e: MouseEvent) => {
           speed: card.card.speed,
           cost: card.card.cost,
           cooldown: card.card.cooldown,
-          skills: card.card.skills
+          skills: card.card.skills,
+          factions: card.card.factions
         }"
       />
     </div>
@@ -91,7 +94,7 @@ const onMousemove = (e: MouseEvent) => {
     height: 100%;
   }
 }
-.card {
+.collection-card {
   position: relative;
   display: grid;
   transition: filter 0.3s;
@@ -106,7 +109,7 @@ const onMousemove = (e: MouseEvent) => {
   }
 
   &.used {
-    filter: drop-shadow(0px 5px 0.5rem var(--primary));
+    filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
   }
 
   &.disabled {

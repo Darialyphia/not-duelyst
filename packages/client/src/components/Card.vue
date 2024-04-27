@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { CARD_KINDS, Skill } from '@game/sdk';
-import type { SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
+import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
 import { type CardKind, type Rarity } from '@game/sdk/src/card/card-utils';
 import type { Nullable } from '@game/shared';
 
@@ -17,19 +16,33 @@ type ICard = {
   speed: number;
   skills: SkillBlueprint[];
   pedestalId?: string;
+  factions: CardBlueprint['factions'];
 };
 
 const { card } = defineProps<{ card: ICard }>();
 
 const bg = computed(() => `url('/assets/ui/card-back-${card.rarity}.png')`);
 
-const selectedSkill = ref<Nullable<SkillBlueprint>>(card.skills[0]);
+const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
 </script>
 
 <template>
   <div class="card">
     <header>
-      <UiCenter class="cost">{{ card.cost }}</UiCenter>
+      <UiCenter class="cost">
+        {{ card.cost }}
+
+        <div>
+          <div
+            v-for="(faction, index) in card.factions"
+            :key="`${faction?.id}${index}`"
+            class="faction"
+            :style="{
+              '--bg': `url(/assets/ui/rune-${faction?.id.toLocaleLowerCase() ?? 'empty'}.png)`
+            }"
+          />
+        </div>
+      </UiCenter>
       <div class="sprite">
         <PedestalSprite :pedestal-id="card.pedestalId ?? 'pedestal-default'" />
         <CardSprite :sprite-id="card.spriteId" />
@@ -112,6 +125,7 @@ header {
 }
 
 .cost {
+  position: relative;
   transform: translateY(calc(-1 * var(--size-2)));
 
   justify-self: start;
@@ -123,6 +137,23 @@ header {
   color: black;
 
   background-image: url('/assets/ui/card-cost.png');
+}
+
+.faction {
+  width: 22px;
+  height: 26px;
+  background: var(--bg);
+
+  &:nth-of-type(2) {
+    transform: translateY(25%);
+  }
+
+  :has(> &) {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .cooldown {

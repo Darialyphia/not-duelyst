@@ -91,7 +91,6 @@ export const useAssetsProvider = () => {
       Assets.loadBundle('modifiers')
     ]);
     loaded.value = true;
-    console.log('assets loaded');
   };
 
   const bundlesPromises = new Map<string, Promise<any>>();

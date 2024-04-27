@@ -41,7 +41,7 @@ export const useLoadoutForm = ({
   };
 
   const loadoutIsFull = computed(
-    () => formValues.value!.cards.length >= config.MAX_HAND_SIZE
+    () => formValues.value!.cards.length >= config.MAX_HAND_SIZE + 1 // account for general
   );
 
   const canAddUnit = (cardId: CardBlueprintId) => {
@@ -49,11 +49,8 @@ export const useLoadoutForm = ({
 
     if (!formValues.value) return false;
     return match(card.kind)
-      .with(CARD_KINDS.GENERAL, () => !general.value)
-      .with(
-        CARD_KINDS.MINION,
-        () => !!general.value && formValues.value!.cards.every(card => card.id !== cardId)
-      )
+      .with(CARD_KINDS.GENERAL, () => !general.value || general.value.id === cardId)
+      .with(CARD_KINDS.MINION, () => true)
       .exhaustive();
   };
 
@@ -63,9 +60,8 @@ export const useLoadoutForm = ({
 
   const toggleUnit = (cardId: CardBlueprintId) => {
     if (!formValues.value) return;
-
     const index = formValues.value.cards.findIndex(card => card.id === cardId);
-    if (index > 0) {
+    if (index >= 0) {
       formValues.value.cards.splice(index, 1);
     } else {
       formValues.value.cards.push({ id: cardId, pedestalId: 'pedestal-default' });

@@ -26,7 +26,12 @@ const sortedUnits = computed(() => {
 });
 
 // TODO load user owned cosmetics from api
-const pedestals = ['pedestal-default', 'pedestal-stone', 'pedestal-grass'];
+const pedestals = [
+  'pedestal-default',
+  'pedestal-stone',
+  'pedestal-grass',
+  'pedestal-cyber'
+];
 const changePedestal = (id: string, diff: number) => {
   const card = cards.find(c => c.id === id)!;
   const index = pedestals.indexOf(card.pedestalId);
@@ -35,13 +40,17 @@ const changePedestal = (id: string, diff: number) => {
 
   emit('setPedestal', { id, pedestalId: pedestals[newIndex] });
 };
+
+const minionsCount = computed(() => {
+  return cards.filter(c => CARDS[c.id].kind === CARD_KINDS.MINION).length;
+});
 </script>
 
 <template>
   <form @submit.prevent="emit('save')">
     <header>
       <input v-model="name" class="py-3 flex-1" />
-      {{ cards.length }} / {{ config.MAX_HAND_SIZE }}
+      {{ minionsCount }} / {{ config.MAX_HAND_SIZE }}
     </header>
 
     <ul v-if="cards.length" v-auto-animate class="flex-1">
