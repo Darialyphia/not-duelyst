@@ -85,7 +85,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
   isReady = false;
 
-  fxSystem: FXSystem;
+  fxSystem = noopFXContext;
 
   private constructor(
     private initialState: SerializedGameState,
@@ -97,9 +97,9 @@ export class GameSession extends EventEmitter<GameEventMap> {
   ) {
     super();
     this.isAuthoritative = options.isAuthoritative;
-    this.fxSystem = options.fxSystem;
+
     this.seed = options.seed;
-    this.setup();
+    this.setup(options.fxSystem);
   }
 
   private setupStarEvents() {
@@ -116,7 +116,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
     });
   }
 
-  private async setup() {
+  private async setup(fxSystem: FXSystem) {
     if (this.isReady) return;
     this.isReady = true;
     this.setupStarEvents();
@@ -127,6 +127,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
     this.entitySystem.setup(this.initialState.entities);
     await this.actionSystem.setup(this.initialState.history);
 
+    this.fxSystem = fxSystem;
     this.emit('game:ready');
     this.on('entity:after_destroy', e => {
       if (e.isGeneral) {

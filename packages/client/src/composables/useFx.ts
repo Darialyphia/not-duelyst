@@ -99,8 +99,11 @@ export const useFXProvider = () => {
   };
 
   const executeAsyncCommand = <T extends AnyFunction>(cb: T) => {
-    return new Promise<ReturnType<T>>(resolve => {
-      if (isHidden.value) return Promise.resolve();
+    return new Promise<void>(resolve => {
+      if (isHidden.value) {
+        isPlaying.value = false;
+        resolve();
+      }
       const { session, ui, assets, camera, entityAnimationsMap, entityPositionsMap } =
         ensureProvided();
       isPlaying.value = true;
@@ -115,17 +118,18 @@ export const useFXProvider = () => {
         sceneRoot,
         entityAnimationsMap,
         entityPositionsMap,
-        done: (val: ReturnType<T>) => {
+        done: () => {
           nextTick(() => {
             isPlaying.value = false;
-            resolve(val);
+            resolve();
           });
         }
       });
     });
   };
+
   const executeCommand = <T extends AnyFunction>(cb: T) => {
-    if (isHidden.value) return Promise.resolve();
+    if (isHidden.value) return () => void 0;
     const { session, ui, assets, camera, entityAnimationsMap, entityPositionsMap } =
       ensureProvided();
     isPlaying.value = true;
@@ -164,6 +168,7 @@ export const useFXProvider = () => {
     },
     moveEntity(...args) {
       return executeAsyncCommand(ctx => {
+        console.log('move entity');
         moveEntity(ctx, ...args);
       });
     },

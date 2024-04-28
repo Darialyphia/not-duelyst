@@ -327,14 +327,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       }))
     );
     stopRunning();
-
     for (const point of path) {
       this.position = Vec3.fromPoint3D(point);
     }
 
     this.movementsTaken++;
     this.checkExhaustion();
-
     this.emit(ENTITY_EVENTS.AFTER_MOVE, this);
   }
 

@@ -22,6 +22,7 @@ export const startMatchmakingIfNeeded = async ({
 }: Pick<MutationCtx, 'db' | 'scheduler'>) => {
   const matchmaking = await getMatchmaking(db);
   if (!matchmaking.nextInvocationId) {
+    console.log('Starting matchmaking');
     const next = await scheduler.runAfter(0, internal.matchmaking.matchPlayers);
     await db.patch(matchmaking._id, { nextInvocationId: next });
   }

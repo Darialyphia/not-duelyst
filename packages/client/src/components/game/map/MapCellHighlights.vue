@@ -5,8 +5,8 @@ const { cell } = defineProps<{ cell: Cell }>();
 </script>
 
 <template>
-  <MovementHighlight :cell-id="cell.id" />
   <DangerHighlight :cell="cell" />
+  <MovementHighlight :cell-id="cell.id" />
   <SummonHighlight :cell="cell" />
   <FollowupHighlight :cell="cell" />
 </template>

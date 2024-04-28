@@ -10,7 +10,12 @@ const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const sheet = computed(() => assets.getSpritesheet('bitmask-movement-ally'));
 
+const isActivePlayer = useIsActivePlayer();
+const userPlayer = useUserPlayer();
+
 const isMatch = (cellToTest: Cell) => {
+  if (!isActivePlayer.value) return false;
+
   return match(ui.targetingMode.value)
     .with(
       TARGETING_MODES.FOLLOWUP,
@@ -19,6 +24,8 @@ const isMatch = (cellToTest: Cell) => {
       () => false
     )
     .with(TARGETING_MODES.BASIC, () => {
+      if (userPlayer.value?.equals(ui.selectedEntity.value!.player)) return false;
+
       return pathfinding.canMoveTo(ui.selectedEntity.value!, cellToTest);
     })
     .with(TARGETING_MODES.NONE, () => {

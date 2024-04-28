@@ -9,6 +9,7 @@ definePageMeta({
 
 <template>
   <div class="root">
+    <CurrentGameModal />
     <UsernameModal />
     <NuxtPage />
   </div>

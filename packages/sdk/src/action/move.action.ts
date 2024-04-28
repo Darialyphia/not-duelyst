@@ -33,7 +33,6 @@ export class MoveAction extends GameAction<typeof schema> {
     if (!this.entity.canMove(this.path.distance)) {
       throw new Error(`Entity ${this.entity.id} cannot move to target cell.`);
     }
-
     await this.entity.move(this.path.path);
   }
 }

@@ -5,6 +5,7 @@ import type { IsoCameraContext } from './useIsoCamera';
 import type { GameUiContext } from './useGameUi';
 import type { PathfindingContext } from './usePathfinding';
 import type { FxContext } from './useFx';
+import { match } from 'ts-pattern';
 
 type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
   Values<{
@@ -87,3 +88,25 @@ export const useGameProvider = ({
 };
 
 export const useGame = () => useSafeInject(GAME_INJECTION_KEY);
+
+export const useUserPlayer = () => {
+  const { gameType, playerId } = useGame();
+
+  return useGameSelector(session => {
+    return match(gameType)
+      .with(GAME_TYPES.SANDBOX, () => session.playerSystem.activePlayer)
+      .with(GAME_TYPES.PVP, () => session.playerSystem.getPlayerById(playerId!))
+      .exhaustive();
+  });
+};
+
+export const useIsActivePlayer = () => {
+  const { gameType, playerId } = useGame();
+
+  return useGameSelector(session => {
+    return match(gameType)
+      .with(GAME_TYPES.SANDBOX, () => true)
+      .with(GAME_TYPES.PVP, () => session.playerSystem.activePlayer.id === playerId)
+      .exhaustive();
+  });
+};

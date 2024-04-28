@@ -11,10 +11,10 @@ const prefix = 'pixi-';
 export default defineNuxtConfig({
   srcDir: './src',
   devtools: { enabled: true },
+  experimental: { inlineRouteRules: true },
   devServer: {
     port: 3000
   },
-
   modules: [
     '@vee-validate/nuxt',
     'radix-vue/nuxt',
@@ -25,12 +25,14 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@formkit/auto-animate/nuxt'
   ],
+
   runtimeConfig: {
     public: {
       convexUrl: '',
       hathoraAppId: ''
     }
   },
+
   components: [
     {
       path: './components',

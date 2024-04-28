@@ -44,6 +44,11 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
     this.payload = parsed.data;
 
     if (!this.player.isActive && !this.allowDuringEnemyTurn) {
+      console.log({
+        eventPlayer: this.player.name,
+        isActive: this.player.isActive,
+        activePlayer: this.session.playerSystem.activePlayer.name
+      });
       console.error('You are not the active player');
       return;
     }

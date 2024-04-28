@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { GameSession, type SerializedGameState } from '@game/sdk';
+import { stringify } from 'zipson';
 
 const state: SerializedGameState = {
   history: [],
@@ -57,7 +58,7 @@ const dispatch = (
 </script>
 
 <template>
-  <Game
+  <GameRoot
     :game-session="session"
     :player-id="null"
     :game-type="GAME_TYPES.SANDBOX"
