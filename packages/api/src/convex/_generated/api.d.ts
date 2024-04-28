@@ -16,8 +16,13 @@ import type {
 } from "convex/server";
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
+import type * as gameMaps from "../gameMaps.js";
+import type * as games from "../games.js";
+import type * as hathora from "../hathora.js";
 import type * as loadout from "../loadout.js";
 import type * as lucia from "../lucia.js";
+import type * as matchmaking_matchmaking from "../matchmaking/matchmaking.js";
+import type * as matchmaking from "../matchmaking.js";
 import type * as users from "../users.js";
 import type * as utils_ability from "../utils/ability.js";
 
@@ -32,8 +37,13 @@ import type * as utils_ability from "../utils/ability.js";
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
+  gameMaps: typeof gameMaps;
+  games: typeof games;
+  hathora: typeof hathora;
   loadout: typeof loadout;
   lucia: typeof lucia;
+  "matchmaking/matchmaking": typeof matchmaking_matchmaking;
+  matchmaking: typeof matchmaking;
   users: typeof users;
   "utils/ability": typeof utils_ability;
 }>;

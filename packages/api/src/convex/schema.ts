@@ -1,6 +1,7 @@
 import type { Faction } from '@game/sdk';
 import { defineSchema, defineTable } from 'convex/server';
 import { v, Validator } from 'convex/values';
+import type { GameStatus } from './game/game.constants';
 
 export default defineSchema({
   users: defineTable({
@@ -31,61 +32,52 @@ export default defineSchema({
     .index('byId', ['id'])
     .index('byUserId', ['user_id']),
 
-  // matchmaking: defineTable({
-  //   nextInvocationId: v.optional(v.id('_scheduled_functions'))
-  // }),
+  matchmaking: defineTable({
+    nextInvocationId: v.optional(v.id('_scheduled_functions'))
+  }),
 
-  // matchmakingUsers: defineTable({
-  //   userId: v.id('users'),
-  //   loadoutId: v.id('loadouts')
-  // }).index('by_userId', ['userId']),
+  matchmakingUsers: defineTable({
+    userId: v.id('users'),
+    loadoutId: v.id('loadouts')
+  }).index('by_userId', ['userId']),
 
-  // games: defineTable({
-  //   firstPlayer: v.id('users'),
-  //   mapId: v.id('gameMaps'),
-  //   status: v.string() as Validator<GameStatus>,
-  //   roomId: v.string(),
-  //   winnerId: v.optional(v.id('gamePlayers'))
-  // })
-  //   .index('by_status', ['status'])
-  //   .index('by_roomId', ['roomId']),
+  games: defineTable({
+    seed: v.string(),
+    firstPlayer: v.id('users'),
+    mapId: v.id('gameMaps'),
+    status: v.string() as Validator<GameStatus>,
+    roomId: v.string(),
+    winnerId: v.optional(v.id('gamePlayers'))
+  })
+    .index('by_status', ['status'])
+    .index('by_roomId', ['roomId']),
 
-  // gamePlayers: defineTable({
-  //   userId: v.id('users'),
-  //   loadoutId: v.id('loadouts'),
-  //   gameId: v.id('games')
-  // })
-  //   .index('by_user_id', ['userId'])
-  //   .index('by_game_id', ['gameId']),
+  gamePlayers: defineTable({
+    userId: v.id('users'),
+    loadoutId: v.id('loadouts'),
+    gameId: v.id('games')
+  })
+    .index('by_user_id', ['userId'])
+    .index('by_game_id', ['gameId']),
 
   // gameReplays: defineTable({
   //   gameId: v.id('games'),
   //   replay: v.string()
   // }).index('by_game_id', ['gameId']),
 
-  // gameMaps: defineTable({
-  //   name: v.string(),
-  //   width: v.number(),
-  //   height: v.number(),
-  //   startPositions: v.array(
-  //     v.object({
-  //       x: v.number(),
-  //       y: v.number(),
-  //       z: v.number()
-  //     })
-  //   ),
-  //   cells: v.string(),
-  //   interactables: v.array(
-  //     v.object({
-  //       position: v.object({
-  //         x: v.number(),
-  //         y: v.number(),
-  //         z: v.number()
-  //       }),
-  //       id: v.string()
-  //     })
-  //   )
-  // }).index('by_name', ['name']),
+  gameMaps: defineTable({
+    name: v.string(),
+    width: v.number(),
+    height: v.number(),
+    startPositions: v.array(
+      v.object({
+        x: v.number(),
+        y: v.number(),
+        z: v.number()
+      })
+    ),
+    cells: v.string()
+  }).index('by_name', ['name']),
 
   loadouts: defineTable({
     name: v.string(),

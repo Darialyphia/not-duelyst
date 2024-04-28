@@ -14,6 +14,7 @@
     "@casl/ability": "^6.5.0",
     "@game/sdk": "*",
     "@game/shared": "*",
+    "@hathora/cloud-sdk-typescript": "^2.2.4",
     "convex": "^1.10.0",
     "lucia": "^2.7.6"
   }
