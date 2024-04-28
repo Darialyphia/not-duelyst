@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { diffuseGroup, normalGroup, lightGroup, PointLight } from '@pixi/lights';
 
 // watchEffect(() => {

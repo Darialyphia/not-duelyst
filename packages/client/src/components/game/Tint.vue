@@ -29,7 +29,7 @@ useEventListener(window, 'resize', debouncedResize);
 <template>
   <graphics
     event-mode="none"
-    :alpha="0.25"
+    :alpha="0.4"
     :blend-mode="BLEND_MODES.SCREEN"
     @render="
       g => {

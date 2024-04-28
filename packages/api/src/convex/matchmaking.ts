@@ -1,5 +1,10 @@
 import { api, internal } from './_generated/api';
-import { internalAction, internalMutation, query } from './_generated/server';
+import {
+  internalAction,
+  internalMutation,
+  internalQuery,
+  query
+} from './_generated/server';
 import { Matchmaking } from './matchmaking/matchmaking';
 import { MatchmakingTestStrategy } from './matchmaking/strategies/test.strategy';
 import {
@@ -12,7 +17,8 @@ import {
 } from './matchmaking/matchmaking.utils';
 import { v } from 'convex/values';
 import { ensureHasNoCurrentGame, getGameInitialState } from './game/game.utils';
-import { ensureAuthenticated, mutationWithAuth } from './auth/auth.utils';
+import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
+import { toMatchmakingUserDto } from './matchmaking/matchmaking.mapper';
 
 export const join = mutationWithAuth({
   args: {
@@ -44,8 +50,24 @@ export const leave = mutationWithAuth({
   }
 });
 
+export const myMatchmakingUser = queryWithAuth({
+  args: {},
+  async handler(ctx) {
+    const user = await ensureAuthenticated(ctx.session);
+
+    const matchmakingUser = await ctx.db
+      .query('matchmakingUsers')
+      .withIndex('by_userId', q => q.eq('userId', user._id))
+      .unique();
+
+    if (!matchmakingUser) return null;
+
+    return toMatchmakingUserDto(matchmakingUser);
+  }
+});
+
 export const matchPlayers = internalAction(async ctx => {
-  const participants = await ctx.runQuery(api.matchmaking.getMatchmakingUsers);
+  const participants = await ctx.runQuery(internal.matchmaking.getMatchmakingUsers);
 
   const strategy = new MatchmakingTestStrategy();
   const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
@@ -109,7 +131,7 @@ export const handleMatchmadePair = internalMutation({
   }
 });
 
-export const getMatchmakingUsers = query(async ctx => {
+export const getMatchmakingUsers = internalQuery(async ctx => {
   const matchmakingUsers = await ctx.db.query('matchmakingUsers').collect();
 
   return await Promise.all(

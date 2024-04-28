@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
 import type { Nullable } from '@game/shared';
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';

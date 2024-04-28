@@ -19,7 +19,7 @@ definePageMeta({
       <NuxtLink :to="{ name: 'Matchmaking' }">
         <div class="fancy-surface">
           <h2>Ranked</h2>
-          <p>Play against another player to climb the rankings.</p>
+          <p>Play against another player.</p>
         </div>
       </NuxtLink>
     </div>
@@ -66,11 +66,15 @@ definePageMeta({
 }
 
 .mode {
+  align-self: center;
+  justify-self: center;
+  width: 30ch;
+  height: var(--size-14);
   > a {
     display: grid;
     height: 100%;
     font-size: var(--font-size-4);
-
+    text-align: center;
     &:hover {
       filter: brightness(130%);
     }
