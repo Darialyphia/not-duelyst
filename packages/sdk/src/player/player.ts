@@ -20,8 +20,6 @@ export type SerializedPlayer = JSONObject & {
   currentGold?: number;
   isPlayer1: boolean;
   cards: SerializedCard[];
-  deck?: CardIndex[];
-  hand?: Nullable<CardIndex>[];
   graveyard: CardIndex[];
 };
 

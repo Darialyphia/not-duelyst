@@ -15,6 +15,7 @@ import {
   PLAYER_EVENTS,
   type PlayerEvent,
   type PlayerEventMap,
+  type PlayerId,
   type SerializedPlayer
 } from './player/player';
 import { ActionSystem } from './action/action-system';
@@ -27,7 +28,6 @@ export type SerializedGameState = {
   entities: Array<SerializedEntity>;
   players: [SerializedPlayer, SerializedPlayer];
   history: SerializedAction[];
-  activeEntityId: Nullable<EntityId>;
 };
 
 type GlobalEntityEvents = {
@@ -45,6 +45,7 @@ type GameEventsBase = {
   'game:action': [GameAction<any>];
   'scheduler:flushed': [];
   'game:ready': [];
+  'game:ended': [PlayerId];
 };
 export type GameEventMap = Prettify<
   GameEventsBase & GlobalEntityEvents & GlobalPlayerEvents & GlobalCardEvents
@@ -127,6 +128,11 @@ export class GameSession extends EventEmitter<GameEventMap> {
     await this.actionSystem.setup(this.initialState.history);
 
     this.emit('game:ready');
+    this.on('entity:after_destroy', e => {
+      if (e.isGeneral) {
+        this.emit('game:ended', e.player.opponent.id);
+      }
+    });
   }
 
   dispatch(action: SerializedAction) {
