@@ -7,33 +7,34 @@ const { loadout } = defineProps<{
   loadout: LoadoutDto;
 }>();
 
-const getImage = (cardId: CardBlueprintId) => {
-  const unit = CARDS[cardId];
+const getSpriteId = (cardId: CardBlueprintId) => {
+  const card = CARDS[cardId];
 
-  return `/assets/units/${unit.spriteId}-icon.png`;
+  return card.spriteId;
 };
 
 const general = computed(() => {
   return loadout.cards.find(c => {
     const card = CARDS[c.id];
     return card.kind === CARD_KINDS.GENERAL;
-  });
+  })!;
 });
 
-const generalImage = computed(() => {
-  if (!general.value) return null;
-  return getImage(general.value.id);
+const minions = computed(() => {
+  return loadout.cards.filter(c => CARDS[c.id].kind === CARD_KINDS.MINION);
 });
 </script>
 
 <template>
   <article class="fancy-surface">
-    <div class="general">
-      <img v-if="generalImage" :src="generalImage" />
+    <div class="sprite">
+      <CardSprite :sprite-id="getSpriteId(general.id)" />
     </div>
     <div class="grid grid-cols-6 gap-1">
       <span>{{ loadout.name }}</span>
-      <img v-for="card in loadout.cards" :key="card.id" :src="getImage(card.id)" />
+      <!-- <div v-for="card in minions" :key="card.id" class="sprite">
+        <CardSprite :sprite-id="getSpriteId(card.id)" />
+      </div> -->
     </div>
   </article>
 </template>
@@ -58,37 +59,19 @@ span {
   grid-column: 1 / -1;
 }
 
-img {
+.sprite {
   overflow: hidden;
 
-  aspect-ratio: 1;
-  width: var(--size-7);
+  width: var(--size-8);
+  height: var(--size-8);
 
   border: var(--fancy-border);
   border-radius: var(--radius-round);
 
   image-rendering: pixelated;
-}
 
-.general {
-  position: relative;
-  align-self: start;
-  > img {
-    width: var(--size-9);
-  }
-
-  > div {
-    position: absolute;
-    bottom: 0;
-
-    display: flex;
-    justify-content: space-around;
-
-    width: 100%;
-    > img {
-      width: 16px;
-      height: 18px;
-    }
+  > * {
+    transform: translateX(-25%) translateY(-15%);
   }
 }
 </style>

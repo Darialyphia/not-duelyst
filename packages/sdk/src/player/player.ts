@@ -44,6 +44,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   public readonly isPlayer1: boolean;
   public _maxGold: number;
   public currentGold: number;
+  private isP2T1: boolean;
 
   graveyard!: Card[];
   cards!: Card[];
@@ -65,6 +66,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       options.maxMana ?? this.isPlayer1
         ? config.PLAYER_1_STARTING_GOLD
         : config.PLAYER_2_STARTING_GOLD;
+    this.isP2T1 = !this.isPlayer1;
     this.currentGold = options.currentGold ?? this.maxGold;
   }
 
@@ -122,7 +124,12 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   generateCard(blueprintId: CardBlueprintId) {
-    const card = new Card(this.session, this.cards.length, { blueprintId }, this.id);
+    const card = new Card(
+      this.session,
+      this.cards.length,
+      { blueprintId, pedestalId: 'pedestal-default' },
+      this.id
+    );
     this.cards.push(card);
 
     return card;
@@ -154,7 +161,11 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   startTurn() {
     this.cards.forEach(card => card.onTurnStart());
     this.entities.forEach(entity => entity.startTurn());
-    this.giveGold(config.GOLD_PER_TURN);
+    if (!this.isP2T1) {
+      this.giveGold(config.GOLD_PER_TURN);
+    } else {
+      this.isP2T1 = false;
+    }
     this.emit(PLAYER_EVENTS.TURN_START, this);
   }
 

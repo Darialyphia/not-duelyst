@@ -12,13 +12,13 @@ const state: SerializedGameState = {
       id: '1',
       name: 'Player 1',
       cards: [
-        { blueprintId: 'f1_general', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-grass' }
+        { blueprintId: 'f1_general', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_djinn', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'f1_dancer', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'neutral_tank', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'f1_kirin', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_ranged', pedestalId: 'pedestal-stone' }
       ],
       isPlayer1: true,
       graveyard: []
@@ -27,13 +27,13 @@ const state: SerializedGameState = {
       id: '2',
       name: 'Player 2',
       cards: [
-        { blueprintId: 'f1_general', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' },
-        { blueprintId: 'f1_placeholder', pedestralId: 'pedestal-stone' }
+        { blueprintId: 'f1_general', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_djinn', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'f1_dancer', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_placeholder', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'neutral_tank', pedestalId: 'pedestal-stone' },
+        { blueprintId: 'f1_kirin', pedestalId: 'pedestal-grass' },
+        { blueprintId: 'f1_ranged', pedestalId: 'pedestal-stone' }
       ],
       isPlayer1: false,
       graveyard: []

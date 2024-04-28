@@ -8,6 +8,9 @@ import {
   extensions
 } from 'pixi.js';
 import type { InjectionKey } from 'vue';
+import { BaseTexture, SCALE_MODES } from 'pixi.js';
+
+BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
 
 export type SpritesheetWithAnimations = Spritesheet & {
   animations: Record<string, Texture[]>;

@@ -13,7 +13,7 @@ export const f1Kirin: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cooldown: 5,
   initialCooldown: 0,
-  cost: 3,
+  cost: 4,
   attack: 2,
   maxHp: 10,
   speed: 3,

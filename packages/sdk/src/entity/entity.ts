@@ -382,7 +382,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     await Promise.all([
       this.session.fxSystem.playSfxOnEntity(this.id, {
         resourceName: 'fx_bloodground',
-        animationName: `bloodground${bloodFx ? bloodFx : ''}`,
+        animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
         offset: {
           x: 0,
           y: 20

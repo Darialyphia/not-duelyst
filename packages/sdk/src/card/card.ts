@@ -12,7 +12,7 @@ export type CardBlueprintId = string;
 
 export type SerializedCard = {
   blueprintId: CardBlueprintId;
-  pedestralId: string;
+  pedestalId: string;
 };
 
 export type CardInterceptor = Card['interceptors'];
@@ -43,7 +43,7 @@ export class Card extends EventEmitter implements Serializable {
   ) {
     super();
     this.blueprintId = options.blueprintId;
-    this.pedestalId = options.pedestralId;
+    this.pedestalId = options.pedestalId;
     this.currentCooldown = this.blueprint.initialCooldown;
   }
 
@@ -193,6 +193,6 @@ export class Card extends EventEmitter implements Serializable {
   }
 
   serialize(): SerializedCard {
-    return { blueprintId: this.blueprintId, pedestralId: this.pedestalId };
+    return { blueprintId: this.blueprintId, pedestalId: this.pedestalId };
   }
 }
