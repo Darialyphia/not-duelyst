@@ -1,12 +1,12 @@
-// import { HathoraCloud } from '@hathora/cloud-sdk-typescript';
+import { HathoraCloud } from '@hathora/cloud-sdk-typescript';
 
 export default defineNuxtPlugin(async () => {
-  // const config = useRuntimeConfig();
-  // return {
-  //   provide: {
-  //     hathora: new HathoraCloud({
-  //       appId: config.public.hathoraAppId
-  //     })
-  //   }
-  // };
+  const config = useRuntimeConfig();
+  return {
+    provide: {
+      hathora: new HathoraCloud({
+        appId: config.public.hathoraAppId
+      })
+    }
+  };
 });

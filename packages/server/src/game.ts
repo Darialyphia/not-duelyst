@@ -77,7 +77,7 @@ export class Game {
     this.turnTimeout = setTimeout(
       () => {
         this.session.dispatch({
-          type: 'END_TURN',
+          type: 'endTurn',
           payload: {
             playerId: player.id
           }
@@ -145,7 +145,7 @@ export class Game {
     socket.join(this.game._id);
     socket.emit('game:init', this.session.serialize());
 
-    socket.on('game:input', (arg: { type: any; payload: any }) => {
+    socket.on('game:action', (arg: { type: any; payload: any }) => {
       this.onPlayerInput(socket, arg);
     });
 

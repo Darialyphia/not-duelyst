@@ -19,7 +19,6 @@ export const getCurrentGame = async (
 
   const game = await db.get(currentGameUser?.gameId);
   if (!game) return null;
-  if (game.status === 'FINISHED') return null;
   if (game.status === 'CANCELLED') return null;
 
   const gamePlayers = await db
@@ -46,7 +45,10 @@ export const ensureHasNoCurrentGame = async (
   userId: Id<'users'>
 ) => {
   const game = await getCurrentGame({ db }, userId);
-  if (game && game.status !== 'CANCELLED') throw new Error('Already in game');
+  if (!game) return;
+  if (game.status !== 'FINISHED' && game.status !== 'CANCELLED') {
+    throw new Error('Already in game');
+  }
 };
 
 export const getGameInitialState = async (

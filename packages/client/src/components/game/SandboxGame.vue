@@ -2,11 +2,9 @@
 import { GameSession, type SerializedGameState } from '@game/sdk';
 
 const state: SerializedGameState = {
-  activeEntityId: null,
   history: [],
-
-  map: testMap,
   entities: [],
+  map: testMap,
   players: [
     {
       id: '1',
