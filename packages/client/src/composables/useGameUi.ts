@@ -22,6 +22,7 @@ type TargetingMode = Values<typeof TARGETING_MODES>;
 type LayerName = 'ui' | 'scene';
 
 export type GameUiContext = {
+  isMenuOpened: Ref<boolean>;
   targetingMode: Ref<TargetingMode>;
 
   mousePosition: Ref<Point>;
@@ -89,6 +90,7 @@ export const useGameUiProvider = (session: GameSession) => {
   const mouseLightStrength = ref(DEFAULT_MOUSE_LIGHT_STRENGTH);
 
   const api: GameUiContext = {
+    isMenuOpened: ref(false),
     targetingMode,
     summonTarget,
     followupTargets,

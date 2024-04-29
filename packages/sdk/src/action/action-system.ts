@@ -6,6 +6,7 @@ import { EndTurnAction } from './end-turn.action';
 import { MoveAction } from './move.action';
 import { PlayCardAction } from './play-card.action';
 import { UseSkillAction } from './use-skill.action';
+import { SurrenderAction } from './surrender.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
 
@@ -25,7 +26,8 @@ const actionMap = validateActionMap({
   endTurn: EndTurnAction,
   move: MoveAction,
   playCard: PlayCardAction,
-  useSkill: UseSkillAction
+  useSkill: UseSkillAction,
+  surrender: SurrenderAction
 });
 
 type ScheduledAction = () => MaybePromise<void>;

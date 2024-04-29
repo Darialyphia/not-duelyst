@@ -19,7 +19,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
   protected abstract payloadSchema: TSchema;
 
   protected payload!: z.infer<TSchema>;
-  protected allowDuringEnemyTurn = false;
+  protected readonly allowDuringEnemyTurn: boolean = false;
 
   constructor(
     protected rawPayload: JSONValue,
@@ -37,6 +37,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
 
   execute() {
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
+    console.log(this.rawPayload, parsed);
     if (!parsed.success) {
       console.error(parsed.error);
       return;

@@ -18,6 +18,7 @@ const boardDimensions = useGameSelector(session => ({
   height: session.boardSystem.height
 }));
 
+const isActivePlayer = useIsActivePlayer();
 const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.value));
 
 const isFollowupTargetable = computed(() => {
@@ -96,6 +97,7 @@ const highlightTarget = () => {
         @pointerenter="
           () => {
             ui.hoverAt(cell.position);
+            if (!isActivePlayer) return;
             match(ui.targetingMode.value)
               .with(TARGETING_MODES.SUMMON, TARGETING_MODES.NONE, () => {})
               .with(TARGETING_MODES.BASIC, () => {
@@ -145,6 +147,8 @@ const highlightTarget = () => {
             if (event.ctrlKey && cell.entity) {
               ui.highlightEntity(cell.entity.id);
             }
+            if (!isActivePlayer) return;
+
             match(ui.targetingMode.value)
               .with(TARGETING_MODES.BASIC, () => {
                 if (cell.entity) {

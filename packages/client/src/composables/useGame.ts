@@ -26,7 +26,7 @@ export type GameEmits = {
   endTurn: [];
   playCard: [{ cardIndex: number; position?: Point3D; targets?: Point3D[] }];
   useSkill: [{ skillIndex: number; entityId: EntityId; targets: Point3D[] }];
-  // surrender: [];
+  surrender: [];
   // summon: [{ unitId: UnitId; position: Point3D; targets: Point3D[] }];
   // end: [{ winner: Player }];
 };

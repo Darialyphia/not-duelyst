@@ -106,6 +106,7 @@ const canSeeGame = computed(() => {
         @end-turn="dispatch('endTurn', $event)"
         @use-skill="dispatch('useSkill', $event)"
         @play-card="dispatch('playCard', $event)"
+        @surrender="dispatch('surrender', $event)"
       />
 
       <div v-if="timeRemainingForTurn" class="remaining" />
