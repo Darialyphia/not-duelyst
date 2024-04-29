@@ -19,6 +19,7 @@ const loadParserByAssetType = {
   modifiers: SPRITESHEET_PARSER,
   pedestals: SPRITESHEET_PARSER,
   hitboxes: undefined,
+  emotes: undefined,
 };
 
 const prefixByAssetType = {
@@ -34,6 +35,7 @@ const prefixByAssetType = {
   modifiers: "",
   pedestals: "",
   hitboxes: "hitbox-",
+  emotes: "",
 };
 
 function manifestEntryParser(tree, processor) {

@@ -148,6 +148,14 @@ export class Game {
     socket.on('game:action', (arg: { type: any; payload: any }) => {
       this.onPlayerInput(socket, arg);
     });
+    socket.on('p1:emote', (emote: string) => {
+      console.log('p1 emote');
+      this.io.in(this.game._id).emit('p1:emote', emote);
+    });
+    socket.on('p2:emote', (emote: string) => {
+      console.log('p2 emote');
+      this.io.in(this.game._id).emit('p2:emote', emote);
+    });
 
     this.playerJoined.add(socket.data.user._id);
 

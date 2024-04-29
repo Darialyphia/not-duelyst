@@ -28,6 +28,8 @@ const { connect, error } = useGameSocket(
 
 const fx = useFXProvider();
 
+const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
+
 onMounted(async () => {
   socket.value = await connect();
   isCreatingRoom.value = false;
@@ -60,6 +62,9 @@ onMounted(async () => {
         });
       });
   });
+
+  socket.value?.on('p1:emote', addP1);
+  socket.value?.on('p2:emote', addP2);
 });
 
 const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
@@ -99,6 +104,8 @@ const canSeeGame = computed(() => {
     <template v-else-if="gameSession && me">
       <GameRoot
         :game-session="gameSession"
+        :p1-emote="p1Emote"
+        :p2-emote="p2Emote"
         :player-id="me._id"
         :game-type="GAME_TYPES.PVP"
         @move="dispatch('move', $event)"
@@ -107,6 +114,16 @@ const canSeeGame = computed(() => {
         @use-skill="dispatch('useSkill', $event)"
         @play-card="dispatch('playCard', $event)"
         @surrender="dispatch('surrender', $event)"
+        @p1-emote="
+          emote => {
+            socket?.emit('p1:emote', emote);
+          }
+        "
+        @p2-emote="
+          emote => {
+            socket?.emit('p2:emote', emote);
+          }
+        "
       />
 
       <div v-if="timeRemainingForTurn" class="remaining" />

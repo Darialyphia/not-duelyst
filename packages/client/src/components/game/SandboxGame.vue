@@ -55,10 +55,14 @@ const dispatch = (
     }
   });
 };
+
+const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
 </script>
 
 <template>
   <GameRoot
+    :p1-emote="p1Emote"
+    :p2-emote="p2Emote"
     :game-session="session"
     :player-id="null"
     :game-type="GAME_TYPES.SANDBOX"
@@ -67,5 +71,7 @@ const dispatch = (
     @end-turn="dispatch('endTurn', $event)"
     @use-skill="dispatch('useSkill', $event)"
     @play-card="dispatch('playCard', $event)"
+    @p1-emote="addP1($event)"
+    @p2-emote="addP2($event)"
   />
 </template>

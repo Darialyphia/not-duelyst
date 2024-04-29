@@ -1,4 +1,4 @@
-import type { Values, UnionToIntersection, Point3D } from '@game/shared';
+import type { Values, UnionToIntersection, Point3D, Nullable } from '@game/shared';
 import type { EntityId, GameSession, PlayerId } from '@game/sdk';
 import type { AssetsContext } from './useAssets';
 import type { IsoCameraContext } from './useIsoCamera';
@@ -27,8 +27,8 @@ export type GameEmits = {
   playCard: [{ cardIndex: number; position?: Point3D; targets?: Point3D[] }];
   useSkill: [{ skillIndex: number; entityId: EntityId; targets: Point3D[] }];
   surrender: [];
-  // summon: [{ unitId: UnitId; position: Point3D; targets: Point3D[] }];
-  // end: [{ winner: Player }];
+  p1Emote: [string];
+  p2Emote: [string];
 };
 
 export type GameContext = {
@@ -41,6 +41,8 @@ export type GameContext = {
   fx: FxContext;
   gameType: GameType;
   playerId: PlayerId | null;
+  p1Emote: Ref<Nullable<string>>;
+  p2Emote: Ref<Nullable<string>>;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -49,12 +51,16 @@ export const useGameProvider = ({
   session,
   emit,
   playerId,
-  gameType
+  gameType,
+  p1Emote,
+  p2Emote
 }: {
   session: GameSession;
   emit: ShortEmits<GameEmits>;
   playerId: PlayerId | null;
   gameType: GameType;
+  p1Emote: Ref<Nullable<string>>;
+  p2Emote: Ref<Nullable<string>>;
 }) => {
   const ui = useGameUiProvider(session);
   const camera = useIsoCameraProvider();
@@ -80,7 +86,9 @@ export const useGameProvider = ({
     ui,
     pathfinding,
     dispatch: emit,
-    fx
+    fx,
+    p1Emote,
+    p2Emote
   };
   provide(GAME_INJECTION_KEY, ctx);
 

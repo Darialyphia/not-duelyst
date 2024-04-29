@@ -1,95 +1,194 @@
 <script setup lang="ts">
+import { match } from 'ts-pattern';
 const players = useGameSelector(session => session.playerSystem.getList());
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+
+const { playerId, gameType, dispatch, p1Emote, p2Emote } = useGame();
+
+const isEmotePopoverOpened = ref(false);
+const emotePopoverPlayer = ref<0 | 1>(0);
+
+// @TODO get emotes from user collection when it's implemented
+// in the meantime let's just hardcode it
+const EMOTES = ['poggers', 'ahegao', 'sus'];
 </script>
 
 <template>
-  <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
-    <div class="img-wrapper">
-      <CardSprite
-        :sprite-id="players[0].general.card.blueprint.spriteId"
-        class="portrait"
-      />
+  <PopoverRoot v-model:open="isEmotePopoverOpened">
+    <PopoverPortal>
+      <Transition name="emote-popover">
+        <PopoverContent
+          class="emote-popover"
+          :side-offset="30"
+          as-child
+          :collision-padding="20"
+        >
+          <div class="emote-popover">
+            <PopoverArrow class="popover-arrow" :height="10" :width="15" />
 
-      <div class="runes">
-        <div
-          v-for="(_, i) in 3"
-          :key="i"
-          :style="{
-            '--bg': `url('/assets/ui/rune-${
-              players[0].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
-            }.png')`
-          }"
+            <button
+              v-for="emote in EMOTES"
+              :key="emote"
+              :style="{ '--bg': `url('/assets/emotes/${emote}.png')` }"
+              @click="
+                () => {
+                  if (emotePopoverPlayer === 0) {
+                    dispatch('p1Emote', emote);
+                  } else {
+                    dispatch('p2Emote', emote);
+                  }
+                  isEmotePopoverOpened = false;
+                }
+              "
+            />
+          </div>
+        </PopoverContent>
+      </Transition>
+    </PopoverPortal>
+    <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
+      <div
+        class="img-wrapper"
+        @contextmenu.prevent="
+          () => {
+            match(gameType)
+              .with('sandbox', () => {
+                if (activePlayer.equals(players[0])) {
+                  isEmotePopoverOpened = true;
+                  emotePopoverPlayer = 0;
+                }
+              })
+              .with('pvp', () => {
+                if (playerId === players[0].id) {
+                  isEmotePopoverOpened = true;
+                  emotePopoverPlayer = 0;
+                }
+              })
+              .exhaustive();
+          }
+        "
+      >
+        <CardSprite
+          :sprite-id="players[0].general.card.blueprint.spriteId"
+          class="portrait"
         />
-      </div>
-    </div>
-    <div>
-      <div class="player-name">{{ players[0].name }}</div>
 
-      <div class="indicators">
-        <div class="hp">
-          <Transition mode="out-in">
-            <span :key="players[0].general?.hp.toFixed()">
-              {{ players[0].general?.hp.toFixed() }}
-            </span>
-          </Transition>
+        <div class="runes">
+          <div
+            v-for="(_, i) in 3"
+            :key="i"
+            :style="{
+              '--bg': `url('/assets/ui/rune-${
+                players[0].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
+              }.png')`
+            }"
+          />
         </div>
-        <div class="gold">
-          <Transition mode="out-in">
-            <span :key="players[0].currentGold">
-              {{ players[0].currentGold }}
-            </span>
-          </Transition>
+
+        <PopoverAnchor v-if="emotePopoverPlayer === 0" />
+      </div>
+
+      <div>
+        <div class="player-name">{{ players[0].name }}</div>
+
+        <div class="indicators">
+          <div class="hp">
+            <Transition mode="out-in">
+              <span :key="players[0].general?.hp.toFixed()">
+                {{ players[0].general?.hp.toFixed() }}
+              </span>
+            </Transition>
+          </div>
+          <div class="gold">
+            <Transition mode="out-in">
+              <span :key="players[0].currentGold">
+                {{ players[0].currentGold }}
+              </span>
+            </Transition>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
-    <div class="img-wrapper">
-      <CardSprite
-        :sprite-id="players[1].general.card.blueprint.spriteId"
-        class="portrait"
-      />
-      <div class="runes">
-        <div
-          v-for="(_, i) in 3"
-          :key="i"
-          :style="{
-            '--bg': `url('/assets/ui/rune-${
-              players[1].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
-            }.png')`
-          }"
+      <img v-if="p1Emote" :src="`/assets/emotes/${p1Emote}.png`" />
+    </div>
+
+    <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
+      <div
+        class="img-wrapper"
+        @contextmenu.prevent="
+          () => {
+            match(gameType)
+              .with('sandbox', () => {
+                if (activePlayer.equals(players[1])) {
+                  isEmotePopoverOpened = true;
+                  emotePopoverPlayer = 1;
+                }
+              })
+              .with('pvp', () => {
+                if (playerId === players[1].id) {
+                  isEmotePopoverOpened = true;
+                  emotePopoverPlayer = 1;
+                }
+              })
+              .exhaustive();
+          }
+        "
+      >
+        <CardSprite
+          :sprite-id="players[1].general.card.blueprint.spriteId"
+          class="portrait"
         />
-      </div>
-    </div>
-    <div>
-      <div class="player-name">{{ players[1].name }}</div>
+        <div class="runes">
+          <div
+            v-for="(_, i) in 3"
+            :key="i"
+            :style="{
+              '--bg': `url('/assets/ui/rune-${
+                players[1].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
+              }.png')`
+            }"
+          />
+        </div>
 
-      <div class="indicators">
-        <div class="hp">
-          <Transition mode="out-in">
-            <span :key="players[1].general?.hp.toFixed()">
-              {{ players[1].general?.hp.toFixed() }}
-            </span>
-          </Transition>
-        </div>
-        <div class="gold">
-          <Transition mode="out-in">
-            <span :key="players[1].currentGold">
-              {{ players[1].currentGold }}
-            </span>
-          </Transition>
+        <PopoverAnchor v-if="emotePopoverPlayer === 1" />
+      </div>
+      <div>
+        <div class="player-name">{{ players[1].name }}</div>
+
+        <div class="indicators">
+          <div class="hp">
+            <Transition mode="out-in">
+              <span :key="players[1].general?.hp.toFixed()">
+                {{ players[1].general?.hp.toFixed() }}
+              </span>
+            </Transition>
+          </div>
+          <div class="gold">
+            <Transition mode="out-in">
+              <span :key="players[1].currentGold">
+                {{ players[1].currentGold }}
+              </span>
+            </Transition>
+          </div>
         </div>
       </div>
+
+      <img v-if="p2Emote" :src="`/assets/emotes/${p2Emote}.png`" />
     </div>
-  </div>
+  </PopoverRoot>
 </template>
 
 <style scoped lang="postcss">
+@keyframes emote {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .player {
-  pointer-events: none;
-
   isolation: isolate;
   position: relative;
 
@@ -100,6 +199,10 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
 
   text-shadow: black 1px 0 5px;
 
+  &:not(.active) .img-wrapper {
+    filter: grayscale(100%);
+  }
+
   [class^='i-'] {
     font-size: var(--font-size-4);
 
@@ -109,6 +212,17 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
     &.gold {
       color: var(--yellow-5);
     }
+  }
+
+  > img {
+    transform-origin: center center;
+
+    aspect-ratio: 1;
+    width: 128px;
+
+    image-rendering: pixelated;
+
+    animation: emote 0.3s ease-out;
   }
 }
 
@@ -129,15 +243,6 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
 
   @screen lt-lg {
     align-self: flex-start;
-  }
-
-  &.active {
-    /* border: solid var(--border-size-3) var(--primary); */
-
-    @screen lt-lg {
-      filter: grayscale(0.75);
-      border: solid var(--border-size-1) var(--primary);
-    }
   }
 }
 
@@ -281,5 +386,48 @@ const activePlayer = useGameSelector(session => session.playerSystem.activePlaye
       transform: translateY(2px);
     }
   }
+}
+
+.emote-popover {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--size-5);
+
+  max-height: var(--size-13);
+  padding: var(--size-4);
+
+  color: black;
+
+  background-color: white;
+  border-radius: var(--radius-3);
+  box-shadow: 0 3px 0.5rem hsl(-gray-0-hsl / 0.6);
+
+  > button {
+    aspect-ratio: 1;
+    width: 128px;
+
+    background-image: var(--bg);
+    background-size: cover;
+
+    image-rendering: pixelated;
+    &:hover {
+      background-color: var(--gray-2);
+      border-radius: var(--radius-2);
+    }
+  }
+  > span {
+    fill: white;
+  }
+}
+
+.emote-popover-enter-active,
+.emote-popover-leave-active {
+  transition: opacity 0.2s ease-out;
+}
+
+.emote-popover-enter-from,
+.emote-popover-leave-to {
+  opacity: 0;
 }
 </style>

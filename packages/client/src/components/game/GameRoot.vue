@@ -14,16 +14,26 @@ import type { GameSession } from '@game/sdk';
 // import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
 // import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
+import type { Nullable } from '@game/shared';
 
-const { gameSession, playerId, gameType } = defineProps<{
+const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
   gameSession: GameSession;
   playerId: string | null;
   gameType: GameType;
+  p1Emote: Nullable<string>;
+  p2Emote: Nullable<string>;
   // isReplay?: boolean;
 }>();
 const emit = defineEmits<GameEmits>();
 
-const game = useGameProvider({ session: gameSession, emit, playerId, gameType });
+const game = useGameProvider({
+  session: gameSession,
+  emit,
+  playerId,
+  gameType,
+  p1Emote: computed(() => p1Emote),
+  p2Emote: computed(() => p2Emote)
+});
 // const { ui, assets } = game;
 
 // @ts-ignore  enable PIXI devtools
