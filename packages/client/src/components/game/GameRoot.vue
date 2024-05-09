@@ -65,8 +65,8 @@ onMounted(async () => {
     width: window.innerWidth,
     height: window.innerHeight,
     autoDensity: true,
-    antialias: false,
-    backgroundAlpha: 0
+    antialias: false
+    // backgroundAlpha: 0
   });
 
   pixiApp.resizeTo = window;
@@ -129,7 +129,7 @@ const bg = computed(() => `url(${sky4}), url(${sky2}), url(${sky1})`);
 
 <template>
   <div class="pixi-app-container">
-    <div class="background" />
+    <!-- <div class="background" /> -->
     <canvas ref="canvas" @contextmenu.prevent />
     <GameUi v-if="ready" />
   </div>

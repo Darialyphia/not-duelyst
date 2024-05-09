@@ -3,6 +3,7 @@ import bg from '@/assets/tiles{m}/background.png';
 import sky1 from '@/assets/backgrounds/sky-1.png';
 import sky2 from '@/assets/backgrounds/sky-2.png';
 import sky4 from '@/assets/backgrounds/sky-4.png';
+import { diffuseGroup, normalGroup } from '@pixi/lights';
 
 import { onTick, useApplication, useScreen } from 'vue3-pixi';
 
@@ -23,7 +24,53 @@ onTick(() => {
 </script>
 
 <template>
-  <container>
+  <container
+    :ref="
+      (el: any) => {
+        if (!el) return;
+        el.parentGroup = diffuseGroup;
+      }
+    "
+  >
+    <tiling-sprite
+      :texture="sky1"
+      :width="screen.width"
+      :height="screen.height"
+      :scale="scaleY"
+      event-mode="static"
+    />
+    <tiling-sprite
+      :texture="sky2"
+      :width="screen.width"
+      :height="screen.height"
+      :scale="scaleY"
+      :tile-position="backgroundPosition"
+      event-mode="static"
+    />
+    <tiling-sprite
+      :texture="sky4"
+      :width="screen.width"
+      :height="screen.height"
+      :scale="scaleY"
+      :tile-position="foregroundPosition"
+      event-mode="static"
+    />
+    <!-- <tiling-sprite
+      :texture="bg"
+      :width="screen.width"
+      :height="screen.height"
+      event-mode="static"
+    /> -->
+  </container>
+
+  <container
+    :ref="
+      (el: any) => {
+        if (!el) return;
+        el.parentGroup = normalGroup;
+      }
+    "
+  >
     <tiling-sprite
       :texture="sky1"
       :width="screen.width"

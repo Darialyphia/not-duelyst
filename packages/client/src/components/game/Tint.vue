@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BLEND_MODES, Texture } from 'pixi.js';
+import { BLEND_MODES, Sprite, Texture } from 'pixi.js';
 import { useScreen } from 'vue3-pixi';
 import { debounce } from 'lodash-es';
 
@@ -29,7 +29,7 @@ useEventListener(window, 'resize', debouncedResize);
 <template>
   <graphics
     event-mode="none"
-    :alpha="0.3"
+    :alpha="0.4"
     :blend-mode="BLEND_MODES.SCREEN"
     @render="
       g => {
