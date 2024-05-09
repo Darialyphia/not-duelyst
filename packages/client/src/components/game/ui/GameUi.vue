@@ -12,6 +12,7 @@ const entity = computed(() => {
   <TargetingUi />
   <CombatLog />
   <GameMenu />
+  <NewTurnIndicator />
 
   <Transition>
     <div

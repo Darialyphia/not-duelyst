@@ -1,0 +1,107 @@
+<script setup lang="ts">
+import { match } from 'ts-pattern';
+
+const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+const isActivePlayer = useIsActivePlayer();
+const { gameType } = useGame();
+const isDisplayed = ref(false);
+
+watch(
+  () => activePlayer.value.id,
+  () => {
+    isDisplayed.value = true;
+    setTimeout(() => {
+      isDisplayed.value = false;
+    }, 2000);
+  },
+  { immediate: true }
+);
+
+const message = computed(() => {
+  return match(gameType)
+    .with('pvp', () => (isActivePlayer.value ? 'Your turn' : "Opponent's turn"))
+    .with('sandbox', () => `${activePlayer.value.name}'s turn`)
+    .exhaustive();
+});
+
+const gradientColors = computed(() => {
+  return isActivePlayer.value
+    ? `var(--blue-3), var(--blue-8)`
+    : `var(--red-3), var(--red-8)`;
+});
+</script>
+
+<template>
+  <Transition>
+    <div v-if="isDisplayed" class="new-turn-indicator">
+      <p>{{ message }}</p>
+    </div>
+  </Transition>
+</template>
+
+<style scoped lang="postcss">
+.new-turn-indicator {
+  --offset: 25dvh;
+
+  pointer-events: none;
+
+  position: fixed;
+  inset: 0;
+
+  padding-top: var(--offset);
+
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+
+  filter: drop-shadow(0 3px 2px hsl(0 0% 0% / 0.7));
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: opacity 0.5s ease-out;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    opacity: 0;
+
+    > * {
+      transform: translateY(-1rem);
+    }
+  }
+
+  &:is(.v-enter-from, .v-leave-to)::before,
+  &:is(.v-enter-from, .v-leave-to)::after {
+    transform: scaleX(0);
+  }
+}
+
+.new-turn-indicator::after,
+.new-turn-indicator::before {
+  content: '';
+
+  position: absolute;
+
+  width: 50%;
+  height: 2px;
+
+  background-color: var(--primary);
+
+  transition: transform 0.5s;
+}
+
+.new-turn-indicator::before {
+  top: calc(var(--offset) - 0.25rem);
+  left: 0;
+  transform-origin: 0% center;
+}
+
+.new-turn-indicator::after {
+  top: calc(var(--offset) + var(--font-size-7) + var(--font-size-5) + 1rem);
+  right: 0;
+  transform-origin: 100% center;
+}
+
+.new-turn-indicator > p {
+  font-size: var(--font-size-8);
+  transition: transform 0.5s;
+}
+</style>
