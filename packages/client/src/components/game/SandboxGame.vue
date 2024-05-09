@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { GameSession, type SerializedGameState } from '@game/sdk';
-import { stringify } from 'zipson';
 
+const { player1Loadout, player2Loadout } = defineProps<{
+  player1Loadout: LoadoutDto;
+  player2Loadout: LoadoutDto;
+}>();
 const state: SerializedGameState = {
   history: [],
   entities: [],
@@ -10,30 +14,20 @@ const state: SerializedGameState = {
     {
       id: '1',
       name: 'Player 1',
-      cards: [
-        { blueprintId: 'f1_general', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_djinn', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'f1_dancer', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'neutral_tank', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'f1_kirin', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_ranged', pedestalId: 'pedestal-stone' }
-      ],
+      cards: player1Loadout.cards.map(({ id, pedestalId }) => ({
+        pedestalId,
+        blueprintId: id
+      })),
       isPlayer1: true,
       graveyard: []
     },
     {
       id: '2',
       name: 'Player 2',
-      cards: [
-        { blueprintId: 'f1_general', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_djinn', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'f1_dancer', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_placeholder', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'neutral_tank', pedestalId: 'pedestal-stone' },
-        { blueprintId: 'f1_kirin', pedestalId: 'pedestal-grass' },
-        { blueprintId: 'f1_ranged', pedestalId: 'pedestal-stone' }
-      ],
+      cards: player2Loadout.cards.map(({ id, pedestalId }) => ({
+        pedestalId,
+        blueprintId: id
+      })),
       isPlayer1: false,
       graveyard: []
     }
@@ -41,7 +35,7 @@ const state: SerializedGameState = {
 };
 
 const fx = useFXProvider();
-const session = GameSession.createClientSession(state, 'seed', fx.ctx);
+const session = GameSession.createClientSession(state, 'sandbox', fx.ctx);
 
 const dispatch = (
   type: Parameters<(typeof session)['dispatch']>[0]['type'],

@@ -16,6 +16,10 @@ import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
+import sky1 from '@/assets/backgrounds/sky-1.png';
+import sky2 from '@/assets/backgrounds/sky-2.png';
+import sky4 from '@/assets/backgrounds/sky-4.png';
+
 const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
   gameSession: GameSession;
   playerId: string | null;
@@ -61,7 +65,8 @@ onMounted(async () => {
     width: window.innerWidth,
     height: window.innerHeight,
     autoDensity: true,
-    antialias: false
+    antialias: false,
+    backgroundAlpha: 0
   });
 
   pixiApp.resizeTo = window;
@@ -118,10 +123,13 @@ onMounted(async () => {
     app.mount(pixiApp.stage);
   });
 });
+
+const bg = computed(() => `url(${sky4}), url(${sky2}), url(${sky1})`);
 </script>
 
 <template>
   <div class="pixi-app-container">
+    <div class="background" />
     <canvas ref="canvas" @contextmenu.prevent />
     <GameUi v-if="ready" />
   </div>
@@ -142,6 +150,21 @@ onMounted(async () => {
   color: var(--gray-0);
 
   perspective: 1200px;
+
+  image-rendering: pixelated;
+}
+
+.background {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+
+  background: v-bind(bg);
+  background-repeat: repeat-x;
+  background-position-y: bottom;
+  background-size: cover;
 
   image-rendering: pixelated;
 }

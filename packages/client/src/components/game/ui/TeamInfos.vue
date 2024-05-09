@@ -232,8 +232,6 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
   background-image: url('/assets/ui/hero-portrait-border.png'),
     radial-gradient(circle at center, black, black 65%, transparent 65%);
-  /* border: var(--fancy-border); */
-  box-shadow: inset 0 0 0 1px black;
 
   @screen lt-lg {
     align-self: flex-start;

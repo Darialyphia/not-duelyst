@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
+
 definePageMeta({
   name: 'Sandbox',
   pageTransition: {
@@ -6,12 +8,21 @@ definePageMeta({
     mode: 'out-in'
   }
 });
+
+const sandboxOptions = ref<{
+  player1Loadout: LoadoutDto;
+  player2Loadout: LoadoutDto;
+}>();
 </script>
 
 <template>
-  <div class="overflow-hidden" style="background: black">
+  <div class="page">
     <ClientOnly>
-      <SandboxGame />
+      <SandboxGame
+        v-bind="sandboxOptions"
+        v-if="sandboxOptions?.player1Loadout && sandboxOptions.player2Loadout"
+      />
+      <SandboxForm v-else @submit="sandboxOptions = $event" />
 
       <template #fallback>
         <div class="overflow-hidden h-screen" style="background: black"></div>
@@ -20,20 +31,9 @@ definePageMeta({
   </div>
 </template>
 
-<style lang="postcss">
-.sandbox-enter-active,
-.sandbox-leave.active {
-  transition: all 0.3s;
-
-  .player-loadout {
-    transition: all 0.3s;
-    transition-timing-function: var(--ease-out-2);
-  }
-}
-
-.sandbox-enter-from,
-.sandbox-leave-to {
-  transform: translateY(-1.5rem);
-  opacity: 0;
+<style lang="postcss" scoped>
+.page {
+  overflow: hidden;
+  min-height: 100dvh;
 }
 </style>

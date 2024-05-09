@@ -42,7 +42,7 @@ export const testMap: SerializedGameState['map'] = {
   width: 9,
   height: 13,
   player1StartPosition: { x: 0, y: 4, z: 0 },
-  player2StartPosition: { x: 1, y: 4, z: 0 },
+  player2StartPosition: { x: 12, y: 4, z: 0 },
   cells: [
     ...makeRow(
       0,
