@@ -46,16 +46,18 @@ const gradientColors = computed(() => {
   pointer-events: none;
 
   position: fixed;
-  inset: 0;
-
-  padding-top: var(--offset);
+  top: var(--offset);
+  right: 0;
+  left: 0;
 
   font-weight: 700;
   color: var(--primary);
   text-align: center;
 
+  background: url('/assets/ui/new_turn.png');
+  background-repeat: no-repeat;
+  background-position: center;
   filter: drop-shadow(0 3px 2px hsl(0 0% 0% / 0.7));
-
   &:is(.v-enter-active, .v-leave-active) {
     transition: opacity 0.5s ease-out;
   }
@@ -89,13 +91,13 @@ const gradientColors = computed(() => {
 }
 
 .new-turn-indicator::before {
-  top: calc(var(--offset) - 0.25rem);
+  top: -0.25rem;
   left: 0;
   transform-origin: 0% center;
 }
 
 .new-turn-indicator::after {
-  top: calc(var(--offset) + var(--font-size-7) + var(--font-size-5) + 1rem);
+  top: calc(var(--font-size-8) + 2rem);
   right: 0;
   transform-origin: 100% center;
 }
