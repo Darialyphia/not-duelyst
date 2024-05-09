@@ -8,6 +8,7 @@ const entity = computed(() => {
 
 <template>
   <TeamInfos />
+  <SkillBar />
   <ActionBar />
   <TargetingUi />
   <CombatLog />

@@ -19,15 +19,8 @@ watch(
 
 const message = computed(() => {
   return match(gameType)
-    .with('pvp', () => (isActivePlayer.value ? 'Your turn' : "Opponent's turn"))
-    .with('sandbox', () => `${activePlayer.value.name}'s turn`)
-    .exhaustive();
-});
-
-const gradientColors = computed(() => {
-  return isActivePlayer.value
-    ? `var(--blue-3), var(--blue-8)`
-    : `var(--red-3), var(--red-8)`;
+    .with(GAME_TYPES.PVP, () => (isActivePlayer.value ? 'Your turn' : "Opponent's turn"))
+    .otherwise(() => `${activePlayer.value.name}'s turn`);
 });
 </script>
 

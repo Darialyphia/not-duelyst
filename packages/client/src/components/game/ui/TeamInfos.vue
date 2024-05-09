@@ -51,13 +51,14 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         @contextmenu.prevent="
           () => {
             match(gameType)
-              .with('sandbox', () => {
+              .with(GAME_TYPES.SPECTATOR, () => null)
+              .with(GAME_TYPES.SANDBOX, () => {
                 if (activePlayer.equals(players[0])) {
                   isEmotePopoverOpened = true;
                   emotePopoverPlayer = 0;
                 }
               })
-              .with('pvp', () => {
+              .with(GAME_TYPES.PVP, () => {
                 if (playerId === players[0].id) {
                   isEmotePopoverOpened = true;
                   emotePopoverPlayer = 0;
@@ -119,13 +120,14 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         @contextmenu.prevent="
           () => {
             match(gameType)
-              .with('sandbox', () => {
+              .with(GAME_TYPES.SPECTATOR, () => null)
+              .with(GAME_TYPES.SANDBOX, () => {
                 if (activePlayer.equals(players[1])) {
                   isEmotePopoverOpened = true;
                   emotePopoverPlayer = 1;
                 }
               })
-              .with('pvp', () => {
+              .with(GAME_TYPES.PVP, () => {
                 if (playerId === players[1].id) {
                   isEmotePopoverOpened = true;
                   emotePopoverPlayer = 1;

@@ -3,6 +3,7 @@ import type { Id } from '../_generated/dataModel';
 import type { QueryCtx } from '../_generated/server';
 import { GAME_STATUS } from './game.constants';
 import { toUserDto } from '../users/user.mapper';
+import type { Game } from './game.entity';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -66,4 +67,25 @@ export const getGameInitialState = async (
     status: GAME_STATUS.WAITING_FOR_PLAYERS,
     seed
   };
+};
+
+export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game) => {
+  const gamePlayers = await db
+    .query('gamePlayers')
+    .withIndex('by_game_id', q => q.eq('gameId', game?._id))
+    .collect();
+
+  return await Promise.all(
+    gamePlayers.map(async gamePlayer => {
+      const user = await db.get(gamePlayer.userId);
+      if (!user) throw new Error('User not found');
+      const loadout = await db.get(gamePlayer.loadoutId);
+      if (!loadout) throw new Error('Loadout not found');
+
+      return {
+        ...user,
+        loadout: loadout
+      };
+    })
+  );
 };

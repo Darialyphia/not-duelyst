@@ -2,7 +2,7 @@ import { api, internal } from './_generated/api';
 import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 import { toGameDto } from './game/game.mapper';
-import { getCurrentGame } from './game/game.utils';
+import { getCurrentGame, getGamePlayers } from './game/game.utils';
 import { toUserDto } from './users/user.mapper';
 import { v } from 'convex/values';
 
@@ -121,23 +121,10 @@ export const getById = query({
     const game = await ctx.db.get(args.gameId);
     if (!game) return null;
 
-    const gamePlayers = await ctx.db
-      .query('gamePlayers')
-      .withIndex('by_game_id', q => q.eq('gameId', game?._id))
-      .collect();
-
-    return {
+    return toGameDto({
       ...game,
-      players: await Promise.all(
-        gamePlayers.map(async gamePlayer => {
-          const user = await ctx.db.get(gamePlayer.userId);
-          return {
-            ...toUserDto(user!),
-            loadout: await ctx.db.get(gamePlayer.loadoutId)
-          };
-        })
-      )
-    };
+      players: await getGamePlayers(ctx, game)
+    });
   }
 });
 
@@ -149,22 +136,9 @@ export const getAllOngoing = query(async ctx => {
 
   return Promise.all(
     games.map(async game => {
-      const gamePlayers = await ctx.db
-        .query('gamePlayers')
-        .withIndex('by_game_id', q => q.eq('gameId', game?._id))
-        .collect();
-
       return toGameDto({
         ...game,
-        players: await Promise.all(
-          gamePlayers.map(async gamePlayer => {
-            const user = await ctx.db.get(gamePlayer.userId);
-            return {
-              ...user,
-              loadout: await ctx.db.get(gamePlayer.loadoutId)
-            };
-          })
-        )
+        players: await getGamePlayers(ctx, game)
       });
     })
   );

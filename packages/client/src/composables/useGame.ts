@@ -15,7 +15,8 @@ type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
 
 export const GAME_TYPES = {
   PVP: 'pvp',
-  SANDBOX: 'sandbox'
+  SANDBOX: 'sandbox',
+  SPECTATOR: 'spectator'
 } as const;
 
 export type GameType = Values<typeof GAME_TYPES>;
@@ -102,8 +103,12 @@ export const useUserPlayer = () => {
 
   return useGameSelector(session => {
     return match(gameType)
-      .with(GAME_TYPES.SANDBOX, () => session.playerSystem.activePlayer)
-      .with(GAME_TYPES.PVP, () => session.playerSystem.getPlayerById(playerId!))
+      .with(
+        GAME_TYPES.SANDBOX,
+        GAME_TYPES.SPECTATOR,
+        () => session.playerSystem.activePlayer
+      )
+      .with(GAME_TYPES.PVP, () => session.playerSystem.getPlayerById(playerId!)!)
       .exhaustive();
   });
 };
@@ -114,6 +119,7 @@ export const useIsActivePlayer = () => {
   return useGameSelector(session => {
     return match(gameType)
       .with(GAME_TYPES.SANDBOX, () => true)
+      .with(GAME_TYPES.SPECTATOR, () => false)
       .with(GAME_TYPES.PVP, () => session.playerSystem.activePlayer.id === playerId)
       .exhaustive();
   });
