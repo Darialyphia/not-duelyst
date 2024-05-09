@@ -39,7 +39,7 @@ const isDev = import.meta.env.DEV;
     />
   </Camera>
 
-  <!-- <Tint /> -->
+  <Tint />
   <TargetingOverlay />
   <Layer :ref="(layer: any) => ui.registerLayer(layer, 'ui')" />
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { spriteId } = defineProps<{
+const { spriteId, pedestalId } = defineProps<{
   spriteId: string;
+  pedestalId?: string;
 }>();
 
 const assets = useAssets();
@@ -11,13 +12,22 @@ watchEffect(async () => {
   sheet.value = await assets.loadSpritesheet(spriteId);
 });
 
+const pedestalSheet = ref<SpritesheetWithAnimations>();
+watchEffect(async () => {
+  if (!pedestalId) return;
+  if (!assets.loaded.value) return;
+  pedestalSheet.value = await assets.loadSpritesheet(pedestalId);
+});
+
 const el = ref<HTMLElement>();
 const item = computed(() => {
   if (!sheet.value) return null;
 
   return {
     style: {
-      '--bg': `url(/assets/units/${spriteId}.png)`,
+      '--bg': pedestalSheet.value
+        ? `url(/assets/units/${spriteId}.png), url(/assets/pedestals/${pedestalId}.png)`
+        : `url(/assets/units/${spriteId}.png)`,
       '--width': `${sheet.value.data.meta.size!.w}px`,
       '--height': `${sheet.value.data.meta.size!.h}px`
     }

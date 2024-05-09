@@ -76,7 +76,6 @@ export default function (entry, output) {
     ignore: ["**/*.ts", "**/*.aseprite"],
     cache: false,
     plugins: {
-      compressPng: compressPng(),
       audio: audio(),
       json: json(),
       manifest: pixiManifest({

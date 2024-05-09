@@ -108,7 +108,9 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         </div>
       </div>
 
-      <img v-if="p1Emote" :src="`/assets/emotes/${p1Emote}.png`" />
+      <Transition mode="out-in">
+        <img v-if="p1Emote" :key="p1Emote" :src="`/assets/emotes/${p1Emote}.png`" />
+      </Transition>
     </div>
 
     <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
@@ -172,22 +174,14 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         </div>
       </div>
 
-      <img v-if="p2Emote" :src="`/assets/emotes/${p2Emote}.png`" />
+      <Transition mode="out-in">
+        <img v-if="p2Emote" :key="p2Emote" :src="`/assets/emotes/${p2Emote}.png`" />
+      </Transition>
     </div>
   </PopoverRoot>
 </template>
 
 <style scoped lang="postcss">
-@keyframes emote {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 .player {
   isolation: isolate;
   position: relative;
@@ -389,6 +383,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 }
 
 .emote-popover {
+  transform-origin: top left;
+
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -423,11 +419,25 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
 .emote-popover-enter-active,
 .emote-popover-leave-active {
-  transition: opacity 0.2s ease-out;
+  transition:
+    opacity 0.2s ease-out,
+    scale 0.2s ease-out;
 }
 
 .emote-popover-enter-from,
 .emote-popover-leave-to {
+  scale: 0;
+  opacity: 0;
+}
+
+img.v-enter-active,
+img.v-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+img.v-enter-from,
+img.v-leave-to {
+  transform: scale(0);
   opacity: 0;
 }
 </style>

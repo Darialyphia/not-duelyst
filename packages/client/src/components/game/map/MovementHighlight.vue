@@ -24,7 +24,7 @@ const isMatch = (cellToTest: Cell) => {
       () => false
     )
     .with(TARGETING_MODES.BASIC, () => {
-      if (userPlayer.value?.equals(ui.selectedEntity.value!.player)) return false;
+      if (!userPlayer.value?.equals(ui.selectedEntity.value!.player)) return false;
 
       return pathfinding.canMoveTo(ui.selectedEntity.value!, cellToTest);
     })

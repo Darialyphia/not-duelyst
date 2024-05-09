@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { type Texture, type FrameObject, Filter } from 'pixi.js';
+import { type Texture, type FrameObject, Filter, AnimatedSprite } from 'pixi.js';
 import { diffuseGroup, normalGroup } from '@pixi/lights';
+import type { AnyObject, Nullable } from '@game/shared';
 
 defineOptions({
   inheritAttrs: false
@@ -12,6 +13,8 @@ const { diffuseTextures, normalTextures, isFlipped, filters } = defineProps<{
   filters?: Filter[];
   isFlipped?: boolean;
 }>();
+
+const sprite = defineModel<Nullable<AnimatedSprite>>('sprite', { required: false });
 
 const fragShader = /*glsl*/ `
 varying vec2 vTextureCoord;
@@ -39,6 +42,7 @@ const normalFilters = computed(() => {
     :ref="
       (el: any) => {
         if (!el) return;
+        sprite = el;
         el.parentGroup = diffuseGroup;
       }
     "

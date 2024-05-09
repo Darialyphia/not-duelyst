@@ -8,11 +8,11 @@ import GameView from './GameView.vue';
 import { Stage } from '@pixi/layers';
 import type { GameSession } from '@game/sdk';
 // import type { GameEmits } from '../../composables/useGame';
-// import cursorUrl from '../../assets/cursors/cursor.png';
-// import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
-// import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
-// import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
-// import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
+import cursorUrl from '../../assets/cursors/cursor.png';
+import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
+import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
+import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
+import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
@@ -42,13 +42,13 @@ gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(PixiPlugin);
 gsap.install(window);
 
-// const cursors = {
-//   default: `url('${cursorUrl}'), auto`,
-//   disabled: `url('${cursorDisabledUrl}'), auto`,
-//   attack: `url('${cursorAttackUrl}'), auto`,
-//   move: `url('${cursorMoveUrl}'), auto`,
-//   summon: `url('${cursorSummonUrl}'), auto`
-// };
+const cursors = {
+  default: `url('${cursorUrl}'), auto`,
+  disabled: `url('${cursorDisabledUrl}'), auto`,
+  attack: `url('${cursorAttackUrl}'), auto`,
+  move: `url('${cursorMoveUrl}'), auto`,
+  summon: `url('${cursorSummonUrl}'), auto`
+};
 
 const canvas = ref<HTMLCanvasElement>();
 const ready = ref(false);
@@ -65,7 +65,7 @@ onMounted(async () => {
   });
 
   pixiApp.resizeTo = window;
-  // pixiApp.renderer.events.cursorStyles = cursors;
+  pixiApp.renderer.events.cursorStyles = cursors;
 
   pixiApp.stage = new Stage();
   pixiApp.stage.sortableChildren = true;
@@ -129,7 +129,7 @@ onMounted(async () => {
 
 <style scoped lang="postcss">
 .pixi-app-container {
-  /* cursor: v-bind('cursors.default'); */
+  cursor: v-bind('cursors.default');
   user-select: none;
 
   position: relative;

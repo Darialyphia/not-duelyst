@@ -77,7 +77,7 @@ const summon = () => {
 };
 
 const highlightTarget = () => {
-  ui.mouseLightStrength.value = 5;
+  ui.mouseLightStrength.value = 3;
   ui.mouseLightColor.value = cell.value.entity?.player.equals(activePlayer.value)
     ? '#77ff77'
     : '#ff7777';
@@ -107,8 +107,7 @@ const highlightTarget = () => {
                   ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
                   ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
                 ) {
-                  ui.mouseLightColor.value = '#ff0000';
-                  ui.mouseLightStrength.value = 12;
+                  highlightTarget();
                 }
               })
               .with(TARGETING_MODES.FOLLOWUP, () => {

@@ -2,16 +2,11 @@ import { Text, Container } from 'pixi.js';
 import type { FxCommand } from '../useFx';
 
 export const displayText: FxCommand<'displayText'> = (
-  { ui, spriteMap, entityRootMap, done },
+  { ui, entityRootMap, done },
   text,
   entityId,
   { color, path, duration }
 ) => {
-  const sprite = toValue(spriteMap.get(entityId));
-  if (!sprite) {
-    console.warn(`FXContext: sprite not found for entity ${entityId}`);
-    return done();
-  }
   const root = entityRootMap.get(entityId);
   if (!root) {
     console.warn(`FXContext: entity root container not found for entity ${entityId}`);

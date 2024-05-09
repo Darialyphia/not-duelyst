@@ -107,22 +107,23 @@ const parsePlist = (url: string, raw: string) => {
     });
 
     const name = p.replace('.plist', '').split('/').at(-1);
-    const imageExists = await fs.exists(
-      path.join(process.cwd(), p.replace('.plist', '.png'))
-    );
+
+    const as = (newExt: string) => p.replace('.plist', `.${newExt}`);
+
+    const imageExists = await fs.exists(path.join(process.cwd(), as('png')));
     if (!imageExists) {
       console.log(`Skipping ${name}: spritesheet not found`);
       continue;
     }
     const parsed = parsePlist(p, file);
-    await fs.writeJSON(p.replace('.plist', '.json'), parsed, {
+    await fs.writeJSON(as('json'), parsed, {
       spaces: 2,
       encoding: 'utf-8'
     });
 
     try {
       await execAsync(
-        `aseprite ${path.join(process.cwd(), p.replace('.plist', '.png'))} --script-param json="${path.join(process.cwd(), p.replace('.plist', '.json'))}" --script "${path.join(process.cwd(), '../../jest_import_packed_atlas.lua')}" --batch`
+        `aseprite ${path.join(process.cwd(), as('png'))} --script-param json="${path.join(process.cwd(), as('json'))}" --script "${path.join(process.cwd(), '../../jest_import_packed_atlas.lua')}" --batch`
       );
 
       await fs.move(

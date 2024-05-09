@@ -83,7 +83,7 @@ until(camera.viewport)
       })
       .pinch()
       .decelerate({ friction: 0.88 })
-      .wheel({ smooth: 3, percent: 0.05 })
+      .wheel({ smooth: 20, percent: 0.05 })
       .clamp({
         direction: 'all'
       })

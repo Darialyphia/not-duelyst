@@ -1,16 +1,17 @@
+import { Container } from 'pixi.js';
 import type { FxCommand } from '../useFx';
 
 export const attack: FxCommand<'attack'> = (
-  { done, spriteMap },
+  { done, session, spriteMap, camera },
   attackerId,
   targetId
 ) => {
-  const attackerSprite = toValue(spriteMap.get(attackerId));
+  const attackerSprite = toValue(spriteMap.get(attackerId))?.parent;
   if (!attackerSprite) {
     console.warn(`FXContext: sprite not found for entity ${attackerId}`);
     return done();
   }
-  const targetSprite = toValue(spriteMap.get(targetId));
+  const targetSprite = toValue(spriteMap.get(targetId))?.parent;
   if (!targetSprite) {
     console.warn(`FXContext: sprite not found for entity ${targetId}`);
     return done();
@@ -23,6 +24,14 @@ export const attack: FxCommand<'attack'> = (
     x: attackerPosition.x - targetPosition.x,
     y: attackerPosition.y - targetPosition.y
   };
+
+  // we need to invert the X distance if sprite is flipped
+  const attacker = session.entitySystem.getEntityById(attackerId)!;
+  let scale = attacker.player.isPlayer1 ? 1 : -1;
+  if (camera.angle.value === 90 || camera.angle.value === 180) {
+    scale *= -1;
+  }
+  distance.x *= scale;
 
   const timeline = gsap.timeline();
   timeline.to(attackerSprite, {

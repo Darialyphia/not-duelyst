@@ -22,13 +22,15 @@ const angle = ref({
 });
 
 const isDisabled = computed(() => isEditingLoadout && !canAddToLoadout);
-const MAX_ANGLE = 15;
+const MAX_ANGLE = 20;
 const onMousemove = (e: MouseEvent) => {
   if (isDisabled.value) return;
   if (!rootEl.value) return;
 
   const { clientX, clientY } = e;
-  const { left, top, width, height } = rootEl.value.getBoundingClientRect();
+  const { left, top, width, height } = unrefElement(
+    rootEl.value
+  )!.getBoundingClientRect();
   angle.value = {
     x: ((clientX - left) / width - 0.5) * MAX_ANGLE,
     y: ((clientY - top) / height - 0.5) * MAX_ANGLE
@@ -38,7 +40,7 @@ const onMousemove = (e: MouseEvent) => {
 
 <template>
   <div class="perspective-wrapper">
-    <div
+    <Card
       ref="rootEl"
       :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
       class="collection-card"
@@ -50,27 +52,24 @@ const onMousemove = (e: MouseEvent) => {
         '--rotate-y': angle.x.toFixed(2),
         '--rotate-x': angle.y.toFixed(2)
       }"
+      :card="{
+        name: card.card.name,
+        description: card.card.description,
+        kind: card.card.kind,
+        spriteId: card.card.spriteId,
+        rarity: card.card.rarity,
+        attack: card.card.attack,
+        hp: card.card.maxHp,
+        speed: card.card.speed,
+        cost: card.card.cost,
+        cooldown: card.card.cooldown,
+        skills: card.card.skills,
+        factions: card.card.factions
+      }"
       @mousemove="onMousemove"
       @click="emit('click')"
       @keyup.enter="emit('click')"
-    >
-      <Card
-        :card="{
-          name: card.card.name,
-          description: card.card.description,
-          kind: card.card.kind,
-          spriteId: card.card.spriteId,
-          rarity: card.card.rarity,
-          attack: card.card.attack,
-          hp: card.card.maxHp,
-          speed: card.card.speed,
-          cost: card.card.cost,
-          cooldown: card.card.cooldown,
-          skills: card.card.skills,
-          factions: card.card.factions
-        }"
-      />
-    </div>
+    />
   </div>
 </template>
 

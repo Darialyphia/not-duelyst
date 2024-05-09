@@ -11,7 +11,7 @@ export const shakeEntity: FxCommand<'shakeEntity'> = (
     return done();
   }
 
-  const sprite = toValue(spriteMap.get(entityId));
+  const sprite = toValue(spriteMap.get(entityId))?.parent;
   if (!sprite) {
     console.warn(`FXContext: sprite not found for entity ${entityId}`);
     return done();

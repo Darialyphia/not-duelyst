@@ -37,7 +37,6 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
 
   execute() {
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
-    console.log(this.rawPayload, parsed);
     if (!parsed.success) {
       console.error(parsed.error);
       return;

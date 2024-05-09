@@ -5,6 +5,7 @@ import { AnimatedSprite, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import IlluminatedSprite from '../IlluminatedSprite.vue';
 import { match } from 'ts-pattern';
+import type { Nullable } from '@game/shared';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
@@ -90,19 +91,7 @@ const pedestalTextures = useIlluminatedTexture(
 </script>
 
 <template>
-  <container
-    :ref="
-      (el: any) => {
-        const spriteInst = el?.children?.find(
-          (child: any) => child instanceof AnimatedSprite
-        );
-
-        if (spriteInst) {
-          sprite = spriteInst;
-        }
-      }
-    "
-  >
+  <container>
     <PointLight
       v-if="lightBrightness > 0"
       :color="lightColor"
@@ -131,6 +120,7 @@ const pedestalTextures = useIlluminatedTexture(
       :y="-CELL_HEIGHT * 0.6"
       :is-flipped="isFlipped"
       :filters="filters"
+      v-model:sprite="sprite"
     />
   </container>
 </template>

@@ -43,10 +43,11 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
           />
         </div>
       </UiCenter>
-      <div class="sprite">
-        <PedestalSprite :pedestal-id="card.pedestalId ?? 'pedestal-default'" />
-        <CardSprite :sprite-id="card.spriteId" />
-      </div>
+      <CardSprite
+        class="sprite"
+        :sprite-id="card.spriteId"
+        :pedestal-id="card.pedestalId ?? 'pedestal-default'"
+      />
       <UiCenter v-if="card.cooldown" class="cooldown">
         {{ card.cooldown }}
       </UiCenter>
@@ -102,7 +103,10 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
 
 <style scoped lang="postcss">
 .card {
+  --z-translate: 25px;
+
   position: relative;
+  transform-style: preserve-3d;
 
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
@@ -118,9 +122,12 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
 }
 
 header {
+  transform-style: preserve-3d;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-content: end;
+
   height: 112px;
 }
 
@@ -171,23 +178,22 @@ header {
 }
 
 .sprite {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-self: center;
-  > div {
-    transform-origin: bottom center;
-    transform: scale(2) translateY(40%);
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-  }
+  position: relative;
+  transform-origin: bottom center;
+  transform: translateZ(var(--z-translate)) scale(2) translateY(40%);
+  transition: transform 0.3s ease-in;
 }
 
 .text {
+  transform: translateZ(var(--z-translate));
+
   margin-block: calc(var(--size-8) + var(--size-2)) var(--size-1);
+
   font-weight: 400;
   line-height: 1;
   text-align: center;
+
+  transition: transform 0.3s ease-in;
 
   > .kind {
     font-size: var(--font-size-00);
@@ -235,8 +241,11 @@ footer {
 }
 
 .skills-list {
+  transform: translateZ(var(--z-translate));
   display: flex;
   justify-content: center;
+  transition: transform 0.3s ease-in;
+
   > li {
     display: flex;
     gap: var(--size-2);
@@ -299,6 +308,8 @@ footer {
 }
 
 .description {
+  transform: translateZ(var(--z-translate));
+
   justify-self: center;
 
   max-width: calc(var(--size-12) + var(--size-7));
@@ -307,5 +318,7 @@ footer {
   line-height: 1;
   color: var(--gray-0);
   text-align: center;
+
+  transition: transform 0.3s ease-in;
 }
 </style>
