@@ -18,6 +18,7 @@ definePageMeta({
 <style scoped lang="postcss">
 .root {
   min-height: 100vh;
+  background: url('/assets/backgrounds/mountain.png');
   background-attachment: fixed;
   background-size: cover;
 }

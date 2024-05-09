@@ -1,6 +1,7 @@
 import { api, internal } from './_generated/api';
 import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
+import { toGameDto } from './game/game.mapper';
 import { getCurrentGame } from './game/game.utils';
 import { toUserDto } from './users/user.mapper';
 import { v } from 'convex/values';
@@ -153,18 +154,18 @@ export const getAllOngoing = query(async ctx => {
         .withIndex('by_game_id', q => q.eq('gameId', game?._id))
         .collect();
 
-      return {
+      return toGameDto({
         ...game,
         players: await Promise.all(
           gamePlayers.map(async gamePlayer => {
             const user = await ctx.db.get(gamePlayer.userId);
             return {
-              ...toUserDto(user!),
+              ...user,
               loadout: await ctx.db.get(gamePlayer.loadoutId)
             };
           })
         )
-      };
+      });
     })
   );
 });
