@@ -34,7 +34,7 @@ const game = useGameProvider({
   session: gameSession,
   emit,
   playerId,
-  gameType,
+  gameType: computed(() => gameType),
   p1Emote: computed(() => p1Emote),
   p2Emote: computed(() => p2Emote)
 });

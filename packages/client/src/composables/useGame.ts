@@ -40,7 +40,7 @@ export type GameContext = {
   pathfinding: PathfindingContext;
   dispatch: ShortEmits<GameEmits>;
   fx: FxContext;
-  gameType: GameType;
+  gameType: Ref<GameType>;
   playerId: PlayerId | null;
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
@@ -59,7 +59,7 @@ export const useGameProvider = ({
   session: GameSession;
   emit: ShortEmits<GameEmits>;
   playerId: PlayerId | null;
-  gameType: GameType;
+  gameType: Ref<GameType>;
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
 }) => {
@@ -102,7 +102,7 @@ export const useUserPlayer = () => {
   const { gameType, playerId } = useGame();
 
   return useGameSelector(session => {
-    return match(gameType)
+    return match(gameType.value)
       .with(
         GAME_TYPES.SANDBOX,
         GAME_TYPES.SPECTATOR,
@@ -117,7 +117,7 @@ export const useIsActivePlayer = () => {
   const { gameType, playerId } = useGame();
 
   return useGameSelector(session => {
-    return match(gameType)
+    return match(gameType.value)
       .with(GAME_TYPES.SANDBOX, () => true)
       .with(GAME_TYPES.SPECTATOR, () => false)
       .with(GAME_TYPES.PVP, () => session.playerSystem.activePlayer.id === playerId)

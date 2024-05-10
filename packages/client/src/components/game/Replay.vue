@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { api } from '@game/api';
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
 import type { GameMapDto } from '@game/api/src/convex/gameMap/gameMap.mapper';
 import { config, GameSession, type SerializedGameState } from '@game/sdk';
@@ -75,23 +76,52 @@ session.on('game:action', () => {
     }, 1000);
   }
 });
+
+const me = useConvexAuthedQuery(api.users.me, {});
+const gameType = ref<GameType>(GAME_TYPES.SPECTATOR);
+
+const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
+
+const dispatch = (
+  type: Parameters<(typeof session)['dispatch']>[0]['type'],
+  payload: any
+) => {
+  session.dispatch({
+    type,
+    payload: {
+      ...payload,
+      playerId: payload?.playerId ?? session.playerSystem.activePlayer.id
+    }
+  });
+};
 </script>
 
 <template>
   <div class="relative">
     <GameRoot
-      :p1-emote="null"
-      :p2-emote="null"
       :game-session="session"
       :player-id="null"
-      :game-type="GAME_TYPES.SANDBOX"
+      :game-type="gameType"
+      :p1-emote="p1Emote"
+      :p2-emote="p2Emote"
+      @move="dispatch('move', $event)"
+      @attack="dispatch('attack', $event)"
+      @end-turn="dispatch('endTurn', $event)"
+      @use-skill="dispatch('useSkill', $event)"
+      @play-card="dispatch('playCard', $event)"
+      @p1-emote="addP1($event)"
+      @p2-emote="addP2($event)"
     />
     <div
+      v-if="gameType === GAME_TYPES.SPECTATOR"
       class="controls"
       :style="{
         '--ui-button-radius': 'var(--radius-round)'
       }"
     >
+      <UiButton class="primary-button" v-if="me" @click="gameType = GAME_TYPES.SANDBOX">
+        Convert to sandbox
+      </UiButton>
       <UiButton
         class="primary-button"
         @click="

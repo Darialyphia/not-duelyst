@@ -18,7 +18,7 @@ watch(
 );
 
 const message = computed(() => {
-  return match(gameType)
+  return match(gameType.value)
     .with(GAME_TYPES.PVP, () => (isActivePlayer.value ? 'Your turn' : "Opponent's turn"))
     .otherwise(() => `${activePlayer.value.name}'s turn`);
 });

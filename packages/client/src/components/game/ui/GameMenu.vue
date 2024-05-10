@@ -7,8 +7,6 @@ useEventListener('keydown', e => {
     isMenuOpened.value = true;
   }
 });
-
-const isSettingsOpoened = ref(false);
 </script>
 
 <template>
@@ -25,7 +23,7 @@ const isSettingsOpoened = ref(false);
   <UiModal v-model:is-opened="isMenuOpened" title="Menu">
     <div class="grid gap-4 menu">
       <!-- <UiButton is-cta @click="isSettingsOpoened = true">Settings</UiButton> -->
-      <UiButton v-if="gameType === 'pvp'" @click="dispatch('surrender')">
+      <UiButton v-if="gameType === GAME_TYPES.PVP" @click="dispatch('surrender')">
         Surrender
       </UiButton>
       <NuxtLink v-else v-slot="{ navigate, href }" :to="{ name: 'ClientHome' }" custom>

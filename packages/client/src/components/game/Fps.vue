@@ -2,7 +2,7 @@
 import { onTick } from 'vue3-pixi';
 import { TextStyle, Ticker } from 'pixi.js';
 
-const { ui, gameType, session } = useGame();
+const { ui, session } = useGame();
 const fps = ref<number[]>([60]);
 const HISTORY_LIMIT = 30;
 onTick(() => {
