@@ -9,16 +9,100 @@ const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing,
 </script>
 
 <template>
-  <div>
-    <div v-if="isLoading">Loading games...</div>
-    <ClientOnly v-else>
-      <div>
-        <OngoingGamesList :games="games" />
-      </div>
+  <div class="container">
+    <header>
+      <BackButton />
+      <h1 class="text-5">Watch</h1>
+    </header>
 
-      <template #fallback>
-        <div />
-      </template>
+    <ClientOnly>
+      <TabsRoot class="tabs" default-value="ongoing">
+        <TabsList aria-label="select section" class="tabs-list">
+          <TabsIndicator class="tabs-indicator">
+            <div class="w-full h-full bg-white" />
+          </TabsIndicator>
+          <TabsTrigger class="tab-trigger" value="ongoing">Ongoing games</TabsTrigger>
+          <TabsTrigger class="tab-trigger" value="latest">Latest replays</TabsTrigger>
+        </TabsList>
+
+        <TabsContent class="tab" value="ongoing">
+          <OngoingGamesList :games="games" />
+          <template #fallback>
+            <div />
+          </template>
+        </TabsContent>
+
+        <TabsContent class="tab" value="latest">
+          <div>TODO replays</div>
+        </TabsContent>
+      </TabsRoot>
     </ClientOnly>
   </div>
 </template>
+
+<style scoped lang="postcss">
+header {
+  display: flex;
+  gap: var(--size-3);
+  align-items: center;
+
+  margin-bottom: var(--size-6);
+  padding-top: var(--size-5);
+
+  text-shadow: black 0px 4px 1px;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-list {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--size-2);
+}
+
+.tabs-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(var(--radix-tabs-indicator-position));
+
+  width: var(--radix-tabs-indicator-size);
+  height: 2px;
+
+  border-radius: var(--radius-pill);
+
+  transition-duration: 300ms;
+  transition-property: width, transform;
+}
+
+.tab-trigger {
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 var(--size-3) var(--size-3);
+
+  font-family: inherit;
+  font-size: var(--font-size-2);
+  line-height: 1;
+  text-shadow: black 0px 4px 1px;
+  &:first-of-type {
+    padding-left: 0;
+  }
+}
+
+.tab {
+  flex-grow: 1;
+  padding-block: var(--size-3);
+  outline: none;
+  &:focus-visible {
+    box-shadow: 0 0 0 2px black;
+  }
+}
+</style>

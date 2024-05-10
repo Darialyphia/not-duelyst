@@ -21,13 +21,8 @@ assets.load();
 </script>
 
 <template>
-  <div v-if="!assets.loaded.value">Loading games...</div>
-  <div v-else-if="games" class="container">
-    <header>
-      <BackButton />
-      <h1 class="text-5">Ongoing games</h1>
-    </header>
-
+  <div v-if="!assets.loaded.value" class="fancy-surface">Loading games...</div>
+  <div v-else class="fancy-surface">
     <p v-if="!games.length">
       There are no ongoing game at the moment. Check back later !
     </p>
@@ -60,17 +55,6 @@ assets.load();
 </template>
 
 <style scoped lang="postcss">
-header {
-  display: flex;
-  gap: var(--size-3);
-  align-items: center;
-
-  margin-bottom: var(--size-6);
-  padding-top: var(--size-5);
-
-  text-shadow: black 0px 4px 1px;
-}
-
 article {
   display: flex;
   flex-wrap: wrap;

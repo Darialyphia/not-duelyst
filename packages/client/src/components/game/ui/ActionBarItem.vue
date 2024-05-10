@@ -1,8 +1,12 @@
 <script setup lang="ts">
-const { index } = defineProps<{ index: number }>();
+import type { PlayerId } from '@game/sdk';
+
+const { index, playerId } = defineProps<{ index: number; playerId: PlayerId }>();
 const { ui } = useGame();
 
-const card = useGameSelector(session => session.playerSystem.activePlayer.hand[index]);
+const card = useGameSelector(
+  session => session.playerSystem.getPlayerById(playerId)!.hand[index]
+);
 
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const hoveredIndex = ref<number | null>(null);

@@ -11,6 +11,7 @@ const userPlayer = useUserPlayer();
         v-for="(card, index) in userPlayer.opponent.hand"
         :key="`${card?.blueprintId}:${index}`"
         :index="index"
+        :player-id="userPlayer.opponent.id"
       />
     </div>
   </div>
@@ -20,9 +21,11 @@ const userPlayer = useUserPlayer();
         v-for="(card, index) in userPlayer.hand"
         :key="`${card?.blueprintId}:${index}`"
         :index="index"
+        :player-id="userPlayer.id"
       />
     </div>
     <UiFancyButton
+      v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG', 'min-width': '10ch' }"
       @click="
         () => {
@@ -61,7 +64,7 @@ const userPlayer = useUserPlayer();
   position: absolute;
   bottom: var(--size-11);
   left: 50%;
-  transform: translateX(-65%);
+  transform: translateX(-50%);
 
   display: flex;
   gap: var(--size-5);
