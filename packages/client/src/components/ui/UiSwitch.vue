@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { SwitchRoot, SwitchThumb } from 'radix-vue';
 
-const switchState = defineModel({ required: true });
+const switchState = defineModel<boolean>('checked', { required: true });
 </script>
 
 <template>
-  <SwitchRoot id="airplane-mode" v-model:checked="switchState" class="ui-switch">
+  <SwitchRoot v-model:checked="switchState" class="ui-switch">
     <SwitchThumb class="ui-switch-thumb" />
   </SwitchRoot>
 </template>

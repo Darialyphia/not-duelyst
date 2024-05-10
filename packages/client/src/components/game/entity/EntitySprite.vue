@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { OutlineFilter } from '@pixi/filter-outline';
 import { FACTIONS, KEYWORDS, type EntityId } from '@game/sdk';
-import { AnimatedSprite, type Filter } from 'pixi.js';
+import { AnimatedSprite, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import IlluminatedSprite from '../IlluminatedSprite.vue';
 import { match } from 'ts-pattern';
@@ -10,6 +10,7 @@ import type { Nullable } from '@game/shared';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { ui, fx, camera } = useGame();
+const settings = useUserSettings();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const sprite = ref<AnimatedSprite>();
@@ -22,7 +23,7 @@ watchEffect(() => {
   fx.entityAnimationsMap.value.set(entityId, isSelected.value ? 'idle' : 'breathing');
 });
 
-const exhaustedFilter = new AdjustmentFilter({ saturation: 0 });
+const exhaustedFilter = new AdjustmentFilter({ saturation: 0.35 });
 const outlineFilter = new OutlineFilter(1, 0xffffff, 0.2, 0);
 
 watchEffect(() => {
@@ -31,6 +32,7 @@ watchEffect(() => {
   //   blur: isSelected.value ? 4 : 0,
   //   ease: Power2.easeOut
   // });
+
   gsap.to(outlineFilter, {
     duration: 0.3,
     alpha: isSelected.value || isHovered.value ? 1 : 0,
@@ -40,9 +42,11 @@ watchEffect(() => {
 
 const filters = computed(() => {
   const result: Filter[] = [];
-  if (isSelected.value || isHovered.value) result.push(outlineFilter);
-  if (entity.value.hasKeyword(KEYWORDS.EXHAUSTED)) {
+  if (entity.value.isExhausted) {
     result.push(exhaustedFilter);
+  }
+  if (isSelected.value || isHovered.value) {
+    result.push(outlineFilter);
   }
   return result;
 });
@@ -65,6 +69,7 @@ const lightColor = computed(() => {
 const MIN_LIGHTNESS = 0;
 const MAX_LIGHTNESS = 0.6;
 const lightBrightness = ref(MIN_LIGHTNESS);
+
 watchEffect(() => {
   const isAlly = activePlayer.value.equals(entity.value.player);
   gsap.to(lightBrightness, {
@@ -88,6 +93,8 @@ const pedestalTextures = useIlluminatedTexture(
   () => entity.value.card.pedestalId,
   'idle'
 );
+
+const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Container>();
 </script>
 
 <template>
@@ -100,27 +107,55 @@ const pedestalTextures = useIlluminatedTexture(
       :y="-30"
     />
 
-    <IlluminatedSprite
-      v-if="pedestalTextures.diffuse && pedestalTextures.normal"
-      :diffuse-textures="pedestalTextures.diffuse"
-      :normal-textures="pedestalTextures.normal"
-      :anchor-x="0.5"
-      :anchor-y="0"
-      :playing="true"
-      :y="-CELL_HEIGHT * 0.6"
-      :is-flipped="isFlipped"
-    />
-    <IlluminatedSprite
-      v-if="diffuseTextures && normalTextures"
-      :diffuse-textures="diffuseTextures"
-      :normal-textures="normalTextures"
-      :anchor-x="0.5"
-      :anchor-y="0"
-      :playing="true"
-      :y="-CELL_HEIGHT * 0.6"
-      :is-flipped="isFlipped"
-      :filters="filters"
-      v-model:sprite="sprite"
-    />
+    <container :ref="diffuseRef" :filters="filters">
+      <animated-sprite
+        v-if="pedestalTextures.diffuse"
+        :textures="pedestalTextures.diffuse"
+        :anchor-x="0.5"
+        :anchor-y="0"
+        :playing="true"
+        :y="-CELL_HEIGHT * 0.6"
+        :is-flipped="isFlipped"
+      />
+
+      <animated-sprite
+        v-if="diffuseTextures"
+        :textures="diffuseTextures"
+        :anchor-x="0.5"
+        :anchor-y="0"
+        :playing="true"
+        :y="-CELL_HEIGHT * 0.6"
+        :is-flipped="isFlipped"
+        :filters="filters"
+        :ref="
+          (el: AnimatedSprite) => {
+            sprite = el;
+          }
+        "
+      />
+    </container>
+
+    <container :ref="normalRef" v-if="isEnabled" :filters="[normalFilter]">
+      <animated-sprite
+        v-if="pedestalTextures.normal"
+        :textures="pedestalTextures.normal"
+        :anchor-x="0.5"
+        :anchor-y="0"
+        :playing="true"
+        :y="-CELL_HEIGHT * 0.6"
+        :is-flipped="isFlipped"
+      />
+
+      <animated-sprite
+        v-if="normalTextures"
+        :textures="normalTextures"
+        :anchor-x="0.5"
+        :anchor-y="0"
+        :playing="true"
+        :y="-CELL_HEIGHT * 0.6"
+        :is-flipped="isFlipped"
+        :filters="filters"
+      />
+    </container>
   </container>
 </template>

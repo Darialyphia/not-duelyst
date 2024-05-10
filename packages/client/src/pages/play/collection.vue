@@ -150,8 +150,6 @@ const editLoadout = (loadout: LoadoutDto) => {
 
   height: 100vh;
 
-  backdrop-filter: blur(5px);
-
   > .loader {
     grid-column: 1 / -1;
   }

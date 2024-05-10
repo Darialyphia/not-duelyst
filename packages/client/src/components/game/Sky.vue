@@ -21,6 +21,8 @@ onTick(() => {
   foregroundPosition.x = (foregroundPosition.x + foregroundStep) % screen.value.width;
   backgroundPosition.x = (backgroundPosition.x + backgroundStep) % screen.value.width;
 });
+
+const settings = useUserSettings();
 </script>
 
 <template>
@@ -28,7 +30,9 @@ onTick(() => {
     :ref="
       (el: any) => {
         if (!el) return;
-        el.parentGroup = diffuseGroup;
+        if (settings.fx.dynamicLighting) {
+          el.parentGroup = diffuseGroup;
+        }
       }
     "
   >
@@ -64,6 +68,7 @@ onTick(() => {
   </container>
 
   <container
+    v-if="settings.fx.dynamicLighting"
     :ref="
       (el: any) => {
         if (!el) return;

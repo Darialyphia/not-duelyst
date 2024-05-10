@@ -57,6 +57,7 @@ export const saveSettings = mutationWithAuth({
     settings: v.any()
   },
   async handler({ db, session }, args) {
+    console.log(args.settings.fx);
     const user = ensureAuthenticated(session);
 
     const settings = await db

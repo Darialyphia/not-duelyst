@@ -7,6 +7,8 @@ useEventListener('keydown', e => {
     isMenuOpened.value = true;
   }
 });
+
+const isSettingsOpened = ref(false);
 </script>
 
 <template>
@@ -22,7 +24,7 @@ useEventListener('keydown', e => {
 
   <UiModal v-model:is-opened="isMenuOpened" title="Menu">
     <div class="grid gap-4 menu">
-      <!-- <UiButton is-cta @click="isSettingsOpoened = true">Settings</UiButton> -->
+      <UiButton is-cta @click="isSettingsOpened = true">Settings</UiButton>
       <UiButton v-if="gameType === GAME_TYPES.PVP" @click="dispatch('surrender')">
         Surrender
       </UiButton>
@@ -36,12 +38,15 @@ useEventListener('keydown', e => {
     </div>
   </UiModal>
 
-  <!-- <UiModal v-model:is-opened="isSettingsOpoened" title="Settings">
-    <SettingsEditor @close="isSettingsOpoened = false" />
-  </UiModal> -->
+  <UiModal v-model:is-opened="isSettingsOpened" title="Settings">
+    <SettingsForm @close="isSettingsOpened = false" />
+  </UiModal>
 </template>
 
 <style scoped>
+.menu {
+  width: var(--size-13);
+}
 .menu :is(a, button) {
   --ui-button-border-color: var(--primary);
   --ui-button-bg-hover: var(--primary-hover);

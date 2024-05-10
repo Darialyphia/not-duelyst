@@ -16,48 +16,30 @@ const { diffuseTextures, normalTextures, isFlipped, filters } = defineProps<{
 
 const sprite = defineModel<Nullable<AnimatedSprite>>('sprite', { required: false });
 
-const fragShader = /*glsl*/ `
-varying vec2 vTextureCoord;
-uniform sampler2D uSampler;
-
-void main() {
-  vec4 original = texture2D(uSampler, vTextureCoord);
-  gl_FragColor = vec4(mix(original.r, 1.0 - original.r, original.a), original.gba);
-}
-`;
-
-const flipFilter = new Filter(undefined, fragShader);
-
 const attrs = useAttrs();
+const { isEnabled, diffuseRef, normalRef, normalFilter } =
+  useIllumination<AnimatedSprite>(el => {
+    sprite.value = el;
+  });
 const normalFilters = computed(() => {
   if (!isFlipped) return filters;
 
-  return (filters ?? []).concat([flipFilter]);
+  return (filters ?? []).concat([normalFilter]);
 });
 </script>
 
 <template>
   <animated-sprite
     v-bind="attrs"
-    :ref="
-      (el: any) => {
-        if (!el) return;
-        sprite = el;
-        el.parentGroup = diffuseGroup;
-      }
-    "
+    :ref="diffuseRef"
     :filters="filters"
     :textures="diffuseTextures"
   />
 
   <animated-sprite
+    v-if="isEnabled"
     v-bind="attrs"
-    :ref="
-      (el: any) => {
-        if (!el) return;
-        el.parentGroup = normalGroup;
-      }
-    "
+    :ref="normalRef"
     :filters="normalFilters"
     :textures="normalTextures"
   />

@@ -7,6 +7,7 @@ const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { camera, fx } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const settings = useUserSettings();
 
 const scaleX = computed(() => {
   let value = entity.value.player.isPlayer1 ? 1 : -1;
@@ -76,7 +77,7 @@ const onShadowEnter = (container: Container) => {
       "
     >
       <container :scale-x="scaleX">
-        <PTransition appear @enter="onShadowEnter">
+        <PTransition appear @enter="onShadowEnter" v-if="settings.fx.shadows">
           <container>
             <EntityShadow :entity-id="entityId" />
           </container>

@@ -86,6 +86,7 @@ const dispatch = (
   type: Parameters<(typeof session)['dispatch']>[0]['type'],
   payload: any
 ) => {
+  if (gameType.value === GAME_TYPES.SPECTATOR) return;
   session.dispatch({
     type,
     payload: {

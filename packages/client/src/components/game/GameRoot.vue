@@ -19,6 +19,7 @@ import type { Nullable } from '@game/shared';
 import sky1 from '@/assets/backgrounds/sky-1.png';
 import sky2 from '@/assets/backgrounds/sky-2.png';
 import sky4 from '@/assets/backgrounds/sky-4.png';
+import { api } from '@game/api';
 
 const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
   gameSession: GameSession;
@@ -38,6 +39,9 @@ const game = useGameProvider({
   p1Emote: computed(() => p1Emote),
   p2Emote: computed(() => p2Emote)
 });
+
+const { data: settings } = useConvexAuthedQuery(api.users.settings, {});
+
 // const { ui, assets } = game;
 
 // @ts-ignore  enable PIXI devtools
@@ -109,16 +113,8 @@ onMounted(async () => {
         return game.assets.loadSpritesheet(spriteId);
       })
     );
+    await until(settings).toBeTruthy();
 
-    // gameSession.boardSystem.cells.forEach(cell => {
-    //   if (!cell.entity && cell.isWalkable) {
-    //     gameSession.entitySystem.addEntity({
-    //       cardIndex: 1,
-    //       playerId: '1',
-    //       position: cell.position
-    //     });
-    //   }
-    // });
     ready.value = true;
     app.mount(pixiApp.stage);
   });

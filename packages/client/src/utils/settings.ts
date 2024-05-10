@@ -14,7 +14,7 @@ export const DISPLAY_UNITS_NAMES = {
 } as const;
 export type DisplayUnitNamesValue = Values<typeof DISPLAY_UNITS_NAMES>;
 
-export const defaultSettings = {
+export const getDefaultSettings = () => ({
   bindings: defaultBindings,
   sound: {
     musicVolume: [50],
@@ -24,10 +24,13 @@ export const defaultSettings = {
     displayUnitsStats: DISPLAY_UNITS_STATS.HOVER_ONLY as DisplayUnitStatsValue,
     displayUnitsNames: DISPLAY_UNITS_NAMES.NEVER as DisplayUnitNamesValue
   },
+  fx: {
+    dynamicLighting: true,
+    shadows: true
+  },
   a11y: {
-    colorCodeUnits: false,
-    simplifiedMapTextures: false
+    colorCodeUnits: false
   }
-};
+});
 
-export type Settings = typeof defaultSettings;
+export type Settings = ReturnType<typeof getDefaultSettings>;
