@@ -23,6 +23,7 @@ export type FxContext = {
   ctx: FXSystem;
   entityAnimationsMap: Ref<Map<EntityId, Animation>>;
   entityPositionsMap: Ref<Map<EntityId, Point3D>>;
+  entityRootMap: Map<EntityId, Container>;
   provideSession: (session: GameSession) => void;
   provideUi: (ui: GameUiContext) => void;
   provideAssets: (assets: AssetsContext) => void;
@@ -218,6 +219,7 @@ export const useFXProvider = () => {
     isPlaying,
     entityAnimationsMap: provided.entityAnimationsMap,
     entityPositionsMap: provided.entityPositionsMap,
+    entityRootMap,
     provideSession(session) {
       provided.session = session;
       session.on('entity:created', entity => {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { diffuseGroup, normalGroup, lightGroup, PointLight } from '@pixi/lights';
 
 // watchEffect(() => {
@@ -10,6 +9,7 @@ import { diffuseGroup, normalGroup, lightGroup, PointLight } from '@pixi/lights'
 // });
 const { ui } = useGame();
 
+useGameControls();
 const cells = useGameSelector(session => session.boardSystem.cells);
 const entities = useGameSelector(session => session.entitySystem.getList());
 const isDev = import.meta.env.DEV;

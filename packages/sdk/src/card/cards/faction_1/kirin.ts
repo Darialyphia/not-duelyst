@@ -44,7 +44,7 @@ export const f1Kirin: CardBlueprint = {
       }
     },
     {
-      id: 'f1_kirin_skill_1',
+      id: 'f1_kirin_skill_2',
       cooldown: 2,
       description: 'TODO',
       name: 'Test skill',
