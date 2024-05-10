@@ -9,7 +9,7 @@ import type { GameServer, GameSocket } from './types';
 import type { Defined } from '@game/shared';
 import { type FunctionReturnType } from 'convex/server';
 import { api } from '@game/api';
-import { parse } from 'zipson';
+import { parse, stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 
@@ -48,8 +48,7 @@ export class Game {
     this.convexClient.action(api.games.end, {
       gameId: this.game._id,
       winnerId: winnerId as Id<'users'>,
-      // replay: stringify(this.session.history.serialize())
-      replay: ''
+      replay: stringify(this.session.actionSystem.serialize())
     });
   }
 

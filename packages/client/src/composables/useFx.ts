@@ -168,7 +168,6 @@ export const useFXProvider = () => {
     },
     moveEntity(...args) {
       return executeAsyncCommand(ctx => {
-        console.log('move entity');
         moveEntity(ctx, ...args);
       });
     },

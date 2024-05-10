@@ -1,0 +1,32 @@
+<script setup lang="ts">
+import { api } from '@game/api';
+import type { Id } from '@game/api/src/convex/_generated/dataModel';
+
+definePageMeta({
+  name: 'Replay',
+  layout: 'fullscreen'
+});
+
+const route = useRoute();
+
+const { data: game, isLoading } = useConvexQuery(api.games.replayByGameId, {
+  gameId: route.params.id as Id<'games'>
+});
+</script>
+
+<template>
+  <div class="page">
+    <div v-if="isLoading">Loading...</div>
+    <ClientOnly v-else>
+      <Replay v-bind="game" v-if="game" />
+      <div v-else>Replay not found</div>
+    </ClientOnly>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+.page {
+  overflow: hidden;
+  min-height: 100dvh;
+}
+</style>

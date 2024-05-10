@@ -13,9 +13,8 @@ const isSettingsOpoened = ref(false);
 
 <template>
   <UiButton
-    class="absolute bottom-4 right-4 aspect-1"
+    class="absolute bottom-4 right-4 aspect-1 primary-button"
     :style="{
-      '--ui-button-border-color': 'transparent',
       '--ui-button-radius': 'var(--radius-round)'
     }"
     @click="isMenuOpened = true"
@@ -24,7 +23,7 @@ const isSettingsOpoened = ref(false);
   </UiButton>
 
   <UiModal v-model:is-opened="isMenuOpened" title="Menu">
-    <div class="grid gap-4">
+    <div class="grid gap-4 menu">
       <!-- <UiButton is-cta @click="isSettingsOpoened = true">Settings</UiButton> -->
       <UiButton v-if="gameType === 'pvp'" @click="dispatch('surrender')">
         Surrender
@@ -45,7 +44,7 @@ const isSettingsOpoened = ref(false);
 </template>
 
 <style scoped>
-:is(a, button) {
+.menu :is(a, button) {
   --ui-button-border-color: var(--primary);
   --ui-button-bg-hover: var(--primary-hover);
   --ui-button-bg: transparent;

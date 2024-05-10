@@ -1,10 +1,12 @@
+import { isDefined } from '@game/shared';
 import { api, internal } from './_generated/api';
 import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 import { toGameDto } from './game/game.mapper';
-import { getCurrentGame, getGamePlayers } from './game/game.utils';
+import { getCurrentGame, getGameById, getGamePlayers } from './game/game.utils';
 import { toUserDto } from './users/user.mapper';
 import { v } from 'convex/values';
+import { toGameMapDto } from './gameMap/gameMap.mapper';
 
 export const getCurrent = queryWithAuth({
   args: {},
@@ -105,10 +107,10 @@ export const end = action({
   },
   async handler(ctx, { replay, ...args }) {
     const game = await ctx.runMutation(internal.games.destroy, args);
-    // await ctx.runMutation(internal.gameReplays.createReplay, {
-    //   gameId: args.gameId,
-    //   replay: replay
-    // });
+    await ctx.runMutation(internal.games.createReplay, {
+      gameId: args.gameId,
+      replay: replay
+    });
     await ctx.runAction(internal.hathora.destroyRoom, { roomId: game.roomId });
   }
 });
@@ -118,13 +120,9 @@ export const getById = query({
     gameId: v.id('games')
   },
   async handler(ctx, args) {
-    const game = await ctx.db.get(args.gameId);
+    const game = await getGameById(ctx, args.gameId);
     if (!game) return null;
-
-    return toGameDto({
-      ...game,
-      players: await getGamePlayers(ctx, game)
-    });
+    return toGameDto(game);
   }
 });
 
@@ -144,7 +142,7 @@ export const getAllOngoing = query(async ctx => {
   );
 });
 
-export const getMyGameHistory = queryWithAuth({
+export const myGameHistory = queryWithAuth({
   args: {},
   handler: async ctx => {
     const user = ensureAuthenticated(ctx.session);
@@ -181,5 +179,59 @@ export const getMyGameHistory = queryWithAuth({
         };
       })
     );
+  }
+});
+
+export const latestGamesWithReplays = queryWithAuth({
+  args: {},
+  async handler(ctx) {
+    const replays = await ctx.db
+      .query('gameReplays')
+      .withIndex('by_creation_time')
+      .order('desc')
+      .take(15);
+
+    const games = await Promise.all(
+      replays.map(replay => getGameById(ctx, replay.gameId))
+    );
+
+    return games.filter(isDefined).map(toGameDto);
+  }
+});
+
+export const createReplay = internalMutation({
+  args: {
+    gameId: v.id('games'),
+    replay: v.string()
+  },
+  async handler(ctx, args) {
+    return ctx.db.insert('gameReplays', args);
+  }
+});
+
+export const replayByGameId = query({
+  args: { gameId: v.id('games') },
+  async handler(ctx, args) {
+    const replay = await ctx.db
+      .query('gameReplays')
+      .withIndex('by_game_id', q => q.eq('gameId', args.gameId))
+      .unique();
+
+    if (!replay) throw new Error('Replay not found.');
+
+    const game = await ctx.db.get(replay.gameId);
+    if (!game) throw new Error('Game not found.');
+
+    const map = await ctx.db.get(game!.mapId);
+    if (!map) throw new Error('Map not found.');
+
+    return {
+      game: toGameDto({
+        ...game,
+        players: await getGamePlayers(ctx, game)
+      }),
+      replay: replay.replay,
+      map: toGameMapDto(map)
+    };
   }
 });

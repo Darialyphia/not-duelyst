@@ -5,7 +5,14 @@ definePageMeta({
   name: 'WatchList'
 });
 
-const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing, {});
+const { data: ongoingGames, isLoading: isLoadingOngoing } = useConvexAuthedQuery(
+  api.games.getAllOngoing,
+  {}
+);
+const { data: latestReplays, isLoading: isLoadingLatest } = useConvexAuthedQuery(
+  api.games.latestGamesWithReplays,
+  {}
+);
 </script>
 
 <template>
@@ -26,16 +33,19 @@ const { data: games, isLoading } = useConvexAuthedQuery(api.games.getAllOngoing,
         </TabsList>
 
         <TabsContent class="tab" value="ongoing">
-          <OngoingGamesList :games="games" />
-          <template #fallback>
-            <div />
-          </template>
+          <div v-if="isLoadingOngoing">Loading...</div>
+          <OngoingGamesList :games="ongoingGames" />
         </TabsContent>
 
         <TabsContent class="tab" value="latest">
-          <div>TODO replays</div>
+          <div v-if="isLoadingLatest">Loading...</div>
+          <LatestReplays :games="latestReplays" />
         </TabsContent>
       </TabsRoot>
+
+      <template #fallback>
+        <div />
+      </template>
     </ClientOnly>
   </div>
 </template>

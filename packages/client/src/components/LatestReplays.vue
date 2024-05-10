@@ -19,9 +19,8 @@ assets.load();
       :key="game._id"
       :game="game"
       :link="{
-        name: 'WatchGame',
-        params: { id: game._id },
-        query: { roomId: game.roomId }
+        name: 'Replay',
+        params: { id: game._id }
       }"
     />
   </div>

@@ -69,6 +69,16 @@ export const getGameInitialState = async (
   };
 };
 
+export const getGameById = async ({ db }: { db: QueryCtx['db'] }, id: Id<'games'>) => {
+  const game = await db.get(id);
+  if (!game) return null;
+
+  return {
+    ...game,
+    players: await getGamePlayers({ db }, game)
+  };
+};
+
 export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game) => {
   const gamePlayers = await db
     .query('gamePlayers')

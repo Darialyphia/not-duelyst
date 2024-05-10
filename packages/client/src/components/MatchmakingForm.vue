@@ -8,7 +8,7 @@ const { matchmakingUser } = defineProps<{
   matchmakingUser: Nullable<MatchmakingUserDto>;
 }>();
 
-const dayjs = useDayjs();
+const { $dayjs } = useNuxtApp();
 
 const { count, inc, reset } = useCounter(0);
 
@@ -52,7 +52,7 @@ const { mutate: leave } = useConvexAuthedMutation(api.matchmaking.leave, {
 
 const duration = computed(() => {
   // @ts-expect-error
-  return dayjs.duration(count.value * 1000).format('mm:ss');
+  return $dayjs.duration(count.value * 1000).format('mm:ss');
 });
 
 const { data: loadouts, isLoading: isLoadingLoadouts } = useConvexAuthedQuery(
