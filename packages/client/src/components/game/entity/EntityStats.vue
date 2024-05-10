@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EntityId } from '@game/sdk';
 import { TextStyle } from 'pixi.js';
+import { match } from 'ts-pattern';
 import { PTransition, EasePresets } from 'vue3-pixi';
 
 const { ui, assets } = useGame();
@@ -18,6 +19,14 @@ const hpTextures = computed(() => {
   return createSpritesheetFrameObject('idle', sheet);
 });
 
+const settings = useUserSettings();
+const isDisplayed = computed(() => {
+  return match(settings.value.ui.displayUnitsStats)
+    .with(DISPLAY_UNITS_STATS.ALWAYS, () => true)
+    .with(DISPLAY_UNITS_STATS.NEVER, () => false)
+    .with(DISPLAY_UNITS_STATS.HOVER_ONLY, () => ui.hoveredEntity.value?.id === entityId)
+    .exhaustive();
+});
 const attackStyle = new TextStyle({
   fontSize: 30,
   align: 'center',
@@ -116,6 +125,7 @@ const { autoDestroyRef } = useAutoDestroy();
 
 <template>
   <container
+    v-if="isDisplayed"
     :ref="(container: any) => ui.assignLayer(container, 'ui')"
     :y="CELL_HEIGHT * 0.7"
     :x="0"

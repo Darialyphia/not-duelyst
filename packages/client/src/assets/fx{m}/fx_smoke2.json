@@ -1,198 +1,91 @@
-{
-  "frames": [
-    {
-      "filename": "fx_smokeground_000",
-      "frame": {
-        "x": 0,
-        "y": 78,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_001",
-      "frame": {
-        "x": 81,
-        "y": 52,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_002",
-      "frame": {
-        "x": 81,
-        "y": 26,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_003",
-      "frame": {
-        "x": 81,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_004",
-      "frame": {
-        "x": 81,
-        "y": 78,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_005",
-      "frame": {
-        "x": 0,
-        "y": 52,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_006",
-      "frame": {
-        "x": 0,
-        "y": 26,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_smokeground_007",
-      "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 25
-      },
-      "sourceSize": {
-        "w": 80,
-        "h": 25
-      },
-      "duration": 80
-    }
+{ "frames": [
+   {
+    "filename": "fx_smoke2.smokeground.0",
+    "frame": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.1",
+    "frame": { "x": 80, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.2",
+    "frame": { "x": 160, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.3",
+    "frame": { "x": 240, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.4",
+    "frame": { "x": 320, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.5",
+    "frame": { "x": 400, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.6",
+    "frame": { "x": 480, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   },
+   {
+    "filename": "fx_smoke2.smokeground.7",
+    "frame": { "x": 560, "y": 0, "w": 80, "h": 25 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 25 },
+    "sourceSize": { "w": 80, "h": 25 },
+    "duration": 80
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.6-x64",
+  "image": "fx_smoke2.png",
+  "format": "RGBA8888",
+  "size": { "w": 640, "h": 25 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "smokeground", "from": 0, "to": 7, "direction": "forward", "color": "#000000ff" }
   ],
-  "meta": {
-    "app": "https://www.aseprite.org/",
-    "image": "fx_smoke2.png",
-    "scale": "1",
-    "size": {
-      "w": 256,
-      "h": 128
-    },
-    "frameTags": [
-      {
-        "name": "smokeground",
-        "from": 0,
-        "to": 7,
-        "direction": "forwards",
-        "color": "#000000ff"
-      }
-    ]
-  }
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
 }

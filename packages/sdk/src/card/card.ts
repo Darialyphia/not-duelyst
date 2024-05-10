@@ -172,12 +172,12 @@ export class Card extends EventEmitter implements Serializable {
       playerId: this.playerId,
       position: ctx.position
     });
-    // this.session.fxSystem.playSfxOnEntity(entity.id, {
-    //   resourceName: 'fx_smoke2',
-    //   animationName: 'smokeground',
-    //   offset: { x: 0, y: 20 },
-    //   delay: 200
-    // });
+    this.session.fxSystem.playSfxOnEntity(entity.id, {
+      resourceName: 'fx_smoke2',
+      animationName: 'smokeground',
+      offset: { x: 0, y: 20 },
+      delay: 200
+    });
     await this.blueprint.onPlay?.({ session: this.session, card: this, entity });
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 

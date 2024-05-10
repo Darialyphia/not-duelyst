@@ -1,7 +1,7 @@
 import type { Values } from '@game/shared';
 
 export const DISPLAY_UNITS_STATS = {
-  HOVER_ON_TOP: 'hover-on-top',
+  NEVER: 'never',
   HOVER_ONLY: 'hover-only',
   ALWAYS: 'always'
 } as const;
@@ -21,7 +21,7 @@ export const getDefaultSettings = () => ({
     sfxVolume: [50]
   },
   ui: {
-    displayUnitsStats: DISPLAY_UNITS_STATS.HOVER_ONLY as DisplayUnitStatsValue,
+    displayUnitsStats: DISPLAY_UNITS_STATS.ALWAYS as DisplayUnitStatsValue,
     displayUnitsNames: DISPLAY_UNITS_NAMES.NEVER as DisplayUnitNamesValue
   },
   fx: {

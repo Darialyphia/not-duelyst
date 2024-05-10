@@ -77,19 +77,19 @@ until(settings)
             class="mb-3"
             :options="[
               {
-                id: 'units-stats-hover-only',
-                label: 'hidden, show on hover',
-                value: DISPLAY_UNITS_STATS.HOVER_ONLY
-              },
-              {
                 id: 'units-stats-hover-on-top',
-                label: 'visible, on front on hover',
-                value: DISPLAY_UNITS_STATS.HOVER_ON_TOP
+                label: 'always hidden',
+                value: DISPLAY_UNITS_STATS.NEVER
               },
               {
                 id: 'units-stats-always',
-                label: 'visible, always on top',
+                label: 'always visible',
                 value: DISPLAY_UNITS_STATS.ALWAYS
+              },
+              {
+                id: 'units-stats-hover-only',
+                label: 'hidden, visible on hover',
+                value: DISPLAY_UNITS_STATS.HOVER_ONLY
               }
             ]"
           />

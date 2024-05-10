@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import bg from '@/assets/tiles{m}/background.png';
 import sky1 from '@/assets/backgrounds/sky-1.png';
 import sky2 from '@/assets/backgrounds/sky-2.png';
 import sky4 from '@/assets/backgrounds/sky-4.png';
