@@ -2,6 +2,7 @@
 const { dispatch, ui, gameType } = useGame();
 
 const userPlayer = useUserPlayer();
+const isActive = useIsActivePlayer();
 </script>
 
 <template>
@@ -27,6 +28,7 @@ const userPlayer = useUserPlayer();
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG', 'min-width': '10ch' }"
+      :diabled="!isActive"
       @click="
         () => {
           dispatch('endTurn');

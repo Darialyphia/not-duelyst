@@ -1,18 +1,28 @@
 <script setup lang="ts">
-const { ui } = useGame();
+import EndGameModal from './EndGameModal.vue';
+
+const { ui, session } = useGame();
 
 const entity = computed(() => {
   return ui.highlightedEntity.value ?? ui.hoveredEntity.value;
 });
+
+const winner = ref<string | null>(null);
+
+session.on('game:ended', winnerId => {
+  console.log('game ended');
+  winner.value = winnerId;
+});
 </script>
 
 <template>
-  <TeamInfos />
-  <SkillBar />
-  <ActionBar />
+  <TeamInfos v-if="!winner" />
+  <SkillBar v-if="!winner" />
+  <ActionBar v-if="!winner" />
   <TargetingUi />
   <GameMenu />
   <NewTurnIndicator />
+  <EndGameModal />
 
   <Transition>
     <div

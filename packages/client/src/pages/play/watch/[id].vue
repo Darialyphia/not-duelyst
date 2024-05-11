@@ -8,7 +8,7 @@ definePageMeta({
 
 const route = useRoute();
 
-const { data: game, isLoading } = useConvexQuery(api.games.getById, {
+const { data: game } = useConvexQuery(api.games.getById, {
   gameId: route.params.id as Id<'games'>
 });
 </script>

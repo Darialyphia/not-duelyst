@@ -40,6 +40,7 @@ export class TutorialSession extends GameSession {
     super(initialState, options);
 
     this.on('game:action', () => {
+      if (this.isFinished) return;
       this.goToNextStep();
     });
 

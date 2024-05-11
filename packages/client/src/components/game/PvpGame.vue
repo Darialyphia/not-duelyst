@@ -9,6 +9,7 @@ const { data: game, isLoading: isGameLoading } = useConvexAuthedQuery(
   api.games.getCurrent,
   {}
 );
+
 const { data: me, isLoading: isMeLoading } = useConvexAuthedQuery(api.users.me, {});
 
 const socket = ref<Socket>();
@@ -94,11 +95,6 @@ const canSeeGame = computed(() => {
 
     <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'" class="full-page">
       Waiting for opponent to connect...
-    </div>
-
-    <div v-else-if="game?.status === 'FINISHED'" class="full-page">
-      This game is already finished. (TODO: Add end game screen)
-      <NuxtLink :to="{ name: 'ClientHome' }">Back to home</NuxtLink>
     </div>
 
     <template v-else-if="gameSession && me">
