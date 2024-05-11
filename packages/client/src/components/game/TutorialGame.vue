@@ -214,6 +214,54 @@ until(state)
         onLeave() {
           currentTextIndex.value = 0;
         }
+      },
+      {
+        meta: {},
+        action: {
+          type: 'endTurn',
+          payload: { playerId: 'ai' }
+        },
+        tooltips: [
+          {
+            text: "Hope that didn't hurt too much ! Your turn now !",
+            onLeave() {
+              dispatch('endTurn', { playerId: 'ai' });
+            }
+          }
+        ],
+        onEnter(session) {
+          currentStep.value = session.currentStep;
+        },
+        onLeave() {
+          currentTextIndex.value = 0;
+        }
+      },
+      {
+        meta: {},
+        action: {
+          type: 'attack',
+          payload: {
+            targetId: 2,
+            entityId: 3,
+            playerId: me.value._id
+          }
+        },
+        tooltips: [
+          {
+            text: 'Select your elemental and click the enemy general to perform an attack.'
+          }
+        ],
+        onEnter(session) {
+          this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
+            session.boardSystem.getCellAt('3:4:0')!,
+            'cell_highlight'
+          );
+          currentStep.value = session.currentStep;
+        },
+        onLeave() {
+          this.meta.cleanup();
+          currentTextIndex.value = 0;
+        }
       }
     ]);
   });
