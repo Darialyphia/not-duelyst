@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
+import { api } from '@game/api';
 
 definePageMeta({
   name: 'Tutorial'
+});
+
+const mutation = useConvexAuthedMutation(api.users.completeOnboarding);
+onBeforeUnmount(() => {
+  mutation.mutate({});
 });
 </script>
 

@@ -10,7 +10,7 @@ const { data: me, isLoading } = useConvexQuery(
 
 const isOpened = computed(() => {
   if (isLoading.value) return false;
-  return !!sessionId.value && !me.value?.hasOnboarded;
+  return !!sessionId.value && me.value.name === 'Anonymous' && me.value?.hasOnboarded;
 });
 
 const { mutate: signup, isLoading: isSubmitting } = useConvexMutation(

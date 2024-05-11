@@ -36,6 +36,14 @@ export const me = queryWithAuth({
   }
 });
 
+export const completeOnboarding = mutationWithAuth({
+  args: {},
+  handler: async ctx => {
+    const user = ensureAuthenticated(ctx.session);
+    ctx.db.patch(user._id, { hasOnboarded: true });
+  }
+});
+
 export const all = internalQuery(({ db }) => db.query('users').collect());
 
 export const settings = queryWithAuth({

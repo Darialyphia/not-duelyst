@@ -20,7 +20,7 @@ const state = computed(() =>
         players: [
           {
             id: me.value._id,
-            name: me.value.name,
+            name: me.value.name ?? 'You',
             currentGold: 3,
             cards: [
               {
@@ -308,6 +308,7 @@ until(state)
     @end-turn="dispatch('endTurn', $event)"
     @use-skill="dispatch('useSkill', $event)"
     @play-card="dispatch('playCard', $event)"
+    @surrender="$router.push({ name: 'ClientHome' })"
   />
 
   <div class="fancy-surface fixed bottom-5 left-8">

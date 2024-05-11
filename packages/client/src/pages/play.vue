@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import OnboardingModal from '~/components/OnboardingModal.vue';
+
 definePageMeta({
   middleware: ['auth'],
   layout: 'fullscreen',
@@ -11,6 +13,7 @@ definePageMeta({
   <div class="root">
     <CurrentGameModal />
     <UsernameModal />
+    <OnboardingModal />
     <NuxtPage />
   </div>
 </template>

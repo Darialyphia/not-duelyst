@@ -25,7 +25,8 @@ export function getAuth(db: DatabaseWriter) {
         email: user.email,
         name: user.name,
         mmr: user.mmr,
-        discriminator: user.discriminator
+        discriminator: user.discriminator,
+        hasOnboarded: user.hasOnboarded
       };
     }
   });

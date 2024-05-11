@@ -22,7 +22,6 @@ export const createUserAbility = async (
   session: Nullable<Session>
 ): Promise<UserAbility> => {
   if (!session) return unAuthenticatedAbility;
-
   if (!session.user.name) return onboardingAbility;
 
   return createAbility<UserAbility>(({ can }) => {

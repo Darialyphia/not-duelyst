@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const isOpened = defineModel<boolean>('isOpened', { required: true });
-const { title, description } = defineProps<{ title: string; description?: string }>();
+const {
+  title,
+  description,
+  closable = true
+} = defineProps<{ title: string; description?: string; closable?: boolean }>();
 </script>
 
 <template>
@@ -11,7 +15,24 @@ const { title, description } = defineProps<{ title: string; description?: string
       </Transition>
 
       <Transition appear>
-        <DialogContent class="modal-content">
+        <DialogContent
+          class="modal-content"
+          @escape-key-down="
+            e => {
+              if (!closable) e.preventDefault();
+            }
+          "
+          @focus-outside="
+            e => {
+              if (!closable) e.preventDefault();
+            }
+          "
+          @interact-outside="
+            e => {
+              if (!closable) e.preventDefault();
+            }
+          "
+        >
           <div class="fancy-surface">
             <DialogTitle class="pb-5">{{ title }}</DialogTitle>
             <DialogDescription v-if="description" class="">

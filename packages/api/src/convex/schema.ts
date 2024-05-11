@@ -9,7 +9,8 @@ export default defineSchema({
     email: v.string(),
     name: v.optional(v.string()),
     discriminator: v.optional(v.string()),
-    mmr: v.number()
+    mmr: v.number(),
+    hasOnboarded: v.boolean()
   })
     .index('byId', ['id'])
     .index('by_fullname', ['name', 'discriminator'])
