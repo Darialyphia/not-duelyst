@@ -2,21 +2,21 @@ import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-utils';
 import { config } from '../../../config';
 
-export const tutorialGeneral: CardBlueprint = {
-  id: 'tutorial_general',
-  name: 'Instructor Avan',
+export const tutorialCat: CardBlueprint = {
+  id: 'tutorial_cat',
+  name: "Avan's cat",
   description: '',
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],
-  spriteId: 'tutorial_general',
-  kind: CARD_KINDS.GENERAL,
+  spriteId: 'tutorial_cat',
+  kind: CARD_KINDS.MINION,
   cooldown: 0,
   initialCooldown: 0,
-  cost: 0,
-  attack: config.GENERAL_DEFAULT_ATTACK,
-  maxHp: 14,
-  speed: config.GENERAL_DEFAULT_SPEED,
+  cost: 2,
+  attack: 2,
+  maxHp: 3,
+  speed: 3,
   range: 1,
   skills: []
 };

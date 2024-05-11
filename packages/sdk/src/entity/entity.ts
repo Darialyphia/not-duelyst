@@ -130,6 +130,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     maxHp: new Interceptable<number, Entity>(),
     speed: new Interceptable<number, Entity>(),
     range: new Interceptable<number, Entity>(),
+    maxRetalitions: new Interceptable<number, Entity>(),
     canMove: new Interceptable<boolean, Entity>(),
     canAttack: new Interceptable<boolean, { entity: Entity; target: Entity }>(),
     canRetaliate: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
@@ -209,6 +210,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.range.getValue(this.card.range, this);
   }
 
+  get maxRetaliations(): number {
+    return this.interceptors.maxRetalitions.getValue(1, this);
+  }
+
   canMove(distance: number) {
     return this.interceptors.canMove.getValue(
       distance <= this.speed && this.movementsTaken < 1,
@@ -217,10 +222,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canRetaliate(source: Entity) {
-    return this.interceptors.canRetaliate.getValue(this.canAttackAt(source.position), {
-      entity: this,
-      source
-    });
+    return this.interceptors.canRetaliate.getValue(
+      this.canAttackAt(source.position) && this.retaliationsDone < this.maxRetaliations,
+      {
+        entity: this,
+        source
+      }
+    );
   }
 
   canBeAttacked(source: Entity) {
@@ -410,6 +418,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   retaliate(power: number, target: Entity) {
+    if (!this.canRetaliate(target)) return;
     this.retaliationsDone++;
     this.isExhausted = true;
     return this.dealDamage(power, target);
@@ -419,9 +428,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
     await this.dealDamage(this.attack, target);
 
-    if (target.canRetaliate(this)) {
-      await target.retaliate(target.attack, this);
-    }
+    await target.retaliate(target.attack, this);
 
     this.attacksTaken++;
     this.checkExhaustion();

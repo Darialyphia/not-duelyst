@@ -96,6 +96,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
     }
   ) {
     super();
+    console.log('????');
     this.isAuthoritative = options.isAuthoritative;
 
     this.seed = options.seed;

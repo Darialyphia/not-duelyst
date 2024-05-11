@@ -63,6 +63,7 @@ export type CardBlueprint = {
     session: GameSession;
     card: Card;
     entity: Entity;
+    followup: Point3D[];
   }) => MaybePromise<void>;
   followup?: {
     minTargetCount: number;

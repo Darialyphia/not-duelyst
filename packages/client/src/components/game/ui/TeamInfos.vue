@@ -186,12 +186,12 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 <style scoped lang="postcss">
 .player {
   isolation: isolate;
-  position: relative;
+  position: absolute;
+  top: var(--size-2);
 
   display: flex;
   gap: var(--size-3);
-
-  padding: var(--size-3);
+  align-items: flex-end;
 
   text-shadow: black 1px 0 5px;
 
@@ -253,8 +253,6 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 }
 
 .player-1 {
-  position: absolute;
-  top: var(--size-3);
   left: var(--size-5);
 
   @screen lt-sm {
@@ -263,12 +261,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   }
 }
 .player-2 {
-  position: absolute;
-  top: var(--size-3);
   right: var(--size-5);
-
   flex-direction: row-reverse;
-
   text-align: right;
 
   @screen lt-sm {
@@ -293,7 +287,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 .indicators {
   display: grid;
   gap: var(--size-2);
-  font-size: var(--font-size-2);
+  font-size: var(--font-size-4);
 
   @screen lt-lg {
     gap: var(--size-1);
@@ -347,7 +341,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   place-content: center;
 
   aspect-ratio: 1;
-  width: 48px;
+  width: 64px;
 
   background-size: cover;
 }

@@ -26,6 +26,7 @@ export class TutorialSession extends GameSession {
   }
 
   currentStepIndex = 0;
+  isFinished = false;
 
   protected constructor(
     initialState: SerializedGameState,
@@ -54,12 +55,15 @@ export class TutorialSession extends GameSession {
   private async goToNextStep() {
     await this.currentStep.onLeave?.(this);
     this.currentStepIndex++;
-    await this.currentStep.onEnter?.(this);
+    if (!this.currentStep) {
+      this.isFinished = true;
+    } else {
+      await this.currentStep.onEnter?.(this);
+    }
   }
 
   dispatch(action: SerializedAction) {
-    console.log(action, this.currentStep.action);
-    if (!deepEqual(action, this.currentStep.action)) return;
+    if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
 
     this.actionSystem.dispatch(action);
   }

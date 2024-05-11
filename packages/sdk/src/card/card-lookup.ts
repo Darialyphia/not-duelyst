@@ -10,9 +10,13 @@ import { f1Ranged } from './cards/faction_1/ranged';
 import { neutralTank } from './cards/neutral/tank';
 import { f1Mage } from './cards/faction_1/mage';
 import { tutorialGeneral } from './cards/neutral/tutorial_general';
+import { tutorialCat } from './cards/neutral/tutorial_cat';
+import { f1TutorialGeneral } from './cards/faction_1/tutorial_general';
+import { f2TutorialBigDude } from './cards/faction_2/tutorial_big_dude';
 
 const allCards: CardBlueprint[] = [
   f1General,
+  f1TutorialGeneral,
   f1Elemental,
   f1Djinn,
   f1Dancer,
@@ -20,9 +24,12 @@ const allCards: CardBlueprint[] = [
   f1Ranged,
   f1Mage,
 
+  f2TutorialBigDude,
+
   neutralTank,
 
-  tutorialGeneral
+  tutorialGeneral,
+  tutorialCat
 ];
 
 export const CARDS: Record<CardBlueprintId, CardBlueprint> = keyBy(allCards, 'id');

@@ -178,7 +178,12 @@ export class Card extends EventEmitter implements Serializable {
       offset: { x: 0, y: 20 },
       delay: 200
     });
-    await this.blueprint.onPlay?.({ session: this.session, card: this, entity });
+    await this.blueprint.onPlay?.({
+      session: this.session,
+      card: this,
+      entity,
+      followup: ctx.targets
+    });
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 
     if (this.shouldExhaustOnPlay) {

@@ -1,7 +1,7 @@
 import type { Faction } from '@game/sdk';
 import { defineSchema, defineTable } from 'convex/server';
 import { v, Validator } from 'convex/values';
-import type { GameStatus } from './game/game.constants';
+import { GAME_STATUS, type GameStatus } from './game/game.constants';
 
 export default defineSchema({
   users: defineTable({
@@ -46,7 +46,12 @@ export default defineSchema({
     seed: v.string(),
     firstPlayer: v.id('users'),
     mapId: v.id('gameMaps'),
-    status: v.string() as Validator<GameStatus>,
+    status: v.union(
+      v.literal(GAME_STATUS.CANCELLED),
+      v.literal(GAME_STATUS.FINISHED),
+      v.literal(GAME_STATUS.ONGOING),
+      v.literal(GAME_STATUS.WAITING_FOR_PLAYERS)
+    ) as Validator<GameStatus>,
     roomId: v.string(),
     winnerId: v.optional(v.id('gamePlayers'))
   })

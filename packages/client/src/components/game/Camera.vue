@@ -13,16 +13,6 @@ const { fx, ui } = useGame();
 
 const { camera } = useGame();
 
-useEventListener('keydown', e => {
-  if (e.repeat) return;
-
-  if (e.code === 'KeyQ') {
-    camera.rotateCCW();
-  } else if (e.code === 'KeyE') {
-    camera.rotateCW();
-  }
-});
-
 const cells = useGameSelector(session => session.boardSystem.cells);
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,

@@ -1,5 +1,7 @@
 import { Vec3, isNumber, type Nullable, type Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
+import type { GameSession } from '../game-session';
+import type { Card } from '../card/card';
 
 export const isAxisAligned = (pointA: Point3D, pointB: Point3D) => {
   return pointA.x === pointB.x || pointA.y === pointB.y;
@@ -63,4 +65,24 @@ export const isBehind = (point: Point3D, otherPoint: Point3D, reference: Point3D
   }
 
   return false;
+};
+
+export const cone = (casterPosition: Point3D, origin: Point3D, range: number) => {
+  const points = [origin];
+
+  for (let i = 1; i <= range; i++) {
+    for (let j = -i; j <= i; j++) {
+      if (casterPosition.x > origin.x) {
+        points.push({ x: origin.x - i, y: origin.y + j, z: origin.z });
+      } else if (casterPosition.x < origin.x) {
+        points.push({ x: origin.x + i, y: origin.y + j, z: origin.z });
+      } else if (casterPosition.y > origin.y) {
+        points.push({ x: origin.x + j, y: origin.y - i, z: origin.z });
+      } else if (casterPosition.y > origin.y) {
+        points.push({ x: origin.x + j, y: origin.y + i, z: origin.z });
+      }
+    }
+  }
+
+  return points;
 };
