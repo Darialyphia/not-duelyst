@@ -38,6 +38,111 @@ const makeRow = (
     .filter(isDefined);
 };
 
+export const tutorialMap: SerializedGameState['map'] = {
+  width: 8,
+  height: 8,
+  player1StartPosition: { x: 0, y: 3, z: 0 },
+  player2StartPosition: { x: 7, y: 3, z: 0 },
+  cells: [
+    ...makeRow(
+      0,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      1,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      2,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      3,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      4,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      5,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      6,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    ),
+    ...makeRow(
+      7,
+      0,
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass'
+    )
+  ]
+};
+
 export const testMap: SerializedGameState['map'] = {
   width: 9,
   height: 13,

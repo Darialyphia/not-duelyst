@@ -7,6 +7,7 @@ export const neutralTank: CardBlueprint = {
   id: 'neutral_tank',
   name: 'Neutral tank',
   description: '',
+  collectable: true,
   rarity: RARITIES.COMMON,
   factions: [null, null, null],
   spriteId: 'neutral_tank',

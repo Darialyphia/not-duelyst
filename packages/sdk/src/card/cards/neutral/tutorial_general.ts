@@ -1,13 +1,12 @@
-import { Vec3 } from '@game/shared';
-import { isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-utils';
 import { config } from '../../../config';
 
-export const neutralTank: CardBlueprint = {
+export const tutorialGeneral: CardBlueprint = {
   id: 'tutorial_general',
   name: 'Instructor Avan',
   description: '',
+  collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],
   spriteId: 'tutorial_general',

@@ -87,7 +87,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
   fxSystem = noopFXContext;
 
-  private constructor(
+  protected constructor(
     private initialState: SerializedGameState,
     options: {
       isAuthoritative: boolean;

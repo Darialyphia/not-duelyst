@@ -8,7 +8,7 @@ const card = useGameSelector(
   session => session.playerSystem.getPlayerById(playerId)!.hand[index]
 );
 
-const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+const player = useUserPlayer();
 const hoveredIndex = ref<number | null>(null);
 </script>
 
@@ -28,7 +28,7 @@ const hoveredIndex = ref<number | null>(null);
         :style="{
           '--cooldown-angle': 360 - (360 * card.currentCooldown) / card.cooldown
         }"
-        :disabled="!card || !activePlayer.canPlayCardAtIndex(index)"
+        :disabled="!card || !player.canPlayCardAtIndex(index)"
         :data-cost="card && card.cost"
         :data-remaining-cooldown="
           card && card.currentCooldown > 0 ? card.currentCooldown : undefined

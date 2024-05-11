@@ -16,6 +16,15 @@ definePageMeta({
     </header>
 
     <div class="mode">
+      <NuxtLink :to="{ name: 'Tutorial' }">
+        <div class="fancy-surface">
+          <h2>Tutorial</h2>
+          <p>Learn how to play the game.</p>
+        </div>
+      </NuxtLink>
+    </div>
+
+    <div class="mode">
       <NuxtLink :to="{ name: 'Matchmaking' }">
         <div class="fancy-surface">
           <h2>Ranked</h2>
@@ -51,23 +60,21 @@ definePageMeta({
 
 <style scoped lang="postcss">
 .page {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto 1fr;
-  column-gap: var(--size-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
 
   height: 100vh;
 
   > header {
-    grid-column: 1 / -1;
+    width: 100%;
     padding-block: var(--size-6);
     text-shadow: black 0px 4px 1px;
   }
 }
 
 .mode {
-  align-self: center;
-  justify-self: center;
   width: 30ch;
   height: var(--size-14);
   > a {

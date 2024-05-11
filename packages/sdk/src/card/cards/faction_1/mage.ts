@@ -7,6 +7,7 @@ export const f1Mage: CardBlueprint = {
   id: 'f1_mage',
   name: 'F1 Mage',
   description: '',
+  collectable: true,
   rarity: RARITIES.RARE,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_mage',

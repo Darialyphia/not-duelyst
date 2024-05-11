@@ -17,6 +17,8 @@ import { playSfxOnEntity } from './fx/playSfxOnEntity';
 import { playSfxOnScreenCenter } from './fx/playSfxOnScreenCenter';
 import { changeAmbientLightUntil } from './fx/changeAmbientLightUntil';
 import { addLightOnEntityUntil } from './fx/addLightOnentityUntil';
+import type { CellId } from '@game/sdk/src/board/cell';
+import { pointToCellId } from '@game/sdk/src/utils/helpers';
 
 export type FxContext = {
   isPlaying: Ref<boolean>;
@@ -24,6 +26,7 @@ export type FxContext = {
   entityAnimationsMap: Ref<Map<EntityId, Animation>>;
   entityPositionsMap: Ref<Map<EntityId, Point3D>>;
   entityRootMap: Map<EntityId, Container>;
+  cellChildSpritesMap: Ref<Map<CellId, Array<string>>>;
   provideSession: (session: GameSession) => void;
   provideUi: (ui: GameUiContext) => void;
   provideAssets: (assets: AssetsContext) => void;
@@ -61,6 +64,7 @@ export const useFXProvider = () => {
   const isPlaying = ref(false);
   const spriteMap = new Map<EntityId, MaybeRefOrGetter<AnimatedSprite | undefined>>();
   const entityRootMap = new Map<EntityId, Container>();
+  const cellChildSpritesMap = ref(new Map<CellId, Array<string>>());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let sceneRoot: Container;
 
@@ -154,6 +158,20 @@ export const useFXProvider = () => {
   };
 
   const ctx: FXSystem = {
+    addSpriteOnCellUntil(cell, spriteId) {
+      const key = pointToCellId(cell);
+
+      if (!cellChildSpritesMap.value.has(key)) {
+        cellChildSpritesMap.value.set(key, []);
+      }
+
+      const children = cellChildSpritesMap.value.get(key)!;
+      children.push(spriteId);
+
+      return () => {
+        children.splice(children.indexOf(spriteId, 1));
+      };
+    },
     fadeOutEntity() {
       return Promise.resolve();
     },
@@ -220,6 +238,7 @@ export const useFXProvider = () => {
     entityAnimationsMap: provided.entityAnimationsMap,
     entityPositionsMap: provided.entityPositionsMap,
     entityRootMap,
+    cellChildSpritesMap,
     provideSession(session) {
       provided.session = session;
       session.on('entity:created', entity => {

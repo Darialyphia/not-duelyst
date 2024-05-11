@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@game/shared": "*",
+    "@types/deep-equal": "^1.0.4",
     "@types/lodash-es": "^4.17.12",
     "@types/seedrandom": "^3.0.8",
+    "deep-equal": "^2.2.3",
     "eventemitter3": "^5.0.1",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",

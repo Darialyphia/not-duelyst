@@ -7,6 +7,7 @@ export const f1Djinn: CardBlueprint = {
   id: 'f1_djinn',
   name: 'F1 Djinn',
   description: '',
+  collectable: true,
   rarity: RARITIES.RARE,
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_djinn',

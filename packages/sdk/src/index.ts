@@ -17,3 +17,4 @@ export { type Faction, FACTIONS } from './card/card-utils';
 export { CARDS } from './card/card-lookup';
 export type { CardBlueprint } from './card/card-blueprint';
 export type { GameAction } from './action/action';
+export { TutorialSession, type TutorialStep } from './tutorial-session';

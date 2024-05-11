@@ -1,5 +1,6 @@
 import type { Point, Point3D } from '@game/shared';
 import type { EntityId } from './entity/entity';
+import type { Cell } from './board/cell';
 
 export type Animation = 'idle' | 'breathing' | 'run' | 'attack' | 'hit' | 'death';
 
@@ -68,6 +69,8 @@ export type FXSystem = {
     entityId: EntityId,
     options: { color: number; strength: number; offset?: Point }
   ): () => void;
+
+  addSpriteOnCellUntil(cell: Point3D, spriteId: string): () => void;
 };
 
 export const noopFXContext: FXSystem = {
@@ -116,6 +119,10 @@ export const noopFXContext: FXSystem = {
   },
 
   addLightOnEntityUntil() {
+    return () => void 0;
+  },
+
+  addSpriteOnCellUntil() {
     return () => void 0;
   }
 };

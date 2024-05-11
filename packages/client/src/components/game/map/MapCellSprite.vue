@@ -175,6 +175,10 @@ const pathTextures = computed(() => {
     )
   };
 });
+
+const children = computed(() => {
+  return fx.cellChildSpritesMap.value.get(cellId);
+});
 </script>
 
 <template>
@@ -199,4 +203,6 @@ const pathTextures = computed(() => {
     :anchor="0.5"
     event-mode="none"
   />
+
+  <MapCellChild v-for="spriteId in children" :key="spriteId" :sprite-id="spriteId" />
 </template>

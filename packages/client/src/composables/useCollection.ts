@@ -41,8 +41,11 @@ export const useCollection = () => {
 
     return allCards.value
       .filter(({ card }) => {
-        return card.factions.some(faction =>
-          factionFilter.value.includes(faction?.id as string)
+        return (
+          card.collectable &&
+          card.factions.some(faction =>
+            factionFilter.value.includes(faction?.id as string)
+          )
         );
       })
       .sort(sortUnitFunction);

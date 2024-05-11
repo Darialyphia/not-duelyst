@@ -46,6 +46,7 @@ export type CardBlueprint = {
   id: CardBlueprintId;
   name: string;
   description: string;
+  collectable: boolean;
   factions: [Nullable<Faction>, Nullable<Faction>, Nullable<Faction>];
   spriteId: string;
   rarity: Rarity;
