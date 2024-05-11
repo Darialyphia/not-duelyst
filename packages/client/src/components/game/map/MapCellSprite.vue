@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
 import type { Nullable } from '@game/shared';
-import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
@@ -54,18 +53,6 @@ const filters = computed(() => {
   return result;
 });
 
-const movePath = computed(() => {
-  if (!ui.hoveredCell.value) return null;
-  if (ui.targetingMode.value !== TARGETING_MODES.BASIC) return null;
-  if (!ui.selectedEntity.value) return null;
-
-  return pathfinding.getPath(
-    ui.selectedEntity.value,
-    ui.hoveredCell.value,
-    ui.selectedEntity.value.speed
-  );
-});
-
 const pathSheets = reactive<{
   diffuse: Nullable<SpritesheetWithAnimations>;
   normal: Nullable<SpritesheetWithAnimations>;
@@ -87,17 +74,20 @@ const positionInPath = computed(() => {
   const canMoveTo = pathfinding.canMoveTo(ui.selectedEntity.value, cell.value);
   if (!canMoveTo) return -1;
 
-  return movePath.value?.findIndex(vec => vec.equals(cell.value.position)) ?? -1;
+  return (
+    pathfinding.movePath.value?.findIndex(vec => vec.equals(cell.value.position)) ?? -1
+  );
 });
 
 const pathFrameTag = computed(() => {
-  if (!movePath.value) return;
+  if (!pathfinding.movePath.value) return;
   if (positionInPath.value === -1) return;
 
-  const step = movePath.value[positionInPath.value];
-  const nextStep = movePath.value[positionInPath.value + 1];
+  const step = pathfinding.movePath.value[positionInPath.value];
+  const nextStep = pathfinding.movePath.value[positionInPath.value + 1];
   const prevStep =
-    movePath.value[positionInPath.value - 1] ?? ui.selectedEntity.value!.position;
+    pathfinding.movePath.value[positionInPath.value - 1] ??
+    ui.selectedEntity.value!.position;
 
   let tag = 0;
 
@@ -145,15 +135,16 @@ const pathFrameTag = computed(() => {
 });
 
 watchEffect(() => {
-  if (!movePath.value) return;
+  if (!pathfinding.movePath.value) return;
   if (positionInPath.value === -1) return;
-  if (positionInPath.value === movePath.value.length - 1) {
+  if (positionInPath.value === pathfinding.movePath.value.length - 1) {
     textureName.value = 'path-end';
     return;
   }
-  const nextStep = movePath.value[positionInPath.value + 1];
+  const nextStep = pathfinding.movePath.value[positionInPath.value + 1];
   const prevStep =
-    movePath.value[positionInPath.value - 1] ?? ui.selectedEntity.value!.position;
+    pathfinding.movePath.value[positionInPath.value - 1] ??
+    ui.selectedEntity.value!.position;
   const isStraight = nextStep.x === prevStep.x || nextStep.y === prevStep.y;
   textureName.value = isStraight ? 'path-straight' : 'path-turn';
 });

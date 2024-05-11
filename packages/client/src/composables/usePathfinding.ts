@@ -1,18 +1,20 @@
 import type { Entity, EntityId, GameSession } from '@game/sdk';
 import type { DistanceMap } from '@game/sdk/src/board/pathfinding';
 import { type Nullable, type Point3D, type Vec3 } from '@game/shared';
+import type { GameUiContext } from './useGameUi';
 
 export type PathfindingContext = {
   canMoveTo(entity: Entity, position: Point3D): boolean;
   getPath(entity: Entity, to: Point3D, maxDistance: number): Nullable<Vec3[]>;
   canAttackAt(entity: Entity, position: Point3D): boolean;
+  movePath: ComputedRef<Nullable<Vec3[]>>;
 };
 
 const PATHFINDING_INJECTION_KEY = Symbol(
   'pathfinding'
 ) as InjectionKey<PathfindingContext>;
 
-export const usePathfindingProvider = (session: GameSession) => {
+export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) => {
   const cache = new Map<EntityId, DistanceMap>();
 
   session.on('*', () => {
@@ -20,6 +22,17 @@ export const usePathfindingProvider = (session: GameSession) => {
   });
 
   const api: PathfindingContext = {
+    movePath: computed(() => {
+      if (!ui.hoveredCell.value) return null;
+      if (ui.targetingMode.value !== TARGETING_MODES.BASIC) return null;
+      if (!ui.selectedEntity.value) return null;
+
+      return api.getPath(
+        ui.selectedEntity.value,
+        ui.hoveredCell.value,
+        ui.selectedEntity.value.speed
+      );
+    }),
     getPath(entity, to, maxDistance) {
       return session.boardSystem.getPathTo(entity, to, maxDistance)?.path;
     },

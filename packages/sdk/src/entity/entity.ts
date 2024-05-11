@@ -410,6 +410,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   retaliate(power: number, target: Entity) {
     this.retaliationsDone++;
+    this.isExhausted = true;
     return this.dealDamage(power, target);
   }
 
