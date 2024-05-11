@@ -50,11 +50,16 @@ const { title, description } = defineProps<{ title: string; description?: string
 .modal-content {
   position: fixed;
   z-index: 2;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   display: grid;
   place-content: center;
 
+  > div {
+    pointer-events: all;
+  }
   &:is(.v-enter-active, .v-leave-active) {
     transition:
       transform 0.3s,
@@ -62,12 +67,12 @@ const { title, description } = defineProps<{ title: string; description?: string
   }
 
   &.v-enter-from {
-    transform: scale(2);
+    transform: translate(-50%, -50%) scale(2);
     opacity: 0;
   }
 
   &.v-leave-to {
-    transform: translateY(-3rem);
+    transform: translate(-50%, calc(-50% - 3rem));
     opacity: 0;
   }
 }

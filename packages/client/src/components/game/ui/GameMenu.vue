@@ -25,7 +25,7 @@ const isSettingsOpened = ref(false);
   <UiModal v-model:is-opened="isMenuOpened" title="Menu">
     <div class="grid gap-4 menu">
       <UiButton is-cta @click="isSettingsOpened = true">Settings</UiButton>
-      <UiButton v-if="gameType === GAME_TYPES.PVP" @click="dispatch('surrender')">
+      <UiButton is-cta v-if="gameType === GAME_TYPES.PVP" @click="dispatch('surrender')">
         Surrender
       </UiButton>
       <NuxtLink v-else v-slot="{ navigate, href }" :to="{ name: 'ClientHome' }" custom>

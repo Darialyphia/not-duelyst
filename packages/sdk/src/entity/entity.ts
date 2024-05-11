@@ -294,6 +294,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   startTurn() {
+    this.isExhausted = false;
     this.skills.forEach(skill => skill.onTurnStart());
   }
 

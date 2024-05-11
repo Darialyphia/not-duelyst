@@ -262,6 +262,34 @@ until(state)
           this.meta.cleanup();
           currentTextIndex.value = 0;
         }
+      },
+      {
+        meta: {},
+        action: {
+          type: 'attack',
+          payload: {
+            targetId: 2,
+            entityId: 1,
+            playerId: me.value._id
+          }
+        },
+        tooltips: [
+          {
+            text: 'In this game, units only counterattack once per turn, unless specified otherwise.'
+          },
+          { text: "Try to attack with your general, it won't take damage !" }
+        ],
+        onEnter(session) {
+          this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
+            session.boardSystem.getCellAt('3:3:0')!,
+            'cell_highlight'
+          );
+          currentStep.value = session.currentStep;
+        },
+        onLeave() {
+          this.meta.cleanup();
+          currentTextIndex.value = 0;
+        }
       }
     ]);
   });
