@@ -43,6 +43,7 @@ const keywords = computed(() =>
       </div>
 
       <div>
+        <p><TextWithKeywords :text="blueprint.description" /></p>
         <h3>Abilities</h3>
 
         <ul>
@@ -54,7 +55,10 @@ const keywords = computed(() =>
             }"
           >
             <h4>{{ skill.name }}</h4>
-            <p>{{ skill.description }}</p>
+            <p>
+              <TextWithKeywords :text="skill.description" />
+              {{ skill.description }}
+            </p>
             <p class="text-right">
               <Icon name="icon-park-outline:hourglass-full" />
               Cooldown: {{ skill.cooldown }}

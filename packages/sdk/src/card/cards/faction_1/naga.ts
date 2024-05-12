@@ -6,6 +6,8 @@ import {
   getAffectedEntities,
   isAxisAligned,
   isCastPoint,
+  isNearbyEnemy,
+  isSelf,
   isWithinCells
 } from '../../../utils/targeting';
 import { vigilant, vulnerable } from '../../../modifier/modifier-utils';
@@ -14,7 +16,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 export const f1Naga: CardBlueprint = {
   id: 'f1_naga',
   name: 'F1 Naga',
-  description: 'Vigilant.',
+  description: '@Vigilant@.',
   collectable: true,
   rarity: RARITIES.EPIC,
   factions: [FACTIONS.F1, FACTIONS.F1, null],
@@ -35,8 +37,7 @@ export const f1Naga: CardBlueprint = {
     {
       id: 'f1_naga_skill_1',
       cooldown: 3,
-      description:
-        'Deals 2 damage and inflicts Vulnerable until the end of your next turn.',
+      description: 'Deals 1 damage and inflicts @Vulnerable@ to all nearby enemies.',
       name: 'Naga skill 1',
       iconId: 'blade2-green',
       initialCooldown: 0,
@@ -44,22 +45,14 @@ export const f1Naga: CardBlueprint = {
       maxTargetCount: 1,
       keywords: [KEYWORDS.VULNERABLE],
       isTargetable(point, { session, skill }) {
-        return (
-          isEnemy(
-            session,
-            session.entitySystem.getEntityAt(point)?.id,
-            skill.caster.player.id
-          ) &&
-          isAxisAligned(skill.caster.position, point) &&
-          isWithinCells(skill.caster.position, point, { x: 1, y: 1, z: 0 })
-        );
+        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
-      isInAreaOfEffect(point, { castPoints }) {
-        return isCastPoint(point, castPoints);
+      isInAreaOfEffect(point, { skill, session }) {
+        return isNearbyEnemy(session, skill.caster, point);
       },
       onUse({ skill, affectedCells }) {
         getAffectedEntities(affectedCells).forEach(entity => {
-          entity.takeDamage(2, skill.caster);
+          entity.takeDamage(1, skill.caster);
           entity.addModifier(vulnerable({ source: skill.caster, duration: 2 }));
         });
       }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { TutorialSession, type SerializedGameState } from '@game/sdk';
+import { config, TutorialSession, type SerializedGameState } from '@game/sdk';
 import { tutorialMap } from '~/utils/fixtures';
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -338,7 +338,7 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       {
         text: 'All units in the game have abilities that they can use instead of attacking.'
       },
-      { text: "Useyour general ability to boost your elemental's attack." }
+      { text: "Use your general ability to boost your elemental's attack." }
     ]
   },
   {
@@ -379,10 +379,17 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
     },
     tooltips: [
       {
+        text: `At the start of your turn, you get ${config.GOLD_PER_TURN} gold to summon new units.`
+      },
+      { text: `The maximum amount of gold you can hold is ${config.MAX_GOLD}` },
+      {
+        text: "Unlike Duelyst, your remaining gold doesn't go away at the end of your turn. However, the amount of gold you gain doesn't icnrease over time"
+      },
+      {
         text: 'Defeated units leave a gold coin on the ground.'
       },
       {
-        text: 'Grabbing the gld coin will give you enough gold to summon your other unit.'
+        text: 'Grabbing the gold coin will give you enough gold to summon your other unit.'
       },
       {
         text: 'Move on the gold coin with your elemental. As you can see, a unit can move after attacking.'

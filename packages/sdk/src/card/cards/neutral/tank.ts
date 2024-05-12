@@ -2,7 +2,12 @@ import { Vec3 } from '@game/shared';
 import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
-import { getAffectedEntities, isSelf, isWithinCells } from '../../../utils/targeting';
+import {
+  getAffectedEntities,
+  isNearbyEnemy,
+  isSelf,
+  isWithinCells
+} from '../../../utils/targeting';
 import { taunted } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 
@@ -26,7 +31,7 @@ export const neutralTank: CardBlueprint = {
     {
       id: 'neutral_tank_skill_1',
       cooldown: 2,
-      description: 'Taunt nearby enemies for 1 turn.',
+      description: '@Taunt@ nearby enemies for 1 turn.',
       name: 'Test skill',
       iconId: 'bulwark',
       initialCooldown: 0,
@@ -37,14 +42,7 @@ export const neutralTank: CardBlueprint = {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
       isInAreaOfEffect(point, { session, skill }) {
-        return (
-          isWithinCells(skill.caster.position, point, 1) &&
-          isEnemy(
-            session,
-            session.entitySystem.getEntityAt(point)?.id,
-            skill.caster.player.id
-          )
-        );
+        return isNearbyEnemy(session, skill.caster, point);
       },
       onUse({ skill, affectedCells }) {
         getAffectedEntities(affectedCells).forEach(entity => {

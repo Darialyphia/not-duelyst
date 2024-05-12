@@ -27,7 +27,7 @@ export const f1Dancer: CardBlueprint = {
     {
       id: 'f1_dancer_skill_1',
       cooldown: 2,
-      description: 'Gain nimble and +1 speed for 3 turns',
+      description: 'Gain @Nimble@ and +1 speed for 3 turns',
       name: 'Battle dance',
       iconId: 'chakram-dance',
       initialCooldown: 0,

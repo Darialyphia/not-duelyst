@@ -118,11 +118,11 @@ const isModalOpened = ref(false);
           {{ selectedSkill.name }}
         </p> -->
         <p class="text-00">
-          {{ selectedSkill.description }}
+          <TextWithKeywords :text="selectedSkill.description" />
         </p>
       </template>
 
-      <p v-else class="text-00">{{ card.description }}</p>
+      <p v-else class="text-00"><TextWithKeywords :text="card.description" /></p>
     </div>
 
     <footer>
