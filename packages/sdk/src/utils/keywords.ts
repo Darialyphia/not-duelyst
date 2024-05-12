@@ -18,9 +18,9 @@ export const KEYWORDS = {
     name: 'Second wind',
     description: "This skill doesn't exhaust its caster."
   },
-  CHANNEL: {
-    id: 'channel',
-    name: 'Channel',
+  CHANNELING: {
+    id: 'channeling',
+    name: 'Channeling',
     description:
       'After using this ability, its caster cannot move until the end of the turn.'
   },
@@ -36,13 +36,14 @@ export const KEYWORDS = {
   },
   BURN: {
     id: 'burn',
-    name: 'Burn(x)',
-    description: 'This unit X receives damage at the beginning of its turn.'
+    name: 'Burn',
+    description: 'This unit 1 receives damage at the beginning of its turn.',
+    spriteId: 'burn'
   },
   REGENERATION: {
     id: 'regeneration',
-    name: 'Regeneration(X)',
-    description: 'This unit recovers X hp at the beginning of its turn.'
+    name: 'Regeneration',
+    description: 'This unit recovers 1 hp at the beginning of its turn.'
   },
   TOUGH: {
     id: 'tough',
@@ -83,8 +84,8 @@ export const KEYWORDS = {
   },
   THORNS: {
     id: 'thorns',
-    name: 'Thorns(x)',
-    description: 'Enemies unit dealing damage to this unit take X damage.'
+    name: 'Thorns',
+    description: 'Enemies unit dealing damage to this unit take 1 damage.'
   },
   SUMMON: {
     id: 'summon',
@@ -98,8 +99,8 @@ export const KEYWORDS = {
   },
   PLUNDER: {
     id: 'plunder',
-    name: 'Plunder(x)',
-    description: 'Gain X gold when the condition is met.'
+    name: 'Plunder',
+    description: 'Gain 1 gold when the condition is met.'
   },
   VIGILANT: {
     id: 'vigilant',
@@ -146,6 +147,11 @@ export const KEYWORDS = {
     name: 'Fury',
     description: 'Can attack twice per turn'
   },
+  CELERITY: {
+    id: 'celerity',
+    name: 'Celerity',
+    description: 'Can move twice per turn'
+  },
   FLYING: {
     id: 'flying',
     name: 'Flying',
@@ -156,6 +162,11 @@ export const KEYWORDS = {
     name: 'Nimble',
     description: 'This unit can walk through other units.',
     spriteId: 'nimble'
+  },
+  RANGED: {
+    id: 'ranged',
+    name: 'Ranged(x)',
+    description: 'This unit can attack from X tiles away.'
   }
 } as const satisfies Record<string, Keyword>;
 

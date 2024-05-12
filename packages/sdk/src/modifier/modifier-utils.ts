@@ -174,7 +174,7 @@ export const channel = (source: Entity) => {
         interceptor: () => () => false,
         duration: 1,
         tickOn: 'end',
-        keywords: [KEYWORDS.CHANNEL]
+        keywords: [KEYWORDS.CHANNELING]
       })
     ]
   });
@@ -199,13 +199,13 @@ export const taunted = ({
     return true;
   };
 
-  const cleanup = (attachedTo: Entity) => {
+  let onMove: (entity: Entity) => void;
+  const cleanup = (session: GameSession, attachedTo: Entity) => {
     attachedTo.removeInterceptor('canMove', moveInterceptor);
     attachedTo.removeInterceptor('canUseSkill', skillInterceptor);
     attachedTo.removeInterceptor('canAttack', attackInterceptor);
+    session.off('entity:after-move', onMove);
   };
-
-  let _onMove: (entity: Entity) => void;
 
   const modifier = createEntityModifier({
     source,
@@ -222,16 +222,17 @@ export const taunted = ({
           attachedTo.addInterceptor('canMove', moveInterceptor);
           attachedTo.addInterceptor('canUseSkill', skillInterceptor);
           attachedTo.addInterceptor('canAttack', attackInterceptor);
-          _onMove = () => {
+          onMove = () => {
             if (!isWithinCells(source.position, attachedTo.position, 1)) {
-              cleanup(attachedTo);
-              session.on('entity:after-move', _onMove);
+              cleanup(session, attachedTo);
+              session.on('entity:after-move', onMove);
             }
           };
-          session.on('entity:after-move', _onMove);
+          session.on('entity:after-move', onMove);
+          source.once('after_destroy', () => cleanup(session, attachedTo));
         },
         onRemoved(session, attachedTo, modifier) {
-          cleanup(attachedTo);
+          cleanup(session, attachedTo);
         }
       })
     ]
@@ -257,6 +258,43 @@ export const nimble = ({
         onApplied() {},
         onRemoved() {},
         keywords: [KEYWORDS.NIMBLE]
+      })
+    ]
+  });
+};
+
+export const frozen = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  const interceptor = () => false;
+
+  const cleanup = (attachedTo: Entity) => {
+    attachedTo.removeInterceptor('canMove', interceptor);
+    attachedTo.removeInterceptor('canUseSkill', interceptor);
+    attachedTo.removeInterceptor('canAttack', interceptor);
+  };
+
+  return createEntityModifier({
+    visible: false,
+    stackable: false,
+    source,
+    mixins: [
+      modifierEntityDurationMixin({
+        duration,
+        keywords: [KEYWORDS.FROZEN],
+        onApplied(session, attachedTo) {
+          attachedTo.addInterceptor('canAttack', interceptor);
+          attachedTo.addInterceptor('canUseSkill', interceptor);
+          attachedTo.addInterceptor('canAttack', interceptor);
+          attachedTo.once('after_take_damage', () => cleanup(attachedTo));
+        },
+        onRemoved(session, attachedTo) {
+          cleanup(attachedTo);
+        }
       })
     ]
   });
