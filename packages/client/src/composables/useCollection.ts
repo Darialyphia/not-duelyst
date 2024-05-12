@@ -1,6 +1,6 @@
 import { api } from '@game/api';
 import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.utils';
-import { CARD_KINDS, CARDS, FACTIONS } from '@game/sdk';
+import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
 
 export const useCollection = () => {
@@ -11,12 +11,14 @@ export const useCollection = () => {
 
   const factions = Object.values(FACTIONS).map(f => f.id);
 
-  const factionFilter = ref<string[]>([]);
+  const factionFilter = ref<Faction | null>(null);
 
   const allCards = computed(() =>
-    collection.value.map(item => {
-      return { ...item, card: CARDS[item.cardId] };
-    })
+    collection.value
+      .map(item => {
+        return { ...item, card: CARDS[item.cardId] };
+      })
+      .filter(item => item.card.collectable)
   );
 
   type CollectionItemWithCard = CollectionItemDto & { card: CardBlueprint };
@@ -37,16 +39,12 @@ export const useCollection = () => {
 
   const displayedCards = computed(() => {
     if (!collection.value) return [];
-    if (!factionFilter.value.length) return allCards.value.sort(sortUnitFunction);
+    if (!factionFilter.value) return allCards.value.sort(sortUnitFunction);
 
+    const filter = factionFilter.value;
     return allCards.value
       .filter(({ card }) => {
-        return (
-          card.collectable &&
-          card.factions.some(faction =>
-            factionFilter.value.includes(faction?.id as string)
-          )
-        );
+        return card.factions.some(faction => faction?.equals(filter));
       })
       .sort(sortUnitFunction);
   });

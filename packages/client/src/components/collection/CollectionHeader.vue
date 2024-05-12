@@ -1,20 +1,32 @@
 <script setup lang="ts">
-import { FACTIONS } from '@game/sdk';
+import { FACTIONS, type Faction } from '@game/sdk';
 
 const factions = Object.values(FACTIONS);
 
-const filter = defineModel<string[]>('filter', { required: true });
+const filter = defineModel<Faction | null>('filter', { required: true });
 </script>
 
 <template>
   <header class="fancy-surface border-none">
     <BackButton class="flex-self-center" />
     <div class="flex gap-2">
-      <label v-for="faction in factions" :key="faction.id" class="capitalize">
+      <button
+        v-for="faction in factions"
+        :key="faction.id"
+        :class="filter?.equals(faction) && 'active'"
+        @click="
+          () => {
+            if (filter?.equals(faction)) {
+              filter = null;
+            } else {
+              filter = faction;
+            }
+          }
+        "
+      >
         <img :src="`/assets/ui/rune-${faction.id.toLocaleLowerCase()}.png`" />
         {{ faction.name }}
-        <input v-model="filter" type="checkbox" :value="faction" class="sr-only" />
-      </label>
+      </button>
     </div>
   </header>
 </template>
@@ -27,7 +39,7 @@ header {
   box-shadow: none;
 }
 
-label {
+button {
   cursor: pointer;
   user-select: none;
 
@@ -38,12 +50,12 @@ label {
   padding: var(--size-2);
 
   font-weight: var(--font-weight-5);
-
+  text-transform: capitalize;
   &:hover {
     color: var(--primary);
   }
 
-  &:has(input:is(:checked, :focus-visible)) {
+  &.active {
     border-bottom: solid var(--border-size-1) var(--primary);
     > img {
       transform: scale(1.25);

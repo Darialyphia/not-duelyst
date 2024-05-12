@@ -88,9 +88,9 @@ export const KEYWORDS = {
     name: 'Vigilant',
     description: 'This unit does not exhaust when retaliating.'
   },
-  OVERWHELM: {
-    id: 'overwhelm',
-    name: 'Overwhelm',
+  FEARSOME: {
+    id: 'fearsomem',
+    name: 'Fearsome',
     description: 'Prevents targeted units from retaliating.'
   },
   BARRIER: {
