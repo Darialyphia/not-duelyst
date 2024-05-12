@@ -98,7 +98,7 @@ const keywords = computed(() =>
 
 @keyframes card-modal-brightness {
   from {
-    filter: brightness(500%) contrast(300%);
+    filter: brightness(1000%) contrast(300%);
   }
   to {
     filter: brightness(100%) contrast(100%);

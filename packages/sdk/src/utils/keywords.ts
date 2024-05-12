@@ -172,13 +172,13 @@ export const KEYWORDS = {
   FURY: {
     id: 'fury',
     name: 'Fury',
-    description: 'Can attack twice per turn',
+    description: 'Can attack twice per turn.',
     aliases: []
   },
   CELERITY: {
     id: 'celerity',
     name: 'Celerity',
-    description: 'Can move twice per turn',
+    description: 'Can move twice per turn.',
     aliases: []
   },
   FLYING: {

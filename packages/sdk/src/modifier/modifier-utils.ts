@@ -390,3 +390,36 @@ export const thorns = ({
     ]
   });
 };
+
+export const fury = ({ source, duration }: { source: Entity; duration?: number }) => {
+  return createEntityModifier({
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'maxAttacks',
+        interceptor: () => () => 2,
+        duration,
+        keywords: [KEYWORDS.FURY]
+      })
+    ]
+  });
+};
+
+export const celerity = ({ source, duration }: { source: Entity; duration?: number }) => {
+  return createEntityModifier({
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'maxMovements',
+        interceptor: () => () => 2,
+        duration,
+        tickOn: 'start',
+        keywords: [KEYWORDS.CELERITY]
+      })
+    ]
+  });
+};

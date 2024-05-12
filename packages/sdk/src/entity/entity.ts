@@ -134,6 +134,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     maxRetalitions: new Interceptable<number, Entity>(),
     maxAttacks: new Interceptable<number, Entity>(),
     maxMovements: new Interceptable<number, Entity>(),
+    maxSkills: new Interceptable<number, Entity>(),
     canMove: new Interceptable<boolean, Entity>(),
     canAttack: new Interceptable<boolean, { entity: Entity; target: Entity }>(),
     canRetaliate: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
@@ -225,6 +226,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.maxRetalitions.getValue(1, this);
   }
 
+  get maxSkills(): number {
+    return this.interceptors.maxSkills.getValue(1, this);
+  }
+
   canMove(distance: number) {
     return this.interceptors.canMove.getValue(
       distance <= this.speed && this.movementsTaken < this.maxMovements,
@@ -255,7 +260,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canUseSkill(skill: Skill) {
-    return this.interceptors.canUseSkill.getValue(this.skillsUsed < 1 && skill.canUse, {
+    const baseValue =
+      skill.canUse &&
+      this.skillsUsed < this.maxSkills &&
+      this.attacksTaken < this.maxAttacks;
+
+    return this.interceptors.canUseSkill.getValue(baseValue, {
       entity: this,
       skill
     });
@@ -273,6 +283,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   canAttack(target: Entity) {
     const baseValue =
       this.attacksTaken < this.maxAttacks &&
+      this.skillsUsed < this.maxSkills &&
       this.canAttackAt(target.position) &&
       isEnemy(this.session, target.id, this.playerId);
 

@@ -23,11 +23,15 @@ export const f1Dancer: CardBlueprint = {
   maxHp: 12,
   speed: 3,
   range: 1,
+  keywords: [KEYWORDS.NIMBLE],
+  onPlay({ entity }) {
+    entity.addModifier(nimble({ source: entity }));
+  },
   skills: [
     {
       id: 'f1_dancer_skill_1',
-      cooldown: 2,
-      description: 'Gain @Nimble@ and +1 speed for 3 turns',
+      cooldown: 4,
+      description: 'Gain @Fury@ and @Celerity@ 2 turns',
       name: 'Battle dance',
       iconId: 'chakram-dance',
       initialCooldown: 0,
@@ -39,7 +43,7 @@ export const f1Dancer: CardBlueprint = {
       isInAreaOfEffect(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
-      keywords: [KEYWORDS.NIMBLE],
+      keywords: [KEYWORDS.FURY, KEYWORDS.CELERITY],
       onUse({ skill, affectedCells }) {
         skill.caster.addModifier(nimble({ source: skill.caster, duration: 3 }));
         skill.caster.addModifier(
