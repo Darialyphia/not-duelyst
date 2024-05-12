@@ -25,7 +25,7 @@ type ICard = {
 
 const {
   card,
-  hasModal = true,
+  hasModal = false,
   withSkills = true
 } = defineProps<{ card: ICard; hasModal?: boolean; withSkills?: boolean }>();
 

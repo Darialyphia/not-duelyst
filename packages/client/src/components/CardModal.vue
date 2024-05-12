@@ -38,7 +38,6 @@ const keywords = computed(() =>
             skills: blueprint.skills,
             factions: blueprint.factions
           }"
-          :has-modal="false"
           :with-skills="false"
         />
       </div>

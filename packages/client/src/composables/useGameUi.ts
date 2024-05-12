@@ -185,7 +185,9 @@ export const useGameUiProvider = (session: GameSession) => {
       return session.entitySystem.getEntityById(highlightedEntityId.value);
     }),
     highlightEntity(entityId) {
-      highlightedEntityId.value = entityId;
+      setTimeout(() => {
+        highlightedEntityId.value = entityId;
+      });
     },
     selectedEntity: computed(() => {
       if (!selectedEntityId.value) return null;

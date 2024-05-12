@@ -136,16 +136,16 @@ const highlightTarget = () => {
         "
         @pointerup="
           (event: FederatedPointerEvent) => {
-            if (event.button !== 0) {
-              ui.unselectEntity();
-              ui.unselectCard();
-              ui.highlightEntity(null);
+            if (event.button === 2) {
+              if (cell.entity) {
+                ui.highlightEntity(cell.entity.id);
+              } else {
+                ui.unselectEntity();
+                ui.unselectCard();
+              }
               return;
             }
 
-            if (event.ctrlKey && cell.entity) {
-              ui.highlightEntity(cell.entity.id);
-            }
             if (!isActivePlayer) return;
 
             match(ui.targetingMode.value)

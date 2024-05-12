@@ -52,6 +52,7 @@ const keywords = computed(() =>
 <template>
   <div class="perspective-wrapper">
     <Card
+      has-modal
       ref="rootEl"
       :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
       class="collection-card"

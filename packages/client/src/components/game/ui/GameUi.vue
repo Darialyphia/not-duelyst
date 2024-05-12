@@ -4,7 +4,7 @@ import EndGameModal from './EndGameModal.vue';
 const { ui, session } = useGame();
 
 const entity = computed(() => {
-  return ui.highlightedEntity.value ?? ui.hoveredEntity.value;
+  return ui.hoveredEntity.value;
 });
 
 const winner = ref<string | null>(null);
@@ -12,6 +12,17 @@ const winner = ref<string | null>(null);
 session.on('game:ended', winnerId => {
   console.log('game ended');
   winner.value = winnerId;
+});
+
+const isModalOpened = computed({
+  get() {
+    return !!ui.highlightedEntity.value;
+  },
+  set(val) {
+    if (!val) {
+      ui.highlightEntity(null);
+    }
+  }
 });
 </script>
 
@@ -23,7 +34,11 @@ session.on('game:ended', winnerId => {
   <GameMenu />
   <NewTurnIndicator />
   <EndGameModal />
-
+  <CardModal
+    v-if="ui.highlightedEntity.value"
+    v-model:is-opened="isModalOpened"
+    :blueprint-id="ui.highlightedEntity.value.card.blueprintId"
+  />
   <Transition>
     <div
       v-if="entity"
