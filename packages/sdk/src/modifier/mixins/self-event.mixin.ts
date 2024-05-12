@@ -3,11 +3,13 @@ import type { Entity, EntityEvent, EntityEventMap } from '../../entity/entity';
 import type { GameSession } from '../../game-session';
 import type { Keyword } from '../../utils/keywords';
 import type { EntityModifier, EntityModifierMixin } from '../entity-modifier';
+import { modifierEntityDurationMixin } from './duration.mixin';
 
 export const modifierSelfEventMixin = <T extends EntityEvent>({
   eventName,
   listener,
-  keywords = []
+  keywords = [],
+  duration = Infinity
 }: {
   eventName: T;
   listener: (
@@ -15,11 +17,13 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
     ctx: { session: GameSession; attachedTo: Entity; modifier: EntityModifier }
   ) => MaybePromise<void>;
   keywords?: Keyword[];
+  duration?: number;
 }): EntityModifierMixin => {
   let _listener: any;
 
-  return {
+  return modifierEntityDurationMixin({
     keywords,
+    duration,
     onApplied(session, attachedTo, modifier) {
       _listener = (...args: any[]) => {
         return listener(args as any, { session, attachedTo, modifier });
@@ -30,5 +34,5 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
     onRemoved(session, attachedTo) {
       attachedTo.off(eventName, _listener);
     }
-  };
+  });
 };

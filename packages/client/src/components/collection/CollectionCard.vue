@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { CardBlueprint } from '@game/sdk';
+import { uniqBy } from 'lodash-es';
 
 defineOptions({
   inheritAttrs: false
@@ -36,6 +37,16 @@ const onMousemove = (e: MouseEvent) => {
     y: ((clientY - top) / height - 0.5) * MAX_ANGLE
   };
 };
+
+const keywords = computed(() =>
+  uniqBy(
+    [
+      ...(card.card.keywords ?? []),
+      ...card.card.skills.map(skill => skill.keywords ?? []).flat()
+    ],
+    'id'
+  )
+);
 </script>
 
 <template>
@@ -64,7 +75,8 @@ const onMousemove = (e: MouseEvent) => {
         cost: card.card.cost,
         cooldown: card.card.cooldown,
         skills: card.card.skills,
-        factions: card.card.factions
+        factions: card.card.factions,
+        keywords: keywords
       }"
       @mousemove="onMousemove"
       @click="emit('click')"

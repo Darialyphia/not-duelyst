@@ -6,6 +6,7 @@ import type { Card, CardBlueprintId } from './card';
 import type { CardKind, Faction, Rarity } from './card-enums';
 import type { Cell } from '../board/cell';
 import type { Skill } from '../entity/skill';
+import type { Keyword } from '../utils/keywords';
 
 export type SkillId = string;
 
@@ -18,6 +19,7 @@ export type SkillBlueprint = {
   maxTargetCount: number;
   cooldown: number;
   initialCooldown: number;
+  keywords?: Keyword[];
   isTargetable(
     point: Point3D,
     options: {
@@ -58,6 +60,7 @@ export type CardBlueprint = {
   speed: number;
   range: number;
   kind: CardKind;
+  keywords?: Keyword[];
   modifiers?: CardModifier[];
   onPlay?: (options: {
     session: GameSession;

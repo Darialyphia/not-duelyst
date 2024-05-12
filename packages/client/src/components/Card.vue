@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { type CardKind, type Rarity } from '@game/sdk';
+import { type CardKind, type Keyword, type Rarity } from '@game/sdk';
 import type { Nullable } from '@game/shared';
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 
 type ICard = {
   kind: CardKind;
@@ -17,6 +18,7 @@ type ICard = {
   skills: SkillBlueprint[];
   pedestalId?: string;
   factions: CardBlueprint['factions'];
+  keywords?: Keyword[];
 };
 
 const { card } = defineProps<{ card: ICard }>();
@@ -24,10 +26,26 @@ const { card } = defineProps<{ card: ICard }>();
 const bg = computed(() => `url('/assets/ui/card-back-${card.rarity}.png')`);
 
 const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
+
+const reference = ref(null);
+const floating = ref(null);
+const { floatingStyles } = useFloating(reference, floating, {
+  strategy: 'fixed',
+  middleware: [offset({ mainAxis: 15 }), flip()],
+  whileElementsMounted: autoUpdate,
+  placement: 'right-start'
+});
+
+const isHovered = ref(false);
 </script>
 
 <template>
-  <div class="card">
+  <div
+    class="card"
+    ref="reference"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
     <header>
       <UiCenter class="cost">
         {{ card.cost }}
@@ -98,6 +116,20 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
       <UiCenter class="speed">{{ card.speed }}</UiCenter>
       <UiCenter class="hp">{{ card.hp }}</UiCenter>
     </footer>
+
+    <Teleport to="body">
+      <ul
+        v-if="isHovered && card.keywords && card.keywords.length"
+        ref="floating"
+        class="keywords"
+        :style="floatingStyles"
+      >
+        <li v-for="keyword in card.keywords" :key="keyword.name" class="grid">
+          <div class="font-600">{{ keyword.name }}</div>
+          <p class="text-0">{{ keyword.description }}</p>
+        </li>
+      </ul>
+    </Teleport>
   </div>
 </template>
 
@@ -320,5 +352,17 @@ footer {
   text-align: center;
 
   transition: transform 0.3s ease-in;
+}
+
+.keywords {
+  z-index: 10;
+
+  display: grid;
+  gap: var(--size-4);
+
+  width: var(--size-14);
+  padding: var(--size-3);
+
+  background-color: black;
 }
 </style>

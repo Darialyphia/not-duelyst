@@ -2,6 +2,7 @@ import { Vec3 } from '@game/shared';
 import { isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Djinn: CardBlueprint = {
   id: 'f1_djinn',
@@ -19,6 +20,7 @@ export const f1Djinn: CardBlueprint = {
   maxHp: 10,
   speed: 4,
   range: 1,
+  keywords: [KEYWORDS.FLYING],
   skills: [
     {
       id: 'f1_djinn_skill_1',

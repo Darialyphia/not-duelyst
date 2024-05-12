@@ -8,7 +8,8 @@ import {
   isCastPoint,
   isWithinCells
 } from '../../../utils/targeting';
-import { rush, vigilant, vulnerable } from '../../../modifier/modifier-utils';
+import { vigilant, vulnerable } from '../../../modifier/modifier-utils';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Naga: CardBlueprint = {
   id: 'f1_naga',
@@ -26,6 +27,7 @@ export const f1Naga: CardBlueprint = {
   maxHp: 9,
   speed: 3,
   range: 1,
+  keywords: [KEYWORDS.VIGILANT],
   onPlay({ entity }) {
     entity.addModifier(vigilant({ source: entity }));
   },
@@ -40,6 +42,7 @@ export const f1Naga: CardBlueprint = {
       initialCooldown: 0,
       minTargetCount: 0,
       maxTargetCount: 1,
+      keywords: [KEYWORDS.VULNERABLE],
       isTargetable(point, { session, skill }) {
         return (
           isEnemy(

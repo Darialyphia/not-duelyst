@@ -19,54 +19,5 @@ export const f1Kirin: CardBlueprint = {
   maxHp: 10,
   speed: 3,
   range: 1,
-  skills: [
-    {
-      id: 'f1_kirin_skill_1',
-      cooldown: 2,
-      description: 'TODO',
-      name: 'Test skill',
-      iconId: 'waterball2-green',
-      initialCooldown: 0,
-      isTargetable(point, { session, skill }) {
-        return isEnemy(
-          session,
-          session.entitySystem.getEntityAt(point)?.id,
-          skill.caster.player.id
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        const vec = Vec3.fromPoint3D(point);
-        return castPoints.some(p => vec.equals(p));
-      },
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      onUse({ skill, affectedCells }) {
-        console.log('todo');
-      }
-    },
-    {
-      id: 'f1_kirin_skill_2',
-      cooldown: 2,
-      description: 'TODO',
-      name: 'Test skill',
-      iconId: 'meditate',
-      initialCooldown: 0,
-      isTargetable(point, { session, skill }) {
-        return isEnemy(
-          session,
-          session.entitySystem.getEntityAt(point)?.id,
-          skill.caster.player.id
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        const vec = Vec3.fromPoint3D(point);
-        return castPoints.some(p => vec.equals(p));
-      },
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      onUse({ skill, affectedCells }) {
-        console.log('todo');
-      }
-    }
-  ]
+  skills: []
 };

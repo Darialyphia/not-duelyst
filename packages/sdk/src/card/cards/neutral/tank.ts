@@ -4,6 +4,7 @@ import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { getAffectedEntities, isSelf, isWithinCells } from '../../../utils/targeting';
 import { taunted } from '../../../modifier/modifier-utils';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const neutralTank: CardBlueprint = {
   id: 'neutral_tank',
@@ -31,6 +32,7 @@ export const neutralTank: CardBlueprint = {
       initialCooldown: 0,
       minTargetCount: 0,
       maxTargetCount: 1,
+      keywords: [KEYWORDS.TAUNTED],
       isTargetable(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },

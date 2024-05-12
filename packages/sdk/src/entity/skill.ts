@@ -65,6 +65,10 @@ export class Skill {
     return this.currentCooldown === 0;
   }
 
+  keywords() {
+    return this.blueprint.keywords ?? [];
+  }
+
   isTargetable(point: Point3D, castPoints: Point3D[]) {
     return this.blueprint.isTargetable(point, {
       session: this.session,

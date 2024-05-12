@@ -5,6 +5,7 @@ import { isAxisAligned, isSelf, isWithinCells } from '../../../utils/targeting';
 import { nimble } from '../../../modifier/modifier-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Dancer: CardBlueprint = {
   id: 'f1_dancer',
@@ -30,14 +31,15 @@ export const f1Dancer: CardBlueprint = {
       name: 'Battle dance',
       iconId: 'chakram-dance',
       initialCooldown: 0,
+      minTargetCount: 0,
+      maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
       isInAreaOfEffect(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
-      minTargetCount: 0,
-      maxTargetCount: 1,
+      keywords: [KEYWORDS.NIMBLE],
       onUse({ skill, affectedCells }) {
         skill.caster.addModifier(nimble({ source: skill.caster, duration: 3 }));
         skill.caster.addModifier(
@@ -55,28 +57,6 @@ export const f1Dancer: CardBlueprint = {
             ]
           })
         );
-      }
-    },
-    {
-      id: 'f1_dancer_skill_2',
-      cooldown: 2,
-      description: 'TODO',
-      name: 'Test skill 2',
-      iconId: 'chakram',
-      initialCooldown: 0,
-      isTargetable(point, { skill }) {
-        return (
-          isAxisAligned(point, skill.caster.position) &&
-          isWithinCells(skill.caster.position, point, 3)
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        return castPoints.some(p => Vec3.fromPoint3D(p).equals(point));
-      },
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      onUse({ skill, affectedCells }) {
-        console.log('todo');
       }
     }
   ]

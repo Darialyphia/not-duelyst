@@ -10,6 +10,7 @@ import { createCardModifier } from './card-modifier';
 import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
+import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -294,6 +295,96 @@ export const frozen = ({
         },
         onRemoved(session, attachedTo) {
           cleanup(attachedTo);
+        }
+      })
+    ]
+  });
+};
+
+export const rooted = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    visible: false,
+    stackable: false,
+    source,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'canMove',
+        duration,
+        interceptor: () => () => false,
+        keywords: [KEYWORDS.ROOTED]
+      })
+    ]
+  });
+};
+
+export const silenced = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    visible: false,
+    stackable: false,
+    source,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'canUseSkill',
+        duration,
+        interceptor: () => () => false,
+        keywords: [KEYWORDS.SILENCED]
+      })
+    ]
+  });
+};
+
+export const disarmed = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    visible: false,
+    stackable: false,
+    source,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'canAttack',
+        duration,
+        interceptor: () => () => false,
+        keywords: [KEYWORDS.DISARMED]
+      })
+    ]
+  });
+};
+
+export const thorns = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    source,
+    visible: false,
+    stackable: true,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'after_take_damage',
+        duration,
+        keywords: [KEYWORDS.THORNS],
+        listener([event], ctx) {
+          ctx.attachedTo.dealDamage(ctx.modifier.stacks!, event.source);
         }
       })
     ]
