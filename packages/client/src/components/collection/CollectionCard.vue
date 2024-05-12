@@ -64,6 +64,7 @@ const keywords = computed(() =>
         '--rotate-x': angle.y.toFixed(2)
       }"
       :card="{
+        blueprintId: card.card.id,
         name: card.card.name,
         description: card.card.description,
         kind: card.card.kind,
@@ -86,7 +87,7 @@ const keywords = computed(() =>
 </template>
 
 <style scoped lang="postcss">
-@keyframes test {
+@keyframes collection-card {
   from {
     transform: translateX(calc(-1 * var(--size-4)));
     opacity: 0.5;
@@ -99,7 +100,7 @@ const keywords = computed(() =>
   transform-style: preserve-3d;
   padding: var(--size-1);
   perspective: 40rem;
-  animation: test 0.3s;
+  animation: collection-card 0.3s;
 
   > * {
     height: 100%;

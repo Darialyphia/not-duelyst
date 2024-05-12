@@ -44,6 +44,7 @@ const hoveredIndex = ref<number | null>(null);
     <Card
       v-if="card"
       :card="{
+        blueprintId: card.blueprintId,
         name: card.blueprint.name,
         description: card.blueprint.description,
         kind: card.kind,

@@ -3,8 +3,10 @@ import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blue
 import { type CardKind, type Keyword, type Rarity } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
+import type { CardBlueprintId } from '@game/sdk/src/card/card';
 
 type ICard = {
+  blueprintId: CardBlueprintId;
   kind: CardKind;
   name: string;
   description: string;
@@ -21,7 +23,11 @@ type ICard = {
   keywords?: Keyword[];
 };
 
-const { card } = defineProps<{ card: ICard }>();
+const {
+  card,
+  hasModal = true,
+  withSkills = true
+} = defineProps<{ card: ICard; hasModal?: boolean; withSkills?: boolean }>();
 
 const bg = computed(() => `url('/assets/ui/card-back-${card.rarity}.png')`);
 
@@ -37,6 +43,7 @@ const { floatingStyles } = useFloating(reference, floating, {
 });
 
 const isHovered = ref(false);
+const isModalOpened = ref(false);
 </script>
 
 <template>
@@ -45,6 +52,13 @@ const isHovered = ref(false);
     ref="reference"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
+    @contextmenu.prevent="
+      () => {
+        if (hasModal) {
+          isModalOpened = true;
+        }
+      }
+    "
   >
     <header>
       <UiCenter class="cost">
@@ -76,7 +90,7 @@ const isHovered = ref(false);
       <div class="name">{{ card.name }}</div>
     </div>
 
-    <ul class="skills-list">
+    <ul v-if="withSkills" class="skills-list">
       <li
         v-for="skill in card.skills"
         :key="skill.id"
@@ -130,6 +144,8 @@ const isHovered = ref(false);
         </li>
       </ul>
     </Teleport>
+
+    <CardModal :blueprint-id="card.blueprintId" v-model:is-opened="isModalOpened" />
   </div>
 </template>
 

@@ -32,6 +32,7 @@ session.on('game:ended', winnerId => {
     >
       <Card
         :card="{
+          blueprintId: entity.card.blueprint.id,
           name: entity.card.blueprint.name,
           description: entity.card.blueprint.description,
           kind: entity.card.kind,
