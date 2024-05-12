@@ -1,6 +1,6 @@
 import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-utils';
+import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { isAxisAligned, isSelf, isWithinCells } from '../../../utils/targeting';
 
 export const f1Dancer: CardBlueprint = {

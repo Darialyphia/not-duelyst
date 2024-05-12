@@ -3,7 +3,7 @@ import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
-import type { CardKind, Faction, Rarity } from './card-utils';
+import type { CardKind, Faction, Rarity } from './card-enums';
 import type { Cell } from '../board/cell';
 import type { Skill } from '../entity/skill';
 

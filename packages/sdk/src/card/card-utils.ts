@@ -1,49 +1,53 @@
-import { type Values } from '@game/shared';
+import type { Entity } from '../entity/entity';
+import { createCardModifier } from '../modifier/card-modifier';
+import { createEntityModifier } from '../modifier/entity-modifier';
+import { modifierCardInterceptorMixin } from '../modifier/mixins/card-interceptor.mixin';
+import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
+import { KEYWORDS } from '../utils/keywords';
 
-export const CARD_KINDS = {
-  MINION: 'MINION',
-  GENERAL: 'GENERAL'
-} as const;
+export const vigilant = (entity: Entity, duration?: number) => {
+  entity.addModifier(
+    createEntityModifier({
+      visible: false,
+      stackable: false,
+      mixins: [
+        modifierEntityInterceptorMixin({
+          key: 'maxRetalitions',
+          interceptor: () => () => Infinity,
+          duration,
+          keywords: [KEYWORDS.VIGILANT]
+        })
+      ]
+    })
+  );
+};
 
-export type CardKind = Values<typeof CARD_KINDS>;
+export const vulnerable = (entity: Entity, duration?: number) => {
+  entity.addModifier(
+    createEntityModifier({
+      visible: false,
+      stackable: false,
+      mixins: [
+        modifierEntityInterceptorMixin({
+          key: 'damageTaken',
+          interceptor: () => amount => amount + 1,
+          tickOn: 'start',
+          duration,
+          keywords: [KEYWORDS.VULNERABLE]
+        })
+      ]
+    })
+  );
+};
 
-export class Faction {
-  constructor(
-    public id: string,
-    public name: string
-  ) {}
-
-  equals(faction: Faction) {
-    return faction.id === this.id;
-  }
-}
-
-export const FACTIONS = {
-  F1: new Faction('f1', 'Life'),
-  F2: new Faction('f2', 'Chaos'),
-  F3: new Faction('f3', 'Order'),
-  F4: new Faction('f4', 'Death'),
-  F5: new Faction('f5', 'Prime')
-} as const satisfies Record<string, Faction>;
-
-export const RARITIES = {
-  BASIC: 'basic',
-  COMMON: 'common',
-  RARE: 'rare',
-  EPIC: 'epic',
-  LEGENDARY: 'legendary',
-  TOKEN: 'token'
-} as const;
-
-export type Rarity = Values<typeof RARITIES>;
-
-export const TRIBES = {
-  DERVISH: 'Dervish',
-  STRUCTURE: 'Structure'
-} as const;
-
-export type Tribe = Values<typeof TRIBES>;
-
-export const INTERCEPTOR_PRIORITIES = {
-  FINAL: 999
+export const rush = () => {
+  return createCardModifier({
+    mixins: [
+      modifierCardInterceptorMixin({
+        key: 'shouldExhaustOnPlay',
+        interceptor: () => () => false,
+        keywords: [KEYWORDS.RUSH]
+      })
+    ]
+  });
 };

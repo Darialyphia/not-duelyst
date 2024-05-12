@@ -9,7 +9,7 @@ import { Card, type CardBlueprintId, type SerializedCard } from '../card/card';
 import EventEmitter from 'eventemitter3';
 import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
-import { CARD_KINDS } from '../card/card-utils';
+import { CARD_KINDS } from '../card/card-enums';
 
 export type PlayerId = string;
 export type CardIndex = number;

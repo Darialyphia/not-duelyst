@@ -1,7 +1,8 @@
-import { Vec3, isNumber, type Nullable, type Point3D } from '@game/shared';
+import { Vec3, isDefined, isNumber, type Nullable, type Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { Card } from '../card/card';
+import type { Cell } from '../board/cell';
 
 export const isAxisAligned = (pointA: Point3D, pointB: Point3D) => {
   return pointA.x === pointB.x || pointA.y === pointB.y;
@@ -85,4 +86,12 @@ export const cone = (casterPosition: Point3D, origin: Point3D, range: number) =>
   }
 
   return points;
+};
+
+export const getAffectedEntities = (cells: Cell[]) =>
+  cells.map(cell => cell.entity).filter(isDefined);
+
+export const isCastPoint = (point: Point3D, castPoints: Point3D[]) => {
+  const vec = Vec3.fromPoint3D(point);
+  return castPoints.some(p => vec.equals(p));
 };

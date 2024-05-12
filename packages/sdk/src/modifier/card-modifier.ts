@@ -1,7 +1,13 @@
-import { type MaybePromise, type PartialBy, type Prettify } from '@game/shared';
+import {
+  isDefined,
+  type MaybePromise,
+  type PartialBy,
+  type Prettify
+} from '@game/shared';
 import type { GameSession } from '../game-session';
 import { nanoid } from 'nanoid';
 import type { Card } from '../card/card';
+import type { Keyword } from '../utils/keywords';
 
 export type ModifierId = string;
 
@@ -13,11 +19,14 @@ type ModifierBase = {
     attachedTo: Card,
     modifier: CardModifier
   ): MaybePromise<void>;
+  keywords: Keyword[];
 };
 
 export type CardModifier = Prettify<ModifierBase>;
 
-export type CardModifierMixin = Partial<Pick<CardModifier, 'onApplied' | 'onRemoved'>>;
+export type CardModifierMixin = Partial<
+  Pick<CardModifier, 'onApplied' | 'onRemoved' | 'keywords'>
+>;
 
 type ModifierBuilderOptions = PartialBy<Pick<CardModifier, 'id'>, 'id'> & {
   mixins: CardModifierMixin[];
@@ -30,6 +39,14 @@ export const createCardModifier = ({
   return {
     ...options,
     id: options.id ?? nanoid(6),
+    keywords: [
+      ...new Set(
+        mixins
+          .map(m => m.keywords)
+          .flat()
+          .filter(isDefined)
+      )
+    ],
     async onApplied(session, card) {
       for (const mixin of mixins) {
         mixin.onApplied?.(session, card, this);

@@ -7,7 +7,7 @@ import { Interceptable, ReactiveValue, type inferInterceptor } from '../utils/he
 import { isAlly, isEnemy } from './entity-utils';
 import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
-import { CARD_KINDS } from '../card/card-utils';
+import { CARD_KINDS } from '../card/card-enums';
 import { type Keyword } from '../utils/keywords';
 import { Tile } from '../tile/tile';
 import { Skill } from './skill';
@@ -131,6 +131,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     speed: new Interceptable<number, Entity>(),
     range: new Interceptable<number, Entity>(),
     maxRetalitions: new Interceptable<number, Entity>(),
+    maxAttacks: new Interceptable<number, Entity>(),
+    maxMovements: new Interceptable<number, Entity>(),
     canMove: new Interceptable<boolean, Entity>(),
     canAttack: new Interceptable<boolean, { entity: Entity; target: Entity }>(),
     canRetaliate: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
@@ -210,13 +212,21 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.range.getValue(this.card.range, this);
   }
 
+  get maxMovements(): number {
+    return this.interceptors.maxMovements.getValue(1, this);
+  }
+
+  get maxAttacks(): number {
+    return this.interceptors.maxAttacks.getValue(1, this);
+  }
+
   get maxRetaliations(): number {
     return this.interceptors.maxRetalitions.getValue(1, this);
   }
 
   canMove(distance: number) {
     return this.interceptors.canMove.getValue(
-      distance <= this.speed && this.movementsTaken < 1,
+      distance <= this.speed && this.movementsTaken < this.maxMovements,
       this
     );
   }
@@ -260,10 +270,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canAttack(target: Entity) {
-    if (!this.canAttackAt(target.position)) return false;
-
     const baseValue =
-      this.attacksTaken < 1 &&
+      this.attacksTaken < this.maxAttacks &&
       this.canAttackAt(target.position) &&
       isEnemy(this.session, target.id, this.playerId);
 
@@ -411,16 +419,18 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   private checkExhaustion() {
-    if (!this.movementsTaken) return;
-    if (this.attacksTaken || !!this.skillsUsed) {
-      this.isExhausted = true;
+    if (this.player.isActive) {
+      this.isExhausted =
+        this.movementsTaken >= this.maxMovements && this.attacksTaken >= this.maxAttacks;
+    } else {
+      this.isExhausted = this.retaliationsDone >= this.maxRetaliations;
     }
   }
 
   retaliate(power: number, target: Entity) {
     if (!this.canRetaliate(target)) return;
     this.retaliationsDone++;
-    this.isExhausted = true;
+    this.checkExhaustion();
     return this.dealDamage(power, target);
   }
 

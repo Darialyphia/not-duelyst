@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { type CardKind, type Rarity } from '@game/sdk/src/card/card-utils';
+import { type CardKind, type Rarity } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 type ICard = {
@@ -82,9 +82,9 @@ const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
 
     <div class="description">
       <template v-if="selectedSkill">
-        <p class="text-0 color-gray-0 mb-1 font-700">
+        <!-- <p class="text-0 color-gray-0 mb-1 font-700">
           {{ selectedSkill.name }}
-        </p>
+        </p> -->
         <p class="text-00">
           {{ selectedSkill.description }}
         </p>

@@ -44,7 +44,7 @@ button {
   user-select: none;
 
   display: flex;
-  gap: var(--size-1);
+  gap: var(--size-2);
   align-items: center;
 
   padding: var(--size-2);

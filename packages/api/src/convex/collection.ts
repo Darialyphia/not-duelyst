@@ -11,14 +11,13 @@ export const grantAllCollection = internalMutation({
     userId: v.id('users')
   },
   async handler(ctx, args) {
-    console.log('granting all collection to', args.userId);
     const collection = await ctx.db
       .query('collectionItems')
       .withIndex('by_owner_id', q => q.eq('ownerId', args.userId))
       .collect();
 
     const unitsToAdd = Object.values(CARDS).filter(
-      unit => !collection.some(item => item.itemId === unit.id)
+      unit => unit.collectable && !collection.some(item => item.itemId === unit.id)
     );
 
     return Promise.all(

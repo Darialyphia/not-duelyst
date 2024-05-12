@@ -2,14 +2,14 @@ import { Vec3 } from '@game/shared';
 import { config } from '../../../config';
 import { isEnemy, isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-utils';
+import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
 export const f1TutorialGeneral: CardBlueprint = {
   id: 'f1_tutorial_general',
   name: 'F1 General',
   description: '',
   rarity: RARITIES.BASIC,
-  collectable: true,
+  collectable: false,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_general',
   kind: CARD_KINDS.GENERAL,

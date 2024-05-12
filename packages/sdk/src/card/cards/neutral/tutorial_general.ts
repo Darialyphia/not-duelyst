@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-utils';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { config } from '../../../config';
 
 export const tutorialGeneral: CardBlueprint = {

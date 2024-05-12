@@ -122,6 +122,21 @@ export const KEYWORDS = {
     id: 'deathwatch',
     name: 'Deathwatch',
     description: 'Triggers whenever a unit is destroyed.'
+  },
+  FURY: {
+    id: 'fury',
+    name: 'Fury',
+    description: 'Can attack twice per turn'
+  },
+  FLYING: {
+    id: 'flying',
+    name: 'Flying',
+    description: 'can walk over water'
+  },
+  ETHEREAL: {
+    id: 'ethereal',
+    name: 'Ethereal',
+    description: 'This unit can walk through other units.'
   }
 } as const satisfies Record<string, Keyword>;
 

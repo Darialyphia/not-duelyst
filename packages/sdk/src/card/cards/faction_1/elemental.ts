@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-utils';
+import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
 export const f1Elemental: CardBlueprint = {
   id: 'f1_placeholder',

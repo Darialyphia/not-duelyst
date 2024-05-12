@@ -1,14 +1,14 @@
 import { Vec3 } from '@game/shared';
 import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-utils';
+import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { cone, isAxisAligned, isWithinCells } from '../../../utils/targeting';
 
 export const f2TutorialBigDude: CardBlueprint = {
   id: 'f2_tutorial_big_dude',
   name: 'F2 Tutorial Big Dude',
   description: '',
-  collectable: true,
+  collectable: false,
   rarity: RARITIES.BASIC,
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'tutorial_big_dude',

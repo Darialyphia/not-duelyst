@@ -10,10 +10,16 @@ export {
   type ModifierId
 } from './modifier/entity-modifier';
 export { Card } from './card/card';
-export { CARD_KINDS, type CardKind } from './card/card-utils';
+export {
+  CARD_KINDS,
+  type CardKind,
+  type Faction,
+  FACTIONS,
+  type Rarity,
+  RARITIES
+} from './card/card-enums';
 export { type Animation } from './fx-system';
 export { Skill } from './entity/skill';
-export { type Faction, FACTIONS } from './card/card-utils';
 export { CARDS } from './card/card-lookup';
 export type { CardBlueprint } from './card/card-blueprint';
 export type { GameAction } from './action/action';

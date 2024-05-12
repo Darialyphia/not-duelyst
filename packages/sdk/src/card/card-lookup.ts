@@ -13,6 +13,7 @@ import { tutorialGeneral } from './cards/neutral/tutorial_general';
 import { tutorialCat } from './cards/neutral/tutorial_cat';
 import { f1TutorialGeneral } from './cards/faction_1/tutorial_general';
 import { f2TutorialBigDude } from './cards/faction_2/tutorial_big_dude';
+import { f1Naga } from './cards/faction_1/naga';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -23,6 +24,7 @@ const allCards: CardBlueprint[] = [
   f1Kirin,
   f1Ranged,
   f1Mage,
+  f1Naga,
 
   f2TutorialBigDude,
 

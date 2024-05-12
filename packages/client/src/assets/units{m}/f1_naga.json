@@ -124,8 +124,6 @@
    { "name": "death", "from": 10, "to": 11, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "pedestal", "opacity": 255, "blendMode": "normal" },
-   { "name": "decor", "opacity": 255, "blendMode": "normal" },
    { "name": "body", "opacity": 255, "blendMode": "normal" },
    { "name": "swords", "opacity": 255, "blendMode": "normal" }
   ],

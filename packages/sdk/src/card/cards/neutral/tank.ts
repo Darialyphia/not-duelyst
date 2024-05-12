@@ -1,7 +1,7 @@
 import { Vec3 } from '@game/shared';
 import { isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-utils';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 
 export const neutralTank: CardBlueprint = {
   id: 'neutral_tank',

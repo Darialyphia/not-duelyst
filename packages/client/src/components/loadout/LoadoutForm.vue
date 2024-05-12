@@ -30,6 +30,7 @@ const pedestals = [
   'pedestal-default',
   'pedestal-stone',
   'pedestal-grass',
+  'pedestal-ocean',
   'pedestal-cyber'
 ];
 const changePedestal = (id: string, diff: number) => {
