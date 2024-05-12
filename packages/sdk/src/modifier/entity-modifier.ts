@@ -13,6 +13,7 @@ export type ModifierId = string;
 
 type ModifierBase = {
   id: ModifierId;
+  source: Entity;
   keywords: Keyword[];
   onApplied(
     session: GameSession,
@@ -55,7 +56,7 @@ export type EntityModifierMixin = Partial<
 >;
 
 type ModifierBuilderOptions = PartialBy<
-  Pick<EntityModifier, 'id' | 'visible' | 'description' | 'name'>,
+  Pick<EntityModifier, 'id' | 'visible' | 'description' | 'name' | 'source'>,
   'id'
 > &
   Omit<StackableMixin, 'onReapply'> & { mixins: EntityModifierMixin[] };

@@ -17,6 +17,7 @@ const averageFPS = computed(() => {
 });
 
 const style = new TextStyle({ fill: 'white', fontSize: 12, fontFamily: 'monospace' });
+const isDev = import.meta.env;
 </script>
 
 <template>

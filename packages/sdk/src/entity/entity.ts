@@ -11,6 +11,7 @@ import { CARD_KINDS } from '../card/card-enums';
 import { type Keyword } from '../utils/keywords';
 import { Tile } from '../tile/tile';
 import { Skill } from './skill';
+import { uniqBy } from 'lodash-es';
 
 export type EntityId = number;
 
@@ -527,6 +528,18 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   hasKeyword(keyword: Keyword) {
-    return this.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id));
+    return (
+      this.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id)) ||
+      this.card.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id))
+    );
+  }
+
+  get keywords() {
+    const allKeywords = this.modifiers
+      .map(mod => mod.keywords)
+      .concat(this.card.modifiers.map(mod => mod.keywords))
+      .flat();
+
+    return uniqBy(allKeywords, 'id');
   }
 }

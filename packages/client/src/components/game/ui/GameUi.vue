@@ -47,6 +47,12 @@ session.on('game:ended', winnerId => {
           factions: entity.card.blueprint.factions
         }"
       />
+      <dl>
+        <div v-for="keyword in entity.keywords" :key="keyword.id">
+          <dt>{{ keyword.name }}</dt>
+          <dd>{{ keyword.description }}</dd>
+        </div>
+      </dl>
     </div>
   </Transition>
 </template>
@@ -78,5 +84,12 @@ session.on('game:ended', winnerId => {
   &:is(.v-enter-from, .v-leave-to) {
     opacity: 0;
   }
+}
+
+dl > div {
+  margin-block: var(--size-2);
+  padding: var(--size-3);
+  font-size: var(--font-size-0);
+  background-color: black;
 }
 </style>

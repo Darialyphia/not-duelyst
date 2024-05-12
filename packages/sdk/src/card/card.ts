@@ -47,6 +47,12 @@ export class Card extends EventEmitter implements Serializable {
     this.currentCooldown = this.blueprint.initialCooldown;
   }
 
+  setup() {
+    this.blueprint.modifiers?.forEach(modifier => {
+      this.addModifier(modifier);
+    });
+  }
+
   get player() {
     return this.session.playerSystem.getPlayerById(this.playerId)!;
   }

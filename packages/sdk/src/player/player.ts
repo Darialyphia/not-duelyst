@@ -102,6 +102,9 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.cards = this.options.cards.map((card, index) => {
       return new Card(this.session, index, card, this.id);
     });
+    this.cards.forEach(card => {
+      card.setup();
+    });
     this.placeGeneral();
 
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);

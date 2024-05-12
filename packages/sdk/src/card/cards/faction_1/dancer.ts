@@ -2,6 +2,9 @@ import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { isAxisAligned, isSelf, isWithinCells } from '../../../utils/targeting';
+import { nimble } from '../../../modifier/modifier-utils';
+import { createEntityModifier } from '../../../modifier/entity-modifier';
+import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 
 export const f1Dancer: CardBlueprint = {
   id: 'f1_dancer',
@@ -23,8 +26,8 @@ export const f1Dancer: CardBlueprint = {
     {
       id: 'f1_dancer_skill_1',
       cooldown: 2,
-      description: 'TODO',
-      name: 'Test skill 1',
+      description: 'Gain nimble and +1 speed for 3 turns',
+      name: 'Battle dance',
       iconId: 'chakram-dance',
       initialCooldown: 0,
       isTargetable(point, { session, skill }) {
@@ -36,7 +39,22 @@ export const f1Dancer: CardBlueprint = {
       minTargetCount: 0,
       maxTargetCount: 1,
       onUse({ skill, affectedCells }) {
-        console.log('todo');
+        skill.caster.addModifier(nimble({ source: skill.caster, duration: 3 }));
+        skill.caster.addModifier(
+          createEntityModifier({
+            source: skill.caster,
+            visible: false,
+            stackable: false,
+            mixins: [
+              modifierEntityInterceptorMixin({
+                key: 'speed',
+                interceptor: () => val => val + 1,
+                duration: 3,
+                keywords: []
+              })
+            ]
+          })
+        );
       }
     },
     {

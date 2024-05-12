@@ -8,7 +8,7 @@ import {
   isCastPoint,
   isWithinCells
 } from '../../../utils/targeting';
-import { vigilant, vulnerable } from '../../card-utils';
+import { rush, vigilant, vulnerable } from '../../../modifier/modifier-utils';
 
 export const f1Naga: CardBlueprint = {
   id: 'f1_naga',
@@ -27,7 +27,7 @@ export const f1Naga: CardBlueprint = {
   speed: 3,
   range: 1,
   onPlay({ entity }) {
-    vigilant(entity);
+    entity.addModifier(vigilant({ source: entity }));
   },
   skills: [
     {
@@ -38,6 +38,8 @@ export const f1Naga: CardBlueprint = {
       name: 'Naga skill 1',
       iconId: 'blade2-green',
       initialCooldown: 0,
+      minTargetCount: 0,
+      maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
         return (
           isEnemy(
@@ -52,12 +54,10 @@ export const f1Naga: CardBlueprint = {
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
-      minTargetCount: 0,
-      maxTargetCount: 1,
       onUse({ skill, affectedCells }) {
         getAffectedEntities(affectedCells).forEach(entity => {
           entity.takeDamage(2, skill.caster);
-          vulnerable(entity, 2);
+          entity.addModifier(vulnerable({ source: skill.caster, duration: 2 }));
         });
       }
     }

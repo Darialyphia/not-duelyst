@@ -4,6 +4,7 @@ export type Keyword = {
   id: string;
   name: string;
   description: string;
+  spriteId?: string;
 };
 
 export const KEYWORDS = {
@@ -16,6 +17,22 @@ export const KEYWORDS = {
     id: 'second_wind',
     name: 'Second wind',
     description: "This skill doesn't exhaust its caster."
+  },
+  CHANNEL: {
+    id: 'channel',
+    name: 'Channel',
+    description:
+      'After using this ability, its caster cannot move until the end of the turn.'
+  },
+  CURSE: {
+    id: 'curse',
+    name: 'Curse',
+    description: 'Remove all positive modifiers from a unit'
+  },
+  CLEANSE: {
+    id: 'cleanse',
+    name: 'Clense',
+    description: 'Remove all negative modifiers from a unit'
   },
   BURN: {
     id: 'burn',
@@ -37,10 +54,11 @@ export const KEYWORDS = {
     name: 'Vulnerable',
     description: 'This unit takes 1 more damage from all sources.'
   },
-  TAUNT: {
-    id: 'taunt',
-    name: 'Taunt',
-    description: 'Nearby enemies cannot move and must target this unit.'
+  TAUNTED: {
+    id: 'taunted',
+    name: 'Taunted',
+    description: 'This unit cannot move or cast abilities, and must attack the taunter.',
+    spriteId: 'taunt'
   },
   FROZEN: {
     id: 'frozen',
@@ -133,10 +151,11 @@ export const KEYWORDS = {
     name: 'Flying',
     description: 'can walk over water'
   },
-  ETHEREAL: {
-    id: 'ethereal',
-    name: 'Ethereal',
-    description: 'This unit can walk through other units.'
+  NIMBLE: {
+    id: 'nimble',
+    name: 'Nimble',
+    description: 'This unit can walk through other units.',
+    spriteId: 'nimble'
   }
 } as const satisfies Record<string, Keyword>;
 

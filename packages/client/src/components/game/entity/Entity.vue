@@ -50,6 +50,10 @@ const onShadowEnter = (container: Container) => {
     ease: Bounce.easeOut
   });
 };
+
+const keywordsWithSprite = computed(() =>
+  entity.value.keywords.filter(keyword => keyword.spriteId)
+);
 </script>
 
 <template>
@@ -89,6 +93,12 @@ const onShadowEnter = (container: Container) => {
           </container>
         </PTransition>
       </container>
+
+      <EntityKeyword
+        v-for="keyword in keywordsWithSprite"
+        :key="keyword.id"
+        :keyword="keyword"
+      />
 
       <EntityStats v-if="isEnterAnimationDone" :entity-id="entityId" />
     </container>
