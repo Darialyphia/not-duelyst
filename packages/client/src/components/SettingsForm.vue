@@ -67,6 +67,12 @@ until(settings)
           <UiSwitch v-model:checked="formData.fx.dynamicLighting" />
           <label>Shadows</label>
           <UiSwitch v-model:checked="formData.fx.shadows" />
+          <label>Tint strength</label>
+          <UiSliderInput
+            v-model="formData.fx.tintStrength"
+            label="sound effects volume"
+            class="w-full"
+          />
         </fieldset>
         <fieldset>
           <legend>Interface</legend>
@@ -94,7 +100,7 @@ until(settings)
             ]"
           />
 
-          <label>Show unit names</label>
+          <!-- <label>Show unit names</label>
           <UiRadioGroup
             v-model="formData.ui.displayUnitsNames"
             :options="[
@@ -114,7 +120,7 @@ until(settings)
                 value: DISPLAY_UNITS_NAMES.ALWAYS
               }
             ]"
-          />
+          /> -->
         </fieldset>
       </div>
     </section>
@@ -134,7 +140,7 @@ fieldset {
 
   display: grid;
   grid-template-columns: max-content 1fr;
-  row-gap: var(--size-2);
+  row-gap: var(--size-4);
   column-gap: var(--size-3);
   align-items: center;
 

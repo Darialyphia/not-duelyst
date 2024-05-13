@@ -2,7 +2,7 @@ import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { isAxisAligned, isSelf, isWithinCells } from '../../../utils/targeting';
-import { nimble } from '../../../modifier/modifier-utils';
+import { celerity, fury, nimble } from '../../../modifier/modifier-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -37,30 +37,16 @@ export const f1Dancer: CardBlueprint = {
       initialCooldown: 0,
       minTargetCount: 0,
       maxTargetCount: 1,
+      keywords: [KEYWORDS.FURY, KEYWORDS.CELERITY],
       isTargetable(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
       isInAreaOfEffect(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
-      keywords: [KEYWORDS.FURY, KEYWORDS.CELERITY],
       onUse({ skill, affectedCells }) {
-        skill.caster.addModifier(nimble({ source: skill.caster, duration: 3 }));
-        skill.caster.addModifier(
-          createEntityModifier({
-            source: skill.caster,
-            visible: false,
-            stackable: false,
-            mixins: [
-              modifierEntityInterceptorMixin({
-                key: 'speed',
-                interceptor: () => val => val + 1,
-                duration: 3,
-                keywords: []
-              })
-            ]
-          })
-        );
+        skill.caster.addModifier(fury({ source: skill.caster, duration: 2 }));
+        skill.caster.addModifier(celerity({ source: skill.caster, duration: 2 }));
       }
     }
   ]

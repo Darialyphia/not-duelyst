@@ -11,6 +11,7 @@ import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
+import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -420,6 +421,33 @@ export const celerity = ({ source, duration }: { source: Entity; duration?: numb
         tickOn: 'start',
         keywords: [KEYWORDS.CELERITY]
       })
+    ]
+  });
+};
+
+export const structure = (source: Entity) => {
+  return createEntityModifier({
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      {
+        keywords: [KEYWORDS.STRUCTURE],
+        onApplied(session, attachedTo, modifier) {
+          attachedTo.addInterceptor(
+            'canAttack',
+            () => false,
+            INTERCEPTOR_PRIORITIES.FINAL
+          );
+          attachedTo.addInterceptor('canMove', () => false, INTERCEPTOR_PRIORITIES.FINAL);
+          attachedTo.addInterceptor(
+            'canRetaliate',
+            () => false,
+            INTERCEPTOR_PRIORITIES.FINAL
+          );
+          attachedTo.addInterceptor('attack', () => 0, INTERCEPTOR_PRIORITIES.FINAL);
+        }
+      }
     ]
   });
 };

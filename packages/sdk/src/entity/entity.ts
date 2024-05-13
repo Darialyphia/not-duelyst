@@ -388,11 +388,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    // await this.session.fxSystem.playAnimation(this.id, 'attack', {
-    //   framePercentage: 0.75
-    // });
-    await this.session.fxSystem.attack(this.id, target.id);
-
     await target.takeDamage(power, this);
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
@@ -448,6 +443,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   async performAttack(target: Entity) {
     this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
+
+    // await this.session.fxSystem.playAnimation(this.id, 'attack', {
+    //   framePercentage: 0.75
+    // });
+    await this.session.fxSystem.attack(this.id, target.id);
+
     await this.dealDamage(this.attack, target);
 
     await target.retaliate(target.attack, this);

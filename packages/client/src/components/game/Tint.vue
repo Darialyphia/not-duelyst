@@ -4,6 +4,7 @@ import { useScreen } from 'vue3-pixi';
 import { debounce } from 'lodash-es';
 
 const screen = useScreen();
+const settings = useUserSettings();
 
 function gradient() {
   const c = document.createElement('canvas');
@@ -20,16 +21,16 @@ function gradient() {
 }
 
 const texture = ref(gradient()) as Ref<Texture>;
-const debouncedResize = debounce(() => {
+const debouncedUpdate = debounce(() => {
   texture.value = gradient();
 }, 100);
-useEventListener(window, 'resize', debouncedResize);
+useEventListener(window, 'resize', debouncedUpdate);
 </script>
 
 <template>
   <graphics
     event-mode="none"
-    :alpha="0.3"
+    :alpha="settings.fx.tintStrength[0] / 100"
     :blend-mode="BLEND_MODES.SCREEN"
     @render="
       g => {

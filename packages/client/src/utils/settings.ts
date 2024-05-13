@@ -26,7 +26,8 @@ export const getDefaultSettings = () => ({
   },
   fx: {
     dynamicLighting: true,
-    shadows: true
+    shadows: true,
+    tintStrength: [40]
   },
   a11y: {
     colorCodeUnits: false

@@ -173,7 +173,8 @@ export const KEYWORDS = {
     id: 'fury',
     name: 'Fury',
     description: 'Can attack twice per turn.',
-    aliases: []
+    aliases: [],
+    spriteId: 'fury'
   },
   CELERITY: {
     id: 'celerity',
@@ -199,6 +200,12 @@ export const KEYWORDS = {
     name: 'Ranged(x)',
     description: 'This unit can attack from X tiles away.',
     aliases: [/ranged\([0-9]+\)/]
+  },
+  STRUCTURE: {
+    id: 'structure',
+    name: 'Structure',
+    aliases: [],
+    description: 'Cannot move, attack, retaliate or gain attack.'
   }
 } as const satisfies Record<string, Keyword>;
 
