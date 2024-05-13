@@ -44,6 +44,7 @@ export const f1Ranged: CardBlueprint = {
 
         const [origin] = castPoints;
         if (point.z !== origin.z) return false;
+        if (Vec3.fromPoint3D(origin).equals(point)) return true;
 
         if (origin.x === point.x) {
           return origin.y > skill.caster.position.y
@@ -51,7 +52,7 @@ export const f1Ranged: CardBlueprint = {
             : point.y < skill.caster.position.y;
         } else {
           return origin.x > skill.caster.position.x
-            ? point.x >= skill.caster.position.x
+            ? point.x > skill.caster.position.x
             : point.x < skill.caster.position.x;
         }
       },
