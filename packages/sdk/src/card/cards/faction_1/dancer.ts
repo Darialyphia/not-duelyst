@@ -10,7 +10,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 export const f1Dancer: CardBlueprint = {
   id: 'f1_dancer',
   name: 'F1 Dancer',
-  description: '',
+  description: '@Nimble@',
   collectable: true,
   rarity: RARITIES.EPIC,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],

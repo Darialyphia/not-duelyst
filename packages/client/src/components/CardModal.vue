@@ -43,8 +43,10 @@ const keywords = computed(() =>
       </div>
 
       <div>
-        <p><TextWithKeywords :text="blueprint.description" /></p>
-        <h3>Abilities</h3>
+        <p class="whitespace-pre-line">
+          <TextWithKeywords :text="blueprint.description" />
+        </p>
+        <h3 v-if="blueprint.skills.length">Abilities</h3>
 
         <ul>
           <li
@@ -55,9 +57,8 @@ const keywords = computed(() =>
             }"
           >
             <h4>{{ skill.name }}</h4>
-            <p>
+            <p class="whitespace-pre-line">
               <TextWithKeywords :text="skill.description" />
-              {{ skill.description }}
             </p>
             <p class="text-right">
               <Icon name="icon-park-outline:hourglass-full" />
@@ -65,7 +66,7 @@ const keywords = computed(() =>
             </p>
           </li>
         </ul>
-        <h3>Keywords</h3>
+        <h3 v-if="keywords.length">Keywords</h3>
         <dl>
           <div v-for="keyword in keywords" :key="keyword.id">
             <dt>{{ keyword.name }}</dt>

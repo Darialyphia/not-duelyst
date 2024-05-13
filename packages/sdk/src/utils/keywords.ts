@@ -31,13 +31,13 @@ export const KEYWORDS = {
   CURSE: {
     id: 'curse',
     name: 'Curse',
-    description: 'Remove all positive modifiers from a unit',
+    description: 'Remove all positive effects from a unit.',
     aliases: []
   },
   CLEANSE: {
     id: 'cleanse',
-    name: 'Clense',
-    description: 'Remove all negative modifiers from a unit',
+    name: 'Cleanse',
+    description: 'Remove all negative effects from a unit.',
     aliases: []
   },
   BURN: {
@@ -185,7 +185,7 @@ export const KEYWORDS = {
   FLYING: {
     id: 'flying',
     name: 'Flying',
-    description: 'can walk over water',
+    description: 'can walk over water and climb terrain.',
     aliases: []
   },
   NIMBLE: {

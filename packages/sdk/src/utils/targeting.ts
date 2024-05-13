@@ -102,5 +102,6 @@ export const isNearbyEnemy = (session: GameSession, origin: Entity, point: Point
   isEnemy(session, session.entitySystem.getEntityAt(point)?.id, origin.player.id);
 
 export const isNearbyAlly = (session: GameSession, origin: Entity, point: Point3D) =>
+  !session.entitySystem.getEntityAt(point)?.equals(origin) &&
   isWithinCells(origin.position, point, 1) &&
   isAlly(session, session.entitySystem.getEntityAt(point)?.id, origin.player.id);

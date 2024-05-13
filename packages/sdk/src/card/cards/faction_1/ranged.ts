@@ -8,7 +8,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Ranged: CardBlueprint = {
   id: 'f1_ranged',
-  name: 'F1 Ranged',
+  name: 'F1 Structure',
   description: '',
   collectable: true,
   rarity: RARITIES.BASIC,
@@ -30,7 +30,7 @@ export const f1Ranged: CardBlueprint = {
     {
       id: 'f1_ranged_skill_1',
       name: 'Pyramid Beam',
-      description: 'Deal 2 damage to all units in a straight line',
+      description: 'Deal 2 damage to all units in a straight line.',
       cooldown: 2,
       iconId: 'laser-green',
       initialCooldown: 0,

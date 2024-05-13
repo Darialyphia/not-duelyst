@@ -117,12 +117,14 @@ const isModalOpened = ref(false);
         <!-- <p class="text-0 color-gray-0 mb-1 font-700">
           {{ selectedSkill.name }}
         </p> -->
-        <p class="text-00">
+        <p class="text-00 whitespace-pre-line">
           <TextWithKeywords :text="selectedSkill.description" />
         </p>
       </template>
 
-      <p v-else class="text-00"><TextWithKeywords :text="card.description" /></p>
+      <p v-else class="text-00 whitespace-pre-line">
+        <TextWithKeywords :text="card.description" />
+      </p>
     </div>
 
     <footer>

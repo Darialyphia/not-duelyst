@@ -434,11 +434,15 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     }
   }
 
-  retaliate(power: number, target: Entity) {
+  async retaliate(power: number, target: Entity) {
     if (!this.canRetaliate(target)) return;
     this.retaliationsDone++;
+    // await this.session.fxSystem.playAnimation(this.id, 'attack', {
+    //   framePercentage: 0.75
+    // });
+    await this.session.fxSystem.attack(this.id, target.id);
+    await this.dealDamage(power, target);
     this.checkExhaustion();
-    return this.dealDamage(power, target);
   }
 
   async performAttack(target: Entity) {

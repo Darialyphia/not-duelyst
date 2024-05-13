@@ -96,10 +96,13 @@ export const tough = ({ duration, source }: { source: Entity; duration?: number 
     mixins: [
       modifierEntityInterceptorMixin({
         key: 'damageTaken',
-        interceptor: modifier => amount => Math.max(amount - modifier.stacks!, 1),
+        interceptor: modifier => amount => {
+          console.log(modifier);
+          return Math.max(amount - modifier.stacks!, 1);
+        },
         tickOn: 'start',
         duration,
-        keywords: [KEYWORDS.VULNERABLE]
+        keywords: [KEYWORDS.TOUGH]
       })
     ]
   });
@@ -383,6 +386,7 @@ export const thorns = ({
       modifierSelfEventMixin({
         eventName: 'after_take_damage',
         duration,
+        tickOn: 'start',
         keywords: [KEYWORDS.THORNS],
         listener([event], ctx) {
           ctx.attachedTo.dealDamage(ctx.modifier.stacks!, event.source);
@@ -448,6 +452,47 @@ export const structure = (source: Entity) => {
           attachedTo.addInterceptor('attack', () => 0, INTERCEPTOR_PRIORITIES.FINAL);
         }
       }
+    ]
+  });
+};
+
+export const ranged = ({
+  range,
+  source,
+  duration
+}: {
+  range: number;
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'range',
+        duration,
+        keywords: [KEYWORDS.RANGED],
+        interceptor: () => base => base + range
+      })
+    ]
+  });
+};
+
+export const barrier = ({ source, duration }: { source: Entity; duration?: number }) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'damageTaken',
+        interceptor: () => () => 0,
+        priority: INTERCEPTOR_PRIORITIES.FINAL,
+        keywords: [KEYWORDS.BARRIER],
+        duration
+      })
     ]
   });
 };

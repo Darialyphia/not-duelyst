@@ -67,6 +67,7 @@ export const createEntityModifier = ({
 }: ModifierBuilderOptions): EntityModifier => {
   return {
     ...options,
+    stacks: options.stackable ? options.stacks ?? 1 : undefined,
     id: options.id ?? nanoid(6),
     keywords: [
       ...new Set(

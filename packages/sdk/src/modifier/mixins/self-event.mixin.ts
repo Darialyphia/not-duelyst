@@ -9,7 +9,8 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
   eventName,
   listener,
   keywords = [],
-  duration = Infinity
+  duration = Infinity,
+  tickOn
 }: {
   eventName: T;
   listener: (
@@ -18,17 +19,18 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
   ) => MaybePromise<void>;
   keywords?: Keyword[];
   duration?: number;
+  tickOn?: 'start' | 'end';
 }): EntityModifierMixin => {
   let _listener: any;
 
   return modifierEntityDurationMixin({
     keywords,
     duration,
+    tickOn,
     onApplied(session, attachedTo, modifier) {
       _listener = (...args: any[]) => {
         return listener(args as any, { session, attachedTo, modifier });
       };
-      console.log('adding listener on event', eventName);
       attachedTo.on(eventName, _listener);
     },
     onRemoved(session, attachedTo) {

@@ -2,6 +2,14 @@ import { Vec3 } from '@game/shared';
 import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { KEYWORDS } from '../../../utils/keywords';
+import { burn, ranged } from '../../../modifier/modifier-utils';
+import {
+  getAffectedEntities,
+  isNearbyAlly,
+  isSelf,
+  isWithinCells
+} from '../../../utils/targeting';
 
 export const f1Mage: CardBlueprint = {
   id: 'f1_mage',
@@ -19,5 +27,76 @@ export const f1Mage: CardBlueprint = {
   maxHp: 11,
   speed: 3,
   range: 1,
-  skills: []
+  keywords: [KEYWORDS.RANGED],
+  onPlay({ entity }) {
+    entity.addModifier(ranged({ source: entity, range: 3 }));
+  },
+  skills: [
+    {
+      id: 'f1_mage_skill_one',
+      name: 'Fireball',
+      description: 'Deal 3 damage to an enemy and @Burn@ to nearby minions.',
+      cooldown: 3,
+      initialCooldown: 0,
+      iconId: 'fire',
+      minTargetCount: 1,
+      maxTargetCount: 1,
+      keywords: [KEYWORDS.BURN],
+      isTargetable(point, { session, skill }) {
+        return (
+          isWithinCells(skill.caster.position, point, 3) &&
+          isEnemy(
+            session,
+            session.entitySystem.getEntityAt(point)?.id,
+            skill.caster.player.id
+          )
+        );
+      },
+      isInAreaOfEffect(point, { skill, castPoints, session }) {
+        return (
+          isEnemy(
+            session,
+            session.entitySystem.getEntityAt(point)?.id,
+            skill.caster.player.id
+          ) && isWithinCells(skill.caster.position, point, 1)
+        );
+      },
+      onUse({ skill, castPoints, affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(entity => {
+          if (entity.position.equals(castPoints[0])) {
+            skill.caster.dealDamage(3, entity);
+          } else {
+            entity.addModifier(burn({ source: skill.caster }));
+          }
+        });
+      }
+    },
+    {
+      id: 'f1_mage_skill_2',
+      name: 'Sands of Time',
+      description:
+        'Reduce the cooldown of all abilities of this unit and nearby allies by 1.',
+      iconId: 'hourglass',
+      cooldown: 5,
+      minTargetCount: 1,
+      maxTargetCount: 1,
+      initialCooldown: 2,
+      isTargetable(point, { session, skill }) {
+        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
+      },
+      isInAreaOfEffect(point, { session, skill }) {
+        return (
+          isSelf(skill.caster, session.entitySystem.getEntityAt(point)) ||
+          isNearbyAlly(session, skill.caster, point)
+        );
+      },
+      onUse({ affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(entity => {
+          entity.skills.forEach(skill => {
+            skill.currentCooldown = Math.max(skill.currentCooldown - 1, 0);
+          });
+        });
+      }
+    }
+  ]
 };
