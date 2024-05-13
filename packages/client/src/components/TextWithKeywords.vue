@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { KEYWORDS } from '@game/sdk';
+import { CARDS, KEYWORDS } from '@game/sdk';
 import { isString } from '@game/shared';
 const { text } = defineProps<{ text: string }>();
 
 const KEYWORD_DELIMITER = '@';
+const CARD_NAMES = new Set(Object.values(CARDS).map(c => c.name));
+
 const tokens = computed(() => {
   return text.split(KEYWORD_DELIMITER).map(part => {
     const isKeyword = Object.values(KEYWORDS).some(keyword => {
@@ -16,24 +18,31 @@ const tokens = computed(() => {
         })
       );
     });
-    return isKeyword ? { type: 'keyword', text: part } : { type: 'text', text: part };
+    if (isKeyword) return { type: 'keyword', text: part };
+    const isCard = CARD_NAMES.has(part);
+    if (isCard) return { type: 'card', text: part };
+
+    return { type: 'text', text: part };
   });
 });
 </script>
 
 <template>
-  <span
-    v-for="(token, index) in tokens"
-    :key="index"
-    :class="token.type === 'keyword' && 'keyword'"
-  >
+  <span v-for="(token, index) in tokens" :key="index" :class="token.type">
     {{ token.text }}
   </span>
 </template>
 
 <style scoped lang="postcss">
-.keyword {
+:is(.keyword, .card) {
   font-weight: var(--font-weight-6);
+}
+
+.keyword {
   color: var(--primary);
+}
+
+.card {
+  color: var(--cyan-2);
 }
 </style>

@@ -23,12 +23,9 @@ const isDev = import.meta.env;
 <template>
   <container :y="225">
     <pixi-text :x="30" :y="15" :style="style">{{ averageFPS.toFixed() }} FPS</pixi-text>
-    <pixi-text :x="30" :y="30" :style="style">
-      TARGETING MODE: {{ ui.targetingMode }}
-    </pixi-text>
     <pixi-text
       :x="30"
-      :y="45"
+      :y="30"
       :style="style"
       @click="
         () => {
@@ -37,6 +34,18 @@ const isDev = import.meta.env;
       "
     >
       Debug session
+    </pixi-text>
+    <pixi-text :x="30" :y="45" :style="style">
+      TARGETING MODE: {{ ui.targetingMode }}
+    </pixi-text>
+    <pixi-text :x="30" :y="60" :style="style">
+      SELECTED SKILL: {{ ui.selectedSkill.value?.blueprint.id }}
+    </pixi-text>
+    <pixi-text :x="30" :y="75" :style="style">
+      SELECTED CARD: {{ ui.selectedCard.value?.blueprint.id }}
+    </pixi-text>
+    <pixi-text :x="30" :y="90" :style="style">
+      SELECTED ENTITY: {{ ui.selectedEntity.value?.id }}
     </pixi-text>
   </container>
 </template>

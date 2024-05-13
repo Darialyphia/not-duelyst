@@ -1,5 +1,6 @@
 import { Container } from 'pixi.js';
 import type { FxCommand } from '../useFx';
+import { clamp } from '@game/shared';
 
 export const attack: FxCommand<'attack'> = (
   { done, session, spriteMap, camera },
@@ -32,6 +33,8 @@ export const attack: FxCommand<'attack'> = (
     scale *= -1;
   }
   distance.x *= scale;
+  distance.x = clamp(distance.x, -80, 80);
+  distance.y = clamp(distance.y, -80, 80);
 
   const timeline = gsap.timeline();
   timeline.to(attackerSprite, {

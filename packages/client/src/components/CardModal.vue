@@ -7,50 +7,71 @@ const isOpened = defineModel<boolean>('isOpened', { required: true });
 
 const blueprint = computed(() => CARDS[blueprintId]);
 
+const selectedBlueprint = computed(() => CARDS[selectedBlueprintId.value]);
+
+const relatedBlueprints = computed(() =>
+  (blueprint.value.relatedBlueprintIds ?? []).map(id => CARDS[id])
+);
+
+const blueprints = computed(() => {
+  return [
+    ...new Set([selectedBlueprint.value, blueprint.value, ...relatedBlueprints.value])
+  ];
+});
+
 const keywords = computed(() =>
   uniqBy(
     [
-      ...(blueprint.value.keywords ?? []),
-      ...blueprint.value.skills.map(skill => skill.keywords ?? []).flat()
+      ...(selectedBlueprint.value.keywords ?? []),
+      ...selectedBlueprint.value.skills.map(skill => skill.keywords ?? []).flat()
     ],
     'id'
   )
 );
+
+const selectedBlueprintId = ref(blueprintId);
 </script>
 
 <template>
-  <UiModal v-model:is-opened="isOpened" :title="blueprint.name">
-    <div class="card-modal">
-      <div class="card-wrapper">
-        <Card
-          :card="{
-            blueprintId: blueprint.id,
-            name: blueprint.name,
-            description: blueprint.description,
-            kind: blueprint.kind,
-            spriteId: blueprint.spriteId,
-            rarity: blueprint.rarity,
-            attack: blueprint.attack,
-            hp: blueprint.maxHp,
-            speed: blueprint.speed,
-            cost: blueprint.cost,
-            cooldown: blueprint.cooldown,
-            skills: blueprint.skills,
-            factions: blueprint.factions
-          }"
-          :with-skills="false"
-        />
+  <UiModal v-model:is-opened="isOpened" :title="selectedBlueprint.name">
+    <div class="card-modal fancy-scrollbar">
+      <div class="cards-wrapper">
+        <div
+          v-for="(blueprint, index) in blueprints"
+          :key="blueprint.id"
+          :style="{ '--index': index }"
+          @click="selectedBlueprintId = blueprint.id"
+        >
+          <Card
+            :card="{
+              blueprintId: blueprint.id,
+              name: blueprint.name,
+              description: blueprint.description,
+              kind: blueprint.kind,
+              spriteId: blueprint.spriteId,
+              rarity: blueprint.rarity,
+              attack: blueprint.attack,
+              hp: blueprint.maxHp,
+              speed: blueprint.speed,
+              cost: blueprint.cost,
+              cooldown: blueprint.cooldown,
+              skills: blueprint.skills,
+              factions: blueprint.factions
+            }"
+            :with-skills="false"
+          />
+        </div>
       </div>
 
       <div>
-        <p class="whitespace-pre-line">
-          <TextWithKeywords :text="blueprint.description" />
+        <p>
+          <TextWithKeywords :text="selectedBlueprint.description" />
         </p>
-        <h3 v-if="blueprint.skills.length">Abilities</h3>
+        <h3 v-if="selectedBlueprint.skills.length">Abilities</h3>
 
         <ul>
           <li
-            v-for="skill in blueprint.skills"
+            v-for="skill in selectedBlueprint.skills"
             :key="skill.id"
             :style="{
               '--bg': `url('/assets/icons/${skill.iconId}.png')`
@@ -106,16 +127,24 @@ const keywords = computed(() =>
   }
 }
 .card-modal {
+  overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: var(--size-6);
-  filter: drop-shadow(0 0 1rem hsl(var(--color-primary-hsl) / 0.25));
+  column-gap: var(--size-11);
+
+  width: calc(var(--size-md) + 5rem);
+  height: clamp(50dvh, 30rem, 80dvh);
+  padding-right: var(--size-5);
 }
 
-.card-wrapper {
+.cards-wrapper {
+  position: sticky;
+  top: 0;
   transform-style: preserve-3d;
 
-  place-self: center;
+  display: grid;
+  align-self: start;
+  justify-self: center;
 
   perspective: 40rem;
 
@@ -124,11 +153,29 @@ const keywords = computed(() =>
   animation-timing-function: ease-out;
   animation-delay: 0.3s;
 
-  > * {
-    animation-name: card-modal;
-    animation-duration: 8s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  > div {
+    cursor: pointer;
+
+    position: relative;
+    z-index: calc(10 - var(--index));
+    transform: translateX(calc(var(--index) * 50px)) rotateZ(calc(var(--index) * 10deg));
+
+    grid-column: 1;
+    grid-row: 1;
+
+    width: fit-content;
+
+    transition: filter 0.3s;
+    &:hover {
+      filter: drop-shadow(0 0 1rem hsl(var(--color-primary-hsl) / 0.25));
+    }
+
+    > * {
+      animation-name: card-modal;
+      animation-duration: 8s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
   }
 }
 
@@ -149,12 +196,14 @@ ul {
   margin-block-end: var(--size-4);
 }
 li {
-  min-height: 38px;
-  padding-left: 52px;
+  min-height: 76px;
+  padding-left: 82px;
 
   background: var(--bg);
   background-repeat: no-repeat;
-  background-size: 38px 38px;
+  background-size: 76px 76px;
+
+  image-rendering: pixelated;
   &.selected {
     filter: contrast(130%) brightness(110%);
     outline: var(--fancy-border);

@@ -18,17 +18,25 @@ export const useCollection = () => {
       .map(item => {
         return { ...item, card: CARDS[item.cardId] };
       })
-      .filter(item => item.card.collectable)
+      .filter(item => {
+        return item.card.collectable;
+      })
   );
 
   type CollectionItemWithCard = CollectionItemDto & { card: CardBlueprint };
 
   const sortUnitFunction = (a: CollectionItemWithCard, b: CollectionItemWithCard) => {
+    // put generals first
     if (a.card.kind === CARD_KINDS.GENERAL && b.card.kind === CARD_KINDS.MINION)
       return -1;
     if (b.card.kind === CARD_KINDS.GENERAL && a.card.kind === CARD_KINDS.MINION) return 1;
+
     const aFaction = a.card.factions[0];
     const bFaction = b.card.factions[0];
+
+    // put neutral units last
+    if (aFaction && !bFaction) return -1;
+    if (bFaction && !aFaction) return 1;
 
     const factionDiff =
       factions.indexOf(bFaction?.id as string) - factions.indexOf(aFaction?.id as string);

@@ -91,7 +91,9 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   get hand() {
-    return this.cards.filter(card => card.blueprint.kind === CARD_KINDS.MINION);
+    return this.cards.filter(
+      card => card.blueprint.kind === CARD_KINDS.MINION && !card.isGenerated
+    );
   }
 
   get opponent() {
@@ -124,11 +126,11 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     });
   }
 
-  generateCard(blueprintId: CardBlueprintId) {
+  generateCard(blueprintId: CardBlueprintId, pedestalId = 'pedestal-default') {
     const card = new Card(
       this.session,
       this.cards.length,
-      { blueprintId, pedestalId: 'pedestal-default' },
+      { blueprintId, pedestalId, isGenerated: true },
       this.id
     );
     this.cards.push(card);

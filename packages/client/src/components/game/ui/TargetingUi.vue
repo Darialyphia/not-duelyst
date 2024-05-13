@@ -12,6 +12,22 @@ const canSkip = computed(() => {
   );
 });
 
+const cancel = () => {
+  match(ui.targetingMode.value)
+    .with(
+      TARGETING_MODES.NONE,
+      TARGETING_MODES.BASIC,
+      TARGETING_MODES.SUMMON,
+      () => undefined
+    )
+    .with(TARGETING_MODES.FOLLOWUP, () => {
+      ui.unselectCard();
+    })
+    .with(TARGETING_MODES.SKILL, () => {
+      ui.unselectSkill();
+    })
+    .exhaustive();
+};
 const commitSummon = () => {
   dispatch('playCard', {
     cardIndex: ui.selectedCardIndex.value!,
@@ -66,15 +82,12 @@ watchEffect(() => {
     "
     class="followup-ui"
   >
-    <UiFancyButton
-      :style="{ '--hue': '0DEG', '--hue2': '30DEG' }"
-      @click="ui.unselectCard()"
-    >
+    <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
       Cancel
     </UiFancyButton>
     <UiFancyButton
+      v-if="canSkip"
       :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
-      :disabled="!canSkip"
       @click="commitSummon"
     >
       Skip

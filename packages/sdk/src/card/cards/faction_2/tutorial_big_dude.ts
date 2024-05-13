@@ -15,7 +15,7 @@ export const f2TutorialBigDude: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cooldown: 5,
   initialCooldown: 0,
-  cost: 5,
+  cost: 6,
   attack: 4,
   maxHp: 10,
   speed: 3,

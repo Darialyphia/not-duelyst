@@ -92,9 +92,9 @@ export const cone = (casterPosition: Point3D, origin: Point3D, range: number) =>
 export const getAffectedEntities = (cells: Cell[]) =>
   cells.map(cell => cell.entity).filter(isDefined);
 
-export const isCastPoint = (point: Point3D, castPoints: Point3D[]) => {
+export const isCastPoint = (point: Point3D, castPoints: Array<Nullable<Point3D>>) => {
   const vec = Vec3.fromPoint3D(point);
-  return castPoints.some(p => vec.equals(p));
+  return castPoints.some(p => p && vec.equals(p));
 };
 
 export const isNearbyEnemy = (session: GameSession, origin: Entity, point: Point3D) =>

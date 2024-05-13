@@ -28,9 +28,9 @@ export const KEYWORDS = {
       'After using this ability, its caster cannot move until the end of the turn.',
     aliases: []
   },
-  CURSE: {
-    id: 'curse',
-    name: 'Curse',
+  PURGE: {
+    id: 'purge',
+    name: 'Purge',
     description: 'Remove all positive effects from a unit.',
     aliases: []
   },
@@ -43,26 +43,28 @@ export const KEYWORDS = {
   BURN: {
     id: 'burn',
     name: 'Burn',
-    description: 'This unit 1 receives damage at the beginning of its turn.',
+    description:
+      'This unit 1 receives damage at the beginning of its turn. Can be stacked.',
     spriteId: 'burn',
     aliases: []
   },
   REGENERATION: {
     id: 'regeneration',
     name: 'Regeneration',
-    description: 'This unit recovers 1 hp at the beginning of its turn.',
+    description: 'This unit recovers 1 hp at the beginning of its turn. Can be stacked.',
     aliases: []
   },
   TOUGH: {
     id: 'tough',
     name: 'Tough',
-    description: 'This unit takes 1 less damage from all sources (min. 1).',
+    description:
+      'This unit takes 1 less damage from all sources (min. 1). Can be stacked.',
     aliases: []
   },
   VULNERABLE: {
     id: 'vulnerable',
     name: 'Vulnerable',
-    description: 'This unit takes 1 more damage from all sources.',
+    description: 'This unit takes 1 more damage from all sources. Can be stacked.',
     aliases: []
   },
   TAUNTED: {
@@ -100,12 +102,13 @@ export const KEYWORDS = {
   THORNS: {
     id: 'thorns',
     name: 'Thorns',
-    description: 'Enemies unit dealing damage to this unit take 1 damage.',
+    description:
+      'Enemies unit dealing damage to this unit take 1 damage. Can be stacked.',
     aliases: []
   },
-  SUMMON: {
-    id: 'summon',
-    name: 'Summon',
+  CALL_TO_ARMS: {
+    id: 'call_to_arms',
+    name: 'Call to Arms',
     description: 'Triggers when the unit enters the battlefield.',
     aliases: []
   },
@@ -198,7 +201,7 @@ export const KEYWORDS = {
   RANGED: {
     id: 'ranged',
     name: 'Ranged(x)',
-    description: 'This unit can attack from X tiles away.',
+    description: 'This unit attack range is increased by X.',
     aliases: [/ranged\([0-9]+\)/]
   },
   STRUCTURE: {

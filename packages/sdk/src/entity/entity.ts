@@ -12,6 +12,7 @@ import { type Keyword } from '../utils/keywords';
 import { Tile } from '../tile/tile';
 import { Skill } from './skill';
 import { uniqBy } from 'lodash-es';
+import type { CardModifier } from '../modifier/card-modifier';
 
 export type EntityId = number;
 
@@ -505,6 +506,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   addModifier(modifier: EntityModifier) {
     const existing = this.getModifier(modifier.id);
+    console.log(this.id, modifier.id, existing, this.modifiers);
+
     if (existing) {
       if (existing.stackable) {
         existing.stacks++;
@@ -515,6 +518,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     }
 
     this.modifiers.push(modifier);
+
     return modifier.onApplied(this.session, this, modifier);
   }
 
@@ -551,11 +555,27 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   get keywords() {
-    const allKeywords = this.modifiers
-      .map(mod => mod.keywords)
-      .concat(this.card.modifiers.map(mod => mod.keywords))
-      .flat();
+    const allModifiers: Array<EntityModifier | CardModifier> = [
+      ...this.modifiers,
+      ...this.card.modifiers
+    ];
 
-    return uniqBy(allKeywords, 'id');
+    const keywordsWithStacks = new Map<string, Keyword & { stacks?: number }>();
+
+    for (const modifier of allModifiers) {
+      modifier.keywords.forEach(keyword => {
+        if (!keywordsWithStacks.has(keyword.id)) {
+          keywordsWithStacks.set(keyword.id, {
+            ...keyword,
+            stacks: modifier.stackable ? modifier.stacks : undefined
+          });
+        } else if (modifier.stackable) {
+          // @ts-expect-error
+          keywordsWithStacks.get(keyword.id)!.stacks++;
+        }
+      });
+    }
+
+    return uniqBy([...keywordsWithStacks.values()], 'id');
   }
 }

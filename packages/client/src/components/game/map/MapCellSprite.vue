@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
-import type { Nullable } from '@game/shared';
+import { type Nullable, isDefined } from '@game/shared';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
@@ -34,7 +34,7 @@ const normalTextures = computed(() => {
 const shape = assets.getHitbox('tile');
 const hitArea = Hitbox.from(shape.shapes[0].points, shape.shapes[0].source, 0.5);
 
-const attackFilter = new ColorOverlayFilter(0xff0000, 0.5);
+const targetedFilter = new ColorOverlayFilter(0xff0000, 0.5);
 
 const filters = computed(() => {
   const result: Filter[] = [];
@@ -47,7 +47,17 @@ const filters = computed(() => {
     ui.selectedEntity.value.canAttack(ui.hoveredEntity.value) &&
     ui.targetingMode.value === TARGETING_MODES.BASIC
   ) {
-    result.push(attackFilter);
+    result.push(targetedFilter);
+  }
+
+  if (
+    ui.selectedSkill.value &&
+    ui.selectedSkill.value?.isInAreaOfEffect(
+      cell.value,
+      [...ui.skillTargets.value, ui.hoveredCell.value?.position].filter(isDefined)
+    )
+  ) {
+    result.push(targetedFilter);
   }
 
   return result;

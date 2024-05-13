@@ -22,15 +22,30 @@ type ModifierBase = {
   keywords: Keyword[];
 };
 
-export type CardModifier = Prettify<ModifierBase>;
+type StackableMixin =
+  | {
+      stackable: true;
+      stacks: number;
+    }
+  | {
+      stackable: false;
+      stacks?: never;
+      onReapply(
+        session: GameSession,
+        attachedTo: Card,
+        modifier: CardModifier
+      ): MaybePromise<void>;
+    };
+
+export type CardModifier = Prettify<ModifierBase & StackableMixin>;
 
 export type CardModifierMixin = Partial<
-  Pick<CardModifier, 'onApplied' | 'onRemoved' | 'keywords'>
+  Pick<CardModifier & { stackable: false }, 'onApplied' | 'onRemoved' | 'keywords'>
 >;
 
 type ModifierBuilderOptions = PartialBy<Pick<CardModifier, 'id'>, 'id'> & {
   mixins: CardModifierMixin[];
-};
+} & Omit<StackableMixin, 'onReapply'> & { mixins: CardModifierMixin[] };
 
 export const createCardModifier = ({
   mixins,

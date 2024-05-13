@@ -21,15 +21,15 @@ export const dispelEntity = (entity: Entity) => {
 
 export const cleanseEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
-    if (modifier.source.player.equals(entity.player)) {
+    if (!modifier.source.player.equals(entity.player)) {
       entity.removeModifier(modifier.id);
     }
   });
 };
 
-export const curseEntity = (entity: Entity) => {
+export const purgeEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
-    if (!modifier.source.player.equals(entity.player)) {
+    if (modifier.source.player.equals(entity.player)) {
       entity.removeModifier(modifier.id);
     }
   });
@@ -51,6 +51,7 @@ export const dispelAt = (session: GameSession, point: Point3D) => {
 
 export const vigilant = ({ duration, source }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
+    id: KEYWORDS.VIGILANT.id,
     visible: false,
     stackable: false,
     source,
@@ -73,6 +74,7 @@ export const vulnerable = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.VULNERABLE.id,
     visible: false,
     stackable: true,
     source,
@@ -90,6 +92,7 @@ export const vulnerable = ({
 
 export const tough = ({ duration, source }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
+    id: KEYWORDS.TOUGH.id,
     visible: false,
     stackable: true,
     source,
@@ -110,6 +113,7 @@ export const tough = ({ duration, source }: { source: Entity; duration?: number 
 
 export const rush = () => {
   return createCardModifier({
+    stackable: false,
     mixins: [
       modifierCardInterceptorMixin({
         key: 'shouldExhaustOnPlay',
@@ -122,6 +126,7 @@ export const rush = () => {
 
 export const burn = ({ duration, source }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
+    id: KEYWORDS.BURN.id,
     source,
     visible: false,
     stackable: true,
@@ -148,6 +153,7 @@ export const regeneration = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.REGENERATION.id,
     source,
     visible: false,
     stackable: true,
@@ -379,6 +385,7 @@ export const thorns = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.THORNS.id,
     source,
     visible: false,
     stackable: true,

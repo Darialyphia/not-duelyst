@@ -3,6 +3,13 @@ import { config } from '../../../config';
 import { isEnemy, isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import {
+  getAffectedEntities,
+  isCastPoint,
+  isNearbyEnemy
+} from '../../../utils/targeting';
+import { KEYWORDS } from '../../../utils/keywords';
+import { purgeEntity, vulnerable } from '../../../modifier/modifier-utils';
 
 export const f1General: CardBlueprint = {
   id: 'f1_general',
@@ -20,5 +27,32 @@ export const f1General: CardBlueprint = {
   maxHp: config.GENERAL_DEFAULT_HP,
   speed: config.GENERAL_DEFAULT_SPEED,
   range: 1,
-  skills: []
+  skills: [
+    {
+      id: 'f1_general_skill-1',
+      name: 'Void Thrust',
+      description: '@Purge@ an enemy minion and give it @Vulnerable@, then attack it.',
+      cooldown: 3,
+      initialCooldown: 0,
+      iconId: 'spear1',
+      keywords: [KEYWORDS.PURGE, KEYWORDS.VULNERABLE],
+      minTargetCount: 1,
+      maxTargetCount: 1,
+      isTargetable(point, { session, skill }) {
+        return isNearbyEnemy(session, skill.caster, point);
+      },
+      isInAreaOfEffect(point, { castPoints }) {
+        return isCastPoint(point, castPoints);
+      },
+      async onUse({ session, skill, affectedCells }) {
+        await Promise.all(
+          getAffectedEntities(affectedCells).map(entity => {
+            purgeEntity(entity);
+            entity.addModifier(vulnerable({ source: skill.caster }));
+            return skill.caster.performAttack(entity);
+          })
+        );
+      }
+    }
+  ]
 };

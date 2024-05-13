@@ -2,22 +2,28 @@ import { Vec3 } from '@game/shared';
 import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { KEYWORDS } from '../../../utils/keywords';
+import { ranged, rush } from '../../../modifier/modifier-utils';
 
 export const f1Kirin: CardBlueprint = {
   id: 'f1_kirin',
   name: 'F1 Kirin',
-  description: '',
-  collectable: true,
-  rarity: RARITIES.LEGENDARY,
+  description: '@Flying@.\n@Ranged(1)@.',
+  collectable: false,
+  rarity: RARITIES.BASIC,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_kirin',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
+  cooldown: 0,
   initialCooldown: 0,
-  cost: 4,
+  cost: 0,
   attack: 2,
-  maxHp: 10,
+  maxHp: 6,
   speed: 3,
   range: 1,
+  keywords: [KEYWORDS.FLYING, KEYWORDS.RANGED],
+  onPlay({ entity }) {
+    entity.addModifier(ranged({ source: entity, range: 1 }));
+  },
   skills: []
 };

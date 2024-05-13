@@ -33,7 +33,7 @@ export type SkillBlueprint = {
     options: {
       skill: Skill;
       session: GameSession;
-      castPoints: Point3D[];
+      castPoints: Array<Nullable<Point3D>>;
     }
   ): boolean;
   onUse(options: {
@@ -62,11 +62,12 @@ export type CardBlueprint = {
   kind: CardKind;
   keywords?: Keyword[];
   modifiers?: CardModifier[];
+  relatedBlueprintIds?: CardBlueprintId[];
   onPlay?: (options: {
     session: GameSession;
     card: Card;
     entity: Entity;
-    followup: Point3D[];
+    followup: Array<Nullable<Point3D>>;
   }) => MaybePromise<void>;
   followup?: {
     minTargetCount: number;

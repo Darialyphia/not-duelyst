@@ -13,6 +13,7 @@ export type CardBlueprintId = string;
 export type SerializedCard = {
   blueprintId: CardBlueprintId;
   pedestalId: string;
+  isGenerated?: boolean;
 };
 
 export type CardInterceptor = Card['interceptors'];
@@ -31,6 +32,7 @@ export type CardEventMap = {
 
 export class Card extends EventEmitter implements Serializable {
   readonly blueprintId: CardBlueprintId;
+  readonly isGenerated: boolean;
   public readonly pedestalId: string;
   modifiers: CardModifier[] = [];
   currentCooldown: number;
@@ -44,6 +46,7 @@ export class Card extends EventEmitter implements Serializable {
     super();
     this.blueprintId = options.blueprintId;
     this.pedestalId = options.pedestalId;
+    this.isGenerated = options.isGenerated ?? false;
     this.currentCooldown = this.blueprint.initialCooldown;
   }
 

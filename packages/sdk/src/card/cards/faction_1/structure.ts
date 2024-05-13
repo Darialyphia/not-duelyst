@@ -6,7 +6,7 @@ import { structure } from '../../../modifier/modifier-utils';
 import { getAffectedEntities, isAxisAligned } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
 
-export const f1Ranged: CardBlueprint = {
+export const f1Structure: CardBlueprint = {
   id: 'f1_ranged',
   name: 'F1 Structure',
   description: '',
@@ -43,6 +43,8 @@ export const f1Ranged: CardBlueprint = {
         if (!isAxisAligned(point, skill.caster.position)) return false;
 
         const [origin] = castPoints;
+        if (!origin) return false;
+
         if (point.z !== origin.z) return false;
         if (Vec3.fromPoint3D(origin).equals(point)) return true;
 

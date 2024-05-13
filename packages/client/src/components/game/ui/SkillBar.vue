@@ -34,7 +34,9 @@ const { ui, gameType } = useGame();
 
       <div class="fancy-surface skill-tooltip">
         <h4>{{ skill.name }}</h4>
-        <p>{{ skill.description }}</p>
+        <p>
+          <TextWithKeywords :text="skill.description" />
+        </p>
       </div>
     </UiTooltip>
   </div>
@@ -128,5 +130,9 @@ const { ui, gameType } = useGame();
       }
     }
   }
+}
+
+.skill-tooltip {
+  max-width: var(--size-13);
 }
 </style>

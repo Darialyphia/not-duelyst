@@ -14,7 +14,7 @@ import {
 export const f1Mage: CardBlueprint = {
   id: 'f1_mage',
   name: 'F1 Mage',
-  description: '',
+  description: '@Ranged(2)@.',
   collectable: true,
   rarity: RARITIES.RARE,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
@@ -29,13 +29,13 @@ export const f1Mage: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.RANGED],
   onPlay({ entity }) {
-    entity.addModifier(ranged({ source: entity, range: 3 }));
+    entity.addModifier(ranged({ source: entity, range: 2 }));
   },
   skills: [
     {
       id: 'f1_mage_skill_one',
       name: 'Fireball',
-      description: 'Deal 3 damage to an enemy and @Burn@ to nearby minions.',
+      description: 'Deal 3 damage to an enemy and @Burn@ to nearby enemy minions.',
       cooldown: 3,
       initialCooldown: 0,
       iconId: 'fire',
@@ -53,12 +53,15 @@ export const f1Mage: CardBlueprint = {
         );
       },
       isInAreaOfEffect(point, { skill, castPoints, session }) {
+        const [castPoint] = castPoints;
+        if (!castPoint) return false;
+
         return (
           isEnemy(
             session,
             session.entitySystem.getEntityAt(point)?.id,
             skill.caster.player.id
-          ) && isWithinCells(skill.caster.position, point, 1)
+          ) && isWithinCells(castPoint, point, 1)
         );
       },
       onUse({ skill, castPoints, affectedCells }) {
