@@ -31,7 +31,7 @@ export const modifierGameEventMixin = <T extends GameEvent>({
         return listener(args as any, { session, attachedTo, modifier });
       };
       if (once) {
-        attachedTo.once(eventName, _listener);
+        session.once(eventName, _listener);
       } else {
         session.on(eventName, _listener);
       }
