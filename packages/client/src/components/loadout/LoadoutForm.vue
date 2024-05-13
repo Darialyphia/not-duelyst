@@ -86,8 +86,7 @@ const minionsCount = computed(() => {
             @click="changePedestal(card.id, -1)"
           />
           <div class="sprite mx-auto">
-            <PedestalSprite :pedestal-id="card.pedestalId" />
-            <CardSprite :sprite-id="card.card.spriteId" />
+            <CardSprite :sprite-id="card.card.spriteId" :pedestal-id="card.pedestalId" />
           </div>
           <UiIconButton
             name="ph:caret-right-fill"
@@ -210,9 +209,7 @@ li {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-
   > * {
-    transform: translateY(12px);
     grid-column: 1 / -1;
     grid-row: 1 / -1;
   }

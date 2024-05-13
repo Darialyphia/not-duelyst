@@ -42,9 +42,13 @@ const item = computed(() => {
 <style scoped lang="postcss">
 .card-sprite {
   width: 96px;
-  height: 112px;
+  height: 128px;
 
   background: var(--bg);
+  background-repeat: no-repeat;
+  background-position:
+    0px 0px,
+    -8px 8px;
   background-size: cover;
 
   image-rendering: pixelated;

@@ -57,6 +57,7 @@ export const KEYWORDS = {
   TOUGH: {
     id: 'tough',
     name: 'Tough',
+    spriteId: 'tough',
     description:
       'This unit takes 1 less damage from all sources (min. 1). Can be stacked.',
     aliases: []

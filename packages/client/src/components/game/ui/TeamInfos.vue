@@ -242,7 +242,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
 .portrait {
   transform: scale(3);
-  background-position: 0 16px;
+  background-position: 0 8px;
 
   mask-image: radial-gradient(
     circle at center,

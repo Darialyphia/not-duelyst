@@ -125,7 +125,7 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         :anchor-x="0.5"
         :anchor-y="0"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.6"
+        :y="-CELL_HEIGHT * 0.8"
         :is-flipped="isFlipped"
         :filters="filters"
         :ref="
@@ -143,7 +143,7 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         :anchor-x="0.5"
         :anchor-y="0"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.6"
+        :y="-CELL_HEIGHT * 0.8"
         :is-flipped="isFlipped"
       />
 
@@ -153,7 +153,7 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         :anchor-x="0.5"
         :anchor-y="0"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.6"
+        :y="-CELL_HEIGHT * 0.8"
         :is-flipped="isFlipped"
         :filters="filters"
       />
