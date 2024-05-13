@@ -65,6 +65,7 @@ export const KEYWORDS = {
     id: 'vulnerable',
     name: 'Vulnerable',
     description: 'This unit takes 1 more damage from all sources. Can be stacked.',
+    spriteId: 'vulnerable',
     aliases: []
   },
   TAUNTED: {

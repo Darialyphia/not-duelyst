@@ -53,14 +53,14 @@ export const f1KirinSummoner: CardBlueprint = {
       description: 'Summoned a @F1 Kirin@ with @Rush@ on a nearby tile.',
       iconId: 'kirin',
       initialCooldown: 2,
+      minTargetCount: 1,
+      maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
         return isEmpty(session, point) && isWithinCells(point, skill.caster.position, 1);
       },
       isInAreaOfEffect() {
         return false;
       },
-      minTargetCount: 1,
-      maxTargetCount: 1,
       onUse({ castPoints, skill }) {
         const card = skill.caster.player.generateCard(
           'f1_kirin',
