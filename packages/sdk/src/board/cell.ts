@@ -39,6 +39,12 @@ export class Cell implements Serializable {
     return cell.id === this.id;
   }
 
+  removeTile() {
+    if (this.tile) {
+      this.tile.destroy();
+    }
+  }
+
   getDestination(direction: Direction) {
     return this.session.boardSystem.getDestination(this, direction);
   }

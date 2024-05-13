@@ -17,7 +17,7 @@ export type TileOptions = {
 export class Tile {
   position: Vec3;
   blueprintId: TileblueprintId;
-  private occupant: Nullable<Entity> = null;
+  occupant: Nullable<Entity> = null;
 
   meta: AnyObject = {};
 
@@ -32,6 +32,7 @@ export class Tile {
     this.session.on('entity:created', this.checkOccupation);
     this.session.on('entity:after_destroy', this.checkOccupation);
     this.session.on('entity:after-move', this.checkOccupation);
+    this.blueprint.onCreated?.(this.session, this.occupant, this);
   }
 
   get blueprint() {
@@ -44,9 +45,14 @@ export class Tile {
     this.occupant = this.session.entitySystem.getEntityAt(this.position);
 
     if (!previous && this.occupant) {
-      this.blueprint.onEnter(this.session, this.occupant, this);
+      this.blueprint.onEnter?.(this.session, this.occupant, this);
     } else if (previous && !this.occupant) {
-      this.blueprint.onLeave(this.session, previous, this);
+      this.blueprint.onLeave?.(this.session, previous, this);
     }
+  }
+
+  async destroy() {
+    await this.blueprint.onDestroyed?.(this.session, this.occupant, this);
+    this.session.boardSystem.getCellAt(this.position)!.tile = null;
   }
 }

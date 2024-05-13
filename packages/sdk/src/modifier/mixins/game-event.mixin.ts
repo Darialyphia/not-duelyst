@@ -9,7 +9,8 @@ export const modifierGameEventMixin = <T extends GameEvent>({
   eventName,
   listener,
   keywords = [],
-  duration = Infinity
+  duration = Infinity,
+  once = false
 }: {
   eventName: T;
   listener: (
@@ -18,6 +19,7 @@ export const modifierGameEventMixin = <T extends GameEvent>({
   ) => MaybePromise<void>;
   keywords?: Keyword[];
   duration?: number;
+  once?: boolean;
 }): EntityModifierMixin => {
   let _listener: any;
 
@@ -28,7 +30,11 @@ export const modifierGameEventMixin = <T extends GameEvent>({
       _listener = (...args: any[]) => {
         return listener(args as any, { session, attachedTo, modifier });
       };
-      session.on(eventName, _listener);
+      if (once) {
+        attachedTo.once(eventName, _listener);
+      } else {
+        session.on(eventName, _listener);
+      }
     },
     onRemoved(session, attachedTo, modifier) {
       session.off(eventName, _listener);

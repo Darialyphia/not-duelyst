@@ -10,6 +10,7 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
   listener,
   keywords = [],
   duration = Infinity,
+  once = false,
   tickOn
 }: {
   eventName: T;
@@ -19,6 +20,7 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
   ) => MaybePromise<void>;
   keywords?: Keyword[];
   duration?: number;
+  once?: boolean;
   tickOn?: 'start' | 'end';
 }): EntityModifierMixin => {
   let _listener: any;
@@ -31,7 +33,11 @@ export const modifierSelfEventMixin = <T extends EntityEvent>({
       _listener = (...args: any[]) => {
         return listener(args as any, { session, attachedTo, modifier });
       };
-      attachedTo.on(eventName, _listener);
+      if (once) {
+        attachedTo.once(eventName, _listener);
+      } else {
+        attachedTo.on(eventName, _listener);
+      }
     },
     onRemoved(session, attachedTo) {
       attachedTo.off(eventName, _listener);

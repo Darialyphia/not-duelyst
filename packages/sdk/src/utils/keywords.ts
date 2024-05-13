@@ -140,6 +140,7 @@ export const KEYWORDS = {
     id: 'barrier',
     name: 'Barrier',
     description: 'Prevents the next source of damage dealt to this unit.',
+    spriteId: 'barrier',
     aliases: []
   },
   LONE_WOLF: {

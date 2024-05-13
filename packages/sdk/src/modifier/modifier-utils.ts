@@ -36,7 +36,7 @@ export const purgeEntity = (entity: Entity) => {
 };
 
 export const dispelCell = (cell: Cell) => {
-  cell.tile = null;
+  cell.removeTile();
   if (cell.entity) {
     dispelEntity(cell.entity);
   }
@@ -489,6 +489,7 @@ export const ranged = ({
 
 export const barrier = ({ source, duration }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
+    id: KEYWORDS.BARRIER.id,
     source,
     stackable: false,
     visible: false,
@@ -499,6 +500,14 @@ export const barrier = ({ source, duration }: { source: Entity; duration?: numbe
         priority: INTERCEPTOR_PRIORITIES.FINAL,
         keywords: [KEYWORDS.BARRIER],
         duration
+      }),
+      modifierSelfEventMixin({
+        eventName: 'after_take_damage',
+        once: true,
+        duration,
+        listener(event, { attachedTo }) {
+          attachedTo.removeModifier(KEYWORDS.BARRIER.id);
+        }
       })
     ]
   });
