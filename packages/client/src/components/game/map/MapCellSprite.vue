@@ -52,9 +52,15 @@ const filters = computed(() => {
 
   if (
     ui.selectedSkill.value &&
-    ui.selectedSkill.value?.isInAreaOfEffect(
+    ui.hoveredCell.value &&
+    ui.selectedSkill.value.isInAreaOfEffect(
       cell.value,
-      [...ui.skillTargets.value, ui.hoveredCell.value?.position].filter(isDefined)
+      [
+        ...ui.skillTargets.value,
+        ui.selectedSkill.value.isTargetable(ui.hoveredCell.value, ui.skillTargets.value)
+          ? ui.hoveredCell.value?.position
+          : null
+      ].filter(isDefined)
     )
   ) {
     result.push(targetedFilter);

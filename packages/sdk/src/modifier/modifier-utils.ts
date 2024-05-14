@@ -1,7 +1,7 @@
 import type { Point3D } from '@game/shared';
 import type { Cell } from '../board/cell';
 import type { GameSession } from '../game-session';
-import { Entity } from '../entity/entity';
+import { Entity, type EntityId } from '../entity/entity';
 import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierCardInterceptorMixin } from '../modifier/mixins/card-interceptor.mixin';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
@@ -549,6 +549,7 @@ export const surge = ({ source, duration }: { source: Entity; duration?: number 
     mixins: [
       modifierSelfEventMixin({
         eventName: 'before_use_skill',
+        keywords: [KEYWORDS.SURGE],
         listener(event, { modifier, attachedTo, session }) {
           const interceptor = (amount: number) => amount + modifier.stacks!;
           attachedTo.addInterceptor('damageDealt', interceptor);
@@ -585,31 +586,38 @@ export const aura = ({
     mixins: [
       {
         keywords: [...keywords, KEYWORDS.AURA],
-        onApplied(session, attachedTo, modifier) {
+        onApplied(session, attachedTo) {
+          const affectedEntitiesIds = new Set<EntityId>();
           const checkAura = () => {
             session.entitySystem.getList().forEach(entity => {
+              if (entity.equals(attachedTo)) return;
               const isNearby = isWithinCells(attachedTo.position, entity.position, 1);
-              const hasAura = entity.hasModifier(modifier.id);
+
+              const hasAura = affectedEntitiesIds.has(entity.id);
 
               if (!isNearby && hasAura) {
+                affectedEntitiesIds.delete(entity.id);
                 onLoseAura(entity);
+                return;
               }
 
               if (isNearby && !hasAura) {
+                affectedEntitiesIds.add(entity.id);
                 onGainAura(entity);
+                return;
               }
             });
-
-            session.on('entity:created', checkAura);
-            session.on('entity:after_destroy', checkAura);
-            session.on('entity:after-move', checkAura);
-
-            attachedTo.once('after_destroy', () => {
-              session.off('entity:created', checkAura);
-              session.off('entity:after_destroy', checkAura);
-              session.off('entity:after-move', checkAura);
-            });
           };
+          checkAura();
+          session.on('entity:created', checkAura);
+          session.on('entity:after_destroy', checkAura);
+          session.on('entity:after-move', checkAura);
+
+          attachedTo.once('after_destroy', () => {
+            session.off('entity:created', checkAura);
+            session.off('entity:after_destroy', checkAura);
+            session.off('entity:after-move', checkAura);
+          });
         }
       }
     ]
