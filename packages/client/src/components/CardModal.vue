@@ -88,6 +88,10 @@ const selectedBlueprintId = ref(blueprintId);
               <Icon name="icon-park-outline:hourglass-full" />
               Cooldown: {{ skill.cooldown }}
             </p>
+            <p class="text-right" v-if="skill.initialCooldown">
+              <Icon name="typcn:stopwatch" />
+              Initial cooldown: {{ skill.initialCooldown }}
+            </p>
           </li>
         </ul>
         <h3 v-if="keywords.length">Keywords</h3>

@@ -106,7 +106,7 @@ export const f1Simurgh: CardBlueprint = {
     {
       id: 'f1_simurgh_skill2',
       name: 'Simurgh Skill 2',
-      description: '@Purge@ an @Silence@ units in a 3x3 area for 2 turns.',
+      description: '@Purge@ and @Silence@ units in a 3x3 area for 2 turns.',
       iconId: 'lightning3-green',
       cooldown: 3,
       initialCooldown: 0,
