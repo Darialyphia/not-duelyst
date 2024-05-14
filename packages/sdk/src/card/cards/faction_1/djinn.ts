@@ -8,6 +8,7 @@ import {
   barrier,
   celerity,
   cleanseEntity,
+  flying,
   fury,
   tough
 } from '../../../modifier/modifier-utils';
@@ -39,6 +40,7 @@ export const f1Djinn: CardBlueprint = {
     KEYWORDS.BARRIER
   ],
   onPlay({ session, entity }) {
+    entity.addModifier(flying({ source: entity }));
     entity.addModifier(
       createEntityModifier({
         source: entity,

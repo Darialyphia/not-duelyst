@@ -3,7 +3,7 @@ import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import { ranged, rush } from '../../../modifier/modifier-utils';
+import { flying, ranged, rush } from '../../../modifier/modifier-utils';
 
 export const f1Kirin: CardBlueprint = {
   id: 'f1_kirin',
@@ -23,6 +23,7 @@ export const f1Kirin: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.FLYING, KEYWORDS.RANGED],
   onPlay({ entity }) {
+    entity.addModifier(flying({ source: entity }));
     entity.addModifier(ranged({ source: entity, range: 1 }));
   },
   skills: []

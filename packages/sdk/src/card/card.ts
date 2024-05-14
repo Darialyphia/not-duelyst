@@ -167,7 +167,8 @@ export class Card extends EventEmitter implements Serializable {
 
     const cell = this.session.boardSystem.getCellAt(point);
     if (!cell) return false;
-    if (cell.entity || !cell.isWalkable) return false;
+    if (cell.entity || !cell.canSummonAt) return false;
+
     const nearby = this.session.boardSystem.getNeighbors3D(point);
     const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
 

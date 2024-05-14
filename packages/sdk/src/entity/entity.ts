@@ -13,6 +13,7 @@ import { Tile } from '../tile/tile';
 import { Skill } from './skill';
 import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
+import { TERRAINS, type Cell } from '../board/cell';
 
 export type EntityId = number;
 
@@ -137,6 +138,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     maxMovements: new Interceptable<number, Entity>(),
     maxSkills: new Interceptable<number, Entity>(),
     canMove: new Interceptable<boolean, Entity>(),
+    canMoveThroughCell: new Interceptable<boolean, { entity: Entity; cell: Cell }>(),
     canAttack: new Interceptable<boolean, { entity: Entity; target: Entity }>(),
     canRetaliate: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
@@ -230,6 +232,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   get maxSkills(): number {
     return this.interceptors.maxSkills.getValue(1, this);
+  }
+
+  canMoveThroughCell(cell: Cell) {
+    return this.interceptors.canMoveThroughCell.getValue(
+      !cell.entity && cell.terrain === TERRAINS.GROUND,
+      { entity: this, cell }
+    );
   }
 
   canMove(distance: number) {

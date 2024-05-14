@@ -1,5 +1,5 @@
 import type { Point3D } from '@game/shared';
-import type { Cell } from '../board/cell';
+import { TERRAINS, type Cell } from '../board/cell';
 import type { GameSession } from '../game-session';
 import { Entity, type EntityId } from '../entity/entity';
 import { createEntityModifier } from '../modifier/entity-modifier';
@@ -12,6 +12,7 @@ import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
+import { isAlly } from '../entity/entity-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -288,11 +289,38 @@ export const nimble = ({
     visible: false,
     stackable: false,
     mixins: [
-      modifierEntityDurationMixin({
-        duration,
-        onApplied() {},
-        onRemoved() {},
-        keywords: [KEYWORDS.NIMBLE]
+      modifierEntityInterceptorMixin({
+        key: 'canMoveThroughCell',
+        keywords: [KEYWORDS.NIMBLE],
+        interceptor:
+          () =>
+          (val, { cell }) => {
+            if (cell.terrain === TERRAINS.WATER) return false;
+            return true;
+          }
+      })
+    ]
+  });
+};
+
+export const flying = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'canMoveThroughCell',
+        keywords: [KEYWORDS.FLYING],
+        interceptor: () => val => {
+          return true;
+        }
       })
     ]
   });

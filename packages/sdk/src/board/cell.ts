@@ -84,8 +84,6 @@ export class Cell implements Serializable {
   }
 
   get isWalkable() {
-    if (this.terrain === TERRAINS.WATER) return false;
-
     const above = this.session.boardSystem.getCellAt({
       ...this.position,
       z: this.position.z + 1
@@ -97,6 +95,10 @@ export class Cell implements Serializable {
 
   get entity() {
     return this.session.entitySystem.getEntityAt(this);
+  }
+
+  get canSummonAt() {
+    return this.isWalkable && this.terrain === TERRAINS.GROUND;
   }
 
   serialize(): SerializedCell {

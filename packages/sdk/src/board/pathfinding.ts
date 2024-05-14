@@ -48,14 +48,26 @@ export class Pathfinder {
                 if (originVec.equals(point)) return false;
 
                 const entityAtPoint = this.session.entitySystem.getEntityAt(point);
-                if (destinationVec?.equals(point) && entityAtPoint) return false;
-                if (this.entity.hasKeyword(KEYWORDS.NIMBLE)) {
-                  if (entityAtPoint && this.entity.isEnemy(entityAtPoint.id)) {
+                const isDestination = destinationVec?.equals(point);
+                if (isDestination && entityAtPoint) return false;
+
+                if (!isDestination) {
+                  if (
+                    !this.entity.canMoveThroughCell(
+                      this.session.boardSystem.getCellAt(point)!
+                    )
+                  ) {
                     return false;
                   }
-                } else {
-                  if (entityAtPoint) return false;
                 }
+
+                // if (this.entity.hasKeyword(KEYWORDS.NIMBLE)) {
+                //   if (entityAtPoint && this.entity.isEnemy(entityAtPoint.id)) {
+                //     return false;
+                //   }
+                // } else {
+                //   if (entityAtPoint) return false;
+                // }
 
                 if (this.boundaries) {
                   return (

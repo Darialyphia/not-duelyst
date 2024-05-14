@@ -14,6 +14,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import {
   aura,
   celerity,
+  flying,
   purgeEntity,
   silenced,
   surge,
@@ -38,6 +39,7 @@ export const f1Simurgh: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.FLYING, KEYWORDS.CELERITY, KEYWORDS.SURGE, KEYWORDS.AURA],
   onPlay({ entity }) {
+    entity.addModifier(flying({ source: entity }));
     entity.addModifier(celerity({ source: entity }));
 
     const surgeModifier = surge({ source: entity });

@@ -81,7 +81,7 @@ export const KEYWORDS = {
   FLYING: {
     id: 'flying',
     name: 'Flying',
-    description: 'can walk over water and climb terrain.',
+    description: 'can walk over water, through units and climb terrain.',
     aliases: []
   },
   FROZEN: {
