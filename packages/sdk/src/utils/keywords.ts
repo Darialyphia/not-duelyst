@@ -40,7 +40,8 @@ export const KEYWORDS = {
     id: 'celerity',
     name: 'Celerity',
     description: 'Can move twice per turn.',
-    aliases: []
+    aliases: [],
+    spriteId: 'celerity'
   },
   CHANNELING: {
     id: 'channeling',
@@ -184,7 +185,8 @@ export const KEYWORDS = {
     id: 'surge',
     name: 'Surge(x)',
     description: 'Deal x more damage with abilities.',
-    aliases: [/surge\([0-9]+\)/]
+    aliases: [/surge\([0-9]+\)/],
+    spriteId: 'surge'
   },
   TAUNTED: {
     id: 'taunted',

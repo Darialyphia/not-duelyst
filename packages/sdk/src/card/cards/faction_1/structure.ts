@@ -32,7 +32,6 @@ export const f1Structure: CardBlueprint = {
         source: entity,
         name: 'Amplify Magic',
         description: 'Nearby allies have @Surge@',
-        keywords: [KEYWORDS.SURGE],
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) {
             affected.addModifier(surgeModifier);
