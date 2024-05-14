@@ -2,14 +2,14 @@ import { Vec3 } from '@game/shared';
 import { isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import { structure } from '../../../modifier/modifier-utils';
+import { aura, structure, surge } from '../../../modifier/modifier-utils';
 import { getAffectedEntities, isAxisAligned } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Structure: CardBlueprint = {
   id: 'f1_ranged',
   name: 'F1 Structure',
-  description: '',
+  description: '@Structure@.\n@Surge@ @Aura@',
   collectable: true,
   rarity: RARITIES.BASIC,
   factions: [FACTIONS.F1, null, null],
@@ -25,6 +25,21 @@ export const f1Structure: CardBlueprint = {
   keywords: [KEYWORDS.STRUCTURE],
   onPlay({ entity }) {
     entity.addModifier(structure(entity));
+    const surgeModifier = surge({ source: entity });
+    entity.addModifier(
+      aura({
+        source: entity,
+        name: 'Amplify Magic',
+        description: 'Nearby allies have @Surge@',
+        keywords: [KEYWORDS.SURGE],
+        onGainAura(entity) {
+          entity.addModifier(surgeModifier);
+        },
+        onLoseAura(entity) {
+          entity.removeModifier(surgeModifier.id);
+        }
+      })
+    );
   },
   skills: [
     {

@@ -516,7 +516,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
     if (existing) {
       if (existing.stackable) {
-        existing.stacks++;
+        existing.stacks += modifier.stacks ?? 1;
         return;
       } else {
         return existing.onReapply(this.session, this, existing);

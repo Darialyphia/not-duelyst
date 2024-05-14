@@ -3,9 +3,10 @@ import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import { burn, ranged } from '../../../modifier/modifier-utils';
+import { burn, frozen, ranged } from '../../../modifier/modifier-utils';
 import {
   getAffectedEntities,
+  isCastPoint,
   isNearbyAlly,
   isSelf,
   isWithinCells
@@ -76,28 +77,30 @@ export const f1Mage: CardBlueprint = {
     },
     {
       id: 'f1_mage_skill_2',
-      name: 'Sands of Time',
-      description:
-        'Reduce the cooldown of all abilities of this unit and nearby allies by 1.',
-      iconId: 'hourglass',
+      name: 'Ice Blast',
+      description: 'Deal 1damage and @Freeze@ an enemy unit for one turn.',
+      iconId: 'ice',
       cooldown: 5,
       minTargetCount: 1,
       maxTargetCount: 1,
       initialCooldown: 2,
       isTargetable(point, { session, skill }) {
-        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
-      },
-      isInAreaOfEffect(point, { session, skill }) {
         return (
-          isSelf(skill.caster, session.entitySystem.getEntityAt(point)) ||
-          isNearbyAlly(session, skill.caster, point)
+          isWithinCells(skill.caster.position, point, 3) &&
+          isEnemy(
+            session,
+            session.entitySystem.getEntityAt(point)?.id,
+            skill.caster.player.id
+          )
         );
       },
-      onUse({ affectedCells }) {
+      isInAreaOfEffect(point, { session, skill, castPoints }) {
+        return isCastPoint(point, castPoints);
+      },
+      onUse({ affectedCells, skill }) {
         getAffectedEntities(affectedCells).forEach(entity => {
-          entity.skills.forEach(skill => {
-            skill.currentCooldown = Math.max(skill.currentCooldown - 1, 0);
-          });
+          skill.caster.dealDamage(2, entity);
+          entity.addModifier(frozen({ source: skill.caster, duration: 1 }));
         });
       }
     }

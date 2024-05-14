@@ -42,32 +42,30 @@ export const KEYWORDS = {
   },
   BURN: {
     id: 'burn',
-    name: 'Burn',
-    description:
-      'This unit 1 receives damage at the beginning of its turn. Can be stacked.',
+    name: 'Burn(x)',
+    description: 'This unit x receives damage at the beginning of its turn.',
     spriteId: 'burn',
-    aliases: []
+    aliases: [/burn\([0-9]+\)/]
   },
   REGENERATION: {
     id: 'regeneration',
-    name: 'Regeneration',
-    description: 'This unit recovers 1 hp at the beginning of its turn. Can be stacked.',
-    aliases: []
+    name: 'Regeneration(x)',
+    description: 'This unit recovers x hp at the beginning of its turn.',
+    aliases: [/regeneration\([0-9]+\)/]
   },
   TOUGH: {
     id: 'tough',
-    name: 'Tough',
+    name: 'Tough(x)',
     spriteId: 'tough',
-    description:
-      'This unit takes 1 less damage from all sources (min. 1). Can be stacked.',
+    description: 'This unit takes x less damage from all sources (min. 1).',
     aliases: []
   },
   VULNERABLE: {
     id: 'vulnerable',
-    name: 'Vulnerable',
-    description: 'This unit takes 1 more damage from all sources. Can be stacked.',
+    name: 'Vulnerable(x)',
+    description: 'This unit takes x more damage from all sources.',
     spriteId: 'vulnerable',
-    aliases: []
+    aliases: [/vulnerable\([0-9]+\)/]
   },
   TAUNTED: {
     id: 'taunted',
@@ -93,7 +91,8 @@ export const KEYWORDS = {
     id: 'silenced',
     name: 'Silenced',
     description: 'This unit cannot cast abilities.',
-    aliases: ['silence']
+    aliases: ['silence'],
+    spriteId: 'silenced'
   },
   DISARMED: {
     id: 'disarmed',
@@ -103,10 +102,9 @@ export const KEYWORDS = {
   },
   THORNS: {
     id: 'thorns',
-    name: 'Thorns',
-    description:
-      'Enemies unit dealing damage to this unit take 1 damage. Can be stacked.',
-    aliases: []
+    name: 'Thorns(x)',
+    description: 'Enemies unit dealing damage to this unit take x damage.',
+    aliases: [/thorns\([0-9]+\)/]
   },
   CALL_TO_ARMS: {
     id: 'call_to_arms',
@@ -122,9 +120,9 @@ export const KEYWORDS = {
   },
   SURGE: {
     id: 'surge',
-    name: 'Surge',
-    description: 'Deal 1 more damage with abilities. Can be stacked.',
-    aliases: []
+    name: 'Surge(x)',
+    description: 'Deal x more damage with abilities.',
+    aliases: [/ranged\([0-9]+\)/]
   },
   PLUNDER: {
     id: 'plunder',

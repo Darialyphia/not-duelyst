@@ -18,7 +18,8 @@ export class Skill {
   }
 
   protected interceptors = {
-    cooldown: new Interceptable<number, Skill>()
+    cooldown: new Interceptable<number, Skill>(),
+    canUse: new Interceptable<boolean, Skill>()
   };
 
   addInterceptor<T extends keyof SkillInterceptor>(
@@ -61,8 +62,12 @@ export class Skill {
     return this.interceptors.cooldown.getValue(this.blueprint.cooldown, this);
   }
 
-  get canUse() {
-    return this.currentCooldown === 0;
+  get canUse(): boolean {
+    const baseValue =
+      this.currentCooldown === 0 &&
+      (this.blueprint.canUse?.({ session: this.session, skill: this }) ?? true);
+
+    return this.interceptors.canUse.getValue(baseValue, this);
   }
 
   keywords() {

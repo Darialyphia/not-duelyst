@@ -7,13 +7,15 @@ import {
   getAffectedEntities,
   isAxisAligned,
   isCastPoint,
-  isNearbyEnemy
+  isNearbyEnemy,
+  isWithinCells
 } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
 import {
   aura,
   celerity,
   purgeEntity,
+  silenced,
   surge,
   vulnerable
 } from '../../../modifier/modifier-utils';
@@ -104,19 +106,27 @@ export const f1Simurgh: CardBlueprint = {
     {
       id: 'f1_simurgh_skill2',
       name: 'Simurgh Skill 2',
-      description: 'TODO',
+      description: '@Purge@ an @Silence@ units in a 3x3 area for 2 turns.',
       iconId: 'lightning3-green',
       cooldown: 3,
       initialCooldown: 0,
       minTargetCount: 1,
       maxTargetCount: 1,
-      isTargetable(point, options) {
-        return true;
+      isTargetable(point, { skill }) {
+        return isWithinCells(skill.caster.position, point, 4);
       },
-      isInAreaOfEffect(point, options) {
-        return false;
+      isInAreaOfEffect(point, { castPoints }) {
+        const [castPoint] = castPoints;
+        if (!castPoint) return false;
+
+        return isWithinCells(castPoint, point, 1);
       },
-      onUse(options) {}
+      onUse({ skill, affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(entity => {
+          purgeEntity(entity);
+          entity.addModifier(silenced({ source: skill.caster, duration: 2 }));
+        });
+      }
     }
   ]
 };

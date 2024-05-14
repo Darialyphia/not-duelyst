@@ -20,6 +20,7 @@ export type SkillBlueprint = {
   cooldown: number;
   initialCooldown: number;
   keywords?: Keyword[];
+  canUse?: (options: { session: GameSession; skill: Skill }) => boolean;
   isTargetable(
     point: Point3D,
     options: {

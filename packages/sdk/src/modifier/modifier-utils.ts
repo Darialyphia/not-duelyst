@@ -68,15 +68,18 @@ export const vigilant = ({ duration, source }: { source: Entity; duration?: numb
 
 export const vulnerable = ({
   duration,
-  source
+  source,
+  stacks = 1
 }: {
   source: Entity;
   duration?: number;
+  stacks?: number;
 }) => {
   return createEntityModifier({
     id: KEYWORDS.VULNERABLE.id,
     visible: false,
     stackable: true,
+    stacks,
     source,
     mixins: [
       modifierEntityInterceptorMixin({
@@ -90,11 +93,20 @@ export const vulnerable = ({
   });
 };
 
-export const tough = ({ duration, source }: { source: Entity; duration?: number }) => {
+export const tough = ({
+  duration,
+  source,
+  stacks = 1
+}: {
+  source: Entity;
+  duration?: number;
+  stacks?: number;
+}) => {
   return createEntityModifier({
     id: KEYWORDS.TOUGH.id,
     visible: false,
     stackable: true,
+    stacks,
     source,
     mixins: [
       modifierEntityInterceptorMixin({
@@ -124,12 +136,21 @@ export const rush = () => {
   });
 };
 
-export const burn = ({ duration, source }: { source: Entity; duration?: number }) => {
+export const burn = ({
+  duration,
+  source,
+  stacks = 1
+}: {
+  source: Entity;
+  duration?: number;
+  stacks: number;
+}) => {
   return createEntityModifier({
     id: KEYWORDS.BURN.id,
     source,
     visible: false,
     stackable: true,
+    stacks,
     mixins: [
       modifierGameEventMixin({
         duration,
@@ -147,16 +168,19 @@ export const burn = ({ duration, source }: { source: Entity; duration?: number }
 
 export const regeneration = ({
   duration,
-  source
+  source,
+  stacks = 1
 }: {
   source: Entity;
   duration?: number;
+  stacks?: number;
 }) => {
   return createEntityModifier({
     id: KEYWORDS.REGENERATION.id,
     source,
     visible: false,
     stackable: true,
+    stacks,
     mixins: [
       modifierGameEventMixin({
         duration,
@@ -379,16 +403,19 @@ export const disarmed = ({
 
 export const thorns = ({
   source,
-  duration = Infinity
+  duration = Infinity,
+  stacks = 1
 }: {
   source: Entity;
   duration?: number;
+  stacks?: number;
 }) => {
   return createEntityModifier({
     id: KEYWORDS.THORNS.id,
     source,
     visible: false,
     stackable: true,
+    stacks,
     mixins: [
       modifierSelfEventMixin({
         eventName: 'after_take_damage',
