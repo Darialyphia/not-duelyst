@@ -17,7 +17,7 @@ export const f1Elemental: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 2,
-  maxHp: 6,
+  maxHp: 5,
   speed: 3,
   range: 1,
   skills: [

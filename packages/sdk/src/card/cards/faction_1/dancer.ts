@@ -20,7 +20,7 @@ export const f1Dancer: CardBlueprint = {
   initialCooldown: 0,
   cost: 4,
   attack: 2,
-  maxHp: 9,
+  maxHp: 8,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.NIMBLE],

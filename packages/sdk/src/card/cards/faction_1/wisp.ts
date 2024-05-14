@@ -28,7 +28,7 @@ export const f1Wisp: CardBlueprint = {
   cost: 2,
   attack: 1,
   maxHp: 3,
-  speed: 4,
+  speed: 3,
   range: 1,
   keywords: [],
   onPlay({ session, entity }) {

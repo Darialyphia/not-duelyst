@@ -47,11 +47,15 @@ export const f1Simurgh: CardBlueprint = {
         name: 'Amplify Magic',
         description: 'Nearby allies have @Surge@',
         keywords: [KEYWORDS.SURGE],
-        onGainAura(entity) {
-          entity.addModifier(surgeModifier);
+        onGainAura(affected) {
+          if (affected.isAlly(entity.id)) {
+            affected.addModifier(surgeModifier);
+          }
         },
-        onLoseAura(entity) {
-          entity.removeModifier(surgeModifier.id);
+        onLoseAura(affected) {
+          if (affected.isAlly(entity.id)) {
+            affected.removeModifier(surgeModifier.id);
+          }
         }
       })
     );

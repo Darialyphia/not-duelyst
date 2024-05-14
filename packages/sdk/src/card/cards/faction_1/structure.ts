@@ -19,8 +19,8 @@ export const f1Structure: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 0,
-  maxHp: 7,
-  speed: 2,
+  maxHp: 6,
+  speed: 0,
   range: 1,
   keywords: [KEYWORDS.STRUCTURE],
   onPlay({ entity }) {
@@ -33,13 +33,15 @@ export const f1Structure: CardBlueprint = {
         name: 'Amplify Magic',
         description: 'Nearby allies have @Surge@',
         keywords: [KEYWORDS.SURGE],
-        onGainAura(entity) {
-          console.log('give surge', entity.card.blueprintId);
-          entity.addModifier(surgeModifier);
+        onGainAura(affected) {
+          if (affected.isAlly(entity.id)) {
+            affected.addModifier(surgeModifier);
+          }
         },
-        onLoseAura(entity) {
-          console.log('remove surge', entity.card.blueprintId);
-          entity.removeModifier(surgeModifier.id);
+        onLoseAura(affected) {
+          if (affected.isAlly(entity.id)) {
+            affected.removeModifier(surgeModifier.id);
+          }
         }
       })
     );

@@ -24,7 +24,7 @@ export const f1KirinSummoner: CardBlueprint = {
   initialCooldown: 0,
   cost: 5,
   attack: 1,
-  maxHp: 10,
+  maxHp: 9,
   speed: 3,
   range: 1,
   relatedBlueprintIds: ['f1_kirin'],
