@@ -46,8 +46,7 @@ export const KEYWORDS = {
   CHANNELING: {
     id: 'channeling',
     name: 'Channeling',
-    description:
-      'After using this ability, its caster cannot move until the end of the turn.',
+    description: "You can't use this ability and move in the same turn.",
     aliases: []
   },
   CLEANSE: {

@@ -62,7 +62,7 @@ const isModalOpened = ref(false);
   >
     <header>
       <UiCenter class="cost">
-        {{ card.cost }}
+        <span v-if="card.kind === 'MINION'">{{ card.cost }}</span>
 
         <div>
           <div
@@ -231,6 +231,10 @@ header {
   position: relative;
   transform-origin: bottom center;
   transform: translateZ(var(--z-translate)) scale(2) translateY(40%);
+
+  /* filter: drop-shadow(0px -1px 0 white) drop-shadow(0px 1px 0 white)
+    drop-shadow(-1px 0px 0 white) drop-shadow(1px 0px 0 white); */
+
   transition: transform 0.3s ease-in;
 }
 

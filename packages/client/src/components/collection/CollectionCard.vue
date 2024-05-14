@@ -39,7 +39,6 @@ const onMousemove = (e: MouseEvent) => {
 };
 
 const keywords = computed(() => {
-  console.log(KEYWORDS);
   return uniqBy(
     [
       ...(card.card.keywords ?? []),

@@ -17,6 +17,7 @@ import { f1KirinSummoner } from './cards/faction_1/kirin-summoner';
 import { f1Kirin } from './cards/faction_1/kirin';
 import { f1Simurgh } from './cards/faction_1/simurgh';
 import { f1Wisp } from './cards/faction_1/wisp';
+import { f1ElementalLord } from './cards/faction_1/elemental-lord';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -29,6 +30,7 @@ const allCards: CardBlueprint[] = [
   f1Structure,
   f1Mage,
   f1Naga,
+  f1ElementalLord,
   f1Simurgh,
 
   neutralTank,

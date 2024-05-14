@@ -9,7 +9,9 @@ const { data: me } = useConvexQuery(
 );
 
 const isOpened = computed(() => {
-  return !!sessionId.value && !me.value?.hasOnboarded;
+  if (!sessionId.value) return false;
+  if (!me.value) return false;
+  return !me.value.hasOnboarded;
 });
 
 const { mutate: skipTutorial, isLoading: isSubmitting } = useConvexAuthedMutation(
