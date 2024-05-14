@@ -78,9 +78,10 @@ const isModalOpened = computed({
 
 <style scoped lang="postcss">
 .card-preview {
+  pointer-events: none;
   position: absolute;
   z-index: 1;
-  top: 14rem;
+  top: 13rem;
   &.left {
     left: var(--size-5);
     &:is(.v-enter-from, .v-leave-to) {
@@ -105,10 +106,21 @@ const isModalOpened = computed({
   }
 }
 
+dl {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--size-2);
+  grid-template-rows: repeat(3, 1fr);
+
+  margin-top: var(--size-3);
+}
 dl > div {
-  margin-block: var(--size-2);
   padding: var(--size-3);
+
   font-size: var(--font-size-0);
-  background-color: black;
+
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-2);
 }
 </style>
