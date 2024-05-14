@@ -74,6 +74,12 @@ const isModalOpened = computed({
       </dl>
     </div>
   </Transition>
+
+  <Transition>
+    <div v-if="!entity && ui.hoveredCell.value?.tile" class="tile-preview">
+      <TileCard :tile="ui.hoveredCell.value.tile" />
+    </div>
+  </Transition>
 </template>
 
 <style scoped lang="postcss">
@@ -103,6 +109,18 @@ const isModalOpened = computed({
 
   &:is(.v-enter-from, .v-leave-to) {
     opacity: 0;
+  }
+}
+
+.tile-preview {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 1;
+  top: 13rem;
+  left: var(--size-5);
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: translateX(-50%) rotateY(45deg);
   }
 }
 

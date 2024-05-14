@@ -30,7 +30,7 @@ const allTiles: TileBlueprint[] = [
   {
     id: 'gold_coin',
     name: 'Gold coin',
-    description: 'Move over to this tiel to gain 1 gold !',
+    description: 'Move a unit on this tile to pick up the coin and gain 1 gold.',
     spriteId: 'gold-coin',
 
     onEnter(session, entity, tile) {
@@ -61,7 +61,7 @@ const allTiles: TileBlueprint[] = [
   {
     id: 'burning_ground',
     name: 'Burning Ground',
-    description: 'Start of turn: give @@Burn@@ to the minion on this tile.',
+    description: 'Start of turn: give @@Burn(1)@@ to the minion on this tile.',
     spriteId: 'burning-ground',
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {
