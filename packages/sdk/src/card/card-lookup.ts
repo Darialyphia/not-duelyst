@@ -15,6 +15,7 @@ import { f2TutorialBigDude } from './cards/faction_2/tutorial_big_dude';
 import { f1Naga } from './cards/faction_1/naga';
 import { f1KirinSummoner } from './cards/faction_1/kirin-summoner';
 import { f1Kirin } from './cards/faction_1/kirin';
+import { f1Simurgh } from './cards/faction_1/simurgh';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -26,6 +27,7 @@ const allCards: CardBlueprint[] = [
   f1Structure,
   f1Mage,
   f1Naga,
+  f1Simurgh,
 
   neutralTank,
 

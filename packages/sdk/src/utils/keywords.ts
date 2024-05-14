@@ -120,6 +120,12 @@ export const KEYWORDS = {
     description: 'Triggers when the unit is destroyed.',
     aliases: []
   },
+  SURGE: {
+    id: 'surge',
+    name: 'Surge',
+    description: 'Deal 1 more damage with abilities. Can be stacked.',
+    aliases: []
+  },
   PLUNDER: {
     id: 'plunder',
     name: 'Plunder',

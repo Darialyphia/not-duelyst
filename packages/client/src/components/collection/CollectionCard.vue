@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import type { CardBlueprint } from '@game/sdk';
+import { KEYWORDS, type CardBlueprint } from '@game/sdk';
 import { uniqBy } from 'lodash-es';
 
 defineOptions({
@@ -38,15 +38,16 @@ const onMousemove = (e: MouseEvent) => {
   };
 };
 
-const keywords = computed(() =>
-  uniqBy(
+const keywords = computed(() => {
+  console.log(KEYWORDS);
+  return uniqBy(
     [
       ...(card.card.keywords ?? []),
       ...card.card.skills.map(skill => skill.keywords ?? []).flat()
     ],
     'id'
-  )
-);
+  );
+});
 </script>
 
 <template>

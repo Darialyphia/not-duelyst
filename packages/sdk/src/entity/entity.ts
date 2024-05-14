@@ -142,6 +142,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
     canUseSkill: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
     canBeSkillTarget: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
+    damageDealt: new Interceptable<number, { entity: Entity; amount: number }>(),
     damageTaken: new Interceptable<number, { entity: Entity; amount: number }>(),
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
@@ -337,10 +338,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
         this.modifiers.forEach(modifier => {
           modifier.onRemoved(this.session, this, modifier);
         });
-        this.session.boardSystem.getCellAt(this.position)!.tile = new Tile(this.session, {
-          position: this.position,
-          blueprintId: 'gold-coin'
-        });
+        this.session.boardSystem.getCellAt(this.position)!.addTile('gold_coin');
       });
     });
   }
@@ -384,12 +382,15 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   async dealDamage(power: number, target: Entity) {
     const payload = {
       entity: this,
-      amount: power,
+      amount: this.interceptors.damageDealt.getValue(power, {
+        entity: this,
+        amount: power
+      }),
       target
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    await target.takeDamage(power, this);
+    await target.takeDamage(payload.amount, this);
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
@@ -502,6 +503,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   getModifier(id: ModifierId) {
     return this.modifiers.find(m => m.id === id);
+  }
+
+  hasModifier(id: ModifierId) {
+    return this.modifiers.some(m => m.id === id);
   }
 
   addModifier(modifier: EntityModifier) {

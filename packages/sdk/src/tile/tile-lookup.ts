@@ -3,7 +3,7 @@ import { keyBy } from 'lodash-es';
 import type { GameSession } from '../game-session';
 import type { Entity } from '../entity/entity';
 import type { Tile } from './tile';
-import { barrier } from '../modifier/modifier-utils';
+import { barrier, burn } from '../modifier/modifier-utils';
 
 export type TileblueprintId = string;
 
@@ -29,7 +29,7 @@ export type TileBlueprint = {
 
 const allTiles: TileBlueprint[] = [
   {
-    id: 'gold-coin',
+    id: 'gold_coin',
     name: 'Gold coin',
     description: 'Move over to this tiel to gain 1 gold !',
     spriteId: 'gold-coin',
@@ -53,6 +53,24 @@ const allTiles: TileBlueprint[] = [
       tile.meta.listener = () => {
         if (tile.occupant && !tile.occupant?.isGeneral) {
           tile.occupant.addModifier(barrier({ source: tile.occupant, duration: 1 }));
+        }
+      };
+      session.on('player:turn_start', tile.meta.listener);
+    },
+    onDestroyed(session, entity, tile) {
+      session.off('player:turn_start', tile.meta.listener);
+    }
+  },
+  {
+    id: 'burning_ground',
+    name: 'Burning Ground',
+    description: 'Start of turn: give @@Burn@@ to the minion on this tile.',
+    lightColor: 0xff8800,
+    spriteId: 'burning-ground',
+    onCreated(session, entity, tile) {
+      tile.meta.listener = () => {
+        if (tile.occupant) {
+          tile.occupant.addModifier(burn({ source: tile.occupant }));
         }
       };
       session.on('player:turn_start', tile.meta.listener);

@@ -39,10 +39,18 @@ export class Cell implements Serializable {
     return cell.id === this.id;
   }
 
-  removeTile() {
+  async removeTile() {
     if (this.tile) {
-      this.tile.destroy();
+      await this.tile.destroy();
     }
+  }
+
+  async addTile(newTileId: string) {
+    await this.removeTile();
+    this.tile = new Tile(this.session, {
+      position: this.position,
+      blueprintId: newTileId
+    });
   }
 
   getDestination(direction: Direction) {

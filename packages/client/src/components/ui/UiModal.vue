@@ -34,7 +34,10 @@ const {
           "
         >
           <div class="fancy-surface">
-            <DialogTitle class="pb-5">{{ title }}</DialogTitle>
+            <DialogTitle class="pb-5">
+              <slot name="title" :title="title">{{ title }}</slot>
+            </DialogTitle>
+
             <DialogDescription v-if="description" class="">
               {{ description }}
             </DialogDescription>

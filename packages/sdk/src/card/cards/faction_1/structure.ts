@@ -42,20 +42,27 @@ export const f1Structure: CardBlueprint = {
       isInAreaOfEffect(point, { skill, castPoints }) {
         if (!isAxisAligned(point, skill.caster.position)) return false;
 
-        const [origin] = castPoints;
-        if (!origin) return false;
+        const [castPoint] = castPoints;
+        if (!castPoint) return false;
 
-        if (point.z !== origin.z) return false;
-        if (Vec3.fromPoint3D(origin).equals(point)) return true;
+        if (point.z !== castPoint.z) return false;
+        if (Vec3.fromPoint3D(castPoint).equals(point)) return true;
+        const caster = skill.caster.position;
 
-        if (origin.x === point.x) {
-          return origin.y > skill.caster.position.y
+        if (castPoint.x === caster.x) {
+          if (point.x !== caster.x) return false;
+
+          return castPoint.y > caster.y
             ? point.y > skill.caster.position.y
             : point.y < skill.caster.position.y;
-        } else {
-          return origin.x > skill.caster.position.x
+        } else if (castPoint.y === caster.y) {
+          if (point.y !== caster.y) return false;
+
+          return castPoint.x > skill.caster.position.x
             ? point.x > skill.caster.position.x
             : point.x < skill.caster.position.x;
+        } else {
+          return false;
         }
       },
       onUse({ castPoints, affectedCells, skill }) {

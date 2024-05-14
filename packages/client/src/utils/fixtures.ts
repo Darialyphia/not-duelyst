@@ -430,14 +430,14 @@ export const testMap: SerializedGameState['map'] = {
       0,
       3,
       [null, null, null, null, null, null, 'grass', null, null, null, null, null, null],
-      { 6: 'gold-coin' }
+      { 6: 'gold_coin' }
     ),
 
     ...makeRow(
       8,
       3,
       [null, null, null, null, null, null, 'grass', null, null, null, null, null, null],
-      { 6: 'gold-coin' }
+      { 6: 'gold_coin' }
     )
   ]
 };

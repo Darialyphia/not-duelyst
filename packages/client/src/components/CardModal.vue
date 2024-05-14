@@ -34,6 +34,9 @@ const selectedBlueprintId = ref(blueprintId);
 
 <template>
   <UiModal v-model:is-opened="isOpened" :title="selectedBlueprint.name">
+    <template #title="{ title }">
+      <div class="pl-8">{{ title }}</div>
+    </template>
     <div class="card-modal fancy-scrollbar">
       <div class="cards-wrapper">
         <div
@@ -63,7 +66,7 @@ const selectedBlueprintId = ref(blueprintId);
         </div>
       </div>
 
-      <div>
+      <section class="fancy-scrollbar">
         <p>
           <TextWithKeywords :text="selectedBlueprint.description" />
         </p>
@@ -94,7 +97,7 @@ const selectedBlueprintId = ref(blueprintId);
             <dd>{{ keyword.description }}</dd>
           </div>
         </dl>
-      </div>
+      </section>
     </div>
   </UiModal>
 </template>
@@ -127,14 +130,13 @@ const selectedBlueprintId = ref(blueprintId);
   }
 }
 .card-modal {
-  overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: var(--size-11);
 
   width: calc(var(--size-md) + 5rem);
   height: clamp(50dvh, 30rem, 80dvh);
-  padding-right: var(--size-5);
+  padding-top: var(--size-5);
 }
 
 .cards-wrapper {
@@ -209,5 +211,10 @@ li {
     outline: var(--fancy-border);
     outline-offset: 4px;
   }
+}
+section {
+  overflow: auto;
+  height: 100%;
+  padding-right: var(--size-5);
 }
 </style>

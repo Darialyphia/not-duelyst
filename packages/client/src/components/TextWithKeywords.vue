@@ -7,6 +7,8 @@ const KEYWORD_DELIMITER = '@';
 const CARD_NAMES = new Set(Object.values(CARDS).map(c => c.name));
 
 const tokens = computed(() => {
+  if (!text.includes(KEYWORD_DELIMITER)) return [{ type: 'text', text }];
+
   return text.split(KEYWORD_DELIMITER).map(part => {
     const isKeyword = Object.values(KEYWORDS).some(keyword => {
       return (

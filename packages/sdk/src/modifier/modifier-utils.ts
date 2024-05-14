@@ -5,7 +5,7 @@ import { Entity } from '../entity/entity';
 import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierCardInterceptorMixin } from '../modifier/mixins/card-interceptor.mixin';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
-import { KEYWORDS } from '../utils/keywords';
+import { KEYWORDS, type Keyword } from '../utils/keywords';
 import { createCardModifier } from './card-modifier';
 import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
@@ -509,6 +509,82 @@ export const barrier = ({ source, duration }: { source: Entity; duration?: numbe
           attachedTo.removeModifier(KEYWORDS.BARRIER.id);
         }
       })
+    ]
+  });
+};
+
+export const surge = ({ source, duration }: { source: Entity; duration?: number }) => {
+  return createEntityModifier({
+    id: KEYWORDS.SURGE.id,
+    source,
+    stackable: true,
+    visible: false,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'before_use_skill',
+        listener(event, { modifier, attachedTo, session }) {
+          const interceptor = (amount: number) => amount + modifier.stacks!;
+          attachedTo.addInterceptor('damageDealt', interceptor);
+          attachedTo.once('after_use_skill', () => {
+            attachedTo.removeInterceptor('damageDealt', interceptor);
+          });
+        }
+      })
+    ]
+  });
+};
+
+export const aura = ({
+  source,
+  name,
+  description,
+  onGainAura,
+  onLoseAura,
+  keywords = []
+}: {
+  source: Entity;
+  name: string;
+  description: string;
+  onGainAura: (entity: Entity) => void;
+  onLoseAura: (entity: Entity) => void;
+  keywords?: Keyword[];
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: true,
+    name,
+    description,
+    mixins: [
+      {
+        keywords: [...keywords, KEYWORDS.AURA],
+        onApplied(session, attachedTo, modifier) {
+          const checkAura = () => {
+            session.entitySystem.getList().forEach(entity => {
+              const isNearby = isWithinCells(attachedTo.position, entity.position, 1);
+              const hasAura = entity.hasModifier(modifier.id);
+
+              if (!isNearby && hasAura) {
+                onLoseAura(entity);
+              }
+
+              if (isNearby && !hasAura) {
+                onGainAura(entity);
+              }
+            });
+
+            session.on('entity:created', checkAura);
+            session.on('entity:after_destroy', checkAura);
+            session.on('entity:after-move', checkAura);
+
+            attachedTo.once('after_destroy', () => {
+              session.off('entity:created', checkAura);
+              session.off('entity:after_destroy', checkAura);
+              session.off('entity:after-move', checkAura);
+            });
+          };
+        }
+      }
     ]
   });
 };
