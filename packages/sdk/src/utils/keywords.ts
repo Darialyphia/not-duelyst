@@ -89,7 +89,8 @@ export const KEYWORDS = {
     name: 'Frozen',
     description:
       'This unit cannot move, use abilities, or retaliate. Taking damage breaks the freeze.',
-    aliases: ['freeze']
+    aliases: ['freeze'],
+    spriteId: 'frozen'
   },
   FURY: {
     id: 'fury',
