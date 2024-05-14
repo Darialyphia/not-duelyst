@@ -143,7 +143,7 @@ export const burn = ({
 }: {
   source: Entity;
   duration?: number;
-  stacks: number;
+  stacks?: number;
 }) => {
   return createEntityModifier({
     id: KEYWORDS.BURN.id,

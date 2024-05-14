@@ -18,7 +18,7 @@ export const f1Kirin: CardBlueprint = {
   initialCooldown: 0,
   cost: 0,
   attack: 2,
-  maxHp: 6,
+  maxHp: 4,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.FLYING, KEYWORDS.RANGED],

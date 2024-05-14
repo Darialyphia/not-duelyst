@@ -16,9 +16,11 @@ import { f1Naga } from './cards/faction_1/naga';
 import { f1KirinSummoner } from './cards/faction_1/kirin-summoner';
 import { f1Kirin } from './cards/faction_1/kirin';
 import { f1Simurgh } from './cards/faction_1/simurgh';
+import { f1Wisp } from './cards/faction_1/wisp';
 
 const allCards: CardBlueprint[] = [
   f1General,
+  f1Wisp,
   f1Elemental,
   f1Djinn,
   f1Dancer,

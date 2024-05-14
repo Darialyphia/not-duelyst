@@ -26,7 +26,7 @@ export const f1Elemental: CardBlueprint = {
       cooldown: 2,
       iconId: 'golem',
       name: 'Stone Skin',
-      description: 'Gain @Thorns@ and @Tough@ for one turn.',
+      description: 'Gain @Thorns(1)@ and @Tough(1)@ for one turn.',
       initialCooldown: 0,
       minTargetCount: 1,
       maxTargetCount: 1,

@@ -18,7 +18,7 @@ export const f1Mage: CardBlueprint = {
   description: '@Ranged(2)@.',
   collectable: true,
   rarity: RARITIES.RARE,
-  factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
+  factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_mage',
   kind: CARD_KINDS.MINION,
   cooldown: 5,
@@ -36,7 +36,7 @@ export const f1Mage: CardBlueprint = {
     {
       id: 'f1_mage_skill_one',
       name: 'Fireball',
-      description: 'Deal 3 damage to an enemy and @Burn@ to nearby enemy minions.',
+      description: 'Deal 3 damage to an enemy and @Burn(1)@ to nearby enemy minions.',
       cooldown: 3,
       initialCooldown: 0,
       iconId: 'fire',
@@ -78,12 +78,13 @@ export const f1Mage: CardBlueprint = {
     {
       id: 'f1_mage_skill_2',
       name: 'Ice Blast',
-      description: 'Deal 1damage and @Freeze@ an enemy unit for one turn.',
+      description: 'Deal 1 damage and @Freeze@ an enemy unit for one turn.',
       iconId: 'ice',
       cooldown: 5,
       minTargetCount: 1,
       maxTargetCount: 1,
       initialCooldown: 2,
+      keywords: [KEYWORDS.FROZEN],
       isTargetable(point, { session, skill }) {
         return (
           isWithinCells(skill.caster.position, point, 3) &&

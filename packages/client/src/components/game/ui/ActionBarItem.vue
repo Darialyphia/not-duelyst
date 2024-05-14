@@ -33,6 +33,7 @@ const hoveredIndex = ref<number | null>(null);
         :data-remaining-cooldown="
           card && card.currentCooldown > 0 ? card.currentCooldown : undefined
         "
+        @contextmenu.prevent="ui.highlightedCard.value = card"
         @click="ui.selectCardAtIndex(index)"
         @mouseenter="hoveredIndex = index"
         @mouseleave="hoveredIndex = null"

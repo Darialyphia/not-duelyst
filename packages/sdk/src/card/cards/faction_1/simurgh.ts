@@ -23,7 +23,7 @@ import {
 export const f1Simurgh: CardBlueprint = {
   id: 'f1_Simurgh',
   name: 'F1 Simurgh',
-  description: '@Flying@.\n@Celerity@.\n@Surge@ @Aura@.',
+  description: '@Flying@.\n@Celerity@.\n@Surge(1)@ @Aura@.',
   rarity: RARITIES.LEGENDARY,
   collectable: true,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
@@ -61,7 +61,7 @@ export const f1Simurgh: CardBlueprint = {
       id: 'f1_simurgh_skill1',
       name: 'Simurgh Skill 1',
       description:
-        'Move to a space in a line. Deal 2 damage to enemies and create Burning Ground on all tiles.',
+        'Move to a tile, Dealing 2 damage to enemies it passes through, leaving a trail of Burning Ground.',
       iconId: 'simurgh',
       cooldown: 2,
       initialCooldown: 0,

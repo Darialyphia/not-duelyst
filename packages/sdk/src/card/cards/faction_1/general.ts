@@ -31,7 +31,7 @@ export const f1General: CardBlueprint = {
     {
       id: 'f1_general_skill-1',
       name: 'Void Thrust',
-      description: '@Purge@ an enemy minion and give it @Vulnerable@, then attack it.',
+      description: '@Purge@ an enemy minion and give it @Vulnerable(1)@, then attack it.',
       cooldown: 3,
       initialCooldown: 0,
       iconId: 'spear1',

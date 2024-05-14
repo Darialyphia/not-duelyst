@@ -16,11 +16,11 @@ session.on('game:ended', winnerId => {
 
 const isModalOpened = computed({
   get() {
-    return !!ui.highlightedEntity.value;
+    return !!ui.highlightedCard.value;
   },
   set(val) {
     if (!val) {
-      ui.highlightEntity(null);
+      ui.highlightedCard.value = null;
     }
   }
 });
@@ -35,9 +35,9 @@ const isModalOpened = computed({
   <NewTurnIndicator />
   <EndGameModal />
   <CardModal
-    v-if="ui.highlightedEntity.value"
+    v-if="ui.highlightedCard.value"
     v-model:is-opened="isModalOpened"
-    :blueprint-id="ui.highlightedEntity.value.card.blueprintId"
+    :blueprint-id="ui.highlightedCard.value.blueprintId"
   />
   <Transition>
     <div

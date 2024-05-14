@@ -9,10 +9,10 @@ import { KEYWORDS } from '../../../utils/keywords';
 export const f1Structure: CardBlueprint = {
   id: 'f1_ranged',
   name: 'F1 Structure',
-  description: '@Structure@.\n@Surge@ @Aura@',
+  description: '@Structure@.\n@Surge(1)@ @Aura@',
   collectable: true,
   rarity: RARITIES.BASIC,
-  factions: [FACTIONS.F1, null, null],
+  factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_ranged',
   kind: CARD_KINDS.MINION,
   cooldown: 5,

@@ -42,8 +42,7 @@ export type GameUiContext = {
   selectEntity(entityId: EntityId): void;
   unselectEntity(): void;
 
-  highlightedEntity: ComputedRef<Nullable<Entity>>;
-  highlightEntity(entityId: EntityId | null): void;
+  highlightedCard: Ref<Nullable<Card>>;
 
   selectedSkill: ComputedRef<Nullable<Skill>>;
   selectedSkillIndex: Ref<Nullable<number>>;
@@ -68,7 +67,7 @@ const GAME_UI_INJECTION_KEY = Symbol('game-ui') as InjectionKey<GameUiContext>;
 
 export const useGameUiProvider = (session: GameSession) => {
   const hoveredPosition = ref<Nullable<Point3D>>(null);
-  const highlightedEntityId = ref<Nullable<EntityId>>(null);
+  const highlightedCard = ref(null) as Ref<Nullable<Card>>;
   const selectedCardIndex = ref<Nullable<number>>(null);
   const selectedSkillIndex = ref<Nullable<number>>(null);
   const selectedEntityId = ref<Nullable<EntityId>>(null);
@@ -180,15 +179,7 @@ export const useGameUiProvider = (session: GameSession) => {
     unhover() {
       hoveredPosition.value = null;
     },
-    highlightedEntity: computed(() => {
-      if (!highlightedEntityId.value) return null;
-      return session.entitySystem.getEntityById(highlightedEntityId.value);
-    }),
-    highlightEntity(entityId) {
-      setTimeout(() => {
-        highlightedEntityId.value = entityId;
-      });
-    },
+    highlightedCard,
     selectedEntity: computed(() => {
       if (!selectedEntityId.value) return null;
       return session.entitySystem.getEntityById(selectedEntityId.value);

@@ -138,7 +138,7 @@ const highlightTarget = () => {
           (event: FederatedPointerEvent) => {
             if (event.button === 2) {
               if (cell.entity) {
-                ui.highlightEntity(cell.entity.id);
+                ui.highlightedCard.value = cell.entity.card;
               } else {
                 ui.unselectEntity();
                 ui.unselectCard();
