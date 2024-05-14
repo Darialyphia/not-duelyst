@@ -13,7 +13,8 @@ export const KEYWORDS = {
     id: 'aura',
     name: 'Aura',
     description: 'Apply the effect to all nearby units.',
-    aliases: []
+    aliases: [],
+    spriteId: 'aura'
   },
   BARRIER: {
     id: 'barrier',

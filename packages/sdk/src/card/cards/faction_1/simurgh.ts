@@ -20,6 +20,7 @@ import {
   surge,
   vulnerable
 } from '../../../modifier/modifier-utils';
+import { TERRAINS } from '../../../board/cell';
 
 export const f1Simurgh: CardBlueprint = {
   id: 'f1_Simurgh',
@@ -105,7 +106,9 @@ export const f1Simurgh: CardBlueprint = {
           skill.caster.dealDamage(2, entity);
         });
         affectedCells.forEach(cell => {
-          cell.addTile('burning_ground');
+          if (cell.terrain === TERRAINS.GROUND) {
+            cell.addTile('burning_ground');
+          }
         });
       }
     },
