@@ -78,20 +78,20 @@ export const f1Simurgh: CardBlueprint = {
           if (point.x !== caster.x) return false;
 
           return castPoint.y > caster.y
-            ? point.y > skill.caster.position.y
-            : point.y < skill.caster.position.y;
+            ? point.y > skill.caster.position.y && point.y < castPoint.y
+            : point.y < skill.caster.position.y && point.y > castPoint.y;
         } else if (castPoint.y === caster.y) {
           if (point.y !== caster.y) return false;
 
           return castPoint.x > skill.caster.position.x
-            ? point.x > skill.caster.position.x
-            : point.x < skill.caster.position.x;
+            ? point.x > skill.caster.position.x && point.x < castPoint.x
+            : point.x < skill.caster.position.x && point.x > castPoint.x;
         } else {
           return false;
         }
       },
       async onUse({ affectedCells, skill, castPoints }) {
-        await skill.caster.move([castPoints[0]]);
+        await skill.caster.move([castPoints[0]], true);
         getAffectedEntities(affectedCells).forEach(entity => {
           if (skill.caster.isAlly(entity.id)) return;
           skill.caster.dealDamage(2, entity);

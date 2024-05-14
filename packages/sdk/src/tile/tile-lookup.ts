@@ -12,7 +12,6 @@ export type TileBlueprint = {
   name: string;
   description: string;
   spriteId: string;
-  lightColor?: number;
   onCreated?: (
     session: GameSession,
     entity: Nullable<Entity>,
@@ -33,7 +32,6 @@ const allTiles: TileBlueprint[] = [
     name: 'Gold coin',
     description: 'Move over to this tiel to gain 1 gold !',
     spriteId: 'gold-coin',
-    lightColor: 0xffff00,
 
     onEnter(session, entity, tile) {
       entity.player.giveGold(1);
@@ -47,7 +45,6 @@ const allTiles: TileBlueprint[] = [
     id: 'sanctuary',
     name: 'Sanctuary',
     description: 'Start of turn: give @@Barrier@@ to the minion on this tile.',
-    lightColor: 0xff8800,
     spriteId: 'sanctuary',
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {
@@ -65,7 +62,6 @@ const allTiles: TileBlueprint[] = [
     id: 'burning_ground',
     name: 'Burning Ground',
     description: 'Start of turn: give @@Burn@@ to the minion on this tile.',
-    lightColor: 0xff8800,
     spriteId: 'burning-ground',
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {

@@ -81,7 +81,7 @@ const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
       :playing="true"
       :anchor-x="0.5"
       :anchor-y="0"
-      :y="-CELL_HEIGHT * 0.6"
+      :y="-CELL_HEIGHT"
     />
 
     <container :x="CELL_WIDTH * 0.25" :y="-10">

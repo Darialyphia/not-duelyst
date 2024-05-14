@@ -143,7 +143,7 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         :anchor-x="0.5"
         :anchor-y="0"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.8"
+        :y="-CELL_HEIGHT * 0.6"
         :is-flipped="isFlipped"
       />
 

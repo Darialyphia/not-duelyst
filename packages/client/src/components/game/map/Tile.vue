@@ -29,14 +29,6 @@ const boardDimensions = useGameSelector(session => ({
       :y="-CELL_HEIGHT * 0.4"
       event-mode="none"
     >
-      <PointLight
-        v-if="cell.tile.blueprint.lightColor"
-        :color="cell.tile.blueprint.lightColor"
-        :brightness="0.5"
-        :x="0"
-        :y="0"
-      />
-
       <IlluminatedSprite
         :diffuse-textures="textures.diffuse as FrameObject[]"
         :normal-textures="textures.normal as FrameObject[]"

@@ -343,7 +343,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  async move(path: Point3D[]) {
+  async move(path: Point3D[], isDisplacement = false) {
     this.emit(ENTITY_EVENTS.BEFORE_MOVE, this);
 
     const stopRunning = this.session.fxSystem.playAnimationUntil(this.id, 'run');
@@ -359,7 +359,9 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       this.position = Vec3.fromPoint3D(point);
     }
 
-    this.movementsTaken++;
+    if (!isDisplacement) {
+      this.movementsTaken++;
+    }
     this.checkExhaustion();
     this.emit(ENTITY_EVENTS.AFTER_MOVE, this);
   }
@@ -511,7 +513,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   addModifier(modifier: EntityModifier) {
     const existing = this.getModifier(modifier.id);
-    console.log(this.id, modifier.id, existing, this.modifiers);
 
     if (existing) {
       if (existing.stackable) {

@@ -25,7 +25,7 @@ const boardDimensions = useGameSelector(session => ({
 
 const isEnterAnimationDone = ref(false);
 const onEnter = (container: Container) => {
-  container.y = -1 * (randomInt(50) + 50);
+  container.y = -40;
   container.alpha = 0;
 
   gsap.to(container, {
