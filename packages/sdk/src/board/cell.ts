@@ -1,18 +1,24 @@
-import { Vec3, type Nullable, type Serializable } from '@game/shared';
+import { Vec3, type Nullable, type Serializable, type Values } from '@game/shared';
 import type { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
 import type { GameSession } from '../game-session';
 import type { Direction } from './board-utils';
 import { Tile } from '../tile/tile';
-// import { Tile } from './tile';
 
 export type CellId = `${string}:${string}:${string}`;
 
+export const TERRAINS = {
+  GROUND: 'ground',
+  WATER: 'water'
+} as const;
+
+export type Terrain = Values<typeof TERRAINS>;
+
 export type SerializedCell = {
   spriteId: string;
+  terrain: Terrain;
   position: Point3D;
   tileBlueprintId: string | null;
-  isWalkable: boolean;
 };
 
 export class Cell implements Serializable {
@@ -33,6 +39,10 @@ export class Cell implements Serializable {
           blueprintId: options.tileBlueprintId
         })
       : null;
+  }
+
+  get terrain() {
+    return this.options.terrain;
   }
 
   equals(cell: Cell) {
@@ -74,7 +84,7 @@ export class Cell implements Serializable {
   }
 
   get isWalkable() {
-    if (!this.options.isWalkable) return false;
+    if (this.terrain === TERRAINS.WATER) return false;
 
     const above = this.session.boardSystem.getCellAt({
       ...this.position,

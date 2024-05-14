@@ -1,4 +1,4 @@
-import type { SerializedGameState } from '@game/sdk';
+import { TERRAINS, type SerializedGameState } from '@game/sdk';
 import { isDefined } from '@game/shared';
 import { match } from 'ts-pattern';
 
@@ -9,7 +9,7 @@ const dirtTile = (
   tileBlueprintId: string | undefined
 ) => ({
   position: { x, y, z },
-  isWalkable: true,
+  terrain: TERRAINS.GROUND,
   spriteId: 'dirt',
   tileBlueprintId: tileBlueprintId ?? null
 });
@@ -20,7 +20,7 @@ const grassTile = (
   tileBlueprintId: string | undefined
 ) => ({
   position: { x, y, z },
-  isWalkable: true,
+  terrain: TERRAINS.GROUND,
   spriteId: 'grass',
   tileBlueprintId: tileBlueprintId ?? null
 });
@@ -31,7 +31,7 @@ const waterTile = (
   tileBlueprintId: string | undefined
 ) => ({
   position: { x, y, z },
-  isWalkable: false,
+  terrain: TERRAINS.WATER,
   spriteId: 'water',
   tileBlueprintId: tileBlueprintId ?? null
 });
