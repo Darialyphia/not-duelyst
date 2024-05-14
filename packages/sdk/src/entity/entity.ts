@@ -343,11 +343,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       this.session.entitySystem.removeEntity(this);
 
       this.session.actionSystem.schedule(() => {
-        this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
         this.modifiers.forEach(modifier => {
           modifier.onRemoved(this.session, this, modifier);
         });
         this.session.boardSystem.getCellAt(this.position)!.addTile('gold_coin');
+        this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
       });
     });
   }

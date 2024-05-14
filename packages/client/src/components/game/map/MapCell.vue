@@ -188,5 +188,5 @@ const highlightTarget = () => {
     </container>
   </IsoPositioner>
 
-  <Tile v-if="cell.tile" :cell-id="cellId" />
+  <Tile :cell-id="cellId" />
 </template>
