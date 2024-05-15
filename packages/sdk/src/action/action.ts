@@ -29,19 +29,23 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
   protected abstract impl(): Promise<void>;
 
   get player() {
-    const player = this.session.playerSystem.getPlayerById(this.payload.playerId);
-    if (!player) throw new Error(`Unknown player id: ${this.payload.playerId}`);
-
-    return player;
+    return this.session.playerSystem.getPlayerById(this.payload.playerId)!;
   }
 
-  execute() {
+  private parsePayload() {
     const parsed = this.payloadSchema.safeParse(this.rawPayload);
     if (!parsed.success) {
-      console.error(parsed.error);
-      return;
+      return this.printError('You are not the active player');
     }
+
     this.payload = parsed.data;
+  }
+  execute() {
+    this.parsePayload();
+
+    if (!this.player) {
+      return this.printError(`Unknown player id: ${this.payload.playerId}`);
+    }
 
     if (!this.player.isActive && !this.allowDuringEnemyTurn) {
       console.log({
@@ -49,11 +53,14 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
         isActive: this.player.isActive,
         activePlayer: this.session.playerSystem.activePlayer.name
       });
-      console.error('You are not the active player');
-      return;
+      return this.printError('You are not the active player');
     }
 
     return this.impl();
+  }
+
+  protected printError(message: string) {
+    console.log(`%c[${this.name}]`, 'color: red', message);
   }
 
   serialize(): SerializedAction {

@@ -184,13 +184,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   getCardFromHand(index: CardIndex) {
-    const card = this.hand[index];
-    if (!card) {
-      console.error(`No card in hand at index ${index}`);
-      return;
-    }
-
-    return card;
+    return this.hand[index];
   }
 
   addInterceptor<T extends keyof PlayerInterceptor>(

@@ -12,18 +12,27 @@ export class AttackAction extends GameAction<typeof schema> {
   protected payloadSchema = schema;
 
   get entity() {
-    const entity = this.session.entitySystem.getEntityById(this.payload.entityId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
-    return entity;
+    return this.session.entitySystem.getEntityById(this.payload.entityId);
   }
 
   get target() {
-    const entity = this.session.entitySystem.getEntityById(this.payload.targetId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.targetId}`);
-    return entity;
+    return this.session.entitySystem.getEntityById(this.payload.targetId);
   }
 
   async impl() {
+    if (!this.entity) {
+      return this.printError(`Entity not found: ${this.payload.entityId}`);
+    }
+
+    if (!this.target) {
+      return this.printError(`Entity not found: ${this.payload.targetId}`);
+    }
+
+    if (!this.entity.canAttack(this.target)) {
+      return this.printError(
+        `Entity ${this.entity.id}(${this.entity.card.blueprintId}) cannot attack Entity ${this.target.id}(${this.target.card.blueprintId})`
+      );
+    }
     await this.entity.performAttack(this.target);
   }
 }

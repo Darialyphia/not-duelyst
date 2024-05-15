@@ -16,23 +16,26 @@ export class MoveAction extends GameAction<typeof schema> {
   protected payloadSchema = schema;
 
   get entity() {
-    const entity = this.session.entitySystem.getEntityById(this.payload.entityId);
-    if (!entity) throw new Error(`Entity not found: ${this.payload.entityId}`);
-    return entity;
+    return this.session.entitySystem.getEntityById(this.payload.entityId);
   }
-
   get path() {
-    const path = this.session.boardSystem.getPathTo(this.entity, this.payload.position);
-
-    if (!path) throw new Error(`No path found for destination ${this.payload.position}.`);
-
-    return path;
+    if (!this.entity) return null;
+    return this.session.boardSystem.getPathTo(this.entity, this.payload.position);
   }
 
   async impl() {
-    if (!this.entity.canMove(this.path.distance)) {
-      throw new Error(`Entity ${this.entity.id} cannot move to target cell.`);
+    if (!this.entity) {
+      return this.printError(`Entity not found: ${this.payload.entityId}`);
     }
+
+    if (!this.path) {
+      return this.printError(`No path found for destination ${this.payload.position}.`);
+    }
+
+    if (!this.entity.canMove(this.path.distance)) {
+      return this.printError(`Entity ${this.entity.id} cannot move to target cell.`);
+    }
+
     await this.entity.move(this.path.path);
   }
 }

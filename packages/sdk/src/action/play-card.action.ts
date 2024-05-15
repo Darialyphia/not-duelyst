@@ -28,20 +28,26 @@ export class PlayCardAction extends GameAction<typeof schema> {
 
   protected payloadSchema = schema;
 
+  get card() {
+    return this.player.getCardFromHand(this.payload.cardIndex);
+  }
+
   async impl() {
     if (!this.player.canPlayCardAtIndex(this.payload.cardIndex)) {
-      console.error(`Not allowed to play card at index ${this.payload.cardIndex}`);
-      return;
+      return this.printError(
+        `Not allowed to play card at index ${this.payload.cardIndex}`
+      );
     }
 
-    const card = this.player.getCardFromHand(this.payload.cardIndex);
-    if (!card) return;
-
-    this.player.currentGold -= card.cost;
-    if (card.hpCost) {
-      this.player.general.takeDamage(card.hpCost, this.player.general);
+    if (!this.card) {
+      return this.printError(`Card not found at index ${this.payload.cardIndex}`);
     }
 
-    return card.play(this.payload);
+    this.player.currentGold -= this.card.cost;
+    if (this.card.hpCost) {
+      this.player.general.takeDamage(this.card.hpCost, this.player.general);
+    }
+
+    await this.card.play(this.payload);
   }
 }
