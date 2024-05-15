@@ -2,6 +2,8 @@ import { compressPng } from "@assetpack/plugin-compress";
 import { audio } from "@assetpack/plugin-ffmpeg";
 import { json } from "@assetpack/plugin-json";
 import { pixiManifest } from "@assetpack/plugin-manifest";
+import { mipmap } from "@assetpack/plugin-mipmap";
+
 import { path, SavableAssetCache } from "@assetpack/core";
 
 const SPRITESHEET_PARSER = "Aseprite_spritesheet_Parser";
@@ -78,6 +80,7 @@ export default function (entry, output) {
     plugins: {
       audio: audio(),
       json: json(),
+      // mipmap: mipmap({ resolutions: { default: 1, "2x": 2 } }),
       manifest: pixiManifest({
         output: `${output}/assets-manifest.json`,
         trimExtensions: false,

@@ -8,6 +8,7 @@ const isOpened = defineModel<boolean>('isOpened', { required: true });
 
 const blueprint = computed(() => CARDS[blueprintId]);
 
+const settings = useUserSettings();
 const selectedBlueprint = computed(() => CARDS[selectedBlueprintId.value]);
 
 const relatedBlueprints = computed(() =>
@@ -32,15 +33,18 @@ const keywords = computed(() =>
 );
 
 const selectedBlueprintId = ref(blueprintId);
-
+const MAX_ANGLE = 30;
+const MAX_OFFSET = 150;
 const angle = computed(() => {
   return (
-    clamp(relatedBlueprints.value.length * 10, 0, 20) / relatedBlueprints.value.length
+    clamp(relatedBlueprints.value.length * 10, 0, MAX_ANGLE) /
+    Math.max(relatedBlueprints.value.length, 1)
   );
 });
 const offset = computed(() => {
   return (
-    clamp(relatedBlueprints.value.length * 50, 0, 150) / relatedBlueprints.value.length
+    clamp(relatedBlueprints.value.length * 50, 0, MAX_OFFSET) /
+    Math.max(relatedBlueprints.value.length, 1)
   );
 });
 </script>
@@ -56,6 +60,7 @@ const offset = computed(() => {
           v-for="(blueprint, index) in blueprints"
           :key="blueprint.id"
           :style="{ '--index': index }"
+          :class="settings.ui.cardsWith3D && 'card-3d'"
           @click="selectedBlueprintId = blueprint.id"
         >
           <Card
@@ -190,13 +195,14 @@ const offset = computed(() => {
       filter: drop-shadow(4px 4px 0 var(--cyan-5))
         drop-shadow(-4px -4px 0 var(--orange-5));
     }
+  }
+  .card-3d {
+    transform-style: preserve-3d;
 
-    > * {
-      animation-name: card-modal;
-      animation-duration: 8s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
+    animation-name: card-modal;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 }
 

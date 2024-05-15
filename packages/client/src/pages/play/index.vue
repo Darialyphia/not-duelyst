@@ -16,6 +16,7 @@ definePageMeta({
         <li><NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
+        <li><NuxtLink :to="{ name: 'Settings' }">Settings</NuxtLink></li>
         <li><a href="/api/signoff">Sign off</a></li>
       </ul>
     </nav>

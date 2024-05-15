@@ -8,9 +8,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@game/tsconfig": "*",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
-    "@game/tsconfig": "*",
     "turbo": "latest"
   },
   "workspaces": {

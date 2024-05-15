@@ -77,6 +77,11 @@ until(settings)
         <fieldset>
           <legend>Interface</legend>
 
+          <label>3D cards</label>
+          <div class="flex flex-col gap-2">
+            <UiSwitch v-model:checked="formData.ui.cardsWith3D" />
+            <p class="text-00">(Turning this off can fix issues with blurry images)</p>
+          </div>
           <label>Show unit stats</label>
           <UiRadioGroup
             v-model="formData.ui.displayUnitsStats"

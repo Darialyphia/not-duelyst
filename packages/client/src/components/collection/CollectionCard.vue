@@ -15,8 +15,10 @@ const { canAddToLoadout, isEditingLoadout, card, isInLoadout } = defineProps<{
 }>();
 
 const emit = defineEmits<{ click: [] }>();
-const rootEl = ref<HTMLElement>();
 
+const settings = useUserSettings();
+
+const rootEl = ref<HTMLElement>();
 const angle = ref({
   x: 0,
   y: 0
@@ -50,7 +52,7 @@ const keywords = computed(() => {
 </script>
 
 <template>
-  <div class="perspective-wrapper">
+  <div class="perspective-wrapper" :class="settings.ui.cardsWith3D && '3d'">
     <Card
       has-modal
       ref="rootEl"
@@ -61,8 +63,8 @@ const keywords = computed(() => {
         disabled: isDisabled
       }"
       :style="{
-        '--rotate-y': angle.x.toFixed(2),
-        '--rotate-x': angle.y.toFixed(2)
+        '--rotate-y': settings.ui.cardsWith3D ? angle.x.toFixed(2) : 0,
+        '--rotate-x': settings.ui.cardsWith3D ? angle.y.toFixed(2) : 0
       }"
       :card="{
         blueprintId: card.card.id,
@@ -100,8 +102,11 @@ const keywords = computed(() => {
 .perspective-wrapper {
   transform-style: preserve-3d;
   padding: var(--size-1);
-  perspective: 40rem;
   animation: collection-card 0.3s;
+
+  &.3d {
+    perspective: 40rem;
+  }
 
   > * {
     height: 100%;
