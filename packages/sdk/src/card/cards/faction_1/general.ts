@@ -1,10 +1,16 @@
 import { config } from '../../../config';
-import { isNearbyEnemy } from '../../../entity/entity-utils';
+import { isEmpty, isNearbyEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import { getAffectedEntities, isCastPoint } from '../../../utils/targeting';
+import {
+  getAffectedEntities,
+  isCastPoint,
+  isWithinCells
+} from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
-import { purgeEntity, vulnerable } from '../../../modifier/modifier-utils';
+import { purgeEntity, rush, vulnerable } from '../../../modifier/modifier-utils';
+import { f1Wisp } from './wisp';
+import { neutralAirElemental } from '../neutral/air-elemental';
 
 export const f1General: CardBlueprint = {
   id: 'f1_general',
@@ -22,31 +28,68 @@ export const f1General: CardBlueprint = {
   maxHp: config.GENERAL_DEFAULT_HP,
   speed: config.GENERAL_DEFAULT_SPEED,
   range: 1,
+  relatedBlueprintIds: [f1Wisp.id, neutralAirElemental.id],
   skills: [
     {
-      id: 'f1_general_skill-1',
-      name: 'Void Thrust',
-      description: '@Purge@ an enemy minion and give it @Vulnerable(1)@, then attack it.',
-      cooldown: 3,
+      id: 'f1_general_skill',
+      name: 'Summon Wisp',
+      description: `Summon a @${f1Wisp.name}@ with @Rush@ nearby your general. It dies at the end of the turn.`,
+      cooldown: 2,
       initialCooldown: 0,
-      iconId: 'spear1',
-      keywords: [KEYWORDS.PURGE, KEYWORDS.VULNERABLE],
+      iconId: 'summon-wisp',
+      keywords: [KEYWORDS.RUSH],
       minTargetCount: 1,
       maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
-        return isNearbyEnemy(session, skill.caster, point);
+        return isEmpty(session, point) && isWithinCells(skill.caster.position, point, 1);
       },
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
-      async onUse({ session, skill, affectedCells }) {
-        await Promise.all(
-          getAffectedEntities(affectedCells).map(entity => {
-            purgeEntity(entity);
-            entity.addModifier(vulnerable({ source: skill.caster }));
-            return skill.caster.performAttack(entity);
-          })
+      async onUse({ session, skill, castPoints }) {
+        const card = skill.caster.player.generateCard(
+          f1Wisp.id,
+          skill.caster.card.pedestalId
         );
+
+        card.modifiers.push(rush());
+        const entity = await card.play({
+          position: castPoints[0],
+          targets: []
+        });
+
+        session.once('player:turn_end', () => {
+          entity.destroy();
+        });
+      }
+    },
+    {
+      id: 'f1_general_skill2',
+      name: 'Summon Air Elemental',
+      description: `Summon a @${neutralAirElemental}@ on a space nearby an allied unit.`,
+      cooldown: 5,
+      initialCooldown: 4,
+      iconId: 'summon-air-elemental',
+      minTargetCount: 1,
+      maxTargetCount: 1,
+      isTargetable(point, { session, skill }) {
+        return session.entitySystem
+          .getNearbyEntities(point)
+          .some(entity => skill.caster.isAlly(entity.id));
+      },
+      isInAreaOfEffect(point, { castPoints }) {
+        return isCastPoint(point, castPoints);
+      },
+      async onUse({ session, skill, castPoints }) {
+        const card = skill.caster.player.generateCard(
+          neutralAirElemental.id,
+          skill.caster.card.pedestalId
+        );
+
+        const entity = await card.play({
+          position: castPoints[0],
+          targets: []
+        });
       }
     }
   ]

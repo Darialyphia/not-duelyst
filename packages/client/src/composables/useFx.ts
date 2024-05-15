@@ -19,6 +19,7 @@ import { changeAmbientLightUntil } from './fx/changeAmbientLightUntil';
 import { addLightOnEntityUntil } from './fx/addLightOnentityUntil';
 import type { CellId } from '@game/sdk/src/board/cell';
 import { pointToCellId } from '@game/sdk/src/utils/helpers';
+import { fadeOutEntity } from './fx/fadeoutEntity';
 
 export type FxContext = {
   isPlaying: Ref<boolean>;
@@ -172,8 +173,10 @@ export const useFXProvider = () => {
         children.splice(children.indexOf(spriteId, 1));
       };
     },
-    fadeOutEntity() {
-      return Promise.resolve();
+    fadeOutEntity(...args) {
+      return executeAsyncCommand(ctx => {
+        fadeOutEntity(ctx, ...args);
+      });
     },
     displayText(...args) {
       return executeAsyncCommand(ctx => {

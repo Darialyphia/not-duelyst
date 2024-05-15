@@ -10,6 +10,7 @@ import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { isWithinCells } from '../../../utils/targeting';
 import { rush } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
+import { f1Kirin } from './kirin';
 
 export const f1KirinSummoner: CardBlueprint = {
   id: 'f1_kirin_summoner',
@@ -63,7 +64,7 @@ export const f1KirinSummoner: CardBlueprint = {
       },
       onUse({ castPoints, skill }) {
         const card = skill.caster.player.generateCard(
-          'f1_kirin',
+          f1Kirin.id,
           skill.caster.card.pedestalId
         );
 

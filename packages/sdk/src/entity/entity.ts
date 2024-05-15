@@ -8,7 +8,7 @@ import { isAlly, isEnemy } from './entity-utils';
 import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
 import { CARD_KINDS } from '../card/card-enums';
-import { type Keyword } from '../utils/keywords';
+import { KEYWORDS, type Keyword } from '../utils/keywords';
 import { Skill } from './skill';
 import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
@@ -341,14 +341,17 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   destroy() {
     this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
-    this.session.fxSystem.playAnimation(this.id, 'death').then(() => {
+    this.session.fxSystem.playAnimation(this.id, 'death').then(async () => {
+      await this.session.fxSystem.fadeOutEntity(this.id, 0.8);
       this.session.entitySystem.removeEntity(this);
 
       this.session.actionSystem.schedule(() => {
         this.modifiers.forEach(modifier => {
           modifier.onRemoved(this.session, this, modifier);
         });
-        this.session.boardSystem.getCellAt(this.position)!.addTile('gold_coin');
+        if (!this.card.isGenerated) {
+          this.session.boardSystem.getCellAt(this.position)!.addTile('gold_coin');
+        }
         this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
       });
     });
@@ -589,6 +592,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     ];
 
     const keywordsWithStacks = new Map<string, Keyword & { stacks?: number }>();
+
+    if (this.card.isGenerated) {
+      keywordsWithStacks.set(KEYWORDS.SUMMON.id, {
+        ...KEYWORDS.SUMMON,
+        stacks: undefined
+      });
+    }
 
     for (const modifier of allModifiers) {
       modifier.keywords.forEach(keyword => {

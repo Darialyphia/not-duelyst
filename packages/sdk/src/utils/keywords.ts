@@ -219,6 +219,13 @@ export const KEYWORDS = {
     description: 'This unit takes x more damage from all sources.',
     spriteId: 'vulnerable',
     aliases: [/vulnerable\([0-9]+\)/]
+  },
+  SUMMON: {
+    id: 'summon',
+    name: 'Summon',
+    description:
+      "A summoned unit didn`t come from your action bar. It won't drop a gold coin when destroyed.",
+    aliases: []
   }
 } as const satisfies Record<string, Keyword>;
 

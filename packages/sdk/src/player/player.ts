@@ -133,6 +133,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       { blueprintId, pedestalId, isGenerated: true },
       this.id
     );
+
     this.cards.push(card);
 
     return card;

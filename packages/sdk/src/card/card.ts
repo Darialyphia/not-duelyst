@@ -201,6 +201,7 @@ export class Card extends EventEmitter implements Serializable {
     }
     this.currentCooldown = this.cooldown;
     this.emit(CARD_EVENTS.AFTER_PLAYED, this);
+    return entity;
   }
 
   onTurnStart() {
