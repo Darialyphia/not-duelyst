@@ -2,17 +2,10 @@ import { Vec3, type Nullable, type Serializable, type Values } from '@game/share
 import type { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
 import type { GameSession } from '../game-session';
-import type { Direction } from './board-utils';
+import { TERRAINS, type Direction, type Terrain } from './board-utils';
 import { Tile } from '../tile/tile';
 
 export type CellId = `${string}:${string}:${string}`;
-
-export const TERRAINS = {
-  GROUND: 'ground',
-  WATER: 'water'
-} as const;
-
-export type Terrain = Values<typeof TERRAINS>;
 
 export type SerializedCell = {
   spriteId: string;
@@ -23,13 +16,15 @@ export type SerializedCell = {
 
 export class Cell implements Serializable {
   public position: Vec3;
-  public readonly spriteId: string;
+  public spriteId: string;
   public tile: Nullable<Tile>;
+  public terrain: Terrain;
 
   constructor(
     private session: GameSession,
     public options: SerializedCell
   ) {
+    this.terrain = options.terrain;
     this.position = Vec3.fromPoint3D(options.position);
     this.spriteId = options.spriteId;
 
@@ -39,10 +34,6 @@ export class Cell implements Serializable {
           blueprintId: options.tileBlueprintId
         })
       : null;
-  }
-
-  get terrain() {
-    return this.options.terrain;
   }
 
   equals(cell: Cell) {

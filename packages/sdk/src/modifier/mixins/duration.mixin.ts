@@ -1,5 +1,3 @@
-import type { Entity } from '../../entity/entity';
-import { PLAYER_EVENTS } from '../../player/player';
 import type { Keyword } from '../../utils/keywords';
 import type { CardModifier, CardModifierMixin } from '../card-modifier';
 import type { EntityModifier, EntityModifierMixin } from '../entity-modifier';
@@ -22,8 +20,7 @@ export const modifierEntityDurationMixin = ({
   return {
     keywords,
     onApplied(session, attachedTo, modifier) {
-      const eventName =
-        tickOn === 'end' ? PLAYER_EVENTS.TURN_END : PLAYER_EVENTS.TURN_START;
+      const eventName = tickOn === 'end' ? 'turn_end' : 'turn_end';
       const listener = () => {
         _duration--;
         if (_duration === 0) {
@@ -61,8 +58,7 @@ export const modifierCardDurationMixin = ({
   return {
     keywords,
     onApplied(session, attachedTo, modifier) {
-      const eventName =
-        tickOn === 'end' ? PLAYER_EVENTS.TURN_END : PLAYER_EVENTS.TURN_START;
+      const eventName = tickOn === 'end' ? 'turn_end' : 'turn_start';
       const listener = () => {
         _duration--;
         if (_duration === 0) {

@@ -9,11 +9,11 @@ import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
 import { CARD_KINDS } from '../card/card-enums';
 import { type Keyword } from '../utils/keywords';
-import { Tile } from '../tile/tile';
 import { Skill } from './skill';
 import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
-import { TERRAINS, type Cell } from '../board/cell';
+import { type Cell } from '../board/cell';
+import { TERRAINS } from '../board/board-utils';
 
 export type EntityId = number;
 
@@ -78,8 +78,10 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.BEFORE_DESTROY]: [entity: Entity];
   [ENTITY_EVENTS.AFTER_DESTROY]: [entity: Entity];
 
-  [ENTITY_EVENTS.BEFORE_MOVE]: [entity: Entity];
-  [ENTITY_EVENTS.AFTER_MOVE]: [entity: Entity];
+  [ENTITY_EVENTS.BEFORE_MOVE]: [{ entity: Entity; path: Point3D[] }];
+  [ENTITY_EVENTS.AFTER_MOVE]: [
+    { entity: Entity; path: Point3D[]; previousPosition: Vec3 }
+  ];
 
   [ENTITY_EVENTS.BEFORE_DEAL_DAMAGE]: [event: DealDamageEvent];
   [ENTITY_EVENTS.AFTER_DEAL_DAMAGE]: [event: DealDamageEvent];
@@ -353,7 +355,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   async move(path: Point3D[], isDisplacement = false) {
-    this.emit(ENTITY_EVENTS.BEFORE_MOVE, this);
+    this.emit(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
+    const currentPosition = this.position;
 
     const stopRunning = this.session.fxSystem.playAnimationUntil(this.id, 'run');
     await this.session.fxSystem.moveEntity(
@@ -372,7 +375,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       this.movementsTaken++;
     }
     this.checkExhaustion();
-    this.emit(ENTITY_EVENTS.AFTER_MOVE, this);
+    this.emit(ENTITY_EVENTS.AFTER_MOVE, {
+      entity: this,
+      path,
+      previousPosition: currentPosition
+    });
   }
 
   getTakenDamage(amount: number) {
@@ -537,18 +544,24 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return modifier.onApplied(this.session, this, modifier);
   }
 
-  removeModifier(modifierId: ModifierId, ignoreStacks = false) {
+  removeModifier(modifierId: ModifierId, stacksToRemove = 1) {
     this.modifiers.forEach(mod => {
       if (mod.id !== modifierId) return;
 
-      if (mod.stackable && mod.stacks > 1 && !ignoreStacks) return;
-      mod.onRemoved(this.session, this, mod);
+      if (mod.stackable) {
+        mod.stacks -= stacksToRemove;
+        if (mod.stacks < 1) {
+          mod.onRemoved(this.session, this, mod);
+        }
+      } else {
+        mod.onRemoved(this.session, this, mod);
+      }
     });
 
     this.modifiers = this.modifiers.filter(mod => {
       if (mod.id !== modifierId) return true;
 
-      if (mod.stackable && mod.stacks > 1 && !ignoreStacks) return true;
+      if (mod.stackable) return mod.stacks >= 1;
 
       return false;
     });

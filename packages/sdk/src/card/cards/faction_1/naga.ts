@@ -1,15 +1,7 @@
-import { Vec3 } from '@game/shared';
-import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
+import { isNearbyEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import {
-  getAffectedEntities,
-  isAxisAligned,
-  isCastPoint,
-  isNearbyEnemy,
-  isSelf,
-  isWithinCells
-} from '../../../utils/targeting';
+import { getAffectedEntities, isSelf } from '../../../utils/targeting';
 import { vigilant, vulnerable } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 

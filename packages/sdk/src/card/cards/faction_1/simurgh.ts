@@ -1,13 +1,9 @@
-import { Vec3 } from '@game/shared';
-import { config } from '../../../config';
-import { isEnemy, isAllyMinion, isEmpty } from '../../../entity/entity-utils';
+import { isEmpty } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import {
   getAffectedEntities,
   isAxisAligned,
-  isCastPoint,
-  isNearbyEnemy,
   isWithinCells
 } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -17,10 +13,9 @@ import {
   flying,
   purgeEntity,
   silenced,
-  surge,
-  vulnerable
+  surge
 } from '../../../modifier/modifier-utils';
-import { TERRAINS } from '../../../board/cell';
+import { TERRAINS } from '../../../board/board-utils';
 
 export const f1Simurgh: CardBlueprint = {
   id: 'f1_Simurgh',
@@ -43,7 +38,6 @@ export const f1Simurgh: CardBlueprint = {
     entity.addModifier(flying({ source: entity }));
     entity.addModifier(celerity({ source: entity }));
 
-    const surgeModifier = surge({ source: entity });
     entity.addModifier(
       aura({
         source: entity,
@@ -52,12 +46,12 @@ export const f1Simurgh: CardBlueprint = {
         keywords: [KEYWORDS.SURGE],
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) {
-            affected.addModifier(surgeModifier);
+            affected.addModifier(surge({ source: entity }));
           }
         },
         onLoseAura(affected) {
           if (affected.isAlly(entity.id)) {
-            affected.removeModifier(surgeModifier.id);
+            affected.removeModifier(KEYWORDS.SURGE.id);
           }
         }
       })

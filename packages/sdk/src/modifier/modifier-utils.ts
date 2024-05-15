@@ -1,5 +1,5 @@
 import type { Point3D } from '@game/shared';
-import { TERRAINS, type Cell } from '../board/cell';
+import { type Cell } from '../board/cell';
 import type { GameSession } from '../game-session';
 import { Entity, type EntityId } from '../entity/entity';
 import { createEntityModifier } from '../modifier/entity-modifier';
@@ -12,7 +12,7 @@ import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
-import { isAlly } from '../entity/entity-utils';
+import { TERRAINS } from '../board/board-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {

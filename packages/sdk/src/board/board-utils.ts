@@ -15,3 +15,10 @@ export const DIRECTIONS_TO_DIFF = {
 } as const satisfies Record<Direction, Point3D>;
 
 export type Direction = Values<typeof DIRECTION>;
+
+export const TERRAINS = {
+  GROUND: 'ground',
+  WATER: 'water'
+} as const;
+
+export type Terrain = Values<typeof TERRAINS>;

@@ -1,7 +1,6 @@
 import { Vec3, isDefined, isNumber, type Nullable, type Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
-import type { Card } from '../card/card';
 import type { Cell } from '../board/cell';
 import { isAlly, isEnemy } from '../entity/entity-utils';
 
@@ -96,12 +95,3 @@ export const isCastPoint = (point: Point3D, castPoints: Array<Nullable<Point3D>>
   const vec = Vec3.fromPoint3D(point);
   return castPoints.some(p => p && vec.equals(p));
 };
-
-export const isNearbyEnemy = (session: GameSession, origin: Entity, point: Point3D) =>
-  isWithinCells(origin.position, point, 1) &&
-  isEnemy(session, session.entitySystem.getEntityAt(point)?.id, origin.player.id);
-
-export const isNearbyAlly = (session: GameSession, origin: Entity, point: Point3D) =>
-  !session.entitySystem.getEntityAt(point)?.equals(origin) &&
-  isWithinCells(origin.position, point, 1) &&
-  isAlly(session, session.entitySystem.getEntityAt(point)?.id, origin.player.id);

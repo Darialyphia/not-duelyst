@@ -26,7 +26,6 @@ export const f1Structure: CardBlueprint = {
   onPlay({ entity }) {
     entity.addModifier(structure(entity));
 
-    const surgeModifier = surge({ source: entity });
     entity.addModifier(
       aura({
         source: entity,
@@ -34,12 +33,12 @@ export const f1Structure: CardBlueprint = {
         description: 'Nearby allies have @Surge@',
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) {
-            affected.addModifier(surgeModifier);
+            affected.addModifier(surge({ source: entity }));
           }
         },
         onLoseAura(affected) {
           if (affected.isAlly(entity.id)) {
-            affected.removeModifier(surgeModifier.id);
+            affected.removeModifier(KEYWORDS.SURGE.id);
           }
         }
       })

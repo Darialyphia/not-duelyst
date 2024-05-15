@@ -210,6 +210,7 @@ export const useGameUiProvider = (session: GameSession) => {
     unselectCard() {
       selectedCardIndex.value = null;
       followupTargets.value = [];
+      this.followupBlueprintIndexes.value = [];
       api.switchTargetingMode(TARGETING_MODES.NONE);
     },
     selectedSkill: computed(() => {
@@ -229,6 +230,7 @@ export const useGameUiProvider = (session: GameSession) => {
     unselectSkill() {
       selectedSkillIndex.value = null;
       skillTargets.value = [];
+      this.followupBlueprintIndexes.value = [];
       api.switchTargetingMode(TARGETING_MODES.BASIC);
     },
     followupBlueprintIndexes: ref([])

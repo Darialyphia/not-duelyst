@@ -1,5 +1,5 @@
 export { GameSession, type SerializedGameState } from './game-session';
-export { TERRAINS, type Terrain, Cell } from './board/cell';
+export { Cell } from './board/cell';
 export { Entity, type EntityId } from './entity/entity';
 export { Player, type PlayerId } from './player/player';
 export { BoardSystem as GameMap } from './board/board-system';
@@ -24,3 +24,4 @@ export { CARDS } from './card/card-lookup';
 export type { CardBlueprint } from './card/card-blueprint';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
+export { TERRAINS, type Terrain } from './board/board-utils';

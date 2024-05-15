@@ -1,10 +1,12 @@
+import { rooted } from '../../../modifier/modifier-utils';
+import { KEYWORDS } from '../../../utils/keywords';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 
 export const neutralEarthElemental: CardBlueprint = {
   id: 'earth-elemental',
   name: 'Neutral Earth Elemental',
-  description: '',
+  description: '@Call to Arms@: @Root@ nearby enemies for one turn.',
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],
@@ -14,8 +16,14 @@ export const neutralEarthElemental: CardBlueprint = {
   initialCooldown: 0,
   cost: 4,
   attack: 2,
-  maxHp: 7,
-  speed: 3,
+  maxHp: 8,
+  speed: 2,
   range: 1,
+  keywords: [KEYWORDS.ROOTED, KEYWORDS.CALL_TO_ARMS],
+  onPlay({ session, entity }) {
+    session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
+      enemy.addModifier(rooted({ source: entity, duration: 1 }));
+    });
+  },
   skills: []
 };
