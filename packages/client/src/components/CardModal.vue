@@ -40,7 +40,7 @@ const angle = computed(() => {
 });
 const offset = computed(() => {
   return (
-    clamp(relatedBlueprints.value.length * 50, 0, 100) / relatedBlueprints.value.length
+    clamp(relatedBlueprints.value.length * 50, 0, 150) / relatedBlueprints.value.length
   );
 });
 </script>
@@ -149,7 +149,7 @@ const offset = computed(() => {
 .card-modal {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: var(--size-11);
+  column-gap: var(--size-13);
 
   width: calc(var(--size-md) + 5rem);
   height: clamp(50dvh, 30rem, 80dvh);
@@ -187,7 +187,8 @@ const offset = computed(() => {
 
     transition: filter 0.3s;
     &:hover {
-      filter: drop-shadow(0 0 1rem hsl(var(--color-primary-hsl) / 0.25));
+      filter: drop-shadow(4px 4px 0 var(--cyan-5))
+        drop-shadow(-4px -4px 0 var(--orange-5));
     }
 
     > * {

@@ -71,7 +71,7 @@ span {
   image-rendering: pixelated;
 
   > * {
-    transform: translateX(-25%) translateY(-15%);
+    transform: translateX(-25%) translateY(-25%);
   }
 }
 </style>

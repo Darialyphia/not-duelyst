@@ -124,7 +124,8 @@
    { "name": "death", "from": 10, "to": 11, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "body", "opacity": 255, "blendMode": "normal" }
+   { "name": "body", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 105, "blendMode": "multiply" }
   ],
   "slices": [
    { "name": "icon", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 16, "y": 32, "w": 64, "h": 64 } }] }

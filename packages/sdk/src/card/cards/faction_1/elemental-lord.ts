@@ -34,8 +34,7 @@ export const f1ElementalLord: CardBlueprint = {
     {
       id: 'f1_elemental_lord_skill1',
       name: 'Conjure Elemental',
-      description:
-        'Summon a @Neutral Air Elemental@, @Neutral Earth Elemental@, @Neutral Fire Elemental@ or @Neutral Water Elemental@',
+      description: 'Summon an elemental.',
       iconId: 'elements',
       cooldown: 3,
       initialCooldown: 0,
