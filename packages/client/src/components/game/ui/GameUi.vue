@@ -31,6 +31,7 @@ const isModalOpened = computed({
   <SkillBar v-if="!winner" />
   <ActionBar v-if="!winner" />
   <TargetingUi />
+  <BlueprintFollowupUi />
   <GameMenu />
   <NewTurnIndicator />
   <EndGameModal />

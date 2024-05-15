@@ -18,6 +18,7 @@ const cancel = () => {
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
       TARGETING_MODES.SUMMON,
+      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
       () => undefined
     )
     .with(TARGETING_MODES.FOLLOWUP, () => {
@@ -32,7 +33,8 @@ const commitSummon = () => {
   dispatch('playCard', {
     cardIndex: ui.selectedCardIndex.value!,
     position: ui.summonTarget.value!,
-    targets: ui.followupTargets.value
+    targets: ui.followupTargets.value,
+    blueprintFollowup: ui.followupBlueprintIndexes.value
   });
   ui.unselectCard();
 };
@@ -41,7 +43,8 @@ const commitSkill = () => {
   dispatch('useSkill', {
     skillIndex: ui.selectedSkillIndex.value!,
     entityId: ui.selectedEntity.value!.id,
-    targets: ui.skillTargets.value
+    targets: ui.skillTargets.value,
+    blueprintFollowup: ui.followupBlueprintIndexes.value
   });
   ui.unselectCard();
   ui.unselectSkill();
@@ -53,6 +56,7 @@ watchEffect(() => {
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
       TARGETING_MODES.SUMMON,
+      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
       () => undefined
     )
     .with(TARGETING_MODES.FOLLOWUP, () => {

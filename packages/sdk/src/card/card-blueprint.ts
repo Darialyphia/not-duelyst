@@ -42,7 +42,13 @@ export type SkillBlueprint = {
     skill: Skill;
     castPoints: Point3D[];
     affectedCells: Cell[];
+    blueprintFollowup: CardBlueprint[];
   }): MaybePromise<void>;
+  blueprintFollowup?: {
+    minChoices: number;
+    maxChoices: number;
+    getChoices(): CardBlueprint[];
+  };
 };
 
 export type CardBlueprint = {
@@ -81,6 +87,11 @@ export type CardBlueprint = {
         card: Card;
       }
     ): boolean;
+  };
+  blueprintFollowup?: {
+    minChoices: number;
+    maxChoices: number;
+    getChoices(): CardBlueprint[];
   };
   skills: SkillBlueprint[];
 };

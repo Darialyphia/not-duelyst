@@ -25,8 +25,22 @@ export type GameEmits = {
   move: [{ entityId: EntityId; position: Point3D }];
   attack: [{ targetId: EntityId; entityId: EntityId }];
   endTurn: [];
-  playCard: [{ cardIndex: number; position?: Point3D; targets?: Point3D[] }];
-  useSkill: [{ skillIndex: number; entityId: EntityId; targets: Point3D[] }];
+  playCard: [
+    {
+      cardIndex: number;
+      position?: Point3D;
+      targets: Point3D[];
+      blueprintFollowup: number[];
+    }
+  ];
+  useSkill: [
+    {
+      skillIndex: number;
+      entityId: EntityId;
+      targets: Point3D[];
+      blueprintFollowup: number[];
+    }
+  ];
   surrender: [];
   p1Emote: [string];
   p2Emote: [string];

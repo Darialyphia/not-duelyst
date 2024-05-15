@@ -20,7 +20,13 @@ const boardDimensions = useGameSelector(session => ({
 
 const isDisplayed = computed(() => {
   return match(ui.targetingMode.value)
-    .with(TARGETING_MODES.NONE, TARGETING_MODES.BASIC, TARGETING_MODES.SKILL, () => false)
+    .with(
+      TARGETING_MODES.NONE,
+      TARGETING_MODES.BASIC,
+      TARGETING_MODES.SKILL,
+      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      () => false
+    )
     .with(TARGETING_MODES.SUMMON, () => {
       if (!ui.hoveredCell.value || !ui.selectedCard.value) {
         return false;
@@ -35,7 +41,13 @@ const isDisplayed = computed(() => {
 
 const position = computed(() => {
   return match(ui.targetingMode.value)
-    .with(TARGETING_MODES.NONE, TARGETING_MODES.BASIC, TARGETING_MODES.SKILL, () => null)
+    .with(
+      TARGETING_MODES.NONE,
+      TARGETING_MODES.BASIC,
+      TARGETING_MODES.SKILL,
+      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      () => null
+    )
     .with(TARGETING_MODES.SUMMON, () => ui.hoveredCell.value!.position)
     .with(TARGETING_MODES.FOLLOWUP, () => ui.summonTarget.value)
     .exhaustive();

@@ -12,7 +12,8 @@ const schema = defaultActionSchema.extend({
       y: z.number(),
       z: z.number()
     })
-    .array()
+    .array(),
+  blueprintFollowup: z.number().array()
 });
 
 export class UseSkillAction extends GameAction<typeof schema> {
@@ -24,6 +25,10 @@ export class UseSkillAction extends GameAction<typeof schema> {
     const entity = this.session.entitySystem.getEntityById(this.payload.entityId);
     if (!entity) return;
 
-    return entity.useSkill(this.payload.skillIndex, this.payload.targets);
+    return entity.useSkill(
+      this.payload.skillIndex,
+      this.payload.targets,
+      this.payload.blueprintFollowup
+    );
   }
 }

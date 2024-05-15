@@ -19,7 +19,8 @@ const schema = defaultActionSchema.extend({
       y: z.number(),
       z: z.number()
     })
-    .array()
+    .array(),
+  blueprintFollowup: z.number().array()
 });
 
 export class PlayCardAction extends GameAction<typeof schema> {

@@ -476,7 +476,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
   }
 
-  async useSkill(index: number, castPoints: Point3D[]) {
+  async useSkill(index: number, castPoints: Point3D[], blueprintFollowup: number[]) {
     const skill = this.skills[index];
 
     this.emit(ENTITY_EVENTS.BEFORE_USE_SKILL, {
@@ -485,7 +485,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       castPoints
     });
 
-    await skill.use(castPoints);
+    await skill.use(castPoints, blueprintFollowup);
 
     this.skillsUsed++;
     this.checkExhaustion();

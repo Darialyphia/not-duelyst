@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CARDS } from '@game/sdk';
+import { clamp } from '@game/shared';
 import { uniqBy } from 'lodash-es';
 
 const { blueprintId } = defineProps<{ blueprintId: string }>();
@@ -14,9 +15,10 @@ const relatedBlueprints = computed(() =>
 );
 
 const blueprints = computed(() => {
-  return [
+  const res = [
     ...new Set([selectedBlueprint.value, blueprint.value, ...relatedBlueprints.value])
   ];
+  return res;
 });
 
 const keywords = computed(() =>
@@ -30,6 +32,17 @@ const keywords = computed(() =>
 );
 
 const selectedBlueprintId = ref(blueprintId);
+
+const angle = computed(() => {
+  return (
+    clamp(relatedBlueprints.value.length * 10, 0, 20) / relatedBlueprints.value.length
+  );
+});
+const offset = computed(() => {
+  return (
+    clamp(relatedBlueprints.value.length * 50, 0, 100) / relatedBlueprints.value.length
+  );
+});
 </script>
 
 <template>
@@ -38,7 +51,7 @@ const selectedBlueprintId = ref(blueprintId);
       <div class="pl-8">{{ title }}</div>
     </template>
     <div class="card-modal fancy-scrollbar">
-      <div class="cards-wrapper">
+      <div class="cards-wrapper" :style="{ '--angle': angle, '--offset': offset }">
         <div
           v-for="(blueprint, index) in blueprints"
           :key="blueprint.id"
@@ -164,7 +177,8 @@ const selectedBlueprintId = ref(blueprintId);
 
     position: relative;
     z-index: calc(10 - var(--index));
-    transform: translateX(calc(var(--index) * 50px)) rotateZ(calc(var(--index) * 10deg));
+    transform: translateX(calc(var(--index) * var(--offset) * 1px))
+      rotateZ(calc(var(--index) * var(--angle) * 1deg));
 
     grid-column: 1;
     grid-row: 1;

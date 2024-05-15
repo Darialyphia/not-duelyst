@@ -113,7 +113,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
         cardIndex: 0,
         targets: [],
         playerId: me.value._id,
-        position: { x: 3, y: 4, z: 0 }
+        position: { x: 3, y: 4, z: 0 },
+        blueprintFollowup: []
       }
     },
     tooltips: [
@@ -277,7 +278,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
         cardIndex: 0,
         targets: [],
         playerId: 'ai',
-        position: { x: 4, y: 4, z: 0 }
+        position: { x: 4, y: 4, z: 0 },
+        blueprintFollowup: []
       }
     },
     tooltips: [
@@ -288,7 +290,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
             cardIndex: 0,
             targets: [],
             playerId: 'ai',
-            position: { x: 4, y: 4, z: 0 }
+            position: { x: 4, y: 4, z: 0 },
+            blueprintFollowup: []
           });
           addP1('poggers');
         }
@@ -326,7 +329,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
             y: 4,
             z: 0
           }
-        ]
+        ],
+        blueprintFollowup: []
       }
     },
     tooltips: [

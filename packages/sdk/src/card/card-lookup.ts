@@ -18,6 +18,10 @@ import { f1Kirin } from './cards/faction_1/kirin';
 import { f1Simurgh } from './cards/faction_1/simurgh';
 import { f1Wisp } from './cards/faction_1/wisp';
 import { f1ElementalLord } from './cards/faction_1/elemental-lord';
+import { neutralAirElemental } from './cards/neutral/air-elemental';
+import { neutralFireElemental } from './cards/neutral/fire-elemental';
+import { neutralEarthElemental } from './cards/neutral/earth-elemental';
+import { neutralWaterElemental } from './cards/neutral/water-elemental';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -34,6 +38,10 @@ const allCards: CardBlueprint[] = [
   f1Simurgh,
 
   neutralTank,
+  neutralAirElemental,
+  neutralFireElemental,
+  neutralEarthElemental,
+  neutralWaterElemental,
 
   f1TutorialGeneral,
   f2TutorialBigDude,

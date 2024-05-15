@@ -63,14 +63,17 @@ const attack = () => {
 
 const summon = () => {
   if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) return;
-  if (ui.selectedCard.value.blueprint.followup) {
-    ui.summonTarget.value = cell.value.position;
+  ui.summonTarget.value = cell.value.position;
+  if (ui.selectedCard.value.blueprint.blueprintFollowup) {
+    ui.switchTargetingMode(TARGETING_MODES.BLUEPRINT_FOLLOWUP);
+  } else if (ui.selectedCard.value.blueprint.followup) {
     ui.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
   } else {
     dispatch('playCard', {
       cardIndex: ui.selectedCardIndex.value!,
-      position: cell.value.position,
-      targets: []
+      position: ui.summonTarget.value!,
+      targets: [],
+      blueprintFollowup: ui.followupBlueprintIndexes.value
     });
     ui.unselectCard();
   }
@@ -99,7 +102,12 @@ const highlightTarget = () => {
             ui.hoverAt(cell.position);
             if (!isActivePlayer) return;
             match(ui.targetingMode.value)
-              .with(TARGETING_MODES.SUMMON, TARGETING_MODES.NONE, () => {})
+              .with(
+                TARGETING_MODES.SUMMON,
+                TARGETING_MODES.NONE,
+                TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+                () => {}
+              )
               .with(TARGETING_MODES.BASIC, () => {
                 if (
                   ui.selectedEntity.value &&
@@ -149,6 +157,7 @@ const highlightTarget = () => {
             if (!isActivePlayer) return;
 
             match(ui.targetingMode.value)
+              .with(TARGETING_MODES.BLUEPRINT_FOLLOWUP, () => {})
               .with(TARGETING_MODES.BASIC, () => {
                 if (cell.entity) {
                   attack();

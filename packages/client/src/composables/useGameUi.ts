@@ -15,7 +15,8 @@ export const TARGETING_MODES = {
   BASIC: 'BASIC',
   SUMMON: 'SUMMON',
   SKILL: 'SKILL',
-  FOLLOWUP: 'CARD_FOLLOWUP'
+  FOLLOWUP: 'CARD_FOLLOWUP',
+  BLUEPRINT_FOLLOWUP: 'BLUEPRINT_FOLLOWUP'
 } as const;
 
 type TargetingMode = Values<typeof TARGETING_MODES>;
@@ -51,9 +52,12 @@ export type GameUiContext = {
 
   selectedCard: ComputedRef<Nullable<Card>>;
   selectedCardIndex: Ref<Nullable<number>>;
+
+  followupBlueprintIndexes: Ref<number[]>;
   followupTargets: Ref<Point3D[]>;
   summonTarget: Ref<Nullable<Point3D>>;
   skillTargets: Ref<Point3D[]>;
+
   selectCardAtIndex(index: number): void;
   unselectCard(): void;
 
@@ -216,13 +220,18 @@ export const useGameUiProvider = (session: GameSession) => {
     }),
     selectSkillAtIndex(index) {
       selectedSkillIndex.value = index;
-      api.switchTargetingMode(TARGETING_MODES.SKILL);
+      if (api.selectedSkill.value?.blueprint.blueprintFollowup) {
+        api.switchTargetingMode(TARGETING_MODES.BLUEPRINT_FOLLOWUP);
+      } else {
+        api.switchTargetingMode(TARGETING_MODES.SKILL);
+      }
     },
     unselectSkill() {
       selectedSkillIndex.value = null;
       skillTargets.value = [];
       api.switchTargetingMode(TARGETING_MODES.BASIC);
-    }
+    },
+    followupBlueprintIndexes: ref([])
   };
   provide(GAME_UI_INJECTION_KEY, api);
 

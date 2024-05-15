@@ -90,8 +90,9 @@ export class Skill {
     });
   }
 
-  use(castPoints: Point3D[]) {
+  use(castPoints: Point3D[], blueprintFollowup: number[]) {
     this.currentCooldown = this.cooldown;
+    const followups = this.blueprint.blueprintFollowup?.getChoices() ?? [];
 
     return this.blueprint.onUse({
       session: this.session,
@@ -99,7 +100,8 @@ export class Skill {
       skill: this,
       affectedCells: this.session.boardSystem.cells.filter(cell =>
         this.isInAreaOfEffect(cell, castPoints)
-      )
+      ),
+      blueprintFollowup: blueprintFollowup.map(idx => followups[idx])
     });
   }
 
