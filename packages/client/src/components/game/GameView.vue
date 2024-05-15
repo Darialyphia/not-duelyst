@@ -35,7 +35,7 @@ const isDev = import.meta.env.DEV;
       v-if="ui.mouseLightStrength.value > 0"
       :brightness="ui.mouseLightStrength.value"
       :color="ui.mouseLightColor.value"
-      :position="ui.mousePosition.value"
+      :position="{ x: ui.mousePosition.value.x, y: ui.mousePosition.value.y - 50 }"
     />
   </Camera>
 

@@ -144,7 +144,7 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       {
         text: "In this game, you don't draw cards. Instead, a unit goes on cooldown after it's played for a few turns."
       },
-      { text: "Like Duelyst, units can't act the turn they are summoned" },
+      { text: "Like Duelyst, units can't act the turn they are summoned." },
       { text: 'Press the end turn button to end your turn.' }
     ]
   },
@@ -385,9 +385,9 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       {
         text: `At the start of your turn, you get ${config.GOLD_PER_TURN} gold to summon new units.`
       },
-      { text: `The maximum amount of gold you can hold is ${config.MAX_GOLD}` },
+      { text: `The maximum amount of gold you can hold is ${config.MAX_GOLD}.` },
       {
-        text: "Unlike Duelyst, your remaining gold doesn't go away at the end of your turn. However, the amount of gold you gain doesn't icnrease over time"
+        text: "Unlike Duelyst, your remaining gold doesn't go away at the end of your turn. However, the amount of gold you gain doesn't icnrease over time."
       },
       {
         text: 'Defeated units leave a gold coin on the ground.'
@@ -417,7 +417,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
         cardIndex: 1,
         targets: [],
         playerId: me.value._id,
-        position: { x: 3, y: 2, z: 0 }
+        position: { x: 3, y: 2, z: 0 },
+        blueprintFollowup: []
       }
     },
     tooltips: [
