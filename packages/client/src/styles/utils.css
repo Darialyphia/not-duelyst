@@ -32,7 +32,6 @@
 
 .fancy-surface {
   background: var(--fancy-bg);
-  background-blend-mode: overlay;
   border: var(--fancy-border);
   padding: var(--size-4);
   box-shadow:

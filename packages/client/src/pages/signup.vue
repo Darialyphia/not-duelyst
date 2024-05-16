@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
+import { toTypedSchema } from '@vee-validate/zod';
+import * as z from 'zod';
 
 definePageMeta({
   name: 'SignUp',
@@ -7,39 +9,107 @@ definePageMeta({
   layout: 'auth'
 });
 
-const formData = reactive({
-  email: '',
-  password: ''
+const validationSchema = toTypedSchema(
+  z
+    .object({
+      email: z
+        .string()
+        .min(1, { message: 'Email is required.' })
+        .email({ message: 'That email address is not valid.' }),
+      password: z
+        .string()
+        .min(1, { message: 'Password is required' })
+        .min(6, { message: 'Password must be at least 6 characters.' }),
+      passwordConfirm: z.string().min(1, { message: 'Password confirmation is required' })
+    })
+    .superRefine((values, ctx) => {
+      if (values.password !== values.passwordConfirm) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          fatal: true,
+          message: "Passwords don't match",
+          path: ['passwordConfirm']
+        });
+      }
+    })
+);
+
+const sessionId = useSessionId();
+const isLoginLoading = ref(false);
+const login = async () => {
+  try {
+    isLoginLoading.value = true;
+
+    sessionId.value = await $fetch('/api/signin', {
+      method: 'POST',
+      body: {
+        email: form.values.email,
+        password: form.values.password
+      }
+    });
+    navigateTo({ name: 'ClientHome' });
+  } catch (err) {
+    navigateTo({ name: 'Login' });
+  } finally {
+    isLoginLoading.value = false;
+  }
+};
+
+const form = useForm({ validationSchema });
+const [email, emailProps] = form.defineField('email', {
+  validateOnInput: false,
+  validateOnModelUpdate: false,
+  validateOnBlur: false
+});
+const [password, passwordProps] = form.defineField('password', {
+  validateOnInput: false,
+  validateOnModelUpdate: false,
+  validateOnBlur: false
+});
+const [passwordConfirm, passwordConfirmProps] = form.defineField('passwordConfirm', {
+  validateOnInput: false,
+  validateOnModelUpdate: false
 });
 
-const { push } = useRouter();
 const { mutate: signup, isLoading } = useConvexMutation(api.auth.signUp, {
   onSuccess() {
-    push({ name: 'Login' });
+    login();
   }
 });
 
-const onSubmit = () => {
-  signup({ ...formData, sessionId: null });
-};
+const onSubmit = form.handleSubmit(({ email, password }) => {
+  signup({ email, password, sessionId: null });
+});
 </script>
 
 <template>
   <form @submit.prevent="onSubmit">
     <h2 class="mb-4">Sign up</h2>
-    <label>E-mail address</label>
-    <input v-model="formData.email" type="email" />
+    <fieldset>
+      <label>E-mail address</label>
+      <input v-model="email" type="email" v-bind="emailProps" />
+      <p class="color-red-5">{{ form.errors.value.email }}</p>
+    </fieldset>
 
-    <label>Password</label>
-    <input v-model="formData.password" type="password" />
+    <fieldset>
+      <label>Password</label>
+      <input v-model="password" type="password" v-bind="passwordProps" />
+      <p class="color-red-5">{{ form.errors.value.password }}</p>
+    </fieldset>
 
-    <UiFancyButton class="primary-button" :is-loading="isLoading">
+    <fieldset>
+      <label>Confirm Password</label>
+      <input v-model="passwordConfirm" type="password" v-bind="passwordConfirmProps" />
+      <p class="color-red-5">{{ form.errors.value.passwordConfirm }}</p>
+    </fieldset>
+
+    <UiFancyButton class="primary-button" :is-loading="isLoading || isLoginLoading">
       Create account
     </UiFancyButton>
     <span>OR</span>
     <NuxtLink custom :to="{ name: 'Login' }" v-slot="{ href, navigate }">
       <UiButton
-        :is-loading="isLoading"
+        :is-loading="isLoading || isLoginLoading"
         is-cta
         class="link-button"
         :href="href"
@@ -56,9 +126,12 @@ form {
   display: grid;
   padding: var(--size-6) var(--size-8) var(--size-4);
 
-  > input {
+  > fieldset {
+    display: grid;
     margin-block-end: var(--size-3);
-    border: var(--fancy-border);
+    > input {
+      border: var(--fancy-border);
+    }
   }
 
   > span {

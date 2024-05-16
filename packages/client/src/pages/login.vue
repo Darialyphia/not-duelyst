@@ -10,7 +10,6 @@ const formData = reactive({
   password: ''
 });
 const sessionId = useSessionId();
-const { push } = useRouter();
 
 const error = ref<string>('');
 const isLoading = ref(false);
@@ -23,7 +22,7 @@ const onSubmit = async () => {
       method: 'POST',
       body: formData
     });
-    push({ name: 'ClientHome' });
+    navigateTo({ name: 'ClientHome' });
   } catch (err) {
     error.value = (err as any).statusMessage;
   } finally {

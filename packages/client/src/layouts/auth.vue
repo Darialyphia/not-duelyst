@@ -14,7 +14,7 @@
 </template>
 
 <style scoped lang="postcss">
-@keyframes login-slide {
+@keyframes auth-slide {
   from {
     transform: var(--transform);
     opacity: 0;
@@ -27,7 +27,19 @@
 
 :is(h1, section) {
   opacity: 0;
-  animation: login-slide 0.5s ease-out forwards;
+  animation: auth-slide 0.5s ease-out forwards;
+}
+
+@keyframes auth-layout {
+  from {
+    filter: brightness(0);
+  }
+  50% {
+    filter: brightness(100%);
+  }
+  to {
+    filter: brightness(100%);
+  }
 }
 
 h1 {
@@ -35,13 +47,14 @@ h1 {
 
   width: fit-content;
   margin: 0 auto var(--size-7);
-  animation-delay: 0.5s;
+  animation-delay: 1.3s;
 }
 
 section {
   --transform: translateY(var(--size-7));
 
   border-radius: var(--radius-3);
+  animation-delay: 0.8s;
 }
 
 main {
@@ -51,5 +64,8 @@ main {
   background: url('/assets/backgrounds/mountain.png');
   background-attachment: fixed;
   background-size: cover;
+  filter: brightness(0);
+
+  animation: auth-layout 2s ease-out forwards;
 }
 </style>
