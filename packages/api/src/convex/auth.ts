@@ -51,6 +51,7 @@ export const signUp = mutationWithAuth({
       attributes: {
         email,
         // These will be filled out by Convex
+        hasOnboarded: false,
         mmr: DEFAULT_MMR,
         _id: '' as Id<'users'>,
         _creationTime: 0

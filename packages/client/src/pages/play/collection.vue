@@ -133,7 +133,7 @@ const editLoadout = (loadout: LoadoutDto) => {
 .collection-enter-from,
 .collection-leave-to {
   opacity: 0;
-  filter: blur(5px);
+  /* filter: blur(5px); */
 
   .sidebar {
     transform: translateX(100%);

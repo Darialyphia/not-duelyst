@@ -2,7 +2,10 @@
   <div>
     <header class="container p-3 flex justify-between">
       <h1 class="text-4">
-        <NuxtLink to="/">Not duelyst</NuxtLink>
+        <NuxtLink to="/">
+          <img src="/assets/ui/logo.png" />
+          <span class="sr-only">Not Duelyst</span>
+        </NuxtLink>
       </h1>
 
       <nav>

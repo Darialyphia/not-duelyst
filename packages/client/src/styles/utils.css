@@ -97,3 +97,11 @@ button:is(.primary-button, .error-button) {
 
   --ui-button-color: var(--text-on-error);
 }
+
+.link-button {
+  --ui-button-bg: transparent;
+  --ui-button-hover-bg: transparent;
+  --ui-button-disabled-bg: transparent;
+  --ui-button-hover-color: var(--primary);
+  text-decoration: underline;
+}

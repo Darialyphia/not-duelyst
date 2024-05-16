@@ -2,7 +2,9 @@
 import { api } from '@game/api';
 
 definePageMeta({
-  middleware: ['public']
+  name: 'SignUp',
+  middleware: ['public'],
+  layout: 'auth'
 });
 
 const formData = reactive({
@@ -11,7 +13,7 @@ const formData = reactive({
 });
 
 const { push } = useRouter();
-const { mutate: signup } = useConvexMutation(api.auth.signUp, {
+const { mutate: signup, isLoading } = useConvexMutation(api.auth.signUp, {
   onSuccess() {
     push({ name: 'Login' });
   }
@@ -23,28 +25,54 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <div class="grid place-content-center h-screen">
-    <h2>Sign up</h2>
+  <form @submit.prevent="onSubmit">
+    <h2 class="mb-4">Sign up</h2>
+    <label>E-mail address</label>
+    <input v-model="formData.email" type="email" />
 
-    <form class="fancy-surface" @submit.prevent="onSubmit">
-      <label>E-mail address</label>
-      <input v-model="formData.email" type="email" />
+    <label>Password</label>
+    <input v-model="formData.password" type="password" />
 
-      <label>Password</label>
-      <input v-model="formData.password" type="password" />
-
-      <UiButton class="primary-button">Sign up</UiButton>
-    </form>
-  </div>
+    <UiFancyButton class="primary-button" :is-loading="isLoading">
+      Create account
+    </UiFancyButton>
+    <span>OR</span>
+    <NuxtLink custom :to="{ name: 'Login' }" v-slot="{ href, navigate }">
+      <UiButton
+        :is-loading="isLoading"
+        is-cta
+        class="link-button"
+        :href="href"
+        @click="navigate"
+      >
+        Login
+      </UiButton>
+    </NuxtLink>
+  </form>
 </template>
 
 <style scoped lang="postcss">
 form {
   display: grid;
+  padding: var(--size-6) var(--size-8) var(--size-4);
 
   > input {
     margin-block-end: var(--size-3);
     border: var(--fancy-border);
+  }
+
+  > span {
+    margin: var(--size-3) auto 0;
+    &::before,
+    &::after {
+      content: ' - ';
+    }
+  }
+
+  > button {
+    width: fit-content;
+    min-width: 14ch;
+    margin-inline: auto;
   }
 }
 </style>
