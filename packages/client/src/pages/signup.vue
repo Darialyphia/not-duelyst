@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import { toTypedSchema } from '@vee-validate/zod';
+import type { ConvexError } from 'convex/values';
 import * as z from 'zod';
 
 definePageMeta({
@@ -71,8 +72,12 @@ const [passwordConfirm, passwordConfirmProps] = form.defineField('passwordConfir
   validateOnModelUpdate: false
 });
 
-const { mutate: signup, isLoading } = useConvexMutation(api.auth.signUp, {
-  onSuccess() {
+const {
+  mutate: signup,
+  isLoading,
+  error
+} = useConvexMutation(api.auth.signUp, {
+  onSuccess(res) {
     login();
   }
 });
@@ -106,6 +111,9 @@ const onSubmit = form.handleSubmit(({ email, password }) => {
     <UiFancyButton class="primary-button" :is-loading="isLoading || isLoginLoading">
       Create account
     </UiFancyButton>
+    <Transition>
+      <p v-if="error" class="color-red-5 mt-2">{{ (error as ConvexError<string>).data }}</p>
+    </Transition>
     <span>OR</span>
     <NuxtLink custom :to="{ name: 'Login' }" v-slot="{ href, navigate }">
       <UiButton

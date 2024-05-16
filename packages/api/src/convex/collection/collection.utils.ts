@@ -1,16 +1,27 @@
+import type { CardBlueprint } from '@game/sdk';
 import type { Id } from '../_generated/dataModel';
-import type { CollectionItem } from './collection.entity';
+import type { MutationCtx } from '../_generated/server';
 
-export type CollectionItemDto = {
-  _id: Id<'collectionItems'>;
-  cardId: string;
-};
+export const grantCards = async (
+  { db }: { db: MutationCtx['db'] },
+  { userId, cards }: { userId: Id<'users'>; cards: CardBlueprint[] }
+) => {
+  const collection = await db
+    .query('collectionItems')
+    .withIndex('by_owner_id', q => q.eq('ownerId', userId))
+    .collect();
 
-export const toCollectionItemDto = (
-  collecttionItem: CollectionItem
-): CollectionItemDto => {
-  return {
-    _id: collecttionItem._id,
-    cardId: collecttionItem.itemId
-  };
+  const unitsToAdd = cards.filter(
+    unit => unit.collectable && !collection.some(item => item.itemId === unit.id)
+  );
+
+  return Promise.all(
+    unitsToAdd.map(unit =>
+      db.insert('collectionItems', {
+        itemId: unit.id,
+        ownerId: userId,
+        grantedAt: Date.now()
+      })
+    )
+  );
 };

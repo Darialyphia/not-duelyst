@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
+import type * as featureFlags from "../featureFlags.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
@@ -37,6 +38,7 @@ import type * as utils_ability from "../utils/ability.js";
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
+  featureFlags: typeof featureFlags;
   gameMaps: typeof gameMaps;
   games: typeof games;
   hathora: typeof hathora;

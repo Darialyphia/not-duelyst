@@ -16,6 +16,7 @@
     "@game/shared": "*",
     "@hathora/cloud-sdk-typescript": "^2.2.4",
     "convex": "^1.10.0",
-    "lucia": "^2.7.6"
+    "lucia": "^2.7.6",
+    "ts-pattern": "^5.1.1"
   }
 }

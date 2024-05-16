@@ -3,7 +3,6 @@ import { api } from '@game/api';
 
 export default defineNuxtRouteMiddleware(async () => {
   const sessionId = useSessionId();
-
   if (!sessionId.value) {
     return navigateTo({ name: 'Login' });
   }

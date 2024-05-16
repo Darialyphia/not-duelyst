@@ -98,7 +98,8 @@ export default defineSchema({
 
   collectionItems: defineTable({
     itemId: v.string(),
-    ownerId: v.id('users')
+    ownerId: v.id('users'),
+    grantedAt: v.union(v.number(), v.null())
   })
     .index('by_owner_id', ['ownerId'])
     .index('by_item_id', ['itemId']),
@@ -106,5 +107,10 @@ export default defineSchema({
   userSettings: defineTable({
     userId: v.id('users'),
     settings: v.any()
-  }).index('by_user_id', ['userId'])
+  }).index('by_user_id', ['userId']),
+
+  featureFlags: defineTable({
+    key: v.string(),
+    value: v.boolean()
+  })
 });

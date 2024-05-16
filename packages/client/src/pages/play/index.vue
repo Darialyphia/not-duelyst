@@ -25,6 +25,10 @@ const isSettingsOpened = ref(false);
     <UiModal title="Settings" v-model:is-opened="isSettingsOpened">
       <SettingsForm @close="isSettingsOpened = false" />
     </UiModal>
+
+    <ClientOnly>
+      <GrantedCardsModal />
+    </ClientOnly>
   </div>
 </template>
 

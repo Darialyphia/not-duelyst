@@ -1,12 +1,19 @@
 import { api } from '@game/api';
-import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.utils';
+import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
 
 export const useCollection = () => {
+  const sessionId = useSessionId();
+  const { data: me } = useConvexQuery(
+    api.users.me,
+    computed(() => ({ sessionId: sessionId.value }))
+  );
+
   const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
     api.collection.myCollection,
-    {}
+    {},
+    { enabled: !!me.value }
   );
 
   const factions = Object.values(FACTIONS).map(f => f.id);
