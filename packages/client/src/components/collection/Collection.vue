@@ -46,7 +46,6 @@ assets.load();
   overflow-x: hidden;
   overflow-y: auto;
   display: grid;
-  grid-auto-rows: calc(50% - 2 * var(--size-2));
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   row-gap: var(--size-6);
   column-gap: var(--size-4);

@@ -101,15 +101,10 @@ const keywords = computed(() => {
 }
 .perspective-wrapper {
   transform-style: preserve-3d;
-  padding: var(--size-1);
   animation: collection-card 0.3s;
 
   &.3d {
     perspective: 40rem;
-  }
-
-  > * {
-    height: 100%;
   }
 }
 .collection-card {

@@ -28,7 +28,7 @@ export const f1Djinn: CardBlueprint = {
   cooldown: 5,
   initialCooldown: 0,
   cost: 6,
-  attack: 2,
+  attack: 3,
   maxHp: 10,
   speed: 4,
   range: 1,

@@ -162,7 +162,7 @@ const isModalOpened = ref(false);
   grid-template-rows: auto auto auto 1fr auto;
 
   width: 286px;
-  height: 396px;
+  height: 410px;
 
   font-size: var(--font-size-4);
 

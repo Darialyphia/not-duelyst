@@ -14,7 +14,7 @@ export const f1Naga: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_naga',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
+  cooldown: 4,
   initialCooldown: 0,
   cost: 4,
   attack: 3,
