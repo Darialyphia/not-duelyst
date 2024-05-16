@@ -22,6 +22,7 @@ import { neutralAirElemental } from './cards/neutral/air-elemental';
 import { neutralFireElemental } from './cards/neutral/fire-elemental';
 import { neutralEarthElemental } from './cards/neutral/earth-elemental';
 import { neutralWaterElemental } from './cards/neutral/water-elemental';
+import { f1ElementalConfluence } from './cards/faction_1/elemental-confluence';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -35,6 +36,7 @@ const allCards: CardBlueprint[] = [
   f1Mage,
   f1Naga,
   f1ElementalLord,
+  f1ElementalConfluence,
   f1Simurgh,
 
   neutralTank,

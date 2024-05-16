@@ -178,12 +178,12 @@ header {
   grid-template-columns: repeat(3, 1fr);
   align-content: end;
 
-  height: 112px;
+  height: 104px;
 }
 
 .cost {
   position: relative;
-  transform: translateY(calc(-1 * var(--size-2)));
+  transform: 0;
 
   justify-self: start;
 
@@ -214,8 +214,6 @@ header {
 }
 
 .cooldown {
-  transform: translateY(-5px);
-
   justify-self: end;
 
   width: 76px;

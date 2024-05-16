@@ -1,6 +1,7 @@
 import { TERRAINS } from '../../../board/board-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
+import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 
@@ -21,6 +22,7 @@ export const neutralWaterElemental: CardBlueprint = {
   speed: 3,
   range: 1,
   skills: [],
+  tribes: [TRIBES.ELEMENTAL],
   onPlay({ entity }) {
     entity.addModifier(
       createEntityModifier({

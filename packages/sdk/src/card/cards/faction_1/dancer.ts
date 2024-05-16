@@ -1,10 +1,7 @@
-import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import { isAxisAligned, isSelf, isWithinCells } from '../../../utils/targeting';
+import { isSelf } from '../../../utils/targeting';
 import { celerity, fury, nimble } from '../../../modifier/modifier-utils';
-import { createEntityModifier } from '../../../modifier/entity-modifier';
-import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Dancer: CardBlueprint = {
@@ -12,7 +9,7 @@ export const f1Dancer: CardBlueprint = {
   name: 'F1 Dancer',
   description: '@Nimble@.',
   collectable: true,
-  rarity: RARITIES.EPIC,
+  rarity: RARITIES.RARE,
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_dancer',
   kind: CARD_KINDS.MINION,

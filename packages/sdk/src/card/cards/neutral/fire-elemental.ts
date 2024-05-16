@@ -1,5 +1,6 @@
 import { aura, burn } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
+import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 
@@ -21,6 +22,7 @@ export const neutralFireElemental: CardBlueprint = {
   range: 1,
   skills: [],
   keywords: [KEYWORDS.BURN, KEYWORDS.AURA],
+  tribes: [TRIBES.ELEMENTAL],
   onPlay({ entity }) {
     entity.addModifier(
       aura({

@@ -56,6 +56,7 @@ type DealDamageEvent = {
   entity: Entity;
   target: Entity;
   amount: number;
+  isAbilityDamage: boolean;
 };
 type TakeDamageEvent = {
   entity: Entity;
@@ -146,7 +147,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
     canUseSkill: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
     canBeSkillTarget: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
-    damageDealt: new Interceptable<number, { entity: Entity; amount: number }>(),
+    damageDealt: new Interceptable<
+      number,
+      { entity: Entity; amount: number; isAbilityDamage: boolean }
+    >(),
     damageTaken: new Interceptable<number, { entity: Entity; amount: number }>(),
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
@@ -376,8 +380,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
     if (!isDisplacement) {
       this.movementsTaken++;
+      this.checkExhaustion();
     }
-    this.checkExhaustion();
     this.emit(ENTITY_EVENTS.AFTER_MOVE, {
       entity: this,
       path,
@@ -400,13 +404,19 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  async dealDamage(power: number, target: Entity) {
+  async dealDamage(
+    power: number,
+    target: Entity,
+    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
+  ) {
     const payload = {
       entity: this,
       amount: this.interceptors.damageDealt.getValue(power, {
         entity: this,
+        isAbilityDamage,
         amount: power
       }),
+      isAbilityDamage,
       target
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
@@ -464,7 +474,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     //   framePercentage: 0.75
     // });
     await this.session.fxSystem.attack(this.id, target.id);
-    await this.dealDamage(power, target);
+    await this.dealDamage(power, target, { isAbilityDamage: false });
     this.checkExhaustion();
   }
 
@@ -476,7 +486,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     // });
     await this.session.fxSystem.attack(this.id, target.id);
 
-    await this.dealDamage(this.attack, target);
+    await this.dealDamage(this.attack, target, { isAbilityDamage: false });
 
     await target.retaliate(target.attack, this);
 

@@ -235,7 +235,7 @@ export const taunted = ({
     return true;
   };
 
-  let onMove: (entity: Entity) => void;
+  let onMove: () => void;
   const cleanup = (session: GameSession, attachedTo: Entity) => {
     attachedTo.removeInterceptor('canMove', moveInterceptor);
     attachedTo.removeInterceptor('canUseSkill', skillInterceptor);
@@ -568,23 +568,29 @@ export const barrier = ({ source, duration }: { source: Entity; duration?: numbe
   });
 };
 
-export const surge = ({ source, duration }: { source: Entity; duration?: number }) => {
+export const surge = ({
+  source,
+  duration,
+  stacks = 1
+}: {
+  source: Entity;
+  duration?: number;
+  stacks?: number;
+}) => {
   return createEntityModifier({
     id: KEYWORDS.SURGE.id,
     source,
     stackable: true,
     visible: false,
+    stacks,
     mixins: [
-      modifierSelfEventMixin({
-        eventName: 'before_use_skill',
+      modifierEntityInterceptorMixin({
+        key: 'damageDealt',
         keywords: [KEYWORDS.SURGE],
-        listener(event, { modifier, attachedTo, session }) {
-          const interceptor = (amount: number) => amount + modifier.stacks!;
-          attachedTo.addInterceptor('damageDealt', interceptor);
-          attachedTo.once('after_use_skill', () => {
-            attachedTo.removeInterceptor('damageDealt', interceptor);
-          });
-        }
+        interceptor:
+          modifier =>
+          (amount, { isAbilityDamage }) =>
+            isAbilityDamage ? amount + modifier.stacks! : amount
       })
     ]
   });

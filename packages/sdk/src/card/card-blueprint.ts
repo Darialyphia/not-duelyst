@@ -7,6 +7,7 @@ import type { CardKind, Faction, Rarity } from './card-enums';
 import type { Cell } from '../board/cell';
 import type { Skill } from '../entity/skill';
 import type { Keyword } from '../utils/keywords';
+import type { Tribe } from '../utils/tribes';
 
 export type SkillId = string;
 
@@ -67,6 +68,7 @@ export type CardBlueprint = {
   speed: number;
   range: number;
   kind: CardKind;
+  tribes?: Tribe[];
   keywords?: Keyword[];
   modifiers?: CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];

@@ -205,7 +205,7 @@ export const KEYWORDS = {
     name: 'Tough(x)',
     spriteId: 'tough',
     description: 'This unit takes x less damage from all sources (min. 1).',
-    aliases: []
+    aliases: [/though\([0-9]+\)/, 'tough']
   },
   VIGILANT: {
     id: 'vigilant',

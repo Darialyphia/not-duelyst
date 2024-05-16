@@ -2,6 +2,7 @@ import { isDefined } from '@game/shared';
 import type { Point3D } from '../types';
 import { ENTITY_EVENTS, Entity, type EntityId, type SerializedEntity } from './entity';
 import { GameSession } from '../game-session';
+import type { Tribe } from '../utils/tribes';
 
 export class EntitySystem {
   private entityMap = new Map<EntityId, Entity>();
@@ -91,6 +92,12 @@ export class EntitySystem {
 
   getNearbyEnemyMinions(origin: Entity) {
     return this.getNearbyEnemies(origin).filter(entity => !entity.isGeneral);
+  }
+
+  getByTribe(tribe: Tribe) {
+    return this.getList().filter(entity =>
+      entity.card.blueprint.tribes?.some(t => tribe.id === t.id)
+    );
   }
 
   setupListeners(entity: Entity) {

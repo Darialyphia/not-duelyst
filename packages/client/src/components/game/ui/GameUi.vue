@@ -68,7 +68,7 @@ const isModalOpened = computed({
         <div v-for="keyword in entity.keywords" :key="keyword.id">
           <dt>
             {{ keyword.name }}
-            {{ keyword.stacks && keyword.stacks > 1 ? `(x${keyword.stacks})` : '' }}
+            {{ keyword.stacks ? `(x${keyword.stacks})` : '' }}
           </dt>
           <dd>{{ keyword.description }}</dd>
         </div>

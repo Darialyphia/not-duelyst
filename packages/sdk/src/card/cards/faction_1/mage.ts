@@ -14,7 +14,7 @@ export const f1Mage: CardBlueprint = {
   name: 'F1 Mage',
   description: '@Ranged(2)@.',
   collectable: true,
-  rarity: RARITIES.RARE,
+  rarity: RARITIES.BASIC,
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_mage',
   kind: CARD_KINDS.MINION,

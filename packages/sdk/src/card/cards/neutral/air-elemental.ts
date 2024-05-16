@@ -1,5 +1,6 @@
 import { celerity, rush } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
+import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 
@@ -20,6 +21,7 @@ export const neutralAirElemental: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.RUSH, KEYWORDS.CELERITY],
+  tribes: [TRIBES.ELEMENTAL],
   modifiers: [rush()],
   skills: [],
   onPlay({ entity }) {
