@@ -31,8 +31,8 @@ const isoBoundingRect = computed(() => ({
 }));
 
 const WORLD_PADDING = {
-  x: CELL_WIDTH,
-  y: CELL_HEIGHT * 2
+  x: CELL_WIDTH * 3,
+  y: CELL_HEIGHT * 6
 };
 const worldSize = computed(() => ({
   width:
@@ -79,10 +79,7 @@ until(camera.viewport)
       })
       .clampZoom({ minScale: 1, maxScale: 3 })
       .zoomPercent(1, false)
-      .moveCenter(
-        isoCenter.value.isoX + camera.offset.value.x,
-        isoCenter.value.isoY + camera.offset.value.y - CELL_HEIGHT / 2
-      );
+      .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });
 
 const onMousemove = throttle((e: FederatedPointerEvent) => {
