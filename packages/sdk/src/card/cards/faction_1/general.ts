@@ -47,12 +47,12 @@ export const f1General: CardBlueprint = {
         return isCastPoint(point, castPoints);
       },
       async onUse({ session, skill, castPoints }) {
-        const card = skill.caster.player.generateCard(
-          f1Wisp.id,
-          skill.caster.card.pedestalId
-        );
+        const card = skill.caster.player.generateCard({
+          blueprintId: f1Wisp.id,
+          pedestalId: skill.caster.card.pedestalId,
+          modifiers: [rush()]
+        });
 
-        card.modifiers.push(rush());
         const entity = await card.play({
           position: castPoints[0],
           targets: []
@@ -81,10 +81,10 @@ export const f1General: CardBlueprint = {
         return isCastPoint(point, castPoints);
       },
       async onUse({ session, skill, castPoints }) {
-        const card = skill.caster.player.generateCard(
-          neutralAirElemental.id,
-          skill.caster.card.pedestalId
-        );
+        const card = skill.caster.player.generateCard({
+          blueprintId: neutralAirElemental.id,
+          pedestalId: skill.caster.card.pedestalId
+        });
 
         const entity = await card.play({
           position: castPoints[0],

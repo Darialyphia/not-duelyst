@@ -352,7 +352,7 @@ export const frozen = ({
         onApplied(session, attachedTo) {
           attachedTo.addInterceptor('canAttack', interceptor);
           attachedTo.addInterceptor('canUseSkill', interceptor);
-          attachedTo.addInterceptor('canAttack', interceptor);
+          attachedTo.addInterceptor('canMove', interceptor);
           attachedTo.once('after_take_damage', () => cleanup(attachedTo));
         },
         onRemoved(session, attachedTo) {

@@ -230,8 +230,8 @@ export const testMap: SerializedGameState['map'] = {
         'grass',
         'grass',
         'grass'
-      ],
-      { 4: 'sanctuary', 8: 'sanctuary' }
+      ]
+      // { 4: 'sanctuary', 8: 'sanctuary' }
     ),
 
     ...makeRow(5, 0, [

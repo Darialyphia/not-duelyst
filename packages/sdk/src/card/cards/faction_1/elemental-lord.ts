@@ -100,10 +100,10 @@ export const f1ElementalLord: CardBlueprint = {
         return isCastPoint(point, castPoints);
       },
       onUse({ skill, castPoints, blueprintFollowup }) {
-        const card = skill.caster.player.generateCard(
-          blueprintFollowup[0].id,
-          skill.caster.card.pedestalId
-        );
+        const card = skill.caster.player.generateCard({
+          blueprintId: blueprintFollowup[0].id,
+          pedestalId: skill.caster.card.pedestalId
+        });
         card.play({
           position: castPoints[0],
           targets: []

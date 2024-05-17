@@ -10,6 +10,7 @@ import EventEmitter from 'eventemitter3';
 import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { CARD_KINDS } from '../card/card-enums';
+import type { CardModifier } from '../modifier/card-modifier';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -126,13 +127,22 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     });
   }
 
-  generateCard(blueprintId: CardBlueprintId, pedestalId = 'pedestal-default') {
+  generateCard({
+    blueprintId,
+    pedestalId = 'pedestal-default',
+    modifiers = []
+  }: {
+    blueprintId: CardBlueprintId;
+    pedestalId: string;
+    modifiers?: CardModifier[];
+  }) {
     const card = new Card(
       this.session,
       this.cards.length,
       { blueprintId, pedestalId, isGenerated: true },
       this.id
     );
+    modifiers.forEach(mod => card.addModifier(mod));
     this.cards.push(card);
     card.setup();
 

@@ -17,7 +17,7 @@ export const neutralEarthElemental: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 2,
-  maxHp: 3,
+  maxHp: 7,
   speed: 2,
   range: 1,
   keywords: [KEYWORDS.ROOTED, KEYWORDS.CALL_TO_ARMS],

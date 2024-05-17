@@ -148,7 +148,8 @@ export const KEYWORDS = {
     id: 'rooted',
     name: 'Rooted',
     description: 'This unit cannot move.',
-    aliases: ['root']
+    aliases: ['root'],
+    spriteId: 'root'
   },
   RUSH: {
     id: 'rush',

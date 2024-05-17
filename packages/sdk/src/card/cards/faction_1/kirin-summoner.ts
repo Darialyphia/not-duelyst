@@ -40,7 +40,11 @@ export const f1KirinSummoner: CardBlueprint = {
   onPlay({ entity, followup }) {
     if (!followup[0]) return;
 
-    const card = entity.player.generateCard('f1_kirin', entity.card.pedestalId);
+    const card = entity.player.generateCard({
+      blueprintId: f1Kirin.id,
+      pedestalId: entity.card.pedestalId
+    });
+
     card.play({
       position: followup[0],
       targets: []
@@ -63,12 +67,12 @@ export const f1KirinSummoner: CardBlueprint = {
         return false;
       },
       onUse({ castPoints, skill }) {
-        const card = skill.caster.player.generateCard(
-          f1Kirin.id,
-          skill.caster.card.pedestalId
-        );
+        const card = skill.caster.player.generateCard({
+          blueprintId: f1Kirin.id,
+          pedestalId: skill.caster.card.pedestalId,
+          modifiers: [rush()]
+        });
 
-        card.modifiers.push(rush());
         card.play({
           position: castPoints[0],
           targets: []
