@@ -12,7 +12,12 @@ export const grantAllCollection = internalMutation({
     userId: v.id('users')
   },
   async handler(ctx, args) {
-    return grantCards(ctx, { cards: Object.values(CARDS), userId: args.userId });
+    const cards = await grantCards(ctx, {
+      cards: Object.values(CARDS),
+      userId: args.userId
+    });
+    console.log(`granted ${cards.map(c => c.id).join(', ')}`);
+    return cards.map(c => c.id);
   }
 });
 
@@ -21,17 +26,19 @@ export const grantBasicCards = internalMutation({
     userId: v.id('users')
   },
   async handler(ctx, args) {
-    return grantCards(ctx, {
+    const cards = await grantCards(ctx, {
       cards: Object.values(CARDS).filter(card => card.rarity === RARITIES.BASIC),
       userId: args.userId
     });
+
+    return cards.map(c => c.id);
   }
 });
 
 export const grantAllCollectionToAllPlayers = internalAction(async ctx => {
   const users = await ctx.runQuery(internal.users.all);
 
-  await Promise.all(
+  const res = await Promise.all(
     users.map(user => {
       return ctx.runMutation(internal.collection.grantAllCollection, {
         userId: user._id
@@ -56,7 +63,7 @@ export const acknowledgeGranted = mutationWithAuth({
       grantedCards.map(card => ctx.db.patch(card._id, { grantedAt: null }))
     );
 
-    return true;
+    return grantCards.length;
   }
 });
 

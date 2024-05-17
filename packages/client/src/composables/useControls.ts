@@ -8,6 +8,7 @@ export const useGameControls = () => {
 
   watchEffect(onCleanup => {
     const controls = settings.value.bindings;
+    const isActivePlayer = useIsActivePlayer();
 
     const isMatch = (e: KeyboardEvent, id: ControlId) => {
       const control = controls.find(c => c.id === id)!.control;
@@ -77,11 +78,9 @@ export const useGameControls = () => {
       if (!activePlayer.value) return;
       if (isMatch(e, 'endTurn')) dispatch('endTurn');
 
-      if (!ui.selectedEntity.value?.player.equals(activePlayer.value)) {
-        return;
-      }
+      if (!isActivePlayer.value) return;
 
-      ui.selectedEntity.value.skills.forEach((skill, index) => {
+      ui.selectedEntity.value?.skills.forEach((skill, index) => {
         if (isMatch(e, `skill${index + 1}` as ControlId)) {
           ui.selectSkillAtIndex(index);
         }

@@ -38,5 +38,6 @@ export const RARITIES = {
 export type Rarity = Values<typeof RARITIES>;
 
 export const INTERCEPTOR_PRIORITIES = {
+  FIRST: 0,
   FINAL: 999
 };

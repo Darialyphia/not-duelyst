@@ -20,7 +20,7 @@ import { TERRAINS } from '../../../board/board-utils';
 export const f1Simurgh: CardBlueprint = {
   id: 'f1_Simurgh',
   name: 'F1 Simurgh',
-  description: '@Flying@.\n@Celerity@.\n@Surge(1)@ @Aura@.',
+  description: '@Flying@.\n@Surge(1)@ @Aura@.',
   rarity: RARITIES.LEGENDARY,
   collectable: true,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
@@ -33,10 +33,9 @@ export const f1Simurgh: CardBlueprint = {
   maxHp: 12,
   speed: 4,
   range: 1,
-  keywords: [KEYWORDS.FLYING, KEYWORDS.CELERITY, KEYWORDS.SURGE, KEYWORDS.AURA],
+  keywords: [KEYWORDS.FLYING, KEYWORDS.SURGE, KEYWORDS.AURA],
   onPlay({ entity }) {
     entity.addModifier(flying({ source: entity }));
-    entity.addModifier(celerity({ source: entity }));
 
     entity.addModifier(
       aura({

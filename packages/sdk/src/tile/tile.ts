@@ -32,6 +32,7 @@ export class Tile {
     this.session.on('entity:created', this.checkOccupation);
     this.session.on('entity:after_destroy', this.checkOccupation);
     this.session.on('entity:after-move', this.checkOccupation);
+    this.checkOccupation();
     this.blueprint.onCreated?.(this.session, this.occupant, this);
   }
 
@@ -43,7 +44,6 @@ export class Tile {
     const previous = this.occupant;
 
     this.occupant = this.session.entitySystem.getEntityAt(this.position);
-
     if (!previous && this.occupant) {
       this.blueprint.onEnter?.(this.session, this.occupant, this);
     } else if (previous && !this.occupant) {

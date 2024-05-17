@@ -24,6 +24,9 @@ import { neutralEarthElemental } from './cards/neutral/earth-elemental';
 import { neutralWaterElemental } from './cards/neutral/water-elemental';
 import { f1ElementalConfluence } from './cards/faction_1/elemental-confluence';
 import { f2Tormentor } from './cards/faction_2/tormentor';
+import { f2DoomSayer } from './cards/faction_2/doom-sayer';
+import { f2DamnedSouls } from './cards/faction_2/damned-souls';
+import { f2MoltenFist } from './cards/faction_2/molten-fist';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -40,7 +43,10 @@ const allCards: CardBlueprint[] = [
   f1ElementalConfluence,
   f1Simurgh,
 
+  f2DoomSayer,
   f2Tormentor,
+  f2DamnedSouls,
+  f2MoltenFist,
 
   neutralTank,
   neutralAirElemental,

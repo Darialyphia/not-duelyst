@@ -15,7 +15,7 @@ export const grantCards = async (
     unit => unit.collectable && !collection.some(item => item.itemId === unit.id)
   );
 
-  return Promise.all(
+  await Promise.all(
     unitsToAdd.map(unit =>
       db.insert('collectionItems', {
         itemId: unit.id,
@@ -24,4 +24,5 @@ export const grantCards = async (
       })
     )
   );
+  return unitsToAdd;
 };

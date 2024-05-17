@@ -98,6 +98,15 @@ const isModalOpened = computed({
   }
   &.right {
     right: var(--size-5);
+    > * {
+      margin-left: auto;
+    }
+    > dl {
+      direction: rtl;
+      > * {
+        direction: ltr;
+      }
+    }
     &:is(.v-enter-from, .v-leave-to) {
       transform: translateX(50%) rotateY(-45deg);
     }

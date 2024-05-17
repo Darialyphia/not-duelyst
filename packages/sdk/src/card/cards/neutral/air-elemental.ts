@@ -7,7 +7,7 @@ import { RARITIES, CARD_KINDS } from '../../card-enums';
 export const neutralAirElemental: CardBlueprint = {
   id: 'air-elemental',
   name: 'Neutral Air Elemental',
-  description: '@Rush@.@Celerity@',
+  description: '@Rush@\n.@Celerity@',
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],

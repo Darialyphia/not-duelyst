@@ -51,7 +51,6 @@ export const f2Tormentor: CardBlueprint = {
     if (!target) return;
 
     const cell = getCellInFront(session, entity);
-    console.log(cell);
     if (!cell) return;
     if (!cell.canSummonAt) return;
     await target.move([cell], true);

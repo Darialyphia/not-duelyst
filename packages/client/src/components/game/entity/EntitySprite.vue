@@ -50,7 +50,7 @@ watchEffect(() => {
   gsap.to(selectedFilter, {
     duration: 0.3,
     blue: isSelected.value ? 2 : 1,
-    gamma: isSelected.value ? 1.5 : 1,
+    gamma: isSelected.value ? 1.25 : 1,
     ease: Power2.easeOut
   });
 });

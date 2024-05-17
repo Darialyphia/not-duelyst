@@ -291,6 +291,7 @@ export const nimble = ({
     mixins: [
       modifierEntityInterceptorMixin({
         key: 'canMoveThroughCell',
+        duration,
         keywords: [KEYWORDS.NIMBLE],
         interceptor:
           () =>
@@ -586,11 +587,38 @@ export const surge = ({
     mixins: [
       modifierEntityInterceptorMixin({
         key: 'damageDealt',
+        duration,
         keywords: [KEYWORDS.SURGE],
         interceptor:
           modifier =>
           (amount, { isAbilityDamage }) =>
             isAbilityDamage ? amount + modifier.stacks! : amount
+      })
+    ]
+  });
+};
+export const elusive = ({
+  source,
+  duration
+}: {
+  source: Entity;
+  duration?: number;
+  stacks?: number;
+}) => {
+  return createEntityModifier({
+    id: KEYWORDS.SURGE.id,
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'damageTaken',
+        keywords: [KEYWORDS.SURGE],
+        priority: INTERCEPTOR_PRIORITIES.FINAL,
+        interceptor:
+          modifier =>
+          (amount, { isAbilityDamage }) =>
+            isAbilityDamage ? amount : 0
       })
     ]
   });

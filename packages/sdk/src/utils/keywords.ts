@@ -67,6 +67,12 @@ export const KEYWORDS = {
     description: 'This unit cannot attack.',
     aliases: ['disarm']
   },
+  ELUSIVE: {
+    id: 'elusive',
+    name: 'Elusive',
+    description: 'This unit takes no damage from attacks',
+    aliases: []
+  },
   FEARSOME: {
     id: 'fearsomem',
     name: 'Fearsome',
@@ -182,6 +188,13 @@ export const KEYWORDS = {
     aliases: [],
     description: 'Cannot move, attack, retaliate or gain attack.'
   },
+  SUMMON: {
+    id: 'summon',
+    name: 'Summon',
+    description:
+      "A summoned unit didn`t come from your action bar. It won't drop a gold coin when destroyed.",
+    aliases: []
+  },
   SURGE: {
     id: 'surge',
     name: 'Surge(x)',
@@ -222,11 +235,10 @@ export const KEYWORDS = {
     spriteId: 'vulnerable',
     aliases: [/vulnerable\([0-9]+\)/]
   },
-  SUMMON: {
-    id: 'summon',
-    name: 'Summon',
-    description:
-      "A summoned unit didn`t come from your action bar. It won't drop a gold coin when destroyed.",
+  WARD: {
+    id: 'ward',
+    name: 'Ward',
+    description: 'This unit takes no damage from abilities',
     aliases: []
   }
 } as const satisfies Record<string, Keyword>;

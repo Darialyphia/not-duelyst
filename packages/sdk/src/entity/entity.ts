@@ -123,6 +123,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   private currentHp = new ReactiveValue(0, hp => {
     const intercepted = this.interceptors.maxHp.getValue(hp, this);
     if (intercepted <= 0) {
+      console.log('schedule death');
       this.session.actionSystem.schedule(() => {
         this.destroy();
       });
@@ -151,7 +152,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       number,
       { entity: Entity; amount: number; isAbilityDamage: boolean }
     >(),
-    damageTaken: new Interceptable<number, { entity: Entity; amount: number }>(),
+    damageTaken: new Interceptable<
+      number,
+      { entity: Entity; amount: number; isAbilityDamage: boolean }
+    >(),
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
 
@@ -396,10 +400,14 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  getTakenDamage(amount: number) {
+  getTakenDamage(
+    amount: number,
+    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
+  ) {
     return this.interceptors.damageTaken.getValue(amount, {
       entity: this,
-      amount
+      amount,
+      isAbilityDamage
     });
   }
 
@@ -428,13 +436,17 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    await target.takeDamage(payload.amount, this);
+    await target.takeDamage(payload.amount, this, { isAbilityDamage });
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  async takeDamage(power: number, source: Entity) {
-    const amount = this.getTakenDamage(power);
+  async takeDamage(
+    power: number,
+    source: Entity,
+    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
+  ) {
+    const amount = this.getTakenDamage(power, { isAbilityDamage });
     const payload = {
       entity: this,
       amount,

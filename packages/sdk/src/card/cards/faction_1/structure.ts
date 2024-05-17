@@ -15,7 +15,7 @@ export const f1Structure: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_ranged',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
+  cooldown: 3,
   initialCooldown: 0,
   cost: 3,
   attack: 0,

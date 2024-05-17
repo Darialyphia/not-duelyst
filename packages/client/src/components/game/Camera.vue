@@ -52,18 +52,6 @@ watchEffect(() => {
   };
 });
 
-const isoCenter = computed(() => {
-  const i = pointToIndex(
-    {
-      x: Math.round(boardDimensions.value.width / 2),
-      y: Math.round(boardDimensions.value.height / 2)
-    },
-    boardDimensions.value.width
-  );
-
-  return isoCells.value[i];
-});
-
 until(camera.viewport)
   .not.toBe(undefined)
   .then(() => {
@@ -79,6 +67,11 @@ until(camera.viewport)
       })
       .clampZoom({ minScale: 1, maxScale: 3 })
       .zoomPercent(1, false)
+      .mouseEdges({
+        distance: 10,
+        speed: 15,
+        allowButtons: true
+      })
       .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });
 

@@ -8,7 +8,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 export const neutralTank: CardBlueprint = {
   id: 'neutral_tank',
   name: 'Neutral tank',
-  description: '',
+  description: '@Call to Arms@: Taunt nearby enemies for 1 turn.',
   collectable: true,
   rarity: RARITIES.COMMON,
   factions: [null, null, null],
@@ -21,6 +21,11 @@ export const neutralTank: CardBlueprint = {
   maxHp: 8,
   speed: 2,
   range: 1,
+  onPlay({ entity, session }) {
+    session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
+      entity.addModifier(taunted({ duration: 1, source: entity }));
+    });
+  },
   skills: [
     {
       id: 'neutral_tank_skill_1',
