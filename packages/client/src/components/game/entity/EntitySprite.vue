@@ -6,13 +6,16 @@ import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import IlluminatedSprite from '../IlluminatedSprite.vue';
 import { match } from 'ts-pattern';
 import type { Nullable } from '@game/shared';
+import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
+import { COLOR_CODED_UNITS } from '~/utils/settings';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { ui, fx, camera } = useGame();
-const settings = useUserSettings();
+const { ui, fx, camera, gameType } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const settings = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+const userPlayer = useUserPlayer();
 const sprite = ref<AnimatedSprite>();
 const { diffuseTextures, normalTextures } = useEntityTexture(entityId, sprite);
 
@@ -22,22 +25,38 @@ const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
 watchEffect(() => {
   fx.entityAnimationsMap.value.set(entityId, isSelected.value ? 'idle' : 'breathing');
 });
-
 const exhaustedFilter = new AdjustmentFilter({ saturation: 0.35 });
-const outlineFilter = new OutlineFilter(1, 0xffffff, 0.2, 0);
+const selectedFilter = new AdjustmentFilter({});
+const getPlayerFilterAlpha = () =>
+  match(settings.value.a11y.colorCodeUnits)
+    .with(COLOR_CODED_UNITS.OFF, () => 0)
+    .with(COLOR_CODED_UNITS.SUBTLE, () => 0.08)
+    .with(COLOR_CODED_UNITS.STRONG, () => 0.2)
+    .exhaustive();
+
+const playerFilter = new ColorOverlayFilter(
+  match(gameType.value)
+    .with(GAME_TYPES.PVP, GAME_TYPES.SANDBOX, () =>
+      userPlayer.value!.equals(entity.value.player) ? 0x00ff00 : 0xff0000
+    )
+    .with(GAME_TYPES.SPECTATOR, () =>
+      entity.value.player.isPlayer1 ? 0x00ff00 : 0xff0000
+    )
+    .exhaustive(),
+  getPlayerFilterAlpha()
+);
 
 watchEffect(() => {
-  // gsap.to(bloomFilter, {
-  //   duration: 0.2,
-  //   blur: isSelected.value ? 4 : 0,
-  //   ease: Power2.easeOut
-  // });
-
-  gsap.to(outlineFilter, {
+  gsap.to(selectedFilter, {
     duration: 0.3,
-    alpha: isSelected.value || isHovered.value ? 1 : 0,
+    blue: isSelected.value ? 2 : 1,
+    gamma: isSelected.value ? 1.5 : 1,
     ease: Power2.easeOut
   });
+});
+
+watchEffect(() => {
+  playerFilter.alpha = getPlayerFilterAlpha();
 });
 
 const filters = computed(() => {
@@ -46,7 +65,10 @@ const filters = computed(() => {
     result.push(exhaustedFilter);
   }
   if (isSelected.value || isHovered.value) {
-    result.push(outlineFilter);
+    result.push(selectedFilter);
+  }
+  if (settings.value.a11y.colorCodeUnits !== COLOR_CODED_UNITS.OFF) {
+    result.push(playerFilter);
   }
   return result;
 });

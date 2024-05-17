@@ -1,12 +1,9 @@
 import type { ControlId } from '../utils/key-bindings';
 
-type Angle = 0 | 90 | 180 | 270;
-
 export const useGameControls = () => {
-  const { session, camera, ui, dispatch, fx } = useGame();
+  const { camera, ui, dispatch, fx } = useGame();
 
   const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-  const isActive = useIsActivePlayer();
   const settings = useUserSettings();
 
   watchEffect(onCleanup => {
@@ -28,15 +25,13 @@ export const useGameControls = () => {
     };
 
     const selectEntity = (diff: number) => {
-      let selectedEntity = ui.selectedEntity.value;
-
-      if (!selectedEntity) {
+      if (!ui.selectedEntity.value) {
         ui.selectEntity(activePlayer.value.general.id);
-        selectedEntity = activePlayer.value.general;
       } else {
-        const player = selectedEntity.player;
+        const player = ui.selectedEntity.value.player;
         const entities = player.entities;
-        const index = entities.findIndex(e => e.equals(selectedEntity!));
+        const selected = ui.selectedEntity.value;
+        const index = entities.findIndex(e => e.equals(selected));
         let newIndex = index + diff;
         if (newIndex >= entities.length) {
           ui.selectEntity(player.general.id);
@@ -45,12 +40,19 @@ export const useGameControls = () => {
           ui.selectEntity(entities[newIndex].id);
         }
       }
-      const spriteRef = fx.entityRootMap.get(selectedEntity!.id);
+      const spriteRef = fx.entityRootMap.get(ui.selectedEntity.value!.id);
       if (!spriteRef) return;
       const sprite = toValue(spriteRef);
       if (!sprite) return;
 
-      camera.viewport.value?.moveCenter(sprite.position);
+      camera.viewport.value?.animate({
+        time: settings.value.a11y.reducedMotions ? 0 : 200,
+        position: {
+          x: sprite.position.x + camera.offset.value.x,
+          y: sprite.position.y + camera.offset.value.y
+        },
+        ease: 'easeInQuad'
+      });
     };
 
     const cleanup = useEventListener('keydown', e => {

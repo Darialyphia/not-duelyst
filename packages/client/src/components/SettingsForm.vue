@@ -55,11 +55,33 @@ until(settings)
           />
         </fieldset>
 
-        <!-- <fieldset>
+        <fieldset>
           <legend>Accessibility</legend>
           <label>Color coded units</label>
-          <UiSwitch v-model:checked="formData.a11y.colorCodeUnits" />
-        </fieldset> -->
+          <UiRadioGroup
+            v-model="formData.a11y.colorCodeUnits"
+            class="mb-3"
+            :options="[
+              {
+                id: 'color-coded-units-off',
+                label: 'Off',
+                value: COLOR_CODED_UNITS.OFF
+              },
+              {
+                id: 'color-coded-units-subtle',
+                label: 'Subtle',
+                value: COLOR_CODED_UNITS.SUBTLE
+              },
+              {
+                id: 'color-coded-units-strong',
+                label: 'Strong',
+                value: COLOR_CODED_UNITS.STRONG
+              }
+            ]"
+          />
+          <label>Reduced motions</label>
+          <UiSwitch v-model:checked="formData.a11y.reducedMotions" />
+        </fieldset>
 
         <fieldset>
           <legend>Visual</legend>

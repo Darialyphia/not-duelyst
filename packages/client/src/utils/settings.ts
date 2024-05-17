@@ -14,6 +14,13 @@ export const DISPLAY_UNITS_NAMES = {
 } as const;
 export type DisplayUnitNamesValue = Values<typeof DISPLAY_UNITS_NAMES>;
 
+export const COLOR_CODED_UNITS = {
+  OFF: 'off',
+  SUBTLE: 'subtle',
+  STRONG: 'strong'
+} as const;
+export type ColorCodedUnitsValue = Values<typeof COLOR_CODED_UNITS>;
+
 export const getDefaultSettings = () => ({
   bindings: defaultBindings,
   sound: {
@@ -31,7 +38,8 @@ export const getDefaultSettings = () => ({
     tintStrength: [40]
   },
   a11y: {
-    colorCodeUnits: false
+    colorCodeUnits: COLOR_CODED_UNITS.OFF as ColorCodedUnitsValue,
+    reducedMotions: false
   }
 });
 

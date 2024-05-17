@@ -51,7 +51,6 @@ export class Card extends EventEmitter implements Serializable {
   }
 
   setup() {
-    console.log('setup card');
     this.blueprint.modifiers?.forEach(modifier => {
       this.addModifier(modifier);
     });
@@ -198,7 +197,6 @@ export class Card extends EventEmitter implements Serializable {
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 
     if (this.shouldExhaustOnPlay) {
-      console.log('exhausting');
       entity.isExhausted = true;
     }
     this.currentCooldown = this.cooldown;

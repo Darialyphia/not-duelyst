@@ -38,6 +38,7 @@ const { autoDestroyRef } = useAutoDestroy();
 
 const containerX = computed(() => position.value.isoX + offset.x);
 const containerY = computed(() => position.value.isoY - position.value.isoZ + offset.y);
+const settings = useUserSettings();
 
 const rotatedCartesian = computed(() => {
   const track = { x, y, z };
@@ -87,16 +88,16 @@ const zIndex = computed(() => {
 const tweened = ref({ x: containerX.value, y: containerY.value });
 
 watch([containerX, containerY], ([newX, newY]) => {
-  gsap.to(tweened.value, {
-    duration: animated ? 0.7 : 0,
-    x: newX,
-    ease: animated ? Power3.easeOut : Power0.easeOut
-  });
-  gsap.to(tweened.value, {
-    duration: animated ? 0.7 : 0,
-    y: newY,
-    ease: animated ? Power3.easeOut : Power0.easeOut
-  });
+  if (animated && !settings.value.a11y.reducedMotions) {
+    gsap.to(tweened.value, {
+      duration: 0.7,
+      x: newX,
+      y: newY,
+      ease: animated ? Power3.easeOut : Power0.easeOut
+    });
+  } else {
+    tweened.value = { x: newX, y: newY };
+  }
 });
 
 const root = ref<Container>();
