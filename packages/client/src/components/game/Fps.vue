@@ -21,7 +21,7 @@ const isDev = import.meta.env;
 </script>
 
 <template>
-  <container :y="225">
+  <container :y="0" :x="400">
     <pixi-text :x="30" :y="15" :style="style">{{ averageFPS.toFixed() }} FPS</pixi-text>
     <pixi-text
       :x="30"

@@ -4,6 +4,7 @@ import { type CardKind, type Keyword, type Rarity } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
+import type { Tribe } from '@game/sdk/src/utils/tribes';
 
 type ICard = {
   blueprintId: CardBlueprintId;
@@ -21,6 +22,7 @@ type ICard = {
   pedestalId?: string;
   factions: CardBlueprint['factions'];
   keywords?: Keyword[];
+  tribes: Tribe[];
 };
 
 const {
@@ -86,7 +88,12 @@ const isModalOpened = ref(false);
     </header>
 
     <div class="text">
-      <div class="kind">{{ card.kind }}</div>
+      <div class="kind">
+        {{ card.kind }}
+        <template v-if="card.tribes.length">
+          - {{ card.tribes.map(tribe => tribe.name).join(', ') }}
+        </template>
+      </div>
       <div class="name">{{ card.name }}</div>
     </div>
 
@@ -239,7 +246,7 @@ header {
 .text {
   transform: translateZ(var(--z-translate));
 
-  margin-block: calc(var(--size-8) + var(--size-2)) var(--size-1);
+  margin-block: calc(var(--size-8) + var(--size-3)) var(--size-1);
 
   font-weight: 400;
   line-height: 1;

@@ -61,7 +61,8 @@ const isModalOpened = computed({
           cooldown: entity.card.cooldown,
           skills: entity.card.blueprint.skills,
           pedestalId: entity.card.pedestalId,
-          factions: entity.card.blueprint.factions
+          factions: entity.card.blueprint.factions,
+          tribes: entity.card.blueprint.tribes ?? []
         }"
       />
       <dl>

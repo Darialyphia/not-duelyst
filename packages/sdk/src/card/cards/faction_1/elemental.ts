@@ -1,18 +1,20 @@
 import { thorns, tough } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isSelf } from '../../../utils/targeting';
+import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
 export const f1Elemental: CardBlueprint = {
   id: 'f1_placeholder',
-  name: 'F1 Golem',
+  name: 'F1 Lesser Elemental',
   description: '',
   rarity: RARITIES.BASIC,
   collectable: true,
   factions: [FACTIONS.F1, null, null],
   spriteId: 'f1_placeholder',
   kind: CARD_KINDS.MINION,
+  tribes: [TRIBES.ELEMENTAL],
   cooldown: 4,
   initialCooldown: 0,
   cost: 3,

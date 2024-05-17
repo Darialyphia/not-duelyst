@@ -72,6 +72,10 @@ export type CardBlueprint = {
   keywords?: Keyword[];
   modifiers?: CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];
+  isWithinDangerZone?: (
+    point: Point3D,
+    ctx: { session: GameSession; entity: Entity }
+  ) => boolean;
   onPlay?: (options: {
     session: GameSession;
     card: Card;

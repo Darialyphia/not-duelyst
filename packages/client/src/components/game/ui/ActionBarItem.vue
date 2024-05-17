@@ -58,7 +58,8 @@ const hoveredIndex = ref<number | null>(null);
         cooldown: card.cooldown,
         skills: card.blueprint.skills,
         pedestalId: card.pedestalId,
-        factions: card.blueprint.factions
+        factions: card.blueprint.factions,
+        tribes: card.blueprint.tribes ?? []
       }"
     />
   </UiTooltip>

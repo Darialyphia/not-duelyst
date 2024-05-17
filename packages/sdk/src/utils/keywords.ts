@@ -141,6 +141,7 @@ export const KEYWORDS = {
     id: 'regeneration',
     name: 'Regeneration(x)',
     description: 'This unit recovers x hp at the beginning of its turn.',
+    spriteId: 'regeneration',
     aliases: [/regeneration\([0-9]+\)/]
   },
   ROOTED: {

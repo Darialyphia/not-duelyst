@@ -80,7 +80,8 @@ const keywords = computed(() => {
         cooldown: card.card.cooldown,
         skills: card.card.skills,
         factions: card.card.factions,
-        keywords: keywords
+        keywords: keywords,
+        tribes: card.card.tribes ?? []
       }"
       @mousemove="onMousemove"
       @click="emit('click')"

@@ -43,7 +43,8 @@ assets.load();
             cost: card.cost,
             cooldown: card.cooldown,
             skills: card.skills,
-            factions: card.factions
+            factions: card.factions,
+            tribes: card.tribes ?? []
           }"
         />
       </li>

@@ -113,10 +113,25 @@ export const getNearest = (
 
 export const getCellInFront = (session: GameSession, entity: Entity) => {
   const xOffset = entity.player.isPlayer1 ? 1 : -1;
-  return session.boardSystem.getCellAt({
+  const above = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z + 1,
+    x: entity.position.x + xOffset
+  });
+  if (above) return above;
+  const cell = session.boardSystem.getCellAt({
     ...entity.position,
     x: entity.position.x + xOffset
   });
+  if (cell) return cell;
+  const below = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z - 1,
+    x: entity.position.x + xOffset
+  });
+  if (below) return below;
+
+  return null;
 };
 
 export const getEntityInFront = (session: GameSession, entity: Entity) => {
@@ -125,10 +140,25 @@ export const getEntityInFront = (session: GameSession, entity: Entity) => {
 
 export const getCellBehind = (session: GameSession, entity: Entity) => {
   const xOffset = entity.player.isPlayer1 ? -1 : 1;
-  return session.boardSystem.getCellAt({
+  const above = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z + 1,
+    x: entity.position.x + xOffset
+  });
+  if (above) return above;
+  const cell = session.boardSystem.getCellAt({
     ...entity.position,
     x: entity.position.x + xOffset
   });
+  if (cell) return cell;
+  const below = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z - 1,
+    x: entity.position.x + xOffset
+  });
+  if (below) return below;
+
+  return null;
 };
 
 export const getEntityBehind = (session: GameSession, entity: Entity) => {

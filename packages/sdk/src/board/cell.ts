@@ -89,7 +89,7 @@ export class Cell implements Serializable {
   }
 
   get canSummonAt() {
-    return this.isWalkable && this.terrain === TERRAINS.GROUND;
+    return !this.entity && this.isWalkable && this.terrain === TERRAINS.GROUND;
   }
 
   serialize(): SerializedCell {

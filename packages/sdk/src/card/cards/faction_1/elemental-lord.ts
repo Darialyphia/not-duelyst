@@ -1,5 +1,9 @@
+import type { Entity } from '../../../entity/entity';
 import { isEmpty } from '../../../entity/entity-utils';
+import { regeneration, whileOnBoard } from '../../../modifier/modifier-utils';
+import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint } from '../../../utils/targeting';
+import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { neutralAirElemental } from '../neutral/air-elemental';
@@ -10,7 +14,7 @@ import { neutralWaterElemental } from '../neutral/water-elemental';
 export const f1ElementalLord: CardBlueprint = {
   id: 'f1_elemental_lord',
   name: 'F1 Elemental Lord',
-  description: '',
+  description: 'Your Elementals have @Regeneration(1)@',
   collectable: true,
   rarity: RARITIES.LEGENDARY,
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
@@ -19,11 +23,43 @@ export const f1ElementalLord: CardBlueprint = {
   cooldown: 6,
   initialCooldown: 0,
   cost: 5,
-  attack: 1,
-  maxHp: 8,
+  attack: 2,
+  maxHp: 7,
   speed: 3,
   range: 1,
-  keywords: [],
+  keywords: [KEYWORDS.REGENERATION],
+  onPlay({ session, entity }) {
+    const isAlliedElemental = (e: Entity) =>
+      e.isAlly(entity.id) &&
+      e.card.blueprint.tribes?.some(tribe => tribe.id === TRIBES.ELEMENTAL.id);
+
+    const onEntityCreated = (newEntity: Entity) => {
+      if (!isAlliedElemental(newEntity)) return;
+      newEntity.addModifier(regeneration({ source: entity }));
+    };
+
+    entity.addModifier(
+      whileOnBoard({
+        source: entity,
+        onApplied() {
+          session.on('entity:created', onEntityCreated);
+        },
+        onRemoved(session, attachedTo, modifier) {
+          session.off('entity:created', onEntityCreated);
+
+          session.entitySystem.getList().forEach(e => {
+            if (!isAlliedElemental(e)) return;
+            e.removeModifier(KEYWORDS.REGENERATION.id);
+          });
+        }
+      })
+    );
+
+    session.entitySystem.getList().forEach(e => {
+      if (!isAlliedElemental(e)) return;
+      e.addModifier(regeneration({ source: entity }));
+    });
+  },
   relatedBlueprintIds: [
     neutralAirElemental.id,
     neutralEarthElemental.id,

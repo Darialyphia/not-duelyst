@@ -77,7 +77,8 @@ const offset = computed(() => {
               cost: blueprint.cost,
               cooldown: blueprint.cooldown,
               skills: blueprint.skills,
-              factions: blueprint.factions
+              factions: blueprint.factions,
+              tribes: blueprint.tribes ?? []
             }"
             :with-skills="false"
           />

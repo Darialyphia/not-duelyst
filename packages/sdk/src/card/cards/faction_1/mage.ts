@@ -97,7 +97,7 @@ export const f1Mage: CardBlueprint = {
       },
       onUse({ affectedCells, skill }) {
         getAffectedEntities(affectedCells).forEach(entity => {
-          skill.caster.dealDamage(2, entity);
+          skill.caster.dealDamage(1, entity);
           entity.addModifier(frozen({ source: skill.caster, duration: 1 }));
         });
       }

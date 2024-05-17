@@ -14,11 +14,7 @@ const isOpened = computed({
   }
 });
 
-const { mutate } = useConvexAuthedMutation(api.loadout.remove, {
-  onSuccess() {
-    isOpened.value = false;
-  }
-});
+const { mutate } = useConvexAuthedMutation(api.loadout.remove);
 </script>
 
 <template>
@@ -28,9 +24,12 @@ const { mutate } = useConvexAuthedMutation(api.loadout.remove, {
     is-destructive
     :description="`Are you sure you want to delete ${loadout?.name} ?`"
     @ok="
-      mutate({
-        loadoutId: loadout!._id
-      })
+      () => {
+        mutate({
+          loadoutId: loadout!._id
+        });
+        isOpened = false;
+      }
     "
   />
 </template>

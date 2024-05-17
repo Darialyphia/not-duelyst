@@ -1,6 +1,7 @@
 import { TERRAINS } from '../../../board/board-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
+import { ranged } from '../../../modifier/modifier-utils';
 import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
@@ -8,7 +9,8 @@ import { RARITIES, CARD_KINDS } from '../../card-enums';
 export const neutralWaterElemental: CardBlueprint = {
   id: 'water-elemental',
   name: 'Neutral Water Elemental',
-  description: 'Transform the tiles this unit passes through into water for 2 turns.',
+  description:
+    '@Ranged(2)@\nTransform the tiles this unit passes through into water for 2 turns.',
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],
@@ -17,13 +19,14 @@ export const neutralWaterElemental: CardBlueprint = {
   cooldown: 5,
   initialCooldown: 0,
   cost: 4,
-  attack: 2,
+  attack: 1,
   maxHp: 6,
   speed: 3,
   range: 1,
   skills: [],
   tribes: [TRIBES.ELEMENTAL],
   onPlay({ entity }) {
+    entity.addModifier(ranged({ range: 2, source: entity }));
     entity.addModifier(
       createEntityModifier({
         source: entity,

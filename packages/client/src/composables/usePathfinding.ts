@@ -47,6 +47,9 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
       return entity.canMove(distanceMap.get(point));
     },
     canAttackAt(entity, point) {
+      if (entity.card.blueprint.isWithinDangerZone) {
+        return entity.card.blueprint.isWithinDangerZone(point, { session, entity });
+      }
       if (!cache.has(entity.id)) {
         const dm = session.boardSystem.getDistanceMap(entity.position, entity.speed);
         if (!dm) return false;

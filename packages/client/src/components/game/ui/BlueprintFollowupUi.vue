@@ -74,7 +74,8 @@ watchEffect(() => {
           cooldown: blueprint.cooldown,
           skills: blueprint.skills,
           pedestalId: 'pedestal-default',
-          factions: blueprint.factions
+          factions: blueprint.factions,
+          tribes: blueprint.tribes ?? []
         }"
         @click="
           () => {

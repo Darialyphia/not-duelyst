@@ -1,8 +1,8 @@
 import type { Point3D } from '@game/shared';
 import { type Cell } from '../board/cell';
 import type { GameSession } from '../game-session';
-import { Entity, type EntityId } from '../entity/entity';
-import { createEntityModifier } from '../modifier/entity-modifier';
+import { Entity, ENTITY_EVENTS, type EntityId } from '../entity/entity';
+import { createEntityModifier, type EntityModifier } from '../modifier/entity-modifier';
 import { modifierCardInterceptorMixin } from '../modifier/mixins/card-interceptor.mixin';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { KEYWORDS, type Keyword } from '../utils/keywords';
@@ -186,7 +186,7 @@ export const regeneration = ({
       modifierGameEventMixin({
         duration,
         eventName: 'player:turn_start',
-        keywords: [KEYWORDS.BURN],
+        keywords: [KEYWORDS.REGENERATION],
         listener([player], ctx) {
           if (ctx.attachedTo.player.equals(player)) {
             ctx.attachedTo.heal(ctx.modifier.stacks!, source);
@@ -653,6 +653,33 @@ export const aura = ({
             session.off('entity:after-move', checkAura);
           });
         }
+      }
+    ]
+  });
+};
+
+export const whileOnBoard = ({
+  source,
+  onApplied,
+  onRemoved
+}: {
+  source: Entity;
+  onApplied: EntityModifier['onApplied'];
+  onRemoved: EntityModifier['onRemoved'];
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      {
+        onApplied(session, attachedTo, modifier) {
+          onApplied(session, attachedTo, modifier);
+          attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, () => {
+            onRemoved(session, attachedTo, modifier);
+          });
+        },
+        onRemoved
       }
     ]
   });

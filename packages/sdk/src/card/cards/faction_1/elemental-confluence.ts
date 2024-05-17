@@ -10,9 +10,19 @@ import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierGameEventMixin } from '../../../modifier/mixins/game-event.mixin';
 import { TRIBES } from '../../../utils/tribes';
 import { structure, surge } from '../../../modifier/modifier-utils';
-import { ReactiveValue } from '../../../utils/helpers';
-import { modifierEntityDurationMixin } from '../../../modifier/mixins/duration.mixin';
 import type { Entity } from '../../../entity/entity';
+import type { GameSession } from '../../../game-session';
+
+const dealDamage = async (session: GameSession, entity: Entity) => {
+  await Promise.all(
+    session.entitySystem
+      .getList()
+      .filter(e => e.isEnemy(entity.id) && isWithinCells(entity.position, e.position, 2))
+      .map(enemy => {
+        entity.dealDamage(1, enemy);
+      })
+  );
+};
 
 export const f1ElementalConfluence: CardBlueprint = {
   id: 'f1_elemental_confluence',
@@ -26,11 +36,14 @@ export const f1ElementalConfluence: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cooldown: 5,
   initialCooldown: 0,
-  cost: 5,
+  cost: 4,
   attack: 0,
   maxHp: 7,
   speed: 0,
   range: 1,
+  isWithinDangerZone(point, { entity }) {
+    return isWithinCells(point, entity.position, 2);
+  },
   keywords: [KEYWORDS.STRUCTURE, KEYWORDS.CALL_TO_ARMS, KEYWORDS.SURGE],
   onPlay({ entity, session }) {
     entity.addModifier(structure(entity));
@@ -73,19 +86,6 @@ export const f1ElementalConfluence: CardBlueprint = {
       })
     );
 
-    const dealDamage = async () => {
-      await Promise.all(
-        session.entitySystem
-          .getList()
-          .filter(
-            e => e.isEnemy(entity.id) && isWithinCells(entity.position, e.position, 2)
-          )
-          .map(enemy => {
-            entity.dealDamage(1, enemy);
-          })
-      );
-    };
-
     entity.addModifier(
       createEntityModifier({
         stackable: false,
@@ -98,19 +98,20 @@ export const f1ElementalConfluence: CardBlueprint = {
             eventName: 'player:turn_start',
             listener([player], ctx) {
               if (!player.equals(entity.player)) return;
-              dealDamage();
+              dealDamage(session, entity);
             }
           })
         ]
       })
     );
-    dealDamage();
+    dealDamage(session, entity);
   },
   skills: [
     {
       id: 'f1_elemental_confulence_skill1',
       name: 'Elemental Relocation',
-      description: 'Swap position with one of your elementals',
+      description:
+        "Swap position with one of your elementals, then trigger this card's start of turn effect.",
       initialCooldown: 0,
       cooldown: 2,
       iconId: 'vortex-elemental',
@@ -136,6 +137,8 @@ export const f1ElementalConfluence: CardBlueprint = {
           target.move([skill.caster.position], true),
           skill.caster.move([oldPos], true)
         ]);
+
+        dealDamage(session, skill.caster);
       }
     }
   ]
