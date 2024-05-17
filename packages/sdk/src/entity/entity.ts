@@ -248,6 +248,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canMove(distance: number) {
+    if (this.isExhausted) return false;
+
     return this.interceptors.canMove.getValue(
       distance <= this.speed && this.movementsTaken < this.maxMovements,
       this
@@ -255,6 +257,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canRetaliate(source: Entity) {
+    if (this.isExhausted) return false;
     return this.interceptors.canRetaliate.getValue(
       this.canAttackAt(source.position) && this.retaliationsDone < this.maxRetaliations,
       {
@@ -277,6 +280,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canUseSkill(skill: Skill) {
+    if (this.isExhausted) return false;
+
     const baseValue =
       skill.canUse &&
       this.skillsUsed < this.maxSkills &&
@@ -298,6 +303,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canAttack(target: Entity) {
+    if (this.isExhausted) return false;
+
     const baseValue =
       this.attacksTaken < this.maxAttacks &&
       this.skillsUsed < this.maxSkills &&
