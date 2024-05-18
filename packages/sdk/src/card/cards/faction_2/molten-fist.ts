@@ -9,7 +9,7 @@ import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 export const f2MoltenFist: CardBlueprint = {
   id: 'f2_molten_first',
   name: 'F2 Molten Fist',
-  description: '@Fury@.\nAfter attacking, inflict @Burn(1) to the target',
+  description: '@Fury@.\nAfter attacking, inflict @Burn(1)@ to the target',
   collectable: true,
   rarity: RARITIES.LEGENDARY,
   factions: [FACTIONS.F2, FACTIONS.F2, null],

@@ -1,4 +1,4 @@
-import type { Point3D } from '@game/shared';
+import type { MaybePromise, Point3D } from '@game/shared';
 import { type Cell } from '../board/cell';
 import type { GameSession } from '../game-session';
 import { Entity, ENTITY_EVENTS, type EntityId } from '../entity/entity';
@@ -709,6 +709,56 @@ export const whileOnBoard = ({
         },
         onRemoved
       }
+    ]
+  });
+};
+
+export const lastWill = ({
+  source,
+  handler
+}: {
+  source: Entity;
+  handler: (
+    entity: Entity,
+    ctx: { session: GameSession; modifier: EntityModifier }
+  ) => MaybePromise<void>;
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'before_destroy',
+        listener([event], ctx) {
+          return handler(event, ctx);
+        }
+      })
+    ]
+  });
+};
+
+export const deathWatch = ({
+  source,
+  handler
+}: {
+  source: Entity;
+  handler: (
+    entity: Entity,
+    ctx: { session: GameSession; modifier: EntityModifier }
+  ) => MaybePromise<void>;
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierGameEventMixin({
+        eventName: 'entity:after_destroy',
+        listener([event], ctx) {
+          return handler(event, ctx);
+        }
+      })
     ]
   });
 };

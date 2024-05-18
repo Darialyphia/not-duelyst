@@ -26,7 +26,7 @@ const dealDamage = async (session: GameSession, entity: Entity) => {
 
 export const f1ElementalConfluence: CardBlueprint = {
   id: 'f1_elemental_confluence',
-  name: 'F1 Kirin',
+  name: 'F1 Elemental Confluence',
   description:
     '@Structure@.\n@Call to Arms@ and start of turn: Deal 1 damage to enemies up to 2 tiles away. @Surge(1)@ for every Elemental you control.',
   collectable: true,

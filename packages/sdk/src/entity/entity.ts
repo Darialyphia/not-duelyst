@@ -123,7 +123,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   private currentHp = new ReactiveValue(0, hp => {
     const intercepted = this.interceptors.maxHp.getValue(hp, this);
     if (intercepted <= 0) {
-      console.log('schedule death');
       this.session.actionSystem.schedule(() => {
         this.destroy();
       });
