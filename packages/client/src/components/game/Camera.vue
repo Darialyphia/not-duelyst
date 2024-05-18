@@ -74,6 +74,11 @@ until(camera.viewport)
       })
       .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });
+useEventListener('resize', () => {
+  setTimeout(() => {
+    camera.viewport.value?.resize(window.innerWidth, window.innerHeight);
+  }, 100);
+});
 
 const onMousemove = throttle((e: FederatedPointerEvent) => {
   const pos = camera.viewport.value!.toWorld(e.global);
