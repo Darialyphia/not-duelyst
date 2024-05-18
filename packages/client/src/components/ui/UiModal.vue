@@ -1,10 +1,18 @@
 <script setup lang="ts">
+export type ModalStyleVariables = '--ui-modal-size';
+
 const isOpened = defineModel<boolean>('isOpened', { required: true });
 const {
   title,
   description,
+  style = {},
   closable = true
-} = defineProps<{ title: string; description?: string; closable?: boolean }>();
+} = defineProps<{
+  title: string;
+  description?: string;
+  closable?: boolean;
+  style?: StyleProp<ModalStyleVariables>;
+}>();
 </script>
 
 <template>
@@ -17,6 +25,7 @@ const {
       <Transition appear>
         <DialogContent
           class="modal-content"
+          :style="style"
           @escape-key-down="
             e => {
               if (!closable) e.preventDefault();
@@ -38,7 +47,7 @@ const {
               <slot name="title" :title="title">{{ title }}</slot>
             </DialogTitle>
 
-            <DialogDescription v-if="description" class="">
+            <DialogDescription v-if="description">
               {{ description }}
             </DialogDescription>
 
@@ -72,18 +81,25 @@ const {
 }
 
 .modal-content {
+  --_ui-modal-size: var(--ui-modal-size, var(--size-md));
+
   position: fixed;
   z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
+  container-type: inline-size;
   display: grid;
   place-content: center;
+
+  width: var(--_ui-modal-size);
+  max-width: calc(100% - 2 * var(--size-3));
 
   > div {
     pointer-events: all;
   }
+
   &:is(.v-enter-active, .v-leave-active) {
     transition:
       transform 0.3s,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import { KEYWORDS, type CardBlueprint } from '@game/sdk';
+import { type CardBlueprint } from '@game/sdk';
 import { uniqBy } from 'lodash-es';
 
 defineOptions({
@@ -54,8 +54,8 @@ const keywords = computed(() => {
 <template>
   <div class="perspective-wrapper" :class="settings.ui.cardsWith3D && '3d'">
     <Card
-      has-modal
       ref="rootEl"
+      has-modal
       :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
       class="collection-card"
       :class="{

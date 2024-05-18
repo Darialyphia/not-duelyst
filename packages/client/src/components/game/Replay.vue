@@ -10,7 +10,6 @@ const { game, replay, map } = defineProps<{
   replay: string;
   map: GameMapDto;
 }>();
-const emit = defineEmits<{}>();
 
 const parsedReplay = parse(replay);
 
@@ -120,7 +119,7 @@ const dispatch = (
         '--ui-button-radius': 'var(--radius-round)'
       }"
     >
-      <UiButton class="primary-button" v-if="me" @click="gameType = GAME_TYPES.SANDBOX">
+      <UiButton v-if="me" class="primary-button" @click="gameType = GAME_TYPES.SANDBOX">
         Convert to sandbox
       </UiButton>
       <UiButton

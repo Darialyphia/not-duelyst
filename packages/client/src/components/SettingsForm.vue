@@ -194,6 +194,12 @@ section {
   padding-inline: var(--size-2);
 }
 
+@container (max-width: 60rem) {
+  section {
+    display: block;
+  }
+}
+
 footer {
   display: flex;
   gap: var(--size-3);

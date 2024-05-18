@@ -32,7 +32,11 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
         <li><button @click="signOff({})">Sign Off</button></li>
       </ul>
     </nav>
-    <UiModal v-model:is-opened="isSettingsOpened" title="Settings">
+    <UiModal
+      v-model:is-opened="isSettingsOpened"
+      title="Settings"
+      :style="{ '--ui-modal-size': 'var(--size-lg)' }"
+    >
       <SettingsForm @close="isSettingsOpened = false" />
     </UiModal>
 

@@ -54,31 +54,34 @@ const offset = computed(() => {
     <template #title="{ title }">
       <div class="pl-8">{{ title }}</div>
     </template>
-    <div class="card-modal fancy-scrollbar">
+    <div
+      class="card-modal fancy-scrollbar"
+      :style="{ '--column-gap': relatedBlueprints.length }"
+    >
       <div class="cards-wrapper" :style="{ '--angle': angle, '--offset': offset }">
         <div
-          v-for="(blueprint, index) in blueprints"
-          :key="blueprint.id"
+          v-for="(bp, index) in blueprints"
+          :key="bp.id"
           :style="{ '--index': index }"
-          :class="settings.ui.cardsWith3D && 'card-3d'"
-          @click="selectedBlueprintId = blueprint.id"
+          :class="index === 0 && settings.ui.cardsWith3D && 'card-3d'"
+          @click="selectedBlueprintId = bp.id"
         >
           <Card
             :card="{
-              blueprintId: blueprint.id,
-              name: blueprint.name,
-              description: blueprint.description,
-              kind: blueprint.kind,
-              spriteId: blueprint.spriteId,
-              rarity: blueprint.rarity,
-              attack: blueprint.attack,
-              hp: blueprint.maxHp,
-              speed: blueprint.speed,
-              cost: blueprint.cost,
-              cooldown: blueprint.cooldown,
-              skills: blueprint.skills,
-              factions: blueprint.factions,
-              tribes: blueprint.tribes ?? []
+              blueprintId: bp.id,
+              name: bp.name,
+              description: bp.description,
+              kind: bp.kind,
+              spriteId: bp.spriteId,
+              rarity: bp.rarity,
+              attack: bp.attack,
+              hp: bp.maxHp,
+              speed: bp.speed,
+              cost: bp.cost,
+              cooldown: bp.cooldown,
+              skills: bp.skills,
+              factions: bp.factions,
+              tribes: bp.tribes ?? []
             }"
             :with-skills="false"
           />
@@ -107,7 +110,7 @@ const offset = computed(() => {
               <Icon name="icon-park-outline:hourglass-full" />
               Cooldown: {{ skill.cooldown }}
             </p>
-            <p class="text-right" v-if="skill.initialCooldown">
+            <p v-if="skill.initialCooldown" class="text-right">
               <Icon name="typcn:stopwatch" />
               Initial cooldown: {{ skill.initialCooldown }}
             </p>
@@ -126,7 +129,7 @@ const offset = computed(() => {
 </template>
 
 <style scoped lang="postcss">
-@keyframes card-modal {
+@keyframes card-3d {
   from {
     transform: rotateY(0);
   }
@@ -155,11 +158,13 @@ const offset = computed(() => {
 .card-modal {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: var(--size-13);
+  column-gap: calc(var(--size-11) + var(--column-gap) * var(--size-5));
 
   width: calc(var(--size-md) + 5rem);
   height: clamp(50dvh, 30rem, 80dvh);
   padding-top: var(--size-5);
+
+  perspective: 80rem;
 }
 
 .cards-wrapper {
@@ -171,12 +176,11 @@ const offset = computed(() => {
   align-self: start;
   justify-self: center;
 
-  perspective: 40rem;
-
-  animation: card-modal-brightness;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-out;
-  animation-delay: 0.3s;
+  animation: card-modal-brightness, card-3d;
+  animation-duration: 0.6s, 8s;
+  animation-timing-function: ease-out, linear;
+  animation-delay: 0.3s, 0;
+  animation-iteration-count: 1, infinite;
 
   > div {
     cursor: pointer;
@@ -199,11 +203,6 @@ const offset = computed(() => {
   }
   .card-3d {
     transform-style: preserve-3d;
-
-    animation-name: card-modal;
-    animation-duration: 8s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
   }
 }
 
