@@ -7,6 +7,26 @@ definePageMeta({
   colorMode: 'dark',
   pageTransition: { mode: 'out-in' }
 });
+
+const assets = useAssetsProvider();
+assets.load();
+
+const isReady = ref(false);
+until(assets.loaded)
+  .toBe(true)
+  .then(() => {
+    const loader = document.getElementById('app-loader');
+    if (!loader) {
+      isReady.value = true;
+      return;
+    }
+
+    loader.addEventListener('animationend', () => {
+      loader.remove();
+      isReady.value = true;
+    });
+    loader.classList.add('loader-fadeout');
+  });
 </script>
 
 <template>
@@ -14,15 +34,19 @@ definePageMeta({
     <CurrentGameModal />
     <UsernameModal />
     <OnboardingModal />
-    <NuxtPage />
+
+    <NuxtPage v-if="isReady" />
   </div>
 </template>
 
 <style scoped lang="postcss">
 .root {
   min-height: 100vh;
-  background: url('/assets/backgrounds/mountain.png');
-  background-attachment: fixed;
-  background-size: cover;
+}
+</style>
+
+<style>
+.loader-fadeout {
+  animation: var(--animation-fade-out);
 }
 </style>

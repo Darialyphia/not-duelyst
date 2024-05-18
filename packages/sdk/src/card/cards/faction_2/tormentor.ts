@@ -15,7 +15,7 @@ export const f2Tormentor: CardBlueprint = {
   id: 'f2_tormentor',
   name: 'F2 Tormentor',
   description:
-    '@Fury@.\n@Call to Arms@: Select an enemy minion and move it in front of this unit, then root it for one turn.',
+    '@Fury@.\n@Call to Arms@: Select an enemy minion and move it in front of this unit, then @Root@ it for one turn.',
   collectable: true,
   rarity: RARITIES.RARE,
   factions: [FACTIONS.F2, null, null],
@@ -28,7 +28,7 @@ export const f2Tormentor: CardBlueprint = {
   maxHp: 5,
   speed: 3,
   range: 1,
-  keywords: [KEYWORDS.FURY],
+  keywords: [KEYWORDS.FURY, KEYWORDS.CALL_TO_ARMS, KEYWORDS.ROOTED],
   followup: {
     minTargetCount: 0,
     maxTargetCount: 1,

@@ -33,6 +33,12 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    '/play/**': {
+      ssr: false
+    }
+  },
+
   components: [
     {
       path: './components',

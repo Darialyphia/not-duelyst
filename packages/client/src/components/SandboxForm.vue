@@ -19,12 +19,11 @@ const form = reactive<{
   player2Loadout: null
 });
 
-const assets = useAssetsProvider();
-assets.load();
+const assets = useAssets();
 </script>
 
 <template>
-  <section class="container mt-10" v-if="assets.loaded.value">
+  <section v-if="assets.loaded.value" class="container mt-10">
     <header>
       <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
       <h1 class="text-5">Create sandbox game</h1>

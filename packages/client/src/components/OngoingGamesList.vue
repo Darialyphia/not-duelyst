@@ -3,8 +3,7 @@ import type { GameDto } from '@game/api/src/convex/game/game.mapper';
 
 const { games } = defineProps<{ games: GameDto[] }>();
 
-const assets = useAssetsProvider();
-assets.load();
+const assets = useAssets();
 </script>
 
 <template>

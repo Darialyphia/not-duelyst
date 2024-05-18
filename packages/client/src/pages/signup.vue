@@ -35,26 +35,8 @@ const validationSchema = toTypedSchema(
     })
 );
 
-const sessionId = useSessionId();
-const isLoginLoading = ref(false);
-const login = async () => {
-  try {
-    isLoginLoading.value = true;
+const { isLoading: isLoginLoading, mutate: login } = useSignIn( () => navigateTo({ name: 'Login' }));
 
-    sessionId.value = await $fetch('/api/signin', {
-      method: 'POST',
-      body: {
-        email: form.values.email,
-        password: form.values.password
-      }
-    });
-    navigateTo({ name: 'ClientHome' });
-  } catch (err) {
-    navigateTo({ name: 'Login' });
-  } finally {
-    isLoginLoading.value = false;
-  }
-};
 
 const form = useForm({ validationSchema });
 const [email, emailProps] = form.defineField('email', {
@@ -77,8 +59,12 @@ const {
   isLoading,
   error
 } = useConvexMutation(api.auth.signUp, {
-  onSuccess(res) {
-    login();
+  onSuccess() {
+    login({
+        email: form.values.email!,
+        password: form.values.password!,
+        sessionId: null
+    });
   }
 });
 
@@ -115,7 +101,7 @@ const onSubmit = form.handleSubmit(({ email, password }) => {
       <p v-if="error" class="color-red-5 mt-2">{{ (error as ConvexError<string>).data }}</p>
     </Transition>
     <span>OR</span>
-    <NuxtLink custom :to="{ name: 'Login' }" v-slot="{ href, navigate }">
+    <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'Login' }">
       <UiButton
         :is-loading="isLoading || isLoginLoading"
         is-cta

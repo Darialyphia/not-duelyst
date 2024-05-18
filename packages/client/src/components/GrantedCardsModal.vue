@@ -16,8 +16,7 @@ const { mutate: acknowledge, isLoading: isAcknowledging } = useConvexAuthedMutat
   api.collection.acknowledgeGranted
 );
 
-const assets = useAssetsProvider();
-assets.load();
+const assets = useAssets();
 </script>
 
 <template>

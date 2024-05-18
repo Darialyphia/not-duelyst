@@ -1,38 +1,38 @@
-import { useSessionId } from '../composables/useSession';
 import { api } from '@game/api';
 
 export default defineNuxtRouteMiddleware(async () => {
-  const sessionId = useSessionId();
-  if (!sessionId.value) {
+  const session = useSession();
+  if (!session.value || !session.value?.sessionId) {
     return navigateTo({ name: 'Login' });
   }
-
-  const sessionExpiresAt = useCookie('sessionExpiresAt');
+  const { sessionId } = session.value;
   const convex = useConvexClient();
 
+  const invalidateAndRedirect = () => {
+    session.value = null;
+    return navigateTo({ name: 'Login' });
+  };
+
   try {
-    if (!sessionExpiresAt.value) {
-      await $fetch('/api/signoff');
-      sessionId.value = null;
-      return navigateTo({ name: 'Login' });
+    if (!session.value.expiresAt) {
+      await convex.mutation(api.auth.signOff, { sessionId: sessionId });
+
+      return invalidateAndRedirect();
     }
 
-    const isExpired = Date.now() >= Number(sessionExpiresAt.value);
+    const isExpired = Date.now() >= Number(session.value.expiresAt);
     if (!isExpired) return;
 
     const result = await convex.mutation(api.auth.validateSession, {
-      sessionId: sessionId.value
+      sessionId: session.value.sessionId
     });
-    sessionExpiresAt.value = result?.expiresAt;
+    session.value = result;
 
     if (!result && process.client) {
-      await $fetch('/api/signoff');
-      sessionId.value = null;
-      return navigateTo({ name: 'Login' });
+      await convex.mutation(api.auth.signOff, { sessionId: sessionId });
+      return invalidateAndRedirect();
     }
   } catch (err) {
-    useCookie('sessionId').value = null;
-    sessionExpiresAt.value = null;
-    return navigateTo({ name: 'Login' });
+    return invalidateAndRedirect();
   }
 });

@@ -1,5 +1,5 @@
-import { type ObjectType, type PropertyValidators, v } from 'convex/values';
-import type { Session, User } from 'lucia';
+import { ConvexError, type ObjectType, type PropertyValidators, v } from 'convex/values';
+import { LuciaError, type Session, type User } from 'lucia';
 import {
   type DatabaseWriter,
   type MutationCtx,
@@ -11,6 +11,7 @@ import {
 } from '../_generated/server';
 import { type Auth, getAuth } from '../lucia';
 import { type Nullable } from '@game/shared';
+import { match } from 'ts-pattern';
 
 export type QueryWithAuthCtx = QueryCtx & { session: Nullable<Session> };
 
@@ -30,9 +31,21 @@ export function queryWithAuth<ArgsValidator extends PropertyValidators, Output>(
       sessionId: v.union(v.null(), v.string())
     },
     handler: async (ctx, args: any) => {
-      const session = await getValidExistingSession(ctx, args.sessionId);
-
-      return handler({ ...ctx, session }, args);
+      try {
+        const session = await getValidExistingSession(ctx, args.sessionId);
+        return await handler({ ...ctx, session }, args);
+      } catch (err) {
+        if (err instanceof LuciaError) {
+          match(err.message)
+            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+              throw new ConvexError({ code: 'INVALID_SESSION' });
+            })
+            .otherwise(() => {
+              throw err;
+            });
+        }
+        throw err;
+      }
     }
   });
 }
@@ -50,8 +63,21 @@ export function internalQueryWithAuth<ArgsValidator extends PropertyValidators, 
   return internalQuery({
     args: { ...args, sessionId: v.union(v.null(), v.string()) },
     handler: async (ctx, args: any) => {
-      const session = await getValidExistingSession(ctx, args.sessionId);
-      return handler({ ...ctx, session }, args);
+      try {
+        const session = await getValidExistingSession(ctx, args.sessionId);
+        return await handler({ ...ctx, session }, args);
+      } catch (err) {
+        if (err instanceof LuciaError) {
+          match(err.message)
+            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+              throw new ConvexError({ code: 'INVALID_SESSION' });
+            })
+            .otherwise(() => {
+              throw err;
+            });
+        }
+        throw err;
+      }
     }
   });
 }
@@ -69,10 +95,23 @@ export function mutationWithAuth<ArgsValidator extends PropertyValidators, Outpu
   return mutation({
     args: { ...args, sessionId: v.union(v.null(), v.string()) },
     handler: async (ctx, args: any) => {
-      const auth = getAuth(ctx.db);
-      const { sessionId, ...otherArgs } = args;
-      const session = await getValidSessionAndRenew(auth, sessionId);
-      return handler({ ...ctx, session, auth }, otherArgs);
+      try {
+        const auth = getAuth(ctx.db);
+        const { sessionId, ...otherArgs } = args;
+        const session = await getValidSessionAndRenew(auth, sessionId);
+        return await handler({ ...ctx, session, auth }, otherArgs);
+      } catch (err) {
+        if (err instanceof LuciaError) {
+          match(err.message)
+            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+              throw new ConvexError({ code: 'INVALID_SESSION' });
+            })
+            .otherwise(() => {
+              throw err;
+            });
+        }
+        throw err;
+      }
     }
   });
 }
@@ -106,31 +145,20 @@ async function getValidExistingSession(ctx: QueryCtx, sessionId: string | null) 
   }
   // The cast is OK because we will only expose the existing session
   const auth = getAuth(ctx.db as DatabaseWriter);
-  try {
-    const session = (await auth.getSession(sessionId)) as Session | null;
+  const session = (await auth.getSession(sessionId)) as Session | null;
 
-    if (session === null || session.state !== 'active') {
-      return null;
-    }
-
-    return session;
-  } catch (error) {
-    console.log(error);
-    // Invalid session ID
+  if (session === null || session.state !== 'active') {
     return null;
   }
+
+  return session;
 }
 
 async function getValidSessionAndRenew(auth: Auth, sessionId: string | null) {
   if (sessionId === null) {
     return null;
   }
-  try {
-    return await auth.validateSession(sessionId);
-  } catch (error) {
-    // Invalid session ID
-    return null;
-  }
+  return await auth.validateSession(sessionId);
 }
 
 export const ensureAuthenticated = (session: Nullable<Session>): User => {

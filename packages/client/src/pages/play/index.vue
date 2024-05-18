@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { api } from '@game/api';
+
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -9,6 +11,14 @@ definePageMeta({
 });
 
 const isSettingsOpened = ref(false);
+const session = useSession();
+
+const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
+  onSuccess() {
+    session.value = null;
+    navigateTo({ name: 'Login' });
+  }
+});
 </script>
 
 <template>
@@ -19,10 +29,10 @@ const isSettingsOpened = ref(false);
         <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
         <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
         <li><button @click="isSettingsOpened = true">Settings</button></li>
-        <li><a href="/api/signoff">Sign off</a></li>
+        <li><button @click="signOff({})">Sign Off</button></li>
       </ul>
     </nav>
-    <UiModal title="Settings" v-model:is-opened="isSettingsOpened">
+    <UiModal v-model:is-opened="isSettingsOpened" title="Settings">
       <SettingsForm @close="isSettingsOpened = false" />
     </UiModal>
 

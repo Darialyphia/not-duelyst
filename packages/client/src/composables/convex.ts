@@ -5,7 +5,8 @@ import {
   type FunctionReturnType
 } from 'convex/server';
 import { CONVEX_CLIENT } from '../plugins/convex';
-import { type Nullable, isDefined } from '@game/shared';
+import { type Nullable, isDefined, isObject } from '@game/shared';
+import { ConvexError } from 'convex/values';
 
 export const useConvexClient = () => {
   return useSafeInject(CONVEX_CLIENT);
@@ -40,17 +41,24 @@ export const useConvexQuery = <Query extends QueryReference>(
 
     unsub?.();
     if (isEnabled.value) {
-      unsub = client.onUpdate(query, toValue(args), newData => {
-        // If we fetched the data during SSR and the cache is populated, ignore the first covnex updates that always return null
-        // until we get a non null value, then we get completely driven by convex reactive state
-        if (newData === null && shouldIgnoreNullUpdates) return;
-        if (newData !== null) {
-          shouldIgnoreNullUpdates = false;
-        }
+      unsub = client.onUpdate(
+        query,
+        toValue(args),
+        newData => {
+          // If we fetched the data during SSR and the cache is populated, ignore the first covnex updates that always return null
+          // until we get a non null value, then we get completely driven by convex reactive state
+          if (newData === null && shouldIgnoreNullUpdates) return;
+          if (newData !== null) {
+            shouldIgnoreNullUpdates = false;
+          }
 
-        data.value = newData;
-        error.value = undefined;
-      });
+          data.value = newData;
+          error.value = undefined;
+        },
+        err => {
+          error.value = err;
+        }
+      );
     }
   };
 
@@ -75,21 +83,37 @@ export const useConvexAuthedQuery = <Query extends QueryReference>(
   args: MaybeRefOrGetter<Omit<FunctionArgs<Query>, 'sessionId'>>,
   options: UseConvexQueryOptions = { ssr: true, enabled: true }
 ) => {
-  const sessionId = useSessionId();
+  const session = useSession();
 
-  return useConvexQuery(
+  const result = useConvexQuery(
     query,
-    computed(() => ({ ...toValue(args), sessionId: sessionId.value })),
+    computed(() => ({ ...toValue(args), sessionId: session.value?.sessionId })),
     {
       ssr: options.ssr,
       enabled: computed(() => {
         let enabled = unref(options.enabled);
         if (enabled === undefined) enabled = true;
 
-        return !!(enabled && sessionId.value);
+        return !!(enabled && session.value?.sessionId);
       })
     }
   );
+
+  watchEffect(() => {
+    const { error } = result;
+
+    if (error.value instanceof ConvexError) {
+      if (
+        isObject(error.value.data) &&
+        'code' in error.value.data &&
+        error.value.data.code === 'INVALID_SESSION'
+      ) {
+        session.value = null;
+        navigateTo({ name: 'Login' });
+      }
+    }
+  });
+  return result;
 };
 
 export type MutationReference = FunctionReference<'mutation'>;
@@ -107,6 +131,7 @@ export function useConvexMutation<Mutation extends MutationReference>(
 
   const isLoading = ref(false);
   const error = ref<Nullable<Error>>();
+  const session = useSession();
 
   return {
     isLoading,
@@ -119,6 +144,12 @@ export function useConvexMutation<Mutation extends MutationReference>(
         return result;
       } catch (err) {
         error.value = err as Error;
+        if (err instanceof ConvexError) {
+          if (isObject(err.data) && 'code' in err && err.code === 'INVALID_SESSION') {
+            session.value = null;
+            navigateTo({ name: 'Login' });
+          }
+        }
         onError?.(error.value);
       } finally {
         isLoading.value = false;

@@ -67,7 +67,7 @@ export const f2General: CardBlueprint = {
               })
             );
 
-            return skill.caster.dealDamage(2, target);
+            return skill.caster.dealDamage(1, target);
           })
         );
       }

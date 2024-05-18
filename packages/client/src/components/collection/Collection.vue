@@ -17,8 +17,7 @@ const emit = defineEmits<{
   toggle: [card: CardBlueprint];
 }>();
 
-const assets = useAssetsProvider();
-assets.load();
+const assets = useAssets();
 </script>
 
 <template>

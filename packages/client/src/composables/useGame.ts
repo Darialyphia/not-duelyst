@@ -79,7 +79,7 @@ export const useGameProvider = ({
 }) => {
   const ui = useGameUiProvider(session);
   const camera = useIsoCameraProvider();
-  const assets = useAssetsProvider();
+  const assets = useAssets();
   const pathfinding = usePathfindingProvider(session, ui);
   const fx = useFX();
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { api } from '@game/api';
+
 definePageMeta({
   middleware: ['public'],
   name: 'Login',
@@ -9,30 +11,12 @@ const formData = reactive({
   email: '',
   password: ''
 });
-const sessionId = useSessionId();
 
-const error = ref<string>('');
-const isLoading = ref(false);
-const onSubmit = async () => {
-  try {
-    isLoading.value = true;
-    error.value = '';
-
-    sessionId.value = await $fetch('/api/signin', {
-      method: 'POST',
-      body: formData
-    });
-    navigateTo({ name: 'ClientHome' });
-  } catch (err) {
-    error.value = (err as any).statusMessage;
-  } finally {
-    isLoading.value = false;
-  }
-};
+const { isLoading, mutate: login, error } = useSignIn();
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
+  <form @submit.prevent="login({ ...formData, sessionId: null })">
     <h2 class="mb-4">Login</h2>
     <label>E-mail address</label>
     <input v-model="formData.email" type="email" />
@@ -45,7 +29,7 @@ const onSubmit = async () => {
       <p v-if="error" class="color-red-5 mt-2">{{ error }}</p>
     </Transition>
     <span>OR</span>
-    <NuxtLink custom :to="{ name: 'SignUp' }" v-slot="{ href, navigate }">
+    <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'SignUp' }">
       <UiButton
         :is-loading="isLoading"
         is-cta

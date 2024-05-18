@@ -28,7 +28,7 @@
   --color-link-hsl: var(--violet-7-hsl);
 }
 
-/* Theme color Dark mode overrideq */
+/* Theme color Dark mode override */
 html.dark {
   --color-text-1-hsl: var(--gray-3-hsl);
   --color-text-2-hsl: var(--gray-5-hsl);

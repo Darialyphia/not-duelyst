@@ -16,9 +16,6 @@ import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
-import sky1 from '@/assets/backgrounds/sky-1.png';
-import sky2 from '@/assets/backgrounds/sky-2.png';
-import sky4 from '@/assets/backgrounds/sky-4.png';
 import { api } from '@game/api';
 
 const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
@@ -42,8 +39,6 @@ const game = useGameProvider({
 
 const { data: settings } = useConvexAuthedQuery(api.users.settings, {});
 
-// const { ui, assets } = game;
-
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
 gsap.registerPlugin(MotionPathPlugin);
@@ -60,6 +55,7 @@ const cursors = {
 
 const canvas = ref<HTMLCanvasElement>();
 const ready = ref(false);
+const assets = useAssets();
 onMounted(async () => {
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
@@ -90,7 +86,7 @@ onMounted(async () => {
   const app = createApp(GameView);
   app.provide(appInjectKey, pixiApp);
   app.provide(GAME_INJECTION_KEY, game);
-  app.provide(ASSETS_INJECTION_KEY, game.assets);
+  app.provide(ASSETS_INJECTION_KEY, assets);
   const { appContext } = getCurrentInstance()!;
 
   const parent = appContext?.app;
@@ -98,7 +94,7 @@ onMounted(async () => {
   Object.assign(app._context.provides, parent._context.provides);
 
   gameSession.onReady(async () => {
-    await game.assets.load();
+    await until(assets.loaded).toBe(true);
     // we only load the spritesheets we need for the cards because there are way too many of them !
     await Promise.all(
       [
@@ -119,8 +115,6 @@ onMounted(async () => {
     app.mount(pixiApp.stage);
   });
 });
-
-const bg = computed(() => `url(${sky4}), url(${sky2}), url(${sky1})`);
 </script>
 
 <template>
@@ -146,21 +140,6 @@ const bg = computed(() => `url(${sky4}), url(${sky2}), url(${sky1})`);
   color: var(--gray-0);
 
   perspective: 1200px;
-
-  image-rendering: pixelated;
-}
-
-.background {
-  pointer-events: none;
-
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-
-  background: v-bind(bg);
-  background-repeat: repeat-x;
-  background-position-y: bottom;
-  background-size: cover;
 
   image-rendering: pixelated;
 }

@@ -16,8 +16,7 @@ if (matchmakingUser) {
   inc(matchmakingUser.timeElapsed);
 }
 
-const assets = useAssetsProvider();
-assets.load();
+const assets = useAssets();
 
 const {
   pause,
