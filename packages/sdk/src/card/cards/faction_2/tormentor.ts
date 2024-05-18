@@ -9,13 +9,13 @@ import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { cone, isAxisAligned, isWithinCells } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
-import { fury } from '../../../modifier/modifier-utils';
+import { fury, rooted } from '../../../modifier/modifier-utils';
 
 export const f2Tormentor: CardBlueprint = {
   id: 'f2_tormentor',
   name: 'F2 Tormentor',
   description:
-    '@Fury@.\n@Call to Arms@: Select an enemy minion and move it in front of this unit.',
+    '@Fury@.\n@Call to Arms@: Select an enemy minion and move it in front of this unit, then root it for one turn.',
   collectable: true,
   rarity: RARITIES.RARE,
   factions: [FACTIONS.F2, null, null],
@@ -54,6 +54,7 @@ export const f2Tormentor: CardBlueprint = {
     if (!cell) return;
     if (!cell.canSummonAt) return;
     await target.move([cell], true);
+    target.addModifier(rooted({ source: entity, duration: 1 }));
   },
   skills: []
 };

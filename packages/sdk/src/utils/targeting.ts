@@ -1,8 +1,16 @@
-import { Vec3, isDefined, isNumber, type Nullable, type Point3D } from '@game/shared';
+import {
+  Vec3,
+  isDefined,
+  isNumber,
+  type Nullable,
+  type Point,
+  type Point3D
+} from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { Cell } from '../board/cell';
 import { isAlly, isEnemy } from '../entity/entity-utils';
+import { match } from 'ts-pattern';
 
 export const isAxisAligned = (pointA: Point3D, pointB: Point3D) => {
   return pointA.x === pointB.x || pointA.y === pointB.y;
@@ -94,4 +102,76 @@ export const getAffectedEntities = (cells: Cell[]) =>
 export const isCastPoint = (point: Point3D, castPoints: Array<Nullable<Point3D>>) => {
   const vec = Vec3.fromPoint3D(point);
   return castPoints.some(p => p && vec.equals(p));
+};
+
+export type Direction = 'up' | 'down' | 'left' | 'right';
+export const getDirection = (origin: Point3D, point: Point3D): Direction => {
+  if (origin.x === point.x) {
+    return point.y > origin.y ? 'down' : 'up';
+  } else {
+    return point.x > origin.x ? 'right' : 'left';
+  }
+};
+
+export const getNearestEntity = (
+  session: GameSession,
+  direction: 'up' | 'down' | 'left' | 'right',
+  point: Point3D
+) => {
+  let found: Entity | null = null;
+  let n = 0;
+  while (!found) {
+    n++;
+    const newPoint: Point3D = match(direction)
+      .with('up', () => {
+        return { ...point, y: point.y - n };
+      })
+      .with('down', () => {
+        return { ...point, y: point.y + n };
+      })
+      .with('left', () => {
+        return { ...point, x: point.x - n };
+      })
+      .with('right', () => {
+        return { ...point, x: point.x + n };
+      })
+      .exhaustive();
+    const cell = session.boardSystem.getCellAt(newPoint);
+    if (!cell) break;
+    found = cell.entity;
+  }
+
+  return found;
+};
+
+export const getFarthestWalkable = (
+  session: GameSession,
+  direction: 'up' | 'down' | 'left' | 'right',
+  point: Point3D
+) => {
+  let found: Cell | null = null;
+  let n = 0;
+  do {
+    n++;
+    const newPoint: Point3D = match(direction)
+      .with('up', () => {
+        return { ...point, y: point.y - n };
+      })
+      .with('down', () => {
+        return { ...point, y: point.y + n };
+      })
+      .with('left', () => {
+        return { ...point, x: point.x - n };
+      })
+      .with('right', () => {
+        return { ...point, x: point.x + n };
+      })
+      .exhaustive();
+    const cell = session.boardSystem.getCellAt(newPoint);
+    if (!cell) break;
+    if (!cell.isWalkable || cell.entity) break;
+    found = cell;
+  } while (found);
+
+  return found;
 };

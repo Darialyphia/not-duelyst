@@ -30,7 +30,7 @@ export const f2General: CardBlueprint = {
     {
       id: 'f2_general_skill1',
       name: 'Bloodlust',
-      description: 'Deal 1 damage to a minion and give it +2 Attack.',
+      description: 'Deal 1 damage to a minion and give it +1 Attack.',
       initialCooldown: 0,
       cooldown: 4,
       iconId: 'bloodlust',
@@ -61,7 +61,7 @@ export const f2General: CardBlueprint = {
                   modifierEntityInterceptorMixin({
                     key: 'attack',
                     keywords: [],
-                    interceptor: () => val => val + 2
+                    interceptor: () => val => val + 1
                   })
                 ]
               })

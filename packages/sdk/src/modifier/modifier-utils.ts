@@ -253,7 +253,7 @@ export const taunted = ({
       modifierEntityDurationMixin({
         keywords: [KEYWORDS.TAUNTED],
         duration,
-        tickOn: 'end',
+        tickOn: 'start',
         onApplied(session, attachedTo, modifier) {
           attachedTo.addInterceptor('canMove', moveInterceptor);
           attachedTo.addInterceptor('canUseSkill', skillInterceptor);
@@ -613,7 +613,7 @@ export const elusive = ({
     mixins: [
       modifierEntityInterceptorMixin({
         key: 'damageTaken',
-        keywords: [KEYWORDS.SURGE],
+        keywords: [KEYWORDS.ELUSIVE],
         priority: INTERCEPTOR_PRIORITIES.FINAL,
         interceptor:
           modifier =>

@@ -86,7 +86,7 @@ export const f1General: CardBlueprint = {
           pedestalId: skill.caster.card.pedestalId
         });
 
-        const entity = await card.play({
+        await card.play({
           position: castPoints[0],
           targets: []
         });

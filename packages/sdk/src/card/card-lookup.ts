@@ -29,6 +29,7 @@ import { f2DamnedSouls } from './cards/faction_2/damned-souls';
 import { f2MoltenFist } from './cards/faction_2/molten-fist';
 import { f2Ravager } from './cards/faction_2/ravager';
 import { f2General } from './cards/faction_2/general';
+import { f2Imp } from './cards/faction_2/imp';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -46,6 +47,7 @@ const allCards: CardBlueprint[] = [
   f1Simurgh,
 
   f2General,
+  f2Imp,
   f2DoomSayer,
   f2Tormentor,
   f2DamnedSouls,

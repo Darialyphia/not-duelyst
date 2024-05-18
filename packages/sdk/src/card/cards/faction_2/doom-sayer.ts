@@ -36,11 +36,11 @@ export const f2DoomSayer: CardBlueprint = {
       id: 'f2_doomsayer_skill1',
       name: 'F2 Doomsayer Skill 1',
       description: 'Gain @Surge(1)@.',
-      initialCooldown: 0,
+      initialCooldown: 2,
       cooldown: 3,
       iconId: 'focus',
       minTargetCount: 1,
-      maxTargetCount: 2,
+      maxTargetCount: 1,
       isTargetable(point, { skill, session }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },

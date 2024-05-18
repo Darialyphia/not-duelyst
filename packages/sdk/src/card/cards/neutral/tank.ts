@@ -23,7 +23,7 @@ export const neutralTank: CardBlueprint = {
   range: 1,
   onPlay({ entity, session }) {
     session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
-      entity.addModifier(taunted({ duration: 1, source: entity }));
+      enemy.addModifier(taunted({ duration: 1, source: entity }));
     });
   },
   skills: [

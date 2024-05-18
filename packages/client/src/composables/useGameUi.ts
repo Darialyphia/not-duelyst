@@ -237,6 +237,11 @@ export const useGameUiProvider = (session: GameSession) => {
   };
   provide(GAME_UI_INJECTION_KEY, api);
 
+  session.on('player:turn_end', () => {
+    api.unselectEntity();
+    api.unselectCard();
+    api.unselectSkill();
+  });
   return api;
 };
 
