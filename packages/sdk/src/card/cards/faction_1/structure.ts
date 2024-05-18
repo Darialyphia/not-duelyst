@@ -1,5 +1,4 @@
 import { Vec3 } from '@game/shared';
-import { isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { aura, structure, surge } from '../../../modifier/modifier-utils';
@@ -84,8 +83,6 @@ export const f1Structure: CardBlueprint = {
         }
       },
       onUse({ castPoints, affectedCells, skill }) {
-        console.log(castPoints[0]);
-        console.log(affectedCells);
         getAffectedEntities(affectedCells).forEach(entity => {
           skill.caster.dealDamage(2, entity);
         });

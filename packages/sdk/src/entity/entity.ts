@@ -452,7 +452,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       source
     };
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
-
     const bloodFx = this.session.rngSystem.nextInt(4);
     await Promise.all([
       this.session.fxSystem.playSfxOnEntity(this.id, {
@@ -471,7 +470,9 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
         totalDuration: 0.3
       })
     ]);
+    console.log('take damate animation end');
 
+    console.log(this.currentHp.value - amount);
     this.hp = this.currentHp.value - amount;
     this.emit(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
   }

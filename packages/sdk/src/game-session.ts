@@ -6,11 +6,10 @@ import {
   ENTITY_EVENTS,
   type EntityEvent,
   type EntityEventMap,
-  type EntityId,
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Nullable, Prettify } from '@game/shared';
+import type { Prettify } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,
@@ -110,7 +109,9 @@ export class GameSession extends EventEmitter<GameEventMap> {
       'game:action',
       'game:ready'
     ].forEach(eventName => {
-      this.on(eventName as any, () => {
+      this.on(eventName as any, (payload: any) => {
+        // console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b', payload);
+
         this.emit('*', eventName);
       });
     });

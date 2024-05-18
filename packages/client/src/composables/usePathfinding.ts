@@ -37,6 +37,7 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
       return session.boardSystem.getPathTo(entity, to, maxDistance)?.path;
     },
     canMoveTo(entity, point) {
+      if (!entity) return false;
       if (!cache.has(entity.id)) {
         const dm = session.boardSystem.getDistanceMap(entity.position, entity.speed);
         if (!dm) return false;

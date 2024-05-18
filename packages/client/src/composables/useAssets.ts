@@ -83,6 +83,7 @@ export const useAssetsProvider = () => {
   };
 
   const load = async () => {
+    if (loaded.value) return;
     await init();
     await Promise.all([
       Assets.loadBundle('tiles'),

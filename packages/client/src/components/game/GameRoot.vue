@@ -118,9 +118,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="pixi-app-container">
+  <div class="pixi-app-container" @contextmenu.prevent>
     <!-- <div class="background" /> -->
-    <canvas ref="canvas" @contextmenu.prevent />
+    <canvas ref="canvas" />
     <GameUi v-if="ready" />
   </div>
 </template>
