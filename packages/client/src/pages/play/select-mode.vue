@@ -15,33 +15,45 @@ definePageMeta({
       <h1 class="text-5">Select game mode</h1>
     </header>
 
-    <div class="mode">
-      <NuxtLink :to="{ name: 'Tutorial' }">
-        <div class="fancy-surface">
-          <h2>Tutorial</h2>
-          <p>Learn how to play the game.</p>
+    <Sound sound="button-hover" :triggers="['mouseenter']">
+      <Sound sound="button-click" :triggers="['mousedown']">
+        <div class="mode">
+          <NuxtLink :to="{ name: 'Tutorial' }">
+            <div class="fancy-surface">
+              <h2>Tutorial</h2>
+              <p>Learn how to play the game.</p>
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
-    </div>
+      </Sound>
+    </Sound>
 
-    <div class="mode">
-      <NuxtLink :to="{ name: 'Matchmaking' }">
-        <div class="fancy-surface">
-          <h2>Ranked</h2>
-          <p>Play against another player.</p>
+    <Sound sound="button-hover" :triggers="['mouseenter']">
+      <Sound sound="button-click" :triggers="['mousedown']">
+        <div class="mode">
+          <NuxtLink :to="{ name: 'Matchmaking' }">
+            <div class="fancy-surface">
+              <h2>Ranked</h2>
+              <p>Play against another player.</p>
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
-    </div>
+      </Sound>
+    </Sound>
 
-    <div class="mode">
-      <NuxtLink :to="{ name: 'Sandbox' }" @click.prevent>
-        <div class="fancy-surface">
-          <h2>Sandbox</h2>
+    <Sound sound="button-hover" :triggers="['mouseenter']">
+      <Sound sound="button-click" :triggers="['mousedown']">
+        <div class="mode">
+          <NuxtLink :to="{ name: 'Sandbox' }" @click.prevent>
+            <div class="fancy-surface">
+              <h2>Sandbox</h2>
 
-          <p>Play a practice game where you control both players.</p>
+              <p>Play a practice game where you control both players.</p>
+            </div>
+          </NuxtLink>
         </div>
-      </NuxtLink>
-    </div>
+      </Sound>
+    </Sound>
   </div>
 </template>
 

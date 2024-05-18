@@ -15,31 +15,39 @@ const hoveredIndex = ref<number | null>(null);
 <template>
   <UiTooltip :side-offset="30" :delay="100">
     <template #trigger>
-      <button
-        class="card-button"
-        :class="[
-          card && card?.blueprint.kind.toLowerCase(),
-          {
-            selected: card && ui.selectedCard.value === card,
-            'cost-debuf': card && card.cost > card.blueprint.cost,
-            'cost-buff': card && card.cost < card.blueprint.cost
-          }
-        ]"
-        :style="{
-          '--cooldown-angle': 360 - (360 * card.currentCooldown) / card.cooldown
-        }"
-        :disabled="!card || !player.canPlayCardAtIndex(index)"
-        :data-cost="card && card.cost"
-        :data-remaining-cooldown="
-          card && card.currentCooldown > 0 ? card.currentCooldown : undefined
-        "
-        @contextmenu.prevent="ui.highlightedCard.value = card"
-        @click="ui.selectCardAtIndex(index)"
-        @mouseenter="hoveredIndex = index"
-        @mouseleave="hoveredIndex = null"
-      >
-        <AnimatedCardIcon v-if="card" :sprite-id="card.blueprint.spriteId" class="icon" />
-      </button>
+      <Sound sound="button-hover" :triggers="['mouseenter']">
+        <Sound sound="button-click" :triggers="['mousedown']">
+          <button
+            class="card-button"
+            :class="[
+              card && card?.blueprint.kind.toLowerCase(),
+              {
+                selected: card && ui.selectedCard.value === card,
+                'cost-debuf': card && card.cost > card.blueprint.cost,
+                'cost-buff': card && card.cost < card.blueprint.cost
+              }
+            ]"
+            :style="{
+              '--cooldown-angle': 360 - (360 * card.currentCooldown) / card.cooldown
+            }"
+            :disabled="!card || !player.canPlayCardAtIndex(index)"
+            :data-cost="card && card.cost"
+            :data-remaining-cooldown="
+              card && card.currentCooldown > 0 ? card.currentCooldown : undefined
+            "
+            @contextmenu.prevent="ui.highlightedCard.value = card"
+            @click="ui.selectCardAtIndex(index)"
+            @mouseenter="hoveredIndex = index"
+            @mouseleave="hoveredIndex = null"
+          >
+            <AnimatedCardIcon
+              v-if="card"
+              :sprite-id="card.blueprint.spriteId"
+              class="icon"
+            />
+          </button>
+        </Sound>
+      </Sound>
     </template>
 
     <Card

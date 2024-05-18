@@ -7,10 +7,14 @@ const { to = { name: 'ClientHome' }, ...props } = defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="to" v-bind="props">
-    <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
-    Go Back
-  </NuxtLink>
+  <Sound sound="button-hover" :triggers="['mouseenter']">
+    <Sound sound="button-click" :triggers="['mousedown']">
+      <NuxtLink :to="to" v-bind="props">
+        <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
+        Go Back
+      </NuxtLink>
+    </Sound>
+  </Sound>
 </template>
 
 <style scoped lang="postcss">

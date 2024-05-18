@@ -25,11 +25,41 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
   <div class="page">
     <nav>
       <ul class="grid gap-2">
-        <li><NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink></li>
-        <li><NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink></li>
-        <li><NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink></li>
-        <li><button @click="isSettingsOpened = true">Settings</button></li>
-        <li><button @click="signOff({})">Sign Off</button></li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink>
+            </Sound>
+          </Sound>
+        </li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink>
+            </Sound>
+          </Sound>
+        </li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
+            </Sound>
+          </Sound>
+        </li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <button @click="isSettingsOpened = true">Settings</button>
+            </Sound>
+          </Sound>
+        </li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <button @click="signOff({})">Sign Off</button>
+            </Sound>
+          </Sound>
+        </li>
       </ul>
     </nav>
     <UiModal

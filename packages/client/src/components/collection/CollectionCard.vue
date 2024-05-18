@@ -53,40 +53,42 @@ const keywords = computed(() => {
 
 <template>
   <div class="perspective-wrapper" :class="settings.ui.cardsWith3D && '3d'">
-    <Card
-      ref="rootEl"
-      has-modal
-      :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
-      class="collection-card"
-      :class="{
-        used: isEditingLoadout && isInLoadout,
-        disabled: isDisabled
-      }"
-      :style="{
-        '--rotate-y': settings.ui.cardsWith3D ? angle.x.toFixed(2) : 0,
-        '--rotate-x': settings.ui.cardsWith3D ? angle.y.toFixed(2) : 0
-      }"
-      :card="{
-        blueprintId: card.card.id,
-        name: card.card.name,
-        description: card.card.description,
-        kind: card.card.kind,
-        spriteId: card.card.spriteId,
-        rarity: card.card.rarity,
-        attack: card.card.attack,
-        hp: card.card.maxHp,
-        speed: card.card.speed,
-        cost: card.card.cost,
-        cooldown: card.card.cooldown,
-        skills: card.card.skills,
-        factions: card.card.factions,
-        keywords: keywords,
-        tribes: card.card.tribes ?? []
-      }"
-      @mousemove="onMousemove"
-      @click="emit('click')"
-      @keyup.enter="emit('click')"
-    />
+    <Sound sound="button-hover" :triggers="['mouseenter']">
+      <Card
+        ref="rootEl"
+        has-modal
+        :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
+        class="collection-card"
+        :class="{
+          used: isEditingLoadout && isInLoadout,
+          disabled: isDisabled
+        }"
+        :style="{
+          '--rotate-y': settings.ui.cardsWith3D ? angle.x.toFixed(2) : 0,
+          '--rotate-x': settings.ui.cardsWith3D ? angle.y.toFixed(2) : 0
+        }"
+        :card="{
+          blueprintId: card.card.id,
+          name: card.card.name,
+          description: card.card.description,
+          kind: card.card.kind,
+          spriteId: card.card.spriteId,
+          rarity: card.card.rarity,
+          attack: card.card.attack,
+          hp: card.card.maxHp,
+          speed: card.card.speed,
+          cost: card.card.cost,
+          cooldown: card.card.cooldown,
+          skills: card.card.skills,
+          factions: card.card.factions,
+          keywords: keywords,
+          tribes: card.card.tribes ?? []
+        }"
+        @mousemove="onMousemove"
+        @click="emit('click')"
+        @keyup.enter="emit('click')"
+      />
+    </Sound>
   </div>
 </template>
 

@@ -12,6 +12,7 @@ const { cellId } = defineProps<{ cellId: CellId }>();
 const { camera, ui, dispatch, pathfinding, fx, session } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+const userSettings = useUserSettings();
 
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,
@@ -39,8 +40,18 @@ const isSkillTargetable = computed(() => {
   });
 });
 
+const pointerenterSound = useSound(
+  computed(() => `/assets/sfx/button-hover.mp3`),
+  { volume: userSettings.value.sound.sfxVolume[0] / 100 }
+);
+const pointerupSound = useSound(
+  computed(() => `/assets/sfx/button-click.mp3`),
+  { volume: userSettings.value.sound.sfxVolume[0] / 100 }
+);
+
 const move = () => {
   if (pathfinding.canMoveTo(ui.selectedEntity.value!, cell.value)) {
+    pointerupSound.play();
     dispatch('move', {
       entityId: ui.selectedEntity.value!.id,
       position: cell.value.position
@@ -51,6 +62,7 @@ const move = () => {
 const attack = () => {
   if (!cell.value.entity) return;
 
+  pointerupSound.play();
   if (cell.value.entity.player.equals(activePlayer.value)) {
     ui.selectEntity(cell.value.entity.id);
   } else if (ui.selectedEntity.value!.canAttack(cell.value.entity)) {
@@ -69,6 +81,7 @@ const summon = () => {
   } else if (ui.selectedCard.value.blueprint.followup) {
     ui.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
   } else {
+    pointerupSound.play();
     dispatch('playCard', {
       cardIndex: ui.selectedCardIndex.value!,
       position: ui.summonTarget.value!,
@@ -100,6 +113,9 @@ const highlightTarget = () => {
         @pointerenter="
           () => {
             ui.hoverAt(cell.position);
+            if (cell.entity || cell.tile) {
+              pointerenterSound.play();
+            }
             if (!isActivePlayer) return;
             match(ui.targetingMode.value)
               .with(
@@ -172,17 +188,20 @@ const highlightTarget = () => {
                 if (!ui.selectedCard.value) return;
                 if (isFollowupTargetable) {
                   ui.followupTargets.value.push(cell.position);
+                  pointerupSound.play();
                 }
               })
               .with(TARGETING_MODES.SKILL, () => {
                 if (!ui.selectedSkill.value) return;
                 if (isSkillTargetable) {
                   ui.skillTargets.value.push(cell.position);
+                  pointerupSound.play();
                 }
               })
               .with(TARGETING_MODES.NONE, () => {
                 if (cell.entity?.player.equals(activePlayer)) {
                   ui.selectEntity(cell.entity.id);
+                  pointerupSound.play();
                 }
               })
               .exhaustive();

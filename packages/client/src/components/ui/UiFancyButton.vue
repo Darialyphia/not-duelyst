@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineOptions({ inheritAttrs: false });
+
 export type ButtonProps = {
   leftIcon?: string;
   rightIcon?: string;
@@ -25,23 +27,28 @@ const tag = computed(() => {
 </script>
 
 <template>
-  <component
-    :is="tag"
-    class="ui-fancy-button"
-    :class="{
-      'is-inline': isInline,
-      'is-cta': isCta,
-      'is-loading': isLoading
-    }"
-    :disabled="attrs.disabled || isLoading"
-  >
-    <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
+  <Sound sound="button-hover" :triggers="['mouseenter']">
+    <Sound sound="button-click" :triggers="['mousedown']">
+      <component
+        :is="tag"
+        class="ui-fancy-button"
+        :class="{
+          'is-inline': isInline,
+          'is-cta': isCta,
+          'is-loading': isLoading
+        }"
+        :disabled="attrs.disabled || isLoading"
+        v-bind="attrs"
+      >
+        <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
 
-    <!-- <UiSpinner v-if="isLoading" /> -->
-    <slot />
+        <!-- <UiSpinner v-if="isLoading" /> -->
+        <slot />
 
-    <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
-  </component>
+        <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
+      </component>
+    </Sound>
+  </Sound>
 </template>
 
 <style scoped lang="postcss">

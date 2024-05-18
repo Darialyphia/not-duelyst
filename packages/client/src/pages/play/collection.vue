@@ -63,65 +63,71 @@ const editLoadout = (loadout: LoadoutDto) => {
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
     <CollectionHeader v-model:filter="factionFilter" />
 
-    <ClientOnly>
-      <template #fallback>Loading Collection...</template>
+    <section class="card-list fancy-scrollbar pb-5">
+      <CollectionCard
+        v-for="item in displayedCards"
+        :key="item._id"
+        :card="item"
+        :is-in-loadout="!!isInLoadout(item.cardId)"
+        :is-editing-loadout="sidebarView === 'form'"
+        :can-add-to-loadout="canAddToLoadout(item.cardId)"
+        @click="toggleLoadoutCard(item.card)"
+      />
+    </section>
+    <section class="sidebar">
+      <template v-if="sidebarView === 'form'">
+        <LoadoutForm
+          v-if="formValues"
+          v-model:name="formValues.name"
+          :cards="formValues.cards"
+          :is-saving="isSaving"
+          @back="sidebarView = 'list'"
+          @save="save"
+          @toggle-unit="toggleLoadoutCard($event)"
+          @set-pedestal="
+            ({ id, pedestalId }) => {
+              formValues!.cards.find(c => c.id === id)!.pedestalId = pedestalId;
+            }
+          "
+        />
+      </template>
 
-      <Collection
-        :cards="displayedCards"
-        :is-in-loadout="isInLoadout"
-        :can-add-to-loadout="canAddToLoadout"
-        :is-editing="sidebarView === 'form'"
-        @toggle="toggleLoadoutCard($event)"
-      >
-        <template #sidebar>
-          <template v-if="sidebarView === 'form'">
-            <LoadoutForm
-              v-if="formValues"
-              v-model:name="formValues.name"
-              :cards="formValues.cards"
-              :is-saving="isSaving"
-              @back="sidebarView = 'list'"
-              @save="save"
-              @toggle-unit="toggleLoadoutCard($event)"
-              @set-pedestal="
-                ({ id, pedestalId }) => {
-                  formValues!.cards.find(c => c.id === id)!.pedestalId = pedestalId;
-                }
-              "
-            />
-          </template>
+      <template v-else>
+        <ul v-if="loadouts" v-auto-animate>
+          <Sound
+            v-for="loadout in loadouts"
+            :key="loadout._id"
+            sound="button-hover"
+            :triggers="['mouseenter']"
+          >
+            <li class="m-2 relative">
+              <CollectionLoadoutCard
+                :loadout="loadout"
+                @edit="editLoadout(loadout)"
+                @delete="loadoutToDelete = loadout"
+              />
+            </li>
+          </Sound>
+        </ul>
 
-          <template v-else>
-            <ul v-if="loadouts" v-auto-animate>
-              <li v-for="loadout in loadouts" :key="loadout._id" class="m-2 relative">
-                <CollectionLoadoutCard
-                  :loadout="loadout"
-                  @edit="editLoadout(loadout)"
-                  @delete="loadoutToDelete = loadout"
-                />
-              </li>
-            </ul>
+        <p v-if="!loadouts.length" class="py-3 text-center">
+          You don't have any loadout yet
+        </p>
 
-            <p v-if="!loadouts.length" class="py-3 text-center">
-              You don't have any loadout yet
-            </p>
-
-            <UiFancyButton
-              class="primary-button mx-auto"
-              left-icon="material-symbols:add"
-              @click="
-                () => {
-                  initEmpty();
-                  sidebarView = 'form';
-                }
-              "
-            >
-              Create new Loadout
-            </UiFancyButton>
-          </template>
-        </template>
-      </Collection>
-    </ClientOnly>
+        <UiFancyButton
+          class="primary-button mx-auto"
+          left-icon="material-symbols:add"
+          @click="
+            () => {
+              initEmpty();
+              sidebarView = 'form';
+            }
+          "
+        >
+          Create new Loadout
+        </UiFancyButton>
+      </template>
+    </section>
   </div>
 </template>
 
@@ -158,5 +164,42 @@ const editLoadout = (loadout: LoadoutDto) => {
 .loader {
   display: grid;
   place-content: center;
+}
+
+.card-list {
+  scroll-snap-type: y mandatory;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  row-gap: var(--size-6);
+  column-gap: var(--size-4);
+  justify-items: center;
+
+  padding-block-start: var(--size-3);
+  padding-inline: var(--size-4);
+
+  border-radius: var(--radius-2);
+
+  > * {
+    scroll-margin-block-start: var(--size-4);
+    scroll-snap-align: start;
+  }
+}
+
+.sidebar {
+  will-change: transform;
+
+  grid-column: 2;
+  grid-row: 1 / -1;
+
+  background: var(--fancy-bg);
+  background-blend-mode: overlay;
+  border-left: var(--fancy-border);
+
+  transition: transform 0.7s;
+  transition-delay: 0.3s;
+  transition-timing-function: var(--ease-bounce-1);
 }
 </style>

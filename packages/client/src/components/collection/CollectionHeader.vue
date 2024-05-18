@@ -10,23 +10,28 @@ const filter = defineModel<Faction | null>('filter', { required: true });
   <header class="fancy-surface border-none">
     <BackButton class="flex-self-center" />
     <div class="flex gap-2">
-      <button
+      <Sound
         v-for="faction in factions"
         :key="faction.id"
-        :class="filter?.equals(faction) && 'active'"
-        @click="
-          () => {
-            if (filter?.equals(faction)) {
-              filter = null;
-            } else {
-              filter = faction;
-            }
-          }
-        "
+        sound="button-hover"
+        :triggers="['mouseenter']"
       >
-        <img :src="`/assets/ui/rune-${faction.id.toLocaleLowerCase()}.png`" />
-        {{ faction.name }}
-      </button>
+        <button
+          :class="filter?.equals(faction) && 'active'"
+          @click="
+            () => {
+              if (filter?.equals(faction)) {
+                filter = null;
+              } else {
+                filter = faction;
+              }
+            }
+          "
+        >
+          <img :src="`/assets/ui/rune-${faction.id.toLocaleLowerCase()}.png`" />
+          {{ faction.name }}
+        </button>
+      </Sound>
     </div>
   </header>
 </template>

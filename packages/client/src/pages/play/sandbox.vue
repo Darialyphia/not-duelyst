@@ -17,17 +17,11 @@ const sandboxOptions = ref<{
 
 <template>
   <div class="page">
-    <ClientOnly>
-      <SandboxGame
-        v-bind="sandboxOptions"
-        v-if="sandboxOptions?.player1Loadout && sandboxOptions.player2Loadout"
-      />
-      <SandboxForm v-else @submit="sandboxOptions = $event" />
-
-      <template #fallback>
-        <div class="overflow-hidden h-screen" style="background: black"></div>
-      </template>
-    </ClientOnly>
+    <SandboxGame
+      v-if="sandboxOptions?.player1Loadout && sandboxOptions.player2Loadout"
+      v-bind="sandboxOptions"
+    />
+    <SandboxForm v-else @submit="sandboxOptions = $event" />
   </div>
 </template>
 

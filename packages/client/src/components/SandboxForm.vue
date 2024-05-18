@@ -43,31 +43,49 @@ const assets = useAssets();
         <fieldset class="fancy-surface player-loadout">
           <legend>Player 1 loadout</legend>
           <div>
-            <label v-for="loadout in loadouts" :key="loadout._id" class="cursor-pointer">
-              <LoadoutCard :loadout="loadout" />
-              <input
-                v-model="form.player1Loadout"
-                name="playr-1-loadout"
-                type="radio"
-                :value="loadout"
-                class="sr-only"
-              />
-            </label>
+            <Sound
+              v-for="loadout in loadouts"
+              :key="loadout._id"
+              sound="button-hover"
+              :triggers="['mouseenter']"
+            >
+              <Sound sound="button-click" :triggers="['mousedown']">
+                <label class="cursor-pointer">
+                  <LoadoutCard :loadout="loadout" />
+                  <input
+                    v-model="form.player1Loadout"
+                    name="playr-1-loadout"
+                    type="radio"
+                    :value="loadout"
+                    class="sr-only"
+                  />
+                </label>
+              </Sound>
+            </Sound>
           </div>
         </fieldset>
         <fieldset class="fancy-surface player-loadout">
           <legend>Player 2 loadout</legend>
           <div>
-            <label v-for="loadout in loadouts" :key="loadout._id" class="cursor-pointer">
-              <LoadoutCard :loadout="loadout" />
-              <input
-                v-model="form.player2Loadout"
-                name="playr-2-loadout"
-                type="radio"
-                :value="loadout"
-                class="sr-only"
-              />
-            </label>
+            <Sound
+              v-for="loadout in loadouts"
+              :key="loadout._id"
+              sound="button-hover"
+              :triggers="['mouseenter']"
+            >
+              <Sound sound="button-click" :triggers="['mousedown']">
+                <label class="cursor-pointer">
+                  <LoadoutCard :loadout="loadout" />
+                  <input
+                    v-model="form.player2Loadout"
+                    name="playr-2-loadout"
+                    type="radio"
+                    :value="loadout"
+                    class="sr-only"
+                  />
+                </label>
+              </Sound>
+            </Sound>
           </div>
         </fieldset>
       </div>

@@ -29,6 +29,7 @@ const cancel = () => {
     })
     .exhaustive();
 };
+
 const commitSummon = () => {
   dispatch('playCard', {
     cardIndex: ui.selectedCardIndex.value!,

@@ -1,15 +1,7 @@
-import {
-  Vec3,
-  isDefined,
-  isNumber,
-  type Nullable,
-  type Point,
-  type Point3D
-} from '@game/shared';
+import { Vec3, isDefined, isNumber, type Nullable, type Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { Cell } from '../board/cell';
-import { isAlly, isEnemy } from '../entity/entity-utils';
 import { match } from 'ts-pattern';
 
 export const isAxisAligned = (pointA: Point3D, pointB: Point3D) => {
