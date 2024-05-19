@@ -4,6 +4,8 @@ import type { QueryCtx } from '../_generated/server';
 import { GAME_STATUS } from './game.constants';
 import { toUserDto } from '../users/user.mapper';
 import type { Game } from './game.entity';
+import { config } from '@game/sdk/src/config';
+import { parse } from 'zipson';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -98,4 +100,53 @@ export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game)
       };
     })
   );
+};
+
+export const getReplayInitialState = async (
+  { db }: { db: QueryCtx['db'] },
+  game: Game
+) => {
+  const players = (await getGamePlayers({ db }, game)).sort(a =>
+    a._id === game.firstPlayer ? -1 : 1
+  );
+
+  const map = await db.get(game.mapId);
+
+  const initialState = {
+    history: [],
+    entities: [],
+    players: [
+      {
+        id: players[0]._id,
+        isPlayer1: true,
+        name: players[0].name,
+        currentGold: config.PLAYER_1_STARTING_GOLD,
+        maxGold: config.PLAYER_1_STARTING_GOLD,
+        cards: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
+          pedestalId,
+          blueprintId: id
+        })),
+        graveyard: []
+      },
+      {
+        id: players[1]._id,
+        isPlayer1: false,
+        name: players[1].name,
+        currentGold: config.PLAYER_1_STARTING_GOLD,
+        maxGold: config.PLAYER_1_STARTING_GOLD,
+        cards: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
+          pedestalId,
+          blueprintId: id
+        })),
+        graveyard: []
+      }
+    ],
+    map: {
+      width: map!.width,
+      height: map!.height,
+      player1StartPosition: map!.startPositions[0],
+      player2StartPosition: map!.startPositions[1],
+      cells: parse(map!.cells)
+    }
+  };
 };

@@ -1,59 +1,19 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import type { GameMapDto } from '@game/api/src/convex/gameMap/gameMap.mapper';
-import { config, GameSession, type SerializedGameState } from '@game/sdk';
+import { GameSession } from '@game/sdk';
 import { parse } from 'zipson';
 
-const { game, replay, map } = defineProps<{
+const { game, replay, initialState } = defineProps<{
   game: GameDto;
   replay: string;
-  map: GameMapDto;
+  initialState: string;
 }>();
 
 const parsedReplay = parse(replay);
 
-const players = game.players.slice().sort(a => (a._id === game.firstPlayer ? -1 : 1));
-const initialState: SerializedGameState = {
-  history: [],
-  entities: [],
-  players: [
-    {
-      id: players[0]._id,
-      isPlayer1: true,
-      name: players[0].name,
-      currentGold: config.PLAYER_1_STARTING_GOLD,
-      maxGold: config.PLAYER_1_STARTING_GOLD,
-      cards: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
-        pedestalId,
-        blueprintId: id
-      })),
-      graveyard: []
-    },
-    {
-      id: players[1]._id,
-      isPlayer1: false,
-      name: players[1].name,
-      currentGold: config.PLAYER_1_STARTING_GOLD,
-      maxGold: config.PLAYER_1_STARTING_GOLD,
-      cards: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
-        pedestalId,
-        blueprintId: id
-      })),
-      graveyard: []
-    }
-  ],
-  map: {
-    width: map.width,
-    height: map.height,
-    player1StartPosition: map.startPositions[0],
-    player2StartPosition: map.startPositions[1],
-    cells: parse(map.cells)
-  }
-};
-
 const fx = useFXProvider();
-const session = GameSession.createClientSession(initialState, game.seed, fx.ctx);
+const session = GameSession.createClientSession(parse(initialState), game.seed, fx.ctx);
 
 const currentStep = ref(0);
 const isPlaying = ref(false);

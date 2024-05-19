@@ -1,4 +1,4 @@
-import type { Faction } from '@game/sdk';
+import type { Faction, SerializedGameState } from '@game/sdk';
 import { defineSchema, defineTable } from 'convex/server';
 import { v, Validator } from 'convex/values';
 import { GAME_STATUS, type GameStatus } from './game/game.constants';
@@ -68,7 +68,8 @@ export default defineSchema({
 
   gameReplays: defineTable({
     gameId: v.id('games'),
-    replay: v.string()
+    replay: v.string(),
+    initialState: v.string()
   }).index('by_game_id', ['gameId']),
 
   gameMaps: defineTable({

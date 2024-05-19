@@ -17,10 +17,8 @@ const { data: game, isLoading } = useConvexQuery(api.games.replayByGameId, {
 <template>
   <div class="page">
     <div v-if="isLoading">Loading...</div>
-    <ClientOnly v-else>
-      <Replay v-bind="game" v-if="game" />
-      <div v-else>Replay not found</div>
-    </ClientOnly>
+    <Replay v-if="game" v-bind="game" />
+    <div v-else>Replay not found</div>
   </div>
 </template>
 

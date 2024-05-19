@@ -3,10 +3,16 @@ import { api, internal } from './_generated/api';
 import { query, internalMutation, action } from './_generated/server';
 import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
 import { toGameDto } from './game/game.mapper';
-import { getCurrentGame, getGameById, getGamePlayers } from './game/game.utils';
+import {
+  getCurrentGame,
+  getGameById,
+  getGamePlayers,
+  getReplayInitialState
+} from './game/game.utils';
 import { toUserDto } from './users/user.mapper';
 import { v } from 'convex/values';
 import { toGameMapDto } from './gameMap/gameMap.mapper';
+import { stringify } from 'zipson';
 
 export const getCurrent = queryWithAuth({
   args: {},
@@ -50,7 +56,7 @@ export const timeout = internalMutation({
   }
 });
 
-export const destroy = internalMutation({
+export const finish = internalMutation({
   args: {
     gameId: v.id('games'),
     winnerId: v.id('users')
@@ -106,7 +112,7 @@ export const end = action({
     replay: v.string()
   },
   async handler(ctx, { replay, ...args }) {
-    const game = await ctx.runMutation(internal.games.destroy, args);
+    const game = await ctx.runMutation(internal.games.finish, args);
     await ctx.runMutation(internal.games.createReplay, {
       gameId: args.gameId,
       replay: replay
@@ -205,7 +211,11 @@ export const createReplay = internalMutation({
     replay: v.string()
   },
   async handler(ctx, args) {
-    return ctx.db.insert('gameReplays', args);
+    const game = await ctx.db.get(args.gameId);
+    return ctx.db.insert('gameReplays', {
+      ...args,
+      initialState: stringify(await getReplayInitialState(ctx, game!))
+    });
   }
 });
 
@@ -231,7 +241,7 @@ export const replayByGameId = query({
         players: await getGamePlayers(ctx, game)
       }),
       replay: replay.replay,
-      map: toGameMapDto(map)
+      initialState: replay.initialState
     };
   }
 });
