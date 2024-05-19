@@ -73,11 +73,11 @@ export const f1ElementalConfluence: CardBlueprint = {
         stackable: false,
         mixins: [
           {
-            onApplied(session, attachedTo, modifier) {
+            onApplied(session) {
               session.on('entity:created', onEntityCreated);
               session.on('entity:after_destroy', onEntityDestroyed);
             },
-            onRemoved(session, attachedTo, modifier) {
+            onRemoved(session) {
               session.off('entity:created', onEntityCreated);
               session.off('entity:after_destroy', onEntityDestroyed);
             }
@@ -104,7 +104,9 @@ export const f1ElementalConfluence: CardBlueprint = {
         ]
       })
     );
-    dealDamage(session, entity);
+    session.actionSystem.schedule(() => {
+      dealDamage(session, entity);
+    });
   },
   skills: [
     {

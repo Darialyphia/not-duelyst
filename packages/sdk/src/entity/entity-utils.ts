@@ -66,6 +66,18 @@ export const isEnemyMinion = (
   return entity.player.id !== playerId && !entity.isGeneral;
 };
 
+export const isEnemyGeneral = (
+  session: GameSession,
+  entityId: Nullable<EntityId>,
+  playerId: string
+) => {
+  if (!isDefined(entityId)) return false;
+  const entity = session.entitySystem.getEntityById(entityId);
+  if (!entity) return false;
+
+  return entity.player.id !== playerId && entity.isGeneral;
+};
+
 export const isEmpty = (session: GameSession, point: Point3D) => {
   return !session.entitySystem.getEntityAt(point);
 };

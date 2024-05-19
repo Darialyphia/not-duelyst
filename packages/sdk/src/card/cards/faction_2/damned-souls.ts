@@ -1,5 +1,5 @@
 import { lastWill, taunted, vulnerable } from '../../../modifier/modifier-utils';
-import { getAffectedEntities, isCastPoint, isSelf } from '../../../utils/targeting';
+import { isCastPoint, isSelf } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
@@ -8,7 +8,7 @@ export const f2DamnedSouls: CardBlueprint = {
   name: 'F2 Damned Souls',
   description: '@Last Will@: Deal 4 damage to all nearby units.',
   collectable: true,
-  rarity: RARITIES.EPIC,
+  rarity: RARITIES.RARE,
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_flaming_skull',
   kind: CARD_KINDS.MINION,
@@ -20,7 +20,7 @@ export const f2DamnedSouls: CardBlueprint = {
   speed: 2,
   range: 1,
   keywords: [],
-  async onPlay({ session, followup, entity }) {
+  async onPlay({ session, entity }) {
     entity.addModifier(
       lastWill({
         source: entity,

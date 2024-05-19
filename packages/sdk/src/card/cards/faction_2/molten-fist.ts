@@ -11,7 +11,7 @@ export const f2MoltenFist: CardBlueprint = {
   name: 'F2 Molten Fist',
   description: '@Fury@.\nAfter attacking, inflict @Burn(1)@ to the target',
   collectable: true,
-  rarity: RARITIES.LEGENDARY,
+  rarity: RARITIES.EPIC,
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_fire_fist',
   kind: CARD_KINDS.MINION,
@@ -23,7 +23,7 @@ export const f2MoltenFist: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.BURN],
-  async onPlay({ session, followup, entity }) {
+  async onPlay({ entity }) {
     entity.addModifier(fury({ source: entity }));
 
     entity.addModifier(
@@ -34,7 +34,7 @@ export const f2MoltenFist: CardBlueprint = {
         mixins: [
           modifierSelfEventMixin({
             eventName: 'after_attack',
-            listener([{ target }], ctx) {
+            listener([{ target }]) {
               target.addModifier(burn({ source: entity }));
             }
           })

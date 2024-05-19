@@ -50,8 +50,8 @@ const isModalOpened = ref(false);
 
 <template>
   <div
-    class="card"
     ref="reference"
+    class="card"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
     @contextmenu.prevent="
@@ -154,7 +154,7 @@ const isModalOpened = ref(false);
       </ul>
     </Teleport>
 
-    <CardModal :blueprint-id="card.blueprintId" v-model:is-opened="isModalOpened" />
+    <CardModal v-model:is-opened="isModalOpened" :blueprint-id="card.blueprintId" />
   </div>
 </template>
 

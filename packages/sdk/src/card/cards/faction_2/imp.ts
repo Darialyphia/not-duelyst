@@ -1,7 +1,4 @@
-import { isEmpty, isNearbyEnemy } from '../../../entity/entity-utils';
-import { createEntityModifier } from '../../../modifier/entity-modifier';
-import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
-import { burn, fury } from '../../../modifier/modifier-utils';
+import { isEmpty } from '../../../entity/entity-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -16,7 +13,7 @@ export const f2Imp: CardBlueprint = {
   factions: [FACTIONS.F2, null, null],
   spriteId: 'f2_imp',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
+  cooldown: 3,
   initialCooldown: 0,
   cost: 2,
   attack: 2,
@@ -31,7 +28,7 @@ export const f2Imp: CardBlueprint = {
       return isEmpty(session, point) && isWithinCells(summonedPoint, point, 1);
     }
   },
-  async onPlay({ session, followup, entity }) {
+  async onPlay({ followup, entity }) {
     const [point] = followup;
     if (!point) return;
 

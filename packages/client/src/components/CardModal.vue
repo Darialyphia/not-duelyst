@@ -3,7 +3,10 @@ import { CARDS } from '@game/sdk';
 import { clamp } from '@game/shared';
 import { uniqBy } from 'lodash-es';
 
-const { blueprintId } = defineProps<{ blueprintId: string }>();
+const { blueprintId, disableRightClick = false } = defineProps<{
+  blueprintId: string;
+  disableRightClick?: boolean;
+}>();
 const isOpened = defineModel<boolean>('isOpened', { required: true });
 
 const blueprint = computed(() => CARDS[blueprintId]);
@@ -57,6 +60,13 @@ const offset = computed(() => {
     <div
       class="card-modal fancy-scrollbar"
       :style="{ '--column-gap': relatedBlueprints.length }"
+      @contextmenu="
+        e => {
+          if (disableRightClick) {
+            e.preventDefault();
+          }
+        }
+      "
     >
       <div class="cards-wrapper" :style="{ '--angle': angle, '--offset': offset }">
         <div

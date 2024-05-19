@@ -39,6 +39,7 @@ const isModalOpened = computed({
     v-if="ui.highlightedCard.value"
     v-model:is-opened="isModalOpened"
     :blueprint-id="ui.highlightedCard.value.blueprintId"
+    disable-right-click
   />
   <Transition>
     <div
