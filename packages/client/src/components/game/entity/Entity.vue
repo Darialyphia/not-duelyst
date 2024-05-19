@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import type { EntityId } from '@game/sdk';
-import { randomInt } from '@game/shared';
 import { Container } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { camera, fx } = useGame();
+const { session, camera, fx } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const settings = useUserSettings();
 
@@ -58,6 +57,15 @@ const keywordsWithSprite = computed(() =>
     return true;
   })
 );
+
+onMounted(() => {
+  session.fxSystem.playSfxOnEntity(entity.value.id, {
+    resourceName: 'fx_smoke2',
+    animationName: 'smokeground',
+    offset: { x: 0, y: 20 },
+    delay: 200
+  });
+});
 </script>
 
 <template>
@@ -85,7 +93,7 @@ const keywordsWithSprite = computed(() =>
       "
     >
       <container :scale-x="scaleX">
-        <PTransition appear @enter="onShadowEnter" v-if="settings.fx.shadows">
+        <PTransition v-if="settings.fx.shadows" appear @enter="onShadowEnter">
           <container>
             <EntityShadow :entity-id="entityId" />
           </container>

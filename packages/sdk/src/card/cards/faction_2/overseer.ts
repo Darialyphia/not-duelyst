@@ -1,8 +1,4 @@
-import {
-  getCellInFront,
-  isEnemyGeneral,
-  isEnemyMinion
-} from '../../../entity/entity-utils';
+import { getCellInFront, isEnemyGeneral } from '../../../entity/entity-utils';
 import { structure } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { getAffectedEntities } from '../../../utils/targeting';
@@ -14,7 +10,7 @@ import { f2Ravager } from './ravager';
 export const f2Overseer: CardBlueprint = {
   id: 'f2_overseer',
   name: 'F2 Overseer',
-  description: `@Structure@\n.@Call to Arms@: Destroy an allied @${f2Imp.name}@ to @Summon@ a @${f2Ravager.name}@ in its place.`,
+  description: `@Structure@.\n@Call to Arms@: Destroy an allied @${f2Imp.name}@ to @Summon@ a @${f2Ravager.name}@ in its place.`,
   collectable: true,
   rarity: RARITIES.LEGENDARY,
   factions: [FACTIONS.F2, FACTIONS.F2, FACTIONS.F2],

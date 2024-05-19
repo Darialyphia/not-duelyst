@@ -88,7 +88,10 @@ export class Card extends EventEmitter implements Serializable {
     cost: new Interceptable<number, Card>(),
     cooldown: new Interceptable<number, Card>(),
     canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>(),
-    shouldExhaustOnPlay: new Interceptable<boolean, Card>()
+    canMoveAfterSummon: new Interceptable<boolean, Card>(),
+    canAttackAfterSummon: new Interceptable<boolean, Card>(),
+    canUseSkillAfterSummon: new Interceptable<boolean, Card>(),
+    canRetaliateAfterSummon: new Interceptable<boolean, Card>()
   };
 
   addInterceptor<T extends keyof CardInterceptor>(
@@ -142,10 +145,6 @@ export class Card extends EventEmitter implements Serializable {
     );
   }
 
-  get shouldExhaustOnPlay(): boolean {
-    return this.interceptors.shouldExhaustOnPlay.getValue(true, this);
-  }
-
   get attack(): number {
     return this.interceptors.attack.getValue(this.blueprint.attack, this);
   }
@@ -182,23 +181,33 @@ export class Card extends EventEmitter implements Serializable {
       playerId: this.playerId,
       position: ctx.position
     });
-    this.session.fxSystem.playSfxOnEntity(entity.id, {
-      resourceName: 'fx_smoke2',
-      animationName: 'smokeground',
-      offset: { x: 0, y: 20 },
-      delay: 200
-    });
+
     await this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       entity,
       followup: ctx.targets
     });
+
+    if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {
+      const unsub = entity.addInterceptor('canMove', () => false);
+      this.session.once('player:turn_end', unsub);
+    }
+    if (!this.interceptors.canAttackAfterSummon.getValue(false, this)) {
+      const unsub = entity.addInterceptor('canAttack', () => false);
+      this.session.once('player:turn_end', unsub);
+    }
+    if (!this.interceptors.canUseSkillAfterSummon.getValue(true, this)) {
+      const unsub = entity.addInterceptor('canUseSkill', () => false);
+      this.session.once('player:turn_end', unsub);
+    }
+    if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
+      const unsub = entity.addInterceptor('canRetaliate', () => false);
+      this.session.once('player:turn_end', unsub);
+    }
+
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 
-    if (this.shouldExhaustOnPlay) {
-      entity.isExhausted = true;
-    }
     this.currentCooldown = this.cooldown;
     this.emit(CARD_EVENTS.AFTER_PLAYED, this);
     return entity;

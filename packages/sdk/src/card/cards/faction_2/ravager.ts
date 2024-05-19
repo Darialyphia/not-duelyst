@@ -9,6 +9,7 @@ import {
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { getNearest } from '../../../entity/entity-utils';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const f2Ravager: CardBlueprint = {
   id: 'f2_ravager',
@@ -26,7 +27,7 @@ export const f2Ravager: CardBlueprint = {
   maxHp: 5,
   speed: 3,
   range: 1,
-  keywords: [],
+  keywords: [KEYWORDS.RUSH],
   modifiers: [rush()],
   skills: [
     {

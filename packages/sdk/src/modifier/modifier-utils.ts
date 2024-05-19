@@ -129,8 +129,13 @@ export const rush = () => {
     stackable: false,
     mixins: [
       modifierCardInterceptorMixin({
-        key: 'shouldExhaustOnPlay',
-        interceptor: () => () => false,
+        key: 'canMoveAfterSummon',
+        interceptor: () => () => true,
+        keywords: [KEYWORDS.RUSH]
+      }),
+      modifierCardInterceptorMixin({
+        key: 'canAttackAfterSummon',
+        interceptor: () => () => true,
         keywords: [KEYWORDS.RUSH]
       })
     ]

@@ -160,13 +160,7 @@ export const KEYWORDS = {
   RUSH: {
     id: 'rush',
     name: 'Rush',
-    description: 'This unit can move and use abilities the turn it is summoned.',
-    aliases: []
-  },
-  SECOND_WIND: {
-    id: 'second_wind',
-    name: 'Second wind',
-    description: "This skill doesn't exhaust its caster.",
+    description: 'This unit can move and attack the turn it is summoned.',
     aliases: []
   },
   SILENCED: {
