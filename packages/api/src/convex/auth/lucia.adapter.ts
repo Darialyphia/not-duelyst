@@ -7,7 +7,7 @@ import {
   type UserSchema,
   lucia
 } from 'lucia';
-import type { DatabaseReader, DatabaseWriter } from './_generated/server';
+import type { DatabaseReader, DatabaseWriter } from '../_generated/server';
 
 type SessionId = string;
 type UserId = string;

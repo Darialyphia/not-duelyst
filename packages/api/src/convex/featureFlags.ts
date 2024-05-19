@@ -1,11 +1,3 @@
-import { query } from './_generated/server';
-import type { FeatureFlag } from './featureFlags/featureFlags.constants';
+import { getAllFeatureFlagsUsecase } from './featureFlags/usecases/get-all-feature-flags.usecase';
 
-export const all = query(async ({ db }) => {
-  const flags = await db.query('featureFlags').collect();
-
-  return Object.fromEntries(flags.map(flag => [flag.key, flag.value])) as Record<
-    FeatureFlag,
-    boolean
-  >;
-});
+export const all = getAllFeatureFlagsUsecase;

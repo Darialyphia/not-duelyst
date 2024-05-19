@@ -17,11 +17,11 @@ import type {
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
+import type * as game_usecases_get_all_ongoing_games from "../game/usecases/get-all-ongoing-games.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
 import type * as loadout from "../loadout.js";
-import type * as lucia from "../lucia.js";
 import type * as matchmaking_matchmaking from "../matchmaking/matchmaking.js";
 import type * as matchmaking from "../matchmaking.js";
 import type * as users from "../users.js";
@@ -39,11 +39,11 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
   featureFlags: typeof featureFlags;
+  "game/usecases/get-all-ongoing-games": typeof game_usecases_get_all_ongoing_games;
   gameMaps: typeof gameMaps;
   games: typeof games;
   hathora: typeof hathora;
   loadout: typeof loadout;
-  lucia: typeof lucia;
   "matchmaking/matchmaking": typeof matchmaking_matchmaking;
   matchmaking: typeof matchmaking;
   users: typeof users;

@@ -286,9 +286,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     if (this.isExhausted) return false;
 
     const baseValue =
-      skill.canUse &&
-      this.skillsUsed < this.maxSkills &&
-      this.attacksTaken < this.maxAttacks;
+      skill.canUse && this.skillsUsed < this.maxSkills && this.attacksTaken === 0;
 
     return this.interceptors.canUseSkill.getValue(baseValue, {
       entity: this,

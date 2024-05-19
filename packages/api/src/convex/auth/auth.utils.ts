@@ -9,7 +9,7 @@ import {
   mutation,
   query
 } from '../_generated/server';
-import { type Auth, getAuth } from '../lucia';
+import { type Auth, getAuth } from './lucia.adapter';
 import { type Nullable } from '@game/shared';
 import { match } from 'ts-pattern';
 

@@ -1,82 +1,11 @@
-import { v } from 'convex/values';
-import { internalAction, internalMutation } from './_generated/server';
+import { grantAllCollectionUsecase } from './collection/usecases/grant-all-collection.usecase';
+import { grantBasicCardsUsecase } from './collection/usecases/grant-basic-card.usecase';
+import { grantAllCollectionToAllPlayersUsecase } from './collection/usecases/grant-all-collection-to-all-players.usecase';
+import { acknowledgeGrantedCardsUsecase } from './collection/usecases/acknowledge-granted-cards.usecase';
+import { getMyCollectionUsecase } from './collection/usecases/get-my-collection.usecase';
 
-import { toCollectionItemDto } from './collection/collection.mapper';
-import { internal } from './_generated/api';
-import { ensureAuthenticated, mutationWithAuth, queryWithAuth } from './auth/auth.utils';
-import { CARDS, RARITIES } from '@game/sdk';
-import { grantCards } from './collection/collection.utils';
-
-export const grantAllCollection = internalMutation({
-  args: {
-    userId: v.id('users')
-  },
-  async handler(ctx, args) {
-    const cards = await grantCards(ctx, {
-      cards: Object.values(CARDS),
-      userId: args.userId
-    });
-    console.log(`granted ${cards.map(c => c.id).join(', ')}`);
-    return cards.map(c => c.id);
-  }
-});
-
-export const grantBasicCards = internalMutation({
-  args: {
-    userId: v.id('users')
-  },
-  async handler(ctx, args) {
-    const cards = await grantCards(ctx, {
-      cards: Object.values(CARDS).filter(card => card.rarity === RARITIES.BASIC),
-      userId: args.userId
-    });
-
-    return cards.map(c => c.id);
-  }
-});
-
-export const grantAllCollectionToAllPlayers = internalAction(async ctx => {
-  const users = await ctx.runQuery(internal.users.all);
-
-  const res = await Promise.all(
-    users.map(user => {
-      return ctx.runMutation(internal.collection.grantAllCollection, {
-        userId: user._id
-      });
-    })
-  );
-
-  return true;
-});
-
-export const acknowledgeGranted = mutationWithAuth({
-  args: {},
-  async handler(ctx, args) {
-    const user = await ensureAuthenticated(ctx.session);
-
-    const grantedCards = await ctx.db
-      .query('collectionItems')
-      .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
-      .filter(q => q.lte(q.field('grantedAt'), Date.now()))
-      .collect();
-    await Promise.all(
-      grantedCards.map(card => ctx.db.patch(card._id, { grantedAt: null }))
-    );
-
-    return grantCards.length;
-  }
-});
-
-export const myCollection = queryWithAuth({
-  args: {},
-  handler: async ctx => {
-    const user = await ensureAuthenticated(ctx.session);
-
-    const collection = await ctx.db
-      .query('collectionItems')
-      .withIndex('by_owner_id', q => q.eq('ownerId', user._id))
-      .collect();
-
-    return collection.map(toCollectionItemDto);
-  }
-});
+export const grantAllCollection = grantAllCollectionUsecase;
+export const grantBasicCards = grantBasicCardsUsecase;
+export const grantAllCollectionToAllPlayers = grantAllCollectionToAllPlayersUsecase;
+export const acknowledgeGranted = acknowledgeGrantedCardsUsecase;
+export const myCollection = getMyCollectionUsecase;

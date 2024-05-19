@@ -1,5 +1,5 @@
 {
   "extends": "@game/tsconfig/base.json",
-  "include": ["src/**/*.ts", "tsup.config.ts"],
+  "include": ["src/**/*.ts", "tsup.config.ts", "src/convex/auth/usecases"],
   "exclude": [".git", "node_modules"]
 }

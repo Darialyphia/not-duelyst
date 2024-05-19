@@ -1,5 +1,5 @@
 declare namespace Lucia {
-  type Auth = import('./lucia').Auth;
+  type Auth = import('./auth/lucia.adapter').Auth;
   type DatabaseUserAttributes = {
     _id: import('./_generated/dataModel').Id<'users'>;
     _creationTime: number;
