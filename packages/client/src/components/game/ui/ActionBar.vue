@@ -6,7 +6,7 @@ const isActive = useIsActivePlayer();
 </script>
 
 <template>
-  <div class="opponent-action-bar" v-if="userPlayer && gameType === GAME_TYPES.SPECTATOR">
+  <div v-if="userPlayer && gameType === GAME_TYPES.SPECTATOR" class="opponent-action-bar">
     <div class="flex gap-5 iems-center">
       <ActionBarItem
         v-for="(card, index) in userPlayer.opponent.hand"
@@ -16,7 +16,7 @@ const isActive = useIsActivePlayer();
       />
     </div>
   </div>
-  <div class="action-bar" v-if="userPlayer">
+  <div v-if="userPlayer" class="action-bar">
     <div class="flex gap-5 iems-center">
       <ActionBarItem
         v-for="(card, index) in userPlayer.hand"
@@ -56,9 +56,14 @@ const isActive = useIsActivePlayer();
 
   width: fit-content;
 
+  @screen lt-lg {
+    bottom: var(--size-2);
+    width: 100%;
+  }
+
   button {
     align-self: stretch;
-    border-radius: var(--radius-round);
+    width: fit-content;
   }
 }
 

@@ -1,3 +1,3 @@
-import { getAllFeatureFlagsUsecase } from './featureFlags/usecases/get-all-feature-flags.usecase';
+import { getAllFeatureFlagsUsecase } from './featureFlags/usecases/getAllFeatureFlags.usecase';
 
 export const all = getAllFeatureFlagsUsecase;

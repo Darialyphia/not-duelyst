@@ -8,7 +8,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 export const neutralTank: CardBlueprint = {
   id: 'neutral_tank',
   name: 'Neutral tank',
-  description: '@Call to Arms@: Taunt nearby enemies for 1 turn.',
+  description: '@Call to Arms@: @Taunt@ nearby enemies for 1 turn.',
   collectable: true,
   rarity: RARITIES.COMMON,
   factions: [null, null, null],
@@ -21,6 +21,7 @@ export const neutralTank: CardBlueprint = {
   maxHp: 8,
   speed: 2,
   range: 1,
+  keywords: [KEYWORDS.TAUNTED, KEYWORDS.CALL_TO_ARMS],
   onPlay({ entity, session }) {
     session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
       enemy.addModifier(taunted({ duration: 1, source: entity }));

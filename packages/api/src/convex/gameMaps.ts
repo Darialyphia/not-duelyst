@@ -1,6 +1,6 @@
-import { getGameMapUsecase } from './gameMap/usecases/get-game-map.usecase';
-import { getAllGameMapsUsecase } from './gameMap/usecases/get-all-game-maps.usecase';
-import { saveGameMapUsecase } from './gameMap/usecases/save-game-map.usecase';
+import { getGameMapUsecase } from './gameMap/usecases/getGameMap.usecase';
+import { getAllGameMapsUsecase } from './gameMap/usecases/getAllGameMaps.usecase';
+import { saveGameMapUsecase } from './gameMap/usecases/saveGameMap.usecase';
 
 export const getById = getGameMapUsecase;
 export const getAll = getAllGameMapsUsecase;

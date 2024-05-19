@@ -1,9 +1,9 @@
-import { completeSignupUsecase } from './users/usecases/complete-signup.usecase';
-import { getMeUsecase } from './users/usecases/get-me.usecase';
-import { completeOnboardingUsecase } from './users/usecases/complete-onboarding.usecase';
-import { getAllUsersUsecase } from './users/usecases/get-all-users.usecase';
-import { getMySettingsUecase } from './users/usecases/get-my-settings.usecase';
-import { saveGameMapUsecase } from './gameMap/usecases/save-game-map.usecase';
+import { completeSignupUsecase } from './users/usecases/completeSignup.usecase';
+import { getMeUsecase } from './users/usecases/getMe.usecase';
+import { completeOnboardingUsecase } from './users/usecases/completeOnboarding.usecase';
+import { getAllUsersUsecase } from './users/usecases/getAllUsers.usecase';
+import { getMySettingsUecase } from './users/usecases/getMySettings.usecase';
+import { saveGameMapUsecase } from './gameMap/usecases/saveGameMap.usecase';
 
 export const me = getMeUsecase;
 export const completeSignUp = completeSignupUsecase;

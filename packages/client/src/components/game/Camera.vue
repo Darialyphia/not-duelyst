@@ -2,7 +2,6 @@
 import { useApplication } from 'vue3-pixi';
 import { type Viewport } from 'pixi-viewport';
 import { CELL_HEIGHT, CELL_WIDTH } from '@/utils/constants';
-import { pointToIndex, type Point } from '@game/shared';
 import { Container } from 'pixi.js';
 import type { FederatedPointerEvent } from 'pixi.js';
 import { throttle } from 'lodash-es';
@@ -72,6 +71,7 @@ until(camera.viewport)
         speed: 15,
         allowButtons: true
       })
+      .pinch()
       .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });
 useEventListener('resize', () => {

@@ -1,10 +1,10 @@
-import { joinMatchmakingUsecase } from './matchmaking/usecases/join-matchmaking.usecase';
-import { leaveMatchmakingUsecase } from './matchmaking/usecases/leave-matchmaking.usecase';
-import { getMyMatchmakingUserUsecase } from './matchmaking/usecases/get-my-matchmaking-user.usecase';
-import { matchPlayersUsecase } from './matchmaking/usecases/match-players.usecase';
-import { handleMatchmadePairUsecase } from './matchmaking/usecases/handle-matchmade-pair.usecase';
-import { getMatchmakingUsersUsecase } from './matchmaking/usecases/get-matchmaking-users.usecase';
-import { scheduleMatchmakingUsecase } from './matchmaking/usecases/schedule-matchmaking.usecase';
+import { joinMatchmakingUsecase } from './matchmaking/usecases/joinMatchmaking.usecase';
+import { leaveMatchmakingUsecase } from './matchmaking/usecases/leaveMatchmaking.usecase';
+import { getMyMatchmakingUserUsecase } from './matchmaking/usecases/getMyMatchmakingUser.usecase';
+import { matchPlayersUsecase } from './matchmaking/usecases/matchPlayers.usecase';
+import { handleMatchmadePairUsecase } from './matchmaking/usecases/handleMatchmadePair.usecase';
+import { getMatchmakingUsersUsecase } from './matchmaking/usecases/getMatchmakingUsers.usecase';
+import { scheduleMatchmakingUsecase } from './matchmaking/usecases/scheduleMatchmaking.usecase';
 
 export const join = joinMatchmakingUsecase;
 export const leave = leaveMatchmakingUsecase;

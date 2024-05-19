@@ -17,7 +17,7 @@ import type {
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
-import type * as game_usecases_get_all_ongoing_games from "../game/usecases/get-all-ongoing-games.js";
+import type * as game_usecases_getAllOngoingGames from "../game/usecases/getAllOngoingGames.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
@@ -39,7 +39,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
   featureFlags: typeof featureFlags;
-  "game/usecases/get-all-ongoing-games": typeof game_usecases_get_all_ongoing_games;
+  "game/usecases/getAllOngoingGames": typeof game_usecases_getAllOngoingGames;
   gameMaps: typeof gameMaps;
   games: typeof games;
   hathora: typeof hathora;

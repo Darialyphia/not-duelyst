@@ -15,12 +15,9 @@ import type { GameSession } from '../../../game-session';
 
 const dealDamage = async (session: GameSession, entity: Entity) => {
   await Promise.all(
-    session.entitySystem
-      .getList()
-      .filter(e => e.isEnemy(entity.id) && isWithinCells(entity.position, e.position, 2))
-      .map(enemy => {
-        entity.dealDamage(1, enemy);
-      })
+    session.entitySystem.getNearbyEnemies(entity).map(enemy => {
+      entity.dealDamage(1, enemy);
+    })
   );
 };
 
@@ -28,7 +25,7 @@ export const f1ElementalConfluence: CardBlueprint = {
   id: 'f1_elemental_confluence',
   name: 'F1 Elemental Conduit',
   description:
-    '@Structure@.\n@Call to Arms@ and start of turn: Deal 1 damage to enemies up to 2 tiles away. @Surge(1)@ for every Elemental you control.',
+    '@Structure@.\n@Call to Arms@ and start of turn: Deal 1 damage to nearby enemies. @Surge(1)@ for every Elemental you control.',
   collectable: true,
   rarity: RARITIES.EPIC,
   factions: [FACTIONS.F1, FACTIONS.F1, null],
@@ -91,7 +88,7 @@ export const f1ElementalConfluence: CardBlueprint = {
         stackable: false,
         visible: true,
         name: 'Elemental Vortex',
-        description: 'Start of turn: Deal 1 damage to enemies up to 2 tiles away.',
+        description: 'Start of turn: Deal 1 damage to nearby enemies.',
         source: entity,
         mixins: [
           modifierGameEventMixin({

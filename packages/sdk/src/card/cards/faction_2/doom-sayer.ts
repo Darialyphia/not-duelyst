@@ -1,4 +1,4 @@
-import { deathWatch, ranged, surge } from '../../../modifier/modifier-utils';
+import { deathWatch, surge } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint, isSelf } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -17,7 +17,7 @@ export const f2DoomSayer: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 1,
-  maxHp: 6,
+  maxHp: 4,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.DEATHWATCH],

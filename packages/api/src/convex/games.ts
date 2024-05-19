@@ -1,16 +1,16 @@
-import { getCurrentGameUsecase } from './game/usecases/get-current-game.usecase';
-import { startGameUsecase } from './game/usecases/start-game.usecase';
-import { timeoutGameUsecase } from './game/usecases/timeout-game.usecase';
-import { finishGameUsecase } from './game/usecases/finish-game.usecase';
-import { internalCancelGameUsecase } from './game/usecases/internal-cancel-game.usecase';
-import { cancelGameUsecase } from './game/usecases/cancel-game.usecase';
+import { getCurrentGameUsecase } from './game/usecases/getCurrentGame.usecase';
+import { startGameUsecase } from './game/usecases/startGame.usecase';
+import { timeoutGameUsecase } from './game/usecases/timeoutGame.usecase';
+import { finishGameUsecase } from './game/usecases/finishGame.usecase';
+import { internalCancelGameUsecase } from './game/usecases/internalCancelGame.usecase';
+import { cancelGameUsecase } from './game/usecases/cancelGame.usecase';
 import { endGameUsecase } from './game/usecases/end-game.usecase';
-import { getGameUsecase } from './game/usecases/get-game.usercase';
-import { getAllOngoingGamesUsecase } from './game/usecases/get-all-ongoing-games';
-import { getMyGameHistoryUsecase } from './game/usecases/get-my-game-history.usecase';
-import { getLatestGamesWithReplaysUsecase } from './game/usecases/get-latest-games-with-replays.usecase';
-import { createGameReplayUsecase } from './game/usecases/create-game-replay.usecase';
-import { getGameReplayUsecase } from './game/usecases/get-game-replay.usecase';
+import { getGameUsecase } from './game/usecases/getGame.usercase';
+import { getAllOngoingGamesUsecase } from './game/usecases/getAllOngoingGames';
+import { getMyGameHistoryUsecase } from './game/usecases/getMyGameHistory.usecase';
+import { getLatestGamesWithReplaysUsecase } from './game/usecases/getLatestGamesWithReplays.usecase';
+import { createGameReplayUsecase } from './game/usecases/createGameReplay.usecase';
+import { getGameReplayUsecase } from './game/usecases/getGameReplay.usecase';
 
 export const getCurrent = getCurrentGameUsecase;
 export const start = startGameUsecase;

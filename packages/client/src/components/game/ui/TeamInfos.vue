@@ -255,9 +255,13 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 .player-1 {
   left: var(--size-5);
 
-  @screen lt-sm {
-    top: 0;
-    left: 0;
+  @screen lt-lg {
+    top: var(--size-1);
+    left: var(--size-1);
+    transform-origin: top left;
+    scale: 0.7;
+
+    flex-direction: column;
   }
 }
 .player-2 {
@@ -265,9 +269,13 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   flex-direction: row-reverse;
   text-align: right;
 
-  @screen lt-sm {
-    top: 0;
-    right: 0;
+  @screen lt-lg {
+    top: var(--size-1);
+    right: var(--size-1);
+    transform-origin: top right;
+    scale: 0.7;
+
+    flex-direction: column;
   }
 
   .portrait {
@@ -280,7 +288,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   font-weight: var(--font-weight-6);
 
   @screen lt-lg {
-    font-size: var(--font-size-2);
+    display: none;
   }
 }
 
@@ -291,7 +299,11 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
   @screen lt-lg {
     gap: var(--size-1);
-    font-size: var(--font-size-0);
+    font-size: var(--font-size-4);
+  }
+
+  @screen lt-lg {
+    display: flex;
   }
 
   .player-2 & {
