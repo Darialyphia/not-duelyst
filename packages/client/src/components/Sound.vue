@@ -11,6 +11,7 @@ const { sound, triggers } = defineProps<{
   >;
 }>();
 
+const SCALE_FACTOR = 3;
 const userSettings = useUserSettings();
 
 const id = `_${nanoid(6).replaceAll('-', '_')}`;
@@ -18,11 +19,11 @@ const el = ref<Nullable<HTMLElement>>(null);
 
 const howl = new Howl({
   src: `/assets/sfx/${sound}.mp3`,
-  volume: userSettings.value.sound.sfxVolume[0] / 100
+  volume: (userSettings.value.sound.sfxVolume[0] / 100) * SCALE_FACTOR
 });
 
 watchEffect(() => {
-  howl.volume(userSettings.value.sound.sfxVolume[0] / 100);
+  howl.volume((userSettings.value.sound.sfxVolume[0] / 100) * SCALE_FACTOR);
 });
 
 onMounted(async () => {

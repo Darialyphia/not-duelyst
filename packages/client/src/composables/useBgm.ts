@@ -14,24 +14,31 @@ export type BGMContext = {
 const BGM_INJECTION_KEY = Symbol('bgm') as InjectionKey<BGMContext>;
 
 const FADE_DURATION = 1500;
+const SCALE_FACTOR = 0.3;
 
 export const useBgmProvider = () => {
   const userSettings = useUserSettings();
   const route = useRoute();
   const current = ref<Bgm>((route.meta.bgm as Bgm) ?? BGMS.MENU);
 
-  let howl = new Howl({
-    src: current.value,
-    volume: 0,
-    loop: true,
-    onload() {
-      howl.play();
-      howl.fade(0, userSettings.value.sound.musicVolume[0] / 100, FADE_DURATION);
-    }
-  });
+  const howl = ref(
+    new Howl({
+      src: current.value,
+      volume: 0,
+      loop: true,
+      onload() {
+        howl.value.play();
+        howl.value.fade(
+          0,
+          (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR,
+          FADE_DURATION
+        );
+      }
+    })
+  );
 
   watchEffect(() => {
-    howl.volume(userSettings.value.sound.sfxVolume[0] / 100);
+    howl.value.volume((userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR);
   });
 
   const api = {
@@ -39,17 +46,21 @@ export const useBgmProvider = () => {
       if (bgm === current.value) return;
       current.value = bgm;
 
-      howl.fade(howl.volume(), 0, FADE_DURATION);
+      howl.value.fade(howl.value.volume(), 0, FADE_DURATION);
       const howl2 = new Howl({
         src: current.value,
         volume: 0,
         loop: true,
         onload() {
           howl2.play();
-          howl2.fade(0, userSettings.value.sound.musicVolume[0] / 100, FADE_DURATION);
+          howl2.fade(
+            0,
+            (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR,
+            FADE_DURATION
+          );
         },
         onfade() {
-          howl = howl2;
+          howl.value = howl2;
         }
       });
     }
@@ -62,7 +73,7 @@ export const useBgmProvider = () => {
   });
 
   onUnmounted(() => {
-    howl.unload();
+    howl.value.unload();
     unsub();
   });
 

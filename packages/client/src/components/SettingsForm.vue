@@ -43,13 +43,13 @@ until(settings)
           <legend>Sound</legend>
           <label>Sound effects</label>
           <UiSliderInput
-            v-model="formData.sound.musicVolume"
+            v-model="formData.sound.sfxVolume"
             label="sound effects volume"
             class="w-full"
           />
           <label>Music</label>
           <UiSliderInput
-            v-model="formData.sound.sfxVolume"
+            v-model="formData.sound.musicVolume"
             label="sound effects volume"
             class="w-full"
           />

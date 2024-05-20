@@ -1,12 +1,11 @@
 import { v } from 'convex/values';
 import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
 
-export const szveSettingsUsecase = mutationWithAuth({
+export const saveSettingsUsecase = mutationWithAuth({
   args: {
     settings: v.any()
   },
   async handler({ db, session }, args) {
-    console.log(args.settings.fx);
     const user = ensureAuthenticated(session);
 
     const settings = await db
