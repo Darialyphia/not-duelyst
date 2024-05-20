@@ -1,11 +1,9 @@
-import { queryWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedQuery } from '../../auth/auth.utils';
 import { getCurrentGame } from '../game.utils';
 
-export const getCurrentGameUsecase = queryWithAuth({
+export const getCurrentGameUsecase = authedQuery({
   args: {},
   handler: async ctx => {
-    const user = ensureAuthenticated(ctx.session);
-
-    return getCurrentGame({ db: ctx.db }, user._id);
+    return getCurrentGame({ db: ctx.db }, ctx.user._id);
   }
 });

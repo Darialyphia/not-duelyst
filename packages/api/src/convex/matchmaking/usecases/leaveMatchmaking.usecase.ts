@@ -1,11 +1,10 @@
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 import { ensureIsInMatchmaking } from '../matchmaking.utils';
 
-export const leaveMatchmakingUsecase = mutationWithAuth({
+export const leaveMatchmakingUsecase = authedMutation({
   args: {},
   handler: async ctx => {
-    const user = ensureAuthenticated(ctx.session);
-    const matchMakingUser = await ensureIsInMatchmaking(ctx, user._id);
+    const matchMakingUser = await ensureIsInMatchmaking(ctx, ctx.user._id);
 
     return ctx.db.delete(matchMakingUser._id);
   }

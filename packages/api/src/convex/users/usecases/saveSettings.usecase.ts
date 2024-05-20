@@ -1,13 +1,11 @@
 import { v } from 'convex/values';
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 
-export const saveSettingsUsecase = mutationWithAuth({
+export const saveSettingsUsecase = authedMutation({
   args: {
     settings: v.any()
   },
-  async handler({ db, session }, args) {
-    const user = ensureAuthenticated(session);
-
+  async handler({ db, user }, args) {
     const settings = await db
       .query('userSettings')
       .withIndex('by_user_id', q => q.eq('userId', user._id))

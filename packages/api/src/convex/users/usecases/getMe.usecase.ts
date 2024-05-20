@@ -1,11 +1,9 @@
-import { queryWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedQuery } from '../../auth/auth.utils';
 import { toUserDto } from '../user.mapper';
 
-export const getMeUsecase = queryWithAuth({
+export const getMeUsecase = authedQuery({
   args: {},
   handler: async ctx => {
-    const user = ensureAuthenticated(ctx.session);
-
-    return toUserDto(user);
+    return toUserDto(ctx.user);
   }
 });

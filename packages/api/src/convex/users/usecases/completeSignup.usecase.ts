@@ -1,19 +1,17 @@
 import { v } from 'convex/values';
 import { internal } from '../../_generated/api';
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 import { FEATURE_FLAGS } from '../../featureFlags/featureFlags.constants';
 import { getFeatureFlag } from '../../featureFlags/featureFlags.utils';
 import { ensureAuthorized } from '../../utils/ability';
 import { createUserAbility } from '../user.ability';
 import { generateDiscriminator, DEFAULT_MMR } from '../user.utils';
 
-export const completeSignupUsecase = mutationWithAuth({
+export const completeSignupUsecase = authedMutation({
   args: {
     name: v.string()
   },
-  handler: async ({ session, db, scheduler }, { name }) => {
-    const user = ensureAuthenticated(session);
-
+  handler: async ({ user, session, db, scheduler }, { name }) => {
     const userAbility = await createUserAbility(session);
     await ensureAuthorized(userAbility.can('create', 'user'));
 
@@ -29,9 +27,13 @@ export const completeSignupUsecase = mutationWithAuth({
     );
 
     if (grantCollection) {
-      scheduler.runAfter(0, internal.collection.grantAllCollection, { userId: user._id });
+      scheduler.runAfter(0, internal.collection.grantAllCollection, {
+        userId: user._id
+      });
     } else {
-      scheduler.runAfter(0, internal.collection.grantBasicCards, { userId: user._id });
+      scheduler.runAfter(0, internal.collection.grantBasicCards, {
+        userId: user._id
+      });
     }
 
     return updatedUser;

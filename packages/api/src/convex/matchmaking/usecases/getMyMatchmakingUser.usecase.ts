@@ -1,14 +1,12 @@
-import { queryWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedQuery } from '../../auth/auth.utils';
 import { toMatchmakingUserDto } from '../matchmaking.mapper';
 
-export const getMyMatchmakingUserUsecase = queryWithAuth({
+export const getMyMatchmakingUserUsecase = authedQuery({
   args: {},
   async handler(ctx) {
-    const user = await ensureAuthenticated(ctx.session);
-
     const matchmakingUser = await ctx.db
       .query('matchmakingUsers')
-      .withIndex('by_userId', q => q.eq('userId', user._id))
+      .withIndex('by_userId', q => q.eq('userId', ctx.user._id))
       .unique();
 
     if (!matchmakingUser) return null;

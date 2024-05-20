@@ -1,9 +1,8 @@
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 
-export const completeOnboardingUsecase = mutationWithAuth({
+export const completeOnboardingUsecase = authedMutation({
   args: {},
   handler: async ctx => {
-    const user = ensureAuthenticated(ctx.session);
-    ctx.db.patch(user._id, { hasOnboarded: true });
+    ctx.db.patch(ctx.user._id, { hasOnboarded: true });
   }
 });

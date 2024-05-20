@@ -1,21 +1,20 @@
 import { v } from 'convex/values';
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 import {
   ensureLoadoutExists,
   ensureOwnsLoadout,
   validateLoadout
 } from '../loadout.utils';
 
-export const updateLoadoutUsecase = mutationWithAuth({
+export const updateLoadoutUsecase = authedMutation({
   args: {
     loadoutId: v.id('loadouts'),
     name: v.string(),
     cards: v.array(v.object({ id: v.string(), pedestalId: v.string() }))
   },
   async handler(ctx, args) {
-    const user = ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
-    await ensureOwnsLoadout(loadout, user._id);
+    await ensureOwnsLoadout(loadout, ctx.user._id);
 
     const validData = await validateLoadout(ctx, {
       ownerId: user._id,

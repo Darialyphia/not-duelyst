@@ -1,15 +1,14 @@
 import { v } from 'convex/values';
-import { mutationWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedMutation } from '../../auth/auth.utils';
 import { ensureLoadoutExists, ensureOwnsLoadout } from '../loadout.utils';
 
-export const deleteLoadoutUsecase = mutationWithAuth({
+export const deleteLoadoutUsecase = authedMutation({
   args: {
     loadoutId: v.id('loadouts')
   },
   async handler(ctx, args) {
-    const user = await ensureAuthenticated(ctx.session);
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);
-    await ensureOwnsLoadout(loadout, user._id);
+    await ensureOwnsLoadout(loadout, ctx.user._id);
 
     ctx.db.delete(args.loadoutId);
   }

@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { OutlineFilter } from '@pixi/filter-outline';
-import { FACTIONS, KEYWORDS, type EntityId } from '@game/sdk';
+import { FACTIONS, type EntityId } from '@game/sdk';
 import { AnimatedSprite, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
-import IlluminatedSprite from '../IlluminatedSprite.vue';
 import { match } from 'ts-pattern';
-import type { Nullable } from '@game/shared';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
 

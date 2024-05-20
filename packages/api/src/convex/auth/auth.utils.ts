@@ -166,3 +166,83 @@ export const ensureAuthenticated = (session: Nullable<Session>): User => {
 
   return session.user;
 };
+
+export const authedQuery = <ArgsValidator extends PropertyValidators, Output>({
+  args,
+  handler
+}: {
+  args: ArgsValidator;
+  handler: (
+    ctx: Omit<QueryCtx, 'auth'> & { session: Session; user: User },
+    args: ObjectType<ArgsValidator>
+  ) => Output;
+}) => {
+  return queryWithAuth({
+    args,
+    async handler(ctx, args) {
+      const user = ensureAuthenticated(ctx.session);
+
+      return handler({ ...ctx, session: ctx.session!, user }, args);
+    }
+  });
+};
+
+export const internalAuthedQuery = <ArgsValidator extends PropertyValidators, Output>({
+  args,
+  handler
+}: {
+  args: ArgsValidator;
+  handler: (
+    ctx: Omit<QueryCtx, 'auth'> & { session: Session; user: User },
+    args: ObjectType<ArgsValidator>
+  ) => Output;
+}) => {
+  return internalQueryWithAuth({
+    args,
+    async handler(ctx, args) {
+      const user = ensureAuthenticated(ctx.session);
+
+      return handler({ ...ctx, session: ctx.session!, user }, args);
+    }
+  });
+};
+
+export const authedMutation = <ArgsValidator extends PropertyValidators, Output>({
+  args,
+  handler
+}: {
+  args: ArgsValidator;
+  handler: (
+    ctx: Omit<MutationCtx, 'auth'> & { session: Session; user: User },
+    args: ObjectType<ArgsValidator>
+  ) => Output;
+}) => {
+  return mutationWithAuth({
+    args,
+    async handler(ctx, args) {
+      const user = ensureAuthenticated(ctx.session);
+
+      return handler({ ...ctx, session: ctx.session!, user }, args);
+    }
+  });
+};
+
+export const internalAuthedMutation = <ArgsValidator extends PropertyValidators, Output>({
+  args,
+  handler
+}: {
+  args: ArgsValidator;
+  handler: (
+    ctx: Omit<MutationCtx, 'auth'> & { session: Session; user: User },
+    args: ObjectType<ArgsValidator>
+  ) => Output;
+}) => {
+  return internalMutationWithAuth({
+    args,
+    async handler(ctx, args) {
+      const user = ensureAuthenticated(ctx.session);
+
+      return handler({ ...ctx, session: ctx.session!, user }, args);
+    }
+  });
+};

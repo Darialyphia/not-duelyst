@@ -111,7 +111,7 @@ export const f2Overseer: CardBlueprint = {
       },
       async onUse({ affectedCells, skill }) {
         await Promise.all(
-          getAffectedEntities(affectedCells).map(cell => {
+          affectedCells.map(cell => {
             const card = skill.caster.player.generateCard({
               blueprintId: f2Imp.id,
               pedestalId: skill.caster.card.pedestalId

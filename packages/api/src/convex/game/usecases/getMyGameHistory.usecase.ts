@@ -1,15 +1,13 @@
-import { queryWithAuth, ensureAuthenticated } from '../../auth/auth.utils';
+import { authedQuery } from '../../auth/auth.utils';
 import { toUserDto } from '../../users/user.mapper';
 
-export const getMyGameHistoryUsecase = queryWithAuth({
+export const getMyGameHistoryUsecase = authedQuery({
   args: {},
   handler: async ctx => {
-    const user = ensureAuthenticated(ctx.session);
-
     const gameUsers = await ctx.db
       .query('gamePlayers')
       .withIndex('by_creation_time')
-      .filter(q => q.eq(q.field('userId'), user._id))
+      .filter(q => q.eq(q.field('userId'), ctx.user._id))
       .collect();
 
     return Promise.all(
