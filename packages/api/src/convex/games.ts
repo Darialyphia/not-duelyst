@@ -23,5 +23,5 @@ export const getById = getGameUsecase;
 export const getAllOngoing = getAllOngoingGamesUsecase;
 export const myGameHistory = getMyGameHistoryUsecase;
 export const latestGamesWithReplays = getLatestGamesWithReplaysUsecase;
-export const creatReplay = createGameReplayUsecase;
+export const createReplay = createGameReplayUsecase;
 export const replayByGameId = getGameReplayUsecase;

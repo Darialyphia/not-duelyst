@@ -14,6 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
@@ -36,6 +37,7 @@ import type * as utils_ability from "../utils/ability.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  analytics: typeof analytics;
   auth: typeof auth;
   collection: typeof collection;
   featureFlags: typeof featureFlags;

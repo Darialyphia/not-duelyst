@@ -7,6 +7,7 @@ import { gameMapSchemas } from './gameMap/gameMap.schemas';
 import { loadoutSchemas } from './loadout/loadout.schemas';
 import { collectionSchemas } from './collection/collection.schemas';
 import { featureflagSchemas } from './featureFlags/featureFlags.schemas';
+import { analyticsSchemas } from './analytics/analytics.schemas';
 
 export default defineSchema({
   ...authSchemas,
@@ -16,5 +17,6 @@ export default defineSchema({
   ...gameMapSchemas,
   ...loadoutSchemas,
   ...collectionSchemas,
-  ...featureflagSchemas
+  ...featureflagSchemas,
+  ...analyticsSchemas
 });
