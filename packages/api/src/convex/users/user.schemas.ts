@@ -1,5 +1,6 @@
 import { defineTable } from 'convex/server';
 import { v } from 'convex/values';
+import { gameStatsSchema } from '../analytics/analytics.schemas';
 
 export const userSchemas = {
   users: defineTable({
@@ -17,5 +18,10 @@ export const userSchemas = {
   userSettings: defineTable({
     userId: v.id('users'),
     settings: v.any()
+  }).index('by_user_id', ['userId']),
+
+  userProfiles: defineTable({
+    userId: v.id('users'),
+    stats: v.object(gameStatsSchema)
   }).index('by_user_id', ['userId'])
 };

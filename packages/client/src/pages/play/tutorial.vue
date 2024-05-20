@@ -5,9 +5,13 @@ definePageMeta({
   name: 'Tutorial'
 });
 
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
+
 const mutation = useConvexAuthedMutation(api.users.completeOnboarding);
 onBeforeUnmount(() => {
-  mutation.mutate({});
+  if (!me.value.hasOnboarded) {
+    mutation.mutate({ skippedTutorial: true });
+  }
 });
 </script>
 

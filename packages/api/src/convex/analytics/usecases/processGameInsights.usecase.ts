@@ -1,11 +1,18 @@
 import { v, Validator } from 'convex/values';
 import { mutation } from '../../_generated/server';
-import { GAME_ANALYTICS_EVENTS, type GameAnalyticsEvent } from '../analytics.utils';
+import {
+  GAME_ANALYTICS_EVENTS,
+  getGlobalStats,
+  type GameAnalyticsEvent
+} from '../analytics.utils';
 import { match } from 'ts-pattern';
 import { CARD_KINDS, CARDS } from '@game/sdk';
+import { getGamePlayers } from '../../game/game.utils';
+import { isDefined } from '@game/shared';
 
 export const procesGameInsightsUsecase = mutation({
   args: {
+    gameId: v.id('games'),
     events: v.array(
       v.object({
         type: v.literal(GAME_ANALYTICS_EVENTS.GAME_ENDED)
@@ -13,9 +20,25 @@ export const procesGameInsightsUsecase = mutation({
     )
   },
   async handler(ctx, args) {
-    const globalStats = await ctx.db.query('globalStats').first();
-    if (!globalStats) {
-      throw new Error('global stats not initialized !');
+    const globalStats = await getGlobalStats(ctx);
+
+    const game = await ctx.db.get(args.gameId);
+    if (!game) {
+      throw new Error('Game not found.');
+    }
+    const players = await getGamePlayers(ctx, game);
+    const profiles = (
+      await Promise.all(
+        players.map(p =>
+          ctx.db
+            .query('userProfiles')
+            .withIndex('by_user_id', q => q.eq('userId', p._id))
+            .first()
+        )
+      )
+    ).filter(isDefined);
+    if (players.length !== profiles.length) {
+      throw new Error("Players profiles haven't been initialized !");
     }
 
     args.events.forEach(event => {
@@ -26,14 +49,20 @@ export const procesGameInsightsUsecase = mutation({
             const cards = player.loadout.map(id => CARDS[id]);
             const general = cards.find(card => card.kind === CARD_KINDS.MINION)!;
             const faction = general.factions[0]!.id;
+            const profile = profiles.find(profile => profile?.userId === player.id)!;
+
             globalStats.gamesByFaction[faction].played++;
+            profile.stats.gamesByFaction[faction].played++;
             if (isWinner) {
+              profile.stats.gamesByFaction[faction].won++;
               globalStats.gamesByFaction[faction].won++;
             }
 
             cards.forEach(card => {
+              profile.stats.gamesByCard[card.id].played++;
               globalStats.gamesByCard[card.id].played++;
               if (isWinner) {
+                profile.stats.gamesByCard[card.id].won++;
                 globalStats.gamesByFaction[faction].won++;
               }
             });
@@ -47,6 +76,9 @@ export const procesGameInsightsUsecase = mutation({
         .exhaustive();
     });
 
-    return ctx.db.replace(globalStats._id, globalStats);
+    await Promise.all([
+      ctx.db.replace(globalStats._id, globalStats),
+      ...profiles.map(profile => ctx.db.replace(profile._id, profile))
+    ]);
   }
 });

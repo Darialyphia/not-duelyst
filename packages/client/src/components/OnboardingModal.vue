@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { object, string } from 'zod';
 
 const sessionId = useSessionId();
-const { data: me } = useConvexQuery(
-  api.users.me,
-  computed(() => ({ sessionId: sessionId.value }))
-);
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
 const isOpened = computed(() => {
   if (!sessionId.value) return false;
@@ -28,7 +24,7 @@ const { mutate: skipTutorial, isLoading: isSubmitting } = useConvexAuthedMutatio
     <small>100% certified no Songhai !</small>
     <p>Would you like to play the tutorial ?</p>
     <div class="flex gap-4 mt-5">
-      <NuxtLink custom :to="{ name: 'Tutorial' }" v-slot="{ href, navigate }">
+      <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'Tutorial' }">
         <UiButton
           class="primary-button"
           :disabled="isSubmitting"
@@ -38,7 +34,15 @@ const { mutate: skipTutorial, isLoading: isSubmitting } = useConvexAuthedMutatio
           Sure !
         </UiButton>
       </NuxtLink>
-      <UiButton class="ghost-button" :disabled="isSubmitting" @click="skipTutorial({})">
+      <UiButton
+        class="ghost-button"
+        :disabled="isSubmitting"
+        @click="
+          skipTutorial({
+            skippedTutorial: true
+          })
+        "
+      >
         No thanks !
       </UiButton>
     </div>

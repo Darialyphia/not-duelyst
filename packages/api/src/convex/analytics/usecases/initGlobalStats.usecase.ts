@@ -20,9 +20,7 @@ export const initGlobalStatsUsecase = internalMutation(async ctx => {
       gamesByCard: {
         ...exists.gamesByCard,
         ...Object.fromEntries(missingCards.map(f => [f, { played: 0, won: 0 }]))
-      },
-      averageGameDuration: exists.averageGameDuration,
-      totalGames: exists.totalGames
+      }
     });
   } else {
     return ctx.db.insert('globalStats', {
@@ -33,7 +31,11 @@ export const initGlobalStatsUsecase = internalMutation(async ctx => {
         Object.keys(CARDS).map(f => [f, { played: 0, won: 0 }])
       ),
       averageGameDuration: 0,
-      totalGames: 0
+      totalGames: 0,
+      users: {
+        count: 0,
+        skippedTutorial: 0
+      }
     });
   }
 });

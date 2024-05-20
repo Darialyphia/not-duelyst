@@ -16,5 +16,11 @@ export const gameStatsSchema = {
 };
 
 export const analyticsSchemas = {
-  globalStats: defineTable(gameStatsSchema)
+  globalStats: defineTable({
+    ...gameStatsSchema,
+    users: v.object({
+      count: v.number(),
+      skippedTutorial: v.number()
+    })
+  })
 };
