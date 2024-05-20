@@ -25,6 +25,22 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
 <template>
   <div class="page">
+    <Sound sound="button-hover" :triggers="['mouseenter']">
+      <Sound sound="button-click" :triggers="['mousedown']">
+        <div>
+          <NuxtLink
+            v-slot="{ navigate, href }"
+            :to="{ name: 'Profile', params: { id: me._id } }"
+            custom
+          >
+            <button class="profile-button" :href @click="navigate">
+              <img src="/assets/portraits/f1-general.png" />
+              {{ me.fullName }}
+            </button>
+          </NuxtLink>
+        </div>
+      </Sound>
+    </Sound>
     <nav>
       <ul class="grid gap-2">
         <li>
@@ -48,15 +64,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
             </Sound>
           </Sound>
         </li>
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <NuxtLink :to="{ name: 'Profile', params: { id: me._id } }">
-                Profile
-              </NuxtLink>
-            </Sound>
-          </Sound>
-        </li>
+        <li></li>
         <li>
           <Sound sound="button-hover" :triggers="['mouseenter']">
             <Sound sound="button-click" :triggers="['mousedown']">
@@ -135,6 +143,36 @@ li > * {
   &:hover::after {
     left: 0;
     width: 100%;
+  }
+}
+
+.profile-button {
+  position: fixed;
+  top: var(--size-6);
+  left: var(--size-8);
+
+  display: flex;
+  gap: var(--size-3);
+  align-items: center;
+
+  padding: var(--size-2) var(--size-4);
+
+  font-size: var(--font-size-3);
+  line-height: 1;
+  text-shadow: black 0px 3px 1px;
+
+  border-radius: var(--radius-3);
+
+  transition: background-color 0.3s;
+  > img {
+    transition: filter 0.3s;
+  }
+  &:hover {
+    background-color: hsl(0 0 0 / 0.2);
+    > img {
+      filter: drop-shadow(2px 2px 0 var(--cyan-5))
+        drop-shadow(-4px -4px 0 var(--orange-5));
+    }
   }
 }
 </style>

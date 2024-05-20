@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import { CARDS, FACTIONS } from '@game/sdk';
+import { CARD_KINDS, CARDS, FACTIONS } from '@game/sdk';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -72,22 +72,21 @@ const winrateByFactionChartData = computed(() => {
       {
         backgroundColor: Object.values(FACTION_COLORS),
         data: [
-          // (gamesByFaction[FACTIONS.F1.id].won /
-          //   (gamesByFaction[FACTIONS.F1.id].played ?? 1)) *
-          //   100,
-          // (gamesByFaction[FACTIONS.F2.id].won /
-          //   (gamesByFaction[FACTIONS.F2.id].played ?? 1)) *
-          //   100,
-          // (gamesByFaction[FACTIONS.F3.id].won /
-          //   (gamesByFaction[FACTIONS.F3.id].played ?? 1)) *
-          //   100,
-          // (gamesByFaction[FACTIONS.F4.id].won /
-          //   (gamesByFaction[FACTIONS.F4.id].played ?? 1)) *
-          //   100,
-          // (gamesByFaction[FACTIONS.F5.id].won /
-          //   (gamesByFaction[FACTIONS.F5.id].played ?? 1)) *
-          //   100
-          30, 10, 25, 13, 65
+          (gamesByFaction[FACTIONS.F1.id].won /
+            (gamesByFaction[FACTIONS.F1.id].played ?? 1)) *
+            100,
+          (gamesByFaction[FACTIONS.F2.id].won /
+            (gamesByFaction[FACTIONS.F2.id].played ?? 1)) *
+            100,
+          (gamesByFaction[FACTIONS.F3.id].won /
+            (gamesByFaction[FACTIONS.F3.id].played ?? 1)) *
+            100,
+          (gamesByFaction[FACTIONS.F4.id].won /
+            (gamesByFaction[FACTIONS.F4.id].played ?? 1)) *
+            100,
+          (gamesByFaction[FACTIONS.F5.id].won /
+            (gamesByFaction[FACTIONS.F5.id].played ?? 1)) *
+            100
         ]
       }
     ]
@@ -100,6 +99,7 @@ const mostPlayedCards = computed(() => {
       card: CARDS[cardId],
       played: (stats as any).played as number
     }))
+    .filter(({ card }) => card.kind === CARD_KINDS.MINION)
     .sort((a, b) => b.played - a.played)
     .slice(0, 3);
 });
@@ -125,7 +125,7 @@ const mostPlayedCards = computed(() => {
         <p v-if="!profile.profile.stats.totalGames">
           This player haven't played any game yet.
         </p>
-        <dl v-else class="flex justify-around text-3">
+        <dl v-else class="stats">
           <div>
             <dt>Games played</dt>
             <dd>{{ profile.profile.stats.totalGames }}</dd>
@@ -149,6 +149,9 @@ const mostPlayedCards = computed(() => {
                 maintainAspectRatio: false,
                 plugins: {
                   title: {
+                    display: true,
+                    color: 'white',
+                    font: { size: 18 },
                     text: 'Games by faction'
                   }
                 }
@@ -167,6 +170,9 @@ const mostPlayedCards = computed(() => {
                 },
                 plugins: {
                   title: {
+                    display: true,
+                    color: 'white',
+                    font: { size: 18 },
                     text: 'Winrate by faction'
                   },
                   legend: {
@@ -240,5 +246,27 @@ h2 {
   justify-items: center;
 
   margin-top: var(--size-8);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--size-4);
+  justify-items: center;
+
+  font-size: var(--font-size-3);
+  line-height: 1;
+
+  > div {
+    display: grid;
+    place-content: center;
+
+    aspect-ratio: 1;
+    width: var(--size-13);
+    padding: var(--size-4);
+
+    border: var(--fancy-border);
+    border-radius: var(--radius-round);
+  }
 }
 </style>
