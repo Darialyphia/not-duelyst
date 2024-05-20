@@ -4,9 +4,11 @@ import type { Id } from '@game/api/src/convex/_generated/dataModel';
 
 definePageMeta({
   name: 'Replay',
-  layout: 'fullscreen'
+  layout: 'fullscreen',
+  bgm: BGMS.BATTLE
 });
 
+useBgmProvider();
 const route = useRoute();
 
 const { data: game, isLoading } = useConvexQuery(api.games.replayByGameId, {

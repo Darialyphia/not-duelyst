@@ -31,6 +31,7 @@ import { f2Ravager } from './cards/faction_2/ravager';
 import { f2General } from './cards/faction_2/general';
 import { f2Imp } from './cards/faction_2/imp';
 import { f2Overseer } from './cards/faction_2/overseer';
+import { f2PitLord } from './cards/faction_2/pit-lord';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -55,6 +56,7 @@ const allCards: CardBlueprint[] = [
   f2MoltenFist,
   f2Ravager,
   f2Overseer,
+  f2PitLord,
 
   neutralTank,
   neutralAirElemental,

@@ -49,7 +49,7 @@ export const f2MoltenFist: CardBlueprint = {
       description:
         'Deal 3 damage to a unit. If it dies, inflict @Burn(2)@ to all nearby enemies.',
       iconId: 'shatter-fire',
-      initialCooldown: 0,
+      initialCooldown: 1,
       cooldown: 2,
       minTargetCount: 1,
       maxTargetCount: 1,

@@ -3,7 +3,8 @@ import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 
 definePageMeta({
-  name: 'WatchGame'
+  name: 'WatchGame',
+  bgm: BGMS.BATTLE
 });
 
 const route = useRoute();
@@ -17,7 +18,7 @@ const { data: game } = useConvexQuery(api.games.getById, {
   <div class="page">
     <ClientOnly>
       <template #default>
-        <SpectatorMode :game="game" v-if="game" />
+        <SpectatorMode v-if="game" :game="game" />
         <div v-else>Spectator mode</div>
       </template>
 

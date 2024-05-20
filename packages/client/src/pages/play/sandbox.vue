@@ -13,6 +13,17 @@ const sandboxOptions = ref<{
   player1Loadout: LoadoutDto;
   player2Loadout: LoadoutDto;
 }>();
+
+const bgm = useBgm();
+
+const isConfigured = computed(
+  () => sandboxOptions.value?.player1Loadout && sandboxOptions.value?.player2Loadout
+);
+until(isConfigured)
+  .toBeTruthy()
+  .then(() => {
+    bgm.next(BGMS.BATTLE);
+  });
 </script>
 
 <template>

@@ -20,7 +20,7 @@ export const neutralWaterElemental: CardBlueprint = {
   initialCooldown: 0,
   cost: 4,
   attack: 1,
-  maxHp: 6,
+  maxHp: 5,
   speed: 3,
   range: 1,
   skills: [],

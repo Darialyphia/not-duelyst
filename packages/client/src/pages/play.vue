@@ -27,6 +27,8 @@ until(assets.loaded)
     });
     loader.classList.add('loader-fadeout');
   });
+
+useBgmProvider();
 </script>
 
 <template>

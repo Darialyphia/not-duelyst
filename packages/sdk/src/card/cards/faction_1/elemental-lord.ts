@@ -2,7 +2,7 @@ import type { Entity } from '../../../entity/entity';
 import { isEmpty } from '../../../entity/entity-utils';
 import { regeneration, whileOnBoard } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { isCastPoint } from '../../../utils/targeting';
+import { isCastPoint, isWithinCells } from '../../../utils/targeting';
 import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
@@ -23,8 +23,8 @@ export const f1ElementalLord: CardBlueprint = {
   cooldown: 6,
   initialCooldown: 0,
   cost: 5,
-  attack: 2,
-  maxHp: 7,
+  attack: 1,
+  maxHp: 6,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.REGENERATION],
@@ -44,7 +44,7 @@ export const f1ElementalLord: CardBlueprint = {
         onApplied() {
           session.on('entity:created', onEntityCreated);
         },
-        onRemoved(session, attachedTo, modifier) {
+        onRemoved(session) {
           session.off('entity:created', onEntityCreated);
 
           session.entitySystem.getList().forEach(e => {
@@ -89,12 +89,13 @@ export const f1ElementalLord: CardBlueprint = {
         }
       },
       isTargetable(point, { session, skill }) {
-        return (
-          isEmpty(session, point) &&
-          session.boardSystem
-            .getNeighbors3D(point)
-            .some(cell => cell.entity?.isAlly(skill.caster.id))
-        );
+        // return (
+        //   isEmpty(session, point) &&
+        //   session.boardSystem
+        //     .getNeighbors3D(point)
+        //     .some(cell => cell.entity?.isAlly(skill.caster.id))
+        // );
+        return isWithinCells(skill.caster.position, point, 1);
       },
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);

@@ -35,7 +35,7 @@ export const f1Mage: CardBlueprint = {
       name: 'Fireball',
       description: 'Deal 3 damage to an enemy and @Burn(1)@ to nearby enemy minions.',
       cooldown: 3,
-      initialCooldown: 0,
+      initialCooldown: 1,
       iconId: 'fire',
       minTargetCount: 1,
       maxTargetCount: 1,
@@ -80,7 +80,7 @@ export const f1Mage: CardBlueprint = {
       cooldown: 4,
       minTargetCount: 1,
       maxTargetCount: 1,
-      initialCooldown: 2,
+      initialCooldown: 1,
       keywords: [KEYWORDS.FROZEN],
       isTargetable(point, { session, skill }) {
         return (
@@ -92,7 +92,7 @@ export const f1Mage: CardBlueprint = {
           )
         );
       },
-      isInAreaOfEffect(point, { session, skill, castPoints }) {
+      isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
       onUse({ affectedCells, skill }) {

@@ -7,7 +7,7 @@ import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 export const f2Imp: CardBlueprint = {
   id: 'f2_imp',
   name: 'F2 Imp',
-  description: '@Call to Arms@: @Summon@ an F2 Imp on a nearby tile.',
+  description: '@Call to Arms@: @Summon@ an @F2 Imp@ on a nearby tile.',
   collectable: true,
   rarity: RARITIES.BASIC,
   factions: [FACTIONS.F2, null, null],

@@ -1,3 +1,4 @@
+import { isNearbyEnemy } from '../../../entity/entity-utils';
 import { lastWill, taunted, vulnerable } from '../../../modifier/modifier-utils';
 import { isCastPoint, isSelf } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -38,24 +39,21 @@ export const f2DamnedSouls: CardBlueprint = {
     {
       id: 'f2_damned_souls_skill1',
       name: 'F2 Damnes Souls Skill 1',
-      description:
-        '@Taunt@ nearby enemies for one turn. Give nearby minions @Vulnerable@.',
+      description: '@Taunt@ a nearby enemy and give it @Vulnerable@ for one turn.',
       initialCooldown: 0,
       cooldown: 3,
       minTargetCount: 1,
       maxTargetCount: 1,
       iconId: 'taunt-skull',
       isTargetable(point, { skill, session }) {
-        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
+        return isNearbyEnemy(session, skill.caster, point);
       },
       isInAreaOfEffect(point, options) {
         return isCastPoint(point, options.castPoints);
       },
       onUse({ session, skill }) {
         session.entitySystem.getNearbyEnemies(skill.caster).forEach(enemy => {
-          if (!enemy.isGeneral) {
-            enemy.addModifier(vulnerable({ source: skill.caster }));
-          }
+          enemy.addModifier(vulnerable({ source: skill.caster, duration: 1 }));
           enemy.addModifier(taunted({ duration: 1, source: skill.caster }));
         });
       }

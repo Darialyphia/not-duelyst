@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-  name: 'Game'
+  name: 'Game',
+  bgm: BGMS.BATTLE
 });
 </script>
 

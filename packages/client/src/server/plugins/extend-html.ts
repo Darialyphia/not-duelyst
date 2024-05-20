@@ -1,7 +1,6 @@
 export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('render:html', (html, { event }) => {
     // This will be an object representation of the html template.
-    console.log(event.path);
     if (event.path.includes('/play')) {
       html.body.push(`            <div id="app-loader" style="
             height: 100dvh; 

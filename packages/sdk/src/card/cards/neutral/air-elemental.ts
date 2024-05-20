@@ -17,7 +17,7 @@ export const neutralAirElemental: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 2,
-  maxHp: 5,
+  maxHp: 4,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.RUSH, KEYWORDS.CELERITY],

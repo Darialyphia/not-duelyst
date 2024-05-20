@@ -63,7 +63,7 @@ export const f2Overseer: CardBlueprint = {
     {
       id: 'f2_overseer_skill1',
       name: 'F2 Overseer Skill 1',
-      description: `Deal 2 damage to the enemy general for each ${f2Imp.name} you control.`,
+      description: `Deal 2 damage to the enemy general for each @${f2Imp.name}@ you control.`,
       initialCooldown: 0,
       cooldown: 2,
       iconId: 'demon-eye',
@@ -103,7 +103,7 @@ export const f2Overseer: CardBlueprint = {
         return skill.caster.position.equals(point);
       },
       isInAreaOfEffect(point, { session, skill }) {
-        const cells = skill.caster.player.entities
+        const cells = skill.caster.player.opponent.entities
           .map(entity => getCellInFront(session, entity))
           .filter(cell => cell && !cell.entity);
 

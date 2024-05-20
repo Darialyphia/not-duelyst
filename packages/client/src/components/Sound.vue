@@ -2,6 +2,8 @@
 import { type Nullable, isFunction, isString } from '@game/shared';
 import { Slot as RadixSlot } from 'radix-vue';
 import { nanoid } from 'nanoid';
+import { Howl } from 'howler';
+
 const { sound, triggers } = defineProps<{
   sound: string;
   triggers: Array<
@@ -12,14 +14,18 @@ const { sound, triggers } = defineProps<{
 const userSettings = useUserSettings();
 
 const id = `_${nanoid(6).replaceAll('-', '_')}`;
-
 const el = ref<Nullable<HTMLElement>>(null);
-const { play } = useSound(
-  computed(() => `/assets/sfx/${sound}.mp3`),
-  { volume: userSettings.value.sound.sfxVolume[0] / 100 }
-);
 
-onMounted(() => {
+const howl = new Howl({
+  src: `/assets/sfx/${sound}.mp3`,
+  volume: userSettings.value.sound.sfxVolume[0] / 100
+});
+
+watchEffect(() => {
+  howl.volume(userSettings.value.sound.sfxVolume[0] / 100);
+});
+
+onMounted(async () => {
   el.value = document.querySelector(
     `[data-sound-${triggers.join('-')}=${id}]`
   ) as HTMLElement | null;
@@ -29,14 +35,14 @@ useEventListener(
   el,
   triggers.filter(t => isString(t)),
   () => {
-    play();
+    howl.play();
   }
 );
 
 watchEffect(() => {
   triggers.forEach(t => {
     if (isFunction(t) && t()) {
-      play();
+      howl.play();
     }
   });
 });

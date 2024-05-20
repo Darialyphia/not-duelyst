@@ -472,12 +472,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   get isExhausted(): boolean {
     if (this.player.isActive) {
-      console.log(
-        this.id,
-        this.canMove(0),
-        this.skills.some(skill => this.canUseSkill(skill)),
-        this.player.opponent.entities.some(entity => this.canAttack(entity))
-      );
       return (
         !this.canMove(0) &&
         !this.skills.some(skill => this.canUseSkill(skill)) &&

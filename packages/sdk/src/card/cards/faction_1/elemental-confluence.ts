@@ -33,7 +33,7 @@ export const f1ElementalConfluence: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cooldown: 5,
   initialCooldown: 0,
-  cost: 4,
+  cost: 5,
   attack: 0,
   maxHp: 7,
   speed: 0,
