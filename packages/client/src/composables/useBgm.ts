@@ -14,7 +14,7 @@ export type BGMContext = {
 const BGM_INJECTION_KEY = Symbol('bgm') as InjectionKey<BGMContext>;
 
 const FADE_DURATION = 1500;
-const SCALE_FACTOR = 0.3;
+const SCALE_FACTOR = 0.4;
 
 export const useBgmProvider = () => {
   const userSettings = useUserSettings();
@@ -37,15 +37,18 @@ export const useBgmProvider = () => {
     })
   );
 
-  watchEffect(() => {
+  watch(userSettings, () => {
     howl.value.volume((userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR);
   });
 
   const api = {
     next(bgm: Bgm) {
+      if (!Object.values(BGMS).includes(bgm)) {
+        console.warn(`Invalid BGM. Allowed values are ${Object.values(BGMS).join(', ')}`);
+        return;
+      }
       if (bgm === current.value) return;
       current.value = bgm;
-
       howl.value.fade(howl.value.volume(), 0, FADE_DURATION);
       const howl2 = new Howl({
         src: current.value,
