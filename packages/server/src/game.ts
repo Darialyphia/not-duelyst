@@ -23,6 +23,7 @@ export class Game {
   private isStarted = false;
   private turnTimeout?: ReturnType<typeof setTimeout>;
   private turnWarningTimeout?: ReturnType<typeof setTimeout>;
+  private startDate!: number;
 
   constructor(
     private io: GameServer,
@@ -35,7 +36,7 @@ export class Game {
       this.getInitialState(),
       this.game.seed
     );
-
+    this.session.on('game:error', this.onGameError.bind(this));
     this.session.on('game:action', this.onGameAction.bind(this));
     this.session.on('game:ended', this.onGameEnded.bind(this));
   }
@@ -44,12 +45,37 @@ export class Game {
     this.io.in(this.game._id).emit('game:action', action.serialize());
   }
 
+  private onGameError(err: Error) {
+    console.log('CAUGHT ERROR', err);
+    this.convexClient.action(api.games.cancel, { roomId: this.roomId });
+  }
+
   private onGameEnded(winnerId: string) {
     this.convexClient.action(api.games.end, {
       gameId: this.game._id,
       winnerId: winnerId as Id<'users'>,
       replay: stringify(this.session.actionSystem.serialize())
     });
+    try {
+      this.convexClient.mutation(api.analytics.processGame, {
+        gameId: this.game._id,
+        events: [
+          {
+            type: 'game_ended',
+            payload: {
+              winnerId: winnerId as Id<'users'>,
+              duration: Date.now() - this.startDate,
+              players: this.game.players.map(player => ({
+                id: player._id,
+                loadout: player.loadout!.cards.map(card => card.id)
+              }))
+            }
+          }
+        ]
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   private onPlayerInput(
@@ -132,6 +158,7 @@ export class Game {
   private start(sessionId: string) {
     if (this.isStarted) return;
     this.isStarted = true;
+    this.startDate = Date.now();
     if (this.game.status === 'WAITING_FOR_PLAYERS') {
       this.convexClient.mutation(api.games.start, { gameId: this.game._id, sessionId });
     }

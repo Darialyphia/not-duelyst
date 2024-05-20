@@ -35,7 +35,7 @@ export const handlePlayerSocket = async (
     const gameSession = ongoingGames.get(game._id)!;
     gameSession.join(socket);
   } catch (err) {
-    console.error(err);
+    console.error('Game error', err);
     socket.data.convexClient.action(api.games.cancel, { roomId });
   }
 };

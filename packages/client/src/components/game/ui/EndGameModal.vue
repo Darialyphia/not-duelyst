@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import { Player } from '@game/sdk';
-
-const { session } = useGame();
-
-const winner = ref<Player | null>(null);
-const userPlayer = useUserPlayer();
-
-session.on('game:ended', winnerId => {
-  winner.value = session.playerSystem.getPlayerById(winnerId)!;
+const winner = useGameSelector(session => {
+  return session.winnerId ? session.playerSystem.getPlayerById(session.winnerId) : null;
 });
+
+const userPlayer = useUserPlayer();
 
 const result = computed(() =>
   winner.value?.equals(userPlayer.value) ? 'Victory' : 'Defeat'

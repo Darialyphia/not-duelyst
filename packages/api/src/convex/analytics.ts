@@ -3,5 +3,5 @@ import { initGlobalStatsUsecase } from './analytics/usecases/initGlobalStats.use
 import { procesGameInsightsUsecase } from './analytics/usecases/processGameInsights.usecase';
 
 export const init = initGlobalStatsUsecase;
-export const procesGame = procesGameInsightsUsecase;
+export const processGame = procesGameInsightsUsecase;
 export const globalStats = getGlobalStatsUsecase;

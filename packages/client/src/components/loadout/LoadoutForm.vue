@@ -33,7 +33,7 @@ const pedestals = [
   'pedestal-ocean',
   'pedestal-cyber',
   'pedestal-lava',
-  'pedestam-sand'
+  'pedestal-sand'
 ];
 const changePedestal = (id: string, diff: number) => {
   const card = cards.find(c => c.id === id)!;

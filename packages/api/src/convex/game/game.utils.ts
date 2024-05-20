@@ -6,6 +6,7 @@ import { toUserDto } from '../users/user.mapper';
 import type { Game } from './game.entity';
 import { config } from '@game/sdk/src/config';
 import { parse } from 'zipson';
+import { toGameDto } from './game.mapper';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -22,25 +23,11 @@ export const getCurrentGame = async (
 
   const game = await db.get(currentGameUser?.gameId);
   if (!game) return null;
-  if (game.status === 'CANCELLED') return null;
 
-  const gamePlayers = await db
-    .query('gamePlayers')
-    .withIndex('by_game_id', q => q.eq('gameId', game?._id))
-    .collect();
-
-  return {
+  return toGameDto({
     ...game,
-    players: await Promise.all(
-      gamePlayers.map(async gamePlayer => {
-        const user = await db.get(gamePlayer.userId);
-        return {
-          ...toUserDto(user!),
-          loadout: await db.get(gamePlayer.loadoutId)
-        };
-      })
-    )
-  };
+    players: await getGamePlayers({ db }, game)
+  });
 };
 
 export const ensureHasNoCurrentGame = async (
@@ -96,6 +83,7 @@ export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game)
 
       return {
         ...user,
+        gamePlayerId: gamePlayer._id,
         loadout: loadout
       };
     })

@@ -19,12 +19,13 @@ export type GameDto = {
   players: Array<
     UserDto & {
       loadout: LoadoutDto;
+      gamePlayerId: Id<'gamePlayers'>;
     }
   >;
 };
 
 type GameMapperInput = Game & {
-  players: Array<User & { loadout: Loadout }>;
+  players: Array<User & { loadout: Loadout; gamePlayerId: Id<'gamePlayers'> }>;
 };
 export const toGameDto = (game: GameMapperInput): GameDto => {
   return {
@@ -38,6 +39,7 @@ export const toGameDto = (game: GameMapperInput): GameDto => {
     status: game.status,
     players: game.players.map(player => ({
       ...toUserDto(player),
+      gamePlayerId: player.gamePlayerId,
       loadout: toLoadoutDto(player.loadout)
     }))
   };

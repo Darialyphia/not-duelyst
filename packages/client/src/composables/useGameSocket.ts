@@ -21,7 +21,7 @@ export const useGameSocket = (
 
       const getUrl = async (): Promise<string> => {
         if (!config.public.hathoraAppId) {
-          return `ws://localhost:8000?spectator=${spectator}&gameId=${_gameId.value}`;
+          return `ws://localhost:8000?spectator=${spectator}&gameId=${_gameId.value}&roomId=${roomId}`;
         }
 
         const response = await $hathora.roomV2.getConnectionInfo(roomId);

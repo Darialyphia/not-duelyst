@@ -9,7 +9,7 @@ import {
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Prettify } from '@game/shared';
+import type { Nullable, Prettify } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,
@@ -45,6 +45,7 @@ type GameEventsBase = {
   'scheduler:flushed': [];
   'game:ready': [];
   'game:ended': [PlayerId];
+  'game:error': [Error];
 };
 export type GameEventMap = Prettify<
   GameEventsBase & GlobalEntityEvents & GlobalPlayerEvents & GlobalCardEvents
@@ -63,9 +64,10 @@ export class GameSession extends EventEmitter<GameEventMap> {
   static createClientSession(
     state: SerializedGameState,
     seed: string,
-    fxSystem: FXSystem
+    fxSystem: FXSystem,
+    winnerId?: string
   ) {
-    return new GameSession(state, { seed, isAuthoritative: false, fxSystem });
+    return new GameSession(state, { seed, isAuthoritative: false, fxSystem, winnerId });
   }
 
   readonly isAuthoritative: boolean;
@@ -86,18 +88,22 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
   fxSystem = noopFXContext;
 
+  winnerId: Nullable<string> = null;
+
   protected constructor(
     private initialState: SerializedGameState,
     options: {
       isAuthoritative: boolean;
       seed: string;
       fxSystem: FXSystem;
+      winnerId?: string;
     }
   ) {
     super();
     this.isAuthoritative = options.isAuthoritative;
 
     this.seed = options.seed;
+    this.winnerId = options.winnerId;
     this.setup(options.fxSystem);
   }
 
@@ -132,6 +138,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
     this.emit('game:ready');
     this.on('entity:after_destroy', e => {
       if (e.isGeneral) {
+        this.winnerId = e.player.opponent.id;
         this.emit('game:ended', e.player.opponent.id);
       }
     });

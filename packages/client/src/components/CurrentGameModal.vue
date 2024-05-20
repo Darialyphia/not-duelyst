@@ -6,7 +6,7 @@ const router = useRouter();
 const sessionId = useSessionId();
 const { data: currentGame } = useConvexQuery(
   api.games.getCurrent,
-  computed(() => ({ sessionId: sessionId.value })),
+  computed(() => ({ sessionId: sessionId.value! })),
   { ssr: false, enabled: computed(() => !!sessionId.value) }
 );
 
@@ -14,7 +14,8 @@ const hasCurrentOngoingGame = computed(
   () =>
     route.name !== 'Game' &&
     !!currentGame.value &&
-    currentGame.value.status !== 'FINISHED'
+    currentGame.value.status !== 'FINISHED' &&
+    currentGame.value.status !== 'CANCELLED'
 );
 
 watchEffect(() => {

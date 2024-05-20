@@ -15,11 +15,13 @@ export const procesGameInsightsUsecase = mutation({
     gameId: v.id('games'),
     events: v.array(
       v.object({
-        type: v.literal(GAME_ANALYTICS_EVENTS.GAME_ENDED)
+        type: v.literal(GAME_ANALYTICS_EVENTS.GAME_ENDED),
+        payload: v.any()
       }) as Validator<GameAnalyticsEvent>
     )
   },
   async handler(ctx, args) {
+    console.log('PROCESSING GAME', args.gameId);
     const globalStats = await getGlobalStats(ctx);
 
     const game = await ctx.db.get(args.gameId);
@@ -66,6 +68,10 @@ export const procesGameInsightsUsecase = mutation({
                 globalStats.gamesByFaction[faction].won++;
               }
             });
+            profile.stats.averageGameDuration =
+              (profile.stats.averageGameDuration * profile.stats.totalGames +
+                payload.duration) /
+              ++profile.stats.totalGames;
           });
 
           globalStats.averageGameDuration =

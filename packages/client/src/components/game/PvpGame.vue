@@ -41,10 +41,13 @@ onMounted(async () => {
     until(game)
       .toBeTruthy()
       .then(currentGame => {
+        console.log(game.value);
         const session = GameSession.createClientSession(
           serializedState,
           currentGame.seed,
-          fx.ctx
+          fx.ctx,
+          game.value?.players.find(player => player.gamePlayerId === game.value?.winnerId)
+            ?._id
         );
 
         session.onReady(() => {
@@ -88,11 +91,6 @@ const canSeeGame = computed(() => {
 
     <div v-else-if="isCreatingRoom" class="full-page">Creating game room...</div>
 
-    <div v-else-if="error || game?.status === 'CANCELLED'" class="full-page">
-      An error has occured while creating the room.
-      <code>{{ error }}</code>
-    </div>
-
     <div v-else-if="game?.status === 'WAITING_FOR_PLAYERS'" class="full-page">
       Waiting for opponent to connect...
     </div>
@@ -122,6 +120,22 @@ const canSeeGame = computed(() => {
         "
       />
 
+      <UiModal
+        title="Looks like we hit a snag !"
+        :is-opened="!!error || game?.status === 'CANCELLED'"
+        :style="{ '--ui-modal-size': 'var(--size-sm)' }"
+        :closable="false"
+      >
+        <p>An error has occured and the game has been cancelled.</p>
+        <div v-if="error">
+          <code>{{ error }}</code>
+        </div>
+        <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
+          <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
+            Back to home
+          </UiFancyButton>
+        </NuxtLink>
+      </UiModal>
       <div v-if="timeRemainingForTurn" class="remaining" />
     </template>
   </div>

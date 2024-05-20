@@ -6,6 +6,7 @@ const { player1Loadout, player2Loadout } = defineProps<{
   player1Loadout: LoadoutDto;
   player2Loadout: LoadoutDto;
 }>();
+
 const state: SerializedGameState = {
   history: [],
   entities: [],

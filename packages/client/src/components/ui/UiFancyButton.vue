@@ -55,7 +55,7 @@ const tag = computed(() => {
 @import 'open-props/media';
 
 @layer components {
-  button {
+  .ui-fancy-button {
     --_font-size: var(--font-size, var(--font-size-3));
     --_hue: var(--hue, 40deg);
     --_sat: var(--sat, 60%);
@@ -71,6 +71,7 @@ const tag = computed(() => {
 
     display: block;
 
+    width: fit-content;
     min-width: 10ch;
     padding: var(--size-2-em) var(--size-3-em);
 
