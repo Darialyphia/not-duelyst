@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="fullscreen-layout">
+  <main class="fullscreen-layout">
     <slot />
-  </div>
+  </main>
 </template>
 
 <style scoped lang="postcss">

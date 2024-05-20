@@ -19,6 +19,8 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
     navigateTo({ name: 'Login' });
   }
 });
+
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
 </script>
 
 <template>
@@ -43,6 +45,15 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
           <Sound sound="button-hover" :triggers="['mouseenter']">
             <Sound sound="button-click" :triggers="['mousedown']">
               <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
+            </Sound>
+          </Sound>
+        </li>
+        <li>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <Sound sound="button-click" :triggers="['mousedown']">
+              <NuxtLink :to="{ name: 'Profile', params: { id: me._id } }">
+                Profile
+              </NuxtLink>
             </Sound>
           </Sound>
         </li>

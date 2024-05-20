@@ -4,6 +4,7 @@ import { completeOnboardingUsecase } from './users/usecases/completeOnboarding.u
 import { getAllUsersUsecase } from './users/usecases/getAllUsers.usecase';
 import { getMySettingsUecase } from './users/usecases/getMySettings.usecase';
 import { saveSettingsUsecase } from './users/usecases/saveSettings.usecase';
+import { getProfileUsecase } from './users/usecases/getProfile.usecase';
 
 export const me = getMeUsecase;
 export const completeSignUp = completeSignupUsecase;
@@ -11,3 +12,4 @@ export const completeOnboarding = completeOnboardingUsecase;
 export const all = getAllUsersUsecase;
 export const settings = getMySettingsUecase;
 export const saveSettings = saveSettingsUsecase;
+export const profile = getProfileUsecase;
