@@ -17,7 +17,7 @@ export const getProfileUsecase = authedQuery({
 
     return {
       user: toUserDto(user),
-      profile
+      profile: profile!
     };
   }
 });
