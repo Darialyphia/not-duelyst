@@ -143,22 +143,22 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
 
       <animated-sprite
         v-if="diffuseTextures"
-        :textures="diffuseTextures"
-        :anchor-x="0.5"
-        :anchor-y="0"
-        :playing="true"
-        :y="-CELL_HEIGHT * 0.8"
-        :is-flipped="isFlipped"
-        :filters="filters"
         :ref="
           (el: AnimatedSprite) => {
             sprite = el;
           }
         "
+        :textures="diffuseTextures"
+        :anchor-x="0.5"
+        :anchor-y="0"
+        :playing="true"
+        :y="-CELL_HEIGHT * 0.85"
+        :is-flipped="isFlipped"
+        :filters="filters"
       />
     </container>
 
-    <container :ref="normalRef" v-if="isEnabled" :filters="[normalFilter]">
+    <container v-if="isEnabled" :ref="normalRef" :filters="[normalFilter]">
       <animated-sprite
         v-if="pedestalTextures.normal"
         :textures="pedestalTextures.normal"

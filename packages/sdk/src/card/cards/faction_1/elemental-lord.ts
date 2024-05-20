@@ -43,6 +43,10 @@ export const f1ElementalLord: CardBlueprint = {
         source: entity,
         onApplied() {
           session.on('entity:created', onEntityCreated);
+          session.entitySystem.getList().forEach(e => {
+            if (!isAlliedElemental(e)) return;
+            e.addModifier(regeneration({ source: entity }));
+          });
         },
         onRemoved(session) {
           session.off('entity:created', onEntityCreated);

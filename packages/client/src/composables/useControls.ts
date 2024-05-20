@@ -1,14 +1,15 @@
 import type { ControlId } from '../utils/key-bindings';
 
 export const useGameControls = () => {
+  console.log('use controls');
   const { camera, ui, dispatch, fx } = useGame();
 
   const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
   const settings = useUserSettings();
+  const isActivePlayer = useIsActivePlayer();
 
   watchEffect(onCleanup => {
     const controls = settings.value.bindings;
-    const isActivePlayer = useIsActivePlayer();
 
     const isMatch = (e: KeyboardEvent, id: ControlId) => {
       const control = controls.find(c => c.id === id)!.control;

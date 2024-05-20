@@ -32,25 +32,26 @@ export const f2PitLord: CardBlueprint = {
     const isAlliedImp = (e: Entity) =>
       e.isAlly(entity.id) && e.card.blueprintId === f2Imp.id;
 
+    const getModifier = () => {
+      return createEntityModifier({
+        id: PIT_LORD_MODIFIER_ID,
+        stackable: true,
+        visible: true,
+        name: 'Pit Lord buff',
+        description: `+2 health`,
+        source: entity,
+        mixins: [
+          modifierEntityInterceptorMixin({
+            key: 'maxHp',
+            interceptor: modifier => hp => hp + 2 * modifier.stacks!,
+            keywords: []
+          })
+        ]
+      });
+    };
     const onEntityCreated = (newEntity: Entity) => {
       if (!isAlliedImp(newEntity)) return;
-      newEntity.addModifier(
-        createEntityModifier({
-          id: PIT_LORD_MODIFIER_ID,
-          stackable: true,
-          visible: true,
-          name: 'Pit Lord buff',
-          description: `+2 health`,
-          source: entity,
-          mixins: [
-            modifierEntityInterceptorMixin({
-              key: 'maxHp',
-              interceptor: modifier => hp => hp + 2 * modifier.stacks!,
-              keywords: []
-            })
-          ]
-        })
-      );
+      newEntity.addModifier(getModifier());
     };
 
     entity.addModifier(
@@ -58,6 +59,10 @@ export const f2PitLord: CardBlueprint = {
         source: entity,
         onApplied() {
           session.on('entity:created', onEntityCreated);
+          session.entitySystem.getList().forEach(e => {
+            if (!isAlliedImp(e)) return;
+            e.addModifier(getModifier());
+          });
         },
         onRemoved(session) {
           session.off('entity:created', onEntityCreated);
@@ -88,7 +93,7 @@ export const f2PitLord: CardBlueprint = {
         return [
           getCellInFront(session, skill.caster),
           getCellBehind(session, skill.caster)
-        ].some(cell => cell?.position.equals(skill.caster.position));
+        ].some(cell => cell?.position.equals(point));
       },
       async onUse({ skill, affectedCells }) {
         await Promise.all(
