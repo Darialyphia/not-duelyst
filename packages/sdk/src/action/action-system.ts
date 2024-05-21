@@ -40,10 +40,8 @@ export class ActionSystem implements Serializable {
   constructor(private session: GameSession) {}
 
   async setup(rawHistory: SerializedAction[]) {
-    for (const action of rawHistory) {
-      await this.dispatch(action);
-    }
-    this.session.emit('scheduler:flushed');
+    this.scheduledActions = rawHistory.map(action => () => this.handleAction(action));
+    await this.flushSchedule();
   }
 
   private isActionType(type: string): type is keyof typeof actionMap {
@@ -83,7 +81,7 @@ export class ActionSystem implements Serializable {
   async handleAction({ type, payload }: SerializedAction) {
     if (!this.isActionType(type)) return;
     this.isRunning = true;
-    // console.log(`%c[ACTION:${type}]`, 'color: blue', payload);
+    console.log(`%c[ACTION:${type}]`, 'color: blue', payload);
     const ctor = actionMap[type];
     const action = new ctor(payload, this.session);
     await action.execute();

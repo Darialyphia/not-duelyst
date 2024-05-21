@@ -29,7 +29,9 @@ export class MoveAction extends GameAction<typeof schema> {
     }
 
     if (!this.path) {
-      return this.printError(`No path found for destination ${this.payload.position}.`);
+      return this.printError(
+        `No path found for destination ${JSON.stringify(this.payload.position)}.`
+      );
     }
 
     if (!this.entity.canMove(this.path.distance)) {

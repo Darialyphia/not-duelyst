@@ -33,6 +33,10 @@ const { data: profile, isLoading } = useConvexAuthedQuery(api.users.profile, {
   userId: route.params.id as Id<'users'>
 });
 
+const { data: history } = useConvexAuthedQuery(api.games.gameHistory, {
+  userId: route.params.id as Id<'users'>
+});
+
 const gamesWon = computed(() => {
   return Object.values(profile.value.profile.stats.gamesByFaction).reduce(
     (total, faction) => total + faction.won,
@@ -209,6 +213,26 @@ const mostPlayedCards = computed(() => {
             }"
           />
         </div>
+
+        <h2>Match history</h2>
+        <div
+          v-if="history"
+          class="container grid gap-3"
+          style="--container-size: var(--size-lg)"
+        >
+          <p v-if="!history.length">No games available.</p>
+
+          <GameCard
+            v-for="game in history"
+            :key="game._id"
+            :game="game"
+            class="fancy-surface"
+            :link="{
+              name: 'Replay',
+              params: { id: game._id }
+            }"
+          />
+        </div>
       </section>
     </div>
   </div>
@@ -271,7 +295,7 @@ h2 {
   gap: var(--size-4);
   justify-items: center;
 
-  margin-top: var(--size-8);
+  margin-block: var(--size-8);
 }
 
 .stats {

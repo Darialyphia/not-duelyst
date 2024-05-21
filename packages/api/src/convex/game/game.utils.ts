@@ -100,7 +100,7 @@ export const getReplayInitialState = async (
 
   const map = await db.get(game.mapId);
 
-  const initialState = {
+  return {
     history: [],
     entities: [],
     players: [

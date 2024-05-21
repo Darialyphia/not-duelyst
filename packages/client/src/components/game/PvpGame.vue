@@ -41,7 +41,6 @@ onMounted(async () => {
     until(game)
       .toBeTruthy()
       .then(currentGame => {
-        console.log(game.value);
         const session = GameSession.createClientSession(
           serializedState,
           currentGame.seed,
@@ -120,24 +119,24 @@ const canSeeGame = computed(() => {
         "
       />
 
-      <UiModal
-        title="Looks like we hit a snag !"
-        :is-opened="!!error || game?.status === 'CANCELLED'"
-        :style="{ '--ui-modal-size': 'var(--size-sm)' }"
-        :closable="false"
-      >
-        <p>An error has occured and the game has been cancelled.</p>
-        <div v-if="error">
-          <code>{{ error }}</code>
-        </div>
-        <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
-          <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
-            Back to home
-          </UiFancyButton>
-        </NuxtLink>
-      </UiModal>
       <div v-if="timeRemainingForTurn" class="remaining" />
     </template>
+    <UiModal
+      title="Looks like we hit a snag !"
+      :is-opened="!!error || game?.status === 'CANCELLED'"
+      :style="{ '--ui-modal-size': 'var(--size-sm)' }"
+      :closable="false"
+    >
+      <p>An error has occured and the game has been cancelled.</p>
+      <div v-if="error">
+        <code>{{ error }}</code>
+      </div>
+      <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
+        <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
+          Back to home
+        </UiFancyButton>
+      </NuxtLink>
+    </UiModal>
   </div>
 </template>
 

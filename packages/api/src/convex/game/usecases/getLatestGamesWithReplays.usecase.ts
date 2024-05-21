@@ -22,17 +22,3 @@ export const getLatestGamesWithReplaysUsecase = queryWithAuth({
     return games.filter(isDefined).map(toGameDto);
   }
 });
-
-export const createReplay = internalMutation({
-  args: {
-    gameId: v.id('games'),
-    replay: v.string()
-  },
-  async handler(ctx, args) {
-    const game = await ctx.db.get(args.gameId);
-    return ctx.db.insert('gameReplays', {
-      ...args,
-      initialState: stringify(await getReplayInitialState(ctx, game!))
-    });
-  }
-});
