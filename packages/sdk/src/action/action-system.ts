@@ -61,7 +61,6 @@ export class ActionSystem implements Serializable {
       return;
     }
     this.isRunning = true;
-
     try {
       for (const fn of this.scheduledActions) {
         await fn();
@@ -80,13 +79,10 @@ export class ActionSystem implements Serializable {
 
   async handleAction({ type, payload }: SerializedAction) {
     if (!this.isActionType(type)) return;
-    this.isRunning = true;
     console.log(`%c[ACTION:${type}]`, 'color: blue', payload);
     const ctor = actionMap[type];
     const action = new ctor(payload, this.session);
     await action.execute();
-    this.isRunning = false;
-    // await this.flushSchedule();
     this.history.push(action);
     this.session.emit('game:action', action);
   }

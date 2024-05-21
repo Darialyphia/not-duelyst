@@ -9,7 +9,6 @@ export class SurrenderAction extends GameAction<typeof schema> {
   protected payloadSchema = schema;
 
   async impl() {
-    console.log(this.player.entities.map(e => e.card.blueprintId));
     this.player.general.destroy();
   }
 }
