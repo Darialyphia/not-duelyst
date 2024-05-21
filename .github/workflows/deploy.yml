@@ -1,0 +1,45 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-convex:
+    runs-on: ubuntu-latest
+    env:
+      CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - run: npm install
+
+      - run: npm run reploy --workspace=@game/api 
+
+  deploy-server:
+    runs-on: ubuntu-latest
+    env:
+      HATHORA_TOKEN: ${{ secrets.HATHORA_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - run: npm install
+
+      - run: >
+          npm --workspace=@game/game-server run deploy  \
+            --appId app-6b13c96a-2991-4e0a-bf42-3e66fa75a91c \
+            --token ${{ secrets.HATHORA_TOKEN }} \
+            --containerPort 8000 \
+            --env '[{"name": "HATHORA_TOKEN", "value": "${{ secrets.HATHORA_TOKEN }}"}, {"name": "NODE_ENV", "value": "production"}]'
