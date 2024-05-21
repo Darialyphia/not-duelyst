@@ -28,7 +28,6 @@ export const getGameHistoryUsecase = authedQuery({
         });
       })
     );
-    console.log(history);
     return history.filter(isDefined);
   }
 });

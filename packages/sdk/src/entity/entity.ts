@@ -120,14 +120,9 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   retaliationsDone = 0;
   skillsUsed = 0;
 
-  private currentHp = new ReactiveValue(0, hp => {
-    const intercepted = this.interceptors.maxHp.getValue(hp, this);
-    if (intercepted <= 0) {
-      this.session.actionSystem.schedule(() => {
-        this.destroy();
-      });
-    }
-  });
+  private isScheduledForDeletion = false;
+
+  private currentHp = 0;
 
   private interceptors = {
     attack: new Interceptable<number, Entity>(),
@@ -172,7 +167,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.skills = this.card.blueprint.skills.map(
       blueprint => new Skill(this.session, blueprint, this)
     );
-    this.currentHp.lazySetInitialValue(options.hp ?? this.maxHp);
+    this.currentHp = options.hp ?? this.maxHp;
   }
 
   equals(entity: Entity) {
@@ -202,11 +197,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   get hp() {
-    return this.interceptors.maxHp.getValue(this.currentHp.value, this);
+    return this.interceptors.maxHp.getValue(this.currentHp, this);
   }
 
   private set hp(val: number) {
-    this.currentHp.value = Math.min(val, this.maxHp);
+    this.currentHp = Math.min(val, this.maxHp);
   }
 
   get maxHp(): number {
@@ -309,12 +304,23 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     );
   }
 
+  private checkHpForDeletion() {
+    if (this.isScheduledForDeletion) return;
+
+    if (this.hp <= 0) {
+      this.isScheduledForDeletion = true;
+      this.session.actionSystem.schedule(() => {
+        this.destroy();
+      });
+    }
+  }
   addInterceptor<T extends keyof EntityInterceptor>(
     key: T,
     interceptor: inferInterceptor<EntityInterceptor[T]>,
     priority?: number
   ) {
     this.interceptors[key].add(interceptor as any, priority);
+    this.checkHpForDeletion();
     return () => this.removeInterceptor(key, interceptor);
   }
 
@@ -332,6 +338,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     interceptor: inferInterceptor<EntityInterceptor[T]>
   ) {
     this.interceptors[key].remove(interceptor as any);
+    this.checkHpForDeletion();
   }
 
   clearAllInterceptors() {
@@ -466,7 +473,9 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       })
     ]);
 
-    this.hp = this.currentHp.value - amount;
+    this.hp = this.currentHp - amount;
+    this.checkHpForDeletion();
+
     this.emit(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
   }
 
@@ -541,6 +550,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.BEFORE_HEAL, payload);
 
     this.hp += amount;
+    this.checkHpForDeletion();
 
     this.emit(ENTITY_EVENTS.AFTER_HEAL, payload);
   }
