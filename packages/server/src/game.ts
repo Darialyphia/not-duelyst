@@ -46,33 +46,36 @@ export class Game {
   }
 
   private onGameError(err: Error) {
-    console.log('CAUGHT ERROR', err);
+    console.log(err);
+    this.io.in(this.game._id).emit('error', err.message);
     this.convexClient.action(api.games.cancel, { roomId: this.roomId });
   }
 
-  private onGameEnded(winnerId: string) {
-    this.convexClient.action(api.games.end, {
-      gameId: this.game._id,
-      winnerId: winnerId as Id<'users'>,
-      replay: stringify(this.session.actionSystem.serialize())
-    });
+  private async onGameEnded(winnerId: string) {
     try {
-      this.convexClient.mutation(api.analytics.processGame, {
-        gameId: this.game._id,
-        events: [
-          {
-            type: 'game_ended',
-            payload: {
-              winnerId: winnerId as Id<'users'>,
-              duration: Date.now() - this.startDate,
-              players: this.game.players.map(player => ({
-                id: player._id,
-                loadout: player.loadout!.cards.map(card => card.id)
-              }))
+      await Promise.all([
+        this.convexClient.action(api.games.end, {
+          gameId: this.game._id,
+          winnerId: winnerId as Id<'users'>,
+          replay: stringify(this.session.actionSystem.serialize())
+        }),
+        this.convexClient.mutation(api.analytics.processGame, {
+          gameId: this.game._id,
+          events: [
+            {
+              type: 'game_ended',
+              payload: {
+                winnerId: winnerId as Id<'users'>,
+                duration: Date.now() - this.startDate,
+                players: this.game.players.map(player => ({
+                  id: player._id,
+                  loadout: player.loadout!.cards.map(card => card.id)
+                }))
+              }
             }
-          }
-        ]
-      });
+          ]
+        })
+      ]);
     } catch (err) {
       console.log(err);
     }

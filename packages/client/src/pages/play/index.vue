@@ -167,11 +167,12 @@ li > * {
   > img {
     transition: filter 0.3s;
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: hsl(0 0 0 / 0.2);
     > img {
-      filter: drop-shadow(2px 2px 0 var(--cyan-5))
-        drop-shadow(-4px -4px 0 var(--orange-5));
+      filter: drop-shadow(6px 6px 5px var(--cyan-5))
+        drop-shadow(-6px -6px 5px var(--orange-5));
     }
   }
 }

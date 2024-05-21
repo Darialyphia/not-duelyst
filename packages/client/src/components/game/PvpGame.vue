@@ -122,7 +122,7 @@ const canSeeGame = computed(() => {
       <div v-if="timeRemainingForTurn" class="remaining" />
     </template>
     <UiModal
-      title="Looks like we hit a snag !"
+      title="We hit a snag :yussy:"
       :is-opened="!!error || game?.status === 'CANCELLED'"
       :style="{ '--ui-modal-size': 'var(--size-sm)' }"
       :closable="false"
@@ -171,5 +171,15 @@ const canSeeGame = computed(() => {
 
   animation: remaining-time;
   animation-duration: calc(v-bind(timeRemainingForTurn) * 1ms);
+}
+
+code {
+  padding: var(--size-2);
+  border: var(--fancy-border);
+  :has(&) {
+    display: flex;
+    justify-content: center;
+    padding-block: var(--size-4);
+  }
 }
 </style>

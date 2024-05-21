@@ -149,6 +149,9 @@ const mostPlayedCards = computed(() => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
+                  legend: {
+                    labels: { color: 'white' }
+                  },
                   title: {
                     display: true,
                     color: 'white',
@@ -178,6 +181,13 @@ const mostPlayedCards = computed(() => {
                   },
                   legend: {
                     display: false
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label(tooltipItem) {
+                        return `${tooltipItem.parsed.y.toFixed(2)}%`;
+                      }
+                    }
                   }
                 }
               }"
@@ -307,7 +317,6 @@ h2 {
   width: var(--size-lg);
   margin-inline: auto;
 
-  font-size: var(--font-size-3);
   line-height: 1;
 
   > div {
@@ -320,6 +329,14 @@ h2 {
 
     border: var(--fancy-border);
     border-radius: var(--radius-round);
+
+    > dt {
+      font-size: var(--font-size-2);
+      font-weight: var(--font-weight-4);
+    }
+    > dd {
+      font-size: var(--font-size-5);
+    }
   }
 }
 

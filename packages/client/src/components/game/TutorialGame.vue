@@ -357,6 +357,12 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
     },
     tooltips: [
       {
+        text: 'There you go. Most units can use their ability the turn they are summoned. However some have an initial cooldown.'
+      },
+      {
+        text: 'You can right click any unit on the field or in you raction bar to see its full details'
+      },
+      {
         text: "Now you're ready to whac...pet the cat with your elemental."
       },
       { text: 'Go ahead, it keeps ignoring its litterbox anyways.' }
@@ -512,15 +518,15 @@ until(state)
       <p>- Q / E to rotate</p>
     </div>
 
-    <div class="fancy-surface tooltip" v-if="session && currentStep">
+    <div v-if="session && currentStep" class="fancy-surface tooltip">
       {{ currentStep.tooltips[currentTextIndex].text }}
 
       <UiButton
-        class="primary-button mt-4"
         v-if="
           currentTextIndex < currentStep.tooltips.length - 1 ||
           currentStep.tooltips[currentTextIndex].onLeave
         "
+        class="primary-button mt-4"
         @click="
           async () => {
             await currentStep!.tooltips[currentTextIndex].onLeave?.();

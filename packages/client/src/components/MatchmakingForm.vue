@@ -79,18 +79,25 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(matchmakingUser?.loado
   </div>
 
   <footer class="flex gap-3 items-center">
-    <UiButton v-if="isInMatchmaking" class="error-button" @click="leave({})">
-      Leave
-    </UiButton>
-    <UiButton
-      v-else
-      :disabled="!selectedLoadoutId"
+    <UiFancyButton
+      :disabled="!isInMatchmaking && !selectedLoadoutId"
       class="primary-button"
-      @click="join({ loadoutId: selectedLoadoutId! })"
+      :style="{ '--hue': isInMatchmaking ? '0' : undefined }"
+      @click="
+        () => {
+          if (isInMatchmaking) {
+            leave({});
+          } else {
+            join({ loadoutId: selectedLoadoutId! });
+          }
+        }
+      "
     >
-      Join
-    </UiButton>
-    <div v-if="isInMatchmaking">Searching for opponent...{{ duration }}</div>
+      {{ isInMatchmaking ? 'Leave' : 'Join' }}
+    </UiFancyButton>
+    <Transition>
+      <p v-if="isInMatchmaking">Searching for opponent...{{ duration }}</p>
+    </Transition>
   </footer>
 </template>
 
@@ -123,6 +130,19 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(matchmakingUser?.loado
     &:has(input:disabled) {
       filter: grayscale(50%);
     }
+  }
+}
+
+p {
+  text-shadow: black 0px 2px 1px;
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.3s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: translateX(var(--size-8));
+    opacity: 0;
   }
 }
 </style>

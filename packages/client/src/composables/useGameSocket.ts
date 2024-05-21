@@ -51,6 +51,10 @@ export const useGameSocket = (
         console.log(err);
         error.value = err.message;
       });
+      socket?.on('error', err => {
+        console.log(err);
+        error.value = err;
+      });
 
       return socket;
     } catch (err) {

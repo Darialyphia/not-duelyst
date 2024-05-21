@@ -1,12 +1,20 @@
 <script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
+export type ButtonStyleVariables =
+  | '--font-size'
+  | '--hue'
+  | '--sat'
+  | '--hue2'
+  | '--sat2';
+
 export type ButtonProps = {
   leftIcon?: string;
   rightIcon?: string;
   isLoading?: boolean;
   isInline?: boolean;
   isCta?: boolean;
+  style?: StyleProp<ButtonStyleVariables>;
 };
 
 const {
@@ -14,7 +22,8 @@ const {
   leftIcon,
   rightIcon,
   isInline,
-  isCta
+  isCta,
+  style
 } = defineProps<ButtonProps>();
 
 const attrs = useAttrs();
@@ -38,6 +47,7 @@ const tag = computed(() => {
           'is-loading': isLoading
         }"
         :disabled="attrs.disabled || isLoading"
+        :style="style"
         v-bind="attrs"
       >
         <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
@@ -53,6 +63,11 @@ const tag = computed(() => {
 
 <style scoped lang="postcss">
 @import 'open-props/media';
+
+@property --hue {
+  inherits: true;
+  syntax: '<number>';
+}
 
 @layer components {
   .ui-fancy-button {

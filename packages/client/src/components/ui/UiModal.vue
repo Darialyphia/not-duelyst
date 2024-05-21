@@ -96,6 +96,10 @@ const {
   width: var(--_ui-modal-size);
   max-width: calc(100% - 2 * var(--size-3));
 
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
   > div {
     pointer-events: all;
   }
