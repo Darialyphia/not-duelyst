@@ -111,12 +111,9 @@ const mostPlayedCards = computed(() => {
       <BackButton class="inline-flex" />
     </header>
     <div v-if="isLoading">Loading profile...</div>
-    <div
-      v-else
-      class="container fancy-surface"
-      :style="{ '--container-size': 'var(--size-xl)' }"
-    >
-      <h1 class="text-center my-8 text-8 font-4">
+    <div v-else class="container" :style="{ '--container-size': 'var(--size-xl)' }">
+      <h1 class="text-center my-8 text-8 font-4 flex items-center justify-center gap-3">
+        <img src="/assets/portraits/f1-general.png" />
         {{ profile.user.name }}
         <span class="text-2 opacity-40">#{{ profile.user.discriminator }}</span>
       </h1>
@@ -126,21 +123,21 @@ const mostPlayedCards = computed(() => {
           This player haven't played any game yet.
         </p>
         <dl v-else class="stats">
-          <div>
+          <div class="fancy-surface">
             <dt>Games played</dt>
             <dd>{{ profile.profile.stats.totalGames }}</dd>
           </div>
-          <div>
+          <div class="fancy-surface">
             <dt>Games won</dt>
             <dd>{{ gamesWon }}</dd>
           </div>
-          <div>
+          <div class="fancy-surface">
             <dt>Winrate</dt>
             <dd>{{ winrate }}%</dd>
           </div>
         </dl>
 
-        <div class="h-13 my-10 grid grid-cols-2 gap-3">
+        <div class="charts fancy-surface">
           <div>
             <Doughnut
               :data="gamesByFactionChartData"
@@ -191,6 +188,8 @@ const mostPlayedCards = computed(() => {
           <Card
             v-for="card in mostPlayedCards"
             :key="card.card.id"
+            :with-skills="false"
+            :has-modal="false"
             :card="{
               blueprintId: card.card.id,
               name: card.card.name,
@@ -219,9 +218,17 @@ const mostPlayedCards = computed(() => {
 header {
   width: 100%;
   padding-block: var(--size-6);
+}
+
+header,
+h1,
+h2 {
   text-shadow: black 0px 4px 1px;
 }
 
+p {
+  text-shadow: black 0px 2px 1px;
+}
 dl {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -233,6 +240,25 @@ dl {
   line-height: 1;
   dt {
     margin-block-end: var(--size-2);
+  }
+}
+
+h1 {
+  display: flex;
+  gap: var(--size-3);
+  align-items: flex-end;
+  justify-content: center;
+
+  margin-top: var(--size-8);
+  margin-bottom: var(--size-8);
+
+  font-size: var(--font-size-8);
+  font-weight: 4;
+  line-height: 1;
+
+  span {
+    font-size: var(--font-size-2);
+    opacity: 0.7;
   }
 }
 
@@ -254,6 +280,9 @@ h2 {
   gap: var(--size-4);
   justify-items: center;
 
+  width: var(--size-lg);
+  margin-inline: auto;
+
   font-size: var(--font-size-3);
   line-height: 1;
 
@@ -262,11 +291,22 @@ h2 {
     place-content: center;
 
     aspect-ratio: 1;
-    width: var(--size-13);
+    width: var(--size-12);
     padding: var(--size-4);
 
     border: var(--fancy-border);
     border-radius: var(--radius-round);
   }
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--size-3);
+
+  width: var(--size-lg);
+  margin-block: var(--size-10);
+  margin-inline: auto;
+  padding-block: var(--size-8);
 }
 </style>
