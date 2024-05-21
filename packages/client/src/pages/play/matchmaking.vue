@@ -2,7 +2,11 @@
 import { api } from '@game/api';
 
 definePageMeta({
-  name: 'Matchmaking'
+  name: 'Matchmaking',
+  pageTransition: {
+    name: 'matchmaking',
+    mode: 'out-in'
+  }
 });
 
 const { isLoading, data: matchmakingUser } = useConvexAuthedQuery(
@@ -26,6 +30,19 @@ const { isLoading, data: matchmakingUser } = useConvexAuthedQuery(
     </ClientOnly>
   </div>
 </template>
+
+<style lang="postcss">
+.matchmaking-enter-active,
+.matchmaking-leave-active {
+  transition: all 0.4s;
+}
+
+.matchmaking-enter-from,
+.matchmaking-leave-to {
+  transform: translateY(-1.5rem);
+  opacity: 0;
+}
+</style>
 
 <style scoped lang="postcss">
 .page {

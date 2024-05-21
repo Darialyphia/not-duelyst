@@ -59,7 +59,7 @@ definePageMeta({
 
 <style lang="postcss">
 .select-mode-enter-active,
-.select-mode-leave.active {
+.select-mode-leave-active {
   transition: all 0.4s;
 }
 

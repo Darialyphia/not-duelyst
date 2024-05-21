@@ -294,6 +294,9 @@ h1 {
     font-size: var(--font-size-2);
     opacity: 0.7;
   }
+  img {
+    transform: translateY(10px);
+  }
 }
 
 h2 {

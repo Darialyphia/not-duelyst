@@ -36,6 +36,19 @@ until(isConfigured)
   </div>
 </template>
 
+<style lang="postcss">
+.sandbox-enter-active,
+.sandbox-leave-active {
+  transition: all 0.4s;
+}
+
+.sandbox-enter-from,
+.sandbox-leave-to {
+  transform: translateY(-1.5rem);
+  opacity: 0;
+}
+</style>
+
 <style lang="postcss" scoped>
 .page {
   overflow: hidden;

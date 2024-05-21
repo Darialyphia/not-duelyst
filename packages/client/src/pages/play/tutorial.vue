@@ -2,7 +2,11 @@
 import { api } from '@game/api';
 
 definePageMeta({
-  name: 'Tutorial'
+  name: 'Tutorial',
+  pageTransition: {
+    name: 'tutorial',
+    mode: 'out-in'
+  }
 });
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -17,15 +21,23 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="page">
-    <ClientOnly>
-      <TutorialGame />
-
-      <template #fallback>
-        <div class="overflow-hidden h-screen" style="background: black"></div>
-      </template>
-    </ClientOnly>
+    <TutorialGame />
   </div>
 </template>
+
+<style lang="postcss">
+.tutorial-enter-active {
+  transition: all 2s;
+}
+.tutorial-leave-active {
+  transition: all 1s;
+}
+
+.tutorial-enter-from,
+.tutorial-leave-to {
+  filter: brightness(0%);
+}
+</style>
 
 <style lang="postcss" scoped>
 .page {
