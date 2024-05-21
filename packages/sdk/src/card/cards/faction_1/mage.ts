@@ -22,7 +22,7 @@ export const f1Mage: CardBlueprint = {
   initialCooldown: 0,
   cost: 5,
   attack: 1,
-  maxHp: 7,
+  maxHp: 5,
   speed: 2,
   range: 1,
   keywords: [KEYWORDS.RANGED],
