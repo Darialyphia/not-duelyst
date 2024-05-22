@@ -105,8 +105,13 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
               <p v-if="isLoadingFriends">Loading you friends list...</p>
               <div v-else class="h-full flex flex-col">
                 <p v-if="!friends.length">You have no friends...yet</p>
-                <ul v-else class="flex-1 overflow-auto fancy-scrollbar">
-                  <li v-for="friend in friends" :key="friend._id">
+                <ul v-else class="friends-list fancy-scrollbar">
+                  <li
+                    v-for="friend in friends"
+                    :key="friend._id"
+                    :data-presence="friend.presence"
+                  >
+                    <img src="/assets/portraits/f1-general.png" />
                     {{ friend.name }}
                   </li>
                 </ul>
@@ -285,6 +290,46 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
     gap: var(--size-6);
     justify-content: space-around;
     margin-top: var(--size-5);
+  }
+}
+
+.friends-list {
+  overflow-y: auto;
+  flex-grow: 1;
+
+  > li {
+    display: flex;
+    gap: var(--size-2);
+    align-items: center;
+    &::before {
+      content: '';
+
+      display: inline-block;
+
+      aspect-ratio: 1;
+      width: var(--size-2);
+      margin-right: var(--size-1);
+
+      background-color: var(--color);
+      border-radius: var(--radius-round);
+    }
+
+    > img {
+      aspect-ratio: 1;
+      width: 33px;
+    }
+
+    &[data-presence='offline'] {
+      --color: var(--red-7);
+    }
+
+    &[data-presence='online'] {
+      --color: var(--green-6);
+    }
+
+    &[data-presence='away'] {
+      --color: var(--orange-4);
+    }
   }
 }
 </style>

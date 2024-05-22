@@ -9,7 +9,9 @@ export const userSchemas = {
     name: v.optional(v.string()),
     discriminator: v.optional(v.string()),
     mmr: v.number(),
-    hasOnboarded: v.boolean()
+    hasOnboarded: v.boolean(),
+    presence: v.union(v.literal('offline'), v.literal('online'), v.literal('away')),
+    presenceLastUpdatedAt: v.optional(v.number())
   })
     .index('byId', ['id'])
     .index('by_fullname', ['name', 'discriminator'])

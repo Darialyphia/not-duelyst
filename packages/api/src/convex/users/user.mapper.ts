@@ -1,3 +1,4 @@
+import { ONE_MINUTE_IN_MS } from '@game/shared';
 import type { Id } from '../_generated/dataModel';
 import type { User } from './user.entity';
 
@@ -9,6 +10,20 @@ export type UserDto = {
   discriminator?: string;
   hasOnboarded: boolean;
   mmr: number;
+  presence: 'offline' | 'online' | 'away';
+};
+
+const getPresence = (user: User): UserDto['presence'] => {
+  if (!user.presenceLastUpdatedAt) return 'offline';
+
+  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 2) {
+    return 'offline';
+  }
+  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 1) {
+    return 'away';
+  }
+
+  return user.presence;
 };
 
 export const toUserDto = (user: User): UserDto => {
@@ -19,6 +34,7 @@ export const toUserDto = (user: User): UserDto => {
     name: user.name ?? 'Anonymous',
     discriminator: user.discriminator,
     fullName: `${user.name}#${user.discriminator}`,
-    mmr: user.mmr
+    mmr: user.mmr,
+    presence: getPresence(user)
   };
 };
