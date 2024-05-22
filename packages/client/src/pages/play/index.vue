@@ -149,7 +149,7 @@ li > * {
 .profile-button {
   position: fixed;
   top: var(--size-6);
-  left: var(--size-8);
+  left: var(--size-2);
 
   display: flex;
   gap: var(--size-3);

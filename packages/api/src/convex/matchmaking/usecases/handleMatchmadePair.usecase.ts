@@ -24,6 +24,10 @@ export const handleMatchmadePairUsecase = internalMutation({
       arg.players.map(p => p.userId)
     );
 
+    ctx.scheduler.runAfter(0, internal.friends.internalCancelPendingChallenges, {
+      userIds: arg.players.map(p => p.userId)
+    });
+
     const gameId = await ctx.db.insert('games', {
       firstPlayer,
       mapId,

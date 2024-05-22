@@ -7,13 +7,19 @@ export const usePresence = () => {
   const visibility = useDocumentVisibility();
   const isHidden = computed(() => visibility.value === 'hidden');
 
+  const interval = computed(() => {
+    if (import.meta.env.DEV)
+      return isHidden.value ? ONE_MINUTE_IN_MS * 10 : ONE_MINUTE_IN_MS * 4;
+
+    return isHidden.value ? ONE_MINUTE_IN_MS : 10_000;
+  });
   useIntervalFn(
     () => {
       updatePresence({
         presence: isHidden.value ? 'away' : 'online'
       });
     },
-    computed(() => (isHidden.value ? ONE_MINUTE_IN_MS : 10_000)),
+    interval,
     { immediate: true }
   );
 };

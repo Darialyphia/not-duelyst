@@ -1,36 +1,29 @@
 import { isDefined } from '@game/shared';
 import { authedQuery } from '../../auth/auth.utils';
 import { toUserDto } from '../../users/user.mapper';
-import { FRIEND_REQUEST_STATUS } from '../friendRequest.constants';
+import { getAllFriendIds } from '../friend.utils';
 
-export const getFriendUsecase = authedQuery({
+export const getFriendsUsecase = authedQuery({
   args: {},
   async handler(ctx) {
-    const friendRequests = await Promise.all([
-      ctx.db
-        .query('friendRequests')
-        .withIndex('by_user_id', q => q.eq('receiverId', ctx.user._id))
-        .filter(q => q.eq(q.field('status'), FRIEND_REQUEST_STATUS.ACCEPTED))
-        .collect(),
-      ctx.db
-        .query('friendRequests')
-        .withIndex('by_sender_id', q => q.eq('senderId', ctx.user._id))
-        .filter(q => q.eq(q.field('status'), FRIEND_REQUEST_STATUS.ACCEPTED))
-        .collect()
-    ]);
+    const friendIds = await getAllFriendIds(ctx, ctx.user._id);
 
     const friends = await Promise.all(
-      friendRequests
-        .flat()
-        .map(friendRequest =>
-          ctx.db.get(
-            friendRequest.receiverId === ctx.user._id
-              ? friendRequest.senderId
-              : friendRequest.receiverId
+      friendIds.map(async id => {
+        const user = await ctx.db.get(id);
+        if (!user) return null;
+        const challenge = await ctx.db
+          .query('friendlyChallenges')
+          .filter(q =>
+            q.or(q.eq(q.field('challengedId'), id), q.eq(q.field('challengerId'), id))
           )
-        )
+          .first();
+        return { ...user, challenge };
+      })
     );
 
-    return friends.filter(isDefined).map(toUserDto);
+    return friends.filter(isDefined).map(user => {
+      return { ...toUserDto(user), challenge: user.challenge };
+    });
   }
 });

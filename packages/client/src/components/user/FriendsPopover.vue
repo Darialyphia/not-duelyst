@@ -3,34 +3,12 @@ import { api } from '@game/api';
 
 const isOpened = ref(false);
 
-const { data: friends, isLoading: isLoadingFriends } = useConvexAuthedQuery(
-  api.friends.all,
-  {}
-);
-
-const { data: friendRequests, isLoading: isLoadingFriendRequests } = useConvexAuthedQuery(
-  api.friends.newRequests,
-  {}
-);
+const { data: friendRequests } = useConvexAuthedQuery(api.friends.newRequests, {});
 
 const unseenRequests = computed(() => {
   return friendRequests.value?.filter(request => !request.seen) ?? [];
 });
 
-const isRequestModalOpened = ref(false);
-const name = ref('');
-const isNameCorrect = computed(() => /^.+#[0-9]{4}$/.test(name.value));
-const { mutate: sendFriendRequest } = useConvexAuthedMutation(
-  api.friends.sendFriendRequest,
-  {
-    onSuccess() {
-      name.value = '';
-      isRequestModalOpened.value = false;
-    }
-  }
-);
-const { mutate: accept } = useConvexAuthedMutation(api.friends.acceptFriendRequest);
-const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendRequest);
 const { mutate: markAsSeen } = useConvexAuthedMutation(api.friends.markAsSeen);
 const openedTab = ref<'friends' | 'friendRequests'>('friends');
 watchEffect(() => {
@@ -59,46 +37,6 @@ watchEffect(() => {
     <Transition name="friends-popover">
       <PopoverContent :side-offset="10" as-child :collision-padding="20">
         <div class="popover-content fancy-surface">
-          <UiModal
-            v-model:is-opened="isRequestModalOpened"
-            title="Add Friend"
-            :use-portal="false"
-            :style="{ '--ui-modal-size': 'var(--size-xs)' }"
-          >
-            <form
-              class="friend-request-modal"
-              @submit.prevent="
-                () => {
-                  const [username, discriminator] = name.split('#');
-                  sendFriendRequest({
-                    name: username,
-                    discriminator
-                  });
-                }
-              "
-            >
-              <label for="friend-request-name" class="block mb-3">
-                Enter your friend's username
-              </label>
-              <input id="friend-request-name" v-model="name" class="w-full" />
-              <p>
-                <Icon name="ph:warning-circle" />
-                format: username#1234
-              </p>
-
-              <footer>
-                <UiFancyButton
-                  :style="{ '--hue': '0' }"
-                  type="button"
-                  @click="isRequestModalOpened = false"
-                >
-                  Cancel
-                </UiFancyButton>
-                <UiFancyButton :disabled="!isNameCorrect">Send</UiFancyButton>
-              </footer>
-            </form>
-          </UiModal>
-
           <TabsRoot v-model="openedTab" class="tabs" default-value="ongoing">
             <TabsList aria-label="select section" class="tabs-list">
               <TabsIndicator class="tabs-indicator">
@@ -115,58 +53,11 @@ watchEffect(() => {
             </TabsList>
 
             <TabsContent class="tab" value="friends">
-              <p v-if="isLoadingFriends">Loading you friends list...</p>
-              <div v-else class="h-full flex flex-col">
-                <p v-if="!friends.length">You have no friends...yet</p>
-                <ul v-else class="friends-list fancy-scrollbar">
-                  <li
-                    v-for="friend in friends"
-                    :key="friend._id"
-                    :data-presence="friend.presence"
-                  >
-                    <img src="/assets/portraits/f1-general.png" />
-                    {{ friend.name }}
-
-                    <UiIconButton name="mdi:sword-cross" class="ml-auto" />
-                    <UiIconButton name="system-uicons:speech-bubble" />
-                  </li>
-                </ul>
-                <UiButton
-                  class="ghost-button mt-auto"
-                  left-icon="material-symbols:add"
-                  @click="isRequestModalOpened = true"
-                >
-                  Add Friend
-                </UiButton>
-              </div>
+              <FriendList />
             </TabsContent>
 
             <TabsContent class="tab" value="friendRequests">
-              <p v-if="isLoadingFriendRequests">Loading you friends list...</p>
-              <p v-else-if="!friendRequests.length">
-                You don't have any friend request at the moment.
-              </p>
-              <ul v-else>
-                <li
-                  v-for="friendRequest in friendRequests"
-                  :key="friendRequest._id"
-                  class="flex gap-3"
-                >
-                  {{ friendRequest.sender.name }}
-                  <UiIconButton
-                    class="primary-button ml-auto"
-                    name="material-symbols:check-small"
-                    aria-label="Accept friend request"
-                    @click="accept({ friendRequestId: friendRequest._id })"
-                  />
-                  <UiIconButton
-                    class="primary-button"
-                    name="material-symbols:close"
-                    aria-label="Decline friend request"
-                    @click="decline({ friendRequestId: friendRequest._id })"
-                  />
-                </li>
-              </ul>
+              <FriendRequestList />
             </TabsContent>
           </TabsRoot>
         </div>
@@ -179,15 +70,19 @@ watchEffect(() => {
 .friends-popover-toggle {
   position: fixed;
   z-index: 1;
-  bottom: var(--size-4);
-  left: var(--size-4);
+  bottom: var(--size-6);
+  left: var(--size-6);
 
   display: grid;
 
   > button {
+    display: grid;
+    place-content: center;
+
     aspect-ratio: 1;
     min-width: 0;
     padding: var(--size-3);
+
     font-size: var(--font-size-4);
   }
 }
@@ -198,6 +93,7 @@ watchEffect(() => {
   padding-block-end: 0;
   padding-inline: 0;
 }
+
 .tabs {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -294,66 +190,6 @@ watchEffect(() => {
   }
   &.tab-trigger {
     position: relative;
-  }
-}
-
-.friend-request-modal {
-  > input {
-    border: var(--fancy-border);
-  }
-  > p {
-    margin-top: var(--size-2);
-    font-size: var(--font-size-00);
-    color: var(--gray-5-hsl);
-  }
-  > footer {
-    display: flex;
-    gap: var(--size-6);
-    justify-content: space-around;
-    margin-top: var(--size-5);
-  }
-}
-
-.friends-list {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: var(--size-2);
-
-  > li {
-    display: flex;
-    gap: var(--size-2);
-    align-items: center;
-    &::before {
-      content: '';
-
-      display: inline-block;
-
-      aspect-ratio: 1;
-      width: var(--size-2);
-      margin-right: var(--size-1);
-
-      background-color: var(--color);
-      border-radius: var(--radius-round);
-    }
-
-    > img {
-      aspect-ratio: 1;
-      width: 33px;
-    }
-
-    &[data-presence='offline'] {
-      --color: var(--red-7);
-    }
-
-    &[data-presence='online'] {
-      --color: var(--green-6);
-    }
-
-    &[data-presence='away'] {
-      --color: var(--orange-4);
-    }
   }
 }
 </style>

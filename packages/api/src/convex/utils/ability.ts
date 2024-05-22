@@ -5,6 +5,8 @@ import {
   AbilityBuilder
 } from '@casl/ability';
 import { ConvexError } from 'convex/values';
+import type { QueryCtx } from '../_generated/server';
+import type { Id, TableNames } from '../_generated/dataModel';
 
 const fieldMatcher: FieldMatcher = fields => field => fields.includes(field);
 
@@ -29,4 +31,14 @@ export const ensureAuthorized = async (
   const isAuthorized =
     typeof valueOrCb === 'function' ? await valueOrCb() : await valueOrCb;
   if (!isAuthorized) throw new ConvexError('Forbidden');
+};
+
+export const ensureExists = async <T extends TableNames>(
+  ctx: { db: QueryCtx['db'] },
+  id: Id<T>
+) => {
+  const resource = await ctx.db.get(id);
+  if (!resource) throw new ConvexError('Not found.');
+
+  return resource;
 };

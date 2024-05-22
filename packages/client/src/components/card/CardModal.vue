@@ -53,7 +53,11 @@ const offset = computed(() => {
 </script>
 
 <template>
-  <UiModal v-model:is-opened="isOpened" :title="selectedBlueprint.name">
+  <UiModal
+    v-model:is-opened="isOpened"
+    :title="selectedBlueprint.name"
+    :style="{ '--ui-modal-size': 'var(--size-lg)' }"
+  >
     <template #title="{ title }">
       <div class="pl-8">{{ title }}</div>
     </template>
