@@ -25,6 +25,7 @@ export function getAuth(db: DatabaseWriter) {
         email: user.email,
         name: user.name,
         mmr: user.mmr,
+        presence: user.presence,
         discriminator: user.discriminator,
         hasOnboarded: user.hasOnboarded
       };
@@ -119,6 +120,7 @@ const convexAdapter = (db: DatabaseWriter) => {
     async setUser(user: UserSchema, key: KeySchema | null): Promise<void> {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { _id, _creationTime, ...data } = user;
+      console.log(data);
       await db.insert('users', data);
       if (key !== null) {
         await this.setKey(key);

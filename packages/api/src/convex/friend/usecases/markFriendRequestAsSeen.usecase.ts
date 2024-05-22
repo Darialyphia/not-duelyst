@@ -11,6 +11,8 @@ export const markFriendRequestAsSeenUsecase = authedMutation({
       .filter(q => q.eq(q.field('seen'), false))
       .collect();
 
-    return Promise.all(friendRequests.map(req => ctx.db.patch(req._id, { seen: false })));
+    await Promise.all(friendRequests.map(req => ctx.db.patch(req._id, { seen: true })));
+
+    return true;
   }
 });

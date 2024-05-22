@@ -8,6 +8,7 @@ declare namespace Lucia {
     discriminator?: string;
     mmr: number;
     hasOnboarded: boolean;
+    presence: 'offline' | 'online' | 'away';
   };
   type DatabaseSessionAttributes = {
     _id: import('./_generated/dataModel').Id<'sessions'>;

@@ -21,6 +21,7 @@ export const signupUsecase = mutationWithAuth({
           email,
           hasOnboarded: false,
           mmr: DEFAULT_MMR,
+          presence: 'offline',
           _id: '' as Id<'users'>,
           _creationTime: 0
         }
@@ -37,6 +38,7 @@ export const signupUsecase = mutationWithAuth({
       if (err instanceof LuciaError && err.message === 'AUTH_DUPLICATE_KEY_ID') {
         throw new ConvexError('An account associated with this email already exists.');
       }
+      console.log(err);
       throw new ConvexError('Something went wrong. Please retry.');
     }
   }

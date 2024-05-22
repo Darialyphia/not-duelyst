@@ -14,7 +14,7 @@ const { data: friendRequests, isLoading: isLoadingFriendRequests } = useConvexAu
 );
 
 const unseenRequests = computed(() => {
-  return friendRequests.value?.filter(request => !request.seen);
+  return friendRequests.value?.filter(request => !request.seen) ?? [];
 });
 
 const isRequestModalOpened = ref(false);
@@ -31,19 +31,31 @@ const { mutate: sendFriendRequest } = useConvexAuthedMutation(
 );
 const { mutate: accept } = useConvexAuthedMutation(api.friends.acceptFriendRequest);
 const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendRequest);
+const { mutate: markAsSeen } = useConvexAuthedMutation(api.friends.markAsSeen);
+const openedTab = ref<'friends' | 'friendRequests'>('friends');
+watchEffect(() => {
+  if (openedTab.value === 'friendRequests') {
+    markAsSeen({});
+  }
+});
 </script>
 
 <template>
   <PopoverRoot v-model:open="isOpened">
-    <PopoverTrigger as-child>
-      <UiFancyButton
-        class="friends-popover-toggle"
-        :style="{ '--hue': '200', '--hue2': '100' }"
-        @click="isOpened = true"
-      >
-        <Icon name="lucide:users-round" />
-      </UiFancyButton>
-    </PopoverTrigger>
+    <div
+      :data-count="unseenRequests.length || undefined"
+      class="friends-popover-toggle"
+      :style="{ '--notification-size': 'var(--font-size-2)' }"
+    >
+      <PopoverTrigger as-child>
+        <UiFancyButton
+          :style="{ '--hue': '200', '--hue2': '100' }"
+          @click="isOpened = true"
+        >
+          <Icon name="lucide:users-round" />
+        </UiFancyButton>
+      </PopoverTrigger>
+    </div>
     <Transition name="friends-popover">
       <PopoverContent :side-offset="10" as-child :collision-padding="20">
         <div class="popover-content fancy-surface">
@@ -86,7 +98,8 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
               </footer>
             </form>
           </UiModal>
-          <TabsRoot class="tabs" default-value="ongoing">
+
+          <TabsRoot v-model="openedTab" class="tabs" default-value="ongoing">
             <TabsList aria-label="select section" class="tabs-list">
               <TabsIndicator class="tabs-indicator">
                 <div class="w-full h-full bg-white" />
@@ -113,6 +126,9 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
                   >
                     <img src="/assets/portraits/f1-general.png" />
                     {{ friend.name }}
+
+                    <UiIconButton name="mdi:sword-cross" class="ml-auto" />
+                    <UiIconButton name="system-uicons:speech-bubble" />
                   </li>
                 </ul>
                 <UiButton
@@ -166,18 +182,20 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
   bottom: var(--size-4);
   left: var(--size-4);
 
-  aspect-ratio: 1;
-  width: fit-content;
-  min-width: 0;
-  padding: var(--size-3);
+  display: grid;
 
-  font-size: var(--font-size-4);
-  line-height: 1;
+  > button {
+    aspect-ratio: 1;
+    min-width: 0;
+    padding: var(--size-3);
+    font-size: var(--font-size-4);
+  }
 }
 
 .popover-content {
   width: var(--size-14);
   height: var(--size-15);
+  padding-block-end: 0;
   padding-inline: 0;
 }
 .tabs {
@@ -252,7 +270,6 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
 }
 
 [data-count] {
-  position: relative;
   &::after {
     content: attr(data-count);
 
@@ -264,15 +281,19 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
     display: grid;
     place-content: center;
 
-    min-width: 3ch;
+    min-width: 1.5em;
+    height: 1.5em;
     padding: var(--size-1);
 
-    font-size: var(--font-size-00);
+    font-size: var(--notification-size, var(--font-size-00));
     color: white;
     text-shadow: none;
 
-    background-color: var(--red-8);
+    background: var(--red-8);
     border-radius: var(--radius-pill);
+  }
+  &.tab-trigger {
+    position: relative;
   }
 }
 
@@ -295,7 +316,10 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendReq
 
 .friends-list {
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  gap: var(--size-2);
 
   > li {
     display: flex;
