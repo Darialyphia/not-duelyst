@@ -16,12 +16,23 @@ watchEffect(() => {
     markAsSeen({});
   }
 });
+
+const { data: friends, isLoading: isLoading } = useConvexAuthedQuery(api.friends.all, {});
+
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
+const pendingChallenges = computed(() => {
+  if (!friends.value) return [];
+
+  return friends.value
+    .filter(friend => friend.challenge && friend.challenge.challengedId === me.value?._id)
+    .map(friend => friend.challenge);
+});
 </script>
 
 <template>
   <PopoverRoot v-model:open="isOpened">
     <div
-      :data-count="unseenRequests.length || undefined"
+      :data-count="unseenRequests.length + pendingChallenges.length || undefined"
       class="friends-popover-toggle"
       :style="{ '--notification-size': 'var(--font-size-2)' }"
     >
@@ -42,7 +53,13 @@ watchEffect(() => {
               <TabsIndicator class="tabs-indicator">
                 <div class="w-full h-full bg-white" />
               </TabsIndicator>
-              <TabsTrigger class="tab-trigger" value="friends">Friends</TabsTrigger>
+              <TabsTrigger
+                class="tab-trigger"
+                value="friends"
+                :data-count="pendingChallenges.length || undefined"
+              >
+                Friends
+              </TabsTrigger>
               <TabsTrigger
                 class="tab-trigger"
                 :data-count="unseenRequests.length || undefined"
@@ -88,6 +105,8 @@ watchEffect(() => {
 }
 
 .popover-content {
+  z-index: 1;
+
   width: var(--size-14);
   height: var(--size-15);
   padding-block-end: 0;

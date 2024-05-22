@@ -87,7 +87,7 @@ const { mutate: setLoadout } = useConvexAuthedMutation(api.friends.setLoadout);
           }
         "
       >
-        {{ challengeLoadout ? 'Waiting for opponnt' : 'Ready' }}
+        {{ challengeLoadout ? 'Waiting for opponent' : 'Ready' }}
       </UiFancyButton>
     </footer>
   </UiModal>

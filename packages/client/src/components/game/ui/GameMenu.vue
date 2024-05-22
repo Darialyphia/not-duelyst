@@ -34,7 +34,7 @@ const isSettingsOpened = ref(false);
         is-cta
         @click="
           () => {
-            isSettingsOpened = false;
+            isMenuOpened = false;
             dispatch('surrender');
           }
         "

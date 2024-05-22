@@ -9,6 +9,9 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 const { mutate: sendChallenge } = useConvexAuthedMutation(
   api.friends.sendFriendlyChallenge
 );
+
+const { data: currentGame } = useConvexAuthedQuery(api.games.getCurrent, {});
+
 const { mutate: cancel } = useConvexAuthedMutation(api.friends.cancelFriendlyChallenge);
 const { mutate: accept } = useConvexAuthedMutation(api.friends.acceptFriendlyChallenge);
 const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendlyChallenge);
@@ -54,6 +57,7 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendlyC
         <UiIconButton
           v-else
           name="mdi:sword-cross"
+          :disabled="!!currentGame"
           class="ml-auto"
           @click="sendChallenge({ challengedId: friend._id })"
         />
