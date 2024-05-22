@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutationWithAuth } from '../../auth/auth.utils';
+import { GAME_STATUS } from '../game.constants';
 
 export const startGameUsecase = mutationWithAuth({
   args: {
@@ -12,6 +13,6 @@ export const startGameUsecase = mutationWithAuth({
       throw new Error('Game is already started');
     }
 
-    await ctx.db.patch(game._id, { status: 'ONGOING' });
+    await ctx.db.patch(game._id, { status: GAME_STATUS.ONGOING });
   }
 });

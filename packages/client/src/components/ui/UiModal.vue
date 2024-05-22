@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { DialogPortal } from 'radix-vue';
+
 export type ModalStyleVariables = '--ui-modal-size';
 
 const isOpened = defineModel<boolean>('isOpened', { required: true });
@@ -6,18 +8,22 @@ const {
   title,
   description,
   style = {},
-  closable = true
+  closable = true,
+  usePortal = true
 } = defineProps<{
   title: string;
   description?: string;
   closable?: boolean;
   style?: StyleProp<ModalStyleVariables>;
+  usePortal?: boolean;
 }>();
+
+const Content = createReusableTemplate();
 </script>
 
 <template>
   <DialogRoot v-model:open="isOpened" modal>
-    <DialogPortal>
+    <Content.define>
       <Transition appear>
         <DialogOverlay class="modal-overlay" />
       </Transition>
@@ -55,7 +61,12 @@ const {
           </div>
         </DialogContent>
       </Transition>
+    </Content.define>
+
+    <DialogPortal v-if="usePortal">
+      <Content.reuse />
     </DialogPortal>
+    <Content.reuse v-else />
   </DialogRoot>
 </template>
 
@@ -90,8 +101,6 @@ const {
   transform: translate(-50%, -50%);
 
   container-type: inline-size;
-  display: grid;
-  place-content: center;
 
   width: var(--_ui-modal-size);
   max-width: calc(100% - 2 * var(--size-3));

@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { internalMutation } from '../../_generated/server';
+import { GAME_STATUS } from '../game.constants';
 
 export const finishGameUsecase = internalMutation({
   args: {
@@ -19,7 +20,10 @@ export const finishGameUsecase = internalMutation({
       .filter(q => q.eq(q.field('gameId'), args.gameId))
       .unique();
 
-    await ctx.db.patch(game._id, { status: 'FINISHED', winnerId: gamePlayer!._id });
+    await ctx.db.patch(game._id, {
+      status: GAME_STATUS.FINISHED,
+      winnerId: gamePlayer!._id
+    });
 
     return game;
   }

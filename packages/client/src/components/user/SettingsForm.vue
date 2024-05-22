@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import { merge } from 'lodash-es';
-import { getDefaultSettings } from '../utils/settings';
 
 const emit = defineEmits<{
   close: [];

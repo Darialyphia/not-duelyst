@@ -21,32 +21,54 @@ const { data: latestReplays, isLoading: isLoadingLatest } = useConvexAuthedQuery
       <BackButton />
       <h1 class="text-5">Watch</h1>
     </header>
+    <TabsRoot class="tabs" default-value="ongoing">
+      <TabsList aria-label="select section" class="tabs-list">
+        <TabsIndicator class="tabs-indicator">
+          <div class="w-full h-full bg-white" />
+        </TabsIndicator>
+        <TabsTrigger class="tab-trigger" value="ongoing">Ongoing games</TabsTrigger>
+        <TabsTrigger class="tab-trigger" value="latest">Latest replays</TabsTrigger>
+      </TabsList>
 
-    <ClientOnly>
-      <TabsRoot class="tabs" default-value="ongoing">
-        <TabsList aria-label="select section" class="tabs-list">
-          <TabsIndicator class="tabs-indicator">
-            <div class="w-full h-full bg-white" />
-          </TabsIndicator>
-          <TabsTrigger class="tab-trigger" value="ongoing">Ongoing games</TabsTrigger>
-          <TabsTrigger class="tab-trigger" value="latest">Latest replays</TabsTrigger>
-        </TabsList>
+      <TabsContent class="tab" value="ongoing">
+        <div v-if="isLoadingOngoing">Loading...</div>
+        <div v-else class="fancy-surface">
+          <p v-if="!ongoingGames.length">
+            There are no ongoing game at the moment. Check back later !
+          </p>
 
-        <TabsContent class="tab" value="ongoing">
-          <div v-if="isLoadingOngoing">Loading...</div>
-          <OngoingGamesList :games="ongoingGames" />
-        </TabsContent>
+          <GameCard
+            v-for="game in ongoingGames"
+            :key="game._id"
+            :game="game"
+            :link="{
+              name: 'WatchGame',
+              params: { id: game._id },
+              query: { roomId: game.roomId }
+            }"
+          />
+        </div>
+      </TabsContent>
 
-        <TabsContent class="tab" value="latest">
-          <div v-if="isLoadingLatest">Loading...</div>
-          <LatestReplays :games="latestReplays" />
-        </TabsContent>
-      </TabsRoot>
+      <TabsContent class="tab" value="latest">
+        <div v-if="isLoadingLatest">Loading...</div>
+        <div v-else class="fancy-surface">
+          <p v-if="!latestReplays.length">
+            No replays are available at the moment. Check back later !
+          </p>
 
-      <template #fallback>
-        <div />
-      </template>
-    </ClientOnly>
+          <GameCard
+            v-for="game in latestReplays"
+            :key="game._id"
+            :game="game"
+            :link="{
+              name: 'Replay',
+              params: { id: game._id }
+            }"
+          />
+        </div>
+      </TabsContent>
+    </TabsRoot>
   </div>
 </template>
 

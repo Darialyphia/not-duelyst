@@ -29,7 +29,8 @@ export const f1Naga: CardBlueprint = {
     {
       id: 'f1_naga_skill_1',
       cooldown: 3,
-      description: 'Deals 1 damage and inflicts @Vulnerable@ to all nearby enemies.',
+      description:
+        'Deals 1 damage and inflicts @Vulnerable@ to all nearby enemies for 2 turns.',
       name: 'Naga skill 1',
       iconId: 'blade2-green',
       initialCooldown: 0,

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import OnboardingModal from '~/components/OnboardingModal.vue';
-
 definePageMeta({
   middleware: ['auth'],
   layout: 'fullscreen',
@@ -15,6 +13,7 @@ const isReady = ref(false);
 until(assets.loaded)
   .toBe(true)
   .then(() => {
+    // Removed the loader code before the SPA got loaded
     const loader = document.getElementById('app-loader');
     if (!loader) {
       isReady.value = true;
@@ -36,7 +35,7 @@ useBgmProvider();
     <CurrentGameModal />
     <UsernameModal />
     <OnboardingModal />
-
+    <FriendsPopover />
     <NuxtPage v-if="isReady" />
   </div>
 </template>

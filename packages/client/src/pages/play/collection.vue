@@ -139,11 +139,11 @@ const editLoadout = (loadout: LoadoutDto) => {
 .collection-enter-from,
 .collection-leave-to {
   opacity: 0;
-  /* filter: blur(5px); */
+  filter: blur(15px);
 
-  .sidebar {
+  /* .sidebar {
     transform: translateX(100%);
-  }
+  } */
 }
 </style>
 
@@ -156,6 +156,7 @@ const editLoadout = (loadout: LoadoutDto) => {
 
   height: 100vh;
 
+  backdrop-filter: blur(5px) brightness(50%);
   > .loader {
     grid-column: 1 / -1;
   }

@@ -1,11 +1,12 @@
 import { query } from '../../_generated/server';
+import { GAME_STATUS } from '../game.constants';
 import { toGameDto } from '../game.mapper';
 import { getGamePlayers } from '../game.utils';
 
 export const getAllOngoingGamesUsecase = query(async ctx => {
   const games = await ctx.db
     .query('games')
-    .withIndex('by_status', q => q.eq('status', 'ONGOING'))
+    .withIndex('by_status', q => q.eq('status', GAME_STATUS.ONGOING))
     .collect();
 
   return Promise.all(

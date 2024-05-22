@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { api } from '@game/api';
+import type { Id } from '@game/api/src/convex/_generated/dataModel';
 
 definePageMeta({
   name: 'Matchmaking',
@@ -9,25 +10,114 @@ definePageMeta({
   }
 });
 
-const { isLoading, data: matchmakingUser } = useConvexAuthedQuery(
+const { data: matchmakingUser } = useConvexAuthedQuery(
   api.matchmaking.myMatchmakingUser,
   {}
+);
+
+const { $dayjs } = useNuxtApp();
+
+const { count, inc, reset } = useCounter(0);
+
+const {
+  pause,
+  resume,
+  isActive: isInMatchmaking
+} = useIntervalFn(
+  () => {
+    inc();
+  },
+  1000,
+  { immediate: false }
+);
+
+until(matchmakingUser)
+  .not.toBeUndefined()
+  .then(() => {
+    if (matchmakingUser.value) {
+      console.log(matchmakingUser.value);
+      inc(matchmakingUser.value.timeElapsed);
+      resume();
+    }
+  });
+
+const { mutate: join } = useConvexAuthedMutation(api.matchmaking.join, {
+  onSuccess() {
+    reset();
+    resume();
+  },
+  onError(err) {
+    console.error(err);
+  }
+});
+const { mutate: leave } = useConvexAuthedMutation(api.matchmaking.leave, {
+  onSuccess() {
+    pause();
+    reset();
+  },
+  onError(err) {
+    console.error(err);
+  }
+});
+
+const duration = computed(() => {
+  // @ts-expect-error
+  return $dayjs.duration(count.value * 1000).format('mm:ss');
+});
+
+const { data: loadouts, isLoading: isLoadingLoadouts } = useConvexAuthedQuery(
+  api.loadout.myLoadouts,
+  {}
+);
+const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
+  matchmakingUser.value?.loadoutId
 );
 </script>
 
 <template>
-  <div class="page container">
+  <div class="page container mt-2 px-5 lg:mt-10">
     <header>
       <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
       <h1 class="text-5">Ranked Game</h1>
     </header>
 
-    <ClientOnly>
-      <template #fallback>
-        <div />
-      </template>
-      <MatchmakingForm v-if="!isLoading" :matchmaking-user="matchmakingUser" />
-    </ClientOnly>
+    <h2 class="text-3">Select your loadout</h2>
+    <div class="loadouts">
+      <div v-if="isLoadingLoadouts">Loading your loadouts...</div>
+      <label v-for="loadout in loadouts" :key="loadout._id">
+        <LoadoutCard :loadout="loadout"></LoadoutCard>
+
+        <input
+          v-model="selectedLoadoutId"
+          :disabled="isInMatchmaking"
+          type="radio"
+          :value="loadout._id"
+          class="sr-only"
+        />
+      </label>
+    </div>
+
+    <footer class="flex gap-3 items-center">
+      <UiFancyButton
+        :disabled="!isInMatchmaking && !selectedLoadoutId"
+        class="primary-button"
+        :style="{ '--hue': isInMatchmaking ? '0' : undefined }"
+        @click="
+          () => {
+            if (isInMatchmaking) {
+              leave({});
+            } else {
+              join({ loadoutId: selectedLoadoutId! });
+            }
+          }
+        "
+      >
+        {{ isInMatchmaking ? 'Leave' : 'Join' }}
+      </UiFancyButton>
+      <Transition>
+        <p v-if="isInMatchmaking">Searching for opponent...{{ duration }}</p>
+      </Transition>
+    </footer>
   </div>
 </template>
 
@@ -52,5 +142,52 @@ const { isLoading, data: matchmakingUser } = useConvexAuthedQuery(
     padding-block: var(--size-6);
     text-shadow: black 0px 4px 1px;
   }
+}
+
+footer > button {
+  --ui-button-size: var(--font-size-3);
+
+  min-width: var(--size-12);
+}
+
+> footer > div {
+  font-size: var(--font-size-5);
+  text-shadow: black 0px 4px 1px;
+}
+
+.loadouts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--size-3);
+  margin-block: var(--size-4);
+
+  > label {
+    cursor: pointer;
+
+    &:has(input:checked) {
+      filter: brightness(120%);
+      outline: solid var(--border-size-2) var(--primary);
+    }
+
+    &:has(input:disabled) {
+      filter: grayscale(50%);
+    }
+  }
+}
+
+p {
+  &:is(.v-enter-active, .v-leave-active) {
+    transition: all 0.3s;
+  }
+
+  &:is(.v-enter-from, .v-leave-to) {
+    transform: translateX(var(--size-8));
+    opacity: 0;
+  }
+}
+
+p,
+h2 {
+  text-shadow: black 0px 2px 1px;
 }
 </style>

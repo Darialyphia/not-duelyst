@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { internalMutation } from '../../_generated/server';
+import { GAME_STATUS } from '../game.constants';
 
 export const internalCancelGameUsecase = internalMutation({
   args: {
@@ -12,6 +13,6 @@ export const internalCancelGameUsecase = internalMutation({
       .first();
     if (!game) throw new Error('Game Not Found');
 
-    await ctx.db.patch(game._id, { status: 'CANCELLED' });
+    await ctx.db.patch(game._id, { status: GAME_STATUS.CANCELLED });
   }
 });

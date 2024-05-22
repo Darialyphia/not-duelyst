@@ -4,6 +4,7 @@ import {
   PureAbility,
   AbilityBuilder
 } from '@casl/ability';
+import { ConvexError } from 'convex/values';
 
 const fieldMatcher: FieldMatcher = fields => field => fields.includes(field);
 
@@ -27,5 +28,5 @@ export const ensureAuthorized = async (
 ) => {
   const isAuthorized =
     typeof valueOrCb === 'function' ? await valueOrCb() : await valueOrCb;
-  if (!isAuthorized) throw new Error('Forbidden');
+  if (!isAuthorized) throw new ConvexError('Forbidden');
 };

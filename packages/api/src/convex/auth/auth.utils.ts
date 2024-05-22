@@ -102,6 +102,8 @@ export function mutationWithAuth<ArgsValidator extends PropertyValidators, Outpu
         return await handler({ ...ctx, session, auth }, otherArgs);
       } catch (err) {
         if (err instanceof LuciaError) {
+          console.log(err);
+
           match(err.message)
             .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
               throw new ConvexError({ code: 'INVALID_SESSION' });

@@ -10,9 +10,7 @@ export const toMatchmakingUserDto = (
   matchMakingUser: MatchmakingUser
 ): MatchmakingUserDto => {
   return {
-    timeElapsed: Math.floor(
-      (new Date().getTime() - matchMakingUser._creationTime) / 1000
-    ),
+    timeElapsed: Math.floor((Date.now() - matchMakingUser._creationTime) / 1000),
     loadoutId: matchMakingUser.loadoutId
   };
 };

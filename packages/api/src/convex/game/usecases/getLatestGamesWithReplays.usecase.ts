@@ -1,10 +1,7 @@
 import { isDefined } from '@game/shared';
-import { v } from 'convex/values';
-import { stringify } from 'zipson/lib';
-import { internalMutation } from '../../_generated/server';
 import { queryWithAuth } from '../../auth/auth.utils';
 import { toGameDto } from '../game.mapper';
-import { getGameById, getReplayInitialState } from '../game.utils';
+import { getGameById } from '../game.utils';
 
 export const getLatestGamesWithReplaysUsecase = queryWithAuth({
   args: {},

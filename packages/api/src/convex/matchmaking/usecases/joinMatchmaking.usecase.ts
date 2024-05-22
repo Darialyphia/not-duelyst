@@ -10,7 +10,6 @@ export const joinMatchmakingUsecase = authedMutation({
   handler: async (ctx, args) => {
     await ensureHasNoCurrentGame(ctx, ctx.user._id);
     await ensureIsNotInMatchmaking(ctx, ctx.user._id);
-
     const result = await ctx.db.insert('matchmakingUsers', {
       loadoutId: args.loadoutId,
       userId: ctx.user!._id

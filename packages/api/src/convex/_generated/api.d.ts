@@ -18,6 +18,8 @@ import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
+import type * as friend_usecases_sendFriendRequest from "../friend/usecases/sendFriendRequest.js";
+import type * as friends from "../friends.js";
 import type * as game_usecases_getAllOngoingGames from "../game/usecases/getAllOngoingGames.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
@@ -41,6 +43,8 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
   featureFlags: typeof featureFlags;
+  "friend/usecases/sendFriendRequest": typeof friend_usecases_sendFriendRequest;
+  friends: typeof friends;
   "game/usecases/getAllOngoingGames": typeof game_usecases_getAllOngoingGames;
   gameMaps: typeof gameMaps;
   games: typeof games;
