@@ -16,10 +16,10 @@ export type UserDto = {
 const getPresence = (user: User): UserDto['presence'] => {
   if (!user.presenceLastUpdatedAt) return 'offline';
 
-  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 2) {
+  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 5) {
     return 'offline';
   }
-  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 1) {
+  if (Date.now() - user.presenceLastUpdatedAt > ONE_MINUTE_IN_MS * 2) {
     return 'away';
   }
 

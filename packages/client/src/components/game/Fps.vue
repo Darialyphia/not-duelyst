@@ -17,11 +17,11 @@ const averageFPS = computed(() => {
 });
 
 const style = new TextStyle({ fill: 'white', fontSize: 12, fontFamily: 'monospace' });
-const isDev = import.meta.env;
+const isDev = import.meta.env.DEV;
 </script>
 
 <template>
-  <container :y="0" :x="400">
+  <container v-if="isDev" :y="0" :x="400">
     <pixi-text :x="30" :y="15" :style="style">{{ averageFPS.toFixed() }} FPS</pixi-text>
     <pixi-text
       :x="30"

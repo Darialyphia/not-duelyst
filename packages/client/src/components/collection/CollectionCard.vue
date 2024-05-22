@@ -52,7 +52,10 @@ const keywords = computed(() => {
 </script>
 
 <template>
-  <div class="perspective-wrapper" :class="settings.ui.cardsWith3D && '3d'">
+  <div
+    class="perspective-wrapper"
+    :class="[settings.ui.cardsWith3D && '3d', { used: isEditingLoadout && isInLoadout }]"
+  >
     <Sound sound="button-hover" :triggers="['mouseenter']">
       <Card
         ref="rootEl"
@@ -60,7 +63,6 @@ const keywords = computed(() => {
         :tabindex="isEditingLoadout && !canAddToLoadout ? -1 : 0"
         class="collection-card"
         :class="{
-          used: isEditingLoadout && isInLoadout,
           disabled: isDisabled
         }"
         :style="{
@@ -109,6 +111,10 @@ const keywords = computed(() => {
   &.3d {
     perspective: 40rem;
   }
+
+  &.used {
+    filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
+  }
 }
 .collection-card {
   position: relative;
@@ -122,10 +128,6 @@ const keywords = computed(() => {
 
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);
-  }
-
-  &.used {
-    filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
   }
 
   &.disabled {

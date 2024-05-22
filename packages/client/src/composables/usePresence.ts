@@ -8,11 +8,11 @@ export const usePresence = () => {
   const isHidden = computed(() => visibility.value === 'hidden');
 
   const interval = computed(() => {
-    if (import.meta.env.DEV)
-      return isHidden.value ? ONE_MINUTE_IN_MS * 10 : ONE_MINUTE_IN_MS * 4;
+    if (import.meta.env.DEV) return isHidden.value ? ONE_MINUTE_IN_MS * 10 : 30_000;
 
     return isHidden.value ? ONE_MINUTE_IN_MS : 10_000;
   });
+
   useIntervalFn(
     () => {
       updatePresence({
@@ -22,4 +22,10 @@ export const usePresence = () => {
     interval,
     { immediate: true }
   );
+
+  watchEffect(() => {
+    if (!isHidden.value) {
+      updatePresence({ presence: 'online' });
+    }
+  });
 };

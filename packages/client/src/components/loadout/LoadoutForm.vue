@@ -77,7 +77,7 @@ const minionsCount = computed(() => {
               class="rune"
             />
           </div>
-          <div class="text-0 mt-2 text-center">{{ card.card.name }}</div>
+          <div class="name">{{ card.card.name }}</div>
         </div>
 
         <div class="flex items-center ml-auto">
@@ -224,5 +224,18 @@ li {
   --ui-button-focus-color: var(--primary);
 
   margin-top: var(--size-5);
+}
+
+.name {
+  overflow: hidden;
+
+  width: 13ch;
+  margin-top: var(--size-2);
+
+  font-size: var(--font-size-0);
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

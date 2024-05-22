@@ -15,6 +15,13 @@ const { data: currentGame } = useConvexAuthedQuery(api.games.getCurrent, {});
 const { mutate: cancel } = useConvexAuthedMutation(api.friends.cancelFriendlyChallenge);
 const { mutate: accept } = useConvexAuthedMutation(api.friends.acceptFriendlyChallenge);
 const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendlyChallenge);
+
+const hasOngoingGame = computed(
+  () =>
+    !!currentGame.value &&
+    currentGame.value?.status !== 'FINISHED' &&
+    currentGame.value?.status !== 'CANCELLED'
+);
 </script>
 
 <template>
@@ -57,7 +64,7 @@ const { mutate: decline } = useConvexAuthedMutation(api.friends.declineFriendlyC
         <UiIconButton
           v-else
           name="mdi:sword-cross"
-          :disabled="!!currentGame"
+          :disabled="hasOngoingGame"
           class="ml-auto"
           @click="sendChallenge({ challengedId: friend._id })"
         />
