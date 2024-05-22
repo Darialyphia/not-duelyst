@@ -14,7 +14,10 @@ export const friendSchemas = {
   friendlyChallenges: defineTable({
     challengerId: v.id('users'),
     challengedId: v.id('users'),
-    status: v.union(v.literal('pending'), v.literal('accepted'), v.literal('declined'))
+    status: v.union(v.literal('pending'), v.literal('accepted'), v.literal('declined')),
+    challengerLoadoutId: v.optional(v.id('loadouts')),
+    challengedLoadoutId: v.optional(v.id('loadouts')),
+    gameId: v.optional(v.id('games'))
   })
     .index('by_challenger_id', ['challengerId'])
     .index('by_challenged_id', ['challengedId'])

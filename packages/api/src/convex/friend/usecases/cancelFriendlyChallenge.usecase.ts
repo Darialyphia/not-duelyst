@@ -9,7 +9,10 @@ export const cancelFriendlyChallengeUsecase = authedMutation({
   async handler(ctx, args) {
     const challenge = await ensureExists(ctx, args.challengeId);
 
-    ensureAuthorized(() => challenge.challengerId === ctx.user._id);
+    ensureAuthorized(
+      () =>
+        challenge.challengerId === ctx.user._id || challenge.challengedId === ctx.user._id
+    );
 
     return ctx.db.delete(challenge._id);
   }

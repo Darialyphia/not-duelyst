@@ -3,13 +3,17 @@ import { acceptFriendRequestUsecase } from './friend/usecases/acceptFriendReques
 import { cancelFriendlyChallengeUsecase } from './friend/usecases/cancelFriendlyChallenge.usecase';
 import { declineFriendlyChallengeUsecase } from './friend/usecases/declineFriendlyChallenge.usecase';
 import { declineFriendRequestUsecase } from './friend/usecases/declineFriendRequest.usecase';
+import { getCurrentChallengeUsecase } from './friend/usecases/getCurrentChallenge.usecase';
 import { getFriendsUsecase } from './friend/usecases/getFriends.usecase';
 import { getLatestChallengeUsecase } from './friend/usecases/getLatestChallenge.usecase';
 import { getReceivedFriendRequestsUsecase } from './friend/usecases/getReceivedFriendRequests.usecase';
 import { internalCancelPendingChallengesUsecase } from './friend/usecases/internalCancelPendingChallenges.usecase';
+import { createChallengeGameUsecase } from './friend/usecases/internalCreateChallengeGame.usecase';
+import { internalSetupChallengeGame } from './friend/usecases/internalSetupChallengeGame.usecase';
 import { markFriendRequestAsSeenUsecase } from './friend/usecases/markFriendRequestAsSeen.usecase';
 import { sendFriendlyChallengeUsecase } from './friend/usecases/sendFriendlyChallenge.usecase';
 import { sendFriendRequestUsecase } from './friend/usecases/sendFriendRequest';
+import { setLoadoutForChallengeUsecase } from './friend/usecases/setLoadoutForChallenge.usecase';
 
 export const sendFriendRequest = sendFriendRequestUsecase;
 export const newRequests = getReceivedFriendRequestsUsecase;
@@ -24,3 +28,7 @@ export const cancelFriendlyChallenge = cancelFriendlyChallengeUsecase;
 export const acceptFriendlyChallenge = acceptFriendlyChallengeUsecase;
 export const declineFriendlyChallenge = declineFriendlyChallengeUsecase;
 export const latestReceivedChallenge = getLatestChallengeUsecase;
+export const currentAcceptedChallenge = getCurrentChallengeUsecase;
+export const createChallengeGame = createChallengeGameUsecase;
+export const setupChallengeGame = internalSetupChallengeGame;
+export const setLoadout = setLoadoutForChallengeUsecase;

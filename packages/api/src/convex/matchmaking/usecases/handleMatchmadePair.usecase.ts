@@ -1,7 +1,7 @@
 import { v } from 'convex/values';
 import { internal } from '../../_generated/api';
 import { internalMutation } from '../../_generated/server';
-import { getGameInitialState } from '../../game/game.utils';
+import { createGame } from '../../game/game.utils';
 
 export const handleMatchmadePairUsecase = internalMutation({
   args: {
@@ -19,33 +19,12 @@ export const handleMatchmadePairUsecase = internalMutation({
       arg.players.map(({ matchmakingUserId }) => ctx.db.delete(matchmakingUserId))
     );
 
-    const { mapId, firstPlayer, status, seed } = await getGameInitialState(
-      ctx,
-      arg.players.map(p => p.userId)
-    );
-
     ctx.scheduler.runAfter(0, internal.friends.internalCancelPendingChallenges, {
       userIds: arg.players.map(p => p.userId)
     });
 
-    const gameId = await ctx.db.insert('games', {
-      firstPlayer,
-      mapId,
-      status,
-      seed,
-      roomId: arg.roomId
-    });
+    await createGame(ctx, arg);
 
-    await Promise.all(
-      arg.players.map(({ userId, loadoutId }) =>
-        ctx.db.insert('gamePlayers', {
-          loadoutId,
-          gameId,
-          userId
-        })
-      )
-    );
-
-    ctx.scheduler.runAfter(45_000, internal.games.timeout, { roomId: arg.roomId });
+    return true;
   }
 });

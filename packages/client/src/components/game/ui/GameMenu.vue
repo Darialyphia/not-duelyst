@@ -22,8 +22,12 @@ const isSettingsOpened = ref(false);
     <Icon name="material-symbols:settings" size="1.5rem" />
   </UiButton>
 
-  <UiModal v-model:is-opened="isMenuOpened" title="Menu">
-    <div class="grid gap-4 menu">
+  <UiModal
+    v-model:is-opened="isMenuOpened"
+    title="Menu"
+    :style="{ '--ui-modal-size': 'var(--size-xs)' }"
+  >
+    <div class="menu">
       <UiButton is-cta @click="isSettingsOpened = true">Settings</UiButton>
       <UiButton
         v-if="gameType === GAME_TYPES.PVP"
@@ -58,8 +62,10 @@ const isSettingsOpened = ref(false);
 
 <style scoped>
 .menu {
-  width: var(--size-13);
+  display: grid;
+  gap: var(--size-4);
 }
+
 .menu :is(a, button) {
   --ui-button-border-color: var(--primary);
   --ui-button-bg-hover: var(--primary-hover);

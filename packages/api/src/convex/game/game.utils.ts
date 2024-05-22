@@ -1,12 +1,12 @@
 import { randomInt } from '@game/shared';
 import type { Id } from '../_generated/dataModel';
-import type { QueryCtx } from '../_generated/server';
+import type { MutationCtx, QueryCtx } from '../_generated/server';
 import { GAME_STATUS } from './game.constants';
-import { toUserDto } from '../users/user.mapper';
 import type { Game } from './game.entity';
 import { config } from '@game/sdk/src/config';
 import { parse } from 'zipson';
 import { toGameDto } from './game.mapper';
+import { internal } from '../_generated/api';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -137,4 +137,37 @@ export const getReplayInitialState = async (
       cells: parse(map!.cells)
     }
   };
+};
+
+export const createGame = async (
+  ctx: { scheduler: MutationCtx['scheduler']; db: MutationCtx['db'] },
+  arg: {
+    roomId: string;
+    players: Array<{ userId: Id<'users'>; loadoutId: Id<'loadouts'> }>;
+  }
+) => {
+  const { mapId, firstPlayer, status, seed } = await getGameInitialState(
+    ctx,
+    arg.players.map(p => p.userId)
+  );
+
+  const gameId = await ctx.db.insert('games', {
+    firstPlayer,
+    mapId,
+    status,
+    seed,
+    roomId: arg.roomId
+  });
+
+  await Promise.all(
+    arg.players.map(({ userId, loadoutId }) =>
+      ctx.db.insert('gamePlayers', {
+        loadoutId,
+        gameId,
+        userId
+      })
+    )
+  );
+
+  ctx.scheduler.runAfter(45_000, internal.games.timeout, { roomId: arg.roomId });
 };
