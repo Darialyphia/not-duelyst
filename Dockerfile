@@ -9,14 +9,14 @@ COPY ./configs ./configs
 COPY ./packages/api ./packages/api
 COPY ./packages/sdk ./packages/sdk
 COPY ./packages/shared ./packages/shared
-COPY ./packages/game-server ./packages/game-server
+COPY ./packages/server ./packages/server
 
 RUN yarn install
-RUN yarn workspace @game/game-server run build
+RUN yarn workspace @game/server run build
 
 FROM node:20-alpine
 
-WORKDIR /app/packages/game-server
+WORKDIR /app/packages/server
 
 # COPY ./configs ./configs
 # COPY ./packages/api ./packages/api
@@ -26,7 +26,7 @@ WORKDIR /app/packages/game-server
 
 # RUN yarn install --production --frozen-lockfile
 
-COPY --from=build /app/packages/game-server/dist dist
+COPY --from=build /app/packages/server/dist dist
 
 EXPOSE 8080
 CMD ["node", "dist/index.js"]
