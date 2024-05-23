@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { PTransition } from 'vue3-pixi';
-import { type AnimatedSprite } from 'pixi.js';
 import type { Keyword } from '@game/sdk';
 
 const { keyword } = defineProps<{
