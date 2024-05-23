@@ -47,7 +47,7 @@ export const f2MoltenFist: CardBlueprint = {
       id: 'f2_molten_fist_skill1',
       name: 'F2 Molten Fist Skill1',
       description:
-        'Deal 3 damage to a unit. If it dies, inflict @Burn(2)@ to all nearby enemies.',
+        'Deal 2 damage to a unit. If it dies, inflict @Burn(2)@ to all nearby minions.',
       iconId: 'shatter-fire',
       initialCooldown: 1,
       cooldown: 2,
@@ -74,7 +74,9 @@ export const f2MoltenFist: CardBlueprint = {
 
         const onDestroyed = () => {
           session.entitySystem.getNearbyAllies(target).forEach(nearby => {
-            nearby.addModifier(burn({ source: skill.caster, stacks: 2 }));
+            if (!nearby.isGeneral) {
+              nearby.addModifier(burn({ source: skill.caster, stacks: 2 }));
+            }
           });
         };
         target.once('before_destroy', onDestroyed);

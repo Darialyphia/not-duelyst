@@ -22,7 +22,7 @@ export const f2Succubus: CardBlueprint = {
   initialCooldown: 0,
   cost: 3,
   attack: 3,
-  maxHp: 2,
+  maxHp: 3,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.FEARSOME],

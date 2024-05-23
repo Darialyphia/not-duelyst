@@ -18,7 +18,7 @@ export const f1Naga: CardBlueprint = {
   initialCooldown: 0,
   cost: 4,
   attack: 3,
-  maxHp: 8,
+  maxHp: 7,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.VIGILANT],
