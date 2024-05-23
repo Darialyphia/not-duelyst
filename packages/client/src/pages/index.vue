@@ -11,12 +11,12 @@ definePageMeta({
     <section class="fancy-surface hero">
       <div class="flex gap-4">
         <NuxtLink v-slot="{ href, navigate }" to="/play" custom>
-          <UiButton :href="href" class="primary-button" :sound="false" @click="navigate">
+          <UiButton :href="href" class="primary-button" @click="navigate">
             Play now
           </UiButton>
         </NuxtLink>
         <NuxtLink v-slot="{ href, navigate }" to="/signup" custom>
-          <UiButton :href="href" class="primary-button" :sound="false" @click="navigate">
+          <UiButton :href="href" class="primary-button" @click="navigate">
             Get started
           </UiButton>
         </NuxtLink>

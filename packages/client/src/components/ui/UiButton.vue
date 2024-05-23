@@ -23,12 +23,10 @@ export type ButtonProps = {
   isInline?: boolean;
   isCta?: boolean;
   style?: StyleProp<ButtonStyleVariables>;
-  sound?: boolean;
 };
 
 const {
   isLoading = false,
-  sound = true,
   leftIcon,
   rightIcon,
   isInline,
@@ -46,29 +44,25 @@ const tag = computed(() => {
 </script>
 
 <template>
-  <Sound sound="button-hover" :triggers="['mouseenter']" :enabled="sound">
-    <Sound sound="button-click" :triggers="['mousedown']" :enabled="sound">
-      <component
-        :is="tag"
-        class="ui-button"
-        :class="{
-          'is-inline': isInline,
-          'is-cta': isCta,
-          'is-loading': isLoading
-        }"
-        :style="style"
-        :disabled="attrs.disabled || isLoading"
-        v-bind="attrs"
-      >
-        <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
+  <component
+    :is="tag"
+    class="ui-button"
+    :class="{
+      'is-inline': isInline,
+      'is-cta': isCta,
+      'is-loading': isLoading
+    }"
+    :style="style"
+    :disabled="attrs.disabled || isLoading"
+    v-bind="attrs"
+  >
+    <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
 
-        <!-- <UiSpinner v-if="isLoading" /> -->
-        <slot />
+    <!-- <UiSpinner v-if="isLoading" /> -->
+    <slot />
 
-        <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
-      </component>
-    </Sound>
-  </Sound>
+    <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
+  </component>
 </template>
 
 <style scoped lang="postcss">

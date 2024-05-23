@@ -17,6 +17,7 @@ export const signinUsecase = mutationWithAuth({
         _creationTime: 0
       }
     });
+
     return {
       sessionId: session.sessionId,
       expiresAt: session.activePeriodExpiresAt.getTime()

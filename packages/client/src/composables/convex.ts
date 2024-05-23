@@ -161,11 +161,12 @@ export function useConvexMutation<Mutation extends MutationReference>(
 export const useConvexAuthedMutation = <Mutation extends MutationReference>(
   ...args: Parameters<typeof useConvexMutation<Mutation>>
 ) => {
-  const { mutate, ...rest } = useConvexMutation(...args);
   const sessionId = useSessionId();
+  const { mutate, ...rest } = useConvexMutation(...args);
   return {
     ...rest,
     mutate(mutationArgs: Omit<Mutation['_args'], 'sessionId'>) {
+      if (!sessionId.value) return;
       return mutate({
         ...mutationArgs,
         sessionId: sessionId.value
