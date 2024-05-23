@@ -4,11 +4,7 @@ import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
 
 export const useCollection = () => {
-  const sessionId = useSessionId();
-  const { data: me } = useConvexQuery(
-    api.users.me,
-    computed(() => ({ sessionId: sessionId.value }))
-  );
+  const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
   const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
     api.collection.myCollection,

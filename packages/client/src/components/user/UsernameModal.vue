@@ -2,18 +2,14 @@
 import { api } from '@game/api';
 import { object, string } from 'zod';
 
-const sessionId = useSessionId();
-const { data: me, isLoading } = useConvexQuery(
-  api.users.me,
-  computed(() => ({ sessionId: sessionId.value }))
-);
+const { data: me, isLoading } = useConvexAuthedQuery(api.users.me, {});
 
 const isOpened = computed(() => {
   if (isLoading.value) return false;
-  return !!sessionId.value && me.value.name === 'Anonymous' && me.value?.hasOnboarded;
+  return !!me.value && me.value.name === 'Anonymous' && me.value?.hasOnboarded;
 });
 
-const { mutate: signup, isLoading: isSubmitting } = useConvexMutation(
+const { mutate: signup, isLoading: isSubmitting } = useConvexAuthedMutation(
   api.users.completeSignUp
 );
 
@@ -33,7 +29,7 @@ const schema = toTypedSchema(
     <VeeForm
       :validation-schema="schema"
       class="grid gap-3"
-      @submit="values => signup({ ...(values as any), sessionId })"
+      @submit="values => signup({ ...(values as any) })"
     >
       <div class="flex gap-3 items-center mt-4">
         <VeeField name="name" />

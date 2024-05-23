@@ -1,5 +1,5 @@
 import type { Spritesheet, Texture } from 'pixi.js';
-import type { GameSession, Cell, GameState } from '@game/sdk';
+import type { GameSession, Cell } from '@game/sdk';
 
 // prettier-ignore
 const neighborCoords: [number, number][][] = [

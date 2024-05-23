@@ -37,7 +37,7 @@ export const f1TutorialGeneral: CardBlueprint = {
       },
       isInAreaOfEffect(point, { castPoints }) {
         const vec = Vec3.fromPoint3D(point);
-        return castPoints.some(p => vec.equals(p));
+        return castPoints.some(p => p && vec.equals(p));
       },
       minTargetCount: 0,
       maxTargetCount: 1,

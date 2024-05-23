@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends string | undefined">
 import { RadioGroupIndicator, RadioGroupItem, RadioGroupRoot } from 'radix-vue';
 
 const { options } = defineProps<{

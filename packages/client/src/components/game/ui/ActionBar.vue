@@ -27,7 +27,8 @@ const isActive = useIsActivePlayer();
     </div>
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
-      :style="{ '--hue': '10DEG', '--hue2': '20DEG', 'min-width': '10ch' }"
+      :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
+      class="end-turn-button"
       :diabled="!isActive"
       @click="
         () => {
@@ -79,5 +80,9 @@ const isActive = useIsActivePlayer();
   justify-content: center;
 
   width: fit-content;
+}
+
+.endy-turn-button {
+  min-width: 10ch;
 }
 </style>

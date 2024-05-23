@@ -17,7 +17,7 @@ export const updateLoadoutUsecase = authedMutation({
     await ensureOwnsLoadout(loadout, ctx.user._id);
 
     const validData = await validateLoadout(ctx, {
-      ownerId: user._id,
+      ownerId: ctx.user._id,
       cards: args.cards
     });
 

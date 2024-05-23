@@ -1,8 +1,17 @@
 import { Vec3 } from '@game/shared';
-import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
+import { isAlly, isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import { cone, isAxisAligned, isWithinCells } from '../../../utils/targeting';
+import {
+  cone,
+  getAffectedEntities,
+  isAxisAligned,
+  isCastPoint,
+  isSelf,
+  isWithinCells
+} from '../../../utils/targeting';
+import { createEntityModifier } from '../../../modifier/entity-modifier';
+import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 
 export const f2TutorialBigDude: CardBlueprint = {
   id: 'f2_tutorial_big_dude',
@@ -24,38 +33,39 @@ export const f2TutorialBigDude: CardBlueprint = {
     {
       id: 'tutorial_big_dude_skill_1',
       cooldown: 3,
-      description: 'Todo',
+      description: 'Give +2 attack to an ally unit.',
       name: 'Test skill',
       iconId: 'fire-red',
       initialCooldown: 0,
       isTargetable(point, { session, skill }) {
-        return (
-          isWithinCells(skill.caster.position, point, 1) &&
-          isAxisAligned(skill.caster.position, point)
+        return isAlly(
+          session,
+          session.entitySystem.getEntityAt(point)?.id,
+          skill.caster.player.id
         );
       },
-      isInAreaOfEffect(point, { castPoints, skill }) {
-        const points = cone(skill.caster.position, castPoints[0], 1);
-
-        return points.some(pt => Vec3.fromPoint3D(pt).equals(point));
+      isInAreaOfEffect(point, { castPoints }) {
+        return isCastPoint(point, castPoints);
       },
-      minTargetCount: 0,
+      minTargetCount: 1,
       maxTargetCount: 1,
-      async onUse({ session, skill, affectedCells }) {
-        const stop = session.fxSystem.changeAmbientLightUntil('#990022', 0.7);
-        await Promise.all(
-          affectedCells.map(async cell => {
-            if (cell.entity) {
-              const stopLight = session.fxSystem.addLightOnEntityUntil(cell.entity.id, {
-                color: 0xff0000,
-                strength: 5
-              });
-              await cell.entity.takeDamage(3, skill.caster);
-              stopLight();
-            }
-          })
-        );
-        stop();
+      async onUse({ affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(entity => {
+          entity.addModifier(
+            createEntityModifier({
+              stackable: true,
+              visible: false,
+              source: entity,
+              mixins: [
+                modifierEntityInterceptorMixin({
+                  key: 'attack',
+                  keywords: [],
+                  interceptor: () => val => val + 2
+                })
+              ]
+            })
+          );
+        });
       }
     }
   ]
