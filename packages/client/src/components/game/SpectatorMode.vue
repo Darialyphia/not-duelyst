@@ -15,50 +15,51 @@ const gameSession = shallowRef<GameSession>();
 const timeRemainingForTurn = ref(0);
 const isCreatingRoom = ref(true);
 
-const { connect, error } = useGameSocket(route.query.roomId as string, () => game._id, {
-  spectator: true
+const { error } = useGameSocket({
+  roomId: route.query.roomId as string,
+  gameId: () => game._id,
+  spectator: true,
+  onConnected(_socket) {
+    socket.value = _socket;
+    isCreatingRoom.value = false;
+
+    socket.value.on('game:init', (serializedState: SerializedGameState) => {
+      if (gameSession.value) return;
+
+      until(game)
+        .toBeTruthy()
+        .then(currentGame => {
+          const session = GameSession.createClientSession(
+            serializedState,
+            currentGame.seed,
+            fx.ctx
+          );
+
+          session.onReady(() => {
+            gameSession.value = session;
+          });
+
+          socket.value?.on('game:action', (arg: any) => {
+            session.dispatch(arg);
+            if (arg.type === 'endTurn') {
+              timeRemainingForTurn.value = 0;
+            }
+          });
+
+          socket.value?.on('time-remaining', time => {
+            timeRemainingForTurn.value = time;
+          });
+        });
+    });
+
+    socket.value?.on('p1:emote', addP1);
+    socket.value?.on('p2:emote', addP2);
+  }
 });
 
 const fx = useFXProvider();
 
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
-
-onMounted(async () => {
-  socket.value = await connect();
-  isCreatingRoom.value = false;
-
-  socket.value?.on('game:init', (serializedState: SerializedGameState) => {
-    if (gameSession.value) return;
-
-    until(game)
-      .toBeTruthy()
-      .then(currentGame => {
-        const session = GameSession.createClientSession(
-          serializedState,
-          currentGame.seed,
-          fx.ctx
-        );
-
-        session.onReady(() => {
-          gameSession.value = session;
-        });
-
-        socket.value?.on('game:action', (arg: any) => {
-          session.dispatch(arg);
-          if (arg.type === 'endTurn') {
-            timeRemainingForTurn.value = 0;
-          }
-        });
-
-        socket.value?.on('time-remaining', time => {
-          timeRemainingForTurn.value = time;
-        });
-      });
-  });
-
-  socket.value?.on('p1:emote', addP1);
-  socket.value?.on('p2:emote', addP2);
-});
 </script>
 
 <template>

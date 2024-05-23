@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unresolved
-import { ConvexError } from 'convex/values';
 import { internal } from '../_generated/api';
 import type { Doc, Id } from '../_generated/dataModel';
 import type { ActionCtx, DatabaseWriter, MutationCtx } from '../_generated/server';
@@ -38,7 +37,7 @@ export const ensureIsInMatchmaking = async (
     .withIndex('by_userId', q => q.eq('userId', userId))
     .unique();
 
-  if (!matchmakingUser) throw new ConvexError('User is not in matchmaking');
+  if (!matchmakingUser) throw new Error('User is not in matchmaking');
 
   return matchmakingUser;
 };
@@ -52,7 +51,7 @@ export const ensureIsNotInMatchmaking = async (
     .withIndex('by_userId', q => q.eq('userId', userId))
     .unique();
 
-  if (matchmakingUser) throw new ConvexError('User is already in matchmaking');
+  if (matchmakingUser) throw new Error('User is already in matchmaking');
 };
 
 export const createGameFromMatchmadePair = async (

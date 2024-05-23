@@ -1,26 +1,35 @@
+import { api } from '@game/api';
+import type { AnyFunction } from '@game/shared';
 import { io, type Socket } from 'socket.io-client';
 
 const POLLING_INTERVAL = 3000;
 
-export const useGameSocket = (
-  roomId: string,
-  gameId: MaybeRefOrGetter<string | undefined>,
-  { spectator }: { spectator: boolean }
-) => {
+export const useGameSocket = ({
+  roomId,
+  gameId,
+  spectator,
+  onConnected
+}: {
+  roomId: string;
+  gameId: MaybeRefOrGetter<string | undefined>;
+  spectator: boolean;
+  onConnected: (socket: Socket) => any;
+}) => {
   const sessionId = useSessionId();
   const { $hathora } = useNuxtApp();
-  const config = useRuntimeConfig();
 
   const _gameId = computed(() => toValue(gameId));
+  const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
 
   let socket: Socket;
   const error = ref<string>();
+
   const connect = async () => {
     try {
       await until(_gameId).not.toBe(undefined);
 
       const getUrl = async (): Promise<string> => {
-        if (!config.public.hathoraAppId) {
+        if (!featureFlags.value.hathora_rooms) {
           return `ws://localhost:8000?spectator=${spectator}&gameId=${_gameId.value}&roomId=${roomId}`;
         }
 
@@ -66,9 +75,16 @@ export const useGameSocket = (
     }
   };
 
+  until(featureFlags)
+    .toBeTruthy()
+    .then(async () => {
+      await connect();
+      onConnected(socket);
+    });
+
   onUnmounted(() => {
     socket?.disconnect();
   });
 
-  return { connect, error };
+  return { error };
 };

@@ -20,7 +20,7 @@ export const f2PitLord: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_pit_lord',
   kind: CARD_KINDS.MINION,
-  cooldown: 3,
+  cooldown: 4,
   initialCooldown: 0,
   cost: 4,
   attack: 2,
@@ -82,7 +82,7 @@ export const f2PitLord: CardBlueprint = {
       description: `@Summon@ an @${f2Imp.name}@ behind and in front of this unit.`,
       iconId: 'imps',
       initialCooldown: 0,
-      cooldown: 3,
+      cooldown: 4,
       minTargetCount: 1,
       maxTargetCount: 1,
       isTargetable(point, { skill, session }) {
