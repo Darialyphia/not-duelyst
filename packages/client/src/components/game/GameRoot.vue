@@ -37,7 +37,7 @@ const game = useGameProvider({
   p2Emote: computed(() => p2Emote)
 });
 
-const { data: settings } = useConvexAuthedQuery(api.users.settings, {});
+const settings = useUserSettings();
 
 // @ts-ignore  enable PIXI devtools
 window.PIXI = PIXI;
@@ -109,6 +109,7 @@ onMounted(async () => {
         return game.assets.loadSpritesheet(spriteId);
       })
     );
+
     await until(settings).toBeTruthy();
 
     ready.value = true;

@@ -75,7 +75,11 @@ export const useConvexQuery = <Query extends QueryReference>(
     }
   });
 
-  return { data, error, isLoading: computed(() => data.value === undefined) };
+  return {
+    data,
+    error,
+    isLoading: computed(() => data.value === undefined && error.value === undefined)
+  };
 };
 
 export const useConvexAuthedQuery = <Query extends QueryReference>(

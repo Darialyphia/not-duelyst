@@ -46,9 +46,3 @@ useBgmProvider();
   min-height: 100vh;
 }
 </style>
-
-<style>
-.loader-fadeout {
-  animation: var(--animation-fade-out);
-}
-</style>

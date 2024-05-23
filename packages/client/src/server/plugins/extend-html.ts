@@ -1,7 +1,7 @@
 export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('render:html', (html, { event }) => {
     // This will be an object representation of the html template.
-    if (event.path.includes('/play')) {
+    if (event.path.includes('/play') || event.path.includes('/replay')) {
       html.body.push(`            <div id="app-loader" style="
             height: 100dvh; 
             display: grid; 

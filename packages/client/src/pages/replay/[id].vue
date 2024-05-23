@@ -8,16 +8,39 @@ definePageMeta({
   bgm: BGMS.BATTLE
 });
 
+defineRouteRules({
+  ssr: false
+});
 useBgmProvider();
 const route = useRoute();
 
 const { data: game, isLoading } = useConvexQuery(api.games.replayByGameId, {
   gameId: route.params.id as Id<'games'>
 });
+const assets = useAssetsProvider();
+assets.load();
+
+const isReady = ref(false);
+until(assets.loaded)
+  .toBe(true)
+  .then(() => {
+    // Removed the loader code before the SPA got loaded
+    const loader = document.getElementById('app-loader');
+    if (!loader) {
+      isReady.value = true;
+      return;
+    }
+
+    loader.addEventListener('animationend', () => {
+      loader.remove();
+      isReady.value = true;
+    });
+    loader.classList.add('loader-fadeout');
+  });
 </script>
 
 <template>
-  <div class="page">
+  <div v-if="isReady" class="page">
     <div v-if="isLoading">Loading...</div>
     <ClientOnly>
       <Replay v-if="game" v-bind="game" />

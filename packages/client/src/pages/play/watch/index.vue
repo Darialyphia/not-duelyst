@@ -9,10 +9,11 @@ const { data: ongoingGames, isLoading: isLoadingOngoing } = useConvexAuthedQuery
   api.games.getAllOngoing,
   {}
 );
-const { data: latestReplays, isLoading: isLoadingLatest } = useConvexAuthedQuery(
-  api.games.latestGamesWithReplays,
-  {}
-);
+const {
+  data: latestReplays,
+  isLoading: isLoadingLatest,
+  error: latestError
+} = useConvexAuthedQuery(api.games.latestGamesWithReplays, {});
 </script>
 
 <template>
@@ -52,6 +53,8 @@ const { data: latestReplays, isLoading: isLoadingLatest } = useConvexAuthedQuery
 
       <TabsContent class="tab" value="latest">
         <div v-if="isLoadingLatest">Loading...</div>
+        <div v-else-if="latestError" class="fancy-surface c-red-6">{{ latestError }}</div>
+
         <div v-else class="fancy-surface">
           <p v-if="!latestReplays.length">
             No replays are available at the moment. Check back later !

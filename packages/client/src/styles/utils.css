@@ -1,3 +1,7 @@
+.loader-fadeout {
+  animation: var(--animation-fade-out);
+}
+
 .sr-only {
   position: absolute !important;
   width: 1px !important;

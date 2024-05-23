@@ -13,7 +13,13 @@ export const getLatestGamesWithReplaysUsecase = queryWithAuth({
       .take(15);
 
     const games = await Promise.all(
-      replays.map(replay => getGameById(ctx, replay.gameId))
+      replays.map(async replay => {
+        try {
+          return await getGameById(ctx, replay.gameId);
+        } catch (err) {
+          return null;
+        }
+      })
     );
 
     return games.filter(isDefined).map(toGameDto);
