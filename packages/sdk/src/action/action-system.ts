@@ -67,6 +67,7 @@ export class ActionSystem implements Serializable {
       }
       this.scheduledActions = [];
       this.isRunning = false;
+      this.session.emit('scheduler:flushed');
     } catch (err) {
       this.session.emit('game:error', err as Error);
     }

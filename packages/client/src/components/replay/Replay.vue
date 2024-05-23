@@ -28,11 +28,14 @@ const next = () => {
   currentStep.value++;
 };
 
-session.on('game:action', () => {
+session.on('game:action', action => {
+  // temporary hack while we figure out a way to notify when it is "safe" to get to the next setup
+  // currently some card effects have unawaited promises etc so it can fire too soon and lead to illegal moves
+  const timeout = action.name === 'useSkill' ? 2000 : 1000;
   if (isPlaying.value) {
     setTimeout(() => {
       next();
-    }, 1000);
+    }, timeout);
   }
 });
 
