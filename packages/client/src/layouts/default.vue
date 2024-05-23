@@ -12,13 +12,15 @@
         <ul class="flex gap-3">
           <li>
             <NuxtLink v-slot="{ href, navigate }" to="/play" custom>
-              <UiButton :href="href" @click="navigate">Play now</UiButton>
+              <UiButton :href="href" :sound="false" @click="navigate">Play now</UiButton>
             </NuxtLink>
           </li>
 
           <li>
             <NuxtLink v-slot="{ href, navigate }" to="/signup" custom>
-              <UiButton :href="href" @click="navigate">Get started</UiButton>
+              <UiButton :href="href" :sound="false" @click="navigate">
+                Get started
+              </UiButton>
             </NuxtLink>
           </li>
         </ul>
@@ -31,5 +33,15 @@
 <style scoped lang="postcss">
 header {
   padding: var(--size-2);
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h1:has(a:focus-visible) {
+  transform: outlien-offset 0.3;
+  outline: solid 2px var(--primary);
+  outline-offset: 6px;
 }
 </style>

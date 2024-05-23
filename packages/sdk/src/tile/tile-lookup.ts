@@ -61,15 +61,15 @@ const allTiles: TileBlueprint[] = [
   {
     id: 'burning_ground',
     name: 'Burning Ground',
-    description: 'Start of turn: give @@Burn(1)@@ to the minion on this tile.',
+    description: 'End of turn: give @@Burn(1)@@ to the minion on this tile.',
     spriteId: 'burning-ground',
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {
         if (tile.occupant) {
-          tile.occupant.addModifier(burn({ source: tile.occupant }));
+          tile.occupant.addModifier(burn({ source: tile.occupant, duration: 1 }));
         }
       };
-      session.on('player:turn_start', tile.meta.listener);
+      session.on('player:turn_end', tile.meta.listener);
     },
     onDestroyed(session, entity, tile) {
       session.off('player:turn_start', tile.meta.listener);

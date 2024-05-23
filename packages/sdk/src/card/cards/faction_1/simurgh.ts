@@ -9,7 +9,6 @@ import {
 import { KEYWORDS } from '../../../utils/keywords';
 import {
   aura,
-  celerity,
   flying,
   purgeEntity,
   silenced,
@@ -30,7 +29,7 @@ export const f1Simurgh: CardBlueprint = {
   initialCooldown: 0,
   cost: 7,
   attack: 4,
-  maxHp: 12,
+  maxHp: 10,
   speed: 4,
   range: 1,
   keywords: [KEYWORDS.FLYING, KEYWORDS.SURGE, KEYWORDS.AURA],

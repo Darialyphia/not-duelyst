@@ -23,10 +23,12 @@ export type ButtonProps = {
   isInline?: boolean;
   isCta?: boolean;
   style?: StyleProp<ButtonStyleVariables>;
+  sound?: boolean;
 };
 
 const {
   isLoading = false,
+  sound = true,
   leftIcon,
   rightIcon,
   isInline,
@@ -44,8 +46,8 @@ const tag = computed(() => {
 </script>
 
 <template>
-  <Sound sound="button-hover" :triggers="['mouseenter']">
-    <Sound sound="button-click" :triggers="['mousedown']">
+  <Sound sound="button-hover" :triggers="['mouseenter']" :enabled="sound">
+    <Sound sound="button-click" :triggers="['mousedown']" :enabled="sound">
       <component
         :is="tag"
         class="ui-button"

@@ -4,11 +4,16 @@ import { Slot as RadixSlot } from 'radix-vue';
 import { nanoid } from 'nanoid';
 import { Howl } from 'howler';
 
-const { sound, triggers } = defineProps<{
+const {
+  sound,
+  triggers,
+  enabled = true
+} = defineProps<{
   sound: string;
   triggers: Array<
     'mouseenter' | 'mouseleave' | 'mousedown' | 'mouseup' | (() => boolean)
   >;
+  enabled?: boolean;
 }>();
 
 const SCALE_FACTOR = 3;
@@ -27,9 +32,11 @@ watchEffect(() => {
 });
 
 onMounted(async () => {
-  el.value = document.querySelector(
-    `[data-sound-${triggers.join('-')}=${id}]`
-  ) as HTMLElement | null;
+  if (enabled) {
+    el.value = document.querySelector(
+      `[data-sound-${triggers.join('-')}=${id}]`
+    ) as HTMLElement | null;
+  }
 });
 
 useEventListener(

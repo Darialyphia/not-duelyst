@@ -35,9 +35,9 @@ useBgmProvider();
     <CurrentGameModal />
     <UsernameModal />
     <OnboardingModal />
-    <FriendsPopover />
     <CurrentFriendlyChallengeModal />
     <NuxtPage v-if="isReady" />
+    <FriendsPopover />
   </div>
 </template>
 
