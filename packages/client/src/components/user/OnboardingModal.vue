@@ -22,7 +22,19 @@ const { mutate: skipTutorial, isLoading: isSubmitting } = useConvexAuthedMutatio
     :closable="false"
   >
     <small>100% certified no Songhai !</small>
-    <p>Would you like to play the tutorial ?</p>
+    <p class="c-orange-5">
+      <span class="text-5">
+        <Icon name="ph:warning-octagon" />
+
+        This is a test deployment version !
+      </span>
+      <br />
+      Features and content are missing. Bugs, placeholder content, subpar UI and regular
+      account wipes are to be expected.
+      <br />
+      During this time, all players will have access to all cards and cosmetics.
+    </p>
+    <p class="mt-4">Would you like to play the tutorial ?</p>
     <div class="flex gap-4 mt-5">
       <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'Tutorial' }">
         <UiButton

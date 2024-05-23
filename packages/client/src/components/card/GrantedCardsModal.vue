@@ -24,6 +24,7 @@ const assets = useAssets();
     :is-opened="grantedCards.length > 0"
     title="Looks like you were gifted some new cards!"
     :closable="false"
+    :style="{ '--ui-modal-size': 'var(--size-lg)' }"
   >
     <ul v-if="assets.loaded.value" class="fancy-scrollbar">
       <li v-for="card in grantedCards" :key="card.id">

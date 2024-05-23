@@ -25,6 +25,7 @@ const schema = toTypedSchema(
     :is-opened="isOpened"
     title="Almost there!"
     description="We just need you to choose a username below"
+    :style="{ '--ui-modal-size': 'var(--size-sm)' }"
   >
     <VeeForm
       :validation-schema="schema"
