@@ -230,10 +230,7 @@ export const taunted = ({
 }) => {
   const moveInterceptor = () => false;
   const skillInterceptor = () => false;
-  const attackInterceptor = (
-    value: boolean,
-    { target, entity }: { target: Entity; entity: Entity }
-  ) => {
+  const attackInterceptor = (value: boolean) => {
     // if entity already can't attack, do nothing
     if (!value) return value;
 
@@ -259,7 +256,7 @@ export const taunted = ({
         keywords: [KEYWORDS.TAUNTED],
         duration,
         tickOn: 'start',
-        onApplied(session, attachedTo, modifier) {
+        onApplied(session, attachedTo) {
           attachedTo.addInterceptor('canMove', moveInterceptor);
           attachedTo.addInterceptor('canUseSkill', skillInterceptor);
           attachedTo.addInterceptor('canAttack', attackInterceptor);
@@ -272,7 +269,7 @@ export const taunted = ({
           session.on('entity:after-move', onMove);
           source.once('after_destroy', () => cleanup(session, attachedTo));
         },
-        onRemoved(session, attachedTo, modifier) {
+        onRemoved(session, attachedTo) {
           cleanup(session, attachedTo);
         }
       })
@@ -309,6 +306,31 @@ export const nimble = ({
   });
 };
 
+export const fearsome = ({
+  source,
+  duration = Infinity
+}: {
+  source: Entity;
+  duration?: number;
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'before_attack',
+        keywords: [KEYWORDS.FEARSOME],
+        duration,
+        listener([event]) {
+          const unsub = event.target.addInterceptor('canRetaliate', () => false);
+          event.entity.once('after_attack', unsub);
+        }
+      })
+    ]
+  });
+};
+
 export const flying = ({
   source,
   duration = Infinity
@@ -324,7 +346,8 @@ export const flying = ({
       modifierEntityInterceptorMixin({
         key: 'canMoveThroughCell',
         keywords: [KEYWORDS.FLYING],
-        interceptor: () => val => {
+        duration,
+        interceptor: () => () => {
           return true;
         }
       })
@@ -505,7 +528,7 @@ export const structure = (source: Entity) => {
     mixins: [
       {
         keywords: [KEYWORDS.STRUCTURE],
-        onApplied(session, attachedTo, modifier) {
+        onApplied(session, attachedTo) {
           attachedTo.addInterceptor(
             'canAttack',
             () => false,
@@ -620,8 +643,9 @@ export const elusive = ({
         key: 'damageTaken',
         keywords: [KEYWORDS.ELUSIVE],
         priority: INTERCEPTOR_PRIORITIES.FINAL,
+        duration,
         interceptor:
-          modifier =>
+          () =>
           (amount, { isAbilityDamage }) =>
             isAbilityDamage ? amount : 0
       })

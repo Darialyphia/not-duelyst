@@ -12,15 +12,9 @@ const isSettingsOpened = ref(false);
 </script>
 
 <template>
-  <UiButton
-    class="absolute bottom-4 right-4 aspect-1 primary-button"
-    :style="{
-      '--ui-button-radius': 'var(--radius-round)'
-    }"
-    @click="isMenuOpened = true"
-  >
+  <UiFancyButton class="toggle" @click="isMenuOpened = true">
     <Icon name="material-symbols:settings" size="1.5rem" />
-  </UiButton>
+  </UiFancyButton>
 
   <UiModal
     v-model:is-opened="isMenuOpened"
@@ -61,6 +55,21 @@ const isSettingsOpened = ref(false);
 </template>
 
 <style scoped>
+.toggle {
+  position: absolute;
+  right: var(--size-4);
+  bottom: var(--size-4);
+
+  display: grid;
+  place-content: center;
+
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: var(--size-3);
+
+  font-size: var(--font-size-4);
+}
+
 .menu {
   display: grid;
   gap: var(--size-4);

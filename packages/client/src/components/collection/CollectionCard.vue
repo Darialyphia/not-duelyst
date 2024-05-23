@@ -131,8 +131,7 @@ const keywords = computed(() => {
   }
 
   &.disabled {
-    opacity: 0.8;
-    filter: grayscale(0.5);
+    opacity: 0.6;
   }
 
   &:not(.disabled):hover {

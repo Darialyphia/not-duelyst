@@ -1,10 +1,4 @@
-import { Vec3 } from '@game/shared';
-import {
-  getCellInFront,
-  isAllyMinion,
-  isEmpty,
-  isEnemy
-} from '../../../entity/entity-utils';
+import { isEmpty } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { isWithinCells } from '../../../utils/targeting';
@@ -25,7 +19,7 @@ export const f1KirinSummoner: CardBlueprint = {
   initialCooldown: 0,
   cost: 5,
   attack: 2,
-  maxHp: 7,
+  maxHp: 6,
   speed: 3,
   range: 1,
   relatedBlueprintIds: ['f1_kirin'],

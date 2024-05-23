@@ -32,6 +32,7 @@ import { f2General } from './cards/faction_2/general';
 import { f2Imp } from './cards/faction_2/imp';
 import { f2Overseer } from './cards/faction_2/overseer';
 import { f2PitLord } from './cards/faction_2/pit-lord';
+import { f2Succubus } from './cards/faction_2/succubus';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -57,6 +58,7 @@ const allCards: CardBlueprint[] = [
   f2Ravager,
   f2Overseer,
   f2PitLord,
+  f2Succubus,
 
   neutralTank,
   neutralAirElemental,

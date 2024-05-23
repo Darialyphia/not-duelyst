@@ -54,12 +54,17 @@ watchEffect(() => {
 </script>
 
 <template>
-  <UiModal :closable="false" :isOpened="isOpened" title="Select a unit">
-    <div class="flex gap-3" v-if="blueprints">
+  <UiModal
+    :closable="false"
+    :is-opened="isOpened"
+    title="Select a unit"
+    :style="{ '--ui-modal-size': 'var(--size-xl)' }"
+  >
+    <div v-if="blueprints" class="flex justify-between">
       <Card
-        class="card"
         v-for="(blueprint, index) in blueprints"
         :key="index"
+        class="card"
         :card="{
           blueprintId: blueprint.id,
           name: blueprint.name,

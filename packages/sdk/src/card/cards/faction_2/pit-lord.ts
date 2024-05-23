@@ -16,7 +16,7 @@ export const f2PitLord: CardBlueprint = {
   name: 'F2 Pit Lord',
   description: `Allied @${f2Imp.name}@ have +2 health.`,
   collectable: true,
-  rarity: RARITIES.RARE,
+  rarity: RARITIES.BASIC,
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_pit_lord',
   kind: CARD_KINDS.MINION,
