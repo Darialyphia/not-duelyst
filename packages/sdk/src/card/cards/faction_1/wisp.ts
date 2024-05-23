@@ -8,6 +8,7 @@ import {
 } from '../../../utils/targeting';
 import type { Entity } from '../../../entity/entity';
 import type { Skill } from '../../../entity/skill';
+import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Wisp: CardBlueprint = {
   id: 'f1_wisp',
@@ -26,7 +27,7 @@ export const f1Wisp: CardBlueprint = {
   maxHp: 3,
   speed: 3,
   range: 1,
-  keywords: [],
+  keywords: [KEYWORDS.CALL_TO_ARMS],
   onPlay({ session, entity }) {
     const onUseSkill = ({ skill, entity }: { skill: Skill; entity: Entity }) => {
       const stop = skill.addInterceptor('cooldown', val => val - 1);
