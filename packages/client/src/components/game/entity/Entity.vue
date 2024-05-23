@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EntityId } from '@game/sdk';
+import type { Entity, EntityId, Skill } from '@game/sdk';
 import { Container, Texture } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
@@ -78,17 +78,17 @@ watchEffect(async () => {
     );
   }
 });
-session.on('entity:before_use_skill', event => {
+const onUseSkill = (event: { entity: Entity; skill: Skill }) => {
   if (!event.entity.equals(entity.value)) return;
-
   isSkillFXDisplayed.value = true;
   currentSkillIcon.value = event.skill.blueprint.iconId;
   setTimeout(() => {
     isSkillFXDisplayed.value = false;
     currentSkillIcon.value = null;
   }, 1500);
-});
-
+};
+session.on('entity:before_use_skill', onUseSkill);
+session.off('entity:before_use_skill', onUseSkill);
 const { autoDestroyRef } = useAutoDestroy();
 </script>
 

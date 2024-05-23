@@ -20,10 +20,12 @@ const isPlaying = ref(false);
 
 const next = () => {
   if (!parsedReplay) return;
+  console.log('next');
   if (currentStep.value === parsedReplay.length) {
     isPlaying.value = false;
     return;
   }
+  console.log(currentStep.value, parsedReplay.length);
   session.dispatch(parsedReplay[currentStep.value]);
   currentStep.value++;
 };
