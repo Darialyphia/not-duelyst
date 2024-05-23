@@ -12,7 +12,7 @@ COPY ./packages/shared ./packages/shared
 COPY ./packages/server ./packages/server
 
 RUN npm install
-RUN npm workspace @game/game-server run build
+RUN npm --workspace=@game/game-server run build
 
 FROM node:20-alpine
 
