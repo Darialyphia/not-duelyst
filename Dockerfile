@@ -12,7 +12,7 @@ COPY ./packages/shared ./packages/shared
 COPY ./packages/server ./packages/server
 
 RUN yarn install
-RUN yarn workspace @game/server run build
+RUN yarn workspace @game/game-server run build
 
 FROM node:20-alpine
 

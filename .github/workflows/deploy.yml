@@ -38,7 +38,7 @@ jobs:
       - run: npm install
 
       - run: >
-          npm --workspace=@game/server run deploy -- \
+          npm --workspace=@game/game-server run deploy -- \
             --appId app-6b13c96a-2991-4e0a-bf42-3e66fa75a91c \
             --token ${{ secrets.HATHORA_TOKEN }} \
             --containerPort 8000 \
