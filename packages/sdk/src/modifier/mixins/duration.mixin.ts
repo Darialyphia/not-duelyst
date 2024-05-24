@@ -16,11 +16,10 @@ export const modifierEntityDurationMixin = ({
   keywords?: Keyword[];
 }): EntityModifierMixin => {
   let _duration = duration;
-
   return {
     keywords,
     onApplied(session, attachedTo, modifier) {
-      const eventName = tickOn === 'end' ? 'turn_end' : 'turn_end';
+      const eventName = tickOn === 'end' ? 'turn_end' : 'turn_start';
       const listener = () => {
         _duration--;
         if (_duration === 0) {

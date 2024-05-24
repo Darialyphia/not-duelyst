@@ -113,7 +113,6 @@ export const tough = ({
       modifierEntityInterceptorMixin({
         key: 'damageTaken',
         interceptor: modifier => amount => {
-          console.log(modifier);
           return Math.max(amount - modifier.stacks!, 1);
         },
         tickOn: 'start',
