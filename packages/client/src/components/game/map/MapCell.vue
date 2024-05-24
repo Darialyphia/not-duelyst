@@ -176,6 +176,10 @@ const highlightTarget = () => {
               .with(TARGETING_MODES.BLUEPRINT_FOLLOWUP, () => {})
               .with(TARGETING_MODES.BASIC, () => {
                 if (cell.entity) {
+                  if (ui.selectedEntity.value?.equals(cell.entity)) {
+                    ui.unselectEntity();
+                    return;
+                  }
                   attack();
                 } else {
                   move();

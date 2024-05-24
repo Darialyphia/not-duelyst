@@ -7,14 +7,15 @@ const { spriteId, spriteOnly } = defineProps<{
 const { assets } = useGame();
 
 const el = ref<HTMLElement>();
+
+const rect = useElementBounding(el);
 const item = computed(() => {
   if (!assets.loaded.value) return null;
 
   const sheet = assets.getSpritesheet(spriteId);
 
   const slice = sheet?.data.meta.slices?.find(slice => slice.name === 'icon');
-  const ratio = (el.value?.clientWidth ?? 1) / (slice?.keys[0].bounds.w ?? 1);
-
+  const ratio = (rect.width?.value ?? 1) / (slice?.keys[0].bounds.w ?? 1);
   return {
     style: {
       '--bg': `url(/assets/units/${spriteId}.png)`,

@@ -22,7 +22,6 @@ watchEffect(async () => {
 const el = ref<HTMLElement>();
 const item = computed(() => {
   if (!sheet.value) return null;
-
   return {
     style: {
       '--bg': pedestalSheet.value

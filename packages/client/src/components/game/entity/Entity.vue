@@ -88,7 +88,9 @@ const onUseSkill = (event: { entity: Entity; skill: Skill }) => {
   }, 1500);
 };
 session.on('entity:before_use_skill', onUseSkill);
-session.off('entity:before_use_skill', onUseSkill);
+onUnmounted(() => {
+  session.off('entity:before_use_skill', onUseSkill);
+});
 const { autoDestroyRef } = useAutoDestroy();
 </script>
 
