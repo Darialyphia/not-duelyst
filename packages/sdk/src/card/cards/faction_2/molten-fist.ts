@@ -49,7 +49,7 @@ export const f2MoltenFist: CardBlueprint = {
       description:
         'Deal 2 damage to a unit. If it dies, inflict @Burn(2)@ to all nearby minions.',
       iconId: 'shatter-fire',
-      initialCooldown: 1,
+      initialCooldown: 0,
       cooldown: 2,
       minTargetCount: 1,
       maxTargetCount: 1,
@@ -87,7 +87,7 @@ export const f2MoltenFist: CardBlueprint = {
           });
         });
 
-        await skill.caster.dealDamage(3, target);
+        await skill.caster.dealDamage(2, target);
       }
     }
   ]

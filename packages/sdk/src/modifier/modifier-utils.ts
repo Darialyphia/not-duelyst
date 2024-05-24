@@ -708,9 +708,11 @@ export const aura = ({
             session.off('entity:created', checkAura);
             session.off('entity:after_destroy', checkAura);
             session.off('entity:after-move', checkAura);
-            affectedEntitiesIds.forEach(id =>
-              onLoseAura(session.entitySystem.getEntityById(id)!)
-            );
+            affectedEntitiesIds.forEach(id => {
+              const entity = session.entitySystem.getEntityById(id);
+              if (!entity) return;
+              onLoseAura(entity);
+            });
           });
         }
       }

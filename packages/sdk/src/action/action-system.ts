@@ -63,7 +63,11 @@ export class ActionSystem implements Serializable {
     this.isRunning = true;
     try {
       for (const fn of this.scheduledActions) {
-        await fn();
+        try {
+          await fn();
+        } catch (err) {
+          console.error(err);
+        }
       }
       this.scheduledActions = [];
       this.isRunning = false;

@@ -87,10 +87,11 @@ const onUseSkill = (event: { entity: Entity; skill: Skill }) => {
     currentSkillIcon.value = null;
   }, 1500);
 };
-session.on('entity:before_use_skill', onUseSkill);
-onUnmounted(() => {
-  session.off('entity:before_use_skill', onUseSkill);
+entity.value.on('before_use_skill', onUseSkill);
+entity.value.once('before_destroy', () => {
+  entity.value.off('before_use_skill', onUseSkill);
 });
+
 const { autoDestroyRef } = useAutoDestroy();
 </script>
 
