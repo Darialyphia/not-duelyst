@@ -135,13 +135,9 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
 </style>
 
 <style scoped lang="postcss">
-.page {
-  height: 100vh;
-
-  > header {
-    padding-block: var(--size-6);
-    text-shadow: black 0px 4px 1px;
-  }
+header {
+  padding-block: var(--size-6);
+  text-shadow: black 0px 4px 1px;
 }
 
 footer > button {

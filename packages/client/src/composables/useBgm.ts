@@ -2,8 +2,8 @@ import type { Values } from '@game/shared';
 import { Howl } from 'howler';
 
 export const BGMS = {
-  MENU: '/assets/sfx/bgm_menu.mp3',
-  BATTLE: '/assets/sfx/bgm_battle.mp3'
+  MENU: '/assets/sfx/bgm_menu',
+  BATTLE: '/assets/sfx/bgm_battle'
 } as const;
 export type Bgm = Values<typeof BGMS>;
 
@@ -16,14 +16,18 @@ const BGM_INJECTION_KEY = Symbol('bgm') as InjectionKey<BGMContext>;
 const FADE_DURATION = 1500;
 const SCALE_FACTOR = 0.4;
 
+const supportsOgg = () => {
+  return document.createElement('audio').canPlayType('audio/ogg');
+};
 export const useBgmProvider = () => {
+  const extension = supportsOgg() ? '.ogg' : '.mp3';
   const userSettings = useUserSettings();
   const route = useRoute();
   const current = ref<Bgm>((route.meta.bgm as Bgm) ?? BGMS.MENU);
 
   const howl = ref(
     new Howl({
-      src: current.value,
+      src: `${current.value}${extension}`,
       volume: 0,
       loop: true,
       onload() {
@@ -51,7 +55,7 @@ export const useBgmProvider = () => {
       current.value = bgm;
       howl.value.fade(howl.value.volume(), 0, FADE_DURATION);
       const howl2 = new Howl({
-        src: current.value,
+        src: `${current.value}${extension}`,
         volume: 0,
         loop: true,
         onload() {

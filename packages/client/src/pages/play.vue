@@ -31,7 +31,7 @@ useBgmProvider();
 </script>
 
 <template>
-  <div class="root">
+  <div>
     <CurrentGameModal />
     <UsernameModal />
     <OnboardingModal />
@@ -40,9 +40,3 @@ useBgmProvider();
     <FriendsPopover />
   </div>
 </template>
-
-<style scoped lang="postcss">
-.root {
-  min-height: 100vh;
-}
-</style>

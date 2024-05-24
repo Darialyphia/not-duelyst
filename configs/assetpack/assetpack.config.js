@@ -80,7 +80,29 @@ export default function (entry, output) {
     ignore: ["**/*.ts", "**/*.aseprite"],
     cache: false,
     plugins: {
-      audio: audio(),
+      audio: audio({
+        inputs: [".mp3",  ".wav"],
+        outputs: [
+          {
+            formats: [".mp3"],
+            recompress: true,
+            options: {
+              audioBitrate: 96,
+              audioChannels: 1,
+              audioFrequency: 48000,
+            },
+          },
+          {
+            formats: [".ogg"],
+            recompress: true,
+            options: {
+              audioBitrate: 32,
+              audioChannels: 1,
+              audioFrequency: 22050,
+            },
+          },
+        ],
+      }),
       json: json(),
       // mipmap: mipmap({ resolutions: { default: 1, "2x": 2 } }),
       manifest: pixiManifest({
