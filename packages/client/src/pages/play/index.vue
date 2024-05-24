@@ -30,7 +30,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
         <div>
           <NuxtLink
             v-slot="{ navigate, href }"
-            :to="{ name: 'Profile', params: { id: me._id } }"
+            :to="{ name: 'Profile', params: { name: me.fullName } }"
             custom
           >
             <button class="profile-button" :href @click="navigate">

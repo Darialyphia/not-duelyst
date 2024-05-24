@@ -30,7 +30,7 @@ definePageMeta({
 
 const route = useRoute();
 const { data: profile, isLoading } = useConvexAuthedQuery(api.users.profile, {
-  userId: route.params.id as Id<'users'>
+  fullname: route.params.name as string
 });
 
 const { data: history } = useConvexAuthedQuery(api.games.gameHistory, {

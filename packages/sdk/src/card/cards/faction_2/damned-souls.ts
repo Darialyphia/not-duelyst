@@ -1,6 +1,7 @@
 import { isNearbyEnemy } from '../../../entity/entity-utils';
 import { lastWill, taunted, vulnerable } from '../../../modifier/modifier-utils';
-import { isCastPoint, isSelf } from '../../../utils/targeting';
+import { KEYWORDS } from '../../../utils/keywords';
+import { isCastPoint } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
@@ -20,7 +21,7 @@ export const f2DamnedSouls: CardBlueprint = {
   maxHp: 3,
   speed: 2,
   range: 1,
-  keywords: [],
+  keywords: [KEYWORDS.LAST_WILL],
   async onPlay({ session, entity }) {
     entity.addModifier(
       lastWill({

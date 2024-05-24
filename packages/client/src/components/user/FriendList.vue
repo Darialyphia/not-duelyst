@@ -69,6 +69,17 @@ const hasOngoingGame = computed(
           @click="sendChallenge({ challengedId: friend._id })"
         />
         <UiIconButton name="system-uicons:speech-bubble" />
+        <NuxtLink
+          v-slot="{ href, navigate }"
+          custom
+          :to="{ name: 'Profile', params: { name: friend.fullName } }"
+        >
+          <UiIconButton
+            name="material-symbols-light:search-rounded"
+            :href="href"
+            @click="navigate"
+          />
+        </NuxtLink>
       </li>
     </ul>
     <UiButton
