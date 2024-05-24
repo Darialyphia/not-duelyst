@@ -31,7 +31,6 @@ export const neutralFireElemental: CardBlueprint = {
         description: 'Nearby enemies have @Burn(2)@.',
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) return;
-          if (affected.isGeneral) return;
           affected.addModifier(burn({ source: entity, stacks: 2 }));
         },
         onLoseAura(affected) {
