@@ -25,8 +25,8 @@ export const f2DoomSayer: CardBlueprint = {
     entity.addModifier(
       deathWatch({
         source: entity,
-        async handler(entity) {
-          if (!entity.isGeneral) {
+        async handler(_entity) {
+          if (!_entity.isGeneral) {
             await entity.dealDamage(1, entity.player.opponent.general);
           }
         }

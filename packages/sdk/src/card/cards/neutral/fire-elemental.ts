@@ -7,7 +7,7 @@ import { RARITIES, CARD_KINDS } from '../../card-enums';
 export const neutralFireElemental: CardBlueprint = {
   id: 'fire-elemental',
   name: 'Neutral Fire Elemental',
-  description: '@Burn(2)@ @Aura@',
+  description: '@Burn(2)@ minions @Aura@',
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: [null, null, null],
@@ -31,6 +31,7 @@ export const neutralFireElemental: CardBlueprint = {
         description: 'Nearby enemies have @Burn(2)@.',
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) return;
+          if (affected.isGeneral) return;
           affected.addModifier(burn({ source: entity, stacks: 2 }));
         },
         onLoseAura(affected) {
