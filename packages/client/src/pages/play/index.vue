@@ -25,7 +25,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
 <template>
   <div class="page">
-    <Sound sound="button-hover" :triggers="['mouseenter']">
+    <Sound v-if="me" sound="button-hover" :triggers="['mouseenter']">
       <Sound sound="button-click" :triggers="['mousedown']">
         <div>
           <NuxtLink
