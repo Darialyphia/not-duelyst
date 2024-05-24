@@ -1,6 +1,5 @@
 import { Vec3 } from '@game/shared';
 import { isEmpty, isEnemy } from '../../../entity/entity-utils';
-import { createCardModifier } from '../../../modifier/card-modifier';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
 import { fearsome, vulnerable } from '../../../modifier/modifier-utils';
@@ -27,7 +26,7 @@ export const f2Butcher: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.FEARSOME],
-  async onPlay({ entity }) {
+  async onPlay({ entity, session }) {
     entity.addModifier(fearsome({ source: entity }));
     entity.addModifier(
       createEntityModifier({
@@ -39,6 +38,7 @@ export const f2Butcher: CardBlueprint = {
         mixins: [
           modifierSelfEventMixin({
             eventName: 'before_attack',
+            duration: 999,
             listener([event], { attachedTo }) {
               const onDestroyed = () => {
                 const currentMaxAttacks = attachedTo.maxAttacks;
@@ -48,10 +48,11 @@ export const f2Butcher: CardBlueprint = {
                 );
                 attachedTo.player.once('turn_end', remove);
               };
-
               event.target.on('before_destroy', onDestroyed);
               attachedTo.once('after_attack', () => {
-                event.target.off('before_destroy', onDestroyed);
+                session.actionSystem.schedule(() => {
+                  event.target.off('before_destroy', onDestroyed);
+                });
               });
             }
           })

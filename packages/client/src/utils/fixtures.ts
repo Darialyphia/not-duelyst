@@ -10,7 +10,7 @@ const dirtTile = (
 ) => ({
   position: { x, y, z },
   terrain: TERRAINS.GROUND,
-  spriteId: 'dirt',
+  spriteId: z === 0 ? 'dirt-edge' : 'dirt',
   tileBlueprintId: tileBlueprintId ?? null
 });
 const grassTile = (
@@ -21,7 +21,7 @@ const grassTile = (
 ) => ({
   position: { x, y, z },
   terrain: TERRAINS.GROUND,
-  spriteId: 'grass',
+  spriteId: z === 0 ? 'grass-edge' : 'grass',
   tileBlueprintId: tileBlueprintId ?? null
 });
 const waterTile = (
