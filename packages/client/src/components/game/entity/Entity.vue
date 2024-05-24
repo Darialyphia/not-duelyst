@@ -6,7 +6,7 @@ const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { session, camera, ui, fx, assets } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 
 const scaleX = computed(() => {
   let value = entity.value.player.isPlayer1 ? 1 : -1;

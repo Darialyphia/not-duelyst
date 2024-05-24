@@ -12,7 +12,7 @@ const { cellId } = defineProps<{ cellId: CellId }>();
 const { camera, ui, dispatch, pathfinding, fx, session } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-const userSettings = useUserSettings();
+const { settings: userSettings } = useUserSettings();
 
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,

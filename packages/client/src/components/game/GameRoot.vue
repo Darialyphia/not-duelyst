@@ -16,8 +16,6 @@ import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
-import { api } from '@game/api';
-
 const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
   gameSession: GameSession;
   playerId: string | null;
@@ -87,6 +85,7 @@ onMounted(async () => {
   app.provide(appInjectKey, pixiApp);
   app.provide(GAME_INJECTION_KEY, game);
   app.provide(ASSETS_INJECTION_KEY, assets);
+  app.provide(USER_SETTINGS_INJECTION_KEY, settings);
   const { appContext } = getCurrentInstance()!;
 
   const parent = appContext?.app;
@@ -110,7 +109,7 @@ onMounted(async () => {
       })
     );
 
-    await until(settings).toBeTruthy();
+    await until(settings.settings).toBeTruthy();
 
     ready.value = true;
     app.mount(pixiApp.stage);

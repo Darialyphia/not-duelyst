@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
+useUserSettingsProvider();
 
 colorMode.preference = 'dark';
 

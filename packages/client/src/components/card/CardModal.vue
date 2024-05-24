@@ -11,7 +11,7 @@ const isOpened = defineModel<boolean>('isOpened', { required: true });
 
 const blueprint = computed(() => CARDS[blueprintId]);
 
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 const selectedBlueprint = computed(() => CARDS[selectedBlueprintId.value]);
 
 const relatedBlueprints = computed(() =>

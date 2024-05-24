@@ -17,7 +17,7 @@ export const useIllumination = <T extends DisplayObject>(
   diffuseCallback?: (el: T) => void,
   normalCallback?: (el: T) => void
 ) => {
-  const settings = useUserSettings();
+  const { settings } = useUserSettings();
 
   return {
     normalFilter: flipFilter,

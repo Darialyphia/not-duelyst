@@ -17,7 +17,7 @@ const {
 }>();
 
 const SCALE_FACTOR = 3;
-const userSettings = useUserSettings();
+const { settings: userSettings } = useUserSettings();
 
 const id = `_${nanoid(6).replaceAll('-', '_')}`;
 const el = ref<Nullable<HTMLElement>>(null);

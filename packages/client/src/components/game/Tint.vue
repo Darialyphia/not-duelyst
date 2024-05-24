@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { BLEND_MODES, Sprite, Texture } from 'pixi.js';
+import { BLEND_MODES, Texture } from 'pixi.js';
 import { useScreen } from 'vue3-pixi';
 import { debounce } from 'lodash-es';
 
 const screen = useScreen();
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 
 function gradient() {
   const c = document.createElement('canvas');

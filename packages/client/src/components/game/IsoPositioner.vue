@@ -38,7 +38,7 @@ const { autoDestroyRef } = useAutoDestroy();
 
 const containerX = computed(() => position.value.isoX + offset.x);
 const containerY = computed(() => position.value.isoY - position.value.isoZ + offset.y);
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 
 const rotatedCartesian = computed(() => {
   const track = { x, y, z };

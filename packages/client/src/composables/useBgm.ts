@@ -21,10 +21,12 @@ const supportsOgg = () => {
 };
 export const useBgmProvider = () => {
   const extension = supportsOgg() ? '.ogg' : '.mp3';
-  const userSettings = useUserSettings();
+  const { settings: userSettings } = useUserSettings();
   const route = useRoute();
   const current = ref<Bgm>((route.meta.bgm as Bgm) ?? BGMS.MENU);
-
+  const volume = computed(
+    () => (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR
+  );
   const howl = ref(
     new Howl({
       src: `${current.value}${extension}`,
@@ -32,17 +34,13 @@ export const useBgmProvider = () => {
       loop: true,
       onload() {
         howl.value.play();
-        howl.value.fade(
-          0,
-          (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR,
-          FADE_DURATION
-        );
+        howl.value.fade(0, volume.value, FADE_DURATION);
       }
     })
   );
 
-  watch(userSettings, () => {
-    howl.value.volume((userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR);
+  watch(volume, newVolume => {
+    howl.value.volume(newVolume);
   });
 
   const api = {
@@ -60,11 +58,7 @@ export const useBgmProvider = () => {
         loop: true,
         onload() {
           howl2.play();
-          howl2.fade(
-            0,
-            (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR,
-            FADE_DURATION
-          );
+          howl2.fade(0, volume.value, FADE_DURATION);
         },
         onfade() {
           howl.value = howl2;

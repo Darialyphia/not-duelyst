@@ -11,6 +11,7 @@ definePageMeta({
 defineRouteRules({
   ssr: false
 });
+
 useBgmProvider();
 const route = useRoute();
 

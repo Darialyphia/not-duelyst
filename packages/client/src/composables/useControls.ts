@@ -4,7 +4,7 @@ export const useGameControls = () => {
   const { camera, ui, dispatch, fx } = useGame();
 
   const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-  const settings = useUserSettings();
+  const { settings } = useUserSettings();
   const isActivePlayer = useIsActivePlayer();
 
   watchEffect(onCleanup => {

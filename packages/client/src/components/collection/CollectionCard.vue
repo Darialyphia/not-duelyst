@@ -16,7 +16,7 @@ const { canAddToLoadout, isEditingLoadout, card, isInLoadout } = defineProps<{
 
 const emit = defineEmits<{ click: [] }>();
 
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 
 const rootEl = ref<HTMLElement>();
 const angle = ref({

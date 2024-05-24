@@ -1,29 +1,22 @@
 <script setup lang="ts">
-import { api } from '@game/api';
-import { merge } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 
 const emit = defineEmits<{
   close: [];
 }>();
 
-const { data: settings } = useConvexAuthedQuery(api.users.settings, {}, { ssr: false });
-const { mutate: saveSettings } = useConvexAuthedMutation(api.users.saveSettings, {
-  onSuccess() {
-    emit('close');
-  }
-});
-
-const formData = reactive(getDefaultSettings());
+const { settings: formData, save } = useUserSettings();
+const initialValue = cloneDeep(formData.value);
 
 const onSubmit = () => {
-  saveSettings({ settings: formData });
+  save();
+  emit('close');
 };
 
-until(settings)
-  .not.toBeUndefined()
-  .then(() => {
-    merge(formData, settings.value);
-  });
+const rollback = () => {
+  formData.value = initialValue;
+  emit('close');
+};
 </script>
 
 <template>
@@ -154,9 +147,7 @@ until(settings)
     </section>
 
     <footer>
-      <UiButton type="button" class="ghost-button" @click="emit('close')">
-        Cancel
-      </UiButton>
+      <UiButton type="button" class="ghost-button" @click="rollback">Cancel</UiButton>
       <UiButton class="primary-button">Apply</UiButton>
     </footer>
   </form>

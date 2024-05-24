@@ -19,7 +19,7 @@ const hpTextures = computed(() => {
   return createSpritesheetFrameObject('idle', sheet);
 });
 
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 const isDisplayed = computed(() => {
   return match(settings.value.ui.displayUnitsStats)
     .with(DISPLAY_UNITS_STATS.ALWAYS, () => true)

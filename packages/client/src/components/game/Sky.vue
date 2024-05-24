@@ -24,7 +24,7 @@ onTick(() => {
   scaleY.value = app.value.view.height / SKY_SIZE.y;
 });
 
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 </script>
 
 <template>

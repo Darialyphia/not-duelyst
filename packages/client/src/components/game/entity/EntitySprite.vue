@@ -10,7 +10,7 @@ const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { ui, fx, camera, gameType } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
-const settings = useUserSettings();
+const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const userPlayer = useUserPlayer();
 const sprite = ref<AnimatedSprite>();
