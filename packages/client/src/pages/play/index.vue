@@ -25,62 +25,14 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
 <template>
   <div class="page">
-    <Sound v-if="me" sound="button-hover" :triggers="['mouseenter']">
-      <Sound sound="button-click" :triggers="['mousedown']">
-        <div>
-          <NuxtLink
-            v-slot="{ navigate, href }"
-            :to="{ name: 'Profile', params: { name: me.fullName } }"
-            custom
-          >
-            <button class="profile-button" :href @click="navigate">
-              <img src="/assets/portraits/f1-general.png" />
-              {{ me.fullName }}
-            </button>
-          </NuxtLink>
-        </div>
-      </Sound>
-    </Sound>
-    <nav>
-      <ul class="grid gap-2">
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink>
-            </Sound>
-          </Sound>
-        </li>
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink>
-            </Sound>
-          </Sound>
-        </li>
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
-            </Sound>
-          </Sound>
-        </li>
-        <li></li>
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <button @click="isSettingsOpened = true">Settings</button>
-            </Sound>
-          </Sound>
-        </li>
-        <li>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <Sound sound="button-click" :triggers="['mousedown']">
-              <button @click="signOff({})">Sign Off</button>
-            </Sound>
-          </Sound>
-        </li>
-      </ul>
-    </nav>
+    <ProfileButton class="fixed top-6 left-2" />
+
+    <MainNavigation class="pl-10 pt-12" />
+
+    <section id="main-menu-patch-notes" class="fancy-surface fancy-scrollbar">
+      <ContentDoc path="/patch-notes" />
+    </section>
+
     <UiModal
       v-model:is-opened="isSettingsOpened"
       title="Settings"
@@ -105,75 +57,35 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
   transform: translateY(-1.5rem);
   opacity: 0;
 }
+
+#main-menu-patch-notes {
+  h2,
+  h3,
+  h4 {
+    margin-block: 1em;
+    font-weight: var(--font-weight-5);
+  }
+
+  li {
+    margin-left: var(--size-3);
+    list-style: disc;
+  }
+}
 </style>
 <style scoped lang="postcss">
 .page {
   display: grid;
-  place-content: center;
+  grid-template-columns: 6fr minmax(var(--size-xs), 80ch);
+  gap: var(--size-7);
+
   min-height: 100vh;
+  padding-inline: var(--size-8);
 }
 
-li > * {
-  position: relative;
-
-  display: block;
-
-  padding: 0;
-
-  font-size: var(--font-size-5);
-  text-align: left;
-  text-shadow: black 0px 4px 1px;
-  &::after {
-    content: '';
-
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-
-    width: 0;
-    height: 3px;
-
-    background-color: var(--primary);
-
-    transition:
-      width 0.2s,
-      left 0.2s;
-  }
-
-  &:hover::after {
-    left: 0;
-    width: 100%;
-  }
-}
-
-.profile-button {
-  position: fixed;
-  top: var(--size-6);
-  left: var(--size-2);
-
-  display: flex;
-  gap: var(--size-3);
-  align-items: center;
-
-  padding: var(--size-2) var(--size-4);
-
-  font-size: var(--font-size-3);
-  line-height: 1;
-  text-shadow: black 0px 3px 1px;
-
-  border-radius: var(--radius-3);
-
-  transition: background-color 0.3s;
-  > img {
-    transition: filter 0.3s;
-  }
-  &:hover,
-  &:focus-visible {
-    background-color: hsl(0 0 0 / 0.2);
-    > img {
-      filter: drop-shadow(6px 6px 5px var(--cyan-5))
-        drop-shadow(-6px -6px 5px var(--orange-5));
-    }
-  }
+section {
+  overflow-y: auto;
+  max-height: 80dvh;
+  margin-block: var(--size-8);
+  line-height: 1.8;
 }
 </style>

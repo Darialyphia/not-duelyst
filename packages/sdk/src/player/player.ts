@@ -5,7 +5,12 @@ import {
   type Serializable,
   type Values
 } from '@game/shared';
-import { Card, type CardBlueprintId, type SerializedCard } from '../card/card';
+import {
+  Card,
+  CARD_EVENTS,
+  type CardBlueprintId,
+  type SerializedCard
+} from '../card/card';
 import EventEmitter from 'eventemitter3';
 import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
@@ -142,6 +147,11 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       { blueprintId, pedestalId, isGenerated: true },
       this.id
     );
+    Object.values(CARD_EVENTS).forEach(eventName => {
+      card.on(eventName, event => {
+        this.session.emit(`card:${eventName}`, event as any);
+      });
+    });
     modifiers.forEach(mod => card.addModifier(mod));
     this.cards.push(card);
     card.setup();

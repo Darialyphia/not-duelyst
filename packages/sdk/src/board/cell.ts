@@ -1,4 +1,4 @@
-import { Vec3, type Nullable, type Serializable, type Values } from '@game/shared';
+import { Vec3, type Nullable, type Serializable } from '@game/shared';
 import type { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
 import type { GameSession } from '../game-session';

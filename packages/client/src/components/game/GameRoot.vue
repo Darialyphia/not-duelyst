@@ -6,7 +6,7 @@ import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import GameView from './GameView.vue';
 import { Stage } from '@pixi/layers';
-import type { GameSession } from '@game/sdk';
+import { CARDS, type GameSession } from '@game/sdk';
 // import type { GameEmits } from '../../composables/useGame';
 import cursorUrl from '../../assets/cursors/cursor.png';
 import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
@@ -102,10 +102,15 @@ onMounted(async () => {
             .getList()
             .map(player => player.cards)
             .flat()
-            .map(card => card.blueprint.spriteId)
+            .map(card => [
+              card.blueprint.spriteId,
+              ...(card.blueprint.relatedBlueprintIds?.map(id => CARDS[id].spriteId) ?? [])
+            ])
+            .flat()
         )
-      ].map(spriteId => {
-        return game.assets.loadSpritesheet(spriteId);
+      ].map(async spriteId => {
+        const sheet = await game.assets.loadSpritesheet(spriteId);
+        return game.assets.loadNormalSpritesheet(spriteId, sheet);
       })
     );
 

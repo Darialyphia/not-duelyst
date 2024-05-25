@@ -23,7 +23,8 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     'nuxt-icon',
     '@nuxtjs/color-mode',
-    '@formkit/auto-animate/nuxt'
+    '@formkit/auto-animate/nuxt',
+    "@nuxt/content"
   ],
 
   runtimeConfig: {

@@ -58,11 +58,6 @@ export const f1ElementalLord: CardBlueprint = {
         }
       })
     );
-
-    session.entitySystem.getList().forEach(e => {
-      if (!isAlliedElemental(e)) return;
-      e.addModifier(regeneration({ source: entity }));
-    });
   },
   relatedBlueprintIds: [
     neutralAirElemental.id,
@@ -93,13 +88,11 @@ export const f1ElementalLord: CardBlueprint = {
         }
       },
       isTargetable(point, { session, skill }) {
-        // return (
-        //   isEmpty(session, point) &&
-        //   session.boardSystem
-        //     .getNeighbors3D(point)
-        //     .some(cell => cell.entity?.isAlly(skill.caster.id))
-        // );
-        return isWithinCells(skill.caster.position, point, 1);
+        return (
+          isEmpty(session, point) &&
+          !!session.boardSystem.getCellAt(point)?.isWalkable &&
+          isWithinCells(skill.caster.position, point, 1)
+        );
       },
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);

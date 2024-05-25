@@ -27,62 +27,68 @@ const isModalOpened = computed({
 </script>
 
 <template>
-  <TeamInfos v-if="!winner" />
-  <SkillBar v-if="!winner" />
-  <ActionBar v-if="!winner" />
-  <TargetingUi />
-  <BlueprintFollowupUi />
-  <GameMenu />
-  <NewTurnIndicator />
-  <EndGameModal />
-  <CardModal
-    v-if="ui.highlightedCard.value"
-    v-model:is-opened="isModalOpened"
-    :blueprint-id="ui.highlightedCard.value.blueprintId"
-    disable-right-click
-  />
-  <Transition>
-    <div
-      v-if="entity"
-      class="card-preview"
-      :class="entity.player.isPlayer1 ? 'left' : 'right'"
-    >
-      <Card
-        :card="{
-          blueprintId: entity.card.blueprint.id,
-          name: entity.card.blueprint.name,
-          description: entity.card.blueprint.description,
-          kind: entity.card.kind,
-          spriteId: entity.card.blueprint.spriteId,
-          rarity: entity.card.blueprint.rarity,
-          attack: entity.attack,
-          hp: entity.hp,
-          speed: entity.speed,
-          cost: entity.card.cost,
-          cooldown: entity.card.cooldown,
-          skills: entity.card.blueprint.skills,
-          pedestalId: entity.card.pedestalId,
-          factions: entity.card.blueprint.factions,
-          tribes: entity.card.blueprint.tribes ?? []
-        }"
-      />
-      <dl>
-        <div v-for="keyword in entity.keywords" :key="keyword.id">
-          <dt>
-            {{ keyword.name }}
-            {{ keyword.stacks ? `(x${keyword.stacks})` : '' }}
-          </dt>
-          <dd>{{ keyword.description }}</dd>
-        </div>
-      </dl>
-    </div>
-  </Transition>
+  <EndGameModal v-if="winner" />
 
-  <Transition>
-    <div v-if="!entity && ui.hoveredCell.value?.tile" class="tile-preview">
-      <TileCard :tile="ui.hoveredCell.value.tile" />
-    </div>
-  </Transition>
+  <template v-else>
+    <TeamInfos />
+    <SkillBar />
+    <ActionBar />
+    <TargetingUi />
+    <BlueprintFollowupUi />
+    <GameMenu />
+    <NewTurnIndicator />
+    <CombatLog />
+
+    <CardModal
+      v-if="ui.highlightedCard.value"
+      v-model:is-opened="isModalOpened"
+      :blueprint-id="ui.highlightedCard.value.blueprintId"
+      disable-right-click
+    />
+
+    <Transition>
+      <div
+        v-if="entity"
+        class="card-preview"
+        :class="entity.player.isPlayer1 ? 'left' : 'right'"
+      >
+        <Card
+          :card="{
+            blueprintId: entity.card.blueprint.id,
+            name: entity.card.blueprint.name,
+            description: entity.card.blueprint.description,
+            kind: entity.card.kind,
+            spriteId: entity.card.blueprint.spriteId,
+            rarity: entity.card.blueprint.rarity,
+            attack: entity.attack,
+            hp: entity.hp,
+            speed: entity.speed,
+            cost: entity.card.cost,
+            cooldown: entity.card.cooldown,
+            skills: entity.card.blueprint.skills,
+            pedestalId: entity.card.pedestalId,
+            factions: entity.card.blueprint.factions,
+            tribes: entity.card.blueprint.tribes ?? []
+          }"
+        />
+        <dl>
+          <div v-for="keyword in entity.keywords" :key="keyword.id">
+            <dt>
+              {{ keyword.name }}
+              {{ keyword.stacks ? `(x${keyword.stacks})` : '' }}
+            </dt>
+            <dd>{{ keyword.description }}</dd>
+          </div>
+        </dl>
+      </div>
+    </Transition>
+
+    <Transition>
+      <div v-if="!entity && ui.hoveredCell.value?.tile" class="tile-preview">
+        <TileCard :tile="ui.hoveredCell.value.tile" />
+      </div>
+    </Transition>
+  </template>
 </template>
 
 <style scoped lang="postcss">

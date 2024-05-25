@@ -19,7 +19,7 @@ export const f2MoltenFist: CardBlueprint = {
   initialCooldown: 0,
   cost: 4,
   attack: 3,
-  maxHp: 7,
+  maxHp: 6,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.BURN],
