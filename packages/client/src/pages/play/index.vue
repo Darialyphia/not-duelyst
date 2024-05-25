@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { api } from '@game/api';
-
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -9,37 +7,17 @@ definePageMeta({
     appear: true
   }
 });
-
-const isSettingsOpened = ref(false);
-const session = useSession();
-
-const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff, {
-  onSuccess() {
-    session.value = null;
-    navigateTo({ name: 'Login' });
-  }
-});
-
-const { data: me } = useConvexAuthedQuery(api.users.me, {});
 </script>
 
 <template>
   <div class="page">
     <ProfileButton class="fixed top-6 left-2" />
 
-    <MainNavigation class="pl-10 pt-12" />
+    <MainNavigation class="pl-9 pt-12" />
 
     <section id="main-menu-patch-notes" class="fancy-surface fancy-scrollbar">
       <ContentDoc path="/patch-notes" />
     </section>
-
-    <UiModal
-      v-model:is-opened="isSettingsOpened"
-      title="Settings"
-      :style="{ '--ui-modal-size': 'var(--size-lg)' }"
-    >
-      <SettingsForm @close="isSettingsOpened = false" />
-    </UiModal>
 
     <ClientOnly>
       <GrantedCardsModal />

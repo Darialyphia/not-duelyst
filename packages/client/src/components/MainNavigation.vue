@@ -1,5 +1,16 @@
+<script setup lang="ts">
+import { api } from '@game/api';
+
+defineOptions({
+  inheritAttrs: false
+});
+const isSettingsOpened = ref(false);
+
+const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff);
+</script>
+
 <template>
-  <nav>
+  <nav v-bind="$attrs">
     <ul class="grid gap-2">
       <li>
         <Sound sound="button-hover" :triggers="['mouseenter']">
@@ -39,6 +50,14 @@
       </li>
     </ul>
   </nav>
+
+  <UiModal
+    v-model:is-opened="isSettingsOpened"
+    title="Settings"
+    :style="{ '--ui-modal-size': 'var(--size-lg)' }"
+  >
+    <SettingsForm @close="isSettingsOpened = false" />
+  </UiModal>
 </template>
 
 <style scoped lang="postcss">
