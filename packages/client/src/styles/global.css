@@ -19,3 +19,17 @@
   @unocss default;
   @unocss;
 }
+
+[data-content-id] {
+  h2,
+  h3,
+  h4 {
+    margin-block: 1em;
+    font-weight: var(--font-weight-5);
+  }
+
+  li {
+    margin-left: var(--size-3);
+    list-style: disc;
+  }
+}

@@ -1,4 +1,5 @@
 export const config = {
+  VERSION: '0.0.2',
   MAX_HAND_SIZE: 6,
   MAX_GOLD: 8,
   GOLD_PER_TURN: 3,

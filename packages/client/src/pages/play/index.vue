@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { config } from '@game/sdk';
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -15,8 +16,12 @@ definePageMeta({
 
     <MainNavigation class="pl-9 pt-12" />
 
-    <section id="main-menu-patch-notes" class="fancy-surface fancy-scrollbar">
-      <ContentDoc path="/patch-notes" />
+    <section class="fancy-surface fancy-scrollbar">
+      <ContentDoc :path="`/${config.VERSION}`" :head="false" />
+
+      <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
+        Previous patch notes
+      </NuxtLink>
     </section>
 
     <ClientOnly>
@@ -34,20 +39,6 @@ definePageMeta({
 .client-home-leave-to {
   transform: translateY(-1.5rem);
   opacity: 0;
-}
-
-#main-menu-patch-notes {
-  h2,
-  h3,
-  h4 {
-    margin-block: 1em;
-    font-weight: var(--font-weight-5);
-  }
-
-  li {
-    margin-left: var(--size-3);
-    list-style: disc;
-  }
 }
 </style>
 <style scoped lang="postcss">

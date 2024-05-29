@@ -1,0 +1,53 @@
+import { isNearbyEnemy } from '../../../entity/entity-utils';
+import type { CardBlueprint } from '../../card-blueprint';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { getAffectedEntities, isSelf } from '../../../utils/targeting';
+import { frozen, taunted } from '../../../modifier/modifier-utils';
+import { KEYWORDS } from '../../../utils/keywords';
+
+export const neutralIceQueen: CardBlueprint = {
+  id: 'neutral_ice_queen',
+  name: 'Neutral Ice Queen',
+  description: '',
+  collectable: true,
+  rarity: RARITIES.EPIC,
+  factions: [null, null, null],
+  spriteId: 'neutral_ice_queen',
+  kind: CARD_KINDS.MINION,
+  cooldown: 5,
+  initialCooldown: 0,
+  cost: 5,
+  attack: 2,
+  maxHp: 5,
+  speed: 3,
+  range: 1,
+  keywords: [KEYWORDS.FROZEN],
+
+  skills: [
+    {
+      id: 'neutral_ice_queen_skill_1',
+      cooldown: 2,
+      description: 'Deal 1 damage to nearby enemies then @Freeze@ them for 1 turn.',
+      name: 'Test skill',
+      iconId: 'ice2',
+      initialCooldown: 0,
+      minTargetCount: 0,
+      maxTargetCount: 1,
+      keywords: [KEYWORDS.FROZEN],
+      isTargetable(point, { session, skill }) {
+        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
+      },
+      isInAreaOfEffect(point, { session, skill }) {
+        return isNearbyEnemy(session, skill.caster, point);
+      },
+      async onUse({ skill, affectedCells }) {
+        await Promise.all(
+          getAffectedEntities(affectedCells).map(async entity => {
+            await skill.caster.dealDamage(1, entity);
+            entity.addModifier(frozen({ duration: 1, source: skill.caster }));
+          })
+        );
+      }
+    }
+  ]
+};
