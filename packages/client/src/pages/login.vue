@@ -13,6 +13,22 @@ const formData = reactive({
 });
 
 const { isLoading, mutate: login, error } = useSignIn();
+
+const isReady = ref(false);
+onMounted(() => {
+  // Removed the loader code before the SPA got loaded
+  const loader = document.getElementById('app-loader');
+  if (!loader) {
+    isReady.value = true;
+    return;
+  }
+
+  loader.addEventListener('animationend', () => {
+    loader.remove();
+    isReady.value = true;
+  });
+  loader.classList.add('loader-fadeout');
+});
 </script>
 
 <template>
