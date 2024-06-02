@@ -2,7 +2,7 @@ import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS, config } from '@game/sdk';
-import type { Card, CardBlueprintId } from '@game/sdk/src/card/card';
+import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import { match } from 'ts-pattern';
 
 export const useLoadoutForm = ({
