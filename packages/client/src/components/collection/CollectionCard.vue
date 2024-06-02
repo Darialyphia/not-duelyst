@@ -7,9 +7,8 @@ defineOptions({
   inheritAttrs: false
 });
 
-const { canAddToLoadout, isEditingLoadout, card, isInLoadout } = defineProps<{
+const { canAddToLoadout, isEditingLoadout, card } = defineProps<{
   canAddToLoadout: boolean;
-  isInLoadout: boolean;
   isEditingLoadout: boolean;
   card: { card: CardBlueprint; _id: Id<'collectionItems'>; cardId: string };
 }>();
@@ -52,10 +51,7 @@ const keywords = computed(() => {
 </script>
 
 <template>
-  <div
-    class="perspective-wrapper"
-    :class="[settings.ui.cardsWith3D && '3d', { used: isEditingLoadout && isInLoadout }]"
-  >
+  <div class="perspective-wrapper" :class="[settings.ui.cardsWith3D && '3d']">
     <Sound sound="button-hover" :triggers="['mouseenter']">
       <Card
         ref="rootEl"
@@ -110,10 +106,6 @@ const keywords = computed(() => {
 
   &.3d {
     perspective: 40rem;
-  }
-
-  &.used {
-    filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
   }
 }
 .collection-card {

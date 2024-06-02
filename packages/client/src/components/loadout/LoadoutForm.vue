@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { config, CARD_KINDS, CARDS, type CardBlueprint } from '@game/sdk';
+import { uniqBy } from 'lodash-es';
 
 const { isSaving, cards } = defineProps<{
   cards: Array<{ id: string; pedestalId: string }>;
@@ -8,21 +9,33 @@ const { isSaving, cards } = defineProps<{
 
 const emit = defineEmits<{
   save: [];
-  toggleUnit: [CardBlueprint];
+  remove: [CardBlueprint];
   setPedestal: [{ id: string; pedestalId: string }];
   back: [];
 }>();
 
 const name = defineModel<string>('name', { required: true });
 
-const sortedUnits = computed(() => {
-  return cards
-    .map(card => ({ ...card, card: CARDS[card.id] }))
-    .sort((a, b) => {
-      if (a.card.kind === CARD_KINDS.GENERAL) return -1;
-      if (b.card.kind === CARD_KINDS.GENERAL) return 1;
-      return a.card.cost - b.card.cost;
-    });
+const groupedUnits = computed(() => {
+  const copies: Record<string, number> = {};
+  cards.forEach(card => {
+    if (!copies[card.id]) {
+      copies[card.id] = 1;
+    } else {
+      copies[card.id]++;
+    }
+  });
+
+  return uniqBy(
+    cards
+      .map(card => ({ ...card, card: CARDS[card.id], copies: copies[card.id] }))
+      .sort((a, b) => {
+        if (a.card.kind === CARD_KINDS.GENERAL) return -1;
+        if (b.card.kind === CARD_KINDS.GENERAL) return 1;
+        return a.card.cost - b.card.cost;
+      }),
+    'id'
+  );
 });
 
 // TODO load user owned cosmetics from api
@@ -56,28 +69,20 @@ const minionsCount = computed(() => {
       {{ minionsCount }} / {{ config.MAX_DECK_SIZE }}
     </header>
 
-    <ul v-if="cards.length" v-auto-animate class="flex-1">
+    <ul v-if="cards.length" v-auto-animate class="flex-1 fancy-scrollbar">
       <li
-        v-for="card in sortedUnits"
+        v-for="card in groupedUnits"
         :key="card.card.id"
         :class="card.card.kind.toLowerCase()"
+        @click="emit('remove', card.card)"
       >
         <div class="cost">
           {{ card.card.cost }}
         </div>
 
-        <div>
-          <div class="flex gap-2">
-            <img
-              v-for="(_, index) in 3"
-              :key="index"
-              :src="`/assets/ui/rune-${
-                card.card.factions[index]?.id.toLocaleLowerCase() ?? 'empty'
-              }.png`"
-              class="rune"
-            />
-          </div>
-          <div class="name">{{ card.card.name }}</div>
+        <div class="name">
+          {{ card.card.name }}
+          <template v-if="card.copies > 1">X {{ card.copies }}</template>
         </div>
 
         <div class="flex items-center ml-auto">
@@ -85,7 +90,7 @@ const minionsCount = computed(() => {
             name="ph:caret-left-fill"
             class="pedestal-nav"
             type="button"
-            @click="changePedestal(card.id, -1)"
+            @click.Stop="changePedestal(card.id, -1)"
           />
           <div class="sprite mx-auto">
             <CardSprite :sprite-id="card.card.spriteId" :pedestal-id="card.pedestalId" />
@@ -94,17 +99,9 @@ const minionsCount = computed(() => {
             name="ph:caret-right-fill"
             class="pedestal-nav"
             type="button"
-            @click="changePedestal(card.id, 1)"
+            @click.stop="changePedestal(card.id, 1)"
           />
         </div>
-
-        <UiIconButton
-          name="mdi:minus"
-          aria-label="remove from loadout"
-          class="error-button"
-          type="button"
-          @click="emit('toggleUnit', card.card)"
-        />
       </li>
     </ul>
 
@@ -129,13 +126,15 @@ const minionsCount = computed(() => {
 
 <style scoped lang="postcss">
 form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 
   height: 100%;
   padding-top: var(--size-5);
-  padding-right: var(--size-3);
   padding-left: var(--size-3);
+  > * {
+    padding-right: var(--size-3);
+  }
 }
 
 header {
@@ -143,6 +142,10 @@ header {
   gap: var(--size-3);
   align-items: center;
   justify-content: space-between;
+}
+
+ul {
+  overflow-y: auto;
 }
 
 footer {
@@ -153,6 +156,9 @@ footer {
 }
 
 li {
+  cursor: pointer;
+  user-select: none;
+
   overflow: hidden;
   display: flex;
   gap: var(--size-2);
@@ -164,6 +170,10 @@ li {
   font-size: var(--font-size-3);
 
   border-bottom: solid var(--border-size-1) var(--border-dimmed);
+
+  &:hover {
+    filter: brightness(120%);
+  }
   &.general .cost {
     visibility: hidden;
   }
@@ -227,15 +237,14 @@ li {
 }
 
 .name {
-  overflow: hidden;
+  /* overflow: hidden; */
 
   width: 13ch;
   margin-top: var(--size-2);
-
   font-size: var(--font-size-0);
   line-height: 1;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* text-align: center; */
+  /* text-overflow: ellipsis; */
+  /* white-space: nowrap; */
 }
 </style>

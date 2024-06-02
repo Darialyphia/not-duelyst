@@ -2,7 +2,7 @@ import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS, config } from '@game/sdk';
-import type { CardBlueprintId } from '@game/sdk/src/card/card';
+import type { Card, CardBlueprintId } from '@game/sdk/src/card/card';
 import { match } from 'ts-pattern';
 
 export const useLoadoutForm = ({
@@ -44,14 +44,19 @@ export const useLoadoutForm = ({
     () => formValues.value!.cards.length >= config.MAX_DECK_SIZE + 1 // account for general
   );
 
-  const canAddUnit = (cardId: CardBlueprintId) => {
+  const canAddCard = (cardId: CardBlueprintId) => {
     const card = CARDS[cardId];
 
     if (!formValues.value) return false;
     if (loadoutIsFull.value) return false;
     return match(card.kind)
       .with(CARD_KINDS.GENERAL, () => !general.value || general.value.id === cardId)
-      .with(CARD_KINDS.MINION, () => true)
+      .with(
+        CARD_KINDS.MINION,
+        () =>
+          formValues.value!.cards.filter(c => c.id === cardId).length <
+          config.MAX_COPIES_PER_CARD
+      )
       .exhaustive();
   };
 
@@ -59,14 +64,15 @@ export const useLoadoutForm = ({
     return formValues.value?.cards.some(card => card.id === cardId);
   };
 
-  const toggleUnit = (cardId: CardBlueprintId) => {
+  const addCard = (cardId: CardBlueprintId) => {
+    if (!formValues.value) return;
+    formValues.value.cards.push({ id: cardId, pedestalId: 'pedestal-default' });
+  };
+
+  const removeCard = (cardId: CardBlueprintId) => {
     if (!formValues.value) return;
     const index = formValues.value.cards.findIndex(card => card.id === cardId);
-    if (index >= 0) {
-      formValues.value.cards.splice(index, 1);
-    } else {
-      formValues.value.cards.push({ id: cardId, pedestalId: 'pedestal-default' });
-    }
+    formValues.value.cards.splice(index, 1);
   };
 
   const { mutate: saveNewDeck, isLoading: isSavingNewDeck } = useConvexAuthedMutation(
@@ -101,10 +107,11 @@ export const useLoadoutForm = ({
     general,
     initEmpty,
     initFromLoadout,
-    canAddUnit,
+    canAddCard,
     isInLoadout,
     loadoutIsFull,
-    toggleUnit,
+    addCard,
+    removeCard,
     save,
     isSaving
   };

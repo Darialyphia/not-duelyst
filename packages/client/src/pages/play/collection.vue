@@ -16,9 +16,9 @@ const {
   formValues,
   initEmpty,
   initFromLoadout,
-  canAddUnit,
-  isInLoadout,
-  toggleUnit,
+  canAddCard,
+  addCard,
+  removeCard,
   save,
   isSaving
 } = useLoadoutForm({
@@ -36,14 +36,19 @@ const {
   isCollectionLoading
 } = useCollection();
 
-const toggleLoadoutCard = (card: CardBlueprint) => {
+const addCardToLoadout = (card: CardBlueprint) => {
   if (sidebarView.value === 'list') return;
-  toggleUnit(card.id);
+  addCard(card.id);
+};
+
+const removeCardFromLoadout = (card: CardBlueprint) => {
+  if (sidebarView.value === 'list') return;
+  removeCard(card.id);
 };
 
 const canAddToLoadout = (unitId: string) => {
   if (sidebarView.value === 'list') return false;
-  return canAddUnit(unitId);
+  return canAddCard(unitId);
 };
 
 const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
@@ -68,10 +73,9 @@ const editLoadout = (loadout: LoadoutDto) => {
         v-for="item in displayedCards"
         :key="item._id"
         :card="item"
-        :is-in-loadout="!!isInLoadout(item.cardId)"
         :is-editing-loadout="sidebarView === 'form'"
         :can-add-to-loadout="canAddToLoadout(item.cardId)"
-        @click="toggleLoadoutCard(item.card)"
+        @click="addCardToLoadout(item.card)"
       />
     </section>
     <section class="sidebar">
@@ -83,7 +87,7 @@ const editLoadout = (loadout: LoadoutDto) => {
           :is-saving="isSaving"
           @back="sidebarView = 'list'"
           @save="save"
-          @toggle-unit="toggleLoadoutCard($event)"
+          @remove="removeCardFromLoadout($event)"
           @set-pedestal="
             ({ id, pedestalId }) => {
               formValues!.cards.find(c => c.id === id)!.pedestalId = pedestalId;

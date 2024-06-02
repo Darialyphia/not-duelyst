@@ -19,10 +19,6 @@ const general = computed(() => {
     return card.kind === CARD_KINDS.GENERAL;
   })!;
 });
-
-const minions = computed(() => {
-  return loadout.cards.filter(c => CARDS[c.id].kind === CARD_KINDS.MINION);
-});
 </script>
 
 <template>
