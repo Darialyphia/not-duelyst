@@ -53,7 +53,7 @@ const minionsCount = computed(() => {
   <form @submit.prevent="emit('save')">
     <header>
       <input v-model="name" class="py-3 flex-1" />
-      {{ minionsCount }} / {{ config.MAX_HAND_SIZE }}
+      {{ minionsCount }} / {{ config.MAX_DECK_SIZE }}
     </header>
 
     <ul v-if="cards.length" v-auto-animate class="flex-1">

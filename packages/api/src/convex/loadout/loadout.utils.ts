@@ -45,7 +45,7 @@ const ensureHasGeneral = (cards: Array<{ id: string }>) => {
 };
 
 const ensureHasCorrectSize = (cards: Array<{ id: string }>) => {
-  const isValid = cards.length === config.MAX_HAND_SIZE + 1; //account for general
+  const isValid = cards.length === config.MAX_DECK_SIZE + 1; //account for general
 
   if (!isValid) {
     throw new Error('Loadout does not have the correct size.');

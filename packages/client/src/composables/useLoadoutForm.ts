@@ -41,7 +41,7 @@ export const useLoadoutForm = ({
   };
 
   const loadoutIsFull = computed(
-    () => formValues.value!.cards.length >= config.MAX_HAND_SIZE + 1 // account for general
+    () => formValues.value!.cards.length >= config.MAX_DECK_SIZE + 1 // account for general
   );
 
   const canAddUnit = (cardId: CardBlueprintId) => {

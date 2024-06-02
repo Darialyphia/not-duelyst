@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
-import { isDefined } from '@game/shared';
 import { config } from '../config';
 
 const schema = defaultActionSchema.extend({
@@ -44,10 +43,7 @@ export class PlayCardAction extends GameAction<typeof schema> {
     }
 
     this.player.currentGold -= this.card.cost;
-    if (this.card.hpCost) {
-      this.player.general.takeDamage(this.card.hpCost, this.player.general);
-    }
 
-    await this.card.play(this.payload);
+    await this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
   }
 }

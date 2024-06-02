@@ -1,7 +1,7 @@
 import { GameSession } from '../game-session';
 import {
   type JSONObject,
-  type Nullable,
+  type Point3D,
   type Serializable,
   type Values
 } from '@game/shared';
@@ -16,6 +16,8 @@ import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { CARD_KINDS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
+import { Deck } from '../card/deck';
+import {} from '../card/cards/neutral/water-elemental';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -25,7 +27,7 @@ export type SerializedPlayer = JSONObject & {
   maxGold?: number;
   currentGold?: number;
   isPlayer1: boolean;
-  cards: SerializedCard[];
+  deck: SerializedCard[];
   graveyard: CardIndex[];
 };
 
@@ -52,6 +54,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   graveyard!: Card[];
   cards!: Card[];
+  deck!: Deck;
+  hand!: Card[];
 
   readonly interceptors = {
     maxGold: new Interceptable<number, Player>(),
@@ -96,23 +100,24 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     return this.entities.find(entity => entity.isGeneral)!;
   }
 
-  get hand() {
-    return this.cards.filter(
-      card => card.blueprint.kind === CARD_KINDS.MINION && !card.isGenerated
-    );
-  }
-
   get opponent() {
     return this.session.playerSystem.getOpponent(this.id);
   }
 
   setup() {
-    this.cards = this.options.cards.map((card, index) => {
+    this.cards = this.options.deck.map((card, index) => {
       return new Card(this.session, index, card, this.id);
     });
     this.cards.forEach(card => {
       card.setup();
     });
+    this.deck = new Deck(
+      this.session,
+      this.cards.filter(card => card.blueprint.kind !== CARD_KINDS.GENERAL),
+      this.id
+    );
+    this.hand = this.deck.draw(config.STARTING_HAND_SIZE);
+
     this.placeGeneral();
 
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
@@ -163,7 +168,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     return {
       id: this.id,
       name: this.name,
-      cards: this.cards.map(card => card.serialize()),
+      deck: this.cards.map(card => card.serialize()),
       graveyard: this.graveyard.map(card => this.cards.indexOf(card)),
       isPlayer1: this.isPlayer1,
       maxGold: this.maxGold,
@@ -183,7 +188,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   startTurn() {
-    this.cards.forEach(card => card.onTurnStart());
+    this.draw(1);
+    this.hand.forEach(card => card.onTurnStart());
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
       this.giveGold(config.GOLD_PER_TURN);
@@ -201,6 +207,15 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     }
     if (this.currentGold < card.cost) return false;
     return card.currentCooldown === 0;
+  }
+
+  async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
+    const card = this.hand[index];
+    if (!card) return;
+
+    this.currentGold -= card.cost;
+    this.hand.splice(index, 1);
+    await card.play(opts);
   }
 
   getCardFromHand(index: CardIndex) {
@@ -226,5 +241,12 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   giveGold(amount: number) {
     this.currentGold = Math.min(this.currentGold + amount, config.MAX_GOLD);
+  }
+
+  draw(amount: number) {
+    const availableSlots = config.MAX_HAND_SIZE - this.hand.length;
+
+    const newCards = this.deck.draw(Math.min(amount, availableSlots));
+    this.hand.push(...newCards);
   }
 }

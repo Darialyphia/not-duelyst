@@ -20,7 +20,8 @@ export type CardInterceptor = Card['interceptors'];
 
 export const CARD_EVENTS = {
   BEFORE_PLAYED: 'before_played',
-  AFTER_PLAYED: 'after_played'
+  AFTER_PLAYED: 'after_played',
+  DRAWN: 'drawn'
 } as const;
 
 export type CardEvent = Values<typeof CARD_EVENTS>;
@@ -28,6 +29,7 @@ export type CardEvent = Values<typeof CARD_EVENTS>;
 export type CardEventMap = {
   [CARD_EVENTS.BEFORE_PLAYED]: [Card];
   [CARD_EVENTS.AFTER_PLAYED]: [Card];
+  [CARD_EVENTS.DRAWN]: [Card];
 };
 
 export class Card extends EventEmitter implements Serializable {
@@ -66,20 +68,6 @@ export class Card extends EventEmitter implements Serializable {
 
   get kind() {
     return this.blueprint.kind;
-  }
-
-  get hpCost() {
-    const factions = [...this.player.general.card.blueprint.factions];
-    let missing = 0;
-
-    this.blueprint.factions.forEach(faction => {
-      if (!faction) return;
-      const index = factions.findIndex(f => f?.equals(faction));
-      if (index < 0) missing++;
-      else factions.splice(index, 1);
-    });
-
-    return missing;
   }
 
   protected interceptors = {
@@ -162,8 +150,6 @@ export class Card extends EventEmitter implements Serializable {
   }
 
   canPlayAt(point: Point3D) {
-    if (this.hpCost >= this.player.general.hp) return false;
-
     const cell = this.session.boardSystem.getCellAt(point);
     if (!cell) return false;
     if (!cell.canSummonAt) return false;
@@ -172,6 +158,10 @@ export class Card extends EventEmitter implements Serializable {
     const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
 
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
+  }
+
+  draw() {
+    this.emit(CARD_EVENTS.DRAWN, this);
   }
 
   async play(ctx: { position: Point3D; targets: Point3D[] }) {
