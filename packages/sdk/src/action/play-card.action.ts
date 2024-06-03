@@ -42,8 +42,6 @@ export class PlayCardAction extends GameAction<typeof schema> {
       return this.printError(`Card not found at index ${this.payload.cardIndex}`);
     }
 
-    this.player.currentGold -= this.card.cost;
-
     await this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
   }
 }

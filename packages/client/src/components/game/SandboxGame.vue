@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { GameSession, type SerializedGameState } from '@game/sdk';
+import { nanoid } from 'nanoid';
 
 const { player1Loadout, player2Loadout } = defineProps<{
   player1Loadout: LoadoutDto;
   player2Loadout: LoadoutDto;
+  seed?: string;
 }>();
 
 const state: SerializedGameState = {
@@ -15,7 +17,7 @@ const state: SerializedGameState = {
     {
       id: '1',
       name: 'Player 1',
-      cards: player1Loadout.cards.map(({ id, pedestalId }) => ({
+      deck: player1Loadout.cards.map(({ id, pedestalId }) => ({
         pedestalId,
         blueprintId: id
       })),
@@ -25,7 +27,7 @@ const state: SerializedGameState = {
     {
       id: '2',
       name: 'Player 2',
-      cards: player2Loadout.cards.map(({ id, pedestalId }) => ({
+      deck: player2Loadout.cards.map(({ id, pedestalId }) => ({
         pedestalId,
         blueprintId: id
       })),
@@ -36,7 +38,7 @@ const state: SerializedGameState = {
 };
 
 const fx = useFXProvider();
-const session = GameSession.createClientSession(state, 'sandbox', fx.ctx);
+const session = GameSession.createClientSession(state, nanoid(), fx.ctx);
 
 const dispatch = (
   type: Parameters<(typeof session)['dispatch']>[0]['type'],

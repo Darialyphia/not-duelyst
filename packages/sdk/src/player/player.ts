@@ -116,6 +116,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       this.cards.filter(card => card.blueprint.kind !== CARD_KINDS.GENERAL),
       this.id
     );
+    this.deck.shuffle();
     this.hand = this.deck.draw(config.STARTING_HAND_SIZE);
 
     this.placeGeneral();
