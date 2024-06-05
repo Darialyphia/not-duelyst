@@ -14,8 +14,6 @@ export const f2DamnedSouls: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_flaming_skull',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 5,
   attack: 4,
   maxHp: 3,

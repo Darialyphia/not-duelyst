@@ -15,8 +15,6 @@ export const f1Elemental: CardBlueprint = {
   spriteId: 'f1_placeholder',
   kind: CARD_KINDS.MINION,
   tribes: [TRIBES.ELEMENTAL],
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 3,
   attack: 2,
   maxHp: 5,

@@ -92,7 +92,6 @@ const offset = computed(() => {
               hp: bp.maxHp,
               speed: bp.speed,
               cost: bp.cost,
-              cooldown: bp.cooldown,
               skills: bp.skills,
               factions: bp.factions,
               tribes: bp.tribes ?? []

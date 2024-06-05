@@ -18,8 +18,6 @@ export const f2Succubus: CardBlueprint = {
   factions: [FACTIONS.F2, null, null],
   spriteId: 'f2_succubus',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 3,
   attack: 3,
   maxHp: 3,

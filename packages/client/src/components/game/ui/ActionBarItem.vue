@@ -27,14 +27,8 @@ const hoveredIndex = ref<number | null>(null);
                 'cost-buff': card && card.cost < card.blueprint.cost
               }
             ]"
-            :style="{
-              '--cooldown-angle': 360 - (360 * card.currentCooldown) / card.cooldown
-            }"
             :disabled="!card || !player.canPlayCardAtIndex(index)"
             :data-cost="card && card.cost"
-            :data-remaining-cooldown="
-              card && card.currentCooldown > 0 ? card.currentCooldown : undefined
-            "
             @contextmenu.prevent="ui.highlightedCard.value = card"
             @click="ui.selectCardAtIndex(index)"
             @mouseenter="hoveredIndex = index"
@@ -63,7 +57,6 @@ const hoveredIndex = ref<number | null>(null);
         hp: card.blueprint.maxHp,
         speed: card.blueprint.speed,
         cost: card.cost,
-        cooldown: card.cooldown,
         skills: card.blueprint.skills,
         pedestalId: card.pedestalId,
         factions: card.blueprint.factions,
@@ -121,35 +114,6 @@ const hoveredIndex = ref<number | null>(null);
     }
     &.cost-debuff::before {
       background: linear-gradient(to bottom, var(--red-9), var(--red-11));
-    }
-
-    &[data-remaining-cooldown] {
-      &::after {
-        content: attr(data-remaining-cooldown);
-
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        display: grid;
-        place-content: center;
-
-        width: 100%;
-        height: 100%;
-
-        font-size: var(--font-size-5);
-        font-weight: var(--font-weight-7);
-        color: white;
-        text-shadow: 0 3px 2px black;
-
-        background: conic-gradient(
-          hsl(var(--gray-11-hsl) / 0.1) calc(1deg * var(--cooldown-angle)),
-          hsl(var(--gray-11-hsl) / 0.5) calc(1deg * var(--cooldown-angle))
-        );
-        backdrop-filter: blur(2px);
-        border: none;
-        border-radius: 50%;
-      }
     }
   }
 

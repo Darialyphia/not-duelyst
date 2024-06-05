@@ -61,8 +61,6 @@ export type CardBlueprint = {
   spriteId: string;
   rarity: Rarity;
   cost: number;
-  cooldown: number;
-  initialCooldown: number;
   attack: number;
   maxHp: number;
   speed: number;

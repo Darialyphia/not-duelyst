@@ -13,8 +13,6 @@ export const f2DoomSayer: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_doom_sayer',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 3,
   attack: 1,
   maxHp: 4,

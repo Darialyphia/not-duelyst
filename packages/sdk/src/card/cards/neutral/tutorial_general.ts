@@ -11,8 +11,6 @@ export const tutorialGeneral: CardBlueprint = {
   factions: [null, null, null],
   spriteId: 'tutorial_general',
   kind: CARD_KINDS.GENERAL,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 0,
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: 14,

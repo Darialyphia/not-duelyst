@@ -16,7 +16,6 @@ type ICard = {
   attack?: number;
   hp?: number;
   cost: number;
-  cooldown: number;
   speed: number;
   skills: SkillBlueprint[];
   pedestalId?: string;
@@ -82,9 +81,6 @@ const isModalOpened = ref(false);
         :sprite-id="card.spriteId"
         :pedestal-id="card.pedestalId ?? 'pedestal-default'"
       />
-      <UiCenter v-if="card.cooldown" class="cooldown">
-        {{ card.cooldown }}
-      </UiCenter>
     </header>
 
     <div class="text">
@@ -218,18 +214,6 @@ header {
     display: flex;
     justify-content: space-between;
   }
-}
-
-.cooldown {
-  justify-self: end;
-
-  width: 76px;
-  height: 76px;
-
-  font-weight: 7 00;
-  color: #be8420;
-
-  background-image: url('/assets/ui/card-cooldown.png');
 }
 
 .sprite {

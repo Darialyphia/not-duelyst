@@ -76,7 +76,6 @@ const keywords = computed(() => {
           hp: card.card.maxHp,
           speed: card.card.speed,
           cost: card.card.cost,
-          cooldown: card.card.cooldown,
           skills: card.card.skills,
           factions: card.card.factions,
           keywords: keywords,

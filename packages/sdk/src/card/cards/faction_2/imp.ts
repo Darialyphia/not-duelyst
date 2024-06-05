@@ -13,8 +13,6 @@ export const f2Imp: CardBlueprint = {
   factions: [FACTIONS.F2, null, null],
   spriteId: 'f2_imp',
   kind: CARD_KINDS.MINION,
-  cooldown: 3,
-  initialCooldown: 0,
   cost: 2,
   attack: 2,
   maxHp: 1,

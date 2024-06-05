@@ -190,7 +190,6 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   startTurn() {
     this.draw(1);
-    this.hand.forEach(card => card.onTurnStart());
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
       this.giveGold(config.GOLD_PER_TURN);
@@ -207,7 +206,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       return;
     }
     if (this.currentGold < card.cost) return false;
-    return card.currentCooldown === 0;
+
+    return true;
   }
 
   async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {

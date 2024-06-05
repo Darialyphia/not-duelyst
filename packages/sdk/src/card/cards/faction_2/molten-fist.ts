@@ -15,8 +15,6 @@ export const f2MoltenFist: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_fire_fist',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 4,
   attack: 3,
   maxHp: 6,

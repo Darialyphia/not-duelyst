@@ -37,7 +37,6 @@ export class Card extends EventEmitter implements Serializable {
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
   modifiers: CardModifier[] = [];
-  currentCooldown: number;
 
   constructor(
     protected session: GameSession,
@@ -49,7 +48,6 @@ export class Card extends EventEmitter implements Serializable {
     this.blueprintId = options.blueprintId;
     this.pedestalId = options.pedestalId;
     this.isGenerated = options.isGenerated ?? false;
-    this.currentCooldown = this.blueprint.initialCooldown;
   }
 
   setup() {
@@ -74,7 +72,6 @@ export class Card extends EventEmitter implements Serializable {
     attack: new Interceptable<number, Card>(),
     maxHp: new Interceptable<number, Card>(),
     cost: new Interceptable<number, Card>(),
-    cooldown: new Interceptable<number, Card>(),
     canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>(),
     canMoveAfterSummon: new Interceptable<boolean, Card>(),
     canAttackAfterSummon: new Interceptable<boolean, Card>(),
@@ -122,13 +119,6 @@ export class Card extends EventEmitter implements Serializable {
   get cost(): number {
     return this.interceptors.cost.getValue(
       this.player.interceptors.cost.getValue(this.blueprint.cost, this),
-      this
-    );
-  }
-
-  get cooldown(): number {
-    return this.interceptors.cost.getValue(
-      this.player.interceptors.cost.getValue(this.blueprint.cooldown, this),
       this
     );
   }
@@ -198,13 +188,8 @@ export class Card extends EventEmitter implements Serializable {
 
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 
-    this.currentCooldown = this.cooldown;
     this.emit(CARD_EVENTS.AFTER_PLAYED, this);
     return entity;
-  }
-
-  onTurnStart() {
-    this.currentCooldown = Math.max(this.currentCooldown - 1, 0);
   }
 
   serialize(): SerializedCard {

@@ -25,8 +25,6 @@ export const f1Simurgh: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_simurgh',
   kind: CARD_KINDS.MINION,
-  cooldown: 6,
-  initialCooldown: 0,
   cost: 7,
   attack: 4,
   maxHp: 10,

@@ -13,8 +13,6 @@ export const neutralEarthElemental: CardBlueprint = {
   factions: [null, null, null],
   spriteId: 'neutral_earth_elemental',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 3,
   attack: 2,
   maxHp: 6,

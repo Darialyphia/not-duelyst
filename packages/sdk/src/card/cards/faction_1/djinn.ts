@@ -1,5 +1,5 @@
-import { isDefined, Vec3 } from '@game/shared';
-import { isAllyMinion, isNearbyAlly } from '../../../entity/entity-utils';
+import { isDefined } from '@game/shared';
+import { isNearbyAlly } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -25,8 +25,6 @@ export const f1Djinn: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_djinn',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 6,
   attack: 3,
   maxHp: 8,

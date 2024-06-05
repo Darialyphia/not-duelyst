@@ -20,8 +20,6 @@ export const f1Wisp: CardBlueprint = {
   factions: [FACTIONS.F1, null, null],
   spriteId: 'f1_wisp',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 2,
   attack: 1,
   maxHp: 3,

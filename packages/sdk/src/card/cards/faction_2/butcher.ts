@@ -18,8 +18,6 @@ export const f2Butcher: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_imp_lord',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 5,
   attack: 3,
   maxHp: 6,

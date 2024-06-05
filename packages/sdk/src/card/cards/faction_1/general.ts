@@ -1,14 +1,10 @@
 import { config } from '../../../config';
-import { isEmpty, isNearbyEnemy } from '../../../entity/entity-utils';
+import { isEmpty } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import {
-  getAffectedEntities,
-  isCastPoint,
-  isWithinCells
-} from '../../../utils/targeting';
+import { isCastPoint, isWithinCells } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
-import { purgeEntity, rush, vulnerable } from '../../../modifier/modifier-utils';
+import { rush } from '../../../modifier/modifier-utils';
 import { f1Wisp } from './wisp';
 import { neutralAirElemental } from '../neutral/air-elemental';
 
@@ -21,8 +17,6 @@ export const f1General: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_general',
   kind: CARD_KINDS.GENERAL,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 0,
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: config.GENERAL_DEFAULT_HP,

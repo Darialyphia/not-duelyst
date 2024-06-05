@@ -18,8 +18,6 @@ export const f2Tormentor: CardBlueprint = {
   factions: [FACTIONS.F2, null, null],
   spriteId: 'f2_tormentor',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 3,
   attack: 2,
   maxHp: 4,

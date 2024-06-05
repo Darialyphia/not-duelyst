@@ -20,8 +20,6 @@ export const f2Ravager: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_horned_demon',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 4,
   attack: 4,
   maxHp: 5,

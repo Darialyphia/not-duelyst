@@ -19,8 +19,6 @@ export const f2General: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, FACTIONS.F2],
   spriteId: 'f2_general',
   kind: CARD_KINDS.GENERAL,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 0,
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: config.GENERAL_DEFAULT_HP,

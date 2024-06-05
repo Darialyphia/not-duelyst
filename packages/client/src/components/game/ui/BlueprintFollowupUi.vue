@@ -76,7 +76,6 @@ watchEffect(() => {
           hp: blueprint.maxHp,
           speed: blueprint.speed,
           cost: blueprint.cost,
-          cooldown: blueprint.cooldown,
           skills: blueprint.skills,
           pedestalId: 'pedestal-default',
           factions: blueprint.factions,

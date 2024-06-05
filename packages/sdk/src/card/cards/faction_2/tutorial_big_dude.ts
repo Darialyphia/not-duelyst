@@ -1,15 +1,7 @@
-import { Vec3 } from '@game/shared';
-import { isAlly, isAllyMinion, isEnemy } from '../../../entity/entity-utils';
+import { isAlly } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
-import {
-  cone,
-  getAffectedEntities,
-  isAxisAligned,
-  isCastPoint,
-  isSelf,
-  isWithinCells
-} from '../../../utils/targeting';
+import { getAffectedEntities, isCastPoint } from '../../../utils/targeting';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 
@@ -22,8 +14,6 @@ export const f2TutorialBigDude: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'tutorial_big_dude',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 6,
   attack: 4,
   maxHp: 10,

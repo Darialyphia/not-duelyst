@@ -1,9 +1,7 @@
-import { Vec3 } from '@game/shared';
-import { isAllyMinion, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import { flying, ranged, rush } from '../../../modifier/modifier-utils';
+import { flying, ranged } from '../../../modifier/modifier-utils';
 
 export const f1Kirin: CardBlueprint = {
   id: 'f1_kirin',
@@ -14,8 +12,6 @@ export const f1Kirin: CardBlueprint = {
   factions: [FACTIONS.F1, null, null],
   spriteId: 'f1_kirin',
   kind: CARD_KINDS.MINION,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 0,
   attack: 2,
   maxHp: 4,

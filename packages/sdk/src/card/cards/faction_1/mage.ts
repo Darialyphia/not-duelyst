@@ -18,8 +18,6 @@ export const f1Mage: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, null],
   spriteId: 'f1_mage',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 5,
   attack: 1,
   maxHp: 5,

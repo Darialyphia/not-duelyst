@@ -2,7 +2,7 @@ import { isNearbyEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { getAffectedEntities, isSelf } from '../../../utils/targeting';
-import { frozen, taunted } from '../../../modifier/modifier-utils';
+import { frozen } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 
 export const neutralIceQueen: CardBlueprint = {
@@ -14,8 +14,6 @@ export const neutralIceQueen: CardBlueprint = {
   factions: [null, null, null],
   spriteId: 'neutral_ice_queen',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 5,
   attack: 2,
   maxHp: 5,

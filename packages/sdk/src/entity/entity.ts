@@ -3,7 +3,7 @@ import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
 import EventEmitter from 'eventemitter3';
 import type { CardIndex, PlayerId } from '../player/player';
-import { Interceptable, ReactiveValue, type inferInterceptor } from '../utils/helpers';
+import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { isAlly, isEnemy } from './entity-utils';
 import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';

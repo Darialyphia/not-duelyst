@@ -16,8 +16,6 @@ export const f2Overseer: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, FACTIONS.F2],
   spriteId: 'f2_demon_eye',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 6,
   attack: 0,
   maxHp: 6,

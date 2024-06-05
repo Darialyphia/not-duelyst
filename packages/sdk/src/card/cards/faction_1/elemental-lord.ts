@@ -20,8 +20,6 @@ export const f1ElementalLord: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_elementalist',
   kind: CARD_KINDS.MINION,
-  cooldown: 6,
-  initialCooldown: 0,
   cost: 5,
   attack: 1,
   maxHp: 6,

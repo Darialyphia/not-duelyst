@@ -10,8 +10,6 @@ export const tutorialCat: CardBlueprint = {
   factions: [null, null, null],
   spriteId: 'tutorial_cat',
   kind: CARD_KINDS.MINION,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 2,
   attack: 2,
   maxHp: 3,

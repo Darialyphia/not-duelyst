@@ -20,8 +20,6 @@ export const f2PitLord: CardBlueprint = {
   factions: [FACTIONS.F2, FACTIONS.F2, null],
   spriteId: 'f2_pit_lord',
   kind: CARD_KINDS.MINION,
-  cooldown: 4,
-  initialCooldown: 0,
   cost: 4,
   attack: 2,
   maxHp: 5,

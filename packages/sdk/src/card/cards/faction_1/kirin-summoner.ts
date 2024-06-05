@@ -15,8 +15,6 @@ export const f1KirinSummoner: CardBlueprint = {
   factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
   spriteId: 'f1_kirin_summoner',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 5,
   attack: 2,
   maxHp: 6,

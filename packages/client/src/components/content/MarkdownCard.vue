@@ -22,7 +22,6 @@ const card = CARDS[blueprintId];
         hp: card.maxHp,
         speed: card.speed,
         cost: card.cost,
-        cooldown: card.cooldown,
         skills: card.skills,
         factions: card.factions,
         tribes: card.tribes ?? []

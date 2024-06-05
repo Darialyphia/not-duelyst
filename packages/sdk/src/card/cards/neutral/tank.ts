@@ -14,8 +14,6 @@ export const neutralTank: CardBlueprint = {
   factions: [null, null, null],
   spriteId: 'neutral_tank',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 4,
   attack: 2,
   maxHp: 8,
