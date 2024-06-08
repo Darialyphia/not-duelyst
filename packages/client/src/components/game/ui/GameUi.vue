@@ -49,7 +49,6 @@ onTick(() => {
 
   <template v-else>
     <TeamInfos />
-    <!-- <SkillBar /> -->
     <ActionBar />
     <TargetingUi />
     <BlueprintFollowupUi />

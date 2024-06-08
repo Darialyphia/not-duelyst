@@ -50,21 +50,24 @@ const angle = computed(() => {
     </TransitionGroup>
   </div>
 
-  <UiFancyButton
-    v-if="gameType !== GAME_TYPES.SPECTATOR"
-    :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-    class="end-turn-button"
-    :diabled="!isActive"
-    @click="
-      () => {
-        dispatch('endTurn');
-        ui.unselectCard();
-        ui.unselectEntity();
-      }
-    "
-  >
-    End turn
-  </UiFancyButton>
+  <div class="right-side">
+    <SkillBar />
+    <UiFancyButton
+      v-if="gameType !== GAME_TYPES.SPECTATOR"
+      :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
+      class="end-turn-button"
+      :diabled="!isActive"
+      @click="
+        () => {
+          dispatch('endTurn');
+          ui.unselectCard();
+          ui.unselectEntity();
+        }
+      "
+    >
+      End turn
+    </UiFancyButton>
+  </div>
 </template>
 
 <style scoped lang="postcss">
@@ -107,9 +110,6 @@ const angle = computed(() => {
 }
 
 .end-turn-button {
-  position: absolute;
-  right: var(--size-11);
-  bottom: var(--size-4);
   min-width: 10ch;
 }
 
@@ -164,5 +164,17 @@ const angle = computed(() => {
       filter: brightness(1000%) contrast(300%);
     }
   }
+}
+
+.right-side {
+  position: absolute;
+  right: var(--size-11);
+  bottom: var(--size-4);
+
+  display: flex;
+  gap: var(--size-3);
+  align-items: center;
+
+  height: var(--size-9);
 }
 </style>

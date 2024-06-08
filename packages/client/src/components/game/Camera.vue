@@ -31,7 +31,7 @@ const isoBoundingRect = computed(() => ({
 
 const WORLD_PADDING = {
   x: CELL_WIDTH * 3,
-  y: CELL_HEIGHT * 6
+  y: CELL_HEIGHT * 4
 };
 const worldSize = computed(() => ({
   width:
@@ -64,8 +64,8 @@ until(camera.viewport)
       .clamp({
         direction: 'all'
       })
-      .clampZoom({ minScale: 1, maxScale: 3 })
-      .zoomPercent(1, false)
+      .clampZoom({ minScale: 1.5, maxScale: 3 })
+      .setZoom(2, false)
       .mouseEdges({
         distance: 10,
         speed: 15,
