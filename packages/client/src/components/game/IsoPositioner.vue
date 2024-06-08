@@ -79,7 +79,7 @@ const zIndex = computed(() => {
   return (
     rotatedCartesian.value.x * 2 +
     rotatedCartesian.value.y * 2 +
-    rotatedCartesian.value.z * 3 +
+    rotatedCartesian.value.z * 1.5 +
     zIndexOffset +
     containerY.value / 1000 // hack hack hack hack
   );

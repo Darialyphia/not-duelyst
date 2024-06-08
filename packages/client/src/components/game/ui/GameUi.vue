@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { onTick } from 'vue3-pixi';
 import EndGameModal from './EndGameModal.vue';
+import Stats from 'stats.js';
 
 const { ui, session } = useGame();
 
@@ -24,14 +26,30 @@ const isModalOpened = computed({
     }
   }
 });
+
+const stats = new Stats();
+
+const isDev = import.meta.env.DEV;
+const statsRoot = ref<HTMLDivElement>();
+onMounted(() => {
+  stats.showPanel(0);
+  statsRoot.value?.appendChild(stats.dom);
+});
+
+stats.begin();
+onTick(() => {
+  stats.end();
+  stats.begin();
+});
 </script>
 
 <template>
+  <div v-if="isDev" ref="statsRoot" class="absolute bottom-10 left-5" />
   <EndGameModal v-if="winner" />
 
   <template v-else>
     <TeamInfos />
-    <SkillBar />
+    <!-- <SkillBar /> -->
     <ActionBar />
     <TargetingUi />
     <BlueprintFollowupUi />

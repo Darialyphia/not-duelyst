@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { diffuseGroup, normalGroup, lightGroup, PointLight } from '@pixi/lights';
 
-// watchEffect(() => {
-//   if (gameObjectsLayer.value) {
-//     gameObjectsLayer.value.group.enableSort = true;
-//     gameObjectsLayer.value.sortableChildren = true;
-//   }
-// });
 const { ui } = useGame();
 
 useGameControls();
@@ -28,7 +22,6 @@ const isDev = import.meta.env.DEV;
 
     <!-- <Underground /> -->
     <MapCell v-for="cell in cells" :key="cell.id" :cell-id="cell.id" />
-
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
     <PointLight
