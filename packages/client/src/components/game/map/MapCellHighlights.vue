@@ -9,4 +9,5 @@ const { cell } = defineProps<{ cell: Cell }>();
   <MovementHighlight :cell-id="cell.id" />
   <SummonHighlight :cell="cell" />
   <FollowupHighlight :cell="cell" />
+  <PathArrowHighlight :cell-id="cell.id" />
 </template>

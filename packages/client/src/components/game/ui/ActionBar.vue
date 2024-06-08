@@ -25,7 +25,7 @@ const angle = computed(() => {
       />
     </div>
   </div> -->
-  <div v-if="userPlayer" class="action-bar">
+  <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
     <TransitionGroup
       tag="ul"
       class="cards"
@@ -148,19 +148,21 @@ const angle = computed(() => {
     z-index: var(--hand-size);
   }
 
-  &:is(.v-enter-active, .v-leave-active) {
-    transition:
-      opacity 0.5s,
-      filter 0.5s;
-  }
+  .action-bar:not(.sandbox) & {
+    :is(.v-enter-active, .v-leave-active) {
+      transition:
+        opacity 0.5s,
+        filter 0.5s;
+    }
 
-  &:is(.v-leave-to) {
-    opacity: 0;
-    filter: brightness(1000%) contrast(300%);
-  }
+    &:is(.v-leave-to) {
+      opacity: 0;
+      filter: brightness(1000%) contrast(300%);
+    }
 
-  &:is(.v-enter-from) {
-    filter: brightness(1000%) contrast(300%);
+    &:is(.v-enter-from) {
+      filter: brightness(1000%) contrast(300%);
+    }
   }
 }
 </style>
