@@ -52,7 +52,7 @@ const userPlayer = useUserPlayer();
   position: relative;
 
   &.disabled {
-    filter: grayscale(100%);
+    filter: grayscale(70%) brightness(60%) contrast(110%);
   }
 }
 </style>

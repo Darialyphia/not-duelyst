@@ -58,12 +58,16 @@ export type SkillBlueprint = {
   };
 };
 
+export const MULTICOLOR = 'multicolor' as const;
+
+type FactionRequirement = Values<typeof FACTION_IDS> | typeof MULTICOLOR;
+
 export type CardBlueprint = {
   id: CardBlueprintId;
   name: string;
   description: string;
   collectable: boolean;
-  factions: PartialRecord<Values<typeof FACTION_IDS>, number>;
+  factions: PartialRecord<FactionRequirement, number>;
   spriteId: string;
   rarity: Rarity;
   cost: number;

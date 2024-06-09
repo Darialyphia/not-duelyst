@@ -33,3 +33,34 @@
     list-style: disc;
   }
 }
+
+*:nth-child(1) {
+  --child-index: 1;
+}
+*:nth-child(2) {
+  --child-index: 2;
+}
+*:nth-child(3) {
+  --child-index: 3;
+}
+*:nth-child(4) {
+  --child-index: 4;
+}
+*:nth-child(5) {
+  --child-index: 5;
+}
+*:nth-child(6) {
+  --child-index: 6;
+}
+*:nth-child(7) {
+  --child-index: 7;
+}
+*:nth-child(8) {
+  --child-index: 8;
+}
+*:nth-child(9) {
+  --child-index: 9;
+}
+*:nth-child(10) {
+  --child-index: 10;
+}

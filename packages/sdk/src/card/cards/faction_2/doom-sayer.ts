@@ -1,16 +1,17 @@
 import { deathWatch, surge } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { isCastPoint, isSelf } from '../../../utils/targeting';
+import { isCastPoint, isSelf, isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS } from '../../card-enums';
 
 export const f2DoomSayer: CardBlueprint = {
   id: 'f2_doomsayer',
   name: 'F2 Doomsayer',
-  description: '@Deathwatch@: Deal 1 damage to the enemy general.',
+  description:
+    '@Deathwatch@: Deal 1 damage to the enemy general if this is unit is up to 3 tiles away.',
   collectable: true,
   rarity: RARITIES.EPIC,
-  factions: { f2: 3 },
+  factions: { f2: 2 },
   spriteId: 'f2_doom_sayer',
   kind: CARD_KINDS.MINION,
   cost: 3,
@@ -24,7 +25,7 @@ export const f2DoomSayer: CardBlueprint = {
       deathWatch({
         source: entity,
         async handler(_entity) {
-          if (!_entity.isGeneral) {
+          if (!_entity.isGeneral && isWithinCells(entity.position, _entity.position, 3)) {
             await entity.dealDamage(1, entity.player.opponent.general);
           }
         }

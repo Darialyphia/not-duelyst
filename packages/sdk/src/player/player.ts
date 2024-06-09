@@ -1,5 +1,6 @@
 import { GameSession } from '../game-session';
 import {
+  objectEntries,
   type JSONObject,
   type Point3D,
   type Serializable,
@@ -18,6 +19,7 @@ import { CARD_KINDS, FACTION_IDS, FACTIONS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck } from '../card/deck';
 import {} from '../card/cards/neutral/water-elemental';
+import { MULTICOLOR } from '../card/card-blueprint';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -99,7 +101,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   get canPerformResourceAction(): boolean {
     return (
-      this.resourceActionsTaken <=
+      this.resourceActionsTaken <
       this.interceptors.maxResourceActionsPerTurn.getValue(
         this.maxResourceActionsPerTurn,
         this
@@ -221,6 +223,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.emit(PLAYER_EVENTS.TURN_START, this);
   }
 
+  get totalRunesCount() {
+    return Object.values(this.runes).reduce((acc, curr) => acc + curr);
+  }
+
   canPlayCardAtIndex(index: number) {
     const card = this.hand[index];
     if (!card) {
@@ -228,8 +234,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       return;
     }
     if (this.currentGold < card.cost) return false;
-
-    return true;
+    return Object.entries(card.blueprint.factions).every(([faction, count]) => {
+      if (faction === MULTICOLOR) return this.totalRunesCount >= count;
+      return this.runes[faction as keyof typeof this.runes] >= count;
+    });
   }
 
   async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {

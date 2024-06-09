@@ -42,6 +42,8 @@ export type GameEmits = {
     }
   ];
   surrender: [];
+  draw: [];
+  addRune: [{ factionId: string }];
   p1Emote: [string];
   p2Emote: [string];
 };

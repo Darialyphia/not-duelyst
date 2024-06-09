@@ -71,8 +71,9 @@ const angle = computed(() => {
     </TransitionGroup>
   </div>
 
+  <ActionWheel />
   <div class="right-side">
-    <SkillBar />
+    <!-- <SkillBar /> -->
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
@@ -93,6 +94,8 @@ const angle = computed(() => {
 
 <style scoped lang="postcss">
 .action-bar {
+  pointer-events: none;
+
   position: absolute;
   bottom: calc(-1 * var(--size-10));
   left: 50%;
@@ -142,11 +145,12 @@ const angle = computed(() => {
 
 .card-wrapper {
   --base-angle: calc((var(--hand-size) / 2) * var(--angle) * -1deg);
-  --offset-step: 140px;
+  --offset-step: 125px;
   --base-offset: calc((var(--hand-size) / 2) * var(--offset-step) * -1);
   --offset-y: 0;
   --scale: 0.7;
 
+  pointer-events: all;
   cursor: pointer;
 
   position: relative;
@@ -206,7 +210,7 @@ const angle = computed(() => {
 
   display: flex;
   gap: var(--size-3);
-  align-items: center;
+  align-items: flex-end;
 
   height: var(--size-9);
 }

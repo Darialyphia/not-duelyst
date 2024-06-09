@@ -8,7 +8,6 @@ const latestCard = ref<Nullable<Card>>(null);
 
 session.on('card:before_played', card => {
   latestCard.value = card;
-  console.log(latestCard.value.blueprintId);
   setTimeout(() => {
     latestCard.value = null;
   }, 2000);

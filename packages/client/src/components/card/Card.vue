@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { type CardKind, type Keyword, type Rarity } from '@game/sdk';
+import {
+  FACTION_IDS,
+  MULTICOLOR,
+  type CardKind,
+  type Keyword,
+  type Rarity
+} from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
@@ -65,16 +71,15 @@ const isModalOpened = ref(false);
       <UiCenter v-if="card.kind === 'MINION'" class="cost">
         <span>{{ card.cost }}</span>
 
-        <div>
-          <div
-            v-for="(faction, index) in card.factions"
-            :key="`${faction?.id}${index}`"
-            class="faction"
-            :style="{
-              '--bg': `url(/assets/ui/rune-${faction?.id.toLocaleLowerCase() ?? 'empty'}.png)`
-            }"
-          />
+        <div
+          v-for="faction in FACTION_IDS"
+          :key="faction"
+          class="faction"
+          :style="{ '--color': FACTION_COLORS[faction] }"
+        >
+          {{ card.factions[faction] }}
         </div>
+        <div class="faction">{{ card.factions[MULTICOLOR] }}</div>
       </UiCenter>
       <div v-else />
       <CardSprite
@@ -201,19 +206,44 @@ header {
 }
 
 .faction {
+  position: absolute;
+
+  display: grid;
+  place-content: center;
+
   width: 22px;
-  height: 26px;
-  background: var(--bg);
+  height: 22px;
 
-  &:nth-of-type(2) {
-    transform: translateY(25%);
+  font-size: var(--font-size-0);
+  color: var(--color, white);
+
+  background: black;
+  border: solid 2px currentColor;
+  border-radius: var(--radius-round);
+
+  &:nth-of-type(1) {
+    top: 10px;
+    left: -6px;
   }
-
-  :has(> &) {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
+  &:nth-of-type(2) {
+    top: 44px;
+    left: -6px;
+  }
+  &:nth-of-type(3) {
+    top: 0px;
+    left: 26px;
+  }
+  &:nth-of-type(4) {
+    top: 44px;
+    left: 56px;
+  }
+  &:nth-of-type(5) {
+    top: 10px;
+    left: 56px;
+  }
+  &:nth-of-type(6) {
+    top: 58px;
+    left: 26px;
   }
 }
 

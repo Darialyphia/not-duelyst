@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { match } from 'ts-pattern';
+import { FACTION_IDS } from '@game/sdk';
+
 const players = useGameSelector(session => session.playerSystem.getList());
+
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 
 const { playerId, gameType, dispatch, p1Emote, p2Emote } = useGame();
@@ -75,14 +78,18 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
         <div class="runes">
           <div
-            v-for="(_, i) in 3"
-            :key="i"
+            v-for="faction in FACTION_IDS"
+            :key="faction"
+            class="rune"
             :style="{
-              '--bg': `url('/assets/ui/rune-${
-                players[0].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
-              }.png')`
+              '--color': FACTION_COLORS[faction],
+              '--bg': `url(/assets/ui/rune-${faction}.png)`
             }"
-          />
+          >
+            <Transition mode="out-in">
+              <div :key="players[0].runes[faction]">{{ players[0].runes[faction] }}</div>
+            </Transition>
+          </div>
         </div>
 
         <PopoverAnchor v-if="emotePopoverPlayer === 0" />
@@ -143,14 +150,20 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         />
         <div class="runes">
           <div
-            v-for="(_, i) in 3"
-            :key="i"
+            v-for="faction in FACTION_IDS"
+            :key="faction"
+            class="rune"
             :style="{
-              '--bg': `url('/assets/ui/rune-${
-                players[1].general.card.blueprint.factions[i]?.id.toLowerCase() ?? 'empty'
-              }.png')`
+              '--color': FACTION_COLORS[faction],
+              '--bg': `url(/assets/ui/rune-${faction}.png)`
             }"
-          />
+          >
+            <Transition mode="out-in">
+              <div :key="players[1].runes[faction].toFixed()">
+                {{ players[1].runes[faction] }}
+              </div>
+            </Transition>
+          </div>
         </div>
 
         <PopoverAnchor v-if="emotePopoverPlayer === 1" />
@@ -195,7 +208,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
   text-shadow: black 1px 0 5px;
 
-  &:not(.active) .img-wrapper {
+  &:not(.active) .portrait {
     filter: grayscale(100%);
   }
 
@@ -360,7 +373,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 .runes {
   position: absolute;
   z-index: 1;
-  bottom: calc(-1 * var(--size-2));
+  bottom: calc(-1 * var(--size-10));
   left: 50%;
   transform: translateX(-50%);
 
@@ -371,19 +384,39 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   width: fit-content;
   padding: 6px 3px;
 
-  background-image: url('/assets/ui/runes-bg.png');
   background-size: contain;
   > div {
     transform: translateY(-2px);
 
-    width: 20px;
-    height: 24px;
+    width: 22px;
+    padding-top: 22px;
+
+    font-size: var(--font-size-4);
+    font-weight: 700;
+    color: var(--color);
+    text-align: center;
 
     background-image: var(--bg);
+    background-repeat: no-repeat;
     background-size: contain;
 
-    &:nth-of-type(2) {
-      transform: translateY(2px);
+    -webkit-text-stroke: 1px black;
+
+    > div {
+      &:is(.v-enter-active, .v-leave-active) {
+        transition:
+          opacity 0.4s,
+          transform 0.4s;
+      }
+      &:is(.v-enter-from, .v-leave-to) {
+        opacity: 0;
+      }
+      &:is(.v-leave-to) {
+        transform: scale(2) translateY(var(--size-2));
+      }
+      &:is(.v-enter-from) {
+        transform: translateY(calc(-1 * var(--size-2)));
+      }
     }
   }
 }

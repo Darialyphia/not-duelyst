@@ -9,7 +9,8 @@ export class DrawAction extends GameAction<typeof schema> {
 
   async impl() {
     if (!this.player.canPerformResourceAction) {
-      this.player.draw(1, true);
+      return this.printError('Cannot draw more cards this turn.');
     }
+    this.player.draw(1, true);
   }
 }
