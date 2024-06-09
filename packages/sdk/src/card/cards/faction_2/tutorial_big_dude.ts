@@ -11,6 +11,7 @@ export const f2TutorialBigDude: CardBlueprint = {
   description: '',
   collectable: false,
   rarity: RARITIES.BASIC,
+  faction: FACTIONS.F2,
   factions: { f2: 2 },
   spriteId: 'tutorial_big_dude',
   kind: CARD_KINDS.MINION,

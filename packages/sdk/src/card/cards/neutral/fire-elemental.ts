@@ -10,6 +10,7 @@ export const neutralFireElemental: CardBlueprint = {
   description: '@Burn(2)@ minions @Aura@',
   collectable: false,
   rarity: RARITIES.BASIC,
+  faction: null,
   factions: {},
   spriteId: 'neutral_fire_elemental',
   kind: CARD_KINDS.MINION,

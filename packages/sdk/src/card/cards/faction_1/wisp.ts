@@ -1,6 +1,6 @@
 import { isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 import {
   getAffectedEntities,
   isCastPoint,
@@ -17,6 +17,7 @@ export const f1Wisp: CardBlueprint = {
     '@Call to Arms@: The next time an ally casts an ability this turn, reduce its cooldown by 1.',
   collectable: true,
   rarity: RARITIES.COMMON,
+  faction: FACTIONS.F1,
   factions: { f1: 2 },
   spriteId: 'f1_wisp',
   kind: CARD_KINDS.MINION,

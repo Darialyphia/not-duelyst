@@ -11,6 +11,7 @@ export const neutralTank: CardBlueprint = {
   description: '',
   collectable: true,
   rarity: RARITIES.COMMON,
+  faction: null,
   factions: { multicolor: 3 },
   spriteId: 'neutral_tank',
   kind: CARD_KINDS.MINION,

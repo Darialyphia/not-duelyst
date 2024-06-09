@@ -22,6 +22,7 @@ export const f1Djinn: CardBlueprint = {
     '@Flying@\n.When this attacks, grant @Celerity@, @Fury@, @Tough@ or @Barrier@ to your general for 2 turns.',
   collectable: true,
   rarity: RARITIES.RARE,
+  faction: FACTIONS.F1,
   factions: {
     f1: 3
   },
@@ -51,7 +52,7 @@ export const f1Djinn: CardBlueprint = {
         mixins: [
           modifierSelfEventMixin({
             eventName: 'after_attack',
-            listener(event, ctx) {
+            listener() {
               const general = entity.player.general;
               const modifiers = [
                 general.hasKeyword(KEYWORDS.CELERITY)

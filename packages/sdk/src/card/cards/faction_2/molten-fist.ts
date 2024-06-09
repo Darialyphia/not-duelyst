@@ -4,7 +4,7 @@ import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixi
 import { burn, fury } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 
 export const f2MoltenFist: CardBlueprint = {
   id: 'f2_molten_first',
@@ -12,6 +12,7 @@ export const f2MoltenFist: CardBlueprint = {
   description: '@Fury@.\nAfter attacking a minion, inflict @Burn(1)@ to it',
   collectable: true,
   rarity: RARITIES.EPIC,
+  faction: FACTIONS.F2,
   factions: { f2: 4 },
   spriteId: 'f2_fire_fist',
   kind: CARD_KINDS.MINION,

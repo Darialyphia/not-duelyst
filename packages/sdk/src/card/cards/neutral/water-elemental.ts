@@ -13,6 +13,7 @@ export const neutralWaterElemental: CardBlueprint = {
     '@Ranged(2)@\nTransform the tiles this unit passes through into water for 2 turns.',
   collectable: false,
   rarity: RARITIES.BASIC,
+  faction: null,
   factions: {},
   spriteId: 'neutral_water_elemental',
   kind: CARD_KINDS.MINION,

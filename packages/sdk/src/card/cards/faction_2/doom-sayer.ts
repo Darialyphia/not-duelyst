@@ -2,7 +2,7 @@ import { deathWatch, surge } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint, isSelf, isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 
 export const f2DoomSayer: CardBlueprint = {
   id: 'f2_doomsayer',
@@ -11,6 +11,7 @@ export const f2DoomSayer: CardBlueprint = {
     '@Deathwatch@: Deal 1 damage to the enemy general if this is unit is up to 3 tiles away.',
   collectable: true,
   rarity: RARITIES.EPIC,
+  faction: FACTIONS.F2,
   factions: { f2: 2 },
   spriteId: 'f2_doom_sayer',
   kind: CARD_KINDS.MINION,

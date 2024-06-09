@@ -12,6 +12,7 @@ export const f1KirinSummoner: CardBlueprint = {
   description: '@Call to Arms@ : summon a @F1 Kirin@ on a nearby tile.',
   collectable: true,
   rarity: RARITIES.EPIC,
+  faction: FACTIONS.F1,
   factions: { f1: 3 },
   spriteId: 'f1_kirin_summoner',
   kind: CARD_KINDS.MINION,

@@ -1,4 +1,3 @@
-import { Vec3 } from '@game/shared';
 import { rooted, rush } from '../../../modifier/modifier-utils';
 import {
   getAffectedEntities,
@@ -17,6 +16,7 @@ export const f2Ravager: CardBlueprint = {
   description: '@Rush@.',
   collectable: true,
   rarity: RARITIES.BASIC,
+  faction: FACTIONS.F2,
   factions: { f2: 3 },
   spriteId: 'f2_horned_demon',
   kind: CARD_KINDS.MINION,

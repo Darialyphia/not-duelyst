@@ -77,18 +77,6 @@ watch(sprite, newSprite => {
   fx.registerSprite(entityId, newSprite);
 });
 
-const lightColor = computed(() => {
-  const faction = entity.value.player.general.card.blueprint.factions[0]?.id;
-  return match(faction)
-    .with(FACTIONS.F1.id, () => 0x6df7b1)
-    .with(FACTIONS.F2.id, () => 0xf92045)
-    .with(FACTIONS.F3.id, () => 0x00b9ff)
-    .with(FACTIONS.F4.id, () => 0xb63dbb)
-    .with(FACTIONS.F5.id, () => 0xefcb3a)
-    .with(undefined, () => 0xaaaaaa)
-    .run();
-});
-
 const MIN_LIGHTNESS = 0;
 const MAX_LIGHTNESS = 0.6;
 const lightBrightness = ref(MIN_LIGHTNESS);
@@ -122,13 +110,13 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
 
 <template>
   <container>
-    <PointLight
+    <!-- <PointLight
       v-if="lightBrightness > 0"
       :color="lightColor"
       :brightness="lightBrightness"
       :x="0"
       :y="-30"
-    />
+    /> -->
 
     <container :ref="diffuseRef" :filters="filters">
       <animated-sprite

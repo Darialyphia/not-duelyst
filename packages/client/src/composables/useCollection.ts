@@ -29,8 +29,8 @@ export const useCollection = () => {
   type CollectionItemWithCard = CollectionItemDto & { card: CardBlueprint };
 
   const sortUnitFunction = (a: CollectionItemWithCard, b: CollectionItemWithCard) => {
-    const aFaction = a.card.factions[0];
-    const bFaction = b.card.factions[0];
+    const aFaction = a.card.faction;
+    const bFaction = b.card.faction;
 
     // put neutral units last
     if (aFaction && !bFaction) return -1;
@@ -55,7 +55,7 @@ export const useCollection = () => {
     const filter = factionFilter.value;
     return allCards.value
       .filter(({ card }) => {
-        return card.factions.some(faction => faction?.equals(filter));
+        return card.faction?.equals(filter);
       })
       .sort(sortUnitFunction);
   });

@@ -11,6 +11,7 @@ export const f2DamnedSouls: CardBlueprint = {
   description: '@Last Will@: Deal 4 damage to all nearby units.',
   collectable: true,
   rarity: RARITIES.COMMON,
+  faction: FACTIONS.F2,
   factions: { f2: 3 },
   spriteId: 'f2_flaming_skull',
   kind: CARD_KINDS.MINION,

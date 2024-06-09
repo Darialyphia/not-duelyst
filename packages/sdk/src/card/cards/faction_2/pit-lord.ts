@@ -6,7 +6,7 @@ import { whileOnBoard } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isSelf } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 import { f2Imp } from './imp';
 
 const PIT_LORD_MODIFIER_ID = 'pit_lord_modifier';
@@ -17,6 +17,7 @@ export const f2PitLord: CardBlueprint = {
   description: `Allied @${f2Imp.name}@ have +2 health.`,
   collectable: true,
   rarity: RARITIES.BASIC,
+  faction: FACTIONS.F2,
   factions: { f2: 2 },
   spriteId: 'f2_pit_lord',
   kind: CARD_KINDS.MINION,

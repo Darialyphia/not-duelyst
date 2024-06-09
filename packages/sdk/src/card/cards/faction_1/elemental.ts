@@ -11,6 +11,7 @@ export const f1Elemental: CardBlueprint = {
   description: '',
   rarity: RARITIES.BASIC,
   collectable: true,
+  faction: FACTIONS.F1,
   factions: { f1: 1 },
   spriteId: 'f1_placeholder',
   kind: CARD_KINDS.MINION,

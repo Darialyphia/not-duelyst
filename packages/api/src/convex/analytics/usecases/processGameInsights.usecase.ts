@@ -49,7 +49,7 @@ export const procesGameInsightsUsecase = mutation({
           payload.players.forEach(player => {
             const isWinner = payload.winnerId === player.id;
             const cards = player.loadout.map(id => CARDS[id]);
-            const general = cards.find(card => card.kind === CARD_KINDS.GENERAL)!;
+            const general = cards.find(card => card.kind === CARD_KINDS.GENERAL) as any;
             const faction = general.faction.id;
             const profile = profiles.find(profile => profile?.userId === player.id)!;
 

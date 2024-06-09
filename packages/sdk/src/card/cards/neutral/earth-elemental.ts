@@ -10,6 +10,7 @@ export const neutralEarthElemental: CardBlueprint = {
   description: '@Call to Arms@: @Root@ nearby enemies for one turn.',
   collectable: false,
   rarity: RARITIES.BASIC,
+  faction: null,
   factions: {},
   spriteId: 'neutral_earth_elemental',
   kind: CARD_KINDS.MINION,

@@ -2,7 +2,7 @@ import { isEmpty } from '../../../entity/entity-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 
 export const f2Imp: CardBlueprint = {
   id: 'f2_imp',
@@ -10,6 +10,7 @@ export const f2Imp: CardBlueprint = {
   description: '@Call to Arms@: @Summon@ an @F2 Imp@ on a nearby tile.',
   collectable: true,
   rarity: RARITIES.BASIC,
+  faction: FACTIONS.F2,
   factions: { f2: 1 },
   spriteId: 'f2_imp',
   kind: CARD_KINDS.MINION,

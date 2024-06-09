@@ -11,6 +11,7 @@ export const neutralIceQueen: CardBlueprint = {
   description: '',
   collectable: true,
   rarity: RARITIES.EPIC,
+  faction: null,
   factions: { multicolor: 4 },
   spriteId: 'neutral_ice_queen',
   kind: CARD_KINDS.MINION,

@@ -28,6 +28,7 @@ export const f1ElementalConfluence: CardBlueprint = {
     '@Structure@.\n@Call to Arms@ and start of turn: Deal 1 damage to nearby enemies. @Surge(1)@ for every Elemental you control.',
   collectable: true,
   rarity: RARITIES.EPIC,
+  faction: FACTIONS.F1,
   factions: {
     f1: 3
   },
