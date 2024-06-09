@@ -110,8 +110,7 @@ const keywords = computed(() => {
 .collection-card {
   position: relative;
   display: grid;
-  transition: filter 0.3s;
-
+  filter: none;
   > * {
     grid-column: 1;
     grid-row: 1;
@@ -122,14 +121,14 @@ const keywords = computed(() => {
   }
 
   &.disabled {
-    opacity: 0.6;
+    filter: grayscale(70%) brightness(70%);
   }
 
   &:not(.disabled):hover {
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
   }
   &:not(:hover) {
-    transition: transform 0.3s;
+    transition: transform 0.3s filter 0.3s;
   }
 }
 </style>
