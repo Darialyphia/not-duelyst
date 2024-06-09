@@ -36,7 +36,7 @@ const sortedNavigation = computed(() =>
         </ul>
       </div>
     </nav>
-    <ContentDoc :path="`/${route.params.version}`" />
+    <ContentDoc :path="`/${route.params.version}`" class="markdown" />
   </main>
 </template>
 

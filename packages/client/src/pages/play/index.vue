@@ -17,7 +17,7 @@ definePageMeta({
     <MainNavigation class="pl-9 pt-12" />
 
     <section class="fancy-surface fancy-scrollbar">
-      <ContentDoc :path="`/${config.VERSION}`" :head="false" />
+      <ContentDoc :path="`/${config.VERSION}`" :head="false" class="markdown" />
 
       <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
         Previous patch notes

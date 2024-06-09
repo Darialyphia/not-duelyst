@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@formkit/auto-animate/nuxt',
-    "@nuxt/content"
+    '@nuxt/content'
   ],
 
   runtimeConfig: {

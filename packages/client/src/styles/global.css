@@ -20,7 +20,7 @@
   @unocss;
 }
 
-[data-content-id] {
+.markdown {
   h2,
   h3,
   h4 {
