@@ -366,9 +366,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
         this.modifiers.forEach(modifier => {
           modifier.onRemoved(this.session, this, modifier);
         });
-        if (!this.card.isGenerated) {
-          this.session.boardSystem.getCellAt(this.position)!.addTile('gold_coin');
-        }
+
         this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
       });
     });

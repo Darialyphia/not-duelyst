@@ -222,23 +222,23 @@ header {
   border-radius: var(--radius-round);
 
   &:nth-of-type(1) {
-    top: 10px;
+    top: 44px;
     left: -6px;
   }
   &:nth-of-type(2) {
-    top: 44px;
+    top: 10px;
     left: -6px;
   }
   &:nth-of-type(3) {
-    top: 0px;
+    top: -4px;
     left: 26px;
   }
   &:nth-of-type(4) {
-    top: 44px;
+    top: 10px;
     left: 56px;
   }
   &:nth-of-type(5) {
-    top: 10px;
+    top: 44px;
     left: 56px;
   }
   &:nth-of-type(6) {

@@ -213,10 +213,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   startTurn() {
     this.resourceActionsTaken = 0;
-    this.draw(1);
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
       this.giveGold(config.GOLD_PER_TURN);
+      this.draw(1);
     } else {
       this.isP2T1 = false;
     }
