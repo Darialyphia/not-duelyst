@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { onTick } from 'vue3-pixi';
 import EndGameModal from './EndGameModal.vue';
+import Stats from 'stats.js';
 
 const { ui, session } = useGame();
 
@@ -10,7 +12,6 @@ const entity = computed(() => {
 const winner = ref<string | null>(null);
 
 session.on('game:ended', winnerId => {
-  console.log('game ended');
   winner.value = winnerId;
 });
 
@@ -24,20 +25,36 @@ const isModalOpened = computed({
     }
   }
 });
+
+const stats = new Stats();
+
+const isDev = import.meta.env.DEV;
+const statsRoot = ref<HTMLDivElement>();
+onMounted(() => {
+  stats.showPanel(0);
+  statsRoot.value?.appendChild(stats.dom);
+});
+
+stats.begin();
+onTick(() => {
+  stats.end();
+  stats.begin();
+});
 </script>
 
 <template>
+  <div v-if="isDev" ref="statsRoot" class="absolute bottom-10 left-5" />
   <EndGameModal v-if="winner" />
 
   <template v-else>
     <TeamInfos />
-    <SkillBar />
     <ActionBar />
     <TargetingUi />
     <BlueprintFollowupUi />
     <GameMenu />
     <NewTurnIndicator />
-    <CombatLog />
+    <!-- <CombatLog />   -->
+    <PlayedCard />
 
     <CardModal
       v-if="ui.highlightedCard.value"
@@ -64,7 +81,6 @@ const isModalOpened = computed({
             hp: entity.hp,
             speed: entity.speed,
             cost: entity.card.cost,
-            cooldown: entity.card.cooldown,
             skills: entity.card.blueprint.skills,
             pedestalId: entity.card.pedestalId,
             factions: entity.card.blueprint.factions,

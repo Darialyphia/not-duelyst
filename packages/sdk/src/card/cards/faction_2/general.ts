@@ -1,7 +1,6 @@
-import { isEmpty } from 'lodash-es';
 import { config } from '../../../config';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import {
   getAffectedEntities,
   isCastPoint,
@@ -16,11 +15,9 @@ export const f2General: CardBlueprint = {
   description: '',
   rarity: RARITIES.BASIC,
   collectable: true,
-  factions: [FACTIONS.F2, FACTIONS.F2, FACTIONS.F2],
+  factions: {},
   spriteId: 'f2_general',
   kind: CARD_KINDS.GENERAL,
-  cooldown: 0,
-  initialCooldown: 0,
   cost: 0,
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: config.GENERAL_DEFAULT_HP,

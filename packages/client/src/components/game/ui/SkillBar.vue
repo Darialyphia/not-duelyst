@@ -44,16 +44,9 @@ const { ui, gameType } = useGame();
 
 <style scoped lang="postcss">
 .skill-bar {
-  position: absolute;
-  bottom: var(--size-11);
-  left: 50%;
-  transform: translateX(-50%);
-
   display: flex;
-  gap: var(--size-5);
-  align-items: center;
-  justify-content: center;
-
+  flex-direction: column;
+  gap: var(--size-2);
   width: fit-content;
 
   button {

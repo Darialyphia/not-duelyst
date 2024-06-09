@@ -18,12 +18,20 @@ export class Faction {
   }
 }
 
+export const FACTION_IDS = {
+  F1: 'f1',
+  F2: 'f2',
+  F3: 'f3',
+  F4: 'f4',
+  F5: 'f5'
+} as const;
+
 export const FACTIONS = {
-  F1: new Faction('f1', 'Life'),
-  F2: new Faction('f2', 'Chaos'),
-  F3: new Faction('f3', 'Order'),
-  F4: new Faction('f4', 'Death'),
-  F5: new Faction('f5', 'Prime')
+  F1: new Faction(FACTION_IDS.F1, 'Academy'),
+  F2: new Faction(FACTION_IDS.F2, 'Inferno'),
+  F3: new Faction(FACTION_IDS.F3, 'Haven'),
+  F4: new Faction(FACTION_IDS.F4, 'Necropolis'),
+  F5: new Faction(FACTION_IDS.F5, 'Prime')
 } as const satisfies Record<string, Faction>;
 
 export const RARITIES = {

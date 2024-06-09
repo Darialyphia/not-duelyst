@@ -3,10 +3,18 @@ import type { Doc, Id } from '../_generated/dataModel';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 
-export const ensureNoDuplicates = (units: string[]) => {
-  if (new Set(units).size !== units.length) {
-    throw new Error('Loadout has duplicate cards.');
-  }
+export const ensureMaxCopies = (cardIds: string[]) => {
+  const copies: Record<string, number> = {};
+  cardIds.forEach(id => {
+    if (!copies[id]) {
+      copies[id] = 1;
+    } else {
+      copies[id]++;
+    }
+    if (copies[id] > config.MAX_COPIES_PER_CARD) {
+      throw new Error('Max copies of card exceeded..');
+    }
+  });
 };
 
 export const ensureOwnsUnit = async (
@@ -45,7 +53,7 @@ const ensureHasGeneral = (cards: Array<{ id: string }>) => {
 };
 
 const ensureHasCorrectSize = (cards: Array<{ id: string }>) => {
-  const isValid = cards.length === config.MAX_HAND_SIZE + 1; //account for general
+  const isValid = cards.length === config.MAX_DECK_SIZE + 1; //account for general
 
   if (!isValid) {
     throw new Error('Loadout does not have the correct size.');
@@ -67,7 +75,7 @@ export const validateLoadout = async (
 }> => {
   await Promise.all(cards.map(card => ensureOwnsUnit({ db }, ownerId, card.id)));
 
-  ensureNoDuplicates(cards.map(c => c.id));
+  ensureMaxCopies(cards.map(c => c.id));
   ensureHasCorrectSize(cards);
   ensureHasGeneral(cards);
 

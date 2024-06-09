@@ -18,10 +18,22 @@ const state = computed(() =>
             id: me.value._id,
             name: me.value.name ?? 'You',
             currentGold: 3,
-            cards: [
+            deck: [
               {
                 pedestalId: 'pedestal-default',
                 blueprintId: 'f1_tutorial_general'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
               },
               {
                 pedestalId: 'pedestal-default',
@@ -38,10 +50,30 @@ const state = computed(() =>
           {
             id: 'ai',
             name: 'Instructor Avan',
-            cards: [
+            deck: [
               {
                 pedestalId: 'pedestal-default',
                 blueprintId: 'tutorial_general'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'tutorial_cat'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'tutorial_cat'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'tutorial_cat'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'tutorial_cat'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'tutorial_cat'
               },
               {
                 pedestalId: 'pedestal-default',
@@ -507,6 +539,9 @@ until(state)
     @end-turn="dispatch('endTurn', $event)"
     @use-skill="dispatch('useSkill', $event)"
     @play-card="dispatch('playCard', $event)"
+    @draw="dispatch('draw', $event)"
+    @get-gold="dispatch('getGold', $event)"
+    @add-rune="dispatch('addRune', $event)"
     @surrender="$router.push({ name: 'ClientHome' })"
   />
 

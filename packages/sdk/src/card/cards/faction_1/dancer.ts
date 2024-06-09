@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { isSelf } from '../../../utils/targeting';
 import { celerity, elusive, fury, nimble } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -10,11 +10,11 @@ export const f1Dancer: CardBlueprint = {
   description: '@Nimble@.\n@Celerity@',
   collectable: true,
   rarity: RARITIES.RARE,
-  factions: [FACTIONS.F1, FACTIONS.F1, null],
+  factions: {
+    f1: 2
+  },
   spriteId: 'f1_dancer',
   kind: CARD_KINDS.MINION,
-  cooldown: 5,
-  initialCooldown: 0,
   cost: 4,
   attack: 2,
   maxHp: 8,

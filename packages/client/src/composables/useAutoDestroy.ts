@@ -7,12 +7,9 @@ export const useAutoDestroy = () => {
     // handles a vue3-pixi bug where the animated-sprite doesn't destroy itself on unmount
     elementsToDestroy.value?.forEach(element => {
       if (!element?.displayObject?.destroyed) {
-        setTimeout(
-          () => {
-            element?.displayObject?.destroy();
-          },
-          element?.timeout ?? 0
-        );
+        setTimeout(() => {
+          element?.displayObject?.destroy();
+        }, element?.timeout ?? 0);
       }
     });
   });

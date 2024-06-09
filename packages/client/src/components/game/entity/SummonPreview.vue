@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { AnimatedSprite, TextStyle } from 'pixi.js';
+import { TextStyle } from 'pixi.js';
 import { match } from 'ts-pattern';
 
-const { camera, assets, ui } = useGame();
+const { camera, ui } = useGame();
 
 const scaleX = computed(() => {
   let value = ui.selectedCard.value!.player.isPlayer1 ? 1 : -1;
@@ -66,7 +66,6 @@ const entityTextures = useIlluminatedTexture(
   'breathing'
 );
 const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
-const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
 </script>
 
 <template>
@@ -106,22 +105,6 @@ const hpCostTextures = useIlluminatedTexture('summon-cost-hp', 'idle');
         :event-mode="'none'"
         :diffuse-textures="goldCostTextures.diffuse"
         :normal-textures="goldCostTextures.normal"
-        :scale-x="scaleX"
-        :anchor="0.5"
-        :playing="false"
-      />
-    </container>
-
-    <container v-if="ui.selectedCard.value?.hpCost" :x="CELL_WIDTH * 0.25" :y="5">
-      <pixi-text :scale="0.5" :style="textStyle" :anchor="0.5">
-        - {{ ui.selectedCard.value!.hpCost }}
-      </pixi-text>
-      <IlluminatedSprite
-        v-if="hpCostTextures.diffuse && hpCostTextures.normal"
-        :x="15"
-        :event-mode="'none'"
-        :diffuse-textures="hpCostTextures.diffuse"
-        :normal-textures="hpCostTextures.normal"
         :scale-x="scaleX"
         :anchor="0.5"
         :playing="false"

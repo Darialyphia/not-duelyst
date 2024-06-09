@@ -12,16 +12,17 @@ export {
 export { Card } from './card/card';
 export {
   CARD_KINDS,
+  FACTIONS,
+  FACTION_IDS,
+  RARITIES,
   type CardKind,
   type Faction,
-  FACTIONS,
-  type Rarity,
-  RARITIES
+  type Rarity
 } from './card/card-enums';
 export { type Animation } from './fx-system';
 export { Skill } from './entity/skill';
 export { CARDS } from './card/card-lookup';
-export type { CardBlueprint } from './card/card-blueprint';
+export { type CardBlueprint, MULTICOLOR } from './card/card-blueprint';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

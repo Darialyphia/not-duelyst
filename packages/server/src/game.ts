@@ -129,7 +129,7 @@ export class Game {
           name: players[0].name,
           currentGold: config.PLAYER_1_STARTING_GOLD,
           maxGold: config.PLAYER_1_STARTING_GOLD,
-          cards: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
+          deck: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
             pedestalId,
             blueprintId: id
           })),
@@ -141,7 +141,7 @@ export class Game {
           name: players[1].name,
           currentGold: config.PLAYER_1_STARTING_GOLD,
           maxGold: config.PLAYER_1_STARTING_GOLD,
-          cards: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
+          deck: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
             pedestalId,
             blueprintId: id
           })),

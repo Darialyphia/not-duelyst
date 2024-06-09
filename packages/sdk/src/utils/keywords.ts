@@ -185,8 +185,7 @@ export const KEYWORDS = {
   SUMMON: {
     id: 'summon',
     name: 'Summon',
-    description:
-      "A summoned unit didn`t come from your action bar. It won't drop a gold coin when destroyed.",
+    description: 'A summoned unit didn`t come from your action bar.',
     aliases: []
   },
   SURGE: {

@@ -30,8 +30,7 @@ const getPlayerFilterAlpha = () =>
     .with(COLOR_CODED_UNITS.SUBTLE, () => 0.08)
     .with(COLOR_CODED_UNITS.STRONG, () => 0.2)
     .exhaustive();
-
-const playerFilter = new ColorOverlayFilter(
+const getPlayerFilterColor = () =>
   match(gameType.value)
     .with(GAME_TYPES.PVP, GAME_TYPES.SANDBOX, () =>
       userPlayer.value!.equals(entity.value.player) ? 0x00ff00 : 0xff0000
@@ -39,7 +38,10 @@ const playerFilter = new ColorOverlayFilter(
     .with(GAME_TYPES.SPECTATOR, () =>
       entity.value.player.isPlayer1 ? 0x00ff00 : 0xff0000
     )
-    .exhaustive(),
+    .exhaustive();
+
+const playerFilter = new ColorOverlayFilter(
+  getPlayerFilterColor(),
   getPlayerFilterAlpha()
 );
 
@@ -54,6 +56,7 @@ watchEffect(() => {
 
 watchEffect(() => {
   playerFilter.alpha = getPlayerFilterAlpha();
+  playerFilter.color = getPlayerFilterColor();
 });
 
 const filters = computed(() => {

@@ -20,7 +20,8 @@ export type CardInterceptor = Card['interceptors'];
 
 export const CARD_EVENTS = {
   BEFORE_PLAYED: 'before_played',
-  AFTER_PLAYED: 'after_played'
+  AFTER_PLAYED: 'after_played',
+  DRAWN: 'drawn'
 } as const;
 
 export type CardEvent = Values<typeof CARD_EVENTS>;
@@ -28,6 +29,7 @@ export type CardEvent = Values<typeof CARD_EVENTS>;
 export type CardEventMap = {
   [CARD_EVENTS.BEFORE_PLAYED]: [Card];
   [CARD_EVENTS.AFTER_PLAYED]: [Card];
+  [CARD_EVENTS.DRAWN]: [Card];
 };
 
 export class Card extends EventEmitter implements Serializable {
@@ -35,11 +37,10 @@ export class Card extends EventEmitter implements Serializable {
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
   modifiers: CardModifier[] = [];
-  currentCooldown: number;
 
   constructor(
     protected session: GameSession,
-    protected index: CardIndex,
+    readonly index: CardIndex,
     options: SerializedCard,
     protected playerId: PlayerId
   ) {
@@ -47,7 +48,6 @@ export class Card extends EventEmitter implements Serializable {
     this.blueprintId = options.blueprintId;
     this.pedestalId = options.pedestalId;
     this.isGenerated = options.isGenerated ?? false;
-    this.currentCooldown = this.blueprint.initialCooldown;
   }
 
   setup() {
@@ -68,25 +68,10 @@ export class Card extends EventEmitter implements Serializable {
     return this.blueprint.kind;
   }
 
-  get hpCost() {
-    const factions = [...this.player.general.card.blueprint.factions];
-    let missing = 0;
-
-    this.blueprint.factions.forEach(faction => {
-      if (!faction) return;
-      const index = factions.findIndex(f => f?.equals(faction));
-      if (index < 0) missing++;
-      else factions.splice(index, 1);
-    });
-
-    return missing;
-  }
-
   protected interceptors = {
     attack: new Interceptable<number, Card>(),
     maxHp: new Interceptable<number, Card>(),
     cost: new Interceptable<number, Card>(),
-    cooldown: new Interceptable<number, Card>(),
     canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>(),
     canMoveAfterSummon: new Interceptable<boolean, Card>(),
     canAttackAfterSummon: new Interceptable<boolean, Card>(),
@@ -138,13 +123,6 @@ export class Card extends EventEmitter implements Serializable {
     );
   }
 
-  get cooldown(): number {
-    return this.interceptors.cost.getValue(
-      this.player.interceptors.cost.getValue(this.blueprint.cooldown, this),
-      this
-    );
-  }
-
   get attack(): number {
     return this.interceptors.attack.getValue(this.blueprint.attack, this);
   }
@@ -162,8 +140,6 @@ export class Card extends EventEmitter implements Serializable {
   }
 
   canPlayAt(point: Point3D) {
-    if (this.hpCost >= this.player.general.hp) return false;
-
     const cell = this.session.boardSystem.getCellAt(point);
     if (!cell) return false;
     if (!cell.canSummonAt) return false;
@@ -172,6 +148,10 @@ export class Card extends EventEmitter implements Serializable {
     const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
 
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
+  }
+
+  draw() {
+    this.emit(CARD_EVENTS.DRAWN, this);
   }
 
   async play(ctx: { position: Point3D; targets: Point3D[] }) {
@@ -208,13 +188,8 @@ export class Card extends EventEmitter implements Serializable {
 
     entity.emit(ENTITY_EVENTS.CREATED, entity);
 
-    this.currentCooldown = this.cooldown;
     this.emit(CARD_EVENTS.AFTER_PLAYED, this);
     return entity;
-  }
-
-  onTurnStart() {
-    this.currentCooldown = Math.max(this.currentCooldown - 1, 0);
   }
 
   serialize(): SerializedCard {

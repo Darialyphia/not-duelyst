@@ -5,7 +5,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint, isWithinCells } from '../../../utils/targeting';
 import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { neutralAirElemental } from '../neutral/air-elemental';
 import { neutralEarthElemental } from '../neutral/earth-elemental';
 import { neutralFireElemental } from '../neutral/fire-elemental';
@@ -17,11 +17,9 @@ export const f1ElementalLord: CardBlueprint = {
   description: 'Your Elementals have @Regeneration(1)@',
   collectable: true,
   rarity: RARITIES.LEGENDARY,
-  factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
+  factions: { f1: 3 },
   spriteId: 'f1_elementalist',
   kind: CARD_KINDS.MINION,
-  cooldown: 6,
-  initialCooldown: 0,
   cost: 5,
   attack: 1,
   maxHp: 6,

@@ -254,7 +254,7 @@ export const taunted = ({
       modifierEntityDurationMixin({
         keywords: [KEYWORDS.TAUNTED],
         duration,
-        tickOn: 'start',
+        tickOn: 'end',
         onApplied(session, attachedTo) {
           attachedTo.addInterceptor('canMove', moveInterceptor);
           attachedTo.addInterceptor('canUseSkill', skillInterceptor);

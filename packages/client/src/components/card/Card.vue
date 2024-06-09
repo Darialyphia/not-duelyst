@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { type CardKind, type Keyword, type Rarity } from '@game/sdk';
+import {
+  FACTION_IDS,
+  MULTICOLOR,
+  type CardKind,
+  type Keyword,
+  type Rarity
+} from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
@@ -16,7 +22,6 @@ type ICard = {
   attack?: number;
   hp?: number;
   cost: number;
-  cooldown: number;
   speed: number;
   skills: SkillBlueprint[];
   pedestalId?: string;
@@ -63,28 +68,25 @@ const isModalOpened = ref(false);
     "
   >
     <header>
-      <UiCenter class="cost">
-        <span v-if="card.kind === 'MINION'">{{ card.cost }}</span>
+      <UiCenter v-if="card.kind === 'MINION'" class="cost">
+        <span>{{ card.cost }}</span>
 
-        <div>
-          <div
-            v-for="(faction, index) in card.factions"
-            :key="`${faction?.id}${index}`"
-            class="faction"
-            :style="{
-              '--bg': `url(/assets/ui/rune-${faction?.id.toLocaleLowerCase() ?? 'empty'}.png)`
-            }"
-          />
+        <div
+          v-for="faction in FACTION_IDS"
+          :key="faction"
+          class="faction"
+          :style="{ '--color': FACTION_COLORS[faction] }"
+        >
+          {{ card.factions[faction] }}
         </div>
+        <div class="faction">{{ card.factions[MULTICOLOR] }}</div>
       </UiCenter>
+      <div v-else />
       <CardSprite
         class="sprite"
         :sprite-id="card.spriteId"
         :pedestal-id="card.pedestalId ?? 'pedestal-default'"
       />
-      <UiCenter v-if="card.cooldown" class="cooldown">
-        {{ card.cooldown }}
-      </UiCenter>
     </header>
 
     <div class="text">
@@ -204,32 +206,45 @@ header {
 }
 
 .faction {
+  position: absolute;
+
+  display: grid;
+  place-content: center;
+
   width: 22px;
-  height: 26px;
-  background: var(--bg);
+  height: 22px;
 
+  font-size: var(--font-size-0);
+  color: var(--color, white);
+
+  background: black;
+  border: solid 2px currentColor;
+  border-radius: var(--radius-round);
+
+  &:nth-of-type(1) {
+    top: 44px;
+    left: -6px;
+  }
   &:nth-of-type(2) {
-    transform: translateY(25%);
+    top: 10px;
+    left: -6px;
   }
-
-  :has(> &) {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
+  &:nth-of-type(3) {
+    top: -4px;
+    left: 26px;
   }
-}
-
-.cooldown {
-  justify-self: end;
-
-  width: 76px;
-  height: 76px;
-
-  font-weight: 7 00;
-  color: #be8420;
-
-  background-image: url('/assets/ui/card-cooldown.png');
+  &:nth-of-type(4) {
+    top: 10px;
+    left: 56px;
+  }
+  &:nth-of-type(5) {
+    top: 44px;
+    left: 56px;
+  }
+  &:nth-of-type(6) {
+    top: 58px;
+    left: 26px;
+  }
 }
 
 .sprite {

@@ -1,12 +1,42 @@
 <script setup lang="ts">
-const { dispatch, ui, gameType } = useGame();
+import { clamp } from '@game/shared';
+import { differenceBy } from 'lodash-es';
 
 const userPlayer = useUserPlayer();
+const { ui, session, gameType, dispatch } = useGame();
 const isActive = useIsActivePlayer();
+
+const MAX_ANGLE = 30;
+const angle = computed(() => {
+  return (
+    clamp(userPlayer.value.hand.length * 10, 0, MAX_ANGLE) /
+    Math.max(userPlayer.value.hand.length, 1)
+  );
+});
+
+// we need to do this because a simple <Transition /> won't cut it when cards are playe
+// the cards are styled based on their index in hand, so when a card is played, its index becomes -1 during the transition
+// and its placement is all wrong
+// const hand = ref([...toRaw(userPlayer.value.hand)]);
+// const cardIndexBeingPlayed = ref(-1);
+// session.on('card:before_played', card => {
+//   cardIndexBeingPlayed.value = hand.value.indexOf(card);
+//   console.log(hand.value);
+//   setTimeout(() => {
+//     // hand.value = [...userPlayer.value.hand];
+//   }, 500);
+// });
+
+// watch(
+//   () => userPlayer.value.id,
+//   () => {
+//     // hand.value = [...userPlayer.value.hand];
+//   }
+// );
 </script>
 
 <template>
-  <div v-if="userPlayer && gameType === GAME_TYPES.SPECTATOR" class="opponent-action-bar">
+  <!-- <div v-if="userPlayer && gameType === GAME_TYPES.SPECTATOR" class="opponent-action-bar">
     <div class="flex gap-5 iems-center">
       <ActionBarItem
         v-for="(card, index) in userPlayer.opponent.hand"
@@ -15,16 +45,35 @@ const isActive = useIsActivePlayer();
         :player-id="userPlayer.opponent.id"
       />
     </div>
-  </div>
-  <div v-if="userPlayer" class="action-bar">
-    <div class="flex gap-5 iems-center">
-      <ActionBarItem
+  </div> -->
+  <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
+    <TransitionGroup
+      tag="ul"
+      class="cards"
+      :style="{
+        '--angle': angle,
+        '--hand-size': userPlayer.hand.length
+      }"
+    >
+      <li
         v-for="(card, index) in userPlayer.hand"
-        :key="`${card?.blueprintId}:${index}`"
-        :index="index"
-        :player-id="userPlayer.id"
-      />
-    </div>
+        :key="`${card.index}:${card.player.id}`"
+        class="card-wrapper"
+        :class="[
+          {
+            selected: card && ui.selectedCard.value === card
+          }
+        ]"
+        :style="{ '--index': index }"
+      >
+        <ActionBarItem :index="index" :player-id="userPlayer.id" />
+      </li>
+    </TransitionGroup>
+  </div>
+
+  <ActionWheel />
+  <div class="right-side">
+    <!-- <SkillBar /> -->
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
@@ -45,8 +94,10 @@ const isActive = useIsActivePlayer();
 
 <style scoped lang="postcss">
 .action-bar {
+  pointer-events: none;
+
   position: absolute;
-  bottom: var(--size-5);
+  bottom: calc(-1 * var(--size-10));
   left: 50%;
   transform: translateX(-50%);
 
@@ -82,7 +133,85 @@ const isActive = useIsActivePlayer();
   width: fit-content;
 }
 
-.endy-turn-button {
+.end-turn-button {
   min-width: 10ch;
+}
+
+.cards {
+  display: grid;
+  align-self: start;
+  justify-self: center;
+}
+
+.card-wrapper {
+  --base-angle: calc((var(--hand-size) / 2) * var(--angle) * -1deg);
+  --offset-step: 125px;
+  --base-offset: calc((var(--hand-size) / 2) * var(--offset-step) * -1);
+  --offset-y: 0;
+  --scale: 0.7;
+
+  pointer-events: all;
+  cursor: pointer;
+
+  position: relative;
+  z-index: var(--index);
+  transform-origin: center 120%;
+  transform: translateY(var(--offset-y))
+    translateX(calc(var(--base-offset) + var(--index) * var(--offset-step)))
+    rotateZ(calc(var(--base-angle) + var(--index) * var(--angle) * 1deg))
+    scale(var(--scale));
+
+  grid-column: 1;
+  grid-row: 1;
+
+  transition: transform 0.15s ease-in;
+
+  &.selected {
+    filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
+    &:not(:hover) {
+      --scale: 0.75;
+    }
+  }
+
+  &:hover {
+    --offset-y: -90px;
+    --angle: 0;
+    --scale: 1;
+
+    z-index: var(--hand-size);
+  }
+
+  &:is(.v-enter-active, .v-leave-active) {
+    transition:
+      transform 0.5s,
+      opacity 0.5s,
+      filter 0.5s;
+  }
+
+  &:is(.v-leave-to) {
+    --offset-y: -150px;
+
+    opacity: 0;
+    filter: brightness(1000%) contrast(300%);
+  }
+
+  .action-bar:not(.sandbox) &:is(.v-enter-from) {
+    --scale: 0;
+
+    opacity: 0;
+    filter: brightness(1000%) contrast(300%);
+  }
+}
+
+.right-side {
+  position: absolute;
+  right: var(--size-11);
+  bottom: var(--size-4);
+
+  display: flex;
+  gap: var(--size-3);
+  align-items: flex-end;
+
+  height: var(--size-9);
 }
 </style>
