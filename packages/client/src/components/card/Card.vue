@@ -62,8 +62,8 @@ const isModalOpened = ref(false);
     "
   >
     <header>
-      <UiCenter class="cost">
-        <span v-if="card.kind === 'MINION'">{{ card.cost }}</span>
+      <UiCenter v-if="card.kind === 'MINION'" class="cost">
+        <span>{{ card.cost }}</span>
 
         <div>
           <div
@@ -76,6 +76,7 @@ const isModalOpened = ref(false);
           />
         </div>
       </UiCenter>
+      <div v-else />
       <CardSprite
         class="sprite"
         :sprite-id="card.spriteId"

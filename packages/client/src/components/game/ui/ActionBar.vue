@@ -142,7 +142,7 @@ const angle = computed(() => {
 
 .card-wrapper {
   --base-angle: calc((var(--hand-size) / 2) * var(--angle) * -1deg);
-  --offset-step: 120px;
+  --offset-step: 140px;
   --base-offset: calc((var(--hand-size) / 2) * var(--offset-step) * -1);
   --offset-y: 0;
   --scale: 0.7;
@@ -161,6 +161,14 @@ const angle = computed(() => {
   grid-row: 1;
 
   transition: transform 0.15s ease-in;
+
+  &.selected {
+    filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
+    &:not(:hover) {
+      --scale: 0.75;
+    }
+  }
+
   &:hover {
     --offset-y: -90px;
     --angle: 0;

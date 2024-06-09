@@ -87,7 +87,10 @@ export const useGameControls = () => {
       });
 
       activePlayer.value.hand.forEach((unit, index) => {
-        if (isMatch(e, `summon${index + 1}` as ControlId)) {
+        if (
+          isMatch(e, `summon${index + 1}` as ControlId) &&
+          activePlayer.value.canPlayCardAtIndex(index)
+        ) {
           ui.selectCardAtIndex(index);
         }
       });
