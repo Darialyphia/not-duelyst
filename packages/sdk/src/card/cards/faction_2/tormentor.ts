@@ -15,7 +15,7 @@ export const f2Tormentor: CardBlueprint = {
   description: '@Fury@.',
   collectable: true,
   rarity: RARITIES.RARE,
-  factions: [FACTIONS.F2, null, null],
+  factions: { f2: 2 },
   spriteId: 'f2_tormentor',
   kind: CARD_KINDS.MINION,
   cost: 3,

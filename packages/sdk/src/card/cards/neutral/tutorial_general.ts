@@ -8,7 +8,7 @@ export const tutorialGeneral: CardBlueprint = {
   description: '',
   collectable: false,
   rarity: RARITIES.BASIC,
-  factions: [null, null, null],
+  factions: {},
   spriteId: 'tutorial_general',
   kind: CARD_KINDS.GENERAL,
   cost: 0,

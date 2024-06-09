@@ -15,7 +15,7 @@ export const f2Succubus: CardBlueprint = {
   description: '@Fearsome@.',
   collectable: true,
   rarity: RARITIES.RARE,
-  factions: [FACTIONS.F2, null, null],
+  factions: { f2: 2 },
   spriteId: 'f2_succubus',
   kind: CARD_KINDS.MINION,
   cost: 3,

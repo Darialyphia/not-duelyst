@@ -14,7 +14,7 @@ import {
 import EventEmitter from 'eventemitter3';
 import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
-import { CARD_KINDS } from '../card/card-enums';
+import { CARD_KINDS, FACTION_IDS, FACTIONS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck } from '../card/deck';
 import {} from '../card/cards/neutral/water-elemental';
@@ -56,10 +56,21 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   cards!: Card[];
   deck!: Deck;
   hand!: Card[];
+  runes = {
+    [FACTION_IDS.F1]: 0,
+    [FACTION_IDS.F2]: 0,
+    [FACTION_IDS.F3]: 0,
+    [FACTION_IDS.F4]: 0,
+    [FACTION_IDS.F5]: 0
+  };
+
+  maxResourceActionsPerTurn = 1;
+  resourceActionsTaken = 0;
 
   readonly interceptors = {
     maxGold: new Interceptable<number, Player>(),
-    cost: new Interceptable<number, Card>()
+    cost: new Interceptable<number, Card>(),
+    maxResourceActionsPerTurn: new Interceptable<number, Player>()
   };
 
   constructor(
@@ -84,6 +95,16 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   set maxGold(val) {
     this._maxGold = val;
+  }
+
+  get canPerformResourceAction(): boolean {
+    return (
+      this.resourceActionsTaken <=
+      this.interceptors.maxResourceActionsPerTurn.getValue(
+        this.maxResourceActionsPerTurn,
+        this
+      )
+    );
   }
 
   get entities() {
@@ -189,6 +210,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   startTurn() {
+    this.resourceActionsTaken = 0;
     this.draw(1);
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
@@ -244,10 +266,19 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.currentGold = Math.min(this.currentGold + amount, config.MAX_GOLD);
   }
 
-  draw(amount: number) {
+  draw(amount: number, isResourceAction = false) {
     const availableSlots = config.MAX_HAND_SIZE - this.hand.length;
 
     const newCards = this.deck.draw(Math.min(amount, availableSlots));
     this.hand.push(...newCards);
+
+    if (isResourceAction) {
+      this.resourceActionsTaken++;
+    }
+  }
+
+  addRune(factionId: Values<typeof FACTION_IDS>) {
+    this.runes[factionId]++;
+    this.resourceActionsTaken++;
   }
 }

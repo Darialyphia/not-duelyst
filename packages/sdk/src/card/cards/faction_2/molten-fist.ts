@@ -12,7 +12,7 @@ export const f2MoltenFist: CardBlueprint = {
   description: '@Fury@.\nAfter attacking a minion, inflict @Burn(1)@ to it',
   collectable: true,
   rarity: RARITIES.EPIC,
-  factions: [FACTIONS.F2, FACTIONS.F2, null],
+  factions: { f2: 3 },
   spriteId: 'f2_fire_fist',
   kind: CARD_KINDS.MINION,
   cost: 4,

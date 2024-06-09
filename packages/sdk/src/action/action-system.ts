@@ -7,6 +7,8 @@ import { MoveAction } from './move.action';
 import { PlayCardAction } from './play-card.action';
 import { UseSkillAction } from './use-skill.action';
 import { SurrenderAction } from './surrender.action';
+import { DrawAction } from './draw.action';
+import { AddRuneAction } from './add-rune.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
 
@@ -27,6 +29,8 @@ const actionMap = validateActionMap({
   move: MoveAction,
   playCard: PlayCardAction,
   useSkill: UseSkillAction,
+  draw: DrawAction,
+  addRune: AddRuneAction,
   surrender: SurrenderAction
 });
 

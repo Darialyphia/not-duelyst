@@ -10,7 +10,7 @@ export const neutralAirElemental: CardBlueprint = {
   description: '@Rush@\n.@Celerity@',
   collectable: false,
   rarity: RARITIES.BASIC,
-  factions: [null, null, null],
+  factions: {},
   spriteId: 'neutral_air_elemental',
   kind: CARD_KINDS.MINION,
   cost: 3,

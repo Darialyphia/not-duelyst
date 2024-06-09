@@ -90,7 +90,7 @@ const minionsCount = computed(() => {
             name="ph:caret-left-fill"
             class="pedestal-nav"
             type="button"
-            @click.Stop="changePedestal(card.id, -1)"
+            @click.stop="changePedestal(card.id, -1)"
           />
           <div class="sprite mx-auto">
             <CardSprite :sprite-id="card.card.spriteId" :pedestal-id="card.pedestalId" />

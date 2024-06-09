@@ -22,7 +22,9 @@ export const f1Djinn: CardBlueprint = {
     '@Flying@\n.When this attacks, grant @Celerity@, @Fury@, @Tough@ or @Barrier@ to your general for 2 turns.',
   collectable: true,
   rarity: RARITIES.RARE,
-  factions: [FACTIONS.F1, FACTIONS.F1, null],
+  factions: {
+    f1: 3
+  },
   spriteId: 'f1_djinn',
   kind: CARD_KINDS.MINION,
   cost: 6,

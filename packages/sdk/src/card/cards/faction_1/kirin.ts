@@ -9,7 +9,7 @@ export const f1Kirin: CardBlueprint = {
   description: '@Flying@.\n@Ranged(1)@.',
   collectable: false,
   rarity: RARITIES.BASIC,
-  factions: [FACTIONS.F1, null, null],
+  factions: { f1: 2 },
   spriteId: 'f1_kirin',
   kind: CARD_KINDS.MINION,
   cost: 0,

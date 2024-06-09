@@ -22,7 +22,7 @@ export const f1Simurgh: CardBlueprint = {
   description: '@Flying@.\n@Surge(1)@ @Aura@.',
   rarity: RARITIES.LEGENDARY,
   collectable: true,
-  factions: [FACTIONS.F1, FACTIONS.F1, FACTIONS.F1],
+  factions: { f1: 4 },
   spriteId: 'f1_simurgh',
   kind: CARD_KINDS.MINION,
   cost: 7,

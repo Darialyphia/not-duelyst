@@ -15,7 +15,7 @@ export const f2Butcher: CardBlueprint = {
     '@Fearsome@.\nWhenever this attacks and destroys a unit, it can attack again.',
   collectable: true,
   rarity: RARITIES.LEGENDARY,
-  factions: [FACTIONS.F2, FACTIONS.F2, null],
+  factions: { f2: 3 },
   spriteId: 'f2_imp_lord',
   kind: CARD_KINDS.MINION,
   cost: 5,

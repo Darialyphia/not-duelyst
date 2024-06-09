@@ -1,9 +1,8 @@
 import { getCellInFront, isEnemyGeneral } from '../../../entity/entity-utils';
 import { structure } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { getAffectedEntities } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { f2Imp } from './imp';
 import { f2Ravager } from './ravager';
 
@@ -13,7 +12,7 @@ export const f2Overseer: CardBlueprint = {
   description: `@Structure@.\n@Call to Arms@: Destroy an allied @${f2Imp.name}@ to @Summon@ a @${f2Ravager.name}@ in its place.`,
   collectable: true,
   rarity: RARITIES.LEGENDARY,
-  factions: [FACTIONS.F2, FACTIONS.F2, FACTIONS.F2],
+  factions: { f2: 3 },
   spriteId: 'f2_demon_eye',
   kind: CARD_KINDS.MINION,
   cost: 6,

@@ -11,7 +11,7 @@ export const f1Naga: CardBlueprint = {
   description: '@Vigilant@.',
   collectable: true,
   rarity: RARITIES.COMMON,
-  factions: [FACTIONS.F1, FACTIONS.F1, null],
+  factions: { f1: 3 },
   spriteId: 'f1_naga',
   kind: CARD_KINDS.MINION,
   cost: 4,

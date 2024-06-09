@@ -1,9 +1,15 @@
-import type { MaybePromise, Nullable, Point3D } from '@game/shared';
+import type {
+  MaybePromise,
+  Nullable,
+  PartialRecord,
+  Point3D,
+  Values
+} from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
-import type { CardKind, Faction, Rarity } from './card-enums';
+import type { CardKind, Faction, FACTION_IDS, Rarity } from './card-enums';
 import type { Cell } from '../board/cell';
 import type { Skill } from '../entity/skill';
 import type { Keyword } from '../utils/keywords';
@@ -57,7 +63,7 @@ export type CardBlueprint = {
   name: string;
   description: string;
   collectable: boolean;
-  factions: [Nullable<Faction>, Nullable<Faction>, Nullable<Faction>];
+  factions: PartialRecord<Values<typeof FACTION_IDS>, number>;
   spriteId: string;
   rarity: Rarity;
   cost: number;

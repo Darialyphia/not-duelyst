@@ -11,7 +11,7 @@ export const f1Structure: CardBlueprint = {
   description: '@Structure@.\n@Surge(1)@ @Aura@',
   collectable: true,
   rarity: RARITIES.BASIC,
-  factions: [FACTIONS.F1, FACTIONS.F1, null],
+  factions: { f1: 2 },
   spriteId: 'f1_ranged',
   kind: CARD_KINDS.MINION,
   cost: 3,

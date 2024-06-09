@@ -7,7 +7,7 @@ export const tutorialCat: CardBlueprint = {
   description: '',
   collectable: false,
   rarity: RARITIES.BASIC,
-  factions: [null, null, null],
+  factions: {},
   spriteId: 'tutorial_cat',
   kind: CARD_KINDS.MINION,
   cost: 2,

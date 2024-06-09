@@ -12,11 +12,12 @@ export {
 export { Card } from './card/card';
 export {
   CARD_KINDS,
+  FACTIONS,
+  FACTION_IDS,
+  RARITIES,
   type CardKind,
   type Faction,
-  FACTIONS,
-  type Rarity,
-  RARITIES
+  type Rarity
 } from './card/card-enums';
 export { type Animation } from './fx-system';
 export { Skill } from './entity/skill';
