@@ -16,6 +16,10 @@ const { data: navigation } = await useAsyncData('navigation', () =>
 
 const assets = useAssetsProvider();
 assets.load();
+
+const sortedNavigation = computed(() =>
+  navigation.value?.toSorted(compareSemanticVersions('_path')).reverse()
+);
 </script>
 
 <template>
@@ -24,7 +28,7 @@ assets.load();
       <div class="fancy-surface">
         <h2>Previous Versions</h2>
         <ul>
-          <li v-for="item in navigation" :key="item._path">
+          <li v-for="item in sortedNavigation" :key="item._path">
             <NuxtLink :to="`/patch-notes${item._path}`">
               {{ item._path.replace('/', 'Version ') }}
             </NuxtLink>
