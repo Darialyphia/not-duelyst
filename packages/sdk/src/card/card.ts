@@ -40,7 +40,7 @@ export class Card extends EventEmitter implements Serializable {
 
   constructor(
     protected session: GameSession,
-    protected index: CardIndex,
+    readonly index: CardIndex,
     options: SerializedCard,
     protected playerId: PlayerId
   ) {

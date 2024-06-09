@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { clamp } from '@game/shared';
+import { differenceBy } from 'lodash-es';
 
 const userPlayer = useUserPlayer();
-const { ui, gameType, dispatch } = useGame();
+const { ui, session, gameType, dispatch } = useGame();
 const isActive = useIsActivePlayer();
 
 const MAX_ANGLE = 30;
@@ -12,6 +13,26 @@ const angle = computed(() => {
     Math.max(userPlayer.value.hand.length, 1)
   );
 });
+
+// we need to do this because a simple <Transition /> won't cut it when cards are playe
+// the cards are styled based on their index in hand, so when a card is played, its index becomes -1 during the transition
+// and its placement is all wrong
+// const hand = ref([...toRaw(userPlayer.value.hand)]);
+// const cardIndexBeingPlayed = ref(-1);
+// session.on('card:before_played', card => {
+//   cardIndexBeingPlayed.value = hand.value.indexOf(card);
+//   console.log(hand.value);
+//   setTimeout(() => {
+//     // hand.value = [...userPlayer.value.hand];
+//   }, 500);
+// });
+
+// watch(
+//   () => userPlayer.value.id,
+//   () => {
+//     // hand.value = [...userPlayer.value.hand];
+//   }
+// );
 </script>
 
 <template>
@@ -36,7 +57,7 @@ const angle = computed(() => {
     >
       <li
         v-for="(card, index) in userPlayer.hand"
-        :key="`${card?.blueprintId}:${index}`"
+        :key="`${card.index}:${card.player.id}`"
         class="card-wrapper"
         :class="[
           {
@@ -148,21 +169,25 @@ const angle = computed(() => {
     z-index: var(--hand-size);
   }
 
-  .action-bar:not(.sandbox) & {
-    :is(.v-enter-active, .v-leave-active) {
-      transition:
-        opacity 0.5s,
-        filter 0.5s;
-    }
+  &:is(.v-enter-active, .v-leave-active) {
+    transition:
+      transform 0.5s,
+      opacity 0.5s,
+      filter 0.5s;
+  }
 
-    &:is(.v-leave-to) {
-      opacity: 0;
-      filter: brightness(1000%) contrast(300%);
-    }
+  &:is(.v-leave-to) {
+    --offset-y: -150px;
 
-    &:is(.v-enter-from) {
-      filter: brightness(1000%) contrast(300%);
-    }
+    opacity: 0;
+    filter: brightness(1000%) contrast(300%);
+  }
+
+  .action-bar:not(.sandbox) &:is(.v-enter-from) {
+    --scale: 0;
+
+    opacity: 0;
+    filter: brightness(1000%) contrast(300%);
   }
 }
 

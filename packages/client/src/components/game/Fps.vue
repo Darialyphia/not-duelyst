@@ -8,7 +8,7 @@ const isDev = import.meta.env.DEV;
 </script>
 
 <template>
-  <container v-if="isDev" :y="0" :x="600">
+  <container v-if="isDev" :y="0" :x="300">
     <pixi-text
       :x="30"
       :y="30"

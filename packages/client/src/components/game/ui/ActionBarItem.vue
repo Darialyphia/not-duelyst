@@ -7,6 +7,8 @@ const { ui } = useGame();
 const card = useGameSelector(
   session => session.playerSystem.getPlayerById(playerId)!.hand[index]
 );
+
+const userPlayer = useUserPlayer();
 </script>
 
 <template>
@@ -15,6 +17,7 @@ const card = useGameSelector(
       <Card
         v-if="card"
         class="card"
+        :class="!userPlayer.canPlayCardAtIndex(index) && 'disabled'"
         :card="{
           blueprintId: card.blueprintId,
           name: card.blueprint.name,
@@ -32,7 +35,13 @@ const card = useGameSelector(
           tribes: card.blueprint.tribes ?? []
         }"
         @contextmenu.prevent="ui.highlightedCard.value = card"
-        @click="ui.selectCardAtIndex(index)"
+        @click="
+          () => {
+            if (userPlayer.canPlayCardAtIndex(index)) {
+              ui.selectCardAtIndex(index);
+            }
+          }
+        "
       />
     </Sound>
   </Sound>
@@ -41,5 +50,9 @@ const card = useGameSelector(
 <style scoped lang="postcss">
 .card {
   position: relative;
+
+  &.disabled {
+    filter: grayscale(100%);
+  }
 }
 </style>

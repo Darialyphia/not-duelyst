@@ -12,7 +12,6 @@ const entity = computed(() => {
 const winner = ref<string | null>(null);
 
 session.on('game:ended', winnerId => {
-  console.log('game ended');
   winner.value = winnerId;
 });
 
@@ -55,6 +54,7 @@ onTick(() => {
     <GameMenu />
     <NewTurnIndicator />
     <CombatLog />
+    <PlayedCard />
 
     <CardModal
       v-if="ui.highlightedCard.value"
