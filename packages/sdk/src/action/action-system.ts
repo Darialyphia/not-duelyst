@@ -9,6 +9,7 @@ import { UseSkillAction } from './use-skill.action';
 import { SurrenderAction } from './surrender.action';
 import { DrawAction } from './draw.action';
 import { AddRuneAction } from './add-rune.action';
+import { GetGoldAction } from './get-gold.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
 
@@ -31,7 +32,8 @@ const actionMap = validateActionMap({
   useSkill: UseSkillAction,
   draw: DrawAction,
   addRune: AddRuneAction,
-  surrender: SurrenderAction
+  surrender: SurrenderAction,
+  getGold: GetGoldAction
 });
 
 type ScheduledAction = () => MaybePromise<void>;

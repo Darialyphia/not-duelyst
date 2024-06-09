@@ -72,5 +72,6 @@ const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
     @p2-emote="addP2($event)"
     @draw="dispatch('draw', $event)"
     @add-rune="dispatch('addRune', $event)"
+    @get-gold="dispatch('getGold', $event)"
   />
 </template>

@@ -270,8 +270,12 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.interceptors[key].remove(interceptor as any);
   }
 
-  giveGold(amount: number) {
+  giveGold(amount: number, isResourceAction = false) {
     this.currentGold = Math.min(this.currentGold + amount, config.MAX_GOLD);
+
+    if (isResourceAction) {
+      this.resourceActionsTaken++;
+    }
   }
 
   draw(amount: number, isResourceAction = false) {

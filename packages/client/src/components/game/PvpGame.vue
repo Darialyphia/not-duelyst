@@ -108,6 +108,7 @@ const canSeeGame = computed(() => {
         @play-card="dispatch('playCard', $event)"
         @surrender="dispatch('surrender', $event)"
         @draw="dispatch('draw', $event)"
+        @get-gold="dispatch('getGold', $event)"
         @add-rune="dispatch('addRune', $event)"
         @p1-emote="
           emote => {

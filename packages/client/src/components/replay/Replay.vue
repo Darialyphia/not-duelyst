@@ -74,6 +74,7 @@ const dispatch = (
       @end-turn="dispatch('endTurn', $event)"
       @use-skill="dispatch('useSkill', $event)"
       @draw="dispatch('draw', $event)"
+      @get-gold="dispatch('getGold', $event)"
       @add-rune="dispatch('addRune', $event)"
       @play-card="dispatch('playCard', $event)"
       @p1-emote="addP1($event)"

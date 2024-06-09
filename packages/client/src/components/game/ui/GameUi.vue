@@ -53,7 +53,7 @@ onTick(() => {
     <BlueprintFollowupUi />
     <GameMenu />
     <NewTurnIndicator />
-    <CombatLog />
+    <!-- <CombatLog />   -->
     <PlayedCard />
 
     <CardModal

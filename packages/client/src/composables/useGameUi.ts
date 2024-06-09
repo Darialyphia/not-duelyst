@@ -1,5 +1,5 @@
 import type { Card, Cell, Entity, EntityId, GameSession, Skill } from '@game/sdk';
-import { Vec3, type Nullable, type Point, type Point3D, type Values } from '@game/shared';
+import { type Nullable, type Point, type Point3D, type Values } from '@game/shared';
 import type { Layer } from '@pixi/layers';
 import type { DisplayObject } from 'pixi.js';
 import type { InjectionKey } from 'vue';

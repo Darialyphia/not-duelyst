@@ -28,6 +28,16 @@ const player = useUserPlayer();
       </button>
     </InteractableSounds>
 
+    <InteractableSounds>
+      <button
+        class="gold"
+        :disabled="!player.canPerformResourceAction"
+        @click="dispatch('getGold')"
+      >
+        <span class="sr-only">gain 1 gold</span>
+      </button>
+    </InteractableSounds>
+
     <template v-if="ui.selectedEntity.value">
       <UiTooltip
         v-for="(skill, index) in ui.selectedEntity.value.skills"
@@ -71,8 +81,8 @@ const player = useUserPlayer();
 <style scoped lang="postcss">
 .action-wheel {
   position: absolute;
-  right: var(--size-5);
-  bottom: var(--size-11);
+  right: var(--size-6);
+  bottom: var(--size-12);
   transform: translateX(-50%);
 
   display: grid;
@@ -81,11 +91,11 @@ const player = useUserPlayer();
   aspect-ratio: 1;
   width: var(--size-12);
   > * {
-    --step: calc(360 / 8);
-    --angle: calc((var(--step) * var(--index) - (90 * 0.98)) * 1deg);
+    --step: calc(360 / 9);
+    --angle: calc((var(--step) * var(--index) - 90) * 1deg);
     --index: calc(var(--child-index) - 1);
 
-    transform: rotateZ(var(--angle)) translateY(calc(-1 * var(--size-10)))
+    transform: rotateZ(var(--angle)) translateY(calc(-1 * var(--size-11)))
       rotateZ(calc(-1 * var(--angle)));
 
     grid-column: 1;
@@ -194,6 +204,19 @@ const player = useUserPlayer();
   width: 48px;
 
   background: url('/assets/icons/draw.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &:disabled {
+    filter: grayscale(70%) brightness(60%) contrast(110%);
+  }
+}
+
+.gold {
+  aspect-ratio: 1;
+  width: 48px;
+
+  background: url('/assets/icons/gold.png');
   background-repeat: no-repeat;
   background-size: cover;
 
