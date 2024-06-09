@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 import { config } from '../../../config';
 
 export const tutorialGeneral: CardBlueprint = {
@@ -9,6 +9,7 @@ export const tutorialGeneral: CardBlueprint = {
   collectable: false,
   rarity: RARITIES.BASIC,
   factions: {},
+  faction: FACTIONS.F3,
   spriteId: 'tutorial_general',
   kind: CARD_KINDS.GENERAL,
   cost: 0,

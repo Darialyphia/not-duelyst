@@ -62,6 +62,15 @@ export const MULTICOLOR = 'multicolor' as const;
 
 type FactionRequirement = Values<typeof FACTION_IDS> | typeof MULTICOLOR;
 
+type GeneralMixin = {
+  kind: Extract<CardKind, 'GENERAL'>;
+  faction: Faction;
+};
+
+type MinionMixin = {
+  kind: Extract<CardKind, 'MINION'>;
+};
+
 export type CardBlueprint = {
   id: CardBlueprintId;
   name: string;
@@ -75,7 +84,6 @@ export type CardBlueprint = {
   maxHp: number;
   speed: number;
   range: number;
-  kind: CardKind;
   tribes?: Tribe[];
   keywords?: Keyword[];
   modifiers?: CardModifier[];
@@ -108,4 +116,4 @@ export type CardBlueprint = {
     getChoices(): CardBlueprint[];
   };
   skills: SkillBlueprint[];
-};
+} & (GeneralMixin | MinionMixin);

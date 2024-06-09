@@ -1,6 +1,6 @@
 import { config } from '../../../config';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 import {
   getAffectedEntities,
   isCastPoint,
@@ -16,6 +16,7 @@ export const f2General: CardBlueprint = {
   rarity: RARITIES.BASIC,
   collectable: true,
   factions: {},
+  faction: FACTIONS.F2,
   spriteId: 'f2_general',
   kind: CARD_KINDS.GENERAL,
   cost: 0,

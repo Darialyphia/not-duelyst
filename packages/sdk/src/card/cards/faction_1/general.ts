@@ -14,6 +14,7 @@ export const f1General: CardBlueprint = {
   description: '',
   rarity: RARITIES.BASIC,
   collectable: true,
+  faction: FACTIONS.F1,
   factions: {},
   spriteId: 'f1_general',
   kind: CARD_KINDS.GENERAL,
