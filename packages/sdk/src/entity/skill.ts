@@ -1,5 +1,5 @@
 import type { Point3D } from '@game/shared';
-import type { SkillBlueprint } from '../card/card-blueprint';
+import { MULTICOLOR, type SkillBlueprint } from '../card/card-blueprint';
 import type { GameSession } from '../game-session';
 import type { Entity } from './entity';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
@@ -62,9 +62,21 @@ export class Skill {
     return this.interceptors.cooldown.getValue(this.blueprint.cooldown, this);
   }
 
+  private get hasCorrectRunes() {
+    if (!this.blueprint.runes) return true;
+    return Object.entries(this.blueprint.runes).every(([faction, count]) => {
+      if (faction === MULTICOLOR) return this.caster.player.totalRunesCount >= count;
+      return (
+        this.caster.player.runes[faction as keyof typeof this.caster.player.runes] >=
+        count
+      );
+    });
+  }
   get canUse(): boolean {
+    console.log(this.blueprint.id, this.hasCorrectRunes);
     const baseValue =
       this.currentCooldown === 0 &&
+      this.hasCorrectRunes &&
       (this.blueprint.canUse?.({ session: this.session, skill: this }) ?? true);
 
     return this.interceptors.canUse.getValue(baseValue, this);

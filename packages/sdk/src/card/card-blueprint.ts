@@ -27,6 +27,7 @@ export type SkillBlueprint = {
   cooldown: number;
   initialCooldown: number;
   keywords?: Keyword[];
+  runes?: PartialRecord<RuneRequirement, number>;
   canUse?: (options: { session: GameSession; skill: Skill }) => boolean;
   isTargetable(
     point: Point3D,
@@ -60,7 +61,7 @@ export type SkillBlueprint = {
 
 export const MULTICOLOR = 'multicolor' as const;
 
-type FactionRequirement = Values<typeof FACTION_IDS> | typeof MULTICOLOR;
+type RuneRequirement = Values<typeof FACTION_IDS> | typeof MULTICOLOR;
 
 export type CardBlueprint = {
   id: CardBlueprintId;
@@ -69,7 +70,7 @@ export type CardBlueprint = {
   description: string;
   collectable: boolean;
   faction: Faction | null;
-  factions: PartialRecord<FactionRequirement, number>;
+  factions: PartialRecord<RuneRequirement, number>;
   spriteId: string;
   rarity: Rarity;
   cost: number;

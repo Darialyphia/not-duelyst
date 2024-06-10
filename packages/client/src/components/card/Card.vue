@@ -110,7 +110,6 @@ const isModalOpened = ref(false);
         <div
           class="skill-img"
           tabindex="0"
-          :data-cooldown="skill.cooldown"
           :style="{
             '--bg': `url('/assets/icons/${skill.iconId}.png')`
           }"
@@ -352,31 +351,6 @@ footer {
       filter: contrast(130%) brightness(110%);
       outline: var(--fancy-border);
       outline-offset: 4px;
-    }
-  }
-
-  [data-cooldown] {
-    position: relative;
-    &::after {
-      content: attr(data-cooldown);
-
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      transform: translate(50%, 50%);
-
-      display: grid;
-      place-content: center;
-
-      aspect-ratio: 1;
-      width: 3ch;
-
-      font-size: var(--font-size-00);
-
-      background: var(--fancy-bg);
-      background-blend-mode: overlay;
-      border: var(--fancy-border);
-      border-radius: var(--radius-round);
     }
   }
 }
