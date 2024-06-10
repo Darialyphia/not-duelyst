@@ -9,48 +9,28 @@ import { f1Kirin } from './kirin';
 export const f1KirinSummoner: CardBlueprint = {
   id: 'f1_kirin_summoner',
   name: 'F1 Kirin Summoner',
-  description: '@Call to Arms@ : summon a @F1 Kirin@ on a nearby tile.',
+  description: '',
   collectable: true,
   rarity: RARITIES.EPIC,
   faction: FACTIONS.F1,
   factions: { f1: 3 },
   spriteId: 'f1_kirin_summoner',
   kind: CARD_KINDS.MINION,
-  cost: 5,
-  attack: 2,
-  maxHp: 6,
+  cost: 4,
+  attack: 3,
+  maxHp: 5,
   speed: 3,
   range: 1,
   relatedBlueprintIds: ['f1_kirin'],
   keywords: [KEYWORDS.CALL_TO_ARMS],
-  followup: {
-    minTargetCount: 0,
-    maxTargetCount: 1,
-    isTargetable(point, { session, summonedPoint }) {
-      return isEmpty(session, point) && isWithinCells(point, summonedPoint, 1);
-    }
-  },
-  onPlay({ entity, followup }) {
-    if (!followup[0]) return;
-
-    const card = entity.player.generateCard({
-      blueprintId: f1Kirin.id,
-      pedestalId: entity.card.pedestalId
-    });
-
-    card.play({
-      position: followup[0],
-      targets: []
-    });
-  },
   skills: [
     {
       id: 'f1_kirin_summoner_skill1',
       cooldown: 3,
       name: 'Summon Kirin',
-      description: 'Summoned a @F1 Kirin@ with @Rush@ on a nearby tile.',
+      description: 'Summoned a @F1 Kirin@ on a nearby tile.',
       iconId: 'kirin',
-      initialCooldown: 2,
+      initialCooldown: 0,
       minTargetCount: 1,
       maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
@@ -62,8 +42,7 @@ export const f1KirinSummoner: CardBlueprint = {
       onUse({ castPoints, skill }) {
         const card = skill.caster.player.generateCard({
           blueprintId: f1Kirin.id,
-          pedestalId: skill.caster.card.pedestalId,
-          modifiers: [rush()]
+          pedestalId: skill.caster.card.pedestalId
         });
 
         card.play({

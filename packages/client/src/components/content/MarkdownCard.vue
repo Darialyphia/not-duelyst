@@ -7,7 +7,7 @@ const card = CARDS[blueprintId];
 </script>
 
 <template>
-  <div class="my-6 grid grid-cols-2">
+  <div class="wrapper">
     <Card
       :has-modal="false"
       with-skills
@@ -32,3 +32,11 @@ const card = CARDS[blueprintId];
     </div>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-block: var(--size-6);
+}
+</style>

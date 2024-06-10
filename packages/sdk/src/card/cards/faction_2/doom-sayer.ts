@@ -1,4 +1,4 @@
-import { deathWatch, surge } from '../../../modifier/modifier-utils';
+import { deathWatch, ranged, surge } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint, isSelf, isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -8,7 +8,7 @@ export const f2DoomSayer: CardBlueprint = {
   id: 'f2_doomsayer',
   name: 'F2 Doomsayer',
   description:
-    '@Deathwatch@: Deal 1 damage to the enemy general if this is unit is up to 3 tiles away.',
+    '@Ranged(1)@.\n@Deathwatch@: Deal 1 damage to the enemy general if this is unit is up to 3 tiles away.',
   collectable: true,
   rarity: RARITIES.EPIC,
   faction: FACTIONS.F2,
@@ -22,6 +22,7 @@ export const f2DoomSayer: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.DEATHWATCH],
   async onPlay({ entity }) {
+    entity.addModifier(ranged({ range: 1, source: entity }));
     entity.addModifier(
       deathWatch({
         source: entity,

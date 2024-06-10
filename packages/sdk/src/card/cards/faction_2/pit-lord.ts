@@ -27,6 +27,7 @@ export const f2PitLord: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.RUSH],
+  relatedBlueprintIds: [f2Imp.id],
   async onPlay({ session, entity }) {
     const isAlliedImp = (e: Entity) =>
       e.isAlly(entity.id) && e.card.blueprintId === f2Imp.id;

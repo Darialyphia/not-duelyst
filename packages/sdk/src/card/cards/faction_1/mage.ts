@@ -1,6 +1,6 @@
 import { isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, FACTIONS, CARD_KINDS, FACTION_IDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
 import { burn, frozen, ranged } from '../../../modifier/modifier-utils';
 import {
@@ -19,7 +19,7 @@ export const f1Mage: CardBlueprint = {
   factions: { f1: 3 },
   spriteId: 'f1_mage',
   kind: CARD_KINDS.MINION,
-  cost: 5,
+  cost: 4,
   attack: 1,
   maxHp: 5,
   speed: 2,
@@ -32,13 +32,14 @@ export const f1Mage: CardBlueprint = {
     {
       id: 'f1_mage_skill_one',
       name: 'Fireball',
-      description: 'Deal 3 damage to an enemy and @Burn(1)@ to nearby enemy minions.',
+      description: `@${FACTION_IDS.F1}(4)@ Deal 3 damage to an enemy and @Burn(1)@ to nearby enemy minions.`,
       cooldown: 3,
-      initialCooldown: 1,
+      initialCooldown: 0,
       iconId: 'fire',
       minTargetCount: 1,
       maxTargetCount: 1,
       keywords: [KEYWORDS.BURN],
+      runes: { f1: 4 },
       isTargetable(point, { session, skill }) {
         return (
           isWithinCells(skill.caster.position, point, 3) &&
@@ -65,7 +66,7 @@ export const f1Mage: CardBlueprint = {
         getAffectedEntities(affectedCells).forEach(entity => {
           if (entity.position.equals(castPoints[0])) {
             skill.caster.dealDamage(3, entity);
-          } else {
+          } else if (!entity.isGeneral) {
             entity.addModifier(burn({ source: skill.caster }));
           }
         });
@@ -74,12 +75,13 @@ export const f1Mage: CardBlueprint = {
     {
       id: 'f1_mage_skill_2',
       name: 'Ice Blast',
-      description: 'Deal 1 damage and @Freeze@ an enemy unit for one turn.',
+      description: `@${FACTION_IDS.F1}(4)@ Deal 1 damage and @Freeze@ an enemy unit for one turn.`,
       iconId: 'ice',
       cooldown: 4,
       minTargetCount: 1,
       maxTargetCount: 1,
-      initialCooldown: 1,
+      initialCooldown: 0,
+      runes: { f1: 4 },
       keywords: [KEYWORDS.FROZEN],
       isTargetable(point, { session, skill }) {
         return (

@@ -18,7 +18,7 @@ export const f1Dancer: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cost: 4,
   attack: 2,
-  maxHp: 8,
+  maxHp: 6,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.NIMBLE, KEYWORDS.CELERITY],
@@ -43,7 +43,7 @@ export const f1Dancer: CardBlueprint = {
       isInAreaOfEffect(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
       },
-      onUse({ skill, affectedCells }) {
+      onUse({ skill }) {
         skill.caster.addModifier(fury({ source: skill.caster, duration: 2 }));
         skill.caster.addModifier(elusive({ source: skill.caster, duration: 2 }));
       }

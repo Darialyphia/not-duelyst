@@ -5,7 +5,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { isCastPoint, isWithinCells } from '../../../utils/targeting';
 import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS, FACTION_IDS } from '../../card-enums';
 import { neutralAirElemental } from '../neutral/air-elemental';
 import { neutralEarthElemental } from '../neutral/earth-elemental';
 import { neutralFireElemental } from '../neutral/fire-elemental';
@@ -68,7 +68,7 @@ export const f1ElementalLord: CardBlueprint = {
     {
       id: 'f1_elemental_lord_skill1',
       name: 'Element Conjuration',
-      description: `Summon a @${neutralAirElemental.name}@,@${neutralEarthElemental.name}@,@${neutralFireElemental.name}@ or @${neutralWaterElemental.name}@ nearby this unit.`,
+      description: `@${FACTION_IDS.F1}(4)@ Summon a @${neutralAirElemental.name}@,@${neutralEarthElemental.name}@,@${neutralFireElemental.name}@ or @${neutralWaterElemental.name}@ nearby this unit.`,
       iconId: 'elements',
       cooldown: 3,
       initialCooldown: 0,

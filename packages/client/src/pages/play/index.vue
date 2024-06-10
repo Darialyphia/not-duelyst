@@ -44,7 +44,7 @@ definePageMeta({
 <style scoped lang="postcss">
 .page {
   display: grid;
-  grid-template-columns: 6fr minmax(var(--size-xs), 60ch);
+  grid-template-columns: 6fr minmax(var(--size-xs), 75ch);
   gap: var(--size-7);
 
   min-height: 100vh;

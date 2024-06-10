@@ -191,7 +191,7 @@ header {
 
 .cost {
   position: relative;
-  transform: 0;
+  transform: translateY(var(--size-2));
 
   justify-self: start;
 
@@ -365,7 +365,7 @@ footer {
 
   line-height: 1;
   color: var(--gray-0);
-  text-align: center;
+  text-wrap: balance;
 
   transition: transform 0.3s ease-in;
 }

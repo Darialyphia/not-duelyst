@@ -17,7 +17,7 @@ export const f1Naga: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cost: 4,
   attack: 3,
-  maxHp: 7,
+  maxHp: 6,
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.VIGILANT],

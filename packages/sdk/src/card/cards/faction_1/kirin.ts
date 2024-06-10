@@ -1,12 +1,12 @@
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import { flying, ranged } from '../../../modifier/modifier-utils';
+import { flying } from '../../../modifier/modifier-utils';
 
 export const f1Kirin: CardBlueprint = {
   id: 'f1_kirin',
   name: 'F1 Kirin',
-  description: '@Flying@.\n@Ranged(1)@.',
+  description: '@Flying@.',
   collectable: false,
   rarity: RARITIES.BASIC,
   faction: FACTIONS.F1,
@@ -21,7 +21,6 @@ export const f1Kirin: CardBlueprint = {
   keywords: [KEYWORDS.FLYING, KEYWORDS.RANGED],
   onPlay({ entity }) {
     entity.addModifier(flying({ source: entity }));
-    entity.addModifier(ranged({ source: entity, range: 1 }));
   },
   skills: []
 };
