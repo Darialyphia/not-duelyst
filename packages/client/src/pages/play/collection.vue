@@ -90,7 +90,10 @@ const editLoadout = (loadout: LoadoutDto) => {
           @remove="removeCardFromLoadout($event)"
           @set-pedestal="
             ({ id, pedestalId }) => {
-              formValues!.cards.find(c => c.id === id)!.pedestalId = pedestalId;
+              formValues!.cards.forEach(card => {
+                if (card.id !== id) return;
+                card.pedestalId = pedestalId;
+              });
             }
           "
         />
