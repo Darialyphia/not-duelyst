@@ -22,7 +22,7 @@ serverSession.onUpdate((action, opts) => {
   if (isPlaying.value) {
     setTimeout(() => {
       next();
-    }, 1000);
+    }, 2000);
   }
 });
 
@@ -35,7 +35,6 @@ const next = () => {
     isPlaying.value = false;
     return;
   }
-  console.log(currentStep.value, parsedReplay.length);
   serverSession.dispatch(parsedReplay[currentStep.value]);
   currentStep.value++;
 };
