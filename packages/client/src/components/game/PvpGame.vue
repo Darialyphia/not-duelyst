@@ -38,9 +38,8 @@ const { error } = useGameSocket({
         .then(currentGame => {
           const session = ClientSession.create(
             serializedState,
-            currentGame.seed,
             fx.ctx,
-            game.value?.players.find(
+            currentGame.players.find(
               player => player.gamePlayerId === game.value?.winnerId
             )?._id
           );

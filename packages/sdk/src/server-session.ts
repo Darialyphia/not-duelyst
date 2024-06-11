@@ -2,16 +2,13 @@ import { noopFXContext } from './fx-system';
 import { GameSession, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import type { FxEvent } from './client-session';
+import { ServerRngSystem } from './rng-system';
 
 export class ServerSession extends GameSession {
   fxEvents: FxEvent[] = [];
 
   static create(state: SerializedGameState, seed: string) {
-    return new ServerSession(state, {
-      seed,
-      isAuthoritative: true,
-      fxSystem: noopFXContext
-    });
+    return new ServerSession(state, new ServerRngSystem(seed), noopFXContext, {});
   }
 
   setup() {
@@ -50,10 +47,16 @@ export class ServerSession extends GameSession {
     });
   }
 
-  onUpdate(cb: (action: SerializedAction, opts: { fxEvents: FxEvent[] }) => void) {
+  onUpdate(
+    cb: (
+      action: SerializedAction,
+      opts: { fxEvents: FxEvent[]; rngValues: number[] }
+    ) => void
+  ) {
     this.on('scheduler:flushed', () => {
       cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
-        fxEvents: this.fxEvents
+        fxEvents: this.fxEvents,
+        rngValues: this.rngSystem.values
       });
     });
   }

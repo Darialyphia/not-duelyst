@@ -29,8 +29,8 @@ const { error } = useGameSocket({
 
       until(game)
         .toBeTruthy()
-        .then(currentGame => {
-          const session = ClientSession.create(serializedState, currentGame.seed, fx.ctx);
+        .then(() => {
+          const session = ClientSession.create(serializedState, fx.ctx);
 
           session.onReady(() => {
             gameSession.value = session;

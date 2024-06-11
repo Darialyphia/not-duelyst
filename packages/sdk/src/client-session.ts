@@ -4,6 +4,7 @@ import type { FXSystem } from './fx-system';
 import { GameSession, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import { match } from 'ts-pattern';
+import { ClientRngSystem } from './rng-system';
 
 export type FxEvent =
   | { type: 'entity:destroyed'; payload: { entityId: EntityId } }
@@ -13,13 +14,10 @@ export type FxEvent =
   | { type: 'entity:retaliate'; payload: { entityId: EntityId; targetId: EntityId } };
 
 export class ClientSession extends GameSession {
-  static create(
-    state: SerializedGameState,
-    seed: string,
-    fxSystem: FXSystem,
-    winnerId?: string
-  ) {
-    return new ClientSession(state, { seed, isAuthoritative: false, fxSystem, winnerId });
+  static create(state: SerializedGameState, fxSystem: FXSystem, winnerId?: string) {
+    const rngSystem = new ClientRngSystem();
+    rngSystem.values = state.rng.values;
+    return new ClientSession(state, rngSystem, fxSystem, { winnerId });
   }
 
   private async handleFxEvents(events: FxEvent[]) {
@@ -81,7 +79,11 @@ export class ClientSession extends GameSession {
     }
   }
 
-  dispatch(action: SerializedAction, meta: { fxEvents: FxEvent[] } = { fxEvents: [] }) {
+  dispatch(
+    action: SerializedAction,
+    meta: { fxEvents: FxEvent[]; rngValues: number[] } = { fxEvents: [], rngValues: [] }
+  ) {
+    this.rngSystem.values = meta.rngValues;
     this.handleFxEvents(meta.fxEvents).then(() => {
       super.dispatch(action);
     });

@@ -15,7 +15,7 @@ const parsedReplay = parse(replay);
 const fx = useFXProvider();
 const parsedState = parse(initialState);
 const serverSession = ServerSession.create(parsedState, game.seed);
-const clientSession = ClientSession.create(parsedState, game.seed, fx.ctx);
+const clientSession = ClientSession.create(serverSession.serialize(), fx.ctx);
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 

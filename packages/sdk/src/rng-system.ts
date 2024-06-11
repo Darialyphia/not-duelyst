@@ -1,10 +1,47 @@
+import { isDefined } from '@game/shared';
 import randoomSeed from 'seedrandom';
 
-export class RNGSystem {
-  private rng!: randoomSeed.PRNG;
+export type RngSystem = {
+  nextInt(max: number): number;
+  next(): number;
+  serialize(): {
+    values: number[];
+  };
+  values: number[];
+};
 
-  setup(seed: string) {
+export class ServerRngSystem implements RngSystem {
+  private rng: randoomSeed.PRNG;
+  values: number[] = [];
+
+  constructor(seed: string) {
     this.rng = randoomSeed(seed);
+  }
+
+  next() {
+    const val = this.rng();
+    this.values.push(val);
+    return val;
+  }
+
+  nextInt(max: number) {
+    return Math.round(this.next() * max);
+  }
+
+  serialize() {
+    return { values: this.values };
+  }
+}
+
+export class ClientRngSystem implements RngSystem {
+  values: number[] = [];
+  private index = 0;
+
+  private rng() {
+    const i = this.index++;
+    const val = this.values[i];
+    if (!isDefined(val)) throw new Error('Missing rng value');
+    return val;
   }
 
   nextInt(max: number) {
@@ -13,5 +50,11 @@ export class RNGSystem {
 
   next() {
     return this.rng();
+  }
+
+  serialize() {
+    return {
+      values: []
+    };
   }
 }

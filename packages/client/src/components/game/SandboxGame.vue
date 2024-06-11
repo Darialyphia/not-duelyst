@@ -18,6 +18,9 @@ const state: SerializedGameState = {
   history: [],
   entities: [],
   map: testMap,
+  rng: {
+    values: []
+  },
   players: [
     {
       id: '1',
@@ -43,9 +46,9 @@ const state: SerializedGameState = {
 };
 
 const fx = useFXProvider();
-const _seed = seed ?? nanoid();
-const serverSession = ServerSession.create(state, _seed);
-const clientSession = ClientSession.create(state, _seed, fx.ctx);
+
+const serverSession = ServerSession.create(state, seed ?? nanoid());
+const clientSession = ClientSession.create(serverSession.serialize(), fx.ctx);
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 });

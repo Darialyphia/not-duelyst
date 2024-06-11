@@ -154,6 +154,9 @@ export class Game {
         player1StartPosition: this.map.startPositions[0],
         player2StartPosition: this.map.startPositions[1],
         cells: parse(this.map.cells)
+      },
+      rng: {
+        values: []
       }
     };
   }

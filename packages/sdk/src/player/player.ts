@@ -128,7 +128,6 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   setup() {
-    console.log(this.options);
     this.cards = this.options.deck.map((card, index) => {
       return new Card(this.session, index, card, this.id);
     });

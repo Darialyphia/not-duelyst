@@ -136,6 +136,9 @@ export const getReplayInitialState = async (
       player1StartPosition: map!.startPositions[0],
       player2StartPosition: map!.startPositions[1],
       cells: parse(map!.cells)
+    },
+    rng: {
+      values: []
     }
   };
 };

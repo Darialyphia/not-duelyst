@@ -19,7 +19,7 @@ import {
 } from './player/player';
 import { ActionSystem } from './action/action-system';
 import { noopFXContext, type FXSystem } from './fx-system';
-import { RNGSystem } from './rng-system';
+import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
 import { CARD_EVENTS, type CardEvent, type CardEventMap } from './card/card';
 
 export type SerializedGameState = {
@@ -27,6 +27,9 @@ export type SerializedGameState = {
   entities: Array<SerializedEntity>;
   players: [SerializedPlayer, SerializedPlayer];
   history: SerializedAction[];
+  rng: {
+    values: number[];
+  };
 };
 
 type GlobalEntityEvents = {
@@ -54,25 +57,17 @@ export type GameEvent = keyof GameEventMap;
 
 export class GameSession extends EventEmitter<GameEventMap> {
   static createServerSession(state: SerializedGameState, seed: string) {
-    return new GameSession(state, {
-      seed,
-      isAuthoritative: true,
-      fxSystem: noopFXContext
-    });
+    return new GameSession(state, new ServerRngSystem(seed), noopFXContext, {});
   }
 
   static createClientSession(
     state: SerializedGameState,
-    seed: string,
+
     fxSystem: FXSystem,
     winnerId?: string
   ) {
-    return new GameSession(state, { seed, isAuthoritative: false, fxSystem, winnerId });
+    return new GameSession(state, new ClientRngSystem(), fxSystem, { winnerId });
   }
-
-  readonly isAuthoritative: boolean;
-
-  seed: string;
 
   actionSystem = new ActionSystem(this);
 
@@ -82,29 +77,21 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
   boardSystem = new BoardSystem(this);
 
-  rngSystem = new RNGSystem();
-
   isReady = false;
-
-  fxSystem = noopFXContext;
 
   winnerId: Nullable<string> = null;
 
   protected constructor(
     private initialState: SerializedGameState,
+    public rngSystem: RngSystem,
+    public fxSystem: FXSystem,
     options: {
-      isAuthoritative: boolean;
-      seed: string;
-      fxSystem: FXSystem;
       winnerId?: string;
     }
   ) {
     super();
-    this.isAuthoritative = options.isAuthoritative;
 
-    this.seed = options.seed;
     this.winnerId = options.winnerId;
-    this.fxSystem = options.fxSystem;
     this.setup();
     this.emit('game:ready');
     this.isReady = true;
@@ -130,7 +117,6 @@ export class GameSession extends EventEmitter<GameEventMap> {
     if (this.isReady) return;
     this.setupStarEvents();
 
-    this.rngSystem.setup(this.seed);
     this.boardSystem.setup(this.initialState.map);
     this.playerSystem.setup(this.initialState.players);
     this.entitySystem.setup(this.initialState.entities);
@@ -156,6 +142,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
   serialize(): SerializedGameState {
     return {
       ...this.initialState,
+      rng: this.rngSystem.serialize(),
       history: this.actionSystem.serialize()
     };
   }
