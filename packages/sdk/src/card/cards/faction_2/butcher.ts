@@ -25,7 +25,7 @@ export const f2Butcher: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.FEARSOME],
-  async onPlay({ entity, session }) {
+  onPlay({ entity, session }) {
     entity.addModifier(fearsome({ source: entity }));
     entity.addModifier(
       createEntityModifier({
@@ -86,8 +86,8 @@ export const f2Butcher: CardBlueprint = {
       isInAreaOfEffect(point, { castPoints }) {
         return !!castPoints[0] && Vec3.fromPoint3D(point).equals(castPoints[0]);
       },
-      async onUse({ skill, session, castPoints }) {
-        await skill.caster.move([castPoints[0]]);
+      onUse({ skill, session, castPoints }) {
+        skill.caster.move([castPoints[0]]);
         session.entitySystem
           .getEntityAt(castPoints[1])!
           .addModifier(vulnerable({ source: skill.caster, duration: 2 }));

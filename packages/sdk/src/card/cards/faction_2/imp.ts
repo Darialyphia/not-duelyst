@@ -27,7 +27,7 @@ export const f2Imp: CardBlueprint = {
       return isEmpty(session, point) && isWithinCells(summonedPoint, point, 1);
     }
   },
-  async onPlay({ followup, entity }) {
+  onPlay({ followup, entity }) {
     const [point] = followup;
     if (!point) return;
 
@@ -35,7 +35,7 @@ export const f2Imp: CardBlueprint = {
       blueprintId: f2Imp.id,
       pedestalId: entity.card.pedestalId
     });
-    await card.play({
+    card.play({
       position: point,
       targets: []
     });

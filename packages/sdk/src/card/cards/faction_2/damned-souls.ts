@@ -21,16 +21,14 @@ export const f2DamnedSouls: CardBlueprint = {
   speed: 2,
   range: 1,
   keywords: [KEYWORDS.LAST_WILL],
-  async onPlay({ session, entity }) {
+  onPlay({ session, entity }) {
     entity.addModifier(
       lastWill({
         source: entity,
-        async handler() {
-          await Promise.all(
-            session.entitySystem
-              .getNearbyEntities(entity.position)
-              .map(nearby => entity.dealDamage(4, nearby))
-          );
+        handler() {
+          session.entitySystem
+            .getNearbyEntities(entity.position)
+            .forEach(nearby => entity.dealDamage(4, nearby));
         }
       })
     );

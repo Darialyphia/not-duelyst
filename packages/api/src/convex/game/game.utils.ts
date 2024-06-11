@@ -7,6 +7,7 @@ import { config } from '@game/sdk/src/config';
 import { parse } from 'zipson';
 import { toGameDto } from './game.mapper';
 import { internal } from '../_generated/api';
+import type { SerializedGameState } from '@game/sdk';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -93,7 +94,7 @@ export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game)
 export const getReplayInitialState = async (
   { db }: { db: QueryCtx['db'] },
   game: Game
-) => {
+): Promise<SerializedGameState> => {
   const players = (await getGamePlayers({ db }, game)).sort(a =>
     a._id === game.firstPlayer ? -1 : 1
   );
@@ -107,10 +108,10 @@ export const getReplayInitialState = async (
       {
         id: players[0]._id,
         isPlayer1: true,
-        name: players[0].name,
+        name: players[0].name!,
         currentGold: config.PLAYER_1_STARTING_GOLD,
         maxGold: config.PLAYER_1_STARTING_GOLD,
-        cards: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
+        deck: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
           pedestalId,
           blueprintId: id
         })),
@@ -119,10 +120,10 @@ export const getReplayInitialState = async (
       {
         id: players[1]._id,
         isPlayer1: false,
-        name: players[1].name,
+        name: players[1].name!,
         currentGold: config.PLAYER_1_STARTING_GOLD,
         maxGold: config.PLAYER_1_STARTING_GOLD,
-        cards: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
+        deck: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
           pedestalId,
           blueprintId: id
         })),

@@ -21,14 +21,14 @@ export const f2DoomSayer: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.DEATHWATCH],
-  async onPlay({ entity }) {
+  onPlay({ entity }) {
     entity.addModifier(ranged({ range: 1, source: entity }));
     entity.addModifier(
       deathWatch({
         source: entity,
-        async handler(_entity) {
+        handler(_entity) {
           if (!_entity.isGeneral && isWithinCells(entity.position, _entity.position, 3)) {
-            await entity.dealDamage(1, entity.player.opponent.general);
+            entity.dealDamage(1, entity.player.opponent.general);
           }
         }
       })

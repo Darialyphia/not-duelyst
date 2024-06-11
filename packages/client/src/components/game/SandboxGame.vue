@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { GameSession, type SerializedGameState } from '@game/sdk';
+import {
+  ClientSession,
+  GameSession,
+  ServerSession,
+  type SerializedGameState
+} from '@game/sdk';
 import { nanoid } from 'nanoid';
 
-const { player1Loadout, player2Loadout } = defineProps<{
+const { player1Loadout, player2Loadout, seed } = defineProps<{
   player1Loadout: LoadoutDto;
   player2Loadout: LoadoutDto;
   seed?: string;
@@ -38,17 +43,21 @@ const state: SerializedGameState = {
 };
 
 const fx = useFXProvider();
-const session = GameSession.createClientSession(state, nanoid(), fx.ctx);
-
+const _seed = seed ?? nanoid();
+const serverSession = ServerSession.create(state, _seed);
+const clientSession = ClientSession.create(state, _seed, fx.ctx);
+serverSession.onUpdate((action, opts) => {
+  clientSession.dispatch(action, opts);
+});
 const dispatch = (
-  type: Parameters<(typeof session)['dispatch']>[0]['type'],
+  type: Parameters<(typeof serverSession)['dispatch']>[0]['type'],
   payload: any
 ) => {
-  session.dispatch({
+  serverSession.dispatch({
     type,
     payload: {
       ...payload,
-      playerId: payload?.playerId ?? session.playerSystem.activePlayer.id
+      playerId: payload?.playerId ?? serverSession.playerSystem.activePlayer.id
     }
   });
 };
@@ -60,7 +69,7 @@ const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
   <GameRoot
     :p1-emote="p1Emote"
     :p2-emote="p2Emote"
-    :game-session="session"
+    :game-session="clientSession"
     :player-id="null"
     :game-type="GAME_TYPES.SANDBOX"
     @move="dispatch('move', $event)"

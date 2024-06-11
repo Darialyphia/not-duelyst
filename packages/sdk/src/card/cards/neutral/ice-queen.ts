@@ -39,13 +39,11 @@ export const neutralIceQueen: CardBlueprint = {
       isInAreaOfEffect(point, { session, skill }) {
         return isNearbyEnemy(session, skill.caster, point);
       },
-      async onUse({ skill, affectedCells }) {
-        await Promise.all(
-          getAffectedEntities(affectedCells).map(async entity => {
-            await skill.caster.dealDamage(1, entity);
-            entity.addModifier(frozen({ duration: 1, source: skill.caster }));
-          })
-        );
+      onUse({ skill, affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(entity => {
+          skill.caster.dealDamage(1, entity);
+          entity.addModifier(frozen({ duration: 1, source: skill.caster }));
+        });
       }
     }
   ]

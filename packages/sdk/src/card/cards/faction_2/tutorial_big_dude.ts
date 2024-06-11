@@ -40,7 +40,7 @@ export const f2TutorialBigDude: CardBlueprint = {
       },
       minTargetCount: 1,
       maxTargetCount: 1,
-      async onUse({ affectedCells }) {
+      onUse({ affectedCells }) {
         getAffectedEntities(affectedCells).forEach(entity => {
           entity.addModifier(
             createEntityModifier({

@@ -128,6 +128,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   setup() {
+    console.log(this.options);
     this.cards = this.options.deck.map((card, index) => {
       return new Card(this.session, index, card, this.id);
     });
@@ -240,13 +241,13 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     });
   }
 
-  async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
+  playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
     const card = this.hand[index];
     if (!card) return;
 
     this.currentGold -= card.cost;
     this.hand.splice(index, 1);
-    await card.play(opts);
+    card.play(opts);
   }
 
   getCardFromHand(index: CardIndex) {

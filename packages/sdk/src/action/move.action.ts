@@ -23,7 +23,7 @@ export class MoveAction extends GameAction<typeof schema> {
     return this.session.boardSystem.getPathTo(this.entity, this.payload.position);
   }
 
-  async impl() {
+  impl() {
     if (!this.entity) {
       return this.printError(`Entity not found: ${this.payload.entityId}`);
     }
@@ -38,6 +38,6 @@ export class MoveAction extends GameAction<typeof schema> {
       return this.printError(`Entity ${this.entity.id} cannot move to target cell.`);
     }
 
-    await this.entity.move(this.path.path);
+    this.entity.move(this.path.path);
   }
 }

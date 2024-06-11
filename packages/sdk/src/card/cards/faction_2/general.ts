@@ -45,29 +45,27 @@ export const f2General: CardBlueprint = {
       isInAreaOfEffect(point, options) {
         return isCastPoint(point, options.castPoints);
       },
-      async onUse({ skill, affectedCells }) {
-        await Promise.all(
-          getAffectedEntities(affectedCells).map(target => {
-            target.addModifier(
-              createEntityModifier({
-                visible: true,
-                name: 'Bloodlust',
-                description: '+2 Attack',
-                stackable: false,
-                source: skill.caster,
-                mixins: [
-                  modifierEntityInterceptorMixin({
-                    key: 'attack',
-                    keywords: [],
-                    interceptor: () => val => val + 1
-                  })
-                ]
-              })
-            );
+      onUse({ skill, affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(target => {
+          target.addModifier(
+            createEntityModifier({
+              visible: true,
+              name: 'Bloodlust',
+              description: '+2 Attack',
+              stackable: false,
+              source: skill.caster,
+              mixins: [
+                modifierEntityInterceptorMixin({
+                  key: 'attack',
+                  keywords: [],
+                  interceptor: () => val => val + 1
+                })
+              ]
+            })
+          );
 
-            return skill.caster.dealDamage(1, target);
-          })
-        );
+          return skill.caster.dealDamage(1, target);
+        });
       }
     }
   ]

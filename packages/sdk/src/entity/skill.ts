@@ -72,8 +72,8 @@ export class Skill {
       );
     });
   }
+
   get canUse(): boolean {
-    console.log(this.blueprint.id, this.hasCorrectRunes);
     const baseValue =
       this.currentCooldown === 0 &&
       this.hasCorrectRunes &&

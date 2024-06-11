@@ -154,7 +154,7 @@ export class Card extends EventEmitter implements Serializable {
     this.emit(CARD_EVENTS.DRAWN, this);
   }
 
-  async play(ctx: { position: Point3D; targets: Point3D[] }) {
+  play(ctx: { position: Point3D; targets: Point3D[] }) {
     this.emit(CARD_EVENTS.BEFORE_PLAYED, this);
     const entity = this.session.entitySystem.addEntity({
       cardIndex: this.index,
@@ -162,7 +162,7 @@ export class Card extends EventEmitter implements Serializable {
       position: ctx.position
     });
 
-    await this.blueprint.onPlay?.({
+    this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       entity,

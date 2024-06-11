@@ -22,7 +22,7 @@ export const f2MoltenFist: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.BURN],
-  async onPlay({ entity }) {
+  onPlay({ entity }) {
     entity.addModifier(fury({ source: entity }));
 
     entity.addModifier(
@@ -68,7 +68,7 @@ export const f2MoltenFist: CardBlueprint = {
           .getNearbyAllies(entity!)
           .some(ally => ally.position.equals(point));
       },
-      async onUse({ session, skill, castPoints }) {
+      onUse({ session, skill, castPoints }) {
         const target = session.entitySystem.getEntityAt(castPoints[0]);
         if (!target) return;
 
@@ -87,7 +87,7 @@ export const f2MoltenFist: CardBlueprint = {
           });
         });
 
-        await skill.caster.dealDamage(2, target);
+        skill.caster.dealDamage(2, target);
       }
     }
   ]

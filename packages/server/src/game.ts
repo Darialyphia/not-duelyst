@@ -3,7 +3,8 @@ import {
   config,
   type Player,
   type SerializedGameState,
-  type GameAction
+  type GameAction,
+  ServerSession
 } from '@game/sdk';
 import type { GameServer, GameSocket } from './types';
 import type { Defined } from '@game/shared';
@@ -12,12 +13,14 @@ import { api } from '@game/api';
 import { parse, stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
+import type { SerializedAction } from '@game/sdk/src/action/action';
+import type { FxEvent } from '@game/sdk/src/client-session';
 
 type GameDto = Defined<FunctionReturnType<typeof api.games.getCurrent>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
 
 export class Game {
-  readonly session: GameSession;
+  readonly session: ServerSession;
   readonly minPlayers = 2;
   private playerJoined = new Set<string>();
   private isStarted = false;
@@ -32,17 +35,14 @@ export class Game {
     private map: MapDto,
     public roomId: string
   ) {
-    this.session = GameSession.createServerSession(
-      this.getInitialState(),
-      this.game.seed
-    );
+    this.session = ServerSession.create(this.getInitialState(), this.game.seed);
     this.session.on('game:error', this.onGameError.bind(this));
-    this.session.on('game:action', this.onGameAction.bind(this));
+    this.session.onUpdate(this.onGameAction.bind(this));
     this.session.on('game:ended', this.onGameEnded.bind(this));
   }
 
-  private onGameAction(action: GameAction<any>) {
-    this.io.in(this.game._id).emit('game:action', action.serialize());
+  private onGameAction(action: SerializedAction, ctx: { fxEvents: FxEvent[] }) {
+    this.io.in(this.game._id).emit('game:action', { action, ctx });
   }
 
   private onGameError(err: Error) {

@@ -13,12 +13,10 @@ import { structure, surge } from '../../../modifier/modifier-utils';
 import type { Entity } from '../../../entity/entity';
 import type { GameSession } from '../../../game-session';
 
-const dealDamage = async (session: GameSession, entity: Entity) => {
-  await Promise.all(
-    session.entitySystem.getNearbyEnemies(entity).map(enemy => {
-      entity.dealDamage(1, enemy);
-    })
-  );
+const dealDamage = (session: GameSession, entity: Entity) => {
+  session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
+    entity.dealDamage(1, enemy);
+  });
 };
 
 export const f1ElementalConfluence: CardBlueprint = {
@@ -130,13 +128,11 @@ export const f1ElementalConfluence: CardBlueprint = {
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
-      async onUse({ session, skill, affectedCells }) {
+      onUse({ session, skill, affectedCells }) {
         const [target] = getAffectedEntities(affectedCells);
         const oldPos = target.position.clone();
-        await Promise.all([
-          target.move([skill.caster.position], true),
-          skill.caster.move([oldPos], true)
-        ]);
+        target.move([skill.caster.position], true);
+        skill.caster.move([oldPos], true);
 
         dealDamage(session, skill.caster);
       }

@@ -15,16 +15,8 @@ type ModifierBase = {
   id: ModifierId;
   source: Entity;
   keywords: Keyword[];
-  onApplied(
-    session: GameSession,
-    attachedTo: Entity,
-    modifier: EntityModifier
-  ): MaybePromise<void>;
-  onRemoved(
-    session: GameSession,
-    attachedTo: Entity,
-    modifier: EntityModifier
-  ): MaybePromise<void>;
+  onApplied(session: GameSession, attachedTo: Entity, modifier: EntityModifier): void;
+  onRemoved(session: GameSession, attachedTo: Entity, modifier: EntityModifier): void;
 };
 
 type VisibilityMixin =
@@ -39,11 +31,7 @@ type StackableMixin =
   | {
       stackable: false;
       stacks?: never;
-      onReapply(
-        session: GameSession,
-        attachedTo: Entity,
-        modifier: EntityModifier
-      ): MaybePromise<void>;
+      onReapply(session: GameSession, attachedTo: Entity, modifier: EntityModifier): void;
     };
 
 export type EntityModifier = Prettify<ModifierBase & StackableMixin & VisibilityMixin>;
@@ -77,17 +65,17 @@ export const createEntityModifier = ({
           .filter(isDefined)
       )
     ],
-    async onApplied(session, attachedTo) {
+    onApplied(session, attachedTo) {
       for (const mixin of mixins) {
         mixin.onApplied?.(session, attachedTo, this);
       }
     },
-    async onRemoved(session, attachedTo) {
+    onRemoved(session, attachedTo) {
       for (const mixin of mixins) {
         mixin.onRemoved?.(session, attachedTo, this);
       }
     },
-    async onReapply(session, attachedTo) {
+    onReapply(session, attachedTo) {
       for (const mixin of mixins) {
         mixin.onReapply?.(session, attachedTo, this);
       }

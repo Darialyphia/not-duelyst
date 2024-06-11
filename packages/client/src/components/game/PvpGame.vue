@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { GameSession, type SerializedGameState } from '@game/sdk';
+import { ClientSession, GameSession, type SerializedGameState } from '@game/sdk';
+import type { SerializedAction } from '@game/sdk/src/action/action';
 import { type Socket } from 'socket.io-client';
 
 const route = useRoute();
@@ -13,7 +14,7 @@ const { data: game, isLoading: isGameLoading } = useConvexAuthedQuery(
 const { data: me, isLoading: isMeLoading } = useConvexAuthedQuery(api.users.me, {});
 
 const socket = ref<Socket>();
-const gameSession = shallowRef<GameSession>();
+const gameSession = shallowRef<ClientSession>();
 
 const dispatch = (type: Parameters<GameSession['dispatch']>[0]['type'], payload: any) => {
   socket.value?.emit('game:action', { type, payload });
@@ -35,7 +36,7 @@ const { error } = useGameSocket({
       until(game)
         .toBeTruthy()
         .then(currentGame => {
-          const session = GameSession.createClientSession(
+          const session = ClientSession.create(
             serializedState,
             currentGame.seed,
             fx.ctx,
@@ -48,12 +49,15 @@ const { error } = useGameSocket({
             gameSession.value = session;
           });
 
-          socket.value?.on('game:action', (arg: any) => {
-            session.dispatch(arg);
-            if (arg.type === 'endTurn') {
-              timeRemainingForTurn.value = 0;
+          socket.value?.on(
+            'game:action',
+            ({ action, ctx }: { action: SerializedAction; ctx: any }) => {
+              session.dispatch(action, ctx);
+              if (action.type === 'endTurn') {
+                timeRemainingForTurn.value = 0;
+              }
             }
-          });
+          );
 
           socket.value?.on('time-remaining', time => {
             timeRemainingForTurn.value = time;

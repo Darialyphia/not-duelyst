@@ -6,7 +6,7 @@ import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import GameView from './GameView.vue';
 import { Stage } from '@pixi/layers';
-import { CARDS, type GameSession } from '@game/sdk';
+import { CARDS, type ClientSession } from '@game/sdk';
 // import type { GameEmits } from '../../composables/useGame';
 import cursorUrl from '../../assets/cursors/cursor.png';
 import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
@@ -17,7 +17,7 @@ import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
 const { gameSession, playerId, gameType, p1Emote, p2Emote } = defineProps<{
-  gameSession: GameSession;
+  gameSession: ClientSession;
   playerId: string | null;
   gameType: GameType;
   p1Emote: Nullable<string>;

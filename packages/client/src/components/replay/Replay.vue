@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import { GameSession } from '@game/sdk';
+import { ClientSession, ServerSession } from '@game/sdk';
 import { parse } from 'zipson';
 
 const { game, replay, initialState } = defineProps<{
@@ -13,33 +13,32 @@ const { game, replay, initialState } = defineProps<{
 const parsedReplay = parse(replay);
 
 const fx = useFXProvider();
-const session = GameSession.createClientSession(parse(initialState), game.seed, fx.ctx);
+const parsedState = parse(initialState);
+const serverSession = ServerSession.create(parsedState, game.seed);
+const clientSession = ClientSession.create(parsedState, game.seed, fx.ctx);
+serverSession.onUpdate((action, opts) => {
+  clientSession.dispatch(action, opts);
+
+  if (isPlaying.value) {
+    setTimeout(() => {
+      next();
+    }, 1000);
+  }
+});
 
 const currentStep = ref(0);
 const isPlaying = ref(false);
 
 const next = () => {
   if (!parsedReplay) return;
-  console.log('next');
   if (currentStep.value === parsedReplay.length) {
     isPlaying.value = false;
     return;
   }
   console.log(currentStep.value, parsedReplay.length);
-  session.dispatch(parsedReplay[currentStep.value]);
+  serverSession.dispatch(parsedReplay[currentStep.value]);
   currentStep.value++;
 };
-
-session.on('game:action', action => {
-  // temporary hack while we figure out a way to notify when it is "safe" to get to the next setup
-  // currently some card effects have unawaited promises etc so it can fire too soon and lead to illegal moves
-  const timeout = action.name === 'useSkill' ? 2000 : 1000;
-  if (isPlaying.value) {
-    setTimeout(() => {
-      next();
-    }, timeout);
-  }
-});
 
 const me = useConvexAuthedQuery(api.users.me, {});
 const gameType = ref<GameType>(GAME_TYPES.SPECTATOR);
@@ -47,15 +46,15 @@ const gameType = ref<GameType>(GAME_TYPES.SPECTATOR);
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
 
 const dispatch = (
-  type: Parameters<(typeof session)['dispatch']>[0]['type'],
+  type: Parameters<(typeof serverSession)['dispatch']>[0]['type'],
   payload: any
 ) => {
   if (gameType.value === GAME_TYPES.SPECTATOR) return;
-  session.dispatch({
+  serverSession.dispatch({
     type,
     payload: {
       ...payload,
-      playerId: payload?.playerId ?? session.playerSystem.activePlayer.id
+      playerId: payload?.playerId ?? serverSession.playerSystem.activePlayer.id
     }
   });
 };
@@ -64,7 +63,7 @@ const dispatch = (
 <template>
   <div class="relative">
     <GameRoot
-      :game-session="session"
+      :game-session="clientSession"
       :player-id="null"
       :game-type="gameType"
       :p1-emote="p1Emote"

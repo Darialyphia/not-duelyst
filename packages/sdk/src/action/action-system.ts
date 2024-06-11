@@ -1,6 +1,6 @@
 import { GameAction, type DefaultSchema, type SerializedAction } from './action';
 import { GameSession } from '../game-session';
-import type { Constructor, MaybePromise, Serializable } from '@game/shared';
+import type { Constructor, Serializable } from '@game/shared';
 import { AttackAction } from './attack.action';
 import { EndTurnAction } from './end-turn.action';
 import { MoveAction } from './move.action';
@@ -36,7 +36,7 @@ const actionMap = validateActionMap({
   getGold: GetGoldAction
 });
 
-type ScheduledAction = () => MaybePromise<void>;
+type ScheduledAction = () => void;
 export class ActionSystem implements Serializable {
   private history: GameAction<any>[] = [];
   private isRunning = false;
@@ -45,9 +45,9 @@ export class ActionSystem implements Serializable {
 
   constructor(private session: GameSession) {}
 
-  async setup(rawHistory: SerializedAction[]) {
+  setup(rawHistory: SerializedAction[]) {
     this.scheduledActions = rawHistory.map(action => () => this.handleAction(action));
-    await this.flushSchedule();
+    this.flushSchedule();
   }
 
   private isActionType(type: string): type is keyof typeof actionMap {
@@ -61,7 +61,7 @@ export class ActionSystem implements Serializable {
     }
   }
 
-  private async flushSchedule() {
+  private flushSchedule() {
     if (this.isRunning) {
       console.warn('already flushing !');
       return;
@@ -70,7 +70,7 @@ export class ActionSystem implements Serializable {
     try {
       for (const fn of this.scheduledActions) {
         try {
-          await fn();
+          fn();
         } catch (err) {
           console.error(err);
         }
@@ -88,12 +88,12 @@ export class ActionSystem implements Serializable {
     this.schedule(() => this.handleAction({ type, payload }));
   }
 
-  async handleAction({ type, payload }: SerializedAction) {
+  handleAction({ type, payload }: SerializedAction) {
     if (!this.isActionType(type)) return;
     console.log(`%c[ACTION:${type}]`, 'color: blue', payload);
     const ctor = actionMap[type];
     const action = new ctor(payload, this.session);
-    await action.execute();
+    action.execute();
     this.history.push(action);
     this.session.emit('game:action', action);
   }

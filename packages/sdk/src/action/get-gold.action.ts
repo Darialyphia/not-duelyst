@@ -7,7 +7,7 @@ export class GetGoldAction extends GameAction<typeof schema> {
 
   protected payloadSchema = schema;
 
-  async impl() {
+  impl() {
     if (!this.player.canPerformResourceAction) {
       return this.printError('Cannot get more gold this turn.');
     }

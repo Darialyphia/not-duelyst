@@ -25,7 +25,7 @@ export const f2Tormentor: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.FURY, KEYWORDS.CALL_TO_ARMS, KEYWORDS.ROOTED],
-  async onPlay({ entity }) {
+  onPlay({ entity }) {
     entity.addModifier(fury({ source: entity }));
   },
   skills: [
@@ -52,14 +52,14 @@ export const f2Tormentor: CardBlueprint = {
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
-      async onUse({ skill, session, affectedCells }) {
+      onUse({ skill, session, affectedCells }) {
         const [target] = getAffectedEntities(affectedCells);
         if (!target) return;
 
         const cell = getCellInFront(session, skill.caster);
         if (!cell) return;
         if (!cell.canSummonAt) return;
-        await target.move([cell], true);
+        target.move([cell], true);
         target.addModifier(rooted({ source: skill.caster, duration: 1 }));
       }
     }

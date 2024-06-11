@@ -90,8 +90,8 @@ export const f1Simurgh: CardBlueprint = {
           return false;
         }
       },
-      async onUse({ affectedCells, skill, castPoints }) {
-        await skill.caster.move([castPoints[0]], true);
+      onUse({ affectedCells, skill, castPoints }) {
+        skill.caster.move([castPoints[0]], true);
         getAffectedEntities(affectedCells).forEach(entity => {
           if (skill.caster.isAlly(entity.id)) return;
           skill.caster.dealDamage(2, entity);

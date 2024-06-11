@@ -1,4 +1,4 @@
-import type { AnyObject, MaybePromise, Nullable } from '@game/shared';
+import type { MaybePromise, Nullable } from '@game/shared';
 import { keyBy } from 'lodash-es';
 import type { GameSession } from '../game-session';
 import type { Entity } from '../entity/entity';
@@ -12,16 +12,8 @@ export type TileBlueprint = {
   name: string;
   description: string;
   spriteId: string;
-  onCreated?: (
-    session: GameSession,
-    entity: Nullable<Entity>,
-    tile: Tile
-  ) => MaybePromise<void>;
-  onDestroyed?: (
-    session: GameSession,
-    entity: Nullable<Entity>,
-    tile: Tile
-  ) => MaybePromise<void>;
+  onCreated?: (session: GameSession, entity: Nullable<Entity>, tile: Tile) => void;
+  onDestroyed?: (session: GameSession, entity: Nullable<Entity>, tile: Tile) => void;
   onEnter?: (session: GameSession, entity: Entity, tile: Tile) => MaybePromise<void>;
   onLeave?: (session: GameSession, entity: Entity, tile: Tile) => MaybePromise<void>;
 };

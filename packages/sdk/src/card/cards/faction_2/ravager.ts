@@ -61,7 +61,7 @@ export const f2Ravager: CardBlueprint = {
 
         return nearest.equals(entity);
       },
-      async onUse({ skill, affectedCells, session, castPoints }) {
+      onUse({ skill, affectedCells, session, castPoints }) {
         const direction = getDirection(skill.caster.position, castPoints[0]);
         const destination = getFarthestWalkable(
           session,
@@ -70,7 +70,7 @@ export const f2Ravager: CardBlueprint = {
         );
         if (!destination) return;
 
-        await skill.caster.move([destination.position.serialize()]);
+        skill.caster.move([destination.position.serialize()]);
         getAffectedEntities(affectedCells).forEach(entity => {
           skill.caster.dealDamage(2, entity);
           entity.addModifier(rooted({ source: skill.caster, duration: 1 }));

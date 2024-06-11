@@ -26,7 +26,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
     protected session: GameSession
   ) {}
 
-  protected abstract impl(): Promise<void>;
+  protected abstract impl(): void;
 
   get player() {
     return this.session.playerSystem.getPlayerById(this.payload.playerId)!;

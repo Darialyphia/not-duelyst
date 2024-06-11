@@ -104,7 +104,10 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
     this.seed = options.seed;
     this.winnerId = options.winnerId;
-    this.setup(options.fxSystem);
+    this.fxSystem = options.fxSystem;
+    this.setup();
+    this.emit('game:ready');
+    this.isReady = true;
   }
 
   private setupStarEvents() {
@@ -115,27 +118,24 @@ export class GameSession extends EventEmitter<GameEventMap> {
       'game:action',
       'game:ready'
     ].forEach(eventName => {
-      this.on(eventName as any, (payload: any) => {
-        // console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b', payload);
+      this.on(eventName as any, () => {
+        console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
         this.emit('*', eventName);
       });
     });
   }
 
-  private async setup(fxSystem: FXSystem) {
+  protected setup() {
     if (this.isReady) return;
-    this.isReady = true;
     this.setupStarEvents();
 
     this.rngSystem.setup(this.seed);
     this.boardSystem.setup(this.initialState.map);
     this.playerSystem.setup(this.initialState.players);
     this.entitySystem.setup(this.initialState.entities);
-    await this.actionSystem.setup(this.initialState.history);
+    this.actionSystem.setup(this.initialState.history);
 
-    this.fxSystem = fxSystem;
-    this.emit('game:ready');
     this.on('entity:after_destroy', e => {
       if (e.isGeneral) {
         this.winnerId = e.player.opponent.id;

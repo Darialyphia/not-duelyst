@@ -35,7 +35,7 @@ export const f2Overseer: CardBlueprint = {
       );
     }
   },
-  async onPlay({ session, followup, entity }) {
+  onPlay({ session, followup, entity }) {
     entity.addModifier(structure(entity));
 
     const [point] = followup;
@@ -45,14 +45,14 @@ export const f2Overseer: CardBlueprint = {
     if (!imp) return;
 
     const position = imp.position.clone();
-    await imp.destroy();
+    imp.destroy();
 
     const card = entity.player.generateCard({
       blueprintId: f2Ravager.id,
       pedestalId: entity.card.pedestalId
     });
 
-    await card.play({
+    card.play({
       position,
       targets: []
     });
@@ -107,16 +107,14 @@ export const f2Overseer: CardBlueprint = {
 
         return cells.some(cell => cell?.position.equals(point));
       },
-      async onUse({ affectedCells, skill }) {
-        await Promise.all(
-          affectedCells.map(cell => {
-            const card = skill.caster.player.generateCard({
-              blueprintId: f2Imp.id,
-              pedestalId: skill.caster.card.pedestalId
-            });
-            return card.play({ position: cell.position, targets: [] });
-          })
-        );
+      onUse({ affectedCells, skill }) {
+        affectedCells.map(cell => {
+          const card = skill.caster.player.generateCard({
+            blueprintId: f2Imp.id,
+            pedestalId: skill.caster.card.pedestalId
+          });
+          return card.play({ position: cell.position, targets: [] });
+        });
       }
     }
   ]

@@ -40,14 +40,14 @@ export class Cell implements Serializable {
     return cell.id === this.id;
   }
 
-  async removeTile() {
+  removeTile() {
     if (this.tile) {
-      await this.tile.destroy();
+      this.tile.destroy();
     }
   }
 
-  async addTile(newTileId: string) {
-    await this.removeTile();
+  addTile(newTileId: string) {
+    this.removeTile();
     this.tile = new Tile(this.session, {
       position: this.position,
       blueprintId: newTileId

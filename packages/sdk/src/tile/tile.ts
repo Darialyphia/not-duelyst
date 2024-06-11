@@ -1,10 +1,4 @@
-import {
-  isDefined,
-  Vec3,
-  type AnyObject,
-  type Nullable,
-  type Point3D
-} from '@game/shared';
+import { Vec3, type AnyObject, type Nullable, type Point3D } from '@game/shared';
 import type { GameSession } from '../game-session';
 import { TILES, type TileblueprintId } from './tile-lookup';
 import type { Entity } from '../entity/entity';
@@ -51,8 +45,8 @@ export class Tile {
     }
   }
 
-  async destroy() {
-    await this.blueprint.onDestroyed?.(this.session, this.occupant, this);
+  destroy() {
+    this.blueprint.onDestroyed?.(this.session, this.occupant, this);
     this.session.boardSystem.getCellAt(this.position)!.tile = null;
   }
 }

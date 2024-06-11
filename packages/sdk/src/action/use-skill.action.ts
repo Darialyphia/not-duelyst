@@ -25,7 +25,7 @@ export class UseSkillAction extends GameAction<typeof schema> {
     return this.session.entitySystem.getEntityById(this.payload.entityId);
   }
 
-  async impl() {
+  impl() {
     if (!this.entity) {
       return this.printError(`Entity not found: ${this.payload.entityId}`);
     }

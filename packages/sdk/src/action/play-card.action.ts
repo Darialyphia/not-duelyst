@@ -31,7 +31,7 @@ export class PlayCardAction extends GameAction<typeof schema> {
     return this.player.getCardFromHand(this.payload.cardIndex);
   }
 
-  async impl() {
+  impl() {
     if (!this.player.canPlayCardAtIndex(this.payload.cardIndex)) {
       return this.printError(
         `Not allowed to play card at index ${this.payload.cardIndex}`
@@ -42,6 +42,6 @@ export class PlayCardAction extends GameAction<typeof schema> {
       return this.printError(`Card not found at index ${this.payload.cardIndex}`);
     }
 
-    await this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
+    this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
   }
 }

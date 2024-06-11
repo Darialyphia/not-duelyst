@@ -40,6 +40,9 @@ export const ENTITY_EVENTS = {
   BEFORE_TAKE_DAMAGE: 'before_take_damage',
   AFTER_TAKE_DAMAGE: 'after_take_damage',
 
+  BEFORE_RETALIATE: 'before_realiate',
+  AFTER_RETALIATE: 'after_realiate',
+
   BEFORE_HEAL: 'before_heal',
   AFTER_HEAL: 'after_heal',
 
@@ -95,6 +98,9 @@ export type EntityEventMap = {
 
   [ENTITY_EVENTS.BEFORE_ATTACK]: [event: AttackEvent];
   [ENTITY_EVENTS.AFTER_ATTACK]: [event: AttackEvent];
+
+  [ENTITY_EVENTS.BEFORE_RETALIATE]: [event: AttackEvent];
+  [ENTITY_EVENTS.AFTER_RETALIATE]: [event: AttackEvent];
 
   [ENTITY_EVENTS.BEFORE_USE_SKILL]: [event: UseSkillEvent];
   [ENTITY_EVENTS.AFTER_USE_SKILL]: [event: UseSkillEvent];
@@ -358,33 +364,33 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   destroy() {
     this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
-    this.session.fxSystem.playAnimation(this.id, 'death').then(async () => {
-      await this.session.fxSystem.fadeOutEntity(this.id, 0.8);
-      this.session.entitySystem.removeEntity(this);
-
-      this.session.actionSystem.schedule(() => {
-        this.modifiers.forEach(modifier => {
-          modifier.onRemoved(this.session, this, modifier);
-        });
-
-        this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
+    this.session.entitySystem.removeEntity(this);
+    this.session.actionSystem.schedule(() => {
+      this.modifiers.forEach(modifier => {
+        modifier.onRemoved(this.session, this, modifier);
       });
+
+      this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
     });
+    // this.session.fxSystem.playAnimation(this.id, 'death').then(async () => {
+    //   await this.session.fxSystem.fadeOutEntity(this.id, 0.8);
+
+    // });
   }
 
-  async move(path: Point3D[], isDisplacement = false) {
+  move(path: Point3D[], isDisplacement = false) {
     this.emit(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
     const currentPosition = this.position;
 
-    const stopRunning = this.session.fxSystem.playAnimationUntil(this.id, 'run');
-    await this.session.fxSystem.moveEntity(
-      this.id,
-      path.map(point => ({
-        point,
-        duration: 0.4
-      }))
-    );
-    stopRunning();
+    // const stopRunning = this.session.fxSystem.playAnimationUntil(this.id, 'run');
+    // await this.session.fxSystem.moveEntity(
+    //   this.id,
+    //   path.map(point => ({
+    //     point,
+    //     duration: 0.4
+    //   }))
+    // );
+    // stopRunning();
     for (const point of path) {
       this.position = Vec3.fromPoint3D(point);
     }
@@ -418,7 +424,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  async dealDamage(
+  dealDamage(
     power: number,
     target: Entity,
     { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
@@ -435,12 +441,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    await target.takeDamage(payload.amount, this, { isAbilityDamage });
+    target.takeDamage(payload.amount, this, { isAbilityDamage });
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  async takeDamage(
+  takeDamage(
     power: number,
     source: Entity,
     { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
@@ -452,24 +458,24 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       source
     };
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
-    const bloodFx = this.session.rngSystem.nextInt(4);
-    await Promise.all([
-      this.session.fxSystem.playSfxOnEntity(this.id, {
-        resourceName: 'fx_bloodground',
-        animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
-        offset: {
-          x: 0,
-          y: 20
-        }
-      }),
-      this.session.fxSystem.playAnimation(this.id, 'hit'),
-      this.session.fxSystem.shakeEntity(this.id, {
-        amount: 5,
-        axis: 'x',
-        count: 3,
-        totalDuration: 0.3
-      })
-    ]);
+    // const bloodFx = this.session.rngSystem.nextInt(4);
+    // await Promise.all([
+    //   this.session.fxSystem.playSfxOnEntity(this.id, {
+    //     resourceName: 'fx_bloodground',
+    //     animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
+    //     offset: {
+    //       x: 0,
+    //       y: 20
+    //     }
+    //   }),
+    //   this.session.fxSystem.playAnimation(this.id, 'hit'),
+    //   this.session.fxSystem.shakeEntity(this.id, {
+    //     amount: 5,
+    //     axis: 'x',
+    //     count: 3,
+    //     totalDuration: 0.3
+    //   })
+    // ]);
 
     this.hp = this.currentHp - amount;
     this.checkHpForDeletion();
@@ -489,34 +495,36 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     }
   }
 
-  async retaliate(power: number, target: Entity) {
+  retaliate(power: number, target: Entity) {
     if (!this.canRetaliate(target)) return;
+    this.emit(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;
     // await this.session.fxSystem.playAnimation(this.id, 'attack', {
     //   framePercentage: 0.75
     // });
-    await this.session.fxSystem.attack(this.id, target.id);
-    await this.dealDamage(power, target, { isAbilityDamage: false });
+    // await this.session.fxSystem.attack(this.id, target.id);
+    this.dealDamage(power, target, { isAbilityDamage: false });
+    this.emit(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
   }
 
-  async performAttack(target: Entity) {
+  performAttack(target: Entity) {
     this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
 
     // await this.session.fxSystem.playAnimation(this.id, 'attack', {
     //   framePercentage: 0.75
     // });
-    await this.session.fxSystem.attack(this.id, target.id);
+    // await this.session.fxSystem.attack(this.id, target.id);
 
-    await this.dealDamage(this.attack, target, { isAbilityDamage: false });
+    this.dealDamage(this.attack, target, { isAbilityDamage: false });
 
-    await target.retaliate(target.attack, this);
+    target.retaliate(target.attack, this);
 
     this.attacksTaken++;
     this.addInterceptorUntilEndOfTurn('canUseSkill', () => false);
     this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
   }
 
-  async useSkill(index: number, castPoints: Point3D[], blueprintFollowup: number[]) {
+  useSkill(index: number, castPoints: Point3D[], blueprintFollowup: number[]) {
     const skill = this.skills[index];
 
     this.emit(ENTITY_EVENTS.BEFORE_USE_SKILL, {
@@ -525,7 +533,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       castPoints
     });
 
-    await skill.use(castPoints, blueprintFollowup);
+    skill.use(castPoints, blueprintFollowup);
 
     this.skillsUsed++;
     this.addInterceptorUntilEndOfTurn('canAttack', () => false);
@@ -537,7 +545,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  async heal(baseAmount: number, source: Entity) {
+  heal(baseAmount: number, source: Entity) {
     const amount = this.getHealReceived(baseAmount);
 
     const payload = {

@@ -28,7 +28,7 @@ export const f2PitLord: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.RUSH],
   relatedBlueprintIds: [f2Imp.id],
-  async onPlay({ session, entity }) {
+  onPlay({ session, entity }) {
     const isAlliedImp = (e: Entity) =>
       e.isAlly(entity.id) && e.card.blueprintId === f2Imp.id;
 
@@ -95,17 +95,15 @@ export const f2PitLord: CardBlueprint = {
           getCellBehind(session, skill.caster)
         ].some(cell => cell?.position.equals(point));
       },
-      async onUse({ skill, affectedCells }) {
-        await Promise.all(
-          affectedCells.map(cell => {
-            const imp = skill.caster.player.generateCard({
-              blueprintId: f2Imp.id,
-              pedestalId: skill.caster.card.pedestalId
-            });
+      onUse({ skill, affectedCells }) {
+        affectedCells.forEach(cell => {
+          const imp = skill.caster.player.generateCard({
+            blueprintId: f2Imp.id,
+            pedestalId: skill.caster.card.pedestalId
+          });
 
-            return imp.play({ position: cell.position, targets: [] });
-          })
-        );
+          return imp.play({ position: cell.position, targets: [] });
+        });
       }
     }
   ]
