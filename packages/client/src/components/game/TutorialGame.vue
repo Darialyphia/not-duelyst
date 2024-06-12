@@ -13,6 +13,9 @@ const state = computed(() =>
         history: [],
         entities: [],
         map: tutorialMap,
+        rng: {
+          values: []
+        },
         players: [
           {
             id: me.value._id,
@@ -122,7 +125,7 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
     tooltips: [
       { text: 'Welcome to your first game of Not Duelyst!' },
       {
-        text: "This tutorial will assume you're already familiar with Duelyst. Because I'm lazy."
+        text: "Even if you're already a seasoned Duelyst player, there are some major difference between the two games. The tutorial will bring you up to speed."
       },
       { text: 'Click a unit to select it.' },
       { text: 'Click on the highlighted tile to move your general.' }

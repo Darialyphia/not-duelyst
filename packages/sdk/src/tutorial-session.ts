@@ -1,8 +1,10 @@
-import type { FXSystem } from './fx-system';
+import { noopFXContext, type FXSystem } from './fx-system';
 import { GameSession, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise } from '@game/shared';
+import { ServerSession } from './server-session';
+import { ServerRngSystem, type RngSystem } from './rng-system';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -15,14 +17,19 @@ export type TutorialStep = {
   meta: AnyObject;
 };
 
-export class TutorialSession extends GameSession {
-  static create(
+export class TutorialSession extends ServerSession {
+  static createTutorialSession(
     state: SerializedGameState,
     seed: string,
-    fxSystem: FXSystem,
     steps: TutorialStep[]
   ) {
-    return new TutorialSession(state, { seed, isAuthoritative: false, fxSystem }, steps);
+    return new TutorialSession(
+      state,
+      new ServerRngSystem(seed),
+      noopFXContext,
+      {},
+      steps
+    );
   }
 
   currentStepIndex = 0;
@@ -30,14 +37,14 @@ export class TutorialSession extends GameSession {
 
   protected constructor(
     initialState: SerializedGameState,
+    rngSystem: RngSystem,
+    fxSystem: FXSystem,
     options: {
-      isAuthoritative: boolean;
-      seed: string;
-      fxSystem: FXSystem;
+      winnerId?: string;
     },
-    private steps: TutorialStep[]
+    public steps: TutorialStep[]
   ) {
-    super(initialState, options);
+    super(initialState, rngSystem, fxSystem, options);
 
     this.on('game:action', () => {
       if (this.isFinished) return;

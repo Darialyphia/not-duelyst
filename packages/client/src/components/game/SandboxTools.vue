@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  ClientSession,
-  config,
-  Player,
-  type GameSession,
-  type ServerSession
-} from '@game/sdk';
+import { ClientSession, config, type GameSession, type ServerSession } from '@game/sdk';
 
 const { clientSession, serverSession } = defineProps<{
   serverSession: ServerSession;
@@ -23,7 +17,7 @@ const performAction = (cb: (session: GameSession) => void) => {
 <template>
   <div class="sandbox-tools">
     <PopoverRoot>
-      <PopoverTrigger>Editor</PopoverTrigger>
+      <PopoverTrigger>Sandbox Tools</PopoverTrigger>
       <PopoverAnchor />
       <PopoverPortal>
         <PopoverContent class="fancy-surface p-2">

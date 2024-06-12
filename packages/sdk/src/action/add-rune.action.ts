@@ -21,6 +21,6 @@ export class AddRuneAction extends GameAction<typeof schema> {
     if (!this.player.canPerformResourceAction) {
       return this.printError('Cannot add more runes this turn.');
     }
-    this.player.addRune(this.payload.factionId);
+    this.player.addRune(this.payload.factionId, true);
   }
 }

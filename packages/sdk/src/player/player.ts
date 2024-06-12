@@ -311,10 +311,13 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     }
   }
 
-  addRune(factionId: Values<typeof FACTION_IDS>) {
+  addRune(factionId: Values<typeof FACTION_IDS>, isResourceAction = false) {
     this.emit(PLAYER_EVENTS.BEFORE_ADD_RUNE, { player: this, runeId: factionId });
     this.runes[factionId]++;
-    this.resourceActionsTaken++;
+
+    if (isResourceAction) {
+      this.resourceActionsTaken++;
+    }
     this.emit(PLAYER_EVENTS.AFTER_ADD_RUNE, { player: this, runeId: factionId });
   }
 }
