@@ -35,13 +35,29 @@ export type SerializedPlayer = JSONObject & {
 
 export const PLAYER_EVENTS = {
   TURN_START: 'turn_start',
-  TURN_END: 'turn_end'
+  TURN_END: 'turn_end',
+  BEFORE_GET_GOLD: 'before_get_gold',
+  AFTER_GET_GOLD: 'after_get_gold',
+  BEFORE_DRAW: 'before_draw',
+  AFTER_DRAW: 'after_draw',
+  BEFORE_ADD_RUNE: 'before_add_rune',
+  AFTER_ADD_RUNE: 'after_add_rune'
 } as const;
 
 export type PlayerEvent = Values<typeof PLAYER_EVENTS>;
 export type PlayerEventMap = {
   [PLAYER_EVENTS.TURN_START]: [Player];
   [PLAYER_EVENTS.TURN_END]: [Player];
+  [PLAYER_EVENTS.BEFORE_DRAW]: [{ player: Player; cards: Card[] }];
+  [PLAYER_EVENTS.AFTER_DRAW]: [{ player: Player; cards: Card[] }];
+  [PLAYER_EVENTS.BEFORE_GET_GOLD]: [{ player: Player; amount: number }];
+  [PLAYER_EVENTS.AFTER_GET_GOLD]: [{ player: Player; amount: number }];
+  [PLAYER_EVENTS.BEFORE_ADD_RUNE]: [
+    { player: Player; runeId: Values<typeof FACTION_IDS> }
+  ];
+  [PLAYER_EVENTS.AFTER_ADD_RUNE]: [
+    { player: Player; runeId: Values<typeof FACTION_IDS> }
+  ];
 };
 
 export type PlayerInterceptor = Player['interceptors'];
@@ -271,8 +287,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   giveGold(amount: number, isResourceAction = false) {
+    this.emit(PLAYER_EVENTS.BEFORE_GET_GOLD, { player: this, amount });
     this.currentGold = Math.min(this.currentGold + amount, config.MAX_GOLD);
 
+    this.emit(PLAYER_EVENTS.AFTER_GET_GOLD, { player: this, amount });
     if (isResourceAction) {
       this.resourceActionsTaken++;
     }
@@ -282,7 +300,11 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     const availableSlots = config.MAX_HAND_SIZE - this.hand.length;
 
     const newCards = this.deck.draw(Math.min(amount, availableSlots));
-    this.hand.push(...newCards);
+    if (newCards.length) {
+      this.emit(PLAYER_EVENTS.BEFORE_DRAW, { player: this, cards: newCards });
+      this.hand.push(...newCards);
+      this.emit(PLAYER_EVENTS.AFTER_DRAW, { player: this, cards: newCards });
+    }
 
     if (isResourceAction) {
       this.resourceActionsTaken++;
@@ -290,7 +312,9 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   addRune(factionId: Values<typeof FACTION_IDS>) {
+    this.emit(PLAYER_EVENTS.BEFORE_ADD_RUNE, { player: this, runeId: factionId });
     this.runes[factionId]++;
     this.resourceActionsTaken++;
+    this.emit(PLAYER_EVENTS.AFTER_ADD_RUNE, { player: this, runeId: factionId });
   }
 }

@@ -49,6 +49,14 @@ export class Deck extends EventEmitter<DeckEventMap> implements Serializable {
     return cards;
   }
 
+  addToTop(card: Card) {
+    this.cards.unshift(card);
+  }
+
+  addToBottom(card: Card) {
+    this.cards.push(card);
+  }
+
   peek(amount: number) {
     return this.cards.slice(0, amount);
   }

@@ -29,7 +29,7 @@ export class ServerRngSystem implements RngSystem {
   }
 
   serialize() {
-    return { values: this.values };
+    return { values: [...this.values] };
   }
 }
 
