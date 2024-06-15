@@ -64,6 +64,7 @@ const minionsCount = computed(() => {
 
 <template>
   <form @submit.prevent="emit('save')">
+    <LoadoutStats :loadout="cards" />
     <header>
       <input v-model="name" class="py-3 flex-1" />
       {{ minionsCount }} / {{ config.MAX_DECK_SIZE }}
