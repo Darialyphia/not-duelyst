@@ -26,7 +26,7 @@ export class PlayerSystem {
   setupListeners(player: Player) {
     Object.values(PLAYER_EVENTS).forEach(eventName => {
       player.on(eventName, event => {
-        this.session.emit(`player:${eventName}`, event);
+        this.session.emit(`player:${eventName}`, event as any);
       });
     });
 
