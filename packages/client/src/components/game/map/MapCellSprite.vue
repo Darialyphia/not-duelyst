@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
-import { type Nullable, isDefined } from '@game/shared';
+import { isDefined } from '@game/shared';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { assets, ui, fx } = useGame();
+const { assets, ui, fx, camera } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const diffuseTextures = computed(() => {
   const sheet = assets.getSpritesheet(cell.value.spriteId);
 
-  return sheet.animations[0];
+  return sheet.animations[cell.value.defaultRotation + camera.angle.value];
 });
-
 const normalSheet = ref<Spritesheet | null>(null);
 
 onMounted(async () => {
@@ -25,10 +24,11 @@ onMounted(async () => {
     diffuseSheet
   );
 });
+
 const normalTextures = computed(() => {
   if (!normalSheet.value) return null;
 
-  return normalSheet.value.animations[0];
+  return normalSheet.value.animations[cell.value.defaultRotation + camera.angle.value];
 });
 
 const shape = assets.getHitbox('tile');
@@ -82,7 +82,10 @@ const children = computed(() => {
     :anchor="0.5"
     :hit-area="hitArea"
     :filters="filters"
+    :y="-14"
   />
+
+  <MapEdge :cell-id="cellId" />
 
   <MapCellChild v-for="spriteId in children" :key="spriteId" :sprite-id="spriteId" />
 </template>

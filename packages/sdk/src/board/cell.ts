@@ -12,6 +12,7 @@ export type SerializedCell = {
   terrain: Terrain;
   position: Point3D;
   tileBlueprintId: string | null;
+  defaultRotation?: 0 | 90 | 180 | 270;
 };
 
 export class Cell implements Serializable {
@@ -19,7 +20,7 @@ export class Cell implements Serializable {
   public spriteId: string;
   public tile: Nullable<Tile>;
   public terrain: Terrain;
-
+  public defaultRotation: 0 | 90 | 180 | 270;
   constructor(
     private session: GameSession,
     public options: SerializedCell
@@ -27,6 +28,7 @@ export class Cell implements Serializable {
     this.terrain = options.terrain;
     this.position = Vec3.fromPoint3D(options.position);
     this.spriteId = options.spriteId;
+    this.defaultRotation = options.defaultRotation ?? 0;
 
     this.tile = options.tileBlueprintId
       ? new Tile(this.session, {

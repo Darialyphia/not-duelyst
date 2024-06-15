@@ -106,7 +106,7 @@ const { autoDestroyRef } = useAutoDestroy();
     :width="boardDimensions.width"
     :offset="{
       x: 0,
-      y: -CELL_HEIGHT * 0.7
+      y: -CELL_HEIGHT * 0.65
     }"
     event-mode="none"
   >
@@ -158,7 +158,7 @@ const { autoDestroyRef } = useAutoDestroy();
             loop
             playing
             :z-index="1"
-            :y="-CELL_HEIGHT * 0.6"
+            :y="-CELL_HEIGHT * 0.5"
           />
         </container>
       </PTransition>
