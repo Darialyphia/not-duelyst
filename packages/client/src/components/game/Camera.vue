@@ -18,7 +18,15 @@ const boardDimensions = useGameSelector(session => ({
   height: session.boardSystem.height
 }));
 const isoCells = computed(() =>
-  cells.value.map(cell => toIso(cell.position, camera.angle.value, boardDimensions.value))
+  cells.value
+    .filter(
+      cell =>
+        cell.position.x < boardDimensions.value.width &&
+        cell.position.x >= 0 &&
+        cell.position.y < boardDimensions.value.height &&
+        cell.position.y >= 0
+    )
+    .map(cell => toIso(cell.position, camera.angle.value, boardDimensions.value))
 );
 const minX = computed(() => Math.min(...isoCells.value.map(c => c.isoX)));
 const maxX = computed(() => Math.max(...isoCells.value.map(c => c.isoX)));
@@ -30,8 +38,8 @@ const isoBoundingRect = computed(() => ({
 }));
 
 const WORLD_PADDING = {
-  x: CELL_WIDTH * 3,
-  y: CELL_HEIGHT * 4
+  x: CELL_WIDTH * 1,
+  y: CELL_HEIGHT * 2
 };
 const worldSize = computed(() => ({
   width:

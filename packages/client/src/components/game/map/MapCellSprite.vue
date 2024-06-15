@@ -28,7 +28,9 @@ onMounted(async () => {
 const normalTextures = computed(() => {
   if (!normalSheet.value) return null;
 
-  return normalSheet.value.animations[cell.value.defaultRotation + camera.angle.value];
+  return normalSheet.value.animations[
+    (cell.value.defaultRotation + camera.angle.value) % 360
+  ];
 });
 
 const shape = assets.getHitbox('tile');

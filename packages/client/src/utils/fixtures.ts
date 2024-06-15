@@ -54,6 +54,24 @@ const makeRow = (
     .filter(isDefined);
 };
 
+const makeColumn = (
+  x: number,
+  z: number,
+  cells: Array<'dirt' | 'grass' | 'water' | null>,
+  tiles?: Record<number, string>
+) => {
+  return cells
+    .map((tile, index) => {
+      return match(tile)
+        .with('dirt', () => dirtTile(x, index, z, tiles?.[index]))
+        .with('grass', () => grassTile(x, index, z, tiles?.[index]))
+        .with('water', () => waterTile(x, index, z, tiles?.[index]))
+        .with(null, () => undefined)
+        .exhaustive();
+    })
+    .filter(isDefined);
+};
+
 export const tutorialMap: SerializedGameState['map'] = {
   width: 8,
   height: 8,
@@ -144,11 +162,168 @@ export const tutorialMap: SerializedGameState['map'] = {
 };
 
 export const testMap: SerializedGameState['map'] = {
-  width: 9,
-  height: 13,
+  width: 13,
+  height: 9,
   player1StartPosition: { x: 0, y: 4, z: 0 },
   player2StartPosition: { x: 12, y: 4, z: 0 },
   cells: [
+    // outer map
+    // ...makeRow(9, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeRow(10, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeRow(11, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeRow(12, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeRow(13, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeColumn(13, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeColumn(14, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeColumn(15, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeColumn(16, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // ...makeColumn(17, 0, [
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water',
+    //   'water'
+    // ]),
+    // inner map
     ...makeRow(0, 0, [
       'dirt',
       'dirt',

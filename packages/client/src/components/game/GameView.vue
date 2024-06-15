@@ -20,7 +20,6 @@ const isDev = import.meta.env.DEV;
       :brightness="ui.ambientLightStrength.value"
     />
 
-    <!-- <Underground /> -->
     <MapCell v-for="cell in cells" :key="cell.id" :cell-id="cell.id" />
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
