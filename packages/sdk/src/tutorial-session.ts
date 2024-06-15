@@ -1,10 +1,12 @@
-import { noopFXContext, type FXSystem } from './fx-system';
-import { GameSession, type SerializedGameState } from './game-session';
+import { type FXSystem } from './fx-system';
+import { type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
-import type { AnyObject, MaybePromise } from '@game/shared';
-import { ServerSession } from './server-session';
-import { ServerRngSystem, type RngSystem } from './rng-system';
+import type { AnyObject, MaybePromise, Values } from '@game/shared';
+import { ClientRngSystem, type RngSystem } from './rng-system';
+import { ClientSession, type FxEvent } from './client-session';
+import type { FACTION_IDS } from './card/card-enums';
+import type { EntityId } from './entity/entity';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -14,22 +16,24 @@ export type TutorialStep = {
   }>;
   onEnter?: (session: TutorialSession) => MaybePromise<void>;
   onLeave?: (session: TutorialSession) => MaybePromise<void>;
+  highlightedResourceAction?: Values<typeof FACTION_IDS> | 'draw' | 'gold';
+  highlightedSkill?: {
+    entityId: EntityId;
+    index: number;
+  };
+  highlightedCardIndex?: number;
   meta: AnyObject;
 };
 
-export class TutorialSession extends ServerSession {
+export class TutorialSession extends ClientSession {
   static createTutorialSession(
     state: SerializedGameState,
-    seed: string,
+    fxSystem: FXSystem,
     steps: TutorialStep[]
   ) {
-    return new TutorialSession(
-      state,
-      new ServerRngSystem(seed),
-      noopFXContext,
-      {},
-      steps
-    );
+    const rngSystem = new ClientRngSystem();
+    rngSystem.values = state.rng.values;
+    return new TutorialSession(state, rngSystem, fxSystem, {}, steps);
   }
 
   currentStepIndex = 0;
@@ -51,9 +55,7 @@ export class TutorialSession extends ServerSession {
       this.goToNextStep();
     });
 
-    this.on('game:ready', () => {
-      this.currentStep.onEnter?.(this);
-    });
+    this.currentStep.onEnter?.(this);
   }
 
   get currentStep() {
@@ -70,9 +72,12 @@ export class TutorialSession extends ServerSession {
     }
   }
 
-  dispatch(action: SerializedAction) {
+  dispatch(
+    action: SerializedAction,
+    meta: { fxEvents: FxEvent[]; rngValues: number[] } = { fxEvents: [], rngValues: [] }
+  ) {
+    console.log(action, this.currentStep.action);
     if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
-
-    this.actionSystem.dispatch(action);
+    super.dispatch(action, meta);
   }
 }

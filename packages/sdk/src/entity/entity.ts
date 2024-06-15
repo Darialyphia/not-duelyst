@@ -372,25 +372,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
       this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
     });
-    // this.session.fxSystem.playAnimation(this.id, 'death').then(async () => {
-    //   await this.session.fxSystem.fadeOutEntity(this.id, 0.8);
-
-    // });
   }
 
   move(path: Point3D[], isDisplacement = false) {
     this.emit(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
     const currentPosition = this.position;
 
-    // const stopRunning = this.session.fxSystem.playAnimationUntil(this.id, 'run');
-    // await this.session.fxSystem.moveEntity(
-    //   this.id,
-    //   path.map(point => ({
-    //     point,
-    //     duration: 0.4
-    //   }))
-    // );
-    // stopRunning();
     for (const point of path) {
       this.position = Vec3.fromPoint3D(point);
     }
@@ -458,24 +445,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       source
     };
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
-    // const bloodFx = this.session.rngSystem.nextInt(4);
-    // await Promise.all([
-    //   this.session.fxSystem.playSfxOnEntity(this.id, {
-    //     resourceName: 'fx_bloodground',
-    //     animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
-    //     offset: {
-    //       x: 0,
-    //       y: 20
-    //     }
-    //   }),
-    //   this.session.fxSystem.playAnimation(this.id, 'hit'),
-    //   this.session.fxSystem.shakeEntity(this.id, {
-    //     amount: 5,
-    //     axis: 'x',
-    //     count: 3,
-    //     totalDuration: 0.3
-    //   })
-    // ]);
 
     this.hp = this.currentHp - amount;
     this.checkHpForDeletion();
@@ -499,21 +468,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     if (!this.canRetaliate(target)) return;
     this.emit(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;
-    // await this.session.fxSystem.playAnimation(this.id, 'attack', {
-    //   framePercentage: 0.75
-    // });
-    // await this.session.fxSystem.attack(this.id, target.id);
+
     this.dealDamage(power, target, { isAbilityDamage: false });
     this.emit(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
   }
 
   performAttack(target: Entity) {
     this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
-
-    // await this.session.fxSystem.playAnimation(this.id, 'attack', {
-    //   framePercentage: 0.75
-    // });
-    // await this.session.fxSystem.attack(this.id, target.id);
 
     this.dealDamage(this.attack, target, { isAbilityDamage: false });
 

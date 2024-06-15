@@ -8,7 +8,7 @@ import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 export const f2DamnedSouls: CardBlueprint = {
   id: 'f2_damned_souls',
   name: 'F2 Damned Souls',
-  description: '@Last Will@: Deal 4 damage to all nearby units.',
+  description: '@Last Will@: Deal 4 damage to all nearby enemies.',
   collectable: true,
   rarity: RARITIES.COMMON,
   faction: FACTIONS.F2,
@@ -28,7 +28,7 @@ export const f2DamnedSouls: CardBlueprint = {
         handler() {
           session.entitySystem
             .getNearbyEntities(entity.position)
-            .forEach(nearby => entity.dealDamage(4, nearby));
+            .forEach(nearby => entity.isEnemy(nearby.id) && entity.dealDamage(4, nearby));
         }
       })
     );

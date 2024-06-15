@@ -658,7 +658,8 @@ export const aura = ({
   description,
   onGainAura,
   onLoseAura,
-  keywords = []
+  keywords = [],
+  isElligible = (target, source) => isWithinCells(source.position, target.position, 1)
 }: {
   source: Entity;
   name: string;
@@ -666,7 +667,38 @@ export const aura = ({
   onGainAura: (entity: Entity) => void;
   onLoseAura: (entity: Entity) => void;
   keywords?: Keyword[];
+  isElligible?: (target: Entity, source: Entity) => boolean;
 }) => {
+  const affectedEntitiesIds = new Set<EntityId>();
+
+  const cleanup = (session: GameSession) => {
+    affectedEntitiesIds.forEach(id => {
+      const entity = session.entitySystem.getEntityById(id);
+      if (!entity) return;
+      onLoseAura(entity);
+    });
+  };
+
+  const checkAura = (session: GameSession, attachedTo: Entity) => {
+    session.entitySystem.getList().forEach(entity => {
+      if (entity.equals(attachedTo)) return;
+      const shouldGetAura = isElligible(entity, attachedTo);
+
+      const hasAura = affectedEntitiesIds.has(entity.id);
+
+      if (!shouldGetAura && hasAura) {
+        affectedEntitiesIds.delete(entity.id);
+        onLoseAura(entity);
+        return;
+      }
+
+      if (shouldGetAura && !hasAura) {
+        affectedEntitiesIds.add(entity.id);
+        onGainAura(entity);
+        return;
+      }
+    });
+  };
   return createEntityModifier({
     source,
     stackable: false,
@@ -677,42 +709,21 @@ export const aura = ({
       {
         keywords: [...keywords, KEYWORDS.AURA],
         onApplied(session, attachedTo) {
-          const affectedEntitiesIds = new Set<EntityId>();
-          const checkAura = () => {
-            session.entitySystem.getList().forEach(entity => {
-              if (entity.equals(attachedTo)) return;
-              const isNearby = isWithinCells(attachedTo.position, entity.position, 1);
-
-              const hasAura = affectedEntitiesIds.has(entity.id);
-
-              if (!isNearby && hasAura) {
-                affectedEntitiesIds.delete(entity.id);
-                onLoseAura(entity);
-                return;
-              }
-
-              if (isNearby && !hasAura) {
-                affectedEntitiesIds.add(entity.id);
-                onGainAura(entity);
-                return;
-              }
-            });
-          };
-          checkAura();
-          session.on('entity:created', checkAura);
-          session.on('entity:after_destroy', checkAura);
-          session.on('entity:after-move', checkAura);
+          const doCheck = () => checkAura(session, attachedTo);
+          doCheck;
+          session.on('entity:created', doCheck);
+          session.on('entity:after_destroy', doCheck);
+          session.on('entity:after-move', doCheck);
 
           attachedTo.once('after_destroy', () => {
-            session.off('entity:created', checkAura);
-            session.off('entity:after_destroy', checkAura);
-            session.off('entity:after-move', checkAura);
-            affectedEntitiesIds.forEach(id => {
-              const entity = session.entitySystem.getEntityById(id);
-              if (!entity) return;
-              onLoseAura(entity);
-            });
+            session.off('entity:created', doCheck);
+            session.off('entity:after_destroy', doCheck);
+            session.off('entity:after-move', doCheck);
+            cleanup(session);
           });
+        },
+        onRemoved(session) {
+          cleanup(session);
         }
       }
     ]

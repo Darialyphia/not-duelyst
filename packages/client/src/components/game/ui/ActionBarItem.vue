@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { PlayerId } from '@game/sdk';
+import { isDefined } from '@game/shared';
 
 const { index, playerId } = defineProps<{ index: number; playerId: PlayerId }>();
-const { ui } = useGame();
+const { ui, currentTutorialStep } = useGame();
 
 const card = useGameSelector(
   session => session.playerSystem.getPlayerById(playerId)!.hand[index]
@@ -17,7 +18,12 @@ const userPlayer = useUserPlayer();
       <Card
         v-if="card"
         class="card"
-        :class="!userPlayer.canPlayCardAtIndex(index) && 'disabled'"
+        :class="{
+          disabled:
+            !userPlayer.canPlayCardAtIndex(index) ||
+            (isDefined(currentTutorialStep?.highlightedCardIndex) &&
+              currentTutorialStep.highlightedCardIndex !== index)
+        }"
         :card="{
           blueprintId: card.blueprintId,
           name: card.blueprint.name,
@@ -52,7 +58,7 @@ const userPlayer = useUserPlayer();
   position: relative;
 
   &.disabled {
-    filter: grayscale(70%) brightness(60%) contrast(110%);
+    filter: grayscale(70%) brightness(70%) contrast(100%);
   }
 }
 </style>

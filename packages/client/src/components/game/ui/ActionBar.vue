@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { clamp } from '@game/shared';
-import { differenceBy } from 'lodash-es';
 
 const userPlayer = useUserPlayer();
-const { ui, session, gameType, dispatch } = useGame();
+const { ui, gameType, dispatch } = useGame();
 const isActive = useIsActivePlayer();
 
 const MAX_ANGLE = 30;
@@ -36,16 +35,6 @@ const angle = computed(() => {
 </script>
 
 <template>
-  <!-- <div v-if="userPlayer && gameType === GAME_TYPES.SPECTATOR" class="opponent-action-bar">
-    <div class="flex gap-5 iems-center">
-      <ActionBarItem
-        v-for="(card, index) in userPlayer.opponent.hand"
-        :key="`${card?.blueprintId}:${index}`"
-        :index="index"
-        :player-id="userPlayer.opponent.id"
-      />
-    </div>
-  </div> -->
   <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
     <TransitionGroup
       tag="ul"
@@ -94,12 +83,14 @@ const angle = computed(() => {
 
 <style scoped lang="postcss">
 .action-bar {
+  --y-offset: var(--size-11);
+
   pointer-events: none;
 
   position: absolute;
   bottom: calc(-1 * var(--size-10));
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(var(--y-offset));
 
   display: flex;
   gap: var(--size-5);
@@ -107,6 +98,12 @@ const angle = computed(() => {
   justify-content: center;
 
   width: fit-content;
+
+  transition: transform 0.2s ease-in;
+
+  &:hover {
+    --y-offset: 0;
+  }
 
   @screen lt-lg {
     bottom: var(--size-2);
@@ -148,7 +145,7 @@ const angle = computed(() => {
   --offset-step: 125px;
   --base-offset: calc((var(--hand-size) / 2) * var(--offset-step) * -1);
   --offset-y: 0;
-  --scale: 0.7;
+  --scale: 0.85;
 
   pointer-events: all;
   cursor: pointer;
@@ -169,7 +166,7 @@ const angle = computed(() => {
   &.selected {
     filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
     &:not(:hover) {
-      --scale: 0.75;
+      --scale: 0.9;
     }
   }
 

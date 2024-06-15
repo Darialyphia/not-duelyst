@@ -1,15 +1,33 @@
 <script setup lang="ts">
-import { FACTIONS } from '@game/sdk';
+import { FACTIONS, Skill } from '@game/sdk';
 
-const { ui, gameType, dispatch } = useGame();
+const { ui, gameType, dispatch, currentTutorialStep } = useGame();
 const player = useUserPlayer();
+
+const isSkillDisabled = (skill: Skill) => {
+  if (!ui.selectedEntity.value?.canUseSkill(skill)) return true;
+  if (currentTutorialStep.value?.highlightedResourceAction) return true;
+  if (
+    currentTutorialStep.value?.highlightedSkill &&
+    ui.selectedEntity.value.id === currentTutorialStep.value.highlightedSkill.entityId &&
+    ui.selectedEntity.value.skills.indexOf(skill) !==
+      currentTutorialStep.value.highlightedSkill.index
+  ) {
+    return true;
+  }
+  return false;
+};
 </script>
 
 <template>
   <div v-if="gameType !== GAME_TYPES.SPECTATOR" class="action-wheel">
     <InteractableSounds v-for="faction in FACTIONS" :key="faction.id">
       <button
-        :disabled="!player.canPerformResourceAction"
+        :disabled="
+          !player.canPerformResourceAction ||
+          (currentTutorialStep?.highlightedResourceAction &&
+            currentTutorialStep.highlightedResourceAction !== faction.id)
+        "
         class="rune"
         :style="{ '--bg': `url('/assets/ui/rune-${faction.id}.png')` }"
         @click="dispatch('addRune', { factionId: faction.id })"
@@ -21,7 +39,11 @@ const player = useUserPlayer();
     <InteractableSounds>
       <button
         class="draw"
-        :disabled="!player.canPerformResourceAction"
+        :disabled="
+          !player.canPerformResourceAction ||
+          (currentTutorialStep?.highlightedResourceAction &&
+            currentTutorialStep.highlightedResourceAction !== 'draw')
+        "
         @click="dispatch('draw')"
       >
         <span class="sr-only">draw</span>
@@ -31,7 +53,11 @@ const player = useUserPlayer();
     <InteractableSounds>
       <button
         class="gold"
-        :disabled="!player.canPerformResourceAction"
+        :disabled="
+          !player.canPerformResourceAction ||
+          (currentTutorialStep?.highlightedResourceAction &&
+            currentTutorialStep.highlightedResourceAction !== 'gold')
+        "
         @click="dispatch('getGold')"
       >
         <span class="sr-only">gain 1 gold</span>
@@ -53,7 +79,7 @@ const player = useUserPlayer();
                 active: ui.selectedSkill.value?.id === skill.id,
                 unavailable: !ui.selectedEntity.value?.canUseSkill(skill)
               }"
-              :disabled="!ui.selectedEntity.value?.canUseSkill(skill)"
+              :disabled="isSkillDisabled(skill)"
               :data-remaining-cooldown="
                 skill.currentCooldown > 0 ? skill.currentCooldown : ''
               "

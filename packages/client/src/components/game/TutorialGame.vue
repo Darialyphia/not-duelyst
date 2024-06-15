@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { config, TutorialSession, type SerializedGameState } from '@game/sdk';
+import {
+  config,
+  FACTION_IDS,
+  ServerSession,
+  TutorialSession,
+  type SerializedGameState
+} from '@game/sdk';
+import type { Nullable } from '@game/shared';
 import { tutorialMap } from '~/utils/fixtures';
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -32,19 +39,19 @@ const state = computed(() =>
               },
               {
                 pedestalId: 'pedestal-default',
-                blueprintId: 'f1_placeholder'
-              },
-              {
-                pedestalId: 'pedestal-default',
-                blueprintId: 'f1_placeholder'
-              },
-              {
-                pedestalId: 'pedestal-default',
-                blueprintId: 'f1_placeholder'
-              },
-              {
-                pedestalId: 'pedestal-default',
                 blueprintId: 'f2_tutorial_big_dude'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
+              },
+              {
+                pedestalId: 'pedestal-default',
+                blueprintId: 'f1_placeholder'
               }
             ],
             isPlayer1: true,
@@ -92,17 +99,18 @@ const state = computed(() =>
 );
 
 const fx = useFXProvider();
-const session = ref(null) as Ref<null | TutorialSession>;
+const serverSession = shallowRef(null) as Ref<Nullable<ServerSession>>;
+const clientSession = shallowRef(null) as Ref<Nullable<TutorialSession>>;
 
 const dispatch = (
   type: Parameters<TutorialSession['dispatch']>[0]['type'],
   payload: any
 ) => {
-  session.value!.dispatch({
+  serverSession.value!.dispatch({
     type,
     payload: {
       ...payload,
-      playerId: payload?.playerId ?? session.value!.playerSystem.activePlayer.id
+      playerId: payload?.playerId ?? serverSession.value!.playerSystem.activePlayer.id
     }
   });
 };
@@ -125,10 +133,16 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
     tooltips: [
       { text: 'Welcome to your first game of Not Duelyst!' },
       {
-        text: "Even if you're already a seasoned Duelyst player, there are some major difference between the two games. The tutorial will bring you up to speed."
+        text: "This tutorial assumes you have previous Duelyst knowledge. If that isn't the case, sorry."
       },
-      { text: 'Click a unit to select it.' },
-      { text: 'Click on the highlighted tile to move your general.' }
+      { text: 'A fresh new player tutorial is in the works, stay tuned !' },
+      {
+        text: "Even if you're already a seasoned Duelyst player, there are some major difference between the two games."
+      },
+      { text: "The tutorial will bring you up to speed. Alright let's start." },
+      {
+        text: 'Click on your general to select it, then click on the highlighted tile to move there.'
+      }
     ],
     onEnter(session) {
       this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
@@ -143,6 +157,32 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
   {
     meta: {},
     action: {
+      type: 'addRune',
+      payload: {
+        factionId: FACTION_IDS.F1,
+        playerId: me.value._id
+      }
+    },
+    highlightedResourceAction: 'f1',
+    tooltips: [
+      { text: 'Playing cards in this game requires 2 resources: gold and runes.' },
+      {
+        text: `You gain 3 gold per turn, up to a maximum of ${config.MAX_GOLD}. The remaining gold at the end of your turn carries over to the following turn.`
+      },
+      {
+        text: 'As for runes there is oen for each faction. You can gain one rune of your choosing per turn.'
+      },
+      {
+        text: 'Runes are not spent when playing a card. Once you reach a card runes requirement, you can play it whenever as long as you have enough gold.'
+      },
+      {
+        text: 'The cards in your hand require one green rune, so add one on the bottom right of the screen.'
+      }
+    ]
+  },
+  {
+    meta: {},
+    action: {
       type: 'playCard',
       payload: {
         cardIndex: 0,
@@ -152,9 +192,13 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
         blueprintFollowup: []
       }
     },
+    highlightedCardIndex: 0,
     tooltips: [
       {
-        text: 'Click a unit in your hand, then click the highlighted tile to summon it.'
+        text: "Your and your opponent's total runes are displayed below your portrait at the top of the screen."
+      },
+      {
+        text: "You now have enough runes to play a card. Let's play the first card in your hand."
       }
     ],
     onEnter(session) {
@@ -176,9 +220,6 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       }
     },
     tooltips: [
-      {
-        text: "In this game, you don't draw cards. Instead, a unit goes on cooldown after it's played for a few turns."
-      },
       { text: "Like Duelyst, units can't act the turn they are summoned." },
       { text: 'Press the end turn button to end your turn.' }
     ]
@@ -343,7 +384,10 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
     },
     tooltips: [
       {
-        text: 'Adorable right ? Sure would be a shame if something were to happen to it :monkaS:',
+        text: 'Adorable right ? Sure would be a shame if something were to happen to it :monkaS:'
+      },
+      {
+        text: 'Alright, your turn now !',
         onLeave() {
           dispatch('endTurn', {});
         }
@@ -372,12 +416,15 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       {
         text: 'The cat has 3HP. Your units only have 2 attack. If only you could kill it in one blow...'
       },
-      { text: "And that's what we're gonna do, by increasing your Elemental's attack." },
-      { text: "We'll do that using your general ability." },
+      { text: "The cards in your hand won't help us. But there is another way !" },
+      { text: 'A lot of units, your general included, have activated abilities.' },
+      { text: 'They can be activated at not cost, but have a cooldown.' },
       {
-        text: 'All units in the game have abilities that they can use instead of attacking.'
+        text: 'To use an ability, select a unit. Its abilities will appear on the bottom right next to the runes buttons.'
       },
-      { text: "Use your general ability to boost your elemental's attack." }
+      {
+        text: "Select your general and use its abilities to increase your elemental's attack"
+      }
     ]
   },
   {
@@ -395,12 +442,15 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
         text: 'There you go. Most units can use their ability the turn they are summoned. However some have an initial cooldown.'
       },
       {
-        text: 'You can right click any unit on the field or in you raction bar to see its full details'
+        text: 'Some of them can even have runes requirement.'
+      },
+
+      {
+        text: 'You can right click any unit on the field or in your hand to see its full details'
       },
       {
         text: "Now you're ready to whac...pet the cat with your elemental."
-      },
-      { text: 'Go ahead, it keeps ignoring its litterbox anyways.' }
+      }
     ],
     onEnter(session) {
       this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
@@ -419,30 +469,21 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
       payload: {
         playerId: me.value._id,
         entityId: 3,
-        position: { x: 4, y: 4, z: 0 }
+        position: { x: 5, y: 3, z: 0 }
       }
     },
     tooltips: [
       {
-        text: `At the start of your turn, you get ${config.GOLD_PER_TURN} gold to summon new units.`
-      },
-      { text: `The maximum amount of gold you can hold is ${config.MAX_GOLD}.` },
-      {
-        text: "Unlike Duelyst, your remaining gold doesn't go away at the end of your turn. However, the amount of gold you gain doesn't icnrease over time."
+        text: 'Units can move after they have attacked or used an ability.'
       },
       {
-        text: 'Defeated units leave a gold coin on the ground.'
+        text: 'Unlike Duelyst, your units body block themselves. Be careful with your positioning !.'
       },
-      {
-        text: 'Grabbing the gold coin will give you enough gold to summon your other unit.'
-      },
-      {
-        text: 'Move on the gold coin with your elemental. As you can see, a unit can move after attacking.'
-      }
+      { text: 'move your elemental to the highlighted cell.' }
     ],
     onEnter(session) {
       this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
-        session.boardSystem.getCellAt('4:4:0')!,
+        session.boardSystem.getCellAt('5:3:0')!,
         'cell_highlight'
       );
     },
@@ -453,68 +494,25 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
   {
     meta: {},
     action: {
-      type: 'playCard',
+      type: 'surrender',
       payload: {
-        cardIndex: 1,
-        targets: [],
-        playerId: me.value._id,
-        position: { x: 3, y: 2, z: 0 },
-        blueprintFollowup: []
+        playerId: 'ai'
       }
     },
     tooltips: [
       {
-        text: 'Now, summon the unit in your hand that is not on cooldown on the highlighted tile.'
-      }
-    ],
-    onEnter(session) {
-      this.meta.cleanup = session.fxSystem.addSpriteOnCellUntil(
-        session.boardSystem.getCellAt('3:2:0')!,
-        'cell_highlight'
-      );
-    },
-    onLeave() {
-      this.meta.cleanup();
-    }
-  },
-  {
-    meta: {},
-    action: {
-      type: 'endTurn',
-      payload: { playerId: me.value._id }
-    },
-    tooltips: [
-      {
-        text: 'Your general took damage ! What happened ?'
-      },
-      { text: "That's because you played a card from a different faction." },
-      {
-        text: 'In Not duelyst, you can add any unit from any faction to your deck, but playing units from a faction different from your general costs HP.'
+        text: 'That about covers it for he differences between Duelyst and Not Duelyst.'
       },
       {
-        text: "The HP cost is equal to the number or faction runes the unit has that your general doesn't."
+        text: "There are (or will be, it's still pretty early in development) a lot of stuff added, like different maps with elevations, different special tiles, etc"
       },
       {
-        text: "A unit's runes is displayed in the top-left of the card. Your general runes appear on the top of the screen, below your portrait."
-      },
-      {
-        text: "Alright, that's about it. End your turn, then try to defeat the enemy general ! (It won't move for now because coding an AI takes time)"
-      }
-    ],
-    onLeave() {
-      isFinished.value = true;
-      setTimeout(() => {
-        dispatch('endTurn', { playerId: 'ai' });
-      }, 1500);
-
-      session.value?.on('player:turn_start', player => {
-        if (player.id === 'ai') {
-          setTimeout(() => {
-            dispatch('endTurn', { playerId: 'ai' });
-          }, 1500);
+        text: "I hope you'll have fun playing the game !",
+        onLeave() {
+          dispatch('surrender', { playerId: 'ai' });
         }
-      });
-    }
+      }
+    ]
   }
 ]);
 
@@ -522,21 +520,28 @@ const isReady = ref(false);
 until(state)
   .toBeTruthy()
   .then(state => {
-    session.value = TutorialSession.create(state, 'tutorial', fx.ctx, steps);
-    session.value.once('game:ready', () => {
-      isReady.value = true;
+    serverSession.value = ServerSession.create(state, 'tutorial');
+    clientSession.value = TutorialSession.createTutorialSession(
+      serverSession.value.serialize(),
+      fx.ctx,
+      steps
+    );
+    serverSession.value.onUpdate((action, opts) => {
+      clientSession.value!.dispatch(action, opts);
     });
+    isReady.value = true;
   });
 </script>
 
 <template>
   <GameRoot
-    v-if="session && me"
+    v-if="clientSession && me"
     :p1-emote="p1Emote"
     :p2-emote="p2Emote"
-    :game-session="session"
+    :game-session="clientSession"
     :player-id="me._id"
     :game-type="GAME_TYPES.PVP"
+    :current-tutorial-step="currentStep"
     @move="dispatch('move', $event)"
     @attack="dispatch('attack', $event)"
     @end-turn="dispatch('endTurn', $event)"
@@ -549,14 +554,14 @@ until(state)
   />
 
   <template v-if="isReady && !isFinished">
-    <div class="fancy-surface fixed bottom-5 left-8">
+    <div class="fancy-surface fixed bottom-11 left-5">
       Camera controls :
       <p>- Click and drag to move</p>
       <p>- mouse wheel to zoom</p>
       <p>- Q / E to rotate</p>
     </div>
 
-    <div v-if="session && currentStep" class="fancy-surface tooltip">
+    <div v-if="clientSession && currentStep" class="fancy-surface tooltip">
       {{ currentStep.tooltips[currentTextIndex].text }}
 
       <UiButton

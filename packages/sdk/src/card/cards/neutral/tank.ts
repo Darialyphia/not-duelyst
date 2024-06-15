@@ -17,7 +17,7 @@ export const neutralTank: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cost: 4,
   attack: 2,
-  maxHp: 8,
+  maxHp: 7,
   speed: 2,
   range: 1,
   keywords: [KEYWORDS.TAUNTED],

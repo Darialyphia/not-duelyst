@@ -1,5 +1,5 @@
 import type { Values, UnionToIntersection, Point3D, Nullable } from '@game/shared';
-import type { EntityId, GameSession, PlayerId } from '@game/sdk';
+import type { EntityId, GameSession, PlayerId, TutorialStep } from '@game/sdk';
 import type { AssetsContext } from './useAssets';
 import type { IsoCameraContext } from './useIsoCamera';
 import type { GameUiContext } from './useGameUi';
@@ -61,6 +61,7 @@ export type GameContext = {
   playerId: PlayerId | null;
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
+  currentTutorialStep: Ref<Nullable<TutorialStep>>;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -71,7 +72,8 @@ export const useGameProvider = ({
   playerId,
   gameType,
   p1Emote,
-  p2Emote
+  p2Emote,
+  currentTutorialStep
 }: {
   session: GameSession;
   emit: ShortEmits<GameEmits>;
@@ -79,6 +81,7 @@ export const useGameProvider = ({
   gameType: Ref<GameType>;
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
+  currentTutorialStep: Ref<Nullable<TutorialStep>>;
 }) => {
   const ui = useGameUiProvider(session);
   const camera = useIsoCameraProvider();
@@ -106,7 +109,8 @@ export const useGameProvider = ({
     dispatch: emit,
     fx,
     p1Emote,
-    p2Emote
+    p2Emote,
+    currentTutorialStep
   };
   provide(GAME_INJECTION_KEY, ctx);
 
