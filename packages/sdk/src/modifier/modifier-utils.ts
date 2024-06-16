@@ -684,18 +684,15 @@ export const aura = ({
   const affectedEntitiesIds = new Set<EntityId>();
 
   const cleanup = (session: GameSession) => {
-    console.log('cleanup');
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
-      console.log(`cleanup for ${entity.card.blueprintId}`);
 
       onLoseAura(entity);
     });
   };
 
   const checkAura = (session: GameSession, attachedTo: Entity) => {
-    console.log('check aura');
     session.entitySystem.getList().forEach(entity => {
       if (entity.equals(attachedTo)) return;
       const shouldGetAura = isElligible(entity, attachedTo);

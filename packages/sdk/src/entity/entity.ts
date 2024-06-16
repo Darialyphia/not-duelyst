@@ -564,7 +564,9 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.modifiers = this.modifiers.filter(mod => {
       if (mod.id !== modifierId) return true;
 
-      if (mod.stackable) return mod.stacks >= 1;
+      if (mod.stackable) {
+        return mod.stacks >= 1;
+      }
 
       return false;
     });

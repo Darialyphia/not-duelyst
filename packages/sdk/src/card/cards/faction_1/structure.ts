@@ -2,7 +2,11 @@ import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS, FACTION_IDS } from '../../card-enums';
 import { aura, structure, surge } from '../../../modifier/modifier-utils';
-import { getAffectedEntities, isAxisAligned } from '../../../utils/targeting';
+import {
+  getAffectedEntities,
+  isAxisAligned,
+  isWithinCells
+} from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
 
 export const f1Structure: CardBlueprint = {
@@ -29,15 +33,16 @@ export const f1Structure: CardBlueprint = {
         source: entity,
         name: 'Amplify Magic',
         description: 'Nearby allies have @Surge@',
+        isElligible(target, source) {
+          return (
+            isWithinCells(target.position, source.position, 1) && target.isAlly(source.id)
+          );
+        },
         onGainAura(affected) {
-          if (affected.isAlly(entity.id)) {
-            affected.addModifier(surge({ source: entity }));
-          }
+          affected.addModifier(surge({ source: entity }));
         },
         onLoseAura(affected) {
-          if (affected.isAlly(entity.id)) {
-            affected.removeModifier(KEYWORDS.SURGE.id);
-          }
+          affected.removeModifier(KEYWORDS.SURGE.id);
         }
       })
     );
