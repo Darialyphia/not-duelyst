@@ -7,7 +7,7 @@ import {
   isWithinCells
 } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, FACTIONS, CARD_KINDS, FACTION_IDS } from '../../card-enums';
 
 export const f2Succubus: CardBlueprint = {
   id: 'f2_succubus',
@@ -16,7 +16,7 @@ export const f2Succubus: CardBlueprint = {
   collectable: true,
   rarity: RARITIES.RARE,
   faction: FACTIONS.F2,
-  factions: { f2: 2 },
+  factions: { f2: 1 },
   spriteId: 'f2_succubus',
   kind: CARD_KINDS.MINION,
   cost: 3,
@@ -32,13 +32,16 @@ export const f2Succubus: CardBlueprint = {
     {
       id: 'f2_succubus_skill1',
       name: 'F2 Succubus Skill 1',
-      description: '@Disarm@ an enemy minion for 1 turn.',
+      description: `@${FACTION_IDS.F2}(2)@ @Disarm@ an enemy minion for 1 turn.`,
       cooldown: 3,
       initialCooldown: 0,
       iconId: 'entrance',
       keywords: [KEYWORDS.DISARMED],
       minTargetCount: 1,
       maxTargetCount: 1,
+      runes: {
+        f2: 2
+      },
       isTargetable(point, { skill, session }) {
         return (
           isEnemyMinion(

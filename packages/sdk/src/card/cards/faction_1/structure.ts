@@ -1,6 +1,6 @@
 import { Vec3 } from '@game/shared';
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
+import { RARITIES, FACTIONS, CARD_KINDS, FACTION_IDS } from '../../card-enums';
 import { aura, structure, surge } from '../../../modifier/modifier-utils';
 import { getAffectedEntities, isAxisAligned } from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -12,10 +12,10 @@ export const f1Structure: CardBlueprint = {
   collectable: true,
   rarity: RARITIES.BASIC,
   faction: FACTIONS.F1,
-  factions: { f1: 2 },
+  factions: { f1: 1 },
   spriteId: 'f1_ranged',
   kind: CARD_KINDS.MINION,
-  cost: 3,
+  cost: 2,
   attack: 0,
   maxHp: 6,
   speed: 0,
@@ -46,7 +46,7 @@ export const f1Structure: CardBlueprint = {
     {
       id: 'f1_ranged_skill_1',
       name: 'Pyramid Beam',
-      description: 'Deal 2 damage to all units in a straight line.',
+      description: `@${FACTION_IDS.F1}(2)@Deal 2 damage to all units in a straight line.`,
       cooldown: 2,
       iconId: 'laser-green',
       initialCooldown: 0,

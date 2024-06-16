@@ -1,6 +1,6 @@
 export const config = {
-  VERSION: '0.2.1',
-  MAX_COPIES_PER_CARD: 2,
+  VERSION: '0.2.2',
+  MAX_COPIES_PER_CARD: 3,
   MAX_DECK_SIZE: 20,
   MAX_HAND_SIZE: 6,
   MAX_GOLD: 8,
