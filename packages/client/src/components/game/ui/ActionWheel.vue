@@ -106,6 +106,8 @@ const isSkillDisabled = (skill: Skill) => {
 
 <style scoped lang="postcss">
 .action-wheel {
+  pointer-events: none;
+
   position: absolute;
   right: var(--size-6);
   bottom: var(--size-12);
@@ -120,6 +122,8 @@ const isSkillDisabled = (skill: Skill) => {
     --step: calc(360 / 9);
     --angle: calc((var(--step) * var(--index) - 90) * 1deg);
     --index: calc(var(--child-index) - 1);
+
+    pointer-events: auto;
 
     transform: rotateZ(var(--angle)) translateY(calc(-1 * var(--size-11)))
       rotateZ(calc(-1 * var(--angle)));

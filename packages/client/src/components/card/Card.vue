@@ -163,6 +163,8 @@ const isModalOpened = ref(false);
 .card {
   --z-translate: 25px;
 
+  user-select: none;
+
   position: relative;
   transform-style: preserve-3d;
 

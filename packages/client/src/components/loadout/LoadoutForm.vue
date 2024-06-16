@@ -64,9 +64,9 @@ const minionsCount = computed(() => {
 
 <template>
   <form @submit.prevent="emit('save')">
-    <LoadoutStats :loadout="cards" />
     <header>
-      <input v-model="name" class="py-3 flex-1" />
+      <input v-model="name" class="py-2 flex-1 w-full" />
+      <LoadoutStats :loadout="cards" />
       {{ minionsCount }} / {{ config.MAX_DECK_SIZE }}
     </header>
 
@@ -131,7 +131,7 @@ form {
   grid-template-rows: auto 1fr auto;
 
   height: 100%;
-  padding-top: var(--size-5);
+  padding-top: var(--size-2);
   padding-left: var(--size-3);
   > * {
     padding-right: var(--size-3);
@@ -139,10 +139,14 @@ form {
 }
 
 header {
-  display: flex;
+  /* display: flex;
   gap: var(--size-3);
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; */
+  input {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-5);
+  }
 }
 
 ul {

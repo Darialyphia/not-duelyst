@@ -125,6 +125,7 @@ export const tough = ({
 
 export const rush = () => {
   return createCardModifier({
+    id: KEYWORDS.RUSH.id,
     stackable: false,
     mixins: [
       modifierCardInterceptorMixin({
@@ -286,6 +287,7 @@ export const nimble = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.NIMBLE.id,
     source,
     visible: false,
     stackable: false,
@@ -314,6 +316,7 @@ export const fearsome = ({
 }) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.FEARSOME.id,
     stackable: false,
     visible: false,
     mixins: [
@@ -338,6 +341,7 @@ export const flying = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.FLYING.id,
     source,
     visible: false,
     stackable: false,
@@ -370,6 +374,7 @@ export const frozen = ({
   };
 
   return createEntityModifier({
+    id: KEYWORDS.FROZEN.id,
     visible: false,
     stackable: false,
     source,
@@ -399,6 +404,7 @@ export const rooted = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.ROOTED.id,
     visible: false,
     stackable: false,
     source,
@@ -421,6 +427,7 @@ export const silenced = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.SILENCED.id,
     visible: false,
     stackable: false,
     source,
@@ -443,6 +450,7 @@ export const disarmed = ({
   duration?: number;
 }) => {
   return createEntityModifier({
+    id: KEYWORDS.DISARMED.id,
     visible: false,
     stackable: false,
     source,
@@ -488,6 +496,7 @@ export const thorns = ({
 
 export const fury = ({ source, duration }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
+    id: KEYWORDS.FURY.id,
     source,
     visible: false,
     stackable: false,
@@ -505,6 +514,7 @@ export const fury = ({ source, duration }: { source: Entity; duration?: number }
 export const celerity = ({ source, duration }: { source: Entity; duration?: number }) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.CELERITY.id,
     visible: false,
     stackable: false,
     mixins: [
@@ -522,6 +532,7 @@ export const celerity = ({ source, duration }: { source: Entity; duration?: numb
 export const structure = (source: Entity) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.STRUCTURE.id,
     visible: false,
     stackable: false,
     mixins: [
@@ -557,6 +568,7 @@ export const ranged = ({
 }) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.RANGED.id,
     stackable: false,
     visible: false,
     mixins: [
@@ -633,7 +645,7 @@ export const elusive = ({
   stacks?: number;
 }) => {
   return createEntityModifier({
-    id: KEYWORDS.SURGE.id,
+    id: KEYWORDS.ELUSIVE.id,
     source,
     stackable: false,
     visible: false,
@@ -672,14 +684,18 @@ export const aura = ({
   const affectedEntitiesIds = new Set<EntityId>();
 
   const cleanup = (session: GameSession) => {
+    console.log('cleanup');
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
+      console.log(`cleanup for ${entity.card.blueprintId}`);
+
       onLoseAura(entity);
     });
   };
 
   const checkAura = (session: GameSession, attachedTo: Entity) => {
+    console.log('check aura');
     session.entitySystem.getList().forEach(entity => {
       if (entity.equals(attachedTo)) return;
       const shouldGetAura = isElligible(entity, attachedTo);
@@ -710,7 +726,7 @@ export const aura = ({
         keywords: [...keywords, KEYWORDS.AURA],
         onApplied(session, attachedTo) {
           const doCheck = () => checkAura(session, attachedTo);
-          doCheck;
+          doCheck();
           session.on('entity:created', doCheck);
           session.on('entity:after_destroy', doCheck);
           session.on('entity:after-move', doCheck);

@@ -33,7 +33,7 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
 
 <template>
   <div class="loadout-stats">
-    <div class="flex justify-between">
+    <div class="flex justify-between mb-3">
       <div class="average">
         Average Gold:
         <span>{{ averageGoldCost.toFixed(1) }}</span>
@@ -58,17 +58,20 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
   padding: var(--size-2);
 }
 
-.average > span {
-  font-size: var(--font-size-3);
-  font-weight: var(--font-weight-5);
-  color: var(--primary);
+.average {
+  font-size: var(--font-size-0);
+  > span {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-5);
+    color: var(--primary);
+  }
 }
 
 .bars {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: var(--size-1);
-  height: var(--size-11);
+  height: var(--size-10);
 
   > div {
     display: grid;

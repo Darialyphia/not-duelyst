@@ -128,7 +128,9 @@ const keywords = computed(() => {
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
   }
   &:not(:hover) {
-    transition: transform 0.3s filter 0.3s;
+    transition:
+      transform 0.3s,
+      filter 0.3s;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
+import { RARITIES, CARD_KINDS, FACTIONS, FACTION_IDS } from '../../card-enums';
 import { isSelf } from '../../../utils/targeting';
 import { celerity, elusive, fury, nimble } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
@@ -30,12 +30,13 @@ export const f1Dancer: CardBlueprint = {
     {
       id: 'f1_dancer_skill_1',
       cooldown: 4,
-      description: 'Gain @Fury@ and @Elusive@ 2 turns',
+      description: `@${FACTION_IDS.F1}(4)@Gain @Fury@ and @Elusive@ 2 turns`,
       name: 'Battle dance',
       iconId: 'chakram-dance',
       initialCooldown: 0,
       minTargetCount: 0,
       maxTargetCount: 1,
+      runes: { f1: 4 },
       keywords: [KEYWORDS.FURY, KEYWORDS.ELUSIVE],
       isTargetable(point, { session, skill }) {
         return isSelf(skill.caster, session.entitySystem.getEntityAt(point));

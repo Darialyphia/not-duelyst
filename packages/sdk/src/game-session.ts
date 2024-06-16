@@ -106,7 +106,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
       'game:ready'
     ].forEach(eventName => {
       this.on(eventName as any, () => {
-        console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b');
+        // console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
         this.emit('*', eventName);
       });
