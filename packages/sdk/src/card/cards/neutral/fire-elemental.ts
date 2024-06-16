@@ -16,7 +16,7 @@ export const neutralFireElemental: CardBlueprint = {
   kind: CARD_KINDS.MINION,
   cost: 4,
   attack: 2,
-  maxHp: 5,
+  maxHp: 4,
   speed: 3,
   range: 1,
   skills: [],
@@ -27,13 +27,13 @@ export const neutralFireElemental: CardBlueprint = {
       aura({
         source: entity,
         name: 'Immolaion',
-        description: 'Nearby enemies have @Burn(2)@.',
+        description: 'Nearby enemies have @Burn(1)@.',
         onGainAura(affected) {
           if (affected.isAlly(entity.id)) return;
           affected.addModifier(burn({ source: entity, stacks: 2 }));
         },
         onLoseAura(affected) {
-          affected.removeModifier(KEYWORDS.BURN.id, 2);
+          affected.removeModifier(KEYWORDS.BURN.id, 1);
         }
       })
     );

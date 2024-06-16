@@ -1,10 +1,14 @@
 import { config } from '../../../config';
-import { isEmpty } from '../../../entity/entity-utils';
+import { isEmpty, isEnemy } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS, FACTION_IDS } from '../../card-enums';
-import { isCastPoint, isWithinCells } from '../../../utils/targeting';
+import {
+  getAffectedEntities,
+  isCastPoint,
+  isWithinCells
+} from '../../../utils/targeting';
 import { KEYWORDS } from '../../../utils/keywords';
-import { rush } from '../../../modifier/modifier-utils';
+import { purgeEntity, rush } from '../../../modifier/modifier-utils';
 import { f1Wisp } from './wisp';
 import { neutralAirElemental } from '../neutral/air-elemental';
 
@@ -60,33 +64,33 @@ export const f1General: CardBlueprint = {
     },
     {
       id: 'f1_general_skill2',
-      name: 'Summon Air Elemental',
-      description: `@${FACTION_IDS.F1}(4)@Summon@ a @${neutralAirElemental.name}@ on a space nearby an allied unit.`,
-      cooldown: 5,
-      initialCooldown: 4,
+      name: 'F1 General 1 Skill 2',
+      description: `@Purge@ a nearby enemy, then deal 2 damage to it.`,
+      cooldown: 4,
+      initialCooldown: 3,
       runes: {
-        f1: 4
+        f1: 3
       },
-      iconId: 'summon-air-elemental',
+      iconId: 'spear1',
       minTargetCount: 1,
       maxTargetCount: 1,
       isTargetable(point, { session, skill }) {
-        return session.entitySystem
-          .getNearbyEntities(point)
-          .some(entity => skill.caster.isAlly(entity.id));
+        return (
+          isWithinCells(skill.caster.position, point, 1) &&
+          isEnemy(
+            session,
+            session.entitySystem.getEntityAt(point)?.id,
+            skill.caster.player.id
+          )
+        );
       },
       isInAreaOfEffect(point, { castPoints }) {
         return isCastPoint(point, castPoints);
       },
-      onUse({ session, skill, castPoints }) {
-        const card = skill.caster.player.generateCard({
-          blueprintId: neutralAirElemental.id,
-          pedestalId: skill.caster.card.pedestalId
-        });
-
-        card.play({
-          position: castPoints[0],
-          targets: []
+      onUse({ skill, affectedCells }) {
+        getAffectedEntities(affectedCells).forEach(target => {
+          purgeEntity(target);
+          skill.caster.dealDamage(2, target, { isAbilityDamage: true });
         });
       }
     }

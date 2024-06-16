@@ -14,7 +14,7 @@ import { neutralWaterElemental } from '../neutral/water-elemental';
 export const f1ElementalLord: CardBlueprint = {
   id: 'f1_elemental_lord',
   name: 'F1 Elemental Lord',
-  description: 'Your Elementals have @Regeneration(1)@',
+  description: '',
   collectable: true,
   rarity: RARITIES.LEGENDARY,
   faction: FACTIONS.F1,
@@ -27,37 +27,6 @@ export const f1ElementalLord: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.REGENERATION],
-  onPlay({ session, entity }) {
-    const isAlliedElemental = (e: Entity) =>
-      e.isAlly(entity.id) &&
-      e.card.blueprint.tribes?.some(tribe => tribe.id === TRIBES.ELEMENTAL.id);
-
-    const onEntityCreated = (newEntity: Entity) => {
-      if (!isAlliedElemental(newEntity)) return;
-      newEntity.addModifier(regeneration({ source: entity }));
-    };
-
-    entity.addModifier(
-      whileOnBoard({
-        source: entity,
-        onApplied() {
-          session.on('entity:created', onEntityCreated);
-          session.entitySystem.getList().forEach(e => {
-            if (!isAlliedElemental(e)) return;
-            e.addModifier(regeneration({ source: entity }));
-          });
-        },
-        onRemoved(session) {
-          session.off('entity:created', onEntityCreated);
-
-          session.entitySystem.getList().forEach(e => {
-            if (!isAlliedElemental(e)) return;
-            e.removeModifier(KEYWORDS.REGENERATION.id);
-          });
-        }
-      })
-    );
-  },
   relatedBlueprintIds: [
     neutralAirElemental.id,
     neutralEarthElemental.id,

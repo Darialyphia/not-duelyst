@@ -1,4 +1,4 @@
-import { celerity, rush } from '../../../modifier/modifier-utils';
+import { celerity } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import { TRIBES } from '../../../utils/tribes';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -7,7 +7,7 @@ import { RARITIES, CARD_KINDS } from '../../card-enums';
 export const neutralAirElemental: CardBlueprint = {
   id: 'air-elemental',
   name: 'Neutral Air Elemental',
-  description: '@Rush@\n.@Celerity@',
+  description: '@Celerity@',
   collectable: false,
   rarity: RARITIES.BASIC,
   faction: null,
@@ -19,9 +19,8 @@ export const neutralAirElemental: CardBlueprint = {
   maxHp: 4,
   speed: 3,
   range: 1,
-  keywords: [KEYWORDS.RUSH, KEYWORDS.CELERITY],
+  keywords: [KEYWORDS.CELERITY],
   tribes: [TRIBES.ELEMENTAL],
-  modifiers: [rush()],
   skills: [],
   onPlay({ entity }) {
     entity.addModifier(celerity({ source: entity }));

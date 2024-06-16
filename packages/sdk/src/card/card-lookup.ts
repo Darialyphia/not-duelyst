@@ -35,6 +35,7 @@ import { f2PitLord } from './cards/faction_2/pit-lord';
 import { f2Succubus } from './cards/faction_2/succubus';
 import { f2Butcher } from './cards/faction_2/butcher';
 import { neutralIceQueen } from './cards/neutral/ice-queen';
+import { neutralArcher } from './cards/neutral/archer';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -64,6 +65,7 @@ const allCards: CardBlueprint[] = [
   f2Butcher,
 
   neutralTank,
+  neutralArcher,
   neutralIceQueen,
   neutralAirElemental,
   neutralFireElemental,

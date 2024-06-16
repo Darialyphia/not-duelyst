@@ -77,7 +77,8 @@ export const KEYWORDS = {
     id: 'fearsomem',
     name: 'Fearsome',
     description: 'Prevents targeted units from retaliating.',
-    aliases: []
+    aliases: [],
+    spriteId: 'fearsome'
   },
   FERVOR: {
     id: 'fervor',
