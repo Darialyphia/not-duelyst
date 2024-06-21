@@ -12,7 +12,8 @@
     "dev": "npm-run-all --parallel dev:assets dev:server",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "generate:fx": "tsx scripts/plist-to-aseprite.ts"
+    "generate:fx": "tsx scripts/plist-to-aseprite.ts",
+    "generate:plist": "tsx scripts/aseprite-to-plist.ts"
   },
   "dependencies": {
     "@assetpack/cli": "^0.8.0",
