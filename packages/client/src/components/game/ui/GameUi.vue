@@ -26,9 +26,9 @@ const isModalOpened = computed({
   }
 });
 
+const isDev = import.meta.env.DEV;
 const stats = new Stats();
 
-const isDev = import.meta.env.DEV;
 const statsRoot = ref<HTMLDivElement>();
 onMounted(() => {
   stats.showPanel(0);

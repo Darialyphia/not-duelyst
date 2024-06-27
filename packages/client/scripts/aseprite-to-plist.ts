@@ -21,9 +21,13 @@ const frames = Object.fromEntries(
   })
 );
 
-const metadata = {};
+const metadata = {
+  format: 2,
+  size: `{${raw.meta.size.w},${raw.meta.size.h}}`,
+  textureFileName: raw.meta.image
+};
 
 const OUTPUT_DIR = path.join(process.cwd(), 'tmp');
 const OUTPUT_PATH = path.join(OUTPUT_DIR, 'totally-not-manaforger.plist');
 await fs.ensureDir(OUTPUT_DIR);
-fs.writeFile(OUTPUT_PATH, plist.build({ frames, metadata }));
+fs.writeFile(OUTPUT_PATH, plist.build({ frames, metadata }, { pretty: true }));

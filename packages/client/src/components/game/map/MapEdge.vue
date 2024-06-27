@@ -44,36 +44,38 @@ const isRightEdge = computed(
 </script>
 
 <template>
-  <IlluminatedSprite
-    v-if="!cellAbove && edgeNormalSheet && isTopEdge"
-    :diffuse-textures="edgeDiffuseSheet.animations[(0 + camera.angle.value) % 360]"
-    :normal-textures="edgeNormalSheet.animations[(0 + camera.angle.value) % 360]"
-    :anchor="0.5"
-    event-mode="none"
-    :y="-14"
-  />
-  <IlluminatedSprite
-    v-if="!cellAbove && edgeNormalSheet && isBottomEdge"
-    :diffuse-textures="edgeDiffuseSheet.animations[(180 + camera.angle.value) % 360]"
-    :normal-textures="edgeNormalSheet.animations[(180 + camera.angle.value) % 360]"
-    :anchor="0.5"
-    event-mode="none"
-    :y="-14"
-  />
-  <IlluminatedSprite
-    v-if="!cellAbove && edgeNormalSheet && isRightEdge"
-    :diffuse-textures="edgeDiffuseSheet.animations[(90 + camera.angle.value) % 360]"
-    :normal-textures="edgeNormalSheet.animations[(90 + camera.angle.value) % 360]"
-    :anchor="0.5"
-    event-mode="none"
-    :y="-14"
-  />
-  <IlluminatedSprite
-    v-if="!cellAbove && edgeNormalSheet && isLeftEdge"
-    :diffuse-textures="edgeDiffuseSheet.animations[(270 + camera.angle.value) % 360]"
-    :normal-textures="edgeNormalSheet.animations[(270 + camera.angle.value) % 360]"
-    :anchor="0.5"
-    event-mode="none"
-    :y="-14"
-  />
+  <container :alpha="0">
+    <IlluminatedSprite
+      v-if="!cellAbove && edgeNormalSheet && isTopEdge"
+      :diffuse-textures="edgeDiffuseSheet.animations[(0 + camera.angle.value) % 360]"
+      :normal-textures="edgeNormalSheet.animations[(0 + camera.angle.value) % 360]"
+      :anchor="0.5"
+      event-mode="none"
+      :y="-14"
+    />
+    <IlluminatedSprite
+      v-if="!cellAbove && edgeNormalSheet && isBottomEdge"
+      :diffuse-textures="edgeDiffuseSheet.animations[(180 + camera.angle.value) % 360]"
+      :normal-textures="edgeNormalSheet.animations[(180 + camera.angle.value) % 360]"
+      :anchor="0.5"
+      event-mode="none"
+      :y="-14"
+    />
+    <IlluminatedSprite
+      v-if="!cellAbove && edgeNormalSheet && isRightEdge"
+      :diffuse-textures="edgeDiffuseSheet.animations[(90 + camera.angle.value) % 360]"
+      :normal-textures="edgeNormalSheet.animations[(90 + camera.angle.value) % 360]"
+      :anchor="0.5"
+      event-mode="none"
+      :y="-14"
+    />
+    <IlluminatedSprite
+      v-if="!cellAbove && edgeNormalSheet && isLeftEdge"
+      :diffuse-textures="edgeDiffuseSheet.animations[(270 + camera.angle.value) % 360]"
+      :normal-textures="edgeNormalSheet.animations[(270 + camera.angle.value) % 360]"
+      :anchor="0.5"
+      event-mode="none"
+      :y="-14"
+    />
+  </container>
 </template>
