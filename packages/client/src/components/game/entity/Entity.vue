@@ -109,6 +109,7 @@ const { autoDestroyRef } = useAutoDestroy();
       y: -CELL_HEIGHT * 0.65
     }"
     event-mode="none"
+    :interactive-children="false"
   >
     <container
       :ref="

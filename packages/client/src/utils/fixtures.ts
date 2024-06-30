@@ -164,8 +164,8 @@ export const tutorialMap: SerializedGameState['map'] = {
 export const testMap: SerializedGameState['map'] = {
   width: 13,
   height: 9,
-  player1StartPosition: { x: 0, y: 4, z: 0 },
-  player2StartPosition: { x: 12, y: 4, z: 0 },
+  player1StartPosition: { x: 0, y: 4, z: 2 },
+  player2StartPosition: { x: 12, y: 4, z: 2 },
   cells: [
     // outer map
     // ...makeRow(9, 0, [
@@ -324,7 +324,7 @@ export const testMap: SerializedGameState['map'] = {
     //   'water'
     // ]),
     // inner map
-    ...makeRow(0, 0, [
+    ...makeRow(0, 2, [
       'dirt',
       'dirt',
       'grass',
@@ -340,7 +340,7 @@ export const testMap: SerializedGameState['map'] = {
       'dirt'
     ]),
 
-    ...makeRow(1, 0, [
+    ...makeRow(1, 2, [
       'dirt',
       'grass',
       'grass',
@@ -356,7 +356,7 @@ export const testMap: SerializedGameState['map'] = {
       'dirt'
     ]),
 
-    ...makeRow(2, 0, [
+    ...makeRow(2, 2, [
       'grass',
       'grass',
       'water',
@@ -372,7 +372,7 @@ export const testMap: SerializedGameState['map'] = {
       'grass'
     ]),
 
-    ...makeRow(3, 0, [
+    ...makeRow(3, 2, [
       'grass',
       'grass',
       'water',
@@ -390,7 +390,7 @@ export const testMap: SerializedGameState['map'] = {
 
     ...makeRow(
       4,
-      0,
+      2,
       [
         'grass',
         'grass',
@@ -409,7 +409,7 @@ export const testMap: SerializedGameState['map'] = {
       // { 4: 'sanctuary', 8: 'sanctuary' }
     ),
 
-    ...makeRow(5, 0, [
+    ...makeRow(5, 2, [
       'grass',
       'grass',
       'water',
@@ -425,7 +425,7 @@ export const testMap: SerializedGameState['map'] = {
       'grass'
     ]),
 
-    ...makeRow(6, 0, [
+    ...makeRow(6, 2, [
       'grass',
       'grass',
       'water',
@@ -439,137 +439,121 @@ export const testMap: SerializedGameState['map'] = {
       'water',
       'grass',
       'grass'
-    ]),
-
-    ...makeRow(7, 0, [
-      'dirt',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'dirt'
-    ]),
-
-    ...makeRow(8, 0, [
-      'dirt',
-      'dirt',
-      'grass',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'grass',
-      'dirt',
-      'dirt'
-    ]),
-
-    ...makeRow(0, 1, [
-      'grass',
-      'grass',
-      null,
-      'grass',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'grass',
-      null,
-      'grass',
-      'grass'
-    ]),
-
-    ...makeRow(1, 1, [
-      'grass',
-      null,
-      null,
-      null,
-      null,
-      'grass',
-      'dirt',
-      'grass',
-      null,
-      null,
-      null,
-      null,
-      'grass'
-    ]),
-
-    ...makeRow(7, 1, [
-      'grass',
-      null,
-      null,
-      null,
-      null,
-      'grass',
-      'dirt',
-      'grass',
-      null,
-      null,
-      null,
-      null,
-      'grass'
-    ]),
-
-    ...makeRow(8, 1, [
-      'grass',
-      'grass',
-      null,
-      'grass',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'dirt',
-      'grass',
-      null,
-      'grass',
-      'grass'
-    ]),
-
-    ...makeRow(0, 2, [
-      null,
-      null,
-      null,
-      null,
-      'grass',
-      'grass',
-      'dirt',
-      'grass',
-      'grass',
-      null,
-      null,
-      null,
-      null
-    ]),
-
-    ...makeRow(1, 2, [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      'grass',
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
     ]),
 
     ...makeRow(7, 2, [
+      'dirt',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'dirt'
+    ]),
+
+    ...makeRow(8, 2, [
+      'dirt',
+      'dirt',
+      'grass',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'grass',
+      'dirt',
+      'dirt'
+    ]),
+
+    ...makeRow(0, 3, [
+      'grass',
+      'grass',
+      null,
+      'grass',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'grass',
+      null,
+      'grass',
+      'grass'
+    ]),
+
+    ...makeRow(1, 3, [
+      'grass',
+      null,
+      null,
+      null,
+      null,
+      'grass',
+      'dirt',
+      'grass',
+      null,
+      null,
+      null,
+      null,
+      'grass'
+    ]),
+
+    ...makeRow(7, 3, [
+      'grass',
+      null,
+      null,
+      null,
+      null,
+      'grass',
+      'dirt',
+      'grass',
+      null,
+      null,
+      null,
+      null,
+      'grass'
+    ]),
+
+    ...makeRow(8, 3, [
+      'grass',
+      'grass',
+      null,
+      'grass',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'dirt',
+      'grass',
+      null,
+      'grass',
+      'grass'
+    ]),
+
+    ...makeRow(0, 4, [
+      null,
+      null,
+      null,
+      null,
+      'grass',
+      'grass',
+      'dirt',
+      'grass',
+      'grass',
+      null,
+      null,
+      null,
+      null
+    ]),
+
+    ...makeRow(1, 4, [
       null,
       null,
       null,
@@ -585,7 +569,23 @@ export const testMap: SerializedGameState['map'] = {
       null
     ]),
 
-    ...makeRow(8, 2, [
+    ...makeRow(7, 4, [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      'grass',
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]),
+
+    ...makeRow(8, 4, [
       null,
       null,
       null,
@@ -603,14 +603,14 @@ export const testMap: SerializedGameState['map'] = {
 
     ...makeRow(
       0,
-      3,
+      5,
       [null, null, null, null, null, null, 'grass', null, null, null, null, null, null],
       { 6: 'gold_coin' }
     ),
 
     ...makeRow(
       8,
-      3,
+      5,
       [null, null, null, null, null, null, 'grass', null, null, null, null, null, null],
       { 6: 'gold_coin' }
     )

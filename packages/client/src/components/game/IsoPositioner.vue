@@ -127,7 +127,7 @@ watch(
   <container
     v-bind="$attrs"
     :ref="
-      (_container: Container | undefined) => {
+      (_container: any) => {
         if (!_container) return;
         root = _container as any;
         autoDestroyRef(_container);
