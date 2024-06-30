@@ -5,8 +5,7 @@ export const authSchemas = {
   sessions: defineTable({
     id: v.string(),
     user_id: v.string(),
-    active_expires: v.float64(),
-    idle_expires: v.float64()
+    expires_at: v.float64()
   })
     .index('byId', ['id'])
     .index('byUserId', ['user_id']),

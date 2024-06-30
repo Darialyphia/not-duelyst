@@ -10,7 +10,7 @@ const isDev = import.meta.env.DEV;
 </script>
 
 <template>
-  <!-- <Sky /> -->
+  <Sky />
   <Layer :group="diffuseGroup" />
   <Layer :group="normalGroup" />
   <Layer :group="lightGroup" />

@@ -108,116 +108,114 @@ const highlightTarget = () => {
     :height="boardDimensions.height"
     :width="boardDimensions.width"
   >
-    <container>
-      <container
-        @pointerenter="
-          () => {
-            ui.hoverAt(cell.position);
-            if (cell.entity || cell.tile) {
-              pointerenterSound.play();
-            }
-            if (!isActivePlayer) return;
-            match(ui.targetingMode.value)
-              .with(
-                TARGETING_MODES.SUMMON,
-                TARGETING_MODES.NONE,
-                TARGETING_MODES.BLUEPRINT_FOLLOWUP,
-                () => {}
-              )
-              .with(TARGETING_MODES.BASIC, () => {
-                if (
-                  ui.selectedEntity.value &&
-                  isHovered &&
-                  ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
-                  ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
-                ) {
-                  highlightTarget();
-                }
-              })
-              .with(TARGETING_MODES.FOLLOWUP, () => {
-                if (!cell.entity) return;
-                if (!ui.selectedCard.value) return;
-                if (isFollowupTargetable) {
-                  highlightTarget();
-                }
-              })
-              .with(TARGETING_MODES.SKILL, () => {
-                if (!cell.entity) return;
-                if (!ui.selectedSkill.value) return;
-                if (isSkillTargetable) {
-                  highlightTarget();
-                }
-              })
-              .exhaustive();
+    <container
+      @pointerenter="
+        () => {
+          ui.hoverAt(cell.position);
+          if (cell.entity || cell.tile) {
+            pointerenterSound.play();
           }
-        "
-        @pointerleave="
-          () => {
-            ui.unhover();
-            ui.mouseLightColor.value = DEFAULT_MOUSE_LIGHT_COLOR;
-            ui.mouseLightStrength.value = DEFAULT_MOUSE_LIGHT_STRENGTH;
-          }
-        "
-        @pointerup="
-          (event: FederatedPointerEvent) => {
-            if (event.button === 2) {
-              if (cell.entity) {
-                ui.highlightedCard.value = cell.entity.card;
-              } else {
-                ui.unselectEntity();
-                ui.unselectCard();
+          if (!isActivePlayer) return;
+          match(ui.targetingMode.value)
+            .with(
+              TARGETING_MODES.SUMMON,
+              TARGETING_MODES.NONE,
+              TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+              () => {}
+            )
+            .with(TARGETING_MODES.BASIC, () => {
+              if (
+                ui.selectedEntity.value &&
+                isHovered &&
+                ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
+                ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
+              ) {
+                highlightTarget();
               }
-              return;
+            })
+            .with(TARGETING_MODES.FOLLOWUP, () => {
+              if (!cell.entity) return;
+              if (!ui.selectedCard.value) return;
+              if (isFollowupTargetable) {
+                highlightTarget();
+              }
+            })
+            .with(TARGETING_MODES.SKILL, () => {
+              if (!cell.entity) return;
+              if (!ui.selectedSkill.value) return;
+              if (isSkillTargetable) {
+                highlightTarget();
+              }
+            })
+            .exhaustive();
+        }
+      "
+      @pointerleave="
+        () => {
+          ui.unhover();
+          ui.mouseLightColor.value = DEFAULT_MOUSE_LIGHT_COLOR;
+          ui.mouseLightStrength.value = DEFAULT_MOUSE_LIGHT_STRENGTH;
+        }
+      "
+      @pointerup="
+        (event: FederatedPointerEvent) => {
+          if (event.button === 2) {
+            if (cell.entity) {
+              ui.highlightedCard.value = cell.entity.card;
+            } else {
+              ui.unselectEntity();
+              ui.unselectCard();
             }
-
-            if (!isActivePlayer) return;
-
-            match(ui.targetingMode.value)
-              .with(TARGETING_MODES.BLUEPRINT_FOLLOWUP, () => {})
-              .with(TARGETING_MODES.BASIC, () => {
-                if (cell.entity) {
-                  if (ui.selectedEntity.value?.equals(cell.entity)) {
-                    ui.unselectEntity();
-                    return;
-                  }
-                  attack();
-                } else {
-                  move();
-                }
-              })
-              .with(TARGETING_MODES.SUMMON, () => {
-                summon();
-              })
-              .with(TARGETING_MODES.FOLLOWUP, () => {
-                if (!ui.selectedCard.value) return;
-                if (isFollowupTargetable) {
-                  ui.followupTargets.value.push(cell.position);
-                  pointerupSound.play();
-                }
-              })
-              .with(TARGETING_MODES.SKILL, () => {
-                if (!ui.selectedSkill.value) return;
-                if (isSkillTargetable) {
-                  ui.skillTargets.value.push(cell.position);
-                  pointerupSound.play();
-                }
-              })
-              .with(TARGETING_MODES.NONE, () => {
-                if (cell.entity?.player.equals(activePlayer)) {
-                  ui.selectEntity(cell.entity.id);
-                  pointerupSound.play();
-                }
-              })
-              .exhaustive();
+            return;
           }
-        "
-      >
-        <MapCellSprite :cell-id="cellId" />
-      </container>
-      <MapCellHighlights :cell="cell" />
 
-      <HoveredCell v-if="isHovered" />
+          if (!isActivePlayer) return;
+
+          match(ui.targetingMode.value)
+            .with(TARGETING_MODES.BLUEPRINT_FOLLOWUP, () => {})
+            .with(TARGETING_MODES.BASIC, () => {
+              if (cell.entity) {
+                if (ui.selectedEntity.value?.equals(cell.entity)) {
+                  ui.unselectEntity();
+                  return;
+                }
+                attack();
+              } else {
+                move();
+              }
+            })
+            .with(TARGETING_MODES.SUMMON, () => {
+              summon();
+            })
+            .with(TARGETING_MODES.FOLLOWUP, () => {
+              if (!ui.selectedCard.value) return;
+              if (isFollowupTargetable) {
+                ui.followupTargets.value.push(cell.position);
+                pointerupSound.play();
+              }
+            })
+            .with(TARGETING_MODES.SKILL, () => {
+              if (!ui.selectedSkill.value) return;
+              if (isSkillTargetable) {
+                ui.skillTargets.value.push(cell.position);
+                pointerupSound.play();
+              }
+            })
+            .with(TARGETING_MODES.NONE, () => {
+              if (cell.entity?.player.equals(activePlayer)) {
+                ui.selectEntity(cell.entity.id);
+                pointerupSound.play();
+              }
+            })
+            .exhaustive();
+        }
+      "
+    >
+      <MapCellSprite :cell-id="cellId" />
     </container>
+    <MapCellHighlights :cell="cell" />
+
+    <HoveredCell v-if="isHovered" />
   </IsoPositioner>
 
   <Tile :cell-id="cellId" />

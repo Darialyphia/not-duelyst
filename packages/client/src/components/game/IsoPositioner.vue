@@ -85,48 +85,64 @@ const zIndex = computed(() => {
   );
 });
 
-const tweened = ref({ x: containerX.value, y: containerY.value });
+// const tweened = ref({ x: containerX.value, y: containerY.value });
 
-watch([containerX, containerY], ([newX, newY]) => {
-  if (animated && !settings.value.a11y.reducedMotions) {
-    gsap.to(tweened.value, {
-      duration: 0.7,
-      x: newX,
-      y: newY,
-      ease: animated ? Power3.easeOut : Power0.easeOut
-    });
-  } else {
-    tweened.value = { x: newX, y: newY };
-  }
-});
+// watch([containerX, containerY], ([newX, newY]) => {
+//   if (animated && !settings.value.a11y.reducedMotions) {
+//     gsap.to(tweened.value, {
+//       duration: 0.7,
+//       x: newX,
+//       y: newY,
+//       ease: animated ? Power3.easeOut : Power0.easeOut
+//     });
+//   } else {
+//     tweened.value = { x: newX, y: newY };
+//   }
+// });
 
 const root = ref<Container>();
+
+watch(
+  [containerX, containerY, zIndex, root],
+  ([newX, newY, z, container], [, , , prevContainer]) => {
+    if (!container) return;
+
+    const isInstant = !prevContainer || !animated || settings.value.a11y.reducedMotions;
+
+    gsap.to(container, {
+      duration: isInstant ? 0 : 0.7,
+      pixi: {
+        x: newX,
+        y: newY,
+        zIndex: z
+      },
+      ease: Power3.easeOut
+    });
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <container
     v-bind="$attrs"
     :ref="
-      _container => {
+      (_container: Container | undefined) => {
         if (!_container) return;
         root = _container as any;
         autoDestroyRef(_container);
       }
     "
-    :x="tweened.x"
-    :y="tweened.y"
-    :z-order="zIndex"
-    :z-index="zIndex"
   >
     <slot />
     <text
       v-if="debug"
       :style="{ fill: 'white', fontSize: 35, fontFamily: 'monospace' }"
       :scale="0.25"
-      :anchor="0.5"
+      :anchor="[0.5, 1]"
       event-mode="none"
     >
-      {{ zIndex.toFixed(1) }}
+      x:{{ x }}, y:{{ y }}
     </text>
   </container>
 </template>
