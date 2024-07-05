@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { CARD_KINDS } from '@game/sdk';
+import { CARD_KINDS, type Animation } from '@game/sdk';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import type { Prettify } from '@game/shared';
+import { match } from 'ts-pattern';
 
 type ICard = Prettify<
   {
@@ -41,6 +42,21 @@ const { floatingStyles } = useFloating(reference, floating, {
 
 const isHovered = ref(false);
 const isModalOpened = ref(false);
+
+const animation = computed(() => {
+  return match(card.kind)
+    .with(CARD_KINDS.GENERAL, CARD_KINDS.MINION, () =>
+      isHovered.value ? ('idle' as const) : ('breathing' as const)
+    )
+    .with(CARD_KINDS.SPELL, CARD_KINDS.ARTIFACT, () =>
+      isHovered.value ? ('active' as const) : ('default' as const)
+    )
+    .exhaustive();
+});
+
+const isUnit = computed(
+  () => card.kind === CARD_KINDS.GENERAL || card.kind === CARD_KINDS.MINION
+);
 </script>
 
 <template>
@@ -65,7 +81,9 @@ const isModalOpened = ref(false);
       <CardSprite
         class="sprite"
         :sprite-id="card.spriteId"
-        :pedestal-id="card.pedestalId ?? 'pedestal-default'"
+        :pedestal-id="isUnit ? card.pedestalId ?? 'pedestal-default' : undefined"
+        :animation="animation"
+        :is-hovered="isHovered"
       />
       <div
         class="faction"

@@ -2,7 +2,15 @@ import type { Point, Point3D } from '@game/shared';
 import type { EntityId } from './entity/entity';
 import type { Cell } from './board/cell';
 
-export type Animation = 'idle' | 'breathing' | 'run' | 'attack' | 'hit' | 'death';
+export type Animation =
+  | 'idle'
+  | 'breathing'
+  | 'run'
+  | 'attack'
+  | 'hit'
+  | 'death'
+  | 'default'
+  | 'active';
 
 export type FXSystem = {
   moveEntity(

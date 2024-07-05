@@ -60,13 +60,13 @@ type AsepriteJson = z.infer<typeof asepriteJsonSchema>;
 const parseSprite = ({ frames, meta }: AsepriteJson) => {
   const sheet = {
     frames: Object.fromEntries(
-      frames.map(frame => {
-        const { filename } = frame;
+      frames.map(frameData => {
+        const { filename, frame } = frameData;
         // avoids console warnings with HMR
         if (import.meta.env.DEV) {
           Texture.removeFromCache(filename);
         }
-        return [filename, frame];
+        return [filename, { frame }];
       })
     ),
     animations: Object.fromEntries(
