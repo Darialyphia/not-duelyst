@@ -16,8 +16,6 @@ export type SerializedCard = {
   isGenerated?: boolean;
 };
 
-export type CardInterceptor = Card['interceptors'];
-
 export const CARD_EVENTS = {
   BEFORE_PLAYED: 'before_played',
   AFTER_PLAYED: 'after_played',
@@ -32,7 +30,7 @@ export type CardEventMap = {
   [CARD_EVENTS.DRAWN]: [Card];
 };
 
-export class Card extends EventEmitter implements Serializable {
+export abstract class Card extends EventEmitter implements Serializable {
   readonly blueprintId: CardBlueprintId;
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
@@ -68,31 +66,11 @@ export class Card extends EventEmitter implements Serializable {
     return this.blueprint.kind;
   }
 
-  protected interceptors = {
-    attack: new Interceptable<number, Card>(),
-    maxHp: new Interceptable<number, Card>(),
-    cost: new Interceptable<number, Card>(),
-    canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>(),
-    canMoveAfterSummon: new Interceptable<boolean, Card>(),
-    canAttackAfterSummon: new Interceptable<boolean, Card>(),
-    canRetaliateAfterSummon: new Interceptable<boolean, Card>()
-  };
+  abstract get cost(): number;
 
-  addInterceptor<T extends keyof CardInterceptor>(
-    key: T,
-    interceptor: inferInterceptor<CardInterceptor[T]>,
-    priority?: number
-  ) {
-    this.interceptors[key].add(interceptor as any, priority);
-    return () => this.removeInterceptor(key, interceptor);
-  }
+  abstract canPlayAt(point: Point3D): boolean;
 
-  removeInterceptor<T extends keyof CardInterceptor>(
-    key: T,
-    interceptor: inferInterceptor<CardInterceptor[T]>
-  ) {
-    this.interceptors[key].remove(interceptor as any);
-  }
+  abstract playImpl(ctx: { position: Point3D; targets: Point3D[] }): void;
 
   getModifier(id: ModifierId) {
     return this.modifiers.find(m => m.id === id);
@@ -115,76 +93,14 @@ export class Card extends EventEmitter implements Serializable {
     });
   }
 
-  get cost(): number {
-    return this.interceptors.cost.getValue(
-      this.player.interceptors.cost.getValue(this.blueprint.cost, this),
-      this
-    );
-  }
-
-  get attack(): number {
-    return this.interceptors.attack.getValue(this.blueprint.attack, this);
-  }
-
-  get speed(): number {
-    return this.interceptors.attack.getValue(this.blueprint.speed, this);
-  }
-
-  get range(): number {
-    return this.interceptors.attack.getValue(this.blueprint.range, this);
-  }
-
-  get maxHp(): number {
-    return this.interceptors.maxHp.getValue(this.blueprint.maxHp, this);
-  }
-
-  canPlayAt(point: Point3D) {
-    const cell = this.session.boardSystem.getCellAt(point);
-    if (!cell) return false;
-    if (!cell.canSummonAt) return false;
-
-    const nearby = this.session.boardSystem.getNeighbors3D(point);
-    const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
-
-    return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
-  }
-
   draw() {
     this.emit(CARD_EVENTS.DRAWN, this);
   }
 
   play(ctx: { position: Point3D; targets: Point3D[] }) {
     this.emit(CARD_EVENTS.BEFORE_PLAYED, this);
-    const entity = this.session.entitySystem.addEntity({
-      cardIndex: this.index,
-      playerId: this.playerId,
-      position: ctx.position
-    });
-
-    this.blueprint.onPlay?.({
-      session: this.session,
-      card: this,
-      entity,
-      followup: ctx.targets
-    });
-
-    if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {
-      const unsub = entity.addInterceptor('canMove', () => false);
-      this.session.once('player:turn_end', unsub);
-    }
-    if (!this.interceptors.canAttackAfterSummon.getValue(false, this)) {
-      const unsub = entity.addInterceptor('canAttack', () => false);
-      this.session.once('player:turn_end', unsub);
-    }
-    if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
-      const unsub = entity.addInterceptor('canRetaliate', () => false);
-      this.session.once('player:turn_end', unsub);
-    }
-
-    entity.emit(ENTITY_EVENTS.CREATED, entity);
-
+    this.playImpl(ctx);
     this.emit(CARD_EVENTS.AFTER_PLAYED, this);
-    return entity;
   }
 
   serialize(): SerializedCard {

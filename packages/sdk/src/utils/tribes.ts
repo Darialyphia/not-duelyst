@@ -1,11 +1,11 @@
-export type Tribe = {
+export type Tag = {
   id: string;
   name: string;
 };
 
-export const TRIBES = {
+export const TAGS = {
   ELEMENTAL: {
     id: 'elemental',
     name: 'Elemental'
   }
-} as const satisfies Record<string, Tribe>;
+} as const satisfies Record<string, Tag>;

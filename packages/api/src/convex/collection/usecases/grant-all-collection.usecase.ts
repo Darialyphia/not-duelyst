@@ -8,6 +8,7 @@ export const grantAllCollectionUsecase = internalMutation({
     userId: v.id('users')
   },
   async handler(ctx, args) {
+    console.log('?????????');
     const cards = await grantCards(ctx, {
       cards: Object.values(CARDS),
       userId: args.userId

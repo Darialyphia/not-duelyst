@@ -2,7 +2,9 @@ import type { Values } from '@game/shared';
 
 export const CARD_KINDS = {
   MINION: 'MINION',
-  GENERAL: 'GENERAL'
+  GENERAL: 'GENERAL',
+  SPELL: 'SPELL',
+  ARTIFACT: 'ARTIFACT'
 } as const;
 
 export type CardKind = Values<typeof CARD_KINDS>;
@@ -23,15 +25,17 @@ export const FACTION_IDS = {
   F2: 'f2',
   F3: 'f3',
   F4: 'f4',
-  F5: 'f5'
+  F5: 'f5',
+  F6: 'f6'
 } as const;
 
 export const FACTIONS = {
-  F1: new Faction(FACTION_IDS.F1, 'Academy'),
-  F2: new Faction(FACTION_IDS.F2, 'Inferno'),
-  F3: new Faction(FACTION_IDS.F3, 'Haven'),
-  F4: new Faction(FACTION_IDS.F4, 'Necropolis'),
-  F5: new Faction(FACTION_IDS.F5, 'Prime')
+  F1: new Faction(FACTION_IDS.F1, 'Lyonar'),
+  F2: new Faction(FACTION_IDS.F2, 'Songhai'),
+  F3: new Faction(FACTION_IDS.F3, 'Vetruvian'),
+  F4: new Faction(FACTION_IDS.F4, 'Abyssian'),
+  F5: new Faction(FACTION_IDS.F5, 'Magmar'),
+  F6: new Faction(FACTION_IDS.F6, 'Vanar')
 } as const satisfies Record<string, Faction>;
 
 export const RARITIES = {

@@ -1,32 +1,30 @@
 <script setup lang="ts">
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
-import {
-  FACTION_IDS,
-  MULTICOLOR,
-  type CardKind,
-  type Keyword,
-  type Rarity
-} from '@game/sdk';
+import { CARD_KINDS } from '@game/sdk';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
-import type { Tribe } from '@game/sdk/src/utils/tribes';
+import type { Prettify } from '@game/shared';
 
-type ICard = {
-  blueprintId: CardBlueprintId;
-  kind: CardKind;
-  name: string;
-  description: string;
-  spriteId: string;
-  rarity: Rarity;
-  attack?: number;
-  hp?: number;
-  cost: number;
-  speed: number;
-  pedestalId?: string;
-  faction: CardBlueprint['faction'];
-  keywords?: Keyword[];
-  tribes: Tribe[];
-};
+type ICard = Prettify<
+  {
+    blueprintId: CardBlueprintId;
+    pedestalId?: string;
+    hp?: CardBlueprint['maxHp'];
+  } & Pick<
+    CardBlueprint,
+    | 'name'
+    | 'description'
+    | 'cost'
+    | 'kind'
+    | 'spriteId'
+    | 'rarity'
+    | 'faction'
+    | 'keywords'
+    | 'tags'
+    | 'attack'
+    | 'speed'
+  >
+>;
 
 const { card, hasModal = false } = defineProps<{ card: ICard; hasModal?: boolean }>();
 
@@ -49,6 +47,7 @@ const isModalOpened = ref(false);
   <div
     ref="reference"
     class="card"
+    :class="card.kind.toLocaleLowerCase()"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
     @contextmenu.prevent="
@@ -60,36 +59,36 @@ const isModalOpened = ref(false);
     "
   >
     <header>
-      <UiCenter v-if="card.kind === 'MINION'" class="cost">
+      <UiCenter class="cost">
         <span>{{ card.cost }}</span>
       </UiCenter>
-      <div v-else />
       <CardSprite
         class="sprite"
         :sprite-id="card.spriteId"
         :pedestal-id="card.pedestalId ?? 'pedestal-default'"
+      />
+      <div
+        class="faction"
+        :style="{ '--bg': `url(/assets/ui/icon_${card.faction?.id ?? 'neutral'}.png)` }"
       />
     </header>
 
     <div class="text">
       <div class="kind">
         {{ card.kind }}
-        <template v-if="card.tribes.length">
-          - {{ card.tribes.map(tribe => tribe.name).join(', ') }}
+        <template v-if="card.tags?.length">
+          - {{ card.tags.map(tag => tag.name).join(', ') }}
         </template>
       </div>
       <div class="name">{{ card.name }}</div>
     </div>
 
     <div class="description">
-      <p class="text-00 whitespace-pre-line">
-        <TextWithKeywords :text="card.description" />
-      </p>
+      <TextWithKeywords :text="card.description" />
     </div>
 
-    <footer>
+    <footer v-if="card.kind === CARD_KINDS.GENERAL || card.kind === CARD_KINDS.MINION">
       <UiCenter class="attack">{{ card.attack }}</UiCenter>
-      <UiCenter class="speed">{{ card.speed }}</UiCenter>
       <UiCenter class="hp">{{ card.hp }}</UiCenter>
     </footer>
 
@@ -137,16 +136,15 @@ header {
   transform-style: preserve-3d;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-content: end;
+  grid-template-columns: 76px 1fr 76px;
+  align-content: start;
 
-  height: 104px;
+  height: 105px;
 }
-
 .cost {
   position: relative;
-  transform: translateY(var(--size-2));
 
+  align-self: start;
   justify-self: start;
 
   width: 76px;
@@ -156,54 +154,27 @@ header {
   color: black;
 
   background-image: url('/assets/ui/card-cost.png');
+
+  .card.general & {
+    visibility: hidden;
+  }
 }
 
 .faction {
-  position: absolute;
+  position: relative;
+  /* transform: translateY(var(--size-2)); */
 
-  display: grid;
-  place-content: center;
+  justify-self: end;
+  aspect-ratio: 1;
+  /* width: 76px; */
 
-  width: 22px;
-  height: 22px;
-
-  font-size: var(--font-size-0);
-  color: var(--color, white);
-
-  background: black;
-  border: solid 2px currentColor;
-  border-radius: var(--radius-round);
-
-  &:nth-of-type(1) {
-    top: 44px;
-    left: -6px;
-  }
-  &:nth-of-type(2) {
-    top: 10px;
-    left: -6px;
-  }
-  &:nth-of-type(3) {
-    top: -4px;
-    left: 26px;
-  }
-  &:nth-of-type(4) {
-    top: 10px;
-    left: 56px;
-  }
-  &:nth-of-type(5) {
-    top: 44px;
-    left: 56px;
-  }
-  &:nth-of-type(6) {
-    top: 58px;
-    left: 26px;
-  }
+  background-image: var(--bg);
 }
 
 .sprite {
   position: relative;
-  transform-origin: bottom center;
-  transform: translateZ(var(--z-translate)) scale(2) translateY(40%);
+  transform-origin: bottom left;
+  transform: translateZ(var(--z-translate)) scale(2) translate(-25%, 50%);
 
   /* filter: drop-shadow(0px -1px 0 white) drop-shadow(0px 1px 0 white)
     drop-shadow(-1px 0px 0 white) drop-shadow(1px 0px 0 white); */
@@ -236,8 +207,8 @@ header {
 footer {
   transform: translateY(var(--size-1));
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
 
   height: 76px;
   margin-top: auto;
@@ -275,9 +246,11 @@ footer {
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
 
+  font-size: var(--font-size-1);
   line-height: 1;
   color: var(--gray-0);
   text-wrap: balance;
+  white-space: pre-line;
 
   transition: transform 0.3s ease-in;
 }

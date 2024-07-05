@@ -51,13 +51,11 @@ export const useLoadoutForm = ({
     if (loadoutIsFull.value) return false;
     return match(card.kind)
       .with(CARD_KINDS.GENERAL, () => !general.value || general.value.id === cardId)
-      .with(
-        CARD_KINDS.MINION,
+      .otherwise(
         () =>
           formValues.value!.cards.filter(c => c.id === cardId).length <
           config.MAX_COPIES_PER_CARD
-      )
-      .exhaustive();
+      );
   };
 
   const isInLoadout = (cardId: CardBlueprintId) => {

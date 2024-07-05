@@ -223,6 +223,7 @@ li {
 }
 
 .sprite {
+  transform: translateY(24px);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -238,6 +239,8 @@ li {
   --ui-button-hover-color: var(--primary);
   --ui-button-focus-color: var(--primary);
 
+  z-index: 1;
+  transform: translateY(16px);
   margin-top: var(--size-5);
 }
 

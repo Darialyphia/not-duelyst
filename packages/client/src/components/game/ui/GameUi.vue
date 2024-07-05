@@ -83,7 +83,7 @@ onTick(() => {
             cost: entity.card.cost,
             pedestalId: entity.card.pedestalId,
             faction: entity.card.blueprint.faction,
-            tribes: entity.card.blueprint.tribes ?? []
+            tags: entity.card.blueprint.tags ?? []
           }"
         />
         <dl>

@@ -216,7 +216,7 @@ const mostPlayedCards = computed(() => {
               cost: card.card.cost,
               faction: card.card.faction,
               keywords: [],
-              tribes: card.card.tribes ?? []
+              tags: card.card.tags ?? []
             }"
           />
         </div>

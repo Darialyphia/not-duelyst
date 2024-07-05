@@ -14,6 +14,7 @@ import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
 import { config } from '../config';
+import { Unit } from '../card/unit';
 
 export type EntityId = number;
 
@@ -174,7 +175,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   get card() {
-    return this.player.cards[this.cardIndex];
+    const card = this.player.cards[this.cardIndex];
+    if (!(card instanceof Unit)) {
+      throw new Error('Entity card is not a Unit');
+    }
+
+    return card;
   }
 
   get player() {

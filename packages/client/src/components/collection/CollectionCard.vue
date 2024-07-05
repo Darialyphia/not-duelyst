@@ -72,7 +72,7 @@ const keywords = computed(() => {
           cost: card.card.cost,
           faction: card.card.faction,
           keywords: keywords,
-          tribes: card.card.tribes ?? []
+          tags: card.card.tags ?? []
         }"
         @mousemove="onMousemove"
         @click="emit('click')"
@@ -94,8 +94,12 @@ const keywords = computed(() => {
 }
 .perspective-wrapper {
   transform-style: preserve-3d;
+  align-self: start;
+  transition: filter 0.3s;
   animation: collection-card 0.3s;
-
+  &:hover {
+    filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
+  }
   &.3d {
     perspective: 40rem;
   }

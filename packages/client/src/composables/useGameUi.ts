@@ -1,7 +1,15 @@
-import type { Card, Cell, Entity, EntityId, GameSession } from '@game/sdk';
+import {
+  CARD_KINDS,
+  type Card,
+  type Cell,
+  type Entity,
+  type EntityId,
+  type GameSession
+} from '@game/sdk';
 import { type Nullable, type Point, type Point3D, type Values } from '@game/shared';
 import type { Layer } from '@pixi/layers';
 import type { DisplayObject } from 'pixi.js';
+import { match } from 'ts-pattern';
 import type { InjectionKey } from 'vue';
 
 export const DEFAULT_MOUSE_LIGHT_STRENGTH = 0;
@@ -192,8 +200,14 @@ export const useGameUiProvider = (session: GameSession) => {
     }),
     selectCardAtIndex(index) {
       selectedCardIndex.value = index;
-      api.switchTargetingMode(TARGETING_MODES.SUMMON);
       selectedEntityId.value = null;
+      match(api.selectedCard.value!.kind)
+        .with(CARD_KINDS.GENERAL, CARD_KINDS.MINION, () => {
+          api.switchTargetingMode(TARGETING_MODES.SUMMON);
+        })
+        .with(CARD_KINDS.SPELL, CARD_KINDS.ARTIFACT, () => {
+          api.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
+        });
     },
     unselectCard() {
       selectedCardIndex.value = null;

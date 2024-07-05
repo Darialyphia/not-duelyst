@@ -28,7 +28,6 @@ const filter = defineModel<Faction | null>('filter', { required: true });
             }
           "
         >
-          <img :src="`/assets/ui/rune-${faction.id.toLocaleLowerCase()}.png`" />
           {{ faction.name }}
         </button>
       </Sound>

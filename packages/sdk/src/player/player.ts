@@ -20,6 +20,7 @@ import type { CardModifier } from '../modifier/card-modifier';
 import { Deck } from '../card/deck';
 import {} from '../card/cards/neutral/water-elemental';
 import { MULTICOLOR } from '../card/card-blueprint';
+import { createCard } from '../card/cards/card-factory';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -145,7 +146,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   setup() {
     this.cards = this.options.deck.map((card, index) => {
-      return new Card(this.session, index, card, this.id);
+      return createCard(this.session, card, index, this.id);
     });
     this.cards.forEach(card => {
       card.setup();
@@ -186,10 +187,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     pedestalId: string;
     modifiers?: CardModifier[];
   }) {
-    const card = new Card(
+    const card = createCard(
       this.session,
-      this.cards.length,
       { blueprintId, pedestalId, isGenerated: true },
+      this.cards.length,
       this.id
     );
     Object.values(CARD_EVENTS).forEach(eventName => {

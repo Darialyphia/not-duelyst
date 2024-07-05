@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Card } from '@game/sdk';
-import type { Nullable } from '@game/shared';
+import type { Artifact, Card, Spell, Unit } from '@game/sdk';
+import type { Nullable, Prettify } from '@game/shared';
 
 const { session, gameType } = useGame();
 
 const latestCard = ref<Nullable<Card>>(null);
 
 session.on('card:before_played', card => {
-  latestCard.value = card;
+  latestCard.value = card as any;
   setTimeout(() => {
     latestCard.value = null;
   }, 2000);
@@ -25,23 +25,23 @@ const isDisplayed = computed(() => {
 
 <template>
   <Transition :duration="500">
-    <div v-if="isDisplayed" class="wrapper">
+    <div v-if="isDisplayed && latestCard" class="wrapper">
       <Card
         :has-modal="false"
         :card="{
-          blueprintId: latestCard!.blueprint.id,
-          name: latestCard!.blueprint.name,
-          description: latestCard!.blueprint.description,
-          kind: latestCard!.kind,
-          spriteId: latestCard!.blueprint.spriteId,
-          rarity: latestCard!.blueprint.rarity,
-          attack: latestCard!.attack,
-          hp: latestCard!.maxHp,
-          speed: latestCard!.speed,
-          cost: latestCard!.cost,
-          pedestalId: latestCard!.pedestalId,
-          faction: latestCard!.blueprint.faction,
-          tribes: latestCard!.blueprint.tribes ?? []
+          blueprintId: latestCard.blueprint.id,
+          name: latestCard.blueprint.name,
+          description: latestCard.blueprint.description,
+          kind: latestCard.kind,
+          spriteId: latestCard.blueprint.spriteId,
+          rarity: latestCard.blueprint.rarity,
+          attack: (latestCard as any).attack,
+          hp: (latestCard as any).maxHp,
+          speed: (latestCard as any).speed,
+          cost: latestCard.cost,
+          pedestalId: latestCard.pedestalId,
+          faction: latestCard.blueprint.faction,
+          tags: latestCard.blueprint.tags ?? []
         }"
       />
     </div>

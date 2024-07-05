@@ -24,9 +24,9 @@ export const useBgmProvider = () => {
   const { settings: userSettings } = useUserSettings();
   const route = useRoute();
   const current = ref<Bgm>((route.meta.bgm as Bgm) ?? BGMS.MENU);
-  const volume = computed(
-    () => (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR
-  );
+  const volume = computed(() => {
+    return (userSettings.value.sound.musicVolume[0] / 100) * SCALE_FACTOR;
+  });
   const howl = ref(
     new Howl({
       src: `${current.value}${extension}`,

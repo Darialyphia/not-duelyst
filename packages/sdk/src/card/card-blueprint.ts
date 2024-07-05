@@ -1,48 +1,27 @@
-import type {
-  MaybePromise,
-  Nullable,
-  PartialRecord,
-  Point3D,
-  Values
-} from '@game/shared';
+import type { Nullable, Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
 import type { CardKind, Faction, Rarity } from './card-enums';
 import type { Keyword } from '../utils/keywords';
-import type { Tribe } from '../utils/tribes';
+import type { Tag } from '../utils/tribes';
 
 export const MULTICOLOR = 'multicolor' as const;
 
-export type CardBlueprint = {
+export type CardBlueprintBase = {
   id: CardBlueprintId;
   name: string;
-  kind: CardKind;
   description: string;
   collectable: boolean;
   faction: Faction | null;
   spriteId: string;
   rarity: Rarity;
   cost: number;
-  attack: number;
-  maxHp: number;
-  speed: number;
-  range: number;
-  tribes?: Tribe[];
+  tags?: Tag[];
   keywords?: Keyword[];
   modifiers?: CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];
-  isWithinDangerZone?: (
-    point: Point3D,
-    ctx: { session: GameSession; entity: Entity }
-  ) => boolean;
-  onPlay?: (options: {
-    session: GameSession;
-    card: Card;
-    entity: Entity;
-    followup: Array<Nullable<Point3D>>;
-  }) => MaybePromise<void>;
   followup?: {
     minTargetCount: number;
     maxTargetCount: number;
@@ -61,3 +40,48 @@ export type CardBlueprint = {
     getChoices(): CardBlueprint[];
   };
 };
+
+type CardBlueprintUnit = {
+  kind: Extract<CardKind, 'MINION' | 'GENERAL'>;
+  attack: number;
+  maxHp: number;
+  speed: number;
+  range: number;
+  onPlay?: (options: {
+    session: GameSession;
+    card: Card;
+    entity: Entity;
+    followup: Array<Nullable<Point3D>>;
+  }) => void;
+};
+
+type CardBlueprintSpell = {
+  kind: Extract<CardKind, 'SPELL'>;
+  attack?: never;
+  maxHp?: never;
+  speed?: never;
+  range?: never;
+  onPlay?: (options: {
+    session: GameSession;
+    card: Card;
+    followup: Array<Nullable<Point3D>>;
+  }) => void;
+};
+
+type CardBlueprintArtifact = {
+  kind: Extract<CardKind, 'ARTIFACT'>;
+  attack?: never;
+  maxHp?: never;
+  speed?: never;
+  range?: never;
+  onPlay?: (options: {
+    session: GameSession;
+    card: Card;
+    followup: Array<Nullable<Point3D>>;
+  }) => void;
+};
+
+export type CardBlueprint =
+  | (CardBlueprintBase & CardBlueprintUnit)
+  | (CardBlueprintBase & CardBlueprintSpell)
+  | (CardBlueprintBase & CardBlueprintArtifact);

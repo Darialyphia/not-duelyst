@@ -42,7 +42,7 @@ const assets = useAssets();
             speed: card.speed,
             cost: card.cost,
             faction: card.faction,
-            tribes: card.tribes ?? []
+            tags: card.tags ?? []
           }"
         />
       </li>

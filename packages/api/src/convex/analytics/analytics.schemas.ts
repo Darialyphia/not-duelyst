@@ -8,7 +8,8 @@ export const gameStatsSchema = {
     [FACTIONS.F2.id]: v.object({ played: v.number(), won: v.number() }),
     [FACTIONS.F3.id]: v.object({ played: v.number(), won: v.number() }),
     [FACTIONS.F4.id]: v.object({ played: v.number(), won: v.number() }),
-    [FACTIONS.F5.id]: v.object({ played: v.number(), won: v.number() })
+    [FACTIONS.F5.id]: v.object({ played: v.number(), won: v.number() }),
+    [FACTIONS.F6.id]: v.object({ played: v.number(), won: v.number() })
   }),
   gamesByCard: v.any(),
   totalGames: v.number(),

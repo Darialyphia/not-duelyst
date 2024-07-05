@@ -37,7 +37,7 @@ const userPlayer = useUserPlayer();
           cost: card.cost,
           pedestalId: card.pedestalId,
           faction: card.blueprint.faction,
-          tribes: card.blueprint.tribes ?? []
+          tags: card.blueprint.tags ?? []
         }"
         @contextmenu.prevent="ui.highlightedCard.value = card"
         @click="

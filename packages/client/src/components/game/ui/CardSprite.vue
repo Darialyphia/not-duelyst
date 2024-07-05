@@ -19,37 +19,66 @@ watchEffect(async () => {
   pedestalSheet.value = await assets.loadSpritesheet(pedestalId);
 });
 
-const el = ref<HTMLElement>();
+const PEDESTAL_SIZE = {
+  w: 96,
+  h: 112
+};
 const item = computed(() => {
   if (!sheet.value) return null;
+  const { spriteSourceSize } = Object.values(sheet.value.data.frames)[0];
   return {
     style: {
-      '--bg': pedestalSheet.value
-        ? `url(/assets/units/${spriteId}.png), url(/assets/pedestals/${pedestalId}.png)`
-        : `url(/assets/units/${spriteId}.png)`,
-      '--width': `${sheet.value.data.meta.size!.w}px`,
-      '--height': `${sheet.value.data.meta.size!.h}px`
+      '--bg': `url(/assets/units/${spriteId}.png)`,
+      '--width': `${spriteSourceSize?.w}px`,
+      '--height': `${spriteSourceSize?.h}px`
     }
   };
 });
 </script>
 
 <template>
-  <div v-if="item" ref="el" class="card-sprite" :style="item.style" />
+  <div class="card-sprite">
+    <div
+      v-if="pedestalId"
+      :style="{ '--bg': `url(/assets/pedestals/${pedestalId}.png)` }"
+    />
+    <div v-if="item" :style="item.style" />
+  </div>
 </template>
 
 <style scoped lang="postcss">
 .card-sprite {
-  width: 96px;
-  height: 128px;
+  --pedestal-frame-w: 96px;
+  --pedestal-frame-h: 112px;
 
-  background: var(--bg);
-  background-repeat: no-repeat;
-  background-position:
-    0px 0px,
-    -8px 8px;
-  background-size: cover;
+  position: relative;
 
-  image-rendering: pixelated;
+  > div {
+    pointer-events: none;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: var(--bg);
+    background-repeat: no-repeat;
+  }
+
+  > div:first-child {
+    width: var(--pedestal-frame-w);
+    height: var(--pedestal-frame-h);
+    background-position: 0 24px;
+  }
+
+  > div:last-child {
+    width: var(--width);
+    height: var(--height);
+
+    background-position: 0px 0px;
+    background-size: cover;
+
+    image-rendering: pixelated;
+  }
 }
 </style>

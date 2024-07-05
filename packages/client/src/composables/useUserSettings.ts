@@ -19,7 +19,10 @@ export const useUserSettingsProvider = () => {
   );
   watchEffect(() => {
     if (savedSettings.value) {
-      settings.value = savedSettings.value as Settings;
+      settings.value = Object.assign(
+        getDefaultSettings(),
+        savedSettings.value
+      ) as Settings;
     }
   });
 
