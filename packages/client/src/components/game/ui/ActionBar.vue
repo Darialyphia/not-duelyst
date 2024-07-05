@@ -12,26 +12,6 @@ const angle = computed(() => {
     Math.max(userPlayer.value.hand.length, 1)
   );
 });
-
-// we need to do this because a simple <Transition /> won't cut it when cards are playe
-// the cards are styled based on their index in hand, so when a card is played, its index becomes -1 during the transition
-// and its placement is all wrong
-// const hand = ref([...toRaw(userPlayer.value.hand)]);
-// const cardIndexBeingPlayed = ref(-1);
-// session.on('card:before_played', card => {
-//   cardIndexBeingPlayed.value = hand.value.indexOf(card);
-//   console.log(hand.value);
-//   setTimeout(() => {
-//     // hand.value = [...userPlayer.value.hand];
-//   }, 500);
-// });
-
-// watch(
-//   () => userPlayer.value.id,
-//   () => {
-//     // hand.value = [...userPlayer.value.hand];
-//   }
-// );
 </script>
 
 <template>
@@ -60,7 +40,6 @@ const angle = computed(() => {
     </TransitionGroup>
   </div>
 
-  <ActionWheel />
   <div class="right-side">
     <!-- <SkillBar /> -->
     <UiFancyButton

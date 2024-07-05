@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { match } from 'ts-pattern';
-import { FACTION_IDS } from '@game/sdk';
+import { FACTION_IDS, config } from '@game/sdk';
 
 const players = useGameSelector(session => session.playerSystem.getList());
 
@@ -76,22 +76,6 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
           class="portrait"
         />
 
-        <div class="runes">
-          <div
-            v-for="faction in FACTION_IDS"
-            :key="faction"
-            class="rune"
-            :style="{
-              '--color': FACTION_COLORS[faction],
-              '--bg': `url(/assets/ui/rune-${faction}.png)`
-            }"
-          >
-            <Transition mode="out-in">
-              <div :key="players[0].runes[faction]">{{ players[0].runes[faction] }}</div>
-            </Transition>
-          </div>
-        </div>
-
         <PopoverAnchor v-if="emotePopoverPlayer === 0" />
       </div>
 
@@ -148,23 +132,6 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
           :sprite-id="players[1].general.card.blueprint.spriteId"
           class="portrait"
         />
-        <div class="runes">
-          <div
-            v-for="faction in FACTION_IDS"
-            :key="faction"
-            class="rune"
-            :style="{
-              '--color': FACTION_COLORS[faction],
-              '--bg': `url(/assets/ui/rune-${faction}.png)`
-            }"
-          >
-            <Transition mode="out-in">
-              <div :key="players[1].runes[faction].toFixed()">
-                {{ players[1].runes[faction] }}
-              </div>
-            </Transition>
-          </div>
-        </div>
 
         <PopoverAnchor v-if="emotePopoverPlayer === 1" />
       </div>
@@ -369,56 +336,6 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   width: 64px;
 
   background-size: cover;
-}
-.runes {
-  position: absolute;
-  z-index: 1;
-  bottom: calc(-1 * var(--size-10));
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-
-  width: fit-content;
-  padding: 6px 3px;
-
-  background-size: contain;
-  > div {
-    transform: translateY(-2px);
-
-    width: 22px;
-    padding-top: 22px;
-
-    font-size: var(--font-size-4);
-    font-weight: 700;
-    color: var(--color);
-    text-align: center;
-
-    background-image: var(--bg);
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    -webkit-text-stroke: 1px black;
-
-    > div {
-      &:is(.v-enter-active, .v-leave-active) {
-        transition:
-          opacity 0.4s,
-          transform 0.4s;
-      }
-      &:is(.v-enter-from, .v-leave-to) {
-        opacity: 0;
-      }
-      &:is(.v-leave-to) {
-        transform: scale(2) translateY(var(--size-2));
-      }
-      &:is(.v-enter-from) {
-        transform: translateY(calc(-1 * var(--size-2)));
-      }
-    }
-  }
 }
 
 .emote-popover {

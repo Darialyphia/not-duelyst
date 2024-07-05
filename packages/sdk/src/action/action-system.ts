@@ -5,11 +5,7 @@ import { AttackAction } from './attack.action';
 import { EndTurnAction } from './end-turn.action';
 import { MoveAction } from './move.action';
 import { PlayCardAction } from './play-card.action';
-import { UseSkillAction } from './use-skill.action';
 import { SurrenderAction } from './surrender.action';
-import { DrawAction } from './draw.action';
-import { AddRuneAction } from './add-rune.action';
-import { GetGoldAction } from './get-gold.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
 
@@ -29,11 +25,7 @@ const actionMap = validateActionMap({
   endTurn: EndTurnAction,
   move: MoveAction,
   playCard: PlayCardAction,
-  useSkill: UseSkillAction,
-  draw: DrawAction,
-  addRune: AddRuneAction,
-  surrender: SurrenderAction,
-  getGold: GetGoldAction
+  surrender: SurrenderAction
 });
 
 type ScheduledAction = () => void;

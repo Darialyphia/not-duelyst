@@ -14,6 +14,7 @@ import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
+import { config } from '../config';
 
 export type EntityId = number;
 
@@ -257,8 +258,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canRetaliate(source: Entity) {
+    const baseValue = config.UNLIMITED_RETALIATION
+      ? true
+      : this.retaliationsDone < this.maxRetaliations;
+
     return this.interceptors.canRetaliate.getValue(
-      this.canAttackAt(source.position) && this.retaliationsDone < this.maxRetaliations,
+      this.canAttackAt(source.position) && baseValue,
       {
         entity: this,
         source

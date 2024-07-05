@@ -107,7 +107,6 @@ const highlightTarget = () => {
     :angle="camera.angle.value"
     :height="boardDimensions.height"
     :width="boardDimensions.width"
-    :interactive-children="false"
     @pointerenter="
       () => {
         ui.hoverAt(cell.position);
@@ -158,6 +157,7 @@ const highlightTarget = () => {
     "
     @pointerup="
       (event: FederatedPointerEvent) => {
+        console.log('?');
         if (event.button === 2) {
           if (cell.entity) {
             ui.highlightedCard.value = cell.entity.card;

@@ -110,7 +110,7 @@
  ],
  "meta": {
   "app": "https://www.aseprite.org/",
-  "version": "1.3.6-x64",
+  "version": "1.3.7-x64",
   "image": "f1_djinn.png",
   "format": "RGBA8888",
   "size": { "w": 1152, "h": 128 },
@@ -124,6 +124,8 @@
    { "name": "death", "from": 10, "to": 11, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
+   { "name": "pedestal", "opacity": 255, "blendMode": "normal" },
+   { "name": "decor", "opacity": 255, "blendMode": "normal" },
    { "name": "body", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [

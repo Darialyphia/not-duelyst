@@ -125,7 +125,6 @@ watch(
 
 <template>
   <container
-    v-bind="$attrs"
     :ref="
       (_container: any) => {
         if (!_container) return;

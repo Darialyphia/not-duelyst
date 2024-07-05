@@ -33,18 +33,7 @@ export type GameEmits = {
       blueprintFollowup: number[];
     }
   ];
-  useSkill: [
-    {
-      skillIndex: number;
-      entityId: EntityId;
-      targets: Point3D[];
-      blueprintFollowup: number[];
-    }
-  ];
   surrender: [];
-  draw: [];
-  getGold: [];
-  addRune: [{ factionId: string }];
   p1Emote: [string];
   p2Emote: [string];
 };

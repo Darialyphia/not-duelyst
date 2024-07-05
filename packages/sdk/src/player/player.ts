@@ -250,10 +250,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       return;
     }
     if (this.currentGold < card.cost) return false;
-    return Object.entries(card.blueprint.factions).every(([faction, count]) => {
-      if (faction === MULTICOLOR) return this.totalRunesCount >= count;
-      return this.runes[faction as keyof typeof this.runes] >= count;
-    });
+    return true;
   }
 
   playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
