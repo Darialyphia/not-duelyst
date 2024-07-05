@@ -62,7 +62,7 @@ watchEffect(() => {
           speed: blueprint.speed,
           cost: blueprint.cost,
           pedestalId: 'pedestal-default',
-          factions: blueprint.factions,
+          faction: blueprint.faction,
           tribes: blueprint.tribes ?? []
         }"
         @click="

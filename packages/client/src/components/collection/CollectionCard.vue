@@ -70,7 +70,7 @@ const keywords = computed(() => {
           hp: card.card.maxHp,
           speed: card.card.speed,
           cost: card.card.cost,
-          factions: card.card.factions,
+          faction: card.card.faction,
           keywords: keywords,
           tribes: card.card.tribes ?? []
         }"

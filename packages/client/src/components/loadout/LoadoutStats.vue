@@ -17,17 +17,6 @@ const averageGoldCost = computed(() =>
     : 0
 );
 
-const averageRuneCost = computed(() =>
-  cards.value.length
-    ? cards.value.reduce((total, card) => {
-        return (
-          total +
-          Object.values(card.factions).reduce((runes, faction) => runes + faction, 0)
-        );
-      }, 0) / cards.value.length
-    : 0
-);
-
 const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cost).length;
 </script>
 
@@ -37,10 +26,6 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
       <div class="average">
         Average Gold:
         <span>{{ averageGoldCost.toFixed(1) }}</span>
-      </div>
-      <div class="average">
-        Average Runes:
-        <span>{{ averageRuneCost.toFixed(1) }}</span>
       </div>
     </div>
 

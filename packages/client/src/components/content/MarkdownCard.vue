@@ -21,7 +21,7 @@ const card = CARDS[blueprintId];
         hp: card.maxHp,
         speed: card.speed,
         cost: card.cost,
-        factions: card.factions,
+        faction: card.faction,
         tribes: card.tribes ?? []
       }"
     />

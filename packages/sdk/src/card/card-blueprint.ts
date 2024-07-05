@@ -9,13 +9,11 @@ import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
-import type { CardKind, Faction, FACTION_IDS, Rarity } from './card-enums';
+import type { CardKind, Faction, Rarity } from './card-enums';
 import type { Keyword } from '../utils/keywords';
 import type { Tribe } from '../utils/tribes';
 
 export const MULTICOLOR = 'multicolor' as const;
-
-type RuneRequirement = Values<typeof FACTION_IDS> | typeof MULTICOLOR;
 
 export type CardBlueprint = {
   id: CardBlueprintId;
@@ -24,7 +22,6 @@ export type CardBlueprint = {
   description: string;
   collectable: boolean;
   faction: Faction | null;
-  factions: PartialRecord<RuneRequirement, number>;
   spriteId: string;
   rarity: Rarity;
   cost: number;

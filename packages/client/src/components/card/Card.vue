@@ -7,7 +7,6 @@ import {
   type Keyword,
   type Rarity
 } from '@game/sdk';
-import type { Nullable } from '@game/shared';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import type { Tribe } from '@game/sdk/src/utils/tribes';
@@ -24,7 +23,7 @@ type ICard = {
   cost: number;
   speed: number;
   pedestalId?: string;
-  factions: CardBlueprint['factions'];
+  faction: CardBlueprint['faction'];
   keywords?: Keyword[];
   tribes: Tribe[];
 };
@@ -63,16 +62,6 @@ const isModalOpened = ref(false);
     <header>
       <UiCenter v-if="card.kind === 'MINION'" class="cost">
         <span>{{ card.cost }}</span>
-
-        <div
-          v-for="faction in FACTION_IDS"
-          :key="faction"
-          class="faction"
-          :style="{ '--color': FACTION_COLORS[faction] }"
-        >
-          {{ card.factions[faction] }}
-        </div>
-        <div class="faction">{{ card.factions[MULTICOLOR] }}</div>
       </UiCenter>
       <div v-else />
       <CardSprite
