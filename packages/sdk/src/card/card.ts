@@ -75,7 +75,6 @@ export class Card extends EventEmitter implements Serializable {
     canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>(),
     canMoveAfterSummon: new Interceptable<boolean, Card>(),
     canAttackAfterSummon: new Interceptable<boolean, Card>(),
-    canUseSkillAfterSummon: new Interceptable<boolean, Card>(),
     canRetaliateAfterSummon: new Interceptable<boolean, Card>()
   };
 
@@ -175,10 +174,6 @@ export class Card extends EventEmitter implements Serializable {
     }
     if (!this.interceptors.canAttackAfterSummon.getValue(false, this)) {
       const unsub = entity.addInterceptor('canAttack', () => false);
-      this.session.once('player:turn_end', unsub);
-    }
-    if (!this.interceptors.canUseSkillAfterSummon.getValue(true, this)) {
-      const unsub = entity.addInterceptor('canUseSkill', () => false);
       this.session.once('player:turn_end', unsub);
     }
     if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {

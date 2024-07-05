@@ -229,7 +229,6 @@ export const taunted = ({
   duration?: number;
 }) => {
   const moveInterceptor = () => false;
-  const skillInterceptor = () => false;
   const attackInterceptor = (value: boolean) => {
     // if entity already can't attack, do nothing
     if (!value) return value;
@@ -240,7 +239,6 @@ export const taunted = ({
   let onMove: () => void;
   const cleanup = (session: GameSession, attachedTo: Entity) => {
     attachedTo.removeInterceptor('canMove', moveInterceptor);
-    attachedTo.removeInterceptor('canUseSkill', skillInterceptor);
     attachedTo.removeInterceptor('canAttack', attackInterceptor);
     session.off('entity:after-move', onMove);
   };
@@ -258,7 +256,6 @@ export const taunted = ({
         tickOn: 'end',
         onApplied(session, attachedTo) {
           attachedTo.addInterceptor('canMove', moveInterceptor);
-          attachedTo.addInterceptor('canUseSkill', skillInterceptor);
           attachedTo.addInterceptor('canAttack', attackInterceptor);
           onMove = () => {
             if (!isWithinCells(source.position, attachedTo.position, 1)) {
@@ -369,7 +366,6 @@ export const frozen = ({
 
   const cleanup = (attachedTo: Entity) => {
     attachedTo.removeInterceptor('canMove', interceptor);
-    attachedTo.removeInterceptor('canUseSkill', interceptor);
     attachedTo.removeInterceptor('canAttack', interceptor);
   };
 
@@ -384,7 +380,6 @@ export const frozen = ({
         keywords: [KEYWORDS.FROZEN],
         onApplied(session, attachedTo) {
           attachedTo.addInterceptor('canAttack', interceptor);
-          attachedTo.addInterceptor('canUseSkill', interceptor);
           attachedTo.addInterceptor('canMove', interceptor);
           attachedTo.once('after_take_damage', () => cleanup(attachedTo));
         },
@@ -414,29 +409,6 @@ export const rooted = ({
         duration,
         interceptor: () => () => false,
         keywords: [KEYWORDS.ROOTED]
-      })
-    ]
-  });
-};
-
-export const silenced = ({
-  source,
-  duration = Infinity
-}: {
-  source: Entity;
-  duration?: number;
-}) => {
-  return createEntityModifier({
-    id: KEYWORDS.SILENCED.id,
-    visible: false,
-    stackable: false,
-    source,
-    mixins: [
-      modifierEntityInterceptorMixin({
-        key: 'canUseSkill',
-        duration,
-        interceptor: () => () => false,
-        keywords: [KEYWORDS.SILENCED]
       })
     ]
   });

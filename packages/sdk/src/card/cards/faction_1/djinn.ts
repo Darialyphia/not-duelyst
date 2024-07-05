@@ -1,17 +1,8 @@
 import { isDefined } from '@game/shared';
-import { isNearbyAlly } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import { getAffectedEntities, isSelf } from '../../../utils/targeting';
-import {
-  barrier,
-  celerity,
-  cleanseEntity,
-  flying,
-  fury,
-  tough
-} from '../../../modifier/modifier-utils';
+import { barrier, celerity, flying, fury, tough } from '../../../modifier/modifier-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
 
@@ -76,30 +67,5 @@ export const f1Djinn: CardBlueprint = {
         ]
       })
     );
-  },
-  skills: [
-    {
-      id: 'f1_djinn_skill_1',
-      cooldown: 2,
-      description: '@Cleanse@ nearby allies and heal them for 3.',
-      name: 'Inner Oasis',
-      iconId: 'chalice-green',
-      initialCooldown: 0,
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      keywords: [KEYWORDS.CLEANSE],
-      isTargetable(point, { session, skill }) {
-        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
-      },
-      isInAreaOfEffect(point, { session, skill }) {
-        return isNearbyAlly(session, skill.caster, point);
-      },
-      onUse({ affectedCells, skill }) {
-        getAffectedEntities(affectedCells).forEach(entity => {
-          cleanseEntity(entity);
-          entity.heal(3, skill.caster);
-        });
-      }
-    }
-  ]
+  }
 };

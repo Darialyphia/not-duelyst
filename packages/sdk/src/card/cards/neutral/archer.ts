@@ -19,7 +19,6 @@ export const neutralArcher: CardBlueprint = {
   speed: 3,
   range: 1,
   keywords: [KEYWORDS.RANGED],
-  skills: [],
   onPlay({ entity }) {
     entity.addModifier(ranged({ source: entity, range: 2 }));
   }

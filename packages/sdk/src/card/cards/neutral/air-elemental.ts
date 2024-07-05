@@ -21,7 +21,6 @@ export const neutralAirElemental: CardBlueprint = {
   range: 1,
   keywords: [KEYWORDS.CELERITY],
   tribes: [TRIBES.ELEMENTAL],
-  skills: [],
   onPlay({ entity }) {
     entity.addModifier(celerity({ source: entity }));
   }

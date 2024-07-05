@@ -24,9 +24,6 @@ const cancel = () => {
     .with(TARGETING_MODES.FOLLOWUP, () => {
       ui.unselectCard();
     })
-    .with(TARGETING_MODES.SKILL, () => {
-      ui.unselectSkill();
-    })
     .exhaustive();
 };
 
@@ -38,17 +35,6 @@ const commitSummon = () => {
     blueprintFollowup: ui.followupBlueprintIndexes.value
   });
   ui.unselectCard();
-};
-
-const commitSkill = () => {
-  dispatch('useSkill', {
-    skillIndex: ui.selectedSkillIndex.value!,
-    entityId: ui.selectedEntity.value!.id,
-    targets: ui.skillTargets.value,
-    blueprintFollowup: ui.followupBlueprintIndexes.value
-  });
-  ui.unselectCard();
-  ui.unselectSkill();
 };
 
 watchEffect(() => {
@@ -68,25 +54,12 @@ watchEffect(() => {
         commitSummon();
       }
     })
-    .with(TARGETING_MODES.SKILL, () => {
-      const skill = ui.selectedSkill.value;
-      if (!skill) return false;
-      if (ui.skillTargets.value.length === skill.maxTargetCount) {
-        commitSkill();
-      }
-    })
     .exhaustive();
 });
 </script>
 
 <template>
-  <div
-    v-if="
-      ui.targetingMode.value === TARGETING_MODES.FOLLOWUP ||
-      ui.targetingMode.value === TARGETING_MODES.SKILL
-    "
-    class="followup-ui"
-  >
+  <div v-if="ui.targetingMode.value === TARGETING_MODES.FOLLOWUP" class="followup-ui">
     <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
       Cancel
     </UiFancyButton>

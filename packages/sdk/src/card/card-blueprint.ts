@@ -10,54 +10,8 @@ import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
 import type { CardKind, Faction, FACTION_IDS, Rarity } from './card-enums';
-import type { Cell } from '../board/cell';
-import type { Skill } from '../entity/skill';
 import type { Keyword } from '../utils/keywords';
 import type { Tribe } from '../utils/tribes';
-
-export type SkillId = string;
-
-export type SkillBlueprint = {
-  id: SkillId;
-  name: string;
-  iconId: string;
-  description: string;
-  minTargetCount: number;
-  maxTargetCount: number;
-  cooldown: number;
-  initialCooldown: number;
-  keywords?: Keyword[];
-  runes?: PartialRecord<RuneRequirement, number>;
-  canUse?: (options: { session: GameSession; skill: Skill }) => boolean;
-  isTargetable(
-    point: Point3D,
-    options: {
-      skill: Skill;
-      session: GameSession;
-      castPoints: Point3D[];
-    }
-  ): boolean;
-  isInAreaOfEffect(
-    point: Point3D,
-    options: {
-      skill: Skill;
-      session: GameSession;
-      castPoints: Array<Nullable<Point3D>>;
-    }
-  ): boolean;
-  onUse(options: {
-    session: GameSession;
-    skill: Skill;
-    castPoints: Point3D[];
-    affectedCells: Cell[];
-    blueprintFollowup: CardBlueprint[];
-  }): MaybePromise<void>;
-  blueprintFollowup?: {
-    minChoices: number;
-    maxChoices: number;
-    getChoices(): CardBlueprint[];
-  };
-};
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -109,5 +63,4 @@ export type CardBlueprint = {
     maxChoices: number;
     getChoices(): CardBlueprint[];
   };
-  skills: SkillBlueprint[];
 };

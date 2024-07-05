@@ -27,38 +27,5 @@ export const f2Succubus: CardBlueprint = {
   keywords: [KEYWORDS.FEARSOME],
   onPlay({ entity }) {
     entity.addModifier(fearsome({ source: entity }));
-  },
-  skills: [
-    {
-      id: 'f2_succubus_skill1',
-      name: 'F2 Succubus Skill 1',
-      description: `@${FACTION_IDS.F2}(2)@ @Disarm@ an enemy minion for 1 turn.`,
-      cooldown: 3,
-      initialCooldown: 0,
-      iconId: 'entrance',
-      keywords: [KEYWORDS.DISARMED],
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      runes: {
-        f2: 2
-      },
-      isTargetable(point, { skill, session }) {
-        return (
-          isEnemyMinion(
-            session,
-            session.entitySystem.getEntityAt(point)?.id,
-            skill.caster.player.id
-          ) && isWithinCells(skill.caster.position, point, 3)
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        return isCastPoint(point, castPoints);
-      },
-      onUse({ affectedCells, skill }) {
-        getAffectedEntities(affectedCells).forEach(entity => {
-          entity.addModifier(disarmed({ source: skill.caster, duration: 1 }));
-        });
-      }
-    }
-  ]
+  }
 };

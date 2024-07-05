@@ -1,6 +1,6 @@
-import { deathWatch, ranged, surge } from '../../../modifier/modifier-utils';
+import { deathWatch, ranged } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { isCastPoint, isSelf, isWithinCells } from '../../../utils/targeting';
+import { isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 
@@ -33,26 +33,5 @@ export const f2DoomSayer: CardBlueprint = {
         }
       })
     );
-  },
-  skills: [
-    {
-      id: 'f2_doomsayer_skill1',
-      name: 'F2 Doomsayer Skill 1',
-      description: 'Gain @Surge(1)@.',
-      initialCooldown: 2,
-      cooldown: 3,
-      iconId: 'focus',
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      isTargetable(point, { skill, session }) {
-        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
-      },
-      isInAreaOfEffect(point, options) {
-        return isCastPoint(point, options.castPoints);
-      },
-      onUse({ skill }) {
-        skill.caster.addModifier(surge({ source: skill.caster }));
-      }
-    }
-  ]
+  }
 };

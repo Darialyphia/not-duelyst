@@ -1,4 +1,3 @@
-import { getCellInFront, isEnemyGeneral } from '../../../entity/entity-utils';
 import { structure } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
 import type { CardBlueprint } from '../../card-blueprint';
@@ -56,66 +55,5 @@ export const f2Overseer: CardBlueprint = {
       position,
       targets: []
     });
-  },
-  skills: [
-    {
-      id: 'f2_overseer_skill1',
-      name: 'F2 Overseer Skill 1',
-      description: `Deal 2 damage to the enemy general for each @${f2Imp.name}@ you control.`,
-      initialCooldown: 0,
-      cooldown: 2,
-      iconId: 'demon-eye',
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      isTargetable(point, { session, skill }) {
-        return isEnemyGeneral(
-          session,
-          session.entitySystem.getEntityAt(point)?.id,
-          skill.caster.player.id
-        );
-      },
-      isInAreaOfEffect(point, { session, skill }) {
-        return isEnemyGeneral(
-          session,
-          session.entitySystem.getEntityAt(point)?.id,
-          skill.caster.player.id
-        );
-      },
-      onUse({ skill }) {
-        const imps = skill.caster.player.entities.filter(
-          e => e.card.blueprintId === f2Imp.id
-        );
-        skill.caster.dealDamage(imps.length * 2, skill.caster.player.opponent.general);
-      }
-    },
-    {
-      id: 'f2_overseer_skill2',
-      name: 'F2 Overseer Skill 2',
-      description: `@Summon@ an @${f2Imp.name}@ in front of every enemy.`,
-      iconId: 'imps',
-      cooldown: 3,
-      initialCooldown: 0,
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      isTargetable(point, { skill }) {
-        return skill.caster.position.equals(point);
-      },
-      isInAreaOfEffect(point, { session, skill }) {
-        const cells = skill.caster.player.opponent.entities
-          .map(entity => getCellInFront(session, entity))
-          .filter(cell => cell && !cell.entity);
-
-        return cells.some(cell => cell?.position.equals(point));
-      },
-      onUse({ affectedCells, skill }) {
-        affectedCells.map(cell => {
-          const card = skill.caster.player.generateCard({
-            blueprintId: f2Imp.id,
-            pedestalId: skill.caster.card.pedestalId
-          });
-          return card.play({ position: cell.position, targets: [] });
-        });
-      }
-    }
-  ]
+  }
 };

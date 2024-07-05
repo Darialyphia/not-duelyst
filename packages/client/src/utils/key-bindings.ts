@@ -12,26 +12,6 @@ export const defaultBindings: { id: string; label: string; control: KeyBinding }
     control: { key: 'KeyE', modifier: null }
   },
   {
-    id: 'skill1',
-    label: 'Unit skill 1',
-    control: { key: 'Digit1', modifier: null }
-  },
-  {
-    id: 'skill2',
-    label: 'Unit skill 2',
-    control: { key: 'Digit2', modifier: null }
-  },
-  {
-    id: 'skill3',
-    label: 'Unit skill 3',
-    control: { key: 'Digit3', modifier: null }
-  },
-  {
-    id: 'skill4',
-    label: 'Unit skill 4',
-    control: { key: 'Digit4', modifier: null }
-  },
-  {
     id: 'summon1',
     label: 'Summon unit 1',
     control: { key: 'Digit1', modifier: 'shift' }

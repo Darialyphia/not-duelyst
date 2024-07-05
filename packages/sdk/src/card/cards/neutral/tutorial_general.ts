@@ -1,5 +1,5 @@
 import type { CardBlueprint } from '../../card-blueprint';
-import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
+import { RARITIES, CARD_KINDS } from '../../card-enums';
 import { config } from '../../../config';
 
 export const tutorialGeneral: CardBlueprint = {
@@ -16,6 +16,5 @@ export const tutorialGeneral: CardBlueprint = {
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: 14,
   speed: config.GENERAL_DEFAULT_SPEED,
-  range: 1,
-  skills: []
+  range: 1
 };

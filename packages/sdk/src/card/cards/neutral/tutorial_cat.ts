@@ -15,6 +15,5 @@ export const tutorialCat: CardBlueprint = {
   attack: 2,
   maxHp: 3,
   speed: 3,
-  range: 1,
-  skills: []
+  range: 1
 };

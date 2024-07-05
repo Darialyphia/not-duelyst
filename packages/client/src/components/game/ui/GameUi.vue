@@ -81,7 +81,6 @@ onTick(() => {
             hp: entity.hp,
             speed: entity.speed,
             cost: entity.card.cost,
-            skills: entity.card.blueprint.skills,
             pedestalId: entity.card.pedestalId,
             factions: entity.card.blueprint.factions,
             tribes: entity.card.blueprint.tribes ?? []

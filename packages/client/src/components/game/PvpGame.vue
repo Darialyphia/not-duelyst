@@ -107,7 +107,6 @@ const canSeeGame = computed(() => {
         @move="dispatch('move', $event)"
         @attack="dispatch('attack', $event)"
         @end-turn="dispatch('endTurn', $event)"
-        @use-skill="dispatch('useSkill', $event)"
         @play-card="dispatch('playCard', $event)"
         @surrender="dispatch('surrender', $event)"
         @draw="dispatch('draw', $event)"

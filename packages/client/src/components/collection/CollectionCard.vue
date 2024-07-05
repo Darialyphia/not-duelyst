@@ -40,13 +40,7 @@ const onMousemove = (e: MouseEvent) => {
 };
 
 const keywords = computed(() => {
-  return uniqBy(
-    [
-      ...(card.card.keywords ?? []),
-      ...card.card.skills.map(skill => skill.keywords ?? []).flat()
-    ],
-    'id'
-  );
+  return uniqBy(card.card.keywords ?? [], 'id');
 });
 </script>
 
@@ -76,7 +70,6 @@ const keywords = computed(() => {
           hp: card.card.maxHp,
           speed: card.card.speed,
           cost: card.card.cost,
-          skills: card.card.skills,
           factions: card.card.factions,
           keywords: keywords,
           tribes: card.card.tribes ?? []

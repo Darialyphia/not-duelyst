@@ -28,7 +28,6 @@ const isDisplayed = computed(() => {
     <div v-if="isDisplayed" class="wrapper">
       <Card
         :has-modal="false"
-        :with-skills="false"
         :card="{
           blueprintId: latestCard!.blueprint.id,
           name: latestCard!.blueprint.name,
@@ -40,7 +39,6 @@ const isDisplayed = computed(() => {
           hp: latestCard!.maxHp,
           speed: latestCard!.speed,
           cost: latestCard!.cost,
-          skills: latestCard!.blueprint.skills,
           pedestalId: latestCard!.pedestalId,
           factions: latestCard!.blueprint.factions,
           tribes: latestCard!.blueprint.tribes ?? []

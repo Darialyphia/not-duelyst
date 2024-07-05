@@ -39,6 +39,5 @@ export const f2Imp: CardBlueprint = {
       position: point,
       targets: []
     });
-  },
-  skills: []
+  }
 };

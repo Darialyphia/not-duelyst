@@ -25,15 +25,7 @@ const blueprints = computed(() => {
   return res;
 });
 
-const keywords = computed(() =>
-  uniqBy(
-    [
-      ...(selectedBlueprint.value.keywords ?? []),
-      ...selectedBlueprint.value.skills.map(skill => skill.keywords ?? []).flat()
-    ],
-    'id'
-  )
-);
+const keywords = computed(() => uniqBy(selectedBlueprint.value.keywords ?? [], 'id'));
 
 const selectedBlueprintId = ref(blueprintId);
 const MAX_ANGLE = 30;
@@ -92,11 +84,9 @@ const offset = computed(() => {
               hp: bp.maxHp,
               speed: bp.speed,
               cost: bp.cost,
-              skills: bp.skills,
               factions: bp.factions,
               tribes: bp.tribes ?? []
             }"
-            :with-skills="false"
           />
         </div>
       </div>
@@ -105,30 +95,7 @@ const offset = computed(() => {
         <p>
           <TextWithKeywords :text="selectedBlueprint.description" />
         </p>
-        <h3 v-if="selectedBlueprint.skills.length">Abilities</h3>
 
-        <ul>
-          <li
-            v-for="skill in selectedBlueprint.skills"
-            :key="skill.id"
-            :style="{
-              '--bg': `url('/assets/icons/${skill.iconId}.png')`
-            }"
-          >
-            <h4>{{ skill.name }}</h4>
-            <p class="whitespace-pre-line">
-              <TextWithKeywords :text="skill.description" />
-            </p>
-            <p class="text-right">
-              <Icon name="icon-park-outline:hourglass-full" />
-              Cooldown: {{ skill.cooldown }}
-            </p>
-            <p v-if="skill.initialCooldown" class="text-right">
-              <Icon name="typcn:stopwatch" />
-              Initial cooldown: {{ skill.initialCooldown }}
-            </p>
-          </li>
-        </ul>
         <h3 v-if="keywords.length">Keywords</h3>
         <dl>
           <div v-for="keyword in keywords" :key="keyword.id">

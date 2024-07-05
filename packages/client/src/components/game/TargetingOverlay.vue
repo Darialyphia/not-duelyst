@@ -48,10 +48,7 @@ useEventListener(window, 'resize', debouncedResize);
     :leave="{ alpha: 0 }"
   >
     <graphics
-      v-if="
-        ui.targetingMode.value === TARGETING_MODES.FOLLOWUP ||
-        ui.targetingMode.value === TARGETING_MODES.SKILL
-      "
+      v-if="ui.targetingMode.value === TARGETING_MODES.FOLLOWUP"
       event-mode="none"
       :alpha="0.7"
       @render="

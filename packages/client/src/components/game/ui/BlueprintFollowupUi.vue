@@ -5,9 +5,7 @@ const isOpened = computed(() => {
 });
 
 const followup = computed(() => {
-  if (ui.selectedSkill.value) {
-    return ui.selectedSkill.value.blueprint.blueprintFollowup;
-  } else if (ui.selectedCard.value) {
+  if (ui.selectedCard.value) {
     return ui.selectedCard.value.blueprint.blueprintFollowup;
   } else return null;
 });
@@ -16,38 +14,25 @@ const blueprints = computed(() => {
   return followup.value?.getChoices();
 });
 
-const canSkip = computed(() => {
-  if (!followup.value) return false;
-
-  return ui.followupBlueprintIndexes.value.length <= followup.value.minChoices;
-});
-
 const cancel = () => {
-  if (ui.selectedSkill.value) {
-    ui.unselectSkill();
-  } else {
-    ui.unselectCard();
-  }
+  ui.unselectCard();
   ui.followupBlueprintIndexes.value = [];
 };
 
 watchEffect(() => {
   if (!followup.value) return;
+  if (!ui.selectedCard.value) return;
   if (followup.value.maxChoices === ui.followupBlueprintIndexes.value.length) {
-    if (ui.selectedSkill.value) {
-      ui.switchTargetingMode(TARGETING_MODES.SKILL);
-    } else if (ui.selectedCard.value) {
-      if (ui.selectedCard.value.blueprint.followup) {
-        ui.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
-      } else {
-        dispatch('playCard', {
-          cardIndex: ui.selectedCardIndex.value!,
-          position: ui.summonTarget.value!,
-          targets: [],
-          blueprintFollowup: ui.followupBlueprintIndexes.value
-        });
-        ui.unselectCard();
-      }
+    if (ui.selectedCard.value.blueprint.followup) {
+      ui.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
+    } else {
+      dispatch('playCard', {
+        cardIndex: ui.selectedCardIndex.value!,
+        position: ui.summonTarget.value!,
+        targets: [],
+        blueprintFollowup: ui.followupBlueprintIndexes.value
+      });
+      ui.unselectCard();
     }
   }
 });
@@ -76,7 +61,6 @@ watchEffect(() => {
           hp: blueprint.maxHp,
           speed: blueprint.speed,
           cost: blueprint.cost,
-          skills: blueprint.skills,
           pedestalId: 'pedestal-default',
           factions: blueprint.factions,
           tribes: blueprint.tribes ?? []

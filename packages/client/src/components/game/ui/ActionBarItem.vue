@@ -35,7 +35,6 @@ const userPlayer = useUserPlayer();
           hp: card.blueprint.maxHp,
           speed: card.blueprint.speed,
           cost: card.cost,
-          skills: card.blueprint.skills,
           pedestalId: card.pedestalId,
           factions: card.blueprint.factions,
           tribes: card.blueprint.tribes ?? []

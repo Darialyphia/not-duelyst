@@ -52,22 +52,6 @@ const filters = computed(() => {
     result.push(targetedFilter);
   }
 
-  if (
-    ui.selectedSkill.value &&
-    ui.hoveredCell.value &&
-    ui.selectedSkill.value.isInAreaOfEffect(
-      cell.value,
-      [
-        ...ui.skillTargets.value,
-        ui.selectedSkill.value.isTargetable(ui.hoveredCell.value, ui.skillTargets.value)
-          ? ui.hoveredCell.value?.position
-          : null
-      ].filter(isDefined)
-    )
-  ) {
-    result.push(targetedFilter);
-  }
-
   return result;
 });
 

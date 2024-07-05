@@ -41,7 +41,6 @@ const angle = computed(() => {
   </div>
 
   <div class="right-side">
-    <!-- <SkillBar /> -->
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"

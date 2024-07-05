@@ -6,7 +6,6 @@ import type { AnyObject, MaybePromise, Values } from '@game/shared';
 import { ClientRngSystem, type RngSystem } from './rng-system';
 import { ClientSession, type FxEvent } from './client-session';
 import type { FACTION_IDS } from './card/card-enums';
-import type { EntityId } from './entity/entity';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -17,10 +16,6 @@ export type TutorialStep = {
   onEnter?: (session: TutorialSession) => MaybePromise<void>;
   onLeave?: (session: TutorialSession) => MaybePromise<void>;
   highlightedResourceAction?: Values<typeof FACTION_IDS> | 'draw' | 'gold';
-  highlightedSkill?: {
-    entityId: EntityId;
-    index: number;
-  };
   highlightedCardIndex?: number;
   meta: AnyObject;
 };

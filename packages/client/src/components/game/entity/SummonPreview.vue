@@ -23,7 +23,6 @@ const isDisplayed = computed(() => {
     .with(
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
-      TARGETING_MODES.SKILL,
       TARGETING_MODES.BLUEPRINT_FOLLOWUP,
       () => false
     )
@@ -44,7 +43,6 @@ const position = computed(() => {
     .with(
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
-      TARGETING_MODES.SKILL,
       TARGETING_MODES.BLUEPRINT_FOLLOWUP,
       () => null
     )

@@ -25,6 +25,5 @@ export const neutralEarthElemental: CardBlueprint = {
     session.entitySystem.getNearbyEnemies(entity).forEach(enemy => {
       enemy.addModifier(rooted({ source: entity, duration: 1 }));
     });
-  },
-  skills: []
+  }
 };

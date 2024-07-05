@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CardBlueprint, SkillBlueprint } from '@game/sdk/src/card/card-blueprint';
+import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
 import {
   FACTION_IDS,
   MULTICOLOR,
@@ -23,22 +23,15 @@ type ICard = {
   hp?: number;
   cost: number;
   speed: number;
-  skills: SkillBlueprint[];
   pedestalId?: string;
   factions: CardBlueprint['factions'];
   keywords?: Keyword[];
   tribes: Tribe[];
 };
 
-const {
-  card,
-  hasModal = false,
-  withSkills = true
-} = defineProps<{ card: ICard; hasModal?: boolean; withSkills?: boolean }>();
+const { card, hasModal = false } = defineProps<{ card: ICard; hasModal?: boolean }>();
 
 const bg = computed(() => `url('/assets/ui/card-back-${card.rarity}.png')`);
-
-const selectedSkill = ref<Nullable<SkillBlueprint>>(null);
 
 const reference = ref(null);
 const floating = ref(null);
@@ -99,38 +92,8 @@ const isModalOpened = ref(false);
       <div class="name">{{ card.name }}</div>
     </div>
 
-    <ul v-if="withSkills" class="skills-list">
-      <li
-        v-for="skill in card.skills"
-        :key="skill.id"
-        class="skill"
-        @mouseenter="selectedSkill = skill"
-        @mouseleave="selectedSkill = null"
-      >
-        <div
-          class="skill-img"
-          tabindex="0"
-          :style="{
-            '--bg': `url('/assets/icons/${skill.iconId}.png')`
-          }"
-          :class="selectedSkill?.id === skill.id && 'selected'"
-          @focus="selectedSkill = skill"
-          @blur="selectedSkill = null"
-        />
-      </li>
-    </ul>
-
     <div class="description">
-      <template v-if="selectedSkill">
-        <!-- <p class="text-0 color-gray-0 mb-1 font-700">
-          {{ selectedSkill.name }}
-        </p> -->
-        <p class="text-00 whitespace-pre-line">
-          <TextWithKeywords :text="selectedSkill.description" />
-        </p>
-      </template>
-
-      <p v-else class="text-00 whitespace-pre-line">
+      <p class="text-00 whitespace-pre-line">
         <TextWithKeywords :text="card.description" />
       </p>
     </div>
@@ -313,48 +276,6 @@ footer {
   justify-self: end;
   color: #a7ed00;
   background-image: url('/assets/ui/card-hp.png');
-}
-
-.skills-list {
-  transform: translateZ(var(--z-translate));
-  display: flex;
-  justify-content: center;
-  transition: transform 0.3s ease-in;
-
-  > li {
-    display: flex;
-    gap: var(--size-2);
-    align-items: center;
-
-    margin-top: var(--size-2);
-    margin-bottom: var(--size-2);
-
-    font-size: var(--font-size-0);
-    line-height: 1;
-  }
-}
-
-.skill {
-  display: flex;
-  row-gap: var(--size-1);
-  column-gap: var(--size-3);
-
-  padding-inline: var(--size-2);
-
-  font-size: var(--font-size-1);
-  line-height: 1;
-
-  .skill-img {
-    aspect-ratio: 1;
-    width: 38px;
-    background: var(--bg);
-    background-size: contain;
-    &.selected {
-      filter: contrast(130%) brightness(110%);
-      outline: var(--fancy-border);
-      outline-offset: 4px;
-    }
-  }
 }
 
 .description {

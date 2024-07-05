@@ -10,14 +10,6 @@ session.on('card:after_played', event => {
   });
 });
 
-session.on('entity:after_use_skill', event => {
-  events.value.unshift({
-    type: 'skill',
-    entitySpriteId: event.entity.card.blueprint.spriteId,
-    skillSpriteId: event.skill.blueprint.iconId
-  });
-});
-
 session.on('entity:after_attack', event => {
   events.value.unshift({
     type: 'attack',
@@ -40,12 +32,6 @@ const isCollapsed = ref(true);
           <AnimatedCardIcon :sprite-id="event.generalSpriteId" />
           <Icon name="material-symbols-light:playing-cards" size="2em" />
           <AnimatedCardIcon :sprite-id="event.spriteId" />
-        </div>
-
-        <div v-else-if="event.type === 'skill'">
-          <AnimatedCardIcon :sprite-id="event.entitySpriteId" />
-          <Icon name="game-icons:fire" size="2em" />
-          <img :src="`/assets/icons/${event.skillSpriteId}.png`" />
         </div>
 
         <div v-else-if="event.type === 'attack'">

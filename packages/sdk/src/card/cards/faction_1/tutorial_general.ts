@@ -1,6 +1,4 @@
-import { Vec3 } from '@game/shared';
 import { config } from '../../../config';
-import { isEnemy, isAllyMinion } from '../../../entity/entity-utils';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
@@ -18,35 +16,5 @@ export const f1TutorialGeneral: CardBlueprint = {
   attack: config.GENERAL_DEFAULT_ATTACK,
   maxHp: 25,
   speed: config.GENERAL_DEFAULT_SPEED,
-  range: 1,
-  skills: [
-    {
-      id: 'f1_tutorial_general_skill_1',
-      cooldown: 3,
-      description: 'Give 1 attack to an ally minion.',
-      name: 'Tutorial skill 1',
-      iconId: 'wind',
-      initialCooldown: 0,
-      isTargetable(point, { session }) {
-        return isAllyMinion(
-          session,
-          session.entitySystem.getEntityAt(point)?.id,
-          session.playerSystem.activePlayer.id
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        const vec = Vec3.fromPoint3D(point);
-        return castPoints.some(p => p && vec.equals(p));
-      },
-      minTargetCount: 0,
-      maxTargetCount: 1,
-      onUse({ affectedCells }) {
-        affectedCells.forEach(cell => {
-          if (cell.entity) {
-            cell.entity.addInterceptor('attack', atk => atk + 1);
-          }
-        });
-      }
-    }
-  ]
+  range: 1
 };

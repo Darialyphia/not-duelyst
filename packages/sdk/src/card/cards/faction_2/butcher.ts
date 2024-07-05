@@ -1,10 +1,7 @@
-import { Vec3 } from '@game/shared';
-import { isEmpty, isEnemy } from '../../../entity/entity-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierSelfEventMixin } from '../../../modifier/mixins/self-event.mixin';
-import { fearsome, vulnerable } from '../../../modifier/modifier-utils';
+import { fearsome } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { isWithinCells } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 
@@ -58,40 +55,5 @@ export const f2Butcher: CardBlueprint = {
         ]
       })
     );
-  },
-  skills: [
-    {
-      id: 'f2_butcher_skill1',
-      name: 'F2 Butcher Skill 1',
-      description: 'Teleport nearby and enemy, and give it @Vulnerable@ for 2 turns.',
-      initialCooldown: 1,
-      cooldown: 3,
-      iconId: 'teleport-red',
-      minTargetCount: 2,
-      maxTargetCount: 2,
-      isTargetable(point, { session, skill, castPoints }) {
-        if (castPoints.length === 0) {
-          return (
-            isWithinCells(skill.caster.position, point, 4) &&
-            isEnemy(
-              session,
-              session.entitySystem.getEntityAt(point)?.id,
-              skill.caster.player.id
-            )
-          );
-        }
-
-        return isEmpty(session, point) && isWithinCells(castPoints[0], point, 1);
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        return !!castPoints[0] && Vec3.fromPoint3D(point).equals(castPoints[0]);
-      },
-      onUse({ skill, session, castPoints }) {
-        skill.caster.move([castPoints[0]]);
-        session.entitySystem
-          .getEntityAt(castPoints[1])!
-          .addModifier(vulnerable({ source: skill.caster, duration: 2 }));
-      }
-    }
-  ]
+  }
 };

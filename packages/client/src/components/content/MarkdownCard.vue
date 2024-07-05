@@ -10,7 +10,6 @@ const card = CARDS[blueprintId];
   <div class="wrapper">
     <Card
       :has-modal="false"
-      with-skills
       :card="{
         blueprintId: card.id,
         name: card.name,
@@ -22,7 +21,6 @@ const card = CARDS[blueprintId];
         hp: card.maxHp,
         speed: card.speed,
         cost: card.cost,
-        skills: card.skills,
         factions: card.factions,
         tribes: card.tribes ?? []
       }"

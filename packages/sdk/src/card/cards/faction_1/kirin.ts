@@ -21,6 +21,5 @@ export const f1Kirin: CardBlueprint = {
   keywords: [KEYWORDS.FLYING, KEYWORDS.RANGED],
   onPlay({ entity }) {
     entity.addModifier(flying({ source: entity }));
-  },
-  skills: []
+  }
 };

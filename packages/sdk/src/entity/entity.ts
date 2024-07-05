@@ -9,7 +9,6 @@ import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
 import { CARD_KINDS } from '../card/card-enums';
 import { KEYWORDS, type Keyword } from '../utils/keywords';
-import { Skill } from './skill';
 import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
@@ -48,10 +47,7 @@ export const ENTITY_EVENTS = {
   AFTER_HEAL: 'after_heal',
 
   BEFORE_ATTACK: 'before_attack',
-  AFTER_ATTACK: 'after_attack',
-
-  BEFORE_USE_SKILL: 'before_use_skill',
-  AFTER_USE_SKILL: 'after_use_skill'
+  AFTER_ATTACK: 'after_attack'
 } as const;
 
 export type EntityEvent = Values<typeof ENTITY_EVENTS>;
@@ -70,11 +66,6 @@ type TakeDamageEvent = {
 type AttackEvent = {
   entity: Entity;
   target: Entity;
-};
-type UseSkillEvent = {
-  entity: Entity;
-  skill: Skill;
-  castPoints: Point3D[];
 };
 
 export type EntityEventMap = {
@@ -102,9 +93,6 @@ export type EntityEventMap = {
 
   [ENTITY_EVENTS.BEFORE_RETALIATE]: [event: AttackEvent];
   [ENTITY_EVENTS.AFTER_RETALIATE]: [event: AttackEvent];
-
-  [ENTITY_EVENTS.BEFORE_USE_SKILL]: [event: UseSkillEvent];
-  [ENTITY_EVENTS.AFTER_USE_SKILL]: [event: UseSkillEvent];
 };
 
 export type EntityInterceptor = Entity['interceptors'];
@@ -116,8 +104,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   readonly id: EntityId;
 
-  readonly skills: Skill[];
-
   modifiers: EntityModifier[] = [];
 
   position: Vec3;
@@ -125,7 +111,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   movementsTaken = 0;
   attacksTaken = 0;
   retaliationsDone = 0;
-  skillsUsed = 0;
 
   private isScheduledForDeletion = false;
 
@@ -140,16 +125,12 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     maxRetalitions: new Interceptable<number, Entity>(),
     maxAttacks: new Interceptable<number, Entity>(),
     maxMovements: new Interceptable<number, Entity>(),
-    maxSkills: new Interceptable<number, Entity>(),
 
     canMove: new Interceptable<boolean, Entity>(),
     canAttack: new Interceptable<boolean, { entity: Entity; target: Entity }>(),
     canRetaliate: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
-    canUseSkill: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
-
     canMoveThroughCell: new Interceptable<boolean, { entity: Entity; cell: Cell }>(),
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
-    canBeSkillTarget: new Interceptable<boolean, { entity: Entity; skill: Skill }>(),
 
     damageDealt: new Interceptable<
       number,
@@ -171,9 +152,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.position = Vec3.fromPoint3D(options.position);
     this.cardIndex = options.cardIndex;
     this.playerId = options.playerId;
-    this.skills = this.card.blueprint.skills.map(
-      blueprint => new Skill(this.session, blueprint, this)
-    );
     this.currentHp = options.hp ?? this.maxHp;
   }
 
@@ -239,10 +217,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.maxRetalitions.getValue(1, this);
   }
 
-  get maxSkills(): number {
-    return this.interceptors.maxSkills.getValue(1, this);
-  }
-
   canMoveThroughCell(cell: Cell) {
     return this.interceptors.canMoveThroughCell.getValue(
       !cell.entity && cell.terrain === TERRAINS.GROUND,
@@ -275,37 +249,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.canBeAttackTarget.getValue(true, { entity: this, source });
   }
 
-  canBeSkillTarget(skill: Skill) {
-    return this.interceptors.canBeSkillTarget.getValue(true, { entity: this, skill });
-  }
-
   canAttackAt(point: Point3D, simulatedPosition?: Point3D) {
     return isWithinCells(simulatedPosition ?? this.position, point, this.range);
-  }
-
-  canUseSkill(skill: Skill) {
-    const baseValue =
-      skill.canUse && this.skillsUsed < this.maxSkills && this.attacksTaken === 0;
-
-    return this.interceptors.canUseSkill.getValue(baseValue, {
-      entity: this,
-      skill
-    });
-  }
-
-  canUseSkillAt(skill: Skill, point: Point3D, castPoints: Point3D[]) {
-    if (castPoints.some(p => Vec3.fromPoint3D(p).equals(point))) return false;
-
-    const entity = this.session.entitySystem.getEntityAt(point);
-    if (entity && !entity.canBeSkillTarget(skill)) return false;
-
-    return skill.isTargetable(point, castPoints) && this.canUseSkill(skill);
   }
 
   canAttack(target: Entity) {
     const baseValue =
       this.attacksTaken < this.maxAttacks &&
-      this.skillsUsed < this.maxSkills &&
       this.canAttackAt(target.position) &&
       isEnemy(this.session, target.id, this.playerId);
 
@@ -359,13 +309,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   endTurn() {
     this.movementsTaken = 0;
     this.attacksTaken = 0;
-    this.skillsUsed = 0;
     this.retaliationsDone = 0;
   }
 
-  startTurn() {
-    this.skills.forEach(skill => skill.onTurnStart());
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  startTurn() {}
 
   destroy() {
     this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
@@ -461,10 +409,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     if (this.player.isActive) {
       return (
         !this.canMove(0) &&
-        !this.skills.some(skill => this.canUseSkill(skill)) &&
         !this.player.opponent.entities.some(entity => this.canAttack(entity))
       );
     } else {
+      if (config.UNLIMITED_RETALIATION) return false;
       return this.retaliationsDone >= this.maxRetaliations;
     }
   }
@@ -486,29 +434,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     target.retaliate(target.attack, this);
 
     this.attacksTaken++;
-    this.addInterceptorUntilEndOfTurn('canUseSkill', () => false);
     this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
-  }
-
-  useSkill(index: number, castPoints: Point3D[], blueprintFollowup: number[]) {
-    const skill = this.skills[index];
-
-    this.emit(ENTITY_EVENTS.BEFORE_USE_SKILL, {
-      entity: this,
-      skill,
-      castPoints
-    });
-
-    skill.use(castPoints, blueprintFollowup);
-
-    this.skillsUsed++;
-    this.addInterceptorUntilEndOfTurn('canAttack', () => false);
-
-    this.emit(ENTITY_EVENTS.AFTER_USE_SKILL, {
-      entity: this,
-      skill,
-      castPoints
-    });
   }
 
   heal(baseAmount: number, source: Entity) {

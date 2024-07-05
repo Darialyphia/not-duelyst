@@ -31,15 +31,6 @@ const isFollowupTargetable = computed(() => {
   });
 });
 
-const isSkillTargetable = computed(() => {
-  if (!ui.selectedSkill.value) return false;
-  return ui.selectedSkill.value.blueprint.isTargetable(cell.value, {
-    session,
-    castPoints: ui.skillTargets.value,
-    skill: ui.selectedSkill.value
-  });
-});
-
 const pointerenterSound = useSound(
   computed(() => `/assets/sfx/button-hover.mp3`),
   { volume: userSettings.value.sound.sfxVolume[0] / 100 }
@@ -138,13 +129,6 @@ const highlightTarget = () => {
               highlightTarget();
             }
           })
-          .with(TARGETING_MODES.SKILL, () => {
-            if (!cell.entity) return;
-            if (!ui.selectedSkill.value) return;
-            if (isSkillTargetable) {
-              highlightTarget();
-            }
-          })
           .exhaustive();
       }
     "
@@ -190,13 +174,6 @@ const highlightTarget = () => {
             if (!ui.selectedCard.value) return;
             if (isFollowupTargetable) {
               ui.followupTargets.value.push(cell.position);
-              pointerupSound.play();
-            }
-          })
-          .with(TARGETING_MODES.SKILL, () => {
-            if (!ui.selectedSkill.value) return;
-            if (isSkillTargetable) {
-              ui.skillTargets.value.push(cell.position);
               pointerupSound.play();
             }
           })

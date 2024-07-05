@@ -27,41 +27,5 @@ export const f2Tormentor: CardBlueprint = {
   keywords: [KEYWORDS.FURY, KEYWORDS.CALL_TO_ARMS, KEYWORDS.ROOTED],
   onPlay({ entity }) {
     entity.addModifier(fury({ source: entity }));
-  },
-  skills: [
-    {
-      id: 'f2_tormentor_skill1',
-      name: 'F2 Tormentor Skill 1',
-      description:
-        'move an enemy minion in front of this unit, then @Root@ it for one turn.',
-      iconId: 'hook',
-      initialCooldown: 0,
-      cooldown: 2,
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      isTargetable(point, { skill, session }) {
-        return (
-          isWithinCells(skill.caster.position, point, 3) &&
-          isEnemyMinion(
-            session,
-            session.entitySystem.getEntityAt(point)?.id,
-            skill.caster.player.id
-          )
-        );
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        return isCastPoint(point, castPoints);
-      },
-      onUse({ skill, session, affectedCells }) {
-        const [target] = getAffectedEntities(affectedCells);
-        if (!target) return;
-
-        const cell = getCellInFront(session, skill.caster);
-        if (!cell) return;
-        if (!cell.canSummonAt) return;
-        target.move([cell], true);
-        target.addModifier(rooted({ source: skill.caster, duration: 1 }));
-      }
-    }
-  ]
+  }
 };

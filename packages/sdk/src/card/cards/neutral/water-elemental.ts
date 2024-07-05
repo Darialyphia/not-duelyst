@@ -22,7 +22,6 @@ export const neutralWaterElemental: CardBlueprint = {
   maxHp: 5,
   speed: 3,
   range: 1,
-  skills: [],
   tribes: [TRIBES.ELEMENTAL],
   onPlay({ entity }) {
     entity.addModifier(ranged({ range: 2, source: entity }));

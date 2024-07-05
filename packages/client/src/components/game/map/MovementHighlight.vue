@@ -20,7 +20,6 @@ const isMatch = (cellToTest: Cell) => {
     .with(
       TARGETING_MODES.FOLLOWUP,
       TARGETING_MODES.SUMMON,
-      TARGETING_MODES.SKILL,
       TARGETING_MODES.BLUEPRINT_FOLLOWUP,
       () => false
     )

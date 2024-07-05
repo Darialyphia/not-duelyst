@@ -19,7 +19,6 @@ export const neutralFireElemental: CardBlueprint = {
   maxHp: 4,
   speed: 3,
   range: 1,
-  skills: [],
   keywords: [KEYWORDS.BURN, KEYWORDS.AURA],
   tribes: [TRIBES.ELEMENTAL],
   onPlay({ entity }) {

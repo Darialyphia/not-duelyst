@@ -20,7 +20,6 @@ export {
   type Rarity
 } from './card/card-enums';
 export { type Animation } from './fx-system';
-export { Skill } from './entity/skill';
 export { CARDS } from './card/card-lookup';
 export { type CardBlueprint, MULTICOLOR } from './card/card-blueprint';
 export type { GameAction } from './action/action';

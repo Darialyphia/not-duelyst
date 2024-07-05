@@ -1,4 +1,4 @@
-import type { Card, Cell, Entity, EntityId, GameSession, Skill } from '@game/sdk';
+import type { Card, Cell, Entity, EntityId, GameSession } from '@game/sdk';
 import { type Nullable, type Point, type Point3D, type Values } from '@game/shared';
 import type { Layer } from '@pixi/layers';
 import type { DisplayObject } from 'pixi.js';
@@ -14,7 +14,6 @@ export const TARGETING_MODES = {
   NONE: 'NONE',
   BASIC: 'BASIC',
   SUMMON: 'SUMMON',
-  SKILL: 'SKILL',
   FOLLOWUP: 'CARD_FOLLOWUP',
   BLUEPRINT_FOLLOWUP: 'BLUEPRINT_FOLLOWUP'
 } as const;
@@ -45,18 +44,12 @@ export type GameUiContext = {
 
   highlightedCard: Ref<Nullable<Card>>;
 
-  selectedSkill: ComputedRef<Nullable<Skill>>;
-  selectedSkillIndex: Ref<Nullable<number>>;
-  selectSkillAtIndex(index: number): void;
-  unselectSkill(): void;
-
   selectedCard: ComputedRef<Nullable<Card>>;
   selectedCardIndex: Ref<Nullable<number>>;
 
   followupBlueprintIndexes: Ref<number[]>;
   followupTargets: Ref<Point3D[]>;
   summonTarget: Ref<Nullable<Point3D>>;
-  skillTargets: Ref<Point3D[]>;
 
   selectCardAtIndex(index: number): void;
   unselectCard(): void;
@@ -73,10 +66,8 @@ export const useGameUiProvider = (session: GameSession) => {
   const hoveredPosition = ref<Nullable<Point3D>>(null);
   const highlightedCard = ref(null) as Ref<Nullable<Card>>;
   const selectedCardIndex = ref<Nullable<number>>(null);
-  const selectedSkillIndex = ref<Nullable<number>>(null);
   const selectedEntityId = ref<Nullable<EntityId>>(null);
   const followupTargets = ref<Point3D[]>([]);
-  const skillTargets = ref<Point3D[]>([]);
   const summonTarget = ref<Nullable<Point3D>>();
 
   const targetingMode = ref<TargetingMode>(TARGETING_MODES.NONE);
@@ -98,8 +89,6 @@ export const useGameUiProvider = (session: GameSession) => {
     summonTarget,
     followupTargets,
     selectedCardIndex,
-    selectedSkillIndex,
-    skillTargets,
     ambientLightColor: computed({
       get() {
         return ambientLightColor.value;
@@ -203,7 +192,6 @@ export const useGameUiProvider = (session: GameSession) => {
     }),
     selectCardAtIndex(index) {
       selectedCardIndex.value = index;
-      selectedSkillIndex.value = index;
       api.switchTargetingMode(TARGETING_MODES.SUMMON);
       selectedEntityId.value = null;
     },
@@ -213,26 +201,7 @@ export const useGameUiProvider = (session: GameSession) => {
       this.followupBlueprintIndexes.value = [];
       api.switchTargetingMode(TARGETING_MODES.NONE);
     },
-    selectedSkill: computed(() => {
-      if (!api.selectedEntity.value) return null;
-      if (!isDefined(selectedSkillIndex.value)) return null;
 
-      return api.selectedEntity.value.skills[selectedSkillIndex.value];
-    }),
-    selectSkillAtIndex(index) {
-      selectedSkillIndex.value = index;
-      if (api.selectedSkill.value?.blueprint.blueprintFollowup) {
-        api.switchTargetingMode(TARGETING_MODES.BLUEPRINT_FOLLOWUP);
-      } else {
-        api.switchTargetingMode(TARGETING_MODES.SKILL);
-      }
-    },
-    unselectSkill() {
-      selectedSkillIndex.value = null;
-      skillTargets.value = [];
-      this.followupBlueprintIndexes.value = [];
-      api.switchTargetingMode(TARGETING_MODES.BASIC);
-    },
     followupBlueprintIndexes: ref([])
   };
   provide(GAME_UI_INJECTION_KEY, api);
@@ -240,7 +209,6 @@ export const useGameUiProvider = (session: GameSession) => {
   session.on('player:turn_end', () => {
     api.unselectEntity();
     api.unselectCard();
-    api.unselectSkill();
   });
   return api;
 };

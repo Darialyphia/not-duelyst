@@ -1,10 +1,8 @@
 import type { Entity } from '../../../entity/entity';
-import { getCellBehind, getCellInFront, isEmpty } from '../../../entity/entity-utils';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../../../modifier/mixins/entity-interceptor.mixin';
 import { whileOnBoard } from '../../../modifier/modifier-utils';
 import { KEYWORDS } from '../../../utils/keywords';
-import { isSelf } from '../../../utils/targeting';
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, CARD_KINDS, FACTIONS } from '../../card-enums';
 import { f2Imp } from './imp';
@@ -74,37 +72,5 @@ export const f2PitLord: CardBlueprint = {
         }
       })
     );
-  },
-  skills: [
-    {
-      id: 'f2_pit_lord_skill1',
-      name: 'F2 Pit Lord Skill1',
-      description: `@Summon@ an @${f2Imp.name}@ behind and in front of this unit.`,
-      iconId: 'imps',
-      initialCooldown: 0,
-      cooldown: 4,
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      isTargetable(point, { skill, session }) {
-        return isSelf(skill.caster, session.entitySystem.getEntityAt(point));
-      },
-      isInAreaOfEffect(point, { session, skill }) {
-        if (!isEmpty(session, point)) return false;
-        return [
-          getCellInFront(session, skill.caster),
-          getCellBehind(session, skill.caster)
-        ].some(cell => cell?.position.equals(point));
-      },
-      onUse({ skill, affectedCells }) {
-        affectedCells.forEach(cell => {
-          const imp = skill.caster.player.generateCard({
-            blueprintId: f2Imp.id,
-            pedestalId: skill.caster.card.pedestalId
-          });
-
-          return imp.play({ position: cell.position, targets: [] });
-        });
-      }
-    }
-  ]
+  }
 };

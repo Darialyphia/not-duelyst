@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import {
-  ClientSession,
-  GameSession,
-  ServerSession,
-  type SerializedGameState
-} from '@game/sdk';
+import { ClientSession, ServerSession, type SerializedGameState } from '@game/sdk';
 import { nanoid } from 'nanoid';
 
 const { player1Loadout, player2Loadout, seed } = defineProps<{
@@ -79,7 +74,6 @@ const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
       @move="dispatch('move', $event)"
       @attack="dispatch('attack', $event)"
       @end-turn="dispatch('endTurn', $event)"
-      @use-skill="dispatch('useSkill', $event)"
       @play-card="dispatch('playCard', $event)"
       @p1-emote="addP1($event)"
       @p2-emote="addP2($event)"

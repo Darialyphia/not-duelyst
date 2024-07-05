@@ -1,11 +1,7 @@
 import type { CardBlueprint } from '../../card-blueprint';
 import { RARITIES, FACTIONS, CARD_KINDS } from '../../card-enums';
 import { KEYWORDS } from '../../../utils/keywords';
-import {
-  getAffectedEntities,
-  isCastPoint,
-  isWithinCells
-} from '../../../utils/targeting';
+import { isWithinCells } from '../../../utils/targeting';
 import { createEntityModifier } from '../../../modifier/entity-modifier';
 import { modifierGameEventMixin } from '../../../modifier/mixins/game-event.mixin';
 import { TRIBES } from '../../../utils/tribes';
@@ -103,39 +99,5 @@ export const f1ElementalConfluence: CardBlueprint = {
     session.actionSystem.schedule(() => {
       dealDamage(session, entity);
     });
-  },
-  skills: [
-    {
-      id: 'f1_elemental_confulence_skill1',
-      name: 'Elemental Relocation',
-      description:
-        "Swap position with one of your elementals, then trigger this card's start of turn effect.",
-      initialCooldown: 0,
-      cooldown: 2,
-      iconId: 'vortex-elemental',
-      minTargetCount: 1,
-      maxTargetCount: 1,
-      isTargetable(point, { skill, session }) {
-        const target = session.entitySystem.getEntityAt(point);
-        if (!target) return false;
-        if (target.isEnemy(skill.caster.id)) return false;
-        // @TODO make helper for this
-        const isElemental = target.card.blueprint.tribes?.some(
-          tribe => tribe.id === TRIBES.ELEMENTAL.id
-        );
-        return !!isElemental;
-      },
-      isInAreaOfEffect(point, { castPoints }) {
-        return isCastPoint(point, castPoints);
-      },
-      onUse({ session, skill, affectedCells }) {
-        const [target] = getAffectedEntities(affectedCells);
-        const oldPos = target.position.clone();
-        target.move([skill.caster.position], true);
-        skill.caster.move([oldPos], true);
-
-        dealDamage(session, skill.caster);
-      }
-    }
-  ]
+  }
 };

@@ -202,7 +202,6 @@ const mostPlayedCards = computed(() => {
           <Card
             v-for="card in mostPlayedCards"
             :key="card.card.id"
-            :with-skills="false"
             :has-modal="false"
             :card="{
               blueprintId: card.card.id,
@@ -215,7 +214,6 @@ const mostPlayedCards = computed(() => {
               hp: card.card.maxHp,
               speed: card.card.speed,
               cost: card.card.cost,
-              skills: card.card.skills,
               factions: card.card.factions,
               keywords: [],
               tribes: card.card.tribes ?? []

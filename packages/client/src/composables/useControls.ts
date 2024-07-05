@@ -80,12 +80,6 @@ export const useGameControls = () => {
 
       if (!isActivePlayer.value) return;
 
-      ui.selectedEntity.value?.skills.forEach((skill, index) => {
-        if (isMatch(e, `skill${index + 1}` as ControlId)) {
-          ui.selectSkillAtIndex(index);
-        }
-      });
-
       activePlayer.value.hand.forEach((unit, index) => {
         if (
           isMatch(e, `summon${index + 1}` as ControlId) &&

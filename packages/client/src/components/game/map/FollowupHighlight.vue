@@ -27,17 +27,6 @@ const isMatch = (cellToTest: Cell) => {
         }) ?? false
       );
     })
-    .with(TARGETING_MODES.SKILL, () => {
-      if (!ui.selectedSkill.value) return false;
-
-      return (
-        ui.selectedSkill.value.blueprint.isTargetable(cellToTest, {
-          session,
-          castPoints: ui.skillTargets.value,
-          skill: ui.selectedSkill.value
-        }) ?? false
-      );
-    })
     .exhaustive();
 };
 
