@@ -9,13 +9,6 @@ export type Keyword = {
 };
 
 export const KEYWORDS = {
-  AURA: {
-    id: 'aura',
-    name: 'Aura',
-    description: 'Apply the effect to all nearby units.',
-    aliases: [],
-    spriteId: 'aura'
-  },
   BARRIER: {
     id: 'barrier',
     name: 'Barrier',
@@ -30,47 +23,23 @@ export const KEYWORDS = {
     spriteId: 'burn',
     aliases: [/burn\([0-9]+\)/]
   },
-  CALL_TO_ARMS: {
-    id: 'call_to_arms',
-    name: 'Call to Arms',
+  OPENING_GAMBIT: {
+    id: 'opening_gambit',
+    name: 'Opening Gambit',
     description: 'Triggers when the unit enters the battlefield.',
     aliases: []
   },
   CELERITY: {
     id: 'celerity',
     name: 'Celerity',
-    description: 'Can move twice per turn.',
+    description: 'Can activate twice per turn.',
     aliases: [],
     spriteId: 'celerity'
-  },
-  CHANNELING: {
-    id: 'channeling',
-    name: 'Channeling',
-    description: "You can't use this ability and move in the same turn.",
-    aliases: []
-  },
-  CLEANSE: {
-    id: 'cleanse',
-    name: 'Cleanse',
-    description: 'Remove all negative effects from a unit.',
-    aliases: []
   },
   DEATHWATCH: {
     id: 'deathwatch',
     name: 'Deathwatch',
-    description: 'Triggers whenever a unit is destroyed.',
-    aliases: []
-  },
-  DISARMED: {
-    id: 'disarmed',
-    name: 'Disarmed',
-    description: 'This unit cannot attack.',
-    aliases: ['disarm']
-  },
-  ELUSIVE: {
-    id: 'elusive',
-    name: 'Elusive',
-    description: 'This unit takes no damage from attacks',
+    description: 'Triggers effect whenever a unit is destroyed.',
     aliases: []
   },
   FEARSOME: {
@@ -80,36 +49,28 @@ export const KEYWORDS = {
     aliases: [],
     spriteId: 'fearsome'
   },
-  FERVOR: {
-    id: 'fervor',
-    name: 'Fervor',
-    description: 'Triggers when this unit is nearby its general.',
+  ZEAL: {
+    id: 'zeal',
+    name: 'Zeal',
+    description: 'Triggers an effect when nearby its general.',
     aliases: []
   },
   FLYING: {
     id: 'flying',
     name: 'Flying',
-    description: 'can walk over water, through units and climb terrain.',
+    description: 'can move anywhere on the battlefield.',
     aliases: []
   },
   FROZEN: {
     id: 'frozen',
     name: 'Frozen',
-    description:
-      'This unit cannot move, use abilities, or retaliate. Taking damage breaks the freeze.',
+    description: 'This unit skips it next turn.',
     aliases: ['freeze'],
     spriteId: 'frozen'
   },
-  FURY: {
-    id: 'fury',
-    name: 'Fury',
-    description: 'Can attack twice per turn.',
-    aliases: [],
-    spriteId: 'fury'
-  },
-  LAST_WILL: {
-    id: 'last_will',
-    name: 'Last will',
+  DYING_WISH: {
+    id: 'dying_wish',
+    name: 'Dying Wish',
     description: 'Triggers when the unit is destroyed.',
     aliases: []
   },
@@ -119,30 +80,17 @@ export const KEYWORDS = {
     description: 'Triggers when this unit has no nearby allies.',
     aliases: []
   },
-  NIMBLE: {
-    id: 'nimble',
-    name: 'Nimble',
-    description: 'This unit can walk through other units.',
-    spriteId: 'nimble',
-    aliases: []
-  },
   PLUNDER: {
     id: 'plunder',
     name: 'Plunder',
-    description: 'Gain 1 gold when the condition is met.',
-    aliases: []
-  },
-  PURGE: {
-    id: 'purge',
-    name: 'Purge',
-    description: 'Remove all positive effects from a unit.',
+    description: 'Gain 1 gold when it deals damage to another unit.',
     aliases: []
   },
   RANGED: {
     id: 'ranged',
-    name: 'Ranged(x)',
-    description: 'This unit attack range is increased by X.',
-    aliases: [/ranged\([0-9]+\)/]
+    name: 'Ranged',
+    description: 'Can attack any enemy regardless of distance.',
+    aliases: []
   },
   REGENERATION: {
     id: 'regeneration',
@@ -161,15 +109,8 @@ export const KEYWORDS = {
   RUSH: {
     id: 'rush',
     name: 'Rush',
-    description: 'This unit can move and attack the turn it is summoned.',
+    description: 'This unit activates the turn it is summoned.',
     aliases: []
-  },
-  SILENCED: {
-    id: 'silenced',
-    name: 'Silenced',
-    description: 'This unit cannot cast abilities.',
-    aliases: ['silence'],
-    spriteId: 'silenced'
   },
   SLAY: {
     id: 'slay',
@@ -189,50 +130,23 @@ export const KEYWORDS = {
     description: 'A summoned unit didn`t come from your action bar.',
     aliases: []
   },
-  SURGE: {
-    id: 'surge',
-    name: 'Surge(x)',
-    description: 'Deal x more damage with abilities.',
-    aliases: [/surge\([0-9]+\)/],
-    spriteId: 'surge'
-  },
-  TAUNTED: {
-    id: 'taunted',
-    name: 'Taunted',
+  PROVOKED: {
+    id: 'provoked',
+    name: 'Provokedd',
     description: 'This unit cannot move or cast abilities, and must attack the taunter.',
     spriteId: 'taunt',
-    aliases: ['taunt']
+    aliases: ['provoke']
   },
-  THORNS: {
-    id: 'thorns',
-    name: 'Thorns(x)',
-    description: 'Enemies unit dealing damage to this unit take x damage.',
-    aliases: [/thorns\([0-9]+\)/]
-  },
-  TOUGH: {
-    id: 'tough',
-    name: 'Tough(x)',
-    spriteId: 'tough',
-    description: 'This unit takes x less damage from all sources (min. 1).',
-    aliases: [/though\([0-9]+\)/, 'tough']
-  },
-  VIGILANT: {
-    id: 'vigilant',
-    name: 'Vigilant',
-    description: 'This unit does not exhaust when retaliating.',
+  VEIL: {
+    id: 'veil',
+    name: 'Veil',
+    description: 'Cannot be targeted by spells',
     aliases: []
   },
-  VULNERABLE: {
-    id: 'vulnerable',
-    name: 'Vulnerable(x)',
-    description: 'This unit takes x more damage from all sources.',
-    spriteId: 'vulnerable',
-    aliases: [/vulnerable\([0-9]+\)/]
-  },
-  WARD: {
-    id: 'ward',
-    name: 'Ward',
-    description: 'This unit takes no damage from abilities',
+  GROW: {
+    id: 'grow',
+    name: 'Grow',
+    description: 'This unit gains attack and hp at the starts of its turn.',
     aliases: []
   }
 } as const satisfies Record<string, Keyword>;
