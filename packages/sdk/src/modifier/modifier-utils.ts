@@ -12,7 +12,6 @@ import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
-import { TERRAINS } from '../board/board-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -496,11 +495,13 @@ export const whileOnBoard = ({
   });
 };
 
-export const lastWill = ({
+export const dyingWish = ({
   source,
-  handler
+  handler,
+  keywords = []
 }: {
   source: Entity;
+  keywords?: Keyword[];
   handler: (
     entity: Entity,
     ctx: { session: GameSession; modifier: EntityModifier }
@@ -513,6 +514,35 @@ export const lastWill = ({
     mixins: [
       modifierSelfEventMixin({
         eventName: 'before_destroy',
+        keywords: [...keywords, KEYWORDS.DYING_WISH],
+        listener([event], ctx) {
+          return handler(event, ctx);
+        }
+      })
+    ]
+  });
+};
+
+export const openingGambit = ({
+  source,
+  handler,
+  keywords = []
+}: {
+  source: Entity;
+  keywords?: Keyword[];
+  handler: (
+    entity: Entity,
+    ctx: { session: GameSession; modifier: EntityModifier }
+  ) => MaybePromise<void>;
+}) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'created',
+        keywords: [...keywords, KEYWORDS.OPENING_GAMBIT],
         listener([event], ctx) {
           return handler(event, ctx);
         }
