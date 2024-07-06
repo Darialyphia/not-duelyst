@@ -1,6 +1,6 @@
 import { type KeywordId } from '../utils/keywords';
 
-type GlobalCondition =
+export type GlobalCondition =
   | {
       type: 'player_gold';
       params: {
@@ -16,30 +16,31 @@ type GlobalCondition =
       };
     };
 
-type UnitCondition =
+export type UnitCondition =
   | { type: 'is_self' }
   | { type: 'is_general' }
   | { type: 'is_minion' }
   | { type: 'is_ally' }
   | { type: 'is_enemy' }
-  | { type: 'is_nearby' }
+  | { type: 'is_nearby'; params: { unit: Array<UnitCondition> } }
   | { type: 'has_keyword'; params: { keyword: KeywordId } }
   | { type: 'is_followup'; params: { index: number } };
 
-type PlayerCondition =
+export type PlayerCondition =
   | {
       type: 'ally_player';
     }
   | { type: 'enemy_player' }
   | { type: 'any_player' };
 
-type CardCondition =
+export type CardCondition =
   | {
       type: 'self';
     }
   | { type: 'minion' }
   | { type: 'spell' }
   | { type: 'artifact' }
+  | { type: 'index_in_hand'; params: { index: number } }
   | {
       type: 'cost';
       params: {
@@ -61,6 +62,7 @@ type Trigger =
         filter: Array<GlobalCondition>;
       };
     }
+  | { type: 'zeal' }
   | {
       type: 'on_before_unit_move';
       params: {
@@ -177,18 +179,71 @@ type Trigger =
   | { type: 'on_after_card_played'; params: { card: Array<CardCondition> } }
   | { type: 'on_card_drawn'; params: { card: Array<CardCondition> } };
 
+export type Amount =
+  | {
+      type: 'fixed';
+      params: { value: number };
+    }
+  | {
+      type: 'cards_in_hands';
+      params: { player: Array<PlayerCondition> };
+    }
+  | {
+      type: 'attack';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'lowest_attack';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'highest_attack';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'hp';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'lowest_hp';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'highest_hp';
+      params: { unit: Array<UnitCondition> };
+    }
+  | {
+      type: 'cost';
+      params: { unit: Array<UnitCondition> };
+    };
+
 type Action =
   | {
       type: 'deal_damage';
       params: {
-        amount: number;
+        amount: Amount;
         targets: Array<UnitCondition>;
       };
     }
   | {
       type: 'heal';
       params: {
-        amount: number;
+        amount: Amount;
+        targets: Array<UnitCondition>;
+      };
+    }
+  | {
+      type: 'draw_cards';
+      params: {
+        amount: Amount;
+        player: Array<PlayerCondition>;
+      };
+    }
+  | {
+      type: 'change_stats';
+      params: {
+        attack: Amount;
+        hp: Amount;
         targets: Array<UnitCondition>;
       };
     };

@@ -153,3 +153,6 @@ export const KEYWORDS = {
 
 export type KeywordName = Values<typeof KEYWORDS>['name'];
 export type KeywordId = Values<typeof KEYWORDS>['id'];
+
+export const getKeywordById = (id: KeywordId): Keyword | undefined =>
+  Object.values(KEYWORDS).find(k => k.id === id);

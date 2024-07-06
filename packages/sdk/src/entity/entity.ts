@@ -1,4 +1,4 @@
-import { type Serializable, Vec3, type Values } from '@game/shared';
+import { type Serializable, Vec3, type Values, type Nullable } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
 import EventEmitter from 'eventemitter3';
@@ -57,11 +57,10 @@ type DealDamageEvent = {
   entity: Entity;
   target: Entity;
   amount: number;
-  isAbilityDamage: boolean;
 };
 type TakeDamageEvent = {
   entity: Entity;
-  source: Entity;
+  source: Nullable<Entity>;
   amount: number;
 };
 type AttackEvent = {
@@ -133,14 +132,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     canMoveThroughCell: new Interceptable<boolean, { entity: Entity; cell: Cell }>(),
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
 
-    damageDealt: new Interceptable<
-      number,
-      { entity: Entity; amount: number; isAbilityDamage: boolean }
-    >(),
-    damageTaken: new Interceptable<
-      number,
-      { entity: Entity; amount: number; isAbilityDamage: boolean }
-    >(),
+    damageDealt: new Interceptable<number, { entity: Entity; amount: number }>(),
+    damageTaken: new Interceptable<number, { entity: Entity; amount: number }>(),
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
 
@@ -351,14 +344,10 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  getTakenDamage(
-    amount: number,
-    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
-  ) {
+  getTakenDamage(amount: number) {
     return this.interceptors.damageTaken.getValue(amount, {
       entity: this,
-      amount,
-      isAbilityDamage
+      amount
     });
   }
 
@@ -370,34 +359,24 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     });
   }
 
-  dealDamage(
-    power: number,
-    target: Entity,
-    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
-  ) {
+  dealDamage(power: number, target: Entity) {
     const payload = {
       entity: this,
       amount: this.interceptors.damageDealt.getValue(power, {
         entity: this,
-        isAbilityDamage,
         amount: power
       }),
-      isAbilityDamage,
       target
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    target.takeDamage(payload.amount, this, { isAbilityDamage });
+    target.takeDamage(payload.amount, this);
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  takeDamage(
-    power: number,
-    source: Entity,
-    { isAbilityDamage }: { isAbilityDamage: boolean } = { isAbilityDamage: true }
-  ) {
-    const amount = this.getTakenDamage(power, { isAbilityDamage });
+  takeDamage(power: number, source?: Entity) {
+    const amount = this.getTakenDamage(power);
     const payload = {
       entity: this,
       amount,
@@ -428,14 +407,14 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;
 
-    this.dealDamage(power, target, { isAbilityDamage: false });
+    this.dealDamage(power, target);
     this.emit(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
   }
 
   performAttack(target: Entity) {
     this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
 
-    this.dealDamage(this.attack, target, { isAbilityDamage: false });
+    this.dealDamage(this.attack, target);
 
     target.retaliate(target.attack, this);
 
@@ -443,7 +422,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
   }
 
-  heal(baseAmount: number, source: Entity) {
+  heal(baseAmount: number, source?: Entity) {
     const amount = this.getHealReceived(baseAmount);
 
     const payload = {

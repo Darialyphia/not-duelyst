@@ -40,6 +40,9 @@ export const FACTIONS = {
   F6: new Faction(FACTION_IDS.F6, 'Vanar')
 } as const satisfies Record<string, Faction>;
 
+export const getFactionById = (id: FactionId) =>
+  Object.values(FACTIONS).find(f => f.id === id);
+
 export const RARITIES = {
   BASIC: 'basic',
   COMMON: 'common',
