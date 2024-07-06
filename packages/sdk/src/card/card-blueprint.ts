@@ -1,11 +1,12 @@
-import type { Nullable, Point3D } from '@game/shared';
+import type { AnyObject, Nullable, Point3D } from '@game/shared';
 import type { Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import type { CardModifier } from '../modifier/card-modifier';
 import type { Card, CardBlueprintId } from './card';
-import type { CardKind, Faction, Rarity } from './card-enums';
+import type { CardKind, Faction, FactionId, Rarity } from './card-enums';
 import type { Keyword } from '../utils/keywords';
 import type { Tag } from '../utils/tribes';
+import type { CardEffect } from './card-effect';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -85,3 +86,38 @@ export type CardBlueprint =
   | (CardBlueprintBase & CardBlueprintUnit)
   | (CardBlueprintBase & CardBlueprintSpell)
   | (CardBlueprintBase & CardBlueprintArtifact);
+
+export type SerializedBlueprintBase = {
+  id: string;
+  name: string;
+  collectable: boolean;
+  faction: FactionId;
+  spriteId: string;
+  rarity: Rarity;
+  cost: number;
+  tags: string[];
+  keywords: string[];
+  relatedBlueprintIds: string[];
+  effects: CardEffect[];
+  followup?: AnyObject;
+};
+
+type SerializedBlueprintUnit = {
+  kind: Extract<CardKind, 'MINION' | 'GENERAL'>;
+  attack: number;
+  maxHp: number;
+  speed: number;
+};
+
+type SerializedBlueprintSpell = {
+  kind: Extract<CardKind, 'SPELL'>;
+};
+
+type SerializedBlueprintArtifact = {
+  kind: Extract<CardKind, 'ARTIFACT'>;
+};
+
+export type SerializedBlueprint =
+  | (SerializedBlueprintBase & SerializedBlueprintUnit)
+  | (SerializedBlueprintBase & SerializedBlueprintSpell)
+  | (SerializedBlueprintBase & SerializedBlueprintArtifact);

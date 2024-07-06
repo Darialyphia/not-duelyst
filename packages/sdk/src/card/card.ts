@@ -6,7 +6,6 @@ import type { CardIndex, PlayerId } from '../player/player';
 import EventEmitter from 'eventemitter3';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
-import { ENTITY_EVENTS } from '../entity/entity';
 
 export type CardBlueprintId = string;
 
@@ -19,7 +18,8 @@ export type SerializedCard = {
 export const CARD_EVENTS = {
   BEFORE_PLAYED: 'before_played',
   AFTER_PLAYED: 'after_played',
-  DRAWN: 'drawn'
+  DRAWN: 'drawn',
+  REPLACED: 'replaced'
 } as const;
 
 export type CardEvent = Values<typeof CARD_EVENTS>;
@@ -28,6 +28,7 @@ export type CardEventMap = {
   [CARD_EVENTS.BEFORE_PLAYED]: [Card];
   [CARD_EVENTS.AFTER_PLAYED]: [Card];
   [CARD_EVENTS.DRAWN]: [Card];
+  [CARD_EVENTS.REPLACED]: [Card];
 };
 
 export abstract class Card extends EventEmitter implements Serializable {
@@ -95,6 +96,10 @@ export abstract class Card extends EventEmitter implements Serializable {
 
   draw() {
     this.emit(CARD_EVENTS.DRAWN, this);
+  }
+
+  replace() {
+    this.emit(CARD_EVENTS.REPLACED, this);
   }
 
   play(ctx: { position: Point3D; targets: Point3D[] }) {

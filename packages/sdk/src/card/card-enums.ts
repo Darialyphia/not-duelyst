@@ -29,6 +29,8 @@ export const FACTION_IDS = {
   F6: 'f6'
 } as const;
 
+export type FactionId = Values<typeof FACTION_IDS>;
+
 export const FACTIONS = {
   F1: new Faction(FACTION_IDS.F1, 'Lyonar'),
   F2: new Faction(FACTION_IDS.F2, 'Songhai'),

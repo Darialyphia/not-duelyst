@@ -18,8 +18,6 @@ import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { CARD_KINDS, FACTION_IDS, FACTIONS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck } from '../card/deck';
-import {} from '../card/cards/neutral/water-elemental';
-import { MULTICOLOR } from '../card/card-blueprint';
 import { createCard } from '../card/cards/card-factory';
 
 export type PlayerId = string;
@@ -38,27 +36,15 @@ export const PLAYER_EVENTS = {
   TURN_START: 'turn_start',
   TURN_END: 'turn_end',
   BEFORE_GET_GOLD: 'before_get_gold',
-  AFTER_GET_GOLD: 'after_get_gold',
-  BEFORE_DRAW: 'before_draw',
-  AFTER_DRAW: 'after_draw',
-  BEFORE_ADD_RUNE: 'before_add_rune',
-  AFTER_ADD_RUNE: 'after_add_rune'
+  AFTER_GET_GOLD: 'after_get_gold'
 } as const;
 
 export type PlayerEvent = Values<typeof PLAYER_EVENTS>;
 export type PlayerEventMap = {
   [PLAYER_EVENTS.TURN_START]: [Player];
   [PLAYER_EVENTS.TURN_END]: [Player];
-  [PLAYER_EVENTS.BEFORE_DRAW]: [{ player: Player; cards: Card[] }];
-  [PLAYER_EVENTS.AFTER_DRAW]: [{ player: Player; cards: Card[] }];
   [PLAYER_EVENTS.BEFORE_GET_GOLD]: [{ player: Player; amount: number }];
   [PLAYER_EVENTS.AFTER_GET_GOLD]: [{ player: Player; amount: number }];
-  [PLAYER_EVENTS.BEFORE_ADD_RUNE]: [
-    { player: Player; runeId: Values<typeof FACTION_IDS> }
-  ];
-  [PLAYER_EVENTS.AFTER_ADD_RUNE]: [
-    { player: Player; runeId: Values<typeof FACTION_IDS> }
-  ];
 };
 
 export type PlayerInterceptor = Player['interceptors'];
@@ -85,11 +71,12 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   maxResourceActionsPerTurn = 1;
   resourceActionsTaken = 0;
+  cardsReplacedThisTurn = 0;
 
   readonly interceptors = {
     maxGold: new Interceptable<number, Player>(),
     cost: new Interceptable<number, Card>(),
-    maxResourceActionsPerTurn: new Interceptable<number, Player>()
+    maxReplaces: new Interceptable<number, Player>()
   };
 
   constructor(
@@ -116,14 +103,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this._maxGold = val;
   }
 
-  get canPerformResourceAction(): boolean {
-    return (
-      this.resourceActionsTaken <
-      this.interceptors.maxResourceActionsPerTurn.getValue(
-        this.maxResourceActionsPerTurn,
-        this
-      )
-    );
+  get maxReplaces(): number {
+    return this.interceptors.maxReplaces.getValue(config.MAX_REPLACES_PER_TURN, this);
   }
 
   get entities() {
@@ -176,6 +157,20 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
         ? this.session.boardSystem.player1StartPosition
         : this.session.boardSystem.player2StartPosition
     });
+  }
+
+  canReplace() {
+    return this.cardsReplacedThisTurn < this.maxReplaces;
+  }
+
+  replaceCard(index: number) {
+    if (!this.canReplace()) return;
+    const card = this.hand[index];
+    if (!card) return;
+
+    const replacement = this.deck.replace(card);
+    this.hand[index] = replacement;
+    this.cardsReplacedThisTurn++;
   }
 
   generateCard({
@@ -299,23 +294,11 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
     const newCards = this.deck.draw(Math.min(amount, availableSlots));
     if (newCards.length) {
-      this.emit(PLAYER_EVENTS.BEFORE_DRAW, { player: this, cards: newCards });
       this.hand.push(...newCards);
-      this.emit(PLAYER_EVENTS.AFTER_DRAW, { player: this, cards: newCards });
     }
 
     if (isResourceAction) {
       this.resourceActionsTaken++;
     }
-  }
-
-  addRune(factionId: Values<typeof FACTION_IDS>, isResourceAction = false) {
-    this.emit(PLAYER_EVENTS.BEFORE_ADD_RUNE, { player: this, runeId: factionId });
-    this.runes[factionId]++;
-
-    if (isResourceAction) {
-      this.resourceActionsTaken++;
-    }
-    this.emit(PLAYER_EVENTS.AFTER_ADD_RUNE, { player: this, runeId: factionId });
   }
 }

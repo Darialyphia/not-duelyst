@@ -12,5 +12,6 @@ export const config = {
   GENERAL_DEFAULT_SPEED: 3,
   STARTING_HAND_SIZE: 3,
   CARD_DRAW_PER_TURN: 1,
+  MAX_REPLACES_PER_TURN: 1,
   UNLIMITED_RETALIATION: true
 } as const;

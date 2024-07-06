@@ -152,3 +152,4 @@ export const KEYWORDS = {
 } as const satisfies Record<string, Keyword>;
 
 export type KeywordName = Values<typeof KEYWORDS>['name'];
+export type KeywordId = Values<typeof KEYWORDS>['id'];
