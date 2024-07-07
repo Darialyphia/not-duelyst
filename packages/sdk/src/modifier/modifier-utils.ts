@@ -12,6 +12,7 @@ import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
+import { Card, CARD_EVENTS } from '../card/card';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -470,29 +471,58 @@ export const aura = ({
 
 export const whileOnBoard = ({
   source,
+  entity,
   onApplied,
   onRemoved
 }: {
+  entity: Entity;
   source: Entity;
   onApplied: EntityModifier['onApplied'];
   onRemoved: EntityModifier['onRemoved'];
 }) => {
-  return createEntityModifier({
-    source,
-    stackable: false,
-    visible: false,
-    mixins: [
-      {
-        onApplied(session, attachedTo, modifier) {
-          onApplied(session, attachedTo, modifier);
-          attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, () => {
-            onRemoved(session, attachedTo, modifier);
-          });
-        },
-        onRemoved
-      }
-    ]
-  });
+  entity.addModifier(
+    createEntityModifier({
+      source,
+      stackable: false,
+      visible: false,
+      mixins: [
+        {
+          onApplied(session, attachedTo, modifier) {
+            onApplied(session, attachedTo, modifier);
+            attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, () => {
+              onRemoved(session, attachedTo, modifier);
+            });
+          },
+          onRemoved
+        }
+      ]
+    })
+  );
+};
+
+export const whileInHand = (
+  card: Card,
+  cb: (card: Card) => any,
+  cleanup: (card: Card) => any
+) => {
+  card.on(CARD_EVENTS.DRAWN, cb);
+  const unsub = () => {
+    cleanup(card);
+    card.off(CARD_EVENTS.AFTER_PLAYED, unsub);
+    card.off(CARD_EVENTS.REPLACED, unsub);
+  };
+  card.on(CARD_EVENTS.AFTER_PLAYED, unsub);
+  card.on(CARD_EVENTS.REPLACED, unsub);
+};
+
+export const whileInDeck = (
+  card: Card,
+  cb: (card: Card) => any,
+  cleanup: (card: Card) => any
+) => {
+  cb(card);
+  card.on(CARD_EVENTS.REPLACED, cb);
+  card.on(CARD_EVENTS.DRAWN, cleanup);
 };
 
 export const dyingWish = ({

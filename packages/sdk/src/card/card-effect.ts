@@ -45,24 +45,11 @@ export type CardCondition =
       type: 'cost';
       params: {
         operator: 'equals' | 'more_than' | 'less_than';
-        amount: number;
+        amount: Amount;
       };
     };
 
 type Trigger =
-  | {
-      type: 'while_on_board';
-      params: {
-        filter: Array<GlobalCondition>;
-      };
-    }
-  | {
-      type: 'while_in_hand';
-      params: {
-        filter: Array<GlobalCondition>;
-      };
-    }
-  | { type: 'zeal' }
   | {
       type: 'on_before_unit_move';
       params: {
@@ -163,7 +150,14 @@ type Trigger =
       };
     }
   | {
-      type: 'on_unit_death';
+      type: 'on_before_unit_destroyed';
+      params: {
+        filter: Array<GlobalCondition>;
+        unit: Array<UnitCondition>;
+      };
+    }
+  | {
+      type: 'on_after_unit_destroyed';
       params: {
         filter: Array<GlobalCondition>;
         unit: Array<UnitCondition>;
@@ -177,7 +171,8 @@ type Trigger =
   | { type: 'on_after_player_replace'; params: { player: Array<PlayerCondition> } }
   | { type: 'on_before_card_played'; params: { card: Array<CardCondition> } }
   | { type: 'on_after_card_played'; params: { card: Array<CardCondition> } }
-  | { type: 'on_card_drawn'; params: { card: Array<CardCondition> } };
+  | { type: 'on_card_drawn'; params: { card: Array<CardCondition> } }
+  | { type: 'on_card_replaced'; params: { card: Array<CardCondition> } };
 
 export type Amount =
   | {
@@ -248,10 +243,20 @@ type Action =
       };
     };
 
-export type CardEffectConfig = {
-  trigger: Trigger;
-  actions: Action[];
-};
+export type CardEffectConfig =
+  | {
+      executionContext: 'immediate';
+      actions: Action[];
+    }
+  | {
+      executionContext:
+        | 'while_in_hand'
+        | 'while_on_board'
+        | 'while_in_deck'
+        | 'while_in_graveyard';
+      triggers: Trigger[];
+      actions: Action[];
+    };
 
 export type CardEffect = {
   config: CardEffectConfig;

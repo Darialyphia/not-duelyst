@@ -41,8 +41,8 @@ export const ENTITY_EVENTS = {
   BEFORE_TAKE_DAMAGE: 'before_take_damage',
   AFTER_TAKE_DAMAGE: 'after_take_damage',
 
-  BEFORE_RETALIATE: 'before_realiate',
-  AFTER_RETALIATE: 'after_realiate',
+  BEFORE_RETALIATE: 'before_retaliate',
+  AFTER_RETALIATE: 'after_retaliate',
 
   BEFORE_HEAL: 'before_heal',
   AFTER_HEAL: 'after_heal',

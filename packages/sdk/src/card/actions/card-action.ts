@@ -1,7 +1,12 @@
 import { match } from 'ts-pattern';
-import type { OnPlayCtx, SerializedBlueprint } from '../card-blueprint';
+import type { SerializedBlueprint } from '../card-blueprint';
 import type { GameSession } from '../../game-session';
-import type { Amount, PlayerCondition, UnitCondition } from '../card-effect';
+import type {
+  Amount,
+  CardCondition,
+  PlayerCondition,
+  UnitCondition
+} from '../card-effect';
 import type { Entity } from '../../entity/entity';
 import type { Nullable, Point3D } from '@game/shared';
 import { isWithinCells } from '../../utils/targeting';
@@ -10,6 +15,8 @@ import type { Player } from '../../player/player';
 import { createEntityModifier } from '../../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
+import { CARD_KINDS } from '../card-enums';
+import type { EffectCtx } from '../card-parser';
 
 type Action = SerializedBlueprint['effects'][number]['config']['actions'][number];
 
@@ -76,6 +83,52 @@ export const getPlayers = ({
         .exhaustive();
     });
   });
+
+export const getCards = ({
+  session,
+  card,
+  conditions,
+  entity,
+  followup
+}: {
+  session: GameSession;
+  card: Card;
+  conditions: CardCondition[];
+  followup: Array<Nullable<Point3D>>;
+  entity?: Entity;
+}) =>
+  session.playerSystem
+    .getList()
+    .map(player => player.cards)
+    .flat()
+    .filter(c => {
+      return conditions.every(condition =>
+        match(condition)
+          .with({ type: 'artifact' }, () => c.kind === CARD_KINDS.ARTIFACT)
+          .with({ type: 'spell' }, () => c.kind === CARD_KINDS.SPELL)
+          .with({ type: 'minion' }, () => c.kind === CARD_KINDS.MINION)
+          .with({ type: 'cost' }, condition => {
+            const amount = getAmount({
+              session,
+              entity,
+              card,
+              followup,
+              amount: condition.params.amount
+            });
+            return match(condition.params.operator)
+              .with('equals', () => c.cost === amount)
+              .with('less_than', () => c.cost < amount)
+              .with('more_than', () => c.cost > amount)
+              .exhaustive();
+          })
+          .with(
+            { type: 'index_in_hand' },
+            condition => c.player.hand[condition.params.index] === card
+          )
+          .with({ type: 'self' }, () => c === card)
+          .exhaustive()
+      );
+    });
 
 const getAmount = ({
   session,
@@ -170,7 +223,7 @@ const getAmount = ({
     .exhaustive();
 };
 
-export type ParsedActionResult = (ctx: OnPlayCtx) => () => void;
+export type ParsedActionResult = (ctx: EffectCtx) => () => void;
 
 const noop = () => void 0;
 
