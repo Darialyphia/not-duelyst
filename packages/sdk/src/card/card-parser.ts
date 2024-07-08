@@ -11,6 +11,7 @@ import {
   getPlayers,
   getUnits,
   parseCardAction,
+  parseCardInitAction,
   type ParsedActionResult
 } from './actions/card-action';
 import { whileInDeck, whileInHand, whileOnBoard } from '../modifier/modifier-utils';
@@ -75,24 +76,34 @@ const getEffectModifier = <T extends GameEvent>({
 const parseSerializeBlueprintEffect = (
   effect: SerializedBlueprint['effects'][number]
 ): Array<{
+  onInit?: (blueprint: CardBlueprint) => void;
   onPlay?: (ctx: EffectCtx) => void;
   getCardModifier?: () => CardModifier;
   getEntityModifier?: (ctx: EffectCtx) => EntityModifier;
 }> => {
-  const actions = effect.config.actions.map(parseCardAction);
-
   return match(effect.config)
-    .with({ executionContext: 'immediate' }, () => [
+    .with({ executionContext: 'immediate' }, config => [
       {
         onPlay(ctx: EffectCtx) {
+          const actions = config.actions.map(parseCardAction);
           actions.forEach(action => {
             action(ctx);
           });
         }
       }
     ])
-    .with({ executionContext: 'always' }, () => {
-      return [];
+    .with({ executionContext: 'on_init' }, config => {
+      return [
+        {
+          onInit(blueprint: CardBlueprint) {
+            const actions = config.actions.map(parseCardInitAction);
+
+            actions.forEach(action => {
+              action({ blueprint });
+            });
+          }
+        }
+      ];
     })
     .with(
       { executionContext: 'while_in_deck' },
@@ -100,6 +111,8 @@ const parseSerializeBlueprintEffect = (
       { executionContext: 'while_in_hand' },
       { executionContext: 'while_on_board' },
       config => {
+        const actions = config.actions.map(parseCardAction);
+
         return config.triggers.map(trigger =>
           match(trigger)
             .with({ type: 'on_before_card_played' }, trigger => {
@@ -375,15 +388,17 @@ const parseSerializeBlueprintEffect = (
 };
 
 export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
+  // first, parse the blueprint effects
   const effects = blueprint.effects.map(effect => ({
     ...effect,
     actions: parseSerializeBlueprintEffect(effect)
   }));
 
+  // add card modifiers that have already been evaluated
   const cardModifiers = effects
     .map(effect => {
       return match(effect.config.executionContext)
-        .with('always', () => {
+        .with('on_init', () => {
           return effect.actions
             .map(action => {
               if (!action.getCardModifier) return null;
@@ -455,6 +470,7 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
     .flat()
     .filter(isDefined);
 
+  // define the base blueprint data
   const base: Omit<CardBlueprint, 'kind'> = {
     id: blueprint.id,
     name: blueprint.name,
@@ -471,11 +487,6 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
     onPlay(ctx: EffectCtx) {
       effects.forEach(effect => {
         match(effect.config.executionContext)
-          .with('immediate', () => {
-            effect.actions.forEach(action => {
-              action.onPlay?.(ctx);
-            });
-          })
           .with('while_on_board', () => {
             effect.actions.forEach(action => {
               if (!action.getEntityModifier) return;
@@ -499,7 +510,8 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
     }
   };
 
-  return match(blueprint)
+  // add blueprint kind specific informations
+  const withStats = match(blueprint)
     .with({ kind: CARD_KINDS.GENERAL }, { kind: CARD_KINDS.MINION }, blueprint => {
       const parsed = {
         ...base,
@@ -515,11 +527,7 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
     .with({ kind: CARD_KINDS.SPELL }, blueprint => {
       const parsed = {
         ...base,
-        kind: blueprint.kind,
-        attack: undefined,
-        maxHp: undefined,
-        speed: undefined,
-        range: undefined
+        kind: blueprint.kind
       };
 
       return parsed as CardBlueprint;
@@ -533,4 +541,15 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
       return parsed as CardBlueprint;
     })
     .exhaustive();
+
+  // finally, run the on init effects now that the blueprint has been fully constructed
+  effects.forEach(effect => {
+    effect.actions.forEach(action => {
+      if (action.onInit) {
+        action.onInit(withStats);
+      }
+    });
+  });
+
+  return withStats;
 };

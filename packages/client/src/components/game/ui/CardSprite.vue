@@ -64,11 +64,11 @@ const animatedStyle = computed(() => {
   const bg = sheet.value.baseTexture.resource.src;
   const texture = currentAnimation.value[frame.value];
   return {
-    '--width': `${texture.orig.width}px`,
-    '--height': `${texture.orig.height}px`,
+    '--width': `${texture?.orig.width}px`,
+    '--height': `${texture?.orig.height}px`,
     '--bg': `url('${bg}')`,
-    '--pos-x': `-${texture.orig.x}px`,
-    '--pos-y': `-${texture.orig.y}px`
+    '--pos-x': `-${texture?.orig.x}px`,
+    '--pos-y': `-${texture?.orig.y}px`
   };
 });
 

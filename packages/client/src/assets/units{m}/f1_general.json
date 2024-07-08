@@ -226,42 +226,6 @@
    },
    {
     "filename": "f1_general.breathing.2",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.breathing.3",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.breathing.4",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.breathing.5",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.breathing.6",
     "frame": { "x": 200, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -270,7 +234,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.breathing.7",
+    "filename": "f1_general.breathing.3",
     "frame": { "x": 300, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -279,7 +243,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.breathing.8",
+    "filename": "f1_general.breathing.4",
     "frame": { "x": 400, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -288,7 +252,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.breathing.9",
+    "filename": "f1_general.breathing.5",
     "frame": { "x": 500, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -297,7 +261,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.breathing.10",
+    "filename": "f1_general.breathing.6",
     "frame": { "x": 600, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -306,8 +270,44 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.breathing.11",
+    "filename": "f1_general.breathing.7",
     "frame": { "x": 700, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.breathing.8",
+    "frame": { "x": 800, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.breathing.9",
+    "frame": { "x": 900, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.breathing.10",
+    "frame": { "x": 1000, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.breathing.11",
+    "frame": { "x": 1100, "y": 100, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
@@ -379,15 +379,6 @@
    },
    {
     "filename": "f1_general.cast.7",
-    "frame": { "x": 600, "y": 200, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.cast.8",
     "frame": { "x": 700, "y": 200, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -396,7 +387,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.cast.9",
+    "filename": "f1_general.cast.8",
     "frame": { "x": 800, "y": 200, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -405,7 +396,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.cast.10",
+    "filename": "f1_general.cast.9",
     "frame": { "x": 900, "y": 200, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -414,8 +405,17 @@
     "duration": 80
    },
    {
+    "filename": "f1_general.cast.10",
+    "frame": { "x": 1000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
     "filename": "f1_general.cast.11",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "frame": { "x": 1100, "y": 200, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
@@ -487,33 +487,6 @@
    },
    {
     "filename": "f1_general.caststart.0",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.caststart.1",
-    "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.caststart.2",
-    "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.caststart.3",
     "frame": { "x": 0, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -522,7 +495,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.caststart.4",
+    "filename": "f1_general.caststart.1",
     "frame": { "x": 100, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -531,7 +504,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.caststart.5",
+    "filename": "f1_general.caststart.2",
     "frame": { "x": 200, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -540,7 +513,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.caststart.6",
+    "filename": "f1_general.caststart.3",
     "frame": { "x": 300, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -549,7 +522,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.caststart.7",
+    "filename": "f1_general.caststart.4",
     "frame": { "x": 400, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -558,8 +531,35 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.caststart.8",
+    "filename": "f1_general.caststart.5",
     "frame": { "x": 500, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.caststart.6",
+    "frame": { "x": 600, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.caststart.7",
+    "frame": { "x": 700, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.caststart.8",
+    "frame": { "x": 800, "y": 500, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
@@ -631,24 +631,6 @@
    },
    {
     "filename": "f1_general.death.7",
-    "frame": { "x": 600, "y": 600, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.death.8",
-    "frame": { "x": 600, "y": 600, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.death.9",
     "frame": { "x": 700, "y": 600, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -657,7 +639,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.death.10",
+    "filename": "f1_general.death.8",
     "frame": { "x": 800, "y": 600, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -666,7 +648,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.death.11",
+    "filename": "f1_general.death.9",
     "frame": { "x": 900, "y": 600, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -675,43 +657,25 @@
     "duration": 80
    },
    {
+    "filename": "f1_general.death.10",
+    "frame": { "x": 1000, "y": 600, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.death.11",
+    "frame": { "x": 1100, "y": 600, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
     "filename": "f1_general.hit.0",
-    "frame": { "x": 0, "y": 600, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.hit.1",
-    "frame": { "x": 100, "y": 600, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.hit.2",
-    "frame": { "x": 200, "y": 600, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.0",
-    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.1",
     "frame": { "x": 0, "y": 700, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -720,7 +684,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.idle.2",
+    "filename": "f1_general.hit.1",
     "frame": { "x": 100, "y": 700, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -729,7 +693,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.idle.3",
+    "filename": "f1_general.hit.2",
     "frame": { "x": 200, "y": 700, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -738,70 +702,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.idle.4",
-    "frame": { "x": 300, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.5",
-    "frame": { "x": 400, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.6",
-    "frame": { "x": 500, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.7",
-    "frame": { "x": 600, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.8",
-    "frame": { "x": 700, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.9",
-    "frame": { "x": 800, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.idle.10",
-    "frame": { "x": 900, "y": 700, "w": 100, "h": 100 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
-    "sourceSize": { "w": 100, "h": 100 },
-    "duration": 80
-   },
-   {
-    "filename": "f1_general.run.0",
+    "filename": "f1_general.idle.0",
     "frame": { "x": 0, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -810,7 +711,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.1",
+    "filename": "f1_general.idle.1",
     "frame": { "x": 100, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -819,7 +720,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.2",
+    "filename": "f1_general.idle.2",
     "frame": { "x": 200, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -828,7 +729,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.3",
+    "filename": "f1_general.idle.3",
     "frame": { "x": 300, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -837,7 +738,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.4",
+    "filename": "f1_general.idle.4",
     "frame": { "x": 400, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -846,7 +747,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.5",
+    "filename": "f1_general.idle.5",
     "frame": { "x": 500, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -855,7 +756,7 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.6",
+    "filename": "f1_general.idle.6",
     "frame": { "x": 600, "y": 800, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -864,8 +765,107 @@
     "duration": 80
    },
    {
-    "filename": "f1_general.run.7",
+    "filename": "f1_general.idle.7",
     "frame": { "x": 700, "y": 800, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.idle.8",
+    "frame": { "x": 800, "y": 800, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.idle.9",
+    "frame": { "x": 900, "y": 800, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.idle.10",
+    "frame": { "x": 1000, "y": 800, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.0",
+    "frame": { "x": 0, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.1",
+    "frame": { "x": 100, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.2",
+    "frame": { "x": 200, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.3",
+    "frame": { "x": 300, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.4",
+    "frame": { "x": 400, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.5",
+    "frame": { "x": 500, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.6",
+    "frame": { "x": 600, "y": 900, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f1_general.run.7",
+    "frame": { "x": 700, "y": 900, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
@@ -878,7 +878,7 @@
   "version": "1.3.7-x64",
   "image": "f1_general.png",
   "format": "RGBA8888",
-  "size": { "w": 2300, "h": 900 },
+  "size": { "w": 2300, "h": 1000 },
   "scale": "1",
   "frameTags": [
    { "name": "attack", "from": 0, "to": 22, "direction": "forward", "color": "#000000ff" },

@@ -221,7 +221,7 @@ export type Amount =
       params: { unit: Filter<UnitCondition> };
     };
 
-type Action =
+export type Action =
   | {
       type: 'deal_damage';
       params: {
@@ -250,7 +250,9 @@ type Action =
         hp: Amount;
         targets: Filter<UnitCondition>;
       };
-    }
+    };
+
+export type InitAction =
   | {
       type: 'airdrop';
     }
@@ -260,9 +262,10 @@ type Action =
 
 export type CardEffectConfig =
   | {
-      executionContext: 'always' | 'immediate';
+      executionContext: 'immediate';
       actions: Action[];
     }
+  | { executionContext: 'on_init'; actions: InitAction[] }
   | {
       executionContext:
         | 'while_in_hand'

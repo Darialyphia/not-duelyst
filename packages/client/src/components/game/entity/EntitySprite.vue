@@ -123,9 +123,9 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         v-if="pedestalTextures.diffuse"
         :textures="pedestalTextures.diffuse"
         :anchor-x="0.5"
-        :anchor-y="0"
+        :anchor-y="1"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.6"
+        :y="CELL_HEIGHT * 1.2"
         :is-flipped="isFlipped"
       />
 
@@ -138,9 +138,9 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
         "
         :textures="diffuseTextures"
         :anchor-x="0.5"
-        :anchor-y="0"
+        :anchor-y="1"
         :playing="true"
-        :y="-CELL_HEIGHT * 0.85"
+        :y="CELL_HEIGHT * 0.85"
         :is-flipped="isFlipped"
         :filters="filters"
       />

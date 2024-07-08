@@ -141,7 +141,6 @@ const highlightTarget = () => {
     "
     @pointerup="
       (event: FederatedPointerEvent) => {
-        console.log('?');
         if (event.button === 2) {
           if (cell.entity) {
             ui.highlightedCard.value = cell.entity.card;

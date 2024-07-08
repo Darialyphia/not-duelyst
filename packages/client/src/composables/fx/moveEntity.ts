@@ -21,7 +21,8 @@ export const moveEntity: FxCommand<'moveEntity'> = (
     timeline.to(position, {
       ...point,
       duration,
-      ease: Power1.easeOut
+      ease: Power0.easeNone
+      // ease: Power1.easeOut
     });
   }
 

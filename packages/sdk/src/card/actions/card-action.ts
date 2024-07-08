@@ -1,11 +1,13 @@
 import { match } from 'ts-pattern';
-import type { SerializedBlueprint } from '../card-blueprint';
+import type { CardBlueprint, SerializedBlueprint } from '../card-blueprint';
 import type { GameSession } from '../../game-session';
 import type {
+  Action,
   Amount,
   CardCondition,
   CellCondition,
   Filter,
+  InitAction,
   PlayerCondition,
   UnitCondition
 } from '../card-effect';
@@ -33,8 +35,6 @@ import {
 import type { Cell } from '../../board/cell';
 import { airdrop, rush } from '../../modifier/modifier-utils';
 
-type Action = SerializedBlueprint['effects'][number]['config']['actions'][number];
-
 export const getUnits = ({
   session,
   entity,
@@ -49,7 +49,7 @@ export const getUnits = ({
   session.entitySystem.getList().filter(e => {
     return conditions.some(group => {
       return group.every(condition => {
-        return match(condition)
+        const isMatch = match(condition)
           .with({ type: 'has_keyword' }, () => false /*TODO*/)
           .with({ type: 'is_ally' }, () => entity?.isAlly(e.id))
           .with({ type: 'is_enemy' }, () => entity?.isEnemy(e.id))
@@ -100,7 +100,7 @@ export const getUnits = ({
                 session,
                 candidate.player.isPlayer1 ? 'right' : 'left',
                 candidate.position
-              )
+              )?.equals(e)
             );
           })
           .with({ type: 'is_behind' }, condition => {
@@ -126,7 +126,7 @@ export const getUnits = ({
                 session,
                 candidate.player.isPlayer1 ? 'left' : 'right',
                 candidate.position
-              )
+              )?.equals(e)
             );
           })
           .with({ type: 'is_above' }, condition => {
@@ -148,7 +148,7 @@ export const getUnits = ({
               entity
             });
             return candidates.some(candidate =>
-              getNearest(session, 'up', candidate.position)
+              getNearest(session, 'up', candidate.position)?.equals(e)
             );
           })
           .with({ type: 'is_below' }, condition => {
@@ -170,10 +170,11 @@ export const getUnits = ({
               entity
             });
             return candidates.some(candidate =>
-              getNearest(session, 'down', candidate.position)
+              getNearest(session, 'down', candidate.position)?.equals(e)
             );
           })
           .exhaustive();
+        return isMatch;
       });
     });
   });
@@ -461,6 +462,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
   }) => {
     return match(action)
       .with({ type: 'deal_damage' }, action => {
+        console.log('get deal dmaage elligible units');
         getUnits({
           session,
           entity,
@@ -560,13 +562,26 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
             target.removeModifier(modifierId);
           });
       })
+      .exhaustive();
+  };
+};
+
+export const parseCardInitAction = (action: InitAction) => {
+  return ({ blueprint }: { blueprint: CardBlueprint }) => {
+    return match(action)
       .with({ type: 'airdrop' }, () => {
-        card.modifiers.push(airdrop());
+        if (!blueprint.modifiers) {
+          blueprint.modifiers = [];
+        }
+        blueprint.modifiers.push(airdrop());
 
         return noop;
       })
       .with({ type: 'rush' }, () => {
-        card.modifiers.push(rush());
+        if (!blueprint.modifiers) {
+          blueprint.modifiers = [];
+        }
+        blueprint.modifiers.push(rush());
 
         return noop;
       })

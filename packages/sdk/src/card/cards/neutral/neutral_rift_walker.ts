@@ -1,3 +1,4 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import type { SerializedBlueprint } from '../../card-blueprint';
 
 export const neutralRiftWalker: SerializedBlueprint = {
@@ -8,7 +9,7 @@ export const neutralRiftWalker: SerializedBlueprint = {
   attack: 2,
   maxHp: 1,
   faction: null,
-  keywords: [],
+  keywords: [KEYWORDS.OPENING_GAMBIT.id, KEYWORDS.AIRDROP.id],
   kind: 'MINION',
   rarity: 'epic',
   relatedBlueprintIds: [],
@@ -17,14 +18,14 @@ export const neutralRiftWalker: SerializedBlueprint = {
   tags: [],
   effects: [
     {
-      text: 'Airdrop',
+      text: '@Airdrop@',
       config: {
-        executionContext: 'always',
+        executionContext: 'on_init',
         actions: [{ type: 'airdrop' }]
       }
     },
     {
-      text: 'Opening Gambit: Deal 2 damage to the nearest unit in front, behind, above, and below this.',
+      text: '@Opening Gambit@: Deal 2 damage to the nearest unit in front, behind, above, and below this.',
       config: {
         executionContext: 'while_on_board',
         triggers: [{ type: 'on_unit_play', params: { unit: [[{ type: 'is_self' }]] } }],

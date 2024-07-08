@@ -1,3 +1,4 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import type { SerializedBlueprint } from '../../card-blueprint';
 
 export const neutralHealingMystic: SerializedBlueprint = {
@@ -8,7 +9,7 @@ export const neutralHealingMystic: SerializedBlueprint = {
   attack: 2,
   maxHp: 3,
   faction: null,
-  keywords: [],
+  keywords: [KEYWORDS.OPENING_GAMBIT.id],
   kind: 'MINION',
   rarity: 'common',
   relatedBlueprintIds: [],
@@ -18,7 +19,7 @@ export const neutralHealingMystic: SerializedBlueprint = {
   followup: undefined, // haven't handled followup as data yet,
   effects: [
     {
-      text: 'Opening Gambit: Heal another unit for 2',
+      text: '@Opening Gambit@: Heal another unit for 2',
       config: {
         executionContext: 'while_on_board',
         triggers: [
