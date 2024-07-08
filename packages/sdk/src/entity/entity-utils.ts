@@ -177,6 +177,60 @@ export const getEntityBehind = (session: GameSession, entity: Entity) => {
   return getCellInFront(session, entity)?.entity;
 };
 
+export const getCellAbove = (session: GameSession, entity: Entity) => {
+  const yOffset = -1;
+  const above = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z + 1,
+    y: entity.position.y + yOffset
+  });
+  if (above) return above;
+  const cell = session.boardSystem.getCellAt({
+    ...entity.position,
+    y: entity.position.y + yOffset
+  });
+  if (cell) return cell;
+  const below = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z - 1,
+    y: entity.position.y + yOffset
+  });
+  if (below) return below;
+
+  return null;
+};
+
+export const getEntityAbove = (session: GameSession, entity: Entity) => {
+  return getCellAbove(session, entity)?.entity;
+};
+
+export const getCellBelow = (session: GameSession, entity: Entity) => {
+  const yOffset = 1;
+  const above = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z + 1,
+    y: entity.position.y + yOffset
+  });
+  if (above) return above;
+  const cell = session.boardSystem.getCellAt({
+    ...entity.position,
+    y: entity.position.y + yOffset
+  });
+  if (cell) return cell;
+  const below = session.boardSystem.getCellAt({
+    ...entity.position,
+    z: entity.position.z - 1,
+    y: entity.position.y + yOffset
+  });
+  if (below) return below;
+
+  return null;
+};
+
+export const getEntityBelow = (session: GameSession, entity: Entity) => {
+  return getCellBelow(session, entity)?.entity;
+};
+
 export const isNearbyEnemy = (
   session: GameSession,
   origin: Nullable<Entity>,

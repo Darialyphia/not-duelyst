@@ -23,6 +23,14 @@ export type UnitCondition =
   | { type: 'is_ally' }
   | { type: 'is_enemy' }
   | { type: 'is_nearby'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_in_front'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_nearest_in_front'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_behind'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_nearest_behind'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_above'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_nearest_above'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_below'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_nearest_below'; params: { unit: Array<UnitCondition> } }
   | { type: 'has_keyword'; params: { keyword: KeywordId } }
   | { type: 'is_followup'; params: { index: number } };
 

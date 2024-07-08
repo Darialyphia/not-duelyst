@@ -17,6 +17,13 @@ import { modifierEntityInterceptorMixin } from '../../modifier/mixins/entity-int
 import { nanoid } from 'nanoid';
 import { CARD_KINDS } from '../card-enums';
 import type { EffectCtx } from '../card-parser';
+import {
+  getEntityAbove,
+  getEntityBehind,
+  getEntityBelow,
+  getEntityInFront,
+  getNearest
+} from '../../entity/entity-utils';
 
 type Action = SerializedBlueprint['effects'][number]['config']['actions'][number];
 
@@ -59,6 +66,102 @@ export const getUnits = ({
           });
           return candidates.some(candidate =>
             isWithinCells(candidate.position, e.position, 1)
+          );
+        })
+        .with({ type: 'is_in_front' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getEntityInFront(session, candidate)?.equals(e)
+          );
+        })
+        .with({ type: 'is_nearest_in_front' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getNearest(
+              session,
+              candidate.player.isPlayer1 ? 'right' : 'left',
+              candidate.position
+            )
+          );
+        })
+        .with({ type: 'is_behind' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getEntityBehind(session, candidate)?.equals(e)
+          );
+        })
+        .with({ type: 'is_nearest_behind' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getNearest(
+              session,
+              candidate.player.isPlayer1 ? 'left' : 'right',
+              candidate.position
+            )
+          );
+        })
+        .with({ type: 'is_above' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getEntityAbove(session, candidate)?.equals(e)
+          );
+        })
+        .with({ type: 'is_nearest_above' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getNearest(session, 'up', candidate.position)
+          );
+        })
+        .with({ type: 'is_below' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getEntityBelow(session, candidate)?.equals(e)
+          );
+        })
+        .with({ type: 'is_nearest_below' }, condition => {
+          const candidates = getUnits({
+            conditions: condition.params.unit,
+            followup,
+            session,
+            entity
+          });
+          return candidates.some(candidate =>
+            getNearest(session, 'down', candidate.position)
           );
         })
         .exhaustive();
