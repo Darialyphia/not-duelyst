@@ -32,7 +32,7 @@ export class ServerSession extends GameSession {
       });
     });
 
-    this.on('entity:before_realiate', ({ entity, target }) => {
+    this.on('entity:before_retaliate', ({ entity, target }) => {
       this.fxEvents.push({
         type: 'entity:retaliate',
         payload: { entityId: entity.id, targetId: target.id }

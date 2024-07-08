@@ -67,7 +67,8 @@ span {
   image-rendering: pixelated;
 
   > * {
-    transform: translateX(-25%) translateY(-25%);
+    transform: translateY(50%);
+    height: 100%;
   }
 }
 </style>

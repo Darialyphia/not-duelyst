@@ -33,6 +33,7 @@ export const useEntityTexture = (
       animationName.value,
       diffuseSheet
     );
+
     normalTextures.value = createSpritesheetFrameObject(animationName.value, normalSheet);
   };
   setTextures();

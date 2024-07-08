@@ -38,7 +38,6 @@ export class ClientSession extends GameSession {
           await this.fxSystem.playAnimation(payload.entityId, 'attack', {
             framePercentage: 0.75
           });
-          await this.fxSystem.attack(payload.entityId, payload.targetId);
         })
         .with({ type: 'entity:take-damage' }, async ({ payload }) => {
           const bloodFx = randomInt(4);
@@ -52,15 +51,10 @@ export class ClientSession extends GameSession {
                 y: 20
               }
             }),
-            this.fxSystem.playAnimation(payload.entityId, 'hit'),
-            this.fxSystem.shakeEntity(payload.entityId, {
-              amount: 5,
-              axis: 'x',
-              count: 3,
-              totalDuration: 0.3
-            })
+            this.fxSystem.playAnimation(payload.entityId, 'hit')
           ];
           const next = events[index + 1];
+          // make sure we only await on the last unit if it's an AOE
           if (next?.type !== 'entity:take-damage') {
             await Promise.all(effects);
           }
@@ -69,7 +63,7 @@ export class ClientSession extends GameSession {
           await this.fxSystem.playAnimation(payload.entityId, 'attack', {
             framePercentage: 0.75
           });
-          await this.fxSystem.attack(payload.entityId, payload.targetId);
+          // await this.fxSystem.attack(payload.entityId, payload.targetId);
         })
         .with({ type: 'entity:destroyed' }, async ({ payload }) => {
           await this.fxSystem.playAnimation(payload.entityId, 'death');

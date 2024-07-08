@@ -46,12 +46,11 @@ watchEffect(async () => {
 
 const staticStyle = computed(() => {
   if (!sheet.value) return null;
-  const { spriteSourceSize } = Object.values(sheet.value.data.frames)[0];
-
+  const { sourceSize } = Object.values(sheet.value.data.frames)[0];
   return {
     '--bg': `url(/assets/units/${spriteId}.png)`,
-    '--width': `${spriteSourceSize?.w}px`,
-    '--height': `${spriteSourceSize?.h}px`,
+    '--width': `${sourceSize?.w}px`,
+    '--height': `${sourceSize?.h}px`,
     '--pos-x': 0,
     '--pos-y': 0
   };

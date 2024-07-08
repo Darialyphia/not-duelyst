@@ -31,7 +31,9 @@ export const playAnimation: FxCommand<'playAnimation'> = (
   const current = entityAnimationsMap.value.get(entityId)!;
 
   // @FIXME find an elegant way to queue or cancel animations
-  if (current !== 'breathing') return done();
+  if (current !== 'breathing' && current !== 'idle') {
+    return done();
+  }
 
   entityAnimationsMap.value.set(entityId, animationName);
   sprite.onFrameChange = frame => {

@@ -50,6 +50,7 @@ const asepriteJsonSchema = z.object({
       filename: z.string(),
       frame: asepriteRectSchema,
       spriteSourceSize: asepriteRectSchema,
+      sourceSize: asepriteSizeSchema,
       duration: z.number().optional()
     })
     .array(),
@@ -61,12 +62,12 @@ const parseSprite = ({ frames, meta }: AsepriteJson) => {
   const sheet = {
     frames: Object.fromEntries(
       frames.map(frameData => {
-        const { filename, frame } = frameData;
+        const { filename, frame, duration, sourceSize } = frameData;
         // avoids console warnings with HMR
         if (import.meta.env.DEV) {
           Texture.removeFromCache(filename);
         }
-        return [filename, { frame }];
+        return [filename, { frame, duration, sourceSize }];
       })
     ),
     animations: Object.fromEntries(
