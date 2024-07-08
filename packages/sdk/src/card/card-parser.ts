@@ -13,10 +13,9 @@ import {
   parseCardAction,
   parseCardInitAction,
   type ParsedActionResult
-} from './actions/card-action';
+} from './card-action';
 import { whileInDeck, whileInHand, whileOnBoard } from '../modifier/modifier-utils';
 import { createEntityModifier, type EntityModifier } from '../modifier/entity-modifier';
-import { PLAYER_EVENTS } from '../player/player';
 import {
   modifierCardGameEventMixin,
   modifierGameEventMixin
@@ -62,7 +61,7 @@ const getEffectModifier = <T extends GameEvent>({
               const effectCtx = {
                 session: ctx.session,
                 card: ctx.attachedTo,
-                followup: []
+                targets: []
               };
               if (filter(effectCtx, event)) actions.forEach(action => action(effectCtx));
             }

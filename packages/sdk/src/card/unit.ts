@@ -99,7 +99,7 @@ export class Unit extends Card implements Serializable {
       session: this.session,
       card: this,
       entity,
-      followup: ctx.targets
+      targets: ctx.targets
     });
 
     if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {

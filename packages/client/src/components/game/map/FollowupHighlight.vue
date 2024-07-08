@@ -22,8 +22,9 @@ const isMatch = (cellToTest: Cell) => {
       return (
         ui.selectedCard.value.blueprint.followup?.isTargetable(cellToTest, {
           session,
-          summonedPoint: ui.summonTarget.value!,
-          card: ui.selectedCard.value
+          playedPoint: ui.summonTarget.value ?? undefined,
+          card: ui.selectedCard.value,
+          followups: ui.followupTargets.value
         }) ?? false
       );
     })

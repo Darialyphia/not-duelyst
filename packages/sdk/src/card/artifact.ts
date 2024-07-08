@@ -56,14 +56,17 @@ export class Artifact extends Card implements Serializable {
   }
 
   canPlayAt(point: Point3D): boolean {
-    return this.interceptors.canPlayAt.getValue(true, { unit: this, point });
+    return this.interceptors.canPlayAt.getValue(
+      this.player.general.position.equals(point),
+      { unit: this, point }
+    );
   }
 
   playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
-      followup: ctx.targets
+      targets: ctx.targets
     });
   }
 }

@@ -56,14 +56,17 @@ export class Spell extends Card implements Serializable {
   }
 
   canPlayAt(point: Point3D): boolean {
-    return this.interceptors.canPlayAt.getValue(true, { unit: this, point });
+    return this.interceptors.canPlayAt.getValue(
+      this.blueprint.isTargetable({ session: this.session, card: this }),
+      { unit: this, point }
+    );
   }
 
   playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
-      followup: ctx.targets
+      targets: [ctx.position, ...ctx.targets]
     });
   }
 }

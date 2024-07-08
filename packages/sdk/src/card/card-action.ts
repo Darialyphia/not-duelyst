@@ -1,6 +1,6 @@
 import { match } from 'ts-pattern';
-import type { CardBlueprint, SerializedBlueprint } from '../card-blueprint';
-import type { GameSession } from '../../game-session';
+import type { CardBlueprint } from './card-blueprint';
+import type { GameSession } from '../game-session';
 import type {
   Action,
   Amount,
@@ -10,17 +10,17 @@ import type {
   InitAction,
   PlayerCondition,
   UnitCondition
-} from '../card-effect';
-import type { Entity } from '../../entity/entity';
+} from './card-effect';
+import type { Entity } from '../entity/entity';
 import type { Nullable, Point3D } from '@game/shared';
-import { isWithinCells } from '../../utils/targeting';
-import type { Card } from '../card';
-import type { Player } from '../../player/player';
-import { createEntityModifier } from '../../modifier/entity-modifier';
-import { modifierEntityInterceptorMixin } from '../../modifier/mixins/entity-interceptor.mixin';
+import { isWithinCells } from '../utils/targeting';
+import type { Card } from './card';
+import type { Player } from '../player/player';
+import { createEntityModifier } from '../modifier/entity-modifier';
+import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
-import { CARD_KINDS } from '../card-enums';
-import type { EffectCtx } from '../card-parser';
+import { CARD_KINDS } from './card-enums';
+import type { EffectCtx } from './card-parser';
 import {
   getCellAbove,
   getCellBehind,
@@ -31,20 +31,20 @@ import {
   getEntityBelow,
   getEntityInFront,
   getNearest
-} from '../../entity/entity-utils';
-import type { Cell } from '../../board/cell';
-import { airdrop, rush } from '../../modifier/modifier-utils';
+} from '../entity/entity-utils';
+import type { Cell } from '../board/cell';
+import { airdrop, rush } from '../modifier/modifier-utils';
 
 export const getUnits = ({
   session,
   entity,
   conditions,
-  followup
+  targets
 }: {
   session: GameSession;
   entity?: Entity;
   conditions: Filter<UnitCondition>;
-  followup: Array<Nullable<Point3D>>;
+  targets: Array<Nullable<Point3D>>;
 }): Entity[] =>
   session.entitySystem.getList().filter(e => {
     return conditions.some(group => {
@@ -54,7 +54,7 @@ export const getUnits = ({
           .with({ type: 'is_ally' }, () => entity?.isAlly(e.id))
           .with({ type: 'is_enemy' }, () => entity?.isEnemy(e.id))
           .with({ type: 'is_followup' }, condition => {
-            const point = followup[condition.params.index];
+            const point = targets[condition.params.index];
             if (!point) return false;
             const entity = session.entitySystem.getEntityAt(point);
             if (!entity) return false;
@@ -69,7 +69,7 @@ export const getUnits = ({
           .with({ type: 'is_nearby' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -80,7 +80,7 @@ export const getUnits = ({
           .with({ type: 'is_in_front' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -91,7 +91,7 @@ export const getUnits = ({
           .with({ type: 'is_nearest_in_front' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -106,7 +106,7 @@ export const getUnits = ({
           .with({ type: 'is_behind' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -117,7 +117,7 @@ export const getUnits = ({
           .with({ type: 'is_nearest_behind' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -132,7 +132,7 @@ export const getUnits = ({
           .with({ type: 'is_above' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -143,7 +143,7 @@ export const getUnits = ({
           .with({ type: 'is_nearest_above' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -154,7 +154,7 @@ export const getUnits = ({
           .with({ type: 'is_below' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -165,7 +165,7 @@ export const getUnits = ({
           .with({ type: 'is_nearest_below' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -183,19 +183,19 @@ export const getCells = ({
   session,
   entity,
   conditions,
-  followup
+  targets
 }: {
   session: GameSession;
   entity?: Entity;
   conditions: Filter<CellCondition>;
-  followup: Array<Nullable<Point3D>>;
+  targets: Array<Nullable<Point3D>>;
 }): Cell[] =>
   session.boardSystem.cells.filter(cell => {
     return conditions.some(group => {
       return group.every(condition => {
         return match(condition)
           .with({ type: 'is_followup' }, condition => {
-            const point = followup[condition.params.index];
+            const point = targets[condition.params.index];
             if (!point) return false;
             return cell.position.equals(point);
           })
@@ -203,7 +203,7 @@ export const getCells = ({
           .with({ type: 'is_nearby' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -214,7 +214,7 @@ export const getCells = ({
           .with({ type: 'is_in_front' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -225,7 +225,7 @@ export const getCells = ({
           .with({ type: 'is_behind' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -236,7 +236,7 @@ export const getCells = ({
           .with({ type: 'is_above' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -247,7 +247,7 @@ export const getCells = ({
           .with({ type: 'is_below' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              followup,
+              targets,
               session,
               entity
             });
@@ -277,6 +277,15 @@ export const getCells = ({
               cell.y === session.boardSystem.height - 1 &&
               cell.isTopMost
           )
+          .with({ type: 'has_unit' }, condition => {
+            if (!cell.entity) return false;
+            return getUnits({
+              session,
+              entity,
+              conditions: condition.params.unit,
+              targets
+            }).some(unit => cell.entity?.equals(unit));
+          })
           .exhaustive();
       });
     });
@@ -308,12 +317,12 @@ export const getCards = ({
   card,
   conditions,
   entity,
-  followup
+  targets
 }: {
   session: GameSession;
   card: Card;
   conditions: Filter<CardCondition>;
-  followup: Array<Nullable<Point3D>>;
+  targets: Array<Nullable<Point3D>>;
   entity?: Entity;
 }) =>
   session.playerSystem
@@ -332,7 +341,7 @@ export const getCards = ({
                 session,
                 entity,
                 card,
-                followup,
+                targets,
                 amount: condition.params.amount
               });
               return match(condition.params.operator)
@@ -356,13 +365,13 @@ const getAmount = ({
   entity,
   card,
   amount,
-  followup
+  targets
 }: {
   session: GameSession;
   entity?: Entity;
   card: Card;
   amount: Amount;
-  followup: Array<Nullable<Point3D>>;
+  targets: Array<Nullable<Point3D>>;
 }) => {
   return match(amount)
     .with({ type: 'fixed' }, amount => amount.params.value)
@@ -375,7 +384,7 @@ const getAmount = ({
       const [unit] = getUnits({
         session,
         entity,
-        followup,
+        targets,
         conditions: amount.params.unit
       });
       if (!unit) return unit;
@@ -385,7 +394,7 @@ const getAmount = ({
       const [unit] = getUnits({
         session,
         entity,
-        followup,
+        targets,
         conditions: amount.params.unit
       });
       if (!unit) return unit;
@@ -396,7 +405,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: amount.params.unit
         }).map(u => u.attack)
       );
@@ -406,7 +415,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: amount.params.unit
         }).map(u => u.attack)
       );
@@ -415,7 +424,7 @@ const getAmount = ({
       const [unit] = getUnits({
         session,
         entity,
-        followup,
+        targets,
         conditions: amount.params.unit
       });
       if (!unit) return unit;
@@ -426,7 +435,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: amount.params.unit
         }).map(u => u.hp)
       );
@@ -436,7 +445,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: amount.params.unit
         }).map(u => u.hp)
       );
@@ -453,24 +462,29 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
     session,
     card,
     entity,
-    followup
+    targets
   }: {
     session: GameSession;
     card: Card;
     entity?: Entity;
-    followup: Array<Nullable<Point3D>>;
+    targets: Array<Nullable<Point3D>>;
   }) => {
     return match(action)
       .with({ type: 'deal_damage' }, action => {
-        console.log('get deal dmaage elligible units');
         getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: action.params.targets
         }).forEach(target => {
           target.takeDamage(
-            getAmount({ session, entity, card, followup, amount: action.params.amount })
+            getAmount({
+              session,
+              entity,
+              card,
+              targets,
+              amount: action.params.amount
+            })
           );
         });
 
@@ -480,11 +494,17 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: action.params.targets
         }).forEach(target => {
           target.heal(
-            getAmount({ session, entity, card, followup, amount: action.params.amount })
+            getAmount({
+              session,
+              entity,
+              card,
+              targets,
+              amount: action.params.amount
+            })
           );
         });
 
@@ -501,7 +521,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               session,
               entity,
               card,
-              followup,
+              targets,
               amount: action.params.amount
             })
           );
@@ -511,14 +531,14 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'change_stats' }, action => {
         const modifierId = nanoid(6);
-        const targets = getUnits({
+        const units = getUnits({
           session,
           entity,
-          followup,
+          targets,
           conditions: action.params.targets
         });
 
-        targets.forEach(target => {
+        units.forEach(target => {
           target.addModifier(
             createEntityModifier({
               id: modifierId,
@@ -535,7 +555,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       session,
                       entity,
                       card,
-                      followup,
+                      targets,
                       amount: action.params.attack
                     })
                 }),
@@ -548,7 +568,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       session,
                       entity,
                       card,
-                      followup,
+                      targets,
                       amount: action.params.attack
                     })
                 })
@@ -558,7 +578,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         });
 
         return () =>
-          targets.forEach(target => {
+          units.forEach(target => {
             target.removeModifier(modifierId);
           });
       })

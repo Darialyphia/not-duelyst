@@ -30,7 +30,8 @@ export type CardBlueprintBase = {
       point: Point3D,
       options: {
         session: GameSession;
-        summonedPoint: Point3D;
+        playedPoint?: Point3D;
+        followups: Point3D[];
         card: Card;
       }
     ): boolean;
@@ -52,7 +53,7 @@ type CardBlueprintUnit = {
     session: GameSession;
     card: Card;
     entity: Entity;
-    followup: Array<Nullable<Point3D>>;
+    targets: Array<Nullable<Point3D>>;
   }) => void;
 };
 
@@ -65,8 +66,9 @@ type CardBlueprintSpell = {
   onPlay?: (options: {
     session: GameSession;
     card: Card;
-    followup: Array<Nullable<Point3D>>;
+    targets: Array<Nullable<Point3D>>;
   }) => void;
+  isTargetable(options: { session: GameSession; card: Card }): boolean;
 };
 
 type CardBlueprintArtifact = {
@@ -78,7 +80,7 @@ type CardBlueprintArtifact = {
   onPlay?: (options: {
     session: GameSession;
     card: Card;
-    followup: Array<Nullable<Point3D>>;
+    targets: Array<Nullable<Point3D>>;
   }) => void;
 };
 

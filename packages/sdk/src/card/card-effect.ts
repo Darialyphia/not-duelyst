@@ -38,6 +38,7 @@ export type UnitCondition =
 
 export type CellCondition =
   | { type: 'is_empty' }
+  | { type: 'has_unit'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_at'; params: { x: number; y: number; z: number } }
   | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }

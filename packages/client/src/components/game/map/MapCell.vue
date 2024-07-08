@@ -26,7 +26,8 @@ const isFollowupTargetable = computed(() => {
   if (!ui.selectedCard.value) return false;
   return ui.selectedCard.value.blueprint.followup?.isTargetable(cell.value, {
     session,
-    summonedPoint: ui.summonTarget.value!,
+    playedPoint: ui.summonTarget.value ?? undefined,
+    followups: ui.followupTargets.value,
     card: ui.selectedCard.value!
   });
 });
