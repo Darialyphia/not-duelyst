@@ -9,6 +9,12 @@ export type Keyword = {
 };
 
 export const KEYWORDS = {
+  AIRDROP: {
+    id: 'airdrop',
+    name: 'Airdrop',
+    description: 'Can be summoned anywhere.',
+    aliases: []
+  },
   BARRIER: {
     id: 'barrier',
     name: 'Barrier',

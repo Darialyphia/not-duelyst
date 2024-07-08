@@ -13,6 +13,7 @@ import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
+import { Unit } from '../card/unit';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -605,3 +606,25 @@ export const deathWatch = ({
     ]
   });
 };
+
+export const airdrop = () =>
+  createCardModifier({
+    id: 'airdrop',
+    stackable: false,
+
+    mixins: [
+      {
+        keywords: [KEYWORDS.AIRDROP],
+        onApplied(session, attachedTo) {
+          if (!(attachedTo instanceof Unit)) {
+            console.warn('Airdrop only works on units !');
+            return;
+          }
+          attachedTo.addInterceptor(
+            'canPlayAt',
+            (value, { point }) => !session.entitySystem.getEntityAt(point)
+          );
+        }
+      }
+    ]
+  });

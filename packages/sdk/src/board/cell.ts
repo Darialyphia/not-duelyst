@@ -42,6 +42,10 @@ export class Cell implements Serializable {
     return cell.id === this.id;
   }
 
+  get isTopMost(): boolean {
+    return !this.session.boardSystem.getCellAt({ x: this.x, y: this.y, z: this.z + 1 });
+  }
+
   removeTile() {
     if (this.tile) {
       this.tile.destroy();

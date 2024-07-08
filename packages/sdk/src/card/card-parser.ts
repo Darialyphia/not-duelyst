@@ -91,273 +91,286 @@ const parseSerializeBlueprintEffect = (
         }
       }
     ])
-    .otherwise(config => {
-      return config.triggers.map(trigger =>
-        match(trigger)
-          .with({ type: 'on_before_card_played' }, trigger => {
-            return getEffectModifier({
-              eventName: 'card:before_played',
-              actions,
-              filter(ctx, [event]) {
-                return getCards({ ...ctx, conditions: trigger.params.card }).some(
-                  card => event === card
-                );
-              }
-            });
-          })
-          .with({ type: 'on_after_card_played' }, trigger => {
-            return getEffectModifier({
-              eventName: 'card:after_played',
-              actions,
-              filter(ctx, [event]) {
-                return getCards({ ...ctx, conditions: trigger.params.card }).some(
-                  card => event === card
-                );
-              }
-            });
-          })
-          .with({ type: 'on_before_player_draw' }, trigger => {
-            return getEffectModifier({
-              eventName: 'player:before_draw',
-              actions,
-              filter(ctx, [event]) {
-                return getPlayers({
-                  ...ctx,
-                  conditions: trigger.params.player
-                }).some(player => player.equals(event.player));
-              }
-            });
-          })
-          .with({ type: 'on_after_player_draw' }, trigger => {
-            return getEffectModifier({
-              eventName: 'player:after_draw',
-              actions,
-              filter(ctx, [event]) {
-                return getPlayers({
-                  ...ctx,
-                  conditions: trigger.params.player
-                }).some(player => player.equals(event.player));
-              }
-            });
-          })
-          .with({ type: 'on_before_player_replace' }, trigger => {
-            return getEffectModifier({
-              eventName: 'player:before_replace',
-              actions,
-              filter(ctx, [event]) {
-                return getPlayers({
-                  ...ctx,
-                  conditions: trigger.params.player
-                }).some(player => player.equals(event.player));
-              }
-            });
-          })
-          .with({ type: 'on_after_player_replace' }, trigger => {
-            return getEffectModifier({
-              eventName: 'player:after_replace',
-              actions,
-              filter(ctx, [event]) {
-                return getPlayers({
-                  ...ctx,
-                  conditions: trigger.params.player
-                }).some(player => player.equals(event.player));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_move' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before-move',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_move' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before-move',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_attack' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_attack',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_attack' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_attack',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_healed' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_heal',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_healed' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_heal',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_take_damage' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_take_damage',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_take_damage' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_take_damage',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_deal_damage' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_deal_damage',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_deal_damage' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_deal_damage',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_retaliate' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_retaliate',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_retaliate' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_retaliate',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event.entity));
-              }
-            });
-          })
-          .with({ type: 'on_unit_play' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:created',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event));
-              }
-            });
-          })
-          .with({ type: 'on_before_unit_destroyed' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:before_destroy',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event));
-              }
-            });
-          })
-          .with({ type: 'on_after_unit_destroyed' }, trigger => {
-            return getEffectModifier({
-              actions,
-              eventName: 'entity:after_destroy',
-              filter(ctx, [event]) {
-                return getUnits({
-                  ...ctx,
-                  conditions: trigger.params.unit
-                }).some(entity => entity.equals(event));
-              }
-            });
-          })
-          .with({ type: 'on_card_drawn' }, trigger => {
-            return {};
-          })
-          .with({ type: 'on_card_replaced' }, trigger => {
-            return {};
-          })
-          .with({ type: 'on_player_turn_start' }, trigger => {
-            return {};
-          })
-          .with({ type: 'on_player_turn_end' }, trigger => {
-            return {};
-          })
-          .exhaustive()
-      );
+    .with({ executionContext: 'always' }, () => {
+      return [];
+    })
+    .with(
+      { executionContext: 'while_in_deck' },
+      { executionContext: 'while_in_graveyard' },
+      { executionContext: 'while_in_hand' },
+      { executionContext: 'while_on_board' },
+      config => {
+        return config.triggers.map(trigger =>
+          match(trigger)
+            .with({ type: 'on_before_card_played' }, trigger => {
+              return getEffectModifier({
+                eventName: 'card:before_played',
+                actions,
+                filter(ctx, [event]) {
+                  return getCards({ ...ctx, conditions: trigger.params.card }).some(
+                    card => event === card
+                  );
+                }
+              });
+            })
+            .with({ type: 'on_after_card_played' }, trigger => {
+              return getEffectModifier({
+                eventName: 'card:after_played',
+                actions,
+                filter(ctx, [event]) {
+                  return getCards({ ...ctx, conditions: trigger.params.card }).some(
+                    card => event === card
+                  );
+                }
+              });
+            })
+            .with({ type: 'on_before_player_draw' }, trigger => {
+              return getEffectModifier({
+                eventName: 'player:before_draw',
+                actions,
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event.player));
+                }
+              });
+            })
+            .with({ type: 'on_after_player_draw' }, trigger => {
+              return getEffectModifier({
+                eventName: 'player:after_draw',
+                actions,
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event.player));
+                }
+              });
+            })
+            .with({ type: 'on_before_player_replace' }, trigger => {
+              return getEffectModifier({
+                eventName: 'player:before_replace',
+                actions,
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event.player));
+                }
+              });
+            })
+            .with({ type: 'on_after_player_replace' }, trigger => {
+              return getEffectModifier({
+                eventName: 'player:after_replace',
+                actions,
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event.player));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_move' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before-move',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_move' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before-move',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_attack' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_attack',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_attack' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_attack',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_healed' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_heal',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_healed' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_heal',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_take_damage' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_take_damage',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_take_damage' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_take_damage',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_deal_damage' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_deal_damage',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_deal_damage' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_deal_damage',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_retaliate' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_retaliate',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_retaliate' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_retaliate',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event.entity));
+                }
+              });
+            })
+            .with({ type: 'on_unit_play' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:created',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event));
+                }
+              });
+            })
+            .with({ type: 'on_before_unit_destroyed' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:before_destroy',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event));
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_destroyed' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'entity:after_destroy',
+                filter(ctx, [event]) {
+                  return getUnits({
+                    ...ctx,
+                    conditions: trigger.params.unit
+                  }).some(entity => entity.equals(event));
+                }
+              });
+            })
+            .with({ type: 'on_card_drawn' }, trigger => {
+              return {};
+            })
+            .with({ type: 'on_card_replaced' }, trigger => {
+              return {};
+            })
+            .with({ type: 'on_player_turn_start' }, trigger => {
+              return {};
+            })
+            .with({ type: 'on_player_turn_end' }, trigger => {
+              return {};
+            })
+            .exhaustive()
+        );
+      }
+    )
+    .otherwise(() => {
+      // this shouldnt happen but types are throwing a fit with an exhaustive check
+      return [];
     });
 };
 
@@ -370,6 +383,15 @@ export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
   const cardModifiers = effects
     .map(effect => {
       return match(effect.config.executionContext)
+        .with('always', () => {
+          return effect.actions
+            .map(action => {
+              if (!action.getCardModifier) return null;
+              return action.getCardModifier();
+            })
+            .flat()
+            .filter(isDefined);
+        })
         .with('while_in_hand', () => {
           return effect.actions
             .map(action => {

@@ -20,22 +20,26 @@ export const neutralHealingMystic: SerializedBlueprint = {
     {
       text: 'Opening Gambit: Heal another unit for 2',
       config: {
-        trigger: {
-          type: 'on_unit_play',
-          params: {
-            filter: [],
-            unit: [{ type: 'is_self' }]
+        executionContext: 'while_on_board',
+        triggers: [
+          {
+            type: 'on_unit_play',
+            params: {
+              unit: [[{ type: 'is_self' }]]
+            }
           }
-        },
+        ],
         actions: [
           {
             type: 'heal',
             params: {
               targets: [
-                {
-                  type: 'is_followup',
-                  params: { index: 0 }
-                }
+                [
+                  {
+                    type: 'is_followup',
+                    params: { index: 0 }
+                  }
+                ]
               ],
               amount: {
                 type: 'fixed',

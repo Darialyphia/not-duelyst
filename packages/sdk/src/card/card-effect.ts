@@ -1,5 +1,7 @@
 import { type KeywordId } from '../utils/keywords';
 
+export type Filter<T> = T[][];
+
 export type GlobalCondition =
   | {
       type: 'player_gold';
@@ -22,17 +24,31 @@ export type UnitCondition =
   | { type: 'is_minion' }
   | { type: 'is_ally' }
   | { type: 'is_enemy' }
-  | { type: 'is_nearby'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_in_front'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_nearest_in_front'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_behind'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_nearest_behind'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_above'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_nearest_above'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_below'; params: { unit: Array<UnitCondition> } }
-  | { type: 'is_nearest_below'; params: { unit: Array<UnitCondition> } }
+  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_nearest_in_front'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_nearest_behind'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'has_keyword'; params: { keyword: KeywordId } }
   | { type: 'is_followup'; params: { index: number } };
+
+export type CellCondition =
+  | { type: 'is_empty' }
+  | { type: 'is_at'; params: { x: number; y: number; z: number } }
+  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
+  | { type: 'is_followup'; params: { index: number } }
+  | { type: 'is_top_right_corner' }
+  | { type: 'is_top_left_corner' }
+  | { type: 'is_bottom_right_corner' }
+  | { type: 'is_bottom_left_corner' };
 
 export type PlayerCondition =
   | {
@@ -61,126 +77,111 @@ type Trigger =
   | {
       type: 'on_before_unit_move';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_move';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_deal_damage';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_deal_damage';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_take_damage';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_take_damage';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_attack';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_attack';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_healed';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_healed';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_retaliate';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_retaliate';
       params: {
-        filter: Array<GlobalCondition>;
-        target: Array<UnitCondition>;
-        unit: Array<UnitCondition>;
+        target: Filter<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_unit_play';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_before_unit_destroyed';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
   | {
       type: 'on_after_unit_destroyed';
       params: {
-        filter: Array<GlobalCondition>;
-        unit: Array<UnitCondition>;
+        unit: Filter<UnitCondition>;
       };
     }
-  | { type: 'on_player_turn_start'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_player_turn_end'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_before_player_draw'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_after_player_draw'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_before_player_replace'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_after_player_replace'; params: { player: Array<PlayerCondition> } }
-  | { type: 'on_before_card_played'; params: { card: Array<CardCondition> } }
-  | { type: 'on_after_card_played'; params: { card: Array<CardCondition> } }
-  | { type: 'on_card_drawn'; params: { card: Array<CardCondition> } }
-  | { type: 'on_card_replaced'; params: { card: Array<CardCondition> } };
+  | { type: 'on_player_turn_start'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_player_turn_end'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_before_player_draw'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_after_player_draw'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_before_player_replace'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_after_player_replace'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'on_before_card_played'; params: { card: Filter<CardCondition> } }
+  | { type: 'on_after_card_played'; params: { card: Filter<CardCondition> } }
+  | { type: 'on_card_drawn'; params: { card: Filter<CardCondition> } }
+  | { type: 'on_card_replaced'; params: { card: Filter<CardCondition> } };
 
 export type Amount =
   | {
@@ -189,35 +190,35 @@ export type Amount =
     }
   | {
       type: 'cards_in_hands';
-      params: { player: Array<PlayerCondition> };
+      params: { player: Filter<PlayerCondition> };
     }
   | {
       type: 'attack';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'lowest_attack';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'highest_attack';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'hp';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'lowest_hp';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'highest_hp';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     }
   | {
       type: 'cost';
-      params: { unit: Array<UnitCondition> };
+      params: { unit: Filter<UnitCondition> };
     };
 
 type Action =
@@ -225,21 +226,21 @@ type Action =
       type: 'deal_damage';
       params: {
         amount: Amount;
-        targets: Array<UnitCondition>;
+        targets: Filter<UnitCondition>;
       };
     }
   | {
       type: 'heal';
       params: {
         amount: Amount;
-        targets: Array<UnitCondition>;
+        targets: Filter<UnitCondition>;
       };
     }
   | {
       type: 'draw_cards';
       params: {
         amount: Amount;
-        player: Array<PlayerCondition>;
+        player: Filter<PlayerCondition>;
       };
     }
   | {
@@ -247,13 +248,19 @@ type Action =
       params: {
         attack: Amount;
         hp: Amount;
-        targets: Array<UnitCondition>;
+        targets: Filter<UnitCondition>;
       };
+    }
+  | {
+      type: 'airdrop';
+    }
+  | {
+      type: 'rush';
     };
 
 export type CardEffectConfig =
   | {
-      executionContext: 'immediate';
+      executionContext: 'always' | 'immediate';
       actions: Action[];
     }
   | {
