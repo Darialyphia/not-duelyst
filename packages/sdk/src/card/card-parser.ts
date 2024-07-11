@@ -33,7 +33,7 @@ const getEffectModifier = <T extends GameEvent>({
   actions
 }: {
   eventName: T;
-  filter: (ctx: EffectCtx, event: GameEventMap[T]) => boolean;
+  filter: (ctx: EffectCtx, event: GameEventMap[T], eventName: T) => boolean;
   actions: ParsedActionResult[];
 }) => {
   return {
@@ -46,7 +46,8 @@ const getEffectModifier = <T extends GameEvent>({
           modifierGameEventMixin({
             eventName,
             listener(event) {
-              if (filter(ctx, event)) actions.forEach(action => action(ctx));
+              if (filter(ctx, event, eventName))
+                actions.forEach(action => action(ctx, event, eventName));
             }
           })
         ]
@@ -63,7 +64,8 @@ const getEffectModifier = <T extends GameEvent>({
                 card: ctx.attachedTo,
                 targets: []
               };
-              if (filter(effectCtx, event)) actions.forEach(action => action(effectCtx));
+              if (filter(effectCtx, event, eventName))
+                actions.forEach(action => action(effectCtx, event, eventName));
             }
           })
         ]
@@ -86,7 +88,7 @@ const parseSerializeBlueprintEffect = (
         onPlay(ctx: EffectCtx) {
           const actions = config.actions.map(parseCardAction);
           actions.forEach(action => {
-            action(ctx);
+            action(ctx, {});
           });
         }
       }
@@ -118,10 +120,13 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'card:before_played',
                 actions,
-                filter(ctx, [event]) {
-                  return getCards({ ...ctx, conditions: trigger.params.card }).some(
-                    card => event === card
-                  );
+                filter(ctx, [event], eventName) {
+                  return getCards({
+                    ...ctx,
+                    conditions: trigger.params.card,
+                    event,
+                    eventName
+                  }).some(card => event === card);
                 }
               });
             })
@@ -129,10 +134,13 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'card:after_played',
                 actions,
-                filter(ctx, [event]) {
-                  return getCards({ ...ctx, conditions: trigger.params.card }).some(
-                    card => event === card
-                  );
+                filter(ctx, [event], eventName) {
+                  return getCards({
+                    ...ctx,
+                    conditions: trigger.params.card,
+                    event,
+                    eventName
+                  }).some(card => event === card);
                 }
               });
             })
@@ -188,10 +196,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before-move',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -200,10 +210,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before-move',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -212,10 +224,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_attack',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -224,10 +238,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_attack',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -236,10 +252,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_heal',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -248,10 +266,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_heal',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -260,10 +280,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_take_damage',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -272,10 +294,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_take_damage',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -284,10 +308,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_deal_damage',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -296,10 +322,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_deal_damage',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -308,10 +336,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_retaliate',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -320,10 +350,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_retaliate',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event.entity));
                 }
               });
@@ -332,10 +364,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:created',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event));
                 }
               });
@@ -344,10 +378,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:before_destroy',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event));
                 }
               });
@@ -356,10 +392,12 @@ const parseSerializeBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'entity:after_destroy',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
-                    conditions: trigger.params.unit
+                    conditions: trigger.params.unit,
+                    event,
+                    eventName
                   }).some(entity => entity.equals(event));
                 }
               });

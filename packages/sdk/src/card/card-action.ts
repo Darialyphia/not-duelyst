@@ -12,7 +12,7 @@ import type {
   UnitCondition
 } from './card-effect';
 import type { Entity } from '../entity/entity';
-import type { Nullable, Point3D } from '@game/shared';
+import type { AnyObject, Nullable, Point3D } from '@game/shared';
 import { isWithinCells } from '../utils/targeting';
 import type { Card } from './card';
 import type { Player } from '../player/player';
@@ -39,12 +39,16 @@ export const getUnits = ({
   session,
   entity,
   conditions,
-  targets
+  targets,
+  event,
+  eventName
 }: {
   session: GameSession;
   entity?: Entity;
   conditions: Filter<UnitCondition>;
   targets: Array<Nullable<Point3D>>;
+  event: AnyObject;
+  eventName?: string;
 }): Entity[] =>
   session.entitySystem.getList().filter(e => {
     return conditions.some(group => {
@@ -71,7 +75,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               isWithinCells(candidate.position, e.position, 1)
@@ -82,7 +88,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getEntityInFront(session, candidate)?.equals(e)
@@ -93,7 +101,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getNearest(
@@ -108,7 +118,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getEntityBehind(session, candidate)?.equals(e)
@@ -119,7 +131,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getNearest(
@@ -134,7 +148,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getEntityAbove(session, candidate)?.equals(e)
@@ -145,7 +161,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getNearest(session, 'up', candidate.position)?.equals(e)
@@ -156,7 +174,9 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getEntityBelow(session, candidate)?.equals(e)
@@ -167,11 +187,70 @@ export const getUnits = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getNearest(session, 'down', candidate.position)?.equals(e)
             );
+          })
+          .with({ type: 'moved_unit' }, () => {
+            return e.equals(event.entity);
+          })
+          .with({ type: 'destroyed_unit' }, () => {
+            return e.equals(event as Entity);
+          })
+          .with({ type: 'played_unit' }, () => {
+            return e.equals(event as Entity);
+          })
+          .with({ type: 'healing_source' }, () => {
+            return event.source && e.equals(event.source);
+          })
+          .with({ type: 'healing_target' }, () => {
+            return event.entity && e.equals(event.entity);
+          })
+          .with({ type: 'attack_source' }, () => {
+            if (
+              eventName === 'entity:before_attack' ||
+              eventName === 'entity:after_attack' ||
+              eventName === 'entity:before_retaliate' ||
+              eventName === 'entity:after_retaliate' ||
+              eventName === 'entity:before_deal_damage' ||
+              eventName === 'entity:after_deal_damage'
+            ) {
+              return event.entity && e.equals(event.entity);
+            }
+
+            if (
+              eventName === 'entity:before_take_damage' ||
+              eventName === 'entity:after_take_damage'
+            ) {
+              return event.source && e.equals(event.source);
+            }
+
+            return false;
+          })
+          .with({ type: 'attack_target' }, () => {
+            if (
+              eventName === 'entity:before_attack' ||
+              eventName === 'entity:after_attack' ||
+              eventName === 'entity:before_retaliate' ||
+              eventName === 'entity:after_retaliate' ||
+              eventName === 'entity:before_deal_damage' ||
+              eventName === 'entity:after_deal_damage'
+            ) {
+              return event.target && e.equals(event.target);
+            }
+
+            if (
+              eventName === 'entity:before_take_damage' ||
+              eventName === 'entity:after_take_damage'
+            ) {
+              return event.entity && e.equals(event.entity);
+            }
+
+            return false;
           })
           .exhaustive();
         return isMatch;
@@ -183,12 +262,16 @@ export const getCells = ({
   session,
   entity,
   conditions,
-  targets
+  targets,
+  event,
+  eventName
 }: {
   session: GameSession;
   entity?: Entity;
   conditions: Filter<CellCondition>;
   targets: Array<Nullable<Point3D>>;
+  event: AnyObject;
+  eventName?: string;
 }): Cell[] =>
   session.boardSystem.cells.filter(cell => {
     return conditions.some(group => {
@@ -205,7 +288,9 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               isWithinCells(candidate.position, cell.position, 1)
@@ -216,7 +301,9 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getCellInFront(session, candidate)?.equals(cell)
@@ -227,7 +314,9 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getCellBehind(session, candidate)?.equals(cell)
@@ -238,7 +327,9 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getCellAbove(session, candidate)?.equals(cell)
@@ -249,7 +340,9 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               session,
-              entity
+              entity,
+              event,
+              eventName
             });
             return candidates.some(candidate =>
               getCellBelow(session, candidate)?.equals(cell)
@@ -283,7 +376,9 @@ export const getCells = ({
               session,
               entity,
               conditions: condition.params.unit,
-              targets
+              targets,
+              event,
+              eventName
             }).some(unit => cell.entity?.equals(unit));
           })
           .exhaustive();
@@ -317,13 +412,17 @@ export const getCards = ({
   card,
   conditions,
   entity,
-  targets
+  targets,
+  event,
+  eventName
 }: {
   session: GameSession;
   card: Card;
   conditions: Filter<CardCondition>;
   targets: Array<Nullable<Point3D>>;
   entity?: Entity;
+  event: AnyObject;
+  eventName?: string;
 }) =>
   session.playerSystem
     .getList()
@@ -342,7 +441,9 @@ export const getCards = ({
                 entity,
                 card,
                 targets,
-                amount: condition.params.amount
+                amount: condition.params.amount,
+                event,
+                eventName
               });
               return match(condition.params.operator)
                 .with('equals', () => c.cost === amount)
@@ -365,13 +466,17 @@ const getAmount = ({
   entity,
   card,
   amount,
-  targets
+  targets,
+  event,
+  eventName
 }: {
   session: GameSession;
   entity?: Entity;
   card: Card;
   amount: Amount;
   targets: Array<Nullable<Point3D>>;
+  event: AnyObject;
+  eventName?: string;
 }) => {
   return match(amount)
     .with({ type: 'fixed' }, amount => amount.params.value)
@@ -385,7 +490,9 @@ const getAmount = ({
         session,
         entity,
         targets,
-        conditions: amount.params.unit
+        conditions: amount.params.unit,
+        event,
+        eventName
       });
       if (!unit) return unit;
       return unit.card.cost;
@@ -395,7 +502,9 @@ const getAmount = ({
         session,
         entity,
         targets,
-        conditions: amount.params.unit
+        conditions: amount.params.unit,
+        event,
+        eventName
       });
       if (!unit) return unit;
       return unit.attack;
@@ -406,7 +515,9 @@ const getAmount = ({
           session,
           entity,
           targets,
-          conditions: amount.params.unit
+          conditions: amount.params.unit,
+          event,
+          eventName
         }).map(u => u.attack)
       );
     })
@@ -416,7 +527,9 @@ const getAmount = ({
           session,
           entity,
           targets,
-          conditions: amount.params.unit
+          conditions: amount.params.unit,
+          event,
+          eventName
         }).map(u => u.attack)
       );
     })
@@ -425,7 +538,9 @@ const getAmount = ({
         session,
         entity,
         targets,
-        conditions: amount.params.unit
+        conditions: amount.params.unit,
+        event,
+        eventName
       });
       if (!unit) return unit;
       return unit.hp;
@@ -436,7 +551,9 @@ const getAmount = ({
           session,
           entity,
           targets,
-          conditions: amount.params.unit
+          conditions: amount.params.unit,
+          event,
+          eventName
         }).map(u => u.hp)
       );
     })
@@ -446,36 +563,34 @@ const getAmount = ({
           session,
           entity,
           targets,
-          conditions: amount.params.unit
+          conditions: amount.params.unit,
+          event,
+          eventName
         }).map(u => u.hp)
       );
     })
     .exhaustive();
 };
 
-export type ParsedActionResult = (ctx: EffectCtx) => () => void;
+export type ParsedActionResult = (
+  ctx: EffectCtx,
+  event: AnyObject,
+  eventName?: string
+) => () => void;
 
 const noop = () => void 0;
 
 export const parseCardAction = (action: Action): ParsedActionResult => {
-  return ({
-    session,
-    card,
-    entity,
-    targets
-  }: {
-    session: GameSession;
-    card: Card;
-    entity?: Entity;
-    targets: Array<Nullable<Point3D>>;
-  }) => {
+  return ({ session, card, entity, targets }, event, eventName) => {
     return match(action)
       .with({ type: 'deal_damage' }, action => {
         getUnits({
           session,
           entity,
           targets,
-          conditions: action.params.targets
+          conditions: action.params.targets,
+          event,
+          eventName
         }).forEach(target => {
           target.takeDamage(
             getAmount({
@@ -483,7 +598,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               entity,
               card,
               targets,
-              amount: action.params.amount
+              amount: action.params.amount,
+              event,
+              eventName
             })
           );
         });
@@ -495,7 +612,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           session,
           entity,
           targets,
-          conditions: action.params.targets
+          conditions: action.params.targets,
+          event,
+          eventName
         }).forEach(target => {
           target.heal(
             getAmount({
@@ -503,7 +622,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               entity,
               card,
               targets,
-              amount: action.params.amount
+              amount: action.params.amount,
+              event,
+              eventName
             })
           );
         });
@@ -522,7 +643,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               entity,
               card,
               targets,
-              amount: action.params.amount
+              amount: action.params.amount,
+              event,
+              eventName
             })
           );
         });
@@ -535,7 +658,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           session,
           entity,
           targets,
-          conditions: action.params.targets
+          conditions: action.params.targets,
+          event,
+          eventName
         });
 
         units.forEach(target => {
@@ -556,7 +681,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       entity,
                       card,
                       targets,
-                      amount: action.params.attack
+                      amount: action.params.attack,
+                      event,
+                      eventName
                     })
                 }),
                 modifierEntityInterceptorMixin({
@@ -569,7 +696,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       entity,
                       card,
                       targets,
-                      amount: action.params.attack
+                      amount: action.params.attack,
+                      event,
+                      eventName
                     })
                 })
               ]

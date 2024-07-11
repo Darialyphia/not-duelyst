@@ -1,7 +1,11 @@
 import { KEYWORDS } from '../../../utils/keywords';
-import type { SerializedBlueprint } from '../../card-blueprint';
+import {
+  defineSerializedBlueprint,
+  type SerializedBlueprint
+} from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 
-export const neutralHealingMystic: SerializedBlueprint = {
+export const neutralHealingMystic = defineSerializedBlueprint({
   id: 'healing_mystic',
   collectable: true,
   name: 'Healing Mystic',
@@ -18,7 +22,7 @@ export const neutralHealingMystic: SerializedBlueprint = {
   tags: [],
   followup: undefined, // haven't handled followup as data yet,
   effects: [
-    {
+    defineCardEffect({
       text: '@Opening Gambit@: Heal another unit for 2',
       config: {
         executionContext: 'while_on_board',
@@ -50,6 +54,6 @@ export const neutralHealingMystic: SerializedBlueprint = {
           }
         ]
       }
-    }
+    })
   ]
-};
+});

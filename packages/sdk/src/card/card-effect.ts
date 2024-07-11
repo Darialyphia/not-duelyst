@@ -2,23 +2,25 @@ import { type KeywordId } from '../utils/keywords';
 
 export type Filter<T> = T[][];
 
+export type NumericOperator = 'equals' | 'more_than' | 'less_than';
+
 export type GlobalCondition =
   | {
       type: 'player_gold';
       params: {
-        operator: 'equals' | 'more_than' | 'less_than';
+        operator: NumericOperator;
         amount: number;
       };
     }
   | {
       type: 'player_hp';
       params: {
-        operator: 'equals' | 'more_than' | 'less_than';
+        operator: NumericOperator;
         amount: number;
       };
     };
 
-export type UnitCondition =
+export type UnitConditionBase =
   | { type: 'is_self' }
   | { type: 'is_general' }
   | { type: 'is_minion' }
@@ -33,8 +35,19 @@ export type UnitCondition =
   | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'has_keyword'; params: { keyword: KeywordId } }
-  | { type: 'is_followup'; params: { index: number } };
+  | { type: 'is_followup'; params: { index: number } }
+  | { type: 'has_keyword'; params: { keyword: KeywordId } };
+
+export type UnitConditionExtras =
+  | { type: 'attack_target' }
+  | { type: 'attack_source' }
+  | { type: 'healing_target' }
+  | { type: 'healing_source' }
+  | { type: 'moved_unit' }
+  | { type: 'played_unit' }
+  | { type: 'destroyed_unit' };
+
+export type UnitCondition = UnitConditionBase | UnitConditionExtras;
 
 export type CellCondition =
   | { type: 'is_empty' }
@@ -52,16 +65,12 @@ export type CellCondition =
   | { type: 'is_bottom_left_corner' };
 
 export type PlayerCondition =
-  | {
-      type: 'ally_player';
-    }
+  | { type: 'ally_player' }
   | { type: 'enemy_player' }
   | { type: 'any_player' };
 
-export type CardCondition =
-  | {
-      type: 'self';
-    }
+export type CardConditionBase =
+  | { type: 'self' }
   | { type: 'minion' }
   | { type: 'spell' }
   | { type: 'artifact' }
@@ -69,12 +78,24 @@ export type CardCondition =
   | {
       type: 'cost';
       params: {
-        operator: 'equals' | 'more_than' | 'less_than';
-        amount: Amount;
+        operator: NumericOperator;
+        amount: Amount<{ unit: UnitConditionExtras['type'] }>;
       };
     };
 
-type Trigger =
+export type CardConditionExtras =
+  | { type: 'drawn_card' }
+  | { type: 'replaced_card' }
+  | { type: 'card_replacement' };
+
+type CardCondition = CardConditionBase | CardConditionExtras;
+
+type ConditionOverrides = {
+  unit?: UnitCondition['type'];
+  card?: CardCondition['type'];
+};
+
+export type Trigger =
   | {
       type: 'on_before_unit_move';
       params: {
@@ -184,7 +205,7 @@ type Trigger =
   | { type: 'on_card_drawn'; params: { card: Filter<CardCondition> } }
   | { type: 'on_card_replaced'; params: { card: Filter<CardCondition> } };
 
-export type Amount =
+export type Amount<T extends ConditionOverrides> =
   | {
       type: 'fixed';
       params: { value: number };
@@ -195,61 +216,95 @@ export type Amount =
     }
   | {
       type: 'attack';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'lowest_attack';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'highest_attack';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'hp';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'lowest_hp';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'highest_hp';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     }
   | {
       type: 'cost';
-      params: { unit: Filter<UnitCondition> };
+      params: {
+        unit: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
     };
 
-export type Action =
+export type Action<T extends ConditionOverrides = Record<string, never>> =
   | {
       type: 'deal_damage';
       params: {
-        amount: Amount;
-        targets: Filter<UnitCondition>;
+        amount: Amount<T>;
+        targets: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
       };
     }
   | {
       type: 'heal';
       params: {
-        amount: Amount;
-        targets: Filter<UnitCondition>;
+        amount: Amount<T>;
+        targets: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
       };
     }
   | {
       type: 'draw_cards';
       params: {
-        amount: Amount;
+        amount: Amount<T>;
         player: Filter<PlayerCondition>;
       };
     }
   | {
       type: 'change_stats';
       params: {
-        attack: Amount;
-        hp: Amount;
-        targets: Filter<UnitCondition>;
+        attack: Amount<T>;
+        hp: Amount<T>;
+        targets: Filter<
+          UnitConditionBase & Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
       };
     };
 
@@ -261,23 +316,25 @@ export type InitAction =
       type: 'rush';
     };
 
-export type CardEffectConfig =
+export type CardEffectConfig<T extends Trigger[]> =
+  | { executionContext: 'on_init'; actions: InitAction[] }
   | {
       executionContext: 'immediate';
       actions: Action[];
     }
-  | { executionContext: 'on_init'; actions: InitAction[] }
   | {
       executionContext:
         | 'while_in_hand'
         | 'while_on_board'
         | 'while_in_deck'
         | 'while_in_graveyard';
-      triggers: Trigger[];
+      triggers: T;
       actions: Action[];
     };
 
-export type CardEffect = {
-  config: CardEffectConfig;
+export type CardEffect<T extends Trigger[]> = {
+  config: CardEffectConfig<T>;
   text: string;
 };
+
+export const defineCardEffect = <T extends Trigger[]>(effect: CardEffect<T>) => effect;
