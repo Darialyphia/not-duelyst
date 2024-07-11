@@ -9,7 +9,8 @@ import type {
   Filter,
   InitAction,
   PlayerCondition,
-  UnitCondition
+  UnitCondition,
+  UnitConditionExtras
 } from './card-effect';
 import type { Entity } from '../entity/entity';
 import type { AnyObject, Nullable, Point3D } from '@game/shared';
@@ -456,6 +457,32 @@ export const getCards = ({
               condition => c.player.hand[condition.params.index] === card
             )
             .with({ type: 'self' }, () => c === card)
+            .with({ type: 'drawn_card' }, () => {
+              if (eventName === 'card:drawn') {
+                return c === event;
+              }
+              if (eventName === 'player:after_draw') {
+                event.cards.some((drawnCard: Card) => drawnCard === c);
+              }
+
+              return false;
+            })
+            .with({ type: 'replaced_card' }, () => {
+              if (eventName === 'card:replaced') {
+                return c === event;
+              }
+              if (
+                eventName === 'player:before_replace' ||
+                eventName === 'player:after_replace'
+              ) {
+                event.replacedCard === c;
+              }
+
+              return false;
+            })
+            .with({ type: 'card_replacement' }, () => {
+              return event.replacement === c;
+            })
             .exhaustive();
         });
       });
@@ -473,7 +500,7 @@ const getAmount = ({
   session: GameSession;
   entity?: Entity;
   card: Card;
-  amount: Amount;
+  amount: Amount<{ unit: UnitConditionExtras['type'] }>;
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
   eventName?: string;

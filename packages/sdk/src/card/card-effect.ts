@@ -88,7 +88,7 @@ export type CardConditionExtras =
   | { type: 'replaced_card' }
   | { type: 'card_replacement' };
 
-type CardCondition = CardConditionBase | CardConditionExtras;
+export type CardCondition = CardConditionBase | CardConditionExtras;
 
 type ConditionOverrides = {
   unit?: UnitCondition['type'];
