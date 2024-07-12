@@ -6,7 +6,7 @@ import type { Card, CardBlueprintId } from './card';
 import { type CardKind, type Faction, type FactionId, type Rarity } from './card-enums';
 import { type Keyword, type KeywordId } from '../utils/keywords';
 import { type Tag, type TagId } from '../utils/tribes';
-import type { CardEffect, Trigger } from './card-effect';
+import type { CardEffect, GenericCardEffect, Trigger } from './card-effect';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -89,7 +89,7 @@ export type CardBlueprint =
   | (CardBlueprintBase & CardBlueprintSpell)
   | (CardBlueprintBase & CardBlueprintArtifact);
 
-export type SerializedBlueprintBase<T extends CardEffect<Trigger[]>[]> = {
+export type SerializedBlueprintBase<T extends GenericCardEffect[]> = {
   id: string;
   name: string;
   collectable: boolean;
@@ -119,13 +119,11 @@ type SerializedBlueprintArtifact = {
   kind: Extract<CardKind, 'ARTIFACT'>;
 };
 
-export type SerializedBlueprint<
-  T extends CardEffect<Trigger[]>[] = CardEffect<Trigger[]>[]
-> =
+export type SerializedBlueprint<T extends GenericCardEffect[]> =
   | (SerializedBlueprintBase<T> & SerializedBlueprintUnit)
   | (SerializedBlueprintBase<T> & SerializedBlueprintSpell)
   | (SerializedBlueprintBase<T> & SerializedBlueprintArtifact);
 
-export const defineSerializedBlueprint = <T extends CardEffect<Trigger[]>[]>(
+export const defineSerializedBlueprint = <T extends GenericCardEffect[]>(
   bp: SerializedBlueprint<T>
 ) => bp;

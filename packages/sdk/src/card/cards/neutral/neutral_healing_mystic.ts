@@ -1,8 +1,5 @@
 import { KEYWORDS } from '../../../utils/keywords';
-import {
-  defineSerializedBlueprint,
-  type SerializedBlueprint
-} from '../../card-blueprint';
+import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 
 export const neutralHealingMystic = defineSerializedBlueprint({

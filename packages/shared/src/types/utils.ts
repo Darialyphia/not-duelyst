@@ -100,3 +100,5 @@ export type TuplifyUnion<
   L = LastOf<T>,
   N = [T] extends [never] ? true : false
 > = true extends N ? [] : Push<TuplifyUnion<Exclude<T, L>>, L>;
+
+export type StrictExtract<T, U extends T> = T extends U ? T : never;

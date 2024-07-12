@@ -1,7 +1,8 @@
 import { KEYWORDS } from '../../../utils/keywords';
-import type { SerializedBlueprint } from '../../card-blueprint';
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 
-export const neutralRiftWalker: SerializedBlueprint = {
+export const neutralRiftWalker = defineSerializedBlueprint({
   id: 'rift_walker',
   collectable: true,
   name: 'Rift Walker',
@@ -17,14 +18,14 @@ export const neutralRiftWalker: SerializedBlueprint = {
   spriteId: 'neutral_rift_walker',
   tags: [],
   effects: [
-    {
+    defineCardEffect({
       text: '@Airdrop@',
       config: {
         executionContext: 'on_init',
         actions: [{ type: 'airdrop' }]
       }
-    },
-    {
+    }),
+    defineCardEffect({
       text: '@Opening Gambit@: Deal 2 damage to the nearest unit in front, behind, above, and below this.',
       config: {
         executionContext: 'while_on_board',
@@ -49,6 +50,6 @@ export const neutralRiftWalker: SerializedBlueprint = {
           }
         ]
       }
-    }
+    })
   ]
-};
+});
