@@ -1,6 +1,10 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
+import { airdropEffect } from '../../helpers/airdrop.effect';
+import { fixedAmount } from '../../helpers/amount';
+import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
+import { nearestAllDirections } from '../../helpers/targeting';
 
 export const neutralRiftWalker = defineSerializedBlueprint({
   id: 'rift_walker',
@@ -18,38 +22,18 @@ export const neutralRiftWalker = defineSerializedBlueprint({
   spriteId: 'neutral_rift_walker',
   tags: [],
   effects: [
-    defineCardEffect({
-      text: '@Airdrop@',
-      config: {
-        executionContext: 'on_init',
-        actions: [{ type: 'airdrop' }]
-      }
-    }),
-    defineCardEffect({
-      text: '@Opening Gambit@: Deal 2 damage to the nearest unit in front, behind, above, and below this.',
-      config: {
-        executionContext: 'while_on_board',
-        triggers: [{ type: 'on_unit_play', params: { unit: [[{ type: 'is_self' }]] } }],
-        actions: [
-          {
-            type: 'deal_damage',
-            params: {
-              amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [{ type: 'is_nearest_above', params: { unit: [[{ type: 'is_self' }]] } }],
-                [{ type: 'is_nearest_below', params: { unit: [[{ type: 'is_self' }]] } }],
-                [
-                  {
-                    type: 'is_nearest_in_front',
-                    params: { unit: [[{ type: 'is_self' }]] }
-                  }
-                ],
-                [{ type: 'is_nearest_behind', params: { unit: [[{ type: 'is_self' }]] } }]
-              ]
-            }
+    airdropEffect(),
+    openingGambitEffect({
+      text: 'Deal 2 damage to the nearest unit in front, behind, above, and below this.',
+      actions: [
+        {
+          type: 'deal_damage',
+          params: {
+            amount: fixedAmount(2),
+            targets: nearestAllDirections([[{ type: 'is_self' }]])
           }
-        ]
-      }
+        }
+      ]
     })
   ]
 });

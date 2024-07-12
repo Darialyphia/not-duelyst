@@ -1,17 +1,7 @@
 import { match } from 'ts-pattern';
 import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
-import type {
-  Action,
-  Amount,
-  CardCondition,
-  CellCondition,
-  Filter,
-  InitAction,
-  PlayerCondition,
-  UnitCondition,
-  UnitConditionExtras
-} from './card-effect';
+import type { Action, Amount, Filter, InitAction } from './card-effect';
 import type { Entity } from '../entity/entity';
 import type { AnyObject, Nullable, Point3D } from '@game/shared';
 import { isWithinCells } from '../utils/targeting';
@@ -35,6 +25,10 @@ import {
 } from '../entity/entity-utils';
 import type { Cell } from '../board/cell';
 import { airdrop, rush } from '../modifier/modifier-utils';
+import type { CardCondition } from './conditions/card-conditions';
+import type { CellCondition } from './conditions/cell-conditions';
+import type { PlayerCondition } from './conditions/player-condition';
+import type { UnitCondition, UnitConditionExtras } from './conditions/unit-conditions';
 
 export const getUnits = ({
   session,
@@ -381,6 +375,35 @@ export const getCells = ({
               event,
               eventName
             }).some(unit => cell.entity?.equals(unit));
+          })
+          .with({ type: 'moved_unit_new_position' }, () => {
+            return session.boardSystem.getCellAt(event.entity.position)?.equals(cell);
+          })
+          .with({ type: 'moved_unit_old_position' }, () => {
+            if (eventName === 'entity:before-move') {
+              return session.boardSystem.getCellAt(event.entity.position)?.equals(cell);
+            }
+            if (eventName === 'entity:-after-move') {
+              return session.boardSystem.getCellAt(event.previousPosition)?.equals(cell);
+            }
+            return false;
+          })
+          .with({ type: 'moved_path' }, () => {
+            return event.path.some((point: Point3D) =>
+              session.boardSystem.getCellAt(point)?.equals(cell)
+            );
+          })
+          .with({ type: 'attack_source_position' }, () => {
+            return false;
+          })
+          .with({ type: 'attack_target_position' }, () => {
+            return false;
+          })
+          .with({ type: 'heal_source_position' }, () => {
+            return false;
+          })
+          .with({ type: 'heal_target_position' }, () => {
+            return false;
           })
           .exhaustive();
       });

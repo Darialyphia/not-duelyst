@@ -21,6 +21,7 @@ import {
   modifierGameEventMixin
 } from '../modifier/mixins/game-event.mixin';
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
+import type { GenericCardEffect, Trigger } from './card-effect';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -75,7 +76,7 @@ const getEffectModifier = <T extends GameEvent>({
 };
 
 const parseSerializeBlueprintEffect = (
-  effect: SerializedBlueprint['effects'][number]
+  effect: SerializedBlueprint<GenericCardEffect[]>['effects'][number]
 ): Array<{
   onInit?: (blueprint: CardBlueprint) => void;
   onPlay?: (ctx: EffectCtx) => void;
@@ -114,7 +115,7 @@ const parseSerializeBlueprintEffect = (
       config => {
         const actions = config.actions.map(parseCardAction);
 
-        return config.triggers.map(trigger =>
+        return config.triggers.map((trigger: Trigger) =>
           match(trigger)
             .with({ type: 'on_before_card_played' }, trigger => {
               return getEffectModifier({
@@ -403,28 +404,67 @@ const parseSerializeBlueprintEffect = (
               });
             })
             .with({ type: 'on_card_drawn' }, trigger => {
-              return {};
+              return getEffectModifier({
+                actions,
+                eventName: 'card:drawn',
+                filter(ctx, [event], eventName) {
+                  return getCards({
+                    ...ctx,
+                    conditions: trigger.params.card,
+                    event,
+                    eventName
+                  }).some(card => card === event);
+                }
+              });
             })
             .with({ type: 'on_card_replaced' }, trigger => {
-              return {};
+              return getEffectModifier({
+                actions,
+                eventName: 'card:replaced',
+                filter(ctx, [event], eventName) {
+                  return getCards({
+                    ...ctx,
+                    conditions: trigger.params.card,
+                    event,
+                    eventName
+                  }).some(card => card === event);
+                }
+              });
             })
             .with({ type: 'on_player_turn_start' }, trigger => {
-              return {};
+              return getEffectModifier({
+                actions,
+                eventName: 'player:turn_start',
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event));
+                }
+              });
             })
             .with({ type: 'on_player_turn_end' }, trigger => {
-              return {};
+              return getEffectModifier({
+                actions,
+                eventName: 'player:turn_end',
+                filter(ctx, [event]) {
+                  return getPlayers({
+                    ...ctx,
+                    conditions: trigger.params.player
+                  }).some(player => player.equals(event));
+                }
+              });
             })
             .exhaustive()
         );
       }
     )
-    .otherwise(() => {
-      // this shouldnt happen but types are throwing a fit with an exhaustive check
-      return [];
-    });
+    .exhaustive();
 };
 
-export const parseSerializeBlueprint = (blueprint: SerializedBlueprint) => {
+export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
+  blueprint: SerializedBlueprint<T>
+) => {
   // first, parse the blueprint effects
   const effects = blueprint.effects.map(effect => ({
     ...effect,

@@ -1,4 +1,14 @@
-import { type KeywordId } from '../utils/keywords';
+import type {
+  CardCondition,
+  CardConditionBase,
+  CardConditionExtras
+} from './conditions/card-conditions';
+import type { PlayerCondition } from './conditions/player-condition';
+import type {
+  UnitCondition,
+  UnitConditionBase,
+  UnitConditionExtras
+} from './conditions/unit-conditions';
 
 export type Filter<T> = T[][];
 
@@ -19,76 +29,6 @@ export type GlobalCondition =
         amount: number;
       };
     };
-
-export type UnitConditionBase =
-  | { type: 'is_self' }
-  | { type: 'is_general' }
-  | { type: 'is_minion' }
-  | { type: 'is_ally' }
-  | { type: 'is_enemy' }
-  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_in_front'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_behind'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_followup'; params: { index: number } }
-  | { type: 'has_keyword'; params: { keyword: KeywordId } };
-
-export type UnitConditionExtras =
-  | { type: 'attack_target' }
-  | { type: 'attack_source' }
-  | { type: 'healing_target' }
-  | { type: 'healing_source' }
-  | { type: 'moved_unit' }
-  | { type: 'played_unit' }
-  | { type: 'destroyed_unit' };
-
-export type UnitCondition = UnitConditionBase | UnitConditionExtras;
-
-export type CellCondition =
-  | { type: 'is_empty' }
-  | { type: 'has_unit'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_at'; params: { x: number; y: number; z: number } }
-  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_followup'; params: { index: number } }
-  | { type: 'is_top_right_corner' }
-  | { type: 'is_top_left_corner' }
-  | { type: 'is_bottom_right_corner' }
-  | { type: 'is_bottom_left_corner' };
-
-export type PlayerCondition =
-  | { type: 'ally_player' }
-  | { type: 'enemy_player' }
-  | { type: 'any_player' };
-
-export type CardConditionBase =
-  | { type: 'self' }
-  | { type: 'minion' }
-  | { type: 'spell' }
-  | { type: 'artifact' }
-  | { type: 'index_in_hand'; params: { index: number } }
-  | {
-      type: 'cost';
-      params: {
-        operator: NumericOperator;
-        amount: Amount<{ unit: UnitConditionExtras['type'] }>;
-      };
-    };
-
-export type CardConditionExtras =
-  | { type: 'drawn_card' }
-  | { type: 'replaced_card' }
-  | { type: 'card_replacement' };
-
-export type CardCondition = CardConditionBase | CardConditionExtras;
 
 type ConditionOverrides = {
   unit?: UnitCondition['type'];
@@ -350,7 +290,7 @@ type TriggerOverridesMap = {
 
 type Intersection<K, U> = K & U;
 
-type OverridesFromTrigger<T extends Trigger[]> = {
+export type OverridesFromTrigger<T extends Trigger[]> = {
   unit: TriggerOverridesMap['unit'][Intersection<
     T[number]['type'],
     keyof TriggerOverridesMap['unit']
