@@ -6,7 +6,6 @@ const { spriteId, pedestalId, animation } = defineProps<{
   pedestalId?: string;
   animation?: Animation;
 }>();
-
 const assets = useAssets();
 
 const sheet = ref<SpritesheetWithAnimations>();

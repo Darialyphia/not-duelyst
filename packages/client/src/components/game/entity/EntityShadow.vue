@@ -11,7 +11,7 @@ const { entityId } = defineProps<{ entityId: EntityId }>();
 const { camera, ui, fx } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const sprite = ref<AnimatedSprite>();
-const { diffuseTextures, normalTextures } = useEntityTexture(entityId, sprite);
+const textures = useEntityTexture(entityId, sprite);
 
 const screen = useScreen();
 
@@ -118,11 +118,10 @@ const isFlipped = computed(() => {
     :z-index="1"
     :alpha="0.5"
   >
-    <IlluminatedSprite
-      v-if="diffuseTextures?.length && normalTextures?.length"
+    <animated-sprite
+      v-if="textures"
       ref="sprite"
-      :diffuse-textures="diffuseTextures"
-      :normal-textures="normalTextures"
+      :textures="textures"
       :filters="filters"
       :scale-y="-0.5"
       :skew-x="isFlipped ? 0.8 : -0.8"

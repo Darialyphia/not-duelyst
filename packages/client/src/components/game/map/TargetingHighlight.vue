@@ -18,7 +18,6 @@ const isMatch = (cellToTest: Cell) => {
     )
     .with(TARGETING_MODES.TARGETING, () => {
       if (!ui.selectedCard.value) return false;
-
       return (
         ui.selectedCard.value.blueprint.targets?.isTargetable(cellToTest, {
           session,

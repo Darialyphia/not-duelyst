@@ -52,7 +52,7 @@ const normalFilters = computed(() => {
   />
 
   <template v-if="isEnabled">
-    <animated-sprite
+    <!-- <animated-sprite
       v-if="isAnimated"
       v-bind="attrs"
       :ref="normalRef"
@@ -65,6 +65,6 @@ const normalFilters = computed(() => {
       :ref="normalRef"
       :filters="normalFilters"
       :textures="normalTextures"
-    />
+    /> -->
   </template>
 </template>

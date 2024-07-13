@@ -555,7 +555,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     description: blueprint.effects.map(effect => effect.text).join('\n'),
     collectable: blueprint.collectable,
     rarity: blueprint.rarity,
-    faction: blueprint.faction ? getFactionById(blueprint.faction) ?? null : null,
+    faction: blueprint.faction ? (getFactionById(blueprint.faction) ?? null) : null,
     spriteId: blueprint.spriteId,
     cost: blueprint.cost,
     relatedBlueprintIds: blueprint.relatedBlueprintIds,
@@ -580,6 +580,11 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
                   attachedTo.removeModifier(entityModifier.id);
                 }
               });
+            });
+          })
+          .with('immediate', () => {
+            effect.actions.forEach(action => {
+              action.onPlay?.(ctx);
             });
           })
           .otherwise(() => {

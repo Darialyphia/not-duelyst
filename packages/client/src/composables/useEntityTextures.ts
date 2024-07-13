@@ -9,12 +9,9 @@ export const useEntityTexture = (
   const entity = useGameSelector(
     session => session.entitySystem.getEntityById(entityId)!
   );
-  const diffuseTextures = ref<FrameObject[]>([
-    { texture: Texture.EMPTY, time: 100 }
-  ]) as Ref<FrameObject[]>;
-  const normalTextures = ref<FrameObject[]>([
-    { texture: Texture.EMPTY, time: 100 }
-  ]) as Ref<FrameObject[]>;
+  const textures = ref<FrameObject[]>([{ texture: Texture.EMPTY, time: 100 }]) as Ref<
+    FrameObject[]
+  >;
 
   const animationName = computed(
     () => fx.entityAnimationsMap.value.get(entityId) ?? 'breathing'
@@ -25,16 +22,8 @@ export const useEntityTexture = (
     const diffuseSheet = await assets.loadSpritesheet(
       entity.value.card.blueprint.spriteId
     );
-    const normalSheet = await assets.loadNormalSpritesheet(
-      entity.value.card.blueprint.spriteId,
-      diffuseSheet
-    );
-    diffuseTextures.value = createSpritesheetFrameObject(
-      animationName.value,
-      diffuseSheet
-    );
 
-    normalTextures.value = createSpritesheetFrameObject(animationName.value, normalSheet);
+    textures.value = createSpritesheetFrameObject(animationName.value, diffuseSheet);
   };
   setTextures();
 
@@ -62,5 +51,5 @@ export const useEntityTexture = (
     }
   });
 
-  return { diffuseTextures, normalTextures };
+  return textures;
 };

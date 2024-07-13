@@ -13,33 +13,33 @@ export const defaultBindings: { id: string; label: string; control: KeyBinding }
   },
   {
     id: 'summon1',
-    label: 'Summon unit 1',
-    control: { key: 'Digit1', modifier: 'shift' }
+    label: 'Play card 1',
+    control: { key: 'Digit1', modifier: null }
   },
   {
     id: 'summon2',
-    label: 'Summon unit 2',
-    control: { key: 'Digit2', modifier: 'shift' }
+    label: 'Play card 2',
+    control: { key: 'Digit2', modifier: null }
   },
   {
     id: 'summon3',
-    label: 'Summon unit 3',
-    control: { key: 'Digit3', modifier: 'shift' }
+    label: 'Play card 3',
+    control: { key: 'Digit3', modifier: null }
   },
   {
     id: 'summon4',
-    label: 'Summon unit 4',
-    control: { key: 'Digit4', modifier: 'shift' }
+    label: 'Play card 4',
+    control: { key: 'Digit4', modifier: null }
   },
   {
     id: 'summon5',
-    label: 'Summon unit 5',
-    control: { key: 'Digit5', modifier: 'shift' }
+    label: 'Play card 5',
+    control: { key: 'Digit5', modifier: null }
   },
   {
     id: 'summon6',
-    label: 'Summon unit 6',
-    control: { key: 'Digit6', modifier: 'shift' }
+    label: 'Play card 6',
+    control: { key: 'Digit6', modifier: null }
   },
   {
     id: 'endTurn',

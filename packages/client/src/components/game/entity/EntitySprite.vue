@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FACTIONS, type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter } from 'pixi.js';
+import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
@@ -8,13 +8,13 @@ import { COLOR_CODED_UNITS } from '~/utils/settings';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { ui, fx, camera, gameType } = useGame();
+const { assets, ui, fx, camera, gameType } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const userPlayer = useUserPlayer();
 const sprite = ref<AnimatedSprite>();
-const { diffuseTextures, normalTextures } = useEntityTexture(entityId, sprite);
+const unitTextures = useEntityTexture(entityId, sprite);
 
 const isSelected = computed(() => ui.selectedEntity.value?.equals(entity.value));
 const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
@@ -100,12 +100,12 @@ const isFlipped = computed(() => {
   return value;
 });
 
-const pedestalTextures = useIlluminatedTexture(
-  () => entity.value.card.pedestalId,
-  'idle'
-);
+const pedestalTextures = ref<FrameObject[]>();
 
-const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Container>();
+watchEffect(async () => {
+  const spritesheet = await assets.loadSpritesheet(entity.value.card.pedestalId);
+  pedestalTextures.value = createSpritesheetFrameObject('idle', spritesheet);
+});
 </script>
 
 <template>
@@ -118,10 +118,10 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
       :y="-30"
     /> -->
 
-    <container :ref="diffuseRef" :filters="filters">
+    <container :filters="filters">
       <animated-sprite
-        v-if="pedestalTextures.diffuse"
-        :textures="pedestalTextures.diffuse"
+        v-if="pedestalTextures"
+        :textures="pedestalTextures"
         :anchor-x="0.5"
         :anchor-y="1"
         :playing="true"
@@ -130,40 +130,17 @@ const { isEnabled, diffuseRef, normalRef, normalFilter } = useIllumination<Conta
       />
 
       <animated-sprite
-        v-if="diffuseTextures"
+        v-if="unitTextures"
         :ref="
           (el: AnimatedSprite) => {
             sprite = el;
           }
         "
-        :textures="diffuseTextures"
+        :textures="unitTextures"
         :anchor-x="0.5"
         :anchor-y="1"
         :playing="true"
         :y="CELL_HEIGHT * 0.85"
-        :is-flipped="isFlipped"
-        :filters="filters"
-      />
-    </container>
-
-    <container v-if="isEnabled" :ref="normalRef" :filters="[normalFilter]">
-      <animated-sprite
-        v-if="pedestalTextures.normal"
-        :textures="pedestalTextures.normal"
-        :anchor-x="0.5"
-        :anchor-y="0"
-        :playing="true"
-        :y="-CELL_HEIGHT * 0.6"
-        :is-flipped="isFlipped"
-      />
-
-      <animated-sprite
-        v-if="normalTextures"
-        :textures="normalTextures"
-        :anchor-x="0.5"
-        :anchor-y="0"
-        :playing="true"
-        :y="-CELL_HEIGHT * 0.8"
         :is-flipped="isFlipped"
         :filters="filters"
       />

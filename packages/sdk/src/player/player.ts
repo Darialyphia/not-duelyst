@@ -98,7 +98,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.name = options.name;
     this.isPlayer1 = options.isPlayer1;
     this._maxGold =
-      options.maxMana ?? this.isPlayer1
+      (options.maxMana ?? this.isPlayer1)
         ? config.PLAYER_1_STARTING_GOLD
         : config.PLAYER_2_STARTING_GOLD;
     this.isP2T1 = !this.isPlayer1;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
-import type { Filter, Spritesheet } from 'pixi.js';
+import type { Filter, FrameObject, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
@@ -9,30 +9,21 @@ const { cellId } = defineProps<{ cellId: CellId }>();
 const { assets, ui, fx, camera } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
-const diffuseTextures = computed(() => {
-  const sheet = assets.getSpritesheet(cell.value.spriteId);
-  return sheet.animations[cell.value.defaultRotation + camera.angle.value];
-});
-const normalSheet = ref<Spritesheet | null>(null);
+const textures = ref<FrameObject[]>();
 
-onMounted(async () => {
-  const diffuseSheet = assets.getSpritesheet(cell.value.spriteId);
-  normalSheet.value = await assets.loadNormalSpritesheet(
-    cell.value.spriteId,
-    diffuseSheet
+watchEffect(async () => {
+  const spritesheet = await assets.loadSpritesheet(cell.value.spriteId);
+  textures.value = createSpritesheetFrameObject(
+    `${cell.value.defaultRotation + camera.angle.value}`,
+    spritesheet
   );
 });
 
-const normalTextures = computed(() => {
-  if (!normalSheet.value) return null;
-
-  return normalSheet.value.animations[
-    (cell.value.defaultRotation + camera.angle.value) % 360
-  ];
-});
-
 const shape = assets.getHitbox('tile');
-const hitArea = Hitbox.from(shape.shapes[0].points, shape.shapes[0].source, 0.5);
+const hitArea = Hitbox.from(shape.shapes[0].points, shape.shapes[0].source, {
+  x: 0.5,
+  y: 0.25
+});
 
 const targetedFilter = new ColorOverlayFilter(0xff0000, 0.5);
 
@@ -59,10 +50,9 @@ const children = computed(() => {
 </script>
 
 <template>
-  <IlluminatedSprite
-    v-if="diffuseTextures.length && normalTextures?.length"
-    :diffuse-textures="diffuseTextures"
-    :normal-textures="normalTextures"
+  <animated-sprite
+    v-if="textures"
+    :textures="textures"
     :anchor="0.5"
     :hit-area="hitArea"
     :filters="filters"

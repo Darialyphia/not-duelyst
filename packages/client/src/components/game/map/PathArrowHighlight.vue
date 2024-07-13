@@ -119,25 +119,20 @@ const pathTextures = computed(() => {
     diffuse: createSpritesheetFrameObject(
       pathFrameTag.value,
       pathSheets.diffuse as SpritesheetWithAnimations
-    ),
-    normal: createSpritesheetFrameObject(
-      pathFrameTag.value,
-      pathSheets.normal as SpritesheetWithAnimations
     )
   };
 });
 </script>
 
 <template>
-  <IlluminatedSprite
+  <animated-sprite
     v-if="
       ui.selectedEntity.value?.canMove(1) &&
       pathTextures &&
       positionInPath >= 0 &&
       !fx.isPlaying.value
     "
-    :diffuse-textures="pathTextures.diffuse"
-    :normal-textures="pathTextures.normal"
+    :textures="pathTextures.diffuse"
     :anchor="0.5"
     event-mode="none"
   />

@@ -1,3 +1,4 @@
+import type { Point } from '@game/shared';
 import { Polygon } from 'pixi.js';
 
 export class Hitbox {
@@ -16,13 +17,14 @@ export class Hitbox {
   static from(
     shapeData: number[][],
     source: { width: number; height: number },
-    anchor = 0
+    anchor: Point
   ) {
     const polygons = shapeData.map(
       p =>
         new Polygon(
           p.map((p, i) => {
-            const offset = i % 2 === 0 ? source.width * anchor : source.height * anchor;
+            const offset =
+              i % 2 === 0 ? source.width * anchor.x : source.height * anchor.y;
             return p - offset;
           })
         )

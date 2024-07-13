@@ -111,8 +111,8 @@ onMounted(async () => {
             .flat()
         )
       ].map(async spriteId => {
-        const sheet = await game.assets.loadSpritesheet(spriteId);
-        return game.assets.loadNormalSpritesheet(spriteId, sheet);
+        return game.assets.loadSpritesheet(spriteId);
+        // return game.assets.loadNormalSpritesheet(spriteId, sheet);
       })
     );
 

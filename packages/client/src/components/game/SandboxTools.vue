@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { ClientSession, config, type GameSession, type ServerSession } from '@game/sdk';
+import {
+  ClientSession,
+  config,
+  Player,
+  type GameSession,
+  type ServerSession
+} from '@game/sdk';
 
 const { clientSession, serverSession } = defineProps<{
   serverSession: ServerSession;
@@ -46,12 +52,13 @@ const performAction = (cb: (session: GameSession) => void) => {
             @click="
               performAction(session => {
                 const player = session.playerSystem.activePlayer;
+                const count = player.hand.length;
                 player.hand.forEach(card => {
                   player.deck.addToBottom(card);
                 });
                 player.hand = [];
                 player.deck.shuffle();
-                player.draw(config.MAX_HAND_SIZE);
+                player.draw(count);
               })
             "
           >
@@ -66,56 +73,6 @@ const performAction = (cb: (session: GameSession) => void) => {
             "
           >
             Max out gold
-          </UiButton>
-          <UiButton
-            class="ghost-button"
-            @click="
-              performAction(session => {
-                session.playerSystem.activePlayer.addRune('f1');
-              })
-            "
-          >
-            Give Faction 1 rune
-          </UiButton>
-          <UiButton
-            class="ghost-button"
-            @click="
-              performAction(session => {
-                session.playerSystem.activePlayer.addRune('f2');
-              })
-            "
-          >
-            Give Faction 2 rune
-          </UiButton>
-          <UiButton
-            class="ghost-button"
-            @click="
-              performAction(session => {
-                session.playerSystem.activePlayer.addRune('f3');
-              })
-            "
-          >
-            Give Faction 3 rune
-          </UiButton>
-          <UiButton
-            class="ghost-button"
-            @click="
-              performAction(session => {
-                session.playerSystem.activePlayer.addRune('f4');
-              })
-            "
-          >
-            Give Faction 4 rune
-          </UiButton>
-          <UiButton
-            class="ghost-button"
-            @click="
-              performAction(session => {
-                session.playerSystem.activePlayer.addRune('f5');
-              })
-            "
-          >
-            Give Faction 5 rune
           </UiButton>
         </PopoverContent>
       </PopoverPortal>

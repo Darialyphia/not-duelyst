@@ -77,8 +77,8 @@ const rollback = () => {
 
         <fieldset>
           <legend>Visual</legend>
-          <label>Dynamic lighting</label>
-          <UiSwitch v-model:checked="formData.fx.dynamicLighting" />
+          <!-- <label>Dynamic lighting</label>
+          <UiSwitch v-model:checked="formData.fx.dynamicLighting" /> -->
           <label>Shadows</label>
           <UiSwitch v-model:checked="formData.fx.shadows" />
           <label>Tint strength</label>

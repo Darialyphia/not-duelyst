@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { TextStyle } from 'pixi.js';
+import { CARD_KINDS } from '@game/sdk';
+import type { Nullable } from '@game/shared';
+import { TextStyle, type FrameObject } from 'pixi.js';
 import { match } from 'ts-pattern';
 
 const { camera, ui } = useGame();
@@ -59,11 +61,29 @@ const textStyle = new TextStyle({
   strokeThickness: 4
 });
 
-const entityTextures = useIlluminatedTexture(
-  () => ui.selectedCard.value?.blueprint.spriteId,
-  'breathing'
+const textures = ref<Nullable<FrameObject[]>>();
+const { assets } = useGame();
+
+const isUnit = computed(
+  () =>
+    ui.selectedCard.value?.kind === CARD_KINDS.GENERAL ||
+    ui.selectedCard.value?.kind === CARD_KINDS.MINION
 );
-const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
+watchEffect(async () => {
+  if (
+    !ui.selectedCard.value ||
+    !ui.selectedCard.value.blueprint.spriteId ||
+    !isUnit.value
+  ) {
+    textures.value = null;
+    return;
+  }
+
+  const spritesheet = await assets.loadSpritesheet(
+    ui.selectedCard.value?.blueprint.spriteId
+  );
+  textures.value = createSpritesheetFrameObject('breathing', spritesheet);
+});
 </script>
 
 <template>
@@ -81,33 +101,15 @@ const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
     }"
     event-mode="none"
   >
-    <IlluminatedSprite
-      v-if="entityTextures.diffuse && entityTextures.normal"
+    <animated-sprite
+      v-if="textures"
       :alpha="0.5"
-      :diffuse-textures="entityTextures.diffuse"
-      :normal-textures="entityTextures.normal"
+      :textures="textures"
       :scale-x="scaleX"
       :playing="true"
       :anchor-x="0.5"
       :anchor-y="0"
       :y="-CELL_HEIGHT"
     />
-
-    <!-- <container :x="CELL_WIDTH * 0.25" :y="-10">
-      <pixi-text :scale="0.5" :style="textStyle" :anchor="0.5">
-        - {{ ui.selectedCard.value!.cost }}
-      </pixi-text>
-      <IlluminatedSprite
-        v-if="goldCostTextures.diffuse && goldCostTextures.normal"
-        :x="15"
-        :event-mode="'none'"
-        :diffuse-textures="goldCostTextures.diffuse"
-        :normal-textures="goldCostTextures.normal"
-        :scale-x="scaleX"
-        :anchor="0.5"
-        :playing="false"
-        :is-animated="false"
-      />
-    </container> -->
   </IsoPositioner>
 </template>

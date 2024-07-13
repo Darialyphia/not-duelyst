@@ -36,10 +36,12 @@ export const getUnits = ({
   conditions,
   targets,
   event,
+  card,
   eventName
 }: {
   session: GameSession;
   entity?: Entity;
+  card: Card;
   conditions: Filter<UnitCondition>;
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
@@ -53,8 +55,8 @@ export const getUnits = ({
         const isMatch = match(condition)
           .with({ type: 'any_unit' }, () => true)
           .with({ type: 'has_keyword' }, () => false /*TODO*/)
-          .with({ type: 'is_ally' }, () => entity?.isAlly(e.id))
-          .with({ type: 'is_enemy' }, () => entity?.isEnemy(e.id))
+          .with({ type: 'is_ally' }, () => card.player.equals(e.player))
+          .with({ type: 'is_enemy' }, () => !card.player.equals(e.player))
           .with({ type: 'is_manual_target' }, condition => {
             const point = targets[condition.params.index];
             if (!point) return false;
@@ -74,6 +76,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -87,6 +90,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -100,6 +104,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -117,6 +122,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -130,6 +136,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -147,6 +154,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -160,6 +168,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -173,6 +182,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -186,6 +196,7 @@ export const getUnits = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -259,6 +270,7 @@ export const getUnits = ({
 export const getCells = ({
   session,
   entity,
+  card,
   conditions,
   targets,
   event,
@@ -266,6 +278,7 @@ export const getCells = ({
 }: {
   session: GameSession;
   entity?: Entity;
+  card: Card;
   conditions: Filter<CellCondition>;
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
@@ -288,6 +301,7 @@ export const getCells = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -301,6 +315,7 @@ export const getCells = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -314,6 +329,7 @@ export const getCells = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -327,6 +343,7 @@ export const getCells = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -340,6 +357,7 @@ export const getCells = ({
               targets,
               session,
               entity,
+              card,
               event,
               eventName
             });
@@ -375,6 +393,7 @@ export const getCells = ({
             return getUnits({
               session,
               entity,
+              card,
               conditions: condition.params.unit,
               targets,
               event,
@@ -546,6 +565,7 @@ const getAmount = ({
         session,
         entity,
         targets,
+        card,
         conditions: amount.params.unit,
         event,
         eventName
@@ -557,6 +577,7 @@ const getAmount = ({
       const [unit] = getUnits({
         session,
         entity,
+        card,
         targets,
         conditions: amount.params.unit,
         event,
@@ -570,6 +591,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: amount.params.unit,
           event,
@@ -582,6 +604,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: amount.params.unit,
           event,
@@ -593,6 +616,7 @@ const getAmount = ({
       const [unit] = getUnits({
         session,
         entity,
+        card,
         targets,
         conditions: amount.params.unit,
         event,
@@ -606,6 +630,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: amount.params.unit,
           event,
@@ -618,6 +643,7 @@ const getAmount = ({
         ...getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: amount.params.unit,
           event,
@@ -643,6 +669,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: action.params.targets,
           event,
@@ -667,6 +694,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: action.params.targets,
           event,
@@ -713,6 +741,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         const units = getUnits({
           session,
           entity,
+          card,
           targets,
           conditions: action.params.targets,
           event,

@@ -29,10 +29,10 @@ export const parseTargets = (
       if (options.card.blueprint.targets!.maxTargetCount <= options.targets.length) {
         return false;
       }
-
       return getCells({
         session: options.session,
         event: {},
+        card: options.card,
         targets: options.targets,
         conditions: config.targets[options.targets.length]
       }).some(cell => {

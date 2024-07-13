@@ -33,7 +33,7 @@ export const getDefaultSettings = () => ({
     cardsWith3D: true
   },
   fx: {
-    dynamicLighting: true,
+    dynamicLighting: false,
     shadows: true,
     tintStrength: [40]
   },

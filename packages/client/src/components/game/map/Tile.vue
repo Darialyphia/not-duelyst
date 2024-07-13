@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
+import type { Nullable } from '@game/shared';
 import type { FrameObject } from 'pixi.js';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { camera, fx } = useGame();
+const { camera, fx, assets } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
-const textures = useIlluminatedTexture(() => cell.value.tile?.blueprint.spriteId, 'idle');
+const textures = ref<Nullable<FrameObject[]>>();
+
+watchEffect(async () => {
+  if (!cell.value.tile) {
+    textures.value = null;
+    return;
+  }
+  const spritesheet = await assets.loadSpritesheet(cell.value.tile.blueprint.spriteId);
+  textures.value = createSpritesheetFrameObject('idle', spritesheet);
+});
 
 const boardDimensions = useGameSelector(session => ({
   width: session.boardSystem.width,
@@ -29,8 +39,8 @@ const boardDimensions = useGameSelector(session => ({
       :y="-CELL_HEIGHT * 0.4"
       event-mode="none"
     >
-      <IlluminatedSprite
-        :diffuse-textures="textures.diffuse as FrameObject[]"
+      <animated-sprite
+        :textures="textures.diffuse as FrameObject[]"
         :normal-textures="textures.normal as FrameObject[]"
         :anchor="0.5"
         playing

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { match } from 'ts-pattern';
-import { FACTION_IDS, config } from '@game/sdk';
 
 const players = useGameSelector(session => session.playerSystem.getList());
 
@@ -48,6 +47,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
         </PopoverContent>
       </Transition>
     </PopoverPortal>
+
     <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
       <div
         class="img-wrapper"
@@ -203,33 +203,55 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 }
 
 .img-wrapper {
+  --size: 140px;
+  --corner-clip: 15px;
+
   position: relative;
 
+  overflow: hidden;
   display: grid;
   place-content: center;
 
   aspect-ratio: 1;
-  width: 140px;
+  width: var(--size);
   padding: 4px;
 
-  background-image: url('/assets/ui/hero-portrait-border.png'),
-    radial-gradient(circle at center, black, black 65%, transparent 65%);
+  background-image: radial-gradient(circle at center, black, black 65%, transparent 65%);
+  clip-path: polygon(
+    var(--corner-clip) 0%,
+    calc(var(--size) - var(--corner-clip)) 0%,
+    100% var(--corner-clip),
+    100% calc(var(--size) - var(--corner-clip)),
+    calc(var(--size) - var(--corner-clip)) 100%,
+    var(--corner-clip) 100%,
+    0% calc(var(--size) - var(--corner-clip)),
+    0% var(--corner-clip)
+  );
 
   @screen lt-lg {
     align-self: flex-start;
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/ui/hero-portrait-border.png');
+  }
 }
 
 .portrait {
-  transform: scale(3);
+  transform: scale(3) translateY(-5px);
+  width: 100px;
+  height: 100px;
   background-position: 0 8px;
-
+  /* 
   mask-image: radial-gradient(
     circle at center,
     black,
-    black 20px,
-    transparent 20px
-  ) !important;
+    black 24px,
+    transparent 24px
+  ) !important; */
 }
 
 .player-1 {
@@ -259,7 +281,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   }
 
   .portrait {
-    transform: scale(3) rotateY(0.5turn);
+    transform: scale(3) translateY(-5px) rotateY(0.5turn);
   }
 }
 
