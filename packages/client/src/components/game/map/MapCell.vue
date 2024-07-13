@@ -22,12 +22,12 @@ const boardDimensions = useGameSelector(session => ({
 const isActivePlayer = useIsActivePlayer();
 const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.value));
 
-const isFollowupTargetable = computed(() => {
+const isTargetable = computed(() => {
   if (!ui.selectedCard.value) return false;
-  return ui.selectedCard.value.blueprint.followup?.isTargetable(cell.value, {
+  return ui.selectedCard.value.blueprint.targets?.isTargetable(cell.value, {
     session,
     playedPoint: ui.summonTarget.value ?? undefined,
-    followups: ui.followupTargets.value,
+    targets: ui.cardTargets.value,
     card: ui.selectedCard.value!
   });
 });
@@ -68,17 +68,17 @@ const attack = () => {
 const summon = () => {
   if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) return;
   ui.summonTarget.value = cell.value.position;
-  if (ui.selectedCard.value.blueprint.blueprintFollowup) {
-    ui.switchTargetingMode(TARGETING_MODES.BLUEPRINT_FOLLOWUP);
-  } else if (ui.selectedCard.value.blueprint.followup) {
-    ui.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
+  if (ui.selectedCard.value.blueprint.cardChoices) {
+    ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
+  } else if (ui.selectedCard.value.blueprint.targets) {
+    ui.switchTargetingMode(TARGETING_MODES.TARGETING);
   } else {
     pointerupSound.play();
     dispatch('playCard', {
       cardIndex: ui.selectedCardIndex.value!,
       position: ui.summonTarget.value!,
       targets: [],
-      blueprintFollowup: ui.followupBlueprintIndexes.value
+      cardChoices: ui.cardChoiceIndexes.value
     });
     ui.unselectCard();
   }
@@ -99,6 +99,7 @@ const highlightTarget = () => {
     :angle="camera.angle.value"
     :height="boardDimensions.height"
     :width="boardDimensions.width"
+    event-mode="static"
     @pointerenter="
       () => {
         ui.hoverAt(cell.position);
@@ -110,7 +111,7 @@ const highlightTarget = () => {
           .with(
             TARGETING_MODES.SUMMON,
             TARGETING_MODES.NONE,
-            TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+            TARGETING_MODES.CARD_CHOICE,
             () => {}
           )
           .with(TARGETING_MODES.BASIC, () => {
@@ -123,10 +124,10 @@ const highlightTarget = () => {
               highlightTarget();
             }
           })
-          .with(TARGETING_MODES.FOLLOWUP, () => {
+          .with(TARGETING_MODES.TARGETING, () => {
             if (!cell.entity) return;
             if (!ui.selectedCard.value) return;
-            if (isFollowupTargetable) {
+            if (isTargetable) {
               highlightTarget();
             }
           })
@@ -155,7 +156,7 @@ const highlightTarget = () => {
         if (!isActivePlayer) return;
 
         match(ui.targetingMode.value)
-          .with(TARGETING_MODES.BLUEPRINT_FOLLOWUP, () => {})
+          .with(TARGETING_MODES.CARD_CHOICE, () => {})
           .with(TARGETING_MODES.BASIC, () => {
             if (cell.entity) {
               if (ui.selectedEntity.value?.equals(cell.entity)) {
@@ -170,10 +171,10 @@ const highlightTarget = () => {
           .with(TARGETING_MODES.SUMMON, () => {
             summon();
           })
-          .with(TARGETING_MODES.FOLLOWUP, () => {
+          .with(TARGETING_MODES.TARGETING, () => {
             if (!ui.selectedCard.value) return;
-            if (isFollowupTargetable) {
-              ui.followupTargets.value.push(cell.position);
+            if (isTargetable) {
+              ui.cardTargets.value.push(cell.position);
               pointerupSound.play();
             }
           })

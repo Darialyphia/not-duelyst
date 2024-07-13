@@ -22,8 +22,8 @@ export const TARGETING_MODES = {
   NONE: 'NONE',
   BASIC: 'BASIC',
   SUMMON: 'SUMMON',
-  FOLLOWUP: 'CARD_FOLLOWUP',
-  BLUEPRINT_FOLLOWUP: 'BLUEPRINT_FOLLOWUP'
+  TARGETING: 'TARGETING',
+  CARD_CHOICE: 'CARD_CHOICE'
 } as const;
 
 type TargetingMode = Values<typeof TARGETING_MODES>;
@@ -55,8 +55,8 @@ export type GameUiContext = {
   selectedCard: ComputedRef<Nullable<Card>>;
   selectedCardIndex: Ref<Nullable<number>>;
 
-  followupBlueprintIndexes: Ref<number[]>;
-  followupTargets: Ref<Point3D[]>;
+  cardChoiceIndexes: Ref<number[]>;
+  cardTargets: Ref<Point3D[]>;
   summonTarget: Ref<Nullable<Point3D>>;
 
   selectCardAtIndex(index: number): void;
@@ -75,7 +75,7 @@ export const useGameUiProvider = (session: GameSession) => {
   const highlightedCard = ref(null) as Ref<Nullable<Card>>;
   const selectedCardIndex = ref<Nullable<number>>(null);
   const selectedEntityId = ref<Nullable<EntityId>>(null);
-  const followupTargets = ref<Point3D[]>([]);
+  const cardTargets = ref<Point3D[]>([]);
   const summonTarget = ref<Nullable<Point3D>>();
 
   const targetingMode = ref<TargetingMode>(TARGETING_MODES.NONE);
@@ -95,7 +95,7 @@ export const useGameUiProvider = (session: GameSession) => {
     isMenuOpened: ref(false),
     targetingMode,
     summonTarget,
-    followupTargets,
+    cardTargets,
     selectedCardIndex,
     ambientLightColor: computed({
       get() {
@@ -154,7 +154,7 @@ export const useGameUiProvider = (session: GameSession) => {
       targetingMode.value = mode;
       api.mouseLightColor.value = DEFAULT_MOUSE_LIGHT_COLOR;
       api.ambientLightStrength.value =
-        mode === TARGETING_MODES.FOLLOWUP ? 0.6 : DEFAULT_AMBIENT_LIGHT_STRENGTH;
+        mode === TARGETING_MODES.TARGETING ? 0.6 : DEFAULT_AMBIENT_LIGHT_STRENGTH;
     },
     registerLayer(layer, name) {
       if (!layer) return;
@@ -206,17 +206,17 @@ export const useGameUiProvider = (session: GameSession) => {
           api.switchTargetingMode(TARGETING_MODES.SUMMON);
         })
         .with(CARD_KINDS.SPELL, CARD_KINDS.ARTIFACT, () => {
-          api.switchTargetingMode(TARGETING_MODES.FOLLOWUP);
+          api.switchTargetingMode(TARGETING_MODES.TARGETING);
         });
     },
     unselectCard() {
       selectedCardIndex.value = null;
-      followupTargets.value = [];
-      this.followupBlueprintIndexes.value = [];
+      cardTargets.value = [];
+      this.cardChoiceIndexes.value = [];
       api.switchTargetingMode(TARGETING_MODES.NONE);
     },
 
-    followupBlueprintIndexes: ref([])
+    cardChoiceIndexes: ref([])
   };
   provide(GAME_UI_INJECTION_KEY, api);
 

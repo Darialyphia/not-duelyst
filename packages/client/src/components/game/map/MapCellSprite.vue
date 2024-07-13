@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
-import { isDefined } from '@game/shared';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, Spritesheet } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
@@ -12,7 +11,6 @@ const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const diffuseTextures = computed(() => {
   const sheet = assets.getSpritesheet(cell.value.spriteId);
-
   return sheet.animations[cell.value.defaultRotation + camera.angle.value];
 });
 const normalSheet = ref<Spritesheet | null>(null);
@@ -62,16 +60,17 @@ const children = computed(() => {
 
 <template>
   <IlluminatedSprite
-    v-if="normalTextures"
+    v-if="diffuseTextures.length && normalTextures?.length"
     :diffuse-textures="diffuseTextures"
     :normal-textures="normalTextures"
     :anchor="0.5"
     :hit-area="hitArea"
     :filters="filters"
     :y="-14"
+    :is-animated="false"
   />
 
-  <MapEdge :cell-id="cellId" />
+  <!-- <MapEdge :cell-id="cellId" /> -->
 
   <MapCellChild v-for="spriteId in children" :key="spriteId" :sprite-id="spriteId" />
 </template>

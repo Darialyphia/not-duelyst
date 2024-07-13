@@ -8,6 +8,6 @@ const { cell } = defineProps<{ cell: Cell }>();
   <DangerHighlight :cell="cell" />
   <MovementHighlight :cell-id="cell.id" />
   <SummonHighlight :cell="cell" />
-  <FollowupHighlight :cell="cell" />
+  <TargetingHighlight :cell="cell" />
   <PathArrowHighlight :cell-id="cell.id" />
 </template>

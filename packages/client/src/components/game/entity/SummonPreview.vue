@@ -23,7 +23,7 @@ const isDisplayed = computed(() => {
     .with(
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
-      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      TARGETING_MODES.CARD_CHOICE,
       () => false
     )
     .with(TARGETING_MODES.SUMMON, () => {
@@ -32,7 +32,7 @@ const isDisplayed = computed(() => {
       }
       return ui.selectedCard.value.canPlayAt(ui.hoveredCell.value.position);
     })
-    .with(TARGETING_MODES.FOLLOWUP, () => {
+    .with(TARGETING_MODES.TARGETING, () => {
       return !!ui.selectedCard.value;
     })
     .exhaustive();
@@ -43,11 +43,11 @@ const position = computed(() => {
     .with(
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
-      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      TARGETING_MODES.CARD_CHOICE,
       () => null
     )
     .with(TARGETING_MODES.SUMMON, () => ui.hoveredCell.value!.position)
-    .with(TARGETING_MODES.FOLLOWUP, () => ui.summonTarget.value)
+    .with(TARGETING_MODES.TARGETING, () => ui.summonTarget.value)
     .exhaustive();
 });
 
@@ -93,7 +93,7 @@ const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
       :y="-CELL_HEIGHT"
     />
 
-    <container :x="CELL_WIDTH * 0.25" :y="-10">
+    <!-- <container :x="CELL_WIDTH * 0.25" :y="-10">
       <pixi-text :scale="0.5" :style="textStyle" :anchor="0.5">
         - {{ ui.selectedCard.value!.cost }}
       </pixi-text>
@@ -106,7 +106,8 @@ const goldCostTextures = useIlluminatedTexture('summon-cost-gold', 'idle');
         :scale-x="scaleX"
         :anchor="0.5"
         :playing="false"
+        :is-animated="false"
       />
-    </container>
+    </container> -->
   </IsoPositioner>
 </template>

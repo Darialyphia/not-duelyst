@@ -1,4 +1,5 @@
 import type { Filter } from '../card-effect';
+import type { CellConditionBase } from '../conditions/cell-conditions';
 import type {
   UnitConditionBase,
   UnitConditionExtras
@@ -20,13 +21,26 @@ export const nearestAllDirections = <T extends UnitConditionExtras['type']>(
   ];
 };
 
-export const followup = (index: number): Filter<UnitConditionBase> => {
+export const manualTarget = (index: number): Filter<UnitConditionBase> => {
   return [
     [
       {
-        type: 'is_followup',
+        type: 'is_manual_target',
         params: { index }
       }
     ]
   ];
 };
+
+export const anyOccupiedCell = (): Filter<CellConditionBase> => [
+  [{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]
+];
+
+export const cellWithEnemyMinion = (): Filter<CellConditionBase> => [
+  [
+    {
+      type: 'has_unit',
+      params: { unit: [[{ type: 'is_enemy' }, { type: 'is_minion' }]] }
+    }
+  ]
+];

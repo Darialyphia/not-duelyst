@@ -2,6 +2,7 @@ import type { Amount, NumericOperator } from '../card-effect';
 import type { UnitConditionExtras } from './unit-conditions';
 
 export type CardConditionBase =
+  | { type: 'any_card' }
   | { type: 'self' }
   | { type: 'minion' }
   | { type: 'spell' }

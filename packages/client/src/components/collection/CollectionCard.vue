@@ -106,12 +106,7 @@ const keywords = computed(() => {
 }
 .collection-card {
   position: relative;
-  display: grid;
   filter: none;
-  > * {
-    grid-column: 1;
-    grid-row: 1;
-  }
 
   &:focus-visible {
     outline: solid var(--border-size-3) var(--primary);

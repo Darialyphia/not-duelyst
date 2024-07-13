@@ -28,15 +28,12 @@ const { autoDestroyRef } = useAutoDestroy();
     :enter="{ alpha: 0.8 }"
     :leave="{ alpha: 0 }"
   >
-    <container
-      v-if="texture && isEnabled"
-      :ref="container => autoDestroyRef(container)"
-      event-mode="none"
-    >
+    <container v-if="texture && isEnabled" :ref="autoDestroyRef" event-mode="none">
       <IlluminatedSprite
         :diffuse-textures="[texture]"
         :normal-textures="[texture]"
         :anchor="0.5"
+        :is-animated="false"
       />
     </container>
   </PTransition>

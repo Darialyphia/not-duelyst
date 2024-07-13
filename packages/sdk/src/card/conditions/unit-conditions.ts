@@ -2,6 +2,7 @@ import type { KeywordId } from '../../utils/keywords';
 import type { Filter } from '../card-effect';
 
 export type UnitConditionBase =
+  | { type: 'any_unit' }
   | { type: 'is_self' }
   | { type: 'is_general' }
   | { type: 'is_minion' }
@@ -16,7 +17,7 @@ export type UnitConditionBase =
   | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_followup'; params: { index: number } }
+  | { type: 'is_manual_target'; params: { index: number } }
   | { type: 'has_keyword'; params: { keyword: KeywordId } };
 
 export type UnitConditionExtras =

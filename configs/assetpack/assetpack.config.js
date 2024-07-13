@@ -29,7 +29,7 @@ const prefixByAssetType = {
   tilesets: "",
   skills: "",
   units: "",
-  icons: "icon-",
+  icons: "icon_",
   tiles: "",
   ui: "",
   obstacles: "",
@@ -39,7 +39,7 @@ const prefixByAssetType = {
   pedestals: "",
   hitboxes: "hitbox-",
   emotes: "",
-  portraits: "portraits-"
+  portraits: "portraits-",
 };
 
 function manifestEntryParser(tree, processor) {
@@ -52,7 +52,7 @@ function manifestEntryParser(tree, processor) {
 
     const assetName = name.split("/").at(-1);
     const prefix = prefixByAssetType[assetType];
-    const stripExtension = name.endsWith(".json") ||assetType === 'icons';
+    const stripExtension = name.endsWith(".json");
     const needsCustomParser = name.endsWith(".json");
 
     const res = {
@@ -81,7 +81,7 @@ export default function (entry, output) {
     cache: false,
     plugins: {
       audio: audio({
-        inputs: [".mp3",  ".wav"],
+        inputs: [".mp3", ".wav"],
         outputs: [
           {
             formats: [".mp3"],

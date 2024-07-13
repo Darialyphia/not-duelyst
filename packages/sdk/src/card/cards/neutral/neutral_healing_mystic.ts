@@ -2,7 +2,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { fixedAmount } from '../../helpers/amount';
 import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
-import { followup } from '../../helpers/targeting';
+import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
 
 export const neutralHealingMystic = defineSerializedBlueprint({
   id: 'healing_mystic',
@@ -19,7 +19,10 @@ export const neutralHealingMystic = defineSerializedBlueprint({
   speed: 2,
   spriteId: 'neutral_healing_mystic',
   tags: [],
-  followup: undefined, // haven't handled followup as data yet,
+  targets: {
+    min: 0,
+    targets: [anyOccupiedCell()]
+  },
   effects: [
     openingGambitEffect({
       text: 'Heal another unit for 2',
@@ -27,7 +30,7 @@ export const neutralHealingMystic = defineSerializedBlueprint({
         {
           type: 'heal',
           params: {
-            targets: followup(0),
+            targets: manualTarget(0),
             amount: fixedAmount(2)
           }
         }

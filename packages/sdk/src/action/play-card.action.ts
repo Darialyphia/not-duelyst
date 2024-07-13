@@ -19,7 +19,7 @@ const schema = defaultActionSchema.extend({
       z: z.number()
     })
     .array(),
-  blueprintFollowup: z.number().array()
+  cardChoices: z.number().array()
 });
 
 export class PlayCardAction extends GameAction<typeof schema> {
@@ -40,6 +40,19 @@ export class PlayCardAction extends GameAction<typeof schema> {
 
     if (!this.card) {
       return this.printError(`Card not found at index ${this.payload.cardIndex}`);
+    }
+
+    const areTargetsValid = this.payload.targets.every((target, index) => {
+      return this.card.blueprint.targets?.isTargetable(target, {
+        card: this.card,
+        session: this.session,
+        playedPoint: this.payload.position,
+        targets: this.payload.targets.slice(0, index) // only take targets up to that point, as a target could have different rules depending on its position
+      });
+    });
+
+    if (!areTargetsValid) {
+      return this.printError('Could not play cards: invalid targets.');
     }
 
     this.player.playCardAtIndex(this.payload.cardIndex, this.payload);

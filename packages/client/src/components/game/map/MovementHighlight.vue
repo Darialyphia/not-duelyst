@@ -18,9 +18,9 @@ const isMatch = (cellToTest: Cell) => {
 
   return match(ui.targetingMode.value)
     .with(
-      TARGETING_MODES.FOLLOWUP,
+      TARGETING_MODES.TARGETING,
       TARGETING_MODES.SUMMON,
-      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      TARGETING_MODES.CARD_CHOICE,
       () => false
     )
     .with(TARGETING_MODES.BASIC, () => {

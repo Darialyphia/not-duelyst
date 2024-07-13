@@ -217,10 +217,16 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canMoveThroughCell(cell: Cell) {
-    return this.interceptors.canMoveThroughCell.getValue(
-      !cell.entity && cell.terrain === TERRAINS.GROUND,
-      { entity: this, cell }
-    );
+    const initialValue = cell.entity
+      ? this.isAlly(cell.entity.id)
+        ? config.CAN_WALK_THROUGH_ALLIES
+        : false
+      : cell.terrain === TERRAINS.GROUND;
+
+    return this.interceptors.canMoveThroughCell.getValue(initialValue, {
+      entity: this,
+      cell
+    });
   }
 
   canMove(distance: number) {

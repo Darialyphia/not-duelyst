@@ -134,7 +134,7 @@ watch(
     "
   >
     <slot />
-    <text
+    <!-- <text
       v-if="debug"
       :style="{ fill: 'white', fontSize: 35, fontFamily: 'monospace' }"
       :scale="0.25"
@@ -142,6 +142,6 @@ watch(
       event-mode="none"
     >
       x:{{ x }}, y:{{ y }}
-    </text>
+    </text> -->
   </container>
 </template>

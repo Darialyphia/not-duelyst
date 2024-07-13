@@ -7,6 +7,7 @@ import { type CardKind, type Faction, type FactionId, type Rarity } from './card
 import { type Keyword, type KeywordId } from '../utils/keywords';
 import { type Tag, type TagId } from '../utils/tribes';
 import type { CardEffect, GenericCardEffect, Trigger } from './card-effect';
+import type { CardTargetsConfig } from './card-targets';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -23,20 +24,7 @@ export type CardBlueprintBase = {
   keywords?: Keyword[];
   modifiers?: CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];
-  followup?: {
-    minTargetCount: number;
-    maxTargetCount: number;
-    isTargetable(
-      point: Point3D,
-      options: {
-        session: GameSession;
-        playedPoint?: Point3D;
-        followups: Point3D[];
-        card: Card;
-      }
-    ): boolean;
-  };
-  blueprintFollowup?: {
+  cardChoices?: {
     minChoices: number;
     maxChoices: number;
     getChoices(): CardBlueprint[];
@@ -49,6 +37,19 @@ type CardBlueprintUnit = {
   maxHp: number;
   speed: number;
   range: number;
+  targets?: {
+    minTargetCount: number;
+    maxTargetCount: number;
+    isTargetable(
+      point: Point3D,
+      options: {
+        session: GameSession;
+        playedPoint?: Point3D;
+        targets: Point3D[];
+        card: Card;
+      }
+    ): boolean;
+  };
   onPlay?: (options: {
     session: GameSession;
     card: Card;
@@ -68,7 +69,18 @@ type CardBlueprintSpell = {
     card: Card;
     targets: Array<Nullable<Point3D>>;
   }) => void;
-  isTargetable(options: { session: GameSession; card: Card }): boolean;
+  targets?: {
+    minTargetCount: number;
+    maxTargetCount: number;
+    isTargetable(
+      point: Point3D,
+      options: {
+        session: GameSession;
+        targets: Point3D[];
+        card: Card;
+      }
+    ): boolean;
+  };
 };
 
 type CardBlueprintArtifact = {
@@ -82,6 +94,18 @@ type CardBlueprintArtifact = {
     card: Card;
     targets: Array<Nullable<Point3D>>;
   }) => void;
+  targets?: {
+    minTargetCount: number;
+    maxTargetCount: number;
+    isTargetable(
+      point: Point3D,
+      options: {
+        session: GameSession;
+        targets: Point3D[];
+        card: Card;
+      }
+    ): boolean;
+  };
 };
 
 export type CardBlueprint =
@@ -101,7 +125,7 @@ export type SerializedBlueprintBase<T extends GenericCardEffect[]> = {
   keywords: KeywordId[];
   relatedBlueprintIds: string[];
   effects: T;
-  followup?: AnyObject;
+  targets?: CardTargetsConfig;
 };
 
 type SerializedBlueprintUnit = {

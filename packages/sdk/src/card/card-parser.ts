@@ -22,6 +22,7 @@ import {
 } from '../modifier/mixins/game-event.mixin';
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
 import type { GenericCardEffect, Trigger } from './card-effect';
+import { parseTargets } from './card-targets';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -561,6 +562,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     keywords: blueprint.keywords.map(getKeywordById).filter(isDefined),
     tags: blueprint.tags.map(getTagById).filter(isDefined),
     modifiers: cardModifiers,
+    targets: blueprint.targets ? parseTargets(blueprint.targets) : undefined,
     onPlay(ctx: EffectCtx) {
       effects.forEach(effect => {
         match(effect.config.executionContext)

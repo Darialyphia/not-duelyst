@@ -1,7 +1,7 @@
 import { HathoraCloud } from '@hathora/cloud-sdk-typescript';
 import { internalAction } from '../../_generated/server';
-import { Region } from '@hathora/cloud-sdk-typescript/dist/sdk/models/shared';
 import { api } from '../../_generated/api';
+import { Region } from '@hathora/cloud-sdk-typescript/models/components';
 
 export const getHathoraRoomIdUsecase = internalAction(async ctx => {
   const featureFlags = await ctx.runQuery(api.featureFlags.all);
@@ -10,15 +10,10 @@ export const getHathoraRoomIdUsecase = internalAction(async ctx => {
 
   const hathoraSdk = new HathoraCloud({
     appId: process.env.HATHORA_APP_ID,
-    security: {
-      hathoraDevToken: process.env.HATHORA_TOKEN!
-    }
+    hathoraDevToken: process.env.HATHORA_TOKEN!
   });
 
-  const room = await hathoraSdk.roomV2.createRoom({ region: Region.London });
-  if (room.statusCode !== 201) {
-    throw new Error('could not get room Id from Hathora');
-  }
+  const room = await hathoraSdk.roomsV2.createRoom({ region: Region.London });
 
-  return room.connectionInfoV2!.roomId;
+  return room.roomId;
 });

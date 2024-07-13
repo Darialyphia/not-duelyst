@@ -81,7 +81,7 @@ const isUnit = computed(
       <CardSprite
         class="sprite"
         :sprite-id="card.spriteId"
-        :pedestal-id="isUnit ? card.pedestalId ?? 'pedestal-default' : undefined"
+        :pedestal-id="isUnit ? (card.pedestalId ?? 'pedestal-default') : undefined"
         :animation="animation"
         :is-hovered="isHovered"
       />
@@ -138,7 +138,7 @@ const isUnit = computed(
   transform-style: preserve-3d;
 
   display: grid;
-  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
 
   width: 286px;
   height: 410px;

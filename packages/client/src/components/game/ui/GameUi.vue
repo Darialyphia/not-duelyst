@@ -50,7 +50,7 @@ onTick(() => {
     <TeamInfos />
     <ActionBar />
     <TargetingUi />
-    <BlueprintFollowupUi />
+    <CardChoiceUi />
     <GameMenu />
     <NewTurnIndicator />
     <!-- <CombatLog />   -->

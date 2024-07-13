@@ -30,7 +30,7 @@ export type GameEmits = {
       cardIndex: number;
       position?: Point3D;
       targets: Point3D[];
-      blueprintFollowup: number[];
+      cardChoices: number[];
     }
   ];
   surrender: [];

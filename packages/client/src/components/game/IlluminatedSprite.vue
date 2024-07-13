@@ -7,11 +7,18 @@ defineOptions({
   inheritAttrs: false
 });
 
-const { diffuseTextures, normalTextures, isFlipped, filters } = defineProps<{
+const {
+  diffuseTextures,
+  normalTextures,
+  isFlipped,
+  filters,
+  isAnimated = true
+} = defineProps<{
   diffuseTextures: (Texture | FrameObject)[];
   normalTextures: (Texture | FrameObject)[];
   filters?: Filter[];
   isFlipped?: boolean;
+  isAnimated?: boolean;
 }>();
 
 const sprite = defineModel<Nullable<AnimatedSprite>>('sprite', { required: false });
@@ -30,17 +37,34 @@ const normalFilters = computed(() => {
 
 <template>
   <animated-sprite
+    v-if="isAnimated"
     v-bind="attrs"
     :ref="diffuseRef"
     :filters="filters"
     :textures="diffuseTextures"
   />
-
-  <animated-sprite
-    v-if="isEnabled"
+  <sprite
+    v-else
     v-bind="attrs"
-    :ref="normalRef"
-    :filters="normalFilters"
-    :textures="normalTextures"
+    :ref="diffuseRef"
+    :filters="filters"
+    :texture="diffuseTextures[0]"
   />
+
+  <template v-if="isEnabled">
+    <animated-sprite
+      v-if="isAnimated"
+      v-bind="attrs"
+      :ref="normalRef"
+      :filters="normalFilters"
+      :textures="normalTextures"
+    />
+    <sprite
+      v-else
+      v-bind="attrs"
+      :ref="normalRef"
+      :filters="normalFilters"
+      :textures="normalTextures"
+    />
+  </template>
 </template>

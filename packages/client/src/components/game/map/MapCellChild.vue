@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const { spriteId } = defineProps<{ spriteId: string }>();
-const emit = defineEmits<{}>();
 
 const textures = useIlluminatedTexture(() => spriteId, 'idle');
 </script>

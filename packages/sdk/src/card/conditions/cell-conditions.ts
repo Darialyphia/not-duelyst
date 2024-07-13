@@ -2,6 +2,7 @@ import type { Filter } from '../card-effect';
 import type { UnitCondition } from './unit-conditions';
 
 export type CellConditionBase =
+  | { type: 'any_cell' }
   | { type: 'is_empty' }
   | { type: 'has_unit'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_at'; params: { x: number; y: number; z: number } }
@@ -10,7 +11,7 @@ export type CellConditionBase =
   | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_followup'; params: { index: number } }
+  | { type: 'is_manual_target'; params: { index: number } }
   | { type: 'is_top_right_corner' }
   | { type: 'is_top_left_corner' }
   | { type: 'is_bottom_right_corner' }

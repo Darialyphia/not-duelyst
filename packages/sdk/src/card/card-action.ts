@@ -46,13 +46,16 @@ export const getUnits = ({
   eventName?: string;
 }): Entity[] =>
   session.entitySystem.getList().filter(e => {
+    if (!conditions.length) return true;
+
     return conditions.some(group => {
       return group.every(condition => {
         const isMatch = match(condition)
+          .with({ type: 'any_unit' }, () => true)
           .with({ type: 'has_keyword' }, () => false /*TODO*/)
           .with({ type: 'is_ally' }, () => entity?.isAlly(e.id))
           .with({ type: 'is_enemy' }, () => entity?.isEnemy(e.id))
-          .with({ type: 'is_followup' }, condition => {
+          .with({ type: 'is_manual_target' }, condition => {
             const point = targets[condition.params.index];
             if (!point) return false;
             const entity = session.entitySystem.getEntityAt(point);
@@ -272,7 +275,8 @@ export const getCells = ({
     return conditions.some(group => {
       return group.every(condition => {
         return match(condition)
-          .with({ type: 'is_followup' }, condition => {
+          .with({ type: 'any_cell' }, () => true)
+          .with({ type: 'is_manual_target' }, condition => {
             const point = targets[condition.params.index];
             if (!point) return false;
             return cell.position.equals(point);
@@ -367,6 +371,7 @@ export const getCells = ({
           )
           .with({ type: 'has_unit' }, condition => {
             if (!cell.entity) return false;
+
             return getUnits({
               session,
               entity,
@@ -456,6 +461,7 @@ export const getCards = ({
       return conditions.some(group => {
         return group.every(condition => {
           return match(condition)
+            .with({ type: 'any_card' }, () => true)
             .with({ type: 'artifact' }, () => c.kind === CARD_KINDS.ARTIFACT)
             .with({ type: 'spell' }, () => c.kind === CARD_KINDS.SPELL)
             .with({ type: 'minion' }, () => c.kind === CARD_KINDS.MINION)

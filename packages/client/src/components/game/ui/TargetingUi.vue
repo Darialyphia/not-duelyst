@@ -7,9 +7,7 @@ const canSkip = computed(() => {
   const card = ui.selectedCard.value;
   if (!card) return false;
 
-  return (
-    ui.followupTargets.value.length <= (card.blueprint.followup?.minTargetCount ?? 0)
-  );
+  return ui.cardTargets.value.length <= (card.blueprint.targets?.minTargetCount ?? 0);
 });
 
 const cancel = () => {
@@ -18,21 +16,21 @@ const cancel = () => {
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
       TARGETING_MODES.SUMMON,
-      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      TARGETING_MODES.CARD_CHOICE,
       () => undefined
     )
-    .with(TARGETING_MODES.FOLLOWUP, () => {
+    .with(TARGETING_MODES.TARGETING, () => {
       ui.unselectCard();
     })
     .exhaustive();
 };
 
-const commitSummon = () => {
+const commitPlay = () => {
   dispatch('playCard', {
     cardIndex: ui.selectedCardIndex.value!,
-    position: ui.summonTarget.value!,
-    targets: ui.followupTargets.value,
-    blueprintFollowup: ui.followupBlueprintIndexes.value
+    position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+    targets: ui.cardTargets.value,
+    cardChoices: ui.cardChoiceIndexes.value
   });
   ui.unselectCard();
 };
@@ -43,15 +41,15 @@ watchEffect(() => {
       TARGETING_MODES.NONE,
       TARGETING_MODES.BASIC,
       TARGETING_MODES.SUMMON,
-      TARGETING_MODES.BLUEPRINT_FOLLOWUP,
+      TARGETING_MODES.CARD_CHOICE,
       () => undefined
     )
-    .with(TARGETING_MODES.FOLLOWUP, () => {
+    .with(TARGETING_MODES.TARGETING, () => {
       const card = ui.selectedCard.value;
       if (!card) return false;
 
-      if (ui.followupTargets.value.length === card.blueprint.followup!.maxTargetCount) {
-        commitSummon();
+      if (ui.cardTargets.value.length === card.blueprint.targets!.maxTargetCount) {
+        commitPlay();
       }
     })
     .exhaustive();
@@ -59,14 +57,14 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div v-if="ui.targetingMode.value === TARGETING_MODES.FOLLOWUP" class="followup-ui">
+  <div v-if="ui.targetingMode.value === TARGETING_MODES.TARGETING" class="targeting-ui">
     <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
       Cancel
     </UiFancyButton>
     <UiFancyButton
       v-if="canSkip"
       :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
-      @click="commitSummon"
+      @click="commitPlay"
     >
       Skip
     </UiFancyButton>
@@ -74,7 +72,7 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="postcss">
-.followup-ui {
+.targeting-ui {
   position: absolute;
   bottom: calc(var(--size-12) + 3rem);
   left: 50%;

@@ -10,7 +10,6 @@ import type { Point3D } from '../types';
 import { pointToCellId } from '../utils/helpers';
 import { GameSession } from '../game-session';
 import type { Entity } from '../entity/entity';
-import { KEYWORDS } from '../utils/keywords';
 
 export type DistanceMap = {
   costs: ReturnType<typeof dijkstra>['costs'];

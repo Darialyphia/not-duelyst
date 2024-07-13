@@ -6,10 +6,12 @@ import { f2General } from './cards/faction_2/general';
 import { parseSerializeBlueprint } from './card-parser';
 import { neutralHealingMystic } from './cards/neutral/neutral_healing_mystic';
 import { neutralRiftWalker } from './cards/neutral/neutral_rift_walker';
+import { f1TrueStrike } from './cards/faction_1/true_strike';
 
 const allCards: CardBlueprint[] = [
   f1General,
   f2General,
+  parseSerializeBlueprint(f1TrueStrike),
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker)
 ];
