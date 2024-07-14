@@ -1,11 +1,23 @@
 <script setup lang="ts">
-const { dispatch, gameType } = useGame();
+import { match } from 'ts-pattern';
+
+const { dispatch, ui, gameType } = useGame();
 const { isMenuOpened } = useGameUi();
 
 useEventListener('keydown', e => {
-  if (e.code === 'Escape' && !isMenuOpened.value) {
-    isMenuOpened.value = true;
-  }
+  match(ui.targetingMode.value)
+    .with('TARGETING', () => {
+      ui.unselectCard();
+    })
+    .with('CARD_CHOICE', () => {
+      ui.unselectCard();
+      ui.cardChoiceIndexes.value = [];
+    })
+    .otherwise(() => {
+      if (e.code === 'Escape' && !isMenuOpened.value) {
+        isMenuOpened.value = true;
+      }
+    });
 });
 
 const isSettingsOpened = ref(false);

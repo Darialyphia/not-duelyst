@@ -1,3 +1,4 @@
+import { config } from '@game/sdk';
 import type { ControlId } from '../utils/key-bindings';
 
 export const useGameControls = () => {
@@ -77,17 +78,35 @@ export const useGameControls = () => {
 
       if (!activePlayer.value) return;
       if (isMatch(e, 'endTurn')) dispatch('endTurn');
+      if (isMatch(e, 'skipTargets')) {
+        if (ui.targetingMode.value === TARGETING_MODES.TARGETING) {
+          dispatch('playCard', {
+            cardIndex: ui.selectedCardIndex.value!,
+            position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+            targets: ui.cardTargets.value,
+            cardChoices: ui.cardChoiceIndexes.value
+          });
+          ui.unselectCard();
+        }
+      }
 
       if (!isActivePlayer.value) return;
 
-      activePlayer.value.hand.forEach((unit, index) => {
+      for (let i = 0; i < config.MAX_HAND_SIZE; i++) {
         if (
-          isMatch(e, `summon${index + 1}` as ControlId) &&
-          activePlayer.value.canPlayCardAtIndex(index)
+          isMatch(e, `summon${i + 1}` as ControlId) &&
+          activePlayer.value.canPlayCardAtIndex(i)
         ) {
-          ui.selectCardAtIndex(index);
+          ui.selectCardAtIndex(i);
         }
-      });
+        if (
+          isMatch(e, `replace${i + 1}` as ControlId) &&
+          activePlayer.value.canReplace() &&
+          activePlayer.value.hand[i]
+        ) {
+          dispatch('replace', { cardIndex: i });
+        }
+      }
     });
 
     onCleanup(cleanup);

@@ -12,17 +12,10 @@ const canSkip = computed(() => {
 
 const cancel = () => {
   match(ui.targetingMode.value)
-    .with(
-      TARGETING_MODES.NONE,
-      TARGETING_MODES.BASIC,
-      TARGETING_MODES.SUMMON,
-      TARGETING_MODES.CARD_CHOICE,
-      () => undefined
-    )
     .with(TARGETING_MODES.TARGETING, () => {
       ui.unselectCard();
     })
-    .exhaustive();
+    .otherwise(() => void 0);
 };
 
 const commitPlay = () => {
