@@ -1,11 +1,10 @@
 import { noopFXContext } from './fx-system';
-import { GameSession, type SerializedGameState } from './game-session';
+import { GameSession, type SerializedGameState, type StarEvent } from './game-session';
 import type { SerializedAction } from './action/action';
-import type { FxEvent } from './client-session';
 import { ServerRngSystem } from './rng-system';
 
 export class ServerSession extends GameSession {
-  fxEvents: FxEvent[] = [];
+  eventsSinceLastDispatch: StarEvent[] = [];
 
   static create(state: SerializedGameState, seed: string) {
     return new ServerSession(state, new ServerRngSystem(seed), noopFXContext, {});
@@ -13,56 +12,28 @@ export class ServerSession extends GameSession {
 
   setup() {
     super.setup();
-
-    this.on('entity:before_destroy', entity => {
-      this.fxEvents.push({ type: 'entity:destroyed', payload: { entityId: entity.id } });
-    });
-
-    this.on('entity:before-move', ({ entity, path }) => {
-      this.fxEvents.push({
-        type: 'entity:moved',
-        payload: { entityId: entity.id, path }
-      });
-    });
-
-    this.on('entity:before_attack', ({ entity, target }) => {
-      this.fxEvents.push({
-        type: 'entity:attack',
-        payload: { entityId: entity.id, targetId: target.id }
-      });
-    });
-
-    this.on('entity:before_retaliate', ({ entity, target }) => {
-      this.fxEvents.push({
-        type: 'entity:retaliate',
-        payload: { entityId: entity.id, targetId: target.id }
-      });
-    });
-
-    this.on('entity:before_take_damage', ({ entity }) => {
-      this.fxEvents.push({
-        type: 'entity:take-damage',
-        payload: { entityId: entity.id }
-      });
+    this.eventsSinceLastDispatch = [];
+    this.on('*', e => {
+      this.eventsSinceLastDispatch.push(e);
     });
   }
 
   onUpdate(
     cb: (
       action: SerializedAction,
-      opts: { fxEvents: FxEvent[]; rngValues: number[] }
+      opts: { events: StarEvent[]; rngValues: number[] }
     ) => void
   ) {
     this.on('scheduler:flushed', () => {
       cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
-        fxEvents: this.fxEvents,
+        events: this.eventsSinceLastDispatch,
         rngValues: this.rngSystem.values
       });
     });
   }
 
   dispatch(action: SerializedAction) {
-    this.fxEvents = [];
+    this.eventsSinceLastDispatch = [];
     super.dispatch(action);
   }
 }

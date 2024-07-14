@@ -1,10 +1,10 @@
 import { type FXSystem } from './fx-system';
-import { type SerializedGameState } from './game-session';
+import { type GameEvent, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise, Values } from '@game/shared';
 import { ClientRngSystem, type RngSystem } from './rng-system';
-import { ClientSession, type FxEvent } from './client-session';
+import { ClientSession } from './client-session';
 import type { FACTION_IDS } from './card/card-enums';
 
 export type TutorialStep = {
@@ -69,9 +69,8 @@ export class TutorialSession extends ClientSession {
 
   dispatch(
     action: SerializedAction,
-    meta: { fxEvents: FxEvent[]; rngValues: number[] } = { fxEvents: [], rngValues: [] }
+    meta: { events: GameEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
   ) {
-    console.log(action, this.currentStep.action);
     if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
     super.dispatch(action, meta);
   }

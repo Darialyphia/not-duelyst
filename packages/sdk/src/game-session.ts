@@ -47,7 +47,7 @@ type GlobalDeckEvents = {
 };
 
 type GameEventsBase = {
-  '*': [string];
+  '*': [e: StarEvent];
   'game:action': [GameAction<any>];
   'scheduler:flushed': [];
   'game:ready': [];
@@ -61,6 +61,11 @@ export type GameEventMap = Prettify<
     GlobalCardEvents &
     GlobalDeckEvents
 >;
+
+export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'>> = {
+  eventName: T;
+  event: GameEventMap[T];
+};
 export type GameEvent = keyof GameEventMap;
 
 export class GameSession extends EventEmitter<GameEventMap> {
@@ -113,10 +118,10 @@ export class GameSession extends EventEmitter<GameEventMap> {
       'game:action',
       'game:ready'
     ].forEach(eventName => {
-      this.on(eventName as any, () => {
+      this.on(eventName as any, event => {
         // console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
-        this.emit('*', eventName);
+        this.emit('*', { eventName, event } as any);
       });
     });
   }
