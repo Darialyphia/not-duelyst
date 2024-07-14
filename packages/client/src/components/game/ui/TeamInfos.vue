@@ -49,34 +49,52 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
     </PopoverPortal>
 
     <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
-      <div
-        class="img-wrapper"
-        @contextmenu.prevent="
-          () => {
-            match(gameType)
-              .with(GAME_TYPES.SPECTATOR, () => null)
-              .with(GAME_TYPES.SANDBOX, () => {
-                if (activePlayer.equals(players[0])) {
-                  isEmotePopoverOpened = true;
-                  emotePopoverPlayer = 0;
-                }
-              })
-              .with(GAME_TYPES.PVP, () => {
-                if (playerId === players[0].id) {
-                  isEmotePopoverOpened = true;
-                  emotePopoverPlayer = 0;
-                }
-              })
-              .exhaustive();
-          }
-        "
-      >
-        <CardSprite
-          :sprite-id="players[0].general.card.blueprint.spriteId"
-          class="portrait"
-        />
+      <div class="pt-7">
+        <div
+          class="img-wrapper"
+          @contextmenu.prevent="
+            () => {
+              match(gameType)
+                .with(GAME_TYPES.SPECTATOR, () => null)
+                .with(GAME_TYPES.SANDBOX, () => {
+                  if (activePlayer.equals(players[0])) {
+                    isEmotePopoverOpened = true;
+                    emotePopoverPlayer = 0;
+                  }
+                })
+                .with(GAME_TYPES.PVP, () => {
+                  if (playerId === players[0].id) {
+                    isEmotePopoverOpened = true;
+                    emotePopoverPlayer = 0;
+                  }
+                })
+                .exhaustive();
+            }
+          "
+        >
+          <CardSprite
+            :sprite-id="players[0].general.card.blueprint.spriteId"
+            class="portrait"
+          />
 
-        <PopoverAnchor v-if="emotePopoverPlayer === 0" />
+          <PopoverAnchor v-if="emotePopoverPlayer === 0" />
+        </div>
+
+        <div class="flex gap-7 pt-10">
+          <div
+            v-for="artifact in players[0].artifacts"
+            :key="artifact.id"
+            class="artifact"
+          >
+            <CardSprite
+              :sprite-id="artifact.card.blueprint.spriteId"
+              animation="default"
+            />
+            <div class="flex gap-1 justicy-center">
+              <div v-for="i in artifact.durability" :key="i" class="durability" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -106,34 +124,52 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
     </div>
 
     <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
-      <div
-        class="img-wrapper"
-        @contextmenu.prevent="
-          () => {
-            match(gameType)
-              .with(GAME_TYPES.SPECTATOR, () => null)
-              .with(GAME_TYPES.SANDBOX, () => {
-                if (activePlayer.equals(players[1])) {
-                  isEmotePopoverOpened = true;
-                  emotePopoverPlayer = 1;
-                }
-              })
-              .with(GAME_TYPES.PVP, () => {
-                if (playerId === players[1].id) {
-                  isEmotePopoverOpened = true;
-                  emotePopoverPlayer = 1;
-                }
-              })
-              .exhaustive();
-          }
-        "
-      >
-        <CardSprite
-          :sprite-id="players[1].general.card.blueprint.spriteId"
-          class="portrait"
-        />
+      <div class="pt-7">
+        <div
+          class="img-wrapper"
+          @contextmenu.prevent="
+            () => {
+              match(gameType)
+                .with(GAME_TYPES.SPECTATOR, () => null)
+                .with(GAME_TYPES.SANDBOX, () => {
+                  if (activePlayer.equals(players[1])) {
+                    isEmotePopoverOpened = true;
+                    emotePopoverPlayer = 1;
+                  }
+                })
+                .with(GAME_TYPES.PVP, () => {
+                  if (playerId === players[1].id) {
+                    isEmotePopoverOpened = true;
+                    emotePopoverPlayer = 1;
+                  }
+                })
+                .exhaustive();
+            }
+          "
+        >
+          <CardSprite
+            :sprite-id="players[1].general.card.blueprint.spriteId"
+            class="portrait"
+          />
 
-        <PopoverAnchor v-if="emotePopoverPlayer === 1" />
+          <PopoverAnchor v-if="emotePopoverPlayer === 1" />
+        </div>
+
+        <div class="flex flex-row-reverse gap-7 pt-10">
+          <div
+            v-for="artifact in players[0].artifacts"
+            :key="artifact.id"
+            class="artifact"
+          >
+            <CardSprite
+              :sprite-id="artifact.card.blueprint.spriteId"
+              animation="default"
+            />
+            <div class="flex gap-1 justicy-center">
+              <div v-for="i in artifact.durability" :key="i" class="durability" />
+            </div>
+          </div>
+        </div>
       </div>
       <div>
         <div class="player-name">{{ players[1].name }}</div>
@@ -170,8 +206,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   top: var(--size-2);
 
   display: flex;
+  flex-wrap: wrap;
   gap: var(--size-3);
-  align-items: flex-end;
 
   text-shadow: black 1px 0 5px;
 
@@ -417,5 +453,17 @@ img.v-enter-from,
 img.v-leave-to {
   transform: scale(0);
   opacity: 0;
+}
+
+.artifact {
+  transform: scale(1.5);
+  width: var(--size-6);
+}
+
+.durability {
+  width: var(--size-1);
+  height: var(--size-2);
+  background: linear-gradient(130deg, var(--gray-0), var(--gray-4));
+  outline: solid 1px hsl(0 0 0 / 0.5);
 }
 </style>

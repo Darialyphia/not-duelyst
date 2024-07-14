@@ -1,4 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { cellWithAllyGeneral } from '../../helpers/targeting';
 
 export const f1SunstoneBracers = defineSerializedBlueprint({
   id: 'sunstone_bracers',
@@ -12,5 +13,9 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
   relatedBlueprintIds: [],
   spriteId: 'icon_f1_artifact_sunstonebracers',
   tags: [],
+  targets: {
+    min: 1,
+    targets: [cellWithAllyGeneral()]
+  },
   effects: []
 });

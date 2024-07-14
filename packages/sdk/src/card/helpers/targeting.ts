@@ -44,3 +44,12 @@ export const cellWithEnemyMinion = (): Filter<CellConditionBase> => [
     }
   ]
 ];
+
+export const cellWithAllyGeneral = (): Filter<CellConditionBase> => [
+  [
+    {
+      type: 'has_unit',
+      params: { unit: [[{ type: 'is_ally' }, { type: 'is_general' }]] }
+    }
+  ]
+];

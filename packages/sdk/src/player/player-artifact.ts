@@ -94,6 +94,7 @@ export class PlayerArtifact extends EventEmitter<ArtifactEventMap> {
   destroy() {
     this.emit('destroy_destroy', this);
     this.player.general.off('after_take_damage', this.onGeneralDamageTaken.bind(this));
+    this.player.unequipArtifact(this.id);
     this.emit('after_destroy', this);
   }
 

@@ -111,7 +111,7 @@ onTick(() => {
   pointer-events: none;
   position: absolute;
   z-index: 1;
-  top: 13rem;
+  top: 16rem;
   &.left {
     left: var(--size-5);
     &:is(.v-enter-from, .v-leave-to) {
