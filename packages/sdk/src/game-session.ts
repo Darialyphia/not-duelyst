@@ -22,6 +22,7 @@ import { noopFXContext, type FXSystem } from './fx-system';
 import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
 import { CARD_EVENTS, type CardEvent, type CardEventMap } from './card/card';
 import type { DeckEvent, DeckEventMap } from './card/deck';
+import type { ArtifactEvent, ArtifactEventMap } from './player/player-artifact';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -45,6 +46,9 @@ type GlobalCardEvents = {
 type GlobalDeckEvents = {
   [Event in DeckEvent as `deck:${Event}`]: DeckEventMap[Event];
 };
+type GlobalArtifactEvents = {
+  [Event in ArtifactEvent as `artifact:${Event}`]: ArtifactEventMap[Event];
+};
 
 type GameEventsBase = {
   '*': [e: StarEvent];
@@ -59,7 +63,8 @@ export type GameEventMap = Prettify<
     GlobalEntityEvents &
     GlobalPlayerEvents &
     GlobalCardEvents &
-    GlobalDeckEvents
+    GlobalDeckEvents &
+    GlobalArtifactEvents
 >;
 
 export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'>> = {

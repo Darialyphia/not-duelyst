@@ -19,6 +19,7 @@ import { CARD_KINDS, FACTION_IDS, FACTIONS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck, DECK_EVENTS } from '../card/deck';
 import { createCard } from '../card/cards/card-factory';
+import { PlayerArtifact, type PlayerArtifactId } from './player-artifact';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -67,6 +68,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   public currentGold: number;
   private isP2T1: boolean;
 
+  artifacts: PlayerArtifact[] = [];
   graveyard!: Card[];
   cards!: Card[];
   deck!: Deck;
@@ -166,6 +168,19 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.placeGeneral();
 
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
+  }
+
+  equipArtifact(cardIndex: CardIndex) {
+    this.artifacts.push(
+      new PlayerArtifact(this.session, { cardIndex, playerId: this.id })
+    );
+  }
+
+  unequipArtifact(id: PlayerArtifactId) {
+    const artifact = this.artifacts.find(a => a.id === id);
+    if (!artifact) return;
+    artifact.destroy();
+    this.artifacts = this.artifacts.filter(a => a.equals(artifact));
   }
 
   placeGeneral() {

@@ -9,6 +9,8 @@ import { CARD_KINDS } from './card-enums';
 export type ArtifactInterceptor = Artifact['interceptors'];
 
 export class Artifact extends Card implements Serializable {
+  private targets: Point3D[] = [];
+
   constructor(
     session: GameSession,
     index: CardIndex,
@@ -63,10 +65,15 @@ export class Artifact extends Card implements Serializable {
   }
 
   playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+    this.targets = ctx.targets;
+    this.player.equipArtifact(this.index);
+  }
+
+  equip() {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
-      targets: ctx.targets
+      targets: this.targets
     });
   }
 }
