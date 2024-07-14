@@ -1,5 +1,4 @@
 import { api } from '@game/api';
-import { merge } from 'lodash-es';
 import type { Settings } from '../utils/settings';
 import type { InjectionKey } from 'vue';
 

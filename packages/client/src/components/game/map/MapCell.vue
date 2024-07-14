@@ -93,6 +93,70 @@ const highlightTarget = () => {
     ? '#77ff77'
     : '#ff7777';
 };
+
+const selectEntity = () => {
+  if (cell.value.entity?.player.equals(activePlayer.value)) {
+    ui.selectEntity(cell.value.entity.id);
+    pointerupSound.play();
+  }
+};
+
+const onPointerdown = (event: FederatedPointerEvent) => {
+  if (event.button !== 0) return;
+
+  if (!isActivePlayer) return;
+  match(ui.targetingMode.value)
+    .with(TARGETING_MODES.NONE, () => {
+      selectEntity();
+    })
+    .otherwise(() => {
+      return;
+    });
+};
+
+const onPointerup = (event: FederatedPointerEvent) => {
+  if (event.button === 2) {
+    if (cell.value.entity) {
+      ui.highlightedCard.value = cell.value.entity.card;
+    } else {
+      ui.unselectEntity();
+      ui.unselectCard();
+    }
+    return;
+  }
+
+  if (!isActivePlayer) return;
+  match(ui.targetingMode.value)
+    .with(TARGETING_MODES.CARD_CHOICE, () => {
+      return;
+    })
+    .with(TARGETING_MODES.BASIC, () => {
+      if (cell.value.entity) {
+        if (ui.selectedEntity.value?.equals(cell.value.entity)) {
+          return;
+        }
+        attack();
+      } else {
+        move();
+      }
+    })
+    .with(TARGETING_MODES.SUMMON, () => {
+      summon();
+    })
+    .with(TARGETING_MODES.TARGETING, () => {
+      if (!ui.selectedCard.value) return;
+      if (isTargetable) {
+        ui.cardTargets.value.push(cell.value.position);
+        pointerupSound.play();
+      } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
+        ui.unselectCard();
+      }
+    })
+    .with(TARGETING_MODES.NONE, () => {
+      return;
+    })
+    .exhaustive();
+};
 </script>
 
 <template>
@@ -144,54 +208,8 @@ const highlightTarget = () => {
         ui.mouseLightStrength.value = DEFAULT_MOUSE_LIGHT_STRENGTH;
       }
     "
-    @pointerup="
-      (event: FederatedPointerEvent) => {
-        if (event.button === 2) {
-          if (cell.entity) {
-            ui.highlightedCard.value = cell.entity.card;
-          } else {
-            ui.unselectEntity();
-            ui.unselectCard();
-          }
-          return;
-        }
-
-        if (!isActivePlayer) return;
-
-        match(ui.targetingMode.value)
-          .with(TARGETING_MODES.CARD_CHOICE, () => {})
-          .with(TARGETING_MODES.BASIC, () => {
-            if (cell.entity) {
-              if (ui.selectedEntity.value?.equals(cell.entity)) {
-                ui.unselectEntity();
-                return;
-              }
-              attack();
-            } else {
-              move();
-            }
-          })
-          .with(TARGETING_MODES.SUMMON, () => {
-            summon();
-          })
-          .with(TARGETING_MODES.TARGETING, () => {
-            if (!ui.selectedCard.value) return;
-            if (isTargetable) {
-              ui.cardTargets.value.push(cell.position);
-              pointerupSound.play();
-            } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
-              ui.unselectCard();
-            }
-          })
-          .with(TARGETING_MODES.NONE, () => {
-            if (cell.entity?.player.equals(activePlayer)) {
-              ui.selectEntity(cell.entity.id);
-              pointerupSound.play();
-            }
-          })
-          .exhaustive();
-      }
-    "
+    @pointerdown="onPointerdown"
+    @pointerup="onPointerup"
   >
     <MapCellSprite :cell-id="cellId" />
     <MapCellHighlights :cell="cell" />

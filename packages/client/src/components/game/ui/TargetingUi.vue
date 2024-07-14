@@ -47,7 +47,6 @@ watchEffect(() => {
     .with(TARGETING_MODES.TARGETING, () => {
       const card = ui.selectedCard.value;
       if (!card) return false;
-
       if (ui.cardTargets.value.length === card.blueprint.targets!.maxTargetCount) {
         commitPlay();
       }
