@@ -50,8 +50,9 @@ watchEffect(async () => {
 const staticStyle = computed(() => {
   if (!sheet.value) return null;
   const { sourceSize } = Object.values(sheet.value.data.frames)[0];
+  const bg = sheet.value.baseTexture.resource.src;
   return {
-    '--bg': `url(/assets/units/${spriteId}.png)`,
+    '--bg': `url('${bg}')`,
     '--width': `${sourceSize?.w}px`,
     '--height': `${sourceSize?.h}px`,
     '--pos-x': 0,

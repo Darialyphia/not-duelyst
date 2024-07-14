@@ -86,17 +86,26 @@ const minionsCount = computed(() => {
           <template v-if="card.copies > 1">X {{ card.copies }}</template>
         </div>
 
-        <div class="flex items-center ml-auto">
+        <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
           <UiIconButton
+            v-if="card.card.kind === 'MINION' || card.card.kind === 'GENERAL'"
             name="ph:caret-left-fill"
             class="pedestal-nav"
             type="button"
             @click.stop="changePedestal(card.id, -1)"
           />
           <div class="sprite mx-auto">
-            <CardSprite :sprite-id="card.card.spriteId" :pedestal-id="card.pedestalId" />
+            <CardSprite
+              :sprite-id="card.card.spriteId"
+              :pedestal-id="
+                card.card.kind === 'MINION' || card.card.kind === 'GENERAL'
+                  ? card.pedestalId
+                  : undefined
+              "
+            />
           </div>
           <UiIconButton
+            v-if="card.card.kind === 'MINION' || card.card.kind === 'GENERAL'"
             name="ph:caret-right-fill"
             class="pedestal-nav"
             type="button"
@@ -224,13 +233,6 @@ li {
 
 .sprite {
   transform: translateY(24px);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  > * {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-  }
 }
 
 .pedestal-nav {

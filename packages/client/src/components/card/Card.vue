@@ -130,7 +130,7 @@ const isUnit = computed(
 
 <style scoped lang="postcss">
 .card {
-  --z-translate: 25px;
+  --z-translate: 40px;
 
   user-select: none;
 
