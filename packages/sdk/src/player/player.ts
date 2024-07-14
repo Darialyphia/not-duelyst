@@ -192,7 +192,6 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     if (!card) return;
 
     const replacement = this.deck.replace(card);
-    console.log(replacement);
     this.hand[index] = replacement;
     this.cardsReplacedThisTurn++;
   }

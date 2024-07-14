@@ -53,14 +53,6 @@ const position = computed(() => {
     .exhaustive();
 });
 
-const textStyle = new TextStyle({
-  fontSize: 20,
-  fontWeight: '700',
-  fill: 'red',
-  stroke: 'black',
-  strokeThickness: 4
-});
-
 const textures = ref<Nullable<FrameObject[]>>();
 const { assets } = useGame();
 

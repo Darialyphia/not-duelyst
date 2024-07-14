@@ -19,6 +19,7 @@ const { x, y } = useMouse();
 const offset = ref({ x: 0, y: 0 });
 
 const onMouseDown = (e: MouseEvent, index: number) => {
+  console.log(index);
   if (userPlayer.value.canPlayCardAtIndex(index)) {
     ui.selectCardAtIndex(index);
   }
@@ -87,7 +88,7 @@ const onMouseDown = (e: MouseEvent, index: number) => {
         !isActive || !isDefined(ui.selectedCardIndex.value) || !userPlayer.canReplace
       "
       :class="{ dragging: isDefined(draggedIndex) }"
-      @mouseup="
+      @click="
         () => {
           dispatch('replace', { cardIndex: ui.selectedCardIndex.value! });
           ui.unselectCard();
@@ -247,8 +248,6 @@ const onMouseDown = (e: MouseEvent, index: number) => {
 }
 
 #dragged-card {
-  pointer-events: none;
-
   position: fixed;
   z-index: 999;
   top: 0;

@@ -216,6 +216,18 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return this.interceptors.maxRetalitions.getValue(1, this);
   }
 
+  get isExhausted(): boolean {
+    if (this.player.isActive) {
+      return (
+        !this.canMove(0) &&
+        !this.player.opponent.entities.some(entity => this.canAttack(entity))
+      );
+    } else {
+      if (config.UNLIMITED_RETALIATION) return false;
+      return this.retaliationsDone >= this.maxRetaliations;
+    }
+  }
+
   canMoveThroughCell(cell: Cell) {
     const initialValue = cell.entity
       ? this.isAlly(cell.entity.id)
@@ -230,10 +242,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   canMove(distance: number) {
-    return this.interceptors.canMove.getValue(
-      distance <= this.speed && this.movementsTaken < this.maxMovements,
-      this
-    );
+    const baseValue =
+      distance <= this.speed &&
+      this.movementsTaken < this.maxMovements &&
+      (config.CAN_MOVE_AFTER_ATTACK ? true : this.attacksTaken < this.maxAttacks);
+    return this.interceptors.canMove.getValue(baseValue, this);
   }
 
   canRetaliate(source: Entity) {
@@ -394,18 +407,6 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.checkHpForDeletion();
 
     this.emit(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
-  }
-
-  get isExhausted(): boolean {
-    if (this.player.isActive) {
-      return (
-        !this.canMove(0) &&
-        !this.player.opponent.entities.some(entity => this.canAttack(entity))
-      );
-    } else {
-      if (config.UNLIMITED_RETALIATION) return false;
-      return this.retaliationsDone >= this.maxRetaliations;
-    }
   }
 
   retaliate(power: number, target: Entity) {
