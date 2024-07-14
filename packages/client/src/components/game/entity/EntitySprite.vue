@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { FACTIONS, type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
+import { type EntityId } from '@game/sdk';
+import { AnimatedSprite, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
@@ -8,11 +8,12 @@ import { COLOR_CODED_UNITS } from '~/utils/settings';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { assets, ui, fx, camera, gameType } = useGame();
+const { ui, fx, camera, gameType } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const userPlayer = useUserPlayer();
+
 const sprite = ref<AnimatedSprite>();
 const unitTextures = useEntityTexture(entityId, sprite);
 
@@ -24,19 +25,23 @@ watchEffect(() => {
 });
 const exhaustedFilter = new AdjustmentFilter({ saturation: 0.35 });
 const selectedFilter = new AdjustmentFilter({});
+
 const getPlayerFilterAlpha = () =>
   match(settings.value.a11y.colorCodeUnits)
     .with(COLOR_CODED_UNITS.OFF, () => 0)
     .with(COLOR_CODED_UNITS.SUBTLE, () => 0.08)
     .with(COLOR_CODED_UNITS.STRONG, () => 0.2)
     .exhaustive();
+
+const A11Y_GREEN = 0x00ff00;
+const A11Y_RED = 0xff0000;
 const getPlayerFilterColor = () =>
   match(gameType.value)
     .with(GAME_TYPES.PVP, GAME_TYPES.SANDBOX, () =>
-      userPlayer.value!.equals(entity.value.player) ? 0x00ff00 : 0xff0000
+      userPlayer.value!.equals(entity.value.player) ? A11Y_GREEN : A11Y_RED
     )
     .with(GAME_TYPES.SPECTATOR, () =>
-      entity.value.player.isPlayer1 ? 0x00ff00 : 0xff0000
+      entity.value.player.isPlayer1 ? A11Y_GREEN : A11Y_RED
     )
     .exhaustive();
 
@@ -99,36 +104,12 @@ const isFlipped = computed(() => {
 
   return value;
 });
-
-const pedestalTextures = ref<FrameObject[]>();
-
-watchEffect(async () => {
-  const spritesheet = await assets.loadSpritesheet(entity.value.card.pedestalId);
-  pedestalTextures.value = createSpritesheetFrameObject('idle', spritesheet);
-});
 </script>
 
 <template>
   <container>
-    <!-- <PointLight
-      v-if="lightBrightness > 0"
-      :color="lightColor"
-      :brightness="lightBrightness"
-      :x="0"
-      :y="-30"
-    /> -->
-
     <container :filters="filters">
-      <animated-sprite
-        v-if="pedestalTextures"
-        :textures="pedestalTextures"
-        :anchor-x="0.5"
-        :anchor-y="1"
-        :playing="true"
-        :y="CELL_HEIGHT * 1.2"
-        :is-flipped="isFlipped"
-      />
-
+      <EntityPedestal :entity-id="entityId" />
       <animated-sprite
         v-if="unitTextures"
         :ref="

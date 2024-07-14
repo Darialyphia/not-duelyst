@@ -1,12 +1,45 @@
 <script setup lang="ts">
-import type { Entity, EntityId } from '@game/sdk';
-import { Container, Texture } from 'pixi.js';
+import type { EntityId } from '@game/sdk';
+import type { Point3D } from '@game/shared';
+import { Container } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { session, camera, ui, fx, assets } = useGame();
+const { session, camera, fx } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
+
+const position = ref(entity.value.position.serialize());
+watchEffect(() => {
+  position.value = entity.value.position.serialize();
+});
+const isMoving = ref(false);
+
+useDispatchCallback('entity:after-move', async event => {
+  if (!event.entity.equals(entity.value)) return;
+  return new Promise(resolve => {
+    move(event.path, resolve);
+  });
+});
+
+const move = (path: Point3D[], done: () => void) => {
+  isMoving.value = true;
+  const timeline = gsap.timeline({
+    onComplete() {
+      isMoving.value = false;
+      done();
+    }
+  });
+  for (const point of path) {
+    timeline.to(position.value, {
+      ...point,
+      duration: 0.4,
+      // ease: Power0.easeNone
+      ease: Power1.easeOut
+    });
+  }
+  timeline.play();
+};
 
 const scaleX = computed(() => {
   let value = entity.value.player.isPlayer1 ? 1 : -1;
@@ -67,14 +100,26 @@ onMounted(() => {
   });
 });
 
-const { autoDestroyRef } = useAutoDestroy();
+const alpha = ref(1);
+
+useDispatchCallback('entity:after_destroy', event => {
+  if (!event.equals(entity.value)) return;
+  return new Promise(resolve => {
+    gsap.to(alpha, {
+      value: 0,
+      duration: 1,
+      ease: Power1.easeOut,
+      onComplete: resolve
+    });
+  });
+});
 </script>
 
 <template>
   <IsoPositioner
     v-if="entity && fx.entityPositionsMap.value.get(entityId)"
-    :animated="!fx.isPlaying.value"
-    v-bind="fx.entityPositionsMap.value.get(entityId)!"
+    :animated="!isMoving"
+    v-bind="position"
     :z-index-offset="2.5"
     :angle="camera.angle.value"
     :height="boardDimensions.height"
@@ -93,6 +138,7 @@ const { autoDestroyRef } = useAutoDestroy();
           }
         }
       "
+      :alpha="alpha"
     >
       <container :scale-x="scaleX">
         <PTransition v-if="settings.fx.shadows" appear @enter="onShadowEnter">

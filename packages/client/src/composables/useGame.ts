@@ -1,5 +1,11 @@
 import type { Values, UnionToIntersection, Point3D, Nullable } from '@game/shared';
-import type { EntityId, GameSession, PlayerId, TutorialStep } from '@game/sdk';
+import type {
+  ClientSession,
+  EntityId,
+  GameSession,
+  PlayerId,
+  TutorialStep
+} from '@game/sdk';
 import type { AssetsContext } from './useAssets';
 import type { IsoCameraContext } from './useIsoCamera';
 import type { GameUiContext } from './useGameUi';
@@ -41,7 +47,7 @@ export type GameEmits = {
 export type GameContext = {
   camera: IsoCameraContext;
   assets: AssetsContext;
-  session: GameSession;
+  session: ClientSession;
   ui: GameUiContext;
   pathfinding: PathfindingContext;
   dispatch: ShortEmits<GameEmits>;
@@ -64,7 +70,7 @@ export const useGameProvider = ({
   p2Emote,
   currentTutorialStep
 }: {
-  session: GameSession;
+  session: ClientSession;
   emit: ShortEmits<GameEmits>;
   playerId: PlayerId | null;
   gameType: Ref<GameType>;

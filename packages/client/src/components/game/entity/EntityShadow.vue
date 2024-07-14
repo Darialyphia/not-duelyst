@@ -105,35 +105,22 @@ const isFlipped = computed(() => {
 </script>
 
 <template>
-  <container
-    :ref="
-      (el: any) => {
-        const spriteInst = el?.children?.find(
-          (child: any) => child instanceof AnimatedSprite
-        );
-
-        if (spriteInst) sprite = spriteInst;
-      }
-    "
+  <animated-sprite
+    v-if="textures"
+    ref="sprite"
     :z-index="1"
     :alpha="0.5"
-  >
-    <animated-sprite
-      v-if="textures"
-      ref="sprite"
-      :textures="textures"
-      :filters="filters"
-      :scale-y="-0.5"
-      :skew-x="isFlipped ? 0.8 : -0.8"
-      :anchor-x="0.5"
-      :anchor-y="0.5"
-      :x="0"
-      :y="CELL_HEIGHT * 0.5"
-      :pivot-y="20"
-      loop
-      event-mode="none"
-      playing
-      :tint="0"
-    />
-  </container>
+    :textures="textures"
+    :filters="filters"
+    :scale-y="-0.5"
+    :skew-x="isFlipped ? 0.8 : -0.8"
+    :x="0"
+    :y="CELL_HEIGHT * 0.5"
+    :anchor="{ x: 0.5, y: 1 }"
+    :pivot-y="20"
+    loop
+    event-mode="none"
+    playing
+    :tint="0"
+  />
 </template>
