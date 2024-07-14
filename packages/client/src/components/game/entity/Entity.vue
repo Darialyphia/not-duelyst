@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { EntityId } from '@game/sdk';
-import type { Point3D } from '@game/shared';
+import { randomInt, type Point3D } from '@game/shared';
 import { Container } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
@@ -111,6 +111,19 @@ useDispatchCallback('entity:after_destroy', event => {
       ease: Power1.easeOut,
       onComplete: resolve
     });
+  });
+});
+
+useDispatchCallback('entity:after_take_damage', event => {
+  if (!event.entity.equals(entity.value)) return;
+  const bloodFx = randomInt(4);
+  session.fxSystem.playSfxOnEntity(event.entity.id, {
+    resourceName: 'fx_bloodground',
+    animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
+    offset: {
+      x: 0,
+      y: 20
+    }
   });
 });
 </script>

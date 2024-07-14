@@ -10,7 +10,10 @@ export type Animation =
   | 'hit'
   | 'death'
   | 'default'
-  | 'active';
+  | 'active'
+  | 'caststart'
+  | 'castloop'
+  | 'castend';
 
 export type FXSystem = {
   moveEntity(

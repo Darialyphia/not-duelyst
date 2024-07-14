@@ -27,100 +27,50 @@ const isDisplayed = computed(() => {
     .with(DISPLAY_UNITS_STATS.HOVER_ONLY, () => ui.hoveredEntity.value?.id === entityId)
     .exhaustive();
 });
+
+const getStatColor = (current: number, reference: number) =>
+  current < reference ? 'red' : current > reference ? 0x12c943 : 'white';
+
 const attackStyle = new TextStyle({
   fontSize: 30,
   align: 'center',
-  fill:
-    entity.value.attack < entity.value.card.blueprint.attack
-      ? 'red'
-      : entity.value.attack > entity.value.card.blueprint.attack
-        ? 0x12c943
-        : 'white'
+  fill: getStatColor(entity.value.attack, entity.value.card.blueprint.attack)
 });
 
 const hpStyle = new TextStyle({
   fontSize: 30,
   align: 'center',
-  fill:
-    entity.value.hp < entity.value.card.blueprint.maxHp
-      ? 'red'
-      : entity.value.hp > entity.value.card.blueprint.maxHp
-        ? 0x12c943
-        : 'white'
+  fill: getStatColor(entity.value.hp, entity.value.card.blueprint.maxHp)
 });
 
 watchEffect(() => {
-  attackStyle.fill =
-    entity.value.attack < entity.value.card.blueprint.attack
-      ? 'red'
-      : entity.value.attack > entity.value.card.blueprint.attack
-        ? 0x12c943
-        : 'white';
-  hpStyle.fill =
-    entity.value.hp < entity.value.card.blueprint.maxHp
-      ? 'red'
-      : entity.value.hp > entity.value.card.blueprint.maxHp
-        ? 0x12c943
-        : 'white';
+  attackStyle.fill = getStatColor(
+    entity.value.attack,
+    entity.value.card.blueprint.attack
+  );
+
+  hpStyle.fill = getStatColor(entity.value.hp, entity.value.card.blueprint.maxHp);
 });
 
-const attackDiff = ref<string | null>(null);
-const maxHpDiff = ref<string | null>(null);
-const currentHpDiff = ref<string | null>(null);
-const currentHpDiffStyle = new TextStyle({
-  fontSize: 34,
-  align: 'center'
+const damageAmount = ref(0);
+useDispatchCallback('entity:after_take_damage', event => {
+  if (!event.entity.equals(entity.value)) return;
+  damageAmount.value = event.amount;
+
+  setTimeout(() => {
+    damageAmount.value = 0;
+  }, 1500);
 });
 
-until(entity)
-  .toBeTruthy()
-  .then(() => {
-    entity.value.on('after_take_damage', e => {
-      currentHpDiff.value = `-${e.amount}`;
-      currentHpDiffStyle.fill = 'red';
-      setTimeout(() => {
-        currentHpDiff.value = null;
-      }, 1200);
-    });
+const healAmount = ref(0);
+useDispatchCallback('entity:after_heal', event => {
+  if (!event.entity.equals(entity.value)) return;
+  healAmount.value = event.amount;
 
-    entity.value.on('after_heal', e => {
-      currentHpDiff.value = `+${e.amount}`;
-      currentHpDiffStyle.fill = 'lime';
-      setTimeout(() => {
-        currentHpDiff.value = null;
-      }, 1200);
-    });
-  });
-
-watch(
-  () => entity.value.attack,
-  (newAttack, oldAttack) => {
-    const diff = newAttack - oldAttack;
-    attackDiff.value = `${diff > 0 ? '+' : ''}${diff}`;
-    setTimeout(() => {
-      attackDiff.value = null;
-    }, 1200);
-  }
-);
-watch(
-  () => entity.value.maxHp,
-  (newHp, oldHp) => {
-    const diff = newHp - oldHp;
-    maxHpDiff.value = `${diff > 0 ? '+' : ''}${diff}`;
-    setTimeout(() => {
-      maxHpDiff.value = null;
-    }, 1200);
-  }
-);
-
-const diffProps = {
-  duration: { enter: 200, leave: 200 },
-  beforeEnter: { scale: 0 },
-  enter: { scale: 1, ease: EasePresets.easeOutCubic },
-  leave: { scale: 0, ease: EasePresets.easeOutCubic }
-};
-
-const { autoDestroyRef } = useAutoDestroy();
+  setTimeout(() => {
+    healAmount.value = 0;
+  }, 1500);
+});
 </script>
 
 <template>
@@ -144,80 +94,47 @@ const { autoDestroyRef } = useAutoDestroy();
     </animated-sprite>
   </container>
 
-  <container
-    :ref="(container: any) => ui.assignLayer(container, 'ui')"
-    :x="CELL_WIDTH * 0.15"
-    :y="CELL_HEIGHT * 0.25"
-    event-mode="none"
+  <PTransition
+    :duration="{ enter: 300, leave: 300 }"
+    :before-enter="{ scale: 0, y: 20 }"
+    :enter="{ scale: 0.25, y: 0, ease: EasePresets.easeOutCubic }"
+    :leave="{ scale: 0, alpha: 0, ease: EasePresets.easeOutCubic }"
   >
-    <PTransition v-bind="diffProps">
-      <graphics
-        v-if="attackDiff"
-        :ref="(el: any) => autoDestroyRef(el)"
-        :x="maxHpDiff ? -CELL_WIDTH * 0.3 : -CELL_WIDTH * 0.15"
-        @render="
-          g => {
-            g.clear();
-            g.beginFill('black');
-            g.lineStyle({ color: 'yellow', width: 1 });
-            g.drawCircle(0, 0, 10);
-          }
-        "
-      >
-        <pixi-text
-          :style="{ fontSize: 34, align: 'center', fill: 'yellow' }"
-          :scale="0.25"
-          :x="0"
-          :anchor="0.5"
-        >
-          {{ attackDiff }}
-        </pixi-text>
-      </graphics>
-    </PTransition>
+    <pixi-text
+      v-if="damageAmount"
+      :style="{
+        align: 'center',
+        fill: '#ff0000',
+        fontSize: 60,
+        fontWeight: '900',
+        strokeThickness: 8
+      }"
+      :scale="0.25"
+      :anchor="{ x: 0.5, y: 1.5 }"
+    >
+      {{ damageAmount }}
+    </pixi-text>
+  </PTransition>
 
-    <PTransition v-bind="diffProps">
-      <graphics
-        v-if="maxHpDiff"
-        :ref="(el: any) => autoDestroyRef(el)"
-        :x="attackDiff ? 0 : -CELL_WIDTH * 0.15"
-        @render="
-          g => {
-            g.clear();
-            g.beginFill('black');
-            g.lineStyle({ color: 'red', width: 1 });
-            g.drawCircle(0, 0, 10);
-          }
-        "
-      >
-        <pixi-text
-          :style="{ fontSize: 34, align: 'center', fill: 'red' }"
-          :scale="0.25"
-          :anchor="0.5"
-        >
-          {{ maxHpDiff }}
-        </pixi-text>
-      </graphics>
-    </PTransition>
-
-    <PTransition v-bind="diffProps">
-      <graphics
-        v-if="currentHpDiff"
-        :ref="(el: any) => autoDestroyRef(el)"
-        :x="-CELL_WIDTH * 0.15"
-        @render="
-          g => {
-            g.clear();
-            g.beginFill('black');
-            g.lineStyle({ color: currentHpDiffStyle.fill as any, width: 1 });
-            g.drawCircle(0, 0, 10);
-            g.endFill();
-          }
-        "
-      >
-        <pixi-text :style="currentHpDiffStyle" :scale="0.25" :anchor="0.5">
-          {{ currentHpDiff }}
-        </pixi-text>
-      </graphics>
-    </PTransition>
-  </container>
+  <PTransition
+    :duration="{ enter: 300, leave: 300 }"
+    :before-enter="{ scale: 0, y: 20 }"
+    :enter="{ scale: 0.25, y: 0, ease: EasePresets.easeOutCubic }"
+    :leave="{ scale: 0, alpha: 0, ease: EasePresets.easeOutCubic }"
+  >
+    <pixi-text
+      v-if="healAmount"
+      :style="{
+        align: 'center',
+        fill: '#00ff00',
+        fontSize: 60,
+        fontWeight: '900',
+        strokeThickness: 8
+      }"
+      :scale="0.25"
+      :anchor="{ x: 0.5, y: 1.5 }"
+    >
+      {{ healAmount }}
+    </pixi-text>
+  </PTransition>
 </template>

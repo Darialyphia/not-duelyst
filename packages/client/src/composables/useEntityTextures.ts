@@ -1,4 +1,4 @@
-import { Entity, type Animation, type EntityId } from '@game/sdk';
+import { CARD_KINDS, type Animation, type EntityId } from '@game/sdk';
 import { AnimatedSprite, Texture, type FrameObject } from 'pixi.js';
 
 export const useEntityTexture = (
@@ -57,17 +57,27 @@ export const useEntityTexture = (
     }
   });
 
-  const playAnimationOnce =
-    (animation: Animation, framePercentage: number, getEntity: (e: any) => Entity) =>
+  const playAnimation =
+    (
+      animation: Animation,
+      framePercentage: number,
+      filter: (e: any) => boolean,
+      loopCount = 1
+    ) =>
     (event: any) => {
-      if (!getEntity(event).equals(entity.value)) return;
+      if (!filter(event)) return;
       if (!sprite.value) return;
 
       const spriteInst = sprite.value;
 
       return new Promise<void>(resolve => {
         animationName.value = animation;
+        let loops = 1;
+        spriteInst.onLoop = () => {
+          loops++;
+        };
         spriteInst.onFrameChange = frame => {
+          if (loops < loopCount) return;
           if (frame >= (spriteInst.totalFrames - 1) * framePercentage) {
             spriteInst.onFrameChange = undefined;
             resolve();
@@ -82,14 +92,14 @@ export const useEntityTexture = (
 
   useDispatchCallback(
     'entity:before_attack',
-    playAnimationOnce('attack', 0.75, e => e.entity)
+    playAnimation('attack', 0.75, e => e.entity.equals(entity.value))
   );
   useDispatchCallback(
     'entity:before_retaliate',
-    playAnimationOnce('attack', 0.75, e => e.entity)
+    playAnimation('attack', 0.75, e => e.entity.equals(entity.value))
   );
   useDispatchCallback('entity:before_take_damage', (event, index, otherEvents) => {
-    const play = playAnimationOnce('hit', 0.75, e => e.entity);
+    const play = playAnimation('hit', 1, e => e.entity.equals(entity.value));
     const promise = play(event);
     const next = otherEvents[index + 1];
     // make sure we only await on the last unit if it's an AOE
@@ -98,13 +108,19 @@ export const useEntityTexture = (
     }
   });
   useDispatchCallback('entity:before_destroy', async event => {
-    playAnimationOnce('death', 0.75, e => e);
+    const play = playAnimation('death', 1, e => e.equals(entity.value));
     if (!sprite.value) return;
+    await play(event);
     sprite.value.loop = false;
-    const play = playAnimationOnce('hit', 0.75, e => e.entity);
-    return play(event);
   });
+  useDispatchCallback('card:before_played', async event => {
+    if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
+    if (!event.player.equals(entity.value.player)) return;
+    await playAnimation('caststart', 1, () => true)(event);
+    await playAnimation('castloop', 1, () => true, 3)(event);
 
+    await playAnimation('castend', 1, () => true)(event);
+  });
   useDispatchCallback(
     'entity:after-move',
     event => {

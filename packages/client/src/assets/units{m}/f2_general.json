@@ -6,7 +6,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.1",
@@ -15,7 +15,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.2",
@@ -24,7 +24,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.3",
@@ -33,7 +33,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.4",
@@ -42,7 +42,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.5",
@@ -51,7 +51,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.6",
@@ -60,7 +60,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.7",
@@ -69,7 +69,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.8",
@@ -78,7 +78,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.9",
@@ -87,7 +87,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.10",
@@ -96,7 +96,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.11",
@@ -105,7 +105,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.12",
@@ -114,7 +114,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.13",
@@ -123,7 +123,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.14",
@@ -132,7 +132,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.15",
@@ -141,7 +141,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.16",
@@ -150,7 +150,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.attack.17",
@@ -159,7 +159,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.0",
@@ -168,7 +168,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.1",
@@ -177,7 +177,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.2",
@@ -186,7 +186,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.3",
@@ -195,7 +195,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.4",
@@ -204,7 +204,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.5",
@@ -213,7 +213,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.6",
@@ -222,7 +222,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.7",
@@ -231,7 +231,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.8",
@@ -240,7 +240,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.9",
@@ -249,7 +249,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.10",
@@ -258,7 +258,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.11",
@@ -267,7 +267,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.12",
@@ -276,7 +276,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.breathing.13",
@@ -285,7 +285,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.0",
@@ -294,7 +294,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.1",
@@ -303,7 +303,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.2",
@@ -312,7 +312,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.3",
@@ -321,7 +321,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.4",
@@ -330,7 +330,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.5",
@@ -339,7 +339,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.6",
@@ -348,7 +348,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.7",
@@ -357,7 +357,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.8",
@@ -366,7 +366,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.9",
@@ -375,7 +375,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.10",
@@ -384,7 +384,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.11",
@@ -393,7 +393,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.12",
@@ -402,7 +402,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.13",
@@ -411,7 +411,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.cast.14",
@@ -420,7 +420,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castend.0",
@@ -429,7 +429,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castend.1",
@@ -438,7 +438,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castend.2",
@@ -447,7 +447,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castend.3",
@@ -456,7 +456,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castend.4",
@@ -465,7 +465,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.0",
@@ -474,7 +474,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.1",
@@ -483,7 +483,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.2",
@@ -492,7 +492,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.3",
@@ -501,7 +501,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.4",
@@ -510,7 +510,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.5",
@@ -519,7 +519,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.6",
@@ -528,7 +528,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.castloop.7",
@@ -537,7 +537,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.0",
@@ -546,7 +546,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.1",
@@ -555,7 +555,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.2",
@@ -564,7 +564,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.3",
@@ -573,7 +573,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.4",
@@ -582,7 +582,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.5",
@@ -591,7 +591,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.6",
@@ -600,7 +600,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.7",
@@ -609,7 +609,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.caststart.8",
@@ -618,7 +618,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.0",
@@ -627,7 +627,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.1",
@@ -636,7 +636,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.2",
@@ -645,7 +645,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.3",
@@ -654,7 +654,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.4",
@@ -663,7 +663,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.5",
@@ -672,7 +672,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.6",
@@ -681,7 +681,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.7",
@@ -690,7 +690,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.8",
@@ -699,7 +699,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.9",
@@ -708,7 +708,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.10",
@@ -717,7 +717,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.11",
@@ -726,7 +726,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.12",
@@ -735,7 +735,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.death.13",
@@ -744,7 +744,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.hit.0",
@@ -753,7 +753,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.hit.1",
@@ -762,7 +762,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.hit.2",
@@ -771,7 +771,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.hit.3",
@@ -780,7 +780,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.0",
@@ -789,7 +789,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.1",
@@ -798,7 +798,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.2",
@@ -807,7 +807,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.3",
@@ -816,7 +816,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.4",
@@ -825,7 +825,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.5",
@@ -834,7 +834,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.6",
@@ -843,7 +843,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.7",
@@ -852,7 +852,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.8",
@@ -861,7 +861,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.9",
@@ -870,7 +870,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.10",
@@ -879,7 +879,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.11",
@@ -888,7 +888,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.12",
@@ -897,7 +897,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.idle.13",
@@ -906,7 +906,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.0",
@@ -915,7 +915,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.1",
@@ -924,7 +924,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.2",
@@ -933,7 +933,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.3",
@@ -942,7 +942,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.4",
@@ -951,7 +951,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.5",
@@ -960,7 +960,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.6",
@@ -969,7 +969,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
     "filename": "f2_general.run.7",
@@ -978,7 +978,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    }
  ],
  "meta": {

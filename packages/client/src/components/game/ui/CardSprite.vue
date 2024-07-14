@@ -23,8 +23,12 @@ const currentAnimation = computed(() => {
 
 const frame = ref(0);
 
+const DEFAULT_FRAME_DURATION = 80;
 const frameDuration = computed(() => {
-  return 80;
+  if (!animation || !sheet.value) return DEFAULT_FRAME_DURATION;
+  const frameName = sheet.value.data.animations![animation][frame.value];
+  // @ts-expect-error shut up typescript, duration exists, we put it there with the custom aseprite parser
+  return sheet.value.data.frames[frameName]?.duration ?? DEFAULT_FRAME_DURATION;
 });
 
 useIntervalFn(() => {
