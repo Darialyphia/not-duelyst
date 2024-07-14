@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { clamp } from '@game/shared';
+import { clamp, rectToBBox, type Nullable } from '@game/shared';
+import { Teleport } from 'vue';
 
 const userPlayer = useUserPlayer();
 const { ui, gameType, dispatch } = useGame();
@@ -12,9 +13,40 @@ const angle = computed(() => {
     Math.max(userPlayer.value.hand.length, 1)
   );
 });
+
+const draggedIndex = ref<Nullable<number>>();
+const { x, y } = useMouse();
+const offset = ref({ x: 0, y: 0 });
+
+const onMouseDown = (e: MouseEvent, index: number) => {
+  if (userPlayer.value.canPlayCardAtIndex(index)) {
+    ui.selectCardAtIndex(index);
+  }
+
+  const rect = (e.target as HTMLElement).getBoundingClientRect();
+  offset.value = {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
+  };
+  draggedIndex.value = index;
+
+  const stopDragging = () => {
+    draggedIndex.value = null;
+    document.body.removeEventListener('mouseup', stopDragging);
+  };
+  document.body.addEventListener('mouseup', stopDragging);
+};
 </script>
 
 <template>
+  <div
+    id="dragged-card"
+    :style="{
+      '--x': `${x - offset.x}px`,
+      '--y': `${y - offset.y}px`,
+      '--opacity': ui.hoveredCell.value ? 0.5 : 1
+    }"
+  />
   <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
     <TransitionGroup
       tag="ul"
@@ -30,12 +62,18 @@ const angle = computed(() => {
         class="card-wrapper"
         :class="[
           {
-            selected: card && ui.selectedCard.value === card
+            selected: card && ui.selectedCard.value === card,
+            dragging: draggedIndex === index
           }
         ]"
         :style="{ '--index': index }"
+        @mousedown="onMouseDown($event, index)"
       >
-        <ActionBarItem :index="index" :player-id="userPlayer.id" />
+        <component :is="draggedIndex === index ? Teleport : 'div'" to="#dragged-card">
+          <div @mouseup="draggedIndex = null">
+            <ActionBarItem :index="index" :player-id="userPlayer.id" />
+          </div>
+        </component>
       </li>
     </TransitionGroup>
   </div>
@@ -43,9 +81,27 @@ const angle = computed(() => {
   <div class="right-side">
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"
+      :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
+      class="replace-button"
+      :disabled="
+        !isActive || !isDefined(ui.selectedCardIndex.value) || !userPlayer.canReplace
+      "
+      :class="{ dragging: isDefined(draggedIndex) }"
+      @mouseup="
+        () => {
+          dispatch('replace', { cardIndex: ui.selectedCardIndex.value! });
+          ui.unselectCard();
+          ui.unselectEntity();
+        }
+      "
+    >
+      Replace
+    </UiFancyButton>
+    <UiFancyButton
+      v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
       class="end-turn-button"
-      :diabled="!isActive"
+      :disabled="!isActive"
       @click="
         () => {
           dispatch('endTurn');
@@ -188,5 +244,27 @@ const angle = computed(() => {
   align-items: flex-end;
 
   height: var(--size-9);
+}
+
+#dragged-card {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  transform: translateY(var(--y)) translateX(var(--x)) scale(0.5);
+
+  opacity: var(--opacity);
+
+  transition: opacity 0.3s;
+}
+
+.replace-button {
+  &:not(:disabled):hover {
+    scale: 1.1;
+    filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
+  }
 }
 </style>

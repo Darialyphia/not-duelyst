@@ -46,9 +46,9 @@ const tag = computed(() => {
           'is-cta': isCta,
           'is-loading': isLoading
         }"
-        :disabled="attrs.disabled || isLoading"
         :style="style"
         v-bind="attrs"
+        :disabled="attrs.disabled || isLoading"
       >
         <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
 
@@ -177,13 +177,13 @@ const tag = computed(() => {
       outline: solid var(--border-size-2) var(--primary);
       outline-offset: 5px;
     }
-  }
 
-  :disabled {
-    --sat: 0%;
-    --sat2: 0%;
+    &:disabled {
+      --sat: 0%;
+      --sat2: 0%;
 
-    opacity: 0.7;
+      opacity: 0.7;
+    }
   }
 }
 </style>

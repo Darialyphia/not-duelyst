@@ -1,5 +1,5 @@
 import { type FXSystem } from './fx-system';
-import { type GameEvent, type SerializedGameState } from './game-session';
+import { type GameEvent, type SerializedGameState, type StarEvent } from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise, Values } from '@game/shared';
@@ -69,7 +69,7 @@ export class TutorialSession extends ClientSession {
 
   dispatch(
     action: SerializedAction,
-    meta: { events: GameEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
+    meta: { events: StarEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
   ) {
     if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
     super.dispatch(action, meta);

@@ -15,7 +15,7 @@ export const f1TrueStrike = defineSerializedBlueprint({
   spriteId: 'icon_f1_truestrike',
   tags: [],
   targets: {
-    min: 0,
+    min: 1,
     targets: [cellWithEnemyMinion()]
   },
   effects: [

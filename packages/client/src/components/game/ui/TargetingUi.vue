@@ -57,7 +57,14 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div v-if="ui.targetingMode.value === TARGETING_MODES.TARGETING" class="targeting-ui">
+  <div
+    v-if="
+      ui.targetingMode.value === TARGETING_MODES.TARGETING &&
+      ((ui.selectedCard.value?.blueprint.targets?.maxTargetCount ?? 0) > 1 ||
+        ui.selectedCard.value?.blueprint.targets?.minTargetCount === 0)
+    "
+    class="targeting-ui"
+  >
     <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
       Cancel
     </UiFancyButton>

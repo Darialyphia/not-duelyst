@@ -66,7 +66,10 @@ const attack = () => {
 };
 
 const summon = () => {
-  if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) return;
+  if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) {
+    ui.unselectCard();
+    return;
+  }
   ui.summonTarget.value = cell.value.position;
   if (ui.selectedCard.value.blueprint.cardChoices) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
@@ -176,6 +179,8 @@ const highlightTarget = () => {
             if (isTargetable) {
               ui.cardTargets.value.push(cell.position);
               pointerupSound.play();
+            } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
+              ui.unselectCard();
             }
           })
           .with(TARGETING_MODES.NONE, () => {

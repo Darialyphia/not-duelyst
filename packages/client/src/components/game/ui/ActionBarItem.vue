@@ -40,13 +40,6 @@ const userPlayer = useUserPlayer();
           tags: card.blueprint.tags ?? []
         }"
         @contextmenu.prevent="ui.highlightedCard.value = card"
-        @click="
-          () => {
-            if (userPlayer.canPlayCardAtIndex(index)) {
-              ui.selectCardAtIndex(index);
-            }
-          }
-        "
       />
     </Sound>
   </Sound>

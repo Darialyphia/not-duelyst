@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter } from 'pixi.js';
+import { AnimatedSprite, BLEND_MODES, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
+import { radialGradient } from '~/utils/fx';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
@@ -107,24 +108,29 @@ const isFlipped = computed(() => {
 </script>
 
 <template>
-  <container>
-    <container :filters="filters">
-      <EntityPedestal :entity-id="entityId" />
-      <animated-sprite
-        v-if="unitTextures"
-        :ref="
-          (el: AnimatedSprite) => {
-            sprite = el;
-          }
-        "
-        :textures="unitTextures"
-        :anchor-x="0.5"
-        :anchor-y="1"
-        :playing="true"
-        :y="CELL_HEIGHT * 0.85"
-        :is-flipped="isFlipped"
-        :filters="filters"
-      />
-    </container>
+  <container :filters="filters">
+    <EntityPedestal :entity-id="entityId" />
+    <animated-sprite
+      v-if="unitTextures"
+      :ref="
+        (el: AnimatedSprite) => {
+          sprite = el;
+        }
+      "
+      :textures="unitTextures"
+      :anchor-x="0.5"
+      :anchor-y="1"
+      :playing="true"
+      :y="CELL_HEIGHT * 0.85"
+      :is-flipped="isFlipped"
+      :filters="filters"
+    />
+    <!-- <sprite
+      :alpha="0.85"
+      :texture="radialGradient(100, 100, 'rgb(255,0,100)', 'rgba(255,255,100,0)')"
+      :blend-mode="BLEND_MODES.SCREEN"
+      :anchor-x="0.5"
+      :anchor-y="0.25"
+    /> -->
   </container>
 </template>

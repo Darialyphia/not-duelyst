@@ -39,6 +39,11 @@ export type GameEmits = {
       cardChoices: number[];
     }
   ];
+  replace: [
+    {
+      cardIndex: number;
+    }
+  ];
   surrender: [];
   p1Emote: [string];
   p2Emote: [string];

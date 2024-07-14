@@ -164,6 +164,7 @@ until(state)
     @end-turn="dispatch('endTurn', $event)"
     @use-skill="dispatch('useSkill', $event)"
     @play-card="dispatch('playCard', $event)"
+    @replace="dispatch('replaceCard', $event)"
     @draw="dispatch('draw', $event)"
     @get-gold="dispatch('getGold', $event)"
     @add-rune="dispatch('addRune', $event)"

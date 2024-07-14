@@ -75,6 +75,7 @@ const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
       @attack="dispatch('attack', $event)"
       @end-turn="dispatch('endTurn', $event)"
       @play-card="dispatch('playCard', $event)"
+      @replace="dispatch('replaceCard', $event)"
       @p1-emote="addP1($event)"
       @p2-emote="addP2($event)"
       @draw="dispatch('draw', $event)"
