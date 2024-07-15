@@ -1,6 +1,5 @@
 import { GameSession } from '../game-session';
 import {
-  objectEntries,
   type JSONObject,
   type Point3D,
   type Serializable,
@@ -15,11 +14,15 @@ import {
 import EventEmitter from 'eventemitter3';
 import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
-import { CARD_KINDS, FACTION_IDS, FACTIONS } from '../card/card-enums';
+import { CARD_KINDS, FACTION_IDS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck, DECK_EVENTS } from '../card/deck';
 import { createCard } from '../card/cards/card-factory';
-import { PlayerArtifact, type PlayerArtifactId } from './player-artifact';
+import {
+  ARTIFACT_EVENTS,
+  PlayerArtifact,
+  type PlayerArtifactId
+} from './player-artifact';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -171,16 +174,20 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   equipArtifact(cardIndex: CardIndex) {
-    this.artifacts.push(
-      new PlayerArtifact(this.session, { cardIndex, playerId: this.id })
-    );
+    const artifact = new PlayerArtifact(this.session, { cardIndex, playerId: this.id });
+    Object.values(ARTIFACT_EVENTS).forEach(eventName => {
+      artifact.on(eventName, event => {
+        this.session.emit(`artifact:${eventName}`, event as any);
+      });
+    });
+    this.artifacts.push(artifact);
+    artifact.setup();
   }
 
   unequipArtifact(id: PlayerArtifactId) {
     const artifact = this.artifacts.find(a => a.id === id);
     if (!artifact) return;
-    artifact.destroy();
-    this.artifacts = this.artifacts.filter(a => a.equals(artifact));
+    this.artifacts = this.artifacts.filter(a => !a.equals(artifact));
   }
 
   placeGeneral() {

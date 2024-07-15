@@ -781,7 +781,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       entity,
                       card,
                       targets,
-                      amount: action.params.attack,
+                      amount: action.params.hp,
                       event,
                       eventName
                     })

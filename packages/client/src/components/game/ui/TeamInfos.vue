@@ -157,7 +157,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 
         <div class="flex flex-row-reverse gap-7 pt-10">
           <div
-            v-for="artifact in players[0].artifacts"
+            v-for="artifact in players[1].artifacts"
             :key="artifact.id"
             class="artifact"
           >

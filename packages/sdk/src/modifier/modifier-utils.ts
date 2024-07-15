@@ -14,6 +14,7 @@ import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
+import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -499,6 +500,19 @@ export const whileOnBoard = ({
       ]
     })
   );
+};
+
+export const whileEquipped = ({
+  artifact,
+  modifier
+}: {
+  artifact: PlayerArtifact;
+  modifier: EntityModifier;
+}) => {
+  artifact.card.player.general.addModifier(modifier);
+  artifact.once(ARTIFACT_EVENTS.AFTER_DESTROY, () => {
+    artifact.card.player.general.removeModifier(modifier.id);
+  });
 };
 
 export const whileInHand = (

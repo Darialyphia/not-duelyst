@@ -1,11 +1,12 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { cellWithAllyGeneral } from '../../helpers/targeting';
+import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
 export const f1SunstoneBracers = defineSerializedBlueprint({
   id: 'sunstone_bracers',
   collectable: true,
-  name: 'Sunstone Braces',
-  cost: 1,
+  name: 'Sunstone Bracers',
+  cost: 0,
   kind: 'ARTIFACT',
   faction: null,
   keywords: [],
@@ -17,5 +18,19 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
     min: 1,
     targets: [cellWithAllyGeneral()]
   },
-  effects: []
+  effects: [
+    whileArtifactEquipedEffect({
+      text: 'Your general has +1 / +0',
+      actions: [
+        {
+          type: 'change_stats',
+          params: {
+            targets: [[{ type: 'is_ally' }, { type: 'is_general' }]],
+            attack: { type: 'fixed', params: { value: 1 } },
+            hp: { type: 'fixed', params: { value: 0 } }
+          }
+        }
+      ]
+    })
+  ]
 });

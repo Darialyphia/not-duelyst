@@ -143,7 +143,8 @@ export type Trigger =
   | { type: 'on_before_card_played'; params: { card: Filter<CardConditionBase> } }
   | { type: 'on_after_card_played'; params: { card: Filter<CardConditionBase> } }
   | { type: 'on_card_drawn'; params: { card: Filter<CardConditionBase> } }
-  | { type: 'on_card_replaced'; params: { card: Filter<CardConditionBase> } };
+  | { type: 'on_card_replaced'; params: { card: Filter<CardConditionBase> } }
+  | { type: 'on_artifact_equiped'; params: { card: Filter<CardConditionBase> } };
 
 export type Amount<T extends ConditionOverrides> =
   | {
@@ -312,6 +313,7 @@ export type CardEffectConfig<T extends Trigger[]> =
         | 'while_in_hand'
         | 'while_on_board'
         | 'while_in_deck'
+        | 'while_equiped'
         | 'while_in_graveyard';
       triggers: T;
       actions: Action<OverridesFromTrigger<T>>[];

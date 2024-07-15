@@ -22,7 +22,11 @@ import { noopFXContext, type FXSystem } from './fx-system';
 import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
 import { CARD_EVENTS, type CardEvent, type CardEventMap } from './card/card';
 import type { DeckEvent, DeckEventMap } from './card/deck';
-import type { ArtifactEvent, ArtifactEventMap } from './player/player-artifact';
+import {
+  ARTIFACT_EVENTS,
+  type ArtifactEvent,
+  type ArtifactEventMap
+} from './player/player-artifact';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -120,6 +124,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
       ...Object.values(ENTITY_EVENTS).map(e => `entity:${e}`),
       ...Object.values(PLAYER_EVENTS).map(e => `player:${e}`),
       ...Object.values(CARD_EVENTS).map(e => `card:${e}`),
+      ...Object.values(ARTIFACT_EVENTS).map(e => `artifact:${e}`),
       'game:action',
       'game:ready'
     ].forEach(eventName => {

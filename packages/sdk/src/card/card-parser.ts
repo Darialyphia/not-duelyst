@@ -14,7 +14,12 @@ import {
   parseCardInitAction,
   type ParsedActionResult
 } from './card-action';
-import { whileInDeck, whileInHand, whileOnBoard } from '../modifier/modifier-utils';
+import {
+  whileEquipped,
+  whileInDeck,
+  whileInHand,
+  whileOnBoard
+} from '../modifier/modifier-utils';
 import { createEntityModifier, type EntityModifier } from '../modifier/entity-modifier';
 import {
   modifierCardGameEventMixin,
@@ -23,9 +28,11 @@ import {
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
 import type { GenericCardEffect, Trigger } from './card-effect';
 import { parseTargets } from './card-targets';
+import type { PlayerArtifact } from '../player/player-artifact';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
+  artifact?: PlayerArtifact;
 };
 
 const getEffectCtxEntity = (ctx: EffectCtx) => ctx.entity ?? ctx.card.player.general;
@@ -39,8 +46,9 @@ const getEffectModifier = <T extends GameEvent>({
   actions: ParsedActionResult[];
 }) => {
   return {
-    getEntityModifier: (ctx: EffectCtx) =>
-      createEntityModifier({
+    getEntityModifier: (ctx: EffectCtx) => {
+      const cleanups: Array<() => void> = [];
+      return createEntityModifier({
         source: getEffectCtxEntity(ctx),
         stackable: false,
         visible: false,
@@ -49,12 +57,23 @@ const getEffectModifier = <T extends GameEvent>({
             eventName,
             listener(event) {
               if (filter(ctx, event, eventName))
-                actions.forEach(action => action(ctx, event, eventName));
+                actions.forEach(action => {
+                  const cleanup = action(ctx, event, eventName);
+                  cleanups.push(cleanup);
+                });
             }
-          })
+          }),
+          {
+            onRemoved() {
+              cleanups.forEach(cleanup => cleanup());
+            }
+          }
         ]
-      }),
+      });
+    },
     getCardModifier: () => {
+      const cleanups: Array<() => void> = [];
+
       return createCardModifier({
         stackable: false,
         mixins: [
@@ -66,10 +85,19 @@ const getEffectModifier = <T extends GameEvent>({
                 card: ctx.attachedTo,
                 targets: []
               };
-              if (filter(effectCtx, event, eventName))
-                actions.forEach(action => action(effectCtx, event, eventName));
+              if (filter(effectCtx, event, eventName)) {
+                actions.forEach(action => {
+                  const cleanup = action(effectCtx, event, eventName);
+                  cleanups.push(cleanup);
+                });
+              }
             }
-          })
+          }),
+          {
+            onRemoved() {
+              cleanups.forEach(cleanup => cleanup());
+            }
+          }
         ]
       });
     }
@@ -112,10 +140,10 @@ const parseSerializeBlueprintEffect = (
       { executionContext: 'while_in_deck' },
       { executionContext: 'while_in_graveyard' },
       { executionContext: 'while_in_hand' },
+      { executionContext: 'while_equiped' },
       { executionContext: 'while_on_board' },
       config => {
         const actions = config.actions.map(parseCardAction);
-
         return config.triggers.map((trigger: Trigger) =>
           match(trigger)
             .with({ type: 'on_before_card_played' }, trigger => {
@@ -456,6 +484,20 @@ const parseSerializeBlueprintEffect = (
                 }
               });
             })
+            .with({ type: 'on_artifact_equiped' }, trigger => {
+              return getEffectModifier({
+                actions,
+                eventName: 'artifact:equiped',
+                filter(ctx, [event], eventName) {
+                  return getCards({
+                    ...ctx,
+                    event,
+                    eventName,
+                    conditions: trigger.params.card
+                  }).some(card => event.card === card);
+                }
+              });
+            })
             .exhaustive()
         );
       }
@@ -570,6 +612,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
             effect.actions.forEach(action => {
               if (!action.getEntityModifier) return;
               const entityModifier = action.getEntityModifier(ctx);
+
               whileOnBoard({
                 entity: getEffectCtxEntity(ctx),
                 source: getEffectCtxEntity(ctx),
@@ -580,6 +623,14 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
                   attachedTo.removeModifier(entityModifier.id);
                 }
               });
+            });
+          })
+          .with('while_equiped', () => {
+            effect.actions.forEach(action => {
+              if (!action.getEntityModifier) return;
+              const entityModifier = action.getEntityModifier(ctx);
+
+              whileEquipped({ artifact: ctx.artifact!, modifier: entityModifier });
             });
           })
           .with('immediate', () => {

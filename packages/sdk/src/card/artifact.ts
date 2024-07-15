@@ -5,6 +5,7 @@ import type { Point3D, Serializable } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
 import { Card, type SerializedCard } from './card';
 import { CARD_KINDS } from './card-enums';
+import type { PlayerArtifact } from '../player/player-artifact';
 
 export type ArtifactInterceptor = Artifact['interceptors'];
 
@@ -69,10 +70,11 @@ export class Artifact extends Card implements Serializable {
     this.player.equipArtifact(this.index);
   }
 
-  equip() {
+  equip(artifact: PlayerArtifact) {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
+      artifact,
       targets: this.targets
     });
   }

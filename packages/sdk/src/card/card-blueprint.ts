@@ -1,4 +1,4 @@
-import { type AnyObject, type Nullable, type Point3D } from '@game/shared';
+import { type Nullable, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import { type CardModifier } from '../modifier/card-modifier';
@@ -6,8 +6,9 @@ import type { Card, CardBlueprintId } from './card';
 import { type CardKind, type Faction, type FactionId, type Rarity } from './card-enums';
 import { type Keyword, type KeywordId } from '../utils/keywords';
 import { type Tag, type TagId } from '../utils/tribes';
-import type { CardEffect, GenericCardEffect, Trigger } from './card-effect';
+import type { GenericCardEffect } from './card-effect';
 import type { CardTargetsConfig } from './card-targets';
+import type { PlayerArtifact } from '../player/player-artifact';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -92,6 +93,7 @@ type CardBlueprintArtifact = {
   onPlay?: (options: {
     session: GameSession;
     card: Card;
+    artifact: PlayerArtifact;
     targets: Array<Nullable<Point3D>>;
   }) => void;
   targets?: {

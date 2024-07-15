@@ -1,6 +1,6 @@
-import { defineCardEffect, type Action, type OverridesFromTrigger } from '../card-effect';
+import { type Action, type OverridesFromTrigger, defineCardEffect } from '../card-effect';
 
-export const openingGambitEffect = ({
+export const whileArtifactEquipedEffect = ({
   text,
   actions
 }: {
@@ -9,12 +9,12 @@ export const openingGambitEffect = ({
     OverridesFromTrigger<
       [
         {
-          type: 'on_unit_play';
+          type: 'on_artifact_equiped';
           params: {
-            unit: [
+            card: [
               [
                 {
-                  type: 'is_self';
+                  type: 'self';
                 }
               ]
             ];
@@ -25,14 +25,14 @@ export const openingGambitEffect = ({
   >[];
 }) =>
   defineCardEffect({
-    text: `@Opening Gambit@: ${text}`,
+    text,
     config: {
-      executionContext: 'while_on_board',
+      executionContext: 'while_equiped',
       triggers: [
         {
-          type: 'on_unit_play',
+          type: 'on_artifact_equiped',
           params: {
-            unit: [[{ type: 'is_self' }]]
+            card: [[{ type: 'self' }]]
           }
         }
       ],

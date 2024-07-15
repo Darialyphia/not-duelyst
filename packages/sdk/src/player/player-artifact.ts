@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import { Interceptable } from '../utils/helpers';
 import { Artifact } from '../card/artifact';
 import type { Values } from '@game/shared';
+import { ENTITY_EVENTS } from '../entity/entity';
 
 export const ARTIFACT_EVENTS = {
   EQUIPED: 'equiped',
@@ -13,7 +14,7 @@ export const ARTIFACT_EVENTS = {
   BEFORE_LOSE_DURABILITY: 'before_lose_durability',
   AFTER_LOSE_DURABILITY: 'after_lose_durability',
 
-  BEFORE_DESTROY: 'destroy_destroy',
+  BEFORE_DESTROY: 'before_destroy',
   AFTER_DESTROY: 'after_destroy'
 } as const;
 
@@ -59,8 +60,6 @@ export class PlayerArtifact extends EventEmitter<ArtifactEventMap> {
     this.id = nanoid(6);
     this.cardIndex = options.cardIndex;
     this.playerId = options.playerId;
-
-    this.player.general.on('after_take_damage', this.onGeneralDamageTaken.bind(this));
   }
 
   get card() {
@@ -91,11 +90,23 @@ export class PlayerArtifact extends EventEmitter<ArtifactEventMap> {
     return this.id === artifact.id;
   }
 
+  setup() {
+    this.player.general.on(
+      ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
+      this.onGeneralDamageTaken.bind(this)
+    );
+    this.card.equip(this);
+    this.emit(ARTIFACT_EVENTS.EQUIPED, this);
+  }
+
   destroy() {
-    this.emit('destroy_destroy', this);
-    this.player.general.off('after_take_damage', this.onGeneralDamageTaken.bind(this));
+    this.emit(ARTIFACT_EVENTS.BEFORE_DESTROY, this);
+    this.player.general.off(
+      ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
+      this.onGeneralDamageTaken.bind(this)
+    );
     this.player.unequipArtifact(this.id);
-    this.emit('after_destroy', this);
+    this.emit(ARTIFACT_EVENTS.AFTER_DESTROY, this);
   }
 
   loseDurability() {

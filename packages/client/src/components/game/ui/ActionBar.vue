@@ -19,7 +19,6 @@ const { x, y } = useMouse();
 const offset = ref({ x: 0, y: 0 });
 
 const onMouseDown = (e: MouseEvent, index: number) => {
-  console.log(index);
   if (userPlayer.value.canPlayCardAtIndex(index)) {
     ui.selectCardAtIndex(index);
   }

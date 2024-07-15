@@ -108,8 +108,9 @@ export const useEntityTexture = (
     }
   });
   useDispatchCallback('entity:before_destroy', async event => {
-    const play = playAnimation('death', 1, e => e.equals(entity.value));
+    if (!event.equals(entity.value)) return;
     if (!sprite.value) return;
+    const play = playAnimation('death', 1, () => true);
     await play(event);
     sprite.value.loop = false;
   });
