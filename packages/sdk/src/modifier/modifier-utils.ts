@@ -159,14 +159,12 @@ export const provoke = ({ source }: { source: Entity }) => {
       return isNearbyEnemy(session, source, target.position);
     },
     onGainAura(entity, taunter) {
-      console.log('gain aura', entity.id);
       const interceptors = makeInterceptors(taunter);
       interceptorMap.set(entity.id, interceptors);
       entity.addInterceptor('canMove', interceptors.move);
       entity.addInterceptor('canAttack', interceptors.attack);
     },
     onLoseAura(entity) {
-      console.log('lose aura', entity.id);
       const interceptors = interceptorMap.get(entity.id)!;
       entity.removeInterceptor('canMove', interceptors.move);
       entity.removeInterceptor('canAttack', interceptors.attack);

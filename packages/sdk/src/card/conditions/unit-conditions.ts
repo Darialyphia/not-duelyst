@@ -1,4 +1,17 @@
+import type { Nullable, Point3D, AnyObject } from '@game/shared';
+import { match } from 'ts-pattern';
+import type { Entity } from '../../entity/entity';
+import {
+  getEntityInFront,
+  getNearest,
+  getEntityBehind,
+  getEntityAbove,
+  getEntityBelow
+} from '../../entity/entity-utils';
+import type { GameSession } from '../../game-session';
 import type { KeywordId } from '../../utils/keywords';
+import { isWithinCells } from '../../utils/targeting';
+import type { Card } from '../card';
 import type { Filter } from '../card-effect';
 
 export type UnitConditionBase =
@@ -30,3 +43,242 @@ export type UnitConditionExtras =
   | { type: 'destroyed_unit' };
 
 export type UnitCondition = UnitConditionBase | UnitConditionExtras;
+
+export const getUnits = ({
+  session,
+  entity,
+  conditions,
+  targets,
+  event,
+  card,
+  eventName
+}: {
+  session: GameSession;
+  entity?: Entity;
+  card: Card;
+  conditions: Filter<UnitCondition>;
+  targets: Array<Nullable<Point3D>>;
+  event: AnyObject;
+  eventName?: string;
+}): Entity[] =>
+  session.entitySystem.getList().filter(e => {
+    if (!conditions.length) return true;
+
+    return conditions.some(group => {
+      return group.every(condition => {
+        const isMatch = match(condition)
+          .with({ type: 'any_unit' }, () => true)
+          .with({ type: 'has_keyword' }, () => false /*TODO*/)
+          .with({ type: 'is_ally' }, () => card.player.equals(e.player))
+          .with({ type: 'is_enemy' }, () => !card.player.equals(e.player))
+          .with({ type: 'is_manual_target' }, condition => {
+            const point = targets[condition.params.index];
+            if (!point) return false;
+            const entity = session.entitySystem.getEntityAt(point);
+            if (!entity) return false;
+            return e.equals(entity);
+          })
+          .with({ type: 'is_general' }, () => e.isGeneral)
+          .with({ type: 'is_minion' }, () => !e.isGeneral)
+          .with({ type: 'is_self' }, () => {
+            if (!entity) return false;
+            return entity.equals(e);
+          })
+          .with({ type: 'is_nearby' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(
+              candidate =>
+                isWithinCells(candidate.position, e.position, 1) &&
+                !candidate.position.equals(e.position)
+            );
+          })
+          .with({ type: 'is_in_front' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getEntityInFront(session, candidate)?.equals(e)
+            );
+          })
+          .with({ type: 'is_nearest_in_front' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getNearest(
+                session,
+                candidate.player.isPlayer1 ? 'right' : 'left',
+                candidate.position
+              )?.equals(e)
+            );
+          })
+          .with({ type: 'is_behind' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getEntityBehind(session, candidate)?.equals(e)
+            );
+          })
+          .with({ type: 'is_nearest_behind' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getNearest(
+                session,
+                candidate.player.isPlayer1 ? 'left' : 'right',
+                candidate.position
+              )?.equals(e)
+            );
+          })
+          .with({ type: 'is_above' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getEntityAbove(session, candidate)?.equals(e)
+            );
+          })
+          .with({ type: 'is_nearest_above' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getNearest(session, 'up', candidate.position)?.equals(e)
+            );
+          })
+          .with({ type: 'is_below' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getEntityBelow(session, candidate)?.equals(e)
+            );
+          })
+          .with({ type: 'is_nearest_below' }, condition => {
+            const candidates = getUnits({
+              conditions: condition.params.unit,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return candidates.some(candidate =>
+              getNearest(session, 'down', candidate.position)?.equals(e)
+            );
+          })
+          .with({ type: 'moved_unit' }, () => {
+            return e.equals(event.entity);
+          })
+          .with({ type: 'destroyed_unit' }, () => {
+            return e.equals(event as Entity);
+          })
+          .with({ type: 'played_unit' }, () => {
+            return e.equals(event as Entity);
+          })
+          .with({ type: 'healing_source' }, () => {
+            return event.source && e.equals(event.source);
+          })
+          .with({ type: 'healing_target' }, () => {
+            return event.entity && e.equals(event.entity);
+          })
+          .with({ type: 'attack_source' }, () => {
+            if (
+              eventName === 'entity:before_attack' ||
+              eventName === 'entity:after_attack' ||
+              eventName === 'entity:before_retaliate' ||
+              eventName === 'entity:after_retaliate' ||
+              eventName === 'entity:before_deal_damage' ||
+              eventName === 'entity:after_deal_damage'
+            ) {
+              return event.entity && e.equals(event.entity);
+            }
+
+            if (
+              eventName === 'entity:before_take_damage' ||
+              eventName === 'entity:after_take_damage'
+            ) {
+              return event.source && e.equals(event.source);
+            }
+
+            return false;
+          })
+          .with({ type: 'attack_target' }, () => {
+            if (
+              eventName === 'entity:before_attack' ||
+              eventName === 'entity:after_attack' ||
+              eventName === 'entity:before_retaliate' ||
+              eventName === 'entity:after_retaliate' ||
+              eventName === 'entity:before_deal_damage' ||
+              eventName === 'entity:after_deal_damage'
+            ) {
+              return event.target && e.equals(event.target);
+            }
+
+            if (
+              eventName === 'entity:before_take_damage' ||
+              eventName === 'entity:after_take_damage'
+            ) {
+              return event.entity && e.equals(event.entity);
+            }
+
+            return false;
+          })
+          .exhaustive();
+        return isMatch;
+      });
+    });
+  });

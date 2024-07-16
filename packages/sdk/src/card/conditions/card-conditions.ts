@@ -1,5 +1,12 @@
-import type { Amount, NumericOperator } from '../card-effect';
+import { match } from 'ts-pattern';
+import type { Card } from '../card';
+import type { Amount, Filter, NumericOperator } from '../card-effect';
 import type { UnitConditionExtras } from './unit-conditions';
+import type { Nullable, Point3D, AnyObject } from '@game/shared';
+import type { Entity } from '../../entity/entity';
+import type { GameSession } from '../../game-session';
+import { CARD_KINDS } from '../card-enums';
+import { getAmount } from '../card-action';
 
 export type CardConditionBase =
   | { type: 'any_card' }
@@ -22,3 +29,84 @@ export type CardConditionExtras =
   | { type: 'card_replacement' };
 
 export type CardCondition = CardConditionBase | CardConditionExtras;
+
+export const getCards = ({
+  session,
+  card,
+  conditions,
+  entity,
+  targets,
+  event,
+  eventName
+}: {
+  session: GameSession;
+  card: Card;
+  conditions: Filter<CardCondition>;
+  targets: Array<Nullable<Point3D>>;
+  entity?: Entity;
+  event: AnyObject;
+  eventName?: string;
+}) =>
+  session.playerSystem
+    .getList()
+    .map(player => player.cards)
+    .flat()
+    .filter(c => {
+      return conditions.some(group => {
+        return group.every(condition => {
+          return match(condition)
+            .with({ type: 'any_card' }, () => true)
+            .with({ type: 'artifact' }, () => c.kind === CARD_KINDS.ARTIFACT)
+            .with({ type: 'spell' }, () => c.kind === CARD_KINDS.SPELL)
+            .with({ type: 'minion' }, () => c.kind === CARD_KINDS.MINION)
+            .with({ type: 'cost' }, condition => {
+              const amount = getAmount({
+                session,
+                entity,
+                card,
+                targets,
+                amount: condition.params.amount,
+                event,
+                eventName
+              });
+              return match(condition.params.operator)
+                .with('equals', () => c.cost === amount)
+                .with('less_than', () => c.cost < amount)
+                .with('more_than', () => c.cost > amount)
+                .exhaustive();
+            })
+            .with(
+              { type: 'index_in_hand' },
+              condition => c.player.hand[condition.params.index] === card
+            )
+            .with({ type: 'self' }, () => c === card)
+            .with({ type: 'drawn_card' }, () => {
+              if (eventName === 'card:drawn') {
+                return c === event;
+              }
+              if (eventName === 'player:after_draw') {
+                event.cards.some((drawnCard: Card) => drawnCard === c);
+              }
+
+              return false;
+            })
+            .with({ type: 'replaced_card' }, () => {
+              if (eventName === 'card:replaced') {
+                return c === event;
+              }
+              if (
+                eventName === 'player:before_replace' ||
+                eventName === 'player:after_replace'
+              ) {
+                event.replacedCard === c;
+              }
+
+              return false;
+            })
+            .with({ type: 'card_replacement' }, () => {
+              return event.replacement === c;
+            })
+            .exhaustive();
+        });
+      });
+    });

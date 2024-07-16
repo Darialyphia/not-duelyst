@@ -246,6 +246,15 @@ export type Action<
     }
   | {
       type: 'provoke';
+    }
+  | {
+      type: 'add_effect';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        effect: CardEffectConfig<Trigger[]>;
+      };
     };
 
 export type InitAction =

@@ -1,8 +1,7 @@
 import type { Point3D } from '@game/shared';
-import { getCells } from './card-action';
 import type { CardBlueprint } from './card-blueprint';
 import type { Filter } from './card-effect';
-import type { CellConditionBase } from './conditions/cell-conditions';
+import { getCells, type CellConditionBase } from './conditions/cell-conditions';
 import type { GameSession } from '../game-session';
 import type { Card } from './card';
 

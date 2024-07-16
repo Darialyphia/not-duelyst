@@ -7,9 +7,6 @@ import { getKeywordById } from '../utils/keywords';
 import { getTagById } from '../utils/tribes';
 import { match } from 'ts-pattern';
 import {
-  getCards,
-  getPlayers,
-  getUnits,
   parseCardAction,
   parseCardInitAction,
   type ParsedActionResult
@@ -29,6 +26,9 @@ import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
 import type { GenericCardEffect, Trigger } from './card-effect';
 import { parseTargets } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
+import { getCards } from './conditions/card-conditions';
+import { getPlayers } from './conditions/player-condition';
+import { getUnits } from './conditions/unit-conditions';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -36,7 +36,7 @@ export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
 };
 
 const getEffectCtxEntity = (ctx: EffectCtx) => ctx.entity ?? ctx.card.player.general;
-const getEffectModifier = <T extends GameEvent>({
+export const getEffectModifier = <T extends GameEvent>({
   filter,
   eventName,
   actions
@@ -104,7 +104,7 @@ const getEffectModifier = <T extends GameEvent>({
   };
 };
 
-const parseSerializeBlueprintEffect = (
+export const parseSerializedBlueprintEffect = (
   effect: SerializedBlueprint<GenericCardEffect[]>['effects'][number]
 ): Array<{
   onInit?: (blueprint: CardBlueprint) => void;
@@ -511,7 +511,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
   // first, parse the blueprint effects
   const effects = blueprint.effects.map(effect => ({
     ...effect,
-    actions: parseSerializeBlueprintEffect(effect)
+    actions: parseSerializedBlueprintEffect(effect)
   }));
 
   // add card modifiers that have already been evaluated
