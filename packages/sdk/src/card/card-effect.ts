@@ -3,6 +3,8 @@ import type {
   CardConditionBase,
   CardConditionExtras
 } from './conditions/card-conditions';
+import type { CellCondition } from './conditions/cell-conditions';
+import type { GlobalCondition } from './conditions/global-conditions';
 import type { PlayerCondition } from './conditions/player-condition';
 import type {
   UnitCondition,
@@ -14,23 +16,7 @@ export type Filter<T> = T[][];
 
 export type NumericOperator = 'equals' | 'more_than' | 'less_than';
 
-export type GlobalCondition =
-  | {
-      type: 'player_gold';
-      params: {
-        operator: NumericOperator;
-        amount: number;
-      };
-    }
-  | {
-      type: 'player_hp';
-      params: {
-        operator: NumericOperator;
-        amount: number;
-      };
-    };
-
-type ConditionOverrides = {
+export type ConditionOverrides = {
   unit?: UnitCondition['type'];
   card?: CardCondition['type'];
 };
@@ -221,6 +207,7 @@ export type Action<
   | {
       type: 'deal_damage';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
@@ -230,6 +217,7 @@ export type Action<
   | {
       type: 'heal';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
@@ -239,6 +227,7 @@ export type Action<
   | {
       type: 'draw_cards';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
         player: Filter<PlayerCondition>;
       };
@@ -246,6 +235,7 @@ export type Action<
   | {
       type: 'change_stats';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
         attack: Amount<T>;
         hp: Amount<T>;
         targets: Filter<

@@ -25,10 +25,11 @@ import {
 } from '../entity/entity-utils';
 import type { Cell } from '../board/cell';
 import { airdrop, rush } from '../modifier/modifier-utils';
-import type { CardCondition } from './conditions/card-conditions';
+import type { CardCondition, CardConditionExtras } from './conditions/card-conditions';
 import type { CellCondition } from './conditions/cell-conditions';
 import type { PlayerCondition } from './conditions/player-condition';
 import type { UnitCondition, UnitConditionExtras } from './conditions/unit-conditions';
+import type { GlobalCondition } from './conditions/global-conditions';
 
 export const getUnits = ({
   session,
@@ -662,10 +663,34 @@ export type ParsedActionResult = (
 
 const noop = () => void 0;
 
+const checkGlobalConditions = (
+  conditions:
+    | Filter<
+        GlobalCondition<{
+          unit: UnitConditionExtras['type'];
+          card: CardConditionExtras['type'];
+        }>
+      >
+    | undefined,
+  { session, card, entity, targets }: EffectCtx,
+  event: AnyObject,
+  eventName?: string
+): boolean => {
+  return true;
+};
+
 export const parseCardAction = (action: Action): ParsedActionResult => {
   return ({ session, card, entity, targets }, event, eventName) => {
     return match(action)
       .with({ type: 'deal_damage' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          { session, card, entity, targets },
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
         getUnits({
           session,
           entity,
@@ -691,6 +716,13 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         return noop;
       })
       .with({ type: 'heal' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          { session, card, entity, targets },
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
         getUnits({
           session,
           entity,
@@ -716,6 +748,13 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         return noop;
       })
       .with({ type: 'draw_cards' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          { session, card, entity, targets },
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
         getPlayers({
           session,
           card,
@@ -737,6 +776,13 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         return noop;
       })
       .with({ type: 'change_stats' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          { session, card, entity, targets },
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
         const modifierId = nanoid(6);
         const units = getUnits({
           session,
