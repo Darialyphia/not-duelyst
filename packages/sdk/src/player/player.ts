@@ -270,6 +270,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   startTurn() {
     this.resourceActionsTaken = 0;
+    this.cardsReplacedThisTurn = 0;
 
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
