@@ -18,5 +18,6 @@ export const config = {
   UNLIMITED_RETALIATION: true,
   CAN_WALK_THROUGH_ALLIES: true,
   CAN_MOVE_AFTER_ATTACK: false,
-  ARTIFACT_DURABILITY: 3
+  ARTIFACT_DURABILITY: 3,
+  DRAW_AT_END_OF_TURN: true
 } as const;

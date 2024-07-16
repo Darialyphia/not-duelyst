@@ -265,6 +265,9 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.entities.forEach(entity => {
       entity.endTurn();
     });
+    if (config.DRAW_AT_END_OF_TURN) {
+      this.draw(config.CARD_DRAW_PER_TURN);
+    }
     this.emit(PLAYER_EVENTS.TURN_END, this);
   }
 
@@ -279,15 +282,13 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
         this.currentGold = this.maxGold;
       }
       this.giveGold(config.GOLD_PER_TURN);
-      this.draw(config.CARD_DRAW_PER_TURN);
+      if (!config.DRAW_AT_END_OF_TURN) {
+        this.draw(config.CARD_DRAW_PER_TURN);
+      }
     } else {
       this.isP2T1 = false;
     }
     this.emit(PLAYER_EVENTS.TURN_START, this);
-  }
-
-  get totalRunesCount() {
-    return Object.values(this.runes).reduce((acc, curr) => acc + curr);
   }
 
   canPlayCardAtIndex(index: number) {
