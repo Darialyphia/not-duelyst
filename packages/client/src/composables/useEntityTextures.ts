@@ -116,7 +116,7 @@ export const useEntityTexture = (
   });
   useDispatchCallback('card:before_played', async event => {
     if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
-    if (!event.player.equals(entity.value.player)) return;
+    if (!event.player.general.equals(entity.value)) return;
     await playAnimation('caststart', 1, () => true)(event);
     await playAnimation('castloop', 1, () => true, 3)(event);
 

@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { isDefined } from '@game/shared';
 import type { Cell } from '@game/sdk';
 
 const { cell } = defineProps<{ cell: Cell }>();
 const { session, assets, camera, ui, fx } = useGame();
 
 const sheet = computed(() => assets.getSpritesheet('deploy-zone'));
+const userPlayer = useUserPlayer();
 
 const isMatch = (cellToTest: Cell) => {
   if (ui.targetingMode.value !== TARGETING_MODES.SUMMON) return false;
   if (!ui.selectedCard.value) return false;
+  if (!isDefined(ui.selectedCardIndex.value)) return false;
+  if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
 
   return ui.selectedCard.value.canPlayAt(cellToTest.position);
 };

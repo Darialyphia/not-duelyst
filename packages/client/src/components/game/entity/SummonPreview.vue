@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CARD_KINDS } from '@game/sdk';
-import type { Nullable } from '@game/shared';
-import { TextStyle, type FrameObject } from 'pixi.js';
+import { isDefined, type Nullable } from '@game/shared';
+import { type FrameObject } from 'pixi.js';
 import { match } from 'ts-pattern';
 
 const { camera, ui } = useGame();
@@ -20,7 +20,10 @@ const boardDimensions = useGameSelector(session => ({
   height: session.boardSystem.height
 }));
 
+const userPlayer = useUserPlayer();
 const isDisplayed = computed(() => {
+  if (!isDefined(ui.selectedCardIndex.value)) return false;
+  if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
   return match(ui.targetingMode.value)
     .with(
       TARGETING_MODES.NONE,

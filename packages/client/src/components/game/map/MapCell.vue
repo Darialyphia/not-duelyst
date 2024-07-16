@@ -65,11 +65,17 @@ const attack = () => {
   }
 };
 
+const userPlayer = useUserPlayer();
 const summon = () => {
   if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) {
     ui.unselectCard();
     return;
   }
+  if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value!)) {
+    ui.unselectCard();
+    return;
+  }
+
   ui.summonTarget.value = cell.value.position;
   if (ui.selectedCard.value.blueprint.cardChoices) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);

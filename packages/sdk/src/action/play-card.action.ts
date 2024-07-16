@@ -41,7 +41,6 @@ export class PlayCardAction extends GameAction<typeof schema> {
     if (!this.card) {
       return this.printError(`Card not found at index ${this.payload.cardIndex}`);
     }
-
     const areTargetsValid = this.payload.targets.every((target, index) => {
       return this.card.blueprint.targets?.isTargetable(target, {
         card: this.card,

@@ -34,18 +34,8 @@ const boardDimensions = useGameSelector(session => ({
     :width="boardDimensions.width"
     :z-index-offset="1"
   >
-    <container
-      v-if="cell.tile && textures.diffuse && textures.normal"
-      :y="-CELL_HEIGHT * 0.4"
-      event-mode="none"
-    >
-      <animated-sprite
-        :textures="textures.diffuse as FrameObject[]"
-        :normal-textures="textures.normal as FrameObject[]"
-        :anchor="0.5"
-        playing
-        loop
-      />
+    <container v-if="cell.tile && textures" :y="-CELL_HEIGHT * 0.4" event-mode="none">
+      <animated-sprite :textures="textures" :anchor="0.5" playing loop />
     </container>
   </IsoPositioner>
 </template>

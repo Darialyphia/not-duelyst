@@ -171,8 +171,13 @@ export const testMap: SerializedGameState['map'] = {
     ...makeColumn(1, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(2, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(3, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(4, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(5, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(4, 0, ['grass', 'grass', 'grass', 'grass', 'grass'], {
+      0: 'gold_coin',
+      4: 'gold_coin'
+    }),
+    ...makeColumn(5, 0, ['grass', 'grass', 'grass', 'grass', 'grass'], {
+      2: 'gold_coin'
+    }),
     ...makeColumn(6, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(7, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(8, 0, ['grass', 'grass', 'grass', 'grass', 'grass'])

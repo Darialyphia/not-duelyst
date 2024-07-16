@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { clamp, rectToBBox, type Nullable } from '@game/shared';
+import { clamp, type Nullable } from '@game/shared';
 import { Teleport } from 'vue';
 
 const userPlayer = useUserPlayer();
@@ -19,9 +19,7 @@ const { x, y } = useMouse();
 const offset = ref({ x: 0, y: 0 });
 
 const onMouseDown = (e: MouseEvent, index: number) => {
-  if (userPlayer.value.canPlayCardAtIndex(index)) {
-    ui.selectCardAtIndex(index);
-  }
+  ui.selectCardAtIndex(index);
 
   const rect = (e.target as HTMLElement).getBoundingClientRect();
   offset.value = {
@@ -31,7 +29,9 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   draggedIndex.value = index;
 
   const stopDragging = () => {
-    draggedIndex.value = null;
+    nextTick(() => {
+      draggedIndex.value = null;
+    });
     document.body.removeEventListener('mouseup', stopDragging);
   };
   document.body.addEventListener('mouseup', stopDragging);
@@ -44,7 +44,9 @@ const onMouseDown = (e: MouseEvent, index: number) => {
     :style="{
       '--x': `${x - offset.x}px`,
       '--y': `${y - offset.y}px`,
-      '--opacity': ui.hoveredCell.value ? 0.5 : 1
+      '--origin-x': `${offset.x}px`,
+      '--origin-y': `${offset.y}px`,
+      opacity: ui.hoveredCell.value ? 0.5 : 1
     }"
   />
   <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
@@ -87,7 +89,7 @@ const onMouseDown = (e: MouseEvent, index: number) => {
         !isActive || !isDefined(ui.selectedCardIndex.value) || !userPlayer.canReplace
       "
       :class="{ dragging: isDefined(draggedIndex) }"
-      @click="
+      @mouseup="
         () => {
           dispatch('replace', { cardIndex: ui.selectedCardIndex.value! });
           ui.unselectCard();
@@ -247,16 +249,18 @@ const onMouseDown = (e: MouseEvent, index: number) => {
 }
 
 #dragged-card {
+  pointer-events: none !important;
+
   position: fixed;
   z-index: 999;
   top: 0;
   left: 0;
-  transform-origin: top left;
+  transform-origin: var(--origin-x) var(--origin-y);
   transform: translateY(var(--y)) translateX(var(--x)) scale(0.5);
 
-  opacity: var(--opacity);
+  /* opacity: var(--opacity); */
 
-  transition: opacity 0.3s;
+  transition: opacity 0.5s;
 }
 
 .replace-button {

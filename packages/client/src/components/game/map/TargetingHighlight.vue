@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { isDefined } from '@game/shared';
 import type { Cell } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const { cell } = defineProps<{ cell: Cell }>();
 const { session, assets, camera, ui, fx } = useGame();
-
+const userPlayer = useUserPlayer();
 const sheet = computed(() => assets.getSpritesheet('deploy-zone'));
 
 const isMatch = (cellToTest: Cell) => {
@@ -18,6 +19,8 @@ const isMatch = (cellToTest: Cell) => {
     )
     .with(TARGETING_MODES.TARGETING, () => {
       if (!ui.selectedCard.value) return false;
+      if (!isDefined(ui.selectedCardIndex.value)) return false;
+      if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
       return (
         ui.selectedCard.value.blueprint.targets?.isTargetable(cellToTest, {
           session,

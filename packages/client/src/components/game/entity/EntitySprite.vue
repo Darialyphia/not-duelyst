@@ -4,6 +4,7 @@ import { AnimatedSprite, BLEND_MODES, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
+import { OutlineFilter } from '@pixi/filter-outline';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
 import { radialGradient } from '~/utils/fx';
 
@@ -25,7 +26,7 @@ watchEffect(() => {
   fx.entityAnimationsMap.value.set(entityId, isSelected.value ? 'idle' : 'breathing');
 });
 const exhaustedFilter = new AdjustmentFilter({ saturation: 0.35 });
-const selectedFilter = new AdjustmentFilter({});
+const selectedFilter = new OutlineFilter(1, 0xffffff);
 
 const getPlayerFilterAlpha = () =>
   match(settings.value.a11y.colorCodeUnits)
@@ -54,8 +55,8 @@ const playerFilter = new ColorOverlayFilter(
 watchEffect(() => {
   gsap.to(selectedFilter, {
     duration: 0.3,
-    blue: isSelected.value ? 1.6 : 1,
-    gamma: isSelected.value ? 1.15 : 1,
+    thickness: isSelected.value ? 1 : 0,
+    alpha: isSelected.value ? 1 : 0,
     ease: Power2.easeOut
   });
 });

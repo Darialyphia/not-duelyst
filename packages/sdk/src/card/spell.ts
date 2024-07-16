@@ -70,7 +70,7 @@ export class Spell extends Card implements Serializable {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
-      targets: [ctx.position, ...ctx.targets]
+      targets: ctx.targets
     });
   }
 }

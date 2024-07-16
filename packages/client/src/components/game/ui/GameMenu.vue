@@ -5,6 +5,7 @@ const { dispatch, ui, gameType } = useGame();
 const { isMenuOpened } = useGameUi();
 
 useEventListener('keydown', e => {
+  if (e.code !== 'Escape' || isMenuOpened.value) return;
   match(ui.targetingMode.value)
     .with('TARGETING', () => {
       ui.unselectCard();
@@ -14,9 +15,7 @@ useEventListener('keydown', e => {
       ui.cardChoiceIndexes.value = [];
     })
     .otherwise(() => {
-      if (e.code === 'Escape' && !isMenuOpened.value) {
-        isMenuOpened.value = true;
-      }
+      isMenuOpened.value = true;
     });
 });
 

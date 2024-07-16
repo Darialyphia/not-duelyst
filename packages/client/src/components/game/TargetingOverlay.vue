@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isDefined } from '@game/shared';
 import { useScreen, PTransition } from 'vue3-pixi';
 import { debounce } from 'lodash-es';
 import { Texture } from 'pixi.js';
@@ -37,6 +38,13 @@ const debouncedResize = debounce(() => {
   texture.value = gradient();
 }, 100);
 useEventListener(window, 'resize', debouncedResize);
+const userPlayer = useUserPlayer();
+const isDisplayed = computed(() => {
+  if (!isDefined(ui.selectedCardIndex.value)) return false;
+  if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
+
+  return ui.targetingMode.value === TARGETING_MODES.TARGETING;
+});
 </script>
 
 <template>
@@ -48,7 +56,7 @@ useEventListener(window, 'resize', debouncedResize);
     :leave="{ alpha: 0 }"
   >
     <graphics
-      v-if="ui.targetingMode.value === TARGETING_MODES.TARGETING"
+      v-if="isDisplayed"
       event-mode="none"
       :alpha="0.7"
       @render="
