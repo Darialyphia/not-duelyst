@@ -1,7 +1,7 @@
 import { match } from 'ts-pattern';
 import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
-import type { Action, Amount, Filter, InitAction } from './card-effect';
+import type { Action, Amount, Filter, InitAction, NumericOperator } from './card-effect';
 import type { Entity } from '../entity/entity';
 import type { AnyObject, Nullable, Point3D } from '@game/shared';
 import { isWithinCells } from '../utils/targeting';
@@ -663,6 +663,13 @@ export type ParsedActionResult = (
 
 const noop = () => void 0;
 
+const matchOperator = (amount: number, reference: number, operator: NumericOperator) => {
+  return match(operator)
+    .with('equals', () => amount === reference)
+    .with('less_than', () => amount < reference)
+    .with('more_than', () => amount > reference)
+    .exhaustive();
+};
 const checkGlobalConditions = (
   conditions:
     | Filter<
@@ -676,7 +683,49 @@ const checkGlobalConditions = (
   event: AnyObject,
   eventName?: string
 ): boolean => {
-  return true;
+  if (!conditions) return true;
+
+  return conditions.some(group => {
+    return group.every(condition => {
+      return match(condition)
+        .with({ type: 'player_gold' }, condition => {
+          const amount = getAmount({
+            session,
+            card,
+            entity,
+            targets,
+            event,
+            eventName,
+            amount: condition.params.amount
+          });
+          return getPlayers({ session, card, conditions: condition.params.player }).every(
+            player => matchOperator(player.currentGold, amount, condition.params.operator)
+          );
+        })
+        .with({ type: 'player_hp' }, condition => {
+          const amount = getAmount({
+            session,
+            card,
+            entity,
+            targets,
+            event,
+            eventName,
+            amount: condition.params.amount
+          });
+          return getPlayers({
+            session,
+            card,
+            conditions: condition.params.player
+          }).every(player =>
+            matchOperator(player.general.hp, amount, condition.params.operator)
+          );
+        })
+        .with({ type: 'unit_state' }, condition => {
+          return true;
+        })
+        .exhaustive();
+    });
+  });
 };
 
 export const parseCardAction = (action: Action): ParsedActionResult => {
