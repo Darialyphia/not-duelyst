@@ -14,6 +14,8 @@ export class ServerSession extends GameSession {
     super.setup();
     this.eventsSinceLastDispatch = [];
     this.on('*', e => {
+      console.log(`%c[EVENT:${e.eventName}]`, 'color: #008b8b');
+
       this.eventsSinceLastDispatch.push(e);
     });
   }

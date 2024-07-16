@@ -81,8 +81,10 @@ export const getUnits = ({
               event,
               eventName
             });
-            return candidates.some(candidate =>
-              isWithinCells(candidate.position, e.position, 1)
+            return candidates.some(
+              candidate =>
+                isWithinCells(candidate.position, e.position, 1) &&
+                !candidate.position.equals(e.position)
             );
           })
           .with({ type: 'is_in_front' }, condition => {
@@ -663,7 +665,11 @@ export type ParsedActionResult = (
 
 const noop = () => void 0;
 
-const matchOperator = (amount: number, reference: number, operator: NumericOperator) => {
+const matchNumericOperator = (
+  amount: number,
+  reference: number,
+  operator: NumericOperator
+) => {
   return match(operator)
     .with('equals', () => amount === reference)
     .with('less_than', () => amount < reference)
@@ -699,7 +705,8 @@ const checkGlobalConditions = (
             amount: condition.params.amount
           });
           return getPlayers({ session, card, conditions: condition.params.player }).every(
-            player => matchOperator(player.currentGold, amount, condition.params.operator)
+            player =>
+              matchNumericOperator(player.currentGold, amount, condition.params.operator)
           );
         })
         .with({ type: 'player_hp' }, condition => {
@@ -717,11 +724,58 @@ const checkGlobalConditions = (
             card,
             conditions: condition.params.player
           }).every(player =>
-            matchOperator(player.general.hp, amount, condition.params.operator)
+            matchNumericOperator(player.general.hp, amount, condition.params.operator)
           );
         })
         .with({ type: 'unit_state' }, condition => {
-          return true;
+          const entities = getUnits({
+            session,
+            entity,
+            targets,
+            card,
+            event,
+            eventName,
+            conditions: condition.params.unit
+          });
+          const isMatch = (e: Entity) => {
+            const { state } = condition.params;
+            const ctx = { session, card, entity, targets, event, eventName };
+            const attackMatch = state.attack
+              ? matchNumericOperator(
+                  getAmount({
+                    ...ctx,
+                    amount: state.attack.amount
+                  }),
+                  e.attack,
+                  state.attack.operator
+                )
+              : true;
+
+            const hpMatch = state.hp
+              ? matchNumericOperator(
+                  getAmount({
+                    ...ctx,
+                    amount: state.hp.amount
+                  }),
+                  e.hp,
+                  state.hp.operator
+                )
+              : true;
+
+            const positionMatch = state.position
+              ? getCells({ ...ctx, conditions: state.position }).some(cell => {
+                  return cell.position.equals(e.position);
+                })
+              : true;
+
+            return attackMatch && hpMatch && positionMatch;
+          };
+
+          return match(condition.params.mode)
+            .with('all', () => entities.every(isMatch))
+            .with('none', () => entities.every(e => !isMatch(e)))
+            .with('some', () => entities.some(isMatch))
+            .exhaustive();
         })
         .exhaustive();
     });
@@ -848,38 +902,58 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
             createEntityModifier({
               id: modifierId,
               source: entity ?? card.player.general,
-              stackable: true,
+              stackable: action.params.stackable,
               visible: false,
               mixins: [
                 modifierEntityInterceptorMixin({
                   key: 'attack',
                   keywords: [],
-                  interceptor: () => value =>
-                    value +
-                    getAmount({
-                      session,
-                      entity,
-                      card,
-                      targets,
-                      amount: action.params.attack,
+                  interceptor: () => value => {
+                    const shouldApply = checkGlobalConditions(
+                      action.params.attack.activeWhen,
+                      { session, card, entity, targets },
                       event,
                       eventName
-                    })
+                    );
+                    if (!shouldApply) return value;
+                    return (
+                      value +
+                      getAmount({
+                        session,
+                        entity,
+                        card,
+                        targets,
+                        amount: action.params.attack.amount,
+                        event,
+                        eventName
+                      })
+                    );
+                  }
                 }),
                 modifierEntityInterceptorMixin({
                   key: 'maxHp',
                   keywords: [],
-                  interceptor: () => value =>
-                    value +
-                    getAmount({
-                      session,
-                      entity,
-                      card,
-                      targets,
-                      amount: action.params.hp,
+                  interceptor: () => value => {
+                    const shouldApply = checkGlobalConditions(
+                      action.params.hp.activeWhen,
+                      { session, card, entity, targets },
                       event,
                       eventName
-                    })
+                    );
+                    if (!shouldApply) return value;
+                    return (
+                      value +
+                      getAmount({
+                        session,
+                        entity,
+                        card,
+                        targets,
+                        amount: action.params.hp.amount,
+                        event,
+                        eventName
+                      })
+                    );
+                  }
                 })
               ]
             })

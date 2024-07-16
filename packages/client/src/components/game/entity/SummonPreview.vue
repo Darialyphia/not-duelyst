@@ -103,8 +103,8 @@ watchEffect(async () => {
       :scale-x="scaleX"
       :playing="true"
       :anchor-x="0.5"
-      :anchor-y="0"
-      :y="-CELL_HEIGHT"
+      :anchor-y="1"
+      :y="CELL_HEIGHT * 0.65"
     />
   </IsoPositioner>
 </template>

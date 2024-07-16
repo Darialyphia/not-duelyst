@@ -30,6 +30,7 @@ export type GlobalCondition<
       type: 'unit_state';
       params: {
         unit: Filter<UnitConditionBase>;
+        mode: 'none' | 'some' | 'all';
         state: {
           attack?: {
             operator: NumericOperator;
@@ -39,7 +40,7 @@ export type GlobalCondition<
             operator: NumericOperator;
             amount: Amount<T>;
           };
-          position?: CellCondition;
+          position?: Filter<CellCondition>;
         };
       };
     };

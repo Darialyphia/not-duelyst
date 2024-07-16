@@ -236,11 +236,12 @@ export type Action<
       type: 'change_stats';
       params: {
         filter?: Filter<GlobalCondition<T>>;
-        attack: Amount<T>;
-        hp: Amount<T>;
+        attack: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
+        hp: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        stackable: boolean;
       };
     };
 
