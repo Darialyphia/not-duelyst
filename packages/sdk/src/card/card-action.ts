@@ -24,7 +24,7 @@ import {
   getNearest
 } from '../entity/entity-utils';
 import type { Cell } from '../board/cell';
-import { airdrop, rush } from '../modifier/modifier-utils';
+import { airdrop, provoke, rush } from '../modifier/modifier-utils';
 import type { CardCondition, CardConditionExtras } from './conditions/card-conditions';
 import type { CellCondition } from './conditions/cell-conditions';
 import type { PlayerCondition } from './conditions/player-condition';
@@ -964,6 +964,14 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           units.forEach(target => {
             target.removeModifier(modifierId);
           });
+      })
+      .with({ type: 'provoke' }, () => {
+        const source = entity ?? card.player.general;
+        const modifier = provoke({ source });
+        source.addModifier(modifier);
+        return () => {
+          source.removeModifier(modifier.id);
+        };
       })
       .exhaustive();
   };

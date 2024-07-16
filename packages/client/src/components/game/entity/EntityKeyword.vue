@@ -11,7 +11,8 @@ const { assets } = useGame();
 const textures = ref<FrameObject[]>();
 
 watchEffect(async () => {
-  const spritesheet = await assets.loadSpritesheet(keyword.id);
+  if (!keyword.spriteId) return;
+  const spritesheet = await assets.loadSpritesheet(keyword.spriteId);
   textures.value = createSpritesheetFrameObject('default', spritesheet);
 });
 </script>

@@ -1,5 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
-import { FACTION_IDS } from '../../card-enums';
+import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 import { cellWithEnemyMinion, manualTarget } from '../../helpers/targeting';
 
@@ -11,7 +11,7 @@ export const f1TrueStrike = defineSerializedBlueprint({
   kind: 'SPELL',
   faction: FACTION_IDS.F1,
   keywords: [],
-  rarity: 'common',
+  rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
   spriteId: 'icon_f1_truestrike',
   tags: [],

@@ -9,6 +9,7 @@ import { neutralRiftWalker } from './cards/neutral/neutral_rift_walker';
 import { f1TrueStrike } from './cards/faction_1/true_strike';
 import { f1SunstoneBracers } from './cards/faction_1/sunstone_bracers';
 import { f1WindbladeAdept } from './cards/faction_1/windblade_adept';
+import { neutralPrimusShieldMaster } from './cards/neutral/neutral_primus-shieldmaster';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -17,7 +18,8 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(f1SunstoneBracers),
-  parseSerializeBlueprint(f1WindbladeAdept)
+  parseSerializeBlueprint(f1WindbladeAdept),
+  parseSerializeBlueprint(neutralPrimusShieldMaster)
 ];
 
 export const CARDS: Record<CardBlueprintId, CardBlueprint> = keyBy(allCards, 'id');

@@ -1,5 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
-import { FACTION_IDS } from '../../card-enums';
+import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { cellWithAllyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
@@ -11,7 +11,7 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
   kind: 'ARTIFACT',
   faction: FACTION_IDS.F1,
   keywords: [],
-  rarity: 'common',
+  rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
   spriteId: 'icon_f1_artifact_sunstonebracers',
   tags: [],
@@ -27,8 +27,8 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
           type: 'change_stats',
           params: {
             targets: [[{ type: 'is_ally' }, { type: 'is_general' }]],
-            attack: { type: 'fixed', params: { value: 1 } },
-            hp: { type: 'fixed', params: { value: 0 } },
+            attack: { amount: { type: 'fixed', params: { value: 1 } } },
+            hp: { amount: { type: 'fixed', params: { value: 0 } } },
             stackable: true
           }
         }

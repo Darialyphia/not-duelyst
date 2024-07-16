@@ -152,21 +152,24 @@ export const provoke = ({ source }: { source: Entity }) => {
   });
 
   return aura({
+    id: KEYWORDS.PROVOKE.id,
     source,
     keywords: [KEYWORDS.PROVOKE],
     isElligible(target, source, session) {
       return isNearbyEnemy(session, source, target.position);
     },
     onGainAura(entity, taunter) {
+      console.log('gain aura', entity.id);
       const interceptors = makeInterceptors(taunter);
       interceptorMap.set(entity.id, interceptors);
       entity.addInterceptor('canMove', interceptors.move);
       entity.addInterceptor('canAttack', interceptors.attack);
     },
     onLoseAura(entity) {
+      console.log('lose aura', entity.id);
       const interceptors = interceptorMap.get(entity.id)!;
-      entity.addInterceptor('canMove', interceptors.move);
-      entity.addInterceptor('canAttack', interceptors.attack);
+      entity.removeInterceptor('canMove', interceptors.move);
+      entity.removeInterceptor('canAttack', interceptors.attack);
     }
   });
 };
@@ -381,10 +384,12 @@ export const aura = ({
   source,
   onGainAura,
   onLoseAura,
+  id,
   keywords = [],
   isElligible = (target, source) => isWithinCells(source.position, target.position, 1)
 }: {
   source: Entity;
+  id?: string;
   onGainAura: (entity: Entity, source: Entity) => void;
   onLoseAura: (entity: Entity, source: Entity) => void;
   keywords?: Keyword[];
@@ -407,7 +412,6 @@ export const aura = ({
       const shouldGetAura = isElligible(entity, attachedTo, session);
 
       const hasAura = affectedEntitiesIds.has(entity.id);
-
       if (!shouldGetAura && hasAura) {
         affectedEntitiesIds.delete(entity.id);
         onLoseAura(entity, attachedTo);
@@ -422,6 +426,7 @@ export const aura = ({
     });
   };
   return createEntityModifier({
+    id,
     source,
     stackable: false,
     visible: false,

@@ -13,7 +13,7 @@ export const f1WindbladeAdept = defineSerializedBlueprint({
   attack: 2,
   maxHp: 3,
   faction: FACTION_IDS.F1,
-  keywords: [KEYWORDS.OPENING_GAMBIT.id],
+  keywords: [KEYWORDS.ZEAL.id],
   kind: 'MINION',
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],

@@ -243,6 +243,9 @@ export type Action<
         >;
         stackable: boolean;
       };
+    }
+  | {
+      type: 'provoke';
     };
 
 export type InitAction =
