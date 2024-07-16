@@ -2,6 +2,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
+import { fixedAmount } from '../../helpers/amount';
 import { zealCondition } from '../../helpers/conditions';
 
 export const f1WindbladeAdept = defineSerializedBlueprint({
@@ -23,24 +24,16 @@ export const f1WindbladeAdept = defineSerializedBlueprint({
     defineCardEffect({
       text: '@Zeal@: +2/+0.',
       config: {
-        executionContext: 'while_on_board',
-        triggers: [
-          {
-            type: 'on_unit_play',
-            params: {
-              unit: [[{ type: 'is_self' }]]
-            }
-          }
-        ],
+        executionContext: 'immediate',
         actions: [
           {
             type: 'change_stats',
             params: {
               targets: [[{ type: 'is_self' }]],
               stackable: false,
-              hp: { amount: { type: 'fixed', params: { value: 0 } } },
+              hp: { amount: fixedAmount(0) },
               attack: {
-                amount: { type: 'fixed', params: { value: 2 } },
+                amount: fixedAmount(2),
                 activeWhen: zealCondition()
               }
             }

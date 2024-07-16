@@ -136,10 +136,11 @@ export const KEYWORDS = {
     description: 'A summoned unit didn`t come from your action bar.',
     aliases: []
   },
-  PROVOKED: {
-    id: 'provoked',
-    name: 'Provokedd',
-    description: 'This unit cannot move or cast abilities, and must attack the taunter.',
+  PROVOKE: {
+    id: 'provoke',
+    name: 'Provoke',
+    description:
+      'Stops enemy minions and general from moving. They must attack this first.',
     spriteId: 'taunt',
     aliases: ['provoke']
   },

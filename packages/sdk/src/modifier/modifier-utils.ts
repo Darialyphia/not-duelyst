@@ -15,6 +15,7 @@ import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
+import { isNearbyEnemy } from '../entity/entity-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -131,59 +132,43 @@ export const regeneration = ({
   });
 };
 
-export const provoked = ({
-  source,
-  duration = Infinity
-}: {
-  source: Entity;
-  duration?: number;
-}) => {
-  const moveInterceptor = () => false;
-  const attackInterceptor = (value: boolean) => {
-    // if entity already can't attack, do nothing
-    if (!value) return value;
+export const provoke = ({ source }: { source: Entity }) => {
+  const interceptorMap = new Map<
+    EntityId,
+    {
+      move: () => boolean;
+      attack: (canAttack: boolean, ctx: { target: Entity }) => boolean;
+    }
+  >();
 
-    return true;
-  };
+  const makeInterceptors = (taunter: Entity) => ({
+    move: () => false,
+    attack: (canAttack: boolean, { target }: { target: Entity }) => {
+      // if entity already can't attack, do nothing
+      if (!canAttack) return canAttack;
 
-  let onMove: () => void;
-  const cleanup = (session: GameSession, attachedTo: Entity) => {
-    attachedTo.removeInterceptor('canMove', moveInterceptor);
-    attachedTo.removeInterceptor('canAttack', attackInterceptor);
-    session.off('entity:after-move', onMove);
-  };
-
-  const modifier = createEntityModifier({
-    source,
-    visible: true,
-    name: 'Taunted',
-    description: KEYWORDS.PROVOKED.description,
-    stackable: false,
-    mixins: [
-      modifierEntityDurationMixin({
-        keywords: [KEYWORDS.PROVOKED],
-        duration,
-        tickOn: 'end',
-        onApplied(session, attachedTo) {
-          attachedTo.addInterceptor('canMove', moveInterceptor);
-          attachedTo.addInterceptor('canAttack', attackInterceptor);
-          onMove = () => {
-            if (!isWithinCells(source.position, attachedTo.position, 1)) {
-              cleanup(session, attachedTo);
-              session.on('entity:after-move', onMove);
-            }
-          };
-          session.on('entity:after-move', onMove);
-          source.once('after_destroy', () => cleanup(session, attachedTo));
-        },
-        onRemoved(session, attachedTo) {
-          cleanup(session, attachedTo);
-        }
-      })
-    ]
+      return taunter.equals(target);
+    }
   });
 
-  return modifier;
+  return aura({
+    source,
+    keywords: [KEYWORDS.PROVOKE],
+    isElligible(target, source, session) {
+      return isNearbyEnemy(session, source, target.position);
+    },
+    onGainAura(entity, taunter) {
+      const interceptors = makeInterceptors(taunter);
+      interceptorMap.set(entity.id, interceptors);
+      entity.addInterceptor('canMove', interceptors.move);
+      entity.addInterceptor('canAttack', interceptors.attack);
+    },
+    onLoseAura(entity) {
+      const interceptors = interceptorMap.get(entity.id)!;
+      entity.addInterceptor('canMove', interceptors.move);
+      entity.addInterceptor('canAttack', interceptors.attack);
+    }
+  });
 };
 
 export const fearsome = ({
@@ -394,48 +379,44 @@ export const barrier = ({ source, duration }: { source: Entity; duration?: numbe
 
 export const aura = ({
   source,
-  name,
-  description,
   onGainAura,
   onLoseAura,
   keywords = [],
   isElligible = (target, source) => isWithinCells(source.position, target.position, 1)
 }: {
   source: Entity;
-  name: string;
-  description: string;
-  onGainAura: (entity: Entity) => void;
-  onLoseAura: (entity: Entity) => void;
+  onGainAura: (entity: Entity, source: Entity) => void;
+  onLoseAura: (entity: Entity, source: Entity) => void;
   keywords?: Keyword[];
-  isElligible?: (target: Entity, source: Entity) => boolean;
+  isElligible?: (target: Entity, source: Entity, session: GameSession) => boolean;
 }) => {
   const affectedEntitiesIds = new Set<EntityId>();
 
-  const cleanup = (session: GameSession) => {
+  const cleanup = (session: GameSession, attachedTo: Entity) => {
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
 
-      onLoseAura(entity);
+      onLoseAura(entity, attachedTo);
     });
   };
 
   const checkAura = (session: GameSession, attachedTo: Entity) => {
     session.entitySystem.getList().forEach(entity => {
       if (entity.equals(attachedTo)) return;
-      const shouldGetAura = isElligible(entity, attachedTo);
+      const shouldGetAura = isElligible(entity, attachedTo, session);
 
       const hasAura = affectedEntitiesIds.has(entity.id);
 
       if (!shouldGetAura && hasAura) {
         affectedEntitiesIds.delete(entity.id);
-        onLoseAura(entity);
+        onLoseAura(entity, attachedTo);
         return;
       }
 
       if (shouldGetAura && !hasAura) {
         affectedEntitiesIds.add(entity.id);
-        onGainAura(entity);
+        onGainAura(entity, attachedTo);
         return;
       }
     });
@@ -443,9 +424,7 @@ export const aura = ({
   return createEntityModifier({
     source,
     stackable: false,
-    visible: true,
-    name,
-    description,
+    visible: false,
     mixins: [
       {
         keywords,
@@ -460,11 +439,11 @@ export const aura = ({
             session.off('entity:created', doCheck);
             session.off('entity:after_destroy', doCheck);
             session.off('entity:after-move', doCheck);
-            cleanup(session);
+            cleanup(session, attachedTo);
           });
         },
-        onRemoved(session) {
-          cleanup(session);
+        onRemoved(session, attachedTo) {
+          cleanup(session, attachedTo);
         }
       }
     ]
