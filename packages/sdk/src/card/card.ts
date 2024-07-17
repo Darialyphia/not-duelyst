@@ -1,6 +1,5 @@
 import type { GameSession } from '../game-session';
 import { CARDS } from './card-lookup';
-import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import type { Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
 import EventEmitter from 'eventemitter3';

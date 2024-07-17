@@ -103,6 +103,8 @@ export class GameSession extends EventEmitter<GameEventMap> {
 
   winnerId: Nullable<string> = null;
 
+  logger = console.log;
+
   protected constructor(
     private initialState: SerializedGameState,
     public rngSystem: RngSystem,
@@ -129,7 +131,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
       'game:ready'
     ].forEach(eventName => {
       this.on(eventName as any, event => {
-        // console.log(`%c[EVENT:${eventName}]`, 'color: #008b8b');
+        // this.logger(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
         this.emit('*', { eventName, event } as any);
       });

@@ -2,9 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
-import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
 
 export const neutralPrimusShieldMaster = defineSerializedBlueprint({
   id: 'primus_shieldmaster',
@@ -26,7 +23,7 @@ export const neutralPrimusShieldMaster = defineSerializedBlueprint({
       text: '@Provoke@.',
       config: {
         executionContext: 'immediate',
-        actions: [{ type: 'provoke' }]
+        actions: [{ type: 'provoke', params: {} }]
       }
     })
   ]

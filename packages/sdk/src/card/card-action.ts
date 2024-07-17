@@ -8,11 +8,7 @@ import type { Card } from './card';
 import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
-import {
-  getEffectModifier,
-  parseSerializedBlueprintEffect,
-  type EffectCtx
-} from './card-parser';
+import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
 import { airdrop, provoke, rush } from '../modifier/modifier-utils';
 import type { CardConditionExtras } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
@@ -406,12 +402,33 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
             target.removeModifier(modifierId);
           });
       })
-      .with({ type: 'provoke' }, () => {
+      .with({ type: 'provoke' }, action => {
         const source = entity ?? card.player.general;
         const modifier = provoke({ source });
-        source.addModifier(modifier);
+
+        const tryToApply = () => {
+          const shouldApply = checkGlobalConditions(
+            action.params.activeWhen,
+            { session, card, entity, targets },
+            event,
+            eventName
+          );
+
+          if (shouldApply) {
+            if (!source.hasModifier(modifier.id)) {
+              source.addModifier(modifier);
+            }
+          } else {
+            source.removeModifier(modifier.id);
+          }
+        };
+
+        tryToApply();
+        session.on('*', tryToApply);
+
         return () => {
           source.removeModifier(modifier.id);
+          session.off('*', tryToApply);
         };
       })
       .with({ type: 'add_effect' }, action => {
@@ -424,13 +441,13 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           eventName,
           conditions: action.params.unit
         });
-        const actions = parseSerializedBlueprintEffect({
+        const effects = parseSerializedBlueprintEffect({
           text: '',
           config: action.params.effect
         }).flat();
         units.forEach(unit => {
-          actions.forEach(action => {
-            const entityModifier = action.getEntityModifier?.({
+          effects.forEach(effect => {
+            const entityModifier = effect.getEntityModifier?.({
               session,
               entity,
               card,
@@ -440,7 +457,8 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               unit.addModifier(entityModifier);
             }
 
-            const cardModifier = action.getCardModifier?.();
+            const cardModifier = effect.getCardModifier?.();
+
             if (cardModifier) {
               unit.card.addModifier(cardModifier);
             }

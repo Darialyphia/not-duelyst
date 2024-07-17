@@ -15,6 +15,7 @@ type EventCallback = {
 };
 
 export class ClientSession extends GameSession {
+  logger = (...args: any[]) => void 0;
   static create(state: SerializedGameState, fxSystem: FXSystem, winnerId?: string) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;

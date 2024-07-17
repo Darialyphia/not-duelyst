@@ -132,46 +132,6 @@ export const regeneration = ({
   });
 };
 
-export const provoke = ({ source }: { source: Entity }) => {
-  const interceptorMap = new Map<
-    EntityId,
-    {
-      move: () => boolean;
-      attack: (canAttack: boolean, ctx: { target: Entity }) => boolean;
-    }
-  >();
-
-  const makeInterceptors = (taunter: Entity) => ({
-    move: () => false,
-    attack: (canAttack: boolean, { target }: { target: Entity }) => {
-      // if entity already can't attack, do nothing
-      if (!canAttack) return canAttack;
-
-      return taunter.equals(target);
-    }
-  });
-
-  return aura({
-    id: KEYWORDS.PROVOKE.id,
-    source,
-    keywords: [KEYWORDS.PROVOKE],
-    isElligible(target, source, session) {
-      return isNearbyEnemy(session, source, target.position);
-    },
-    onGainAura(entity, taunter) {
-      const interceptors = makeInterceptors(taunter);
-      interceptorMap.set(entity.id, interceptors);
-      entity.addInterceptor('canMove', interceptors.move);
-      entity.addInterceptor('canAttack', interceptors.attack);
-    },
-    onLoseAura(entity) {
-      const interceptors = interceptorMap.get(entity.id)!;
-      entity.removeInterceptor('canMove', interceptors.move);
-      entity.removeInterceptor('canAttack', interceptors.attack);
-    }
-  });
-};
-
 export const fearsome = ({
   source,
   duration = Infinity
@@ -388,41 +348,54 @@ export const aura = ({
 }: {
   source: Entity;
   id?: string;
-  onGainAura: (entity: Entity, source: Entity) => void;
-  onLoseAura: (entity: Entity, source: Entity) => void;
+  onGainAura: (entity: Entity, source: Entity, session: GameSession) => void;
+  onLoseAura: (entity: Entity, source: Entity, session: GameSession) => void;
   keywords?: Keyword[];
   isElligible?: (target: Entity, source: Entity, session: GameSession) => boolean;
 }) => {
   const affectedEntitiesIds = new Set<EntityId>();
-
-  const cleanup = (session: GameSession, attachedTo: Entity) => {
-    affectedEntitiesIds.forEach(id => {
-      const entity = session.entitySystem.getEntityById(id);
-      if (!entity) return;
-
-      onLoseAura(entity, attachedTo);
-    });
-  };
+  // we need to track this variable because of how the event emitter works
+  // basically if we have an event that says "after unit moves, remove this aura modifier"
+  // It will not clean up aura's "after unit move" event before all the current listeners have been ran
+  // which would lead to removing the aura, THEN check and apply the aura anyways
+  let isApplied = true;
+  let checkListener: () => void = () => void 0;
 
   const checkAura = (session: GameSession, attachedTo: Entity) => {
+    if (!isApplied) return;
     session.entitySystem.getList().forEach(entity => {
       if (entity.equals(attachedTo)) return;
       const shouldGetAura = isElligible(entity, attachedTo, session);
 
       const hasAura = affectedEntitiesIds.has(entity.id);
+
       if (!shouldGetAura && hasAura) {
         affectedEntitiesIds.delete(entity.id);
-        onLoseAura(entity, attachedTo);
+        onLoseAura(entity, attachedTo, session);
         return;
       }
 
       if (shouldGetAura && !hasAura) {
         affectedEntitiesIds.add(entity.id);
-        onGainAura(entity, attachedTo);
+        onGainAura(entity, attachedTo, session);
         return;
       }
     });
   };
+
+  const cleanup = (session: GameSession, attachedTo: Entity) => {
+    session.off('entity:created', checkListener);
+    session.off('entity:after_destroy', checkListener);
+    session.off('entity:after-move', checkListener);
+    affectedEntitiesIds.forEach(id => {
+      const entity = session.entitySystem.getEntityById(id);
+      if (!entity) return;
+
+      affectedEntitiesIds.delete(entity.id);
+      onLoseAura(entity, attachedTo, session);
+    });
+  };
+
   return createEntityModifier({
     id,
     source,
@@ -432,24 +405,71 @@ export const aura = ({
       {
         keywords,
         onApplied(session, attachedTo) {
-          const doCheck = () => checkAura(session, attachedTo);
-          doCheck();
-          session.on('entity:created', doCheck);
-          session.on('entity:after_destroy', doCheck);
-          session.on('entity:after-move', doCheck);
+          isApplied = true;
+          session.logger('applying aura modifier');
+          checkListener = () => checkAura(session, attachedTo);
+          checkListener();
+
+          session.on('entity:created', checkListener);
+          session.on('entity:after_destroy', checkListener);
+          session.on('entity:after-move', () => {
+            session.logger('after move');
+            checkListener();
+          });
 
           attachedTo.once('after_destroy', () => {
-            session.off('entity:created', doCheck);
-            session.off('entity:after_destroy', doCheck);
-            session.off('entity:after-move', doCheck);
             cleanup(session, attachedTo);
           });
         },
         onRemoved(session, attachedTo) {
+          isApplied = false;
+          session.logger('on removed');
           cleanup(session, attachedTo);
         }
       }
     ]
+  });
+};
+
+export const provoke = ({ source }: { source: Entity }) => {
+  const interceptorMap = new Map<
+    EntityId,
+    {
+      move: () => boolean;
+      attack: (canAttack: boolean, ctx: { target: Entity }) => boolean;
+    }
+  >();
+
+  const makeInterceptors = (taunter: Entity) => ({
+    move: () => false,
+    attack: (canAttack: boolean, { target }: { target: Entity }) => {
+      // if entity already can't attack, do nothing
+      if (!canAttack) return canAttack;
+
+      return taunter.equals(target);
+    }
+  });
+
+  return aura({
+    id: KEYWORDS.PROVOKE.id,
+    source,
+    keywords: [KEYWORDS.PROVOKE],
+    isElligible(target, source, session) {
+      return isNearbyEnemy(session, source, target.position);
+    },
+    onGainAura(entity, taunter, session) {
+      session.logger('provoking', entity.card.blueprintId);
+      const interceptors = makeInterceptors(taunter);
+      interceptorMap.set(entity.id, interceptors);
+      entity.addInterceptor('canMove', interceptors.move);
+      entity.addInterceptor('canAttack', interceptors.attack);
+    },
+    onLoseAura(entity, taunter, session) {
+      session.logger('stop provoking', entity.card.blueprintId);
+      const interceptors = interceptorMap.get(entity.id)!;
+      entity.removeInterceptor('canMove', interceptors.move);
+      entity.removeInterceptor('canAttack', interceptors.attack);
+    }
   });
 };
 

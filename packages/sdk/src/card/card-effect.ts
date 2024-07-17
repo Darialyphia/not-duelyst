@@ -3,7 +3,6 @@ import type {
   CardConditionBase,
   CardConditionExtras
 } from './conditions/card-conditions';
-import type { CellCondition } from './conditions/cell-conditions';
 import type { GlobalCondition } from './conditions/global-conditions';
 import type { PlayerCondition } from './conditions/player-condition';
 import type {
@@ -246,6 +245,9 @@ export type Action<
     }
   | {
       type: 'provoke';
+      params: {
+        activeWhen?: Filter<GlobalCondition<T>>;
+      };
     }
   | {
       type: 'add_effect';
