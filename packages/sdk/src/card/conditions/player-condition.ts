@@ -12,13 +12,13 @@ export type PlayerConditionBase =
   | { type: 'is_manual_target_owner'; params: { index: number } };
 
 export type PlayerConditionExtras =
-  | { type: 'attack_target' }
-  | { type: 'attack_source' }
-  | { type: 'healing_target' }
-  | { type: 'healing_source' }
-  | { type: 'moved_unit' }
-  | { type: 'played_unit' }
-  | { type: 'destroyed_unit' };
+  | { type: 'attack_target_owner' }
+  | { type: 'attack_source_owner' }
+  | { type: 'healing_target_owner' }
+  | { type: 'healing_source_owner' }
+  | { type: 'moved_unit_owner' }
+  | { type: 'played_unit_owner' }
+  | { type: 'destroyed_unit_owner' };
 
 export type PlayerCondition = PlayerConditionBase | PlayerConditionExtras;
 
@@ -51,7 +51,7 @@ export const getPlayers = ({
             if (!entity) return false;
             return p.equals(entity.player);
           })
-          .with({ type: 'attack_source' }, () => {
+          .with({ type: 'attack_source_owner' }, () => {
             if (
               eventName === 'entity:before_attack' ||
               eventName === 'entity:after_attack' ||
@@ -72,7 +72,7 @@ export const getPlayers = ({
 
             return false;
           })
-          .with({ type: 'attack_target' }, () => {
+          .with({ type: 'attack_target_owner' }, () => {
             if (
               eventName === 'entity:before_attack' ||
               eventName === 'entity:after_attack' ||
@@ -93,19 +93,19 @@ export const getPlayers = ({
 
             return false;
           })
-          .with({ type: 'healing_source' }, () => {
+          .with({ type: 'healing_source_owner' }, () => {
             return event.source && p.equals(event.source.player);
           })
-          .with({ type: 'healing_target' }, () => {
+          .with({ type: 'healing_target_owner' }, () => {
             return event.entity && p.equals(event.entity.player);
           })
-          .with({ type: 'moved_unit' }, () => {
+          .with({ type: 'moved_unit_owner' }, () => {
             return p.equals(event.entity.player);
           })
-          .with({ type: 'destroyed_unit' }, () => {
+          .with({ type: 'destroyed_unit_owner' }, () => {
             return p.equals(event.player);
           })
-          .with({ type: 'played_unit' }, () => {
+          .with({ type: 'played_unit_owner' }, () => {
             return p.equals(event.player);
           })
           .exhaustive();

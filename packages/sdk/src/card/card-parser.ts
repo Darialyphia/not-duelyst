@@ -1,4 +1,4 @@
-import { isDefined, type Defined } from '@game/shared';
+import { isDefined, isObject, type Defined } from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameEvent, GameEventMap } from '../game-session';
 import { createCardModifier, type CardModifier } from '../modifier/card-modifier';
@@ -58,7 +58,12 @@ export const getEffectModifier = <T extends GameEvent>({
             listener(event) {
               if (filter(ctx, event, eventName))
                 actions.forEach(action => {
-                  const cleanup = action(ctx, event, eventName);
+                  const [eventPayload] = event;
+                  const cleanup = action(
+                    ctx,
+                    isObject(eventPayload) ? eventPayload : {},
+                    eventName
+                  );
                   cleanups.push(cleanup);
                 });
             }
@@ -87,7 +92,13 @@ export const getEffectModifier = <T extends GameEvent>({
               };
               if (filter(effectCtx, event, eventName)) {
                 actions.forEach(action => {
-                  const cleanup = action(effectCtx, event, eventName);
+                  const [eventPayload] = event;
+
+                  const cleanup = action(
+                    effectCtx,
+                    isObject(eventPayload) ? eventPayload : {},
+                    eventName
+                  );
                   cleanups.push(cleanup);
                 });
               }
@@ -178,9 +189,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_draw',
                 actions,
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event.player));
                 }
@@ -190,9 +203,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_draw',
                 actions,
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event.player));
                 }
@@ -202,9 +217,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_replace',
                 actions,
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event.player));
                 }
@@ -214,9 +231,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_replace',
                 actions,
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event.player));
                 }
@@ -464,9 +483,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'player:turn_start',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event));
                 }
@@ -476,9 +497,11 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 eventName: 'player:turn_end',
-                filter(ctx, [event]) {
+                filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
+                    event,
+                    eventName,
                     conditions: trigger.params.player
                   }).some(player => player.equals(event));
                 }

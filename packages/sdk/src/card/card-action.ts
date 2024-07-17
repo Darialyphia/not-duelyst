@@ -232,7 +232,7 @@ export const checkGlobalConditions = (
 
 export const parseCardAction = (action: Action): ParsedActionResult => {
   return (ctx, event, eventName) => {
-    const { session, card, entity, targets } = ctx;
+    const { session, card, entity } = ctx;
 
     return match(action)
       .with({ type: 'deal_damage' }, action => {
@@ -470,8 +470,8 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           effects.forEach(effect => {
             const entityModifier = effect.getEntityModifier?.({
               session,
-              entity,
-              card,
+              entity: unit,
+              card: unit.card,
               targets: []
             });
             if (entityModifier) {
