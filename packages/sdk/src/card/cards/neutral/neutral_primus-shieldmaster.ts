@@ -1,7 +1,7 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
-import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
+import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const neutralPrimusShieldMaster = defineSerializedBlueprint({
   id: 'primus_shieldmaster',
@@ -18,13 +18,5 @@ export const neutralPrimusShieldMaster = defineSerializedBlueprint({
   speed: 2,
   spriteId: 'neutral_primus_shieldmaster',
   tags: [],
-  effects: [
-    defineCardEffect({
-      text: '@Provoke@.',
-      config: {
-        executionContext: 'immediate',
-        actions: [{ type: 'provoke', params: {} }]
-      }
-    })
-  ]
+  effects: [provokeEffect()]
 });

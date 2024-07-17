@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "neutral_primus_shieldmaster.attack.0",
+    "filename": "f1_ironcliffe_guardian.attack.0",
     "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.1",
+    "filename": "f1_ironcliffe_guardian.attack.1",
     "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.2",
+    "filename": "f1_ironcliffe_guardian.attack.2",
     "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -27,7 +27,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.3",
+    "filename": "f1_ironcliffe_guardian.attack.3",
     "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -36,7 +36,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.4",
+    "filename": "f1_ironcliffe_guardian.attack.4",
     "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -45,7 +45,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.5",
+    "filename": "f1_ironcliffe_guardian.attack.5",
     "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.6",
+    "filename": "f1_ironcliffe_guardian.attack.6",
     "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.7",
+    "filename": "f1_ironcliffe_guardian.attack.7",
     "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.8",
+    "filename": "f1_ironcliffe_guardian.attack.8",
     "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.9",
+    "filename": "f1_ironcliffe_guardian.attack.9",
     "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.10",
+    "filename": "f1_ironcliffe_guardian.attack.10",
     "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.11",
+    "filename": "f1_ironcliffe_guardian.attack.11",
     "frame": { "x": 880, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -108,7 +108,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.12",
+    "filename": "f1_ironcliffe_guardian.attack.12",
     "frame": { "x": 960, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -117,7 +117,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.13",
+    "filename": "f1_ironcliffe_guardian.attack.13",
     "frame": { "x": 1040, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -126,7 +126,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.14",
+    "filename": "f1_ironcliffe_guardian.attack.14",
     "frame": { "x": 1120, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -135,7 +135,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.15",
+    "filename": "f1_ironcliffe_guardian.attack.15",
     "frame": { "x": 1200, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -144,7 +144,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.16",
+    "filename": "f1_ironcliffe_guardian.attack.16",
     "frame": { "x": 1280, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -153,7 +153,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.attack.17",
+    "filename": "f1_ironcliffe_guardian.attack.17",
     "frame": { "x": 1360, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -162,7 +162,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.0",
+    "filename": "f1_ironcliffe_guardian.breathing.0",
     "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -171,7 +171,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.1",
+    "filename": "f1_ironcliffe_guardian.breathing.1",
     "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -180,7 +180,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.2",
+    "filename": "f1_ironcliffe_guardian.breathing.2",
     "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -189,7 +189,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.3",
+    "filename": "f1_ironcliffe_guardian.breathing.3",
     "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -198,7 +198,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.4",
+    "filename": "f1_ironcliffe_guardian.breathing.4",
     "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -207,7 +207,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.5",
+    "filename": "f1_ironcliffe_guardian.breathing.5",
     "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -216,7 +216,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.6",
+    "filename": "f1_ironcliffe_guardian.breathing.6",
     "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -225,7 +225,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.7",
+    "filename": "f1_ironcliffe_guardian.breathing.7",
     "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -234,7 +234,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.8",
+    "filename": "f1_ironcliffe_guardian.breathing.8",
     "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -243,7 +243,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.9",
+    "filename": "f1_ironcliffe_guardian.breathing.9",
     "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -252,7 +252,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.10",
+    "filename": "f1_ironcliffe_guardian.breathing.10",
     "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -261,7 +261,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.11",
+    "filename": "f1_ironcliffe_guardian.breathing.11",
     "frame": { "x": 880, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -270,7 +270,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.12",
+    "filename": "f1_ironcliffe_guardian.breathing.12",
     "frame": { "x": 960, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -279,7 +279,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.breathing.13",
+    "filename": "f1_ironcliffe_guardian.breathing.13",
     "frame": { "x": 1040, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -288,7 +288,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.0",
+    "filename": "f1_ironcliffe_guardian.death.0",
     "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -297,7 +297,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.1",
+    "filename": "f1_ironcliffe_guardian.death.1",
     "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -306,7 +306,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.2",
+    "filename": "f1_ironcliffe_guardian.death.2",
     "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -315,7 +315,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.3",
+    "filename": "f1_ironcliffe_guardian.death.3",
     "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -324,7 +324,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.4",
+    "filename": "f1_ironcliffe_guardian.death.4",
     "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -333,7 +333,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.5",
+    "filename": "f1_ironcliffe_guardian.death.5",
     "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -342,7 +342,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.6",
+    "filename": "f1_ironcliffe_guardian.death.6",
     "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -351,7 +351,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.7",
+    "filename": "f1_ironcliffe_guardian.death.7",
     "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -360,7 +360,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.8",
+    "filename": "f1_ironcliffe_guardian.death.8",
     "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -369,142 +369,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.death.9",
-    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.10",
-    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.11",
-    "frame": { "x": 880, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.12",
-    "frame": { "x": 960, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.13",
-    "frame": { "x": 1040, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.14",
-    "frame": { "x": 1120, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.15",
-    "frame": { "x": 1200, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.16",
-    "frame": { "x": 1280, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.17",
-    "frame": { "x": 1360, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.18",
-    "frame": { "x": 1440, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.19",
-    "frame": { "x": 1520, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.20",
-    "frame": { "x": 1600, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.21",
-    "frame": { "x": 1680, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.22",
-    "frame": { "x": 1760, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.death.23",
-    "frame": { "x": 1840, "y": 160, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "neutral_primus_shieldmaster.hit.0",
+    "filename": "f1_ironcliffe_guardian.hit.0",
     "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -513,7 +378,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.hit.1",
+    "filename": "f1_ironcliffe_guardian.hit.1",
     "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -522,7 +387,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.hit.2",
+    "filename": "f1_ironcliffe_guardian.hit.2",
     "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -531,7 +396,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.0",
+    "filename": "f1_ironcliffe_guardian.idle.0",
     "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -540,7 +405,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.1",
+    "filename": "f1_ironcliffe_guardian.idle.1",
     "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -549,7 +414,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.2",
+    "filename": "f1_ironcliffe_guardian.idle.2",
     "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -558,7 +423,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.3",
+    "filename": "f1_ironcliffe_guardian.idle.3",
     "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -567,7 +432,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.4",
+    "filename": "f1_ironcliffe_guardian.idle.4",
     "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -576,7 +441,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.5",
+    "filename": "f1_ironcliffe_guardian.idle.5",
     "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -585,7 +450,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.6",
+    "filename": "f1_ironcliffe_guardian.idle.6",
     "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -594,7 +459,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.7",
+    "filename": "f1_ironcliffe_guardian.idle.7",
     "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -603,7 +468,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.8",
+    "filename": "f1_ironcliffe_guardian.idle.8",
     "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -612,7 +477,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.9",
+    "filename": "f1_ironcliffe_guardian.idle.9",
     "frame": { "x": 720, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -621,7 +486,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.10",
+    "filename": "f1_ironcliffe_guardian.idle.10",
     "frame": { "x": 800, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -630,7 +495,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.idle.11",
+    "filename": "f1_ironcliffe_guardian.idle.11",
     "frame": { "x": 880, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -639,7 +504,61 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.0",
+    "filename": "f1_ironcliffe_guardian.idle.12",
+    "frame": { "x": 960, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.idle.13",
+    "frame": { "x": 1040, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.idle.14",
+    "frame": { "x": 1120, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.idle.15",
+    "frame": { "x": 1200, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.idle.16",
+    "frame": { "x": 1280, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.idle.17",
+    "frame": { "x": 1360, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_ironcliffe_guardian.run.0",
     "frame": { "x": 0, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -648,7 +567,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.1",
+    "filename": "f1_ironcliffe_guardian.run.1",
     "frame": { "x": 80, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -657,7 +576,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.2",
+    "filename": "f1_ironcliffe_guardian.run.2",
     "frame": { "x": 160, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -666,7 +585,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.3",
+    "filename": "f1_ironcliffe_guardian.run.3",
     "frame": { "x": 240, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -675,7 +594,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.4",
+    "filename": "f1_ironcliffe_guardian.run.4",
     "frame": { "x": 320, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -684,7 +603,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.5",
+    "filename": "f1_ironcliffe_guardian.run.5",
     "frame": { "x": 400, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -693,7 +612,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.6",
+    "filename": "f1_ironcliffe_guardian.run.6",
     "frame": { "x": 480, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -702,7 +621,7 @@
     "duration": 64
    },
    {
-    "filename": "neutral_primus_shieldmaster.run.7",
+    "filename": "f1_ironcliffe_guardian.run.7",
     "frame": { "x": 560, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -714,17 +633,17 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.7-x64",
-  "image": "neutral_primus_shieldmaster.png",
+  "image": "f1_ironcliffe_guardian.png",
   "format": "RGBA8888",
-  "size": { "w": 1920, "h": 480 },
+  "size": { "w": 1440, "h": 480 },
   "scale": "1",
   "frameTags": [
    { "name": "attack", "from": 0, "to": 17, "direction": "forward", "color": "#000000ff" },
    { "name": "breathing", "from": 18, "to": 31, "direction": "forward", "color": "#000000ff" },
-   { "name": "death", "from": 32, "to": 55, "direction": "forward", "color": "#000000ff" },
-   { "name": "hit", "from": 56, "to": 58, "direction": "forward", "color": "#000000ff" },
-   { "name": "idle", "from": 59, "to": 70, "direction": "forward", "color": "#000000ff" },
-   { "name": "run", "from": 71, "to": 78, "direction": "forward", "color": "#000000ff" }
+   { "name": "death", "from": 32, "to": 40, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 41, "to": 43, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 44, "to": 61, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 62, "to": 69, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }

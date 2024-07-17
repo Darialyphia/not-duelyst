@@ -59,6 +59,7 @@ export const KEYWORDS = {
     id: 'zeal',
     name: 'Zeal',
     description: 'Triggers an effect when nearby its general.',
+    spriteId: 'zeal',
     aliases: []
   },
   FLYING: {

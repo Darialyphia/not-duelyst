@@ -4,6 +4,7 @@ import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 import { zealCondition } from '../../helpers/conditions';
+import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const f1SilverguardKnight = defineSerializedBlueprint({
   id: 'silverguard_knight',
@@ -21,13 +22,7 @@ export const f1SilverguardKnight = defineSerializedBlueprint({
   spriteId: 'f1_silverguard_knight',
   tags: [],
   effects: [
-    defineCardEffect({
-      text: '@Provoke@.',
-      config: {
-        executionContext: 'immediate',
-        actions: [{ type: 'provoke', params: {} }]
-      }
-    }),
+    provokeEffect(),
     defineCardEffect({
       text: '@Zeal@: +2/+0.',
       config: {

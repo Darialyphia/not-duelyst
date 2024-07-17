@@ -277,6 +277,10 @@ export type Action<
       };
     };
 
+export type ActionParams<T extends Action['type']> = (Action & {
+  type: T;
+})['params'];
+
 export type InitAction =
   | {
       type: 'airdrop';
