@@ -150,9 +150,9 @@ export const getUnits = ({
               event,
               eventName
             });
-            return candidates.some(candidate =>
-              getEntityBehind(session, candidate)?.equals(e)
-            );
+            return candidates.some(candidate => {
+              return getEntityBehind(session, candidate)?.equals(e);
+            });
           })
           .with({ type: 'is_nearest_behind' }, condition => {
             const candidates = getUnits({

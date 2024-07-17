@@ -1,590 +1,526 @@
 { "frames": [
    {
-    "filename": "totally_not_manaforger_attack.0",
+    "filename": "f1_sunriser.attack.0",
     "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.1",
+    "filename": "f1_sunriser.attack.1",
     "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.2",
+    "filename": "f1_sunriser.attack.2",
     "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.3",
+    "filename": "f1_sunriser.attack.3",
     "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.4",
+    "filename": "f1_sunriser.attack.4",
     "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.5",
+    "filename": "f1_sunriser.attack.5",
     "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.6",
+    "filename": "f1_sunriser.attack.6",
     "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.7",
+    "filename": "f1_sunriser.attack.7",
     "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.8",
+    "filename": "f1_sunriser.attack.8",
+    "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.attack.9",
+    "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.attack.10",
+    "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.attack.11",
+    "frame": { "x": 880, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.attack.12",
+    "frame": { "x": 960, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.attack.13",
+    "frame": { "x": 1040, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.breathing.0",
     "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.9",
+    "filename": "f1_sunriser.breathing.1",
     "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.10",
+    "filename": "f1_sunriser.breathing.2",
     "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.11",
+    "filename": "f1_sunriser.breathing.3",
     "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.12",
+    "filename": "f1_sunriser.breathing.4",
     "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.13",
+    "filename": "f1_sunriser.breathing.5",
     "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.14",
+    "filename": "f1_sunriser.breathing.6",
     "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.15",
+    "filename": "f1_sunriser.breathing.7",
     "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.16",
+    "filename": "f1_sunriser.breathing.8",
+    "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.breathing.9",
+    "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.breathing.10",
+    "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.death.0",
     "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.17",
+    "filename": "f1_sunriser.death.1",
     "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_attack.18",
+    "filename": "f1_sunriser.death.2",
     "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.0",
+    "filename": "f1_sunriser.death.3",
     "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.1",
+    "filename": "f1_sunriser.death.4",
     "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.2",
+    "filename": "f1_sunriser.death.5",
     "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.3",
+    "filename": "f1_sunriser.death.6",
     "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.4",
+    "filename": "f1_sunriser.death.7",
     "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.5",
+    "filename": "f1_sunriser.death.8",
+    "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.death.9",
+    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.death.10",
+    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.hit.0",
     "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.6",
+    "filename": "f1_sunriser.hit.1",
     "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.7",
+    "filename": "f1_sunriser.hit.2",
     "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_breathing.8",
-    "frame": { "x": 240, "y": 240, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_breathing.9",
-    "frame": { "x": 320, "y": 240, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_breathing.10",
-    "frame": { "x": 400, "y": 240, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_breathing.11",
-    "frame": { "x": 480, "y": 240, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_death.0",
-    "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_death.1",
-    "frame": { "x": 560, "y": 240, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_death.2",
+    "filename": "f1_sunriser.idle.0",
     "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.3",
+    "filename": "f1_sunriser.idle.1",
     "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.4",
+    "filename": "f1_sunriser.idle.2",
     "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.5",
+    "filename": "f1_sunriser.idle.3",
     "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.6",
+    "filename": "f1_sunriser.idle.4",
     "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.7",
+    "filename": "f1_sunriser.idle.5",
     "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.8",
+    "filename": "f1_sunriser.idle.6",
     "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.9",
+    "filename": "f1_sunriser.idle.7",
     "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_death.10",
+    "filename": "f1_sunriser.idle.8",
+    "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunriser.run.0",
     "frame": { "x": 0, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_hurt.0",
+    "filename": "f1_sunriser.run.1",
     "frame": { "x": 80, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_hurt.1",
+    "filename": "f1_sunriser.run.2",
     "frame": { "x": 160, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_hurt.2",
+    "filename": "f1_sunriser.run.3",
     "frame": { "x": 240, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_idle.0",
+    "filename": "f1_sunriser.run.4",
     "frame": { "x": 320, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_idle.1",
+    "filename": "f1_sunriser.run.5",
     "frame": { "x": 400, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_idle.2",
+    "filename": "f1_sunriser.run.6",
     "frame": { "x": 480, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    },
    {
-    "filename": "totally_not_manaforger_idle.3",
+    "filename": "f1_sunriser.run.7",
     "frame": { "x": 560, "y": 400, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.4",
-    "frame": { "x": 0, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.5",
-    "frame": { "x": 80, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.6",
-    "frame": { "x": 160, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.7",
-    "frame": { "x": 240, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.8",
-    "frame": { "x": 320, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_idle.9",
-    "frame": { "x": 400, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.0",
-    "frame": { "x": 480, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.1",
-    "frame": { "x": 560, "y": 480, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.2",
-    "frame": { "x": 0, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.3",
-    "frame": { "x": 80, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.4",
-    "frame": { "x": 160, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.5",
-    "frame": { "x": 240, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.6",
-    "frame": { "x": 320, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
-   },
-   {
-    "filename": "totally_not_manaforger_run.7",
-    "frame": { "x": 400, "y": 560, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 80
+    "duration": 64
    }
  ],
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.7-x64",
-  "image": "totally_not_manaforger.png",
+  "image": "f1_sunriser.png",
   "format": "RGBA8888",
-  "size": { "w": 640, "h": 640 },
+  "size": { "w": 1120, "h": 480 },
   "scale": "1",
   "frameTags": [
-   { "name": "attack", "from": 0, "to": 18, "direction": "forward", "color": "#000000ff" },
-   { "name": "breathing", "from": 19, "to": 30, "direction": "forward", "color": "#000000ff" },
-   { "name": "death", "from": 31, "to": 41, "direction": "forward", "color": "#000000ff" },
-   { "name": "hurt", "from": 42, "to": 44, "direction": "forward", "color": "#000000ff" },
-   { "name": "idle", "from": 45, "to": 54, "direction": "forward", "color": "#000000ff" },
-   { "name": "run", "from": 55, "to": 62, "direction": "forward", "color": "#000000ff" }
+   { "name": "attack", "from": 0, "to": 13, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 14, "to": 24, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 25, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 36, "to": 38, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 39, "to": 47, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 48, "to": 55, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },
-   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" }
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
   ],
   "slices": [
   ]

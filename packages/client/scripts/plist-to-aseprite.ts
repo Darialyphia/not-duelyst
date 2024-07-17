@@ -84,7 +84,7 @@ const parsePlist = (url: string, raw: string) => {
           w: parsedSourceSize[0],
           h: parsedSourceSize[1]
         },
-        duration: 80
+        duration: 64
       };
     }),
     meta: {

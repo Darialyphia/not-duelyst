@@ -174,7 +174,7 @@ export const getCellBehind = (session: GameSession, entity: Entity) => {
 };
 
 export const getEntityBehind = (session: GameSession, entity: Entity) => {
-  return getCellInFront(session, entity)?.entity;
+  return getCellBehind(session, entity)?.entity;
 };
 
 export const getCellAbove = (session: GameSession, entity: Entity) => {

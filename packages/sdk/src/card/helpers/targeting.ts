@@ -32,8 +32,40 @@ export const manualTarget = (index: number): Filter<UnitConditionBase> => {
   ];
 };
 
+export const allyGeneral = (): Filter<UnitConditionBase> => [
+  [{ type: 'is_ally' }, { type: 'is_general' }]
+];
+
+export const allyMinion = (): Filter<UnitConditionBase> => [
+  [{ type: 'is_ally' }, { type: 'is_minion' }]
+];
+
+export const enemyGeneral = (): Filter<UnitConditionBase> => [
+  [{ type: 'is_enemy' }, { type: 'is_general' }]
+];
+
+export const enemyMinion = (): Filter<UnitConditionBase> => [
+  [{ type: 'is_enemy' }, { type: 'is_minion' }]
+];
+
 export const anyOccupiedCell = (): Filter<CellConditionBase> => [
   [{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]
+];
+
+export const anyNearbyOccupiedCell = (): Filter<CellConditionBase> => [
+  [
+    {
+      type: 'has_unit',
+      params: {
+        unit: [
+          [
+            { type: 'any_unit' },
+            { type: 'is_nearby', params: { unit: [[{ type: 'is_self' }]] } }
+          ]
+        ]
+      }
+    }
+  ]
 ];
 
 export const cellWithAnyMinion = (): Filter<CellConditionBase> => [
@@ -49,7 +81,7 @@ export const cellWithEnemyMinion = (): Filter<CellConditionBase> => [
   [
     {
       type: 'has_unit',
-      params: { unit: [[{ type: 'is_enemy' }, { type: 'is_minion' }]] }
+      params: { unit: enemyMinion() }
     }
   ]
 ];
@@ -58,7 +90,7 @@ export const cellWithAllyMinion = (): Filter<CellConditionBase> => [
   [
     {
       type: 'has_unit',
-      params: { unit: [[{ type: 'is_ally' }, { type: 'is_minion' }]] }
+      params: { unit: allyMinion() }
     }
   ]
 ];
@@ -67,7 +99,16 @@ export const cellWithAllyGeneral = (): Filter<CellConditionBase> => [
   [
     {
       type: 'has_unit',
-      params: { unit: [[{ type: 'is_ally' }, { type: 'is_general' }]] }
+      params: { unit: allyGeneral() }
+    }
+  ]
+];
+
+export const cellWithEnemyGeneral = (): Filter<CellConditionBase> => [
+  [
+    {
+      type: 'has_unit',
+      params: { unit: enemyGeneral() }
     }
   ]
 ];

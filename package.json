@@ -1,5 +1,5 @@
 {
-  "name": "hero-clash",
+  "name": "darialyst",
   "private": true,
   "scripts": {
     "build": "turbo run build",

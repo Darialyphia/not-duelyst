@@ -91,11 +91,7 @@ export const useEntityTexture = (
     };
 
   useDispatchCallback(
-    'entity:before_attack',
-    playAnimation('attack', 0.75, e => e.entity.equals(entity.value))
-  );
-  useDispatchCallback(
-    'entity:before_retaliate',
+    'entity:before_deal_damage',
     playAnimation('attack', 0.75, e => e.entity.equals(entity.value))
   );
   useDispatchCallback('entity:before_take_damage', (event, index, otherEvents) => {

@@ -15,6 +15,10 @@ import { f1AzuriteLion } from './cards/faction_1/azurite_lion';
 import { f1Martyrdom } from './cards/faction_1/martyrdom';
 import { f1LionheartBlessing } from './cards/faction_1/lionheart_blessing';
 import { f1IroncliffeGuardian } from './cards/faction_1/ironcliffe_guardian';
+import { f1SilverguardSquire } from './cards/faction_1/silverguard_squire';
+import { f1ArclyteSentinel } from './cards/faction_1/arclyte_sentinel';
+import { f1Lightchaser } from './cards/faction_1/lightchaser';
+import { f1Sunriser } from './cards/faction_1/sunriser';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -23,12 +27,16 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(f1TrueStrike),
   parseSerializeBlueprint(f1LionheartBlessing),
   parseSerializeBlueprint(f1Martyrdom),
-  parseSerializeBlueprint(neutralHealingMystic),
-  parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(f1SunstoneBracers),
   parseSerializeBlueprint(f1SilverguardKnight),
   parseSerializeBlueprint(f1WindbladeAdept),
   parseSerializeBlueprint(f1AzuriteLion),
+  parseSerializeBlueprint(f1SilverguardSquire),
+  parseSerializeBlueprint(f1ArclyteSentinel),
+  parseSerializeBlueprint(f1Lightchaser),
+  parseSerializeBlueprint(f1Sunriser),
+  parseSerializeBlueprint(neutralHealingMystic),
+  parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(neutralPrimusShieldMaster)
 ];
 

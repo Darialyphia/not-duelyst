@@ -58,10 +58,7 @@ const checkFlip = ({ target }: { target: Entity }) => {
     shouldFlip.value = target.position.x > entity.value.position.x;
   }
 };
-useDispatchCallback('entity:before_attack', checkFlip, () => {
-  shouldFlip.value = false;
-});
-useDispatchCallback('entity:before_retaliate', checkFlip, () => {
+useDispatchCallback('entity:before_deal_damage', checkFlip, () => {
   shouldFlip.value = false;
 });
 
