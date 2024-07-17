@@ -144,6 +144,13 @@ export const KEYWORDS = {
     spriteId: 'taunt',
     aliases: ['provoke']
   },
+  PROVOKED: {
+    id: 'provoked',
+    name: 'Provoked',
+    description: 'Provoked - cannot move and must attackProvoker first.',
+    spriteId: 'taunted',
+    aliases: []
+  },
   VEIL: {
     id: 'veil',
     name: 'Veil',

@@ -99,7 +99,7 @@ export type EntityInterceptor = Entity['interceptors'];
 
 export class Entity extends EventEmitter<EntityEventMap> implements Serializable {
   private cardIndex: CardIndex;
-
+  private _keywords: Keyword[] = [];
   private playerId: PlayerId;
 
   readonly id: EntityId;
@@ -505,8 +505,19 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     return isEnemy(this.session, entityId, this.playerId);
   }
 
+  removeKeyword(keyword: Keyword) {
+    const idx = this._keywords.indexOf(keyword);
+    if (idx === -1) return;
+    this._keywords.splice(idx, 1);
+  }
+
+  addKeyword(keyword: Keyword) {
+    this._keywords.push(keyword);
+  }
+
   hasKeyword(keyword: Keyword) {
     return (
+      this._keywords.some(k => keyword.id === k.id) ||
       this.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id)) ||
       this.card.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id))
     );
@@ -527,19 +538,27 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
       });
     }
 
+    const addKeyword = (keyword: Keyword, stackable: boolean, stacks?: number) => {
+      if (!keywordsWithStacks.has(keyword.id)) {
+        keywordsWithStacks.set(keyword.id, {
+          ...keyword,
+          stacks: stackable ? stacks : undefined
+        });
+      } else if (stackable) {
+        // @ts-expect-error
+        keywordsWithStacks.get(keyword.id)!.stacks++;
+      }
+    };
+
     for (const modifier of allModifiers) {
       modifier.keywords.forEach(keyword => {
-        if (!keywordsWithStacks.has(keyword.id)) {
-          keywordsWithStacks.set(keyword.id, {
-            ...keyword,
-            stacks: modifier.stackable ? modifier.stacks : undefined
-          });
-        } else if (modifier.stackable) {
-          // @ts-expect-error
-          keywordsWithStacks.get(keyword.id)!.stacks++;
-        }
+        addKeyword(keyword, modifier.stackable, modifier.stacks);
       });
     }
+
+    this._keywords.forEach(keyword => {
+      addKeyword(keyword, false);
+    });
 
     return uniqBy([...keywordsWithStacks.values()], 'id');
   }

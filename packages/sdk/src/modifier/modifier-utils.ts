@@ -459,11 +459,22 @@ export const provoke = ({ source }: { source: Entity }) => {
       interceptorMap.set(entity.id, interceptors);
       entity.addInterceptor('canMove', interceptors.move);
       entity.addInterceptor('canAttack', interceptors.attack);
+
+      if (entity.hasKeyword(KEYWORDS.PROVOKED)) return;
+      entity.addKeyword(KEYWORDS.PROVOKED);
     },
-    onLoseAura(entity) {
+    onLoseAura(entity, taunter, session) {
       const interceptors = interceptorMap.get(entity.id)!;
       entity.removeInterceptor('canMove', interceptors.move);
       entity.removeInterceptor('canAttack', interceptors.attack);
+
+      const nearby = session.entitySystem
+        .getNearbyEnemies(entity)
+        .filter(e => !e.equals(taunter))
+        .filter(e => e.hasKeyword(KEYWORDS.PROVOKE));
+      if (!nearby.length) {
+        entity.removeKeyword(KEYWORDS.PROVOKED);
+      }
     }
   });
 };

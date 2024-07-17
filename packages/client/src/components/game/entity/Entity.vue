@@ -100,6 +100,7 @@ const onShadowEnter = (container: Container) => {
 
 const keywordsWithSprite = computed(() =>
   entity.value.keywords.filter(keyword => {
+    console.log(keyword.id);
     if (!keyword.spriteId) return false;
     if (keyword.stacks === 0) return false;
     return true;
