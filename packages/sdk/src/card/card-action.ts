@@ -142,9 +142,15 @@ export const checkGlobalConditions = (
             eventName,
             amount: condition.params.amount
           });
-          return getPlayers({ session, card, conditions: condition.params.player }).every(
-            player =>
-              matchNumericOperator(player.currentGold, amount, condition.params.operator)
+          return getPlayers({
+            session,
+            card,
+            event,
+            eventName,
+            targets,
+            conditions: condition.params.player
+          }).every(player =>
+            matchNumericOperator(player.currentGold, amount, condition.params.operator)
           );
         })
         .with({ type: 'player_hp' }, condition => {
@@ -160,6 +166,10 @@ export const checkGlobalConditions = (
           return getPlayers({
             session,
             card,
+            event,
+            eventName,
+            targets,
+
             conditions: condition.params.player
           }).every(player =>
             matchNumericOperator(player.general.hp, amount, condition.params.operator)
@@ -287,8 +297,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         );
         if (!isGlobalConditionMatch) return noop;
         getPlayers({
-          session,
-          card,
+          ...ctx,
+          event,
+          eventName,
           conditions: action.params.player
         }).forEach(player => {
           player.draw(
@@ -415,7 +426,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         const tryToApply = () => {
           const shouldApply = checkGlobalConditions(
             action.params.activeWhen,
-            { session, card, entity, targets },
+            ctx,
             event,
             eventName
           );
@@ -438,11 +449,15 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         };
       })
       .with({ type: 'add_effect' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
         const units = getUnits({
-          session,
-          entity,
-          card,
-          targets,
+          ...ctx,
           event,
           eventName,
           conditions: action.params.unit
@@ -470,6 +485,26 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
             }
           });
         });
+        return noop;
+      })
+      .with({ type: 'destroy_unit' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
+        getUnits({
+          ...ctx,
+          event,
+          eventName,
+          conditions: action.params.targets
+        }).forEach(unit => {
+          unit.destroy();
+        });
+
         return noop;
       })
       .exhaustive();

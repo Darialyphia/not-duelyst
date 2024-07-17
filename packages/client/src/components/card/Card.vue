@@ -193,11 +193,11 @@ header {
   position: relative;
   transform-origin: bottom left;
   transform: translateZ(var(--z-translate)) scale(2) translate(-25%, 50%);
-
-  /* filter: drop-shadow(0px -1px 0 white) drop-shadow(0px 1px 0 white)
-    drop-shadow(-1px 0px 0 white) drop-shadow(1px 0px 0 white); */
-
   transition: transform 0.3s ease-in;
+
+  :is(.spell, .artifact) & {
+    transform: translateZ(var(--z-translate)) scale(2) translate(-25%, 35%);
+  }
 }
 
 .text {

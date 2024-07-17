@@ -12,11 +12,13 @@ import { f1WindbladeAdept } from './cards/faction_1/windblade_adept';
 import { neutralPrimusShieldMaster } from './cards/neutral/neutral_primus-shieldmaster';
 import { f1SilverguardKnight } from './cards/faction_1/silverguard_knight';
 import { f1AzuriteLion } from './cards/faction_1/azurite_lion';
+import { f1Martyrdom } from './cards/faction_1/martyrdom';
 
 const allCards: CardBlueprint[] = [
   f1General,
   f2General,
   parseSerializeBlueprint(f1TrueStrike),
+  parseSerializeBlueprint(f1Martyrdom),
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(f1SunstoneBracers),

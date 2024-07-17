@@ -36,6 +36,15 @@ export const anyOccupiedCell = (): Filter<CellConditionBase> => [
   [{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]
 ];
 
+export const cellWithAnyMinion = (): Filter<CellConditionBase> => [
+  [
+    {
+      type: 'has_unit',
+      params: { unit: [[{ type: 'is_minion' }]] }
+    }
+  ]
+];
+
 export const cellWithEnemyMinion = (): Filter<CellConditionBase> => [
   [
     {

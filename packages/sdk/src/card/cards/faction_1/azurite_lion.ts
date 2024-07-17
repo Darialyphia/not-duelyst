@@ -11,7 +11,7 @@ export const f1AzuriteLion = defineSerializedBlueprint({
   attack: 2,
   maxHp: 3,
   faction: FACTION_IDS.F1,
-  keywords: [],
+  keywords: [KEYWORDS.CELERITY.id],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],

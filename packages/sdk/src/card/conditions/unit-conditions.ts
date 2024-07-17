@@ -31,6 +31,7 @@ export type UnitConditionBase =
   | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_manual_target'; params: { index: number } }
+  | { type: 'is_manual_target_general'; params: { index: number } }
   | { type: 'has_keyword'; params: { keyword: KeywordId } };
 
 export type UnitConditionExtras =
@@ -77,6 +78,13 @@ export const getUnits = ({
             const entity = session.entitySystem.getEntityAt(point);
             if (!entity) return false;
             return e.equals(entity);
+          })
+          .with({ type: 'is_manual_target_general' }, condition => {
+            const point = targets[condition.params.index];
+            if (!point) return false;
+            const entity = session.entitySystem.getEntityAt(point);
+            if (!entity) return false;
+            return e.equals(entity.player.general);
           })
           .with({ type: 'is_general' }, () => e.isGeneral)
           .with({ type: 'is_minion' }, () => !e.isGeneral)
