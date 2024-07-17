@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { FACTIONS, type Faction } from '@game/sdk';
+import { FACTIONS, type CardBlueprint, type Faction } from '@game/sdk';
+import type { Nullable } from '@game/shared';
 
 const factions = Object.values(FACTIONS);
 
 const filter = defineModel<Faction | null | undefined>('filter', { required: true });
+const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
 </script>
 
 <template>
@@ -18,6 +20,7 @@ const filter = defineModel<Faction | null | undefined>('filter', { required: tru
       >
         <button
           :class="filter?.equals(faction) && 'active'"
+          :disabled="!!general && !general?.faction?.equals(faction)"
           @click="
             () => {
               if (filter?.equals(faction)) {
@@ -36,7 +39,11 @@ const filter = defineModel<Faction | null | undefined>('filter', { required: tru
           :class="filter === null && 'active'"
           @click="
             () => {
-              filter = null;
+              if (filter === null) {
+                filter = undefined;
+              } else {
+                filter = null;
+              }
             }
           "
         >
@@ -67,8 +74,13 @@ button {
 
   font-weight: var(--font-weight-5);
   text-transform: capitalize;
-  &:hover {
+
+  &:hover:not(:disabled) {
     color: var(--primary);
+  }
+
+  &:disabled {
+    opacity: 0.5;
   }
 
   &.active {

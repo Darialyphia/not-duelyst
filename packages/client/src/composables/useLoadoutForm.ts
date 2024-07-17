@@ -19,10 +19,12 @@ export const useLoadoutForm = ({
   }>();
 
   const general = computed(() => {
-    return formValues.value?.cards.find(c => {
+    const card = formValues.value?.cards.find(c => {
       const card = CARDS[c.id];
       return card.kind === CARD_KINDS.GENERAL;
     });
+    if (!card) return null;
+    return CARDS[card.id];
   });
 
   const initEmpty = () => {
@@ -50,7 +52,10 @@ export const useLoadoutForm = ({
     if (!formValues.value) return false;
     if (loadoutIsFull.value) return false;
     return match(card.kind)
-      .with(CARD_KINDS.GENERAL, () => !general.value || general.value.id === cardId)
+      .with(CARD_KINDS.GENERAL, () => {
+        if (!general.value) return true;
+        return general.value.faction === card.faction;
+      })
       .otherwise(
         () =>
           formValues.value!.cards.filter(c => c.id === cardId).length <
@@ -64,6 +69,11 @@ export const useLoadoutForm = ({
 
   const addCard = (cardId: CardBlueprintId) => {
     if (!formValues.value) return;
+    const card = CARDS[cardId];
+    if (card.kind === CARD_KINDS.GENERAL && general.value) {
+      formValues.value.cards.find(c => c.id === cardId)!.id = cardId;
+      return;
+    }
     formValues.value.cards.push({ id: cardId, pedestalId: 'pedestal-default' });
   };
 
