@@ -251,14 +251,14 @@ export const celerity = ({ source, duration }: { source: Entity; duration?: numb
     mixins: [
       modifierEntityInterceptorMixin({
         key: 'maxMovements',
-        interceptor: () => () => 2,
+        interceptor: () => val => val + 1,
         duration,
         tickOn: 'start',
         keywords: [KEYWORDS.CELERITY]
       }),
       modifierEntityInterceptorMixin({
         key: 'maxAttacks',
-        interceptor: () => () => 2,
+        interceptor: () => val => val + 1,
         duration,
         tickOn: 'start',
         keywords: [KEYWORDS.CELERITY]
@@ -406,14 +406,12 @@ export const aura = ({
         keywords,
         onApplied(session, attachedTo) {
           isApplied = true;
-          session.logger('applying aura modifier');
           checkListener = () => checkAura(session, attachedTo);
           checkListener();
 
           session.on('entity:created', checkListener);
           session.on('entity:after_destroy', checkListener);
           session.on('entity:after-move', () => {
-            session.logger('after move');
             checkListener();
           });
 
@@ -423,7 +421,6 @@ export const aura = ({
         },
         onRemoved(session, attachedTo) {
           isApplied = false;
-          session.logger('on removed');
           cleanup(session, attachedTo);
         }
       }
@@ -457,15 +454,13 @@ export const provoke = ({ source }: { source: Entity }) => {
     isElligible(target, source, session) {
       return isNearbyEnemy(session, source, target.position);
     },
-    onGainAura(entity, taunter, session) {
-      session.logger('provoking', entity.card.blueprintId);
+    onGainAura(entity, taunter) {
       const interceptors = makeInterceptors(taunter);
       interceptorMap.set(entity.id, interceptors);
       entity.addInterceptor('canMove', interceptors.move);
       entity.addInterceptor('canAttack', interceptors.attack);
     },
-    onLoseAura(entity, taunter, session) {
-      session.logger('stop provoking', entity.card.blueprintId);
+    onLoseAura(entity) {
       const interceptors = interceptorMap.get(entity.id)!;
       entity.removeInterceptor('canMove', interceptors.move);
       entity.removeInterceptor('canAttack', interceptors.attack);

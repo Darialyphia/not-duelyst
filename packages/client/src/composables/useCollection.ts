@@ -2,6 +2,7 @@ import { api } from '@game/api';
 import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
+import type { Nullable } from '@game/shared';
 
 export const useCollection = () => {
   const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -14,7 +15,7 @@ export const useCollection = () => {
 
   const factions = Object.values(FACTIONS).map(f => f.id);
 
-  const factionFilter = ref<Faction | null>(null);
+  const factionFilter = ref<Nullable<Faction>>(undefined);
 
   const allCards = computed(() =>
     collection.value
@@ -50,11 +51,12 @@ export const useCollection = () => {
 
   const displayedCards = computed(() => {
     if (!collection.value) return [];
-    if (!factionFilter.value) return allCards.value.sort(sortUnitFunction);
+    if (factionFilter.value === undefined) return allCards.value.sort(sortUnitFunction);
 
     const filter = factionFilter.value;
     return allCards.value
       .filter(({ card }) => {
+        if (filter === null) return card.faction === null;
         return card.faction?.equals(filter);
       })
       .sort(sortUnitFunction);

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { type EntityId } from '@game/sdk';
-import { AnimatedSprite, BLEND_MODES, Container, type Filter } from 'pixi.js';
+import { AnimatedSprite, Container, type Filter } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
-import { radialGradient } from '~/utils/fx';
 
-const { entityId } = defineProps<{ entityId: EntityId }>();
+const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
 const { ui, fx, camera, gameType } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
@@ -118,13 +117,13 @@ const isFlipped = computed(() => {
           sprite = el;
         }
       "
+      :scale-x="scaleX"
       :textures="unitTextures"
       :anchor-x="0.5"
       :anchor-y="1"
       :playing="true"
       :y="CELL_HEIGHT * 0.85"
       :is-flipped="isFlipped"
-      :filters="filters"
     />
     <!-- <sprite
       :alpha="0.85"

@@ -274,6 +274,8 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   canAttack(target: Entity) {
     const baseValue =
       this.attacksTaken < this.maxAttacks &&
+      this.attacksTaken <
+        Math.min(this.maxMovements, this.maxMovements - this.movementsTaken + 1) &&
       this.canAttackAt(target.position) &&
       isEnemy(this.session, target.id, this.playerId);
 

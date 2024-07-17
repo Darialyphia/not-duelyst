@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EntityId } from '@game/sdk';
+import type { Entity, EntityId } from '@game/sdk';
 import { randomInt, type Point3D } from '@game/shared';
 import { Container } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
@@ -41,13 +41,28 @@ const move = (path: Point3D[], done: () => void) => {
   timeline.play();
 };
 
+const shouldFlip = ref(false);
 const scaleX = computed(() => {
   let value = entity.value.player.isPlayer1 ? 1 : -1;
   if (camera.angle.value === 90 || camera.angle.value === 180) {
     value *= -1;
   }
 
+  if (shouldFlip.value) value *= -1;
   return value;
+});
+const checkFlip = ({ target }: { target: Entity }) => {
+  if (entity.value.player.isPlayer1) {
+    shouldFlip.value = target.position.x < entity.value.position.x;
+  } else {
+    shouldFlip.value = target.position.x > entity.value.position.x;
+  }
+};
+useDispatchCallback('entity:before_attack', checkFlip, () => {
+  shouldFlip.value = false;
+});
+useDispatchCallback('entity:before_retaliate', checkFlip, () => {
+  shouldFlip.value = false;
 });
 
 const boardDimensions = useGameSelector(session => ({
@@ -153,16 +168,16 @@ useDispatchCallback('entity:after_take_damage', event => {
       "
       :alpha="alpha"
     >
-      <container :scale-x="scaleX">
+      <container>
         <PTransition v-if="settings.fx.shadows" appear @enter="onShadowEnter">
           <container>
-            <EntityShadow :entity-id="entityId" />
+            <EntityShadow :entity-id="entityId" :scale-x="scaleX" />
           </container>
         </PTransition>
 
         <PTransition appear @enter="onEnter">
           <container>
-            <EntitySprite :entity-id="entityId" />
+            <EntitySprite :entity-id="entityId" :scale-x="scaleX" />
           </container>
         </PTransition>
       </container>

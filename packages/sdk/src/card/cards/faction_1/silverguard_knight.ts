@@ -22,10 +22,10 @@ export const f1SilverguardKnight = defineSerializedBlueprint({
   tags: [],
   effects: [
     defineCardEffect({
-      text: '@Zeal@: @Provoke@.',
+      text: '@Provoke@.',
       config: {
         executionContext: 'immediate',
-        actions: [{ type: 'provoke', params: { activeWhen: zealCondition() } }]
+        actions: [{ type: 'provoke', params: {} }]
       }
     }),
     defineCardEffect({

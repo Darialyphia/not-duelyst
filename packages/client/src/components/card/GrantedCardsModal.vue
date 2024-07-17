@@ -21,7 +21,7 @@ const assets = useAssets();
 
 <template>
   <UiModal
-    :is-opened="grantedCards.length > 0"
+    :is-opened="grantedCards.length > 0 && !isAcknowledging"
     title="Looks like you were gifted some new cards!"
     :closable="false"
     :style="{ '--ui-modal-size': 'var(--size-lg)' }"

@@ -11,6 +11,7 @@ import { f1SunstoneBracers } from './cards/faction_1/sunstone_bracers';
 import { f1WindbladeAdept } from './cards/faction_1/windblade_adept';
 import { neutralPrimusShieldMaster } from './cards/neutral/neutral_primus-shieldmaster';
 import { f1SilverguardKnight } from './cards/faction_1/silverguard_knight';
+import { f1AzuriteLion } from './cards/faction_1/azurite_lion';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -21,6 +22,7 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(f1SunstoneBracers),
   parseSerializeBlueprint(f1SilverguardKnight),
   parseSerializeBlueprint(f1WindbladeAdept),
+  parseSerializeBlueprint(f1AzuriteLion),
   parseSerializeBlueprint(neutralPrimusShieldMaster)
 ];
 

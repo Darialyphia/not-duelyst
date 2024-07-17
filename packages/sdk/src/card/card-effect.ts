@@ -246,6 +246,14 @@ export type Action<
   | {
       type: 'provoke';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+      };
+    }
+  | {
+      type: 'celerity';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
       };
     }

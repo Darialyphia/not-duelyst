@@ -9,12 +9,13 @@ import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
 import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
-import { airdrop, provoke, rush } from '../modifier/modifier-utils';
+import { airdrop, celerity, provoke, rush } from '../modifier/modifier-utils';
 import type { CardConditionExtras } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits, type UnitConditionExtras } from './conditions/unit-conditions';
 import type { GlobalCondition } from './conditions/global-conditions';
 import { getCells } from './conditions/cell-conditions';
+import { applyModifierConditionally } from './helpers/actions';
 
 export const getAmount = ({
   amount,
@@ -113,7 +114,7 @@ const matchNumericOperator = (
     .with('more_than', () => amount > reference)
     .exhaustive();
 };
-const checkGlobalConditions = (
+export const checkGlobalConditions = (
   conditions:
     | Filter<
         GlobalCondition<{
@@ -220,32 +221,28 @@ const checkGlobalConditions = (
 };
 
 export const parseCardAction = (action: Action): ParsedActionResult => {
-  return ({ session, card, entity, targets }, event, eventName) => {
+  return (ctx, event, eventName) => {
+    const { session, card, entity, targets } = ctx;
+
     return match(action)
       .with({ type: 'deal_damage' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
-          { session, card, entity, targets },
+          ctx,
           event,
           eventName
         );
         if (!isGlobalConditionMatch) return noop;
 
         getUnits({
-          session,
-          entity,
-          card,
-          targets,
+          ...ctx,
           conditions: action.params.targets,
           event,
           eventName
         }).forEach(target => {
           target.takeDamage(
             getAmount({
-              session,
-              entity,
-              card,
-              targets,
+              ...ctx,
               amount: action.params.amount,
               event,
               eventName
@@ -258,26 +255,20 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'heal' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
-          { session, card, entity, targets },
+          ctx,
           event,
           eventName
         );
         if (!isGlobalConditionMatch) return noop;
         getUnits({
-          session,
-          entity,
-          card,
-          targets,
+          ...ctx,
           conditions: action.params.targets,
           event,
           eventName
         }).forEach(target => {
           target.heal(
             getAmount({
-              session,
-              entity,
-              card,
-              targets,
+              ...ctx,
               amount: action.params.amount,
               event,
               eventName
@@ -290,7 +281,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'draw_cards' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
-          { session, card, entity, targets },
+          ctx,
           event,
           eventName
         );
@@ -302,10 +293,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         }).forEach(player => {
           player.draw(
             getAmount({
-              session,
-              entity,
-              card,
-              targets,
+              ...ctx,
               amount: action.params.amount,
               event,
               eventName
@@ -318,17 +306,14 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'change_stats' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
-          { session, card, entity, targets },
+          ctx,
           event,
           eventName
         );
         if (!isGlobalConditionMatch) return noop;
         const modifierId = nanoid(6);
         const units = getUnits({
-          session,
-          entity,
-          card,
-          targets,
+          ...ctx,
           conditions: action.params.targets,
           event,
           eventName
@@ -348,7 +333,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                   interceptor: () => value => {
                     const shouldApply = checkGlobalConditions(
                       action.params.attack.activeWhen,
-                      { session, card, entity, targets },
+                      ctx,
                       event,
                       eventName
                     );
@@ -356,10 +341,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                     return (
                       value +
                       getAmount({
-                        session,
-                        entity,
-                        card,
-                        targets,
+                        ...ctx,
                         amount: action.params.attack.amount,
                         event,
                         eventName
@@ -373,7 +355,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                   interceptor: () => value => {
                     const shouldApply = checkGlobalConditions(
                       action.params.hp.activeWhen,
-                      { session, card, entity, targets },
+                      ctx,
                       event,
                       eventName
                     );
@@ -381,10 +363,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                     return (
                       value +
                       getAmount({
-                        session,
-                        entity,
-                        card,
-                        targets,
+                        ...ctx,
                         amount: action.params.hp.amount,
                         event,
                         eventName
@@ -403,8 +382,35 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           });
       })
       .with({ type: 'provoke' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
         const source = entity ?? card.player.general;
         const modifier = provoke({ source });
+
+        return applyModifierConditionally({
+          modifier,
+          ctx,
+          event,
+          eventName,
+          session,
+          conditions: action.params.activeWhen
+        });
+      })
+      .with({ type: 'celerity' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+        const source = entity ?? card.player.general;
+        const modifier = celerity({ source });
 
         const tryToApply = () => {
           const shouldApply = checkGlobalConditions(

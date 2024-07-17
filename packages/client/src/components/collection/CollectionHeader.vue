@@ -3,7 +3,7 @@ import { FACTIONS, type Faction } from '@game/sdk';
 
 const factions = Object.values(FACTIONS);
 
-const filter = defineModel<Faction | null>('filter', { required: true });
+const filter = defineModel<Faction | null | undefined>('filter', { required: true });
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const filter = defineModel<Faction | null>('filter', { required: true });
           @click="
             () => {
               if (filter?.equals(faction)) {
-                filter = null;
+                filter = undefined;
               } else {
                 filter = faction;
               }
@@ -29,6 +29,18 @@ const filter = defineModel<Faction | null>('filter', { required: true });
           "
         >
           {{ faction.name }}
+        </button>
+      </Sound>
+      <Sound sound="button-hover" :triggers="['mouseenter']">
+        <button
+          :class="filter === null && 'active'"
+          @click="
+            () => {
+              filter = null;
+            }
+          "
+        >
+          Neutral
         </button>
       </Sound>
     </div>
