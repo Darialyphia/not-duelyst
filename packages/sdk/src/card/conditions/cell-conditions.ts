@@ -37,7 +37,8 @@ export type CellConditionExtras =
   | { type: 'attack_target_position' }
   | { type: 'attack_source_position' }
   | { type: 'heal_target_position' }
-  | { type: 'heal_source_position' };
+  | { type: 'heal_source_position' }
+  | { type: 'summon_target' };
 
 export type CellCondition = CellConditionBase | CellConditionExtras;
 
@@ -48,7 +49,8 @@ export const getCells = ({
   conditions,
   targets,
   event,
-  eventName
+  eventName,
+  playedPoint
 }: {
   session: GameSession;
   entity?: Entity;
@@ -57,6 +59,7 @@ export const getCells = ({
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
   eventName?: string;
+  playedPoint?: Point3D;
 }): Cell[] =>
   session.boardSystem.cells.filter(cell => {
     return conditions.some(group => {
@@ -202,6 +205,10 @@ export const getCells = ({
           })
           .with({ type: 'heal_target_position' }, () => {
             return false;
+          })
+          .with({ type: 'summon_target' }, () => {
+            if (!playedPoint) return false;
+            return cell.position.equals(playedPoint);
           })
           .exhaustive();
       });

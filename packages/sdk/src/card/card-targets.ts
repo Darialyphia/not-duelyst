@@ -33,7 +33,8 @@ export const parseTargets = (
         event: {},
         card: options.card,
         targets: options.targets,
-        conditions: config.targets[options.targets.length]
+        conditions: config.targets[options.targets.length],
+        playedPoint: options.playedPoint
       }).some(cell => {
         return cell.position.equals(point);
       });

@@ -13,6 +13,7 @@ import type { KeywordId } from '../../utils/keywords';
 import { isWithinCells } from '../../utils/targeting';
 import type { Card } from '../card';
 import type { Filter } from '../card-effect';
+import { getCells, type CellCondition } from './cell-conditions';
 
 export type UnitConditionBase =
   | { type: 'any_unit' }
@@ -21,7 +22,10 @@ export type UnitConditionBase =
   | { type: 'is_minion' }
   | { type: 'is_ally' }
   | { type: 'is_enemy' }
-  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
+  | {
+      type: 'is_nearby';
+      params: { unit?: Filter<UnitCondition>; cell?: Filter<CellCondition> };
+    }
   | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_nearest_in_front'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
@@ -93,8 +97,8 @@ export const getUnits = ({
             return entity.equals(e);
           })
           .with({ type: 'is_nearby' }, condition => {
-            const candidates = getUnits({
-              conditions: condition.params.unit,
+            const unitCandidates = getUnits({
+              conditions: condition.params.unit ?? [],
               targets,
               session,
               entity,
@@ -102,10 +106,26 @@ export const getUnits = ({
               event,
               eventName
             });
-            return candidates.some(
-              candidate =>
-                isWithinCells(candidate.position, e.position, 1) &&
-                !candidate.position.equals(e.position)
+            const cellCandidates = getCells({
+              conditions: condition.params.cell ?? [],
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+            return (
+              unitCandidates.some(
+                candidate =>
+                  isWithinCells(candidate.position, e.position, 1) &&
+                  !candidate.position.equals(e.position)
+              ) ||
+              cellCandidates.some(
+                candidate =>
+                  isWithinCells(candidate.position, e.position, 1) &&
+                  !candidate.position.equals(e.position)
+              )
             );
           })
           .with({ type: 'is_in_front' }, condition => {

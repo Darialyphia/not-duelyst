@@ -52,22 +52,6 @@ export const anyOccupiedCell = (): Filter<CellConditionBase> => [
   [{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]
 ];
 
-export const anyNearbyOccupiedCell = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: {
-        unit: [
-          [
-            { type: 'any_unit' },
-            { type: 'is_nearby', params: { unit: [[{ type: 'is_self' }]] } }
-          ]
-        ]
-      }
-    }
-  ]
-];
-
 export const cellWithAnyMinion = (): Filter<CellConditionBase> => [
   [
     {

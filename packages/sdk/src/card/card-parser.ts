@@ -1,4 +1,4 @@
-import { isDefined, isObject, type Defined } from '@game/shared';
+import { isDefined, isObject, type Defined, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameEvent, GameEventMap } from '../game-session';
 import { createCardModifier, type CardModifier } from '../modifier/card-modifier';
@@ -33,6 +33,7 @@ import { getUnits } from './conditions/unit-conditions';
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
   artifact?: PlayerArtifact;
+  playedPoint?: Point3D;
 };
 
 const getEffectCtxEntity = (ctx: EffectCtx) => ctx.entity ?? ctx.card.player.general;

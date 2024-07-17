@@ -2,11 +2,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
-import {
-  allyGeneral,
-  anyNearbyOccupiedCell,
-  manualTarget
-} from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f1ArclyteSentinel = defineSerializedBlueprint({
   id: 'arclyte_sentinel',
@@ -25,7 +21,23 @@ export const f1ArclyteSentinel = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 0,
-    targets: [anyNearbyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: [
+                [
+                  { type: 'any_unit' },
+                  { type: 'is_nearby', params: { unit: [[{ type: 'is_self' }]] } }
+                ]
+              ]
+            }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     openingGambitEffect({
