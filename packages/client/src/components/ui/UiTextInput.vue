@@ -168,6 +168,8 @@ watchEffect(() => {
       background-color: inherit;
 
       &::placeholder {
+        padding-left: var(--size-1);
+        font-style: italic;
         color: var(--text-3);
       }
 

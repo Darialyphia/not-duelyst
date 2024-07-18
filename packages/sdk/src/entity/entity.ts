@@ -398,6 +398,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   takeDamage(power: number, source?: Entity) {
     const amount = this.getTakenDamage(power);
+    if (amount <= 0) return;
     const payload = {
       entity: this,
       amount,
@@ -433,7 +434,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
 
   heal(baseAmount: number, source?: Entity) {
     const amount = this.getHealReceived(baseAmount);
-
+    if (amount <= 0) return;
     const payload = {
       entity: this,
       amount,

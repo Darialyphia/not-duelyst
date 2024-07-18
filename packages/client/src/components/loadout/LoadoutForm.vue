@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { config, CARD_KINDS, CARDS, type CardBlueprint } from '@game/sdk';
+import { config, CARD_KINDS, CARDS, type CardBlueprint, type CardKind } from '@game/sdk';
 import { uniqBy } from 'lodash-es';
 
 const { isSaving, cards } = defineProps<{
@@ -57,8 +57,12 @@ const changePedestal = (id: string, diff: number) => {
   emit('setPedestal', { id, pedestalId: pedestals[newIndex] });
 };
 
-const minionsCount = computed(() => {
-  return cards.filter(c => CARDS[c.id].kind === CARD_KINDS.MINION).length;
+const getCountByKind = (kind: CardKind) => {
+  return cards.filter(c => CARDS[c.id].kind === kind).length;
+};
+
+const cardsCount = computed(() => {
+  return cards.filter(c => CARDS[c.id].kind !== CARD_KINDS.GENERAL).length;
 });
 </script>
 
@@ -67,7 +71,24 @@ const minionsCount = computed(() => {
     <header>
       <input v-model="name" class="py-2 flex-1 w-full" />
       <LoadoutStats :loadout="cards" />
-      {{ minionsCount }} / {{ config.MAX_DECK_SIZE }}
+      <div class="counts">
+        <div>
+          <span>{{ getCountByKind('MINION') }}</span>
+          Minions
+        </div>
+        <div>
+          <span>{{ getCountByKind('SPELL') }}</span>
+          Spells
+        </div>
+        <div>
+          <span>{{ getCountByKind('ARTIFACT') }}</span>
+          Artifacts
+        </div>
+        <div>
+          <span>{{ cardsCount }}</span>
+          Minions
+        </div>
+      </div>
     </header>
 
     <ul v-if="cards.length" v-auto-animate class="flex-1 fancy-scrollbar">
@@ -148,10 +169,6 @@ form {
 }
 
 header {
-  /* display: flex;
-  gap: var(--size-3);
-  align-items: center;
-  justify-content: space-between; */
   input {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-5);
@@ -263,5 +280,15 @@ li {
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  font-size: var(--font-size-0);
+  > div > span {
+    font-size: var(--font-size-2);
+    color: var(--primary);
+  }
 }
 </style>

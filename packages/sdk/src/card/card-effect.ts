@@ -165,6 +165,14 @@ export type Amount<T extends ConditionOverrides> =
       };
     }
   | {
+      type: 'maxHp';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
       type: 'hp';
       params: {
         unit: Filter<

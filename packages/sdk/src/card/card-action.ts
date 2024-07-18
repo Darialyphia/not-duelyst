@@ -76,6 +76,14 @@ export const getAmount = ({
       if (!unit) return unit;
       return unit.hp;
     })
+    .with({ type: 'maxHp' }, amount => {
+      const [unit] = getUnits({
+        ...ctx,
+        conditions: amount.params.unit
+      });
+      if (!unit) return unit;
+      return unit.maxHp;
+    })
     .with({ type: 'lowest_hp' }, amount => {
       return Math.min(
         ...getUnits({

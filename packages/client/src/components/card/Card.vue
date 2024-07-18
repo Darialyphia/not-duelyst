@@ -217,6 +217,7 @@ header {
   }
 
   > .name {
+    margin-top: var(--size-2);
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-7);
   }
@@ -264,7 +265,7 @@ footer {
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
 
-  font-size: var(--font-size-1);
+  font-size: var(--font-size-0);
   line-height: 1;
   color: var(--gray-0);
   text-wrap: balance;

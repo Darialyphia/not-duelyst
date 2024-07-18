@@ -19,6 +19,9 @@ import { f1SilverguardSquire } from './cards/faction_1/silverguard_squire';
 import { f1ArclyteSentinel } from './cards/faction_1/arclyte_sentinel';
 import { f1Lightchaser } from './cards/faction_1/lightchaser';
 import { f1Sunriser } from './cards/faction_1/sunriser';
+import { f1SuntideMaiden } from './cards/faction_1/suntide_mainden';
+import { f1LysianBrawler } from './cards/faction_1/lysian_brawler';
+import { f1SecondSun } from './cards/faction_1/second_sun';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -35,6 +38,9 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(f1ArclyteSentinel),
   parseSerializeBlueprint(f1Lightchaser),
   parseSerializeBlueprint(f1Sunriser),
+  parseSerializeBlueprint(f1LysianBrawler),
+  parseSerializeBlueprint(f1SecondSun),
+  parseSerializeBlueprint(f1SuntideMaiden),
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(neutralPrimusShieldMaster)

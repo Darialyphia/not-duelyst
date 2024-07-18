@@ -113,7 +113,7 @@ const keywords = computed(() => {
   }
 
   &.disabled {
-    filter: grayscale(70%) brightness(70%);
+    filter: grayscale(40%) brightness(90%);
   }
 
   &:not(.disabled):hover {

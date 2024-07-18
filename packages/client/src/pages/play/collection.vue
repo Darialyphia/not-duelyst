@@ -23,20 +23,14 @@ const {
   general,
   isSaving
 } = useLoadoutForm({
-  defaultName: computed(() => `My New Loadout ${loadouts.value.length || ''}`),
+  defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
   onSuccess() {
     mode.value = 'list';
   }
 });
 
-const {
-  factionFilter,
-  textFilter,
-  displayedCards,
-  loadouts,
-  isLoadoutsLoading,
-  isCollectionLoading
-} = useCollection();
+const { factionFilter, textFilter, costFilter, displayedCards, loadouts } =
+  useCollection();
 
 watch(mode, () => {
   factionFilter.value = undefined;
@@ -76,19 +70,17 @@ const relevantCards = computed(() => {
 </script>
 
 <template>
-  <div v-if="isCollectionLoading || isLoadoutsLoading" class="loader">
-    Loading collection page...
-  </div>
-
-  <div v-else class="collection-page">
+  <div class="collection-page">
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
     <CollectionHeader
       v-model:filter="factionFilter"
       v-model:search="textFilter"
+      v-model:cost="costFilter"
       :general="mode === 'form' ? general : undefined"
     />
 
     <section class="card-list fancy-scrollbar pb-5">
+      <p v-if="!relevantCards.length">No card found matching this filter.</p>
       <CollectionCard
         v-for="item in relevantCards"
         :key="item._id"
@@ -151,7 +143,7 @@ const relevantCards = computed(() => {
             }
           "
         >
-          Create new Loadout
+          New Deck
         </UiFancyButton>
       </template>
     </section>
@@ -205,7 +197,7 @@ const relevantCards = computed(() => {
   column-gap: var(--size-4);
   justify-items: center;
 
-  padding: var(--size-3) var(--size-4) var(--size-11);
+  padding: var(--size-3) var(--size-8) var(--size-11);
 
   border-radius: var(--radius-2);
 
