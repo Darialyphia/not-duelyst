@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter } from 'pixi.js';
+import { CARD_KINDS, type EntityId } from '@game/sdk';
+import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
+import type { Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, camera, gameType } = useGame();
+const { ui, fx, camera, gameType, assets } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
@@ -105,6 +106,21 @@ const isFlipped = computed(() => {
 
   return value;
 });
+
+const castFxTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
+useDispatchCallback(
+  'card:before_played',
+  async card => {
+    if (!entity.value.isGeneral) return;
+    if (!card.player.equals(entity.value.player)) return;
+    if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
+    const spritesheet = await assets.loadSpritesheet('use-skill');
+    castFxTextures.value = createSpritesheetFrameObject('default', spritesheet);
+  },
+  () => {
+    castFxTextures.value = null;
+  }
+);
 </script>
 
 <template>
@@ -123,7 +139,6 @@ const isFlipped = computed(() => {
       :anchor-y="1"
       :playing="true"
       :y="CELL_HEIGHT * 0.85"
-      :is-flipped="isFlipped"
     />
     <!-- <sprite
       :alpha="0.85"
@@ -132,5 +147,16 @@ const isFlipped = computed(() => {
       :anchor-x="0.5"
       :anchor-y="0.25"
     /> -->
+    <animated-sprite
+      v-if="castFxTextures"
+      :textures="castFxTextures"
+      :anchor-x="0.5"
+      :anchor-y="0"
+      event-mode="none"
+      loop
+      playing
+      :z-index="1"
+      :y="-CELL_HEIGHT * 0.6"
+    />
   </container>
 </template>

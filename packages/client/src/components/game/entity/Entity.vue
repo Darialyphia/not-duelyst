@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Entity, EntityId } from '@game/sdk';
-import { randomInt, type Point3D } from '@game/shared';
-import { Container } from 'pixi.js';
-import { PTransition } from 'vue3-pixi';
+import { CARD_KINDS, type Entity, type EntityId } from '@game/sdk';
+import { randomInt, type Nullable, type Point3D } from '@game/shared';
+import { Container, type FrameObject } from 'pixi.js';
+import { PTransition, EasePresets } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { session, camera, fx } = useGame();
+const { session, camera, fx, assets } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 
@@ -115,7 +115,6 @@ onMounted(() => {
 });
 
 const alpha = ref(1);
-
 useDispatchCallback('entity:after_destroy', event => {
   if (!event.equals(entity.value)) return;
   return new Promise(resolve => {
@@ -140,6 +139,21 @@ useDispatchCallback('entity:after_take_damage', event => {
     }
   });
 });
+
+const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
+useDispatchCallback(
+  'card:before_played',
+  async card => {
+    if (!entity.value.isGeneral) return;
+    if (!card.player.equals(entity.value.player)) return;
+    if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
+    const spritesheet = await assets.loadSpritesheet(card.blueprint.spriteId);
+    playedCardTextures.value = createSpritesheetFrameObject('active', spritesheet);
+  },
+  () => {
+    playedCardTextures.value = null;
+  }
+);
 </script>
 
 <template>
@@ -186,6 +200,23 @@ useDispatchCallback('entity:after_take_damage', event => {
         :key="keyword.id"
         :keyword="keyword"
       />
+
+      <PTransition
+        appear
+        :duration="{ enter: 300, leave: 200 }"
+        :before-enter="{ alpha: 0, y: -CELL_HEIGHT * 0.5 }"
+        :enter="{ alpha: 1, y: -CELL_HEIGHT * 1.25, ease: EasePresets.easeOutCubic }"
+        :leave="{ scale: 0, y: -CELL_HEIGHT, alpha: 0, ease: EasePresets.easeOutCubic }"
+      >
+        <animated-sprite
+          v-if="playedCardTextures"
+          :textures="playedCardTextures"
+          :anchor-x="0.5"
+          :y="-CELL_HEIGHT * 1.15"
+          playing
+          @complete="playedCardTextures = null"
+        />
+      </PTransition>
 
       <EntityStats v-if="isEnterAnimationDone" :entity-id="entityId" />
     </container>
