@@ -82,8 +82,8 @@ const minionsCount = computed(() => {
         </div>
 
         <div class="name">
-          {{ card.card.name }}
           <template v-if="card.copies > 1">X {{ card.copies }}</template>
+          {{ card.card.name }}
         </div>
 
         <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
@@ -212,17 +212,22 @@ li {
 }
 
 .cost {
+  transform: translateY(4px);
+
   display: grid;
   place-content: center;
 
-  width: var(--size-6);
-  height: var(--size-6);
+  width: var(--size-7);
+  height: var(--size-7);
   padding: var(--size-1);
 
-  color: white;
+  font-size: var(--font-size-1);
+  color: black;
 
-  background-color: var(--blue-9);
-  border-radius: var(--radius-round);
+  background-image: url('/assets/ui/card-cost.png');
+  background-size: cover;
+  /* background-color: var(--blue-9);
+  border-radius: var(--radius-round); */
 }
 
 .rune {
@@ -247,14 +252,13 @@ li {
 }
 
 .name {
-  /* overflow: hidden; */
+  overflow: hidden;
 
-  width: 13ch;
   margin-top: var(--size-2);
+
   font-size: var(--font-size-0);
   line-height: 1;
-  /* text-align: center; */
-  /* text-overflow: ellipsis; */
-  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

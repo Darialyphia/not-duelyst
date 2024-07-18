@@ -11,7 +11,7 @@ const {
   closable = true,
   usePortal = true
 } = defineProps<{
-  title: string;
+  title?: string;
   description?: string;
   closable?: boolean;
   style?: StyleProp<ModalStyleVariables>;
@@ -49,7 +49,7 @@ const Content = createReusableTemplate();
           "
         >
           <div class="fancy-surface">
-            <DialogTitle class="pb-5">
+            <DialogTitle v-if="title" class="pb-5">
               <slot name="title" :title="title">{{ title }}</slot>
             </DialogTitle>
 

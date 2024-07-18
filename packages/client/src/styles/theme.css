@@ -79,8 +79,8 @@ html.dark {
   --disabled: hsl(var(--color-disabled-hsl));
   --text-on-disabled: hsl(var(--color-text-on-disabled-hsl));
 
-  --border-dimmed: hsl(var(--gray-11-hsl) / 0.15);
-  --border: hsl(var(--gray-11-hsl) / 0.4);
+  --border-dimmed: hsl(var(--color-primary-hsl) / 0.25);
+  --border: hsl(var(--color-primary-hsl) / 0.5);
 
   --link: hsl(var(--color-link-hsl));
 
@@ -137,9 +137,6 @@ html.dark {
 }
 
 html.dark {
-  --border-dimmed: hsl(var(--gray-0-hsl) / 0.35);
-  --border: hsl(var(--gray-0-hsl) / 0.5);
-
   /* used internally by open-props box-shadows */
   --shadow-color: 210 7% 90%;
 }

@@ -45,14 +45,7 @@ const offset = computed(() => {
 </script>
 
 <template>
-  <UiModal
-    v-model:is-opened="isOpened"
-    :title="selectedBlueprint.name"
-    :style="{ '--ui-modal-size': 'var(--size-lg)' }"
-  >
-    <template #title="{ title }">
-      <div class="pl-8">{{ title }}</div>
-    </template>
+  <UiModal v-model:is-opened="isOpened" :style="{ '--ui-modal-size': 'var(--size-md)' }">
     <div
       class="card-modal fancy-scrollbar"
       :style="{ '--column-gap': relatedBlueprints.length }"
@@ -92,12 +85,22 @@ const offset = computed(() => {
       </div>
 
       <section class="fancy-scrollbar">
-        <p>
+        <DialogTitle class="pb-5">
+          {{ selectedBlueprint.name }}
+        </DialogTitle>
+
+        <p class="text-3">
           <TextWithKeywords :text="selectedBlueprint.description" />
         </p>
 
-        <h3 v-if="keywords.length">Keywords</h3>
-        <dl>
+        <dl class="mt-5">
+          <dt>Rarity</dt>
+          <dd class="capitalize">{{ selectedBlueprint.rarity }}</dd>
+          <dt>Faction</dt>
+          <dd>{{ selectedBlueprint.faction?.name ?? 'Neutral' }}</dd>
+        </dl>
+
+        <dl v-if="keywords.length" class="keywords">
           <div v-for="keyword in keywords" :key="keyword.id">
             <dt>{{ keyword.name }}</dt>
             <dd>{{ keyword.description }}</dd>
@@ -137,12 +140,11 @@ const offset = computed(() => {
 }
 .card-modal {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: calc(var(--size-11) + var(--column-gap) * var(--size-5));
+  grid-template-columns: auto 1fr;
+  column-gap: calc(var(--size-8) + var(--column-gap) * var(--size-5));
 
-  width: calc(var(--size-md) + 5rem);
   height: clamp(50dvh, 30rem, 80dvh);
-  padding-top: var(--size-5);
+  padding: var(--size-4);
 
   perspective: 80rem;
 }
@@ -194,9 +196,18 @@ h4 {
   line-height: 1;
 }
 
-dl {
+.keywords {
   display: grid;
   gap: var(--size-2);
+
+  margin-top: var(--size-5);
+  padding-top: var(--size-5);
+
+  border-top: solid var(--border-size-1) var(--border);
+}
+
+dt {
+  margin-top: 0 !important;
 }
 
 ul {
@@ -220,6 +231,5 @@ li {
 section {
   overflow: auto;
   height: 100%;
-  padding-right: var(--size-5);
 }
 </style>
