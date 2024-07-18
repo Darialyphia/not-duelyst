@@ -30,8 +30,8 @@ export const f1SecondSun = defineSerializedBlueprint({
             type: 'change_stats',
             params: {
               targets: [[{ type: 'is_self' }]],
+              mode: 'give',
               stackable: false,
-              hp: { amount: fixedAmount(0) },
               attack: {
                 amount: fixedAmount(8),
                 activeWhen: zealCondition()

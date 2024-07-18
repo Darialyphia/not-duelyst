@@ -243,8 +243,9 @@ export type Action<
       type: 'change_stats';
       params: {
         filter?: Filter<GlobalCondition<T>>;
-        attack: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
-        hp: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
+        mode: 'give' | 'set';
+        attack?: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
+        hp?: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;

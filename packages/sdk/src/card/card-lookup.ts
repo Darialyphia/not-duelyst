@@ -22,6 +22,9 @@ import { f1Sunriser } from './cards/faction_1/sunriser';
 import { f1SuntideMaiden } from './cards/faction_1/suntide_mainden';
 import { f1LysianBrawler } from './cards/faction_1/lysian_brawler';
 import { f1SecondSun } from './cards/faction_1/second_sun';
+import { f1Tempest } from './cards/faction_1/tempest';
+import { f1HolyImmolation } from './cards/faction_1/holy_immolation';
+import { f1DivineBond } from './cards/faction_1/divine_bond';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -40,6 +43,9 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(f1Sunriser),
   parseSerializeBlueprint(f1LysianBrawler),
   parseSerializeBlueprint(f1SecondSun),
+  parseSerializeBlueprint(f1Tempest),
+  parseSerializeBlueprint(f1HolyImmolation),
+  parseSerializeBlueprint(f1DivineBond),
   parseSerializeBlueprint(f1SuntideMaiden),
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker),

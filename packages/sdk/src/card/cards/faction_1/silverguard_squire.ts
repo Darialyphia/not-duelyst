@@ -42,6 +42,7 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
                 }
               ]
             ],
+            mode: 'give',
             attack: { amount: { type: 'fixed', params: { value: 1 } } },
             hp: { amount: { type: 'fixed', params: { value: 1 } } },
             stackable: true

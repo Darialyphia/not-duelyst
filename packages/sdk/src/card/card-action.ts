@@ -350,6 +350,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                   key: 'attack',
                   keywords: [],
                   interceptor: () => value => {
+                    if (!action.params.attack) return value;
                     const shouldApply = checkGlobalConditions(
                       action.params.attack.activeWhen,
                       ctx,
@@ -357,21 +358,23 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       eventName
                     );
                     if (!shouldApply) return value;
-                    return (
-                      value +
-                      getAmount({
-                        ...ctx,
-                        amount: action.params.attack.amount,
-                        event,
-                        eventName
-                      })
-                    );
+                    const amount = getAmount({
+                      ...ctx,
+                      amount: action.params.attack.amount,
+                      event,
+                      eventName
+                    });
+                    return match(action.params.mode)
+                      .with('give', () => value + amount)
+                      .with('set', () => amount)
+                      .exhaustive();
                   }
                 }),
                 modifierEntityInterceptorMixin({
                   key: 'maxHp',
                   keywords: [],
                   interceptor: () => value => {
+                    if (!action.params.hp) return value;
                     const shouldApply = checkGlobalConditions(
                       action.params.hp.activeWhen,
                       ctx,
@@ -379,15 +382,16 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                       eventName
                     );
                     if (!shouldApply) return value;
-                    return (
-                      value +
-                      getAmount({
-                        ...ctx,
-                        amount: action.params.hp.amount,
-                        event,
-                        eventName
-                      })
-                    );
+                    const amount = getAmount({
+                      ...ctx,
+                      amount: action.params.hp.amount,
+                      event,
+                      eventName
+                    });
+                    return match(action.params.mode)
+                      .with('give', () => value + amount)
+                      .with('set', () => amount)
+                      .exhaustive();
                   }
                 })
               ]

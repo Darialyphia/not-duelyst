@@ -31,8 +31,8 @@ export const f1Lightchaser = defineSerializedBlueprint({
             type: 'change_stats',
             params: {
               targets: [[{ type: 'is_self' }]],
-              stackable: false,
-              hp: { amount: fixedAmount(0) },
+              mode: 'give',
+              stackable: true,
               attack: {
                 amount: fixedAmount(2)
               }

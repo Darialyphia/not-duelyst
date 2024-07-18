@@ -1,35 +1,39 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { cellWithEnemyMinion, manualTarget } from '../../helpers/targeting';
+import { cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
 
-export const f1TrueStrike = defineSerializedBlueprint({
-  id: 'true_strike',
+export const f1DivineBond = defineSerializedBlueprint({
+  id: 'divine_bond',
   collectable: true,
-  name: 'True Strike',
-  cost: 1,
+  name: 'Divine Bond',
+  cost: 3,
   kind: CARD_KINDS.SPELL,
   faction: FACTION_IDS.F1,
   keywords: [],
-  rarity: RARITIES.BASIC,
+  rarity: RARITIES.RARE,
   relatedBlueprintIds: [],
-  spriteId: 'icon_f1_truestrike',
+  spriteId: 'icon_f1_divine_bond',
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithEnemyMinion()]
+    targets: [cellWithAnyMinion()]
   },
   effects: [
     {
-      text: 'Deal 2 damage to an enemy minion.',
+      text: "Set a minion's attack equal to its health.",
       config: {
         executionContext: 'immediate',
         actions: [
           {
-            type: 'deal_damage',
+            type: 'change_stats',
             params: {
               targets: manualTarget(0),
-              amount: fixedAmount(2)
+              stackable: false,
+              mode: 'set',
+              attack: {
+                amount: { type: 'hp', params: { unit: manualTarget(0) } }
+              }
             }
           }
         ]

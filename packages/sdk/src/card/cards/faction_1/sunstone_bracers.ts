@@ -27,8 +27,8 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
           type: 'change_stats',
           params: {
             targets: [[{ type: 'is_ally' }, { type: 'is_general' }]],
+            mode: 'give',
             attack: { amount: { type: 'fixed', params: { value: 1 } } },
-            hp: { amount: { type: 'fixed', params: { value: 0 } } },
             stackable: true
           }
         }

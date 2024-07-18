@@ -3,32 +3,32 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 import { cellWithEnemyMinion, manualTarget } from '../../helpers/targeting';
 
-export const f1TrueStrike = defineSerializedBlueprint({
-  id: 'true_strike',
+export const f1Tempest = defineSerializedBlueprint({
+  id: 'tempest',
   collectable: true,
-  name: 'True Strike',
-  cost: 1,
+  name: 'Tempest',
+  cost: 2,
   kind: CARD_KINDS.SPELL,
   faction: FACTION_IDS.F1,
   keywords: [],
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
-  spriteId: 'icon_f1_truestrike',
+  spriteId: 'icon_f1_tempest',
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithEnemyMinion()]
+    targets: [[[{ type: 'any_cell' }]]]
   },
   effects: [
     {
-      text: 'Deal 2 damage to an enemy minion.',
+      text: 'Deal 2 damage to all units.',
       config: {
         executionContext: 'immediate',
         actions: [
           {
             type: 'deal_damage',
             params: {
-              targets: manualTarget(0),
+              targets: [[{ type: 'any_unit' }]],
               amount: fixedAmount(2)
             }
           }

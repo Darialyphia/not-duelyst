@@ -47,6 +47,7 @@ export const f1ArclyteSentinel = defineSerializedBlueprint({
           type: 'change_stats',
           params: {
             targets: manualTarget(0),
+            mode: 'give',
             attack: { amount: { type: 'fixed', params: { value: 2 } } },
             hp: { amount: { type: 'fixed', params: { value: -2 } } },
             stackable: true
