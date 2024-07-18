@@ -56,7 +56,8 @@ export const getUnits = ({
   targets,
   event,
   card,
-  eventName
+  eventName,
+  playedPoint
 }: {
   session: GameSession;
   entity?: Entity;
@@ -65,6 +66,7 @@ export const getUnits = ({
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
   eventName?: string;
+  playedPoint?: Point3D;
 }): Entity[] =>
   session.entitySystem.getList().filter(e => {
     if (!conditions.length) return true;
@@ -97,7 +99,7 @@ export const getUnits = ({
             return entity.equals(e);
           })
           .with({ type: 'is_nearby' }, condition => {
-            const unitCandidates = getUnits({
+            const unitPositions = getUnits({
               conditions: condition.params.unit ?? [],
               targets,
               session,
@@ -105,27 +107,21 @@ export const getUnits = ({
               card,
               event,
               eventName
-            });
-            const cellCandidates = getCells({
+            }).map(u => u.position);
+            const cellPositions = getCells({
               conditions: condition.params.cell ?? [],
               targets,
               session,
               entity,
               card,
               event,
-              eventName
-            });
-            return (
-              unitCandidates.some(
-                candidate =>
-                  isWithinCells(candidate.position, e.position, 1) &&
-                  !candidate.position.equals(e.position)
-              ) ||
-              cellCandidates.some(
-                candidate =>
-                  isWithinCells(candidate.position, e.position, 1) &&
-                  !candidate.position.equals(e.position)
-              )
+              eventName,
+              playedPoint
+            }).map(c => c.position);
+
+            return [...unitPositions, ...cellPositions].some(
+              candidate =>
+                isWithinCells(candidate, e.position, 1) && !candidate.equals(e.position)
             );
           })
           .with({ type: 'is_in_front' }, condition => {

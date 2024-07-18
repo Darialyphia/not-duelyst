@@ -29,8 +29,8 @@ export const f1ArclyteSentinel = defineSerializedBlueprint({
             params: {
               unit: [
                 [
-                  { type: 'any_unit' },
-                  { type: 'is_nearby', params: { unit: [[{ type: 'is_self' }]] } }
+                  { type: 'is_minion' },
+                  { type: 'is_nearby', params: { cell: [[{ type: 'summon_target' }]] } }
                 ]
               ]
             }

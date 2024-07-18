@@ -80,7 +80,8 @@ export const getCells = ({
               entity,
               card,
               event,
-              eventName
+              eventName,
+              playedPoint
             });
             return candidates.some(candidate =>
               isWithinCells(candidate.position, cell.position, 1)
@@ -94,7 +95,8 @@ export const getCells = ({
               entity,
               card,
               event,
-              eventName
+              eventName,
+              playedPoint
             });
             return candidates.some(candidate =>
               getCellInFront(session, candidate)?.equals(cell)
@@ -108,7 +110,8 @@ export const getCells = ({
               entity,
               card,
               event,
-              eventName
+              eventName,
+              playedPoint
             });
             return candidates.some(candidate =>
               getCellBehind(session, candidate)?.equals(cell)
@@ -122,7 +125,8 @@ export const getCells = ({
               entity,
               card,
               event,
-              eventName
+              eventName,
+              playedPoint
             });
             return candidates.some(candidate =>
               getCellAbove(session, candidate)?.equals(cell)
@@ -136,7 +140,8 @@ export const getCells = ({
               entity,
               card,
               event,
-              eventName
+              eventName,
+              playedPoint
             });
             return candidates.some(candidate =>
               getCellBelow(session, candidate)?.equals(cell)
@@ -174,7 +179,8 @@ export const getCells = ({
               conditions: condition.params.unit,
               targets,
               event,
-              eventName
+              eventName,
+              playedPoint
             }).some(unit => cell.entity?.equals(unit));
           })
           .with({ type: 'moved_unit_new_position' }, () => {

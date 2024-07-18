@@ -10,7 +10,6 @@ export const CONVEX_AUTH = Symbol('convex-auth') as InjectionKey<{
 
 export default defineNuxtPlugin(async nuxt => {
   const config = useRuntimeConfig();
-
   const convexClient = new ConvexClientWithSSR(config.public.convexUrl);
 
   nuxt.vueApp.provide(CONVEX_CLIENT, convexClient);

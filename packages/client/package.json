@@ -86,6 +86,7 @@
     "@nuxt/content": "^2.12.1",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/image": "^1.7.0",
     "@nuxtjs/color-mode": "^3.3.0",
     "@unocss/eslint-config": "^0.53.4",
     "@unocss/nuxt": "^0.58.0",

@@ -12,9 +12,11 @@ export default defineNuxtConfig({
   srcDir: './src',
   devtools: { enabled: true },
   experimental: { inlineRouteRules: true },
+
   devServer: {
     port: 3000
   },
+
   modules: [
     '@vee-validate/nuxt',
     'radix-vue/nuxt',
@@ -24,7 +26,8 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@formkit/auto-animate/nuxt',
-    '@nuxt/content'
+    '@nuxt/content',
+    "@nuxt/image"
   ],
 
   runtimeConfig: {
@@ -46,11 +49,13 @@ export default defineNuxtConfig({
       pathPrefix: false
     }
   ],
+
   css: [
     'open-props/postcss/style',
     'open-props/colors-hsl',
     join(currentDir, './src/styles/global.css')
   ],
+
   typescript: {
     strict: true,
     tsConfig: {
@@ -59,6 +64,7 @@ export default defineNuxtConfig({
       }
     }
   },
+
   vite: {
     plugins: [glsl()],
     vue: {
@@ -84,6 +90,7 @@ export default defineNuxtConfig({
       }
     }
   },
+
   veeValidate: {
     // disable or enable auto imports
     autoImports: true,
@@ -95,6 +102,7 @@ export default defineNuxtConfig({
       ErrorMessage: 'VeeErrorMessage'
     }
   },
+
   postcss: {
     plugins: {
       autoprefixer: true,
@@ -109,18 +117,23 @@ export default defineNuxtConfig({
       'postcss-scrollbar': {}
     }
   },
+
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
     classPrefix: '',
     classSuffix: ''
   },
+
   unocss: {
     autoImport: false
   },
+
   dayjs: {
     locales: ['en', 'fr'],
     plugins: ['relativeTime', 'utc', 'timezone', 'duration'],
     defaultLocale: 'en'
-  }
+  },
+
+  compatibilityDate: '2024-07-18'
 });
