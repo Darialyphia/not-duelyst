@@ -11,7 +11,7 @@ export const neutralPrimusShieldMaster = defineSerializedBlueprint({
   attack: 3,
   maxHp: 6,
   faction: null,
-  keywords: [KEYWORDS.OPENING_GAMBIT.id],
+  keywords: [KEYWORDS.PROVOKE.id],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],

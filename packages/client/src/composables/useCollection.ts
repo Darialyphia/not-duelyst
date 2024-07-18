@@ -2,7 +2,7 @@ import { api } from '@game/api';
 import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
-import type { Nullable } from '@game/shared';
+import { isString, type Nullable } from '@game/shared';
 
 export const useCollection = () => {
   const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -16,6 +16,8 @@ export const useCollection = () => {
   const factions = Object.values(FACTIONS).map(f => f.id);
 
   const factionFilter = ref<Nullable<Faction>>(undefined);
+  const textFilter = ref<Nullable<string>>(null);
+  const textFilterDebounced = refDebounced(textFilter, 100);
 
   const allCards = computed(() =>
     collection.value
@@ -49,15 +51,35 @@ export const useCollection = () => {
     return a.card.cost - b.card.cost;
   };
 
-  const displayedCards = computed(() => {
-    if (!collection.value) return [];
-    if (factionFilter.value === undefined) return allCards.value.sort(sortUnitFunction);
+  const matchesTextFilter = (str: string) =>
+    textFilterDebounced.value
+      ? str
+          .toLocaleLowerCase()
+          .trim()
+          .includes(textFilterDebounced.value.toLocaleLowerCase().trim())
+      : true;
 
-    const filter = factionFilter.value;
+  const displayedCards = computed(() => {
+    console.log('run');
+    if (!collection.value) return [];
+
     return allCards.value
       .filter(({ card }) => {
-        if (filter === null) return card.faction === null;
-        return card.faction?.equals(filter);
+        if (factionFilter !== undefined) {
+          if (factionFilter.value === null && card.faction !== null) return false;
+          if (factionFilter.value && !card.faction?.equals(factionFilter.value))
+            return false;
+        }
+
+        return (
+          matchesTextFilter(card.name) ||
+          matchesTextFilter(card.description) ||
+          (card.keywords ?? []).some(
+            keyword =>
+              matchesTextFilter(keyword.name) ||
+              keyword.aliases.some(alias => isString(alias) && matchesTextFilter(alias))
+          )
+        );
       })
       .sort(sortUnitFunction);
   });
@@ -69,6 +91,7 @@ export const useCollection = () => {
 
   return {
     factionFilter,
+    textFilter,
     loadouts,
     isLoadoutsLoading,
     collection,

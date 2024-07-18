@@ -5,13 +5,15 @@ import type { Nullable } from '@game/shared';
 const factions = Object.values(FACTIONS);
 
 const filter = defineModel<Faction | null | undefined>('filter', { required: true });
+const search = defineModel<Nullable<string>>('search', { required: true });
+
 const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
 </script>
 
 <template>
   <header class="fancy-surface border-none">
     <BackButton class="flex-self-center" />
-    <div class="flex gap-2">
+    <div class="flex flex-1 gap-05">
       <Sound
         v-for="faction in factions"
         :key="faction.id"
@@ -50,6 +52,13 @@ const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
           Neutral
         </button>
       </Sound>
+
+      <UiTextInput
+        id="collection-search"
+        v-model="search"
+        class="ml-auto rounded-pill pl-2"
+        left-icon="material-symbols:search"
+      />
     </div>
   </header>
 </template>

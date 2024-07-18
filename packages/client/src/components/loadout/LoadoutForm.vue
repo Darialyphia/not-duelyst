@@ -253,10 +253,13 @@ li {
 
 .name {
   overflow: hidden;
+  display: grid;
+  align-items: center;
+  align-self: stretch;
 
   margin-top: var(--size-2);
 
-  font-size: var(--font-size-0);
+  font-size: var(--font-size-1);
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -92,104 +92,106 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="postcss">
-.ui-input-text {
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: var(--size-1);
-  align-items: center;
+@layer components {
+  .ui-input-text {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--size-1);
+    align-items: center;
 
-  background-color: var(--surface-1);
-  border: solid 1px var(--border-dimmed);
-  border-radius: var(--radius-1);
+    background-color: var(--surface-1);
+    border: solid 1px var(--border-dimmed);
+    border-radius: var(--radius-1);
 
-  &:not(:has(.left)):not(:has(.right)) {
-    grid-template-columns: 1fr;
-  }
-  &:has(.left):not(:has(.right)) {
-    grid-template-columns: auto 1fr;
-  }
-  &:has(.right):not(:has(.left)) {
-    grid-template-columns: 1fr auto;
-  }
-
-  &:has(input:focus-visible) {
-    outline-color: var(--brand, var(--primary));
-    outline-style: solid;
-    outline-offset: 5px;
-    transition: outline-offset 145ms var(--ease-2);
-  }
-
-  &.error {
-    border-color: var(--error);
-  }
-
-  &.sm {
-    font-size: var(--font-size-0);
-  }
-  &.md {
-    font-size: var(--font-size-1);
-  }
-  &.lg {
-    font-size: var(--font-size-2);
-  }
-  &.xl {
-    font-size: var(--font-size-3);
-  }
-
-  & .left,
-  & .right {
-    height: auto;
-  }
-  & .left {
-    margin-inline-start: var(--size-2);
-  }
-
-  & .right {
-    margin-inline-end: var(--size-2);
-  }
-
-  & .icon {
-    font-size: var(--font-size-3);
-    color: v-bind('props.iconColor');
-  }
-
-  & input {
-    cursor: text;
-
-    min-width: 0;
-    padding-block: var(--size-2);
-    padding-inline: var(--size-3);
-
-    font-size: inherit;
-    color: inherit;
-
-    background-color: inherit;
-
-    &::placeholder {
-      color: var(--text-3);
+    &:not(:has(.left)):not(:has(.right)) {
+      grid-template-columns: 1fr;
+    }
+    &:has(.left):not(:has(.right)) {
+      grid-template-columns: auto 1fr;
+    }
+    &:has(.right):not(:has(.left)) {
+      grid-template-columns: 1fr auto;
     }
 
-    &:disabled {
-      cursor: not-allowed;
+    &:has(input:focus-visible) {
+      outline-color: var(--brand, var(--primary));
+      outline-style: solid;
+      outline-offset: 5px;
+      transition: outline-offset 145ms var(--ease-2);
     }
 
-    &:focus-visible {
-      outline: none;
+    &.error {
+      border-color: var(--error);
     }
-  }
 
-  &:has(input:disabled) {
-    color: var(--text-disabled);
-    background: var(--disabled);
-  }
+    &.sm {
+      font-size: var(--font-size-0);
+    }
+    &.md {
+      font-size: var(--font-size-1);
+    }
+    &.lg {
+      font-size: var(--font-size-2);
+    }
+    &.xl {
+      font-size: var(--font-size-3);
+    }
 
-  &:has(.left) input {
-    padding-inline-start: 0;
-  }
+    & .left,
+    & .right {
+      height: auto;
+    }
+    & .left {
+      margin-inline-start: var(--size-2);
+    }
 
-  &:has(.right) input {
-    padding-inline-end: 0;
+    & .right {
+      margin-inline-end: var(--size-2);
+    }
+
+    & .icon {
+      font-size: var(--font-size-3);
+      color: v-bind('props.iconColor');
+    }
+
+    & input {
+      cursor: text;
+
+      min-width: 0;
+      padding-block: var(--size-2);
+      padding-inline: var(--size-3);
+
+      font-size: inherit;
+      color: inherit;
+
+      background-color: inherit;
+
+      &::placeholder {
+        color: var(--text-3);
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &:has(input:disabled) {
+      color: var(--text-disabled);
+      background: var(--disabled);
+    }
+
+    &:has(.left) input {
+      padding-inline-start: 0;
+    }
+
+    &:has(.right) input {
+      padding-inline-end: 0;
+    }
   }
 }
 </style>

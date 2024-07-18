@@ -31,6 +31,7 @@ const {
 
 const {
   factionFilter,
+  textFilter,
   displayedCards,
   loadouts,
   isLoadoutsLoading,
@@ -83,6 +84,7 @@ const relevantCards = computed(() => {
     <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
     <CollectionHeader
       v-model:filter="factionFilter"
+      v-model:search="textFilter"
       :general="mode === 'form' ? general : undefined"
     />
 

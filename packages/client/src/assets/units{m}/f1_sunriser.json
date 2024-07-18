@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "f1_sunriser.attack.0",
+    "filename": "f1_sunriser.attack0",
     "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.1",
+    "filename": "f1_sunriser.attack1",
     "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.2",
+    "filename": "f1_sunriser.attack2",
     "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -27,7 +27,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.3",
+    "filename": "f1_sunriser.attack3",
     "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -36,7 +36,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.4",
+    "filename": "f1_sunriser.attack4",
     "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -45,7 +45,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.5",
+    "filename": "f1_sunriser.attack5",
     "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.6",
+    "filename": "f1_sunriser.attack6",
     "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.7",
+    "filename": "f1_sunriser.attack7",
     "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.8",
+    "filename": "f1_sunriser.attack8",
     "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.9",
+    "filename": "f1_sunriser.attack9",
     "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.10",
+    "filename": "f1_sunriser.attack10",
     "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.11",
+    "filename": "f1_sunriser.attack11",
     "frame": { "x": 880, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -108,7 +108,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.12",
+    "filename": "f1_sunriser.attack12",
     "frame": { "x": 960, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -117,7 +117,7 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.attack.13",
+    "filename": "f1_sunriser.attack13",
     "frame": { "x": 1040, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -126,8 +126,107 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.0",
-    "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.breathing14",
+    "frame": { "x": 1120, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing15",
+    "frame": { "x": 1200, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing16",
+    "frame": { "x": 1280, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing17",
+    "frame": { "x": 1360, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing18",
+    "frame": { "x": 1440, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing19",
+    "frame": { "x": 1520, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing20",
+    "frame": { "x": 1600, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing21",
+    "frame": { "x": 1680, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing22",
+    "frame": { "x": 1760, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing23",
+    "frame": { "x": 1840, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.breathing24",
+    "frame": { "x": 1920, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 104
+   },
+   {
+    "filename": "f1_sunriser.death25",
+    "frame": { "x": 2000, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -135,8 +234,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.1",
-    "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death26",
+    "frame": { "x": 2080, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -144,8 +243,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.2",
-    "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death27",
+    "frame": { "x": 2160, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -153,8 +252,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.3",
-    "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death28",
+    "frame": { "x": 2240, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -162,8 +261,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.4",
-    "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death29",
+    "frame": { "x": 2320, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -171,8 +270,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.5",
-    "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death30",
+    "frame": { "x": 2400, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -180,8 +279,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.6",
-    "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death31",
+    "frame": { "x": 2480, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -189,8 +288,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.7",
-    "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death32",
+    "frame": { "x": 2560, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -198,8 +297,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.8",
-    "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death33",
+    "frame": { "x": 2640, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -207,8 +306,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.9",
-    "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death34",
+    "frame": { "x": 2720, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -216,8 +315,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.breathing.10",
-    "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.death35",
+    "frame": { "x": 2800, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -225,8 +324,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.0",
-    "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.hit36",
+    "frame": { "x": 2880, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -234,8 +333,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.1",
-    "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.hit37",
+    "frame": { "x": 2960, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -243,8 +342,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.2",
-    "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.hit38",
+    "frame": { "x": 3040, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -252,8 +351,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.3",
-    "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle39",
+    "frame": { "x": 3120, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -261,8 +360,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.4",
-    "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle40",
+    "frame": { "x": 3200, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -270,8 +369,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.5",
-    "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle41",
+    "frame": { "x": 3280, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -279,8 +378,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.6",
-    "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle42",
+    "frame": { "x": 3360, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -288,8 +387,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.7",
-    "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle43",
+    "frame": { "x": 3440, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -297,8 +396,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.8",
-    "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle44",
+    "frame": { "x": 3520, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -306,8 +405,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.9",
-    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle45",
+    "frame": { "x": 3600, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -315,8 +414,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.death.10",
-    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle46",
+    "frame": { "x": 3680, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -324,8 +423,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.hit.0",
-    "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.idle47",
+    "frame": { "x": 3760, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -333,8 +432,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.hit.1",
-    "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run48",
+    "frame": { "x": 3840, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -342,8 +441,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.hit.2",
-    "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run49",
+    "frame": { "x": 3920, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -351,8 +450,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.0",
-    "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run50",
+    "frame": { "x": 4000, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -360,8 +459,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.1",
-    "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run51",
+    "frame": { "x": 4080, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -369,8 +468,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.2",
-    "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run52",
+    "frame": { "x": 4160, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -378,8 +477,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.3",
-    "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run53",
+    "frame": { "x": 4240, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -387,8 +486,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.4",
-    "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run54",
+    "frame": { "x": 4320, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -396,107 +495,8 @@
     "duration": 64
    },
    {
-    "filename": "f1_sunriser.idle.5",
-    "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.idle.6",
-    "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.idle.7",
-    "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.idle.8",
-    "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.0",
-    "frame": { "x": 0, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.1",
-    "frame": { "x": 80, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.2",
-    "frame": { "x": 160, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.3",
-    "frame": { "x": 240, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.4",
-    "frame": { "x": 320, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.5",
-    "frame": { "x": 400, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.6",
-    "frame": { "x": 480, "y": 400, "w": 80, "h": 80 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
-    "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
-   },
-   {
-    "filename": "f1_sunriser.run.7",
-    "frame": { "x": 560, "y": 400, "w": 80, "h": 80 },
+    "filename": "f1_sunriser.run55",
+    "frame": { "x": 4400, "y": 0, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
@@ -505,11 +505,11 @@
    }
  ],
  "meta": {
-  "app": "https://www.aseprite.org/",
+  "app": "http://www.aseprite.org/",
   "version": "1.3.7-x64",
   "image": "f1_sunriser.png",
   "format": "RGBA8888",
-  "size": { "w": 1120, "h": 480 },
+  "size": { "w": 4480, "h": 80 },
   "scale": "1",
   "frameTags": [
    { "name": "attack", "from": 0, "to": 13, "direction": "forward", "color": "#000000ff" },
