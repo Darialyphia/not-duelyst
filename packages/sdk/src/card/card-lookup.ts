@@ -25,6 +25,8 @@ import { f1SecondSun } from './cards/faction_1/second_sun';
 import { f1Tempest } from './cards/faction_1/tempest';
 import { f1HolyImmolation } from './cards/faction_1/holy_immolation';
 import { f1DivineBond } from './cards/faction_1/divine_bond';
+import { f1SundropElixir } from './cards/faction_1/sundrop_elixir';
+import { f1LastingJudgement } from './cards/faction_1/lasting_judgment';
 
 const allCards: CardBlueprint[] = [
   f1General,
@@ -46,7 +48,9 @@ const allCards: CardBlueprint[] = [
   parseSerializeBlueprint(f1Tempest),
   parseSerializeBlueprint(f1HolyImmolation),
   parseSerializeBlueprint(f1DivineBond),
+  parseSerializeBlueprint(f1SundropElixir),
   parseSerializeBlueprint(f1SuntideMaiden),
+  parseSerializeBlueprint(f1LastingJudgement),
   parseSerializeBlueprint(neutralHealingMystic),
   parseSerializeBlueprint(neutralRiftWalker),
   parseSerializeBlueprint(neutralPrimusShieldMaster)
