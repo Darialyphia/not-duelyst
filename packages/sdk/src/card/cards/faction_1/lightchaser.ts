@@ -15,7 +15,6 @@ export const f1Lightchaser = defineSerializedBlueprint({
   kind: 'MINION',
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_lightchaser',
   tags: [],
   effects: [

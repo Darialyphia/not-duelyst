@@ -4,6 +4,7 @@ import type { GameFormat } from '@game/api/src/convex/formats/format.entity';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS, defaultConfig } from '@game/sdk';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { match } from 'ts-pattern';
 
 export const useLoadoutForm = ({
@@ -29,7 +30,7 @@ export const useLoadoutForm = ({
       return card.kind === CARD_KINDS.GENERAL;
     });
     if (!card) return null;
-    return CARDS[card.id];
+    return parseSerializeBlueprint(CARDS[card.id]);
   });
 
   const initEmpty = () => {

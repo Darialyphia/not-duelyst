@@ -1,4 +1,4 @@
-import { v, Validator } from 'convex/values';
+import { v } from 'convex/values';
 import { mutation } from '../../_generated/server';
 import {
   GAME_ANALYTICS_EVENTS,
@@ -17,7 +17,7 @@ export const procesGameInsightsUsecase = mutation({
       v.object({
         type: v.literal(GAME_ANALYTICS_EVENTS.GAME_ENDED),
         payload: v.any()
-      }) as Validator<GameAnalyticsEvent>
+      })
     )
   },
   async handler(ctx, args) {
@@ -43,7 +43,7 @@ export const procesGameInsightsUsecase = mutation({
       throw new Error("Players profiles haven't been initialized !");
     }
 
-    args.events.forEach(event => {
+    (args.events as GameAnalyticsEvent[]).forEach(event => {
       match(event)
         .with({ type: GAME_ANALYTICS_EVENTS.GAME_ENDED }, ({ payload }) => {
           payload.players.forEach(player => {

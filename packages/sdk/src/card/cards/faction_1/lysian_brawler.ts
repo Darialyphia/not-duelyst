@@ -16,7 +16,6 @@ export const f1LysianBrawler = defineSerializedBlueprint({
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.RARE,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_lysian_brawler',
   tags: [],
   effects: [

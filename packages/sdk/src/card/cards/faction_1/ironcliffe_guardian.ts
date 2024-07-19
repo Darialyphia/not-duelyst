@@ -17,7 +17,6 @@ export const f1IroncliffeGuardian = defineSerializedBlueprint({
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.RARE,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_ironcliffe_guardian',
   tags: [],
   effects: [provokeEffect(), airdropEffect()]

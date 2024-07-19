@@ -16,7 +16,6 @@ export const neutralHealingMystic = defineSerializedBlueprint({
   kind: 'MINION',
   rarity: 'common',
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'neutral_healing_mystic',
   tags: [],
   targets: {

@@ -1,4 +1,3 @@
-import { ConvexError } from 'convex/values';
 import { internalMutation } from '../../_generated/server';
 import { difference } from 'lodash-es';
 import { CARDS, FACTIONS } from '@game/sdk';

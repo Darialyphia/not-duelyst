@@ -28,9 +28,6 @@ const general = computed(() => {
     </div>
     <div class="grid grid-cols-6 gap-1">
       <span>{{ loadout.name }}</span>
-      <!-- <div v-for="card in minions" :key="card.id" class="sprite">
-        <CardSprite :sprite-id="getSpriteId(card.id)" />
-      </div> -->
     </div>
   </article>
 </template>

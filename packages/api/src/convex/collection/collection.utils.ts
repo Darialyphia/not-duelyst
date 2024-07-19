@@ -1,10 +1,10 @@
-import type { CardBlueprint } from '@game/sdk';
+import type { GenericSerializedBlueprint } from '@game/sdk';
 import type { Id } from '../_generated/dataModel';
 import type { MutationCtx } from '../_generated/server';
 
 export const grantCards = async (
   { db }: { db: MutationCtx['db'] },
-  { userId, cards }: { userId: Id<'users'>; cards: CardBlueprint[] }
+  { userId, cards }: { userId: Id<'users'>; cards: GenericSerializedBlueprint[] }
 ) => {
   const collection = await db
     .query('collectionItems')

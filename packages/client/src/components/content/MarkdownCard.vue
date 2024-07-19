@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { CARDS } from '@game/sdk';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 
 const { blueprintId } = defineProps<{ blueprintId: string }>();
 
-const card = CARDS[blueprintId];
+const card = parseSerializeBlueprint(CARDS[blueprintId]);
 </script>
 
 <template>

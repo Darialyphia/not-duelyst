@@ -2,6 +2,7 @@
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import { CARD_KINDS, CARDS, FACTIONS } from '@game/sdk';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -100,7 +101,7 @@ const winrateByFactionChartData = computed(() => {
 const mostPlayedCards = computed(() => {
   return Object.entries(profile.value.profile.stats.gamesByCard)
     .map(([cardId, stats]) => ({
-      card: CARDS[cardId],
+      card: parseSerializeBlueprint(CARDS[cardId]),
       played: (stats as any).played as number
     }))
     .filter(({ card }) => card.kind === CARD_KINDS.MINION)

@@ -21,7 +21,12 @@ export {
 } from './card/card-enums';
 export { type Animation } from './fx-system';
 export { CARDS } from './card/card-lookup';
-export { type CardBlueprint, MULTICOLOR } from './card/card-blueprint';
+export {
+  type CardBlueprint,
+  type SerializedBlueprint,
+  type GenericSerializedBlueprint,
+  MULTICOLOR
+} from './card/card-blueprint';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

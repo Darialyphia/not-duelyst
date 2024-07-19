@@ -15,7 +15,6 @@ export const f1AzuriteLion = defineSerializedBlueprint({
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_azurite_lion',
   tags: [],
   effects: [

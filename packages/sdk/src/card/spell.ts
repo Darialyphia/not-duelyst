@@ -1,5 +1,4 @@
 import type { GameSession } from '../game-session';
-import { CARDS } from './card-lookup';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import type { Point3D, Serializable } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
@@ -19,7 +18,7 @@ export class Spell extends Card implements Serializable {
   }
 
   get blueprint() {
-    const blueprint = CARDS[this.blueprintId];
+    const blueprint = this.session.cardBlueprints[this.blueprintId];
     if (blueprint.kind !== CARD_KINDS.SPELL) {
       throw new Error('Spell has non spell blueprint.');
     }

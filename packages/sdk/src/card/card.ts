@@ -1,5 +1,4 @@
 import type { GameSession } from '../game-session';
-import { CARDS } from './card-lookup';
 import type { Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
 import EventEmitter from 'eventemitter3';
@@ -59,7 +58,7 @@ export abstract class Card extends EventEmitter implements Serializable {
   }
 
   get blueprint() {
-    return CARDS[this.blueprintId];
+    return this.session.cardBlueprints[this.blueprintId];
   }
 
   get kind() {

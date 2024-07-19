@@ -17,7 +17,6 @@ export const f1SecondSun = defineSerializedBlueprint({
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_second_sun',
   tags: [],
   effects: [

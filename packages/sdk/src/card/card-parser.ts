@@ -530,9 +530,13 @@ export const parseSerializedBlueprintEffect = (
     .exhaustive();
 };
 
+const cache = new Map<string, CardBlueprint>();
 export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
   blueprint: SerializedBlueprint<T>
 ) => {
+  if (cache.has(blueprint.id)) {
+    return cache.get(blueprint.id)!;
+  }
   // first, parse the blueprint effects
   const effects = blueprint.effects.map(effect => ({
     ...effect,
@@ -710,6 +714,8 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
       }
     });
   });
+
+  cache.set(blueprint.id, withStats);
 
   return withStats;
 };

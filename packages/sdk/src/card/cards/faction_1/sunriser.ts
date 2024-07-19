@@ -15,7 +15,6 @@ export const f1Sunriser = defineSerializedBlueprint({
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.EPIC,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_sunriser',
   tags: [],
   effects: [

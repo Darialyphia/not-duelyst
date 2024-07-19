@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import { CARDS } from '@game/sdk';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 
 const { collection } = useCollection();
 
@@ -9,7 +10,7 @@ const grantedCards = computed(() => {
 
   return collection.value
     ?.filter(card => card.grantedAt)
-    .map(({ cardId }) => CARDS[cardId]);
+    .map(({ cardId }) => parseSerializeBlueprint(CARDS[cardId]));
 });
 
 const { mutate: acknowledge, isLoading: isAcknowledging } = useConvexAuthedMutation(

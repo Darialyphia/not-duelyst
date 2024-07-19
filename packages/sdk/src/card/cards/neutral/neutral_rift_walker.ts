@@ -18,7 +18,6 @@ export const neutralRiftWalker = defineSerializedBlueprint({
   kind: 'MINION',
   rarity: 'epic',
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'neutral_rift_walker',
   tags: [],
   effects: [

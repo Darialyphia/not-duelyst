@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { config, CARD_KINDS, CARDS, type CardBlueprint, type CardKind } from '@game/sdk';
+import { CARD_KINDS, CARDS, type CardBlueprint, type CardKind } from '@game/sdk';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { uniqBy } from 'lodash-es';
 
 const { isSaving, cards } = defineProps<{
@@ -28,7 +29,11 @@ const groupedUnits = computed(() => {
 
   return uniqBy(
     cards
-      .map(card => ({ ...card, card: CARDS[card.id], copies: copies[card.id] }))
+      .map(card => ({
+        ...card,
+        card: parseSerializeBlueprint(CARDS[card.id]),
+        copies: copies[card.id]
+      }))
       .sort((a, b) => {
         if (a.card.kind === CARD_KINDS.GENERAL) return -1;
         if (b.card.kind === CARD_KINDS.GENERAL) return 1;

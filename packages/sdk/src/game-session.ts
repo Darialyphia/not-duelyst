@@ -20,7 +20,13 @@ import {
 import { ActionSystem } from './action/action-system';
 import { noopFXContext, type FXSystem } from './fx-system';
 import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
-import { CARD_EVENTS, type CardEvent, type CardEventMap } from './card/card';
+import {
+  Card,
+  CARD_EVENTS,
+  type CardBlueprintId,
+  type CardEvent,
+  type CardEventMap
+} from './card/card';
 import type { DeckEvent, DeckEventMap } from './card/deck';
 import {
   ARTIFACT_EVENTS,
@@ -28,6 +34,9 @@ import {
   type ArtifactEventMap
 } from './player/player-artifact';
 import { defaultConfig, type GameSessionConfig } from './config';
+import type { CardBlueprint, SerializedBlueprint } from './card/card-blueprint';
+import { CARDS } from './card/card-lookup';
+import { parseSerializeBlueprint } from './card/card-parser';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -81,7 +90,8 @@ export type GameEvent = keyof GameEventMap;
 export class GameSession extends EventEmitter<GameEventMap> {
   static createServerSession(state: SerializedGameState, seed: string) {
     return new GameSession(state, new ServerRngSystem(seed), noopFXContext, {
-      config: defaultConfig
+      config: defaultConfig,
+      cardBlueprints: CARDS
     });
   }
 
@@ -92,11 +102,13 @@ export class GameSession extends EventEmitter<GameEventMap> {
   ) {
     return new GameSession(state, new ClientRngSystem(), fxSystem, {
       winnerId,
-      config: defaultConfig
+      config: defaultConfig,
+      cardBlueprints: CARDS
     });
   }
 
   config: GameSessionConfig;
+  cardBlueprints: Record<CardBlueprintId, CardBlueprint>;
 
   actionSystem = new ActionSystem(this);
 
@@ -119,10 +131,17 @@ export class GameSession extends EventEmitter<GameEventMap> {
     options: {
       winnerId?: string;
       config: GameSessionConfig;
+      cardBlueprints: Record<string, SerializedBlueprint<any>>;
     }
   ) {
     super();
     this.config = options.config;
+    this.cardBlueprints = Object.fromEntries(
+      Object.entries(options.cardBlueprints).map(([key, value]) => [
+        key,
+        parseSerializeBlueprint(value)
+      ])
+    );
     this.winnerId = options.winnerId;
     this.setup();
     this.emit('game:ready');

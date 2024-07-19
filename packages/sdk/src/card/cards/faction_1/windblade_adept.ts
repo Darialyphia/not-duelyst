@@ -17,7 +17,6 @@ export const f1WindbladeAdept = defineSerializedBlueprint({
   kind: 'MINION',
   rarity: RARITIES.BASIC,
   relatedBlueprintIds: [],
-  speed: 2,
   spriteId: 'f1_windblade_adept',
   tags: [],
   effects: [

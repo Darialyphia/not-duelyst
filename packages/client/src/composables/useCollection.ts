@@ -2,6 +2,7 @@ import { api } from '@game/api';
 import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { isString, isDefined, type Nullable } from '@game/shared';
 
 export type CostFilter = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
@@ -24,7 +25,7 @@ export const useCollection = () => {
   const allCards = computed(() =>
     collection.value
       .map(item => {
-        return { ...item, card: CARDS[item.cardId] };
+        return { ...item, card: parseSerializeBlueprint(CARDS[item.cardId]) };
       })
       .filter(item => {
         return item.card.collectable;

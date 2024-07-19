@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CARDS } from '@game/sdk';
+import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { clamp } from '@game/shared';
 import { uniqBy } from 'lodash-es';
 
@@ -12,17 +13,18 @@ const isOpened = defineModel<boolean>('isOpened', { required: true });
 const blueprint = computed(() => CARDS[blueprintId]);
 
 const { settings } = useUserSettings();
-const selectedBlueprint = computed(() => CARDS[selectedBlueprintId.value]);
+const selectedBlueprint = computed(() =>
+  parseSerializeBlueprint(CARDS[selectedBlueprintId.value])
+);
 
 const relatedBlueprints = computed(() =>
   (blueprint.value.relatedBlueprintIds ?? []).map(id => CARDS[id])
 );
 
 const blueprints = computed(() => {
-  const res = [
-    ...new Set([selectedBlueprint.value, blueprint.value, ...relatedBlueprints.value])
-  ];
-  return res;
+  return [...new Set([blueprint.value, ...relatedBlueprints.value])]
+    .map(bp => parseSerializeBlueprint(bp))
+    .concat([selectedBlueprint.value]);
 });
 
 const keywords = computed(() => uniqBy(selectedBlueprint.value.keywords ?? [], 'id'));

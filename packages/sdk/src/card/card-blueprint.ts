@@ -149,6 +149,8 @@ export type SerializedBlueprint<T extends GenericCardEffect[]> =
   | (SerializedBlueprintBase<T> & SerializedBlueprintSpell)
   | (SerializedBlueprintBase<T> & SerializedBlueprintArtifact);
 
+export type GenericSerializedBlueprint = SerializedBlueprint<any>;
+
 export const defineSerializedBlueprint = <T extends GenericCardEffect[]>(
   bp: SerializedBlueprint<T>
 ) => bp;
