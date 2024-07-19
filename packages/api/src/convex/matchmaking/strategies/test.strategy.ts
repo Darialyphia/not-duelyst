@@ -1,4 +1,4 @@
-import type { MatchmakingStrategy } from '../matchmaking';
+import type { MatchmakingStrategy } from '../matchmaking.system';
 import type { User } from '../../users/user.entity';
 import type { MatchmakingUser } from '../matchmaking.entity';
 

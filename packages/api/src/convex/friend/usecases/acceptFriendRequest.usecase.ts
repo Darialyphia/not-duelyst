@@ -1,7 +1,7 @@
 import { ConvexError, v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
 import { FRIEND_REQUEST_STATUS } from '../friendRequest.constants';
-import { ensureAuthorized } from '../../utils/ability';
+import { ensureAuthorized } from '../../utils/ability.utils';
 
 export const acceptFriendRequestUsecase = authedMutation({
   args: {

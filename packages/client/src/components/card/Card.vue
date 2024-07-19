@@ -149,9 +149,11 @@ const isUnit = computed(
 
   font-size: var(--font-size-4);
 
-  background: v-bind(bg);
+  background-image: v-bind(bg);
 
   image-rendering: pixelated;
+
+  transition: background-image 0.5s ease-in;
 }
 
 header {
@@ -264,19 +266,26 @@ footer {
 .description {
   transform: translateZ(var(--z-translate));
 
+  align-self: start;
   justify-self: center;
 
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
+  padding: var(--size-1);
 
   font-size: var(--font-size-0);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--gray-0);
-  text-shadow: 0 0 5px black;
   text-wrap: balance;
   white-space: pre-line;
 
-  transition: transform 0.3s ease-in;
+  transition:
+    transform 0.3s ease-in,
+    background-color 0.3s;
+
+  &:hover {
+    background-color: hsl(0 0 0 / 0.45);
+  }
 }
 
 .keywords {

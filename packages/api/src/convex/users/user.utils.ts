@@ -51,5 +51,3 @@ export const generateDiscriminator = async (
 
   return discriminator;
 };
-
-// query helpers

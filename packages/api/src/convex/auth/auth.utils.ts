@@ -1,4 +1,5 @@
 import { ConvexError, type ObjectType, type PropertyValidators, v } from 'convex/values';
+import { customQuery, customMutation } from 'convex-helpers/server/customFunctions';
 import { LuciaError, type Session, type User } from 'lucia';
 import {
   type DatabaseWriter,
@@ -15,131 +16,99 @@ import { match } from 'ts-pattern';
 
 export type QueryWithAuthCtx = QueryCtx & { session: Nullable<Session> };
 
-export function queryWithAuth<ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<QueryCtx, 'auth'> & { session: Session | null },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) {
-  return query({
-    args: {
-      ...args,
-      sessionId: v.union(v.null(), v.string())
-    },
-    handler: async (ctx, args: any) => {
-      try {
-        const session = await getValidExistingSession(ctx, args.sessionId);
-        return await handler({ ...ctx, session }, args);
-      } catch (err) {
-        if (err instanceof LuciaError) {
-          match(err.message)
-            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
-              throw new ConvexError({ code: 'INVALID_SESSION' });
-            })
-            .otherwise(() => {
-              throw err;
-            });
-        }
-        throw err;
+export const queryWithAuth = customQuery(query, {
+  args: {
+    sessionId: v.union(v.null(), v.string())
+  },
+  input: async (ctx, args: any) => {
+    try {
+      const session = await getValidExistingSession(ctx, args.sessionId);
+      return { ctx: { ...ctx, session }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
       }
+      throw err;
     }
-  });
-}
+  }
+});
 
-export function internalQueryWithAuth<ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<QueryCtx, 'auth'> & { session: Session | null },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) {
-  return internalQuery({
-    args: { ...args, sessionId: v.union(v.null(), v.string()) },
-    handler: async (ctx, args: any) => {
-      try {
-        const session = await getValidExistingSession(ctx, args.sessionId);
-        return await handler({ ...ctx, session }, args);
-      } catch (err) {
-        if (err instanceof LuciaError) {
-          match(err.message)
-            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
-              throw new ConvexError({ code: 'INVALID_SESSION' });
-            })
-            .otherwise(() => {
-              throw err;
-            });
-        }
-        throw err;
+export const internalQueryWithAuth = customQuery(internalQuery, {
+  args: {
+    sessionId: v.union(v.null(), v.string())
+  },
+  input: async (ctx, args: any) => {
+    try {
+      const session = await getValidExistingSession(ctx, args.sessionId);
+      return { ctx: { ...ctx, session }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
       }
+      throw err;
     }
-  });
-}
+  }
+});
 
-export function mutationWithAuth<ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<MutationCtx, 'auth'> & { auth: Auth; session: Session | null },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) {
-  return mutation({
-    args: { ...args, sessionId: v.union(v.null(), v.string()) },
-    handler: async (ctx, args: any) => {
-      try {
-        const auth = getAuth(ctx.db);
-        const { sessionId, ...otherArgs } = args;
-        const session = await getValidSessionAndRenew(auth, sessionId);
-        return await handler({ ...ctx, session, auth }, otherArgs);
-      } catch (err) {
-        if (err instanceof LuciaError) {
-          console.log(err);
-
-          match(err.message)
-            .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
-              throw new ConvexError({ code: 'INVALID_SESSION' });
-            })
-            .otherwise(() => {
-              throw err;
-            });
-        }
-        throw err;
-      }
-    }
-  });
-}
-
-export function internalMutationWithAuth<
-  ArgsValidator extends PropertyValidators,
-  Output
->({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<MutationCtx, 'auth'> & { auth: Auth; session: Session | null },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) {
-  return internalMutation({
-    args: { ...args, sessionId: v.union(v.null(), v.string()) },
-    handler: async (ctx, args: any) => {
+export const mutationWithAuth = customMutation(mutation, {
+  args: { sessionId: v.union(v.null(), v.string()) },
+  input: async (ctx, args) => {
+    try {
       const auth = getAuth(ctx.db);
       const session = await getValidSessionAndRenew(auth, args.sessionId);
-      return handler({ ...ctx, session, auth }, args);
+      return { ctx: { session, auth }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        console.log(err);
+
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
     }
-  });
-}
+  }
+});
+
+export const internalMutationWithAuth = customMutation(internalMutation, {
+  args: { sessionId: v.union(v.null(), v.string()) },
+  input: async (ctx, args) => {
+    try {
+      const auth = getAuth(ctx.db);
+      const session = await getValidSessionAndRenew(auth, args.sessionId);
+      return { ctx: { session, auth }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        console.log(err);
+
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
+    }
+  }
+});
 
 async function getValidExistingSession(ctx: QueryCtx, sessionId: string | null) {
   if (sessionId === null) {
@@ -163,88 +132,110 @@ async function getValidSessionAndRenew(auth: Auth, sessionId: string | null) {
   return await auth.validateSession(sessionId);
 }
 
-export const ensureAuthenticated = (session: Nullable<Session>): User => {
+export const ensureAuthenticated = (session: Nullable<Session>) => {
   if (!session) throw new Error(`Unauthorized`);
 
-  return session.user;
+  return session;
 };
 
-export const authedQuery = <ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<QueryCtx, 'auth'> & { session: Session; user: User },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) => {
-  return queryWithAuth({
-    args,
-    async handler(ctx, args) {
-      const user = ensureAuthenticated(ctx.session);
+export const authedQuery = customQuery(query, {
+  args: {
+    sessionId: v.union(v.null(), v.string())
+  },
+  input: async (ctx, args: any) => {
+    try {
+      const session = ensureAuthenticated(
+        await getValidExistingSession(ctx, args.sessionId)
+      );
 
-      return handler({ ...ctx, session: ctx.session!, user }, args);
+      return { ctx: { ...ctx, session, user: session.user }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
     }
-  });
-};
+  }
+});
 
-export const internalAuthedQuery = <ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<QueryCtx, 'auth'> & { session: Session; user: User },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) => {
-  return internalQueryWithAuth({
-    args,
-    async handler(ctx, args) {
-      const user = ensureAuthenticated(ctx.session);
-
-      return handler({ ...ctx, session: ctx.session!, user }, args);
+export const internalAuthedQuery = customQuery(query, {
+  args: {
+    sessionId: v.union(v.null(), v.string())
+  },
+  input: async (ctx, args: any) => {
+    try {
+      const session = ensureAuthenticated(
+        await getValidExistingSession(ctx, args.sessionId)
+      );
+      return { ctx: { ...ctx, session, user: session.user }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
     }
-  });
-};
+  }
+});
+export const authedMutation = customMutation(mutation, {
+  args: { sessionId: v.union(v.null(), v.string()) },
+  input: async (ctx, args) => {
+    try {
+      const auth = getAuth(ctx.db);
+      const session = ensureAuthenticated(
+        await getValidExistingSession(ctx, args.sessionId)
+      );
+      return { ctx: { session, auth, user: session.user }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        console.log(err);
 
-export const authedMutation = <ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<MutationCtx, 'auth'> & { session: Session; user: User },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) => {
-  return mutationWithAuth({
-    args,
-    async handler(ctx, args) {
-      const user = ensureAuthenticated(ctx.session);
-
-      return handler({ ...ctx, session: ctx.session!, user }, args);
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
     }
-  });
-};
+  }
+});
 
-export const internalAuthedMutation = <ArgsValidator extends PropertyValidators, Output>({
-  args,
-  handler
-}: {
-  args: ArgsValidator;
-  handler: (
-    ctx: Omit<MutationCtx, 'auth'> & { session: Session; user: User },
-    args: ObjectType<ArgsValidator>
-  ) => Output;
-}) => {
-  return internalMutationWithAuth({
-    args,
-    async handler(ctx, args) {
-      const user = ensureAuthenticated(ctx.session);
+export const internalAuthedMutation = customMutation(internalMutation, {
+  args: { sessionId: v.union(v.null(), v.string()) },
+  input: async (ctx, args) => {
+    try {
+      const auth = getAuth(ctx.db);
+      const session = ensureAuthenticated(
+        await getValidExistingSession(ctx, args.sessionId)
+      );
+      return { ctx: { session, auth, user: session.user }, args: {} };
+    } catch (err) {
+      if (err instanceof LuciaError) {
+        console.log(err);
 
-      return handler({ ...ctx, session: ctx.session!, user }, args);
+        match(err.message)
+          .with('AUTH_INVALID_SESSION_ID', 'AUTH_INVALID_USER_ID', () => {
+            throw new ConvexError({ code: 'INVALID_SESSION' });
+          })
+          .otherwise(() => {
+            throw err;
+          });
+      }
+      throw err;
     }
-  });
-};
+  }
+});

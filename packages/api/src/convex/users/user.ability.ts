@@ -1,6 +1,6 @@
 import { PureAbility } from '@casl/ability';
 import type { User } from './user.entity';
-import { createAbility } from '../utils/ability';
+import { createAbility } from '../utils/ability.utils';
 import type { Session } from 'lucia';
 import type { Nullable } from '@game/shared';
 

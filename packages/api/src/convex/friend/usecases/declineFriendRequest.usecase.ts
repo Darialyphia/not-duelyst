@@ -1,6 +1,6 @@
 import { ConvexError, v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
-import { ensureAuthorized } from '../../utils/ability';
+import { ensureAuthorized } from '../../utils/ability.utils';
 
 export const declineFriendRequestUsecase = authedMutation({
   args: {

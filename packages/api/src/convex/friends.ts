@@ -12,7 +12,7 @@ import { createChallengeGameUsecase } from './friend/usecases/internalCreateChal
 import { internalSetupChallengeGame } from './friend/usecases/internalSetupChallengeGame.usecase';
 import { markFriendRequestAsSeenUsecase } from './friend/usecases/markFriendRequestAsSeen.usecase';
 import { sendFriendlyChallengeUsecase } from './friend/usecases/sendFriendlyChallenge.usecase';
-import { sendFriendRequestUsecase } from './friend/usecases/sendFriendRequest';
+import { sendFriendRequestUsecase } from './friend/usecases/sendFriendRequest.usecase';
 import { setLoadoutForChallengeUsecase } from './friend/usecases/setLoadoutForChallenge.usecase';
 
 export const sendFriendRequest = sendFriendRequestUsecase;

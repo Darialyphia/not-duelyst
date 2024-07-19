@@ -6,6 +6,8 @@ export type CollectionItemDto = {
   _id: Id<'collectionItems'>;
   cardId: string;
   grantedAt: Nullable<number>;
+  pedestalId: string;
+  cardBackId: string;
 };
 
 export const toCollectionItemDto = (
@@ -14,6 +16,8 @@ export const toCollectionItemDto = (
   return {
     _id: collecttionItem._id,
     cardId: collecttionItem.itemId,
-    grantedAt: collecttionItem.grantedAt
+    grantedAt: collecttionItem.grantedAt,
+    pedestalId: collecttionItem.pedestalId,
+    cardBackId: collecttionItem.cardBackId
   };
 };

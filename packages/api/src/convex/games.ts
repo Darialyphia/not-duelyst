@@ -6,7 +6,7 @@ import { internalCancelGameUsecase } from './game/usecases/internalCancelGame.us
 import { cancelGameUsecase } from './game/usecases/cancelGame.usecase';
 import { endGameUsecase } from './game/usecases/end-game.usecase';
 import { getGameUsecase } from './game/usecases/getGame.usercase';
-import { getAllOngoingGamesUsecase } from './game/usecases/getAllOngoingGames';
+import { getAllOngoingGamesUsecase } from './game/usecases/getAllOngoingGames.usecase';
 import { getGameHistoryUsecase } from './game/usecases/getGameHistory.usecase';
 import { getLatestGamesWithReplaysUsecase } from './game/usecases/getLatestGamesWithReplays.usecase';
 import { createGameReplayUsecase } from './game/usecases/createGameReplay.usecase';

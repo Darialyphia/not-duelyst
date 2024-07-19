@@ -21,7 +21,9 @@ export const grantCards = async (
       db.insert('collectionItems', {
         itemId: unit.id,
         ownerId: userId,
-        grantedAt: Date.now()
+        grantedAt: Date.now(),
+        pedestalId: 'default',
+        cardBackId: 'default'
       })
     )
   );

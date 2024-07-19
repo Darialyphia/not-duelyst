@@ -1,7 +1,7 @@
 import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
 import { FRIEND_CHALLENGE_STATUS } from '../friendRequest.constants';
-import { ensureAuthorized } from '../../utils/ability';
+import { ensureAuthorized } from '../../utils/ability.utils';
 import { getAllFriendIds } from '../friend.utils';
 
 export const sendFriendlyChallengeUsecase = authedMutation({

@@ -1,6 +1,6 @@
 import { internal } from '../../_generated/api';
 import { internalAction } from '../../_generated/server';
-import { Matchmaking } from '../matchmaking';
+import { MatchmakingSystem } from '../matchmaking.system';
 import {
   createGameFromMatchmadePair,
   scheduleNextMatchmakingInvocation
@@ -11,7 +11,7 @@ export const matchPlayersUsecase = internalAction(async ctx => {
   const participants = await ctx.runQuery(internal.matchmaking.getMatchmakingUsers);
 
   const strategy = new MatchmakingTestStrategy();
-  const { pairs, remaining } = new Matchmaking(participants, strategy).makePairs();
+  const { pairs, remaining } = new MatchmakingSystem(participants, strategy).makePairs();
 
   await Promise.allSettled(
     pairs.map(pair =>

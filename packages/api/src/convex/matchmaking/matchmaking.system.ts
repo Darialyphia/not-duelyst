@@ -4,7 +4,7 @@ export type MatchmakingStrategy<T> = {
   processUnmatched(user: T): T;
 };
 
-export class Matchmaking<T> {
+export class MatchmakingSystem<T> {
   constructor(
     private participants: T[],
     private strategy: MatchmakingStrategy<T>

@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
-import { ensureAuthorized, ensureExists } from '../../utils/ability';
+import { ensureAuthorized, ensureExists } from '../../utils/ability.utils';
 import { FRIEND_CHALLENGE_STATUS } from '../friendRequest.constants';
 import { internal } from '../../_generated/api';
 

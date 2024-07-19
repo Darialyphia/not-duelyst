@@ -3,7 +3,7 @@ import { internal } from '../../_generated/api';
 import { authedMutation } from '../../auth/auth.utils';
 import { FEATURE_FLAGS } from '../../featureFlags/featureFlags.constants';
 import { getFeatureFlag } from '../../featureFlags/featureFlags.utils';
-import { ensureAuthorized } from '../../utils/ability';
+import { ensureAuthorized } from '../../utils/ability.utils';
 import { createUserAbility } from '../user.ability';
 import { generateDiscriminator, DEFAULT_MMR } from '../user.utils';
 

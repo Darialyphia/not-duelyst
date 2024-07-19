@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
-import { ensureAuthorized, ensureExists } from '../../utils/ability';
+import { ensureAuthorized, ensureExists } from '../../utils/ability.utils';
 
 export const cancelFriendlyChallengeUsecase = authedMutation({
   args: {
