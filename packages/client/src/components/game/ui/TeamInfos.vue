@@ -19,12 +19,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   <PopoverRoot v-model:open="isEmotePopoverOpened">
     <PopoverPortal>
       <Transition name="emote-popover">
-        <PopoverContent
-          class="emote-popover"
-          :side-offset="30"
-          as-child
-          :collision-padding="20"
-        >
+        <PopoverContent :side-offset="30" as-child :collision-padding="20">
           <div class="emote-popover">
             <PopoverArrow class="popover-arrow" :height="10" :width="15" />
 

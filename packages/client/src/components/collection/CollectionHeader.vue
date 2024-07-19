@@ -10,6 +10,8 @@ const search = defineModel<Nullable<string>>('search', { required: true });
 const cost = defineModel<Nullable<CostFilter>>('cost', { required: true });
 
 const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
+
+const isFilterPopoverOpened = ref(false);
 </script>
 
 <template>
@@ -56,25 +58,42 @@ const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
           Neutral
         </button>
       </Sound>
-      <div class="divider" />
-      <button
-        v-for="i in 9"
-        :key="i"
-        class="cost"
-        :class="cost === i - 1 && 'active'"
-        @click="
-          () => {
-            if (cost === i - 1) {
-              cost = null;
-            } else {
-              cost = (i - 1) as CostFilter;
-            }
-          }
-        "
-      >
-        {{ i === 9 ? '8+' : i - 1 }}
-      </button>
-      <div class="divider" />
+      <PopoverRoot v-model:open="isFilterPopoverOpened">
+        <PopoverTrigger as-child>
+          <UiButton class="ml-auto mr-3 ghost-button">Filters</UiButton>
+        </PopoverTrigger>
+        <PopoverAnchor />
+
+        <PopoverPortal>
+          <PopoverContent as-child :collision-padding="20">
+            <div class="fancy-surface">
+              <fieldset>
+                <legend>Cost</legend>
+                <div class="grid grid-cols-5 gap-1">
+                  <button
+                    v-for="i in 9"
+                    :key="i"
+                    class="cost"
+                    :class="cost === i - 1 && 'active'"
+                    @click="
+                      () => {
+                        if (cost === i - 1) {
+                          cost = null;
+                        } else {
+                          cost = (i - 1) as CostFilter;
+                        }
+                      }
+                    "
+                  >
+                    {{ i === 9 ? '8+' : i - 1 }}
+                  </button>
+                </div>
+              </fieldset>
+            </div>
+          </PopoverContent>
+        </PopoverPortal>
+      </PopoverRoot>
+
       <UiTextInput
         id="collection-search"
         v-model="search"
@@ -165,7 +184,6 @@ header {
 }
 
 .search {
-  flex-grow: 1;
   padding-left: var(--size-2);
   border-radius: var(--radius-pill);
 }
