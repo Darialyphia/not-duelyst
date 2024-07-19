@@ -1,25 +1,18 @@
 <script setup lang="ts">
 import { CARD_KINDS, CARDS, type CardBlueprint, type CardKind } from '@game/sdk';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
+import type { Nullable } from '@game/shared';
 import { uniqBy } from 'lodash-es';
 
-const { isSaving, cards } = defineProps<{
-  cards: Array<{ id: string; pedestalId: string }>;
-  isSaving: boolean;
-}>();
-
 const emit = defineEmits<{
-  save: [];
-  remove: [CardBlueprint];
-  setPedestal: [{ id: string; pedestalId: string }];
   back: [];
 }>();
 
-const name = defineModel<string>('name', { required: true });
+const { formValues, save, isSaving, removeCard } = useLoadoutForm();
 
 const groupedUnits = computed(() => {
   const copies: Record<string, number> = {};
-  cards.forEach(card => {
+  formValues.value.cards.forEach(card => {
     if (!copies[card.id]) {
       copies[card.id] = 1;
     } else {
@@ -28,7 +21,7 @@ const groupedUnits = computed(() => {
   });
 
   return uniqBy(
-    cards
+    formValues.value.cards
       .map(card => ({
         ...card,
         card: parseSerializeBlueprint(CARDS[card.id]),
@@ -43,39 +36,42 @@ const groupedUnits = computed(() => {
   );
 });
 
-// TODO load user owned cosmetics from api
-const pedestals = [
-  'pedestal-default',
-  'pedestal-stone',
-  'pedestal-grass',
-  'pedestal-ocean',
-  'pedestal-cyber',
-  'pedestal-lava',
-  'pedestal-sand'
-];
-const changePedestal = (id: string, diff: number) => {
-  const card = cards.find(c => c.id === id)!;
-  const index = pedestals.indexOf(card.pedestalId);
-  let newIndex = (index + diff) % pedestals.length;
-  if (newIndex < 0) newIndex = pedestals.length - 1;
-
-  emit('setPedestal', { id, pedestalId: pedestals[newIndex] });
-};
-
 const getCountByKind = (kind: CardKind) => {
-  return cards.filter(c => CARDS[c.id].kind === kind).length;
+  return formValues.value.cards.filter(c => CARDS[c.id].kind === kind).length;
 };
 
 const cardsCount = computed(() => {
-  return cards.filter(c => CARDS[c.id].kind !== CARD_KINDS.GENERAL).length;
+  return formValues.value.cards.filter(c => CARDS[c.id].kind !== CARD_KINDS.GENERAL)
+    .length;
 });
+
+const selectedCard =
+  ref<Nullable<{ card: CardBlueprint; pedestalId: string; cardBackId: string }>>();
+
+const updateCosmetics = ({
+  pedestalId,
+  cardBackId
+}: {
+  pedestalId: string;
+  cardBackId: string;
+}) => {
+  const id = selectedCard.value?.card.id;
+  if (!id) return;
+  formValues.value.cards.forEach(card => {
+    if (card.id === id) {
+      card.cardBackId = cardBackId;
+      card.pedestalId = pedestalId;
+    }
+  });
+  selectedCard.value = null;
+};
 </script>
 
 <template>
-  <form @submit.prevent="emit('save')">
+  <form @submit.prevent="save">
     <header>
-      <input v-model="name" class="py-2 flex-1 w-full" />
-      <LoadoutStats :loadout="cards" />
+      <input v-model="formValues.name" class="py-2 flex-1 w-full" />
+      <LoadoutStats :loadout="formValues.cards" />
       <div class="counts">
         <div>
           <span>{{ getCountByKind('MINION') }}</span>
@@ -96,54 +92,79 @@ const cardsCount = computed(() => {
       </div>
     </header>
 
-    <ul v-if="cards.length" v-auto-animate class="flex-1 fancy-scrollbar">
-      <li
+    <ul v-if="formValues.cards.length" v-auto-animate class="flex-1 fancy-scrollbar">
+      <HoverCardRoot
         v-for="card in groupedUnits"
         :key="card.card.id"
-        :class="card.card.kind.toLowerCase()"
-        @click="emit('remove', card.card)"
+        :open-delay="0"
+        :close-delay="0"
       >
-        <div class="cost">
-          {{ card.card.cost }}
-        </div>
+        <HoverCardTrigger as-child>
+          <li :class="card.card.kind.toLowerCase()" @click="removeCard(card.card.id)">
+            <div class="cost">
+              {{ card.card.cost }}
+            </div>
 
-        <div class="name">
-          <template v-if="card.copies > 1">X {{ card.copies }}</template>
-          {{ card.card.name }}
-        </div>
+            <div class="name">
+              <template v-if="card.copies > 1">X {{ card.copies }}</template>
+              {{ card.card.name }}
+            </div>
 
-        <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
-          <UiIconButton
-            v-if="card.card.kind === 'MINION' || card.card.kind === 'GENERAL'"
-            name="ph:caret-left-fill"
-            class="pedestal-nav"
-            type="button"
-            @click.stop="changePedestal(card.id, -1)"
-          />
-          <div class="sprite mx-auto">
-            <CardSprite
-              :sprite-id="card.card.spriteId"
-              :pedestal-id="
-                card.card.kind === 'MINION' || card.card.kind === 'GENERAL'
-                  ? card.pedestalId
-                  : undefined
+            <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
+              <div class="sprite mx-auto">
+                <CardSprite :sprite-id="card.card.spriteId" />
+              </div>
+            </div>
+          </li>
+        </HoverCardTrigger>
+
+        <HoverCardPortal>
+          <HoverCardContent :side-offset="5" side="left" align="center" class="relative">
+            <Card
+              :card="{
+                blueprintId: card.card.id,
+                name: card.card.name,
+                description: card.card.description,
+                kind: card.card.kind,
+                spriteId: card.card.spriteId,
+                rarity: card.card.rarity,
+                attack: card.card.attack,
+                hp: card.card.maxHp,
+                speed: card.card.speed,
+                cost: card.card.cost,
+                faction: card.card.faction,
+                tags: card.card.tags ?? [],
+                pedestalId: card.pedestalId,
+                cardbackId: card.cardBackId
+              }"
+            />
+            <UiIconButton
+              class="ghost-button cosmetics-toggle"
+              name="mdi:palette"
+              @click="
+                selectedCard = {
+                  card: card.card,
+                  pedestalId: card.pedestalId,
+                  cardBackId: card.cardBackId
+                }
               "
             />
-          </div>
-          <UiIconButton
-            v-if="card.card.kind === 'MINION' || card.card.kind === 'GENERAL'"
-            name="ph:caret-right-fill"
-            class="pedestal-nav"
-            type="button"
-            @click.stop="changePedestal(card.id, 1)"
-          />
-        </div>
-      </li>
+          </HoverCardContent>
+        </HoverCardPortal>
+      </HoverCardRoot>
     </ul>
 
     <p v-else class="my-8 text-center">
       Click units on the left to add them to your deck.
     </p>
+
+    <CollectionItemCosmeticsModal
+      :is-opened="!!selectedCard"
+      :card="selectedCard!"
+      :is-loading="false"
+      @update:is-opened="selectedCard = null"
+      @submit="updateCosmetics($event)"
+    />
 
     <footer class="mt-auto">
       <UiButton
@@ -252,25 +273,8 @@ li {
   border-radius: var(--radius-round); */
 }
 
-.rune {
-  width: 11px;
-  height: 13px;
-  image-rendering: pixelated;
-}
-
 .sprite {
   transform: translateY(24px);
-}
-
-.pedestal-nav {
-  --ui-button-hover-bg: var(--gray-9);
-  --ui-button-focus-bg: var(--gray-9);
-  --ui-button-hover-color: var(--primary);
-  --ui-button-focus-color: var(--primary);
-
-  z-index: 1;
-  transform: translateY(16px);
-  margin-top: var(--size-5);
 }
 
 .name {
@@ -295,5 +299,13 @@ li {
     font-size: var(--font-size-2);
     color: var(--primary);
   }
+}
+
+.cosmetics-toggle {
+  --ui-icon-button-size: var(--size-7);
+
+  position: absolute;
+  right: 0;
+  bottom: calc(-1 * var(--size-3));
 }
 </style>

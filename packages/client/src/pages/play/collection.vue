@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { CARD_KINDS, type CardBlueprint } from '@game/sdk';
+import { CARD_KINDS } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 definePageMeta({
@@ -12,22 +12,13 @@ definePageMeta({
 });
 
 const mode = ref<'list' | 'form'>('list');
-const {
-  formValues,
-  initEmpty,
-  initFromLoadout,
-  canAddCard,
-  addCard,
-  removeCard,
-  save,
-  general,
-  isSaving
-} = useLoadoutForm({
-  defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
-  onSuccess() {
-    mode.value = 'list';
-  }
-});
+const { initEmpty, initFromLoadout, canAddCard, addCard, general } =
+  useLoadoutFormProvider({
+    defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
+    onSuccess() {
+      mode.value = 'list';
+    }
+  });
 
 const { factionFilter, textFilter, costFilter, displayedCards, loadouts } =
   useCollection();
@@ -36,14 +27,9 @@ watch(mode, () => {
   factionFilter.value = undefined;
 });
 
-const addCardToLoadout = (card: CardBlueprint) => {
+const addCardToLoadout = (opts: Parameters<typeof addCard>[0]) => {
   if (mode.value === 'list') return;
-  addCard(card.id);
-};
-
-const removeCardFromLoadout = (card: CardBlueprint) => {
-  if (mode.value === 'list') return;
-  removeCard(card.id);
+  addCard(opts);
 };
 
 const canAddToLoadout = (unitId: string) => {
@@ -87,28 +73,19 @@ const relevantCards = computed(() => {
         :card="item"
         :is-editing-loadout="mode === 'form'"
         :can-add-to-loadout="canAddToLoadout(item.cardId)"
-        @click="addCardToLoadout(item.card)"
+        animated
+        @click="
+          addCardToLoadout({
+            id: item.cardId,
+            pedestalId: item.pedestalId,
+            cardBackId: item.cardBackId
+          })
+        "
       />
     </section>
     <section class="sidebar">
       <template v-if="mode === 'form'">
-        <LoadoutForm
-          v-if="formValues"
-          v-model:name="formValues.name"
-          :cards="formValues.cards"
-          :is-saving="isSaving"
-          @back="mode = 'list'"
-          @save="save"
-          @remove="removeCardFromLoadout($event)"
-          @set-pedestal="
-            ({ id, pedestalId }) => {
-              formValues!.cards.forEach(card => {
-                if (card.id !== id) return;
-                card.pedestalId = pedestalId;
-              });
-            }
-          "
-        />
+        <LoadoutForm @back="mode = 'list'" />
       </template>
 
       <template v-else>

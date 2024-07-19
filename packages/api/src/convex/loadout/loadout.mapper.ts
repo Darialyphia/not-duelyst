@@ -7,6 +7,7 @@ export type LoadoutDto = {
   cards: Array<{
     id: string;
     pedestalId: string;
+    cardBackId: string;
   }>;
 };
 
@@ -14,6 +15,10 @@ export const toLoadoutDto = (loadout: Loadout): LoadoutDto => {
   return {
     _id: loadout._id,
     name: loadout.name,
-    cards: loadout.cards.map(card => ({ id: card.id, pedestalId: card.pedestalId }))
+    cards: loadout.cards.map(card => ({
+      id: card.id,
+      pedestalId: card.pedestalId,
+      cardBackId: card.cardBackId
+    }))
   };
 };

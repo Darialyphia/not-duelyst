@@ -8,7 +8,7 @@ defineOptions({
   inheritAttrs: false
 });
 
-const { canAddToLoadout, isEditingLoadout, card } = defineProps<{
+const { canAddToLoadout, animated, isEditingLoadout, card } = defineProps<{
   canAddToLoadout: boolean;
   isEditingLoadout: boolean;
   card: {
@@ -18,6 +18,7 @@ const { canAddToLoadout, isEditingLoadout, card } = defineProps<{
     pedestalId: string;
     cardBackId: string;
   };
+  animated?: boolean;
 }>();
 
 const emit = defineEmits<{ click: [] }>();
@@ -33,6 +34,8 @@ const angle = ref({
 const isDisabled = computed(() => isEditingLoadout && !canAddToLoadout);
 const MAX_ANGLE = 20;
 const onMousemove = (e: MouseEvent) => {
+  if (!animated) return;
+
   if (isDisabled.value) return;
   if (!cardEl.value) return;
 
@@ -118,7 +121,13 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
     <CollectionItemCosmeticsModal
       v-model:is-opened="isCosmeticsModalOpened"
       :card="card"
-      @submit="updateCosmetics({})"
+      :is-loading="isLoading"
+      @submit="
+        updateCosmetics({
+          id: card._id,
+          ...$event
+        })
+      "
     />
   </div>
 </template>

@@ -54,6 +54,7 @@ const ensureHasGeneral = (cards: Array<{ id: string }>) => {
 };
 
 const ensureHasCorrectSize = (cards: Array<{ id: string }>) => {
+  console.log(cards.length, defaultFormat.config.MAX_DECK_SIZE + 1);
   const isValid = cards.length === defaultFormat.config.MAX_DECK_SIZE + 1; //account for general
 
   if (!isValid) {
@@ -67,11 +68,11 @@ export const validateLoadout = async (
     ownerId,
     cards
   }: {
-    cards: Array<{ id: string; pedestalId: string }>;
+    cards: Array<{ id: string; pedestalId: string; cardBackId: string }>;
     ownerId: Id<'users'>;
   }
 ): Promise<{
-  cards: Array<{ id: CardBlueprintId; pedestalId: string }>;
+  cards: Array<{ id: CardBlueprintId; pedestalId: string; cardBackId: string }>;
   ownerId: Id<'users'>;
 }> => {
   await Promise.all(cards.map(card => ensureOwnsUnit({ db }, ownerId, card.id)));

@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import { CARD_KINDS, type CardBlueprint } from '@game/sdk';
+import type { Nullable } from '@game/shared';
 
 const { card } = defineProps<{
-  card: {
+  card: Nullable<{
     card: CardBlueprint;
-    _id: Id<'collectionItems'>;
-    cardId: string;
     pedestalId: string;
     cardBackId: string;
-  };
+  }>;
+  isLoading: boolean;
 }>();
 
 const emit = defineEmits<{ submit: [{ pedestalId: string; cardBackId: string }] }>();
@@ -30,11 +29,18 @@ const pedestals = [
 const cardBacks = ['default', 'fire', 'clouds', 'wood'];
 
 const isUnit = computed(
-  () => card.card.kind === CARD_KINDS.GENERAL || card.card.kind === CARD_KINDS.MINION
+  () =>
+    card &&
+    (card.card.kind === CARD_KINDS.GENERAL || card.card.kind === CARD_KINDS.MINION)
 );
 
-const selectedPedestal = ref(card.pedestalId);
-const selectedCardBack = ref(card.cardBackId);
+const selectedPedestal = ref(card?.pedestalId);
+const selectedCardBack = ref(card?.cardBackId);
+
+watchEffect(() => {
+  selectedCardBack.value = card?.cardBackId;
+  selectedPedestal.value = card?.pedestalId;
+});
 </script>
 
 <template>
@@ -52,6 +58,7 @@ const selectedCardBack = ref(card.cardBackId);
         "
       >
         <Card
+          v-if="card && selectedCardBack && selectedPedestal"
           :card="{
             blueprintId: card.card.id,
             name: card.card.name,
@@ -118,8 +125,9 @@ const selectedCardBack = ref(card.cardBackId);
     <footer class="flex justify-end gap-3">
       <UiButton class="ghost-button" @click="isOpened = false">Cancel</UiButton>
       <UiFancyButton
+        :disabled="isLoading"
         @click="
-          emit('submit', { pedestalId: selectedPedestal, cardBackId: selectedCardBack })
+          emit('submit', { pedestalId: selectedPedestal!, cardBackId: selectedCardBack! })
         "
       >
         Save

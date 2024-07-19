@@ -8,7 +8,8 @@ export const loadoutSchemas = {
     cards: v.array(
       v.object({
         id: v.string(),
-        pedestalId: v.string()
+        pedestalId: v.string(),
+        cardBackId: v.string()
       })
     )
   }).index('by_owner_id', ['ownerId'])

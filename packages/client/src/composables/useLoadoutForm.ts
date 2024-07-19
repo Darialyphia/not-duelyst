@@ -2,12 +2,38 @@ import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { GameFormat } from '@game/api/src/convex/formats/format.entity';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { CARD_KINDS, CARDS, defaultConfig } from '@game/sdk';
+import { CARD_KINDS, CARDS, defaultConfig, type CardBlueprint } from '@game/sdk';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { match } from 'ts-pattern';
+import type { InjectionKey } from 'vue';
 
-export const useLoadoutForm = ({
+type LodoutFormContext = {
+  formValues: Ref<{
+    loadoutId?: Id<'loadouts'>;
+    name: string;
+    cards: Array<{
+      id: string;
+      pedestalId: string;
+      cardBackId: string;
+    }>;
+  }>;
+  general: ComputedRef<CardBlueprint | null>;
+  initEmpty(): void;
+  initFromLoadout(loadout: LoadoutDto): void;
+  canAddCard(cardId: CardBlueprintId): boolean;
+  isInLoadout(cardId: CardBlueprintId): boolean;
+  loadoutIsFull: ComputedRef<boolean>;
+  addCard(card: { id: string; pedestalId: string; cardBackId: string }): void;
+  removeCard(cardId: CardBlueprintId): void;
+  save: () => void;
+  isSaving: ComputedRef<boolean>;
+};
+export const LOADOUT_FORM_INJECTION_KEY = Symbol(
+  'Loadout form'
+) as InjectionKey<LodoutFormContext>;
+
+export const useLoadoutFormProvider = ({
   defaultName,
   onSuccess
 }: {
@@ -21,8 +47,8 @@ export const useLoadoutForm = ({
   const formValues = ref<{
     loadoutId?: Id<'loadouts'>;
     name: string;
-    cards: Array<{ id: string; pedestalId: string }>;
-  }>();
+    cards: Array<{ id: string; pedestalId: string; cardBackId: string }>;
+  }>({ name: '', cards: [] });
 
   const general = computed(() => {
     const card = formValues.value?.cards.find(c => {
@@ -70,17 +96,25 @@ export const useLoadoutForm = ({
   };
 
   const isInLoadout = (cardId: CardBlueprintId) => {
-    return formValues.value?.cards.some(card => card.id === cardId);
+    return formValues.value?.cards.some(card => card.id === cardId) ?? false;
   };
 
-  const addCard = (cardId: CardBlueprintId) => {
+  const addCard = ({
+    id,
+    cardBackId,
+    pedestalId
+  }: {
+    id: string;
+    pedestalId: string;
+    cardBackId: string;
+  }) => {
     if (!formValues.value) return;
-    const card = CARDS[cardId];
+    const card = CARDS[id];
     if (card.kind === CARD_KINDS.GENERAL && general.value) {
-      formValues.value.cards.find(c => c.id === cardId)!.id = cardId;
+      formValues.value.cards.find(c => c.id === id)!.id = id;
       return;
     }
-    formValues.value.cards.push({ id: cardId, pedestalId: 'pedestal-default' });
+    formValues.value.cards.push({ id, pedestalId, cardBackId });
   };
 
   const removeCard = (cardId: CardBlueprintId) => {
@@ -116,7 +150,7 @@ export const useLoadoutForm = ({
     }
   };
 
-  return {
+  const ctx: LodoutFormContext = {
     formValues,
     general,
     initEmpty,
@@ -129,4 +163,10 @@ export const useLoadoutForm = ({
     save,
     isSaving
   };
+
+  provide(LOADOUT_FORM_INJECTION_KEY, ctx);
+
+  return ctx;
 };
+
+export const useLoadoutForm = () => useSafeInject(LOADOUT_FORM_INJECTION_KEY);

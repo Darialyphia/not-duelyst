@@ -5,7 +5,9 @@ import { validateLoadout } from '../loadout.utils';
 export const createLoadoutUsecase = authedMutation({
   args: {
     name: v.string(),
-    cards: v.array(v.object({ id: v.string(), pedestalId: v.string() }))
+    cards: v.array(
+      v.object({ id: v.string(), pedestalId: v.string(), cardBackId: v.string() })
+    )
   },
   async handler(ctx, args) {
     const validData = await validateLoadout(ctx, {
