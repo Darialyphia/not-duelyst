@@ -12,7 +12,6 @@ import {
   type SerializedCard
 } from '../card/card';
 import EventEmitter from 'eventemitter3';
-import { config } from '../config';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { CARD_KINDS, FACTION_IDS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
@@ -104,8 +103,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.isPlayer1 = options.isPlayer1;
     this._maxGold =
       (options.maxMana ?? this.isPlayer1)
-        ? config.PLAYER_1_STARTING_GOLD
-        : config.PLAYER_2_STARTING_GOLD;
+        ? this.session.config.PLAYER_1_STARTING_GOLD
+        : this.session.config.PLAYER_2_STARTING_GOLD;
     this.isP2T1 = !this.isPlayer1;
     this.currentGold = options.currentGold ?? this.maxGold;
   }
@@ -119,7 +118,10 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   get maxReplaces(): number {
-    return this.interceptors.maxReplaces.getValue(config.MAX_REPLACES_PER_TURN, this);
+    return this.interceptors.maxReplaces.getValue(
+      this.session.config.MAX_REPLACES_PER_TURN,
+      this
+    );
   }
 
   get entities() {
@@ -153,7 +155,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
       this.id
     );
     this.deck.shuffle();
-    this.hand = this.deck.draw(config.STARTING_HAND_SIZE);
+    this.hand = this.deck.draw(this.session.config.STARTING_HAND_SIZE);
 
     this.deck.on(DECK_EVENTS.BEFORE_DRAW, () =>
       this.emit(PLAYER_EVENTS.BEFORE_DRAW, { player: this })
@@ -265,8 +267,8 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
     this.entities.forEach(entity => {
       entity.endTurn();
     });
-    if (config.DRAW_AT_END_OF_TURN) {
-      this.draw(config.CARD_DRAW_PER_TURN);
+    if (this.session.config.DRAW_AT_END_OF_TURN) {
+      this.draw(this.session.config.CARD_DRAW_PER_TURN);
     }
     this.emit(PLAYER_EVENTS.TURN_END, this);
   }
@@ -277,13 +279,13 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
-      this.maxGold += config.MAX_GOLD_INCREASE_PER_TURN;
-      if (config.REFILL_GOLD_EVERY_TURN) {
+      this.maxGold += this.session.config.MAX_GOLD_INCREASE_PER_TURN;
+      if (this.session.config.REFILL_GOLD_EVERY_TURN) {
         this.currentGold = this.maxGold;
       }
-      this.giveGold(config.GOLD_PER_TURN);
-      if (!config.DRAW_AT_END_OF_TURN) {
-        this.draw(config.CARD_DRAW_PER_TURN);
+      this.giveGold(this.session.config.GOLD_PER_TURN);
+      if (!this.session.config.DRAW_AT_END_OF_TURN) {
+        this.draw(this.session.config.CARD_DRAW_PER_TURN);
       }
     } else {
       this.isP2T1 = false;
@@ -333,7 +335,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
 
   giveGold(amount: number, isResourceAction = false) {
     this.emit(PLAYER_EVENTS.BEFORE_GET_GOLD, { player: this, amount });
-    this.currentGold = Math.min(this.currentGold + amount, config.MAX_GOLD);
+    this.currentGold = Math.min(this.currentGold + amount, this.session.config.MAX_GOLD);
 
     this.emit(PLAYER_EVENTS.AFTER_GET_GOLD, { player: this, amount });
     if (isResourceAction) {
@@ -342,7 +344,7 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   }
 
   draw(amount: number, isResourceAction = false) {
-    const availableSlots = config.MAX_HAND_SIZE - this.hand.length;
+    const availableSlots = this.session.config.MAX_HAND_SIZE - this.hand.length;
 
     const newCards = this.deck.draw(Math.min(amount, availableSlots));
     if (newCards.length) {

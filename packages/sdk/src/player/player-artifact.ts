@@ -1,5 +1,4 @@
 import EventEmitter from 'eventemitter3';
-import { config } from '../config';
 import type { GameSession } from '../game-session';
 import type { CardIndex, PlayerId } from './player';
 import { nanoid } from 'nanoid';
@@ -44,7 +43,7 @@ export class PlayerArtifact extends EventEmitter<ArtifactEventMap> {
 
   private playerId: PlayerId;
 
-  durability = config.ARTIFACT_DURABILITY;
+  durability = this.session.config.ARTIFACT_DURABILITY;
 
   id: PlayerArtifactId;
 

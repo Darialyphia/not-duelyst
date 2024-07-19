@@ -3,13 +3,15 @@ import { CARDS } from './card-lookup';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import type { Point3D, Serializable } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
-import { ENTITY_EVENTS } from '../entity/entity';
+import { Entity, ENTITY_EVENTS } from '../entity/entity';
 import { Card, type SerializedCard } from './card';
 import { CARD_KINDS } from './card-enums';
 
 export type UnitInterceptor = Unit['interceptors'];
 
 export class Unit extends Card implements Serializable {
+  entity!: Entity;
+
   constructor(
     session: GameSession,
     index: CardIndex,
@@ -89,7 +91,7 @@ export class Unit extends Card implements Serializable {
   }
 
   playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
-    const entity = this.session.entitySystem.addEntity({
+    this.entity = this.session.entitySystem.addEntity({
       cardIndex: this.index,
       playerId: this.playerId,
       position: ctx.position
@@ -98,23 +100,23 @@ export class Unit extends Card implements Serializable {
     this.blueprint.onPlay?.({
       session: this.session,
       card: this,
-      entity,
+      entity: this.entity,
       targets: ctx.targets
     });
 
     if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {
-      const unsub = entity.addInterceptor('canMove', () => false);
+      const unsub = this.entity.addInterceptor('canMove', () => false);
       this.session.once('player:turn_end', unsub);
     }
     if (!this.interceptors.canAttackAfterSummon.getValue(false, this)) {
-      const unsub = entity.addInterceptor('canAttack', () => false);
+      const unsub = this.entity.addInterceptor('canAttack', () => false);
       this.session.once('player:turn_end', unsub);
     }
     if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
-      const unsub = entity.addInterceptor('canRetaliate', () => false);
+      const unsub = this.entity.addInterceptor('canRetaliate', () => false);
       this.session.once('player:turn_end', unsub);
     }
 
-    entity.emit(ENTITY_EVENTS.CREATED, entity);
+    this.entity.emit(ENTITY_EVENTS.CREATED, this.entity);
   }
 }

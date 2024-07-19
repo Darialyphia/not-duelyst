@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  ClientSession,
-  config,
-  Player,
-  type GameSession,
-  type ServerSession
-} from '@game/sdk';
+import { ClientSession, type GameSession, type ServerSession } from '@game/sdk';
 
 const { clientSession, serverSession } = defineProps<{
   serverSession: ServerSession;
@@ -41,7 +35,9 @@ const performAction = (cb: (session: GameSession) => void) => {
             class="ghost-button"
             @click="
               performAction(session => {
-                session.playerSystem.activePlayer.draw(config.MAX_HAND_SIZE);
+                session.playerSystem.activePlayer.draw(
+                  clientSession.config.MAX_HAND_SIZE
+                );
               })
             "
           >
@@ -68,7 +64,7 @@ const performAction = (cb: (session: GameSession) => void) => {
             class="ghost-button"
             @click="
               performAction(session => {
-                session.playerSystem.activePlayer.giveGold(config.MAX_GOLD);
+                session.playerSystem.activePlayer.giveGold(clientSession.config.MAX_GOLD);
               })
             "
           >

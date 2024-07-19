@@ -77,7 +77,7 @@ export const burn = ({
   source,
   stacks = 1
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
   stacks?: number;
 }) => {
@@ -107,7 +107,7 @@ export const regeneration = ({
   source,
   stacks = 1
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
   stacks?: number;
 }) => {
@@ -136,7 +136,7 @@ export const fearsome = ({
   source,
   duration = Infinity
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
 }) => {
   return createEntityModifier({
@@ -162,7 +162,7 @@ export const flying = ({
   source,
   duration = Infinity
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
 }) => {
   return createEntityModifier({
@@ -187,7 +187,7 @@ export const frozen = ({
   source,
   duration = Infinity
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
 }) => {
   const interceptor = () => false;
@@ -223,7 +223,7 @@ export const rooted = ({
   source,
   duration = Infinity
 }: {
-  source: Entity;
+  source: Card;
   duration?: number;
 }) => {
   return createEntityModifier({
@@ -242,7 +242,7 @@ export const rooted = ({
   });
 };
 
-export const celerity = ({ source, duration }: { source: Entity; duration?: number }) => {
+export const celerity = ({ source, duration }: { source: Card; duration?: number }) => {
   return createEntityModifier({
     source,
     id: KEYWORDS.CELERITY.id,
@@ -267,7 +267,7 @@ export const celerity = ({ source, duration }: { source: Entity; duration?: numb
   });
 };
 
-export const structure = (source: Entity) => {
+export const structure = (source: Card) => {
   return createEntityModifier({
     source,
     id: KEYWORDS.STRUCTURE.id,
@@ -295,7 +295,7 @@ export const structure = (source: Entity) => {
   });
 };
 
-export const ranged = ({ source, duration }: { source: Entity; duration?: number }) => {
+export const ranged = ({ source, duration }: { source: Card; duration?: number }) => {
   return createEntityModifier({
     source,
     id: KEYWORDS.RANGED.id,
@@ -312,7 +312,7 @@ export const ranged = ({ source, duration }: { source: Entity; duration?: number
   });
 };
 
-export const barrier = ({ source, duration }: { source: Entity; duration?: number }) => {
+export const barrier = ({ source, duration }: { source: Card; duration?: number }) => {
   return createEntityModifier({
     id: KEYWORDS.BARRIER.id,
     source,
@@ -346,7 +346,7 @@ export const aura = ({
   keywords = [],
   isElligible = (target, source) => isWithinCells(source.position, target.position, 1)
 }: {
-  source: Entity;
+  source: Card;
   id?: string;
   onGainAura: (entity: Entity, source: Entity, session: GameSession) => void;
   onLoseAura: (entity: Entity, source: Entity, session: GameSession) => void;
@@ -428,7 +428,7 @@ export const aura = ({
   });
 };
 
-export const provoke = ({ source }: { source: Entity }) => {
+export const provoke = ({ source }: { source: Card }) => {
   const interceptorMap = new Map<
     EntityId,
     {
@@ -486,7 +486,7 @@ export const whileOnBoard = ({
   onRemoved
 }: {
   entity: Entity;
-  source: Entity;
+  source: Card;
   onApplied: EntityModifier['onApplied'];
   onRemoved: EntityModifier['onRemoved'];
 }) => {
@@ -553,7 +553,7 @@ export const dyingWish = ({
   handler,
   keywords = []
 }: {
-  source: Entity;
+  source: Card;
   keywords?: Keyword[];
   handler: (
     entity: Entity,
@@ -581,7 +581,7 @@ export const openingGambit = ({
   handler,
   keywords = []
 }: {
-  source: Entity;
+  source: Card;
   keywords?: Keyword[];
   handler: (
     entity: Entity,
@@ -608,7 +608,7 @@ export const deathWatch = ({
   source,
   handler
 }: {
-  source: Entity;
+  source: Card;
   handler: (
     entity: Entity,
     ctx: { session: GameSession; modifier: EntityModifier }

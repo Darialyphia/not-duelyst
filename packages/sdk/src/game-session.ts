@@ -27,6 +27,7 @@ import {
   type ArtifactEvent,
   type ArtifactEventMap
 } from './player/player-artifact';
+import { defaultConfig, type GameSessionConfig } from './config';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -79,17 +80,23 @@ export type GameEvent = keyof GameEventMap;
 
 export class GameSession extends EventEmitter<GameEventMap> {
   static createServerSession(state: SerializedGameState, seed: string) {
-    return new GameSession(state, new ServerRngSystem(seed), noopFXContext, {});
+    return new GameSession(state, new ServerRngSystem(seed), noopFXContext, {
+      config: defaultConfig
+    });
   }
 
   static createClientSession(
     state: SerializedGameState,
-
     fxSystem: FXSystem,
     winnerId?: string
   ) {
-    return new GameSession(state, new ClientRngSystem(), fxSystem, { winnerId });
+    return new GameSession(state, new ClientRngSystem(), fxSystem, {
+      winnerId,
+      config: defaultConfig
+    });
   }
+
+  config: GameSessionConfig;
 
   actionSystem = new ActionSystem(this);
 
@@ -111,10 +118,11 @@ export class GameSession extends EventEmitter<GameEventMap> {
     public fxSystem: FXSystem,
     options: {
       winnerId?: string;
+      config: GameSessionConfig;
     }
   ) {
     super();
-
+    this.config = options.config;
     this.winnerId = options.winnerId;
     this.setup();
     this.emit('game:ready');

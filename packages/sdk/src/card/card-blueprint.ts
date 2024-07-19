@@ -36,8 +36,8 @@ type CardBlueprintUnit = {
   kind: Extract<CardKind, 'MINION' | 'GENERAL'>;
   attack: number;
   maxHp: number;
-  speed: number;
   range: number;
+  speed: number;
   targets?: {
     minTargetCount: number;
     maxTargetCount: number;
@@ -134,7 +134,6 @@ type SerializedBlueprintUnit = {
   kind: Extract<CardKind, 'MINION' | 'GENERAL'>;
   attack: number;
   maxHp: number;
-  speed: number;
 };
 
 type SerializedBlueprintSpell = {

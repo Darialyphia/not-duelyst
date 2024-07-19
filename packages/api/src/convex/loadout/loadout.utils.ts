@@ -1,7 +1,8 @@
-import { CARD_KINDS, CARDS, config } from '@game/sdk';
+import { CARD_KINDS, CARDS } from '@game/sdk';
 import type { Doc, Id } from '../_generated/dataModel';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
+import { defaultFormat } from '../formats/format.utils';
 
 export const ensureMaxCopies = (cardIds: string[]) => {
   const copies: Record<string, number> = {};
@@ -11,7 +12,7 @@ export const ensureMaxCopies = (cardIds: string[]) => {
     } else {
       copies[id]++;
     }
-    if (copies[id] > config.MAX_COPIES_PER_CARD) {
+    if (copies[id] > defaultFormat.config.MAX_COPIES_PER_CARD) {
       throw new Error('Max copies of card exceeded..');
     }
   });
@@ -53,7 +54,7 @@ const ensureHasGeneral = (cards: Array<{ id: string }>) => {
 };
 
 const ensureHasCorrectSize = (cards: Array<{ id: string }>) => {
-  const isValid = cards.length === config.MAX_DECK_SIZE + 1; //account for general
+  const isValid = cards.length === defaultFormat.config.MAX_DECK_SIZE + 1; //account for general
 
   if (!isValid) {
     throw new Error('Loadout does not have the correct size.');

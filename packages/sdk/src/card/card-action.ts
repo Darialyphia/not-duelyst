@@ -16,6 +16,7 @@ import { getUnits, type UnitConditionExtras } from './conditions/unit-conditions
 import type { GlobalCondition } from './conditions/global-conditions';
 import { getCells } from './conditions/cell-conditions';
 import { applyModifierConditionally } from './helpers/actions';
+import { Unit } from './unit';
 
 export const getAmount = ({
   amount,
@@ -258,14 +259,27 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           event,
           eventName
         }).forEach(target => {
-          target.takeDamage(
-            getAmount({
-              ...ctx,
-              amount: action.params.amount,
-              event,
-              eventName
-            })
-          );
+          if (ctx.card instanceof Unit) {
+            ctx.card.entity.dealDamage(
+              getAmount({
+                ...ctx,
+                amount: action.params.amount,
+                event,
+                eventName
+              }),
+              target
+            );
+          } else {
+            target.takeDamage(
+              getAmount({
+                ...ctx,
+                amount: action.params.amount,
+                event,
+                eventName
+              }),
+              ctx.card
+            );
+          }
         });
 
         return noop;
@@ -290,7 +304,8 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
               amount: action.params.amount,
               event,
               eventName
-            })
+            }),
+            ctx.card
           );
         });
 
@@ -342,7 +357,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           target.addModifier(
             createEntityModifier({
               id: modifierId,
-              source: entity ?? card.player.general,
+              source: card,
               stackable: action.params.stackable,
               visible: false,
               mixins: [
@@ -412,8 +427,8 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           eventName
         );
         if (!isGlobalConditionMatch) return noop;
-        const source = entity ?? card.player.general;
-        const modifier = provoke({ source });
+
+        const modifier = provoke({ source: card });
 
         return applyModifierConditionally({
           modifier,
@@ -432,8 +447,8 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           eventName
         );
         if (!isGlobalConditionMatch) return noop;
-        const source = entity ?? card.player.general;
-        const modifier = celerity({ source });
+        const modifier = celerity({ source: card });
+        const modifierTarget = entity ?? card.player.general;
 
         const tryToApply = () => {
           const shouldApply = checkGlobalConditions(
@@ -444,11 +459,11 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           );
 
           if (shouldApply) {
-            if (!source.hasModifier(modifier.id)) {
-              source.addModifier(modifier);
+            if (!modifierTarget.hasModifier(modifier.id)) {
+              modifierTarget.addModifier(modifier);
             }
           } else {
-            source.removeModifier(modifier.id);
+            modifierTarget.removeModifier(modifier.id);
           }
         };
 
@@ -456,7 +471,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         session.on('*', tryToApply);
 
         return () => {
-          source.removeModifier(modifier.id);
+          modifierTarget.removeModifier(modifier.id);
           session.off('*', tryToApply);
         };
       })

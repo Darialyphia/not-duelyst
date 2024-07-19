@@ -29,6 +29,7 @@ import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits } from './conditions/unit-conditions';
+import { defaultConfig } from '../config';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -50,7 +51,7 @@ export const getEffectModifier = <T extends GameEvent>({
     getEntityModifier: (ctx: EffectCtx) => {
       const cleanups: Array<() => void> = [];
       return createEntityModifier({
-        source: getEffectCtxEntity(ctx),
+        source: ctx.card,
         stackable: false,
         visible: false,
         mixins: [
@@ -639,7 +640,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
 
               whileOnBoard({
                 entity: getEffectCtxEntity(ctx),
-                source: getEffectCtxEntity(ctx),
+                source: ctx.card,
                 onApplied(session, attachedTo) {
                   attachedTo.addModifier(entityModifier);
                 },
@@ -677,7 +678,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         kind: blueprint.kind,
         attack: blueprint.attack,
         maxHp: blueprint.maxHp,
-        speed: blueprint.speed,
+        speed: defaultConfig.UNIT_DEFAULT_SPEED,
         range: 1
       };
 

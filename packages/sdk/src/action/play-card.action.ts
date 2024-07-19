@@ -1,12 +1,8 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
-import { config } from '../config';
 
 const schema = defaultActionSchema.extend({
-  cardIndex: z
-    .number()
-    .nonnegative()
-    .max(config.MAX_HAND_SIZE - 1),
+  cardIndex: z.number().nonnegative(),
   position: z.object({
     x: z.number(),
     y: z.number(),

@@ -3,11 +3,11 @@ import type { Id } from '../_generated/dataModel';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import { GAME_STATUS } from './game.constants';
 import type { Game } from './game.entity';
-import { config } from '@game/sdk/src/config';
 import { parse } from 'zipson';
 import { toGameDto } from './game.mapper';
 import { internal } from '../_generated/api';
 import type { SerializedGameState } from '@game/sdk';
+import { defaultFormat } from '../formats/format.utils';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -109,8 +109,8 @@ export const getReplayInitialState = async (
         id: players[0]._id,
         isPlayer1: true,
         name: players[0].name!,
-        currentGold: config.PLAYER_1_STARTING_GOLD,
-        maxGold: config.PLAYER_1_STARTING_GOLD,
+        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         deck: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
           pedestalId,
           blueprintId: id
@@ -121,8 +121,8 @@ export const getReplayInitialState = async (
         id: players[1]._id,
         isPlayer1: false,
         name: players[1].name!,
-        currentGold: config.PLAYER_1_STARTING_GOLD,
-        maxGold: config.PLAYER_1_STARTING_GOLD,
+        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         deck: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
           pedestalId,
           blueprintId: id

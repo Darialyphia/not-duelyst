@@ -41,7 +41,7 @@ const allTiles: TileBlueprint[] = [
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {
         if (tile.occupant && !tile.occupant?.isGeneral) {
-          tile.occupant.addModifier(barrier({ source: tile.occupant, duration: 1 }));
+          tile.occupant.addModifier(barrier({ source: tile.occupant.card, duration: 1 }));
         }
       };
       session.on('player:turn_start', tile.meta.listener);
@@ -58,7 +58,7 @@ const allTiles: TileBlueprint[] = [
     onCreated(session, entity, tile) {
       tile.meta.listener = () => {
         if (tile.occupant) {
-          tile.occupant.addModifier(burn({ source: tile.occupant, duration: 1 }));
+          tile.occupant.addModifier(burn({ source: tile.occupant.card, duration: 1 }));
         }
       };
       session.on('player:turn_end', tile.meta.listener);

@@ -13,8 +13,8 @@ import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
-import { config } from '../config';
 import { Unit } from '../card/unit';
+import type { Card } from '../card/card';
 
 export type EntityId = number;
 
@@ -223,7 +223,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
         !this.player.opponent.entities.some(entity => this.canAttack(entity))
       );
     } else {
-      if (config.UNLIMITED_RETALIATION) return false;
+      if (this.session.config.UNLIMITED_RETALIATION) return false;
       return this.retaliationsDone >= this.maxRetaliations;
     }
   }
@@ -231,7 +231,7 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   canMoveThroughCell(cell: Cell) {
     const initialValue = cell.entity
       ? this.isAlly(cell.entity.id)
-        ? config.CAN_WALK_THROUGH_ALLIES
+        ? this.session.config.CAN_WALK_THROUGH_ALLIES
         : false
       : cell.terrain === TERRAINS.GROUND;
 
@@ -245,12 +245,14 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     const baseValue =
       distance <= this.speed &&
       this.movementsTaken < this.maxMovements &&
-      (config.CAN_MOVE_AFTER_ATTACK ? true : this.attacksTaken < this.maxAttacks);
+      (this.session.config.CAN_MOVE_AFTER_ATTACK
+        ? true
+        : this.attacksTaken < this.maxAttacks);
     return this.interceptors.canMove.getValue(baseValue, this);
   }
 
   canRetaliate(source: Entity) {
-    const baseValue = config.UNLIMITED_RETALIATION
+    const baseValue = this.session.config.UNLIMITED_RETALIATION
       ? true
       : this.retaliationsDone < this.maxRetaliations;
 
@@ -391,18 +393,18 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     };
     this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    target.takeDamage(payload.amount, this);
+    target.takeDamage(payload.amount, this.card);
 
     this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  takeDamage(power: number, source?: Entity) {
+  takeDamage(power: number, source: Card) {
     const amount = this.getTakenDamage(power);
     if (amount <= 0) return;
     const payload = {
       entity: this,
       amount,
-      source
+      source: source instanceof Unit ? source.entity : undefined
     };
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 
@@ -432,13 +434,13 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
     this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
   }
 
-  heal(baseAmount: number, source?: Entity) {
+  heal(baseAmount: number, source: Card) {
     const amount = this.getHealReceived(baseAmount);
     if (amount <= 0) return;
     const payload = {
       entity: this,
       amount,
-      source
+      source: source instanceof Unit ? source.entity : undefined
     };
     this.emit(ENTITY_EVENTS.BEFORE_HEAL, payload);
 

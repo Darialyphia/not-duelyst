@@ -1,8 +1,7 @@
-import { config } from '@game/sdk';
 import type { ControlId } from '../utils/key-bindings';
 
 export const useGameControls = () => {
-  const { camera, ui, dispatch, fx } = useGame();
+  const { camera, ui, dispatch, fx, session } = useGame();
 
   const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
   const { settings } = useUserSettings();
@@ -92,7 +91,7 @@ export const useGameControls = () => {
 
       if (!isActivePlayer.value) return;
 
-      for (let i = 0; i < config.MAX_HAND_SIZE; i++) {
+      for (let i = 0; i < session.config.MAX_HAND_SIZE; i++) {
         if (
           isMatch(e, `summon${i + 1}` as ControlId) &&
           activePlayer.value.canPlayCardAtIndex(i)

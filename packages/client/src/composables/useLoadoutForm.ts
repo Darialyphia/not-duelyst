@@ -1,7 +1,8 @@
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
+import type { GameFormat } from '@game/api/src/convex/formats/format.entity';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { CARD_KINDS, CARDS, config } from '@game/sdk';
+import { CARD_KINDS, CARDS, defaultConfig } from '@game/sdk';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import { match } from 'ts-pattern';
 
@@ -12,6 +13,10 @@ export const useLoadoutForm = ({
   defaultName: MaybeRefOrGetter<string>;
   onSuccess: () => void;
 }) => {
+  const format: GameFormat = {
+    config: defaultConfig
+  };
+
   const formValues = ref<{
     loadoutId?: Id<'loadouts'>;
     name: string;
@@ -43,7 +48,7 @@ export const useLoadoutForm = ({
   };
 
   const loadoutIsFull = computed(
-    () => formValues.value!.cards.length >= config.MAX_DECK_SIZE + 1 // account for general
+    () => formValues.value!.cards.length >= format.config.MAX_DECK_SIZE + 1 // account for general
   );
 
   const canAddCard = (cardId: CardBlueprintId) => {
@@ -59,7 +64,7 @@ export const useLoadoutForm = ({
       .otherwise(
         () =>
           formValues.value!.cards.filter(c => c.id === cardId).length <
-          config.MAX_COPIES_PER_CARD
+          format.config.MAX_COPIES_PER_CARD
       );
   };
 

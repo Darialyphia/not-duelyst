@@ -1,10 +1,8 @@
 import {
-  GameSession,
-  config,
   type Player,
   type SerializedGameState,
-  type GameAction,
-  ServerSession
+  ServerSession,
+  defaultConfig
 } from '@game/sdk';
 import type { GameServer, GameSocket } from './types';
 import type { Defined } from '@game/shared';
@@ -14,11 +12,13 @@ import { parse, stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
-import type { FxEvent } from '@game/sdk/src/client-session';
+import type { GameFormat } from '@game/api/src/convex/formats/format.entity';
+import type { StarEvent } from '@game/sdk/src/game-session';
 
 type GameDto = Defined<FunctionReturnType<typeof api.games.getCurrent>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
 
+const defaultFormat: GameFormat = { config: defaultConfig };
 export class Game {
   readonly session: ServerSession;
   readonly minPlayers = 2;
@@ -41,7 +41,7 @@ export class Game {
     this.session.on('game:ended', this.onGameEnded.bind(this));
   }
 
-  private onGameAction(action: SerializedAction, ctx: { fxEvents: FxEvent[] }) {
+  private onGameAction(action: SerializedAction, ctx: { events: StarEvent[] }) {
     this.io.in(this.game._id).emit('game:action', { action, ctx });
   }
 
@@ -127,8 +127,8 @@ export class Game {
           id: players[0]._id,
           isPlayer1: true,
           name: players[0].name,
-          currentGold: config.PLAYER_1_STARTING_GOLD,
-          maxGold: config.PLAYER_1_STARTING_GOLD,
+          currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+          maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
           deck: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
             pedestalId,
             blueprintId: id
@@ -139,8 +139,8 @@ export class Game {
           id: players[1]._id,
           isPlayer1: false,
           name: players[1].name,
-          currentGold: config.PLAYER_1_STARTING_GOLD,
-          maxGold: config.PLAYER_1_STARTING_GOLD,
+          currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+          maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
           deck: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
             pedestalId,
             blueprintId: id
