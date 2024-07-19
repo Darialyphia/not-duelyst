@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
-import { CARD_KINDS, type Animation } from '@game/sdk';
+import { CARD_KINDS } from '@game/sdk';
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import type { Prettify } from '@game/shared';
@@ -10,6 +10,7 @@ type ICard = Prettify<
   {
     blueprintId: CardBlueprintId;
     pedestalId?: string;
+    cardbackId?: string;
     hp?: CardBlueprint['maxHp'];
   } & Pick<
     CardBlueprint,
@@ -29,7 +30,10 @@ type ICard = Prettify<
 
 const { card, hasModal = false } = defineProps<{ card: ICard; hasModal?: boolean }>();
 
-const bg = computed(() => `url('/assets/ui/card-back-${card.rarity}.png')`);
+const bg = computed(
+  () =>
+    `url('/assets/ui/card-back-${card.cardbackId ?? 'default'}.png'), url('/assets/ui/card-back-${card.rarity}.png')`
+);
 
 const reference = ref(null);
 const floating = ref(null);
@@ -268,6 +272,7 @@ footer {
   font-size: var(--font-size-0);
   line-height: 1;
   color: var(--gray-0);
+  text-shadow: 0 0 5px black;
   text-wrap: balance;
   white-space: pre-line;
 
