@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defaultConfig } from '@game/sdk';
+import { VERSION } from '@game/sdk';
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -17,7 +17,7 @@ definePageMeta({
     <MainNavigation class="pl-9 pt-12" />
 
     <section class="fancy-surface fancy-scrollbar">
-      <ContentDoc :path="`/${defaultConfig.VERSION}`" :head="false" class="markdown" />
+      <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
 
       <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
         Previous patch notes

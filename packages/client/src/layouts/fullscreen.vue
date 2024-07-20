@@ -12,7 +12,7 @@
 
   height: 100dvh;
 
-  background: url('/assets/backgrounds/mountain.png');
+  background: url('/assets/backgrounds/main-bg.jpg');
   background-attachment: fixed;
   background-size: cover;
 }

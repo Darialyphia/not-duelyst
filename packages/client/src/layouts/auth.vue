@@ -65,7 +65,7 @@ main {
   height: 100dvh;
   padding-block-start: 15vh;
 
-  background: url('/assets/backgrounds/mountain.png');
+  background: url('/assets/backgrounds/main-bg.jpg');
   background-attachment: fixed;
   background-size: cover;
   filter: brightness(0);

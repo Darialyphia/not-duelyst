@@ -1,5 +1,4 @@
 export type GameSessionConfig = {
-  VERSION: string;
   MAX_COPIES_PER_CARD: number;
   MAX_DECK_SIZE: number;
   MAX_HAND_SIZE: number;
@@ -20,8 +19,9 @@ export type GameSessionConfig = {
   DRAW_AT_END_OF_TURN: boolean;
 };
 
+export const VERSION = '0.0.1';
+
 export const defaultConfig = {
-  VERSION: '0.0.1',
   MAX_COPIES_PER_CARD: 10,
   MAX_DECK_SIZE: 20,
   MAX_HAND_SIZE: 6,
