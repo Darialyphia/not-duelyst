@@ -1,4 +1,3 @@
-import EventEmitter from 'eventemitter3';
 import type { GameSession } from '../game-session';
 import type { CardIndex, PlayerId } from './player';
 import { nanoid } from 'nanoid';
@@ -6,6 +5,7 @@ import { Interceptable } from '../utils/helpers';
 import { Artifact } from '../card/artifact';
 import type { Values } from '@game/shared';
 import { ENTITY_EVENTS } from '../entity/entity';
+import { SafeEventEmitter } from '../utils/safe-event-emitter';
 
 export const ARTIFACT_EVENTS = {
   EQUIPED: 'equiped',
@@ -38,7 +38,7 @@ export type ArtifactInterceptor = PlayerArtifact['interceptors'];
 
 export type PlayerArtifactId = string;
 
-export class PlayerArtifact extends EventEmitter<ArtifactEventMap> {
+export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
   private cardIndex: CardIndex;
 
   private playerId: PlayerId;

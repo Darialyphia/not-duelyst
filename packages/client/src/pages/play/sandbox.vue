@@ -2,7 +2,7 @@
 import { api } from '@game/api';
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { defaultConfig } from '@game/sdk';
+import { defaultConfig, GameSession } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 definePageMeta({
@@ -42,6 +42,33 @@ const standardFormat = {
   config: defaultConfig,
   cards: {}
 };
+
+const violations = computed(() => {
+  if (!form.format) return [];
+  return [
+    ...(form.player1Loadout
+      ? GameSession.getLoadoutViolations(
+          (form.player1Loadout.cards ?? []).map(l => ({ ...l, blueprintId: l.id })),
+          form.format
+        )
+      : []),
+    ...(form.player2Loadout
+      ? GameSession.getLoadoutViolations(
+          (form.player2Loadout.cards ?? []).map(l => ({ ...l, blueprintId: l.id })),
+          form.format
+        )
+      : [])
+  ];
+});
+
+const isValid = computed(() => {
+  return (
+    !!form.format &&
+    !!form.player1Loadout &&
+    !!form.player2Loadout &&
+    !violations.value.length
+  );
+});
 </script>
 
 <template>
@@ -65,39 +92,49 @@ const standardFormat = {
 
           <div v-if="formats" class="grid grid-cols-3 gap-4">
             <InteractableSounds>
-              <UiTooltip side="right">
-                <template #trigger>
-                  <label class="format">
-                    <div class="font-500">Standard Format (Official)</div>
-                    <input
-                      v-model="form.format"
-                      type="radio"
-                      class="sr-only"
-                      :value="standardFormat"
-                    />
-                  </label>
-                </template>
+              <label class="format">
+                <div class="name">
+                  Standard Format (Official)
 
-                <FormatRules :format="standardFormat" class="fancy-surface" />
-              </UiTooltip>
+                  <UiTooltip side="right">
+                    <template #trigger>
+                      <span class="ml-3">
+                        <Icon name="mdi:information-slab-circle" />
+                      </span>
+                    </template>
+                    <FormatRules :format="standardFormat" class="fancy-surface" />
+                  </UiTooltip>
+                </div>
+                <input
+                  v-model="form.format"
+                  type="radio"
+                  class="sr-only"
+                  :value="standardFormat"
+                />
+              </label>
             </InteractableSounds>
-            <InteractableSounds v-for="format in formats" :key="format._id">
-              <UiTooltip side="right">
-                <template #trigger>
-                  <label class="format">
-                    <div class="font-500">{{ format.name }}</div>
-                    <div class="text-0">by {{ format.author.name }}</div>
-                    <input
-                      v-model="form.format"
-                      type="radio"
-                      class="sr-only"
-                      :value="format"
-                    />
-                  </label>
-                </template>
 
-                <FormatRules :format="format" class="fancy-surface" />
-              </UiTooltip>
+            <InteractableSounds v-for="format in formats" :key="format._id" side="right">
+              <label class="format">
+                <div class="name">
+                  {{ format.name }}
+                  <UiTooltip side="right">
+                    <template #trigger>
+                      <span class="ml-3">
+                        <Icon name="mdi:information-slab-circle" />
+                      </span>
+                    </template>
+                    <FormatRules :format="standardFormat" class="fancy-surface" />
+                  </UiTooltip>
+                </div>
+                <div class="text-0">by {{ format.author.name }}</div>
+                <input
+                  v-model="form.format"
+                  type="radio"
+                  class="sr-only"
+                  :value="format"
+                />
+              </label>
             </InteractableSounds>
           </div>
         </fieldset>
@@ -134,12 +171,17 @@ const standardFormat = {
         </fieldset>
 
         <Transition>
-          <UiFancyButton
-            v-if="form.player1Loadout && form.player2Loadout"
-            class="primary-button start-button"
-          >
+          <UiFancyButton v-if="isValid" class="primary-button start-button">
             Start
           </UiFancyButton>
+        </Transition>
+
+        <Transition>
+          <ul v-if="violations.length" class="fancy-surface violations">
+            <li v-for="violation in violations" :key="violation" class="c-red-5">
+              {{ violation }}
+            </li>
+          </ul>
         </Transition>
       </form>
     </section>
@@ -217,7 +259,8 @@ label {
   }
 }
 
-.start-button {
+.start-button,
+.violations {
   grid-column: 1 / -1;
   justify-self: center;
   &:is(.v-enter-active, .v-leave-active) {
@@ -236,11 +279,18 @@ label {
 
 .format {
   padding: var(--size-3);
-  border: solid 1px var(--border);
+  border: solid var(--border-size-2) var(--border);
   &:has(input:checked) {
     filter: brightness(125%);
     outline: solid var(--border-size-2) var(--border);
     outline-offset: var(--size-1);
+  }
+
+  > .name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: var(--font-weight-5);
   }
 }
 </style>

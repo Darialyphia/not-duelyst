@@ -9,7 +9,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="page container mt-2 px-5 lg:mt-10">
+  <div class="page container pt-2 px-5 lg:pt-10">
     <header>
       <BackButton class="inline-flex" />
       <h1 class="text-5">Select game mode</h1>

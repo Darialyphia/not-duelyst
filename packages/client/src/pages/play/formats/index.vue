@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
+import type { Nullable } from '@game/shared';
 
 definePageMeta({
   name: 'FormatList',
@@ -11,10 +13,13 @@ definePageMeta({
 });
 
 const { data: formats } = useConvexAuthedQuery(api.formats.getMyFormats, {});
+
+const formatToDelete = ref<Nullable<GameFormatDto>>(null);
 </script>
 
 <template>
   <div class="page container pt-8 px-5" style="--container-size: var(--size-md)">
+    <FormatDeleteModal :format="formatToDelete" />
     <header>
       <BackButton />
       <h1>Formats</h1>
@@ -55,15 +60,14 @@ const { data: formats } = useConvexAuthedQuery(api.formats.getMyFormats, {});
                 :href
                 @click="navigate"
               />
-              <UiIconButton
-                name="material-symbols:delete-outline"
-                class="error-button"
-                :href
-                @click="navigate"
-              >
-                Delete
-              </UiIconButton>
             </NuxtLink>
+            <UiIconButton
+              name="material-symbols:delete-outline"
+              class="error-button"
+              @click="formatToDelete = format"
+            >
+              Delete
+            </UiIconButton>
           </AccordionHeader>
 
           <AccordionContent class="accordion-content">

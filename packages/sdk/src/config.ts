@@ -22,8 +22,8 @@ export type GameSessionConfig = {
 export const VERSION = '0.0.1';
 
 export const defaultConfig = {
-  MAX_COPIES_PER_CARD: 10,
-  MAX_DECK_SIZE: 20,
+  MAX_COPIES_PER_CARD: 3,
+  MAX_DECK_SIZE: 40,
   MAX_HAND_SIZE: 6,
   MAX_GOLD: 9,
   GOLD_PER_TURN: 0,

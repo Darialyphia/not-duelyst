@@ -1,6 +1,6 @@
 import { isDefined, isObject, type Defined, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
-import type { GameEvent, GameEventMap } from '../game-session';
+import type { GameEvent, GameEventMap, GameFormat } from '../game-session';
 import { createCardModifier, type CardModifier } from '../modifier/card-modifier';
 import { CARD_KINDS, getFactionById } from './card-enums';
 import { getKeywordById } from '../utils/keywords';
@@ -29,7 +29,8 @@ import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits } from './conditions/unit-conditions';
-import { defaultConfig } from '../config';
+import { defaultConfig, type GameSessionConfig } from '../config';
+import { CARDS } from './card-lookup';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -532,10 +533,12 @@ export const parseSerializedBlueprintEffect = (
 
 const cache = new Map<string, CardBlueprint>();
 export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
-  blueprint: SerializedBlueprint<T>
+  blueprint: SerializedBlueprint<T>,
+  format: GameFormat = { config: defaultConfig, cards: CARDS }
 ) => {
-  if (cache.has(blueprint.id)) {
-    return cache.get(blueprint.id)!;
+  const cacheKey = `${blueprint.id}:${JSON.stringify(format)}`;
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey)!;
   }
   // first, parse the blueprint effects
   const effects = blueprint.effects.map(effect => ({
@@ -682,7 +685,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         kind: blueprint.kind,
         attack: blueprint.attack,
         maxHp: blueprint.maxHp,
-        speed: defaultConfig.UNIT_DEFAULT_SPEED,
+        speed: format.config.UNIT_DEFAULT_SPEED,
         range: 1
       };
 
@@ -715,7 +718,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     });
   });
 
-  cache.set(blueprint.id, withStats);
+  cache.set(cacheKey, withStats);
 
   return withStats;
 };

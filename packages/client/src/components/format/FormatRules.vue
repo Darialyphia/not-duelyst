@@ -29,7 +29,8 @@ const props = defineProps<{
     </li>
     <li>
       Players can replace
-      <span class="param">{{ format.config.MAX_REPLACES_PER_TURN }} times per turn.</span>
+      <span class="param">{{ format.config.MAX_REPLACES_PER_TURN }}</span>
+      times per turn.
     </li>
     <li>
       Starting hand size is

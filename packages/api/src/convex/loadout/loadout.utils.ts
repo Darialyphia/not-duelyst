@@ -76,8 +76,8 @@ export const validateLoadout = async (
 }> => {
   await Promise.all(cards.map(card => ensureOwnsUnit({ db }, ownerId, card.id)));
 
-  ensureMaxCopies(cards.map(c => c.id));
-  ensureHasCorrectSize(cards);
+  // ensureMaxCopies(cards.map(c => c.id));
+  // ensureHasCorrectSize(cards);
   ensureHasGeneral(cards);
 
   return { cards, ownerId };

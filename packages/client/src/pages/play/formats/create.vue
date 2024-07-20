@@ -19,7 +19,7 @@ const { mutate: createFormat } = useConvexAuthedMutation(api.formats.create, {
 </script>
 
 <template>
-  <div class="page container pt-8 px-5" style="--container-size: var(--size-md)">
+  <div class="page container pt-8 px-5" style="--container-size: var(--size-lg)">
     <header>
       <BackButton :to="{ name: 'FormatList' }" />
       <h1>New Format</h1>
@@ -31,7 +31,8 @@ const { mutate: createFormat } = useConvexAuthedMutation(api.formats.create, {
         description: 'Format description',
         config: {
           ...defaultConfig
-        }
+        },
+        cards: {}
       }"
       @submit="createFormat($event)"
     />

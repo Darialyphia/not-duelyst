@@ -4,6 +4,7 @@ import type { CardIndex, PlayerId } from '../player/player';
 import EventEmitter from 'eventemitter3';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
+import { SafeEventEmitter } from '../utils/safe-event-emitter';
 
 export type CardBlueprintId = string;
 
@@ -30,7 +31,7 @@ export type CardEventMap = {
   [CARD_EVENTS.REPLACED]: [Card];
 };
 
-export abstract class Card extends EventEmitter implements Serializable {
+export abstract class Card extends SafeEventEmitter implements Serializable {
   readonly blueprintId: CardBlueprintId;
   readonly isGenerated: boolean;
   public readonly pedestalId: string;

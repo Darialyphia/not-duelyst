@@ -11,7 +11,6 @@ import {
   type CardBlueprintId,
   type SerializedCard
 } from '../card/card';
-import EventEmitter from 'eventemitter3';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { CARD_KINDS, FACTION_IDS } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
@@ -22,6 +21,7 @@ import {
   PlayerArtifact,
   type PlayerArtifactId
 } from './player-artifact';
+import { SafeEventEmitter } from '../utils/safe-event-emitter';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -62,7 +62,7 @@ export type PlayerEventMap = {
 
 export type PlayerInterceptor = Player['interceptors'];
 
-export class Player extends EventEmitter<PlayerEventMap> implements Serializable {
+export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializable {
   public readonly id: PlayerId;
   public readonly name: string;
   public readonly isPlayer1: boolean;
@@ -223,15 +223,17 @@ export class Player extends EventEmitter<PlayerEventMap> implements Serializable
   generateCard({
     blueprintId,
     pedestalId = 'pedestal-default',
+    cardBackId = 'default',
     modifiers = []
   }: {
     blueprintId: CardBlueprintId;
+    cardBackId: string;
     pedestalId: string;
     modifiers?: CardModifier[];
   }) {
     const card = createCard(
       this.session,
-      { blueprintId, pedestalId, isGenerated: true },
+      { blueprintId, pedestalId, cardBackId, isGenerated: true },
       this.cards.length,
       this.id
     );

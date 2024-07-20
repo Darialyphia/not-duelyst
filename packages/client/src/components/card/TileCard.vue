@@ -3,11 +3,13 @@ import type { Tile } from '@game/sdk/src/tile/tile';
 
 const { tile } = defineProps<{ tile: Tile }>();
 
-const bg = computed(() => `url('/assets/ui/card-back-basic.png')`);
+const bg = computed(
+  () => `url('/assets/ui/card-back-default.png'), url('/assets/ui/card-back-basic.png')`
+);
 </script>
 
 <template>
-  <div class="card" ref="reference">
+  <div ref="reference" class="card">
     <header>
       <TileSprite class="sprite" :sprite-id="tile.blueprint.spriteId" />
     </header>

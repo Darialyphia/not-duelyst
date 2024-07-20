@@ -40,6 +40,7 @@ import type {
 } from './card/card-blueprint';
 import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
+import { SafeEventEmitter } from './utils/safe-event-emitter';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -95,7 +96,31 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
 };
 export type GameEvent = keyof GameEventMap;
 
-export class GameSession extends EventEmitter<GameEventMap> {
+export class GameSession extends SafeEventEmitter<GameEventMap> {
+  static getLoadoutViolations(
+    loadout: SerializedGameState['players'][number]['deck'],
+    format: GameFormat
+  ) {
+    const formatCards = { ...CARDS, ...format.cards };
+    const violations: string[] = [];
+    if (loadout.length !== format.config.MAX_DECK_SIZE) {
+      violations.push('deck size is incorrect');
+    }
+
+    loadout.forEach(card => {
+      if (!formatCards[card.blueprintId]) {
+        violations.push(`a card that doesn't belong to this format: ${card.blueprintId}`);
+      }
+      const copies = loadout.reduce((total, current) => {
+        return current.blueprintId === card.blueprintId ? total + 1 : total;
+      }, 0);
+      if (copies > format.config.MAX_COPIES_PER_CARD) {
+        violations.push(`Max copies exceeded for ${card.blueprintId}`);
+      }
+    });
+
+    return [...new Set(violations)];
+  }
   static createServerSession(
     state: SerializedGameState,
     options: { seed: string; format: GameFormat }
@@ -152,7 +177,7 @@ export class GameSession extends EventEmitter<GameEventMap> {
     this.cardBlueprints = Object.fromEntries(
       Object.entries(options.format.cards).map(([key, value]) => [
         key,
-        parseSerializeBlueprint(value)
+        parseSerializeBlueprint(value, options.format)
       ])
     );
     this.winnerId = options.winnerId;

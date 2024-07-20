@@ -3,6 +3,7 @@ import type { GameSession } from '../game-session';
 import { Card, type SerializedCard } from './card';
 import { type Serializable, type Values } from '@game/shared';
 import type { PlayerId } from '../player/player';
+import { SafeEventEmitter } from '../utils/safe-event-emitter';
 
 export type SerializedDeck = {
   cards: SerializedCard[];
@@ -25,7 +26,7 @@ export type DeckEventMap = {
   [DECK_EVENTS.AFTER_REPLACE]: [{ deck: Deck; replacedCard: Card; replacement: Card }];
 };
 
-export class Deck extends EventEmitter<DeckEventMap> implements Serializable {
+export class Deck extends SafeEventEmitter<DeckEventMap> implements Serializable {
   constructor(
     private session: GameSession,
     public cards: Card[],

@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { type GameSessionConfig } from '@game/sdk';
+import { type GameSessionConfig, type GenericSerializedBlueprint } from '@game/sdk';
 
 const emit = defineEmits<{ submit: [typeof form] }>();
 const { initialValues } = defineProps<{
-  initialValues: { name: string; description: string; config: GameSessionConfig };
+  initialValues: {
+    name: string;
+    description: string;
+    config: GameSessionConfig;
+    cards: Record<string, GenericSerializedBlueprint>;
+  };
 }>();
 
 const form = reactive(initialValues);
@@ -11,151 +16,31 @@ const form = reactive(initialValues);
 
 <template>
   <form
-    class="fancy-surface fancy-scrollbar flex flex-col gap-4"
+    class="fancy-surface fancy-scrollbar flex flex-col gap-4 p-0"
     @submit.prevent="emit('submit', form)"
   >
-    <div>
-      <Label for="name">Name</Label>
-      <UiTextInput id="name" v-model="form.name" />
-    </div>
-    <div>
-      <Label for="description">Description</Label>
-      <textarea id="description" v-model="form.description" />
-    </div>
+    <TabsRoot class="TabsRoot" default-value="config">
+      <TabsList aria-label="Create your format" class="fancy-surface tab-list">
+        <TabsIndicator class="tab-indicator">
+          <div class="bg-primary w-full h-full" />
+        </TabsIndicator>
 
-    <fieldset>
-      <legend>Deck</legend>
-      <label for="deck_size">Deck size</label>
-      <UiTextInput
-        id="deck_size"
-        v-model.number="form.config.MAX_DECK_SIZE"
-        type="number"
-      />
+        <TabsTrigger value="config">Settings</TabsTrigger>
+        <TabsTrigger value="cards">Cards</TabsTrigger>
+      </TabsList>
 
-      <label for="deck_size">Max card copies</label>
-      <UiTextInput
-        id="deck_size"
-        v-model.number="form.config.MAX_COPIES_PER_CARD"
-        type="number"
-      />
-    </fieldset>
+      <TabsContent value="config" class="p-4">
+        <RulesEditor :config="form" />
+      </TabsContent>
 
-    <fieldset>
-      <legend>Cards</legend>
-
-      <label for="max_hand_size">Max hand size</label>
-      <UiTextInput
-        id="max_hand_size"
-        v-model.number="form.config.MAX_HAND_SIZE"
-        type="number"
-      />
-
-      <label for="draw_per_turn">Card draw per turn</label>
-      <UiTextInput
-        id="max_draw_per_turn"
-        v-model.number="form.config.CARD_DRAW_PER_TURN"
-        type="number"
-      />
-
-      <label for="replaces">Replaces per turn</label>
-      <UiTextInput
-        id="replaces"
-        v-model.number="form.config.MAX_REPLACES_PER_TURN"
-        type="number"
-      />
-
-      <label for="starting_hand_size">Starting hand size</label>
-      <UiTextInput
-        id="starting_hand_size"
-        v-model.number="form.config.STARTING_HAND_SIZE"
-        type="number"
-      />
-
-      <label for="draw_time">Player draw at the end of their turn</label>
-      <UiSwitch id="draw_turn" v-model:checked="form.config.DRAW_AT_END_OF_TURN" />
-    </fieldset>
-
-    <fieldset>
-      <legend>Gold</legend>
-
-      <label for="max_gold">Max gold</label>
-      <UiTextInput id="max_gold" v-model.number="form.config.MAX_GOLD" type="number" />
-
-      <label for="refill_mana">Refill player gold at the start of their turn</label>
-      <UiSwitch id="refill_mana" v-model:checked="form.config.REFILL_GOLD_EVERY_TURN" />
-
-      <label for="gold_per_turn">Gold gained per turn</label>
-      <UiTextInput
-        id="gold_per_turn"
-        v-model.number="form.config.GOLD_PER_TURN"
-        type="number"
-      />
-      <p>This has no effect when "Refill player gold" is enabled.</p>
-
-      <label for="max_gold_increase">Max gold increase per turn</label>
-      <UiTextInput
-        id="max_gold_increase"
-        v-model.number="form.config.MAX_GOLD_INCREASE_PER_TURN"
-        type="number"
-      />
-
-      <label for="p1_gold">Player 1 starting gold</label>
-      <UiTextInput
-        id="p1_gold"
-        v-model.number="form.config.PLAYER_1_STARTING_GOLD"
-        type="number"
-      />
-
-      <label for="p1_gold">Player 2 starting gold</label>
-      <UiTextInput
-        id="p1_gold"
-        v-model.number="form.config.PLAYER_2_STARTING_GOLD"
-        type="number"
-      />
-    </fieldset>
-
-    <fieldset>
-      <legend>Units</legend>
-      <label for="can_move_after_attacking">Units can move after attacking</label>
-      <UiSwitch
-        id="can_move_after_attacking"
-        v-model:checked="form.config.CAN_MOVE_AFTER_ATTACK"
-      />
-
-      <label for="can_walk_through_allies">Units can move through allies</label>
-      <UiSwitch
-        id="can_walk_through_allies"
-        v-model:checked="form.config.CAN_WALK_THROUGH_ALLIES"
-      />
-
-      <label for="unlimited_retal">Units always counterattack</label>
-      <UiSwitch
-        id="unlimited_retal"
-        v-model:checked="form.config.UNLIMITED_RETALIATION"
-      />
-      <p>Otherwise, they counterattack at most once per turn.</p>
-
-      <label for="unit_speed">Base unit speed</label>
-      <UiTextInput
-        id="satarting_hand_size"
-        v-model.number="form.config.UNIT_DEFAULT_SPEED"
-        type="number"
-      />
-    </fieldset>
-
-    <fieldset>
-      <legend>Artifacts</legend>
-      <label for="unit_speed">Artifact_durability</label>
-      <UiTextInput
-        id="satarting_hand_size"
-        v-model.number="form.config.ARTIFACT_DURABILITY"
-        type="number"
-      />
-    </fieldset>
-
-    <footer class="flex justify-end gap-4">
+      <TabsContent value="cards" class="p-4">
+        <CardBuilder />
+      </TabsContent>
+    </TabsRoot>
+    <footer class="flex justify-end gap-4 p-4 mt-auto">
       <UiFancyButton
         v-model="form.description"
+        type="button"
         :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
       >
         Reset
@@ -219,9 +104,9 @@ fieldset {
 }
 
 form {
-  /* 
+  /*
     necessary because of a rendering bug caused by radix-vue's Switch that has a hiddn input with position absolute
-    that causes some invisible overflow on the whole form. 
+    that causes some invisible overflow on the whole form.
   */
   position: relative;
   overflow-y: auto;
@@ -240,5 +125,30 @@ legend {
 
 p {
   grid-column: 1 / -1;
+}
+
+.tab-list {
+  position: sticky;
+  position: relative;
+  z-index: 1;
+  top: 0;
+
+  border-color: transparent;
+  border-bottom-color: var(--border-dimmed);
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: var(--size-2);
+  left: 0;
+  transform: translateX(var(--radix-tabs-indicator-position));
+
+  width: var(--radix-tabs-indicator-size);
+  height: 2px;
+
+  border-radius: var(--radius-pill);
+
+  transition-duration: 300ms;
+  transition-property: width, transform;
 }
 </style>

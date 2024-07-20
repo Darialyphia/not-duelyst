@@ -7,7 +7,7 @@ import { updateFormatUsecase } from './formats/usecases/updateFormat.usecase';
 
 export const create = createFormatUsecase;
 export const getMyFormats = getMyFormatsUseCase;
-export const destroy = deleteFormatUsecase;
+export const remove = deleteFormatUsecase;
 export const update = updateFormatUsecase;
 export const byId = getFormatByIdUseCase;
 export const all = getAllFormatsUseCase;

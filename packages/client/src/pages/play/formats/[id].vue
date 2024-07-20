@@ -24,13 +24,13 @@ const { mutate: updateFormat } = useConvexAuthedMutation(api.formats.update, {
 });
 
 const initialValues = computed(() => {
-  const { name, description, config } = format.value;
-  return { name, description, config };
+  const { name, description, config, cards } = format.value;
+  return { name, description, config, cards };
 });
 </script>
 
 <template>
-  <div class="page container pt-8 px-5" style="--container-size: var(--size-md)">
+  <div class="page container pt-8 px-5" style="--container-size: var(--size-lg)">
     <header>
       <BackButton :to="{ name: 'FormatList' }" />
       <h1 v-if="format">{{ format.name }}</h1>

@@ -15,6 +15,7 @@ import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
 import { Unit } from '../card/unit';
 import type { Card } from '../card/card';
+import { SafeEventEmitter } from '../utils/safe-event-emitter';
 
 export type EntityId = number;
 
@@ -97,7 +98,7 @@ export type EntityEventMap = {
 
 export type EntityInterceptor = Entity['interceptors'];
 
-export class Entity extends EventEmitter<EntityEventMap> implements Serializable {
+export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializable {
   private cardIndex: CardIndex;
   private _keywords: Keyword[] = [];
   private playerId: PlayerId;
@@ -368,9 +369,11 @@ export class Entity extends EventEmitter<EntityEventMap> implements Serializable
   }
 
   getTakenDamage(amount: number) {
+    const clamped = Math.min(amount, this.hp);
+
     return this.interceptors.damageTaken.getValue(amount, {
       entity: this,
-      amount
+      amount: clamped
     });
   }
 

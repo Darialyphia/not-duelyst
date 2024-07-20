@@ -41,8 +41,7 @@ const getCountByKind = (kind: CardKind) => {
 };
 
 const cardsCount = computed(() => {
-  return formValues.value.cards.filter(c => CARDS[c.id].kind !== CARD_KINDS.GENERAL)
-    .length;
+  return formValues.value.cards.length;
 });
 
 const selectedCard =
@@ -87,7 +86,7 @@ const updateCosmetics = ({
         </div>
         <div>
           <span>{{ cardsCount }}</span>
-          Minions
+          Total
         </div>
       </div>
     </header>
