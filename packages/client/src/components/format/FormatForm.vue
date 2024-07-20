@@ -66,10 +66,13 @@ const form = reactive(initialValues);
 
       <label for="starting_hand_size">Starting hand size</label>
       <UiTextInput
-        id="satarting_hand_size"
+        id="starting_hand_size"
         v-model.number="form.config.STARTING_HAND_SIZE"
         type="number"
       />
+
+      <label for="draw_time">Player draw at the end of their turn</label>
+      <UiSwitch id="draw_turn" v-model:checked="form.config.DRAW_AT_END_OF_TURN" />
     </fieldset>
 
     <fieldset>

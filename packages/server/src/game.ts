@@ -18,7 +18,11 @@ import type { StarEvent } from '@game/sdk/src/game-session';
 type GameDto = Defined<FunctionReturnType<typeof api.games.getCurrent>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
 
-const defaultFormat: GameFormat = { config: defaultConfig };
+const defaultFormat = {
+  config: defaultConfig,
+  cards: {}
+};
+
 export class Game {
   readonly session: ServerSession;
   readonly minPlayers = 2;
@@ -35,7 +39,10 @@ export class Game {
     private map: MapDto,
     public roomId: string
   ) {
-    this.session = ServerSession.create(this.getInitialState(), this.game.seed);
+    this.session = ServerSession.create(this.getInitialState(), {
+      seed: this.game.seed,
+      format: defaultFormat
+    });
     this.session.on('game:error', this.onGameError.bind(this));
     this.session.onUpdate(this.onGameAction.bind(this));
     this.session.on('game:ended', this.onGameEnded.bind(this));

@@ -3,12 +3,12 @@ import type { FXSystem } from './fx-system';
 import {
   GameSession,
   type GameEvent,
+  type GameFormat,
   type SerializedGameState,
   type StarEvent
 } from './game-session';
 import type { SerializedAction } from './action/action';
 import { ClientRngSystem } from './rng-system';
-import { defaultConfig } from './config';
 import { CARDS } from './card/card-lookup';
 
 type EventCallback = {
@@ -18,13 +18,19 @@ type EventCallback = {
 
 export class ClientSession extends GameSession {
   logger = (...args: any[]) => void 0;
-  static create(state: SerializedGameState, fxSystem: FXSystem, winnerId?: string) {
+  static create(
+    state: SerializedGameState,
+    options: { fxSystem: FXSystem; format: GameFormat; winnerId?: string }
+  ) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
-    return new ClientSession(state, rngSystem, fxSystem, {
-      winnerId,
-      config: defaultConfig,
-      cardBlueprints: CARDS
+
+    return new ClientSession(state, rngSystem, options.fxSystem, {
+      winnerId: options.winnerId,
+      format: {
+        config: options.format.config,
+        cards: { ...CARDS, ...options.format.cards }
+      }
     });
   }
 

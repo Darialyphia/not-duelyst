@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { api } from '@game/api';
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
+import { defaultConfig } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 definePageMeta({
@@ -14,9 +16,11 @@ definePageMeta({
 const form = reactive<{
   player1Loadout: Nullable<LoadoutDto>;
   player2Loadout: Nullable<LoadoutDto>;
+  format: Nullable<GameFormatDto>;
 }>({
   player1Loadout: null,
-  player2Loadout: null
+  player2Loadout: null,
+  format: null
 });
 
 const isReady = ref(false);
@@ -32,6 +36,12 @@ const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
   api.loadout.myLoadouts,
   {}
 );
+
+const { data: formats } = useConvexAuthedQuery(api.formats.all, {});
+const standardFormat = {
+  config: defaultConfig,
+  cards: {}
+};
 </script>
 
 <template>
@@ -40,6 +50,7 @@ const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
       v-if="isReady"
       :player1-loadout="form.player1Loadout!"
       :player2-loadout="form.player2Loadout!"
+      :format="form.format!"
     />
     <section v-else class="container mt-2 px-5 lg:mt-10">
       <header>
@@ -49,6 +60,48 @@ const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
 
       <div v-if="isLoadoutsLoading">Loading...</div>
       <form v-else class="grid grid-cols-2 gap-2" @submit.prevent="isReady = true">
+        <fieldset class="fancy-surface formats">
+          <legend>Format</legend>
+
+          <div v-if="formats" class="grid grid-cols-3 gap-4">
+            <InteractableSounds>
+              <UiTooltip side="right">
+                <template #trigger>
+                  <label class="format">
+                    <div class="font-500">Standard Format (Official)</div>
+                    <input
+                      v-model="form.format"
+                      type="radio"
+                      class="sr-only"
+                      :value="standardFormat"
+                    />
+                  </label>
+                </template>
+
+                <FormatRules :format="standardFormat" class="fancy-surface" />
+              </UiTooltip>
+            </InteractableSounds>
+            <InteractableSounds v-for="format in formats" :key="format._id">
+              <UiTooltip side="right">
+                <template #trigger>
+                  <label class="format">
+                    <div class="font-500">{{ format.name }}</div>
+                    <div class="text-0">by {{ format.author.name }}</div>
+                    <input
+                      v-model="form.format"
+                      type="radio"
+                      class="sr-only"
+                      :value="format"
+                    />
+                  </label>
+                </template>
+
+                <FormatRules :format="format" class="fancy-surface" />
+              </UiTooltip>
+            </InteractableSounds>
+          </div>
+        </fieldset>
+
         <fieldset class="fancy-surface player-loadout">
           <legend>Player 1 loadout</legend>
           <InteractableSounds v-for="loadout in loadouts" :key="loadout._id">
@@ -159,7 +212,7 @@ label {
 
   &:has(input:checked) {
     filter: brightness(125%);
-    outline: solid var(--border-size-2) var(--primary);
+    outline: solid var(--border-size-2) var(--border);
     outline-offset: var(--size-1);
   }
 }
@@ -174,6 +227,20 @@ label {
   &:is(.v-enter-from, .v-leave-to) {
     transform: translateY(var(--size-4));
     opacity: 0;
+  }
+}
+
+.formats {
+  grid-column: 1 / -1;
+}
+
+.format {
+  padding: var(--size-3);
+  border: solid 1px var(--border);
+  &:has(input:checked) {
+    filter: brightness(125%);
+    outline: solid var(--border-size-2) var(--border);
+    outline-offset: var(--size-1);
   }
 }
 </style>

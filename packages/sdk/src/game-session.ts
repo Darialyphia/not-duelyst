@@ -33,7 +33,11 @@ import {
   type ArtifactEventMap
 } from './player/player-artifact';
 import { defaultConfig, type GameSessionConfig } from './config';
-import type { CardBlueprint, SerializedBlueprint } from './card/card-blueprint';
+import type {
+  CardBlueprint,
+  GenericSerializedBlueprint,
+  SerializedBlueprint
+} from './card/card-blueprint';
 import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
 
@@ -45,6 +49,11 @@ export type SerializedGameState = {
   rng: {
     values: number[];
   };
+};
+
+export type GameFormat = {
+  config: GameSessionConfig;
+  cards: Record<string, GenericSerializedBlueprint>;
 };
 
 type GlobalEntityEvents = {
@@ -87,22 +96,28 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
 export type GameEvent = keyof GameEventMap;
 
 export class GameSession extends EventEmitter<GameEventMap> {
-  static createServerSession(state: SerializedGameState, seed: string) {
-    return new GameSession(state, new ServerRngSystem(seed), noopFXContext, {
-      config: defaultConfig,
-      cardBlueprints: CARDS
+  static createServerSession(
+    state: SerializedGameState,
+    options: { seed: string; format: GameFormat }
+  ) {
+    return new GameSession(state, new ServerRngSystem(options.seed), noopFXContext, {
+      format: {
+        config: options.format.config,
+        cards: { ...CARDS, ...options.format.cards }
+      }
     });
   }
 
   static createClientSession(
     state: SerializedGameState,
-    fxSystem: FXSystem,
-    winnerId?: string
+    options: { fxSystem: FXSystem; format: GameFormat; winnderId?: string }
   ) {
-    return new GameSession(state, new ClientRngSystem(), fxSystem, {
-      winnerId,
-      config: defaultConfig,
-      cardBlueprints: CARDS
+    return new GameSession(state, new ClientRngSystem(), options.fxSystem, {
+      winnerId: options.winnderId,
+      format: {
+        config: options.format.config,
+        cards: { ...CARDS, ...options.format.cards }
+      }
     });
   }
 
@@ -129,14 +144,13 @@ export class GameSession extends EventEmitter<GameEventMap> {
     public fxSystem: FXSystem,
     options: {
       winnerId?: string;
-      config: GameSessionConfig;
-      cardBlueprints: Record<string, SerializedBlueprint<any>>;
+      format: GameFormat;
     }
   ) {
     super();
-    this.config = options.config;
+    this.config = options.format.config;
     this.cardBlueprints = Object.fromEntries(
-      Object.entries(options.cardBlueprints).map(([key, value]) => [
+      Object.entries(options.format.cards).map(([key, value]) => [
         key,
         parseSerializeBlueprint(value)
       ])

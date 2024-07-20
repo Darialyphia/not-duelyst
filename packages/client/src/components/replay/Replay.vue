@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import { ClientSession, ServerSession } from '@game/sdk';
+import { ClientSession, defaultConfig, ServerSession } from '@game/sdk';
+import type { GameFormat } from '@game/sdk/src/game-session';
 import { parse } from 'zipson';
 
 const { game, replay, initialState } = defineProps<{
@@ -14,8 +15,15 @@ const parsedReplay = parse(replay);
 
 const fx = useFXProvider();
 const parsedState = parse(initialState);
-const serverSession = ServerSession.create(parsedState, game.seed);
-const clientSession = ClientSession.create(serverSession.serialize(), fx.ctx);
+const format: GameFormat = {
+  config: defaultConfig,
+  cards: {}
+};
+const serverSession = ServerSession.create(parsedState, { seed: game.seed, format });
+const clientSession = ClientSession.create(serverSession.serialize(), {
+  fxSystem: fx.ctx,
+  format
+});
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 

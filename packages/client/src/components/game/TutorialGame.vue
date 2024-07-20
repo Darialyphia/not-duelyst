@@ -2,11 +2,13 @@
 import { api } from '@game/api';
 import {
   config,
+  defaultConfig,
   FACTION_IDS,
   ServerSession,
   TutorialSession,
   type SerializedGameState
 } from '@game/sdk';
+import type { GameFormat } from '@game/sdk/src/game-session';
 import type { Nullable } from '@game/shared';
 import { tutorialMap } from '~/utils/fixtures';
 
@@ -94,7 +96,7 @@ const state = computed(() =>
             graveyard: []
           }
         ]
-      } as SerializedGameState)
+      } as unknown as SerializedGameState)
     : null
 );
 
@@ -134,10 +136,14 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
 ]);
 
 const isReady = ref(false);
+const format: GameFormat = {
+  config: defaultConfig,
+  cards: {}
+};
 until(state)
   .toBeTruthy()
   .then(state => {
-    serverSession.value = ServerSession.create(state, 'tutorial');
+    serverSession.value = ServerSession.create(state, { seed: 'tutorial', format });
     clientSession.value = TutorialSession.createTutorialSession(
       serverSession.value.serialize(),
       fx.ctx,

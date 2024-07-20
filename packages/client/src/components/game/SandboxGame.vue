@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { ClientSession, ServerSession, type SerializedGameState } from '@game/sdk';
 import { nanoid } from 'nanoid';
 
-const { player1Loadout, player2Loadout, seed } = defineProps<{
+const { player1Loadout, player2Loadout, seed, format } = defineProps<{
   player1Loadout: LoadoutDto;
   player2Loadout: LoadoutDto;
   seed?: string;
+  format: GameFormatDto;
 }>();
 
 const state: SerializedGameState = {
@@ -44,8 +46,11 @@ const state: SerializedGameState = {
 
 const fx = useFXProvider();
 
-const serverSession = ServerSession.create(state, seed ?? nanoid());
-const clientSession = ClientSession.create(serverSession.serialize(), fx.ctx);
+const serverSession = ServerSession.create(state, { seed: seed ?? nanoid(), format });
+const clientSession = ClientSession.create(serverSession.serialize(), {
+  fxSystem: fx.ctx,
+  format
+});
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 });
