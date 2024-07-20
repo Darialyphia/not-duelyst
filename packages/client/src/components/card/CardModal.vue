@@ -4,9 +4,16 @@ import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { clamp } from '@game/shared';
 import { uniqBy } from 'lodash-es';
 
-const { blueprintId, disableRightClick = false } = defineProps<{
+const {
+  blueprintId,
+  pedestalId,
+  cardbackId,
+  disableRightClick = false
+} = defineProps<{
   blueprintId: string;
   disableRightClick?: boolean;
+  pedestalId?: string;
+  cardbackId?: string;
 }>();
 const isOpened = defineModel<boolean>('isOpened', { required: true });
 
@@ -80,7 +87,9 @@ const offset = computed(() => {
               speed: bp.speed,
               cost: bp.cost,
               faction: bp.faction,
-              tags: bp.tags ?? []
+              tags: bp.tags ?? [],
+              pedestalId,
+              cardbackId
             }"
           />
         </div>

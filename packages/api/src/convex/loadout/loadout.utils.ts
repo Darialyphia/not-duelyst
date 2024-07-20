@@ -54,7 +54,6 @@ const ensureHasGeneral = (cards: Array<{ id: string }>) => {
 };
 
 const ensureHasCorrectSize = (cards: Array<{ id: string }>) => {
-  console.log(cards.length, defaultFormat.config.MAX_DECK_SIZE + 1);
   const isValid = cards.length === defaultFormat.config.MAX_DECK_SIZE + 1; //account for general
 
   if (!isValid) {

@@ -10,7 +10,9 @@ export const updateLoadoutUsecase = authedMutation({
   args: {
     loadoutId: v.id('loadouts'),
     name: v.string(),
-    cards: v.array(v.object({ id: v.string(), pedestalId: v.string() }))
+    cards: v.array(
+      v.object({ id: v.string(), pedestalId: v.string(), cardBackId: v.string() })
+    )
   },
   async handler(ctx, args) {
     const loadout = await ensureLoadoutExists(ctx, args.loadoutId);

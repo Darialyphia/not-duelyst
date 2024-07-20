@@ -20,8 +20,9 @@ const state: SerializedGameState = {
     {
       id: '1',
       name: 'Player 1',
-      deck: player1Loadout.cards.map(({ id, pedestalId }) => ({
+      deck: player1Loadout.cards.map(({ id, pedestalId, cardBackId }) => ({
         pedestalId,
+        cardBackId,
         blueprintId: id
       })),
       isPlayer1: true,
@@ -30,8 +31,9 @@ const state: SerializedGameState = {
     {
       id: '2',
       name: 'Player 2',
-      deck: player2Loadout.cards.map(({ id, pedestalId }) => ({
+      deck: player2Loadout.cards.map(({ id, pedestalId, cardBackId }) => ({
         pedestalId,
+        cardBackId,
         blueprintId: id
       })),
       isPlayer1: false,

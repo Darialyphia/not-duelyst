@@ -60,6 +60,7 @@ onTick(() => {
       v-if="ui.highlightedCard.value"
       v-model:is-opened="isModalOpened"
       :blueprint-id="ui.highlightedCard.value.blueprintId"
+      :cardback-id="ui.highlightedCard.value.cardBackId"
       disable-right-click
     />
 
@@ -82,6 +83,7 @@ onTick(() => {
             speed: entity.speed,
             cost: entity.card.cost,
             pedestalId: entity.card.pedestalId,
+            cardbackId: entity.card.cardBackId,
             faction: entity.card.blueprint.faction,
             tags: entity.card.blueprint.tags ?? []
           }"

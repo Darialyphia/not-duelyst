@@ -8,6 +8,8 @@ import {
 } from './game-session';
 import type { SerializedAction } from './action/action';
 import { ClientRngSystem } from './rng-system';
+import { defaultConfig } from './config';
+import { CARDS } from './card/card-lookup';
 
 type EventCallback = {
   pre: (event: StarEvent, index: number, otherEvents: StarEvent[]) => MaybePromise<void>;
@@ -19,7 +21,11 @@ export class ClientSession extends GameSession {
   static create(state: SerializedGameState, fxSystem: FXSystem, winnerId?: string) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
-    return new ClientSession(state, rngSystem, fxSystem, { winnerId });
+    return new ClientSession(state, rngSystem, fxSystem, {
+      winnerId,
+      config: defaultConfig,
+      cardBlueprints: CARDS
+    });
   }
 
   private eventCallbacksMap: Map<GameEvent, EventCallback[]> = new Map();

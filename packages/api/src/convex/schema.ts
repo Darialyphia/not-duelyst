@@ -9,6 +9,7 @@ import { collectionSchemas } from './collection/collection.schemas';
 import { featureflagSchemas } from './featureFlags/featureFlags.schemas';
 import { analyticsSchemas } from './analytics/analytics.schemas';
 import { friendSchemas } from './friend/friend.schemas';
+import { formatSchemas } from './formats/format.schemas';
 
 export default defineSchema({
   ...authSchemas,
@@ -20,5 +21,6 @@ export default defineSchema({
   ...collectionSchemas,
   ...featureflagSchemas,
   ...analyticsSchemas,
-  ...friendSchemas
+  ...friendSchemas,
+  ...formatSchemas
 });

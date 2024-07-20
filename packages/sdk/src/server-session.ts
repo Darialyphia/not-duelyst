@@ -2,12 +2,17 @@ import { noopFXContext } from './fx-system';
 import { GameSession, type SerializedGameState, type StarEvent } from './game-session';
 import type { SerializedAction } from './action/action';
 import { ServerRngSystem } from './rng-system';
+import { defaultConfig } from './config';
+import { CARDS } from './card/card-lookup';
 
 export class ServerSession extends GameSession {
   eventsSinceLastDispatch: StarEvent[] = [];
 
   static create(state: SerializedGameState, seed: string) {
-    return new ServerSession(state, new ServerRngSystem(seed), noopFXContext, {});
+    return new ServerSession(state, new ServerRngSystem(seed), noopFXContext, {
+      config: defaultConfig,
+      cardBlueprints: CARDS
+    });
   }
 
   setup() {

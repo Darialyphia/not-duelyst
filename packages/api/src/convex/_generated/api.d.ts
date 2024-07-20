@@ -18,6 +18,7 @@ import type * as analytics from "../analytics.js";
 import type * as auth from "../auth.js";
 import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
+import type * as formats from "../formats.js";
 import type * as friends from "../friends.js";
 import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
@@ -39,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   collection: typeof collection;
   featureFlags: typeof featureFlags;
+  formats: typeof formats;
   friends: typeof friends;
   gameMaps: typeof gameMaps;
   games: typeof games;

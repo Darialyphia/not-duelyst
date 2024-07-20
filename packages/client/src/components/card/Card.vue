@@ -128,7 +128,11 @@ const isUnit = computed(
       </ul>
     </Teleport>
 
-    <CardModal v-model:is-opened="isModalOpened" :blueprint-id="card.blueprintId" />
+    <CardModal
+      v-model:is-opened="isModalOpened"
+      :blueprint-id="card.blueprintId"
+      :cardback-id="card.cardbackId"
+    />
   </div>
 </template>
 

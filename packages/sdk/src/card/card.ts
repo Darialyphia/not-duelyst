@@ -9,6 +9,7 @@ export type CardBlueprintId = string;
 
 export type SerializedCard = {
   blueprintId: CardBlueprintId;
+  cardBackId: string;
   pedestalId: string;
   isGenerated?: boolean;
 };
@@ -33,6 +34,7 @@ export abstract class Card extends EventEmitter implements Serializable {
   readonly blueprintId: CardBlueprintId;
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
+  public readonly cardBackId: string;
   modifiers: CardModifier[] = [];
 
   constructor(
@@ -44,6 +46,7 @@ export abstract class Card extends EventEmitter implements Serializable {
     super();
     this.blueprintId = options.blueprintId;
     this.pedestalId = options.pedestalId;
+    this.cardBackId = options.cardBackId;
     this.isGenerated = options.isGenerated ?? false;
   }
 
@@ -107,6 +110,10 @@ export abstract class Card extends EventEmitter implements Serializable {
   }
 
   serialize(): SerializedCard {
-    return { blueprintId: this.blueprintId, pedestalId: this.pedestalId };
+    return {
+      blueprintId: this.blueprintId,
+      pedestalId: this.pedestalId,
+      cardBackId: this.cardBackId
+    };
   }
 }

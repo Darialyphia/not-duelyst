@@ -1,6 +1,7 @@
 import { TERRAINS, type SerializedGameState } from '@game/sdk';
 import { isDefined } from '@game/shared';
 import { match } from 'ts-pattern';
+import { stringify } from 'zipson';
 
 const dirtTile = (
   x: number,

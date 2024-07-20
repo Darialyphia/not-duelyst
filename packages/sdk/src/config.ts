@@ -1,9 +1,9 @@
 export type GameSessionConfig = {
   VERSION: string;
-  MAX_COPIES_PER_CARD: 10;
+  MAX_COPIES_PER_CARD: number;
   MAX_DECK_SIZE: number;
   MAX_HAND_SIZE: number;
-  MAX_GOLD: 9;
+  MAX_GOLD: number;
   GOLD_PER_TURN: number;
   REFILL_GOLD_EVERY_TURN: boolean;
   MAX_GOLD_INCREASE_PER_TURN: number;

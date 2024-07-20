@@ -1,5 +1,5 @@
 import { defineTable } from 'convex/server';
-import { v, Validator } from 'convex/values';
+import { v, type Validator } from 'convex/values';
 import { GAME_STATUS, type GameStatus } from './game.constants';
 
 export const gameSchemas = {

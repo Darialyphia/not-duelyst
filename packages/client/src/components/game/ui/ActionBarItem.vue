@@ -36,6 +36,7 @@ const userPlayer = useUserPlayer();
           speed: card.blueprint.speed,
           cost: card.cost,
           pedestalId: card.pedestalId,
+          cardbackId: card.cardBackId,
           faction: card.blueprint.faction,
           tags: card.blueprint.tags ?? []
         }"

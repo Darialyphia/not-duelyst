@@ -40,6 +40,7 @@ const isDisplayed = computed(() => {
           speed: (latestCard as any).speed,
           cost: latestCard.cost,
           pedestalId: latestCard.pedestalId,
+          cardbackId: latestCard.cardBackId,
           faction: latestCard.blueprint.faction,
           tags: latestCard.blueprint.tags ?? []
         }"

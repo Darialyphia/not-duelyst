@@ -111,8 +111,9 @@ export const getReplayInitialState = async (
         name: players[0].name!,
         currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        deck: players[0].loadout!.cards.map(({ id, pedestalId }) => ({
+        deck: players[0].loadout!.cards.map(({ id, pedestalId, cardBackId }) => ({
           pedestalId,
+          cardBackId,
           blueprintId: id
         })),
         graveyard: []
@@ -123,8 +124,9 @@ export const getReplayInitialState = async (
         name: players[1].name!,
         currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        deck: players[1].loadout!.cards.map(({ id, pedestalId }) => ({
+        deck: players[1].loadout!.cards.map(({ id, pedestalId, cardBackId }) => ({
           pedestalId,
+          cardBackId,
           blueprintId: id
         })),
         graveyard: []

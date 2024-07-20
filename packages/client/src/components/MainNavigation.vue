@@ -29,6 +29,13 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff);
       <li>
         <Sound sound="button-hover" :triggers="['mouseenter']">
           <Sound sound="button-click" :triggers="['mousedown']">
+            <NuxtLink :to="{ name: 'CreateFormat' }">Formats</NuxtLink>
+          </Sound>
+        </Sound>
+      </li>
+      <li>
+        <Sound sound="button-hover" :triggers="['mouseenter']">
+          <Sound sound="button-click" :triggers="['mousedown']">
             <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
           </Sound>
         </Sound>

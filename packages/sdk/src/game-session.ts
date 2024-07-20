@@ -21,7 +21,6 @@ import { ActionSystem } from './action/action-system';
 import { noopFXContext, type FXSystem } from './fx-system';
 import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
 import {
-  Card,
   CARD_EVENTS,
   type CardBlueprintId,
   type CardEvent,
