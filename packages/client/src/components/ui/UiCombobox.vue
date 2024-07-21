@@ -1,7 +1,11 @@
 <script
   setup
   lang="ts"
-  generic="TValue extends string | number, TItem, TDefault extends TValue | TValue[]"
+  generic="
+    TValue extends string | number | boolean | Record<string, any>,
+    TItem,
+    TDefault extends TValue | TValue[]
+  "
 >
 const {
   options,
@@ -10,7 +14,7 @@ const {
   multiple,
   placeholder
 } = defineProps<{
-  options: Array<{ label: string; value: TValue; item: TItem }>;
+  options: Array<{ label: string; value: TValue; item?: TItem }>;
   displayValue?: (val: TDefault) => string;
   defaultValue?: TDefault;
   multiple?: boolean;
@@ -36,7 +40,7 @@ const selected = defineModel<TValue | TValue[]>({ required: true });
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent position="popper" as-child>
+      <ComboboxContent position="popper" as-child align="start">
         <div class="ui-comboox-content">
           <ComboboxViewport class="viewport">
             <ComboboxItem
@@ -67,7 +71,8 @@ const selected = defineModel<TValue | TValue[]>({ required: true });
   align-items: center;
   justify-content: between;
 
-  height: 35px;
+  width: 100%;
+  max-inline-size: 100%;
   padding: var(--size-2) var(--size-3);
 
   line-height: 1;
@@ -87,6 +92,7 @@ const selected = defineModel<TValue | TValue[]>({ required: true });
   }
 
   & > input {
+    width: inherit;
     background-color: transparent;
 
     &:focus {

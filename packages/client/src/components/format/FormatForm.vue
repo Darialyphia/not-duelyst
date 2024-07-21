@@ -18,10 +18,8 @@ const tab = useRouteQuery('tab', 'config');
 <template>
   <TabsRoot
     v-model="tab"
-    as="form"
-    class="fancy-surface fancy-scrollbar container"
+    class="fancy-surface fancy-scrollbar container form"
     style="--container-size: var(--size-xl)"
-    @submit.prevent="emit('submit', form)"
   >
     <TabsList aria-label="Create your format" class="fancy-surface tab-list">
       <TabsIndicator class="tab-indicator">
@@ -41,17 +39,19 @@ const tab = useRouteQuery('tab', 'config');
     <TabsContent value="cards" class="tab overflow-hidden">
       <FormatCards :format="form" />
     </TabsContent>
+    <footer>
+      <UiFancyButton
+        v-model="form.description"
+        type="button"
+        :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
+      >
+        Reset
+      </UiFancyButton>
+      <UiFancyButton v-model="form.description" @click="emit('submit', form)">
+        Save
+      </UiFancyButton>
+    </footer>
   </TabsRoot>
-  <footer class="flex justify-end gap-4 p-4 mt-auto">
-    <UiFancyButton
-      v-model="form.description"
-      type="button"
-      :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-    >
-      Reset
-    </UiFancyButton>
-    <UiFancyButton v-model="form.description">Save</UiFancyButton>
-  </footer>
 </template>
 
 <style scoped lang="postcss">
@@ -107,7 +107,7 @@ fieldset {
   }
 }
 
-form {
+.form {
   /*
     necessary because of a rendering bug caused by radix-vue's Switch that has a hiddn input with position absolute
     that causes some invisible overflow on the whole form.
@@ -123,10 +123,20 @@ form {
   padding: 0;
 }
 
-form > footer button {
+footer {
+  display: flex;
+  gap: var(--size-4);
+  justify-content: flex-end;
+
+  margin-top: auto;
+  padding: var(--size-4);
+
+  border-top: solid var(--border-size-1) var(--border);
+}
+.form > footer button {
   min-width: 15ch;
 }
-form > div > label,
+.form > div > label,
 legend {
   display: block;
   font-size: var(--font-size-4);
@@ -168,6 +178,7 @@ p {
 .tab {
   height: 100%;
   padding: var(--size-4);
+  padding-bottom: 0;
 }
 
 .config-tab {

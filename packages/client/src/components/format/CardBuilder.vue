@@ -23,9 +23,17 @@ const { format } = defineProps<{
 
 const blueprint = defineModel<GenericSerializedBlueprint>('card', { required: true });
 
-const card = computed(() =>
-  parseSerializeBlueprint(blueprint.value, format, { noCache: true })
-);
+const card = ref(parseSerializeBlueprint(blueprint.value, format, { noCache: true }));
+const error = ref('');
+watchEffect(() => {
+  try {
+    const result = parseSerializeBlueprint(blueprint.value, format, { noCache: true });
+    card.value = result;
+    error.value = '';
+  } catch (err) {
+    error.value = (err as Error).message;
+  }
+});
 
 const roundNumberField = ($event: FocusEvent) => {
   const target = $event.target as HTMLInputElement;
@@ -91,8 +99,12 @@ watch(
         <div class="flex items-center gap-3">
           <label for="collectable">Appears in collection</label>
           <UiSwitch v-model:checked="blueprint.collectable" :disabled="!isCustomCard" />
+          <UiButton :disabled="!isCustomCard">Change Sprite (Soon™)</UiButton>
         </div>
-        <p class="c-orange-5">These informations cann only be edited for custom cards.</p>
+
+        <p class="c-orange-5 mt-2">
+          These informations cann only be edited for custom cards.
+        </p>
       </div>
 
       <div class="split-row">
@@ -153,7 +165,7 @@ watch(
 
       <fieldset class="factions">
         <legend>Faction</legend>
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-4">
           <label v-for="faction in FACTIONS" :key="faction.id">
             <img :src="`/assets/ui/icon_${faction.id}.png`" />
             <input
@@ -184,6 +196,7 @@ watch(
 
           <UiIconButton
             name="mdi:close"
+            type="button"
             @click="
               () => {
                 blueprint.keywords = blueprint.keywords.filter(k => k !== keyword.id);
@@ -200,8 +213,8 @@ watch(
       >
         <template #option="{ option }">
           <div>
-            <div class="font-500">{{ option.item.name }}</div>
-            <div class="text-0">{{ option.item.description }}</div>
+            <div class="font-500">{{ option.item?.name }}</div>
+            <div class="text-0">{{ option.item?.description }}</div>
           </div>
         </template>
       </UiCombobox>
@@ -219,10 +232,11 @@ watch(
           :value="`${index}`"
           class="my-3"
         >
-          <AccordionHeader as="div" class="flex gap-3">
+          <AccordionHeader as="div" class="effect-header">
             <UiIconButton
               name="material-symbols:delete-outline"
               class="error-button"
+              type="button"
               @click="blueprint.effects.splice(index, 1)"
             >
               Delete
@@ -234,37 +248,35 @@ watch(
           </AccordionHeader>
 
           <AccordionContent class="accordion-content">
-            <EffectBuilder :effect="effect" />
+            <EffectBuilder
+              v-model:effect="blueprint.effects[index]"
+              :blueprint="blueprint"
+            />
           </AccordionContent>
         </AccordionItem>
-
-        <UiFancyButton
-          class="primary-button mt-6"
-          left-icon="material-symbols:add"
-          :to="{ name: 'CreateFormat' }"
-        >
-          New Format
-        </UiFancyButton>
       </AccordionRoot>
     </div>
-    <Card
-      class="preview"
-      :card="{
-        blueprintId: card.id,
-        name: card.name,
-        description: card.description,
-        kind: card.kind,
-        spriteId: card.spriteId,
-        rarity: card.rarity,
-        attack: card.attack,
-        hp: card.maxHp,
-        speed: card.speed,
-        cost: card.cost,
-        faction: card.faction,
-        tags: card.tags ?? [],
-        keywords: keywords
-      }"
-    />
+    <div class="preview">
+      <Card
+        :card="{
+          blueprintId: card.id,
+          name: card.name,
+          description: card.description,
+          kind: card.kind,
+          spriteId: card.spriteId,
+          rarity: card.rarity,
+          attack: card.attack,
+          hp: card.maxHp,
+          speed: card.speed,
+          cost: card.cost,
+          faction: card.faction,
+          tags: card.tags ?? [],
+          keywords: keywords
+        }"
+      />
+
+      <div v-if="error" class="error">{{ error }}</div>
+    </div>
   </div>
 </template>
 
@@ -346,5 +358,21 @@ h3 {
 
   background-color: var(--primary);
   border-radius: var(--radius-pill);
+}
+
+.error {
+  padding: var(--size-3);
+  color: var(--error);
+  background-color: hsl(var(--color-error-hsl) / 0.25);
+}
+
+.effect-header {
+  display: flex;
+  gap: var(--size-3);
+
+  padding: var(--size-3);
+
+  border: solid var(--border-size-1) var(--border);
+  border-radius: var(--size-1);
 }
 </style>

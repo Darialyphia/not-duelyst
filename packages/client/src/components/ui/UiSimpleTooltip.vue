@@ -18,7 +18,7 @@ const passthroughProps = computed(() => ({
     <template #trigger>
       <slot />
     </template>
-    <div class="bg-surface-4 p-1 text-0">
+    <div class="ui-simple-tooltip">
       {{ text }}
       <TooltipArrow class="ui-simple-tooltip-arrow" :width="12" :height="12" />
     </div>
@@ -28,5 +28,12 @@ const passthroughProps = computed(() => ({
 <style scoped lang="postcss">
 :global(.ui-simple-tooltip-arrow) {
   fill: var(--surface-4);
+}
+
+.ui-simple-tooltip {
+  padding: var(--size-2);
+  font-size: var(--font-size-0);
+  background-color: var(--surface-4);
+  border: solid var(--border-size-1) var(--border-dimmed);
 }
 </style>

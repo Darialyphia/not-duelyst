@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T extends string">
 const { options, placeholder } = defineProps<{
-  options: Array<{ label: string; value: T }>;
+  options: Array<{ label: string; value: T; disabled?: boolean }>;
   placeholder?: string;
 }>();
 
@@ -25,6 +25,7 @@ const selected = defineModel<T>('modelValue', { required: true });
                   :key="index"
                   class="select-item"
                   :value="option.value"
+                  :disabled="option.disabled"
                 >
                   <SelectItemIndicator>
                     <Icon name="radix-icons:check" />
@@ -103,7 +104,7 @@ const selected = defineModel<T>('modelValue', { required: true });
 
   &[data-disabled] {
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   &[data-highlighted] {

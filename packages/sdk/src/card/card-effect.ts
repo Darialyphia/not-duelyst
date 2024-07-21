@@ -1,3 +1,4 @@
+import type { AnyObject, PartialRecord } from '@game/shared';
 import type {
   CardCondition,
   CardConditionBase,
@@ -366,7 +367,20 @@ export type CardEffect<T extends Trigger[]> = {
   config: CardEffectConfig<T>;
   text: string;
 };
-
 export type GenericCardEffect = CardEffect<any>;
+// used in custom card GUI code
+export type WidenedGenericCardEffect = {
+  text: string;
+  config: {
+    executionContext: ExecutionContext;
+    triggers?: Array<{
+      type: string;
+      params: any;
+    }>;
+    actions: any;
+  };
+};
+
+export type ExecutionContext = GenericCardEffect['config']['executionContext'];
 
 export const defineCardEffect = <T extends Trigger[]>(effect: CardEffect<T>) => effect;

@@ -216,12 +216,12 @@ const sizeVars = {
   "10-fluid": "var(--size-10-fluid)",
 
   xxs: "var(--size-xxs)",
-  xs: "var(--size-xxs)",
-  sm: "var(--size-xxs)",
-  md: "var(--size-xxs)",
-  lg: "var(--size-xxs)",
-  xl: "var(--size-xxs)",
-  xxl: "var(--size-xxs)",
+  xs: "var(--size-xs)",
+  sm: "var(--size-sm)",
+  md: "var(--size-md)",
+  lg: "var(--size-lg)",
+  xl: "var(--size-xl)",
+  xxl: "var(--size-xxl)",
 };
 
 export const presetOpenProps = () =>

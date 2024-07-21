@@ -24,10 +24,14 @@ export { CARDS } from './card/card-lookup';
 export {
   type CardBlueprint,
   type SerializedBlueprint,
-  type GenericSerializedBlueprint,
-  MULTICOLOR
+  type GenericSerializedBlueprint
 } from './card/card-blueprint';
-export type { GenericCardEffect } from './card/card-effect';
+export type {
+  WidenedGenericCardEffect,
+  InitAction,
+  Trigger,
+  ExecutionContext
+} from './card/card-effect';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

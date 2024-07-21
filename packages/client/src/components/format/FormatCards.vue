@@ -33,6 +33,13 @@ const addCard = (card: GenericSerializedBlueprint) => {
   format.value.cards[card.id] = structuredClone(card);
   selectedCardId.value = card.id;
 };
+
+const search = ref('');
+const filteredCards = computed(() =>
+  standardCards.value.filter(c =>
+    c.name.toLowerCase().includes(search.value.toLocaleLowerCase())
+  )
+);
 </script>
 
 <template>
@@ -97,8 +104,15 @@ const addCard = (card: GenericSerializedBlueprint) => {
       </UiButton>
 
       <UiModal v-model:is-opened="isCardsModalOpened" title="Select a card">
+        <UiTextInput
+          id="card-search"
+          v-model="search"
+          placeholder="Search for a card"
+          left-icon="material-symbols:search"
+          class="mb-4"
+        />
         <ul class="card-list fancy-scrollbar">
-          <li v-for="card in standardCards" :key="card.id">
+          <li v-for="card in filteredCards" :key="card.id">
             <UiButton
               type="button"
               class="ghost-button"
