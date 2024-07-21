@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import { defaultConfig } from '@game/sdk';
 
 definePageMeta({
   name: 'EditFormat',
@@ -25,7 +24,13 @@ const { mutate: updateFormat } = useConvexAuthedMutation(api.formats.update, {
 
 const initialValues = computed(() => {
   const { name, description, config, cards } = format.value;
-  return { name, description, config, cards };
+
+  return {
+    name,
+    description,
+    config: { ...config },
+    cards: structuredClone(toRaw(cards))
+  };
 });
 </script>
 

@@ -534,10 +534,11 @@ export const parseSerializedBlueprintEffect = (
 const cache = new Map<string, CardBlueprint>();
 export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
   blueprint: SerializedBlueprint<T>,
-  format: GameFormat = { config: defaultConfig, cards: CARDS }
+  format: GameFormat = { config: defaultConfig, cards: CARDS },
+  { noCache }: { noCache: boolean } = { noCache: false }
 ) => {
   const cacheKey = `${blueprint.id}:${JSON.stringify(format)}`;
-  if (cache.has(cacheKey)) {
+  if (cache.has(cacheKey) && !noCache) {
     return cache.get(cacheKey)!;
   }
   // first, parse the blueprint effects
@@ -718,7 +719,9 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     });
   });
 
-  cache.set(cacheKey, withStats);
+  if (!noCache) {
+    cache.set(cacheKey, withStats);
+  }
 
   return withStats;
 };

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 
-const props = defineProps<{
+const { format } = defineProps<{
   format: Pick<GameFormatDto, 'config'>;
 }>();
 </script>

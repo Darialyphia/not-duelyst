@@ -187,6 +187,10 @@ watchEffect(() => {
       background: var(--disabled);
     }
 
+    &:has(input:read-only) {
+      color: var(--text-disabled);
+      background: var(--surface-2);
+    }
     &:has(.left) input {
       padding-inline-start: 0;
     }

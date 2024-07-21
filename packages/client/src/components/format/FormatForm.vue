@@ -12,42 +12,43 @@ const { initialValues } = defineProps<{
 }>();
 
 const form = reactive(initialValues);
+const tab = useRouteQuery('tab', 'config');
 </script>
 
 <template>
-  <form
-    class="fancy-surface fancy-scrollbar flex flex-col gap-4 p-0"
+  <TabsRoot
+    v-model="tab"
+    as="form"
+    class="fancy-surface fancy-scrollbar"
     @submit.prevent="emit('submit', form)"
   >
-    <TabsRoot class="TabsRoot" default-value="config">
-      <TabsList aria-label="Create your format" class="fancy-surface tab-list">
-        <TabsIndicator class="tab-indicator">
-          <div class="bg-primary w-full h-full" />
-        </TabsIndicator>
+    <TabsList aria-label="Create your format" class="fancy-surface tab-list">
+      <TabsIndicator class="tab-indicator">
+        <div class="bg-primary w-full h-full" />
+      </TabsIndicator>
 
-        <TabsTrigger value="config">Settings</TabsTrigger>
-        <TabsTrigger value="cards">Cards</TabsTrigger>
-      </TabsList>
+      <TabsTrigger value="config">Settings</TabsTrigger>
+      <TabsTrigger value="cards">Cards</TabsTrigger>
+    </TabsList>
 
-      <TabsContent value="config" class="p-4">
-        <RulesEditor :config="form" />
-      </TabsContent>
+    <TabsContent value="config" class="tab h-full overflow-auto fancy-scrollbar">
+      <RulesEditor :config="form" />
+    </TabsContent>
 
-      <TabsContent value="cards" class="p-4">
-        <CardBuilder />
-      </TabsContent>
-    </TabsRoot>
-    <footer class="flex justify-end gap-4 p-4 mt-auto">
-      <UiFancyButton
-        v-model="form.description"
-        type="button"
-        :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-      >
-        Reset
-      </UiFancyButton>
-      <UiFancyButton v-model="form.description">Save</UiFancyButton>
-    </footer>
-  </form>
+    <TabsContent value="cards" class="tab h-full overflow-hidden">
+      <FormatCards :format="form" />
+    </TabsContent>
+  </TabsRoot>
+  <footer class="flex justify-end gap-4 p-4 mt-auto">
+    <UiFancyButton
+      v-model="form.description"
+      type="button"
+      :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
+    >
+      Reset
+    </UiFancyButton>
+    <UiFancyButton v-model="form.description">Save</UiFancyButton>
+  </footer>
 </template>
 
 <style scoped lang="postcss">
@@ -109,8 +110,14 @@ form {
     that causes some invisible overflow on the whole form.
   */
   position: relative;
-  overflow-y: auto;
+
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  gap: var(--size-4);
+
+  padding: 0;
 }
 
 form > footer button {
@@ -133,6 +140,9 @@ p {
   z-index: 1;
   top: 0;
 
+  display: flex;
+  gap: var(--size-4);
+
   border-color: transparent;
   border-bottom-color: var(--border-dimmed);
 }
@@ -150,5 +160,9 @@ p {
 
   transition-duration: 300ms;
   transition-property: width, transform;
+}
+
+.tab {
+  padding: var(--size-4);
 }
 </style>

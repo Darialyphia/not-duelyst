@@ -6,6 +6,11 @@ const form = defineModel<{
   description: string;
   config: GameSessionConfig;
 }>('config', { required: true });
+
+const roundNumberField = ($event: FocusEvent) => {
+  const target = $event.target as HTMLInputElement;
+  target.value = `${parseInt(target.value)}`;
+};
 </script>
 
 <template>
@@ -25,13 +30,16 @@ const form = defineModel<{
       id="deck_size"
       v-model.number="form.config.MAX_DECK_SIZE"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
-
     <label for="deck_size">Max card copies</label>
     <UiTextInput
       id="deck_size"
       v-model.number="form.config.MAX_COPIES_PER_CARD"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
   </fieldset>
 
@@ -43,6 +51,8 @@ const form = defineModel<{
       id="max_hand_size"
       v-model.number="form.config.MAX_HAND_SIZE"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="draw_per_turn">Card draw per turn</label>
@@ -50,6 +60,8 @@ const form = defineModel<{
       id="max_draw_per_turn"
       v-model.number="form.config.CARD_DRAW_PER_TURN"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="replaces">Replaces per turn</label>
@@ -57,6 +69,8 @@ const form = defineModel<{
       id="replaces"
       v-model.number="form.config.MAX_REPLACES_PER_TURN"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="starting_hand_size">Starting hand size</label>
@@ -64,6 +78,8 @@ const form = defineModel<{
       id="starting_hand_size"
       v-model.number="form.config.STARTING_HAND_SIZE"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="draw_time">Player draw at the end of their turn</label>
@@ -74,7 +90,13 @@ const form = defineModel<{
     <legend>Gold</legend>
 
     <label for="max_gold">Max gold</label>
-    <UiTextInput id="max_gold" v-model.number="form.config.MAX_GOLD" type="number" />
+    <UiTextInput
+      id="max_gold"
+      v-model.number="form.config.MAX_GOLD"
+      type="number"
+      step="1"
+      @blur="roundNumberField"
+    />
 
     <label for="refill_mana">Refill player gold at the start of their turn</label>
     <UiSwitch id="refill_mana" v-model:checked="form.config.REFILL_GOLD_EVERY_TURN" />
@@ -84,6 +106,8 @@ const form = defineModel<{
       id="gold_per_turn"
       v-model.number="form.config.GOLD_PER_TURN"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
     <p>This has no effect when "Refill player gold" is enabled.</p>
 
@@ -92,6 +116,8 @@ const form = defineModel<{
       id="max_gold_increase"
       v-model.number="form.config.MAX_GOLD_INCREASE_PER_TURN"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="p1_gold">Player 1 starting gold</label>
@@ -99,6 +125,8 @@ const form = defineModel<{
       id="p1_gold"
       v-model.number="form.config.PLAYER_1_STARTING_GOLD"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
 
     <label for="p1_gold">Player 2 starting gold</label>
@@ -106,6 +134,8 @@ const form = defineModel<{
       id="p1_gold"
       v-model.number="form.config.PLAYER_2_STARTING_GOLD"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
   </fieldset>
 
@@ -132,6 +162,8 @@ const form = defineModel<{
       id="satarting_hand_size"
       v-model.number="form.config.UNIT_DEFAULT_SPEED"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
   </fieldset>
 
@@ -142,6 +174,8 @@ const form = defineModel<{
       id="satarting_hand_size"
       v-model.number="form.config.ARTIFACT_DURABILITY"
       type="number"
+      step="1"
+      @blur="roundNumberField"
     />
   </fieldset>
 </template>
