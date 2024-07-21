@@ -114,7 +114,7 @@ watchEffect(() => {
       grid-template-columns: 1fr auto;
     }
 
-    &:has(input:focus-visible) {
+    &:has(input:focus-visible:not(:read-only)) {
       outline-color: var(--brand, var(--primary));
       outline-style: solid;
       outline-offset: 5px;

@@ -4,7 +4,7 @@ export { Entity, type EntityId } from './entity/entity';
 export { Player, type PlayerId } from './player/player';
 export { BoardSystem as GameMap } from './board/board-system';
 export { defaultConfig, type GameSessionConfig, VERSION } from './config';
-export { KEYWORDS, type Keyword } from './utils/keywords';
+export { KEYWORDS, type Keyword, type KeywordId } from './utils/keywords';
 export {
   type EntityModifier as Modifier,
   type ModifierId

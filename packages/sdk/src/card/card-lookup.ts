@@ -1,9 +1,8 @@
 import { keyBy } from 'lodash-es';
 import type { CardBlueprintId } from './card';
-import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
+import type { GenericSerializedBlueprint, SerializedBlueprint } from './card-blueprint';
 import { f1General } from './cards/faction_1/general';
 import { f2General } from './cards/faction_2/general';
-import { parseSerializeBlueprint } from './card-parser';
 import { neutralHealingMystic } from './cards/neutral/neutral_healing_mystic';
 import { neutralRiftWalker } from './cards/neutral/neutral_rift_walker';
 import { f1TrueStrike } from './cards/faction_1/true_strike';
@@ -56,7 +55,7 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralPrimusShieldMaster
 ];
 
-export const CARDS: Record<CardBlueprintId, SerializedBlueprint<any>> = keyBy(
-  allCards,
-  'id'
-);
+export const CARDS = keyBy(allCards, 'id') as Record<
+  CardBlueprintId,
+  GenericSerializedBlueprint
+>;

@@ -35,8 +35,8 @@ const initialValues = computed(() => {
 </script>
 
 <template>
-  <div class="page container pt-8 px-5" style="--container-size: var(--size-lg)">
-    <header>
+  <div class="page pt-8 px-5">
+    <header class="container" style="--container-size: var(--size-lg)">
       <BackButton :to="{ name: 'FormatList' }" />
       <h1 v-if="format">{{ format.name }}</h1>
     </header>

@@ -26,7 +26,8 @@ const frame = ref(0);
 const DEFAULT_FRAME_DURATION = 80;
 const frameDuration = computed(() => {
   if (!animation || !sheet.value) return DEFAULT_FRAME_DURATION;
-  const frameName = sheet.value.data.animations![animation][frame.value];
+  const frameName = sheet.value.data.animations![animation]?.[frame.value];
+  if (!frameName) return DEFAULT_FRAME_DURATION;
   // @ts-expect-error shut up typescript, duration exists, we put it there with the custom aseprite parser
   return sheet.value.data.frames[frameName]?.duration ?? DEFAULT_FRAME_DURATION;
 });

@@ -68,39 +68,56 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff);
 </template>
 
 <style scoped lang="postcss">
+@keyframes main-navigation-item {
+  from {
+    transform: translatey(calc(-1 * var(--size-6)));
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
 ul {
   width: fit-content;
 }
-li > * {
-  position: relative;
+li {
+  opacity: 0;
+  animation: main-navigation-item 0.5s ease-out forwards;
+  animation-delay: calc((var(--child-index) * 50ms));
 
-  display: block;
+  > * {
+    position: relative;
 
-  padding: 0;
+    display: block;
 
-  font-size: var(--font-size-4);
-  text-align: left;
-  text-shadow: black 0px 4px 1px;
-  &::after {
-    content: '';
+    padding: 0;
 
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
+    font-size: var(--font-size-4);
+    text-align: left;
+    text-shadow: black 0px 4px 1px;
+    &::after {
+      content: '';
 
-    width: 0;
-    height: 3px;
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
 
-    background-color: var(--primary);
+      width: 0;
+      height: 3px;
 
-    transition:
-      width 0.2s,
-      left 0.2s;
-  }
+      background-color: var(--primary);
 
-  &:hover::after {
-    left: 0;
-    width: 100%;
+      transition:
+        width 0.2s,
+        left 0.2s;
+    }
+
+    &:hover::after {
+      left: 0;
+      width: 100%;
+    }
   }
 }
 </style>

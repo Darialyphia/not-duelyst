@@ -73,6 +73,7 @@ const addCard = (card: GenericSerializedBlueprint) => {
       <p v-if="!editedCards.length" class="my-2 italic">
         This format doesn't have any edited card
       </p>
+
       <ul v-else class="card-list fancy-scrollbar">
         <li v-for="card in editedCards" :key="card.id">
           <UiButton
@@ -138,9 +139,14 @@ const addCard = (card: GenericSerializedBlueprint) => {
 <style scoped lang="postcss">
 .format-cards {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--size-3);
+  grid-template-columns: var(--size-xs) 1fr;
+  gap: var(--size-6);
   height: 100%;
+}
+
+h3 {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-5);
 }
 
 section {

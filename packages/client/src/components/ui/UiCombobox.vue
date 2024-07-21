@@ -1,52 +1,56 @@
-<script setup lang="ts" generic="T extends string | number">
-const { options } = defineProps<{
-  options: Array<{ label: string; value: T }>;
-  displayValue?: (val: T) => string;
+<script
+  setup
+  lang="ts"
+  generic="TValue extends string | number, TItem, TDefault extends TValue | TValue[]"
+>
+const {
+  options,
+  displayValue,
+  defaultValue = '',
+  multiple,
+  placeholder
+} = defineProps<{
+  options: Array<{ label: string; value: TValue; item: TItem }>;
+  displayValue?: (val: TDefault) => string;
+  defaultValue?: TDefault;
+  multiple?: boolean;
+  placeholder?: string;
 }>();
 
-const selected = defineModel<T>({ required: true });
-const search = ref('');
-const filteredOptions = computed(() =>
-  options.filter(option =>
-    option.label.toLowerCase().includes(search.value.toLowerCase())
-  )
-);
-
-const { list, containerProps, wrapperProps } = useVirtualList(filteredOptions, {
-  itemHeight: 32
-});
+const selected = defineModel<TValue | TValue[]>({ required: true });
 </script>
 
 <template>
   <ComboboxRoot
     v-model="selected"
-    v-model:search-term="search"
     class="ui-combobox-root"
+    :default-value="defaultValue as any"
     :display-value="displayValue"
+    :multiple
   >
     <ComboboxAnchor class="anchor">
-      <ComboboxInput />
+      <ComboboxInput :placeholder />
       <ComboboxTrigger>
         <Icon name="mdi:chevron-down" />
       </ComboboxTrigger>
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent class="ui-comboox-content" position="popper">
-        <ComboboxViewport class="viewport">
-          <div v-bind="containerProps" style="height: 300px">
-            <div v-bind="wrapperProps">
-              <ComboboxItem
-                v-for="option in list"
-                :key="option.index"
-                :value="option.data.value"
-                class="item"
-              >
-                {{ option.data.label }}
-              </ComboboxItem>
-            </div>
-          </div>
-        </ComboboxViewport>
+      <ComboboxContent position="popper" as-child>
+        <div class="ui-comboox-content">
+          <ComboboxViewport class="viewport">
+            <ComboboxItem
+              v-for="(option, index) in options"
+              :key="index"
+              :value="option.value"
+              class="item"
+            >
+              <slot name="option" :option="option">
+                {{ option.label }}
+              </slot>
+            </ComboboxItem>
+          </ComboboxViewport>
+        </div>
       </ComboboxContent>
     </ComboboxPortal>
   </ComboboxRoot>
@@ -64,12 +68,12 @@ const { list, containerProps, wrapperProps } = useVirtualList(filteredOptions, {
   justify-content: between;
 
   height: 35px;
-  padding: var(--size-1);
+  padding: var(--size-2) var(--size-3);
 
   line-height: 1;
 
-  background-color: var(--surface-2);
-  border: solid var(--border-size-2) var(--primary);
+  background-color: var(--surface-1);
+  border: solid 1px var(--border-dimmed);
   border-radius: var(--radius-1);
 
   &:hover {
@@ -91,7 +95,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(filteredOptions, {
   }
 }
 
-:global(.ui-comboox-content) {
+.ui-comboox-content {
   z-index: 10;
 
   width: 15rem;
@@ -100,17 +104,20 @@ const { list, containerProps, wrapperProps } = useVirtualList(filteredOptions, {
   padding-block: var(--size-2);
 
   background-color: var(--surface-2);
-  border-radius: 6px;
-  box-shadow:
-    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  border: solid var(--border-size-1) var(--border-dimmed);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-2);
 }
 
 .item {
+  user-select: none;
+
   position: relative;
+
   display: flex;
   align-items: center;
-  padding: var(--size-1) var(--size-3);
+
+  padding: var(--size-4) var(--size-5);
   &[data-disabled] {
     pointer-events: none;
     opacity: 0.5;
@@ -123,6 +130,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(filteredOptions, {
   &[data-state='checked'] {
     color: var(--text-on-primary);
     background-color: var(--primary-dark);
+    border-top: solid 1px hsl(var(--color-text-on-primary-hsl) / 0.2s);
     outline: none;
   }
 }

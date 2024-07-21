@@ -19,7 +19,8 @@ const tab = useRouteQuery('tab', 'config');
   <TabsRoot
     v-model="tab"
     as="form"
-    class="fancy-surface fancy-scrollbar"
+    class="fancy-surface fancy-scrollbar container"
+    style="--container-size: var(--size-xl)"
     @submit.prevent="emit('submit', form)"
   >
     <TabsList aria-label="Create your format" class="fancy-surface tab-list">
@@ -31,11 +32,13 @@ const tab = useRouteQuery('tab', 'config');
       <TabsTrigger value="cards">Cards</TabsTrigger>
     </TabsList>
 
-    <TabsContent value="config" class="tab h-full overflow-auto fancy-scrollbar">
-      <RulesEditor :config="form" />
+    <TabsContent value="config" class="tab config-tab fancy-scrollbar">
+      <div>
+        <RulesEditor :config="form" />
+      </div>
     </TabsContent>
 
-    <TabsContent value="cards" class="tab h-full overflow-hidden">
+    <TabsContent value="cards" class="tab overflow-hidden">
       <FormatCards :format="form" />
     </TabsContent>
   </TabsRoot>
@@ -163,6 +166,16 @@ p {
 }
 
 .tab {
+  height: 100%;
   padding: var(--size-4);
+}
+
+.config-tab {
+  overflow: auto;
+  height: 100%;
+
+  > div {
+    width: var(--size-md);
+  }
 }
 </style>
