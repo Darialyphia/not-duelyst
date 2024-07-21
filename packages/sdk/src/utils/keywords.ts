@@ -1,10 +1,14 @@
 import type { Values } from '@game/shared';
+import type { Entity } from '../entity/entity';
+import type { GameSession } from '../game-session';
+import { isWithinCells } from './targeting';
 
 export type Keyword = {
   id: string;
   name: string;
   description: string;
   spriteId?: string;
+  shouldDisplaySprite?: (session: GameSession, entity: Entity) => boolean;
   aliases: (string | RegExp)[];
 };
 
@@ -60,7 +64,10 @@ export const KEYWORDS = {
     name: 'Zeal',
     description: 'Triggers an effect when nearby its general.',
     spriteId: 'zeal',
-    aliases: []
+    aliases: [],
+    shouldDisplaySprite(session, entity) {
+      return isWithinCells(entity.position, entity.player.general.position, 1);
+    }
   },
   FLYING: {
     id: 'flying',

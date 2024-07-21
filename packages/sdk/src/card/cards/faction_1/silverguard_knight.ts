@@ -28,14 +28,24 @@ export const f1SilverguardKnight = defineSerializedBlueprint({
         executionContext: 'immediate',
         actions: [
           {
-            type: 'change_stats',
+            type: 'zeal',
             params: {
-              targets: [[{ type: 'is_self' }]],
-              mode: 'give',
-              stackable: false,
-              attack: {
-                amount: fixedAmount(2),
-                activeWhen: zealCondition()
+              effect: {
+                executionContext: 'immediate',
+                actions: [
+                  {
+                    type: 'change_stats',
+                    params: {
+                      targets: [[{ type: 'is_self' }]],
+                      mode: 'give',
+                      stackable: false,
+                      attack: {
+                        amount: fixedAmount(2),
+                        activeWhen: zealCondition()
+                      }
+                    }
+                  }
+                ]
               }
             }
           }

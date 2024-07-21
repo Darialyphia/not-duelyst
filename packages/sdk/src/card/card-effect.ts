@@ -284,6 +284,13 @@ export type Action<
         >;
         effect: CardEffectConfig<Trigger[]>;
       };
+    }
+  | {
+      type: 'zeal';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        effect: CardEffectConfig<Trigger[]>;
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

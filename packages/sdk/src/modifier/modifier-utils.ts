@@ -15,7 +15,7 @@ import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
-import { isNearbyEnemy } from '../entity/entity-utils';
+import { isNearbyAlly, isNearbyEnemy } from '../entity/entity-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -425,6 +425,34 @@ export const aura = ({
         }
       }
     ]
+  });
+};
+
+export const zeal = ({
+  source,
+  onGainAura,
+  onLoseAura
+}: {
+  source: Card;
+  onGainAura: (entity: Entity, source: Entity, session: GameSession) => void;
+  onLoseAura: (entity: Entity, source: Entity, session: GameSession) => void;
+}) => {
+  return aura({
+    source,
+    keywords: [KEYWORDS.ZEAL],
+    onGainAura(entity, zealed, session) {
+      if (entity.equals(source.player.general)) {
+        onGainAura(entity, zealed, session);
+      }
+    },
+    onLoseAura(entity, zealed, session) {
+      if (entity.equals(source.player.general)) {
+        onLoseAura(entity, zealed, session);
+      }
+    },
+    isElligible(target, source, session) {
+      return isNearbyAlly(session, source, target.position);
+    }
   });
 };
 

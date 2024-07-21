@@ -22,22 +22,35 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
     defineCardEffect({
       text: '@Zeal@: At the end of your turn, this fully heals.',
       config: {
-        executionContext: 'while_on_board',
-        triggers: [
-          {
-            type: 'on_player_turn_end',
-            params: {
-              player: [[{ type: 'ally_player' }]]
-            }
-          }
-        ],
+        executionContext: 'immediate',
         actions: [
           {
-            type: 'heal',
+            type: 'zeal',
             params: {
-              targets: [[{ type: 'is_self' }]],
-              amount: { type: 'maxHp', params: { unit: [[{ type: 'is_self' }]] } },
-              filter: zealCondition()
+              effect: {
+                executionContext: 'while_on_board',
+                triggers: [
+                  {
+                    type: 'on_player_turn_end',
+                    params: {
+                      player: [[{ type: 'ally_player' }]]
+                    }
+                  }
+                ],
+                actions: [
+                  {
+                    type: 'heal',
+                    params: {
+                      targets: [[{ type: 'is_self' }]],
+                      amount: {
+                        type: 'maxHp',
+                        params: { unit: [[{ type: 'is_self' }]] }
+                      },
+                      filter: zealCondition()
+                    }
+                  }
+                ]
+              }
             }
           }
         ]

@@ -3,13 +3,13 @@ import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
 import type { Action, Amount, Filter, InitAction, NumericOperator } from './card-effect';
 import type { Entity } from '../entity/entity';
-import type { AnyObject, Nullable, Point3D } from '@game/shared';
+import { isDefined, type AnyObject, type Nullable, type Point3D } from '@game/shared';
 import type { Card } from './card';
 import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
 import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
-import { airdrop, celerity, provoke, rush } from '../modifier/modifier-utils';
+import { airdrop, celerity, provoke, rush, zeal } from '../modifier/modifier-utils';
 import type { CardConditionExtras } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits, type UnitConditionExtras } from './conditions/unit-conditions';
@@ -241,7 +241,7 @@ export const checkGlobalConditions = (
 
 export const parseCardAction = (action: Action): ParsedActionResult => {
   return (ctx, event, eventName) => {
-    const { session, card, entity } = ctx;
+    const { session, card, entity, targets } = ctx;
 
     return match(action)
       .with({ type: 'deal_damage' }, action => {
@@ -493,26 +493,94 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           text: '',
           config: action.params.effect
         }).flat();
+
         units.forEach(unit => {
           effects.forEach(effect => {
-            const entityModifier = effect.getEntityModifier?.({
-              session,
-              entity: unit,
-              card: unit.card,
-              targets: []
-            });
-            if (entityModifier) {
-              unit.addModifier(entityModifier);
+            if (effect.onPlay) {
+              effect.onPlay({
+                session,
+                entity: unit,
+                card: unit.card,
+                targets: []
+              });
+            }
+            if (effect.getEntityModifier) {
+              unit.addModifier(
+                effect.getEntityModifier({
+                  session,
+                  entity: unit,
+                  card: unit.card,
+                  targets: []
+                })
+              );
             }
 
-            const cardModifier = effect.getCardModifier?.();
-
-            if (cardModifier) {
-              unit.card.addModifier(cardModifier);
+            if (effect.getCardModifier) {
+              unit.card.addModifier(effect.getCardModifier());
             }
           });
         });
         return noop;
+      })
+      .with({ type: 'zeal' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+        const cleanups: Array<() => void> = [];
+        const zealTarget = entity ?? card.player.general;
+        console.log(zealTarget);
+        const effects = parseSerializedBlueprintEffect({
+          text: '',
+          config: action.params.effect
+        }).flat();
+
+        effects.forEach(effect => {
+          if (effect.onPlay) {
+            let cleanup: (() => void) | undefined;
+            const modifier = zeal({
+              source: card,
+              onGainAura(entity, zealed, session) {
+                cleanup = effect.onPlay?.({
+                  session,
+                  card,
+                  entity: zealed,
+                  targets
+                });
+              },
+              onLoseAura() {
+                cleanup?.();
+              }
+            });
+            zealTarget.addModifier(modifier);
+            cleanups.push(() => zealTarget.removeModifier(modifier.id));
+          }
+
+          if (effect.getEntityModifier) {
+            const entityModifier = effect.getEntityModifier?.({
+              session,
+              entity: zealTarget,
+              card: zealTarget.card,
+              targets: []
+            });
+            const zealModifier = zeal({
+              source: card,
+              onGainAura() {
+                zealTarget.addModifier(entityModifier);
+              },
+              onLoseAura() {
+                zealTarget.removeModifier(entityModifier.id);
+              }
+            });
+            zealTarget.addModifier(zealModifier);
+            cleanups.push(() => zealTarget.removeModifier(zealModifier.id));
+          }
+        });
+
+        return () => cleanups.forEach(cleanup => cleanup());
       })
       .with({ type: 'destroy_unit' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(

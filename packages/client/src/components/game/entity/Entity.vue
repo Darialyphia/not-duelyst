@@ -98,6 +98,12 @@ const onShadowEnter = (container: Container) => {
 const keywordsWithSprite = computed(() => {
   const base = entity.value.keywords.filter(keyword => {
     if (!keyword.spriteId) return false;
+    if (
+      keyword.shouldDisplaySprite &&
+      !keyword.shouldDisplaySprite(session, entity.value)
+    ) {
+      return false;
+    }
     if (keyword.stacks === 0) return false;
     return true;
   });

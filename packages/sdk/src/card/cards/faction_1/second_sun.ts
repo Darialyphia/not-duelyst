@@ -21,19 +21,26 @@ export const f1SecondSun = defineSerializedBlueprint({
   tags: [],
   effects: [
     defineCardEffect({
-      text: '@Zeal@: +8/+0.',
+      text: '@Zeal@: +2/+0.',
       config: {
         executionContext: 'immediate',
         actions: [
           {
-            type: 'change_stats',
+            type: 'zeal',
             params: {
-              targets: [[{ type: 'is_self' }]],
-              mode: 'give',
-              stackable: false,
-              attack: {
-                amount: fixedAmount(8),
-                activeWhen: zealCondition()
+              effect: {
+                executionContext: 'immediate',
+                actions: [
+                  {
+                    type: 'change_stats',
+                    params: {
+                      targets: [[{ type: 'is_self' }]],
+                      mode: 'give',
+                      stackable: false,
+                      attack: { amount: fixedAmount(8) }
+                    }
+                  }
+                ]
               }
             }
           }

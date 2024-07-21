@@ -122,7 +122,7 @@ export const parseSerializedBlueprintEffect = (
   effect: SerializedBlueprint<GenericCardEffect[]>['effects'][number]
 ): Array<{
   onInit?: (blueprint: CardBlueprint) => void;
-  onPlay?: (ctx: EffectCtx) => void;
+  onPlay?: (ctx: EffectCtx) => () => void;
   getCardModifier?: () => CardModifier;
   getEntityModifier?: (ctx: EffectCtx) => EntityModifier;
 }> => {
@@ -131,9 +131,8 @@ export const parseSerializedBlueprintEffect = (
       {
         onPlay(ctx: EffectCtx) {
           const actions = config.actions.map(parseCardAction);
-          actions.forEach(action => {
-            action(ctx, {});
-          });
+          const cleanups = actions.map(action => action(ctx, {}));
+          return () => cleanups.forEach(c => c());
         }
       }
     ])

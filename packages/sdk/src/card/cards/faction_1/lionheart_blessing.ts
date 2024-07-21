@@ -31,20 +31,30 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
             params: {
               unit: [[{ type: 'is_manual_target', params: { index: 0 } }]],
               effect: {
-                executionContext: 'while_on_board',
-                triggers: [
-                  {
-                    type: 'on_after_unit_deal_damage',
-                    params: { target: [], unit: [[{ type: 'is_self' }]] }
-                  }
-                ],
+                executionContext: 'immediate',
                 actions: [
                   {
-                    type: 'draw_cards',
+                    type: 'zeal',
                     params: {
-                      filter: zealCondition(),
-                      player: [[{ type: 'attack_source_owner' }]],
-                      amount: { type: 'fixed', params: { value: 1 } }
+                      effect: {
+                        executionContext: 'while_on_board',
+                        triggers: [
+                          {
+                            type: 'on_after_unit_deal_damage',
+                            params: { target: [], unit: [[{ type: 'is_self' }]] }
+                          }
+                        ],
+                        actions: [
+                          {
+                            type: 'draw_cards',
+                            params: {
+                              filter: zealCondition(),
+                              player: [[{ type: 'attack_source_owner' }]],
+                              amount: { type: 'fixed', params: { value: 1 } }
+                            }
+                          }
+                        ]
+                      }
                     }
                   }
                 ]
