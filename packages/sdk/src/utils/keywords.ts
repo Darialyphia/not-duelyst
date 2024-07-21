@@ -68,6 +68,14 @@ export const KEYWORDS = {
     description: 'can move anywhere on the battlefield.',
     aliases: []
   },
+  FRENZY: {
+    id: 'frenzy',
+    name: 'Frenzy',
+    description:
+      'When attacking a nearby enemy, deal its attack damage to other nearby enemies.',
+    aliases: ['freeze'],
+    spriteId: 'frozen'
+  },
   FROZEN: {
     id: 'frozen',
     name: 'Frozen',
@@ -162,6 +170,20 @@ export const KEYWORDS = {
     id: 'grow',
     name: 'Grow',
     description: 'This unit gains attack and hp at the starts of its turn.',
+    aliases: []
+  },
+  REBIRTH: {
+    id: 'rebirth',
+    name: 'Rebirth',
+    description:
+      'When destroyed, summon an egg on this space that hatches into a copy of it at the end of your next turn.',
+    aliases: []
+  },
+  INFILTRATE: {
+    id: 'infiltrate',
+    name: 'Infiltrate',
+    description:
+      "Has an additional effect when on the opponent's side of the battlefield",
     aliases: []
   }
 } as const satisfies Record<string, Keyword>;

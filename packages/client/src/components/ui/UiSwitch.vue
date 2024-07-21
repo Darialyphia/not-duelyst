@@ -12,6 +12,8 @@ const switchState = defineModel<boolean>('checked', { required: true });
 
 <style lang="postcss">
 .ui-switch {
+  --thumb-color: var(--primary);
+
   position: relative;
 
   width: 42px;
@@ -23,11 +25,17 @@ const switchState = defineModel<boolean>('checked', { required: true });
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
+  &[disabled] {
+    --thumb-color: var(--disabled);
+
+    background-color: hsl(var(--color-disabled-hsl) / 0.5);
+  }
+
   &:focus-visible {
     box-shadow: 0 0 0 2px black;
   }
 
-  &[data-state='checked'] {
+  &[data-state='checked']:not([disabled]) {
     background-color: hsl(var(--color-primary-hsl) / 0.5);
   }
 }
@@ -42,7 +50,7 @@ const switchState = defineModel<boolean>('checked', { required: true });
   width: 21px;
   height: 21px;
 
-  background-color: var(--primary);
+  background-color: var(--thumb-color);
   border-radius: var(--radius-pill);
 
   transition: transform 100ms;

@@ -130,7 +130,7 @@ const addCard = (card: GenericSerializedBlueprint) => {
         v-else
         v-model:card="selectedCard"
         :format="format"
-        :is-custom-card="isEdited(selectedCard)"
+        :is-custom-card="!isEdited(selectedCard)"
       />
     </section>
   </div>

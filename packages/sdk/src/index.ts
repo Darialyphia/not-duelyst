@@ -27,6 +27,7 @@ export {
   type GenericSerializedBlueprint,
   MULTICOLOR
 } from './card/card-blueprint';
+export type { GenericCardEffect } from './card/card-effect';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

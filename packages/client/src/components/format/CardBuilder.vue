@@ -78,9 +78,22 @@ watch(
 <template>
   <div class="card-builder fancy-scrollbar">
     <div class="controls">
-      <label for="name">Name</label>
-      <UiTextInput id="name" v-model="blueprint.name" :readonly="isCustomCard" />
-      <p class="c-orange-5">Cannot edit name of standard cards</p>
+      <h3>Stats</h3>
+
+      <div :class="!isCustomCard && 'custom-only'">
+        <label for="name">Name</label>
+        <UiTextInput
+          id="name"
+          v-model="blueprint.name"
+          :readonly="!isCustomCard"
+          class="mb-3"
+        />
+        <div class="flex items-center gap-3">
+          <label for="collectable">Appears in collection</label>
+          <UiSwitch v-model:checked="blueprint.collectable" :disabled="!isCustomCard" />
+        </div>
+        <p class="c-orange-5">These informations cann only be edited for custom cards.</p>
+      </div>
 
       <div class="split-row">
         <label class="flex flex-col">
@@ -194,8 +207,45 @@ watch(
       </UiCombobox>
       <p class="c-orange-5">
         Adding a keyword does not implement its effect. Use this in conjunction with the
-        effect builder.
+        effect builder below.
       </p>
+
+      <h3 class="mt-6">Effects</h3>
+
+      <AccordionRoot type="single" collapsible>
+        <AccordionItem
+          v-for="(effect, index) in blueprint.effects"
+          :key="index"
+          :value="`${index}`"
+          class="my-3"
+        >
+          <AccordionHeader as="div" class="flex gap-3">
+            <UiIconButton
+              name="material-symbols:delete-outline"
+              class="error-button"
+              @click="blueprint.effects.splice(index, 1)"
+            >
+              Delete
+            </UiIconButton>
+            <AccordionTrigger>
+              <TextWithKeywords :text="effect.text" :highlighted="false" />
+              <Icon name="mdi:chevron-down" class="chevron" />
+            </AccordionTrigger>
+          </AccordionHeader>
+
+          <AccordionContent class="accordion-content">
+            <EffectBuilder :effect="effect" />
+          </AccordionContent>
+        </AccordionItem>
+
+        <UiFancyButton
+          class="primary-button mt-6"
+          left-icon="material-symbols:add"
+          :to="{ name: 'CreateFormat' }"
+        >
+          New Format
+        </UiFancyButton>
+      </AccordionRoot>
     </div>
     <Card
       class="preview"
@@ -226,7 +276,16 @@ watch(
   gap: var(--size-2);
 
   height: 100%;
-  padding-block: var(--size-3);
+  padding-bottom: var(--size-3);
+}
+
+h3 {
+  margin-bottom: var(--size-5);
+}
+
+.custom-only {
+  padding: var(--size-4);
+  border: solid 1px var(--border-dimmed);
 }
 
 .preview {

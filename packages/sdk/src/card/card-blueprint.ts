@@ -153,6 +153,7 @@ export type GenericSerializedBlueprint = SerializedBlueprint<any> & {
   type: Extract<CardKind, 'SPELL' | 'ARTIFACT'>;
   attack?: number;
   maxHp?: number;
+  effects: GenericCardEffect[];
 };
 
 export const defineSerializedBlueprint = <T extends GenericCardEffect[]>(

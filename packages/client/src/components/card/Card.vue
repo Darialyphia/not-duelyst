@@ -12,13 +12,13 @@ type ICard = Prettify<
     pedestalId?: string;
     cardbackId?: string;
     hp?: CardBlueprint['maxHp'];
+    spriteId?: CardBlueprint['spriteId'];
   } & Pick<
     CardBlueprint,
     | 'name'
     | 'description'
     | 'cost'
     | 'kind'
-    | 'spriteId'
     | 'rarity'
     | 'faction'
     | 'keywords'
@@ -82,13 +82,16 @@ const isUnit = computed(
       <UiCenter class="cost">
         <span>{{ card.cost }}</span>
       </UiCenter>
-      <CardSprite
-        class="sprite"
-        :sprite-id="card.spriteId"
-        :pedestal-id="isUnit ? (card.pedestalId ?? 'pedestal-default') : undefined"
-        :animation="animation"
-        :is-hovered="isHovered"
-      />
+      <div>
+        <CardSprite
+          v-if="card.spriteId"
+          class="sprite"
+          :sprite-id="card.spriteId"
+          :pedestal-id="isUnit ? (card.pedestalId ?? 'pedestal-default') : undefined"
+          :animation="animation"
+          :is-hovered="isHovered"
+        />
+      </div>
       <div
         class="faction"
         :style="{ '--bg': `url(/assets/ui/icon_${card.faction?.id ?? 'neutral'}.png)` }"
@@ -203,6 +206,9 @@ header {
   position: relative;
   transform-origin: bottom left;
   transform: translateZ(var(--z-translate)) scale(2) translate(-25%, 50%);
+
+  height: 100%;
+
   transition: transform 0.3s ease-in;
 
   :is(.spell, .artifact) & {

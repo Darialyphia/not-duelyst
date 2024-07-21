@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { CARDS, FACTION_IDS, KEYWORDS, MULTICOLOR } from '@game/sdk';
 import { isString } from '@game/shared';
-const { text } = defineProps<{ text: string }>();
+const { text, highlighted = true } = defineProps<{
+  text: string;
+  highlighted?: boolean;
+}>();
 
 const KEYWORD_DELIMITER = '@';
 const CARD_NAMES = new Set(Object.values(CARDS).map(c => c.name));
@@ -45,7 +48,7 @@ const tokens = computed(() => {
   <span
     v-for="(token, index) in tokens"
     :key="index"
-    :class="token.type"
+    :class="highlighted && token.type"
     :style="{ '--color': token.color }"
   >
     {{ token.text }}
@@ -63,16 +66,5 @@ const tokens = computed(() => {
 
 .card {
   color: var(--cyan-2);
-}
-
-.rune {
-  aspect-ratio: 1;
-  margin-right: 0.5ch;
-  padding: 0 0.4rem;
-
-  color: var(--color);
-
-  border: solid 1px currentColor;
-  border-radius: var(--radius-round);
 }
 </style>
