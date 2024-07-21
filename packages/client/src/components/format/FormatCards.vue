@@ -166,13 +166,16 @@ h3 {
 section {
   overflow: hidden;
   height: 100%;
+  padding-inline: var(--size-2);
 }
 
 .card-list {
   overflow-y: auto;
   display: grid;
   gap: var(--size-2);
+
   max-height: var(--size-xs);
+  padding: var(--size-2);
 
   .selected {
     --ui-button-border-color: var(--border);

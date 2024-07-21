@@ -82,6 +82,13 @@
   --ui-button-disabled-bg: transparent;
 }
 
+.ghost-error-button {
+  --ui-button-bg: transparent;
+  --ui-button-color: var(--error);
+  --ui-button-hover-bg: hsl(var(--color-error-hover-hsl) / 0.2);
+  --ui-button-disabled-bg: transparent;
+}
+
 button:is(.primary-button, .error-button) {
   --ui-button-disabled-color: var(--text-on-disabled);
   --ui-button-disabled-bg: var(--disabled);
@@ -94,6 +101,13 @@ button:is(.primary-button, .error-button) {
   --ui-button-color: var(--text-on-primary);
 }
 
+.subtle-button {
+  --ui-button-hover-bg: var(--gray-11);
+}
+
+.button-sm {
+  --ui-button-size: var(--font-size-0);
+}
 .error-button {
   --ui-button-bg: var(--error);
   --ui-button-hover-bg: var(--error-hover);

@@ -30,8 +30,10 @@ export type {
   WidenedGenericCardEffect,
   InitAction,
   Trigger,
+  Filter,
   ExecutionContext
 } from './card/card-effect';
+export type { UnitConditionBase, UnitCondition } from './card/conditions/unit-conditions';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

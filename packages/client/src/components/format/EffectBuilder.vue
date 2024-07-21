@@ -14,7 +14,6 @@ const effect = defineModel<WidenedGenericCardEffect>('effect', { required: true 
 const internal = ref(structuredClone(toRaw(effect.value)));
 watchEffect(() => {
   effect.value = internal.value;
-  console.log(internal.value);
 });
 const executionContext = computed({
   get() {
@@ -104,11 +103,23 @@ const id = useId();
 
     <template v-if="internal.config.triggers">
       <h4>Triggers</h4>
-      <TriggerNode
-        v-for="(trigger, index) in internal.config.triggers"
-        :key="index"
-        v-model:trigger="internal.config.triggers[index]"
-      />
+      <template v-for="(trigger, index) in internal.config.triggers" :key="index">
+        <div class="pl-6">
+          <TriggerNode
+            v-model:trigger="internal.config.triggers[index] as any"
+            @delete="internal.config.triggers.splice(index, 1)"
+          />
+        </div>
+        <div v-if="index < internal.config.triggers.length - 1" class="text-center m-2">
+          - OR -
+        </div>
+      </template>
+      <UiButton
+        class="subtle-button mx-auto my-4"
+        @click="internal.config.triggers.push({ type: 'on_unit_play', params: {} })"
+      >
+        Add trigger
+      </UiButton>
     </template>
     <h4>Actions</h4>
     <ul>
@@ -119,7 +130,7 @@ const id = useId();
         />
       </li>
       <UiButton
-        type="button"
+        class="subtle-button"
         left-icon="material-symbols:add"
         @click="internal.config.actions.push({ type: undefined })"
       >
@@ -150,8 +161,8 @@ const id = useId();
 
 h4 {
   margin-block: var(--size-2);
-  font-size: var(--font-size-2);
-  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
 }
 
 .action {

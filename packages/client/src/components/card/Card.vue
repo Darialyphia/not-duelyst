@@ -112,9 +112,19 @@ const isUnit = computed(
       <TextWithKeywords :text="card.description" />
     </div>
 
-    <footer v-if="card.kind === CARD_KINDS.GENERAL || card.kind === CARD_KINDS.MINION">
-      <UiCenter class="attack">{{ card.attack }}</UiCenter>
-      <UiCenter class="hp">{{ card.hp }}</UiCenter>
+    <footer>
+      <UiCenter
+        v-if="card.kind === CARD_KINDS.GENERAL || card.kind === CARD_KINDS.MINION"
+        class="attack"
+      >
+        {{ card.attack }}
+      </UiCenter>
+      <UiCenter
+        v-if="card.kind === CARD_KINDS.GENERAL || card.kind === CARD_KINDS.MINION"
+        class="hp"
+      >
+        {{ card.hp }}
+      </UiCenter>
     </footer>
 
     <Teleport to="body">
@@ -149,7 +159,7 @@ const isUnit = computed(
   transform-style: preserve-3d;
 
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr 76px;
 
   width: 286px;
   height: 410px;
@@ -276,26 +286,26 @@ footer {
 .description {
   transform: translateZ(var(--z-translate));
 
-  align-self: start;
+  /* align-self: start; */
   justify-self: center;
 
+  width: 100%;
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
-  padding: var(--size-1);
+  padding: var(--size-1) var(--size-2);
 
   font-size: var(--font-size-0);
   line-height: 1.2;
   color: var(--gray-0);
+  text-align: center;
   text-wrap: balance;
   white-space: pre-line;
 
-  transition:
-    transform 0.3s ease-in,
-    background-color 0.3s;
+  /* background-color: hsl(0 0 0 / 0.35); */
+  /* border: solid var(--border-size-1) var(--border-dimmed); */
+  border-radius: var(--radius-2);
 
-  &:hover {
-    background-color: hsl(0 0 0 / 0.45);
-  }
+  transition: transform 0.3s ease-in;
 }
 
 .keywords {

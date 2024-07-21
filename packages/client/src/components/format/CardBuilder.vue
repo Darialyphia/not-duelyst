@@ -254,6 +254,13 @@ watch(
             />
           </AccordionContent>
         </AccordionItem>
+        <UiButton
+          class="subtle-button"
+          left-icon="material-symbols:add"
+          @click="blueprint.effects.push({ text: 'Your effect Text', config: {} })"
+        >
+          New Effect
+        </UiButton>
       </AccordionRoot>
     </div>
     <div class="preview">
@@ -289,6 +296,7 @@ watch(
 
   height: 100%;
   padding-bottom: var(--size-3);
+  padding-inline: var(--size-2);
 }
 
 h3 {
@@ -322,6 +330,12 @@ h3 {
       filter: drop-shadow(3px 3px 0 var(--cyan-5))
         drop-shadow(-3px -3px 0 var(--orange-5));
     }
+  }
+  &:focus-within {
+    outline-color: var(--brand, var(--primary));
+    outline-style: solid;
+    outline-offset: 5px;
+    transition: outline-offset 145ms var(--ease-2);
   }
 }
 

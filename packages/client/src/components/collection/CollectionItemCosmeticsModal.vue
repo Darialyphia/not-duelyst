@@ -23,10 +23,11 @@ const pedestals = [
   'pedestal-ocean',
   'pedestal-cyber',
   'pedestal-lava',
-  'pedestal-sand'
+  'pedestal-sand',
+  'pedestal-lyonar'
 ];
 
-const cardBacks = ['default', 'fire', 'clouds', 'wood'];
+const cardBacks = ['default', 'fire', 'clouds', 'wood', 'lyonar'];
 
 const isUnit = computed(
   () =>
