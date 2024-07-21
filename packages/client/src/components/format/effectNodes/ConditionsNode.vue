@@ -32,7 +32,7 @@ const groups = defineModel<Filter<UnitConditionBase>>({ required: true });
       <div class="flex gap-3">
         <UiButton
           class="subtle-button button-sm my-2"
-          @click="groups[groupIndex].push({ type: 'any_unit' })"
+          @click="groups[groupIndex].push({ type: undefined as any })"
         >
           Add a condtion
         </UiButton>
@@ -45,7 +45,10 @@ const groups = defineModel<Filter<UnitConditionBase>>({ required: true });
       </div>
       <div v-if="groupIndex < groups.length - 1" class="text-center">OR</div>
     </div>
-    <UiButton class="subtle-button my-2" @click="groups.push([])">
+    <UiButton
+      class="subtle-button my-2"
+      @click="groups.push([{ type: undefined, params: {} } as any])"
+    >
       Add a condtion group
     </UiButton>
   </div>

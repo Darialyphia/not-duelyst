@@ -104,7 +104,7 @@ const selected = defineModel<TValue | TValue[]>({ required: true });
 .ui-comboox-content {
   z-index: 10;
 
-  width: 15rem;
+  width: max-content;
   max-height: 300px;
   margin-top: 8px;
   padding-block: var(--size-2);

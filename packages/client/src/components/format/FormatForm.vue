@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatConfigValidator } from '@game/api/src/convex/formats/format.utils';
 import { type GameSessionConfig, type GenericSerializedBlueprint } from '@game/sdk';
 
 const emit = defineEmits<{ submit: [typeof form] }>();
@@ -16,12 +17,12 @@ const tab = useRouteQuery('tab', 'config');
 </script>
 
 <template>
-  <TabsRoot
-    v-model="tab"
-    class="fancy-surface fancy-scrollbar container form"
-    style="--container-size: var(--size-xl)"
-  >
+  <TabsRoot v-model="tab" class="fancy-surface fancy-scrollbar form">
     <TabsList aria-label="Create your format" class="fancy-surface tab-list">
+      <div class="text-4 font-600">
+        {{ initialValues.name }}
+      </div>
+      <BackButton :to="{ name: 'FormatList' }" />
       <TabsIndicator class="tab-indicator">
         <div class="bg-primary w-full h-full" />
       </TabsIndicator>
@@ -31,7 +32,7 @@ const tab = useRouteQuery('tab', 'config');
     </TabsList>
 
     <TabsContent value="config" class="tab config-tab fancy-scrollbar">
-      <div>
+      <div class="mx-auto">
         <RulesEditor :config="form" />
       </div>
     </TabsContent>
@@ -121,6 +122,8 @@ fieldset {
   gap: var(--size-4);
 
   padding: 0;
+
+  border: none;
 }
 
 footer {

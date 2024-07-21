@@ -291,12 +291,12 @@ watch(
 .card-builder {
   overflow: auto;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--size-2);
+  grid-template-columns: 1fr auto;
+  gap: var(--size-8);
 
   height: 100%;
   padding-bottom: var(--size-3);
-  padding-inline: var(--size-2);
+  padding-inline: var(--size-6);
 }
 
 h3 {

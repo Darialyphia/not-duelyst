@@ -81,7 +81,9 @@ const triggerOptions = Object.entries(triggerDict).map(([id, { label }]) => ({
   value: id
 })) as Array<{ label: string; value: Trigger['type'] }>;
 
-const params = computed(() => triggerDict[trigger.value.type as Trigger['type']].params);
+const params = computed(
+  () => triggerDict[trigger.value.type as Trigger['type']]?.params ?? []
+);
 
 watch(
   () => trigger.value.type,
@@ -116,7 +118,7 @@ watch(
         :display-value="val => triggerDict[val as Trigger['type']].label as string"
       />
     </div>
-    <div class="my-2 font-500">Parameters</div>
+    <div class="my-2 font-500">Conditions</div>
     <div v-for="param in params" :key="param" class="flex gap-2">
       <span class="capitalize">{{ param }}</span>
       <component :is="componentNodes[param]" v-model="(trigger.params as any)[param]" />

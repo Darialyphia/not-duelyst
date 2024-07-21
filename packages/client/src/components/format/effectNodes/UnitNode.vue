@@ -21,8 +21,11 @@ const unitDict: Record<UnitConditionBase['type'], { label: string; params: strin
   is_nearest_above: { label: 'Is the closest unit above', params: ['unit'] },
   is_below: { label: 'Is below', params: ['unit'] },
   is_nearest_below: { label: 'Is the closest unit  below', params: ['unit'] },
-  is_manual_target: { label: 'Is card target', params: ['index'] },
-  is_manual_target_general: { label: "Is card target's general", params: ['index'] },
+  is_manual_target: { label: 'Is one of this card target', params: ['index'] },
+  is_manual_target_general: {
+    label: "Is one of this card target's general",
+    params: ['index']
+  },
   has_keyword: { label: 'Has a specific keyword', params: ['keyword'] }
 };
 
@@ -32,7 +35,7 @@ const unitOptions = Object.entries(unitDict).map(([id, { label }]) => ({
 })) as Array<{ label: string; value: UnitConditionBase['type'] }>;
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  unitDict[groups.value[groupIndex][conditionIndex].type].params;
+  unitDict[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
   cell: CellNode,
@@ -42,6 +45,8 @@ const componentNodes: Record<string, Component | string> = {
 watchEffect(() => {
   groups.value.forEach(group => {
     group.forEach(condition => {
+      if (!condition.type) return;
+
       match(condition)
         .with(
           { type: 'any_unit' },
@@ -89,7 +94,6 @@ watchEffect(() => {
         .exhaustive();
     });
   });
-  console.log(groups.value);
 });
 </script>
 
@@ -102,7 +106,7 @@ watchEffect(() => {
       :display-value="val => unitDict[val as UnitConditionBase['type']].label as string"
     />
     <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">
-      Parameters
+      Conditions
     </div>
     <div
       v-for="param in getParams(groupIndex, conditionIndex)"

@@ -29,7 +29,8 @@ const executionContext = computed({
       .otherwise(() => {
         internal.value.config.executionContext = val;
         internal.value.config.actions = [];
-        internal.value.config.triggers = [];
+        // @ts-expect-error
+        internal.value.config.triggers = [{ type: undefined, params: {} }];
       });
   }
 });
@@ -178,7 +179,7 @@ h4 {
   position: fixed;
   z-index: 99;
   top: 10dvh;
-  left: var(--size-8);
+  left: 0;
 
   overflow: auto;
 

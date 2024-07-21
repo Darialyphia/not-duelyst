@@ -33,7 +33,16 @@ export type {
   Filter,
   ExecutionContext
 } from './card/card-effect';
-export type { UnitConditionBase, UnitCondition } from './card/conditions/unit-conditions';
+export type {
+  UnitConditionBase,
+  UnitConditionExtras,
+  UnitCondition
+} from './card/conditions/unit-conditions';
+export type {
+  PlayerConditionBase,
+  PlayerConditionExtras,
+  PlayerCondition
+} from './card/conditions/player-condition';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';
