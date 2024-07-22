@@ -292,13 +292,10 @@ footer {
   width: 100%;
   max-width: calc(var(--size-12) + var(--size-7));
   margin-top: var(--size-2);
-  padding: var(--size-1) var(--size-2);
 
   font-size: var(--font-size-0);
   line-height: 1.2;
   color: var(--gray-0);
-  text-align: center;
-  text-wrap: balance;
   white-space: pre-line;
 
   /* background-color: hsl(0 0 0 / 0.35); */

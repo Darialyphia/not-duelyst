@@ -84,6 +84,8 @@ const executionContextOptions = computed(() => {
 
 const isDebugOpen = ref(false);
 const id = useId();
+
+useUnitConditionsProvider(ref({}));
 </script>
 
 <template>

@@ -1,41 +1,22 @@
 <script setup lang="ts">
 import { CellNode, KeywordNode } from '#components';
-import type { Filter, UnitConditionBase } from '@game/sdk';
+import type { Filter, UnitCondition, UnitConditionBase } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const groups = defineModel<Filter<UnitConditionBase>>({ required: true });
 
-const unitDict: Record<UnitConditionBase['type'], { label: string; params: string[] }> = {
-  any_unit: { label: 'Is any unit', params: [] },
-  is_self: { label: 'is the unit being played', params: [] },
-  is_ally: { label: 'Is an ally', params: [] },
-  is_enemy: { label: 'Is an enemy', params: [] },
-  is_general: { label: 'Is a general', params: [] },
-  is_minion: { label: 'Is a minion', params: [] },
-  is_nearby: { label: 'Is nearby', params: ['unit', 'cell'] },
-  is_in_front: { label: 'Is in front of', params: ['unit'] },
-  is_nearest_in_front: { label: 'Is the closest unit in front of', params: ['unit'] },
-  is_behind: { label: 'Is behind', params: ['unit'] },
-  is_nearest_behind: { label: 'Is the closest unit behind', params: ['unit'] },
-  is_above: { label: 'Is above', params: ['unit'] },
-  is_nearest_above: { label: 'Is the closest unit above', params: ['unit'] },
-  is_below: { label: 'Is below', params: ['unit'] },
-  is_nearest_below: { label: 'Is the closest unit  below', params: ['unit'] },
-  is_manual_target: { label: 'Is one of this card target', params: ['index'] },
-  is_manual_target_general: {
-    label: "Is one of this card target's general",
-    params: ['index']
-  },
-  has_keyword: { label: 'Has a specific keyword', params: ['keyword'] }
-};
+const unitDict = useUnitConditions();
 
-const unitOptions = Object.entries(unitDict).map(([id, { label }]) => ({
-  label,
-  value: id
-})) as Array<{ label: string; value: UnitConditionBase['type'] }>;
+const unitOptions = computed(
+  () =>
+    Object.entries(unitDict.value).map(([id, { label }]) => ({
+      label,
+      value: id
+    })) as Array<{ label: string; value: UnitCondition['type'] }>
+);
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  unitDict[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  unitDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
   cell: CellNode,

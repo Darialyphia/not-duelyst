@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
 import { allyGeneral } from '../../helpers/targeting';
 
 export const f1SilverguardSquire = defineSerializedBlueprint({
@@ -19,35 +18,38 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
   spriteId: 'f1_silverguard_squire',
   tags: [],
   effects: [
-    openingGambitEffect({
+    {
       text: 'Give allies directly in front and behind your general +1/+1',
-      actions: [
-        {
-          type: 'change_stats',
-          params: {
-            targets: [
-              [
-                { type: 'is_ally' },
-                {
-                  type: 'is_in_front',
-                  params: { unit: allyGeneral() }
-                }
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'change_stats',
+            params: {
+              targets: [
+                [
+                  { type: 'is_ally' },
+                  {
+                    type: 'is_in_front',
+                    params: { unit: allyGeneral() }
+                  }
+                ],
+                [
+                  { type: 'is_ally' },
+                  {
+                    type: 'is_behind',
+                    params: { unit: allyGeneral() }
+                  }
+                ]
               ],
-              [
-                { type: 'is_ally' },
-                {
-                  type: 'is_behind',
-                  params: { unit: allyGeneral() }
-                }
-              ]
-            ],
-            mode: 'give',
-            attack: { amount: { type: 'fixed', params: { value: 1 } } },
-            hp: { amount: { type: 'fixed', params: { value: 1 } } },
-            stackable: true
+              mode: 'give',
+              attack: { amount: { type: 'fixed', params: { value: 1 } } },
+              hp: { amount: { type: 'fixed', params: { value: 1 } } },
+              stackable: true
+            }
           }
-        }
-      ]
-    })
+        ]
+      }
+    }
   ]
 });

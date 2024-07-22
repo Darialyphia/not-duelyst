@@ -1,7 +1,7 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { fixedAmount } from '../../helpers/amount';
-import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
 import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
 
 export const neutralHealingMystic = defineSerializedBlueprint({
@@ -23,17 +23,20 @@ export const neutralHealingMystic = defineSerializedBlueprint({
     targets: [anyOccupiedCell()]
   },
   effects: [
-    openingGambitEffect({
+    defineCardEffect({
       text: 'Heal another unit for 2',
-      actions: [
-        {
-          type: 'heal',
-          params: {
-            targets: manualTarget(0),
-            amount: fixedAmount(2)
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'heal',
+            params: {
+              targets: manualTarget(0),
+              amount: fixedAmount(2)
+            }
           }
-        }
-      ]
+        ]
+      }
     })
   ]
 });

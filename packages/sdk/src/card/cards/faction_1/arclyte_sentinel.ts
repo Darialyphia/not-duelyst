@@ -1,7 +1,7 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { openingGambitEffect } from '../../helpers/opening-gambit.effect';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1ArclyteSentinel = defineSerializedBlueprint({
@@ -39,20 +39,23 @@ export const f1ArclyteSentinel = defineSerializedBlueprint({
     ]
   },
   effects: [
-    openingGambitEffect({
+    defineCardEffect({
       text: 'Give a nearby minion +2/-2.',
-      actions: [
-        {
-          type: 'change_stats',
-          params: {
-            targets: manualTarget(0),
-            mode: 'give',
-            attack: { amount: { type: 'fixed', params: { value: 2 } } },
-            hp: { amount: { type: 'fixed', params: { value: -2 } } },
-            stackable: true
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'change_stats',
+            params: {
+              targets: manualTarget(0),
+              mode: 'give',
+              attack: { amount: { type: 'fixed', params: { value: 2 } } },
+              hp: { amount: { type: 'fixed', params: { value: -2 } } },
+              stackable: true
+            }
           }
-        }
-      ]
+        ]
+      }
     })
   ]
 });
