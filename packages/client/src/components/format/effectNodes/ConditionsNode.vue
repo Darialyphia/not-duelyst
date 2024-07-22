@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Filter, UnitConditionBase } from '@game/sdk';
+import type { Filter } from '@game/sdk';
 
-const groups = defineModel<Filter<UnitConditionBase>>({ required: true });
+const groups = defineModel<Filter<any>>({ required: true });
 </script>
 
 <template>

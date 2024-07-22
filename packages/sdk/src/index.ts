@@ -43,6 +43,11 @@ export type {
   PlayerConditionExtras,
   PlayerCondition
 } from './card/conditions/player-condition';
+export type {
+  CardCondition,
+  CardConditionBase,
+  CardConditionExtras
+} from './card/conditions/card-conditions';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

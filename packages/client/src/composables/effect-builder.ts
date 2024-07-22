@@ -1,4 +1,11 @@
-import type { UnitConditionBase, UnitConditionExtras } from '@game/sdk';
+import type {
+  CardConditionBase,
+  CardConditionExtras,
+  PlayerConditionBase,
+  PlayerConditionExtras,
+  UnitConditionBase,
+  UnitConditionExtras
+} from '@game/sdk';
 
 export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionState(
   (
@@ -40,6 +47,69 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
 export const useUnitConditions = () => {
   const value = _useUnitConditions();
   if (!value) throw new Error('Use useUnitConditions() inside its provider');
+
+  return value;
+};
+
+export const [usePlayerConditionsProvider, _usePlayerConditions] = createInjectionState(
+  (
+    extrasDict: Ref<
+      Partial<Record<PlayerConditionExtras['type'], { label: string; params: string[] }>>
+    >
+  ) => {
+    const baseDictDict: Record<
+      PlayerConditionBase['type'],
+      { label: string; params: string[] }
+    > = {
+      any_player: { label: 'Is any player', params: [] },
+      ally_player: { label: 'Is you', params: [] },
+      enemy_player: { label: 'Is your opponent', params: [] },
+      is_manual_target_owner: {
+        label: "Is one of this card target's owner",
+        params: ['index']
+      }
+    };
+
+    return computed(() => ({ ...baseDictDict, ...extrasDict.value }));
+  }
+);
+
+export const usePlayerConditions = () => {
+  const value = _usePlayerConditions();
+  if (!value) throw new Error('Use usePlayerConditions() inside its provider');
+
+  return value;
+};
+
+export const [useCardConditionsProvider, _useCardConditions] = createInjectionState(
+  (
+    extrasDict: Ref<
+      Partial<Record<CardConditionExtras['type'], { label: string; params: string[] }>>
+    >
+  ) => {
+    const baseDictDict: Record<
+      CardConditionBase['type'],
+      { label: string; params: string[] }
+    > = {
+      any_card: { label: 'Is any card', params: [] },
+      self: { label: 'Is you', params: [] },
+      minion: { label: 'Is a minion card', params: [] },
+      spell: { label: 'Is a spell card', params: [] },
+      artifact: { label: 'Is an artifact card', params: [] },
+      cost: { label: 'Is a card that costs X', params: ['operator', 'amount'] },
+      index_in_hand: {
+        label: 'Is at position X in your hand (starts at 0)',
+        params: ['index']
+      }
+    };
+
+    return computed(() => ({ ...baseDictDict, ...extrasDict.value }));
+  }
+);
+
+export const useCardConditions = () => {
+  const value = _useCardConditions();
+  if (!value) throw new Error('Use useCardConditions() inside its provider');
 
   return value;
 };

@@ -1,30 +1,21 @@
 <script setup lang="ts">
-import { CellNode, KeywordNode } from '#components';
 import type { Filter, PlayerConditionBase } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const groups = defineModel<Filter<PlayerConditionBase>>({ required: true });
 
-const playerDict: Record<
-  PlayerConditionBase['type'],
-  { label: string; params: string[] }
-> = {
-  any_player: { label: 'Is any player', params: [] },
-  ally_player: { label: 'Is you', params: [] },
-  enemy_player: { label: 'Is your opponent', params: [] },
-  is_manual_target_owner: {
-    label: "Is one of this card target's owner",
-    params: ['index']
-  }
-};
+const playerDict = usePlayerConditions();
 
-const playerOptions = Object.entries(playerDict).map(([id, { label }]) => ({
-  label,
-  value: id
-})) as Array<{ label: string; value: PlayerConditionBase['type'] }>;
+const playerOptions = computed(
+  () =>
+    Object.entries(playerDict.value).map(([id, { label }]) => ({
+      label,
+      value: id
+    })) as Array<{ label: string; value: PlayerConditionBase['type'] }>
+);
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  playerDict[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  playerDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
 
 watchEffect(() => {
   groups.value.forEach(group => {
