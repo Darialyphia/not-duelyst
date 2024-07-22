@@ -32,7 +32,8 @@ export type {
   Trigger,
   Filter,
   ExecutionContext,
-  Action
+  Action,
+  Amount
 } from './card/card-effect';
 export type {
   UnitConditionBase,

@@ -95,6 +95,8 @@ const id = useId();
 
 useUnitConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
+useCellConditionsProvider(ref({}));
+usePlayerConditionsProvider(ref({}));
 </script>
 
 <template>
