@@ -31,7 +31,8 @@ export type {
   InitAction,
   Trigger,
   Filter,
-  ExecutionContext
+  ExecutionContext,
+  Action
 } from './card/card-effect';
 export type {
   UnitConditionBase,
@@ -48,6 +49,11 @@ export type {
   CardConditionBase,
   CardConditionExtras
 } from './card/conditions/card-conditions';
+export type {
+  CellConditionBase,
+  CellCondition,
+  CellConditionExtras
+} from './card/conditions/cell-conditions';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

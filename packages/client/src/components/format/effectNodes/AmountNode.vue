@@ -1,3 +1,3 @@
 <script setup lang="ts"></script>
 
-<template><div>TODO Amount Node</div></template>
+<template><div class="c-red-6">Amount Node not implemented</div></template>

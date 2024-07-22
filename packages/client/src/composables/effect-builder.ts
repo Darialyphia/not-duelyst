@@ -1,6 +1,8 @@
 import type {
   CardConditionBase,
   CardConditionExtras,
+  CellConditionBase,
+  CellConditionExtras,
   PlayerConditionBase,
   PlayerConditionExtras,
   UnitConditionBase,
@@ -13,7 +15,7 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       Partial<Record<UnitConditionExtras['type'], { label: string; params: string[] }>>
     >
   ) => {
-    const baseDictDict: Record<
+    const baseDict: Record<
       UnitConditionBase['type'],
       { label: string; params: string[] }
     > = {
@@ -40,7 +42,7 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       has_keyword: { label: 'Has a specific keyword', params: ['keyword'] }
     };
 
-    return computed(() => ({ ...baseDictDict, ...extrasDict.value }));
+    return computed(() => ({ ...baseDict, ...extrasDict.value }));
   }
 );
 
@@ -57,7 +59,7 @@ export const [usePlayerConditionsProvider, _usePlayerConditions] = createInjecti
       Partial<Record<PlayerConditionExtras['type'], { label: string; params: string[] }>>
     >
   ) => {
-    const baseDictDict: Record<
+    const baseDict: Record<
       PlayerConditionBase['type'],
       { label: string; params: string[] }
     > = {
@@ -70,7 +72,7 @@ export const [usePlayerConditionsProvider, _usePlayerConditions] = createInjecti
       }
     };
 
-    return computed(() => ({ ...baseDictDict, ...extrasDict.value }));
+    return computed(() => ({ ...baseDict, ...extrasDict.value }));
   }
 );
 
@@ -87,7 +89,7 @@ export const [useCardConditionsProvider, _useCardConditions] = createInjectionSt
       Partial<Record<CardConditionExtras['type'], { label: string; params: string[] }>>
     >
   ) => {
-    const baseDictDict: Record<
+    const baseDict: Record<
       CardConditionBase['type'],
       { label: string; params: string[] }
     > = {
@@ -98,18 +100,55 @@ export const [useCardConditionsProvider, _useCardConditions] = createInjectionSt
       artifact: { label: 'Is an artifact card', params: [] },
       cost: { label: 'Is a card that costs X', params: ['operator', 'amount'] },
       index_in_hand: {
-        label: 'Is at position X in your hand (starts at 0)',
+        label: 'Is at position X in your hand',
         params: ['index']
       }
     };
 
-    return computed(() => ({ ...baseDictDict, ...extrasDict.value }));
+    return computed(() => ({ ...baseDict, ...extrasDict.value }));
   }
 );
 
 export const useCardConditions = () => {
   const value = _useCardConditions();
   if (!value) throw new Error('Use useCardConditions() inside its provider');
+
+  return value;
+};
+
+export const [useCellConditionsProvider, _useCellConditions] = createInjectionState(
+  (
+    extrasDict: Ref<
+      Partial<Record<CellConditionExtras['type'], { label: string; params: string[] }>>
+    >
+  ) => {
+    const baseDict: Record<
+      CellConditionBase['type'],
+      { label: string; params: string[] }
+    > = {
+      any_cell: { label: 'Is anywhere', params: [] },
+      is_empty: { label: 'Is empty', params: [] },
+      is_top_left_corner: { label: 'Is the top-left corner', params: [] },
+      is_top_right_corner: { label: 'Is the top-right corner', params: [] },
+      is_bottom_left_corner: { label: 'Is the bottom-left corner', params: [] },
+      is_bottom_right_corner: { label: 'Is the bottom-right corner', params: [] },
+      has_unit: { label: 'Has a unit on it', params: ['unit'] },
+      is_nearby: { label: 'Is nearby a unit', params: ['unit'] },
+      is_in_front: { label: 'Is in front of a unit', params: ['unit'] },
+      is_behind: { label: 'Is behind a unit', params: ['unit'] },
+      is_above: { label: 'Is above a unit', params: ['unit'] },
+      is_below: { label: 'Is below a unit', params: ['unit'] },
+      is_manual_target: { label: 'Is one of this card target', params: ['index'] },
+      is_at: { label: 'Is at coordinates', params: ['x', 'y', 'z'] }
+    };
+
+    return computed(() => ({ ...baseDict, ...extrasDict.value }));
+  }
+);
+
+export const useCellConditions = () => {
+  const value = _useCellConditions();
+  if (!value) throw new Error('Use useCellConditions() inside its provider');
 
   return value;
 };

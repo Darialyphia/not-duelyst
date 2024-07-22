@@ -95,11 +95,13 @@ watchEffect(() => {
       class="flex gap-2"
     >
       <span class="capitalize">{{ param }}</span>
-      <input
-        v-if="param === 'index'"
-        v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
-        type="number"
-      />
+      <div v-if="param === 'index'" class="flex gap-3 items-center">
+        <input
+          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          type="number"
+        />
+        <span class="c-orange-5 text-0">(0 = first target, 1 = second target, etc)</span>
+      </div>
       <template v-if="param === 'unit'">
         <UnitNode
           v-if="(groups[groupIndex][conditionIndex] as any).params[param]"

@@ -24,7 +24,7 @@ export const neutralHealingMystic = defineSerializedBlueprint({
   },
   effects: [
     defineCardEffect({
-      text: 'Heal another unit for 2',
+      text: '@Opening Gambit@: Heal another unit for 2.',
       config: {
         executionContext: 'immediate',
         actions: [

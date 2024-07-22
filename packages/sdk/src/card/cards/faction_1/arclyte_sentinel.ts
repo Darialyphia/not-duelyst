@@ -40,7 +40,7 @@ export const f1ArclyteSentinel = defineSerializedBlueprint({
   },
   effects: [
     defineCardEffect({
-      text: 'Give a nearby minion +2/-2.',
+      text: '@Opening Gambit@: Give a nearby minion +2/-2.',
       config: {
         executionContext: 'immediate',
         actions: [

@@ -22,7 +22,7 @@ export const neutralRiftWalker = defineSerializedBlueprint({
   effects: [
     airdropEffect(),
     defineCardEffect({
-      text: 'Deal 2 damage to the nearest unit in front, behind, above, and below this.',
+      text: '@Opening Gambit@: Deal 2 damage to the nearest unit in front, behind, above, and below this.',
       config: {
         executionContext: 'immediate',
         actions: [

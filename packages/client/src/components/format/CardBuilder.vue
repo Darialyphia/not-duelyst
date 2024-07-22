@@ -225,7 +225,7 @@ watch(
 
       <h3 class="mt-6">Effects</h3>
 
-      <AccordionRoot type="single" collapsible>
+      <AccordionRoot type="multiple" collapsible>
         <AccordionItem
           v-for="(effect, index) in blueprint.effects"
           :key="index"

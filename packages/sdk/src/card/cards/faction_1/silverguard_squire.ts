@@ -19,7 +19,7 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
   tags: [],
   effects: [
     {
-      text: 'Give allies directly in front and behind your general +1/+1',
+      text: '@Opening Gambit@: Give allies directly in front and behind your general +1/+1',
       config: {
         executionContext: 'immediate',
         actions: [

@@ -15,6 +15,14 @@ const internal = ref(structuredClone(toRaw(effect.value)));
 watchEffect(() => {
   effect.value = internal.value;
 });
+
+watch(
+  () => blueprint.id,
+  () => {
+    internal.value = effect.value;
+  }
+);
+
 const executionContext = computed({
   get() {
     return internal.value.config.executionContext;
@@ -130,13 +138,18 @@ usePlayerConditionsProvider(ref({}));
       <li v-for="(action, index) in internal.config.actions" :key="index" class="action">
         <InitActionNode
           v-if="internal.config.executionContext === 'on_init'"
-          v-model:action="internal.config.actions[index]"
+          v-model="internal.config.actions[index]"
+        />
+        <ActionNode
+          v-else
+          v-model="internal.config.actions[index]"
+          :triggers="internal.config.triggers"
         />
       </li>
       <UiButton
         class="subtle-button"
         left-icon="material-symbols:add"
-        @click="internal.config.actions.push({ type: undefined })"
+        @click="internal.config.actions.push({ type: undefined, params: {} })"
       >
         Add action
       </UiButton>
@@ -167,6 +180,7 @@ h4 {
   margin-block: var(--size-2);
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
+  color: var(--primary);
 }
 
 .action {

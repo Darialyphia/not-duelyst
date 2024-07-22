@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CardConditionBase, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
+import { NumericOperatorNode, AmountNode } from '#components';
 
 const groups = defineModel<Filter<CardConditionBase>>({ required: true });
 
@@ -21,13 +22,37 @@ watchEffect(() => {
   groups.value.forEach(group => {
     group.forEach(condition => {
       if (!condition.type) return;
-      match(condition).otherwise(() => {
-        return;
-      });
-      // .exhaustive();
+      match(condition)
+        .with(
+          { type: 'any_card' },
+          { type: 'self' },
+          { type: 'minion' },
+          { type: 'spell' },
+          { type: 'artifact' },
+          () => {
+            return;
+          }
+        )
+        .with({ type: 'index_in_hand' }, condition => {
+          condition.params = {
+            index: 0
+          };
+        })
+        .with({ type: 'cost' }, condition => {
+          condition.params = {
+            // @ts-expect-error
+            amount: { type: undefined }
+          };
+        })
+        .exhaustive();
     });
   });
 });
+
+const componentNodes: Record<string, Component | string> = {
+  operator: NumericOperatorNode,
+  amount: AmountNode
+};
 </script>
 
 <template>
@@ -52,6 +77,13 @@ watchEffect(() => {
         v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />
+      <template v-else>
+        <component
+          :is="componentNodes[param]"
+          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        />
+      </template>
     </div>
   </ConditionsNode>
 </template>

@@ -1,3 +1,3 @@
 <script setup lang="ts"></script>
 
-<template><div>TODO Numeric Operator Node</div></template>
+<template><div class="c-red-6">NumericOperator Node not implemented</div></template>

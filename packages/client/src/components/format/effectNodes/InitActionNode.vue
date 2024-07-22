@@ -6,7 +6,7 @@ const options = [
   { label: 'Rush', value: 'rush' }
 ] satisfies Array<{ label: string; value: InitAction['type'] }>;
 
-const action = defineModel<InitAction>('action', { required: true });
+const action = defineModel<InitAction>({ required: true });
 const vModel = computed({
   get() {
     return action.value.type;

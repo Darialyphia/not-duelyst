@@ -1,3 +1,3 @@
 <script setup lang="ts"></script>
 
-<template><div>TODO Keyword Node</div></template>
+<template><div class="c-red-6">Keyword Node not implemented</div></template>
