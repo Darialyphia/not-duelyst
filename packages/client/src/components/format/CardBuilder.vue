@@ -331,7 +331,7 @@ h3 {
         drop-shadow(-3px -3px 0 var(--orange-5));
     }
   }
-  &:focus-within {
+  &:has(:focus-visible) {
     outline-color: var(--brand, var(--primary));
     outline-style: solid;
     outline-offset: 5px;

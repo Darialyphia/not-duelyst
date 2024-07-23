@@ -3,7 +3,7 @@ import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
 import type { Action, Amount, Filter, InitAction, NumericOperator } from './card-effect';
 import type { Entity } from '../entity/entity';
-import { isDefined, type AnyObject, type Nullable, type Point3D } from '@game/shared';
+import { type AnyObject, type Nullable, type Point3D } from '@game/shared';
 import type { Card } from './card';
 import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
