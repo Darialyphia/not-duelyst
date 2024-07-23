@@ -16,39 +16,38 @@ const playerOptions = computed(
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
   playerDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
-
-watchEffect(() => {
-  groups.value.forEach(group => {
-    group.forEach(condition => {
-      if (!condition.type) return;
-      match(condition)
-        .with(
-          { type: 'any_player' },
-          { type: 'ally_player' },
-          { type: 'enemy_player' },
-          () => {
-            return;
-          }
-        )
-        .with({ type: 'is_manual_target_owner' }, condition => {
-          condition.params ??= {
-            index: 0
-          };
-        })
-        .exhaustive();
-    });
-  });
-});
 </script>
 
 <template>
-  <ConditionsNode v-slot="{ conditionIndex, groupIndex, ...slotProps }" v-model="groups">
+  <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiCombobox
-      v-bind="slotProps"
       class="w-full"
+      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :multiple="false"
       :options="playerOptions"
-      :display-value="
-        val => playerDict[val as PlayerConditionBase['type']].label as string
+      :display-value="val => playerDict[val].label"
+      @update:model-value="
+        type => {
+          const condition = groups[groupIndex][conditionIndex];
+
+          condition.type = type;
+
+          match(condition)
+            .with(
+              { type: 'any_player' },
+              { type: 'ally_player' },
+              { type: 'enemy_player' },
+              () => {
+                return;
+              }
+            )
+            .with({ type: 'is_manual_target_owner' }, condition => {
+              condition.params = {
+                index: 0
+              };
+            })
+            .exhaustive();
+        }
       "
     />
     <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">

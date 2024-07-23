@@ -2,9 +2,10 @@
   setup
   lang="ts"
   generic="
+    TMultiple extends boolean,
     TValue extends string | number | boolean | Record<string, any>,
     TItem,
-    TDefault extends TValue | TValue[]
+    TDefault extends TMultiple extends true ? TValue[] : TValue
   "
 >
 const {
@@ -17,16 +18,18 @@ const {
   options: Array<{ label: string; value: TValue; item?: TItem }>;
   displayValue?: (val: TDefault) => string;
   defaultValue?: TDefault;
-  multiple?: boolean;
+  multiple?: TMultiple;
   placeholder?: string;
 }>();
 
-const selected = defineModel<TValue | TValue[]>({ required: true });
+const selected = defineModel<TMultiple extends true ? TValue[] : TValue>({
+  required: true
+});
 </script>
 
 <template>
   <ComboboxRoot
-    v-model="selected"
+    v-model="selected as any"
     class="ui-combobox-root"
     :default-value="defaultValue as any"
     :display-value="displayValue"

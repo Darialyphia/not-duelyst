@@ -45,55 +45,54 @@ const amountOptions = computed(
 
 const params = computed(() => amountDict[amount.value.type]?.params ?? []);
 const id = useId();
-
-watch(
-  () => amount.value.type,
-  () => {
-    if (!amount.value.type) return;
-
-    match(amount.value)
-      .with({ type: 'fixed' }, amount => {
-        amount.params ??= {
-          value: 0
-        };
-      })
-      .with(
-        {
-          type: 'cards_in_hands'
-        },
-        amount => {
-          amount.params ??= {
-            player: []
-          };
-        }
-      )
-      .with(
-        { type: 'cost' },
-        { type: 'maxHp' },
-        { type: 'attack' },
-        { type: 'lowest_attack' },
-        { type: 'highest_attack' },
-        { type: 'hp' },
-        { type: 'lowest_hp' },
-        { type: 'highest_hp' },
-        amount => {
-          amount.params ??= {
-            unit: []
-          };
-        }
-      )
-      .exhaustive();
-  }
-);
 </script>
 
 <template>
   <div>
     <UiCombobox
-      v-model="amount.type"
+      :model-value="amount.type"
       class="w-full mb-3"
       :options="amountOptions"
-      :display-value="val => amountDict[val as GenericAmount['type']].label as string"
+      :multiple="false"
+      :display-value="val => amountDict[val].label"
+      @update:model-value="
+        type => {
+          amount.type = type;
+
+          match(amount)
+            .with({ type: 'fixed' }, amount => {
+              amount.params = {
+                value: 0
+              };
+            })
+            .with(
+              {
+                type: 'cards_in_hands'
+              },
+              amount => {
+                amount.params = {
+                  player: []
+                };
+              }
+            )
+            .with(
+              { type: 'cost' },
+              { type: 'maxHp' },
+              { type: 'attack' },
+              { type: 'lowest_attack' },
+              { type: 'highest_attack' },
+              { type: 'hp' },
+              { type: 'lowest_hp' },
+              { type: 'highest_hp' },
+              amount => {
+                amount.params = {
+                  unit: []
+                };
+              }
+            )
+            .exhaustive();
+        }
+      "
     />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2">

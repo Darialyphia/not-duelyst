@@ -7,7 +7,6 @@ import {
   UnitNode
 } from '#components';
 import type { Action, WidenedGenericCardEffect } from '@game/sdk';
-import { isEmptyObject } from '@game/shared';
 import { match } from 'ts-pattern';
 
 const { triggers } = defineProps<{
@@ -75,84 +74,10 @@ const actionOptions = computed(
 
 const params = computed(() => actionDict[action.value.type]?.params ?? []);
 
-const setDefaults = () => {
-  match(action.value)
-    .with({ type: 'deal_damage' }, action => {
-      action.params ??= {
-        // @ts-expect-error
-        amount: { type: undefined },
-        targets: [],
-        filter: []
-      };
-    })
-    .with({ type: 'heal' }, action => {
-      action.params ??= {
-        // @ts-expect-error
-        amount: { type: undefined },
-        targets: [],
-        filter: []
-      };
-    })
-    .with({ type: 'draw_cards' }, action => {
-      action.params ??= {
-        // @ts-expect-error
-        amount: { type: undefined },
-        player: [],
-        filter: []
-      };
-    })
-    .with({ type: 'change_stats' }, action => {
-      action.params ??= {
-        mode: 'give',
-        stackable: true,
-        // @ts-expect-error
-        attack: { type: undefined },
-        // @ts-expect-error
-        hp: { type: undefined },
-        targets: [],
-        filter: []
-      };
-    })
-    .with({ type: 'destroy_unit' }, action => {
-      action.params ??= {
-        targets: [],
-        filter: []
-      };
-    })
-    .with({ type: 'provoke' }, action => {
-      action.params ??= { filter: [], activeWhen: [] };
-    })
-    .with({ type: 'celerity' }, action => {
-      action.params ??= { filter: [], activeWhen: [] };
-    })
-    .with({ type: 'zeal' }, action => {
-      action.params ??= {
-        // @ts-expect-error
-        effect: { executionContext: undefined, actions: [], filter: [] }
-      };
-    })
-    .with({ type: 'add_effect' }, action => {
-      action.params ??= {
-        unit: [],
-        // @ts-expect-error
-        effect: { executionContext: undefined, actions: [] },
-        filter: []
-      };
-    })
-    .exhaustive();
-};
-
 watch(
   () => action.value.type,
   () => {
     if (!action.value.type) return;
-
-    const shouldSetDefaults =
-      !isDefined(action.value.params) || isEmptyObject(action.value.params);
-
-    if (shouldSetDefaults) {
-      setDefaults();
-    }
 
     if (!action.value.params.filter) {
       action.value.params.filter = [];
@@ -168,10 +93,81 @@ watch(
 <template>
   <div>
     <UiCombobox
-      v-model="action.type"
+      :model-value="action.type"
       class="w-full mb-3"
       :options="actionOptions"
-      :display-value="val => actionDict[val as Action['type']].label as string"
+      :multiple="false"
+      :display-value="val => actionDict[val].label"
+      @update:model-value="
+        type => {
+          action.type = type;
+
+          match(action)
+            .with({ type: 'deal_damage' }, action => {
+              action.params = {
+                // @ts-expect-error
+                amount: { type: undefined },
+                targets: [[{ type: undefined as any }]],
+                filter: []
+              };
+            })
+            .with({ type: 'heal' }, action => {
+              action.params = {
+                // @ts-expect-error
+                amount: { type: undefined },
+                targets: [[{ type: undefined as any }]],
+                filter: []
+              };
+            })
+            .with({ type: 'draw_cards' }, action => {
+              action.params = {
+                // @ts-expect-error
+                amount: { type: undefined },
+                player: [[{ type: undefined as any }]],
+                filter: []
+              };
+            })
+            .with({ type: 'change_stats' }, action => {
+              action.params = {
+                mode: 'give',
+                stackable: true,
+                // @ts-expect-error
+                attack: { type: undefined },
+                // @ts-expect-error
+                hp: { type: undefined },
+                targets: [[{ type: undefined as any }]],
+                filter: []
+              };
+            })
+            .with({ type: 'destroy_unit' }, action => {
+              action.params = {
+                targets: [[{ type: undefined as any }]],
+                filter: []
+              };
+            })
+            .with({ type: 'provoke' }, action => {
+              action.params = { filter: [], activeWhen: [] };
+            })
+            .with({ type: 'celerity' }, action => {
+              action.params = { filter: [], activeWhen: [] };
+            })
+            .with({ type: 'zeal' }, action => {
+              action.params = {
+                // @ts-expect-error
+                effect: { executionContext: undefined, actions: [], filter: [] }
+              };
+            })
+            .with({ type: 'add_effect' }, action => {
+              action.params = {
+                unit: [[{ type: undefined as any }]],
+                // @ts-expect-error
+                effect: { executionContext: undefined, actions: [] },
+                filter: []
+              };
+            })
+            .exhaustive();
+        }
+      "
     />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2">

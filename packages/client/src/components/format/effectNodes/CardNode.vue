@@ -18,37 +18,6 @@ const cardOptions = computed(
 const getParams = (groupIndex: number, conditionIndex: number) =>
   cardDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
 
-watchEffect(() => {
-  groups.value.forEach(group => {
-    group.forEach(condition => {
-      if (!condition.type) return;
-      match(condition)
-        .with(
-          { type: 'any_card' },
-          { type: 'self' },
-          { type: 'minion' },
-          { type: 'spell' },
-          { type: 'artifact' },
-          () => {
-            return;
-          }
-        )
-        .with({ type: 'index_in_hand' }, condition => {
-          condition.params ??= {
-            index: 0
-          };
-        })
-        .with({ type: 'cost' }, condition => {
-          condition.params ??= {
-            // @ts-expect-error
-            amount: { type: undefined }
-          };
-        })
-        .exhaustive();
-    });
-  });
-});
-
 const componentNodes: Record<string, Component | string> = {
   operator: NumericOperatorNode,
   amount: AmountNode
@@ -56,12 +25,44 @@ const componentNodes: Record<string, Component | string> = {
 </script>
 
 <template>
-  <ConditionsNode v-slot="{ conditionIndex, groupIndex, ...slotProps }" v-model="groups">
+  <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiCombobox
-      v-bind="slotProps"
       class="w-full"
+      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :multiple="false"
       :options="cardOptions"
-      :display-value="val => cardDict[val as CardConditionBase['type']].label as string"
+      :display-value="val => cardDict[val].label"
+      @update:model-value="
+        type => {
+          const condition = groups[groupIndex][conditionIndex];
+
+          condition.type = type;
+
+          match(condition)
+            .with(
+              { type: 'any_card' },
+              { type: 'self' },
+              { type: 'minion' },
+              { type: 'spell' },
+              { type: 'artifact' },
+              () => {
+                return;
+              }
+            )
+            .with({ type: 'index_in_hand' }, condition => {
+              condition.params = {
+                index: 0
+              };
+            })
+            .with({ type: 'cost' }, condition => {
+              condition.params = {
+                // @ts-expect-error
+                amount: { type: undefined }
+              };
+            })
+            .exhaustive();
+        }
+      "
     />
     <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">
       Conditions

@@ -34,7 +34,7 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       is_nearest_above: { label: 'Is the closest unit above', params: ['unit'] },
       is_below: { label: 'Is below', params: ['unit'] },
       is_nearest_below: { label: 'Is the closest unit  below', params: ['unit'] },
-      is_manual_target: { label: 'Is one of this card target', params: ['index'] },
+      is_manual_target: { label: "Is one of this card's target", params: ['index'] },
       is_manual_target_general: {
         label: "Is one of this card target's general",
         params: ['index']

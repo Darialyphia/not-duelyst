@@ -18,64 +18,65 @@ const cellOptions = computed(
 const getParams = (groupIndex: number, conditionIndex: number) =>
   cellDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
 
-watchEffect(() => {
-  groups.value.forEach(group => {
-    group.forEach(condition => {
-      if (!condition.type) return;
-      match(condition)
-        .with(
-          { type: 'any_cell' },
-          { type: 'is_empty' },
-          { type: 'is_top_left_corner' },
-          { type: 'is_top_right_corner' },
-          { type: 'is_bottom_left_corner' },
-          { type: 'is_bottom_right_corner' },
-          () => {
-            return;
-          }
-        )
-        .with({ type: 'is_manual_target' }, condition => {
-          condition.params ??= {
-            index: 0
-          };
-        })
-        .with(
-          { type: 'has_unit' },
-          { type: 'is_nearby' },
-          { type: 'is_in_front' },
-          { type: 'is_behind' },
-          { type: 'is_above' },
-          { type: 'is_below' },
-          condition => {
-            condition.params ??= {
-              unit: []
-            };
-          }
-        )
-        .with({ type: 'is_at' }, condition => {
-          condition.params ??= {
-            x: 0,
-            y: 0,
-            z: 0
-          };
-        })
-        .exhaustive();
-    });
-  });
-});
-
 const componentNodes: Record<string, Component | string> = {
   unit: UnitNode
 };
 </script>
 
 <template>
-  <ConditionsNode v-slot="{ conditionIndex, groupIndex, ...slotProps }" v-model="groups">
+  <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiCombobox
-      v-bind="slotProps"
       class="w-full"
+      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :multiple="false"
       :options="cellOptions"
-      :display-value="val => cellDict[val as CellConditionBase['type']].label as string"
+      :display-value="val => cellDict[val].label"
+      @update:model-value="
+        type => {
+          const condition = groups[groupIndex][conditionIndex];
+
+          condition.type = type;
+
+          match(condition)
+            .with(
+              { type: 'any_cell' },
+              { type: 'is_empty' },
+              { type: 'is_top_left_corner' },
+              { type: 'is_top_right_corner' },
+              { type: 'is_bottom_left_corner' },
+              { type: 'is_bottom_right_corner' },
+              () => {
+                return;
+              }
+            )
+            .with({ type: 'is_manual_target' }, condition => {
+              condition.params = {
+                index: 0
+              };
+            })
+            .with(
+              { type: 'has_unit' },
+              { type: 'is_nearby' },
+              { type: 'is_in_front' },
+              { type: 'is_behind' },
+              { type: 'is_above' },
+              { type: 'is_below' },
+              condition => {
+                condition.params = {
+                  unit: [[]]
+                };
+              }
+            )
+            .with({ type: 'is_at' }, condition => {
+              condition.params = {
+                x: 0,
+                y: 0,
+                z: 0
+              };
+            })
+            .exhaustive();
+        }
+      "
     />
     <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">
       Conditions

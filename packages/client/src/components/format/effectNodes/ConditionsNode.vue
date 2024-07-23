@@ -1,7 +1,7 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends { type: string }">
 import type { Filter } from '@game/sdk';
 
-const groups = defineModel<Filter<any>>({ required: true });
+const groups = defineModel<Filter<T>>({ required: true });
 </script>
 
 <template>
@@ -18,10 +18,6 @@ const groups = defineModel<Filter<any>>({ required: true });
             <div>
               <slot
                 v-bind="{
-                  modelValue: condition.type,
-                  'onUpdate:modelValue'(val: any) {
-                    condition.type = val;
-                  },
                   groupIndex,
                   conditionIndex
                 }"
@@ -33,7 +29,7 @@ const groups = defineModel<Filter<any>>({ required: true });
         <div class="flex justify-end gap-3">
           <UiButton
             class="subtle-button button-sm my-2"
-            @click="groups[groupIndex].push({ type: undefined as any })"
+            @click="groups[groupIndex].push({ type: undefined as any } as any)"
           >
             Add a condtion
           </UiButton>
