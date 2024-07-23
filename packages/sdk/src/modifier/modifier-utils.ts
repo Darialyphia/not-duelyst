@@ -386,7 +386,7 @@ export const aura = ({
   const cleanup = (session: GameSession, attachedTo: Entity) => {
     session.off('entity:created', checkListener);
     session.off('entity:after_destroy', checkListener);
-    session.off('entity:after-move', checkListener);
+    session.off('entity:after_move', checkListener);
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
@@ -411,7 +411,7 @@ export const aura = ({
 
           session.on('entity:created', checkListener);
           session.on('entity:after_destroy', checkListener);
-          session.on('entity:after-move', () => {
+          session.on('entity:after_move', () => {
             checkListener();
           });
 

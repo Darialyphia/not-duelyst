@@ -119,7 +119,7 @@ export const useEntityTexture = (
     await playAnimation('castend', 1, () => true)(event);
   });
   useDispatchCallback(
-    'entity:after-move',
+    'entity:after_move',
     event => {
       if (!event.entity.equals(entity.value)) return;
 

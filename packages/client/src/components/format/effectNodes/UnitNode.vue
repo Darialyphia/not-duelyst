@@ -65,7 +65,8 @@ watchEffect(() => {
           }
         )
         .with({ type: 'is_nearby' }, condition => {
-          condition.params = { unit: [], cell: [] };
+          console.log(condition.params);
+          condition.params ??= { unit: [], cell: [] };
         })
         .with({ type: 'has_keyword' }, condtion => {
           condtion.params ??= {

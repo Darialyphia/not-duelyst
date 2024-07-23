@@ -257,7 +257,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 once: trigger.once,
-                eventName: 'entity:before-move',
+                eventName: 'entity:before_move',
                 filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,
@@ -272,7 +272,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 once: trigger.once,
-                eventName: 'entity:after-move',
+                eventName: 'entity:after_move',
                 filter(ctx, [event], eventName) {
                   return getUnits({
                     ...ctx,

@@ -187,10 +187,10 @@ export const getCells = ({
             return session.boardSystem.getCellAt(event.entity.position)?.equals(cell);
           })
           .with({ type: 'moved_unit_old_position' }, () => {
-            if (eventName === 'entity:before-move') {
+            if (eventName === 'entity:before_move') {
               return session.boardSystem.getCellAt(event.entity.position)?.equals(cell);
             }
-            if (eventName === 'entity:-after-move') {
+            if (eventName === 'entity:-after_move') {
               return session.boardSystem.getCellAt(event.previousPosition)?.equals(cell);
             }
             return false;

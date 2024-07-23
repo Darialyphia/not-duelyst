@@ -15,7 +15,7 @@ watchEffect(() => {
 });
 const isMoving = ref(false);
 
-useDispatchCallback('entity:after-move', async event => {
+useDispatchCallback('entity:after_move', async event => {
   if (!event.entity.equals(entity.value)) return;
   return new Promise(resolve => {
     move(event.path, resolve);

@@ -56,7 +56,7 @@ export class ClientSession extends GameSession {
       callbacks.forEach(cb => cb.post(event, index, events));
 
       // await match(event)
-      //   .with({ eventName: 'entity:after-move' }, async (event: any) => {
+      //   .with({ eventName: 'entity:after_move' }, async (event: any) => {
       //     const stopRunning = this.fxSystem.playAnimationUntil(event.entity.id, 'run');
       //     await this.fxSystem.moveEntity(
       //       event.entity.id,

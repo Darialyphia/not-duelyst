@@ -22,6 +22,7 @@ import {
   type PlayerArtifactId
 } from './player-artifact';
 import { SafeEventEmitter } from '../utils/safe-event-emitter';
+import type { Entity } from '../entity/entity';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -142,6 +143,10 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     return this.session.playerSystem.getOpponent(this.id);
   }
 
+  get isHandFull() {
+    return this.hand.length === this.session.config.MAX_HAND_SIZE;
+  }
+
   setup() {
     this.cards = this.options.deck.map((card, index) => {
       return createCard(this.session, card, index, this.id);
@@ -247,6 +252,17 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     card.setup();
 
     return card;
+  }
+
+  bounceToHand(entity: Entity) {
+    this.session.entitySystem.removeEntity(entity);
+    if (this.isHandFull) {
+      this.graveyard.push(entity.card);
+      return false;
+    } else {
+      this.hand.push(entity.card);
+      return true;
+    }
   }
 
   serialize(): SerializedPlayer {

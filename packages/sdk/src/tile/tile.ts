@@ -25,7 +25,7 @@ export class Tile {
     this.checkOccupation = this.checkOccupation.bind(this);
     this.session.on('entity:created', this.checkOccupation);
     this.session.on('entity:after_destroy', this.checkOccupation);
-    this.session.on('entity:after-move', this.checkOccupation);
+    this.session.on('entity:after_move', this.checkOccupation);
     this.checkOccupation();
     this.blueprint.onCreated?.(this.session, this.occupant, this);
   }

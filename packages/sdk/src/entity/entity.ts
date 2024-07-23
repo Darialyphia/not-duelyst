@@ -33,8 +33,14 @@ export const ENTITY_EVENTS = {
   BEFORE_DESTROY: 'before_destroy',
   AFTER_DESTROY: 'after_destroy',
 
-  BEFORE_MOVE: 'before-move',
-  AFTER_MOVE: 'after-move',
+  BEFORE_MOVE: 'before_move',
+  AFTER_MOVE: 'after_move',
+
+  BEFORE_TELEPORT: 'before_teleport',
+  AFTER_TELEPORT: 'after_teleport',
+
+  BEFORE_BOUNCE: 'before_bounce',
+  AFTER_BOUNCE: 'after_bounce',
 
   BEFORE_DEAL_DAMAGE: 'before_deal_damage',
   AFTER_DEAL_DAMAGE: 'after_deal_damage',
@@ -75,10 +81,16 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.BEFORE_DESTROY]: [entity: Entity];
   [ENTITY_EVENTS.AFTER_DESTROY]: [entity: Entity];
 
+  [ENTITY_EVENTS.BEFORE_BOUNCE]: [entity: Entity];
+  [ENTITY_EVENTS.AFTER_BOUNCE]: [{ entity: Entity; successful: boolean }];
+
   [ENTITY_EVENTS.BEFORE_MOVE]: [{ entity: Entity; path: Point3D[] }];
   [ENTITY_EVENTS.AFTER_MOVE]: [
     { entity: Entity; path: Point3D[]; previousPosition: Vec3 }
   ];
+
+  [ENTITY_EVENTS.BEFORE_TELEPORT]: [{ entity: Entity; destination: Point3D }];
+  [ENTITY_EVENTS.AFTER_TELEPORT]: [{ entity: Entity; previousPosition: Vec3 }];
 
   [ENTITY_EVENTS.BEFORE_DEAL_DAMAGE]: [event: DealDamageEvent];
   [ENTITY_EVENTS.AFTER_DEAL_DAMAGE]: [event: DealDamageEvent];
@@ -350,7 +362,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     });
   }
 
-  move(path: Point3D[], isDisplacement = false) {
+  move(path: Point3D[]) {
     this.emit(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
     const currentPosition = this.position;
 
@@ -358,14 +370,24 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
       this.position = Vec3.fromPoint3D(point);
     }
 
-    if (!isDisplacement) {
-      this.movementsTaken++;
-    }
     this.emit(ENTITY_EVENTS.AFTER_MOVE, {
       entity: this,
       path,
       previousPosition: currentPosition
     });
+  }
+
+  teleport(destination: Point3D) {
+    this.emit(ENTITY_EVENTS.BEFORE_TELEPORT, { entity: this, destination });
+    const prevPos = this.position;
+    this.position = Vec3.fromPoint3D(destination);
+    this.emit(ENTITY_EVENTS.AFTER_TELEPORT, { entity: this, previousPosition: prevPos });
+  }
+
+  bounce() {
+    this.emit(ENTITY_EVENTS.BEFORE_BOUNCE, this);
+    const successful = this.player.bounceToHand(this);
+    this.emit(ENTITY_EVENTS.AFTER_BOUNCE, { entity: this, successful });
   }
 
   getTakenDamage(amount: number) {
