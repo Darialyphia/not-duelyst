@@ -34,12 +34,12 @@ watchEffect(() => {
           }
         )
         .with({ type: 'index_in_hand' }, condition => {
-          condition.params = {
+          condition.params ??= {
             index: 0
           };
         })
         .with({ type: 'cost' }, condition => {
-          condition.params = {
+          condition.params ??= {
             // @ts-expect-error
             amount: { type: undefined }
           };

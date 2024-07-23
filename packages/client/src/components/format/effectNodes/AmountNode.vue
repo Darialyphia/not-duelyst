@@ -53,7 +53,7 @@ watch(
 
     match(amount.value)
       .with({ type: 'fixed' }, amount => {
-        amount.params = {
+        amount.params ??= {
           value: 0
         };
       })
@@ -62,7 +62,7 @@ watch(
           type: 'cards_in_hands'
         },
         amount => {
-          amount.params = {
+          amount.params ??= {
             player: []
           };
         }
@@ -77,7 +77,7 @@ watch(
         { type: 'lowest_hp' },
         { type: 'highest_hp' },
         amount => {
-          amount.params = {
+          amount.params ??= {
             unit: []
           };
         }

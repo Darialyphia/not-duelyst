@@ -50,7 +50,7 @@ watchEffect(() => {
           { type: 'is_below' },
           { type: 'is_nearest_below' },
           condition => {
-            condition.params = {
+            condition.params ??= {
               unit: []
             };
           }
@@ -59,7 +59,7 @@ watchEffect(() => {
           { type: 'is_manual_target' },
           { type: 'is_manual_target_general' },
           condition => {
-            condition.params = {
+            condition.params ??= {
               index: 0
             };
           }
@@ -68,7 +68,7 @@ watchEffect(() => {
           condition.params = { unit: [], cell: [] };
         })
         .with({ type: 'has_keyword' }, condtion => {
-          condtion.params = {
+          condtion.params ??= {
             keyword: 'airdrop'
           };
         })

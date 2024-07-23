@@ -31,7 +31,7 @@ watchEffect(() => {
           }
         )
         .with({ type: 'is_manual_target_owner' }, condition => {
-          condition.params = {
+          condition.params ??= {
             index: 0
           };
         })

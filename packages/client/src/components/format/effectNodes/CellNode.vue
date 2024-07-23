@@ -35,7 +35,7 @@ watchEffect(() => {
           }
         )
         .with({ type: 'is_manual_target' }, condition => {
-          condition.params = {
+          condition.params ??= {
             index: 0
           };
         })
@@ -47,13 +47,13 @@ watchEffect(() => {
           { type: 'is_above' },
           { type: 'is_below' },
           condition => {
-            condition.params = {
+            condition.params ??= {
               unit: []
             };
           }
         )
         .with({ type: 'is_at' }, condition => {
-          condition.params = {
+          condition.params ??= {
             x: 0,
             y: 0,
             z: 0

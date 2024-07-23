@@ -78,7 +78,7 @@ const params = computed(() => actionDict[action.value.type]?.params ?? []);
 const setDefaults = () => {
   match(action.value)
     .with({ type: 'deal_damage' }, action => {
-      action.params = {
+      action.params ??= {
         // @ts-expect-error
         amount: { type: undefined },
         targets: [],
@@ -86,7 +86,7 @@ const setDefaults = () => {
       };
     })
     .with({ type: 'heal' }, action => {
-      action.params = {
+      action.params ??= {
         // @ts-expect-error
         amount: { type: undefined },
         targets: [],
@@ -94,7 +94,7 @@ const setDefaults = () => {
       };
     })
     .with({ type: 'draw_cards' }, action => {
-      action.params = {
+      action.params ??= {
         // @ts-expect-error
         amount: { type: undefined },
         player: [],
@@ -102,7 +102,7 @@ const setDefaults = () => {
       };
     })
     .with({ type: 'change_stats' }, action => {
-      action.params = {
+      action.params ??= {
         mode: 'give',
         stackable: true,
         // @ts-expect-error
@@ -114,25 +114,25 @@ const setDefaults = () => {
       };
     })
     .with({ type: 'destroy_unit' }, action => {
-      action.params = {
+      action.params ??= {
         targets: [],
         filter: []
       };
     })
     .with({ type: 'provoke' }, action => {
-      action.params = { filter: [], activeWhen: [] };
+      action.params ??= { filter: [], activeWhen: [] };
     })
     .with({ type: 'celerity' }, action => {
-      action.params = { filter: [], activeWhen: [] };
+      action.params ??= { filter: [], activeWhen: [] };
     })
     .with({ type: 'zeal' }, action => {
-      action.params = {
+      action.params ??= {
         // @ts-expect-error
         effect: { executionContext: undefined, actions: [], filter: [] }
       };
     })
     .with({ type: 'add_effect' }, action => {
-      action.params = {
+      action.params ??= {
         unit: [],
         // @ts-expect-error
         effect: { executionContext: undefined, actions: [] },
