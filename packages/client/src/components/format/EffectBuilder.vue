@@ -202,6 +202,7 @@ h4 {
 
   overflow: auto;
 
+  width: var(--size-xs);
   height: 80dvh;
 
   background-color: var(--surface-2);

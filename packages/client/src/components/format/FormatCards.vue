@@ -54,7 +54,7 @@ const filteredCards = computed(() =>
         <li v-for="card in customCards" :key="card.id">
           <UiButton
             type="button"
-            class="ghost-button"
+            class="primary-button"
             :class="card.id === selectedCardId && 'selected'"
           >
             <CardSprite :sprite-id="card.spriteId" class="sprite" />
@@ -65,7 +65,7 @@ const filteredCards = computed(() =>
       <div class="flex items-center gap-2">
         <UiButton
           type="button"
-          class="ghost-button"
+          class="primary-button"
           disabled="true"
           is-inline
           left-icon="material-symbols:add"
@@ -95,7 +95,7 @@ const filteredCards = computed(() =>
       </ul>
       <UiButton
         type="button"
-        class="ghost-button"
+        class="primary-button"
         is-inline
         left-icon="material-symbols:add"
         @click="isCardsModalOpened = true"

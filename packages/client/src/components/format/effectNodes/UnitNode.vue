@@ -76,6 +76,8 @@ watchEffect(() => {
     });
   });
 });
+
+const id = useId();
 </script>
 
 <template>
@@ -96,7 +98,8 @@ watchEffect(() => {
     >
       <span class="capitalize">{{ param }}</span>
       <div v-if="param === 'index'" class="flex gap-3 items-center">
-        <input
+        <UiTextInput
+          :id
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
           type="number"
         />

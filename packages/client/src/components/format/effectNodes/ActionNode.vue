@@ -7,6 +7,7 @@ import {
   UnitNode
 } from '#components';
 import type { Action, WidenedGenericCardEffect } from '@game/sdk';
+import { isEmptyObject } from '@game/shared';
 import { match } from 'ts-pattern';
 
 const { triggers } = defineProps<{
@@ -72,21 +73,9 @@ const actionOptions = computed(
     })) as Array<{ label: string; value: Action['type'] }>
 );
 
-const params = computed(() => actionDict[action.value.type].params ?? []);
+const params = computed(() => actionDict[action.value.type]?.params ?? []);
 
-watchEffect(() => {
-  if (!action.value.type) return;
-  if (action.value.params) {
-    if (!action.value.params.filter) {
-      action.value.params.filter = [];
-    }
-    if ('activeWhen' in action.value.params && !action.value.params.activeWhen) {
-      action.value.params.activeWhen = [];
-    }
-
-    return;
-  }
-
+const setDefaults = () => {
   match(action.value)
     .with({ type: 'deal_damage' }, action => {
       action.params = {
@@ -151,7 +140,29 @@ watchEffect(() => {
       };
     })
     .exhaustive();
-});
+};
+
+watch(
+  () => action.value.type,
+  () => {
+    if (!action.value.type) return;
+
+    const shouldSetDefaults =
+      !isDefined(action.value.params) || isEmptyObject(action.value.params);
+
+    if (shouldSetDefaults) {
+      setDefaults();
+    }
+
+    if (!action.value.params.filter) {
+      action.value.params.filter = [];
+    }
+    if ('activeWhen' in action.value.params && !action.value.params.activeWhen) {
+      action.value.params.activeWhen = [];
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

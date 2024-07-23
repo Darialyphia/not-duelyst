@@ -80,6 +80,7 @@ html.dark {
   --text-on-disabled: hsl(var(--color-text-on-disabled-hsl));
 
   --border-dimmed: hsl(var(--color-primary-hsl) / 0.25);
+  --border-subtle: hsl(var(--color-primary-hsl) / 0.15);
   --border: hsl(var(--color-primary-hsl) / 0.5);
 
   --link: hsl(var(--color-link-hsl));

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { PlayerNode, UnitNode } from '#components';
 import type { Amount, UnitConditionExtras } from '@game/sdk';
-import PlayerNode from './PlayerNode.vue';
-import UnitNode from './UnitNode.vue';
+import { match } from 'ts-pattern';
 type GenericAmount = Amount<{ unit: UnitConditionExtras['type'] }>;
 const amount = defineModel<GenericAmount>({
   required: true
@@ -43,8 +43,48 @@ const amountOptions = computed(
     })) as Array<{ label: string; value: GenericAmount['type'] }>
 );
 
-const params = computed(() => amountDict[amount.value.type].params ?? []);
+const params = computed(() => amountDict[amount.value.type]?.params ?? []);
 const id = useId();
+
+watch(
+  () => amount.value.type,
+  () => {
+    if (!amount.value.type) return;
+
+    match(amount.value)
+      .with({ type: 'fixed' }, amount => {
+        amount.params = {
+          value: 0
+        };
+      })
+      .with(
+        {
+          type: 'cards_in_hands'
+        },
+        amount => {
+          amount.params = {
+            player: []
+          };
+        }
+      )
+      .with(
+        { type: 'cost' },
+        { type: 'maxHp' },
+        { type: 'attack' },
+        { type: 'lowest_attack' },
+        { type: 'highest_attack' },
+        { type: 'hp' },
+        { type: 'lowest_hp' },
+        { type: 'highest_hp' },
+        amount => {
+          amount.params = {
+            unit: []
+          };
+        }
+      )
+      .exhaustive();
+  }
+);
 </script>
 
 <template>

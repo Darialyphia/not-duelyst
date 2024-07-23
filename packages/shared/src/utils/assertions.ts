@@ -1,4 +1,4 @@
-import type { AnyFunction, Defined, Nullable } from '../types/utils';
+import type { AnyFunction, AnyObject, Defined, Nullable } from '../types/utils';
 
 export const isObject = (x: unknown): x is object =>
   typeof x === 'object' && x !== null && !Array.isArray(x);
@@ -20,3 +20,6 @@ export const isFunction = (x: unknown): x is AnyFunction =>
 export const exhaustiveSwitch = (x: never) => {
   throw new Error(`Missing case in exhaustive switch: ${x as any}`);
 };
+
+export const isEmptyObject = (x: unknown) =>
+  isObject(x) && Object.keys(x).length === 0;
