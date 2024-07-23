@@ -41,12 +41,14 @@ export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
 const getEffectCtxEntity = (ctx: EffectCtx) => ctx.entity ?? ctx.card.player.general;
 export const getEffectModifier = <T extends GameEvent>({
   filter,
+  once,
   eventName,
   actions
 }: {
   eventName: T;
   filter: (ctx: EffectCtx, event: GameEventMap[T], eventName: T) => boolean;
   actions: ParsedActionResult[];
+  once?: boolean;
 }) => {
   return {
     getEntityModifier: (ctx: EffectCtx) => {
@@ -58,6 +60,7 @@ export const getEffectModifier = <T extends GameEvent>({
         mixins: [
           modifierGameEventMixin({
             eventName,
+            once,
             listener(event) {
               if (filter(ctx, event, eventName))
                 actions.forEach(action => {
@@ -87,6 +90,7 @@ export const getEffectModifier = <T extends GameEvent>({
         mixins: [
           modifierCardGameEventMixin({
             eventName,
+            once,
             listener(event, ctx) {
               const effectCtx = {
                 session: ctx.session,
@@ -162,6 +166,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_card_played' }, trigger => {
               return getEffectModifier({
                 eventName: 'card:before_played',
+                once: trigger.once,
                 actions,
                 filter(ctx, [event], eventName) {
                   return getCards({
@@ -176,6 +181,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_card_played' }, trigger => {
               return getEffectModifier({
                 eventName: 'card:after_played',
+                once: trigger.once,
                 actions,
                 filter(ctx, [event], eventName) {
                   return getCards({
@@ -191,6 +197,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_draw',
                 actions,
+                once: trigger.once,
                 filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
@@ -205,6 +212,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_draw',
                 actions,
+                once: trigger.once,
                 filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
@@ -219,6 +227,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_replace',
                 actions,
+                once: trigger.once,
                 filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
@@ -233,6 +242,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_replace',
                 actions,
+                once: trigger.once,
                 filter(ctx, [event], eventName) {
                   return getPlayers({
                     ...ctx,
@@ -246,6 +256,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_move' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before-move',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -260,6 +271,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_move' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after-move',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -274,6 +286,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_attack' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_attack',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -288,6 +301,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_attack' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_attack',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -302,6 +316,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_healed' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -316,6 +331,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_healed' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -330,6 +346,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_take_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -344,6 +361,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_take_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -358,6 +376,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_deal_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_deal_damage',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -372,6 +391,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_deal_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_deal_damage',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -386,6 +406,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_retaliate' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_retaliate',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -400,6 +421,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_retaliate' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_retaliate',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -414,6 +436,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_unit_play' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:created',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -428,6 +451,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_destroyed' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:before_destroy',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -442,6 +466,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_destroyed' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'entity:after_destroy',
                 filter(ctx, [event], eventName) {
                   return getUnits({
@@ -456,6 +481,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_card_drawn' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'card:drawn',
                 filter(ctx, [event], eventName) {
                   return getCards({
@@ -470,6 +496,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_card_replaced' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'card:replaced',
                 filter(ctx, [event], eventName) {
                   return getCards({
@@ -484,6 +511,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_player_turn_start' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'player:turn_start',
                 filter(ctx, [event], eventName) {
                   return getPlayers({
@@ -498,6 +526,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_player_turn_end' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'player:turn_end',
                 filter(ctx, [event], eventName) {
                   return getPlayers({
@@ -512,6 +541,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_artifact_equiped' }, trigger => {
               return getEffectModifier({
                 actions,
+                once: trigger.once,
                 eventName: 'artifact:equiped',
                 filter(ctx, [event], eventName) {
                   return getCards({

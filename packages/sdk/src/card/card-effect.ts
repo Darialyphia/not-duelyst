@@ -24,18 +24,21 @@ export type ConditionOverrides = {
 export type Trigger =
   | {
       type: 'on_before_unit_move';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_move';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_deal_damage';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -43,6 +46,7 @@ export type Trigger =
     }
   | {
       type: 'on_after_unit_deal_damage';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -50,6 +54,7 @@ export type Trigger =
     }
   | {
       type: 'on_before_unit_take_damage';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -57,6 +62,7 @@ export type Trigger =
     }
   | {
       type: 'on_after_unit_take_damage';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -64,6 +70,7 @@ export type Trigger =
     }
   | {
       type: 'on_before_unit_attack';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -71,6 +78,7 @@ export type Trigger =
     }
   | {
       type: 'on_after_unit_attack';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -78,18 +86,21 @@ export type Trigger =
     }
   | {
       type: 'on_before_unit_healed';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_healed';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_retaliate';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -97,6 +108,7 @@ export type Trigger =
     }
   | {
       type: 'on_after_unit_retaliate';
+      once?: boolean;
       params: {
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
@@ -104,33 +116,76 @@ export type Trigger =
     }
   | {
       type: 'on_unit_play';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_destroyed';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_destroyed';
+      once?: boolean;
       params: {
         unit: Filter<UnitConditionBase>;
       };
     }
-  | { type: 'on_player_turn_start'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_player_turn_end'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_before_player_draw'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_after_player_draw'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_before_player_replace'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_after_player_replace'; params: { player: Filter<PlayerCondition> } }
-  | { type: 'on_before_card_played'; params: { card: Filter<CardConditionBase> } }
-  | { type: 'on_after_card_played'; params: { card: Filter<CardConditionBase> } }
-  | { type: 'on_card_drawn'; params: { card: Filter<CardConditionBase> } }
-  | { type: 'on_card_replaced'; params: { card: Filter<CardConditionBase> } }
-  | { type: 'on_artifact_equiped'; params: { card: Filter<CardConditionBase> } };
+  | {
+      type: 'on_player_turn_start';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_player_turn_end';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_before_player_draw';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_after_player_draw';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_before_player_replace';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_after_player_replace';
+      once?: boolean;
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'on_before_card_played';
+      once?: boolean;
+      params: { card: Filter<CardConditionBase> };
+    }
+  | {
+      type: 'on_after_card_played';
+      once?: boolean;
+      params: { card: Filter<CardConditionBase> };
+    }
+  | { type: 'on_card_drawn'; once?: boolean; params: { card: Filter<CardConditionBase> } }
+  | {
+      type: 'on_card_replaced';
+      once?: boolean;
+      params: { card: Filter<CardConditionBase> };
+    }
+  | {
+      type: 'on_artifact_equiped';
+      once?: boolean;
+      params: { card: Filter<CardConditionBase> };
+    };
 
 export type Amount<T extends ConditionOverrides> =
   | {

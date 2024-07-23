@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SwitchRoot, SwitchThumb } from 'radix-vue';
 
-const switchState = defineModel<boolean>('checked', { required: true });
+const switchState = defineModel<boolean | undefined>('checked', { required: true });
 </script>
 
 <template>

@@ -118,6 +118,10 @@ watch(
         :display-value="val => triggerDict[val as Trigger['type']].label as string"
       />
     </div>
+    <label>
+      <UiSwitch v-model:checked="trigger.once" />
+      triggers only once
+    </label>
     <div class="my-2 font-500">Conditions</div>
     <div v-for="param in params" :key="param" class="flex gap-2">
       <span class="capitalize">{{ param }}</span>
