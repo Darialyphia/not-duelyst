@@ -20,12 +20,11 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
 
 <template>
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
-    <UiCombobox
+    <UiSelect
       class="w-full"
       :model-value="groups[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="playerOptions"
-      :display-value="val => playerDict[val].label"
       @update:model-value="
         type => {
           const condition = groups[groupIndex][conditionIndex];

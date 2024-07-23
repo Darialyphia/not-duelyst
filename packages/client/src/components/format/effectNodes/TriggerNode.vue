@@ -111,12 +111,7 @@ watch(
         class="ghost-error-button"
         @click="emit('delete')"
       />
-      <UiCombobox
-        v-model="trigger.type"
-        class="flex-1"
-        :options="triggerOptions"
-        :display-value="val => triggerDict[val as Trigger['type']].label as string"
-      />
+      <UiSelect v-model="trigger.type" class="flex-1" :options="triggerOptions" />
       <label>
         <UiSwitch v-model:checked="trigger.once" />
         triggers only once

@@ -129,7 +129,7 @@ usePlayerConditionsProvider(ref({}));
         </div>
       </template>
       <UiButton
-        class="subtle-button mx-auto my-4"
+        class="subtle-button my-4 w-full"
         @click="internal.config.triggers.push({ type: 'on_unit_play', params: {} })"
       >
         Add trigger
@@ -148,8 +148,9 @@ usePlayerConditionsProvider(ref({}));
           :triggers="internal.config.triggers"
         />
       </li>
+      <p v-if="!internal.config.actions.length">You have not defined any actio yet.</p>
       <UiButton
-        class="subtle-button"
+        class="subtle-button w-full mt-3"
         left-icon="material-symbols:add"
         @click="internal.config.actions.push({ type: undefined, params: {} })"
       >

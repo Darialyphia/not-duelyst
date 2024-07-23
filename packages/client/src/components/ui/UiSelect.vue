@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends string">
-const { options, placeholder } = defineProps<{
+const { options, placeholder = 'Select a value' } = defineProps<{
   options: Array<{ label: string; value: T; disabled?: boolean }>;
   placeholder?: string;
 }>();
@@ -9,33 +9,35 @@ const selected = defineModel<T>('modelValue', { required: true });
 
 <template>
   <SelectRoot v-model="selected">
-    <SelectTrigger aria-label="rarity" :placeholder class="ui-select-trigger">
+    <SelectTrigger
+      aria-label="rarity"
+      :placeholder
+      class="ui-select-trigger"
+      v-bind="$attrs"
+    >
       <SelectValue :placeholder="placeholder" />
       <Icon name="radix-icons:chevron-down" />
     </SelectTrigger>
-
     <SelectPortal>
       <SelectContent :side-offset="5" as-child>
-        <div class="ui-select-content">
+        <div class="ui-select-content fancy-scrollbar">
           <SelectViewport as-child>
-            <div class="select-viewport">
-              <SelectGroup>
-                <SelectItem
-                  v-for="(option, index) in options"
-                  :key="index"
-                  class="select-item"
-                  :value="option.value"
-                  :disabled="option.disabled"
-                >
-                  <SelectItemIndicator>
-                    <Icon name="radix-icons:check" />
-                  </SelectItemIndicator>
-                  <SelectItemText>
-                    <slot name="option" :option="option">{{ option.label }}</slot>
-                  </SelectItemText>
-                </SelectItem>
-              </SelectGroup>
-            </div>
+            <SelectGroup>
+              <SelectItem
+                v-for="(option, index) in options"
+                :key="index"
+                class="select-item"
+                :value="option.value"
+                :disabled="option.disabled"
+              >
+                <SelectItemIndicator>
+                  <Icon name="radix-icons:check" />
+                </SelectItemIndicator>
+                <SelectItemText>
+                  <slot name="option" :option="option">{{ option.label }}</slot>
+                </SelectItemText>
+              </SelectItem>
+            </SelectGroup>
           </SelectViewport>
         </div>
       </SelectContent>
@@ -45,7 +47,7 @@ const selected = defineModel<T>('modelValue', { required: true });
 
 <style scoped lang="postcss">
 .ui-select-trigger {
-  display: inline-flex;
+  display: flex;
   gap: var(--size-1);
   align-items: center;
   justify-content: space-between;
@@ -73,20 +75,17 @@ const selected = defineModel<T>('modelValue', { required: true });
 
   &[data-placeholder] {
     font-style: italic;
+    color: var(--text-3);
   }
 }
 
 .ui-select-content {
-  overflow: hidden;
+  overflow-y: auto;
 
   background-color: var(--surface-1);
   border: solid var(--border-size-1) var(--border-dimmed);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-2);
-}
-
-.select-viewport {
-  padding: var(--size-3);
 }
 
 .select-item {
@@ -111,5 +110,27 @@ const selected = defineModel<T>('modelValue', { required: true });
     color: var(--text-on-primary);
     background-color: var(--primary);
   }
+}
+
+/* styles.css */
+.scroll-area {
+  width: 100%;
+  height: 100%;
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  padding: var(--size-3);
+}
+
+.scrollbar {
+  width: 4px;
+  padding: 5px 2px;
+}
+
+.scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
 }
 </style>

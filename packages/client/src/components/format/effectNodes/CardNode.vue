@@ -26,12 +26,11 @@ const componentNodes: Record<string, Component | string> = {
 
 <template>
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
-    <UiCombobox
+    <UiSelect
       class="w-full"
       :model-value="groups[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="cardOptions"
-      :display-value="val => cardDict[val].label"
       @update:model-value="
         type => {
           const condition = groups[groupIndex][conditionIndex];

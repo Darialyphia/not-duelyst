@@ -12,8 +12,7 @@ const {
   options,
   displayValue,
   defaultValue = '',
-  multiple,
-  placeholder
+  multiple
 } = defineProps<{
   options: Array<{ label: string; value: TValue; item?: TItem }>;
   displayValue?: (val: TDefault) => string;

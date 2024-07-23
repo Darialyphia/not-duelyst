@@ -92,12 +92,11 @@ watch(
 
 <template>
   <div>
-    <UiCombobox
+    <UiSelect
       :model-value="action.type"
       class="w-full mb-3"
       :options="actionOptions"
       :multiple="false"
-      :display-value="val => actionDict[val].label"
       @update:model-value="
         type => {
           action.type = type;
@@ -171,7 +170,7 @@ watch(
     />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2">
-      <span class="capitalize">{{ key }}</span>
+      <span class="capitalize min-w-11">{{ key }}</span>
       <fieldset v-if="key === 'mode'">
         <legend>Mode</legend>
         <label>

@@ -48,13 +48,12 @@ const id = useId();
 </script>
 
 <template>
-  <div>
-    <UiCombobox
+  <div class="flex-1">
+    <UiSelect
       :model-value="amount.type"
-      class="w-full mb-3"
+      class="mb-3 w-full"
       :options="amountOptions"
       :multiple="false"
-      :display-value="val => amountDict[val].label"
       @update:model-value="
         type => {
           amount.type = type;
@@ -96,12 +95,12 @@ const id = useId();
     />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2">
-      <span class="capitalize">{{ key }}</span>
+      <span class="capitalize min-w-11">{{ key }}</span>
       <UiTextInput
         v-if="key === 'value'"
         :id
         v-model="(amount.params as any)[key]"
-        class="mb-3"
+        class="mb-3 flex-1"
         type="number"
         step="1"
       />

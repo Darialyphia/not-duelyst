@@ -28,12 +28,11 @@ const id = useId();
 
 <template>
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
-    <UiCombobox
-      class="w-full"
+    <UiSelect
+      class="w-full mb-2"
       :model-value="groups[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="unitOptions"
-      :display-value="val => unitDict[val].label"
       @update:model-value="
         type => {
           const condition = groups[groupIndex][conditionIndex];
@@ -88,15 +87,12 @@ const id = useId();
         }
       "
     />
-    <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">
-      Conditions
-    </div>
     <div
       v-for="param in getParams(groupIndex, conditionIndex)"
       :key="param"
       class="flex gap-2"
     >
-      <span class="capitalize">{{ param }}</span>
+      <span class="capitalize min-w-10">{{ param }}</span>
       <div v-if="param === 'index'" class="flex gap-3 items-center">
         <UiTextInput
           :id

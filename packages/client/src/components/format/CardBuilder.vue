@@ -4,6 +4,7 @@ import {
   FACTIONS,
   KEYWORDS,
   RARITIES,
+  type CardBlueprint,
   type CardKind,
   type GameSessionConfig,
   type GenericSerializedBlueprint
@@ -23,7 +24,7 @@ const { format } = defineProps<{
 
 const blueprint = defineModel<GenericSerializedBlueprint>('card', { required: true });
 
-const card = ref(parseSerializeBlueprint(blueprint.value, format, { noCache: true }));
+const card = ref<CardBlueprint>();
 const error = ref('');
 watchEffect(() => {
   try {
@@ -255,7 +256,7 @@ watch(
           </AccordionContent>
         </AccordionItem>
         <UiButton
-          class="subtle-button"
+          class="primary-button"
           left-icon="material-symbols:add"
           @click="blueprint.effects.push({ text: 'Your effect Text', config: {} })"
         >
@@ -265,6 +266,7 @@ watch(
     </div>
     <div class="preview">
       <Card
+        v-if="card"
         :card="{
           blueprintId: card.id,
           name: card.name,
