@@ -33,7 +33,8 @@ export type {
   Filter,
   ExecutionContext,
   Action,
-  Amount
+  Amount,
+  NumericOperator
 } from './card/card-effect';
 export type {
   UnitConditionBase,
@@ -55,6 +56,8 @@ export type {
   CellCondition,
   CellConditionExtras
 } from './card/conditions/cell-conditions';
+
+export type { GlobalCondition } from './card/conditions/global-conditions';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';

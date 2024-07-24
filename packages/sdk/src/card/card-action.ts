@@ -195,32 +195,32 @@ export const checkGlobalConditions = (
             conditions: condition.params.unit
           });
           const isMatch = (e: Entity) => {
-            const { state } = condition.params;
+            const { attack, hp, position } = condition.params;
             const ctx = { session, card, entity, targets, event, eventName };
-            const attackMatch = state.attack
+            const attackMatch = attack
               ? matchNumericOperator(
                   getAmount({
                     ...ctx,
-                    amount: state.attack.amount
+                    amount: attack.amount
                   }),
                   e.attack,
-                  state.attack.operator
+                  attack.operator
                 )
               : true;
 
-            const hpMatch = state.hp
+            const hpMatch = hp
               ? matchNumericOperator(
                   getAmount({
                     ...ctx,
-                    amount: state.hp.amount
+                    amount: hp.amount
                   }),
                   e.hp,
-                  state.hp.operator
+                  hp.operator
                 )
               : true;
 
-            const positionMatch = state.position
-              ? getCells({ ...ctx, conditions: state.position }).some(cell => {
+            const positionMatch = position
+              ? getCells({ ...ctx, conditions: position }).some(cell => {
                   return cell.position.equals(e.position);
                 })
               : true;

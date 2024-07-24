@@ -1,8 +1,16 @@
+import {
+  AmountNode,
+  CellNode,
+  NumericOperatorNode,
+  PlayerNode,
+  UnitNode
+} from '#components';
 import type {
   CardConditionBase,
   CardConditionExtras,
   CellConditionBase,
   CellConditionExtras,
+  GlobalCondition,
   PlayerConditionBase,
   PlayerConditionExtras,
   UnitConditionBase,
@@ -19,27 +27,27 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       UnitConditionBase['type'],
       { label: string; params: string[] }
     > = {
-      any_unit: { label: 'Is any unit', params: [] },
-      is_self: { label: 'is the unit being played', params: [] },
-      is_ally: { label: 'Is an ally', params: [] },
-      is_enemy: { label: 'Is an enemy', params: [] },
-      is_general: { label: 'Is a general', params: [] },
-      is_minion: { label: 'Is a minion', params: [] },
-      is_nearby: { label: 'Is nearby', params: ['unit', 'cell'] },
-      is_in_front: { label: 'Is in front of', params: ['unit'] },
-      is_nearest_in_front: { label: 'Is the closest unit in front of', params: ['unit'] },
-      is_behind: { label: 'Is behind', params: ['unit'] },
-      is_nearest_behind: { label: 'Is the closest unit behind', params: ['unit'] },
-      is_above: { label: 'Is above', params: ['unit'] },
-      is_nearest_above: { label: 'Is the closest unit above', params: ['unit'] },
-      is_below: { label: 'Is below', params: ['unit'] },
-      is_nearest_below: { label: 'Is the closest unit  below', params: ['unit'] },
-      is_manual_target: { label: "Is one of this card's target", params: ['index'] },
+      any_unit: { label: 'Any unit', params: [] },
+      is_self: { label: 'This unit', params: [] },
+      is_ally: { label: 'An ally', params: [] },
+      is_enemy: { label: 'An enemy', params: [] },
+      is_general: { label: 'A general', params: [] },
+      is_minion: { label: 'A minion', params: [] },
+      is_nearby: { label: 'A unit nearby', params: ['unit', 'cell'] },
+      is_in_front: { label: 'The unit in front of', params: ['unit'] },
+      is_nearest_in_front: { label: 'The closest unit in front of', params: ['unit'] },
+      is_behind: { label: 'The unit behind', params: ['unit'] },
+      is_nearest_behind: { label: 'The closest unit behind', params: ['unit'] },
+      is_above: { label: 'The unit above', params: ['unit'] },
+      is_nearest_above: { label: 'The closest unit above', params: ['unit'] },
+      is_below: { label: 'The unit below', params: ['unit'] },
+      is_nearest_below: { label: 'The closest unit  below', params: ['unit'] },
+      is_manual_target: { label: "One of this card's target", params: ['index'] },
       is_manual_target_general: {
-        label: "Is one of this card target's general",
+        label: "One of this card target's general",
         params: ['index']
       },
-      has_keyword: { label: 'Has a specific keyword', params: ['keyword'] }
+      has_keyword: { label: 'A unit with a keyword', params: ['keyword'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));
@@ -149,6 +157,62 @@ export const [useCellConditionsProvider, _useCellConditions] = createInjectionSt
 export const useCellConditions = () => {
   const value = _useCellConditions();
   if (!value) throw new Error('Use useCellConditions() inside its provider');
+
+  return value;
+};
+
+export type Params = Component | null | { [key: string]: Params };
+export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjectionState(
+  (
+    extrasDict: Ref<
+      Partial<Record<GlobalCondition['type'], { label: string; params: string[] }>>
+    >
+  ) => {
+    const baseDict: Record<
+      GlobalCondition['type'],
+      { label: string; params: Record<string, Params> }
+    > = {
+      player_gold: {
+        label: "Only if a player's gold...",
+        params: {
+          player: PlayerNode,
+          operator: NumericOperatorNode,
+          amount: AmountNode
+        }
+      },
+      player_hp: {
+        label: "Only if a player's hp...",
+        params: {
+          player: PlayerNode,
+          operator: NumericOperatorNode,
+          amount: AmountNode
+        }
+      },
+      unit_state: {
+        label: 'Only if a unit is...',
+        params: {
+          unit: UnitNode,
+          mode: null,
+          position: CellNode,
+          attack: {
+            operator: NumericOperatorNode,
+            amount: AmountNode
+          },
+          hp: {
+            operator: NumericOperatorNode,
+            amount: AmountNode
+          }
+        }
+      }
+    };
+
+    return computed(() => ({ ...baseDict, ...extrasDict.value }));
+  }
+);
+
+export const useGlobalConditions = () => {
+  const value = _useGlobalConditions();
+  if (!value) throw new Error('Use useGlobalConditions() inside its provider');
 
   return value;
 };

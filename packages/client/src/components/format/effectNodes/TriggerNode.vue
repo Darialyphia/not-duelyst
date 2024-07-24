@@ -117,9 +117,8 @@ watch(
         triggers only once
       </label>
     </div>
-    <div class="my-2 font-500">Conditions</div>
     <div v-for="param in params" :key="param" class="flex gap-2">
-      <span class="capitalize">{{ param }}</span>
+      <span class="capitalize w-10">{{ param }}</span>
       <component :is="componentNodes[param]" v-model="(trigger.params as any)[param]" />
     </div>
   </div>

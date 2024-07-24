@@ -11,6 +11,12 @@ import { isDefined, type Nullable } from '@game/shared';
 const { blueprint } = defineProps<{ blueprint: GenericSerializedBlueprint }>();
 const effect = defineModel<WidenedGenericCardEffect>('effect', { required: true });
 
+useUnitConditionsProvider(ref({}));
+usePlayerConditionsProvider(ref({}));
+useCellConditionsProvider(ref({}));
+usePlayerConditionsProvider(ref({}));
+useGlobalConditionsProvider(ref({}));
+
 const internal = ref(structuredClone(toRaw(effect.value)));
 watchEffect(() => {
   effect.value = internal.value;
@@ -92,11 +98,6 @@ const executionContextOptions = computed(() => {
 
 const isDebugOpen = ref(false);
 const id = useId();
-
-useUnitConditionsProvider(ref({}));
-usePlayerConditionsProvider(ref({}));
-useCellConditionsProvider(ref({}));
-usePlayerConditionsProvider(ref({}));
 </script>
 
 <template>
@@ -116,7 +117,7 @@ usePlayerConditionsProvider(ref({}));
     </div>
 
     <template v-if="internal.config.triggers">
-      <h4>Triggers</h4>
+      <h4>Whenever</h4>
       <template v-for="(trigger, index) in internal.config.triggers" :key="index">
         <div class="pl-6">
           <TriggerNode
@@ -148,11 +149,18 @@ usePlayerConditionsProvider(ref({}));
           :triggers="internal.config.triggers"
         />
       </li>
-      <p v-if="!internal.config.actions.length">You have not defined any actio yet.</p>
+      <p v-if="!internal.config.actions?.length">You have not defined any action yet.</p>
       <UiButton
         class="subtle-button w-full mt-3"
         left-icon="material-symbols:add"
-        @click="internal.config.actions.push({ type: undefined, params: {} })"
+        @click="
+          () => {
+            if (!internal.config.actions) {
+              internal.config.actions = [];
+            }
+            internal.config.actions.push({ type: undefined, params: {} });
+          }
+        "
       >
         Add action
       </UiButton>
@@ -175,7 +183,7 @@ usePlayerConditionsProvider(ref({}));
 .effect-builder {
   position: relative;
   padding: var(--size-3);
-  background-color: hsl(0 0 0 / 0.4);
+  background-color: hsl(0 0 100% / 0.03);
   border: solid var(--border-size-1) var(--border-dimmed);
 }
 

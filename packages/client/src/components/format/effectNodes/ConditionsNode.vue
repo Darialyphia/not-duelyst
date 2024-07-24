@@ -13,20 +13,22 @@ const groups = defineModel<Filter<T>>({ required: true });
             <UiIconButton
               name="material-symbols:delete-outline"
               class="ghost-error-button shrink-0"
-              @click="groups[groupIndex].splice(conditionIndex, 1)"
+              @click="
+                () => {
+                  groups[groupIndex].splice(conditionIndex, 1);
+                  if (!groups[groupIndex].length) {
+                    groups.splice(groupIndex, 1);
+                  }
+                }
+              "
             />
             <div class="flex-1">
-              <slot
-                v-bind="{
-                  groupIndex,
-                  conditionIndex
-                }"
-              />
+              <slot v-bind="{ groupIndex, conditionIndex }" />
             </div>
           </div>
           <div v-if="conditionIndex < group.length - 1" class="text-center">AND</div>
         </div>
-        <div class="flex justify-end gap-3">
+        <footer class="group-actions">
           <UiButton
             class="subtle-button button-sm my-2"
             @click="groups[groupIndex].push({ type: undefined as any } as any)"
@@ -39,7 +41,7 @@ const groups = defineModel<Filter<T>>({ required: true });
           >
             Remove group
           </UiButton>
-        </div>
+        </footer>
       </div>
       <div v-if="groupIndex < groups.length - 1" class="text-center">OR</div>
     </div>
@@ -58,5 +60,11 @@ const groups = defineModel<Filter<T>>({ required: true });
   padding: var(--size-4) var(--size-2);
   background-color: hsl(0 0 100% / 0.05);
   border: solid var(--border-size-1) var(--border-subtle);
+}
+
+.group-actions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
 }
 </style>

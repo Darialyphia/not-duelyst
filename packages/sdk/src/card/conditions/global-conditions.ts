@@ -31,16 +31,14 @@ export type GlobalCondition<
       params: {
         unit: Filter<UnitConditionBase>;
         mode: 'none' | 'some' | 'all';
-        state: {
-          attack?: {
-            operator: NumericOperator;
-            amount: Amount<T>;
-          };
-          hp?: {
-            operator: NumericOperator;
-            amount: Amount<T>;
-          };
-          position?: Filter<CellCondition>;
+        attack?: {
+          operator: NumericOperator;
+          amount: Amount<T>;
         };
+        hp?: {
+          operator: NumericOperator;
+          amount: Amount<T>;
+        };
+        position?: Filter<CellCondition>;
       };
     };
