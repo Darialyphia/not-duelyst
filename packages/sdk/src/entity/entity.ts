@@ -340,14 +340,12 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     Object.values(this.interceptors).forEach(interceptor => interceptor.clear());
   }
 
-  endTurn() {
-    this.movementsTaken = 0;
-    this.attacksTaken = 0;
-    this.retaliationsDone = 0;
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  startTurn() {}
+  endTurn() {}
+
+  startTurn() {
+    this.activate();
+  }
 
   destroy() {
     this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
@@ -359,6 +357,12 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
 
       this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
     });
+  }
+
+  activate() {
+    this.movementsTaken = 0;
+    this.attacksTaken = 0;
+    this.retaliationsDone = 0;
   }
 
   move(path: Point3D[]) {
