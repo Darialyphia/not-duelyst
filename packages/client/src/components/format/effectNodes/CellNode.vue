@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CellConditionBase, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
-import { NumericOperatorNode, AmountNode, UnitNode } from '#components';
+import { UnitNode } from '#components';
 
 const groups = defineModel<Filter<CellConditionBase>>({ required: true });
 
@@ -73,6 +73,16 @@ const componentNodes: Record<string, Component | string> = {
                 z: 0
               };
             })
+            .with({ type: '2x2_area' }, condition => {
+              condition.params = {
+                topLeft: [[]]
+              };
+            })
+            .with({ type: '3x3_area' }, condition => {
+              condition.params = {
+                center: [[]]
+              };
+            })
             .exhaustive();
         }
       "
@@ -91,6 +101,12 @@ const componentNodes: Record<string, Component | string> = {
         v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />
+      <template v-if="param === 'topLeft' || param === 'center'">
+        <CellNode
+          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        />
+      </template>
       <template v-else>
         <component
           :is="componentNodes[param]"

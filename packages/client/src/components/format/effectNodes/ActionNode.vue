@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   AmountNode,
+  CellNode,
   EffectNode,
   GlobalConditionNode,
   PlayerNode,
@@ -188,6 +189,10 @@ const actionDict: Record<
   zeal: {
     label: 'Gain an effect when zealed',
     params: { effect: EffectNode, filter: GlobalConditionNode }
+  },
+  dispel_cell: {
+    label: 'Dispel a cell',
+    params: { cells: CellNode }
   }
 };
 const actionOptions = computed(
@@ -272,6 +277,9 @@ watch(
         // @ts-expect-error
         params.effect ??= { executionContext: undefined, actions: [] };
         params.filter ??= [];
+      })
+      .with({ type: 'dispel_cell' }, ({ params }) => {
+        params.cells ??= [[{ type: undefined as any }]];
       })
       .exhaustive();
   },

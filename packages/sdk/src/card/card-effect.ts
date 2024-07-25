@@ -11,6 +11,7 @@ import type {
   UnitConditionBase,
   UnitConditionExtras
 } from './conditions/unit-conditions';
+import type { CellCondition, CellConditionBase } from './conditions/cell-conditions';
 
 export type Filter<T> = T[][];
 
@@ -359,6 +360,12 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+      };
+    }
+  | {
+      type: 'dispel_cell';
+      params: {
+        cells: Filter<CellCondition>;
       };
     }
   | {

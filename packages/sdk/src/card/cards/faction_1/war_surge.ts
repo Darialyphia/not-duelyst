@@ -1,0 +1,51 @@
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+import { fixedAmount } from '../../helpers/amount';
+import {
+  allyMinion,
+  anywhere,
+  cellWithAnyMinion,
+  manualTarget
+} from '../../helpers/targeting';
+
+export const f1WarSurge = defineSerializedBlueprint({
+  id: 'war_surge',
+  collectable: true,
+  name: 'War Surge',
+  cost: 2,
+  kind: CARD_KINDS.SPELL,
+  faction: FACTION_IDS.F1,
+  keywords: [],
+  rarity: RARITIES.BASIC,
+  relatedBlueprintIds: [],
+  spriteId: 'icon_f1_warsurge',
+  tags: [],
+  targets: {
+    min: 1,
+    targets: [anywhere()]
+  },
+  effects: [
+    {
+      text: 'Give allied minions +1/+1.',
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'change_stats',
+            params: {
+              targets: allyMinion(),
+              stackable: false,
+              mode: 'give',
+              attack: {
+                amount: fixedAmount(1)
+              },
+              hp: {
+                amount: fixedAmount(1)
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+});

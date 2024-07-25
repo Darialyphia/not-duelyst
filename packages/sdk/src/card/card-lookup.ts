@@ -27,6 +27,10 @@ import { f1DivineBond } from './cards/faction_1/divine_bond';
 import { f1SundropElixir } from './cards/faction_1/sundrop_elixir';
 import { f1LastingJudgement } from './cards/faction_1/lasting_judgment';
 import { f1ArclyteRegalia } from './cards/faction_1/arclyte_regalia';
+import { f1CircleOfLife } from './cards/faction_1/circle_of_life';
+import { f1WarSurge } from './cards/faction_1/war_surge';
+import { f1SunBloom } from './cards/faction_1/sun_bloom';
+import { f1ElyxStormblade } from './cards/faction_1/elyx_stormBlade';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -52,6 +56,10 @@ const allCards: SerializedBlueprint<any>[] = [
   f1SuntideMaiden,
   f1LastingJudgement,
   f1ArclyteRegalia,
+  f1CircleOfLife,
+  f1WarSurge,
+  f1SunBloom,
+  f1ElyxStormblade,
   neutralHealingMystic,
   neutralRiftWalker,
   neutralPrimusShieldMaster

@@ -1,4 +1,4 @@
-import type { Nullable, Point3D, AnyObject } from '@game/shared';
+import { type Nullable, type Point3D, type AnyObject, Vec3 } from '@game/shared';
 import { match } from 'ts-pattern';
 import type { Cell } from '../../board/cell';
 import type { Entity } from '../../entity/entity';
@@ -28,7 +28,9 @@ export type CellConditionBase =
   | { type: 'is_top_right_corner' }
   | { type: 'is_top_left_corner' }
   | { type: 'is_bottom_right_corner' }
-  | { type: 'is_bottom_left_corner' };
+  | { type: 'is_bottom_left_corner' }
+  | { type: '2x2_area'; params: { topLeft: Filter<CellConditionBase> } }
+  | { type: '3x3_area'; params: { center: Filter<CellConditionBase> } };
 
 export type CellConditionExtras =
   | { type: 'moved_unit_old_position' }
@@ -215,6 +217,42 @@ export const getCells = ({
           .with({ type: 'summon_target' }, () => {
             if (!playedPoint) return false;
             return cell.position.equals(playedPoint);
+          })
+          .with({ type: '2x2_area' }, condition => {
+            const topLefts = getCells({
+              session,
+              entity,
+              card,
+              conditions: condition.params.topLeft,
+              targets,
+              event,
+              eventName,
+              playedPoint
+            });
+
+            return topLefts.some(topLeft => {
+              return (
+                topLeft.position.x <= cell.position.x &&
+                topLeft.position.y <= cell.position.y &&
+                isWithinCells(topLeft, cell.position, 1)
+              );
+            });
+          })
+          .with({ type: '3x3_area' }, condition => {
+            const centers = getCells({
+              session,
+              entity,
+              card,
+              conditions: condition.params.center,
+              targets,
+              event,
+              eventName,
+              playedPoint
+            });
+
+            return centers.some(center => {
+              return isWithinCells(center, cell, 1);
+            });
           })
           .exhaustive();
       });

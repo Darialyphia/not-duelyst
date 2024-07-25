@@ -9,7 +9,14 @@ import { createEntityModifier } from '../modifier/entity-modifier';
 import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
 import { nanoid } from 'nanoid';
 import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
-import { airdrop, celerity, provoke, rush, zeal } from '../modifier/modifier-utils';
+import {
+  airdrop,
+  celerity,
+  dispelCell,
+  provoke,
+  rush,
+  zeal
+} from '../modifier/modifier-utils';
 import type { CardConditionExtras } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits, type UnitConditionExtras } from './conditions/unit-conditions';
@@ -835,6 +842,19 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
           unit.destroy();
         });
 
+        return noop;
+      })
+      .with({ type: 'dispel_cell' }, action => {
+        const cells = getCells({
+          ...ctx,
+          conditions: action.params.cells,
+          event,
+          eventName
+        });
+
+        cells.forEach(cell => {
+          dispelCell(cell);
+        });
         return noop;
       })
       .exhaustive();

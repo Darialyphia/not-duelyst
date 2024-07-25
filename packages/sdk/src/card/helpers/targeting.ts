@@ -21,6 +21,10 @@ export const nearestAllDirections = <T extends UnitConditionExtras['type']>(
   ];
 };
 
+export const anywhere = (): Filter<CellConditionBase> => {
+  return [[{ type: 'any_cell' }]];
+};
+
 export const manualTarget = (index: number): Filter<UnitConditionBase> => {
   return [
     [

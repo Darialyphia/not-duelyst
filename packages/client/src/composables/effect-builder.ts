@@ -147,7 +147,9 @@ export const [useCellConditionsProvider, _useCellConditions] = createInjectionSt
       is_above: { label: 'Is above a unit', params: ['unit'] },
       is_below: { label: 'Is below a unit', params: ['unit'] },
       is_manual_target: { label: 'Is one of this card target', params: ['index'] },
-      is_at: { label: 'Is at coordinates', params: ['x', 'y', 'z'] }
+      is_at: { label: 'Is at coordinates', params: ['x', 'y', 'z'] },
+      '2x2_area': { label: 'Is a 2x2 area', params: ['topLeft'] },
+      '3x3_area': { label: 'Is a 3x3 area', params: ['center'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));

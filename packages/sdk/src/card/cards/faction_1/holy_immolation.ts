@@ -1,11 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import {
-  cellWithAllyMinion,
-  cellWithEnemyMinion,
-  manualTarget
-} from '../../helpers/targeting';
+import { cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1HolyImmolation = defineSerializedBlueprint({
   id: 'holy_immolation',
