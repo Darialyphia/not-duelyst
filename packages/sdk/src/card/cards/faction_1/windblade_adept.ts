@@ -3,7 +3,6 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { zealCondition } from '../../helpers/conditions';
 
 export const f1WindbladeAdept = defineSerializedBlueprint({
   id: 'windblade_adept',

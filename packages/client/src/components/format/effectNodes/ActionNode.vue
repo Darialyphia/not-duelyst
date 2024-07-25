@@ -29,11 +29,11 @@ const actionDict: Record<
 > = {
   deal_damage: {
     label: 'Deal damage',
-    params: { amount: AmountNode, targets: UnitNode, filter: GlobalConditionNode }
+    params: { targets: UnitNode, amount: AmountNode, filter: GlobalConditionNode }
   },
   heal: {
     label: 'Heal',
-    params: { amount: AmountNode, targets: UnitNode, filter: GlobalConditionNode }
+    params: { targets: UnitNode, amount: AmountNode, filter: GlobalConditionNode }
   },
   draw_cards: {
     label: 'Draw',
@@ -132,7 +132,8 @@ watch(
       })
       .with({ type: 'zeal' }, ({ params }) => {
         // @ts-expect-error
-        params.effect ??= { executionContext: undefined, actions: [], filter: [] };
+        params.effect ??= { executionContext: undefined, actions: [] };
+        params.filter ??= [];
       })
       .with({ type: 'add_effect' }, ({ params }) => {
         params.unit ??= [[{ type: undefined as any }]];

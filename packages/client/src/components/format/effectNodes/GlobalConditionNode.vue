@@ -29,6 +29,39 @@ const componentNodes: Record<string, Component | string> = {
 const isComponent = (x: unknown): x is Component => {
   return isObject(x) && 'render' in x;
 };
+
+watchEffect(() => {
+  groups.value.forEach(group => {
+    group.forEach(condition => {
+      if (!condition.type) return;
+      if (!condition.params) {
+        condition.params = {} as any;
+      }
+
+      match(condition)
+        .with({ type: 'player_gold' }, { type: 'player_hp' }, ({ params }) => {
+          // @ts-expect-error
+          params.amount ??= { type: undefined };
+          params.operator ??= 'equals';
+          params.player ??= [[{ type: undefined as any }]];
+        })
+        .with({ type: 'unit_state' }, ({ params }) => {
+          params.unit ??= [[{ type: undefined as any }]];
+          params.mode ??= 'all';
+          params.position ??= [[{ type: undefined as any }]];
+          params.attack = {
+            amount: params.attack?.amount ?? ({ type: undefined } as any),
+            operator: params.attack?.operator ?? 'equals'
+          };
+          params.hp = {
+            amount: params.hp?.amount ?? ({ type: undefined } as any),
+            operator: params.hp?.operator ?? 'equals'
+          };
+        })
+        .exhaustive();
+    });
+  });
+});
 </script>
 
 <template>

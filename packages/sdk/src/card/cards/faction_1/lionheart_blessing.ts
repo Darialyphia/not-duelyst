@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { zealCondition } from '../../helpers/conditions';
 import { cellWithAllyMinion } from '../../helpers/targeting';
 
 export const f1LionheartBlessing = defineSerializedBlueprint({
@@ -48,7 +47,6 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
                           {
                             type: 'draw_cards',
                             params: {
-                              filter: zealCondition(),
                               player: [[{ type: 'attack_source_owner' }]],
                               amount: { type: 'fixed', params: { value: 1 } }
                             }

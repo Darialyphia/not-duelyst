@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { zealCondition } from '../../helpers/conditions';
 
 export const f1SuntideMaiden = defineSerializedBlueprint({
   id: 'suntide_maiden',
@@ -45,8 +44,7 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
                       amount: {
                         type: 'maxHp',
                         params: { unit: [[{ type: 'is_self' }]] }
-                      },
-                      filter: zealCondition()
+                      }
                     }
                   }
                 ]

@@ -34,7 +34,8 @@ export type {
   ExecutionContext,
   Action,
   Amount,
-  NumericOperator
+  NumericOperator,
+  CardEffectConfig
 } from './card/card-effect';
 export type {
   UnitConditionBase,

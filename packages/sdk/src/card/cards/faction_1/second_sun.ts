@@ -3,7 +3,6 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { zealCondition } from '../../helpers/conditions';
 
 export const f1SecondSun = defineSerializedBlueprint({
   id: 'second_sun',
@@ -21,7 +20,7 @@ export const f1SecondSun = defineSerializedBlueprint({
   tags: [],
   effects: [
     defineCardEffect({
-      text: '@Zeal@: +2/+0.',
+      text: '@Zeal@: +8/+0.',
       config: {
         executionContext: 'immediate',
         actions: [

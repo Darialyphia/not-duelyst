@@ -111,60 +111,7 @@ const id = useId();
       </UiSimpleTooltip>
     </h4>
     <UiTextInput :id="`${id}-text`" v-model="internal.text" class="mb-3" />
-    <div class="flex items-center gap-3">
-      <h4>When to run this effect:</h4>
-      <UiSelect v-model="executionContext" :options="executionContextOptions" />
-    </div>
-
-    <template v-if="internal.config.triggers">
-      <h4>Whenever</h4>
-      <template v-for="(trigger, index) in internal.config.triggers" :key="index">
-        <div class="pl-6">
-          <TriggerNode
-            v-model:trigger="internal.config.triggers[index] as any"
-            @delete="internal.config.triggers.splice(index, 1)"
-          />
-        </div>
-        <div v-if="index < internal.config.triggers.length - 1" class="text-center m-2">
-          - OR -
-        </div>
-      </template>
-      <UiButton
-        class="subtle-button my-4 w-full"
-        @click="internal.config.triggers.push({ type: 'on_unit_play', params: {} })"
-      >
-        Add trigger
-      </UiButton>
-    </template>
-    <h4>Actions</h4>
-    <ul>
-      <li v-for="(action, index) in internal.config.actions" :key="index" class="action">
-        <InitActionNode
-          v-if="internal.config.executionContext === 'on_init'"
-          v-model="internal.config.actions[index]"
-        />
-        <ActionNode
-          v-else
-          v-model="internal.config.actions[index]"
-          :triggers="internal.config.triggers"
-        />
-      </li>
-      <p v-if="!internal.config.actions?.length">You have not defined any action yet.</p>
-      <UiButton
-        class="subtle-button w-full mt-3"
-        left-icon="material-symbols:add"
-        @click="
-          () => {
-            if (!internal.config.actions) {
-              internal.config.actions = [];
-            }
-            internal.config.actions.push({ type: undefined, params: {} });
-          }
-        "
-      >
-        Add action
-      </UiButton>
-    </ul>
+    <EffectNode v-model="internal.config" />
 
     <CollapsibleRoot v-model:open="isDebugOpen">
       <div style="display: flex; align-items: center; justify-content: space-between">
