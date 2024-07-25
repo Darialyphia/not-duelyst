@@ -369,6 +369,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     for (const point of path) {
       this.position = Vec3.fromPoint3D(point);
     }
+    this.movementsTaken++;
 
     this.emit(ENTITY_EVENTS.AFTER_MOVE, {
       entity: this,

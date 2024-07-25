@@ -9,7 +9,7 @@ import {
 import type { Action, WidenedGenericCardEffect } from '@game/sdk';
 import { isObject } from '@game/shared';
 import { match } from 'ts-pattern';
-import { defu } from 'defu';
+import { intersection } from 'lodash-es';
 
 const { triggers } = defineProps<{
   triggers?: WidenedGenericCardEffect['config']['triggers'];
@@ -20,6 +20,49 @@ const action = defineModel<Action>('modelValue', { required: true });
 const isComponent = (x: unknown): x is Component => {
   return isObject(x) && 'render' in x;
 };
+
+const triggerOverridesDict = {
+  unit: {
+    on_before_unit_move: ['moved_unit'],
+    on_after_unit_move: ['moved_unit'],
+    on_before_unit_deal_damage: ['attack_source', 'attack_target'],
+    on_after_unit_deal_damage: ['attack_source', 'attack_target'],
+    on_before_unit_take_damage: ['attack_source', 'attack_target'],
+    on_after_unit_take_damage: ['attack_source', 'attack_target'],
+    on_before_unit_attack: ['attack_source', 'attack_target'],
+    on_after_unit_attack: ['attack_source', 'attack_target'],
+    on_before_unit_retaliate: ['attack_source', 'attack_target'],
+    on_after_unit_retaliate: ['attack_source', 'attack_target'],
+    on_before_unit_healed: ['healing_source', 'healing_target'],
+    on_after_unit_healed: ['healing_source', 'healing_target'],
+    on_unit_play: ['played_unit'],
+    on_before_unit_destroyed: ['destroyed_unit'],
+    on_after_unit_destroyed: ['destroyed_unit']
+  },
+  card: {
+    on_card_drawn: ['drawn_card'],
+    on_after_player_draw: ['drawn_card'],
+    on_card_replaced: ['replaced_card'],
+    on_before_player_replace: ['replaced_card'],
+    on_after_player_replace: ['replaced_card', 'card_replacement']
+  }
+};
+const unitOverrides = intersection(
+  triggers?.map(
+    trigger =>
+      triggerOverridesDict.unit[
+        trigger.type as keyof (typeof triggerOverridesDict)['unit']
+      ]
+  )
+);
+const cardOverrides = intersection(
+  triggers?.map(
+    trigger =>
+      triggerOverridesDict.card[
+        trigger.type as keyof (typeof triggerOverridesDict)['card']
+      ]
+  )
+);
 
 type Params = Component | null | { [key: string]: Params };
 
@@ -67,7 +110,7 @@ const actionDict: Record<
     params: { unit: UnitNode, effect: EffectNode, filter: GlobalConditionNode }
   },
   zeal: {
-    label: 'Zeal',
+    label: 'Gain an effect when zealed',
     params: { effect: EffectNode, filter: GlobalConditionNode }
   }
 };

@@ -354,6 +354,24 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         });
 
         units.forEach(target => {
+          const stats = {
+            attack: action.params.attack
+              ? getAmount({
+                  ...ctx,
+                  amount: action.params.attack.amount,
+                  event,
+                  eventName
+                })
+              : 0,
+            hp: action.params.hp
+              ? getAmount({
+                  ...ctx,
+                  amount: action.params.hp.amount,
+                  event,
+                  eventName
+                })
+              : 0
+          };
           target.addModifier(
             createEntityModifier({
               id: modifierId,
@@ -381,7 +399,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                     });
                     return match(action.params.mode)
                       .with('give', () => value + amount)
-                      .with('set', () => amount)
+                      .with('set', () => stats.attack)
                       .exhaustive();
                   }
                 }),
@@ -405,7 +423,7 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
                     });
                     return match(action.params.mode)
                       .with('give', () => value + amount)
-                      .with('set', () => amount)
+                      .with('set', () => stats.hp)
                       .exhaustive();
                   }
                 })

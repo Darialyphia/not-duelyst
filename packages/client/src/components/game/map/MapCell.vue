@@ -48,6 +48,8 @@ const move = () => {
       entityId: ui.selectedEntity.value!.id,
       position: cell.value.position
     });
+  } else {
+    ui.unselectEntity();
   }
 };
 
