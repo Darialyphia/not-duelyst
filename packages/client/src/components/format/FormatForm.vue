@@ -29,6 +29,18 @@ const tab = useRouteQuery('tab', 'config');
 
       <TabsTrigger value="config">Settings</TabsTrigger>
       <TabsTrigger value="cards">Cards</TabsTrigger>
+
+      <UiFancyButton
+        v-model="form.description"
+        class="ml-auto"
+        type="button"
+        :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
+      >
+        Reset
+      </UiFancyButton>
+      <UiFancyButton v-model="form.description" @click="emit('submit', form)">
+        Save
+      </UiFancyButton>
     </TabsList>
 
     <TabsContent value="config" class="tab config-tab fancy-scrollbar">
@@ -40,18 +52,6 @@ const tab = useRouteQuery('tab', 'config');
     <TabsContent value="cards" class="tab overflow-hidden">
       <FormatCards :format="form" />
     </TabsContent>
-    <footer>
-      <UiFancyButton
-        v-model="form.description"
-        type="button"
-        :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-      >
-        Reset
-      </UiFancyButton>
-      <UiFancyButton v-model="form.description" @click="emit('submit', form)">
-        Save
-      </UiFancyButton>
-    </footer>
   </TabsRoot>
 </template>
 
@@ -126,19 +126,6 @@ fieldset {
   border: none;
 }
 
-footer {
-  display: flex;
-  gap: var(--size-4);
-  justify-content: flex-end;
-
-  margin-top: auto;
-  padding: var(--size-4);
-
-  border-top: solid var(--border-size-1) var(--border);
-}
-.form > footer button {
-  min-width: 15ch;
-}
 .form > div > label,
 legend {
   display: block;

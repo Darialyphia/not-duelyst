@@ -24,7 +24,8 @@ const pedestals = [
   'pedestal-cyber',
   'pedestal-lava',
   'pedestal-sand',
-  'pedestal-lyonar'
+  'pedestal-lyonar',
+  'pedestal-songhai'
 ];
 
 const cardBacks = ['default', 'fire', 'clouds', 'wood', 'lyonar'];

@@ -85,7 +85,7 @@ ul {
 li {
   opacity: 0;
   animation: main-navigation-item 0.5s ease-out forwards;
-  animation-delay: calc((var(--child-index) * 50ms));
+  animation-delay: calc((var(--child-index) * 30ms));
 
   > * {
     position: relative;
