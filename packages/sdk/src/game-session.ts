@@ -1,4 +1,3 @@
-import EventEmitter from 'eventemitter3';
 import { EntitySystem } from './entity/entity-system';
 import { BoardSystem, type BoardSystemOptions } from './board/board-system';
 import { PlayerSystem } from './player/player-system';
@@ -32,12 +31,8 @@ import {
   type ArtifactEvent,
   type ArtifactEventMap
 } from './player/player-artifact';
-import { defaultConfig, type GameSessionConfig } from './config';
-import type {
-  CardBlueprint,
-  GenericSerializedBlueprint,
-  SerializedBlueprint
-} from './card/card-blueprint';
+import { type GameSessionConfig } from './config';
+import type { CardBlueprint, GenericSerializedBlueprint } from './card/card-blueprint';
 import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
 import { SafeEventEmitter } from './utils/safe-event-emitter';
@@ -174,6 +169,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
   ) {
     super();
     this.config = options.format.config;
+    console.log(options.format.cards);
     this.cardBlueprints = Object.fromEntries(
       Object.entries(options.format.cards).map(([key, value]) => [
         key,

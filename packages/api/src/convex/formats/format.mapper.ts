@@ -26,7 +26,7 @@ export const toGameFormatDto = (format: GameFormatInput): GameFormatDto => {
     name: format.name,
     description: format.description,
     config: format.config,
-    cards: format.cards,
+    cards: JSON.parse(format.cards),
     author: toUserDto(format.author),
     map: toGameMapDto(format.map)
   };

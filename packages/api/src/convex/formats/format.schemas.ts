@@ -9,7 +9,7 @@ export const formatSchemas = {
     name: v.string(),
     description: v.string(),
     config: formatConfigValidator,
-    cards: v.any() as Validator<Record<string, GenericSerializedBlueprint>>,
+    cards: v.string(),
     authorId: v.id('users'),
     mapId: v.id('gameMaps')
   })

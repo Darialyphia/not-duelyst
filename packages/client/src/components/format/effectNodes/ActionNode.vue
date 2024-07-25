@@ -23,28 +23,67 @@ const isComponent = (x: unknown): x is Component => {
 
 const triggerOverridesDict = {
   unit: {
-    on_before_unit_move: ['moved_unit'],
-    on_after_unit_move: ['moved_unit'],
-    on_before_unit_deal_damage: ['attack_source', 'attack_target'],
-    on_after_unit_deal_damage: ['attack_source', 'attack_target'],
-    on_before_unit_take_damage: ['attack_source', 'attack_target'],
-    on_after_unit_take_damage: ['attack_source', 'attack_target'],
-    on_before_unit_attack: ['attack_source', 'attack_target'],
-    on_after_unit_attack: ['attack_source', 'attack_target'],
-    on_before_unit_retaliate: ['attack_source', 'attack_target'],
-    on_after_unit_retaliate: ['attack_source', 'attack_target'],
-    on_before_unit_healed: ['healing_source', 'healing_target'],
-    on_after_unit_healed: ['healing_source', 'healing_target'],
-    on_unit_play: ['played_unit'],
-    on_before_unit_destroyed: ['destroyed_unit'],
-    on_after_unit_destroyed: ['destroyed_unit']
+    on_before_unit_move: { moved_unit: { label: 'The moving unit', params: [] } },
+    on_after_unit_move: { moved_unit: { label: 'The moving unit', params: [] } },
+    on_before_unit_deal_damage: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target' }
+    },
+    on_after_unit_deal_damage: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target' }
+    },
+    on_before_unit_take_damage: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target', params: [] }
+    },
+    on_after_unit_take_damage: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target', params: [] }
+    },
+    on_before_unit_attack: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target', params: [] }
+    },
+    on_after_unit_attack: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target', params: [] }
+    },
+    on_before_unit_retaliate: {
+      attack_source: { label: 'the attacker', params: [] },
+      attack_target: { label: 'the attack target', params: [] }
+    },
+    on_after_unit_retaliate: {
+      attack_source: { label: 'The attacker', params: [] },
+      attack_target: { label: 'The attack target', params: [] }
+    },
+    on_before_unit_healed: {
+      healing_source: { label: 'The healer', params: [] },
+      healing_target: { label: 'The heal target', params: [] }
+    },
+    on_after_unit_healed: {
+      healing_source: { label: 'The healer', params: [] },
+      healing_target: { label: 'The heal target', params: [] }
+    },
+    on_unit_play: { played_unit: { label: 'The unit being summoned', params: [] } },
+    on_before_unit_destroyed: {
+      destroyed_unit: { label: 'The unit being destroyed', params: [] }
+    },
+    on_after_unit_destroyed: {
+      destroyed_unit: { label: 'The unit being destroyed', params: [] }
+    }
   },
   card: {
-    on_card_drawn: ['drawn_card'],
-    on_after_player_draw: ['drawn_card'],
-    on_card_replaced: ['replaced_card'],
-    on_before_player_replace: ['replaced_card'],
-    on_after_player_replace: ['replaced_card', 'card_replacement']
+    on_card_drawn: { drawn_card: { label: 'The card being drawn', params: [] } },
+    on_after_player_draw: { drawn_card: { label: 'The card being drawn', params: [] } },
+    on_card_replaced: { replaced_card: { label: 'The card being replaced', params: [] } },
+    on_before_player_replace: {
+      replaced_card: { label: 'The card being replaced', params: [] }
+    },
+    on_after_player_replace: {
+      replaced_card: { label: 'The card being replaced', params: [] },
+      card_replacement: { label: 'The card replacement', params: [] }
+    }
   }
 };
 const unitOverrides = intersection(
@@ -54,7 +93,7 @@ const unitOverrides = intersection(
         trigger.type as keyof (typeof triggerOverridesDict)['unit']
       ]
   )
-);
+).reduce((acc, current) => ({ ...acc, ...current }), {});
 const cardOverrides = intersection(
   triggers?.map(
     trigger =>
@@ -62,7 +101,10 @@ const cardOverrides = intersection(
         trigger.type as keyof (typeof triggerOverridesDict)['card']
       ]
   )
-);
+).reduce((acc, current) => ({ ...acc, ...current }), {});
+
+useUnitConditionsProvider(ref(unitOverrides));
+useCardConditionsProvider(ref(cardOverrides));
 
 type Params = Component | null | { [key: string]: Params };
 

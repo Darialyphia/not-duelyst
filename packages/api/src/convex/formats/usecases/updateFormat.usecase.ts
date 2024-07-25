@@ -7,7 +7,8 @@ export const updateFormatUsecase = authedMutation({
     id: v.id('formats'),
     name: v.string(),
     description: v.string(),
-    config: formatConfigValidator
+    config: formatConfigValidator,
+    cards: v.any()
   },
   async handler(ctx, args) {
     const format = await ctx.db.get(args.id);
@@ -20,6 +21,6 @@ export const updateFormatUsecase = authedMutation({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...data } = args;
 
-    await ctx.db.patch(format._id, data);
+    await ctx.db.patch(format._id, { ...data, cards: JSON.stringify(data.cards) });
   }
 });

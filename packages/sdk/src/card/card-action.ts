@@ -137,6 +137,7 @@ export const checkGlobalConditions = (
   eventName?: string
 ): boolean => {
   if (!conditions) return true;
+  if (!conditions.length) return true;
 
   return conditions.some(group => {
     return group.every(condition => {

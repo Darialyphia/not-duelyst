@@ -668,6 +668,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     modifiers: cardModifiers,
     targets: blueprint.targets ? parseTargets(blueprint.targets) : undefined,
     onPlay(ctx: EffectCtx) {
+      console.log(blueprint.id);
       effects.forEach(effect => {
         match(effect.config.executionContext)
           .with('while_on_board', () => {
