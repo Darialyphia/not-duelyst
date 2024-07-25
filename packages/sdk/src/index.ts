@@ -35,7 +35,8 @@ export type {
   Action,
   Amount,
   NumericOperator,
-  CardEffectConfig
+  CardEffectConfig,
+  TriggerFrequency
 } from './card/card-effect';
 export type {
   UnitConditionBase,

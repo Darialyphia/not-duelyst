@@ -101,14 +101,14 @@ export const [useCardConditionsProvider, _useCardConditions] = createInjectionSt
       CardConditionBase['type'],
       { label: string; params: string[] }
     > = {
-      any_card: { label: 'Is any card', params: [] },
-      self: { label: 'Is you', params: [] },
-      minion: { label: 'Is a minion card', params: [] },
-      spell: { label: 'Is a spell card', params: [] },
-      artifact: { label: 'Is an artifact card', params: [] },
-      cost: { label: 'Is a card that costs X', params: ['operator', 'amount'] },
+      any_card: { label: 'Any card', params: [] },
+      self: { label: 'This card', params: [] },
+      minion: { label: 'A minion card', params: [] },
+      spell: { label: 'A spell card', params: [] },
+      artifact: { label: 'An artifact card', params: [] },
+      cost: { label: 'A card that costs X', params: ['operator', 'amount'] },
       index_in_hand: {
-        label: 'Is at position X in your hand',
+        label: 'A card at position X in your hand',
         params: ['index']
       }
     };

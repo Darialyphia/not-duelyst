@@ -169,7 +169,6 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
   ) {
     super();
     this.config = options.format.config;
-    console.log(options.format.cards);
     this.cardBlueprints = Object.fromEntries(
       Object.entries(options.format.cards).map(([key, value]) => [
         key,

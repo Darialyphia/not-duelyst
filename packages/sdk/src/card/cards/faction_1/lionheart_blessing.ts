@@ -40,7 +40,11 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
                         triggers: [
                           {
                             type: 'on_after_unit_deal_damage',
-                            params: { target: [], unit: [[{ type: 'is_self' }]] }
+                            params: {
+                              frequency: { type: 'always' },
+                              target: [],
+                              unit: [[{ type: 'is_self' }]]
+                            }
                           }
                         ],
                         actions: [

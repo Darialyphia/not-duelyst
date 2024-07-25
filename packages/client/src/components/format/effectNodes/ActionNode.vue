@@ -10,6 +10,7 @@ import type { Action, WidenedGenericCardEffect } from '@game/sdk';
 import { isObject } from '@game/shared';
 import { match } from 'ts-pattern';
 import { intersection } from 'lodash-es';
+import FrequencyNode from './FrequencyNode.vue';
 
 const { triggers } = defineProps<{
   triggers?: WidenedGenericCardEffect['config']['triggers'];
@@ -125,13 +126,46 @@ const actionDict: Record<
     params: { amount: AmountNode, player: PlayerNode, filter: GlobalConditionNode }
   },
   change_stats: {
-    label: 'Chang stats',
+    label: 'Change stats',
     params: {
       targets: UnitNode,
       mode: null,
       stackable: null,
       attack: { amount: AmountNode, activeWhen: GlobalConditionNode },
       hp: { amount: AmountNode, activeWhen: GlobalConditionNode },
+      filter: GlobalConditionNode
+    }
+  },
+  change_damage_taken: {
+    label: 'Change damage taken',
+    params: {
+      targets: UnitNode,
+      mode: null,
+      stackable: null,
+      amount: AmountNode,
+      frequency: FrequencyNode,
+      filter: GlobalConditionNode
+    }
+  },
+  change_damage_dealt: {
+    label: 'Change damage dealt',
+    params: {
+      targets: UnitNode,
+      mode: null,
+      stackable: null,
+      amount: AmountNode,
+      frequency: FrequencyNode,
+      filter: GlobalConditionNode
+    }
+  },
+  change_heal_received: {
+    label: 'Change heal received',
+    params: {
+      targets: UnitNode,
+      mode: null,
+      stackable: null,
+      amount: AmountNode,
+      frequency: FrequencyNode,
       filter: GlobalConditionNode
     }
   },
@@ -203,6 +237,19 @@ watch(
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
       })
+      .with(
+        { type: 'change_damage_taken' },
+        { type: 'change_damage_dealt' },
+        { type: 'change_heal_received' },
+        ({ params }) => {
+          params.mode ??= 'give';
+          params.stackable ??= true;
+          params.targets ??= [[{ type: undefined as any }]];
+          params.filter ??= [];
+          params.frequency ??= { type: 'always' };
+          params.amount ??= { type: undefined } as any;
+        }
+      )
       .with({ type: 'destroy_unit' }, ({ params }) => {
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];

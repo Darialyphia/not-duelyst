@@ -1,7 +1,6 @@
 import { type Serializable, Vec3, type Values, type Nullable } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
-import EventEmitter from 'eventemitter3';
 import type { CardIndex, PlayerId } from '../player/player';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { isAlly, isEnemy } from './entity-utils';
@@ -135,7 +134,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     speed: new Interceptable<number, Entity>(),
     range: new Interceptable<number, Entity>(),
 
-    maxRetalitions: new Interceptable<number, Entity>(),
+    maxRetaliations: new Interceptable<number, Entity>(),
     maxAttacks: new Interceptable<number, Entity>(),
     maxMovements: new Interceptable<number, Entity>(),
 
@@ -226,7 +225,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
   }
 
   get maxRetaliations(): number {
-    return this.interceptors.maxRetalitions.getValue(1, this);
+    return this.interceptors.maxRetaliations.getValue(1, this);
   }
 
   get isExhausted(): boolean {

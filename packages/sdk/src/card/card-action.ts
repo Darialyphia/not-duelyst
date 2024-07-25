@@ -2,7 +2,7 @@ import { match } from 'ts-pattern';
 import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
 import type { Action, Amount, Filter, InitAction, NumericOperator } from './card-effect';
-import type { Entity } from '../entity/entity';
+import { ENTITY_EVENTS, type Entity } from '../entity/entity';
 import { type AnyObject, type Nullable, type Point3D } from '@game/shared';
 import type { Card } from './card';
 import { createEntityModifier } from '../modifier/entity-modifier';
@@ -438,6 +438,223 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
             target.removeModifier(modifierId);
           });
       })
+      .with({ type: 'change_damage_taken' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
+        const units = getUnits({
+          ...ctx,
+          conditions: action.params.targets,
+          event,
+          eventName
+        });
+        const modifierId = nanoid(6);
+
+        units.forEach(target => {
+          let shouldApply = true;
+          target.addModifier(
+            createEntityModifier({
+              id: modifierId,
+              source: card,
+              stackable: action.params.stackable,
+              visible: false,
+              mixins: [
+                modifierEntityInterceptorMixin({
+                  key: 'damageTaken',
+                  keywords: [],
+                  interceptor: () => value => {
+                    if (!shouldApply) return value;
+                    const amount = getAmount({
+                      ...ctx,
+                      amount: action.params.amount,
+                      event,
+                      eventName
+                    });
+                    return match(action.params.mode)
+                      .with('give', () => value + amount)
+                      .with('set', () => amount)
+                      .exhaustive();
+                  }
+                })
+              ]
+            })
+          );
+          if (action.params.frequency.type === 'once') {
+            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              target.removeModifier(modifierId);
+            });
+          }
+          if (action.params.frequency.type === 'n_per_turn') {
+            const maxPerTurn = action.params.frequency.params.count;
+            let count = 0;
+
+            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              count++;
+              if (count >= maxPerTurn) {
+                shouldApply = false;
+              }
+            });
+            session.on('player:turn_start', () => {
+              count = 0;
+              shouldApply = true;
+            });
+          }
+        });
+
+        return () =>
+          units.forEach(target => {
+            target.removeModifier(modifierId);
+          });
+      })
+      .with({ type: 'change_heal_received' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
+        const units = getUnits({
+          ...ctx,
+          conditions: action.params.targets,
+          event,
+          eventName
+        });
+        const modifierId = nanoid(6);
+
+        units.forEach(target => {
+          let shouldApply = true;
+          target.addModifier(
+            createEntityModifier({
+              id: modifierId,
+              source: card,
+              stackable: action.params.stackable,
+              visible: false,
+              mixins: [
+                modifierEntityInterceptorMixin({
+                  key: 'healReceived',
+                  keywords: [],
+                  interceptor: () => value => {
+                    if (!shouldApply) return value;
+                    const amount = getAmount({
+                      ...ctx,
+                      amount: action.params.amount,
+                      event,
+                      eventName
+                    });
+                    return match(action.params.mode)
+                      .with('give', () => value + amount)
+                      .with('set', () => amount)
+                      .exhaustive();
+                  }
+                })
+              ]
+            })
+          );
+          if (action.params.frequency.type === 'once') {
+            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              target.removeModifier(modifierId);
+            });
+          }
+          if (action.params.frequency.type === 'n_per_turn') {
+            const maxPerTurn = action.params.frequency.params.count;
+            let count = 0;
+
+            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              count++;
+              if (count >= maxPerTurn) {
+                shouldApply = false;
+              }
+            });
+            session.on('player:turn_start', () => {
+              count = 0;
+              shouldApply = true;
+            });
+          }
+        });
+        return () =>
+          units.forEach(target => {
+            target.removeModifier(modifierId);
+          });
+      })
+      .with({ type: 'change_damage_dealt' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
+        const units = getUnits({
+          ...ctx,
+          conditions: action.params.targets,
+          event,
+          eventName
+        });
+        const modifierId = nanoid(6);
+
+        units.forEach(target => {
+          let shouldApply = true;
+          target.addModifier(
+            createEntityModifier({
+              id: modifierId,
+              source: card,
+              stackable: action.params.stackable,
+              visible: false,
+              mixins: [
+                modifierEntityInterceptorMixin({
+                  key: 'damageDealt',
+                  keywords: [],
+                  interceptor: () => value => {
+                    if (!shouldApply) return value;
+                    const amount = getAmount({
+                      ...ctx,
+                      amount: action.params.amount,
+                      event,
+                      eventName
+                    });
+                    return match(action.params.mode)
+                      .with('give', () => value + amount)
+                      .with('set', () => amount)
+                      .exhaustive();
+                  }
+                })
+              ]
+            })
+          );
+          if (action.params.frequency.type === 'once') {
+            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              target.removeModifier(modifierId);
+            });
+          }
+          if (action.params.frequency.type === 'n_per_turn') {
+            const maxPerTurn = action.params.frequency.params.count;
+            let count = 0;
+
+            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
+              count++;
+              if (count >= maxPerTurn) {
+                shouldApply = false;
+              }
+            });
+            session.on('player:turn_start', () => {
+              count = 0;
+              shouldApply = true;
+            });
+          }
+        });
+        return () =>
+          units.forEach(target => {
+            target.removeModifier(modifierId);
+          });
+      })
       .with({ type: 'provoke' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
@@ -551,7 +768,6 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         if (!isGlobalConditionMatch) return noop;
         const cleanups: Array<() => void> = [];
         const zealTarget = entity ?? card.player.general;
-        console.log(zealTarget);
         const effects = parseSerializedBlueprintEffect({
           text: '',
           config: action.params.effect

@@ -23,7 +23,10 @@ export const f1Sunriser = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         triggers: [
-          { type: 'on_after_unit_healed', params: { unit: [[{ type: 'any_unit' }]] } }
+          {
+            type: 'on_after_unit_healed',
+            params: { frequency: { type: 'always' }, unit: [[{ type: 'any_unit' }]] }
+          }
         ],
         actions: [
           {

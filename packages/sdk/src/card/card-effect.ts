@@ -21,170 +21,170 @@ export type ConditionOverrides = {
   card?: CardCondition['type'];
 };
 
+export type TriggerFrequency =
+  | {
+      type: 'always';
+    }
+  | { type: 'once' }
+  | { type: 'n_per_turn'; params: { count: number } };
+
 export type Trigger =
   | {
       type: 'on_before_unit_move';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_move';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_deal_damage';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_deal_damage';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_take_damage';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_take_damage';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_attack';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_attack';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_healed';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_healed';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_retaliate';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_retaliate';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_unit_play';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_before_unit_destroyed';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_destroyed';
-      once?: boolean;
       params: {
+        frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
       };
     }
   | {
       type: 'on_player_turn_start';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_player_turn_end';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_before_player_draw';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_after_player_draw';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_before_player_replace';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_after_player_replace';
-      once?: boolean;
-      params: { player: Filter<PlayerCondition> };
+      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
     }
   | {
       type: 'on_before_card_played';
-      once?: boolean;
-      params: { card: Filter<CardConditionBase> };
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
     }
   | {
       type: 'on_after_card_played';
-      once?: boolean;
-      params: { card: Filter<CardConditionBase> };
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
     }
-  | { type: 'on_card_drawn'; once?: boolean; params: { card: Filter<CardConditionBase> } }
+  | {
+      type: 'on_card_drawn';
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
+    }
   | {
       type: 'on_card_replaced';
-      once?: boolean;
-      params: { card: Filter<CardConditionBase> };
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
     }
   | {
       type: 'on_artifact_equiped';
-      once?: boolean;
-      params: { card: Filter<CardConditionBase> };
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
     };
 
 export type Amount<T extends ConditionOverrides> =
@@ -305,6 +305,45 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        stackable: boolean;
+      };
+    }
+  | {
+      type: 'change_damage_taken';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        mode: 'give' | 'set';
+        amount: Amount<T>;
+        targets: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        frequency: TriggerFrequency;
+        stackable: boolean;
+      };
+    }
+  | {
+      type: 'change_damage_dealt';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        mode: 'give' | 'set';
+        amount: Amount<T>;
+        targets: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        frequency: TriggerFrequency;
+        stackable: boolean;
+      };
+    }
+  | {
+      type: 'change_heal_received';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        mode: 'give' | 'set';
+        amount: Amount<T>;
+        targets: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        frequency: TriggerFrequency;
         stackable: boolean;
       };
     }

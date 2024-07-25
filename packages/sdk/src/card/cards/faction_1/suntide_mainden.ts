@@ -32,6 +32,7 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
                   {
                     type: 'on_player_turn_end',
                     params: {
+                      frequency: { type: 'always' },
                       player: [[{ type: 'ally_player' }]]
                     }
                   }

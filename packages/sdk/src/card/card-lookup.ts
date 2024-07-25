@@ -26,6 +26,7 @@ import { f1HolyImmolation } from './cards/faction_1/holy_immolation';
 import { f1DivineBond } from './cards/faction_1/divine_bond';
 import { f1SundropElixir } from './cards/faction_1/sundrop_elixir';
 import { f1LastingJudgement } from './cards/faction_1/lasting_judgment';
+import { f1ArclyteRegalia } from './cards/faction_1/arclyte_regalia';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -50,6 +51,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f1SundropElixir,
   f1SuntideMaiden,
   f1LastingJudgement,
+  f1ArclyteRegalia,
   neutralHealingMystic,
   neutralRiftWalker,
   neutralPrimusShieldMaster

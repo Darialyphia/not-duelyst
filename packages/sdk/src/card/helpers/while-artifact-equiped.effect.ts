@@ -1,4 +1,9 @@
-import { type Action, type OverridesFromTrigger, defineCardEffect } from '../card-effect';
+import {
+  type Action,
+  type OverridesFromTrigger,
+  type TriggerFrequency,
+  defineCardEffect
+} from '../card-effect';
 
 export const whileArtifactEquipedEffect = ({
   text,
@@ -11,6 +16,7 @@ export const whileArtifactEquipedEffect = ({
         {
           type: 'on_artifact_equiped';
           params: {
+            frequency: TriggerFrequency;
             card: [
               [
                 {
@@ -32,6 +38,7 @@ export const whileArtifactEquipedEffect = ({
         {
           type: 'on_artifact_equiped',
           params: {
+            frequency: { type: 'always' },
             card: [[{ type: 'self' }]]
           }
         }

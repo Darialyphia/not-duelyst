@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import {
-  CARD_KINDS,
-  type ExecutionContext,
   type WidenedGenericCardEffect,
   type GenericSerializedBlueprint
 } from '@game/sdk';
-import { match } from 'ts-pattern';
-import { isDefined, type Nullable } from '@game/shared';
 
 const { blueprint } = defineProps<{ blueprint: GenericSerializedBlueprint }>();
 const effect = defineModel<WidenedGenericCardEffect>('effect', { required: true });
 
 useUnitConditionsProvider(ref({}));
-usePlayerConditionsProvider(ref({}));
+useCardConditionsProvider(ref({}));
 useCellConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
 useGlobalConditionsProvider(ref({}));
@@ -28,73 +24,6 @@ watch(
     internal.value = effect.value;
   }
 );
-
-const executionContext = computed({
-  get() {
-    return internal.value.config.executionContext;
-  },
-  set(val) {
-    match(val)
-      .with('on_init', 'immediate', () => {
-        internal.value.config.executionContext = val;
-        internal.value.config.actions = [];
-        internal.value.config.triggers = undefined;
-      })
-      .otherwise(() => {
-        internal.value.config.executionContext = val;
-        internal.value.config.actions = [];
-        // @ts-expect-error
-        internal.value.config.triggers = [{ type: undefined, params: {} }];
-      });
-  }
-});
-
-const executionContextOptions = computed(() => {
-  const ctxs: Array<
-    Nullable<{
-      label: string;
-      value: ExecutionContext;
-      disabled?: boolean;
-    }>
-  > = [
-    {
-      value: 'on_init',
-      label: 'Start of the game'
-    },
-    {
-      value: 'immediate',
-      label: 'When the card is played'
-    },
-    {
-      value: 'while_on_board',
-      label: 'While this card is on the board'
-    },
-    {
-      value: 'while_in_hand',
-      label: 'While this card is in your hand'
-    },
-    blueprint.kind === CARD_KINDS.ARTIFACT
-      ? {
-          value: 'while_equiped',
-          label: 'While this artifact is equiped'
-        }
-      : null,
-    {
-      value: 'while_in_deck',
-      label: 'While this card is in your deck'
-    },
-    {
-      value: 'while_in_deck',
-      label: 'While this card is in your graveyard (Soon™)',
-      disabled: true
-    }
-  ];
-
-  return ctxs.filter(isDefined) as Array<{
-    label: string;
-    value: ExecutionContext;
-  }>;
-});
 
 const isDebugOpen = ref(false);
 const id = useId();

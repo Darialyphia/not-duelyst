@@ -82,6 +82,8 @@ watch(
     }
   }
 );
+
+const { copy } = useClipboard();
 </script>
 
 <template>
@@ -263,7 +265,15 @@ watch(
           New Effect
         </UiButton>
       </AccordionRoot>
+      <UiButton
+        class="ghost-button"
+        left-icon="material-symbols:content-copy-outline"
+        @click="copy(JSON.stringify(blueprint, null, 2))"
+      >
+        Copy generated code to clipboard
+      </UiButton>
     </div>
+
     <div class="preview">
       <Card
         v-if="card"

@@ -43,7 +43,7 @@ export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
 
   private playerId: PlayerId;
 
-  durability = this.session.config.ARTIFACT_DURABILITY;
+  durability: number;
 
   id: PlayerArtifactId;
 
@@ -56,6 +56,7 @@ export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
     options: PLayerArtifactOptions
   ) {
     super();
+    this.durability = this.session.config.ARTIFACT_DURABILITY;
     this.id = nanoid(6);
     this.cardIndex = options.cardIndex;
     this.playerId = options.playerId;
