@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { vIntersectionObserver } from '@vueuse/components';
+import { camelCase } from 'lodash-es';
 import { capitalize } from 'vue';
 import {
   CARD_KINDS,
@@ -12,6 +13,7 @@ import {
   type GenericSerializedBlueprint
 } from '@game/sdk';
 import { isDefined } from '@game/shared';
+import dedent from 'dedent';
 
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { getKeywordById, type Keyword } from '@game/sdk/src/utils/keywords';
@@ -143,6 +145,15 @@ const getAnimation = (spriteId: string) => {
       hoveredSprite.value === spriteId ? 'active' : 'default'
     )
     .exhaustive();
+};
+
+const copyCode = () => {
+  const content = `import { defineSerializedBlueprint } from '../../card-blueprint';
+
+  export const ${camelCase(`${blueprint.value.faction}${blueprint.value.name}`)} = defineSerializedBlueprint(${JSON.stringify(blueprint.value, null, 2)});
+  `;
+
+  copy(dedent(content));
 };
 </script>
 
@@ -367,7 +378,7 @@ const getAnimation = (spriteId: string) => {
       <UiButton
         class="ghost-button"
         left-icon="material-symbols:content-copy-outline"
-        @click="copy(JSON.stringify(blueprint, null, 2))"
+        @click="copyCode"
       >
         Copy generated code to clipboard
       </UiButton>

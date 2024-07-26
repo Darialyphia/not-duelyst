@@ -22,7 +22,7 @@ export const grantCards = async (
         itemId: unit.id,
         ownerId: userId,
         grantedAt: Date.now(),
-        pedestalId: 'default',
+        pedestalId: 'pedestal-default',
         cardBackId: 'default'
       })
     )
