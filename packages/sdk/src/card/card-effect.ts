@@ -372,6 +372,14 @@ export type Action<
       };
     }
   | {
+      type: 'backstab';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        amount: Amount<T>;
+      };
+    }
+  | {
       type: 'dispel_cell';
       params: {
         filter?: Filter<GlobalCondition<T>>;

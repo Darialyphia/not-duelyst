@@ -11,6 +11,7 @@ import { nanoid } from 'nanoid';
 import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
 import {
   airdrop,
+  backstab,
   celerity,
   dispelCell,
   provoke,
@@ -691,32 +692,39 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         );
         if (!isGlobalConditionMatch) return noop;
         const modifier = celerity({ source: card });
-        const modifierTarget = entity ?? card.player.general;
 
-        const tryToApply = () => {
-          const shouldApply = checkGlobalConditions(
-            action.params.activeWhen,
-            ctx,
-            event,
-            eventName
-          );
-
-          if (shouldApply) {
-            if (!modifierTarget.hasModifier(modifier.id)) {
-              modifierTarget.addModifier(modifier);
-            }
-          } else {
-            modifierTarget.removeModifier(modifier.id);
-          }
-        };
-
-        tryToApply();
-        session.on('*', tryToApply);
-
-        return () => {
-          modifierTarget.removeModifier(modifier.id);
-          session.off('*', tryToApply);
-        };
+        return applyModifierConditionally({
+          modifier,
+          ctx,
+          event,
+          eventName,
+          session,
+          conditions: action.params.activeWhen
+        });
+      })
+      .with({ type: 'backstab' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+        const attackBonus = getAmount({
+          ...ctx,
+          event,
+          eventName,
+          amount: action.params.amount
+        });
+        const modifier = backstab({ source: card, attackBonus });
+        return applyModifierConditionally({
+          modifier,
+          ctx,
+          event,
+          eventName,
+          session,
+          conditions: action.params.activeWhen
+        });
       })
       .with({ type: 'add_effect' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(

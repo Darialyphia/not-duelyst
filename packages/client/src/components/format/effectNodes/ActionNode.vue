@@ -197,6 +197,14 @@ const actionDict: Record<
   activate_unit: {
     label: 'Activate a unit',
     params: { targets: UnitNode, filter: GlobalConditionNode }
+  },
+  backstab: {
+    label: 'Backstab',
+    params: {
+      amount: AmountNode,
+      activeWhen: GlobalConditionNode,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -270,6 +278,11 @@ watch(
       .with({ type: 'celerity' }, ({ params }) => {
         params.filter ??= [];
         params.activeWhen ??= [];
+      })
+      .with({ type: 'backstab' }, ({ params }) => {
+        params.filter ??= [];
+        params.activeWhen ??= [];
+        params.amount ??= { type: undefined } as any;
       })
       .with({ type: 'zeal' }, ({ params }) => {
         // @ts-expect-error
