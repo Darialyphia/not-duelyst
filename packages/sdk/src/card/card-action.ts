@@ -2,29 +2,32 @@ import { match } from 'ts-pattern';
 import type { CardBlueprint } from './card-blueprint';
 import type { GameSession } from '../game-session';
 import type { Action, Amount, Filter, InitAction, NumericOperator } from './card-effect';
-import { ENTITY_EVENTS, type Entity } from '../entity/entity';
+import { type Entity } from '../entity/entity';
 import { type AnyObject, type Nullable, type Point3D } from '@game/shared';
 import type { Card } from './card';
-import { createEntityModifier } from '../modifier/entity-modifier';
-import { modifierEntityInterceptorMixin } from '../modifier/mixins/entity-interceptor.mixin';
-import { nanoid } from 'nanoid';
-import { parseSerializedBlueprintEffect, type EffectCtx } from './card-parser';
-import {
-  airdrop,
-  backstab,
-  celerity,
-  dispelCell,
-  provoke,
-  rush,
-  zeal
-} from '../modifier/modifier-utils';
+import { type EffectCtx } from './card-parser';
+import { airdrop, rush } from '../modifier/modifier-utils';
 import type { CardConditionExtras } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits, type UnitConditionExtras } from './conditions/unit-conditions';
 import type { GlobalCondition } from './conditions/global-conditions';
 import { getCells } from './conditions/cell-conditions';
-import { applyModifierConditionally } from './helpers/actions';
-import { Unit } from './unit';
+import { DealDamageCardAction } from './actions/deal-damage.card-action';
+import { HealCardAction } from './actions/heal.card-action';
+import { DrawCardAction } from './actions/draw.card-action';
+import { ChangeStatsCardAction } from './actions/change-stats.card-action';
+import { ChangeDamageTakenAction } from './actions/change-damage-taken.card-action';
+import { ChangeHealReceivedAction } from './actions/change-heal-received.card-action';
+import { ChangeDamageDealtAction } from './actions/change-damage-dealt.card-action';
+import { ProvokeCardAction } from './actions/provoke.card-action';
+import { CelerityCardAction } from './actions/celerity.card-action';
+import { BackstabCardAction } from './actions/backstab.card-action';
+import { AddEffectCardAction } from './actions/add-effect.card-action';
+import { ZealCardAction } from './actions/zeal.card-action';
+import { DestroyUnitCardAction } from './actions/destroy-unit.card-action';
+import { BounceUnitCardAction } from './actions/bounce-unit.card-action';
+import { DispelCellCardAction } from './actions/dispel-cell.card-action';
+import { ActivateUnitCardAction } from './actions/activate-unit.card-action';
 
 export const getAmount = ({
   amount,
@@ -254,656 +257,52 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
 
     return match(action)
       .with({ type: 'deal_damage' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        }).forEach(target => {
-          if (ctx.card instanceof Unit) {
-            ctx.card.entity.dealDamage(
-              getAmount({
-                ...ctx,
-                amount: action.params.amount,
-                event,
-                eventName
-              }),
-              target
-            );
-          } else {
-            target.takeDamage(
-              getAmount({
-                ...ctx,
-                amount: action.params.amount,
-                event,
-                eventName
-              }),
-              ctx.card
-            );
-          }
-        });
-
-        return noop;
+        return new DealDamageCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'heal' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        }).forEach(target => {
-          target.heal(
-            getAmount({
-              ...ctx,
-              amount: action.params.amount,
-              event,
-              eventName
-            }),
-            ctx.card
-          );
-        });
-
-        return noop;
+        return new HealCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'draw_cards' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        getPlayers({
-          ...ctx,
-          event,
-          eventName,
-          conditions: action.params.player
-        }).forEach(player => {
-          player.draw(
-            getAmount({
-              ...ctx,
-              amount: action.params.amount,
-              event,
-              eventName
-            })
-          );
-        });
-
-        return noop;
+        return new DrawCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'change_stats' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        const modifierId = nanoid(6);
-        const units = getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        });
-
-        units.forEach(target => {
-          const stats = {
-            attack: action.params.attack
-              ? getAmount({
-                  ...ctx,
-                  amount: action.params.attack.amount,
-                  event,
-                  eventName
-                })
-              : 0,
-            hp: action.params.hp
-              ? getAmount({
-                  ...ctx,
-                  amount: action.params.hp.amount,
-                  event,
-                  eventName
-                })
-              : 0
-          };
-          target.addModifier(
-            createEntityModifier({
-              id: modifierId,
-              source: card,
-              stackable: action.params.stackable,
-              visible: false,
-              mixins: [
-                modifierEntityInterceptorMixin({
-                  key: 'attack',
-                  keywords: [],
-                  interceptor: () => value => {
-                    if (!action.params.attack) return value;
-                    const shouldApply = checkGlobalConditions(
-                      action.params.attack.activeWhen,
-                      ctx,
-                      event,
-                      eventName
-                    );
-                    if (!shouldApply) return value;
-                    const amount = getAmount({
-                      ...ctx,
-                      amount: action.params.attack.amount,
-                      event,
-                      eventName
-                    });
-                    return match(action.params.mode)
-                      .with('give', () => value + amount)
-                      .with('set', () => stats.attack)
-                      .exhaustive();
-                  }
-                }),
-                modifierEntityInterceptorMixin({
-                  key: 'maxHp',
-                  keywords: [],
-                  interceptor: () => value => {
-                    if (!action.params.hp) return value;
-                    const shouldApply = checkGlobalConditions(
-                      action.params.hp.activeWhen,
-                      ctx,
-                      event,
-                      eventName
-                    );
-                    if (!shouldApply) return value;
-                    const amount = getAmount({
-                      ...ctx,
-                      amount: action.params.hp.amount,
-                      event,
-                      eventName
-                    });
-                    return match(action.params.mode)
-                      .with('give', () => value + amount)
-                      .with('set', () => stats.hp)
-                      .exhaustive();
-                  }
-                })
-              ]
-            })
-          );
-        });
-
-        return () =>
-          units.forEach(target => {
-            target.removeModifier(modifierId);
-          });
+        return new ChangeStatsCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'change_damage_taken' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        const units = getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        });
-        const modifierId = nanoid(6);
-
-        units.forEach(target => {
-          let shouldApply = true;
-          target.addModifier(
-            createEntityModifier({
-              id: modifierId,
-              source: card,
-              stackable: action.params.stackable,
-              visible: false,
-              mixins: [
-                modifierEntityInterceptorMixin({
-                  key: 'damageTaken',
-                  keywords: [],
-                  interceptor: () => value => {
-                    if (!shouldApply) return value;
-                    const amount = getAmount({
-                      ...ctx,
-                      amount: action.params.amount,
-                      event,
-                      eventName
-                    });
-                    return match(action.params.mode)
-                      .with('give', () => value + amount)
-                      .with('set', () => amount)
-                      .exhaustive();
-                  }
-                })
-              ]
-            })
-          );
-          if (action.params.frequency.type === 'once') {
-            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              target.removeModifier(modifierId);
-            });
-          }
-          if (action.params.frequency.type === 'n_per_turn') {
-            const maxPerTurn = action.params.frequency.params.count;
-            let count = 0;
-
-            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              count++;
-              if (count >= maxPerTurn) {
-                shouldApply = false;
-              }
-            });
-            session.on('player:turn_start', () => {
-              count = 0;
-              shouldApply = true;
-            });
-          }
-        });
-
-        return () =>
-          units.forEach(target => {
-            target.removeModifier(modifierId);
-          });
+        return new ChangeDamageTakenAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'change_heal_received' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        const units = getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        });
-        const modifierId = nanoid(6);
-
-        units.forEach(target => {
-          let shouldApply = true;
-          target.addModifier(
-            createEntityModifier({
-              id: modifierId,
-              source: card,
-              stackable: action.params.stackable,
-              visible: false,
-              mixins: [
-                modifierEntityInterceptorMixin({
-                  key: 'healReceived',
-                  keywords: [],
-                  interceptor: () => value => {
-                    if (!shouldApply) return value;
-                    const amount = getAmount({
-                      ...ctx,
-                      amount: action.params.amount,
-                      event,
-                      eventName
-                    });
-                    return match(action.params.mode)
-                      .with('give', () => value + amount)
-                      .with('set', () => amount)
-                      .exhaustive();
-                  }
-                })
-              ]
-            })
-          );
-          if (action.params.frequency.type === 'once') {
-            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              target.removeModifier(modifierId);
-            });
-          }
-          if (action.params.frequency.type === 'n_per_turn') {
-            const maxPerTurn = action.params.frequency.params.count;
-            let count = 0;
-
-            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              count++;
-              if (count >= maxPerTurn) {
-                shouldApply = false;
-              }
-            });
-            session.on('player:turn_start', () => {
-              count = 0;
-              shouldApply = true;
-            });
-          }
-        });
-        return () =>
-          units.forEach(target => {
-            target.removeModifier(modifierId);
-          });
+        return new ChangeHealReceivedAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'change_damage_dealt' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        const units = getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        });
-        const modifierId = nanoid(6);
-
-        units.forEach(target => {
-          let shouldApply = true;
-          target.addModifier(
-            createEntityModifier({
-              id: modifierId,
-              source: card,
-              stackable: action.params.stackable,
-              visible: false,
-              mixins: [
-                modifierEntityInterceptorMixin({
-                  key: 'damageDealt',
-                  keywords: [],
-                  interceptor: () => value => {
-                    if (!shouldApply) return value;
-                    const amount = getAmount({
-                      ...ctx,
-                      amount: action.params.amount,
-                      event,
-                      eventName
-                    });
-                    return match(action.params.mode)
-                      .with('give', () => value + amount)
-                      .with('set', () => amount)
-                      .exhaustive();
-                  }
-                })
-              ]
-            })
-          );
-          if (action.params.frequency.type === 'once') {
-            target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              target.removeModifier(modifierId);
-            });
-          }
-          if (action.params.frequency.type === 'n_per_turn') {
-            const maxPerTurn = action.params.frequency.params.count;
-            let count = 0;
-
-            target.on(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
-              count++;
-              if (count >= maxPerTurn) {
-                shouldApply = false;
-              }
-            });
-            session.on('player:turn_start', () => {
-              count = 0;
-              shouldApply = true;
-            });
-          }
-        });
-        return () =>
-          units.forEach(target => {
-            target.removeModifier(modifierId);
-          });
+        return new ChangeDamageDealtAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'provoke' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        const modifier = provoke({ source: card });
-
-        return applyModifierConditionally({
-          modifier,
-          ctx,
-          event,
-          eventName,
-          session,
-          conditions: action.params.activeWhen
-        });
+        return new ProvokeCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'celerity' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        const modifier = celerity({ source: card });
-
-        return applyModifierConditionally({
-          modifier,
-          ctx,
-          event,
-          eventName,
-          session,
-          conditions: action.params.activeWhen
-        });
+        return new CelerityCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'backstab' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        const attackBonus = getAmount({
-          ...ctx,
-          event,
-          eventName,
-          amount: action.params.amount
-        });
-        const modifier = backstab({ source: card, attackBonus });
-        return applyModifierConditionally({
-          modifier,
-          ctx,
-          event,
-          eventName,
-          session,
-          conditions: action.params.activeWhen
-        });
+        return new BackstabCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'add_effect' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        const units = getUnits({
-          ...ctx,
-          event,
-          eventName,
-          conditions: action.params.unit
-        });
-        const effects = parseSerializedBlueprintEffect({
-          text: '',
-          config: action.params.effect
-        }).flat();
-
-        units.forEach(unit => {
-          effects.forEach(effect => {
-            if (effect.onPlay) {
-              effect.onPlay({
-                session,
-                entity: unit,
-                card: unit.card,
-                targets: []
-              });
-            }
-            if (effect.getEntityModifier) {
-              unit.addModifier(
-                effect.getEntityModifier({
-                  session,
-                  entity: unit,
-                  card: unit.card,
-                  targets: []
-                })
-              );
-            }
-
-            if (effect.getCardModifier) {
-              unit.card.addModifier(effect.getCardModifier());
-            }
-          });
-        });
-        return noop;
+        return new AddEffectCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'zeal' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-        const cleanups: Array<() => void> = [];
-        const zealTarget = entity ?? card.player.general;
-        const effects = parseSerializedBlueprintEffect({
-          text: '',
-          config: action.params.effect
-        }).flat();
-
-        effects.forEach(effect => {
-          if (effect.onPlay) {
-            let cleanup: (() => void) | undefined;
-            const modifier = zeal({
-              source: card,
-              onGainAura(entity, zealed, session) {
-                cleanup = effect.onPlay?.({
-                  session,
-                  card,
-                  entity: zealed,
-                  targets
-                });
-              },
-              onLoseAura() {
-                cleanup?.();
-              }
-            });
-            zealTarget.addModifier(modifier);
-            cleanups.push(() => zealTarget.removeModifier(modifier.id));
-          }
-
-          if (effect.getEntityModifier) {
-            const entityModifier = effect.getEntityModifier?.({
-              session,
-              entity: zealTarget,
-              card: zealTarget.card,
-              targets: []
-            });
-            const zealModifier = zeal({
-              source: card,
-              onGainAura() {
-                zealTarget.addModifier(entityModifier);
-              },
-              onLoseAura() {
-                zealTarget.removeModifier(entityModifier.id);
-              }
-            });
-            zealTarget.addModifier(zealModifier);
-            cleanups.push(() => zealTarget.removeModifier(zealModifier.id));
-          }
-        });
-
-        return () => cleanups.forEach(cleanup => cleanup());
+        return new ZealCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'destroy_unit' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        getUnits({
-          ...ctx,
-          event,
-          eventName,
-          conditions: action.params.targets
-        }).forEach(unit => {
-          unit.destroy();
-        });
-
-        return noop;
+        return new DestroyUnitCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'bounce_unit' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        getUnits({
-          ...ctx,
-          event,
-          eventName,
-          conditions: action.params.targets
-        }).forEach(unit => {
-          unit.bounce();
-        });
-
-        return noop;
+        return new BounceUnitCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'dispel_cell' }, action => {
-        const isGlobalConditionMatch = checkGlobalConditions(
-          action.params.filter,
-          ctx,
-          event,
-          eventName
-        );
-        if (!isGlobalConditionMatch) return noop;
-
-        const cells = getCells({
-          ...ctx,
-          conditions: action.params.cells,
-          event,
-          eventName
-        });
-
-        cells.forEach(cell => {
-          dispelCell(cell);
-        });
-        return noop;
+        return new DispelCellCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'activate_unit' }, action => {
-        const units = getUnits({
-          ...ctx,
-          conditions: action.params.targets,
-          event,
-          eventName
-        });
-
-        units.forEach(unit => unit.activate());
-
-        return noop;
+        return new ActivateUnitCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

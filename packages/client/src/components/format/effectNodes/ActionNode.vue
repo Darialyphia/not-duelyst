@@ -116,15 +116,30 @@ const actionDict: Record<
 > = {
   deal_damage: {
     label: 'Deal damage',
-    params: { targets: UnitNode, amount: AmountNode, filter: GlobalConditionNode }
+    params: {
+      execute: null,
+      targets: UnitNode,
+      amount: AmountNode,
+      filter: GlobalConditionNode
+    }
   },
   heal: {
     label: 'Heal',
-    params: { targets: UnitNode, amount: AmountNode, filter: GlobalConditionNode }
+    params: {
+      targets: UnitNode,
+      amount: AmountNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   },
   draw_cards: {
     label: 'Draw',
-    params: { amount: AmountNode, player: PlayerNode, filter: GlobalConditionNode }
+    params: {
+      amount: AmountNode,
+      player: PlayerNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   },
   change_stats: {
     label: 'Change stats',
@@ -134,6 +149,7 @@ const actionDict: Record<
       stackable: null,
       attack: { amount: AmountNode, activeWhen: GlobalConditionNode },
       hp: { amount: AmountNode, activeWhen: GlobalConditionNode },
+      execute: null,
       filter: GlobalConditionNode
     }
   },
@@ -145,6 +161,7 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      execute: null,
       filter: GlobalConditionNode
     }
   },
@@ -156,6 +173,7 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      execute: null,
       filter: GlobalConditionNode
     }
   },
@@ -167,46 +185,61 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      execute: null,
       filter: GlobalConditionNode
     }
   },
   celerity: {
     label: 'Celerity',
-    params: { activeWhen: GlobalConditionNode, filter: GlobalConditionNode }
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   },
   provoke: {
     label: 'Provoke',
-    params: { activeWhen: GlobalConditionNode, filter: GlobalConditionNode }
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   },
   destroy_unit: {
     label: 'Destroy units',
-    params: { targets: UnitNode, filter: GlobalConditionNode }
+    params: { targets: UnitNode, execute: null, filter: GlobalConditionNode }
   },
   bounce_unit: {
     label: "Return units to their owner's hand",
-    params: { targets: UnitNode, filter: GlobalConditionNode }
+    params: { targets: UnitNode, execute: null, filter: GlobalConditionNode }
   },
   add_effect: {
     label: 'Grant an effect to another unit',
-    params: { unit: UnitNode, effect: EffectNode, filter: GlobalConditionNode }
+    params: {
+      unit: UnitNode,
+      effect: EffectNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   },
   zeal: {
     label: 'Gain an effect when zealed',
-    params: { effect: EffectNode, filter: GlobalConditionNode }
+    params: { effect: EffectNode, execute: null, filter: GlobalConditionNode }
   },
   dispel_cell: {
     label: 'Dispel a cell',
-    params: { cells: CellNode, filter: GlobalConditionNode }
+    params: { cells: CellNode, execute: null, filter: GlobalConditionNode }
   },
   activate_unit: {
     label: 'Activate a unit',
-    params: { targets: UnitNode, filter: GlobalConditionNode }
+    params: { targets: UnitNode, execute: null, filter: GlobalConditionNode }
   },
   backstab: {
     label: 'Backstab',
     params: {
       amount: AmountNode,
       activeWhen: GlobalConditionNode,
+      execute: null,
       filter: GlobalConditionNode
     }
   }
@@ -233,16 +266,19 @@ watch(
         params.amount ??= { type: undefined } as any;
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'heal' }, ({ params }) => {
         params.amount ??= { type: undefined } as any;
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'draw_cards' }, ({ params }) => {
         params.amount ??= { type: undefined } as any;
         params.player ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'change_stats' }, ({ params }) => {
         params.mode ??= 'give';
@@ -257,6 +293,7 @@ watch(
         };
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with(
         { type: 'change_damage_taken' },
@@ -269,43 +306,52 @@ watch(
           params.filter ??= [];
           params.frequency ??= { type: 'always' };
           params.amount ??= { type: undefined } as any;
+          params.execute ??= 'now';
         }
       )
       .with({ type: 'destroy_unit' }, { type: 'bounce_unit' }, ({ params }) => {
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'provoke' }, ({ params }) => {
         params.filter ??= [];
         params.activeWhen ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'celerity' }, ({ params }) => {
         params.filter ??= [];
         params.activeWhen ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'backstab' }, ({ params }) => {
         params.filter ??= [];
         params.activeWhen ??= [];
         params.amount ??= { type: undefined } as any;
+        params.execute ??= 'now';
       })
       .with({ type: 'zeal' }, ({ params }) => {
         // @ts-expect-error
         params.effect ??= { executionContext: undefined, actions: [] };
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'add_effect' }, ({ params }) => {
         params.unit ??= [[{ type: undefined as any }]];
         // @ts-expect-error
         params.effect ??= { executionContext: undefined, actions: [] };
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'dispel_cell' }, ({ params }) => {
         params.cells ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.execute ??= 'now';
       })
       .with({ type: 'activate_unit' }, ({ params }) => {
         params.filter ??= [];
         params.targets ??= [[{ type: undefined as any }]];
+        params.execute ??= 'now';
       })
       .exhaustive();
   },
@@ -326,12 +372,7 @@ watch(
       <span class="capitalize min-w-11">{{ key }}</span>
       <fieldset v-if="key === 'mode'" class="flex flex-col">
         <label>
-          <input
-            v-model.number="(action.params as any)[key]"
-            type="radio"
-            value="give"
-            step="1"
-          />
+          <input v-model="(action.params as any)[key]" type="radio" value="give" />
           Add amount to current stats
         </label>
         <label>
@@ -344,6 +385,29 @@ watch(
         v-else-if="key === 'stackable'"
         v-model:checked="(action.params as any)[key]"
       />
+
+      <fieldset v-if="key === 'execute'" class="flex flex-col">
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="now" />
+          Now
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="end_of_turn" />
+          At the end of the turn
+        </label>
+        <label>
+          <input
+            v-model="(action.params as any)[key]"
+            type="radio"
+            value="start_of_next_turn"
+          />
+          At the start of your next turn
+        </label>
+        <p class="c-orange-5 text-0">
+          <Icon name="material-symbols:warning-outline" />
+          Dispel will have no effect until the effect is executed
+        </p>
+      </fieldset>
 
       <template v-else-if="isComponent(param)">
         <component

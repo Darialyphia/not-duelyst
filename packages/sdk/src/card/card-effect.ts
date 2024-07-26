@@ -276,6 +276,7 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -286,6 +287,7 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -294,6 +296,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
         player: Filter<PlayerCondition>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -307,6 +310,7 @@ export type Action<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
         stackable: boolean;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -320,6 +324,7 @@ export type Action<
         >;
         frequency: TriggerFrequency;
         stackable: boolean;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -333,6 +338,7 @@ export type Action<
         >;
         frequency: TriggerFrequency;
         stackable: boolean;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -346,6 +352,7 @@ export type Action<
         >;
         frequency: TriggerFrequency;
         stackable: boolean;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -355,6 +362,7 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -362,6 +370,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -369,6 +378,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -377,6 +387,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -384,6 +395,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         cells: Filter<CellCondition>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -393,6 +405,7 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -402,6 +415,7 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -412,6 +426,7 @@ export type Action<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
         effect: CardEffectConfig<Trigger[]>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -419,6 +434,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         effect: CardEffectConfig<Trigger[]>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     };
 

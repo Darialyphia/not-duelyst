@@ -15,7 +15,7 @@ export const f2TuskBoar = defineSerializedBlueprint({
   cost: 2,
   attack: 3,
   maxHp: 3,
-  faction: FACTION_IDS.F2,
+  faction: FACTION_IDS.F1,
   effects: [
     {
       text: '@Rush@.',
@@ -29,7 +29,7 @@ export const f2TuskBoar = defineSerializedBlueprint({
       }
     },
     {
-      text: 'At the start of your turn, turn this to your hand.',
+      text: 'At the start of your turn, return this to your hand.',
       config: {
         executionContext: 'while_on_board',
         triggers: [
