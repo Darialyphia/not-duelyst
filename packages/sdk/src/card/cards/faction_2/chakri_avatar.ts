@@ -1,10 +1,11 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 
-export const f2ChakirAvatar = defineSerializedBlueprint({
-  id: '_JmYvh',
-  name: 'Chakir Avatar',
+export const f2ChakriAvatar = defineSerializedBlueprint({
+  id: 'f2_chakri_avatar',
+  name: 'Chakri Avatar',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],
@@ -17,7 +18,7 @@ export const f2ChakirAvatar = defineSerializedBlueprint({
   maxHp: 2,
   faction: FACTION_IDS.F2,
   effects: [
-    {
+    defineCardEffect({
       text: 'When you play a spell, this gains +1/+1.',
       config: {
         executionContext: 'while_on_board',
@@ -35,7 +36,8 @@ export const f2ChakirAvatar = defineSerializedBlueprint({
                     }
                   }
                 ]
-              ]
+              ],
+              frequency: { type: 'always' }
             }
           }
         ],
@@ -60,6 +62,6 @@ export const f2ChakirAvatar = defineSerializedBlueprint({
           }
         ]
       }
-    }
+    })
   ]
 });

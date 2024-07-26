@@ -104,16 +104,13 @@ export class Unit extends Card implements Serializable {
     });
 
     if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {
-      const unsub = this.entity.addInterceptor('canMove', () => false);
-      this.session.once('player:turn_end', unsub);
+      this.entity.movementsTaken = this.entity.maxMovements;
     }
     if (!this.interceptors.canAttackAfterSummon.getValue(false, this)) {
-      const unsub = this.entity.addInterceptor('canAttack', () => false);
-      this.session.once('player:turn_end', unsub);
+      this.entity.attacksTaken = this.entity.maxAttacks;
     }
     if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
-      const unsub = this.entity.addInterceptor('canRetaliate', () => false);
-      this.session.once('player:turn_end', unsub);
+      this.entity.retaliationsDone = this.entity.maxRetaliations;
     }
 
     this.entity.emit(ENTITY_EVENTS.CREATED, this.entity);

@@ -133,7 +133,11 @@ watch(
   () => {
     params.value.forEach(param => {
       if (!(trigger.value.params as any)[param]) {
-        (trigger.value.params as any)[param] = [];
+        if (param === 'frequency') {
+          trigger.value.params.frequency = { type: 'always' };
+        } else {
+          (trigger.value.params as any)[param] = [];
+        }
       }
       Object.keys(trigger.value.params).forEach(k => {
         if (!params.value.includes(k)) {
