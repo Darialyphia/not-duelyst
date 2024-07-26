@@ -11,7 +11,8 @@ import {
 import type { EffectCtx } from '../card-parser';
 import { match } from 'ts-pattern';
 import type { Entity } from '../../entity/entity';
-import { getAmount, matchNumericOperator } from '../card-action';
+import { matchNumericOperator } from '../card-action';
+import { getAmount } from '../helpers/amount';
 
 export type GlobalCondition<
   T extends ConditionOverrides = {

@@ -15,7 +15,8 @@ import type { Card } from '../card';
 import type { Amount, Filter, NumericOperator } from '../card-effect';
 import { getCells, type CellCondition } from './cell-conditions';
 import type { CardConditionExtras } from './card-conditions';
-import { getAmount, matchNumericOperator } from '../card-action';
+import { matchNumericOperator } from '../card-action';
+import { getAmount } from '../helpers/amount';
 
 export type UnitConditionBase =
   | { type: 'any_unit' }

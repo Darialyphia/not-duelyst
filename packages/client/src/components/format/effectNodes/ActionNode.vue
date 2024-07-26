@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   AmountNode,
+  CardNode,
   CellNode,
   EffectNode,
   GlobalConditionNode,
@@ -242,6 +243,18 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  change_card_cost: {
+    label: 'Change the cost of cards',
+    params: {
+      amount: AmountNode,
+      player: PlayerNode,
+      card: CardNode,
+      filter: GlobalConditionNode,
+      execute: null,
+      duration: null,
+      occurences_count: null
+    }
   }
 };
 const actionOptions = computed(
@@ -353,10 +366,20 @@ watch(
         params.targets ??= [[{ type: undefined as any }]];
         params.execute ??= 'now';
       })
+      .with({ type: 'change_card_cost' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.amount ??= { type: undefined } as any;
+        params.card = [[{ type: undefined as any }]];
+        params.player = [[{ type: undefined as any }]];
+        params.occurences_count = 0;
+        params.duration = 'always';
+      })
       .exhaustive();
   },
   { immediate: true }
 );
+const id = useId();
 </script>
 
 <template>
@@ -408,6 +431,39 @@ watch(
           Dispel will have no effect until the effect is executed
         </p>
       </fieldset>
+
+      <fieldset v-if="key === 'duration'" class="flex flex-col">
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="always" />
+          Always
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="end_of_turn" />
+          Until the end of the turn
+        </label>
+        <label>
+          <input
+            v-model="(action.params as any)[key]"
+            type="radio"
+            value="start_of_next_turn"
+          />
+          Until the start of next turn
+        </label>
+        <p class="c-orange-5 text-0">
+          <Icon name="material-symbols:warning-outline" />
+        </p>
+      </fieldset>
+
+      <div v-if="key === 'occurences_count'" class="flex items-center gap-3">
+        <UiTextInput
+          :id="`${id}-occurences-count`"
+          v-model="(action.params as any)[key]"
+          type="number"
+        />
+        <p class="color-orange-5 text-0">
+          Keep at 0 if it can happens any number of times
+        </p>
+      </div>
 
       <template v-else-if="isComponent(param)">
         <component

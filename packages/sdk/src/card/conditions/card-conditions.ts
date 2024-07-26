@@ -6,7 +6,8 @@ import type { Nullable, Point3D, AnyObject } from '@game/shared';
 import type { Entity } from '../../entity/entity';
 import type { GameSession } from '../../game-session';
 import { CARD_KINDS } from '../card-enums';
-import { getAmount } from '../card-action';
+import { getAmount } from '../helpers/amount';
+import { getPlayers, type PlayerCondition } from './player-condition';
 
 export type CardConditionBase =
   | { type: 'any_card' }
@@ -15,6 +16,7 @@ export type CardConditionBase =
   | { type: 'spell' }
   | { type: 'artifact' }
   | { type: 'index_in_hand'; params: { index: number } }
+  | { type: 'from_player'; params: { player: Filter<PlayerCondition> } }
   | {
       type: 'cost';
       params: {
@@ -105,6 +107,18 @@ export const getCards = ({
             })
             .with({ type: 'card_replacement' }, () => {
               return event.replacement === c;
+            })
+            .with({ type: 'from_player' }, condition => {
+              const players = getPlayers({
+                session,
+                card,
+                targets,
+                conditions: condition.params.player,
+                event,
+                eventName
+              });
+
+              return players.some(p => p.equals(c.player));
             })
             .exhaustive();
         });

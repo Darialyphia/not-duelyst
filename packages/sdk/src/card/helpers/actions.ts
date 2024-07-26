@@ -1,8 +1,10 @@
 import type { AnyObject } from '@game/shared';
 import type { EntityModifier } from '../../modifier/entity-modifier';
-import { checkGlobalConditions } from '../card-action';
 import type { EffectCtx } from '../card-parser';
-import type { GlobalCondition } from '../conditions/global-conditions';
+import {
+  checkGlobalConditions,
+  type GlobalCondition
+} from '../conditions/global-conditions';
 import type { Filter } from '../card-effect';
 import type { GameSession } from '../../game-session';
 

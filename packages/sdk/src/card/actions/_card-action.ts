@@ -5,7 +5,6 @@ import {
   checkGlobalConditions,
   type GlobalCondition
 } from '../conditions/global-conditions';
-import { getAmount } from '../card-action';
 import { getUnits } from '../conditions/unit-conditions';
 import { getPlayers } from '../conditions/player-condition';
 import { getCards } from '../conditions/card-conditions';
@@ -13,6 +12,7 @@ import { getCells } from '../conditions/cell-conditions';
 import { nanoid } from 'nanoid';
 import { applyModifierConditionally } from '../helpers/actions';
 import type { EntityModifier } from '../../modifier/entity-modifier';
+import { getAmount } from '../helpers/amount';
 
 export const noop = () => void 0;
 

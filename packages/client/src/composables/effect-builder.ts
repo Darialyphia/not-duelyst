@@ -113,6 +113,10 @@ export const [useCardConditionsProvider, _useCardConditions] = createInjectionSt
       index_in_hand: {
         label: 'A card at position X in your hand',
         params: ['index']
+      },
+      from_player: {
+        label: 'Belongs to a player',
+        params: ['player']
       }
     };
 

@@ -1,16 +1,12 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import {
-  anyOccupiedCell,
-  cellWithAnyMinion,
-  manualTarget
-} from '../../helpers/targeting';
+import { cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1Martyrdom = defineSerializedBlueprint({
   id: 'martyrdom',
   collectable: true,
   name: 'Martyrdom',
-  cost: 1,
+  cost: 2,
   kind: 'SPELL',
   faction: FACTION_IDS.F1,
   keywords: [],

@@ -432,8 +432,8 @@ export type Action<
   | {
       type: 'zeal';
       params: {
-        filter?: Filter<GlobalCondition<T>>;
         effect: CardEffectConfig<Trigger[]>;
+        filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -447,6 +447,8 @@ export type Action<
         amount: Amount<T>;
         occurences_count?: number;
         duration: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     };
 

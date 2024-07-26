@@ -23,7 +23,7 @@ import {
   modifierGameEventMixin
 } from '../modifier/mixins/game-event.mixin';
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
-import type { GenericCardEffect, Trigger, TriggerFrequency } from './card-effect';
+import type { Action, GenericCardEffect, Trigger, TriggerFrequency } from './card-effect';
 import { parseTargets } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
@@ -171,7 +171,7 @@ export const parseSerializedBlueprintEffect = (
       { executionContext: 'while_equiped' },
       { executionContext: 'while_on_board' },
       config => {
-        const actions = config.actions.map(parseCardAction);
+        const actions = (config.actions as Action[]).map(parseCardAction);
         return config.triggers.map((trigger: Trigger) =>
           match(trigger)
             .with({ type: 'on_before_card_played' }, trigger => {

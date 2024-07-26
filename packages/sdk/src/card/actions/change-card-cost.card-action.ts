@@ -12,6 +12,7 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
       let occurences = 0;
 
       const unsub = player.addInterceptor('cost', (value, card) => {
+        if (card.equals(this.card)) return value;
         if (!player.hand.includes(card as Card)) return value;
 
         const isMatch = cards.some(c => c.equals(card as Card));
@@ -30,7 +31,8 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
 
       if (this.action.params.occurences_count) {
         const onCardPlayed = ({ card }: { card: Card }) => {
-          const isMatch = cards.some(c => c.equals(card as Card));
+          const isMatch =
+            !card.equals(this.card) && cards.some(c => c.equals(card as Card));
           if (!isMatch) return;
           occurences++;
           if (occurences >= this.action.params.occurences_count!) {

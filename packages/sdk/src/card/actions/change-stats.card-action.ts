@@ -1,7 +1,6 @@
 import { createEntityModifier } from '../../modifier/entity-modifier';
 import { CardAction } from './_card-action';
 import { modifierEntityInterceptorMixin } from '../../modifier/mixins/entity-interceptor.mixin';
-import { checkGlobalConditions } from '../card-action';
 import { match } from 'ts-pattern';
 
 export class ChangeStatsCardAction extends CardAction<'change_stats'> {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CardConditionBase, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
-import { NumericOperatorNode, AmountNode } from '#components';
+import { NumericOperatorNode, AmountNode, PlayerNode } from '#components';
 
 const groups = defineModel<Filter<CardConditionBase>>({ required: true });
 
@@ -20,7 +20,8 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
 
 const componentNodes: Record<string, Component | string> = {
   operator: NumericOperatorNode,
-  amount: AmountNode
+  amount: AmountNode,
+  player: PlayerNode
 };
 </script>
 
@@ -57,6 +58,11 @@ const componentNodes: Record<string, Component | string> = {
               condition.params = {
                 // @ts-expect-error
                 amount: { type: undefined }
+              };
+            })
+            .with({ type: 'from_player' }, condition => {
+              condition.params = {
+                player: [[{ type: undefined as any }]]
               };
             })
             .exhaustive();
