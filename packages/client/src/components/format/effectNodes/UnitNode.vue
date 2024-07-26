@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CellNode, KeywordNode } from '#components';
+import { AmountNode, CellNode, KeywordNode, NumericOperatorNode } from '#components';
 import type { Filter, UnitConditionBase } from '@game/sdk';
 import { match } from 'ts-pattern';
 
@@ -20,7 +20,9 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
 
 const componentNodes: Record<string, Component | string> = {
   cell: CellNode,
-  keyword: KeywordNode
+  keyword: KeywordNode,
+  amount: AmountNode,
+  operator: NumericOperatorNode
 };
 
 const id = useId();
@@ -47,6 +49,7 @@ const id = useId();
               { type: 'is_self' },
               { type: 'is_general' },
               { type: 'is_minion' },
+              { type: 'is_exhausted' },
               () => {
                 return;
               }
@@ -81,6 +84,12 @@ const id = useId();
             .with({ type: 'has_keyword' }, condtion => {
               condtion.params = {
                 keyword: undefined as any
+              };
+            })
+            .with({ type: 'has_attack' }, { type: 'has_hp' }, condition => {
+              condition.params = {
+                amount: { type: undefined } as any,
+                operator: 'equals'
               };
             })
             .exhaustive();

@@ -62,9 +62,5 @@ const initialValues = computed(() => {
   display: flex;
   flex-direction: column;
   height: 100%;
-  > header {
-    margin-bottom: var(--size-5);
-    text-shadow: black 0px 4px 1px;
-  }
 }
 </style>

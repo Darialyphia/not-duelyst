@@ -19,10 +19,10 @@ const tab = useRouteQuery('tab', 'config');
 <template>
   <TabsRoot v-model="tab" class="fancy-surface fancy-scrollbar form">
     <TabsList aria-label="Create your format" class="fancy-surface tab-list">
+      <BackButton :to="{ name: 'FormatList' }" />
       <div class="text-4 font-600">
         {{ initialValues.name }}
       </div>
-      <BackButton :to="{ name: 'FormatList' }" />
       <TabsIndicator class="tab-indicator">
         <div class="bg-primary w-full h-full" />
       </TabsIndicator>
@@ -145,6 +145,7 @@ p {
 
   display: flex;
   gap: var(--size-4);
+  align-items: center;
 
   border-color: transparent;
   border-bottom-color: var(--border-dimmed);

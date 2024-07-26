@@ -2,7 +2,7 @@
 import type { Animation } from '@game/sdk';
 
 const { spriteId, pedestalId, animation } = defineProps<{
-  spriteId: string;
+  spriteId?: string;
   pedestalId?: string;
   animation?: Animation;
 }>();
@@ -11,6 +11,7 @@ const assets = useAssets();
 const sheet = ref<SpritesheetWithAnimations>();
 watchEffect(async () => {
   if (!assets.loaded.value) return;
+  if (!spriteId) return;
   sheet.value = await assets.loadSpritesheet(spriteId);
 });
 

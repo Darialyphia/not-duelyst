@@ -47,7 +47,10 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
         label: "One of this card target's general",
         params: ['index']
       },
-      has_keyword: { label: 'A unit with a keyword', params: ['keyword'] }
+      has_keyword: { label: 'A unit with a keyword', params: ['keyword'] },
+      has_attack: { label: 'A unit with attack', params: ['operator', 'amount'] },
+      has_hp: { label: 'A unit with hp', params: ['operator', 'amount'] },
+      is_exhausted: { label: 'An exhausted unit', params: [] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));

@@ -119,7 +119,7 @@ export type ParsedActionResult = (
 
 const noop = () => void 0;
 
-const matchNumericOperator = (
+export const matchNumericOperator = (
   amount: number,
   reference: number,
   operator: NumericOperator

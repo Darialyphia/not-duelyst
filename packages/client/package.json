@@ -49,6 +49,7 @@
     "@unocss/reset": "^0.53.4",
     "@vee-validate/nuxt": "^4.10.3",
     "@vee-validate/zod": "^4.10.3",
+    "@vueuse/components": "^10.11.0",
     "@vueuse/nuxt": "^10.6.1",
     "@vueuse/router": "^10.9.0",
     "@vueuse/sound": "^2.0.1",

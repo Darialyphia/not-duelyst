@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { vIntersectionObserver } from '@vueuse/components';
+import { capitalize } from 'vue';
 import {
   CARD_KINDS,
   FACTIONS,
@@ -10,9 +12,9 @@ import {
   type GenericSerializedBlueprint
 } from '@game/sdk';
 import { isDefined } from '@game/shared';
+
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { getKeywordById, type Keyword } from '@game/sdk/src/utils/keywords';
-import { capitalize } from 'vue';
 
 const { format } = defineProps<{
   format: {
@@ -84,6 +86,33 @@ watch(
 );
 
 const { copy } = useClipboard();
+
+const isSpriteModalOpened = ref(false);
+
+const sprites = import.meta.glob('@/assets/units{m}/*.png', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+});
+
+const spriteOptions = computed(() => {
+  return Object.keys(sprites).map(k => k.replace('/assets/units{m}/', '').split('.')[0]);
+});
+
+const spriteModalRoot = ref<HTMLElement>();
+
+const visibleSprites = ref(new Set<string>());
+const onIntersectionObserver =
+  (sprite: string) => (entries: IntersectionObserverEntry[]) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visibleSprites.value.add(sprite);
+      } else {
+        visibleSprites.value.delete(sprite);
+      }
+    });
+  };
+const hoveredSprite = ref<string | null>(null);
 </script>
 
 <template>
@@ -102,7 +131,46 @@ const { copy } = useClipboard();
         <div class="flex items-center gap-3">
           <label for="collectable">Appears in collection</label>
           <UiSwitch v-model:checked="blueprint.collectable" :disabled="!isCustomCard" />
-          <UiButton :disabled="!isCustomCard">Change Sprite (Soon™)</UiButton>
+          <UiButton
+            class="primary-button"
+            :disabled="!isCustomCard"
+            @click="isSpriteModalOpened = true"
+          >
+            Change Sprite
+          </UiButton>
+
+          <UiModal
+            v-model:is-opened="isSpriteModalOpened"
+            title="Select a sprite"
+            style="--ui-modal-size: var(--size-lg)"
+          >
+            <div ref="spriteModalRoot" class="sprite-modal fancy-scrollbar">
+              <div
+                v-for="sprite in spriteOptions"
+                :key="sprite"
+                v-intersection-observer="[
+                  onIntersectionObserver(sprite),
+                  { root: spriteModalRoot }
+                ]"
+                class="sprite"
+                @mouseenter="hoveredSprite = sprite"
+                @mouseleave="hoveredSprite = null"
+                @click="
+                  () => {
+                    blueprint.spriteId = sprite;
+                    isSpriteModalOpened = false;
+                    hoveredSprite = null;
+                  }
+                "
+              >
+                <CardSprite
+                  v-if="visibleSprites.has(sprite)"
+                  :sprite-id="sprite"
+                  :animation="hoveredSprite === sprite ? 'attack' : 'breathing'"
+                />
+              </div>
+            </div>
+          </UiModal>
         </div>
 
         <p class="c-orange-5 mt-2">
@@ -400,5 +468,37 @@ h3 {
 
   border: solid var(--border-size-1) var(--border);
   border-radius: var(--size-1);
+}
+
+.sprite-modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(164px, 1fr));
+  gap: var(--size-4);
+  justify-items: center;
+
+  height: 500px;
+
+  .sprite {
+    width: 96px;
+    height: 96px;
+
+    &:hover > .card-sprite {
+      filter: brightness(1.5);
+    }
+
+    .card-sprite {
+      pointer-events: none;
+
+      transform: scale(2);
+
+      aspect-ratio: 1;
+      width: 100%;
+      height: 100%;
+
+      transition: filter 0.3s;
+    }
+  }
 }
 </style>

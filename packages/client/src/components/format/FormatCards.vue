@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import {
+  CARD_KINDS,
   CARDS,
+  RARITIES,
   type GameSessionConfig,
   type GenericSerializedBlueprint
 } from '@game/sdk';
 import type { Nullable } from '@game/shared';
+import { nanoid } from 'nanoid';
 
 const format = defineModel<{
   cards: Record<string, GenericSerializedBlueprint>;
@@ -54,7 +57,7 @@ const filteredCards = computed(() =>
         <li v-for="card in customCards" :key="card.id">
           <UiButton
             type="button"
-            class="primary-button"
+            class="ghost-button"
             :class="card.id === selectedCardId && 'selected'"
           >
             <CardSprite :sprite-id="card.spriteId" class="sprite" />
@@ -66,13 +69,27 @@ const filteredCards = computed(() =>
         <UiButton
           type="button"
           class="primary-button"
-          disabled="true"
           is-inline
           left-icon="material-symbols:add"
+          @click="
+            () => {
+              const id = nanoid(6);
+              format.cards[id] = {
+                id,
+                collectable: true,
+                keywords: [],
+                relatedBlueprintIds: [],
+                tags: [],
+                kind: CARD_KINDS.MINION,
+                rarity: RARITIES.COMMON,
+                effects: []
+              } as any;
+              selectedCardId = id;
+            }
+          "
         >
           Make New Card
         </UiButton>
-        Soon™
       </div>
 
       <h3 class="mt-4">Edited Cards</h3>

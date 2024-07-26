@@ -12,8 +12,10 @@ import type { GameSession } from '../../game-session';
 import type { KeywordId } from '../../utils/keywords';
 import { isWithinCells } from '../../utils/targeting';
 import type { Card } from '../card';
-import type { Filter } from '../card-effect';
+import type { Amount, Filter, NumericOperator } from '../card-effect';
 import { getCells, type CellCondition } from './cell-conditions';
+import type { CardConditionExtras } from './card-conditions';
+import { getAmount, matchNumericOperator } from '../card-action';
 
 export type UnitConditionBase =
   | { type: 'any_unit' }
@@ -36,7 +38,28 @@ export type UnitConditionBase =
   | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_manual_target'; params: { index: number } }
   | { type: 'is_manual_target_general'; params: { index: number } }
-  | { type: 'has_keyword'; params: { keyword: KeywordId } };
+  | { type: 'has_keyword'; params: { keyword: KeywordId } }
+  | {
+      type: 'has_attack';
+      params: {
+        amount: Amount<{
+          unit: UnitConditionExtras['type'];
+          card: CardConditionExtras['type'];
+        }>;
+        operator: NumericOperator;
+      };
+    }
+  | {
+      type: 'has_hp';
+      params: {
+        amount: Amount<{
+          unit: UnitConditionExtras['type'];
+          card: CardConditionExtras['type'];
+        }>;
+        operator: NumericOperator;
+      };
+    }
+  | { type: 'is_exhausted' };
 
 export type UnitConditionExtras =
   | { type: 'attack_target' }
@@ -300,6 +323,35 @@ export const getUnits = ({
             }
 
             return false;
+          })
+          .with({ type: 'has_attack' }, condition => {
+            const amount = getAmount({
+              amount: condition.params.amount,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+
+            return matchNumericOperator(amount, e.attack, condition.params.operator);
+          })
+          .with({ type: 'has_hp' }, condition => {
+            const amount = getAmount({
+              amount: condition.params.amount,
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName
+            });
+
+            return matchNumericOperator(amount, e.hp, condition.params.operator);
+          })
+          .with({ type: 'is_exhausted' }, () => {
+            return e.isExhausted;
           })
           .exhaustive();
         return isMatch;
