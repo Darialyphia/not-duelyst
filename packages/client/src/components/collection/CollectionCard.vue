@@ -133,23 +133,11 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
 </template>
 
 <style scoped lang="postcss">
-@keyframes collection-card {
-  from {
-    transform: translateX(calc(-1 * var(--size-4)));
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .perspective-wrapper {
   position: relative;
   transform-style: preserve-3d;
-
   align-self: start;
-
   transition: filter 0.3s;
-  animation: collection-card 0.3s;
   &:hover {
     filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
   }
@@ -172,6 +160,7 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
   &:not(.disabled):hover {
     transform: rotateY(calc(1deg * var(--rotate-y))) rotateX(calc(1deg * var(--rotate-x)));
   }
+
   &:not(:hover) {
     transition:
       transform 0.3s,

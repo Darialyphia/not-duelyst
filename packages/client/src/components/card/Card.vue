@@ -82,7 +82,7 @@ const isUnit = computed(
       <UiCenter class="cost">
         <span>{{ card.cost }}</span>
       </UiCenter>
-      <div>
+      <div class="sprite-3d-wrapper">
         <CardSprite
           v-if="card.spriteId"
           class="sprite"
@@ -212,10 +212,14 @@ header {
   background-image: var(--bg);
 }
 
+.sprite-3d-wrapper {
+  transform: translateZ(var(--z-translate));
+}
+
 .sprite {
   position: relative;
   transform-origin: bottom left;
-  transform: translateZ(var(--z-translate)) scale(2) translate(-25%, 50%);
+  transform: scale(2) translate(-25%, 50%);
 
   height: 100%;
 

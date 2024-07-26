@@ -11,7 +11,7 @@ export const f2KaidoAssassin = defineSerializedBlueprint({
   cost: 2,
   attack: 2,
   maxHp: 3,
-  faction: FACTION_IDS.F1,
+  faction: FACTION_IDS.F2,
   keywords: [KEYWORDS.BACKSTAB.id],
   relatedBlueprintIds: [],
   tags: [],

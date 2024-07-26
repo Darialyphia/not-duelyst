@@ -8,7 +8,7 @@ export const f2InnerFocus = defineSerializedBlueprint({
   name: 'Inner Focus',
   cost: 1,
   kind: CARD_KINDS.SPELL,
-  faction: FACTION_IDS.F1,
+  faction: FACTION_IDS.F2,
   keywords: [],
   rarity: RARITIES.RARE,
   relatedBlueprintIds: [],

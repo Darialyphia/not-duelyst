@@ -2,6 +2,7 @@
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS } from '@game/sdk';
 import type { Nullable } from '@game/shared';
+import { vIntersectionObserver } from '@vueuse/components';
 
 definePageMeta({
   name: 'Collection',
@@ -53,6 +54,20 @@ const relevantCards = computed(() => {
     card => !card.card.faction || card.card.faction === general.value?.faction
   );
 });
+
+const visibleCards = ref(new Set<string>());
+const onIntersectionObserver =
+  (sprite: string) => (entries: IntersectionObserverEntry[]) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visibleCards.value.add(sprite);
+      } else {
+        visibleCards.value.delete(sprite);
+      }
+    });
+  };
+
+const listRoot = ref<HTMLElement>();
 </script>
 
 <template>
@@ -65,23 +80,31 @@ const relevantCards = computed(() => {
       :general="mode === 'form' ? general : undefined"
     />
 
-    <section class="card-list fancy-scrollbar pb-5">
+    <section ref="listRoot" class="card-list fancy-scrollbar pb-5">
       <p v-if="!relevantCards.length">No card found matching this filter.</p>
-      <CollectionCard
+      <div
         v-for="item in relevantCards"
         :key="item._id"
-        :card="item"
-        :is-editing-loadout="mode === 'form'"
-        :can-add-to-loadout="canAddToLoadout(item.cardId)"
-        animated
-        @click="
-          addCardToLoadout({
-            id: item.cardId,
-            pedestalId: item.pedestalId,
-            cardBackId: item.cardBackId
-          })
-        "
-      />
+        v-intersection-observer="[onIntersectionObserver(item._id), { root: listRoot }]"
+        class="card-wrapper"
+      >
+        <Transition>
+          <CollectionCard
+            v-if="visibleCards.has(item._id)"
+            :card="item"
+            :is-editing-loadout="mode === 'form'"
+            :can-add-to-loadout="canAddToLoadout(item.cardId)"
+            animated
+            @click="
+              addCardToLoadout({
+                id: item.cardId,
+                pedestalId: item.pedestalId,
+                cardBackId: item.cardBackId
+              })
+            "
+          />
+        </Transition>
+      </div>
     </section>
     <section class="sidebar">
       <template v-if="mode === 'form'">
@@ -164,7 +187,8 @@ const relevantCards = computed(() => {
 }
 
 .card-list {
-  scroll-snap-type: y mandatory;
+  transform-style: preserve-3d;
+  /* scroll-snap-type: y mandatory; */
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -177,11 +201,11 @@ const relevantCards = computed(() => {
   padding: var(--size-3) var(--size-8) var(--size-11);
 
   border-radius: var(--radius-2);
-
+  /* 
   > * {
     scroll-margin-block-start: var(--size-4);
     scroll-snap-align: start;
-  }
+  } */
 }
 
 .sidebar {
@@ -197,5 +221,21 @@ const relevantCards = computed(() => {
   transition: transform 0.7s;
   transition-delay: 0.3s;
   transition-timing-function: var(--ease-bounce-1);
+}
+
+.card-wrapper {
+  transform-style: preserve-3d;
+  width: 286px;
+  height: 410px;
+  > * {
+    &:is(.v-enter-active, .v-leave-active) {
+      transition: all 0.3s;
+    }
+
+    &:is(.v-enter-from, .v-leave-to) {
+      transform: translateX(-20px);
+      opacity: 0.5;
+    }
+  }
 }
 </style>
