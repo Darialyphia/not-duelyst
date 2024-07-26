@@ -6,7 +6,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 80
+    "duration": 130
    },
    {
     "filename": "f2_inner_focus.default.1",
@@ -15,7 +15,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 80
+    "duration": 130
    },
    {
     "filename": "f2_inner_focus.default.2",
@@ -24,7 +24,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 80
+    "duration": 130
    },
    {
     "filename": "f2_inner_focus.active.0",

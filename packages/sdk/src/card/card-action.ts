@@ -845,6 +845,14 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         return noop;
       })
       .with({ type: 'dispel_cell' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
         const cells = getCells({
           ...ctx,
           conditions: action.params.cells,
@@ -855,6 +863,18 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
         cells.forEach(cell => {
           dispelCell(cell);
         });
+        return noop;
+      })
+      .with({ type: 'activate_unit' }, action => {
+        const units = getUnits({
+          ...ctx,
+          conditions: action.params.targets,
+          event,
+          eventName
+        });
+
+        units.forEach(unit => unit.activate());
+
         return noop;
       })
       .exhaustive();

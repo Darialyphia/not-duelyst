@@ -31,10 +31,10 @@ import { f1CircleOfLife } from './cards/faction_1/circle_of_life';
 import { f1WarSurge } from './cards/faction_1/war_surge';
 import { f1SunBloom } from './cards/faction_1/sun_bloom';
 import { f1ElyxStormblade } from './cards/faction_1/elyx_stormBlade';
+import { f2InnerFocus } from './cards/faction_2/inner_focus';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
-  f2General,
   f1IroncliffeGuardian,
   f1TrueStrike,
   f1LionheartBlessing,
@@ -60,6 +60,10 @@ const allCards: SerializedBlueprint<any>[] = [
   f1WarSurge,
   f1SunBloom,
   f1ElyxStormblade,
+
+  f2General,
+  f2InnerFocus,
+
   neutralHealingMystic,
   neutralRiftWalker,
   neutralPrimusShieldMaster

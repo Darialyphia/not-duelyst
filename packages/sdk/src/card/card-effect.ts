@@ -349,6 +349,15 @@ export type Action<
       };
     }
   | {
+      type: 'activate_unit';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        targets: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
       type: 'provoke';
       params: {
         filter?: Filter<GlobalCondition<T>>;
@@ -365,6 +374,7 @@ export type Action<
   | {
       type: 'dispel_cell';
       params: {
+        filter?: Filter<GlobalCondition<T>>;
         cells: Filter<CellCondition>;
       };
     }

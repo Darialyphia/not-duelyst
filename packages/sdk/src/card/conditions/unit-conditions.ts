@@ -335,7 +335,7 @@ export const getUnits = ({
               eventName
             });
 
-            return matchNumericOperator(amount, e.attack, condition.params.operator);
+            return matchNumericOperator(e.attack, amount, condition.params.operator);
           })
           .with({ type: 'has_hp' }, condition => {
             const amount = getAmount({

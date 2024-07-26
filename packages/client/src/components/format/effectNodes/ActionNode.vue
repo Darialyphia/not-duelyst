@@ -192,7 +192,11 @@ const actionDict: Record<
   },
   dispel_cell: {
     label: 'Dispel a cell',
-    params: { cells: CellNode }
+    params: { cells: CellNode, filter: GlobalConditionNode }
+  },
+  activate_unit: {
+    label: 'Activate a unit',
+    params: { targets: UnitNode, filter: GlobalConditionNode }
   }
 };
 const actionOptions = computed(
@@ -280,6 +284,11 @@ watch(
       })
       .with({ type: 'dispel_cell' }, ({ params }) => {
         params.cells ??= [[{ type: undefined as any }]];
+        params.filter ??= [];
+      })
+      .with({ type: 'activate_unit' }, ({ params }) => {
+        params.filter ??= [];
+        params.targets ??= [[{ type: undefined as any }]];
       })
       .exhaustive();
   },
