@@ -15,6 +15,7 @@ import { isDefined } from '@game/shared';
 
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { getKeywordById, type Keyword } from '@game/sdk/src/utils/keywords';
+import { match } from 'ts-pattern';
 
 const { format } = defineProps<{
   format: {
@@ -89,14 +90,33 @@ const { copy } = useClipboard();
 
 const isSpriteModalOpened = ref(false);
 
-const sprites = import.meta.glob('@/assets/units{m}/*.png', {
+const unitSprites = import.meta.glob('@/assets/units{m}/*.png', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+});
+const iconSprites = import.meta.glob('@/assets/icons{m}/*.png', {
   eager: true,
   query: '?url',
   import: 'default'
 });
 
 const spriteOptions = computed(() => {
-  return Object.keys(sprites).map(k => k.replace('/assets/units{m}/', '').split('.')[0]);
+  return match(blueprint.value.kind)
+    .with(CARD_KINDS.GENERAL, CARD_KINDS.MINION, () =>
+      Object.keys(unitSprites).map(k => k.replace('/assets/units{m}/', '').split('.')[0])
+    )
+    .with(CARD_KINDS.SPELL, () =>
+      Object.keys(iconSprites)
+        .map(k => `icon_${k.replace('/assets/icons{m}/', '').split('.')[0]}`)
+        .filter(id => !id.includes('artifact'))
+    )
+    .with(CARD_KINDS.ARTIFACT, () =>
+      Object.keys(iconSprites)
+        .map(k => `icon_${k.replace('/assets/icons{m}/', '').split('.')[0]}`)
+        .filter(id => id.includes('artifact'))
+    )
+    .otherwise(() => []);
 });
 
 const spriteModalRoot = ref<HTMLElement>();
@@ -113,6 +133,17 @@ const onIntersectionObserver =
     });
   };
 const hoveredSprite = ref<string | null>(null);
+
+const getAnimation = (spriteId: string) => {
+  return match(blueprint.value.kind)
+    .with(CARD_KINDS.GENERAL, CARD_KINDS.MINION, () =>
+      hoveredSprite.value === spriteId ? 'attack' : 'breathing'
+    )
+    .with(CARD_KINDS.SPELL, CARD_KINDS.ARTIFACT, () =>
+      hoveredSprite.value === spriteId ? 'active' : 'default'
+    )
+    .exhaustive();
+};
 </script>
 
 <template>
@@ -166,7 +197,7 @@ const hoveredSprite = ref<string | null>(null);
                 <CardSprite
                   v-if="visibleSprites.has(sprite)"
                   :sprite-id="sprite"
-                  :animation="hoveredSprite === sprite ? 'attack' : 'breathing'"
+                  :animation="getAnimation(sprite)"
                 />
               </div>
             </div>

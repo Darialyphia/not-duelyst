@@ -59,6 +59,7 @@ const filteredCards = computed(() =>
             type="button"
             class="ghost-button"
             :class="card.id === selectedCardId && 'selected'"
+            @click="selectedCardId = card.id"
           >
             <CardSprite :sprite-id="card.spriteId" class="sprite" />
             {{ card.name }}
