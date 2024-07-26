@@ -9,13 +9,13 @@ import { KEYWORDS, type Keyword } from '../utils/keywords';
 import { createCardModifier } from './card-modifier';
 import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
-import { isWithinCells } from '../utils/targeting';
+import { isBehind, isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
-import { isNearbyAlly, isNearbyEnemy } from '../entity/entity-utils';
+import { getEntityBehind, isNearbyAlly, isNearbyEnemy } from '../entity/entity-utils';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -67,6 +67,45 @@ export const rush = () => {
         key: 'canAttackAfterSummon',
         interceptor: () => () => true,
         keywords: [KEYWORDS.RUSH]
+      })
+    ]
+  });
+};
+
+export const backstab = ({
+  duration,
+  source,
+  attackBonus
+}: {
+  source: Card;
+  duration?: number;
+  attackBonus: number;
+}) => {
+  return createEntityModifier({
+    id: KEYWORDS.BACKSTAB.id,
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      modifierGameEventMixin({
+        duration,
+        eventName: 'entity:before_attack',
+        keywords: [KEYWORDS.BACKSTAB],
+        listener([{ entity, target }], { session, attachedTo }) {
+          if (!entity.equals(attachedTo)) return;
+
+          const behind = getEntityBehind(session, target);
+          if (!behind?.equals(attachedTo)) return;
+
+          const cleanups = [
+            attachedTo.addInterceptor('attack', val => val + attackBonus),
+            target.addInterceptor('canRetaliate', () => false)
+          ];
+
+          entity.once('after_attack', () => {
+            cleanups.forEach(c => c());
+          });
+        }
       })
     ]
   });

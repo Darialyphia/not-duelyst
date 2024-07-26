@@ -33,6 +33,13 @@ export const KEYWORDS = {
     spriteId: 'burn',
     aliases: [/burn\([0-9]+\)/]
   },
+  BACKSTAB: {
+    id: 'backstab',
+    name: 'Backstab',
+    description:
+      'When attacking from behind, this deals extra damaged and cannot be counterattacked.',
+    aliases: []
+  },
   OPENING_GAMBIT: {
     id: 'opening_gambit',
     name: 'Opening Gambit',
