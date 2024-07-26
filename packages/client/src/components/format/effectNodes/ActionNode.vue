@@ -300,9 +300,9 @@ watch(
           amount: params.attack?.amount ?? ({ type: undefined } as any),
           activeWhen: params.attack?.activeWhen ?? []
         };
-        params.hp ??= {
-          amount: params.attack?.amount ?? ({ type: undefined } as any),
-          activeWhen: params.attack?.activeWhen ?? []
+        params.hp = {
+          amount: params.hp?.amount ?? ({ type: undefined } as any),
+          activeWhen: params.hp?.activeWhen ?? []
         };
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
