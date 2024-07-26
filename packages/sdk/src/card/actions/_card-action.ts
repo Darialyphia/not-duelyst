@@ -120,6 +120,34 @@ export abstract class CardAction<T extends Action['type']> {
       if (!isGlobalConditionMatch) return noop;
     }
 
-    return this.executeImpl();
+    return this.executeWithDelay(this.action.params.execute);
+  }
+
+  private executeWithDelay(timing: Action['params']['execute']) {
+    if (!timing || timing === 'now') return this.executeImpl();
+
+    if (timing === 'end_of_turn') {
+      const cleanups: Array<() => void> = [];
+      this.ctx.card.player.once('turn_end', () => {
+        cleanups.push(this.executeImpl());
+      });
+
+      return () => {
+        cleanups.forEach(c => c());
+      };
+    }
+
+    if (timing === 'start_of_next_turn') {
+      const cleanups: Array<() => void> = [];
+      this.ctx.card.player.once('turn_start', () => {
+        cleanups.push(this.executeImpl());
+      });
+
+      return () => {
+        cleanups.forEach(c => c());
+      };
+    }
+
+    return noop;
   }
 }
