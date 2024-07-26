@@ -33,6 +33,7 @@ import { f1SunBloom } from './cards/faction_1/sun_bloom';
 import { f1ElyxStormblade } from './cards/faction_1/elyx_stormBlade';
 import { f2InnerFocus } from './cards/faction_2/inner_focus';
 import { f2KaidoAssassin } from './cards/faction_2/kaido_assassin';
+import { f2TuskBoar } from './cards/faction_2/tusk_boar';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -65,6 +66,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f2General,
   f2InnerFocus,
   f2KaidoAssassin,
+  f2TuskBoar,
 
   neutralHealingMystic,
   neutralRiftWalker,

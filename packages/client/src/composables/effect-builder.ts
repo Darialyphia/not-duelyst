@@ -74,11 +74,11 @@ export const [usePlayerConditionsProvider, _usePlayerConditions] = createInjecti
       PlayerConditionBase['type'],
       { label: string; params: string[] }
     > = {
-      any_player: { label: 'Is any player', params: [] },
-      ally_player: { label: 'Is you', params: [] },
-      enemy_player: { label: 'Is your opponent', params: [] },
+      any_player: { label: 'Any player', params: [] },
+      ally_player: { label: 'You', params: [] },
+      enemy_player: { label: 'Your opponent', params: [] },
       is_manual_target_owner: {
-        label: "Is one of this card target's owner",
+        label: "One of this card target's owner",
         params: ['index']
       }
     };

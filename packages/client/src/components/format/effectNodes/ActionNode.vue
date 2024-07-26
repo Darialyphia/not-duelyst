@@ -182,6 +182,10 @@ const actionDict: Record<
     label: 'Destroy units',
     params: { targets: UnitNode, filter: GlobalConditionNode }
   },
+  bounce_unit: {
+    label: "Return units to their owner's hand",
+    params: { targets: UnitNode, filter: GlobalConditionNode }
+  },
   add_effect: {
     label: 'Grant an effect to another unit',
     params: { unit: UnitNode, effect: EffectNode, filter: GlobalConditionNode }
@@ -267,7 +271,7 @@ watch(
           params.amount ??= { type: undefined } as any;
         }
       )
-      .with({ type: 'destroy_unit' }, ({ params }) => {
+      .with({ type: 'destroy_unit' }, { type: 'bounce_unit' }, ({ params }) => {
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
       })

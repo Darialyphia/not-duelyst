@@ -396,6 +396,15 @@ export type Action<
       };
     }
   | {
+      type: 'bounce_unit';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        targets: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
       type: 'add_effect';
       params: {
         filter?: Filter<GlobalCondition<T>>;

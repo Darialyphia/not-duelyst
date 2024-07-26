@@ -852,6 +852,26 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
 
         return noop;
       })
+      .with({ type: 'bounce_unit' }, action => {
+        const isGlobalConditionMatch = checkGlobalConditions(
+          action.params.filter,
+          ctx,
+          event,
+          eventName
+        );
+        if (!isGlobalConditionMatch) return noop;
+
+        getUnits({
+          ...ctx,
+          event,
+          eventName,
+          conditions: action.params.targets
+        }).forEach(unit => {
+          unit.bounce();
+        });
+
+        return noop;
+      })
       .with({ type: 'dispel_cell' }, action => {
         const isGlobalConditionMatch = checkGlobalConditions(
           action.params.filter,
