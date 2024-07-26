@@ -28,6 +28,7 @@ import { DestroyUnitCardAction } from './actions/destroy-unit.card-action';
 import { BounceUnitCardAction } from './actions/bounce-unit.card-action';
 import { DispelCellCardAction } from './actions/dispel-cell.card-action';
 import { ActivateUnitCardAction } from './actions/activate-unit.card-action';
+import { ChangeCardCostCardAction } from './actions/change-card-cost.card-action';
 
 export const getAmount = ({
   amount,
@@ -303,6 +304,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'activate_unit' }, action => {
         return new ActivateUnitCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'change_card_cost' }, action => {
+        return new ChangeCardCostCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

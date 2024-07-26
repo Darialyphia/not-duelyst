@@ -5,6 +5,7 @@ import EventEmitter from 'eventemitter3';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
 import { SafeEventEmitter } from '../utils/safe-event-emitter';
+import { nanoid } from 'nanoid';
 
 export type CardBlueprintId = string;
 
@@ -38,6 +39,8 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
   public readonly cardBackId: string;
   modifiers: CardModifier[] = [];
 
+  id = nanoid(6);
+
   constructor(
     protected session: GameSession,
     readonly index: CardIndex,
@@ -49,6 +52,10 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
     this.pedestalId = options.pedestalId;
     this.cardBackId = options.cardBackId;
     this.isGenerated = options.isGenerated ?? false;
+  }
+
+  equals(card: Card) {
+    return card.id === this.id;
   }
 
   setup() {

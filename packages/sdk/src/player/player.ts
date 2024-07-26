@@ -44,7 +44,9 @@ export const PLAYER_EVENTS = {
   BEFORE_DRAW: 'before_draw',
   AFTER_DRAW: 'after_draw',
   BEFORE_REPLACE: 'before_replace',
-  AFTER_REPLACE: 'after_replace'
+  AFTER_REPLACE: 'after_replace',
+  BEFORE_PLAY_CARD: 'before_play_card',
+  AFTER_PLAY_CARD: 'after_play_card'
 } as const;
 
 export type PlayerEvent = Values<typeof PLAYER_EVENTS>;
@@ -59,6 +61,8 @@ export type PlayerEventMap = {
   [PLAYER_EVENTS.AFTER_REPLACE]: [
     { player: Player; replacedCard: Card; replacement: Card }
   ];
+  [PLAYER_EVENTS.BEFORE_PLAY_CARD]: [{ player: Player; card: Card }];
+  [PLAYER_EVENTS.AFTER_PLAY_CARD]: [{ player: Player; card: Card }];
 };
 
 export type PlayerInterceptor = Player['interceptors'];
@@ -325,9 +329,11 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     const card = this.hand[index];
     if (!card) return;
 
+    this.emit(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
     this.currentGold -= card.cost;
     this.hand.splice(index, 1);
     card.play(opts);
+    this.emit(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
   }
 
   getCardFromHand(index: CardIndex) {

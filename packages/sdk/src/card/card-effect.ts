@@ -436,6 +436,18 @@ export type Action<
         effect: CardEffectConfig<Trigger[]>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'change_card_cost';
+      params: {
+        player: Filter<PlayerCondition>;
+        card: Filter<
+          CardConditionBase | Extract<CardConditionExtras, { type: T['unit'] }>
+        >;
+        amount: Amount<T>;
+        occurences_count?: number;
+        duration: 'always' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {
