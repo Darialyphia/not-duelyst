@@ -139,6 +139,7 @@ const actionDict: Record<
       amount: AmountNode,
       player: PlayerNode,
       execute: null,
+      kind: null,
       filter: GlobalConditionNode
     }
   },
@@ -292,6 +293,7 @@ watch(
         params.player ??= [[{ type: undefined as any }]];
         params.filter ??= [];
         params.execute ??= 'now';
+        params.kind ??= undefined;
       })
       .with({ type: 'change_stats' }, ({ params }) => {
         params.mode ??= 'give';
@@ -408,6 +410,25 @@ const id = useId();
         v-else-if="key === 'stackable'"
         v-model:checked="(action.params as any)[key]"
       />
+
+      <fieldset v-if="key === 'kind'" class="flex flex-col">
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" :value="undefined" />
+          Any kind of card
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="MINION" />
+          A minion card
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="SPELL" />
+          A spell card
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="ARTIFACT" />
+          An artifact card
+        </label>
+      </fieldset>
 
       <fieldset v-if="key === 'execute'" class="flex flex-col">
         <label>

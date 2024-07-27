@@ -12,7 +12,7 @@ import {
   type SerializedCard
 } from '../card/card';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
-import { CARD_KINDS, FACTION_IDS } from '../card/card-enums';
+import { CARD_KINDS, FACTION_IDS, type CardKind } from '../card/card-enums';
 import type { CardModifier } from '../modifier/card-modifier';
 import { Deck, DECK_EVENTS } from '../card/deck';
 import { createCard } from '../card/cards/card-factory';
@@ -357,26 +357,32 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     this.interceptors[key].remove(interceptor as any);
   }
 
-  giveGold(amount: number, isResourceAction = false) {
+  giveGold(amount: number) {
     this.emit(PLAYER_EVENTS.BEFORE_GET_GOLD, { player: this, amount });
     this.currentGold = Math.min(this.currentGold + amount, this.session.config.MAX_GOLD);
 
     this.emit(PLAYER_EVENTS.AFTER_GET_GOLD, { player: this, amount });
-    if (isResourceAction) {
-      this.resourceActionsTaken++;
-    }
   }
 
-  draw(amount: number, isResourceAction = false) {
+  draw(amount: number) {
     const availableSlots = this.session.config.MAX_HAND_SIZE - this.hand.length;
 
     const newCards = this.deck.draw(Math.min(amount, availableSlots));
     if (newCards.length) {
       this.hand.push(...newCards);
     }
+  }
 
-    if (isResourceAction) {
-      this.resourceActionsTaken++;
+  drawFromKind(amount: number, kind: Exclude<CardKind, 'GENERAL'>) {
+    const availableSlots = this.session.config.MAX_HAND_SIZE - this.hand.length;
+
+    const pool = this.deck.cards.filter(card => card.kind === kind);
+    const shuffledPool = pool.sort(() => this.session.rngSystem.next() - 0.5);
+
+    const cards = shuffledPool.slice(0, Math.min(amount, availableSlots, pool.length));
+    if (cards) {
+      cards.forEach(c => c.draw());
+      this.hand.push(...cards);
     }
   }
 }

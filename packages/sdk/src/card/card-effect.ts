@@ -12,6 +12,7 @@ import type {
   UnitConditionExtras
 } from './conditions/unit-conditions';
 import type { CellCondition, CellConditionBase } from './conditions/cell-conditions';
+import type { CardKind } from './card-enums';
 
 export type Filter<T> = T[][];
 
@@ -297,6 +298,7 @@ export type Action<
         amount: Amount<T>;
         player: Filter<PlayerCondition>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        kind?: Exclude<CardKind, 'GENERAL'>;
       };
     }
   | {

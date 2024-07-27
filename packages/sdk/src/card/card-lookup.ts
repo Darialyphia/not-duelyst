@@ -37,6 +37,10 @@ import { f2TuskBoar } from './cards/faction_2/tusk_boar';
 import { f2ManaVortex } from './cards/faction_2/mana_vortex';
 import { f2ChakriAvatar } from './cards/faction_2/chakri_avatar';
 import { f2CelestialPhantom } from './cards/faction_2/celestial_phantom';
+import { f2Rythmweaver } from './cards/faction_2/rythmweaver';
+import { f2KeshraiFanblade } from './cards/faction_2/keshrai_fanblade';
+import { f2HammonBladeseeker } from './cards/faction_2/hammon_bladeseeker';
+import { f2Gorehorn } from './cards/faction_2/gorehorn';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -73,6 +77,10 @@ const allCards: SerializedBlueprint<any>[] = [
   f2ManaVortex,
   f2ChakriAvatar,
   f2CelestialPhantom,
+  f2Rythmweaver,
+  f2KeshraiFanblade,
+  f2HammonBladeseeker,
+  f2Gorehorn,
 
   neutralHealingMystic,
   neutralRiftWalker,
