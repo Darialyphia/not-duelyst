@@ -379,10 +379,18 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     });
   }
 
-  teleport(destination: Point3D) {
-    this.emit(ENTITY_EVENTS.BEFORE_TELEPORT, { entity: this, destination });
+  teleport(
+    cell: Cell,
+    { ignoreCollisions }: { ignoreCollisions: boolean } = { ignoreCollisions: false }
+  ) {
+    if (!ignoreCollisions && cell.entity) return;
+    if (!cell.isWalkable) return;
+    this.emit(ENTITY_EVENTS.BEFORE_TELEPORT, {
+      entity: this,
+      destination: cell.position
+    });
     const prevPos = this.position;
-    this.position = Vec3.fromPoint3D(destination);
+    this.position = Vec3.fromPoint3D(cell.position);
     this.emit(ENTITY_EVENTS.AFTER_TELEPORT, { entity: this, previousPosition: prevPos });
   }
 

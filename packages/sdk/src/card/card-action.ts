@@ -23,6 +23,8 @@ import { ChangeCardCostCardAction } from './actions/change-card-cost.card-action
 import { CelerityCardAction } from './actions/celerity.card-action';
 import { RangedCardAction } from './actions/ranged.card-action';
 import { GenerateCardCardAction } from './actions/generate-card.card-action';
+import { TeleportCardAction } from './actions/teleport.card-action';
+import { SwapUnitsCardAction } from './actions/swapUnits.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -103,6 +105,12 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'generate_card' }, action => {
         return new GenerateCardCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'teleport_unit' }, action => {
+        return new TeleportCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'swap_units' }, action => {
+        return new SwapUnitsCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

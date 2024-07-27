@@ -73,9 +73,18 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
       );
     });
 
-    return () =>
+    const stop = () =>
       units.forEach(target => {
         target.removeModifier(modifierId);
       });
+
+    if (this.action.params.duration === 'end_of_turn') {
+      this.ctx.card.player.once('turn_end', stop);
+    }
+    if (this.action.params.duration === 'start_of_next_turn') {
+      this.ctx.card.player.once('turn_start', stop);
+    }
+
+    return stop;
   }
 }

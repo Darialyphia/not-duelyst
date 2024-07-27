@@ -46,6 +46,16 @@ import { f2FourWindsMagus } from './cards/faction_2/four_winds_magus';
 import { f2PhoenixFire } from './cards/faction_2/phoenix_fire';
 import { f2SpiralTechnique } from './cards/faction_2/spiral_technique';
 import { f2LanternFox } from './cards/faction_2/lantern_fox';
+import { f2GhostLightning } from './cards/faction_2/ghost_lightning';
+import { f2Gotatsu } from './cards/faction_2/gotatsu';
+import { f2HeavensEclipse } from './cards/faction_2/heavens_eclipse';
+import { f2KillingEdge } from './cards/faction_2/killing_edge';
+import { f2SaberspineSeal } from './cards/faction_2/saberspine_seal';
+import { f2MistDragonSeal } from './cards/faction_2/mist_dragon_seal';
+import { f2Juxtaposition } from './cards/faction_2/juxtaposition';
+import { f1Magnetize } from './cards/faction_1/magnetize';
+import { f2KageLightning } from './cards/faction_2/kage_lightning';
+import { f2StormKage } from './cards/faction_2/storm_kage';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -74,6 +84,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f1WarSurge,
   f1SunBloom,
   f1ElyxStormblade,
+  f1Magnetize,
 
   f2General,
   f2InnerFocus,
@@ -91,6 +102,15 @@ const allCards: SerializedBlueprint<any>[] = [
   f2PhoenixFire,
   f2SpiralTechnique,
   f2LanternFox,
+  f2GhostLightning,
+  f2Gotatsu,
+  f2HeavensEclipse,
+  f2KillingEdge,
+  f2SaberspineSeal,
+  f2MistDragonSeal,
+  f2Juxtaposition,
+  f2KageLightning,
+  f2StormKage,
 
   neutralHealingMystic,
   neutralRiftWalker,

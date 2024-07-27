@@ -151,7 +151,7 @@ const getAnimation = (spriteId: string) => {
 const copyCode = () => {
   const content = `import { defineSerializedBlueprint } from '../../card-blueprint';
 
-  export const ${camelCase(`${blueprint.value.faction}${blueprint.value.name}`)} = defineSerializedBlueprint(${JSON.stringify(blueprint.value, null, 2)});
+  export const ${camelCase(`${blueprint.value.faction}${blueprint.value.name}`)} = defineSerializedBlueprint(${JSON.stringify(blueprint.value)});
   `;
 
   copy(dedent(content));

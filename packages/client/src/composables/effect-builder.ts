@@ -3,7 +3,8 @@ import {
   CellNode,
   NumericOperatorNode,
   PlayerNode,
-  UnitNode
+  UnitNode,
+  KeywordNode
 } from '#components';
 import type {
   CardConditionBase,
@@ -210,7 +211,8 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
           hp: {
             operator: NumericOperatorNode,
             amount: AmountNode
-          }
+          },
+          keyword: KeywordNode
         }
       }
     };

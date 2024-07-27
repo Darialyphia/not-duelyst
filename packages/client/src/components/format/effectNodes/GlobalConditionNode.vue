@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { CellNode, KeywordNode } from '#components';
 import type { Filter, GlobalCondition } from '@game/sdk';
 import { isObject } from '@game/shared';
 import { match } from 'ts-pattern';
@@ -20,11 +19,6 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
   globalDict.value[groups.value[groupIndex][conditionIndex].type]?.params as
     | Record<string, Params>
     | undefined;
-
-const componentNodes: Record<string, Component | string> = {
-  cell: CellNode,
-  keyword: KeywordNode
-};
 
 const isComponent = (x: unknown): x is Component => {
   return isObject(x) && 'render' in x;
@@ -98,7 +92,8 @@ watchEffect(() => {
                 hp: {
                   amount: { type: undefined } as any,
                   operator: 'equals'
-                }
+                },
+                keyword: undefined as any
               };
             })
             .exhaustive();
@@ -141,10 +136,9 @@ watchEffect(() => {
         </label>
       </fieldset>
 
-      <UiSwitch
-        v-else-if="key === 'stackable'"
-        v-model:checked="(groups[groupIndex][conditionIndex].params as any)[key]"
-      />
+      <template v-else-if="key === 'keyword'">
+        <KeywordNode v-model="(groups[groupIndex][conditionIndex].params as any)[key]" />
+      </template>
 
       <template v-else-if="isComponent(param)">
         <component

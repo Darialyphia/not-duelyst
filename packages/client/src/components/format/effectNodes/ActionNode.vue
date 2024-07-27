@@ -153,6 +153,7 @@ const actionDict: Record<
       attack: { amount: AmountNode, activeWhen: GlobalConditionNode },
       hp: { amount: AmountNode, activeWhen: GlobalConditionNode },
       execute: null,
+      duration: null,
       filter: GlobalConditionNode
     }
   },
@@ -260,10 +261,10 @@ const actionDict: Record<
       amount: AmountNode,
       player: PlayerNode,
       card: CardNode,
-      filter: GlobalConditionNode,
-      execute: null,
       duration: null,
-      occurences_count: null
+      occurences_count: null,
+      execute: null,
+      filter: GlobalConditionNode
     }
   },
   generate_card: {
@@ -273,8 +274,26 @@ const actionDict: Record<
       blueprint: BlueprintNode,
       location: null,
       ephemeral: null,
-      filter: GlobalConditionNode,
-      execute: null
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  teleport_unit: {
+    label: 'Teleport a unit',
+    params: {
+      unit: UnitNode,
+      cell: CellNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  swap_units: {
+    label: 'Swap two unit positions',
+    params: {
+      unit1: UnitNode,
+      unit2: UnitNode,
+      execute: null,
+      filter: GlobalConditionNode
     }
   }
 };
@@ -328,6 +347,7 @@ watch(
         };
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
+        params.duration ??= 'always';
         params.execute ??= 'now';
       })
       .with(
@@ -409,6 +429,18 @@ watch(
         params.location = 'hand';
         params.player ??= [[{ type: undefined as any }]];
         params.blueprint ??= undefined as any;
+      })
+      .with({ type: 'teleport_unit' }, ({ params }) => {
+        params.unit = [[{ type: undefined as any }]];
+        params.cell = [[{ type: undefined as any }]];
+        params.filter ??= [];
+        params.execute ??= 'now';
+      })
+      .with({ type: 'swap_units' }, ({ params }) => {
+        params.unit1 = [[{ type: undefined as any }]];
+        params.unit2 = [[{ type: undefined as any }]];
+        params.filter ??= [];
+        params.execute ??= 'now';
       })
       .exhaustive();
   },

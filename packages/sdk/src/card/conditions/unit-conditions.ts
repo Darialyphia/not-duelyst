@@ -9,7 +9,7 @@ import {
   getEntityBelow
 } from '../../entity/entity-utils';
 import type { GameSession } from '../../game-session';
-import type { KeywordId } from '../../utils/keywords';
+import { getKeywordById, type KeywordId } from '../../utils/keywords';
 import { isWithinCells } from '../../utils/targeting';
 import type { Card } from '../card';
 import type { Amount, Filter, NumericOperator } from '../card-effect';
@@ -99,7 +99,9 @@ export const getUnits = ({
       return group.every(condition => {
         const isMatch = match(condition)
           .with({ type: 'any_unit' }, () => true)
-          .with({ type: 'has_keyword' }, () => false /*TODO*/)
+          .with({ type: 'has_keyword' }, condition =>
+            e.hasKeyword(getKeywordById(condition.params.keyword)!)
+          )
           .with({ type: 'is_ally' }, () => card.player.equals(e.player))
           .with({ type: 'is_enemy' }, () => !card.player.equals(e.player))
           .with({ type: 'is_manual_target' }, condition => {

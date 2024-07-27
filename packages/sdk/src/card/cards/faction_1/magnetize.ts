@@ -1,0 +1,46 @@
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+
+export const f1Magnetize = defineSerializedBlueprint({
+  id: 'f1_magnetize',
+  collectable: true,
+  keywords: [],
+  relatedBlueprintIds: [],
+  tags: [],
+  kind: CARD_KINDS.SPELL,
+  rarity: RARITIES.RARE,
+  name: 'Magnetize',
+  spriteId: 'icon_f1_magnetize',
+  cost: 1,
+  faction: FACTION_IDS.F1,
+  effects: [
+    {
+      text: 'Teleport a minion in front of your general.',
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'teleport_unit',
+            params: {
+              unit: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              cell: [
+                [
+                  {
+                    type: 'is_in_front',
+                    params: { unit: [[{ type: 'is_ally' }, { type: 'is_general' }]] }
+                  }
+                ]
+              ],
+              filter: [],
+              execute: 'now'
+            }
+          }
+        ]
+      }
+    }
+  ],
+  targets: {
+    min: 1,
+    targets: [[[{ type: 'has_unit', params: { unit: [[{ type: 'is_minion' }]] } }]]]
+  }
+});

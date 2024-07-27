@@ -1,4 +1,4 @@
-import type { AnyObject } from '@game/shared';
+import { isEmptyObject, type AnyObject } from '@game/shared';
 import type { Amount, ConditionOverrides, Filter, NumericOperator } from '../card-effect';
 import type { CardConditionExtras } from './card-conditions';
 import { getCells, type CellCondition } from './cell-conditions';
@@ -13,6 +13,7 @@ import { match } from 'ts-pattern';
 import type { Entity } from '../../entity/entity';
 import { matchNumericOperator } from '../card-action';
 import { getAmount } from '../helpers/amount';
+import { getKeywordById, type KeywordId } from '../../utils/keywords';
 
 export type GlobalCondition<
   T extends ConditionOverrides = {
@@ -49,6 +50,7 @@ export type GlobalCondition<
           operator: NumericOperator;
           amount: Amount<T>;
         };
+        keyword?: KeywordId;
         position?: Filter<CellCondition>;
       };
     };
@@ -126,37 +128,43 @@ export const checkGlobalConditions = (
             conditions: condition.params.unit
           });
           const isMatch = (e: Entity) => {
-            const { attack, hp, position } = condition.params;
+            const { attack, hp, position, keyword } = condition.params;
             const ctx = { session, card, entity, targets, event, eventName };
-            const attackMatch = attack
-              ? matchNumericOperator(
-                  getAmount({
-                    ...ctx,
-                    amount: attack.amount
-                  }),
-                  e.attack,
-                  attack.operator
-                )
-              : true;
+            const attackMatch =
+              // xe need this check because GUI generated all optional ârameters with empty values
+              attack && !isEmptyObject(attack.amount)
+                ? matchNumericOperator(
+                    getAmount({
+                      ...ctx,
+                      amount: attack.amount
+                    }),
+                    e.attack,
+                    attack.operator
+                  )
+                : true;
 
-            const hpMatch = hp
-              ? matchNumericOperator(
-                  getAmount({
-                    ...ctx,
-                    amount: hp.amount
-                  }),
-                  e.hp,
-                  hp.operator
-                )
-              : true;
+            const hpMatch =
+              hp && !isEmptyObject(hp?.amount)
+                ? matchNumericOperator(
+                    getAmount({
+                      ...ctx,
+                      amount: hp.amount
+                    }),
+                    e.hp,
+                    hp.operator
+                  )
+                : true;
 
-            const positionMatch = position
-              ? getCells({ ...ctx, conditions: position }).some(cell => {
-                  return cell.position.equals(e.position);
-                })
-              : true;
+            const positionMatch =
+              position && !isEmptyObject(position[0][0])
+                ? getCells({ ...ctx, conditions: position }).some(cell => {
+                    return cell.position.equals(e.position);
+                  })
+                : true;
 
-            return attackMatch && hpMatch && positionMatch;
+            const keywordMatch = keyword ? e.hasKeyword(getKeywordById(keyword)!) : true;
+
+            return attackMatch && hpMatch && positionMatch && keywordMatch;
           };
 
           return match(condition.params.mode)

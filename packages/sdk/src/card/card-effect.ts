@@ -46,6 +46,20 @@ export type Trigger =
       };
     }
   | {
+      type: 'on_before_unit_teleport';
+      params: {
+        frequency: TriggerFrequency;
+        unit: Filter<UnitConditionBase>;
+      };
+    }
+  | {
+      type: 'on_after_unit_teleport';
+      params: {
+        frequency: TriggerFrequency;
+        unit: Filter<UnitConditionBase>;
+      };
+    }
+  | {
       type: 'on_before_unit_deal_damage';
       params: {
         frequency: TriggerFrequency;
@@ -313,6 +327,7 @@ export type Action<
         >;
         stackable: boolean;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -468,6 +483,30 @@ export type Action<
         player: Filter<PlayerCondition>;
         blueprint: string;
         ephemeral: boolean;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'teleport_unit';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        cell: Filter<CellCondition>;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'swap_units';
+      params: {
+        unit1: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        unit2: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };

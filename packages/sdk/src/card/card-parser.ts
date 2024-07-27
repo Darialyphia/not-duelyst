@@ -310,6 +310,40 @@ export const parseSerializedBlueprintEffect = (
                 }
               });
             })
+            .with({ type: 'on_before_unit_teleport' }, trigger => {
+              return getEffectModifier({
+                actions,
+                frequency: trigger.params.frequency,
+                eventName: 'entity:before_teleport',
+                filter(ctx, [event], eventName) {
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
+                }
+              });
+            })
+            .with({ type: 'on_after_unit_teleport' }, trigger => {
+              return getEffectModifier({
+                actions,
+                frequency: trigger.params.frequency,
+                eventName: 'entity:after_teleport',
+                filter(ctx, [event], eventName) {
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
+                }
+              });
+            })
             .with({ type: 'on_before_unit_attack' }, trigger => {
               return getEffectModifier({
                 actions,

@@ -123,6 +123,11 @@ const id = useId();
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
+      <template v-if="param === 'keyword'">
+        <KeywordNode
+          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        />
+      </template>
       <template v-else>
         <component
           :is="componentNodes[param]"
