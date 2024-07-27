@@ -71,7 +71,7 @@ export const getEffectModifier = <T extends GameEvent>({
             once: frequency.type === 'once',
             listener(event) {
               if (!filter(ctx, event, eventName)) return;
-              if (frequency.type === 'n_per_turn' && frequency.params.count > n) return;
+              if (frequency.type === 'n_per_turn' && frequency.params.count < n) return;
 
               actions.forEach(action => {
                 const [eventPayload] = event;
