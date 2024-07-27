@@ -460,6 +460,17 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'generate_card';
+      params: {
+        location: 'hand' | 'deck';
+        player: Filter<PlayerCondition>;
+        blueprint: string;
+        ephemeral: boolean;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

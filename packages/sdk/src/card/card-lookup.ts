@@ -45,6 +45,7 @@ import { f2Heartseeker } from './cards/faction_2/heartseeker';
 import { f2FourWindsMagus } from './cards/faction_2/four_winds_magus';
 import { f2PhoenixFire } from './cards/faction_2/phoenix_fire';
 import { f2SpiralTechnique } from './cards/faction_2/spiral_technique';
+import { f2LanternFox } from './cards/faction_2/lantern_fox';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -89,6 +90,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f2FourWindsMagus,
   f2PhoenixFire,
   f2SpiralTechnique,
+  f2LanternFox,
 
   neutralHealingMystic,
   neutralRiftWalker,

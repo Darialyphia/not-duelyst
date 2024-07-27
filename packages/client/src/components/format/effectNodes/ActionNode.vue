@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   AmountNode,
+  BlueprintNode,
   CardNode,
   CellNode,
   EffectNode,
@@ -264,6 +265,17 @@ const actionDict: Record<
       duration: null,
       occurences_count: null
     }
+  },
+  generate_card: {
+    label: 'Create a card',
+    params: {
+      player: PlayerNode,
+      blueprint: BlueprintNode,
+      location: null,
+      ephemeral: null,
+      filter: GlobalConditionNode,
+      execute: null
+    }
   }
 };
 const actionOptions = computed(
@@ -390,6 +402,14 @@ watch(
         params.occurences_count = 0;
         params.duration = 'always';
       })
+      .with({ type: 'generate_card' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.ephemeral = false;
+        params.location = 'hand';
+        params.player ??= [[{ type: undefined as any }]];
+        params.blueprint ??= undefined as any;
+      })
       .exhaustive();
   },
   { immediate: true }
@@ -424,6 +444,13 @@ const id = useId();
         v-model:checked="(action.params as any)[key]"
       />
 
+      <div v-else-if="key === 'ephemeral'" class="flex gap-2 items-center">
+        <UiSwitch v-model:checked="(action.params as any)[key]" />
+        <p class="c-orange-5 text-0">
+          Wether this cards disappears at the end of the turn or not.
+        </p>
+      </div>
+
       <fieldset v-if="key === 'kind'" class="flex flex-col">
         <label>
           <input v-model="(action.params as any)[key]" type="radio" :value="undefined" />
@@ -440,6 +467,17 @@ const id = useId();
         <label>
           <input v-model="(action.params as any)[key]" type="radio" value="ARTIFACT" />
           An artifact card
+        </label>
+      </fieldset>
+
+      <fieldset v-if="key === 'location'" class="flex flex-col">
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="hand" />
+          In the player's hand
+        </label>
+        <label>
+          <input v-model="(action.params as any)[key]" type="radio" value="deck" />
+          In the player's deck
         </label>
       </fieldset>
 
@@ -495,6 +533,10 @@ const id = useId();
           Keep at 0 if it can happens any number of times
         </p>
       </div>
+
+      <template v-else-if="key === 'blueprint'">
+        <BlueprintNode v-model="(action.params as any)[key]" />
+      </template>
 
       <template v-else-if="isComponent(param)">
         <component

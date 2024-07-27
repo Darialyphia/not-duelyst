@@ -4,7 +4,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
 
 export const f2PhoenixFire = defineSerializedBlueprint({
-  id: 'LgU-0n',
+  id: 'f2_phoenix_fire',
   collectable: true,
   spriteId: 'icon_f2_phoenix_fire',
   name: 'Phoenix Fire',

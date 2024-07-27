@@ -29,6 +29,7 @@ const { format } = defineProps<{
 
 const blueprint = defineModel<GenericSerializedBlueprint>('card', { required: true });
 
+useFormatProvider(computed(() => format));
 const card = ref<CardBlueprint>();
 const error = ref('');
 watchEffect(() => {
