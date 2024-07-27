@@ -10,7 +10,7 @@ const emit = defineEmits<{
 
 const { formValues, save, isSaving, removeCard } = useLoadoutForm();
 
-const groupedUnits = computed(() => {
+const groupedCards = computed(() => {
   const copies: Record<string, number> = {};
   formValues.value.cards.forEach(card => {
     if (!copies[card.id]) {
@@ -30,6 +30,7 @@ const groupedUnits = computed(() => {
       .sort((a, b) => {
         if (a.card.kind === CARD_KINDS.GENERAL) return -1;
         if (b.card.kind === CARD_KINDS.GENERAL) return 1;
+        if (a.card.cost === b.card.cost) return a.card.name.localeCompare(b.card.name);
         return a.card.cost - b.card.cost;
       }),
     'id'
@@ -64,6 +65,21 @@ const updateCosmetics = ({
   });
   selectedCard.value = null;
 };
+
+const flashingCards = ref(new Set<string>());
+watch(groupedCards, (newGroups, oldGroups) => {
+  newGroups.forEach(group => {
+    const old = oldGroups.find(g => g.card.id === group.card.id);
+    if (!old) {
+      flashingCards.value.add(group.id);
+      return;
+    }
+
+    if (old.copies !== group.copies) {
+      flashingCards.value.add(group.id);
+    }
+  });
+});
 </script>
 
 <template>
@@ -91,27 +107,34 @@ const updateCosmetics = ({
       </div>
     </header>
 
-    <ul v-if="formValues.cards.length" v-auto-animate class="flex-1 fancy-scrollbar">
+    <ul v-if="formValues.cards.length" class="flex-1 fancy-scrollbar">
       <HoverCardRoot
-        v-for="card in groupedUnits"
-        :key="card.card.id"
+        v-for="group in groupedCards"
+        :key="group.card.id"
         :open-delay="0"
         :close-delay="0"
       >
         <HoverCardTrigger as-child>
-          <li :class="card.card.kind.toLowerCase()" @click="removeCard(card.card.id)">
+          <li
+            :class="[
+              group.card.kind.toLowerCase(),
+              flashingCards.has(group.id) && 'flash'
+            ]"
+            @click="removeCard(group.card.id)"
+            @animationend="flashingCards.delete(group.id)"
+          >
             <div class="cost">
-              {{ card.card.cost }}
+              {{ group.card.cost }}
             </div>
 
             <div class="name">
-              <template v-if="card.copies > 1">X {{ card.copies }}</template>
-              {{ card.card.name }}
+              <template v-if="group.copies > 1">X {{ group.copies }}</template>
+              {{ group.card.name }}
             </div>
 
             <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
               <div class="sprite mx-auto">
-                <CardSprite :sprite-id="card.card.spriteId" />
+                <CardSprite :sprite-id="group.card.spriteId" />
               </div>
             </div>
           </li>
@@ -121,20 +144,20 @@ const updateCosmetics = ({
           <HoverCardContent :side-offset="5" side="left" align="center" class="relative">
             <Card
               :card="{
-                blueprintId: card.card.id,
-                name: card.card.name,
-                description: card.card.description,
-                kind: card.card.kind,
-                spriteId: card.card.spriteId,
-                rarity: card.card.rarity,
-                attack: card.card.attack,
-                hp: card.card.maxHp,
-                speed: card.card.speed,
-                cost: card.card.cost,
-                faction: card.card.faction,
-                tags: card.card.tags ?? [],
-                pedestalId: card.pedestalId,
-                cardbackId: card.cardBackId
+                blueprintId: group.card.id,
+                name: group.card.name,
+                description: group.card.description,
+                kind: group.card.kind,
+                spriteId: group.card.spriteId,
+                rarity: group.card.rarity,
+                attack: group.card.attack,
+                hp: group.card.maxHp,
+                speed: group.card.speed,
+                cost: group.card.cost,
+                faction: group.card.faction,
+                tags: group.card.tags ?? [],
+                pedestalId: group.pedestalId,
+                cardbackId: group.cardBackId
               }"
             />
             <UiIconButton
@@ -142,9 +165,9 @@ const updateCosmetics = ({
               name="mdi:palette"
               @click="
                 selectedCard = {
-                  card: card.card,
-                  pedestalId: card.pedestalId,
-                  cardBackId: card.cardBackId
+                  card: group.card,
+                  pedestalId: group.pedestalId,
+                  cardBackId: group.cardBackId
                 }
               "
             />
@@ -211,6 +234,13 @@ footer {
   padding-block: var(--size-3);
 }
 
+@keyframes loadout-card-flash {
+  50% {
+    transform: scale(1.03);
+    filter: brightness(200%) drop-shadow(0 0 6px white);
+  }
+}
+
 li {
   cursor: pointer;
   user-select: none;
@@ -232,6 +262,10 @@ li {
   }
   &.general .cost {
     visibility: hidden;
+  }
+
+  &.flash {
+    animation: loadout-card-flash 0.3s;
   }
 
   span {

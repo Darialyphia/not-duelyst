@@ -15,7 +15,7 @@ export const f2TuskBoar = defineSerializedBlueprint({
   cost: 2,
   attack: 3,
   maxHp: 3,
-  faction: FACTION_IDS.F1,
+  faction: FACTION_IDS.F2,
   effects: [
     {
       text: '@Rush@.',
