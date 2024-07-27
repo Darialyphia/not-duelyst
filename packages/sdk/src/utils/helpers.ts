@@ -65,3 +65,6 @@ export class Interceptable<
       .reduce((value, listener) => listener.interceptor(value, ctx), initialValue);
   }
 }
+
+export const someOrEmpty = <T>(arr: T[], cb: (el: T, index: number) => boolean) =>
+  !arr.length || arr.some(cb);

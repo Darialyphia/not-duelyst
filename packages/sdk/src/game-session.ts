@@ -191,7 +191,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
       'game:ready'
     ].forEach(eventName => {
       this.on(eventName as any, event => {
-        // this.logger(`%c[EVENT:${eventName}]`, 'color: #008b8b');
+        this.logger(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
         this.emit('*', { eventName, event } as any);
       });

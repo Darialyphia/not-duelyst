@@ -180,12 +180,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getCards({
-                    ...ctx,
-                    conditions: trigger.params.card,
-                    event,
-                    eventName
-                  }).some(card => event === card);
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        conditions: trigger.params.card,
+                        event,
+                        eventName
+                      }).some(card => event === card)
+                    : true;
                 }
               });
             })
@@ -195,12 +197,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getCards({
-                    ...ctx,
-                    conditions: trigger.params.card,
-                    event,
-                    eventName
-                  }).some(card => event === card);
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        conditions: trigger.params.card,
+                        event,
+                        eventName
+                      }).some(card => event === card)
+                    : true;
                 }
               });
             })
@@ -210,12 +214,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event.player));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event.player))
+                    : true;
                 }
               });
             })
@@ -225,12 +231,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event.player));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event.player))
+                    : true;
                 }
               });
             })
@@ -240,12 +248,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event.player));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event.player))
+                    : true;
                 }
               });
             })
@@ -255,12 +265,14 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event.player));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event.player))
+                    : true;
                 }
               });
             })
@@ -270,12 +282,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_move',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
                 }
               });
             })
@@ -285,12 +299,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_move',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
                 }
               });
             })
@@ -300,12 +316,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_attack',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -315,12 +343,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_attack',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -330,12 +370,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
                 }
               });
             })
@@ -345,12 +387,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event.entity))
+                    : true;
                 }
               });
             })
@@ -360,12 +404,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => event.source?.equals(entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true)
+                  );
                 }
               });
             })
@@ -375,12 +431,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => event.source?.equals(entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true)
+                  );
                 }
               });
             })
@@ -390,12 +458,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_deal_damage',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => event.entity.equals(entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -405,12 +485,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_deal_damage',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => event.entity.equals(entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -420,12 +512,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_retaliate',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -435,12 +539,24 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_retaliate',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event.entity));
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.target.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.target,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.target))
+                      : true)
+                  );
                 }
               });
             })
@@ -450,12 +566,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:created',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event))
+                    : true;
                 }
               });
             })
@@ -465,12 +583,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_destroy',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event))
+                    : true;
                 }
               });
             })
@@ -480,12 +600,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_destroy',
                 filter(ctx, [event], eventName) {
-                  return getUnits({
-                    ...ctx,
-                    conditions: trigger.params.unit,
-                    event,
-                    eventName
-                  }).some(entity => entity.equals(event));
+                  return trigger.params.unit.length
+                    ? getUnits({
+                        ...ctx,
+                        conditions: trigger.params.unit,
+                        event,
+                        eventName
+                      }).some(entity => entity.equals(event))
+                    : true;
                 }
               });
             })
@@ -495,12 +617,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'card:drawn',
                 filter(ctx, [event], eventName) {
-                  return getCards({
-                    ...ctx,
-                    conditions: trigger.params.card,
-                    event,
-                    eventName
-                  }).some(card => card === event);
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        conditions: trigger.params.card,
+                        event,
+                        eventName
+                      }).some(card => card === event)
+                    : true;
                 }
               });
             })
@@ -510,12 +634,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'card:replaced',
                 filter(ctx, [event], eventName) {
-                  return getCards({
-                    ...ctx,
-                    conditions: trigger.params.card,
-                    event,
-                    eventName
-                  }).some(card => card === event);
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        conditions: trigger.params.card,
+                        event,
+                        eventName
+                      }).some(card => card === event)
+                    : true;
                 }
               });
             })
@@ -525,12 +651,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_start',
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event))
+                    : true;
                 }
               });
             })
@@ -540,12 +668,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_end',
                 filter(ctx, [event], eventName) {
-                  return getPlayers({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.player
-                  }).some(player => player.equals(event));
+                  return trigger.params.player.length
+                    ? getPlayers({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.player
+                      }).some(player => player.equals(event))
+                    : true;
                 }
               });
             })
@@ -555,12 +685,14 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'artifact:equiped',
                 filter(ctx, [event], eventName) {
-                  return getCards({
-                    ...ctx,
-                    event,
-                    eventName,
-                    conditions: trigger.params.card
-                  }).some(card => event.card === card);
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.card
+                      }).some(card => event.card === card)
+                    : true;
                 }
               });
             })
