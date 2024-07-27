@@ -20,11 +20,11 @@ import { BounceUnitCardAction } from './actions/bounce-unit.card-action';
 import { DispelCellCardAction } from './actions/dispel-cell.card-action';
 import { ActivateUnitCardAction } from './actions/activate-unit.card-action';
 import { ChangeCardCostCardAction } from './actions/change-card-cost.card-action';
-import { CelerityCardAction } from './actions/celerity.card-action';
 import { RangedCardAction } from './actions/ranged.card-action';
 import { GenerateCardCardAction } from './actions/generate-card.card-action';
 import { TeleportCardAction } from './actions/teleport.card-action';
 import { SwapUnitsCardAction } from './actions/swapUnits.card-action';
+import { CelerityCardAction } from './actions/celerity.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,

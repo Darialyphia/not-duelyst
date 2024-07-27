@@ -8,7 +8,8 @@ const { session, assets, camera, ui, pathfinding, fx } = useGame();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
-const sheet = computed(() => assets.getSpritesheet('bitmask-movement-ally'));
+const safeSheet = computed(() => assets.getSpritesheet('bitmask-movement-ally'));
+const dangerSheet = computed(() => assets.getSpritesheet('bitmask-danger'));
 
 const isActivePlayer = useIsActivePlayer();
 const userPlayer = useUserPlayer();
@@ -47,8 +48,19 @@ const bitmask = computed(() => {
     return isMatch(neighbor);
   });
 });
+
+const sheet = computed(() => {
+  if (!isEnabled.value) return null;
+
+  const enemies = userPlayer.value.opponent.entities;
+  return enemies.some(entity => {
+    return pathfinding.canAttackAt(entity, cell.value);
+  })
+    ? dangerSheet.value
+    : safeSheet.value;
+});
 </script>
 
 <template>
-  <BitmaskCell :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
+  <BitmaskCell v-if="sheet" :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
 </template>

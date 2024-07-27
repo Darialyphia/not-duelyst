@@ -253,9 +253,16 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     });
   }
 
-  canMove(distance: number) {
+  canMove(
+    distance: number,
+    { countAllMovements }: { countAllMovements: boolean } = { countAllMovements: false }
+  ) {
+    const speed = countAllMovements
+      ? this.speed * (this.maxMovements - this.movementsTaken)
+      : this.speed;
+
     const baseValue =
-      distance <= this.speed &&
+      distance <= speed &&
       this.movementsTaken < this.maxMovements &&
       (this.session.config.CAN_MOVE_AFTER_ATTACK
         ? true
@@ -338,8 +345,11 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     Object.values(this.interceptors).forEach(interceptor => interceptor.clear());
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  endTurn() {}
+  endTurn() {
+    this.movementsTaken = 0;
+    this.attacksTaken = 0;
+    this.retaliationsDone = 0;
+  }
 
   startTurn() {
     this.activate();
@@ -349,6 +359,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     this.session.actionSystem.schedule(() => {
       this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
       this.session.entitySystem.removeEntity(this);
+      this.player.graveyard.push(this.card);
       this.modifiers.forEach(modifier => {
         modifier.onRemoved(this.session, this, modifier);
       });

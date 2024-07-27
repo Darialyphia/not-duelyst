@@ -10,7 +10,7 @@ import type { Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, camera, gameType, assets } = useGame();
+const { ui, fx, pathfinding, gameType, assets } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
@@ -66,6 +66,9 @@ watchEffect(() => {
   playerFilter.color = getPlayerFilterColor();
 });
 
+const attackTargetFilter = new OutlineFilter(2, 0xff0000);
+const dangerFilter = new ColorOverlayFilter(0xff0000, 0.35);
+
 const filters = computed(() => {
   const result: Filter[] = [];
   if (entity.value.isExhausted) {
@@ -76,6 +79,27 @@ const filters = computed(() => {
   }
   if (settings.value.a11y.colorCodeUnits !== COLOR_CODED_UNITS.OFF) {
     result.push(playerFilter);
+  }
+
+  if (
+    ui.selectedEntity.value &&
+    ui.hoveredEntity.value?.equals(entity.value) &&
+    ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
+    ui.selectedEntity.value.canAttack(ui.hoveredEntity.value) &&
+    ui.targetingMode.value === TARGETING_MODES.BASIC
+  ) {
+    result.push(attackTargetFilter);
+  }
+
+  if (
+    ui.targetingMode.value === 'BASIC' &&
+    ui.hoveredCell.value &&
+    ui.selectedEntity.value &&
+    !entity.value.player.equals(userPlayer.value) &&
+    pathfinding.canMoveTo(ui.selectedEntity.value, ui.hoveredCell.value) &&
+    pathfinding.canAttackAt(entity.value, ui.hoveredCell.value)
+  ) {
+    result.push(dangerFilter);
   }
   return result;
 });
@@ -96,15 +120,6 @@ watchEffect(() => {
       isAlly && (isSelected.value || isHovered.value) ? MAX_LIGHTNESS : MIN_LIGHTNESS,
     ease: Power2.easeOut
   });
-});
-
-const isFlipped = computed(() => {
-  let value = entity.value.player.isPlayer1 ? false : true;
-  if (camera.angle.value === 90 || camera.angle.value === 180) {
-    value = !value;
-  }
-
-  return value;
 });
 
 const castFxTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
