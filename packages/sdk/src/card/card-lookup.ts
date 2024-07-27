@@ -41,6 +41,8 @@ import { f2Rythmweaver } from './cards/faction_2/rythmweaver';
 import { f2KeshraiFanblade } from './cards/faction_2/keshrai_fanblade';
 import { f2HammonBladeseeker } from './cards/faction_2/hammon_bladeseeker';
 import { f2Gorehorn } from './cards/faction_2/gorehorn';
+import { f2Heartseeker } from './cards/faction_2/heartseeker';
+import { f2FourWindsMagus } from './cards/faction_2/four_winds_magus';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -81,6 +83,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f2KeshraiFanblade,
   f2HammonBladeseeker,
   f2Gorehorn,
+  f2Heartseeker,
+  f2FourWindsMagus,
 
   neutralHealingMystic,
   neutralRiftWalker,
