@@ -21,6 +21,7 @@ import { DispelCellCardAction } from './actions/dispel-cell.card-action';
 import { ActivateUnitCardAction } from './actions/activate-unit.card-action';
 import { ChangeCardCostCardAction } from './actions/change-card-cost.card-action';
 import { CelerityCardAction } from './actions/celerity.card-action';
+import { RangedCardAction } from './actions/ranged.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -71,6 +72,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'celerity' }, action => {
         return new CelerityCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'ranged' }, action => {
+        return new RangedCardAction(action, ctx, event, eventName).execute();
       })
       .with({ type: 'backstab' }, action => {
         return new BackstabCardAction(action, ctx, event, eventName).execute();

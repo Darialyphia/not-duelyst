@@ -384,6 +384,14 @@ export type Action<
       };
     }
   | {
+      type: 'ranged';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'backstab';
       params: {
         filter?: Filter<GlobalCondition<T>>;

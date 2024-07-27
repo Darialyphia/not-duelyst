@@ -199,6 +199,14 @@ const actionDict: Record<
       filter: GlobalConditionNode
     }
   },
+  ranged: {
+    label: 'Ranged',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
   provoke: {
     label: 'Provoke',
     params: {
@@ -335,6 +343,11 @@ watch(
         params.execute ??= 'now';
       })
       .with({ type: 'celerity' }, ({ params }) => {
+        params.filter ??= [];
+        params.activeWhen ??= [];
+        params.execute ??= 'now';
+      })
+      .with({ type: 'ranged' }, ({ params }) => {
         params.filter ??= [];
         params.activeWhen ??= [];
         params.execute ??= 'now';
