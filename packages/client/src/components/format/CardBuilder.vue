@@ -155,6 +155,15 @@ const copyCode = () => {
 
   copy(dedent(content));
 };
+
+watchEffect(() => {
+  if (!blueprint.value.targets) {
+    blueprint.value.targets = {
+      min: 0,
+      targets: []
+    };
+  }
+});
 </script>
 
 <template>
@@ -336,6 +345,18 @@ const copyCode = () => {
         effect builder below.
       </p>
 
+      <h3 class="mt-6">Targets</h3>
+      <p>
+        These are the targets the player has to choose when playing the card. If some
+        targets are optional, adjust the minimum targets as necessary.
+      </p>
+      <p class="c-orange-5">
+        <Icon name="material-symbols:warning-outline" />
+        Spells and Artifacts MUST have at least one target or you won't be able to cast
+        them ! Furthermore, the first target of an artifact must be the general equiping
+        the artifact.
+      </p>
+      <TargetsNode v-model="blueprint.targets!" />
       <h3 class="mt-6">Effects</h3>
 
       <AccordionRoot type="multiple" collapsible>

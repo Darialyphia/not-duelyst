@@ -1,4 +1,4 @@
-import { type Nullable, type Point3D, type AnyObject, Vec3 } from '@game/shared';
+import { type Nullable, type Point3D, type AnyObject } from '@game/shared';
 import { match } from 'ts-pattern';
 import type { Cell } from '../../board/cell';
 import type { Entity } from '../../entity/entity';

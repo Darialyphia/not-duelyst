@@ -483,9 +483,6 @@ const id = useId();
           />
           Until the start of next turn
         </label>
-        <p class="c-orange-5 text-0">
-          <Icon name="material-symbols:warning-outline" />
-        </p>
       </fieldset>
 
       <div v-if="key === 'occurences_count'" class="flex items-center gap-3">

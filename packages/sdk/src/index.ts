@@ -38,6 +38,7 @@ export type {
   CardEffectConfig,
   TriggerFrequency
 } from './card/card-effect';
+export type { CardTargetsConfig } from './card/card-targets';
 export type {
   UnitConditionBase,
   UnitConditionExtras,

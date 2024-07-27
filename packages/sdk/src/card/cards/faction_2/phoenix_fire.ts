@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { manualTarget } from '../../helpers/targeting';
+import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
 
 export const f2PhoenixFire = defineSerializedBlueprint({
   id: 'LgU-0n',
@@ -15,6 +15,10 @@ export const f2PhoenixFire = defineSerializedBlueprint({
   tags: [],
   kind: CARD_KINDS.SPELL,
   rarity: RARITIES.COMMON,
+  targets: {
+    min: 1,
+    targets: [anyOccupiedCell()]
+  },
   effects: [
     {
       text: 'Deal 3 damage to a unit.',
