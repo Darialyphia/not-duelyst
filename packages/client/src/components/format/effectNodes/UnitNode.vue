@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { AmountNode, CellNode, KeywordNode, NumericOperatorNode } from '#components';
-import type { Filter, UnitConditionBase } from '@game/sdk';
+import type { Filter, UnitCondition } from '@game/sdk';
 import { match } from 'ts-pattern';
 
-const groups = defineModel<Filter<UnitConditionBase>>({ required: true });
+const groups = defineModel<Filter<UnitCondition>>({ required: true });
 
 const unitDict = useUnitConditions();
 
@@ -12,7 +12,7 @@ const unitOptions = computed(
     Object.entries(unitDict.value).map(([id, { label }]) => ({
       label,
       value: id
-    })) as Array<{ label: string; value: UnitConditionBase['type'] }>
+    })) as Array<{ label: string; value: UnitCondition['type'] }>
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
@@ -42,18 +42,6 @@ const id = useId();
           condition.type = type;
 
           match(condition)
-            .with(
-              { type: 'any_unit' },
-              { type: 'is_ally' },
-              { type: 'is_enemy' },
-              { type: 'is_self' },
-              { type: 'is_general' },
-              { type: 'is_minion' },
-              { type: 'is_exhausted' },
-              () => {
-                return;
-              }
-            )
             .with(
               { type: 'is_in_front' },
               { type: 'is_nearest_in_front' },
@@ -92,6 +80,25 @@ const id = useId();
                 operator: 'equals'
               };
             })
+            .with(
+              { type: 'any_unit' },
+              { type: 'is_ally' },
+              { type: 'is_enemy' },
+              { type: 'is_self' },
+              { type: 'is_general' },
+              { type: 'is_minion' },
+              { type: 'is_exhausted' },
+              { type: 'attack_source' },
+              { type: 'attack_target' },
+              { type: 'healing_source' },
+              { type: 'healing_target' },
+              { type: 'destroyed_unit' },
+              { type: 'moved_unit' },
+              { type: 'played_unit' },
+              () => {
+                return;
+              }
+            )
             .exhaustive();
         }
       "

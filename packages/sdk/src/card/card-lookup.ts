@@ -36,6 +36,7 @@ import { f2KaidoAssassin } from './cards/faction_2/kaido_assassin';
 import { f2TuskBoar } from './cards/faction_2/tusk_boar';
 import { f2ManaVortex } from './cards/faction_2/mana_vortex';
 import { f2ChakriAvatar } from './cards/faction_2/chakri_avatar';
+import { f2CelestialPhantom } from './cards/faction_2/celestial_phantom';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -71,6 +72,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f2TuskBoar,
   f2ManaVortex,
   f2ChakriAvatar,
+  f2CelestialPhantom,
 
   neutralHealingMystic,
   neutralRiftWalker,

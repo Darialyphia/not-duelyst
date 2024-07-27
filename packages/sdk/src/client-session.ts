@@ -118,7 +118,6 @@ export class ClientSession extends GameSession {
     meta: { events: StarEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
   ) {
     this.rngSystem.values = meta.rngValues;
-
     this.handlePreEventCallbacks(meta.events).then(() => {
       super.dispatch(action);
     });

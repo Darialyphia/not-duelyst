@@ -126,7 +126,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.0",
+    "filename": "f2_celestial_phantom.breathing.0",
     "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -135,7 +135,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.1",
+    "filename": "f2_celestial_phantom.breathing.1",
     "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -144,7 +144,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.2",
+    "filename": "f2_celestial_phantom.breathing.2",
     "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -153,7 +153,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.3",
+    "filename": "f2_celestial_phantom.breathing.3",
     "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -162,7 +162,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.4",
+    "filename": "f2_celestial_phantom.breathing.4",
     "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -171,7 +171,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.5",
+    "filename": "f2_celestial_phantom.breathing.5",
     "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -180,7 +180,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.6",
+    "filename": "f2_celestial_phantom.breathing.6",
     "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -189,7 +189,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.7",
+    "filename": "f2_celestial_phantom.breathing.7",
     "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -198,7 +198,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.8",
+    "filename": "f2_celestial_phantom.breathing.8",
     "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -207,7 +207,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.9",
+    "filename": "f2_celestial_phantom.breathing.9",
     "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -216,7 +216,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.10",
+    "filename": "f2_celestial_phantom.breathing.10",
     "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -225,7 +225,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.11",
+    "filename": "f2_celestial_phantom.breathing.11",
     "frame": { "x": 880, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -234,7 +234,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.12",
+    "filename": "f2_celestial_phantom.breathing.12",
     "frame": { "x": 960, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -243,7 +243,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.breath.13",
+    "filename": "f2_celestial_phantom.breathing.13",
     "frame": { "x": 1040, "y": 80, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -252,7 +252,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.0",
+    "filename": "f2_celestial_phantom.run.0",
     "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -261,7 +261,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.1",
+    "filename": "f2_celestial_phantom.run.1",
     "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -270,7 +270,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.2",
+    "filename": "f2_celestial_phantom.run.2",
     "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -279,7 +279,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.3",
+    "filename": "f2_celestial_phantom.run.3",
     "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -288,7 +288,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.4",
+    "filename": "f2_celestial_phantom.run.4",
     "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -297,7 +297,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.5",
+    "filename": "f2_celestial_phantom.run.5",
     "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -306,7 +306,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.6",
+    "filename": "f2_celestial_phantom.run.6",
     "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -315,7 +315,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_celestial_phantom.crawl.7",
+    "filename": "f2_celestial_phantom.run.7",
     "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -630,8 +630,8 @@
   "scale": "1",
   "frameTags": [
    { "name": "attack", "from": 0, "to": 13, "direction": "forward", "color": "#000000ff" },
-   { "name": "breath", "from": 14, "to": 27, "direction": "forward", "color": "#000000ff" },
-   { "name": "crawl", "from": 28, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 14, "to": 27, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 28, "to": 35, "direction": "forward", "color": "#000000ff" },
    { "name": "death", "from": 36, "to": 51, "direction": "forward", "color": "#000000ff" },
    { "name": "hit", "from": 52, "to": 54, "direction": "forward", "color": "#000000ff" },
    { "name": "idle", "from": 55, "to": 68, "direction": "forward", "color": "#000000ff" }

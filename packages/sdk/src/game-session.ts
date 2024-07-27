@@ -208,7 +208,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
     this.actionSystem.setup(this.initialState.history);
 
     this.on('entity:after_destroy', e => {
-      if (e.equals(e.player.general)) {
+      if (!e.player.general) {
         this.winnerId = e.player.opponent.id;
         this.emit('game:ended', e.player.opponent.id);
       }

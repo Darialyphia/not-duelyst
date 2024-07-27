@@ -304,9 +304,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
 
     if (this.hp <= 0) {
       this.isScheduledForDeletion = true;
-      this.session.actionSystem.schedule(() => {
-        this.destroy();
-      });
+      this.destroy();
     }
   }
   addInterceptor<T extends keyof EntityInterceptor>(
@@ -348,9 +346,9 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
   }
 
   destroy() {
-    this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
-    this.session.entitySystem.removeEntity(this);
     this.session.actionSystem.schedule(() => {
+      this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
+      this.session.entitySystem.removeEntity(this);
       this.modifiers.forEach(modifier => {
         modifier.onRemoved(this.session, this, modifier);
       });

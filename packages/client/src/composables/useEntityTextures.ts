@@ -67,7 +67,6 @@ export const useEntityTexture = (
     (event: any) => {
       if (!filter(event)) return;
       if (!sprite.value) return;
-
       const spriteInst = sprite.value;
 
       return new Promise<void>(resolve => {

@@ -405,7 +405,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.0",
+    "filename": "f2_chakri_avatar.death.0",
     "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -414,7 +414,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.1",
+    "filename": "f2_chakri_avatar.death.1",
     "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -423,7 +423,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.2",
+    "filename": "f2_chakri_avatar.death.2",
     "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -432,7 +432,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.3",
+    "filename": "f2_chakri_avatar.death.3",
     "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -441,7 +441,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.4",
+    "filename": "f2_chakri_avatar.death.4",
     "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -450,7 +450,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.5",
+    "filename": "f2_chakri_avatar.death.5",
     "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -459,7 +459,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.6",
+    "filename": "f2_chakri_avatar.death.6",
     "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -468,7 +468,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.7",
+    "filename": "f2_chakri_avatar.death.7",
     "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -477,7 +477,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.8",
+    "filename": "f2_chakri_avatar.death.8",
     "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -486,7 +486,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.9",
+    "filename": "f2_chakri_avatar.death.9",
     "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -495,7 +495,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_chakri_avatar.die.10",
+    "filename": "f2_chakri_avatar.death.10",
     "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -685,7 +685,7 @@
   "frameTags": [
    { "name": "attack", "from": 0, "to": 30, "direction": "forward", "color": "#000000ff" },
    { "name": "breathing", "from": 31, "to": 44, "direction": "forward", "color": "#000000ff" },
-   { "name": "die", "from": 45, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 45, "to": 55, "direction": "forward", "color": "#000000ff" },
    { "name": "hit", "from": 56, "to": 58, "direction": "forward", "color": "#000000ff" },
    { "name": "idle", "from": 59, "to": 68, "direction": "forward", "color": "#000000ff" },
    { "name": "run", "from": 69, "to": 74, "direction": "forward", "color": "#000000ff" }
