@@ -1,4 +1,4 @@
-import { type Nullable, type Point3D } from '@game/shared';
+import { type Nullable, type Point, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import { type CardModifier } from '../modifier/card-modifier';
@@ -6,9 +6,10 @@ import type { Card, CardBlueprintId } from './card';
 import { type CardKind, type Faction, type FactionId, type Rarity } from './card-enums';
 import { type Keyword, type KeywordId } from '../utils/keywords';
 import { type Tag, type TagId } from '../utils/tribes';
-import type { GenericCardEffect } from './card-effect';
+import type { Filter, GenericCardEffect } from './card-effect';
 import type { CardTargetsConfig } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
+import type { CellConditionBase } from './conditions/cell-conditions';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -30,6 +31,15 @@ export type CardBlueprintBase = {
     maxChoices: number;
     getChoices(): CardBlueprint[];
   };
+  shouldHighlightCell: (
+    point: Point3D,
+    options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }
+  ) => boolean;
 };
 
 type CardBlueprintUnit = {
@@ -128,6 +138,7 @@ export type SerializedBlueprintBase<T extends GenericCardEffect[]> = {
   relatedBlueprintIds: string[];
   effects: T;
   targets?: CardTargetsConfig;
+  cellHighlights?: Filter<CellConditionBase>;
 };
 
 type SerializedBlueprintUnit = {

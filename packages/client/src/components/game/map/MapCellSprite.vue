@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { CellId } from '@game/sdk/src/board/cell';
-import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import type { Filter, FrameObject } from 'pixi.js';
 import { Hitbox } from '~/utils/hitbox';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { assets, ui, fx, camera } = useGame();
+const { session, assets, ui, fx, camera } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const textures = ref<FrameObject[]>();

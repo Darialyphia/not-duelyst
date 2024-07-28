@@ -1,6 +1,6 @@
-import { isDefined, isObject, type Defined, type Point3D } from '@game/shared';
+import { isDefined, isObject, Vec3, type Defined, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
-import type { GameEvent, GameEventMap, GameFormat } from '../game-session';
+import type { GameEvent, GameEventMap, GameFormat, GameSession } from '../game-session';
 import { createCardModifier, type CardModifier } from '../modifier/card-modifier';
 import { CARD_KINDS, getFactionById } from './card-enums';
 import { getKeywordById } from '../utils/keywords';
@@ -31,6 +31,8 @@ import { getPlayers } from './conditions/player-condition';
 import { getUnits } from './conditions/unit-conditions';
 import { defaultConfig, type GameSessionConfig } from '../config';
 import { CARDS } from './card-lookup';
+import type { Card } from './card';
+import { getCells } from './conditions/cell-conditions';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -844,6 +846,35 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     tags: blueprint.tags.map(getTagById).filter(isDefined),
     modifiers: cardModifiers,
     targets: blueprint.targets ? parseTargets(blueprint.targets) : undefined,
+    shouldHighlightCell(
+      point: Point3D,
+      options: {
+        session: GameSession;
+        playedPoint?: Point3D;
+        targets: Point3D[];
+        card: Card;
+      }
+    ) {
+      if (!blueprint.cellHighlights) {
+        return match(blueprint.kind)
+          .with(CARD_KINDS.MINION, CARD_KINDS.GENERAL, CARD_KINDS.ARTIFACT, () => false)
+          .with(CARD_KINDS.SPELL, () => {
+            return options.targets.some(target => Vec3.fromPoint3D(point).equals(target));
+          })
+          .exhaustive();
+      }
+
+      return getCells({
+        session: options.session,
+        event: {},
+        card: options.card,
+        targets: options.targets,
+        conditions: blueprint.cellHighlights,
+        playedPoint: options.playedPoint
+      }).some(cell => {
+        return cell.position.equals(point);
+      });
+    },
     onPlay(ctx: EffectCtx) {
       effects.forEach(effect => {
         match(effect.config.executionContext)
