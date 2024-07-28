@@ -44,7 +44,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
     </PopoverPortal>
 
     <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
-      <div class="pt-7">
+      <div>
         <div
           class="img-wrapper"
           @contextmenu.prevent="
@@ -110,6 +110,13 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
               </span>
             </Transition>
           </div>
+          <div class="cards">
+            <Transition mode="out-in">
+              <span :key="players[0].hand.length">
+                {{ players[0].hand.length }}
+              </span>
+            </Transition>
+          </div>
         </div>
       </div>
 
@@ -119,7 +126,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
     </div>
 
     <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
-      <div class="pt-7">
+      <div>
         <div
           class="img-wrapper"
           @contextmenu.prevent="
@@ -184,6 +191,13 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
               </span>
             </Transition>
           </div>
+          <div class="cards">
+            <Transition mode="out-in">
+              <span :key="players[1].hand.length">
+                {{ players[1].hand.length }}
+              </span>
+            </Transition>
+          </div>
         </div>
       </div>
 
@@ -198,7 +212,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 .player {
   isolation: isolate;
   position: absolute;
-  top: var(--size-2);
+  top: var(--size-7);
 
   display: flex;
   flex-wrap: wrap;
@@ -218,6 +232,9 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
     }
     &.gold {
       color: var(--yellow-5);
+    }
+    .cards {
+      color: var(--purple-8);
     }
   }
 
@@ -326,7 +343,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
 }
 
 .indicators {
-  display: grid;
+  display: flex;
   gap: var(--size-2);
   font-size: var(--font-size-4);
 
@@ -381,7 +398,25 @@ const EMOTES = ['poggers', 'ahegao', 'sus'];
   }
 }
 
-:is(.gold, .hp) {
+.cards {
+  background-image: url('/assets/ui/hero-portrait-cards.png');
+  :is(.v-enter-active, .v-leave-active) {
+    transition:
+      opacity 0.4s,
+      transform 0.4s;
+  }
+  :is(.v-enter-from, .v-leave-to) {
+    opacity: 0;
+  }
+  :is(.v-leave-to) {
+    transform: scale(2) translateY(var(--size-2));
+  }
+  :is(.v-enter-from) {
+    transform: translateY(calc(-1 * var(--size-2)));
+  }
+}
+
+:is(.gold, .hp, .cards) {
   display: grid;
   place-content: center;
 
