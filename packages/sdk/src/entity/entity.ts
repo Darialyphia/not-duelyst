@@ -27,6 +27,7 @@ export type SerializedEntity = {
 };
 
 export const ENTITY_EVENTS = {
+  BEFORE_CREATE: 'before_create',
   CREATED: 'created',
 
   BEFORE_DESTROY: 'before_destroy',
@@ -75,6 +76,7 @@ type AttackEvent = {
 };
 
 export type EntityEventMap = {
+  [ENTITY_EVENTS.BEFORE_CREATE]: [entity: Entity];
   [ENTITY_EVENTS.CREATED]: [entity: Entity];
 
   [ENTITY_EVENTS.BEFORE_DESTROY]: [entity: Entity];

@@ -1,19 +1,108 @@
 <script setup lang="ts">
+import type { Card, Entity, EntityId, Player } from '@game/sdk';
+import type { Point3D } from '@game/shared';
+
 const { session } = useGame();
-const events = ref<string[]>([]);
+type Token =
+  | {
+      kind: 'text';
+      text: string;
+    }
+  | { kind: 'card'; card: Card }
+  | {
+      kind: 'entity';
+      entity: Entity;
+    }
+  | {
+      kind: 'player';
+      player: Player;
+    }
+  | { kind: 'position'; point: Point3D }
+  | { kind: 'turn_start'; player: Player };
 
-session.on('card:after_played', event => {
-  events.value.unshift(`${event.player.name} played ${event.blueprint.name}`);
+const events = ref<Token[][]>([]);
+
+session.on('card:before_played', event => {
+  events.value.push([
+    { kind: 'player', player: event.player },
+    { kind: 'text', text: 'played' },
+    { kind: 'card', card: event }
+  ]);
 });
-session.on('entity:after_attack', event => {
-  // events.value.unshift({
-  //   type: 'attack',
-  //   attackerSpriteId: event.entity.card.blueprint.spriteId,
-  //   defenderSpriteId: event.target.card.blueprint.spriteId
-  // });
+session.on('entity:before_attack', event => {
+  events.value.push([
+    { kind: 'entity', entity: event.entity },
+    { kind: 'text', text: 'attacked' },
+    { kind: 'entity', entity: event.target }
+  ]);
+});
+session.on('entity:after_take_damage', event => {
+  events.value.push([
+    { kind: 'entity', entity: event.entity },
+    { kind: 'text', text: `took ${event.amount} damage from` },
+    { kind: 'card', card: event.source }
+  ]);
+});
+session.on('entity:after_heal', event => {
+  events.value.push([
+    { kind: 'entity', entity: event.entity },
+    { kind: 'text', text: `got healed for ${event.amount} by` },
+    { kind: 'card', card: event.source }
+  ]);
+});
+session.on(`entity:after_move`, event => {
+  events.value.push([
+    { kind: 'entity', entity: event.entity },
+    { kind: 'text', text: `moved from` },
+    { kind: 'position', point: event.previousPosition },
+    { kind: 'text', text: `to` },
+    { kind: 'position', point: event.entity.position }
+  ]);
+});
+session.on('player:turn_start', event => {
+  events.value.push([{ kind: 'turn_start', player: event }]);
+});
+session.on('player:after_replace', event => {
+  events.value.push([
+    { kind: 'player', player: event.player },
+    { kind: 'text', text: `replaced a card` }
+  ]);
 });
 
+session.on('entity:after_destroy', event => {
+  events.value.push([
+    { kind: 'entity', entity: event },
+    { kind: 'text', text: `got destroyed` }
+  ]);
+});
 const isCollapsed = ref(true);
+
+const userPlayer = useUserPlayer();
+
+const listEl = ref<HTMLElement>();
+watch(isCollapsed, collapsed => {
+  if (!collapsed) {
+    nextTick(() => {
+      listEl.value?.scrollTo({
+        top: listEl.value.scrollHeight,
+        behavior: 'instant'
+      });
+    });
+  }
+});
+
+watch(
+  () => events.value.length,
+  () => {
+    if (isCollapsed.value) return;
+    nextTick(() => {
+      listEl.value?.scrollTo({
+        top: listEl.value.scrollHeight,
+        behavior: 'smooth'
+      });
+    });
+  }
+);
 </script>
 
 <template>
@@ -21,8 +110,28 @@ const isCollapsed = ref(true);
     class="combat-log combat-log fancy-surface fancy-scrollbar"
     :class="isCollapsed && 'is-collapsed'"
   >
-    <ul v-if="!isCollapsed" v-auto-animate>
-      <li v-for="(event, index) in events" :key="index">{{ event }}</li>
+    <h4>Battle Log</h4>
+    <ul v-if="!isCollapsed" ref="listEl" class="fancy-scrollbar">
+      <li v-for="(event, index) in events" :key="index">
+        <span v-for="(token, tokenIndex) in event" :key="tokenIndex" :class="token.kind">
+          <template v-if="token.kind === 'text'">{{ token.text }}</template>
+          <template v-else-if="token.kind === 'card'">
+            {{ token.card.blueprint.name }}
+          </template>
+          <template v-else-if="token.kind === 'entity'">
+            {{ token.entity.card.blueprint.name }}
+          </template>
+          <template v-else-if="token.kind === 'player'">
+            {{ token.player.name }}
+          </template>
+          <template v-else-if="token.kind === 'position'">
+            [{{ token.point.x }}, {{ token.point.y }}]
+          </template>
+          <template v-else-if="token.kind === 'turn_start'">
+            {{ token.player.equals(userPlayer) ? 'YOUR TURN' : 'ENEMY TURN' }}
+          </template>
+        </span>
+      </li>
     </ul>
     <button class="fancy-surface toggle" @click="isCollapsed = !isCollapsed">
       <Icon name="material-symbols:arrow-forward-ios" />
@@ -36,10 +145,13 @@ const isCollapsed = ref(true);
   top: 33%;
 
   /* overflow-y: auto; */
-  display: flex;
 
-  width: var(--size-13);
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  width: var(--size-xs);
   height: var(--size-15);
+  padding-inline: 0;
 
   line-height: 2;
 
@@ -56,18 +168,27 @@ const isCollapsed = ref(true);
   }
 }
 
-li {
-  margin-block: var(--size-3);
+h4 {
+  padding-block-end: var(--size-4);
+  padding-inline-start: var(--size-3);
+  color: var(--primary);
+  border-bottom: solid var(--border-size-1) var(--border);
 }
-li > div {
-  display: grid;
-  grid-template-columns: repeat(3, 64px);
-  gap: var(--size-3);
-  justify-items: center;
-  > * {
-    aspect-ratio: 1;
-    height: 64px;
-  }
+
+ul {
+  overflow-y: auto;
+}
+li {
+  display: flex;
+  gap: 1ch;
+
+  margin-block: var(--size-2);
+  padding-block: var(--size-2);
+  padding-inline-start: var(--size-3);
+
+  font-size: var(--font-size-0);
+
+  border-bottom: solid var(--border-size-1) var(--border-dimmed);
 }
 
 .toggle {
@@ -85,6 +206,39 @@ li > div {
   > svg {
     aspect-ratio: 1;
     width: 100%;
+  }
+}
+
+.player,
+.entity,
+.card,
+.position {
+  font-weight: var(--font-weight-5);
+}
+
+.player {
+  color: var(--cyan-5);
+}
+
+.entity {
+  color: var(--orange-6);
+}
+
+.card {
+  color: var(--orange-6);
+}
+
+.turn_start {
+  flex-grow: 1;
+
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  text-align: center;
+
+  background-color: hsl(0 0 100% / 0.1);
+
+  li:has(&) {
+    padding: 0;
   }
 }
 </style>
