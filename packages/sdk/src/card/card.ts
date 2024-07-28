@@ -1,7 +1,6 @@
 import type { GameSession } from '../game-session';
 import type { Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
-import EventEmitter from 'eventemitter3';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
 import { SafeEventEmitter } from '../utils/safe-event-emitter';
@@ -14,6 +13,8 @@ export type SerializedCard = {
   cardBackId: string;
   pedestalId: string;
   isGenerated?: boolean;
+  playerId: string;
+  cardIndex: number;
 };
 
 export const CARD_EVENTS = {
@@ -37,21 +38,24 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
   public readonly cardBackId: string;
+  readonly index: CardIndex;
+  protected playerId: PlayerId;
+
   modifiers: CardModifier[] = [];
 
   id = nanoid(6);
 
   constructor(
     protected session: GameSession,
-    readonly index: CardIndex,
-    options: SerializedCard,
-    protected playerId: PlayerId
+    options: SerializedCard
   ) {
     super();
     this.blueprintId = options.blueprintId;
     this.pedestalId = options.pedestalId;
     this.cardBackId = options.cardBackId;
     this.isGenerated = options.isGenerated ?? false;
+    this.playerId = options.playerId;
+    this.index = options.cardIndex;
   }
 
   equals(card: Card) {
@@ -121,7 +125,10 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
     return {
       blueprintId: this.blueprintId,
       pedestalId: this.pedestalId,
-      cardBackId: this.cardBackId
+      cardBackId: this.cardBackId,
+      cardIndex: this.index,
+      playerId: this.playerId,
+      isGenerated: this.isGenerated
     };
   }
 }

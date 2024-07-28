@@ -153,7 +153,7 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
 
   setup() {
     this.cards = this.options.deck.map((card, index) => {
-      return createCard(this.session, card, index, this.id);
+      return createCard(this.session, { ...card, cardIndex: index, playerId: this.id });
     });
     this.cards.forEach(card => {
       card.setup();
@@ -240,12 +240,14 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     pedestalId: string;
     modifiers?: CardModifier[];
   }) {
-    const card = createCard(
-      this.session,
-      { blueprintId, pedestalId, cardBackId, isGenerated: true },
-      this.cards.length,
-      this.id
-    );
+    const card = createCard(this.session, {
+      blueprintId,
+      pedestalId,
+      cardBackId,
+      isGenerated: true,
+      cardIndex: this.cards.length,
+      playerId: this.id
+    });
     Object.values(CARD_EVENTS).forEach(eventName => {
       card.on(eventName, event => {
         this.session.emit(`card:${eventName}`, event as any);

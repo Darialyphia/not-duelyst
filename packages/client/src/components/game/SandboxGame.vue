@@ -54,6 +54,7 @@ const clientSession = ClientSession.create(serverSession.serialize(), {
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 });
+
 const dispatch = (
   type: Parameters<(typeof serverSession)['dispatch']>[0]['type'],
   payload: any

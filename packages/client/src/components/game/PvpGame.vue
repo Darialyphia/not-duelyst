@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { ClientSession, GameSession, type SerializedGameState } from '@game/sdk';
+import {
+  ClientSession,
+  defaultConfig,
+  GameSession,
+  type SerializedGameState
+} from '@game/sdk';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import { type Socket } from 'socket.io-client';
 
@@ -17,6 +22,7 @@ const socket = ref<Socket>();
 const gameSession = shallowRef<ClientSession>();
 
 const dispatch = (type: Parameters<GameSession['dispatch']>[0]['type'], payload: any) => {
+  console.log(type, payload);
   socket.value?.emit('game:action', { type, payload });
 };
 const timeRemainingForTurn = ref(0);
@@ -36,13 +42,16 @@ const { error } = useGameSocket({
       until(game)
         .toBeTruthy()
         .then(currentGame => {
-          const session = ClientSession.create(
-            serializedState,
-            fx.ctx,
-            currentGame.players.find(
+          const session = ClientSession.create(serializedState, {
+            fxSystem: fx.ctx,
+            winnerId: currentGame.players.find(
               player => player.gamePlayerId === game.value?.winnerId
-            )?._id
-          );
+            )?._id,
+            format: {
+              config: defaultConfig,
+              cards: {}
+            }
+          });
 
           session.onReady(() => {
             gameSession.value = session;

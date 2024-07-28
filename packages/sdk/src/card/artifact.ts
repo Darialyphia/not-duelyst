@@ -1,8 +1,6 @@
-import type { GameSession } from '../game-session';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import type { Point3D, Serializable } from '@game/shared';
-import type { CardIndex, PlayerId } from '../player/player';
-import { Card, type SerializedCard } from './card';
+import { Card } from './card';
 import { CARD_KINDS } from './card-enums';
 import type { PlayerArtifact } from '../player/player-artifact';
 
@@ -10,15 +8,6 @@ export type ArtifactInterceptor = Artifact['interceptors'];
 
 export class Artifact extends Card implements Serializable {
   private targets: Point3D[] = [];
-
-  constructor(
-    session: GameSession,
-    index: CardIndex,
-    options: SerializedCard,
-    playerId: PlayerId
-  ) {
-    super(session, index, options, playerId);
-  }
 
   get blueprint() {
     const blueprint = this.session.cardBlueprints[this.blueprintId];

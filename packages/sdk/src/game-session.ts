@@ -89,6 +89,7 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
   eventName: T;
   event: GameEventMap[T];
 };
+
 export type GameEvent = keyof GameEventMap;
 
 export class GameSession extends SafeEventEmitter<GameEventMap> {
