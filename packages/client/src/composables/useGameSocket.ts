@@ -1,5 +1,4 @@
 import { api } from '@game/api';
-import type { AnyFunction } from '@game/shared';
 import { io, type Socket } from 'socket.io-client';
 
 const POLLING_INTERVAL = 3000;
@@ -33,15 +32,15 @@ export const useGameSocket = ({
           return `ws://localhost:8000?spectator=${spectator}&gameId=${_gameId.value}&roomId=${roomId}`;
         }
 
-        const response = await $hathora.roomV2.getConnectionInfo(roomId);
-        if (response.connectionInfoV2?.status !== 'active') {
+        const response = await $hathora.roomsV2.getConnectionInfo(roomId);
+        if (response.status !== 'active') {
           return new Promise(resolve => {
             setTimeout(() => {
               resolve(getUrl());
             }, POLLING_INTERVAL);
           });
         }
-        const exposedPort = response.connectionInfoV2!.exposedPort!;
+        const exposedPort = response.exposedPort!;
 
         return `wss://${exposedPort?.host}:${exposedPort?.port}?spectator=${spectator}&roomId=${roomId}&gameId=${_gameId.value}`;
       };

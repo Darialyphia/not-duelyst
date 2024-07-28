@@ -53,7 +53,7 @@ onTick(() => {
     <CardChoiceUi />
     <GameMenu />
     <NewTurnIndicator />
-    <!-- <CombatLog />   -->
+    <CombatLog />
     <PlayedCard />
 
     <CardModal

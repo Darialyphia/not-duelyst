@@ -33,6 +33,7 @@ import { defaultConfig, type GameSessionConfig } from '../config';
 import { CARDS } from './card-lookup';
 import type { Card } from './card';
 import { getCells } from './conditions/cell-conditions';
+import { Unit } from './unit';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -447,7 +448,10 @@ export const parseSerializedBlueprintEffect = (
                           conditions: trigger.params.unit,
                           event,
                           eventName
-                        }).some(entity => event.source?.equals(entity))
+                        }).some(entity => {
+                          if (!(event.source instanceof Unit)) return false;
+                          event.source.entity.equals(entity);
+                        })
                       : true) &&
                     (trigger.params.target.length
                       ? getUnits({
@@ -474,7 +478,10 @@ export const parseSerializedBlueprintEffect = (
                           conditions: trigger.params.unit,
                           event,
                           eventName
-                        }).some(entity => event.source?.equals(entity))
+                        }).some(entity => {
+                          if (!(event.source instanceof Unit)) return false;
+                          event.source.entity.equals(entity);
+                        })
                       : true) &&
                     (trigger.params.target.length
                       ? getUnits({

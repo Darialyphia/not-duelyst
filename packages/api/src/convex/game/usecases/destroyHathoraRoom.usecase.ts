@@ -13,11 +13,9 @@ export const destroyHathoraRoomUsecase = internalAction({
 
     const hathoraSdk = new HathoraCloud({
       appId: process.env.HATHORA_APP_ID,
-      security: {
-        hathoraDevToken: process.env.HATHORA_TOKEN!
-      }
+      hathoraDevToken: process.env.HATHORA_TOKEN!
     });
 
-    await hathoraSdk.roomV2.destroyRoom(args.roomId);
+    await hathoraSdk.roomsV2.destroyRoom(args.roomId);
   }
 });

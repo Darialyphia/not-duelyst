@@ -6,7 +6,7 @@ import { CARD_KINDS } from './card-enums';
 export type SpellInterceptor = Spell['interceptors'];
 
 export class Spell extends Card implements Serializable {
-  get blueprint() {
+  override get blueprint() {
     const blueprint = this.session.cardBlueprints[this.blueprintId];
     if (blueprint.kind !== CARD_KINDS.SPELL) {
       throw new Error('Spell has non spell blueprint.');

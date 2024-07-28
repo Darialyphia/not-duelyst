@@ -17,7 +17,7 @@ type EventCallback = {
 };
 
 export class ClientSession extends GameSession {
-  logger = (...args: any[]) => void 0;
+  override logger = (...args: any[]) => void 0;
 
   ghostSession!: GameSession;
 
@@ -86,7 +86,10 @@ export class ClientSession extends GameSession {
   //   }
   // }
 
-  dispatch(action: SerializedAction, meta: { rngValues: number[] } = { rngValues: [] }) {
+  override dispatch(
+    action: SerializedAction,
+    meta: { rngValues: number[] } = { rngValues: [] }
+  ) {
     try {
       this.eventsSinceLastDispatch = [];
       this.rngSystem.values = meta.rngValues;

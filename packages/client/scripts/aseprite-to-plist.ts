@@ -1,10 +1,11 @@
 import plist from 'plist';
 import fs from 'fs-extra';
-import raw from '../src/assets/totally_not_manaforger.json';
+// import raw from '../src/assets/totally_not_manaforger.json';
 import path from 'path';
 
+const raw = {} as any;
 const frames = Object.fromEntries(
-  raw.frames.map(frame => {
+  raw.frames.map((frame: any) => {
     const [name, frameNumber] = frame.filename.split('.');
     const key = `${name}_${frameNumber.padStart(3, '0')}.png`;
 

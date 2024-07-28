@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import {
-  config,
   defaultConfig,
-  FACTION_IDS,
   ServerSession,
   TutorialSession,
   type SerializedGameState

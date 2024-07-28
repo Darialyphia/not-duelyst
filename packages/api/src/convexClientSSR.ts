@@ -29,7 +29,10 @@ export class ConvexClientWithSSR extends ConvexClient {
     }
   }
 
-  setAuth(fetchToken: AuthTokenFetcher, onChange?: (isAuthenticated: boolean) => void) {
+  override setAuth(
+    fetchToken: AuthTokenFetcher,
+    onChange?: (isAuthenticated: boolean) => void
+  ) {
     super.setAuth(fetchToken, onChange);
     this.authTokenFetcher = fetchToken;
     this.ssrOnTokenChange = onChange;

@@ -1,11 +1,17 @@
 import { type FXSystem } from './fx-system';
-import { type GameEvent, type SerializedGameState, type StarEvent } from './game-session';
+import {
+  type GameEvent,
+  type GameFormat,
+  type SerializedGameState,
+  type StarEvent
+} from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise, Values } from '@game/shared';
 import { ClientRngSystem, type RngSystem } from './rng-system';
 import { ClientSession } from './client-session';
 import type { FACTION_IDS } from './card/card-enums';
+import { defaultConfig } from './config';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -28,7 +34,18 @@ export class TutorialSession extends ClientSession {
   ) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
-    return new TutorialSession(state, rngSystem, fxSystem, {}, steps);
+    return new TutorialSession(
+      state,
+      rngSystem,
+      fxSystem,
+      {
+        format: {
+          config: defaultConfig,
+          cards: {}
+        }
+      },
+      steps
+    );
   }
 
   currentStepIndex = 0;
@@ -40,6 +57,7 @@ export class TutorialSession extends ClientSession {
     fxSystem: FXSystem,
     options: {
       winnerId?: string;
+      format: GameFormat;
     },
     public steps: TutorialStep[]
   ) {
@@ -67,9 +85,9 @@ export class TutorialSession extends ClientSession {
     }
   }
 
-  dispatch(
+  override dispatch(
     action: SerializedAction,
-    meta: { events: StarEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
+    meta: { rngValues: number[] } = { rngValues: [] }
   ) {
     if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
     super.dispatch(action, meta);

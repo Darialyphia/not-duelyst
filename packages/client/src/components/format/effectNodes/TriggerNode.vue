@@ -39,6 +39,15 @@ const triggerDict: Record<Trigger['type'], { label: string; params: string[] }> 
   on_before_unit_move: { label: 'Before a unit moves', params: ['unit', 'frequency'] },
   on_after_unit_move: { label: 'After a unit moves', params: ['unit', 'frequency'] },
 
+  on_before_unit_teleport: {
+    label: 'Before a unit teleports',
+    params: ['unit', 'frequency']
+  },
+  on_after_unit_teleport: {
+    label: 'After a unit teleports',
+    params: ['unit', 'frequency']
+  },
+
   on_before_unit_attack: {
     label: 'Before a unit attacks',
     params: ['target', 'unit', 'frequency']

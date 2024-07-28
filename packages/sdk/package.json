@@ -23,6 +23,6 @@
   },
   "scripts": {
     "dev": "echo 1",
-    "type-check": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   }
 }

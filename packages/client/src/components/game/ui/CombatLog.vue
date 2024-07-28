@@ -1,21 +1,16 @@
 <script setup lang="ts">
 const { session } = useGame();
-const events = ref<any[]>([]);
+const events = ref<string[]>([]);
 
 session.on('card:after_played', event => {
-  events.value.unshift({
-    type: 'card',
-    spriteId: event.blueprint.spriteId,
-    generalSpriteId: event.player.general.card.blueprint.spriteId
-  });
+  events.value.unshift(`${event.player.name} played ${event.blueprint.name}`);
 });
-
 session.on('entity:after_attack', event => {
-  events.value.unshift({
-    type: 'attack',
-    attackerSpriteId: event.entity.card.blueprint.spriteId,
-    defenderSpriteId: event.target.card.blueprint.spriteId
-  });
+  // events.value.unshift({
+  //   type: 'attack',
+  //   attackerSpriteId: event.entity.card.blueprint.spriteId,
+  //   defenderSpriteId: event.target.card.blueprint.spriteId
+  // });
 });
 
 const isCollapsed = ref(true);
@@ -27,23 +22,10 @@ const isCollapsed = ref(true);
     :class="isCollapsed && 'is-collapsed'"
   >
     <ul v-if="!isCollapsed" v-auto-animate>
-      <li v-for="(event, index) in events" :key="index">
-        <div v-if="event.type === 'card'">
-          <AnimatedCardIcon :sprite-id="event.generalSpriteId" />
-          <Icon name="material-symbols-light:playing-cards" size="2em" />
-          <AnimatedCardIcon :sprite-id="event.spriteId" />
-        </div>
-
-        <div v-else-if="event.type === 'attack'">
-          <AnimatedCardIcon :sprite-id="event.attackerSpriteId" />
-          <Icon name="game-icons:crossed-swords" size="2em" />
-          <AnimatedCardIcon :sprite-id="event.defenderSpriteId" />
-        </div>
-      </li>
+      <li v-for="(event, index) in events" :key="index">{{ event }}</li>
     </ul>
-    <button class="flex flex-col items-center gap-2" @click="isCollapsed = !isCollapsed">
-      <Icon :name="isCollapsed ? 'material-symbols:arrow-forward-ios' : 'mdi:close'" />
-      <span v-if="isCollapsed" class="text-00">Combat Log</span>
+    <button class="fancy-surface toggle" @click="isCollapsed = !isCollapsed">
+      <Icon name="material-symbols:arrow-forward-ios" />
     </button>
   </div>
 </template>
@@ -53,17 +35,19 @@ const isCollapsed = ref(true);
   position: absolute;
   top: 33%;
 
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: flex;
+
+  width: var(--size-13);
+  height: var(--size-15);
 
   line-height: 2;
 
+  transition: transform 0.2s var(--ease-1);
+
   &.is-collapsed {
+    transform: translateX(-100%);
     padding: var(--size-2);
-  }
-  &:not(.is-collapsed) {
-    min-width: var(--size-13);
-    height: var(--size-15);
   }
 
   > button {
@@ -83,6 +67,24 @@ li > div {
   > * {
     aspect-ratio: 1;
     height: 64px;
+  }
+}
+
+.toggle {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateY(-2px);
+
+  width: var(--size-7);
+  height: var(--size-10);
+  padding: 0;
+
+  background-color: red;
+  border-left: none;
+  > svg {
+    aspect-ratio: 1;
+    width: 100%;
   }
 }
 </style>

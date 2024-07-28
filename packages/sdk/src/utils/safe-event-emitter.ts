@@ -6,7 +6,8 @@ export class SafeEventEmitter<
   EventTypes extends EventEmitter.ValidEventTypes = string | symbol
 > extends EventEmitter<EventTypes> {
   private stackDepth = new Map<EventEmitter.EventNames<EventTypes>, number>();
-  emit<T extends EventEmitter.EventNames<EventTypes>>(
+
+  override emit<T extends EventEmitter.EventNames<EventTypes>>(
     event: T,
     ...args: EventEmitter.EventArgs<EventTypes, T>
   ) {

@@ -22,10 +22,6 @@ export class ServerSession extends GameSession {
     });
   }
 
-  setup() {
-    super.setup();
-  }
-
   onUpdate(cb: (action: SerializedAction, opts: { rngValues: number[] }) => void) {
     this.on('scheduler:flushed', () => {
       cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
@@ -33,9 +29,5 @@ export class ServerSession extends GameSession {
         rngValues: this.rngSystem.values
       });
     });
-  }
-
-  dispatch(action: SerializedAction) {
-    super.dispatch(action);
   }
 }

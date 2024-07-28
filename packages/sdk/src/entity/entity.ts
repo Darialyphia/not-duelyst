@@ -66,7 +66,7 @@ type DealDamageEvent = {
 };
 type TakeDamageEvent = {
   entity: Entity;
-  source: Nullable<Entity>;
+  source: Card;
   amount: number;
 };
 type AttackEvent = {
@@ -450,7 +450,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     const payload = {
       entity: this,
       amount,
-      source: source instanceof Unit ? source.entity : undefined
+      source
     };
     this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 
@@ -486,7 +486,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     const payload = {
       entity: this,
       amount,
-      source: source instanceof Unit ? source.entity : undefined
+      source
     };
     this.emit(ENTITY_EVENTS.BEFORE_HEAL, payload);
 

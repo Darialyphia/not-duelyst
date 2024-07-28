@@ -9,7 +9,7 @@ export type UnitInterceptor = Unit['interceptors'];
 export class Unit extends Card implements Serializable {
   entity!: Entity;
 
-  get blueprint() {
+  override get blueprint() {
     const blueprint = this.session.cardBlueprints[this.blueprintId];
     if (blueprint.kind !== CARD_KINDS.GENERAL && blueprint.kind !== CARD_KINDS.MINION) {
       throw new Error('Unit has non unit blueprint.');

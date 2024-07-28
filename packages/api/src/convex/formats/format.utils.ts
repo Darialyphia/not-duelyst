@@ -13,7 +13,7 @@ export const defaultFormat = {
   description: 'The standard Darialyst format.',
   authorId: '_system' as Id<'users'>,
   config: defaultConfig,
-  cards: {},
+  cards: '',
   mapId: DEFAULT_MAP_ID
 } satisfies Omit<GameFormat, '_id' | '_creationTime'>;
 

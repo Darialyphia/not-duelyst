@@ -9,7 +9,7 @@ export type ArtifactInterceptor = Artifact['interceptors'];
 export class Artifact extends Card implements Serializable {
   private targets: Point3D[] = [];
 
-  get blueprint() {
+  override get blueprint() {
     const blueprint = this.session.cardBlueprints[this.blueprintId];
     if (blueprint.kind !== CARD_KINDS.ARTIFACT) {
       throw new Error('Artifact has non artifact blueprint.');
