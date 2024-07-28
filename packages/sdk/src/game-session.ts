@@ -142,7 +142,10 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
     });
   }
 
+  format: GameFormat;
+
   config: GameSessionConfig;
+
   cardBlueprints: Record<CardBlueprintId, CardBlueprint>;
 
   actionSystem = new ActionSystem(this);
@@ -160,7 +163,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
   logger = console.log;
 
   protected constructor(
-    private initialState: SerializedGameState,
+    protected initialState: SerializedGameState,
     public rngSystem: RngSystem,
     public fxSystem: FXSystem,
     options: {
@@ -169,6 +172,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
     }
   ) {
     super();
+    this.format = options.format;
     this.config = options.format.config;
     this.cardBlueprints = Object.fromEntries(
       Object.entries(options.format.cards).map(([key, value]) => [

@@ -10,8 +10,6 @@ import { ServerRngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
 
 export class ServerSession extends GameSession {
-  eventsSinceLastDispatch: StarEvent[] = [];
-
   static create(
     state: SerializedGameState,
     options: { seed: string; format: GameFormat }
@@ -26,28 +24,18 @@ export class ServerSession extends GameSession {
 
   setup() {
     super.setup();
-    this.eventsSinceLastDispatch = [];
-    this.on('*', e => {
-      this.eventsSinceLastDispatch.push(e);
-    });
   }
 
-  onUpdate(
-    cb: (
-      action: SerializedAction,
-      opts: { events: StarEvent[]; rngValues: number[] }
-    ) => void
-  ) {
+  onUpdate(cb: (action: SerializedAction, opts: { rngValues: number[] }) => void) {
     this.on('scheduler:flushed', () => {
       cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
-        events: this.eventsSinceLastDispatch,
+        // events: this.eventsSinceLastDispatch,
         rngValues: this.rngSystem.values
       });
     });
   }
 
   dispatch(action: SerializedAction) {
-    this.eventsSinceLastDispatch = [];
     super.dispatch(action);
   }
 }

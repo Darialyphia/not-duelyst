@@ -22,7 +22,6 @@ const socket = ref<Socket>();
 const gameSession = shallowRef<ClientSession>();
 
 const dispatch = (type: Parameters<GameSession['dispatch']>[0]['type'], payload: any) => {
-  console.log(type, payload);
   socket.value?.emit('game:action', { type, payload });
 };
 const timeRemainingForTurn = ref(0);

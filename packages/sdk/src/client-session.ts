@@ -18,6 +18,9 @@ type EventCallback = {
 
 export class ClientSession extends GameSession {
   logger = (...args: any[]) => void 0;
+
+  ghostSession!: GameSession;
+
   static create(
     state: SerializedGameState,
     options: { fxSystem: FXSystem; format: GameFormat; winnerId?: string }
@@ -25,14 +28,33 @@ export class ClientSession extends GameSession {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
 
-    return new ClientSession(state, rngSystem, options.fxSystem, {
+    const session = new ClientSession(state, rngSystem, options.fxSystem, {
       winnerId: options.winnerId,
       format: {
         config: options.format.config,
         cards: { ...CARDS, ...options.format.cards }
       }
     });
+
+    const rng = new ClientRngSystem();
+    rng.values = [...state.rng.values];
+
+    session.ghostSession = new GameSession(state, rng, options.fxSystem, {
+      winnerId: options.winnerId,
+      format: {
+        config: options.format.config,
+        cards: { ...CARDS, ...options.format.cards }
+      }
+    });
+    session.eventsSinceLastDispatch = [];
+    session.ghostSession.on('*', e => {
+      session.eventsSinceLastDispatch.push(e);
+    });
+
+    return session;
   }
+
+  eventsSinceLastDispatch: StarEvent[] = [];
 
   private eventCallbacksMap: Map<GameEvent, EventCallback[]> = new Map();
 
@@ -64,13 +86,18 @@ export class ClientSession extends GameSession {
   //   }
   // }
 
-  dispatch(
-    action: SerializedAction,
-    meta: { events: StarEvent[]; rngValues: number[] } = { events: [], rngValues: [] }
-  ) {
-    this.rngSystem.values = meta.rngValues;
-    this.handlePreEventCallbacks(meta.events).then(() => {
-      super.dispatch(action);
-    });
+  dispatch(action: SerializedAction, meta: { rngValues: number[] } = { rngValues: [] }) {
+    try {
+      this.eventsSinceLastDispatch = [];
+      this.rngSystem.values = meta.rngValues;
+      this.ghostSession.rngSystem.values = meta.rngValues;
+
+      this.ghostSession.dispatch(action);
+      this.handlePreEventCallbacks(this.eventsSinceLastDispatch).then(() => {
+        super.dispatch(action);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
