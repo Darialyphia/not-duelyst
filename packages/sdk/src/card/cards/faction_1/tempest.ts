@@ -19,6 +19,14 @@ export const f1Tempest = defineSerializedBlueprint({
     min: 1,
     targets: [anywhere()]
   },
+  cellHighlights: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: [[{ type: 'any_unit' }]] }
+      }
+    ]
+  ],
   effects: [
     {
       text: 'Deal 2 damage to all units.',

@@ -855,7 +855,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         card: Card;
       }
     ) {
-      if (!blueprint.cellHighlights) {
+      if (!blueprint.cellHighlights || !blueprint.cellHighlights.length) {
         return match(blueprint.kind)
           .with(CARD_KINDS.MINION, CARD_KINDS.GENERAL, CARD_KINDS.ARTIFACT, () => false)
           .with(CARD_KINDS.SPELL, () => {

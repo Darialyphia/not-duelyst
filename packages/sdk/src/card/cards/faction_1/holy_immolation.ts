@@ -19,6 +19,20 @@ export const f1HolyImmolation = defineSerializedBlueprint({
     min: 1,
     targets: [cellWithAllyMinion()]
   },
+  cellHighlights: [
+    [
+      {
+        type: 'is_manual_target',
+        params: { index: 0 }
+      }
+    ],
+    [
+      {
+        type: 'is_nearby',
+        params: { unit: [[{ type: 'is_manual_target', params: { index: 0 } }]] }
+      }
+    ]
+  ],
   effects: [
     {
       text: 'Heal an allied minion for 4 and deal 4 damage to enemies nearby it.',

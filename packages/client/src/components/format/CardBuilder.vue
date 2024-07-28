@@ -29,6 +29,10 @@ const { format } = defineProps<{
 
 const blueprint = defineModel<GenericSerializedBlueprint>('card', { required: true });
 
+if (!blueprint.value.cellHighlights) {
+  blueprint.value.cellHighlights = [];
+}
+
 useFormatProvider(computed(() => format));
 const card = ref<CardBlueprint>();
 const error = ref('');
@@ -358,6 +362,15 @@ watchEffect(() => {
         the artifact.
       </p>
       <TargetsNode v-model="blueprint.targets!" />
+
+      <h3 class="mt-6">Targeting highlights</h3>
+      <p>
+        Cell highlights have no impact on gameplay and are only used to provide feedback
+        to players to show them which cells will be impacted by playing the card. Useful
+        for AoEs, etc.
+      </p>
+      <HighlightsNode v-model="blueprint.cellHighlights!" />
+
       <h3 class="mt-6">Effects</h3>
 
       <AccordionRoot type="multiple" collapsible>

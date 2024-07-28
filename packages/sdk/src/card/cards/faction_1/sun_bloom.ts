@@ -18,6 +18,14 @@ export const f1SunBloom = defineSerializedBlueprint({
     min: 1,
     targets: [anywhere()]
   },
+  cellHighlights: [
+    [
+      {
+        type: '2x2_area',
+        params: { topLeft: [[{ type: 'is_manual_target', params: { index: 0 } }]] }
+      }
+    ]
+  ],
   effects: [
     {
       text: 'Dispel spaces in a 2x2 area.',

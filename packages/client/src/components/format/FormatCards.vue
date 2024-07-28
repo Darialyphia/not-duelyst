@@ -84,7 +84,8 @@ const filteredCards = computed(() =>
                 kind: CARD_KINDS.MINION,
                 rarity: RARITIES.COMMON,
                 effects: [],
-                targets: { min: 0, targets: [] }
+                targets: { min: 0, targets: [] },
+                cellHighlights: []
               } as any;
               selectedCardId = id;
             }
