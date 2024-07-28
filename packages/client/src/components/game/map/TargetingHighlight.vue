@@ -21,6 +21,8 @@ const canHighlight = (cellToTest: Cell) => {
   });
 };
 
+const isHighlighted = computed(() => canHighlight(cell));
+
 const canTarget = (cellToTest: Nullable<Cell>) => {
   if (!cellToTest) return false;
   return (
@@ -46,7 +48,7 @@ const isMatch = (cellToTest: Cell) => {
       if (!ui.selectedCard.value) return false;
       if (!isDefined(ui.selectedCardIndex.value)) return false;
       if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
-      return canTarget(cellToTest) || canHighlight(cellToTest);
+      return canTarget(cellToTest);
     })
     .exhaustive();
 };
@@ -62,11 +64,19 @@ const bitmask = computed(() => {
 });
 
 const sheet = computed(() => {
-  if (canHighlight(cell)) return highlightSheet.value;
+  if (isHighlighted.value) return null;
   return targetSheet.value;
 });
+
+const highlightTexture = computed(() => Object.values(highlightSheet.value.textures)[0]);
 </script>
 
 <template>
-  <BitmaskCell :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
+  <BitmaskCell v-if="sheet" :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
+  <Sprite
+    v-if="isHighlighted"
+    :anchor="0.5"
+    event-mode="none"
+    :texture="highlightTexture"
+  />
 </template>

@@ -14,8 +14,6 @@ const texture = computed(() => {
 
   return getTextureIndexFromBitMask(bitmask, sheet);
 });
-
-const { autoDestroyRef } = useAutoDestroy();
 </script>
 
 <template>
@@ -26,12 +24,11 @@ const { autoDestroyRef } = useAutoDestroy();
     :enter="{ alpha: 0.8 }"
     :leave="{ alpha: 0 }"
   >
-    <container
+    <sprite
       v-if="texture && isEnabled"
-      :ref="container => autoDestroyRef(container)"
+      :texture="texture"
+      :anchor="0.5"
       event-mode="none"
-    >
-      <sprite :texture="texture" :anchor="0.5" />
-    </container>
+    />
   </PTransition>
 </template>
