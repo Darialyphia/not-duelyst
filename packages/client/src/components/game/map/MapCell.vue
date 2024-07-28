@@ -95,13 +95,6 @@ const summon = () => {
   }
 };
 
-const highlightTarget = () => {
-  ui.mouseLightStrength.value = 3;
-  ui.mouseLightColor.value = cell.value.entity?.player.equals(activePlayer.value)
-    ? '#77ff77'
-    : '#ff7777';
-};
-
 const selectEntity = () => {
   if (cell.value.entity?.player.equals(activePlayer.value)) {
     ui.selectEntity(cell.value.entity.id);
@@ -183,12 +176,30 @@ const onPointerup = (event: FederatedPointerEvent) => {
         }
         if (!isActivePlayer) return;
         match(ui.targetingMode.value)
-          .with(
-            TARGETING_MODES.SUMMON,
-            TARGETING_MODES.NONE,
-            TARGETING_MODES.CARD_CHOICE,
-            () => {}
-          )
+          .with(TARGETING_MODES.NONE, TARGETING_MODES.CARD_CHOICE, () => {})
+          .with(TARGETING_MODES.SUMMON, () => {
+            if (!ui.selectedCard.value?.canPlayAt(cell.position)) {
+              return;
+            }
+            if (!userPlayer.canPlayCardAtIndex(ui.selectedCardIndex.value!)) {
+              return;
+            }
+            if (ui.selectedCard.value.blueprint.cardChoices) {
+              return;
+            } else if (ui.selectedCard.value.blueprint.targets) {
+              return;
+            }
+            dispatch('simulateAction', {
+              type: 'playCard',
+              payload: {
+                cardIndex: ui.selectedCardIndex.value!,
+                position: cell.position.serialize(),
+                targets: [],
+                cardChoices: ui.cardChoiceIndexes.value
+              }
+            });
+            ui.isSimulationResultDisplayed.value = true;
+          })
           .with(TARGETING_MODES.BASIC, () => {
             if (
               ui.selectedEntity.value &&
@@ -196,15 +207,30 @@ const onPointerup = (event: FederatedPointerEvent) => {
               ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
               ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
             ) {
-              highlightTarget();
+              dispatch('simulateAction', {
+                type: 'attack',
+                payload: {
+                  targetId: cell.entity!.id,
+                  entityId: ui.selectedEntity.value!.id
+                }
+              });
+              console.log('show');
+              ui.isSimulationResultDisplayed.value = true;
             }
           })
           .with(TARGETING_MODES.TARGETING, () => {
-            if (!cell.entity) return;
             if (!ui.selectedCard.value) return;
-            if (isTargetable) {
-              highlightTarget();
-            }
+
+            dispatch('simulateAction', {
+              type: 'playCard',
+              payload: {
+                cardIndex: ui.selectedCardIndex.value!,
+                position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+                targets: ui.cardTargets.value.concat(cell.position),
+                cardChoices: ui.cardChoiceIndexes.value
+              }
+            });
+            ui.isSimulationResultDisplayed.value = true;
           })
           .exhaustive();
       }
@@ -214,6 +240,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
         ui.unhover();
         ui.mouseLightColor.value = DEFAULT_MOUSE_LIGHT_COLOR;
         ui.mouseLightStrength.value = DEFAULT_MOUSE_LIGHT_STRENGTH;
+        ui.isSimulationResultDisplayed.value = false;
       }
     "
     @pointerdown="onPointerdown"

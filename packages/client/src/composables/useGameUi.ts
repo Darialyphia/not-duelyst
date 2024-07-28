@@ -66,6 +66,8 @@ export type GameUiContext = {
 
   registerLayer(layer: Layer, name: LayerName): void;
   assignLayer(obj: Nullable<DisplayObject>, layer: LayerName): void;
+
+  isSimulationResultDisplayed: Ref<boolean>;
 };
 
 const GAME_UI_INJECTION_KEY = Symbol('game-ui') as InjectionKey<GameUiContext>;
@@ -92,6 +94,7 @@ export const useGameUiProvider = (session: GameSession) => {
   const mouseLightStrength = ref(DEFAULT_MOUSE_LIGHT_STRENGTH);
 
   const api: GameUiContext = {
+    isSimulationResultDisplayed: ref(false),
     isMenuOpened: ref(false),
     targetingMode,
     summonTarget,

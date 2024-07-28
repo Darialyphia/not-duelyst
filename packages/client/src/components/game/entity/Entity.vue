@@ -6,7 +6,7 @@ import { PTransition, EasePresets } from 'vue3-pixi';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { session, camera, fx, assets } = useGame();
+const { session, camera, fx, assets, ui, simulationResult } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 
@@ -161,6 +161,8 @@ useDispatchCallback(
     playedCardTextures.value = null;
   }
 );
+
+const simulationDeathTexture = assets.getTexture('simulation-death.png');
 </script>
 
 <template>
@@ -199,6 +201,46 @@ useDispatchCallback(
           <container>
             <EntityOrientationIndicator :entity-id="entityId" />
             <EntitySprite :entity-id="entityId" :scale-x="scaleX" />
+
+            <template v-if="ui.isSimulationResultDisplayed.value && simulationResult">
+              <pixi-text
+                v-if="simulationResult.damageTaken[entity.id]"
+                :anchor="0.5"
+                :y="-25"
+                :scale="0.25"
+                :style="{
+                  align: 'center',
+                  fill: '#ff0000',
+                  fontSize: 50,
+                  fontWeight: '900',
+                  strokeThickness: 6
+                }"
+              >
+                - {{ simulationResult.damageTaken[entity.id] }}
+              </pixi-text>
+              <pixi-text
+                v-if="simulationResult.healReceived[entity.id]"
+                :anchor="0.5"
+                :y="simulationResult.damageTaken[entity.id] ? -40 : -25"
+                :scale="0.25"
+                :style="{
+                  align: 'center',
+                  fill: '#00FF00',
+                  fontSize: 50,
+                  fontWeight: '900',
+                  strokeThickness: 6
+                }"
+              >
+                + {{ simulationResult.healReceived[entity.id] }}
+              </pixi-text>
+              <sprite
+                v-if="simulationResult.deaths.includes(entity.id)"
+                :texture="simulationDeathTexture"
+                :anchor="0.5"
+                :y="-25"
+                :x="15"
+              />
+            </template>
           </container>
         </PTransition>
       </container>

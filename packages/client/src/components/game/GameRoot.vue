@@ -6,7 +6,12 @@ import { PixiPlugin } from 'gsap/PixiPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import GameView from './GameView.vue';
 import { Stage } from '@pixi/layers';
-import { CARDS, type ClientSession, type TutorialStep } from '@game/sdk';
+import {
+  CARDS,
+  type ClientSession,
+  type SimulationResult,
+  type TutorialStep
+} from '@game/sdk';
 // import type { GameEmits } from '../../composables/useGame';
 import cursorUrl from '../../assets/cursors/cursor.png';
 import cursorDisabledUrl from '../../assets/cursors/cursor_disabled.png';
@@ -16,15 +21,23 @@ import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
-const { gameSession, playerId, gameType, p1Emote, p2Emote, currentTutorialStep } =
-  defineProps<{
-    gameSession: ClientSession;
-    playerId: string | null;
-    gameType: GameType;
-    p1Emote: Nullable<string>;
-    p2Emote: Nullable<string>;
-    currentTutorialStep?: TutorialStep;
-  }>();
+const {
+  gameSession,
+  playerId,
+  gameType,
+  p1Emote,
+  p2Emote,
+  currentTutorialStep,
+  simulationResult
+} = defineProps<{
+  gameSession: ClientSession;
+  playerId: string | null;
+  gameType: GameType;
+  p1Emote: Nullable<string>;
+  p2Emote: Nullable<string>;
+  currentTutorialStep?: TutorialStep;
+  simulationResult?: Nullable<SimulationResult>;
+}>();
 const emit = defineEmits<GameEmits>();
 
 const game = useGameProvider({
@@ -34,7 +47,8 @@ const game = useGameProvider({
   gameType: computed(() => gameType),
   p1Emote: computed(() => p1Emote),
   p2Emote: computed(() => p2Emote),
-  currentTutorialStep: computed(() => currentTutorialStep)
+  currentTutorialStep: computed(() => currentTutorialStep),
+  simulationResult: computed(() => simulationResult)
 });
 
 const settings = useUserSettings();

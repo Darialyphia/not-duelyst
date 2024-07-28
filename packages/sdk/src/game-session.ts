@@ -17,8 +17,8 @@ import {
   type SerializedPlayer
 } from './player/player';
 import { ActionSystem } from './action/action-system';
-import { noopFXContext, type FXSystem } from './fx-system';
-import { ClientRngSystem, ServerRngSystem, type RngSystem } from './rng-system';
+import type { FXSystem } from './fx-system';
+import type { RngSystem } from './rng-system';
 import {
   CARD_EVENTS,
   type CardBlueprintId,
@@ -116,30 +116,6 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
     });
 
     return [...new Set(violations)];
-  }
-  static createServerSession(
-    state: SerializedGameState,
-    options: { seed: string; format: GameFormat }
-  ) {
-    return new GameSession(state, new ServerRngSystem(options.seed), noopFXContext, {
-      format: {
-        config: options.format.config,
-        cards: { ...CARDS, ...options.format.cards }
-      }
-    });
-  }
-
-  static createClientSession(
-    state: SerializedGameState,
-    options: { fxSystem: FXSystem; format: GameFormat; winnderId?: string }
-  ) {
-    return new GameSession(state, new ClientRngSystem(), options.fxSystem, {
-      winnerId: options.winnderId,
-      format: {
-        config: options.format.config,
-        cards: { ...CARDS, ...options.format.cards }
-      }
-    });
   }
 
   format: GameFormat;

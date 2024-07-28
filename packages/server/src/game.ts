@@ -47,7 +47,7 @@ export class Game {
     this.session.on('game:ended', this.onGameEnded.bind(this));
   }
 
-  private onGameAction(action: SerializedAction, ctx: { events: StarEvent[] }) {
+  private onGameAction(action: SerializedAction, ctx: { rngValues: number[] }) {
     this.io.in(this.game._id).emit('game:action', { action, ctx });
   }
 

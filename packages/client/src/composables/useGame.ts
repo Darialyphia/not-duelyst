@@ -1,5 +1,17 @@
-import type { Values, UnionToIntersection, Point3D, Nullable } from '@game/shared';
-import type { ClientSession, EntityId, PlayerId, TutorialStep } from '@game/sdk';
+import type {
+  Values,
+  UnionToIntersection,
+  Point3D,
+  Nullable,
+  JSONValue
+} from '@game/shared';
+import type {
+  ClientSession,
+  EntityId,
+  PlayerId,
+  SimulationResult,
+  TutorialStep
+} from '@game/sdk';
 import type { AssetsContext } from './useAssets';
 import type { IsoCameraContext } from './useIsoCamera';
 import type { GameUiContext } from './useGameUi';
@@ -41,6 +53,12 @@ export type GameEmits = {
   surrender: [];
   p1Emote: [string];
   p2Emote: [string];
+  simulateAction: [
+    {
+      type: string;
+      payload: JSONValue;
+    }
+  ];
 };
 
 export type GameContext = {
@@ -56,6 +74,7 @@ export type GameContext = {
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
   currentTutorialStep: Ref<Nullable<TutorialStep>>;
+  simulationResult: Ref<Nullable<SimulationResult>>;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -67,6 +86,7 @@ export const useGameProvider = ({
   gameType,
   p1Emote,
   p2Emote,
+  simulationResult,
   currentTutorialStep
 }: {
   session: ClientSession;
@@ -75,6 +95,7 @@ export const useGameProvider = ({
   gameType: Ref<GameType>;
   p1Emote: Ref<Nullable<string>>;
   p2Emote: Ref<Nullable<string>>;
+  simulationResult: Ref<Nullable<SimulationResult>>;
   currentTutorialStep: Ref<Nullable<TutorialStep>>;
 }) => {
   const ui = useGameUiProvider(session);
@@ -104,7 +125,8 @@ export const useGameProvider = ({
     fx,
     p1Emote,
     p2Emote,
-    currentTutorialStep
+    currentTutorialStep,
+    simulationResult
   };
   provide(GAME_INJECTION_KEY, ctx);
 

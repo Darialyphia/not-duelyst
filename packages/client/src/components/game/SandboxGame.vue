@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { ClientSession, ServerSession, type SerializedGameState } from '@game/sdk';
+import {
+  ClientSession,
+  ServerSession,
+  type SerializedGameState,
+  type SimulationResult
+} from '@game/sdk';
+import type { Nullable } from '@game/shared';
 import { nanoid } from 'nanoid';
 
 const { player1Loadout, player2Loadout, seed, format } = defineProps<{
@@ -69,6 +75,7 @@ const dispatch = (
 };
 
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
+const simulationResult = ref<Nullable<SimulationResult>>(null);
 </script>
 
 <template>
@@ -79,6 +86,18 @@ const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
       :game-session="clientSession"
       :player-id="null"
       :game-type="GAME_TYPES.SANDBOX"
+      :simulation-result="simulationResult"
+      @simulate-action="
+        ($event: any) => {
+          simulationResult = serverSession.simulateAction({
+            type: $event.type,
+            payload: {
+              ...$event.payload,
+              playerId: serverSession.playerSystem.activePlayer.id
+            }
+          });
+        }
+      "
       @move="dispatch('move', $event)"
       @attack="dispatch('attack', $event)"
       @end-turn="dispatch('endTurn', $event)"

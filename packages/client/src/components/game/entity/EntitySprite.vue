@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { CARD_KINDS, type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
+import {
+  AnimatedSprite,
+  Container,
+  TextStyle,
+  type Filter,
+  type FrameObject
+} from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
@@ -10,7 +16,7 @@ import type { Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, pathfinding, gameType, assets } = useGame();
+const { ui, fx, pathfinding, gameType, assets, simulationResult } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
@@ -162,6 +168,7 @@ useDispatchCallback(
       :anchor-x="0.5"
       :anchor-y="0.25"
     /> -->
+
     <animated-sprite
       v-if="castFxTextures"
       :textures="castFxTextures"
