@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Card, Entity, EntityId, Player } from '@game/sdk';
+import type { Card, Entity, Player } from '@game/sdk';
 import type { Point3D } from '@game/shared';
 
 const { session } = useGame();
@@ -149,7 +149,7 @@ watch(
   display: grid;
   grid-template-rows: auto 1fr;
 
-  width: var(--size-xs);
+  width: 26rem;
   height: var(--size-15);
   padding-inline: 0;
 
@@ -180,6 +180,7 @@ ul {
 }
 li {
   display: flex;
+  flex-wrap: wrap;
   gap: 1ch;
 
   margin-block: var(--size-2);
