@@ -16,7 +16,7 @@ import type { Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, pathfinding, gameType, assets, simulationResult } = useGame();
+const { ui, fx, pathfinding, gameType, assets } = useGame();
 const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
 const { settings } = useUserSettings();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);

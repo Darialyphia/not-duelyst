@@ -10,7 +10,12 @@ export type SimulationResult = {
   damageTaken: Record<EntityId, number>;
   healReceived: Record<EntityId, number>;
   deaths: EntityId[];
-  newEntities: Array<{ id: EntityId; position: Point3D; spriteId: string }>;
+  newEntities: Array<{
+    id: EntityId;
+    position: Point3D;
+    spriteId: string;
+    pedestalId: string;
+  }>;
 };
 
 export class ServerSession extends GameSession {
@@ -93,6 +98,7 @@ export class ServerSession extends GameSession {
       result.newEntities.push({
         id: event.id,
         spriteId: event.card.blueprint.spriteId,
+        pedestalId: event.card.pedestalId,
         position: event.position.serialize()
       });
     });

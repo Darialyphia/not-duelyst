@@ -211,16 +211,27 @@ const runSimulation = debounce(
           })
           .with(TARGETING_MODES.BASIC, () => {
             if (
+              cell.entity &&
               ui.selectedEntity.value &&
               isHovered &&
               ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
               ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
             ) {
-              runSimulation({
+              return runSimulation({
                 type: 'attack',
                 payload: {
-                  targetId: cell.entity!.id,
+                  targetId: cell.entity.id,
                   entityId: ui.selectedEntity.value!.id
+                }
+              });
+            }
+
+            if (!cell.entity && pathfinding.canMoveTo(ui.selectedEntity.value!, cell)) {
+              return runSimulation({
+                type: 'move',
+                payload: {
+                  entityId: ui.selectedEntity.value!.id,
+                  position: cell.position
                 }
               });
             }

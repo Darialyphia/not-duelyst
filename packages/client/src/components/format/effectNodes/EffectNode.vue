@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CARD_KINDS, type WidenedGenericCardEffect } from '@game/sdk';
+import type { WidenedGenericCardEffect } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const effect = defineModel<WidenedGenericCardEffect['config']>({ required: true });
