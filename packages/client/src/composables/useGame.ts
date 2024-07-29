@@ -3,7 +3,7 @@ import type {
   UnionToIntersection,
   Point3D,
   Nullable,
-  JSONValue
+  AnyObject
 } from '@game/shared';
 import type {
   ClientSession,
@@ -18,6 +18,7 @@ import type { GameUiContext } from './useGameUi';
 import type { PathfindingContext } from './usePathfinding';
 import type { FxContext } from './useFx';
 import { match } from 'ts-pattern';
+import { debounce } from 'lodash-es';
 
 type ShortEmits<T extends Record<string, any>> = UnionToIntersection<
   Values<{
@@ -56,7 +57,7 @@ export type GameEmits = {
   simulateAction: [
     {
       type: string;
-      payload: JSONValue;
+      payload: AnyObject;
     }
   ];
 };
@@ -75,6 +76,10 @@ export type GameContext = {
   p2Emote: Ref<Nullable<string>>;
   currentTutorialStep: Ref<Nullable<TutorialStep>>;
   simulationResult: Ref<Nullable<SimulationResult>>;
+  requestSimulation<T extends keyof GameEmits>(action: {
+    type: T;
+    payload: GameEmits[T][0];
+  }): void;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -126,7 +131,10 @@ export const useGameProvider = ({
     p1Emote,
     p2Emote,
     currentTutorialStep,
-    simulationResult
+    simulationResult,
+    requestSimulation: debounce(action => {
+      emit('simulateAction', action as any);
+    }, 100)
   };
   provide(GAME_INJECTION_KEY, ctx);
 

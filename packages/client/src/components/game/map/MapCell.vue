@@ -11,7 +11,7 @@ import type { SerializedAction } from '@game/sdk/src/action/action';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
-const { camera, ui, dispatch, pathfinding, fx, session } = useGame();
+const { camera, ui, dispatch, pathfinding, fx, session, requestSimulation } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const { settings: userSettings } = useUserSettings();
@@ -161,10 +161,13 @@ const onPointerup = (event: FederatedPointerEvent) => {
     .exhaustive();
 };
 
-const runSimulation = debounce((action: SerializedAction) => {
-  dispatch('simulateAction', action);
-  ui.isSimulationResultDisplayed.value = true;
-}, 100);
+const runSimulation = debounce(
+  <T extends keyof GameEmits>(action: { type: T; payload: GameEmits[T][0] }) => {
+    requestSimulation(action);
+    ui.isSimulationResultDisplayed.value = true;
+  },
+  100
+);
 </script>
 
 <template>
@@ -225,15 +228,17 @@ const runSimulation = debounce((action: SerializedAction) => {
           .with(TARGETING_MODES.TARGETING, () => {
             if (!ui.selectedCard.value) return;
 
-            runSimulation({
-              type: 'playCard',
-              payload: {
-                cardIndex: ui.selectedCardIndex.value!,
-                position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
-                targets: ui.cardTargets.value.concat(cell.position),
-                cardChoices: ui.cardChoiceIndexes.value
-              }
-            });
+            if (isTargetable) {
+              runSimulation({
+                type: 'playCard',
+                payload: {
+                  cardIndex: ui.selectedCardIndex.value!,
+                  position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+                  targets: ui.cardTargets.value.concat(cell.position),
+                  cardChoices: ui.cardChoiceIndexes.value
+                }
+              });
+            }
           })
           .exhaustive();
       }

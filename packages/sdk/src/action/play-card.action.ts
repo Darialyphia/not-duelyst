@@ -28,7 +28,6 @@ export class PlayCardAction extends GameAction<typeof schema> {
   }
 
   impl() {
-    console.log(this.payload);
     if (!this.player.canPlayCardAtIndex(this.payload.cardIndex)) {
       return this.printError(
         `Not allowed to play card at index ${this.payload.cardIndex}`

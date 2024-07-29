@@ -206,7 +206,7 @@ const simulationDeathTexture = assets.getTexture('simulation-death.png');
               <pixi-text
                 v-if="simulationResult.damageTaken[entity.id]"
                 :anchor="0.5"
-                :y="-20"
+                :y="-10"
                 :scale="0.25"
                 :style="{
                   align: 'center',
@@ -221,7 +221,7 @@ const simulationDeathTexture = assets.getTexture('simulation-death.png');
               <pixi-text
                 v-if="simulationResult.healReceived[entity.id]"
                 :anchor="0.5"
-                :y="simulationResult.damageTaken[entity.id] ? -35 : -20"
+                :y="simulationResult.damageTaken[entity.id] ? -25 : -10"
                 :scale="0.25"
                 :style="{
                   align: 'center',
@@ -237,7 +237,7 @@ const simulationDeathTexture = assets.getTexture('simulation-death.png');
                 v-if="simulationResult.deaths.includes(entity.id)"
                 :texture="simulationDeathTexture"
                 :anchor="0.5"
-                :y="-20"
+                :y="-12"
                 :x="15"
               />
             </template>

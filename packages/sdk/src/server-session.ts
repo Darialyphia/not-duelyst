@@ -1,10 +1,5 @@
 import { noopFXContext, type FXSystem } from './fx-system';
-import {
-  GameSession,
-  type GameFormat,
-  type SerializedGameState,
-  type StarEvent
-} from './game-session';
+import { GameSession, type GameFormat, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import { ServerRngSystem, type RngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
