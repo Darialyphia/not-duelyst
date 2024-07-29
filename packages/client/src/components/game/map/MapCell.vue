@@ -6,6 +6,8 @@ import {
   DEFAULT_MOUSE_LIGHT_COLOR,
   DEFAULT_MOUSE_LIGHT_STRENGTH
 } from '@/composables/useGameUi';
+import { debounce } from 'lodash-es';
+import type { SerializedAction } from '@game/sdk/src/action/action';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
@@ -158,6 +160,11 @@ const onPointerup = (event: FederatedPointerEvent) => {
     })
     .exhaustive();
 };
+
+const runSimulation = debounce((action: SerializedAction) => {
+  dispatch('simulateAction', action);
+  ui.isSimulationResultDisplayed.value = true;
+}, 100);
 </script>
 
 <template>
@@ -189,7 +196,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
             } else if (ui.selectedCard.value.blueprint.targets) {
               return;
             }
-            dispatch('simulateAction', {
+            runSimulation({
               type: 'playCard',
               payload: {
                 cardIndex: ui.selectedCardIndex.value!,
@@ -198,7 +205,6 @@ const onPointerup = (event: FederatedPointerEvent) => {
                 cardChoices: ui.cardChoiceIndexes.value
               }
             });
-            ui.isSimulationResultDisplayed.value = true;
           })
           .with(TARGETING_MODES.BASIC, () => {
             if (
@@ -207,21 +213,19 @@ const onPointerup = (event: FederatedPointerEvent) => {
               ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
               ui.selectedEntity.value.canAttack(ui.hoveredEntity.value)
             ) {
-              dispatch('simulateAction', {
+              runSimulation({
                 type: 'attack',
                 payload: {
                   targetId: cell.entity!.id,
                   entityId: ui.selectedEntity.value!.id
                 }
               });
-              console.log('show');
-              ui.isSimulationResultDisplayed.value = true;
             }
           })
           .with(TARGETING_MODES.TARGETING, () => {
             if (!ui.selectedCard.value) return;
 
-            dispatch('simulateAction', {
+            runSimulation({
               type: 'playCard',
               payload: {
                 cardIndex: ui.selectedCardIndex.value!,
@@ -230,7 +234,6 @@ const onPointerup = (event: FederatedPointerEvent) => {
                 cardChoices: ui.cardChoiceIndexes.value
               }
             });
-            ui.isSimulationResultDisplayed.value = true;
           })
           .exhaustive();
       }
