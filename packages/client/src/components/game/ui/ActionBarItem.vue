@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import type { PlayerId } from '@game/sdk';
+import type { Card, CardBlueprint } from '@game/sdk';
 import { isDefined } from '@game/shared';
 
-const { index, playerId } = defineProps<{ index: number; playerId: PlayerId }>();
+const { index, blueprint, cost, attack, maxHp, pedestalId, cardBackId } = defineProps<{
+  index: number;
+  blueprint: CardBlueprint;
+  cost: number;
+  attack?: number;
+  maxHp?: number;
+  pedestalId: string;
+  cardBackId: string;
+}>();
 const { ui, currentTutorialStep } = useGame();
-
-const card = useGameSelector(
-  session => session.playerSystem.getPlayerById(playerId)!.hand[index]
-);
 
 const userPlayer = useUserPlayer();
 </script>
@@ -16,7 +20,6 @@ const userPlayer = useUserPlayer();
   <Sound sound="button-hover" :triggers="['mouseenter']">
     <Sound sound="button-click" :triggers="['mousedown']">
       <Card
-        v-if="card"
         class="card"
         :class="{
           disabled:
@@ -25,22 +28,22 @@ const userPlayer = useUserPlayer();
               currentTutorialStep.highlightedCardIndex !== index)
         }"
         :card="{
-          blueprintId: card.blueprintId,
-          name: card.blueprint.name,
-          description: card.blueprint.description,
-          kind: card.kind,
-          spriteId: card.blueprint.spriteId,
-          rarity: card.blueprint.rarity,
-          attack: card.blueprint.attack,
-          hp: card.blueprint.maxHp,
-          speed: card.blueprint.speed,
-          cost: card.cost,
-          pedestalId: card.pedestalId,
-          cardbackId: card.cardBackId,
-          faction: card.blueprint.faction,
-          tags: card.blueprint.tags ?? []
+          blueprintId: blueprint.id,
+          name: blueprint.name,
+          description: blueprint.description,
+          kind: blueprint.kind,
+          spriteId: blueprint.spriteId,
+          rarity: blueprint.rarity,
+          attack: attack,
+          hp: maxHp,
+          speed: blueprint.speed,
+          cost: cost,
+          pedestalId: pedestalId,
+          cardbackId: cardBackId,
+          faction: blueprint.faction,
+          tags: blueprint.tags ?? []
         }"
-        @contextmenu.prevent="ui.highlightedCard.value = card"
+        @contextmenu.prevent="ui.highlightedCard.value = userPlayer.hand[index]"
       />
     </Sound>
   </Sound>

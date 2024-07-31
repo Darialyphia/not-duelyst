@@ -5,11 +5,14 @@ export const createClientSessionRef =
   <T>(getter: (session: ClientSession) => T, events: GameEvent[] = ['*']) =>
   (session: ClientSession) => {
     let _trigger: () => void;
+    const cb = () => {
+      _trigger();
+    };
 
     const el = customRef((track, trigger) => {
       _trigger = trigger;
       events.forEach(e => {
-        session.on(e, _trigger);
+        session.on(e, cb);
       });
       return {
         get() {
@@ -26,7 +29,7 @@ export const createClientSessionRef =
       el,
       () => {
         events.forEach(e => {
-          session.off(e, _trigger);
+          session.off(e, cb);
         });
       }
     ] as const;

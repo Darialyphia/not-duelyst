@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Unit } from '@game/sdk';
 import { clamp, type Nullable } from '@game/shared';
 import { Teleport } from 'vue';
 
@@ -73,7 +74,15 @@ const onMouseDown = (e: MouseEvent, index: number) => {
       >
         <component :is="draggedIndex === index ? Teleport : 'div'" to="#dragged-card">
           <div @mouseup="draggedIndex = null">
-            <ActionBarItem :index="index" :player-id="userPlayer.id" />
+            <ActionBarItem
+              :index="index"
+              :blueprint="card.blueprint"
+              :cost="card.cost"
+              :attack="(card as Unit).attack"
+              :max-hp="(card as Unit).maxHp"
+              :pedestal-id="card.pedestalId"
+              :card-back-id="card.cardBackId"
+            />
           </div>
         </component>
       </li>

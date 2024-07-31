@@ -100,7 +100,7 @@ export const getUnits = ({
         const isMatch = match(condition)
           .with({ type: 'any_unit' }, () => true)
           .with({ type: 'has_keyword' }, condition => {
-            e.hasKeyword(getKeywordById(condition.params.keyword)!);
+            return e.hasKeyword(getKeywordById(condition.params.keyword)!);
           })
           .with({ type: 'is_ally' }, () => card.player.equals(e.player))
           .with({ type: 'is_enemy' }, () => !card.player.equals(e.player))
@@ -357,6 +357,7 @@ export const getUnits = ({
             return e.isExhausted;
           })
           .exhaustive();
+
         return isMatch;
       });
     });
