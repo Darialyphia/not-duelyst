@@ -22,14 +22,21 @@ const makeCellViewModel = (cell: Cell): CellViewModel => ({
   }
 });
 
-export const useCellViewModel = (cellId: CellId) => {
-  const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
-
-  return computed<CellViewModel>(() => makeCellViewModel(cell.value));
-};
-
 export const useCellsViewModels = () => {
-  const cells = useGameSelector(session => session.boardSystem.cells);
+  const { session } = useGame();
+  const [cells, unsub] = createClientSessionRef(
+    session => session.boardSystem.cells,
+    [
+      'entity:after_bounce',
+      'entity:after_destroy',
+      'entity:after_move',
+      'entity:after_teleport',
+      'entity:created',
+      'scheduler:flushed'
+    ]
+  )(session);
+
+  onUnmounted(unsub);
 
   return computed<CellViewModel[]>(() =>
     cells.value.map(cell => makeCellViewModel(cell))

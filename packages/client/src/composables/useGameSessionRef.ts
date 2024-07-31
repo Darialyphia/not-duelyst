@@ -1,13 +1,16 @@
 import type { ClientSession } from '@game/sdk';
+import type { GameEvent } from '@game/sdk/src/game-session';
 
 export const createClientSessionRef =
-  <T>(getter: (session: ClientSession) => T) =>
+  <T>(getter: (session: ClientSession) => T, events: GameEvent[] = ['*']) =>
   (session: ClientSession) => {
     let _trigger: () => void;
 
     const el = customRef((track, trigger) => {
       _trigger = trigger;
-      session.on('*', _trigger);
+      events.forEach(e => {
+        session.on(e, _trigger);
+      });
       return {
         get() {
           track();
@@ -19,7 +22,14 @@ export const createClientSessionRef =
       };
     });
 
-    return [el, () => session.off('*', _trigger)] as const;
+    return [
+      el,
+      () => {
+        events.forEach(e => {
+          session.off(e, _trigger);
+        });
+      }
+    ] as const;
   };
 
 export const useGameSelector = <T>(

@@ -85,6 +85,10 @@ export class Unit extends Card implements Serializable {
       position: ctx.position
     });
 
+    this.blueprint.keywords?.forEach(keyword => {
+      this.entity.addKeyword(keyword);
+    });
+
     await this.entity.emitAsync(ENTITY_EVENTS.CREATED, this.entity);
     await this.blueprint.onPlay?.({
       session: this.session,
