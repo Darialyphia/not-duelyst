@@ -90,15 +90,24 @@ const filters = computed(() => {
     result.push(attackTargetFilter);
   }
 
-  if (
-    ui.targetingMode.value === 'BASIC' &&
-    ui.hoveredCell.value &&
-    ui.selectedEntity.value &&
-    !entity.value.player.equals(userPlayer.value) &&
-    pathfinding.canMoveTo(ui.selectedEntity.value, ui.hoveredCell.value) &&
-    pathfinding.canAttackAt(entity.value, ui.hoveredCell.value)
-  ) {
-    result.push(dangerFilter);
+  if (ui.targetingMode.value === TARGETING_MODES.BASIC) {
+    if (
+      ui.hoveredCell.value &&
+      ui.selectedEntity.value &&
+      !entity.value.player.equals(userPlayer.value) &&
+      pathfinding.canMoveTo(ui.selectedEntity.value, ui.hoveredCell.value) &&
+      pathfinding.canAttackAt(entity.value, ui.hoveredCell.value)
+    ) {
+      result.push(dangerFilter);
+    }
+  } else if (ui.targetingMode.value === TARGETING_MODES.SUMMON) {
+    if (
+      ui.hoveredCell.value &&
+      !entity.value.player.equals(userPlayer.value) &&
+      pathfinding.canAttackAt(entity.value, ui.hoveredCell.value)
+    ) {
+      result.push(dangerFilter);
+    }
   }
   return result;
 });

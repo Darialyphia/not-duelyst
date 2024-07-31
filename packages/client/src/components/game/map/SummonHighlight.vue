@@ -3,9 +3,10 @@ import { isDefined } from '@game/shared';
 import type { Cell } from '@game/sdk';
 
 const { cell } = defineProps<{ cell: Cell }>();
-const { session, assets, camera, ui, fx } = useGame();
+const { session, assets, camera, ui, fx, pathfinding } = useGame();
 
-const sheet = computed(() => assets.getSpritesheet('deploy-zone'));
+const summonSheet = computed(() => assets.getSpritesheet('deploy-zone'));
+const dangerSheet = computed(() => assets.getSpritesheet('bitmask-danger'));
 const userPlayer = useUserPlayer();
 
 const isMatch = (cellToTest: Cell) => {
@@ -26,8 +27,19 @@ const bitmask = computed(() => {
     return isMatch(neighbor);
   });
 });
+
+const sheet = computed(() => {
+  if (!isEnabled.value) return null;
+
+  const enemies = userPlayer.value.opponent.entities;
+  return enemies.some(entity => {
+    return pathfinding.canAttackAt(entity, cell);
+  })
+    ? dangerSheet.value
+    : summonSheet.value;
+});
 </script>
 
 <template>
-  <BitmaskCell :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
+  <BitmaskCell v-if="sheet" :bitmask="bitmask" :is-enabled="isEnabled" :sheet="sheet" />
 </template>
