@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { diffuseGroup, normalGroup, lightGroup, PointLight } from '@pixi/lights';
+import { diffuseGroup, normalGroup, lightGroup } from '@pixi/lights';
 
 const { ui } = useGame();
 
 useGameControls();
-const cells = useGameSelector(session => session.boardSystem.cells);
+const cells = useCellsViewModels();
 const entities = useGameSelector(session => session.entitySystem.getList());
 const isDev = import.meta.env.DEV;
 </script>
@@ -20,7 +20,7 @@ const isDev = import.meta.env.DEV;
       :brightness="ui.ambientLightStrength.value"
     />
 
-    <MapCell v-for="cell in cells" :key="cell.id" :cell-id="cell.id" />
+    <MapCell v-for="cell in cells" :key="cell.id" :cell="cell" />
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
     <PointLight

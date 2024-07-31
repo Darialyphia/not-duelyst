@@ -11,17 +11,27 @@ export type CellViewModel = {
   getCell: () => Cell;
 };
 
+const makeCellViewModel = (cell: Cell): CellViewModel => ({
+  id: cell.id,
+  defaultRotation: cell.defaultRotation,
+  spriteId: cell.spriteId,
+  position: cell.position,
+  tile: cell.tile,
+  getCell() {
+    return cell;
+  }
+});
+
 export const useCellViewModel = (cellId: CellId) => {
   const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
-  return computed<CellViewModel>(() => ({
-    id: cell.value.id,
-    defaultRotation: cell.value?.defaultRotation,
-    spriteId: cell.value?.spriteId,
-    position: cell.value.position,
-    tile: cell.value.tile,
-    getCell() {
-      return cell.value;
-    }
-  }));
+  return computed<CellViewModel>(() => makeCellViewModel(cell.value));
+};
+
+export const useCellsViewModels = () => {
+  const cells = useGameSelector(session => session.boardSystem.cells);
+
+  return computed<CellViewModel[]>(() =>
+    cells.value.map(cell => makeCellViewModel(cell))
+  );
 };

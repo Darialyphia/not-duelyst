@@ -8,11 +8,9 @@ import {
 } from '@/composables/useGameUi';
 import { debounce } from 'lodash-es';
 
-const { cellId } = defineProps<{ cellId: CellId }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 
 const { camera, ui, dispatch, pathfinding, fx, session, requestSimulation } = useGame();
-const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
-const cellVM = useCellViewModel(cellId);
 const { settings: userSettings } = useUserSettings();
 
 const boardDimensions = {
@@ -21,11 +19,11 @@ const boardDimensions = {
 };
 
 const isActivePlayer = useIsActivePlayer();
-const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.value));
+const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.getCell()));
 
 const isTargetable = computed(() => {
   if (!ui.selectedCard.value) return false;
-  return ui.selectedCard.value.blueprint.targets?.isTargetable(cell.value, {
+  return ui.selectedCard.value.blueprint.targets?.isTargetable(cell.getCell(), {
     session,
     playedPoint: ui.summonTarget.value ?? undefined,
     targets: ui.cardTargets.value,
@@ -43,11 +41,11 @@ const pointerupSound = useSound(
 );
 
 const move = () => {
-  if (pathfinding.canMoveTo(ui.selectedEntity.value!, cell.value)) {
+  if (pathfinding.canMoveTo(ui.selectedEntity.value!, cell.position)) {
     pointerupSound.play();
     dispatch('move', {
       entityId: ui.selectedEntity.value!.id,
-      position: cell.value.position
+      position: cell.position
     });
   } else {
     ui.unselectEntity();
@@ -55,14 +53,15 @@ const move = () => {
 };
 
 const attack = () => {
-  if (!cell.value.entity) return;
+  const entity = cell.getCell().entity;
+  if (!entity) return;
 
   pointerupSound.play();
-  if (cell.value.entity.belongsToActivePlayer) {
-    ui.selectEntity(cell.value.entity.id);
-  } else if (ui.selectedEntity.value!.canAttack(cell.value.entity)) {
+  if (entity.belongsToActivePlayer) {
+    ui.selectEntity(entity.id);
+  } else if (ui.selectedEntity.value!.canAttack(entity)) {
     dispatch('attack', {
-      targetId: cell.value.entity.id,
+      targetId: entity.id,
       entityId: ui.selectedEntity.value!.id
     });
   }
@@ -70,7 +69,7 @@ const attack = () => {
 
 const userPlayer = useUserPlayer();
 const summon = () => {
-  if (!ui.selectedCard.value?.canPlayAt(cell.value.position)) {
+  if (!ui.selectedCard.value?.canPlayAt(cell.position)) {
     ui.unselectCard();
     return;
   }
@@ -79,7 +78,7 @@ const summon = () => {
     return;
   }
 
-  ui.summonTarget.value = cell.value.position;
+  ui.summonTarget.value = cell.position;
   if (ui.selectedCard.value.blueprint.cardChoices) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
   } else if (ui.selectedCard.value.blueprint.targets) {
@@ -97,8 +96,9 @@ const summon = () => {
 };
 
 const selectEntity = () => {
-  if (cell.value.entity?.belongsToActivePlayer) {
-    ui.selectEntity(cell.value.entity.id);
+  const entity = cell.getCell().entity;
+  if (entity?.belongsToActivePlayer) {
+    ui.selectEntity(entity.id);
     pointerupSound.play();
   }
 };
@@ -117,9 +117,10 @@ const onPointerdown = (event: FederatedPointerEvent) => {
 };
 
 const onPointerup = (event: FederatedPointerEvent) => {
+  const entity = cell.getCell().entity;
   if (event.button === 2) {
-    if (cell.value.entity) {
-      ui.highlightedCard.value = cell.value.entity.card;
+    if (entity) {
+      ui.highlightedCard.value = entity.card;
     } else {
       ui.unselectEntity();
       ui.unselectCard();
@@ -133,8 +134,8 @@ const onPointerup = (event: FederatedPointerEvent) => {
       return;
     })
     .with(TARGETING_MODES.BASIC, () => {
-      if (cell.value.entity) {
-        if (ui.selectedEntity.value?.equals(cell.value.entity)) {
+      if (entity) {
+        if (ui.selectedEntity.value?.equals(entity)) {
           return;
         }
         attack();
@@ -148,7 +149,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
     .with(TARGETING_MODES.TARGETING, () => {
       if (!ui.selectedCard.value) return;
       if (isTargetable) {
-        ui.cardTargets.value.push(cell.value.position);
+        ui.cardTargets.value.push(cell.position);
         pointerupSound.play();
       } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
         ui.unselectCard();
@@ -180,7 +181,8 @@ const runSimulation = debounce(
     @pointerenter="
       () => {
         ui.hoverAt(cell.position);
-        if (cell.entity || cell.tile) {
+        const entity = cell.getCell().entity;
+        if (entity || cell.tile) {
           pointerenterSound.play();
         }
         if (!isActivePlayer) return;
@@ -210,7 +212,7 @@ const runSimulation = debounce(
           })
           .with(TARGETING_MODES.BASIC, () => {
             if (
-              cell.entity &&
+              entity &&
               ui.selectedEntity.value &&
               isHovered &&
               ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
@@ -219,13 +221,16 @@ const runSimulation = debounce(
               return runSimulation({
                 type: 'attack',
                 payload: {
-                  targetId: cell.entity.id,
+                  targetId: entity.id,
                   entityId: ui.selectedEntity.value!.id
                 }
               });
             }
 
-            if (!cell.entity && pathfinding.canMoveTo(ui.selectedEntity.value!, cell)) {
+            if (
+              !entity &&
+              pathfinding.canMoveTo(ui.selectedEntity.value!, cell.getCell())
+            ) {
               return runSimulation({
                 type: 'move',
                 payload: {
@@ -264,10 +269,10 @@ const runSimulation = debounce(
     @pointerdown="onPointerdown"
     @pointerup="onPointerup"
   >
-    <MapCellSprite :cell="cellVM" />
-    <MapCellHighlights :cell="cellVM" />
+    <MapCellSprite :cell="cell" />
+    <MapCellHighlights :cell="cell" />
     <HoveredCell v-if="isHovered" />
   </IsoPositioner>
 
-  <Tile :cell="cellVM" />
+  <Tile :cell="cell" />
 </template>

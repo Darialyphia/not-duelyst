@@ -22,20 +22,15 @@ export const createClientSessionRef =
     return [el, () => session.off('*', _trigger)] as const;
   };
 
-let count = 0;
-
 export const useGameSelector = <T>(
   getter: (session: ClientSession) => T,
   ctx?: GameContext
 ) => {
-  console.log(++count);
   const { session } = ctx ?? useGame();
   const [val, unsub] = createClientSessionRef(getter)(session);
 
   onUnmounted(() => {
     unsub();
-    count--;
-    console.log(count);
   });
 
   return val;
