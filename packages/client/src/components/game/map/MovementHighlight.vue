@@ -3,10 +3,9 @@ import type { Cell } from '@game/sdk';
 import type { CellId } from '@game/sdk/src/board/cell';
 import { match } from 'ts-pattern';
 
-const { cellId } = defineProps<{ cellId: CellId }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, pathfinding, fx } = useGame();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const safeSheet = computed(() => assets.getSpritesheet('bitmask-movement-ally'));
 const dangerSheet = computed(() => assets.getSpritesheet('bitmask-danger'));
@@ -39,10 +38,10 @@ const isMatch = (cellToTest: Cell) => {
     .exhaustive();
 };
 
-const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell.value));
+const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell.getCell()));
 
 const bitmask = computed(() => {
-  return getBitMask(session, cell.value, camera.angle.value, neighbor => {
+  return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
     if (!neighbor) return false;
 
     return isMatch(neighbor);
@@ -54,7 +53,7 @@ const sheet = computed(() => {
 
   const enemies = userPlayer.value.opponent.entities;
   return enemies.some(entity => {
-    return pathfinding.canAttackAt(entity, cell.value);
+    return pathfinding.canAttackAt(entity, cell.getCell());
   })
     ? dangerSheet.value
     : safeSheet.value;

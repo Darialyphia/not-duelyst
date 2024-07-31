@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { CellId } from '@game/sdk/src/board/cell';
 import { isAxisAligned } from '@game/sdk/src/utils/targeting';
 import { type Nullable, isDefined } from '@game/shared';
 
-const { cellId } = defineProps<{ cellId: CellId }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 
 const { assets, ui, pathfinding, fx, camera } = useGame();
-const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
 
 const pathSheets = reactive<{
   diffuse: Nullable<SpritesheetWithAnimations>;
@@ -30,9 +28,7 @@ const positionInPath = computed(() => {
   const canMoveTo = pathfinding.canMoveTo(ui.selectedEntity.value, ui.hoveredCell.value);
   if (!canMoveTo) return -1;
 
-  return (
-    pathfinding.movePath.value?.findIndex(vec => vec.equals(cell.value.position)) ?? -1
-  );
+  return pathfinding.movePath.value?.findIndex(vec => vec.equals(cell.position)) ?? -1;
 });
 
 const pathFrameTag = computed(() => {
@@ -103,9 +99,6 @@ watchEffect(() => {
       ui.selectedEntity.value!.position;
     const isStraight = isAxisAligned(nextStep, prevStep);
     textureName.value = isStraight ? 'path-straight' : 'path-turn';
-  }
-  if (cellId === '1:4:0') {
-    console.log(textureName.value);
   }
 });
 

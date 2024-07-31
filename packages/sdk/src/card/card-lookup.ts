@@ -3,12 +3,12 @@ import type { CardBlueprintId } from './card';
 import type { GenericSerializedBlueprint, SerializedBlueprint } from './card-blueprint';
 import { f1General } from './cards/faction_1/general';
 import { f2General } from './cards/faction_2/general';
-import { neutralHealingMystic } from './cards/neutral/neutral_healing_mystic';
-import { neutralRiftWalker } from './cards/neutral/neutral_rift_walker';
+import { neutralHealingMystic } from './cards/neutral/healing_mystic';
+import { neutralRiftWalker } from './cards/neutral/rift_walker';
 import { f1TrueStrike } from './cards/faction_1/true_strike';
 import { f1SunstoneBracers } from './cards/faction_1/sunstone_bracers';
 import { f1WindbladeAdept } from './cards/faction_1/windblade_adept';
-import { neutralPrimusShieldMaster } from './cards/neutral/neutral_primus-shieldmaster';
+import { neutralPrimusShieldMaster } from './cards/neutral/primus-shieldmaster';
 import { f1SilverguardKnight } from './cards/faction_1/silverguard_knight';
 import { f1AzuriteLion } from './cards/faction_1/azurite_lion';
 import { f1Martyrdom } from './cards/faction_1/martyrdom';
@@ -56,6 +56,7 @@ import { f2Juxtaposition } from './cards/faction_2/juxtaposition';
 import { f1Magnetize } from './cards/faction_1/magnetize';
 import { f2KageLightning } from './cards/faction_2/kage_lightning';
 import { f2StormKage } from './cards/faction_2/storm_kage';
+import { neutralArakiHeadhunter } from './cards/neutral/araki_headhunter';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -114,7 +115,8 @@ const allCards: SerializedBlueprint<any>[] = [
 
   neutralHealingMystic,
   neutralRiftWalker,
-  neutralPrimusShieldMaster
+  neutralPrimusShieldMaster,
+  neutralArakiHeadhunter
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

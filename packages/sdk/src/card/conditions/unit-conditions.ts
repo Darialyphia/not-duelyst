@@ -99,9 +99,14 @@ export const getUnits = ({
       return group.every(condition => {
         const isMatch = match(condition)
           .with({ type: 'any_unit' }, () => true)
-          .with({ type: 'has_keyword' }, condition =>
-            e.hasKeyword(getKeywordById(condition.params.keyword)!)
-          )
+          .with({ type: 'has_keyword' }, condition => {
+            console.log(
+              condition.params.keyword,
+              e.card.blueprintId,
+              e.hasKeyword(getKeywordById(condition.params.keyword)!)
+            );
+            e.hasKeyword(getKeywordById(condition.params.keyword)!);
+          })
           .with({ type: 'is_ally' }, () => card.player.equals(e.player))
           .with({ type: 'is_enemy' }, () => !card.player.equals(e.player))
           .with({ type: 'is_manual_target' }, condition => {

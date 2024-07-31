@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Cell } from '@game/sdk';
 
-const { cell } = defineProps<{ cell: Cell }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 </script>
 
 <template>
   <DangerHighlight :cell="cell" />
-  <MovementHighlight :cell-id="cell.id" />
+  <MovementHighlight :cell="cell" />
   <SummonHighlight :cell="cell" />
   <TargetingHighlight :cell="cell" />
-  <PathArrowHighlight :cell-id="cell.id" />
+  <PathArrowHighlight :cell="cell" />
 </template>

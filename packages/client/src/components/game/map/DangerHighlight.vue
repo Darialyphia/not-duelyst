@@ -2,7 +2,7 @@
 import type { Cell } from '@game/sdk';
 import { match } from 'ts-pattern';
 
-const { cell } = defineProps<{ cell: Cell }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, pathfinding, fx } = useGame();
 
 const sheet = computed(() => assets.getSpritesheet('bitmask-danger'));
@@ -25,10 +25,10 @@ const isMatch = (cellToTest: Cell) => {
     .exhaustive();
 };
 
-const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell));
+const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell.getCell()));
 
 const bitmask = computed(() => {
-  return getBitMask(session, cell, camera.angle.value, neighbor => {
+  return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
     if (!neighbor) return false;
 
     return isMatch(neighbor);

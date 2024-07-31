@@ -2,7 +2,7 @@
 import { isDefined } from '@game/shared';
 import type { Cell } from '@game/sdk';
 
-const { cell } = defineProps<{ cell: Cell }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, fx, pathfinding } = useGame();
 
 const summonSheet = computed(() => assets.getSpritesheet('deploy-zone'));
@@ -18,10 +18,10 @@ const isMatch = (cellToTest: Cell) => {
   return ui.selectedCard.value.canPlayAt(cellToTest.position);
 };
 
-const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell));
+const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell.getCell()));
 
 const bitmask = computed(() => {
-  return getBitMask(session, cell, camera.angle.value, neighbor => {
+  return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
     if (!neighbor) return false;
 
     return isMatch(neighbor);
@@ -33,7 +33,7 @@ const sheet = computed(() => {
 
   const enemies = userPlayer.value.opponent.entities;
   return enemies.some(entity => {
-    return pathfinding.canAttackAt(entity, cell);
+    return pathfinding.canAttackAt(entity, cell.getCell());
   })
     ? dangerSheet.value
     : summonSheet.value;

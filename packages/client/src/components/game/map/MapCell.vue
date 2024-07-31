@@ -265,9 +265,9 @@ const runSimulation = debounce(
     @pointerup="onPointerup"
   >
     <MapCellSprite :cell="cellVM" />
-    <MapCellHighlights :cell="cell" />
+    <MapCellHighlights :cell="cellVM" />
     <HoveredCell v-if="isHovered" />
   </IsoPositioner>
 
-  <Tile :cell-id="cellId" />
+  <Tile :cell="cellVM" />
 </template>

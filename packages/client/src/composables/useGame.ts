@@ -8,6 +8,7 @@ import type {
 import type {
   ClientSession,
   EntityId,
+  Player,
   PlayerId,
   SimulationResult,
   TutorialStep
@@ -80,6 +81,8 @@ export type GameContext = {
     type: T;
     payload: GameEmits[T][0];
   }): void;
+  userPlayer: Ref<Player>;
+  isActivePlayer: Ref<boolean>;
 };
 
 export const GAME_INJECTION_KEY = Symbol('game') as InjectionKey<GameContext>;
@@ -118,6 +121,30 @@ export const useGameProvider = ({
     session.removeAllListeners();
   });
 
+  const [userPlayer, unsubUserPlayer] = createClientSessionRef(session => {
+    return match(gameType.value)
+      .with(
+        GAME_TYPES.SANDBOX,
+        GAME_TYPES.SPECTATOR,
+        () => session.playerSystem.activePlayer
+      )
+      .with(GAME_TYPES.PVP, () => session.playerSystem.getPlayerById(playerId!)!)
+      .exhaustive();
+  })(session);
+
+  const [isActivePlayer, unsubIsActivePlayer] = createClientSessionRef(session => {
+    return match(gameType.value)
+      .with(GAME_TYPES.SANDBOX, () => true)
+      .with(GAME_TYPES.SPECTATOR, () => false)
+      .with(GAME_TYPES.PVP, () => session.playerSystem.activePlayer.id === playerId)
+      .exhaustive();
+  })(session);
+
+  onUnmounted(() => {
+    unsubIsActivePlayer();
+    unsubUserPlayer();
+  });
+
   const ctx: GameContext = {
     playerId,
     gameType,
@@ -134,7 +161,9 @@ export const useGameProvider = ({
     simulationResult,
     requestSimulation: debounce(action => {
       emit('simulateAction', action as any);
-    }, 100)
+    }, 100),
+    isActivePlayer,
+    userPlayer
   };
   provide(GAME_INJECTION_KEY, ctx);
 
@@ -144,28 +173,9 @@ export const useGameProvider = ({
 export const useGame = () => useSafeInject(GAME_INJECTION_KEY);
 
 export const useUserPlayer = () => {
-  const { gameType, playerId } = useGame();
-
-  return useGameSelector(session => {
-    return match(gameType.value)
-      .with(
-        GAME_TYPES.SANDBOX,
-        GAME_TYPES.SPECTATOR,
-        () => session.playerSystem.activePlayer
-      )
-      .with(GAME_TYPES.PVP, () => session.playerSystem.getPlayerById(playerId!)!)
-      .exhaustive();
-  });
+  return useGame().userPlayer;
 };
 
 export const useIsActivePlayer = () => {
-  const { gameType, playerId } = useGame();
-
-  return useGameSelector(session => {
-    return match(gameType.value)
-      .with(GAME_TYPES.SANDBOX, () => true)
-      .with(GAME_TYPES.SPECTATOR, () => false)
-      .with(GAME_TYPES.PVP, () => session.playerSystem.activePlayer.id === playerId)
-      .exhaustive();
-  });
+  return useGame().isActivePlayer;
 };

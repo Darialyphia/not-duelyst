@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import type { CellId } from '@game/sdk/src/board/cell';
 import type { Nullable } from '@game/shared';
 import type { FrameObject } from 'pixi.js';
 
-const { cellId } = defineProps<{ cellId: CellId }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 
-const { camera, fx, assets } = useGame();
-const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
+const { camera, fx, assets, session } = useGame();
 
 const textures = ref<Nullable<FrameObject[]>>();
 
 watchEffect(async () => {
-  if (!cell.value.tile) {
+  if (!cell.tile) {
     textures.value = null;
     return;
   }
-  const spritesheet = await assets.loadSpritesheet(cell.value.tile.blueprint.spriteId);
+  const spritesheet = await assets.loadSpritesheet(cell.tile.blueprint.spriteId);
   textures.value = createSpritesheetFrameObject('idle', spritesheet);
 });
 
-const boardDimensions = useGameSelector(session => ({
+const boardDimensions = {
   width: session.boardSystem.width,
   height: session.boardSystem.height
-}));
+};
 </script>
 
 <template>

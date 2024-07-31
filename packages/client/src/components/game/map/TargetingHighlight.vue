@@ -3,14 +3,14 @@ import { isDefined, type Nullable } from '@game/shared';
 import type { Cell } from '@game/sdk';
 import { match } from 'ts-pattern';
 
-const { cell } = defineProps<{ cell: Cell }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, fx } = useGame();
 const userPlayer = useUserPlayer();
 const targetSheet = computed(() => assets.getSpritesheet('deploy-zone'));
 const highlightSheet = computed(() => assets.getSpritesheet('skill-targeting'));
 
-const canHighlight = (cellToTest: Cell) => {
-  return ui.selectedCard.value?.blueprint.shouldHighlightCell(cellToTest, {
+const canHighlight = (cellToTest: CellViewModel) => {
+  return ui.selectedCard.value?.blueprint.shouldHighlightCell(cellToTest.getCell(), {
     session,
     playedPoint: ui.summonTarget.value ?? undefined,
     targets: [
@@ -53,10 +53,10 @@ const isMatch = (cellToTest: Cell) => {
     .exhaustive();
 };
 
-const isEnabled = computed(() => !fx.isPlaying.value && !!isMatch(cell));
+const isEnabled = computed(() => !fx.isPlaying.value && !!isMatch(cell.getCell()));
 
 const bitmask = computed(() => {
-  return getBitMask(session, cell, camera.angle.value, neighbor => {
+  return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
     if (!neighbor) return false;
 
     return !!isMatch(neighbor);

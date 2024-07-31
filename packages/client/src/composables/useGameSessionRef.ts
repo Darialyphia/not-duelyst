@@ -1,6 +1,6 @@
 import type { ClientSession } from '@game/sdk';
 
-const createClientSessionRef =
+export const createClientSessionRef =
   <T>(getter: (session: ClientSession) => T) =>
   (session: ClientSession) => {
     let _trigger: () => void;
@@ -22,11 +22,21 @@ const createClientSessionRef =
     return [el, () => session.off('*', _trigger)] as const;
   };
 
-export const useGameSelector = <T>(getter: (session: ClientSession) => T) => {
-  const { session } = useGame();
+let count = 0;
+
+export const useGameSelector = <T>(
+  getter: (session: ClientSession) => T,
+  ctx?: GameContext
+) => {
+  console.log(++count);
+  const { session } = ctx ?? useGame();
   const [val, unsub] = createClientSessionRef(getter)(session);
 
-  onUnmounted(unsub);
+  onUnmounted(() => {
+    unsub();
+    count--;
+    console.log(count);
+  });
 
   return val;
 };
