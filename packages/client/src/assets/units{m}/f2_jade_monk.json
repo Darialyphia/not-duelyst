@@ -1,0 +1,654 @@
+{ "frames": [
+   {
+    "filename": "f2_jade_monk.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.1",
+    "frame": { "x": 100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.2",
+    "frame": { "x": 200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.3",
+    "frame": { "x": 300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.4",
+    "frame": { "x": 400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.5",
+    "frame": { "x": 500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.6",
+    "frame": { "x": 600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.7",
+    "frame": { "x": 700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.8",
+    "frame": { "x": 800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.9",
+    "frame": { "x": 900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.10",
+    "frame": { "x": 1000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.11",
+    "frame": { "x": 1100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.12",
+    "frame": { "x": 1200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.attack.13",
+    "frame": { "x": 1300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.0",
+    "frame": { "x": 0, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.1",
+    "frame": { "x": 100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.2",
+    "frame": { "x": 200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.3",
+    "frame": { "x": 300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.4",
+    "frame": { "x": 400, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.5",
+    "frame": { "x": 500, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.6",
+    "frame": { "x": 600, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.7",
+    "frame": { "x": 700, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.8",
+    "frame": { "x": 800, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.9",
+    "frame": { "x": 900, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.breathing.10",
+    "frame": { "x": 1000, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.0",
+    "frame": { "x": 0, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.1",
+    "frame": { "x": 100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.2",
+    "frame": { "x": 200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.3",
+    "frame": { "x": 300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.4",
+    "frame": { "x": 400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.5",
+    "frame": { "x": 500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.6",
+    "frame": { "x": 600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.7",
+    "frame": { "x": 700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.8",
+    "frame": { "x": 800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.9",
+    "frame": { "x": 900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.10",
+    "frame": { "x": 1000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.11",
+    "frame": { "x": 1100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.12",
+    "frame": { "x": 1200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.13",
+    "frame": { "x": 1300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.14",
+    "frame": { "x": 1400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.15",
+    "frame": { "x": 1500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.16",
+    "frame": { "x": 1600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.17",
+    "frame": { "x": 1700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.18",
+    "frame": { "x": 1800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.19",
+    "frame": { "x": 1900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.20",
+    "frame": { "x": 2000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.21",
+    "frame": { "x": 2100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.death.22",
+    "frame": { "x": 2200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.hurt.0",
+    "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.hurt.1",
+    "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.hurt.2",
+    "frame": { "x": 200, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.0",
+    "frame": { "x": 0, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.1",
+    "frame": { "x": 100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.2",
+    "frame": { "x": 200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.3",
+    "frame": { "x": 300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.4",
+    "frame": { "x": 400, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.5",
+    "frame": { "x": 500, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.6",
+    "frame": { "x": 600, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.7",
+    "frame": { "x": 700, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.8",
+    "frame": { "x": 800, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.9",
+    "frame": { "x": 900, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.idle.10",
+    "frame": { "x": 1000, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.run.0",
+    "frame": { "x": 0, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.run.1",
+    "frame": { "x": 100, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_jade_monk.run.2",
+    "frame": { "x": 200, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f2_jade_monk.run.3",
+    "frame": { "x": 300, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f2_jade_monk.run.4",
+    "frame": { "x": 400, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f2_jade_monk.run.5",
+    "frame": { "x": 500, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f2_jade_monk.run.6",
+    "frame": { "x": 600, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   },
+   {
+    "filename": "f2_jade_monk.run.7",
+    "frame": { "x": 700, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 80
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "f2_jade_monk.png",
+  "format": "RGBA8888",
+  "size": { "w": 2300, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 13, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 14, "to": 24, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 25, "to": 47, "direction": "forward", "color": "#000000ff" },
+   { "name": "hurt", "from": 48, "to": 50, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 51, "to": 61, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 62, "to": 69, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

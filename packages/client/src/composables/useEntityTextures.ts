@@ -57,6 +57,18 @@ export const useEntityTexture = (
     }
   });
 
+  let pendingAnimations: { animation: Animation; handler: () => Promise<void> }[] = [];
+  let isPlaying = false;
+  const playAnimations = async () => {
+    if (isPlaying) return;
+    isPlaying = true;
+    for (const animation of pendingAnimations) {
+      await animation.handler();
+    }
+    pendingAnimations = [];
+    isPlaying = false;
+  };
+
   const playAnimation =
     (
       animation: Animation,
@@ -68,31 +80,36 @@ export const useEntityTexture = (
       if (!filter(event)) return;
       if (!sprite.value) return;
       const spriteInst = sprite.value;
-      return new Promise<void>(resolve => {
-        animationName.value = animation;
-        let loops = 1;
-        spriteInst.onLoop = () => {
-          loops++;
-        };
-        spriteInst.onFrameChange = frame => {
-          if (loops < loopCount) return;
-          if (frame >= (spriteInst.totalFrames - 1) * framePercentage) {
-            spriteInst.onFrameChange = undefined;
-            resolve();
+      if (pendingAnimations.at(-1)?.animation === animation) return;
+      pendingAnimations.push({
+        animation,
+        handler: () =>
+          new Promise<void>(resolve => {
+            animationName.value = animation;
+            let loops = 1;
             spriteInst.onLoop = () => {
-              animationName.value = isSelected.value ? 'idle' : 'breathing';
-              spriteInst.onLoop = undefined;
+              loops++;
             };
-          }
-        };
+            spriteInst.onFrameChange = frame => {
+              if (loops < loopCount) return;
+              if (frame >= (spriteInst.totalFrames - 1) * framePercentage) {
+                spriteInst.onFrameChange = undefined;
+                resolve();
+                spriteInst.onLoop = () => {
+                  animationName.value = isSelected.value ? 'idle' : 'breathing';
+                  spriteInst.onLoop = undefined;
+                };
+              }
+            };
+          })
       });
+      return playAnimations();
     };
 
   const cleanups = [
     session.on(
       'entity:before_deal_damage',
       playAnimation('attack', 0.75, e => {
-        console.log(e.entity.id, entity.value.id);
         return e.entity.equals(entity.value);
       })
     ),

@@ -12,6 +12,7 @@ const { cellId } = defineProps<{ cellId: CellId }>();
 
 const { camera, ui, dispatch, pathfinding, fx, session, requestSimulation } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
+const cellVM = useCellViewModel(cellId);
 const { settings: userSettings } = useUserSettings();
 
 const boardDimensions = {
@@ -263,7 +264,7 @@ const runSimulation = debounce(
     @pointerdown="onPointerdown"
     @pointerup="onPointerup"
   >
-    <MapCellSprite :cell-id="cellId" />
+    <MapCellSprite :cell="cellVM" />
     <MapCellHighlights :cell="cell" />
     <HoveredCell v-if="isHovered" />
   </IsoPositioner>

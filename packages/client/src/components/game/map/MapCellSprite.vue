@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import type { CellId } from '@game/sdk/src/board/cell';
-import type { Filter, FrameObject } from 'pixi.js';
+import type { FrameObject } from 'pixi.js';
+import type { CellViewModel } from '~/composables/useCell';
 import { Hitbox } from '~/utils/hitbox';
 
-const { cellId } = defineProps<{ cellId: CellId }>();
+const { cell } = defineProps<{ cell: CellViewModel }>();
 
-const { session, assets, ui, fx, camera } = useGame();
-const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
+const { assets, fx, camera } = useGame();
 
 const textures = ref<FrameObject[]>();
 
 watchEffect(async () => {
-  const spritesheet = await assets.loadSpritesheet(cell.value.spriteId);
+  const spritesheet = await assets.loadSpritesheet(cell.spriteId);
   textures.value = createSpritesheetFrameObject(
-    `${cell.value.defaultRotation + camera.angle.value}`,
+    `${cell.defaultRotation + camera.angle.value}`,
     spritesheet
   );
 });
@@ -25,7 +24,7 @@ const hitArea = Hitbox.from(shape.shapes[0].points, shape.shapes[0].source, {
 });
 
 const children = computed(() => {
-  return fx.cellChildSpritesMap.value.get(cellId);
+  return fx.cellChildSpritesMap.value.get(cell.id);
 });
 </script>
 

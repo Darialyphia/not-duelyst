@@ -18,7 +18,6 @@ export class DealDamageCardAction extends CardAction<'deal_damage'> {
         }
       })
     );
-
     return noop;
   }
 }

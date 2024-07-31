@@ -1,5 +1,4 @@
 export { GameSession, type SerializedGameState } from './game-session';
-export { Cell } from './board/cell';
 export { Entity, type EntityId } from './entity/entity';
 export { Player, type PlayerId } from './player/player';
 export { BoardSystem as GameMap } from './board/board-system';
@@ -70,3 +69,4 @@ export { type Tag } from './utils/tribes';
 export type { Unit } from './card/unit';
 export type { Spell } from './card/spell';
 export type { Artifact } from './card/artifact';
+export type { Cell, CellId } from './board/cell';

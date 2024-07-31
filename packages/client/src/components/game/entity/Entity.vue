@@ -43,8 +43,11 @@ const scaleX = computed(() => {
   if (shouldFlip.value) value *= -1;
   return value;
 });
-const checkFlip = ({ target }: { target: Entity }) => {
-  if (entity.value.player.isPlayer1) {
+const checkFlip = ({ target, entity: attacker }: { target: Entity; entity: Entity }) => {
+  if (!attacker.equals(entity.value)) return;
+  if (target.position.x === entity.value.position.x) {
+    shouldFlip.value = entity.value.player.isPlayer1;
+  } else if (entity.value.player.isPlayer1) {
     shouldFlip.value = target.position.x < entity.value.position.x;
   } else {
     shouldFlip.value = target.position.x > entity.value.position.x;
@@ -129,7 +132,7 @@ const cleanups = [
     position.value = entity.value.position.serialize();
   }),
   session.on('entity:before_deal_damage', checkFlip),
-  session.on('entity:after_take_damage', () => {
+  session.on('entity:after_attack', () => {
     shouldFlip.value = false;
   }),
   session.on('entity:before_destroy', event => {
