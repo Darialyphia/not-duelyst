@@ -5,7 +5,7 @@ import { Interceptable } from '../utils/helpers';
 import { Artifact } from '../card/artifact';
 import type { Values } from '@game/shared';
 import { ENTITY_EVENTS } from '../entity/entity';
-import { SafeEventEmitter } from '../utils/safe-event-emitter';
+import { TypedEventEmitter } from '../utils/typed-emitter';
 
 export const ARTIFACT_EVENTS = {
   EQUIPED: 'equiped',
@@ -38,7 +38,7 @@ export type ArtifactInterceptor = PlayerArtifact['interceptors'];
 
 export type PlayerArtifactId = string;
 
-export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
+export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
   private cardIndex: CardIndex;
 
   private playerId: PlayerId;
@@ -79,10 +79,10 @@ export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
     return this.interceptors.shouldLoseDurabilityOnGeneralDamage.getValue(true, this);
   }
 
-  private onGeneralDamageTaken({ amount }: { amount: number }) {
+  private async onGeneralDamageTaken({ amount }: { amount: number }) {
     if (!amount) return;
     if (this.shouldLoseDurabilityOnGeneralDamage) {
-      this.loseDurability();
+      await this.loseDurability();
     }
   }
 
@@ -90,31 +90,31 @@ export class PlayerArtifact extends SafeEventEmitter<ArtifactEventMap> {
     return this.id === artifact.id;
   }
 
-  setup() {
+  async setup() {
     this.player.general.on(
       ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
       this.onGeneralDamageTaken.bind(this)
     );
     this.card.equip(this);
-    this.emit(ARTIFACT_EVENTS.EQUIPED, this);
+    await this.emitAsync(ARTIFACT_EVENTS.EQUIPED, this);
   }
 
-  destroy() {
-    this.emit(ARTIFACT_EVENTS.BEFORE_DESTROY, this);
+  async destroy() {
+    await this.emitAsync(ARTIFACT_EVENTS.BEFORE_DESTROY, this);
     this.player.general.off(
       ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
       this.onGeneralDamageTaken.bind(this)
     );
     this.player.unequipArtifact(this.id);
-    this.emit(ARTIFACT_EVENTS.AFTER_DESTROY, this);
+    await this.emitAsync(ARTIFACT_EVENTS.AFTER_DESTROY, this);
   }
 
-  loseDurability() {
-    this.emit(ARTIFACT_EVENTS.BEFORE_LOSE_DURABILITY, this);
+  async loseDurability() {
+    await this.emitAsync(ARTIFACT_EVENTS.BEFORE_LOSE_DURABILITY, this);
     this.durability--;
-    this.emit(ARTIFACT_EVENTS.AFTER_LOSE_DURABILITY, this);
+    await this.emitAsync(ARTIFACT_EVENTS.AFTER_LOSE_DURABILITY, this);
     if (this.durability === 0) {
-      this.destroy();
+      await this.destroy();
     }
   }
 }

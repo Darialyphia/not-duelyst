@@ -102,8 +102,8 @@ export class EntitySystem {
 
   setupListeners(entity: Entity) {
     Object.values(ENTITY_EVENTS).forEach(eventName => {
-      entity.on(eventName, event => {
-        this.session.emit(`entity:${eventName}`, event as any);
+      entity.on(eventName, async event => {
+        await this.session.emitAsync(`entity:${eventName}`, event as any);
       });
     });
   }

@@ -4,7 +4,6 @@ import { match } from 'ts-pattern';
 
 const { cell } = defineProps<{ cell: Cell }>();
 const { session, assets, camera, ui, pathfinding, fx } = useGame();
-const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 
 const sheet = computed(() => assets.getSpritesheet('bitmask-danger'));
 
@@ -19,7 +18,7 @@ const isMatch = (cellToTest: Cell) => {
     )
     .with(TARGETING_MODES.NONE, () => {
       if (!ui.hoveredEntity.value) return false;
-      if (ui.hoveredEntity.value.player.equals(activePlayer.value)) return false;
+      if (ui.hoveredEntity.value.belongsToActivePlayer) return false;
 
       return pathfinding.canAttackAt(ui.hoveredEntity.value, cellToTest);
     })

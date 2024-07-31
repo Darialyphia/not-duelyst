@@ -8,7 +8,7 @@ export class SurrenderAction extends GameAction<typeof schema> {
 
   protected payloadSchema = schema;
 
-  impl() {
-    this.player.general.destroy();
+  async impl() {
+    await this.player.general.destroy();
   }
 }

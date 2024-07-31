@@ -1,9 +1,9 @@
 import { PLAYER_EVENTS } from '../../player/player';
 import type { Card } from '../card';
-import { CardAction, noop } from './_card-action';
+import { CardAction } from './_card-action';
 
 export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
-  protected executeImpl() {
+  protected async executeImpl() {
     const caster = this.ctx.card.player;
 
     const cleanups = this.getPlayers(this.action.params.player).map(player => {

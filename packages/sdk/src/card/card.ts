@@ -3,8 +3,8 @@ import type { Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
-import { SafeEventEmitter } from '../utils/safe-event-emitter';
 import { nanoid } from 'nanoid';
+import { TypedEventEmitter } from '../utils/typed-emitter';
 
 export type CardBlueprintId = string;
 
@@ -31,7 +31,10 @@ export type CardEventMap = {
   [CARD_EVENTS.REPLACED]: [Card];
 };
 
-export abstract class Card extends SafeEventEmitter implements Serializable {
+export abstract class Card
+  extends TypedEventEmitter<CardEventMap>
+  implements Serializable
+{
   readonly blueprintId: CardBlueprintId;
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
@@ -79,7 +82,7 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
 
   abstract canPlayAt(point: Point3D): boolean;
 
-  abstract playImpl(ctx: { position: Point3D; targets: Point3D[] }): void;
+  abstract playImpl(ctx: { position: Point3D; targets: Point3D[] }): Promise<void>;
 
   getModifier(id: ModifierId) {
     return this.modifiers.find(m => m.id === id);
@@ -103,17 +106,17 @@ export abstract class Card extends SafeEventEmitter implements Serializable {
   }
 
   draw() {
-    this.emit(CARD_EVENTS.DRAWN, this);
+    return this.emitAsync(CARD_EVENTS.DRAWN, this);
   }
 
   replace() {
-    this.emit(CARD_EVENTS.REPLACED, this);
+    return this.emitAsync(CARD_EVENTS.REPLACED, this);
   }
 
-  play(ctx: { position: Point3D; targets: Point3D[] }) {
-    this.emit(CARD_EVENTS.BEFORE_PLAYED, this);
-    this.playImpl(ctx);
-    this.emit(CARD_EVENTS.AFTER_PLAYED, this);
+  async play(ctx: { position: Point3D; targets: Point3D[] }) {
+    await this.emitAsync(CARD_EVENTS.BEFORE_PLAYED, this);
+    await this.playImpl(ctx);
+    await this.emitAsync(CARD_EVENTS.AFTER_PLAYED, this);
   }
 
   serialize(): SerializedCard {

@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anywhere, cellWithEnemyMinion, manualTarget } from '../../helpers/targeting';
+import { anywhere } from '../../helpers/targeting';
 
 export const f1Tempest = defineSerializedBlueprint({
   id: 'tempest',

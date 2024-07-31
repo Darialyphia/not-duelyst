@@ -27,7 +27,7 @@ export class PlayCardAction extends GameAction<typeof schema> {
     return this.player.getCardFromHand(this.payload.cardIndex);
   }
 
-  impl() {
+  async impl() {
     if (!this.player.canPlayCardAtIndex(this.payload.cardIndex)) {
       return this.printError(
         `Not allowed to play card at index ${this.payload.cardIndex}`
@@ -50,6 +50,6 @@ export class PlayCardAction extends GameAction<typeof schema> {
       return this.printError('Could not play cards: invalid targets.');
     }
 
-    this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
+    await this.player.playCardAtIndex(this.payload.cardIndex, this.payload);
   }
 }

@@ -5,7 +5,7 @@ export const useEntityTexture = (
   entityId: EntityId,
   sprite: Ref<AnimatedSprite | undefined>
 ) => {
-  const { ui, assets } = useGame();
+  const { ui, assets, session } = useGame();
   const entity = useGameSelector(
     session => session.entitySystem.getEntityById(entityId)!
   );
@@ -68,7 +68,6 @@ export const useEntityTexture = (
       if (!filter(event)) return;
       if (!sprite.value) return;
       const spriteInst = sprite.value;
-
       return new Promise<void>(resolve => {
         animationName.value = animation;
         let loops = 1;
@@ -89,47 +88,48 @@ export const useEntityTexture = (
       });
     };
 
-  useDispatchCallback(
-    'entity:before_deal_damage',
-    playAnimation('attack', 0.75, e => e.entity.equals(entity.value))
-  );
-  useDispatchCallback('entity:before_take_damage', (event, index, otherEvents) => {
-    const play = playAnimation('hit', 1, e => e.entity.equals(entity.value));
-    const promise = play(event);
-    const next = otherEvents[index + 1];
-    // make sure we only await on the last unit if it's an AOE
-    if (next?.eventName !== 'entity:before_take_damage') {
-      return promise;
-    }
-  });
-  useDispatchCallback('entity:before_destroy', async event => {
-    if (!event.equals(entity.value)) return;
-    if (!sprite.value) return;
-    const play = playAnimation('death', 1, () => true);
-    await play(event);
-    sprite.value.loop = false;
-  });
-  useDispatchCallback('card:before_played', async event => {
-    if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
-    if (!event.player.general.equals(entity.value)) return;
-    await playAnimation('caststart', 1, () => true)(event);
-    await playAnimation('castloop', 1, () => true, 2)(event);
+  const cleanups = [
+    session.on(
+      'entity:before_deal_damage',
+      playAnimation('attack', 0.75, e => {
+        console.log(e.entity.id, entity.value.id);
+        return e.entity.equals(entity.value);
+      })
+    ),
+    session.on('entity:before_take_damage', event => {
+      const play = playAnimation('hit', 1, e => e.entity.equals(entity.value));
+      return play(event);
+    }),
+    session.on('entity:before_destroy', async event => {
+      if (!event.equals(entity.value)) return;
+      if (!sprite.value) return;
+      const play = playAnimation('death', 1, () => true);
+      await play(event);
+      sprite.value.loop = false;
+    }),
+    session.on('card:before_played', async event => {
+      if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
+      if (!event.player.general.equals(entity.value)) return;
+      await playAnimation('caststart', 1, () => true)(event);
+      await playAnimation('castloop', 1, () => true, 2)(event);
 
-    await playAnimation('castend', 1, () => true)(event);
-  });
-  useDispatchCallback(
-    'entity:after_move',
-    event => {
+      await playAnimation('castend', 1, () => true)(event);
+    }),
+    session.on('entity:before_move', event => {
       if (!event.entity.equals(entity.value)) return;
 
       animationName.value = 'run';
-    },
-    event => {
+    }),
+    session.on('entity:after_move', event => {
       if (!event.entity.equals(entity.value)) return;
 
       animationName.value = isSelected.value ? 'idle' : 'breathing';
-    }
-  );
+    })
+  ];
+
+  onUnmounted(() => {
+    cleanups.forEach(fn => fn());
+  });
 
   return textures;
 };

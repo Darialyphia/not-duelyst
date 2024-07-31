@@ -35,7 +35,7 @@ import { type GameSessionConfig } from './config';
 import type { CardBlueprint, GenericSerializedBlueprint } from './card/card-blueprint';
 import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
-import { SafeEventEmitter } from './utils/safe-event-emitter';
+import { TypedEventEmitter } from './utils/typed-emitter';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -92,7 +92,7 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
 
 export type GameEvent = keyof GameEventMap;
 
-export class GameSession extends SafeEventEmitter<GameEventMap> {
+export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(
     loadout: SerializedGameState['players'][number]['deck'],
     format: GameFormat
@@ -157,9 +157,10 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
       ])
     );
     this.winnerId = options.winnerId;
-    this.setup();
-    this.emit('game:ready');
-    this.isReady = true;
+    void this.setup().then(() => {
+      this.emit('game:ready');
+      this.isReady = true;
+    });
   }
 
   private setupStarEvents() {
@@ -171,22 +172,22 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
       'game:action',
       'game:ready'
     ].forEach(eventName => {
-      this.on(eventName as any, event => {
+      this.on(eventName as any, async event => {
         // this.logger(`%c[EVENT:${eventName}]`, 'color: #008b8b');
 
-        this.emit('*', { eventName, event } as any);
+        await this.emitAsync('*', { eventName, event } as any);
       });
     });
   }
 
-  protected setup() {
+  protected async setup() {
     if (this.isReady) return;
     this.setupStarEvents();
 
     this.boardSystem.setup(this.initialState.map);
-    this.playerSystem.setup(this.initialState.players);
+    await this.playerSystem.setup(this.initialState.players);
     this.entitySystem.setup(this.initialState.entities);
-    this.actionSystem.setup(this.initialState.history);
+    await this.actionSystem.setup(this.initialState.history);
 
     this.on('entity:after_destroy', e => {
       if (!e.player.general) {
@@ -197,7 +198,7 @@ export class GameSession extends SafeEventEmitter<GameEventMap> {
   }
 
   dispatch(action: SerializedAction) {
-    this.actionSystem.dispatch(action);
+    return this.actionSystem.dispatch(action);
   }
 
   onReady(cb: () => void) {

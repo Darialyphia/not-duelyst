@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { CARD_KINDS, type EntityId } from '@game/sdk';
-import {
-  AnimatedSprite,
-  Container,
-  TextStyle,
-  type Filter,
-  type FrameObject
-} from 'pixi.js';
+import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
@@ -16,10 +10,9 @@ import type { Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, pathfinding, gameType, assets } = useGame();
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const { ui, fx, pathfinding, gameType, assets, session } = useGame();
+const entity = useEntity(entityId);
 const { settings } = useUserSettings();
-const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const userPlayer = useUserPlayer();
 
 const sprite = ref<AnimatedSprite>();
@@ -114,34 +107,23 @@ watch(sprite, newSprite => {
   fx.registerSprite(entityId, newSprite);
 });
 
-const MIN_LIGHTNESS = 0;
-const MAX_LIGHTNESS = 0.6;
-const lightBrightness = ref(MIN_LIGHTNESS);
-
-watchEffect(() => {
-  const isAlly = activePlayer.value.equals(entity.value.player);
-  gsap.to(lightBrightness, {
-    duration: 0.3,
-    value:
-      isAlly && (isSelected.value || isHovered.value) ? MAX_LIGHTNESS : MIN_LIGHTNESS,
-    ease: Power2.easeOut
-  });
-});
-
 const castFxTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
-useDispatchCallback(
-  'card:before_played',
-  async card => {
+const cleanups = [
+  session.on('card:before_played', async card => {
     if (!entity.value.isGeneral) return;
     if (!card.player.equals(entity.value.player)) return;
     if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
     const spritesheet = await assets.loadSpritesheet('use-skill');
     castFxTextures.value = createSpritesheetFrameObject('default', spritesheet);
-  },
-  () => {
+  }),
+  session.on('card:after_played', () => {
     castFxTextures.value = null;
-  }
-);
+  })
+];
+
+onUnmounted(() => {
+  cleanups.forEach(fn => fn());
+});
 </script>
 
 <template>

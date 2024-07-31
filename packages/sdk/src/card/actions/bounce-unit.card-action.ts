@@ -1,10 +1,10 @@
 import { CardAction, noop } from './_card-action';
 
 export class BounceUnitCardAction extends CardAction<'bounce_unit'> {
-  protected executeImpl() {
-    this.getUnits(this.action.params.targets).forEach(unit => {
-      unit.bounce();
-    });
+  protected async executeImpl() {
+    await Promise.all(
+      this.getUnits(this.action.params.targets).map(unit => unit.bounce())
+    );
 
     return noop;
   }

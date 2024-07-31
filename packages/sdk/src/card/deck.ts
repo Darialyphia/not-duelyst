@@ -1,9 +1,8 @@
-import EventEmitter from 'eventemitter3';
 import type { GameSession } from '../game-session';
 import { Card, type SerializedCard } from './card';
 import { type Serializable, type Values } from '@game/shared';
 import type { PlayerId } from '../player/player';
-import { SafeEventEmitter } from '../utils/safe-event-emitter';
+import { TypedEventEmitter } from '../utils/typed-emitter';
 
 export type SerializedDeck = {
   cards: SerializedCard[];
@@ -26,7 +25,7 @@ export type DeckEventMap = {
   [DECK_EVENTS.AFTER_REPLACE]: [{ deck: Deck; replacedCard: Card; replacement: Card }];
 };
 
-export class Deck extends SafeEventEmitter<DeckEventMap> implements Serializable {
+export class Deck extends TypedEventEmitter<DeckEventMap> implements Serializable {
   constructor(
     private session: GameSession,
     public cards: Card[],
@@ -43,13 +42,13 @@ export class Deck extends SafeEventEmitter<DeckEventMap> implements Serializable
     this.cards = this.cards.sort(() => this.session.rngSystem.next() - 0.5);
   }
 
-  draw(amount: number) {
-    this.emit(DECK_EVENTS.BEFORE_DRAW, this);
+  async draw(amount: number) {
+    await this.emitAsync(DECK_EVENTS.BEFORE_DRAW, this);
 
     const cards = this.cards.splice(0, amount);
     cards.forEach(card => card.draw());
 
-    this.emit(DECK_EVENTS.AFTER_DRAW, { deck: this, cards: cards });
+    await this.emitAsync(DECK_EVENTS.AFTER_DRAW, { deck: this, cards: cards });
 
     return cards;
   }
@@ -71,8 +70,8 @@ export class Deck extends SafeEventEmitter<DeckEventMap> implements Serializable
     return card;
   }
 
-  replace(replacedCard: Card) {
-    this.emit(DECK_EVENTS.BEFORE_REPLACE, { deck: this, replacedCard });
+  async replace(replacedCard: Card) {
+    await this.emitAsync(DECK_EVENTS.BEFORE_REPLACE, { deck: this, replacedCard });
 
     let replacement: Card;
     let index: number;
@@ -82,11 +81,15 @@ export class Deck extends SafeEventEmitter<DeckEventMap> implements Serializable
       replacement = this.cards[index];
     } while (replacement.blueprintId === replacedCard.blueprintId);
 
-    replacedCard.replace();
+    await replacedCard.replace();
 
     this.cards[index] = replacedCard;
 
-    this.emit(DECK_EVENTS.AFTER_REPLACE, { deck: this, replacedCard, replacement });
+    await this.emitAsync(DECK_EVENTS.AFTER_REPLACE, {
+      deck: this,
+      replacedCard,
+      replacement
+    });
     return replacement;
   }
 

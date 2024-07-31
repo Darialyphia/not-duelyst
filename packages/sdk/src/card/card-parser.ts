@@ -29,7 +29,7 @@ import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
 import { getPlayers } from './conditions/player-condition';
 import { getUnits } from './conditions/unit-conditions';
-import { defaultConfig, type GameSessionConfig } from '../config';
+import { defaultConfig } from '../config';
 import { CARDS } from './card-lookup';
 import type { Card } from './card';
 import { getCells } from './conditions/cell-conditions';
@@ -72,20 +72,20 @@ export const getEffectModifier = <T extends GameEvent>({
           modifierGameEventMixin({
             eventName,
             once: frequency.type === 'once',
-            listener(event) {
+            async listener(event) {
               if (!filter(ctx, event, eventName)) return;
               if (frequency.type === 'n_per_turn' && frequency.params.count < n) return;
 
-              actions.forEach(action => {
+              for (const action of actions) {
                 const [eventPayload] = event;
-                const cleanup = action(
+                const cleanup = await action(
                   ctx,
                   isObject(eventPayload) ? eventPayload : {},
                   eventName
                 );
                 n++;
                 cleanups.push(cleanup);
-              });
+              }
             }
           }),
           {
@@ -105,23 +105,23 @@ export const getEffectModifier = <T extends GameEvent>({
           modifierCardGameEventMixin({
             eventName,
             once: frequency.type === 'once',
-            listener(event, ctx) {
+            async listener(event, ctx) {
               const effectCtx = {
                 session: ctx.session,
                 card: ctx.attachedTo,
                 targets: []
               };
               if (filter(effectCtx, event, eventName)) {
-                actions.forEach(action => {
+                for (const action of actions) {
                   const [eventPayload] = event;
 
-                  const cleanup = action(
+                  const cleanup = await action(
                     effectCtx,
                     isObject(eventPayload) ? eventPayload : {},
                     eventName
                   );
                   cleanups.push(cleanup);
-                });
+                }
               }
             }
           }),
@@ -140,16 +140,19 @@ export const parseSerializedBlueprintEffect = (
   effect: SerializedBlueprint<GenericCardEffect[]>['effects'][number]
 ): Array<{
   onInit?: (blueprint: CardBlueprint) => void;
-  onPlay?: (ctx: EffectCtx) => () => void;
+  onPlay?: (ctx: EffectCtx) => Promise<() => void>;
   getCardModifier?: () => CardModifier;
   getEntityModifier?: (ctx: EffectCtx) => EntityModifier;
 }> => {
   return match(effect.config)
     .with({ executionContext: 'immediate' }, config => [
       {
-        onPlay(ctx: EffectCtx) {
+        async onPlay(ctx: EffectCtx) {
           const actions = config.actions.map(parseCardAction);
-          const cleanups = actions.map(action => action(ctx, {}));
+          const cleanups: Array<() => void> = [];
+          for (const action of actions) {
+            cleanups.push(await action(ctx, {}));
+          }
           return () => cleanups.forEach(c => c());
         }
       }
@@ -882,11 +885,11 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         return cell.position.equals(point);
       });
     },
-    onPlay(ctx: EffectCtx) {
-      effects.forEach(effect => {
-        match(effect.config.executionContext)
-          .with('while_on_board', () => {
-            effect.actions.forEach(action => {
+    async onPlay(ctx: EffectCtx) {
+      for (const effect of effects) {
+        await match(effect.config.executionContext)
+          .with('while_on_board', async () => {
+            for (const action of effect.actions) {
               if (!action.getEntityModifier) return;
               const entityModifier = action.getEntityModifier(ctx);
 
@@ -900,7 +903,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
                   attachedTo.removeModifier(entityModifier.id);
                 }
               });
-            });
+            }
           })
           .with('while_equiped', () => {
             effect.actions.forEach(action => {
@@ -910,15 +913,15 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
               whileEquipped({ artifact: ctx.artifact!, modifier: entityModifier });
             });
           })
-          .with('immediate', () => {
-            effect.actions.forEach(action => {
-              action.onPlay?.(ctx);
-            });
+          .with('immediate', async () => {
+            for (const action of effect.actions) {
+              await action.onPlay?.(ctx);
+            }
           })
           .otherwise(() => {
             return;
           });
-      });
+      }
     }
   };
 

@@ -21,8 +21,8 @@ import {
   PlayerArtifact,
   type PlayerArtifactId
 } from './player-artifact';
-import { SafeEventEmitter } from '../utils/safe-event-emitter';
 import type { Entity } from '../entity/entity';
+import { TypedEventEmitter } from '../utils/typed-emitter';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -67,7 +67,7 @@ export type PlayerEventMap = {
 
 export type PlayerInterceptor = Player['interceptors'];
 
-export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializable {
+export class Player extends TypedEventEmitter<PlayerEventMap> implements Serializable {
   public readonly id: PlayerId;
   public readonly name: string;
   public readonly isPlayer1: boolean;
@@ -151,7 +151,7 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     return this.hand.length === this.session.config.MAX_HAND_SIZE;
   }
 
-  setup() {
+  async setup() {
     this.cards = this.options.deck.map((card, index) => {
       return createCard(this.session, card, index, this.id);
     });
@@ -164,19 +164,23 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
       this.id
     );
     this.deck.shuffle();
-    this.hand = this.deck.draw(this.session.config.STARTING_HAND_SIZE);
+    this.hand = await this.deck.draw(this.session.config.STARTING_HAND_SIZE);
 
     this.deck.on(DECK_EVENTS.BEFORE_DRAW, () =>
-      this.emit(PLAYER_EVENTS.BEFORE_DRAW, { player: this })
+      this.emitAsync(PLAYER_EVENTS.BEFORE_DRAW, { player: this })
     );
     this.deck.on(DECK_EVENTS.AFTER_DRAW, ({ cards }) =>
-      this.emit(PLAYER_EVENTS.AFTER_DRAW, { player: this, cards })
+      this.emitAsync(PLAYER_EVENTS.AFTER_DRAW, { player: this, cards })
     );
     this.deck.on(DECK_EVENTS.BEFORE_REPLACE, ({ replacedCard }) =>
-      this.emit(PLAYER_EVENTS.BEFORE_REPLACE, { player: this, replacedCard })
+      this.emitAsync(PLAYER_EVENTS.BEFORE_REPLACE, { player: this, replacedCard })
     );
     this.deck.on(DECK_EVENTS.AFTER_REPLACE, ({ replacedCard, replacement }) =>
-      this.emit(PLAYER_EVENTS.AFTER_REPLACE, { player: this, replacedCard, replacement })
+      this.emitAsync(PLAYER_EVENTS.AFTER_REPLACE, {
+        player: this,
+        replacedCard,
+        replacement
+      })
     );
 
     this.placeGeneral();
@@ -184,15 +188,15 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
   }
 
-  equipArtifact(cardIndex: CardIndex) {
+  async equipArtifact(cardIndex: CardIndex) {
     const artifact = new PlayerArtifact(this.session, { cardIndex, playerId: this.id });
     Object.values(ARTIFACT_EVENTS).forEach(eventName => {
-      artifact.on(eventName, event => {
-        this.session.emit(`artifact:${eventName}`, event as any);
+      artifact.on(eventName, async event => {
+        await this.session.emitAsync(`artifact:${eventName}`, event as any);
       });
     });
     this.artifacts.push(artifact);
-    artifact.setup();
+    await artifact.setup();
   }
 
   unequipArtifact(id: PlayerArtifactId) {
@@ -219,12 +223,12 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     return this.cardsReplacedThisTurn < this.maxReplaces;
   }
 
-  replaceCard(index: number) {
+  async replaceCard(index: number) {
     if (!this.canReplace()) return;
     const card = this.hand[index];
     if (!card) return;
 
-    const replacement = this.deck.replace(card);
+    const replacement = await this.deck.replace(card);
     this.hand[index] = replacement;
     this.cardsReplacedThisTurn++;
   }
@@ -247,9 +251,9 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
       this.id
     );
     Object.values(CARD_EVENTS).forEach(eventName => {
-      card.on(eventName, event => {
-        this.session.emit(`card:${eventName}`, event as any);
-      });
+      card.on(eventName, event =>
+        this.session.emitAsync(`card:${eventName}`, event as any)
+      );
     });
     modifiers.forEach(mod => card.addModifier(mod));
     this.cards.push(card);
@@ -285,17 +289,17 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     return player.id === this.id;
   }
 
-  endTun() {
+  async endTun() {
     this.entities.forEach(entity => {
       entity.endTurn();
     });
     if (this.session.config.DRAW_AT_END_OF_TURN) {
-      this.draw(this.session.config.CARD_DRAW_PER_TURN);
+      await this.draw(this.session.config.CARD_DRAW_PER_TURN);
     }
-    this.emit(PLAYER_EVENTS.TURN_END, this);
+    await this.emitAsync(PLAYER_EVENTS.TURN_END, this);
   }
 
-  startTurn() {
+  async startTurn() {
     this.resourceActionsTaken = 0;
     this.cardsReplacedThisTurn = 0;
 
@@ -305,14 +309,14 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
       if (this.session.config.REFILL_GOLD_EVERY_TURN) {
         this.currentGold = this.maxGold;
       }
-      this.giveGold(this.session.config.GOLD_PER_TURN);
+      await this.giveGold(this.session.config.GOLD_PER_TURN);
       if (!this.session.config.DRAW_AT_END_OF_TURN) {
-        this.draw(this.session.config.CARD_DRAW_PER_TURN);
+        await this.draw(this.session.config.CARD_DRAW_PER_TURN);
       }
     } else {
       this.isP2T1 = false;
     }
-    this.emit(PLAYER_EVENTS.TURN_START, this);
+    await this.emitAsync(PLAYER_EVENTS.TURN_START, this);
   }
 
   canPlayCardAtIndex(index: number) {
@@ -325,15 +329,15 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     return true;
   }
 
-  playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
+  async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
     const card = this.hand[index];
     if (!card) return;
 
-    this.emit(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
+    await this.emitAsync(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
     this.currentGold -= card.cost;
     this.hand.splice(index, 1);
-    card.play(opts);
-    this.emit(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
+    await card.play(opts);
+    await this.emitAsync(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
   }
 
   getCardFromHand(index: CardIndex) {
@@ -357,17 +361,17 @@ export class Player extends SafeEventEmitter<PlayerEventMap> implements Serializ
     this.interceptors[key].remove(interceptor as any);
   }
 
-  giveGold(amount: number) {
-    this.emit(PLAYER_EVENTS.BEFORE_GET_GOLD, { player: this, amount });
+  async giveGold(amount: number) {
+    await this.emitAsync(PLAYER_EVENTS.BEFORE_GET_GOLD, { player: this, amount });
     this.currentGold = Math.min(this.currentGold + amount, this.session.config.MAX_GOLD);
 
-    this.emit(PLAYER_EVENTS.AFTER_GET_GOLD, { player: this, amount });
+    await this.emitAsync(PLAYER_EVENTS.AFTER_GET_GOLD, { player: this, amount });
   }
 
-  draw(amount: number) {
+  async draw(amount: number) {
     const availableSlots = this.session.config.MAX_HAND_SIZE - this.hand.length;
 
-    const newCards = this.deck.draw(Math.min(amount, availableSlots));
+    const newCards = await this.deck.draw(Math.min(amount, availableSlots));
     if (newCards.length) {
       this.hand.push(...newCards);
     }

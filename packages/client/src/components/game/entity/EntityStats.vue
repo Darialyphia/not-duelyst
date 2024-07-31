@@ -4,10 +4,10 @@ import { TextStyle } from 'pixi.js';
 import { match } from 'ts-pattern';
 import { PTransition, EasePresets } from 'vue3-pixi';
 
-const { ui, assets } = useGame();
+const { ui, assets, session } = useGame();
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const entity = useEntity(entityId);
 
 const attackTextures = computed(() => {
   const sheet = assets.getSpritesheet('unit-attack');
@@ -53,23 +53,27 @@ watchEffect(() => {
 });
 
 const damageAmount = ref(0);
-useDispatchCallback('entity:after_take_damage', event => {
-  if (!event.entity.equals(entity.value)) return;
-  damageAmount.value = event.amount;
-
-  setTimeout(() => {
-    damageAmount.value = 0;
-  }, 1500);
-});
-
 const healAmount = ref(0);
-useDispatchCallback('entity:after_heal', event => {
-  if (!event.entity.equals(entity.value)) return;
-  healAmount.value = event.amount;
+const cleanups = [
+  session.on('entity:after_take_damage', event => {
+    if (!event.entity.equals(entity.value)) return;
+    damageAmount.value = event.amount;
 
-  setTimeout(() => {
-    healAmount.value = 0;
-  }, 1500);
+    setTimeout(() => {
+      damageAmount.value = 0;
+    }, 1500);
+  }),
+  session.on('entity:after_heal', event => {
+    if (!event.entity.equals(entity.value)) return;
+    healAmount.value = event.amount;
+
+    setTimeout(() => {
+      healAmount.value = 0;
+    }, 1500);
+  })
+];
+onUnmounted(() => {
+  cleanups.forEach(fn => fn());
 });
 </script>
 

@@ -1,4 +1,3 @@
-import type { AnyObject, PartialRecord } from '@game/shared';
 import type {
   CardCondition,
   CardConditionBase,
@@ -11,7 +10,7 @@ import type {
   UnitConditionBase,
   UnitConditionExtras
 } from './conditions/unit-conditions';
-import type { CellCondition, CellConditionBase } from './conditions/cell-conditions';
+import type { CellCondition } from './conditions/cell-conditions';
 import type { CardKind } from './card-enums';
 
 export type Filter<T> = T[][];

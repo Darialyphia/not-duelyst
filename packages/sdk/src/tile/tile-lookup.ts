@@ -25,8 +25,8 @@ const allTiles: TileBlueprint[] = [
     description: 'Move a unit on this tile to pick up the coin and gain 1 gold.',
     spriteId: 'gold-coin',
 
-    onEnter(session, entity, tile) {
-      entity.player.giveGold(1);
+    async onEnter(session, entity, tile) {
+      await entity.player.giveGold(1);
       return tile.destroy();
     },
     onLeave() {

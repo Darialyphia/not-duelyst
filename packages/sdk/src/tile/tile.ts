@@ -26,22 +26,23 @@ export class Tile {
     this.session.on('entity:created', this.checkOccupation);
     this.session.on('entity:after_destroy', this.checkOccupation);
     this.session.on('entity:after_move', this.checkOccupation);
-    this.checkOccupation();
-    this.blueprint.onCreated?.(this.session, this.occupant, this);
+    void this.checkOccupation().then(() => {
+      this.blueprint.onCreated?.(this.session, this.occupant, this);
+    });
   }
 
   get blueprint() {
     return TILES[this.blueprintId];
   }
 
-  private checkOccupation() {
+  private async checkOccupation() {
     const previous = this.occupant;
 
     this.occupant = this.session.entitySystem.getEntityAt(this.position);
     if (!previous && this.occupant) {
-      this.blueprint.onEnter?.(this.session, this.occupant, this);
+      await this.blueprint.onEnter?.(this.session, this.occupant, this);
     } else if (previous && !this.occupant) {
-      this.blueprint.onLeave?.(this.session, previous, this);
+      await this.blueprint.onLeave?.(this.session, previous, this);
     }
   }
 

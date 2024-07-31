@@ -5,7 +5,7 @@ import { AnimatedSprite, type FrameObject } from 'pixi.js';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { assets } = useGame();
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const entity = useEntity(entityId);
 
 const pedestalTextures = ref<FrameObject[]>();
 watchEffect(async () => {

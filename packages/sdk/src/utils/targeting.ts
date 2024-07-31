@@ -68,26 +68,6 @@ export const isBehind = (point: Point3D, otherPoint: Point3D, reference: Point3D
   return false;
 };
 
-export const cone = (casterPosition: Point3D, origin: Point3D, range: number) => {
-  const points = [origin];
-
-  for (let i = 1; i <= range; i++) {
-    for (let j = -i; j <= i; j++) {
-      if (casterPosition.x > origin.x) {
-        points.push({ x: origin.x - i, y: origin.y + j, z: origin.z });
-      } else if (casterPosition.x < origin.x) {
-        points.push({ x: origin.x + i, y: origin.y + j, z: origin.z });
-      } else if (casterPosition.y > origin.y) {
-        points.push({ x: origin.x + j, y: origin.y - i, z: origin.z });
-      } else if (casterPosition.y > origin.y) {
-        points.push({ x: origin.x + j, y: origin.y + i, z: origin.z });
-      }
-    }
-  }
-
-  return points;
-};
-
 export const getAffectedEntities = (cells: Cell[]) =>
   cells.map(cell => cell.entity).filter(isDefined);
 

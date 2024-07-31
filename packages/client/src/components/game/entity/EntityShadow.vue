@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type { EntityId } from '@game/sdk';
-import { AnimatedSprite, BlurFilter, AlphaFilter, Filter } from 'pixi.js';
-import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
-import IlluminatedSprite from '../IlluminatedSprite.vue';
-import { clamp, dist, mapRange } from '@game/shared';
+import { AnimatedSprite, BlurFilter } from 'pixi.js';
+import { dist, mapRange } from '@game/shared';
 import { useScreen } from 'vue3-pixi';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { camera, ui, fx } = useGame();
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const entity = useEntity(entityId);
 const sprite = ref<AnimatedSprite>();
 const textures = useEntityTexture(entityId, sprite);
 

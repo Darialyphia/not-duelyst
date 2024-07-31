@@ -17,7 +17,7 @@ type EventCallback = {
 };
 
 export class ClientSession extends GameSession {
-  override logger = (...args: any[]) => void 0;
+  override logger = (...args: any[]) => args;
 
   ghostSession!: GameSession;
 
@@ -86,7 +86,7 @@ export class ClientSession extends GameSession {
   //   }
   // }
 
-  override dispatch(
+  override async dispatch(
     action: SerializedAction,
     meta: { rngValues: number[] } = { rngValues: [] }
   ) {
@@ -95,10 +95,10 @@ export class ClientSession extends GameSession {
       this.rngSystem.values = meta.rngValues;
       this.ghostSession.rngSystem.values = meta.rngValues;
 
-      this.ghostSession.dispatch(action);
-      this.handlePreEventCallbacks(this.eventsSinceLastDispatch).then(() => {
-        super.dispatch(action);
-      });
+      return super.dispatch(action);
+      // await this.ghostSession.dispatch(action);
+      // return this.handlePreEventCallbacks(this.eventsSinceLastDispatch).then(() => {
+      // });
     } catch (err) {
       console.error(err);
     }

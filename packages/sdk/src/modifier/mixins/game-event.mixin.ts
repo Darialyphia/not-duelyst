@@ -75,7 +75,7 @@ export const modifierCardGameEventMixin = <T extends GameEvent>({
         session.on(eventName, _listener);
       }
     },
-    onRemoved(session, attachedTo, modifier) {
+    onRemoved(session) {
       session.off(eventName, _listener);
     }
   });

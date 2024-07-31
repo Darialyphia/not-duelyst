@@ -46,7 +46,7 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
     };
   }
 
-  protected executeImpl() {
+  protected async executeImpl() {
     const modifierId = this.generateModifierId();
     const units = this.getUnits(this.action.params.targets);
 

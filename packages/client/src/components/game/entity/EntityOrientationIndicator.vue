@@ -5,7 +5,7 @@ import { PTransition } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { camera, assets, ui } = useGame();
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const entity = useEntity(entityId);
 
 const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
 const orientationFrameTag = computed(() => {

@@ -24,7 +24,7 @@ export abstract class CardAction<T extends Action['type']> {
     protected eventName?: string
   ) {}
 
-  protected abstract executeImpl(): () => void;
+  protected abstract executeImpl(): Promise<() => void>;
 
   protected generateModifierId() {
     return nanoid(6);
@@ -111,7 +111,7 @@ export abstract class CardAction<T extends Action['type']> {
     });
   }
 
-  execute(): () => void {
+  async execute(): Promise<() => void> {
     if ('filter' in this.action.params) {
       const isGlobalConditionMatch = this.checkGlobalConditions(
         this.action.params.filter
@@ -128,8 +128,8 @@ export abstract class CardAction<T extends Action['type']> {
 
     if (timing === 'end_of_turn') {
       const cleanups: Array<() => void> = [];
-      this.ctx.card.player.once('turn_end', () => {
-        cleanups.push(this.executeImpl());
+      this.ctx.card.player.once('turn_end', async () => {
+        cleanups.push(await this.executeImpl());
       });
 
       return () => {
@@ -139,8 +139,8 @@ export abstract class CardAction<T extends Action['type']> {
 
     if (timing === 'start_of_next_turn') {
       const cleanups: Array<() => void> = [];
-      this.ctx.card.player.once('turn_start', () => {
-        cleanups.push(this.executeImpl());
+      this.ctx.card.player.once('turn_start', async () => {
+        cleanups.push(await this.executeImpl());
       });
 
       return () => {

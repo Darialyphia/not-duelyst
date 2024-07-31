@@ -9,7 +9,7 @@ import { KEYWORDS, type Keyword } from '../utils/keywords';
 import { createCardModifier } from './card-modifier';
 import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
-import { isBehind, isWithinCells } from '../utils/targeting';
+import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
@@ -131,9 +131,9 @@ export const burn = ({
         duration,
         eventName: 'player:turn_start',
         keywords: [KEYWORDS.BURN],
-        listener([player], ctx) {
+        async listener([player], ctx) {
           if (ctx.attachedTo.player.equals(player)) {
-            ctx.attachedTo.takeDamage(ctx.modifier.stacks!, source);
+            await ctx.attachedTo.takeDamage(ctx.modifier.stacks!, source);
           }
         }
       })
@@ -161,9 +161,9 @@ export const regeneration = ({
         duration,
         eventName: 'player:turn_start',
         keywords: [KEYWORDS.REGENERATION],
-        listener([player], ctx) {
+        async listener([player], ctx) {
           if (ctx.attachedTo.player.equals(player)) {
-            ctx.attachedTo.heal(ctx.modifier.stacks!, source);
+            await ctx.attachedTo.heal(ctx.modifier.stacks!, source);
           }
         }
       })

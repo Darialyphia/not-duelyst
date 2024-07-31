@@ -78,14 +78,15 @@ export class Unit extends Card implements Serializable {
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
   }
 
-  playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+  async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
     this.entity = this.session.entitySystem.addEntity({
       cardIndex: this.index,
       playerId: this.playerId,
       position: ctx.position
     });
 
-    this.blueprint.onPlay?.({
+    await this.entity.emitAsync(ENTITY_EVENTS.CREATED, this.entity);
+    await this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       entity: this.entity,
@@ -101,7 +102,5 @@ export class Unit extends Card implements Serializable {
     if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
       this.entity.retaliationsDone = this.entity.maxRetaliations;
     }
-
-    this.entity.emit(ENTITY_EVENTS.CREATED, this.entity);
   }
 }

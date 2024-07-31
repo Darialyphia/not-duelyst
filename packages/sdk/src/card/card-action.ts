@@ -30,7 +30,7 @@ export type ParsedActionResult = (
   ctx: EffectCtx,
   event: AnyObject,
   eventName?: string
-) => () => void;
+) => Promise<() => void>;
 
 const noop = () => void 0;
 

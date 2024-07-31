@@ -2,7 +2,7 @@ import { parseSerializedBlueprintEffect } from '../card-parser';
 import { CardAction, noop } from './_card-action';
 
 export class AddEffectCardAction extends CardAction<'add_effect'> {
-  executeImpl() {
+  async executeImpl() {
     const units = this.getUnits(this.action.params.unit);
     const effects = parseSerializedBlueprintEffect({
       text: '',

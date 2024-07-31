@@ -4,7 +4,7 @@ import { isDefined, type Nullable } from '@game/shared';
 import { type FrameObject } from 'pixi.js';
 import { match } from 'ts-pattern';
 
-const { camera, ui } = useGame();
+const { camera, ui, session } = useGame();
 
 const scaleX = computed(() => {
   let value = ui.selectedCard.value!.player.isPlayer1 ? 1 : -1;
@@ -15,10 +15,10 @@ const scaleX = computed(() => {
   return value;
 });
 
-const boardDimensions = useGameSelector(session => ({
+const boardDimensions = {
   width: session.boardSystem.width,
   height: session.boardSystem.height
-}));
+};
 
 const userPlayer = useUserPlayer();
 const isDisplayed = computed(() => {

@@ -3,7 +3,7 @@ import { parseSerializedBlueprintEffect } from '../card-parser';
 import { CardAction } from './_card-action';
 
 export class ZealCardAction extends CardAction<'zeal'> {
-  protected executeImpl() {
+  protected async executeImpl() {
     const cleanups: Array<() => void> = [];
     const zealTarget = this.entity ?? this.card.player.general;
     const effects = parseSerializedBlueprintEffect({
@@ -16,8 +16,8 @@ export class ZealCardAction extends CardAction<'zeal'> {
         let cleanup: (() => void) | undefined;
         const modifier = zeal({
           source: this.card,
-          onGainAura: (entity, zealed, session) => {
-            cleanup = effect.onPlay?.({
+          onGainAura: async (entity, zealed, session) => {
+            cleanup = await effect.onPlay?.({
               session,
               card: this.card,
               entity: zealed,

@@ -1,10 +1,5 @@
 import { type FXSystem } from './fx-system';
-import {
-  type GameEvent,
-  type GameFormat,
-  type SerializedGameState,
-  type StarEvent
-} from './game-session';
+import { type GameFormat, type SerializedGameState } from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise, Values } from '@game/shared';
@@ -63,12 +58,12 @@ export class TutorialSession extends ClientSession {
   ) {
     super(initialState, rngSystem, fxSystem, options);
 
-    this.on('game:action', () => {
+    this.on('game:action', async () => {
       if (this.isFinished) return;
-      this.goToNextStep();
+      await this.goToNextStep();
     });
 
-    this.currentStep.onEnter?.(this);
+    void this.currentStep.onEnter?.(this);
   }
 
   get currentStep() {
@@ -85,11 +80,11 @@ export class TutorialSession extends ClientSession {
     }
   }
 
-  override dispatch(
+  override async dispatch(
     action: SerializedAction,
     meta: { rngValues: number[] } = { rngValues: [] }
   ) {
     if (!this.isFinished && !deepEqual(action, this.currentStep.action)) return;
-    super.dispatch(action, meta);
+    return super.dispatch(action, meta);
   }
 }

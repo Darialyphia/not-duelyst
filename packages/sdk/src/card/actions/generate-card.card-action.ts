@@ -2,7 +2,7 @@ import { PLAYER_EVENTS } from '../../player/player';
 import { CardAction, noop } from './_card-action';
 
 export class GenerateCardCardAction extends CardAction<'generate_card'> {
-  protected executeImpl() {
+  protected async executeImpl() {
     this.getPlayers(this.action.params.player).forEach(player => {
       if (player.isHandFull) return;
 

@@ -7,19 +7,17 @@ import {
   DEFAULT_MOUSE_LIGHT_STRENGTH
 } from '@/composables/useGameUi';
 import { debounce } from 'lodash-es';
-import type { SerializedAction } from '@game/sdk/src/action/action';
 
 const { cellId } = defineProps<{ cellId: CellId }>();
 
 const { camera, ui, dispatch, pathfinding, fx, session, requestSimulation } = useGame();
 const cell = useGameSelector(session => session.boardSystem.getCellAt(cellId)!);
-const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
 const { settings: userSettings } = useUserSettings();
 
-const boardDimensions = useGameSelector(session => ({
+const boardDimensions = {
   width: session.boardSystem.width,
   height: session.boardSystem.height
-}));
+};
 
 const isActivePlayer = useIsActivePlayer();
 const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.value));
@@ -59,7 +57,7 @@ const attack = () => {
   if (!cell.value.entity) return;
 
   pointerupSound.play();
-  if (cell.value.entity.player.equals(activePlayer.value)) {
+  if (cell.value.entity.belongsToActivePlayer) {
     ui.selectEntity(cell.value.entity.id);
   } else if (ui.selectedEntity.value!.canAttack(cell.value.entity)) {
     dispatch('attack', {
@@ -98,7 +96,7 @@ const summon = () => {
 };
 
 const selectEntity = () => {
-  if (cell.value.entity?.player.equals(activePlayer.value)) {
+  if (cell.value.entity?.belongsToActivePlayer) {
     ui.selectEntity(cell.value.entity.id);
     pointerupSound.play();
   }

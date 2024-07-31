@@ -1,4 +1,4 @@
-import { type Nullable, type Point, type Point3D } from '@game/shared';
+import { type Nullable, type Point3D } from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameSession } from '../game-session';
 import { type CardModifier } from '../modifier/card-modifier';
@@ -66,7 +66,7 @@ type CardBlueprintUnit = {
     card: Card;
     entity: Entity;
     targets: Array<Nullable<Point3D>>;
-  }) => void;
+  }) => Promise<void>;
 };
 
 type CardBlueprintSpell = {
@@ -79,7 +79,7 @@ type CardBlueprintSpell = {
     session: GameSession;
     card: Card;
     targets: Array<Nullable<Point3D>>;
-  }) => void;
+  }) => Promise<void>;
   targets?: {
     minTargetCount: number;
     maxTargetCount: number;
@@ -105,7 +105,7 @@ type CardBlueprintArtifact = {
     card: Card;
     artifact: PlayerArtifact;
     targets: Array<Nullable<Point3D>>;
-  }) => void;
+  }) => Promise<void>;
   targets?: {
     minTargetCount: number;
     maxTargetCount: number;

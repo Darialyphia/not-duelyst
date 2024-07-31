@@ -88,8 +88,8 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
       :game-type="GAME_TYPES.SANDBOX"
       :simulation-result="simulationResult"
       @simulate-action="
-        ($event: any) => {
-          simulationResult = serverSession.simulateAction({
+        async ($event: any) => {
+          simulationResult = await serverSession.simulateAction({
             type: $event.type,
             payload: {
               ...$event.payload,

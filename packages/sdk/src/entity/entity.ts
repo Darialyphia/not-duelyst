@@ -1,4 +1,4 @@
-import { type Serializable, Vec3, type Values, type Nullable } from '@game/shared';
+import { type Serializable, Vec3, type Values } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
 import type { CardIndex, PlayerId } from '../player/player';
@@ -14,7 +14,7 @@ import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
 import { Unit } from '../card/unit';
 import type { Card } from '../card/card';
-import { SafeEventEmitter } from '../utils/safe-event-emitter';
+import { TypedEventEmitter } from '../utils/typed-emitter';
 
 export type EntityId = number;
 
@@ -111,7 +111,7 @@ export type EntityEventMap = {
 
 export type EntityInterceptor = Entity['interceptors'];
 
-export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializable {
+export class Entity extends TypedEventEmitter<EntityEventMap> implements Serializable {
   private cardIndex: CardIndex;
   private _keywords: Keyword[] = [];
   private playerId: PlayerId;
@@ -192,6 +192,10 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
 
   get player() {
     return this.session.playerSystem.getPlayerById(this.playerId)!;
+  }
+
+  get belongsToActivePlayer() {
+    return this.player.equals(this.session.playerSystem.activePlayer);
   }
 
   get hp() {
@@ -313,7 +317,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
 
     if (this.hp <= 0) {
       this.isScheduledForDeletion = true;
-      this.destroy();
+      void this.destroy();
     }
   }
   addInterceptor<T extends keyof EntityInterceptor>(
@@ -357,16 +361,16 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     this.activate();
   }
 
-  destroy() {
-    this.session.actionSystem.schedule(() => {
-      this.emit(ENTITY_EVENTS.BEFORE_DESTROY, this);
+  async destroy() {
+    await this.session.actionSystem.schedule(async () => {
+      await this.emitAsync(ENTITY_EVENTS.BEFORE_DESTROY, this);
       this.session.entitySystem.removeEntity(this);
       this.player.graveyard.push(this.card);
       this.modifiers.forEach(modifier => {
         modifier.onRemoved(this.session, this, modifier);
       });
 
-      this.emit(ENTITY_EVENTS.AFTER_DESTROY, this);
+      await this.emitAsync(ENTITY_EVENTS.AFTER_DESTROY, this);
     });
   }
 
@@ -376,8 +380,8 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     this.retaliationsDone = 0;
   }
 
-  move(path: Point3D[]) {
-    this.emit(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
+  async move(path: Point3D[]) {
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_MOVE, { entity: this, path });
     const currentPosition = this.position;
 
     for (const point of path) {
@@ -385,32 +389,35 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     }
     this.movementsTaken++;
 
-    this.emit(ENTITY_EVENTS.AFTER_MOVE, {
+    await this.emitAsync(ENTITY_EVENTS.AFTER_MOVE, {
       entity: this,
       path,
       previousPosition: currentPosition
     });
   }
 
-  teleport(
+  async teleport(
     cell: Cell,
     { ignoreCollisions }: { ignoreCollisions: boolean } = { ignoreCollisions: false }
   ) {
     if (!ignoreCollisions && cell.entity) return;
     if (!cell.isWalkable) return;
-    this.emit(ENTITY_EVENTS.BEFORE_TELEPORT, {
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_TELEPORT, {
       entity: this,
       destination: cell.position
     });
     const prevPos = this.position;
     this.position = Vec3.fromPoint3D(cell.position);
-    this.emit(ENTITY_EVENTS.AFTER_TELEPORT, { entity: this, previousPosition: prevPos });
+    await this.emitAsync(ENTITY_EVENTS.AFTER_TELEPORT, {
+      entity: this,
+      previousPosition: prevPos
+    });
   }
 
-  bounce() {
-    this.emit(ENTITY_EVENTS.BEFORE_BOUNCE, this);
+  async bounce() {
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_BOUNCE, this);
     const successful = this.player.bounceToHand(this);
-    this.emit(ENTITY_EVENTS.AFTER_BOUNCE, { entity: this, successful });
+    await this.emitAsync(ENTITY_EVENTS.AFTER_BOUNCE, { entity: this, successful });
   }
 
   getTakenDamage(amount: number) {
@@ -430,7 +437,7 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
     });
   }
 
-  dealDamage(power: number, target: Entity) {
+  async dealDamage(power: number, target: Entity) {
     const payload = {
       entity: this,
       amount: this.interceptors.damageDealt.getValue(power, {
@@ -439,14 +446,14 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
       }),
       target
     };
-    this.emit(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    target.takeDamage(payload.amount, this.card);
+    await target.takeDamage(payload.amount, this.card);
 
-    this.emit(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
+    await this.emitAsync(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  takeDamage(power: number, source: Card) {
+  async takeDamage(power: number, source: Card) {
     const amount = this.getTakenDamage(power);
     if (amount <= 0) return;
     const payload = {
@@ -454,35 +461,35 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
       amount,
       source
     };
-    this.emit(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 
     this.hp = this.currentHp - amount;
     this.checkHpForDeletion();
 
-    this.emit(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
+    await this.emitAsync(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
   }
 
-  retaliate(power: number, target: Entity) {
+  async retaliate(power: number, target: Entity) {
     if (!this.canRetaliate(target)) return;
-    this.emit(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;
 
-    this.dealDamage(power, target);
-    this.emit(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
+    await this.dealDamage(power, target);
+    await this.emitAsync(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
   }
 
-  performAttack(target: Entity) {
-    this.emit(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
+  async performAttack(target: Entity) {
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
 
-    this.dealDamage(this.attack, target);
+    await this.dealDamage(this.attack, target);
 
-    target.retaliate(target.attack, this);
+    await target.retaliate(target.attack, this);
 
     this.attacksTaken++;
-    this.emit(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
+    await this.emitAsync(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });
   }
 
-  heal(baseAmount: number, source: Card) {
+  async heal(baseAmount: number, source: Card) {
     const amount = this.getHealReceived(baseAmount);
     if (amount <= 0) return;
     const payload = {
@@ -490,12 +497,12 @@ export class Entity extends SafeEventEmitter<EntityEventMap> implements Serializ
       amount,
       source
     };
-    this.emit(ENTITY_EVENTS.BEFORE_HEAL, payload);
+    await this.emitAsync(ENTITY_EVENTS.BEFORE_HEAL, payload);
 
     this.hp += amount;
     this.checkHpForDeletion();
 
-    this.emit(ENTITY_EVENTS.AFTER_HEAL, payload);
+    await this.emitAsync(ENTITY_EVENTS.AFTER_HEAL, payload);
   }
 
   getModifier(id: ModifierId) {

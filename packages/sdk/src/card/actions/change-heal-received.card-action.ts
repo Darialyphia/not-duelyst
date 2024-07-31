@@ -31,7 +31,7 @@ export class ChangeHealReceivedAction extends CardAction<'change_heal_received'>
       ]
     });
   }
-  protected executeImpl() {
+  protected async executeImpl() {
     const units = this.getUnits(this.action.params.targets);
     const modifierId = this.generateModifierId();
 

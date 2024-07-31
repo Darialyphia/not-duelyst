@@ -11,6 +11,6 @@ export class ReplaceCardAction extends GameAction<typeof schema> {
   protected payloadSchema = schema;
 
   async impl() {
-    this.player.replaceCard(this.payload.cardIndex);
+    await this.player.replaceCard(this.payload.cardIndex);
   }
 }

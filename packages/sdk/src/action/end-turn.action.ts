@@ -7,7 +7,7 @@ export class EndTurnAction extends GameAction<typeof schema> {
 
   protected payloadSchema = schema;
 
-  impl() {
-    this.session.playerSystem.switchActivePlayer();
+  async impl() {
+    await this.session.playerSystem.switchActivePlayer();
   }
 }

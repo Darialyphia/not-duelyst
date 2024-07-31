@@ -26,7 +26,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
     protected session: GameSession
   ) {}
 
-  protected abstract impl(): void;
+  protected abstract impl(): Promise<void>;
 
   get player() {
     return this.session.playerSystem.getPlayerById(this.payload.playerId)!;
@@ -40,7 +40,8 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
 
     this.payload = parsed.data;
   }
-  execute() {
+
+  async execute() {
     this.parsePayload();
 
     if (!this.player) {
@@ -57,7 +58,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
       return this.printError('You are not the active player');
     }
 
-    return this.impl();
+    return await this.impl();
   }
 
   protected printError(message: string) {

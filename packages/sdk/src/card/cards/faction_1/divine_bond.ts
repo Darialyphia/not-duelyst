@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1DivineBond = defineSerializedBlueprint({

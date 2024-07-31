@@ -1,6 +1,5 @@
 import type { Point, Point3D } from '@game/shared';
 import type { EntityId } from './entity/entity';
-import type { Cell } from './board/cell';
 
 export type Animation =
   | 'idle'

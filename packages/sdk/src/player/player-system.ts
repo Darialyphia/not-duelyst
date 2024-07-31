@@ -9,14 +9,16 @@ export class PlayerSystem {
   constructor(private session: GameSession) {}
 
   setup(players: [SerializedPlayer, SerializedPlayer]) {
-    players
-      .map(player => new Player(this.session, player))
-      .forEach(player => {
-        this.addPlayer(player);
-        if (player.isPlayer1) {
-          this.activePlayerId = player.id;
-        }
-      });
+    return Promise.all(
+      players
+        .map(player => new Player(this.session, player))
+        .map(async player => {
+          await this.addPlayer(player);
+          if (player.isPlayer1) {
+            this.activePlayerId = player.id;
+          }
+        })
+    );
   }
 
   get activePlayer() {
@@ -25,15 +27,15 @@ export class PlayerSystem {
 
   setupListeners(player: Player) {
     Object.values(PLAYER_EVENTS).forEach(eventName => {
-      player.on(eventName, event => {
-        this.session.emit(`player:${eventName}`, event as any);
+      player.on(eventName, async event => {
+        await this.session.emitAsync(`player:${eventName}`, event as any);
       });
     });
 
     Object.values(CARD_EVENTS).forEach(eventName => {
       player.cards.forEach(card => {
-        card.on(eventName, event => {
-          this.session.emit(`card:${eventName}`, event as any);
+        card.on(eventName, async event => {
+          await this.session.emitAsync(`card:${eventName}`, event as any);
         });
       });
     });
@@ -51,9 +53,9 @@ export class PlayerSystem {
     return this.getList().find(p => p.id !== id)!;
   }
 
-  addPlayer(player: Player) {
+  async addPlayer(player: Player) {
     this.playerMap.set(player.id, player);
-    player.setup();
+    await player.setup();
     this.setupListeners(player);
   }
 
@@ -61,12 +63,12 @@ export class PlayerSystem {
     this.playerMap.delete(playerId);
   }
 
-  switchActivePlayer() {
-    this.activePlayer?.endTun();
+  async switchActivePlayer() {
+    await this.activePlayer?.endTun();
     this.activePlayerId = this.getList().find(
       player => player.id !== this.activePlayerId
     )!.id;
-    this.activePlayer.startTurn();
+    await this.activePlayer.startTurn();
   }
 
   serialize() {

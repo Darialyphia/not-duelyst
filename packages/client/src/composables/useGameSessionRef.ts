@@ -1,13 +1,14 @@
-import type { GameSession } from '@game/sdk';
+import type { ClientSession } from '@game/sdk';
+import { debounce } from 'lodash-es';
 
-const createGameSessionRef =
-  <T>(getter: (session: GameSession) => T) =>
-  (session: GameSession) => {
+const createClientSessionRef =
+  <T>(getter: (session: ClientSession) => T) =>
+  (session: ClientSession) => {
     let _trigger: () => void;
 
     const el = customRef((track, trigger) => {
-      _trigger = trigger;
-      session.on('*', trigger);
+      _trigger = debounce(trigger, 16);
+      session.on('*', _trigger);
       return {
         get() {
           track();
@@ -22,9 +23,9 @@ const createGameSessionRef =
     return [el, () => session.off('*', _trigger)] as const;
   };
 
-export const useGameSelector = <T>(getter: (session: GameSession) => T) => {
+export const useGameSelector = <T>(getter: (session: ClientSession) => T) => {
   const { session } = useGame();
-  const [val, unsub] = createGameSessionRef(getter)(session);
+  const [val, unsub] = createClientSessionRef(getter)(session);
 
   onUnmounted(unsub);
 

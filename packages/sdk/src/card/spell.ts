@@ -54,8 +54,8 @@ export class Spell extends Card implements Serializable {
     );
   }
 
-  playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
-    this.blueprint.onPlay?.({
+  async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+    return this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       targets: ctx.targets

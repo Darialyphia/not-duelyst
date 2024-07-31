@@ -53,9 +53,9 @@ export class Artifact extends Card implements Serializable {
     );
   }
 
-  playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+  async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
     this.targets = ctx.targets;
-    this.player.equipArtifact(this.index);
+    await this.player.equipArtifact(this.index);
   }
 
   equip(artifact: PlayerArtifact) {

@@ -7,28 +7,17 @@ import { PTransition, EasePresets } from 'vue3-pixi';
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { session, camera, fx, assets, ui, simulationResult } = useGame();
-const entity = useGameSelector(session => session.entitySystem.getEntityById(entityId)!);
+const entity = useEntity(entityId);
 const { settings } = useUserSettings();
 
 const position = ref(entity.value.position.serialize());
-watchEffect(() => {
-  position.value = entity.value.position.serialize();
-});
 const isMoving = ref(false);
 
-useDispatchCallback('entity:after_move', async event => {
-  if (!event.entity.equals(entity.value)) return;
-  return new Promise(resolve => {
-    move(event.path, resolve);
-  });
-});
-
-const move = (path: Point3D[], done: () => void) => {
+const move = (path: Point3D[]) => {
   isMoving.value = true;
   const timeline = gsap.timeline({
     onComplete() {
       isMoving.value = false;
-      done();
     }
   });
   for (const point of path) {
@@ -40,6 +29,8 @@ const move = (path: Point3D[], done: () => void) => {
     });
   }
   timeline.play();
+
+  return timeline;
 };
 
 const shouldFlip = ref(false);
@@ -59,14 +50,11 @@ const checkFlip = ({ target }: { target: Entity }) => {
     shouldFlip.value = target.position.x > entity.value.position.x;
   }
 };
-useDispatchCallback('entity:before_deal_damage', checkFlip, () => {
-  shouldFlip.value = false;
-});
 
-const boardDimensions = useGameSelector(session => ({
+const boardDimensions = {
   width: session.boardSystem.width,
   height: session.boardSystem.height
-}));
+};
 
 const isEnterAnimationDone = ref(false);
 const onEnter = (container: Container) => {
@@ -122,47 +110,66 @@ onMounted(() => {
 });
 
 const alpha = ref(1);
-useDispatchCallback('entity:after_destroy', event => {
-  if (!event.equals(entity.value)) return;
-  return new Promise(resolve => {
-    gsap.to(alpha, {
-      value: 0,
-      duration: 1,
-      ease: Power1.easeOut,
-      onComplete: resolve
-    });
-  });
-});
-
-useDispatchCallback('entity:after_take_damage', event => {
-  if (!event.entity.equals(entity.value)) return;
-  const bloodFx = randomInt(4);
-  session.fxSystem.playSfxOnEntity(event.entity.id, {
-    resourceName: 'fx_bloodground',
-    animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
-    offset: {
-      x: 0,
-      y: 20
-    }
-  });
-});
-
 const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
-useDispatchCallback(
-  'card:before_played',
-  async card => {
+const simulationDeathTexture = assets.getTexture('simulation-death.png');
+
+const cleanups = [
+  session.on('entity:before_move', event => {
+    if (!event.entity.equals(entity.value)) return Promise.resolve();
+    return new Promise<void>(resolve => {
+      move(event.path).then(() => {
+        resolve();
+      });
+    });
+  }),
+  session.on('entity:after_move', () => {
+    position.value = entity.value.position.serialize();
+  }),
+  session.on('entity:after_teleport', () => {
+    position.value = entity.value.position.serialize();
+  }),
+  session.on('entity:before_deal_damage', checkFlip),
+  session.on('entity:after_take_damage', () => {
+    shouldFlip.value = false;
+  }),
+  session.on('entity:before_destroy', event => {
+    if (!event.equals(entity.value)) return;
+    return new Promise(resolve => {
+      gsap.to(alpha, {
+        value: 0,
+        duration: 1,
+        ease: Power1.easeOut,
+        onComplete: resolve
+      });
+    });
+  }),
+  session.on('entity:before_take_damage', event => {
+    if (!event.entity.equals(entity.value)) return;
+    const bloodFx = randomInt(4);
+    session.fxSystem.playSfxOnEntity(event.entity.id, {
+      resourceName: 'fx_bloodground',
+      animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
+      offset: {
+        x: 0,
+        y: 20
+      }
+    });
+  }),
+  session.on('card:before_played', async card => {
     if (!entity.value.isGeneral) return;
     if (!card.player.equals(entity.value.player)) return;
     if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
     const spritesheet = await assets.loadSpritesheet(card.blueprint.spriteId);
     playedCardTextures.value = createSpritesheetFrameObject('active', spritesheet);
-  },
-  () => {
+  }),
+  session.on('card:after_played', () => {
     playedCardTextures.value = null;
-  }
-);
+  })
+];
 
-const simulationDeathTexture = assets.getTexture('simulation-death.png');
+onUnmounted(() => {
+  cleanups.forEach(fn => fn());
+});
 </script>
 
 <template>

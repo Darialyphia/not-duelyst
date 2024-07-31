@@ -8,25 +8,23 @@ import { throttle } from 'lodash-es';
 
 const app = useApplication();
 
-const { fx, ui } = useGame();
+const { fx, ui, camera, session } = useGame();
 
-const { camera } = useGame();
-
-const cells = useGameSelector(session => session.boardSystem.cells);
-const boardDimensions = useGameSelector(session => ({
+const cells = session.boardSystem.cells;
+const boardDimensions = {
   width: session.boardSystem.width,
   height: session.boardSystem.height
-}));
+};
 const isoCells = computed(() =>
-  cells.value
+  cells
     .filter(
       cell =>
-        cell.position.x < boardDimensions.value.width &&
+        cell.position.x < boardDimensions.width &&
         cell.position.x >= 0 &&
-        cell.position.y < boardDimensions.value.height &&
+        cell.position.y < boardDimensions.height &&
         cell.position.y >= 0
     )
-    .map(cell => toIso(cell.position, camera.angle.value, boardDimensions.value))
+    .map(cell => toIso(cell.position, camera.angle.value, boardDimensions))
 );
 const minX = computed(() => Math.min(...isoCells.value.map(c => c.isoX)));
 const maxX = computed(() => Math.max(...isoCells.value.map(c => c.isoX)));
