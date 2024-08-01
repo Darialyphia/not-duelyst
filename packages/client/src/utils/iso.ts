@@ -1,5 +1,5 @@
 import { deg2Rad } from '@game/shared';
-import type { Point, Point3D } from '@game/shared';
+import type { Point3D } from '@game/shared';
 import { CELL_HEIGHT, CELL_WIDTH } from './constants';
 
 export type IsoPoint = {

@@ -23,6 +23,7 @@ const isDev = import.meta.env.DEV;
     <MapCell v-for="cell in cells" :key="cell.id" :cell="cell" />
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
+    <AttackTargetArrows />
     <PointLight
       v-if="ui.mouseLightStrength.value > 0"
       :brightness="ui.mouseLightStrength.value"
