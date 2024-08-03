@@ -30,7 +30,9 @@ export const getDefaultSettings = () => ({
   ui: {
     displayUnitsStats: DISPLAY_UNITS_STATS.ALWAYS as DisplayUnitStatsValue,
     displayUnitsNames: DISPLAY_UNITS_NAMES.NEVER as DisplayUnitNamesValue,
-    cardsWith3D: true
+    cardsWith3D: true,
+    displayDangerTiles: true,
+    displayDangerArrows: true
   },
   fx: {
     dynamicLighting: false,

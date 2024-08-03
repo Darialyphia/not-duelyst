@@ -7,6 +7,7 @@ useGameControls();
 const cells = useCellsViewModels();
 const entities = useGameSelector(session => session.entitySystem.getList());
 const isDev = import.meta.env.DEV;
+const { settings } = useUserSettings();
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const isDev = import.meta.env.DEV;
     <MapCell v-for="cell in cells" :key="cell.id" :cell="cell" />
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
-    <AttackTargetArrows />
+    <AttackTargetArrows v-if="settings.ui.displayDangerArrows" />
     <PointLight
       v-if="ui.mouseLightStrength.value > 0"
       :brightness="ui.mouseLightStrength.value"

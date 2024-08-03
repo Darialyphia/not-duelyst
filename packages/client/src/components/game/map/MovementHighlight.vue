@@ -6,7 +6,7 @@ import { match } from 'ts-pattern';
 const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, pathfinding, fx } = useGame();
 const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
-
+const { settings } = useUserSettings();
 const safeSheet = computed(() => assets.getSpritesheet('bitmask-movement-ally'));
 const dangerSheet = computed(() => assets.getSpritesheet('bitmask-danger'));
 
@@ -50,6 +50,7 @@ const bitmask = computed(() => {
 
 const sheet = computed(() => {
   if (!isEnabled.value) return null;
+  if (!settings.value.ui.displayDangerTiles) return safeSheet.value;
 
   const enemies = userPlayer.value.opponent.entities;
   return enemies.some(entity => {

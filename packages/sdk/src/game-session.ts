@@ -91,6 +91,7 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
 };
 
 export type GameEvent = keyof GameEventMap;
+export type GameEventPayload<T extends GameEvent> = GameEventMap[T];
 
 export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(

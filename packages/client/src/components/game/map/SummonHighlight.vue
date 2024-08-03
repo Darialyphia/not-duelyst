@@ -4,7 +4,7 @@ import type { Cell } from '@game/sdk';
 
 const { cell } = defineProps<{ cell: CellViewModel }>();
 const { session, assets, camera, ui, fx, pathfinding } = useGame();
-
+const { settings } = useUserSettings();
 const summonSheet = computed(() => assets.getSpritesheet('deploy-zone'));
 const dangerSheet = computed(() => assets.getSpritesheet('bitmask-danger'));
 const userPlayer = useUserPlayer();
@@ -30,6 +30,7 @@ const bitmask = computed(() => {
 
 const sheet = computed(() => {
   if (!isEnabled.value) return null;
+  if (!settings.value.ui.displayDangerTiles) return summonSheet.value;
 
   const enemies = userPlayer.value.opponent.entities;
   return enemies.some(entity => {

@@ -66,7 +66,7 @@ watchEffect(() => {
 });
 
 const attackTargetFilter = new OutlineFilter(2, 0xff0000);
-const dangerFilter = new ColorOverlayFilter(0xff0000, 0.35);
+const dangerFilter = new ColorOverlayFilter(0xff0000, 0.3);
 
 const filters = computed(() => {
   const result: Filter[] = [];
@@ -92,6 +92,7 @@ const filters = computed(() => {
 
   if (ui.targetingMode.value === TARGETING_MODES.BASIC) {
     if (
+      settings.value.ui.displayDangerArrows &&
       ui.hoveredCell.value &&
       ui.selectedEntity.value &&
       !entity.value.player.equals(userPlayer.value) &&
@@ -102,6 +103,7 @@ const filters = computed(() => {
     }
   } else if (ui.targetingMode.value === TARGETING_MODES.SUMMON) {
     if (
+      settings.value.ui.displayDangerArrows &&
       ui.hoveredCell.value &&
       !entity.value.player.equals(userPlayer.value) &&
       pathfinding.canAttackAt(entity.value, ui.hoveredCell.value)

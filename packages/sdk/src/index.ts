@@ -70,3 +70,4 @@ export type { Unit } from './card/unit';
 export type { Spell } from './card/spell';
 export type { Artifact } from './card/artifact';
 export type { Cell, CellId } from './board/cell';
+export type { GameEvent, GameEventPayload } from './game-session';

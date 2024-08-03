@@ -32,6 +32,76 @@ const rollback = () => {
 
       <div>
         <fieldset>
+          <legend>Interface</legend>
+
+          <label>3D cards</label>
+          <div class="flex flex-col gap-2">
+            <UiSwitch v-model:checked="formData.ui.cardsWith3D" />
+            <p class="text-00">
+              Turning this off can fix issues with blurry images in some browsers
+            </p>
+          </div>
+
+          <label>Show danger tiles</label>
+          <div class="flex flex-col gap-2">
+            <UiSwitch v-model:checked="formData.ui.displayDangerTiles" />
+            <p class="text-00">
+              Display tiles that can be attacked by enemies when summoning and moving
+            </p>
+          </div>
+
+          <label>Show danger lines</label>
+          <div class="flex flex-col gap-2">
+            <UiSwitch v-model:checked="formData.ui.displayDangerArrows" />
+            <p class="text-00">Display lines showing which enemies can attack</p>
+          </div>
+
+          <label>Show unit stats</label>
+          <UiRadioGroup
+            v-model="formData.ui.displayUnitsStats"
+            class="mb-3"
+            :options="[
+              {
+                id: 'units-stats-hover-on-top',
+                label: 'always hidden',
+                value: DISPLAY_UNITS_STATS.NEVER
+              },
+              {
+                id: 'units-stats-always',
+                label: 'always visible',
+                value: DISPLAY_UNITS_STATS.ALWAYS
+              },
+              {
+                id: 'units-stats-hover-only',
+                label: 'hidden, visible on hover',
+                value: DISPLAY_UNITS_STATS.HOVER_ONLY
+              }
+            ]"
+          />
+
+          <!-- <label>Show unit names</label>
+          <UiRadioGroup
+            v-model="formData.ui.displayUnitsNames"
+            :options="[
+              {
+                id: 'units-names-never',
+                label: 'never',
+                value: DISPLAY_UNITS_NAMES.NEVER
+              },
+              {
+                id: 'units-names-hover-only',
+                label: 'on hover only',
+                value: DISPLAY_UNITS_NAMES.HOVER_ONLY
+              },
+              {
+                id: 'units-names-always',
+                label: 'always',
+                value: DISPLAY_UNITS_NAMES.ALWAYS
+              }
+            ]"
+          /> -->
+        </fieldset>
+        <fieldset>
           <legend>Sound</legend>
           <label>Sound effects</label>
           <UiSliderInput
@@ -87,61 +157,6 @@ const rollback = () => {
             label="sound effects volume"
             class="w-full"
           />
-        </fieldset>
-        <fieldset>
-          <legend>Interface</legend>
-
-          <label>3D cards</label>
-          <div class="flex flex-col gap-2">
-            <UiSwitch v-model:checked="formData.ui.cardsWith3D" />
-            <p class="text-00">
-              (Turning this off can fix issues with blurry images in some browsers)
-            </p>
-          </div>
-          <label>Show unit stats</label>
-          <UiRadioGroup
-            v-model="formData.ui.displayUnitsStats"
-            class="mb-3"
-            :options="[
-              {
-                id: 'units-stats-hover-on-top',
-                label: 'always hidden',
-                value: DISPLAY_UNITS_STATS.NEVER
-              },
-              {
-                id: 'units-stats-always',
-                label: 'always visible',
-                value: DISPLAY_UNITS_STATS.ALWAYS
-              },
-              {
-                id: 'units-stats-hover-only',
-                label: 'hidden, visible on hover',
-                value: DISPLAY_UNITS_STATS.HOVER_ONLY
-              }
-            ]"
-          />
-
-          <!-- <label>Show unit names</label>
-          <UiRadioGroup
-            v-model="formData.ui.displayUnitsNames"
-            :options="[
-              {
-                id: 'units-names-never',
-                label: 'never',
-                value: DISPLAY_UNITS_NAMES.NEVER
-              },
-              {
-                id: 'units-names-hover-only',
-                label: 'on hover only',
-                value: DISPLAY_UNITS_NAMES.HOVER_ONLY
-              },
-              {
-                id: 'units-names-always',
-                label: 'always',
-                value: DISPLAY_UNITS_NAMES.ALWAYS
-              }
-            ]"
-          /> -->
         </fieldset>
       </div>
     </section>

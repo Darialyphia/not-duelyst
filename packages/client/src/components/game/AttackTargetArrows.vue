@@ -107,7 +107,7 @@ const filters = [
             iso.isoX,
             iso.isoY - iso.isoZ,
             hoveredCellIsoPosition.x,
-            hoveredCellIsoPosition.y
+            hoveredCellIsoPosition.y + 20
           );
         }
       "
