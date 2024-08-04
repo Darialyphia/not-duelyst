@@ -36,22 +36,22 @@ const executionContextOptions = computed(() => {
     },
     {
       value: 'trigger_while_on_board',
-      label: 'While this card is on the board'
+      label: 'While this card is on the board, whenever...'
     },
     {
       value: 'trigger_while_in_hand',
-      label: 'While this card is in your hand'
+      label: 'While this card is in your hand, whenever...'
     },
     {
       value: 'while_equiped',
-      label: 'While this artifact is equiped'
+      label: 'While this artifact is equiped, whenever...'
     },
     {
       value: 'while_in_deck',
-      label: 'While this card is in your deck'
+      label: 'While this card is in your deck, whenever...'
     },
     {
-      value: 'while_in_deck',
+      value: 'while_in_graveyard',
       label: 'While this card is in your graveyard (Soon™)',
       disabled: true
     }

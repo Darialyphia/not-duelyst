@@ -161,10 +161,17 @@ export const tutorialMap: SerializedGameState['map'] = {
   ]
 };
 
-const makePlane = (x: number, y: number, z: number, spriteId: string) => {
+const makePlane = (
+  x: number,
+  y: number,
+  z: number,
+  spriteId: string,
+  xoffset = 0,
+  yoffset = 0
+) => {
   return Array.from({ length: y }, (_, y) =>
     Array.from({ length: x }, (_, x) => ({
-      position: { x, y, z },
+      position: { x: x + xoffset, y: y + yoffset, z },
       terrain: TERRAINS.GROUND,
       spriteId,
       tileBlueprintId: null
