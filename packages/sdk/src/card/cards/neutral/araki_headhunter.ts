@@ -22,7 +22,7 @@ export const neutralArakiHeadhunter = defineSerializedBlueprint({
     defineCardEffect({
       text: 'When you play a minion with @Opening Gambit@, this minion gains +2 / +0.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         actions: [
           {
             type: 'change_stats',

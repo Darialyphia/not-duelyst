@@ -173,9 +173,9 @@ export const parseSerializedBlueprintEffect = (
     .with(
       { executionContext: 'while_in_deck' },
       { executionContext: 'while_in_graveyard' },
-      { executionContext: 'while_in_hand' },
+      { executionContext: 'trigger_while_in_hand' },
       { executionContext: 'while_equiped' },
-      { executionContext: 'while_on_board' },
+      { executionContext: 'trigger_while_on_board' },
       config => {
         const actions = (config.actions as Action[]).map(parseCardAction);
         return config.triggers.map((trigger: Trigger) =>
@@ -778,7 +778,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
             .flat()
             .filter(isDefined);
         })
-        .with('while_in_hand', () => {
+        .with('trigger_while_in_hand', () => {
           return effect.actions
             .map(action => {
               if (!action.getCardModifier) return null;
@@ -888,7 +888,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
     async onPlay(ctx: EffectCtx) {
       for (const effect of effects) {
         await match(effect.config.executionContext)
-          .with('while_on_board', async () => {
+          .with('trigger_while_on_board', async () => {
             for (const action of effect.actions) {
               if (!action.getEntityModifier) return;
               const entityModifier = action.getEntityModifier(ctx);

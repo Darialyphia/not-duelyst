@@ -53,6 +53,7 @@ const id = useId();
               { type: 'is_nearest_below' },
               condition => {
                 condition.params = {
+                  not: false,
                   unit: [[{ type: undefined as any }]]
                 };
               }
@@ -62,26 +63,31 @@ const id = useId();
               { type: 'is_manual_target_general' },
               condition => {
                 condition.params = {
+                  not: false,
                   index: 0
                 };
               }
             )
             .with({ type: 'is_nearby' }, condition => {
-              condition.params = { unit: [], cell: [] };
+              condition.params = { unit: [], cell: [], not: false };
             })
             .with({ type: 'has_keyword' }, condtion => {
               condtion.params = {
+                not: false,
                 keyword: undefined as any
               };
             })
             .with({ type: 'has_attack' }, { type: 'has_hp' }, condition => {
               condition.params = {
+                not: false,
                 amount: { type: undefined } as any,
                 operator: 'equals'
               };
             })
+            .with({ type: 'any_unit' }, () => {
+              return;
+            })
             .with(
-              { type: 'any_unit' },
               { type: 'is_ally' },
               { type: 'is_enemy' },
               { type: 'is_self' },
@@ -95,8 +101,10 @@ const id = useId();
               { type: 'destroyed_unit' },
               { type: 'moved_unit' },
               { type: 'played_unit' },
-              () => {
-                return;
+              condition => {
+                condition.params = {
+                  not: false
+                };
               }
             )
             .exhaustive();
@@ -109,6 +117,10 @@ const id = useId();
       class="flex gap-2"
     >
       <span class="capitalize min-w-10">{{ param }}</span>
+      <UiSwitch
+        v-if="param === 'not'"
+        v-model:checked="(groups[groupIndex][conditionIndex] as any).params[param]"
+      />
       <div v-if="param === 'index'" class="flex gap-3 items-center">
         <UiTextInput
           :id

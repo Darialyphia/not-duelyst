@@ -31,7 +31,7 @@ export const f2TuskBoar = defineSerializedBlueprint({
     {
       text: 'At the start of your turn, return this to your hand.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_player_turn_start',

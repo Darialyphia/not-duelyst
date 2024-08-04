@@ -20,7 +20,7 @@ export const f2CelestialPhantom = defineSerializedBlueprint({
     defineCardEffect({
       text: 'When this deals damage to a unit, destroy that unit.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_unit_deal_damage',

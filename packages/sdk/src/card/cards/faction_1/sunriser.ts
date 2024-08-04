@@ -21,7 +21,7 @@ export const f1Sunriser = defineSerializedBlueprint({
     defineCardEffect({
       text: 'After a unit is healed, deal 2 damage to nearby enemies.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_unit_healed',

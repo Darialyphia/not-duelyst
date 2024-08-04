@@ -22,7 +22,7 @@ export const f2HammonBladeseeker = defineSerializedBlueprint({
     defineCardEffect({
       text: 'At the start of your turn, deal 2 damage to your general.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_player_turn_start',

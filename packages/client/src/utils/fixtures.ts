@@ -1,7 +1,6 @@
 import { TERRAINS, type SerializedGameState } from '@game/sdk';
 import { isDefined } from '@game/shared';
 import { match } from 'ts-pattern';
-import { stringify } from 'zipson';
 
 const dirtTile = (
   x: number,
@@ -162,25 +161,39 @@ export const tutorialMap: SerializedGameState['map'] = {
   ]
 };
 
+const makePlane = (x: number, y: number, z: number, spriteId: string) => {
+  return Array.from({ length: y }, (_, y) =>
+    Array.from({ length: x }, (_, x) => ({
+      position: { x, y, z },
+      terrain: TERRAINS.GROUND,
+      spriteId,
+      tileBlueprintId: null
+    }))
+  ).flat();
+};
+
 export const testMap: SerializedGameState['map'] = {
   width: 9,
   height: 5,
-  player1StartPosition: { x: 0, y: 2, z: 0 },
-  player2StartPosition: { x: 8, y: 2, z: 0 },
+  player1StartPosition: { x: 0, y: 2, z: 3 },
+  player2StartPosition: { x: 8, y: 2, z: 3 },
   cells: [
-    ...makeColumn(0, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(1, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(2, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(3, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(4, 0, ['grass', 'grass', 'grass', 'grass', 'grass'], {
+    ...makePlane(9, 5, 0, 'dirt'),
+    ...makePlane(9, 5, 1, 'dirt'),
+    ...makePlane(9, 5, 2, 'dirt'),
+    ...makeColumn(0, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(1, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(2, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(3, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(4, 3, ['grass', 'grass', 'grass', 'grass', 'grass'], {
       0: 'gold_coin',
       4: 'gold_coin'
     }),
-    ...makeColumn(5, 0, ['grass', 'grass', 'grass', 'grass', 'grass'], {
+    ...makeColumn(5, 3, ['grass', 'grass', 'grass', 'grass', 'grass'], {
       2: 'gold_coin'
     }),
-    ...makeColumn(6, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(7, 0, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(8, 0, ['grass', 'grass', 'grass', 'grass', 'grass'])
+    ...makeColumn(6, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(7, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    ...makeColumn(8, 3, ['grass', 'grass', 'grass', 'grass', 'grass'])
   ]
 };

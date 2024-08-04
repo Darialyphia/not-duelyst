@@ -152,7 +152,7 @@ onUnmounted(() => {
       :anchor-x="0.5"
       :anchor-y="1"
       :playing="true"
-      :y="CELL_HEIGHT * 0.85"
+      :y="CELL_HEIGHT * 0.75"
     />
     <!-- <sprite
       :alpha="0.85"

@@ -27,7 +27,7 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
             type: 'zeal',
             params: {
               effect: {
-                executionContext: 'while_on_board',
+                executionContext: 'trigger_while_on_board',
                 triggers: [
                   {
                     type: 'on_player_turn_end',

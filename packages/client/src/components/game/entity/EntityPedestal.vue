@@ -21,6 +21,6 @@ watchEffect(async () => {
     :anchor-x="0.5"
     :anchor-y="1"
     :playing="true"
-    :y="CELL_HEIGHT * 1.2"
+    :y="CELL_HEIGHT * 1.15"
   />
 </template>

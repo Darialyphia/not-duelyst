@@ -20,7 +20,7 @@ export const f2StormKage = defineSerializedBlueprint({
     {
       text: 'When an allied unit or spell deals damage to an enemy unit, put a @Kage Lightning@ into your hand until the end of the turn (max. 3 times per turn).',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         actions: [
           {
             type: 'generate_card',

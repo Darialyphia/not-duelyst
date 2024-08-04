@@ -20,7 +20,7 @@ export const f2Rythmweaver = defineSerializedBlueprint({
     {
       text: 'After this takes damage, draw a spell',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_unit_take_damage',

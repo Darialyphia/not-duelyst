@@ -510,6 +510,18 @@ export type Action<
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     };
+// | {
+//     type: 'change_replaces_count';
+//     params: {
+//       filter?: Filter<GlobalCondition<T>>;
+//       mode: 'give' | 'set';
+//       amount: Amount<T>;
+//       player: Filter<PlayerCondition>;
+//       frequency: TriggerFrequency;
+//       stackable: boolean;
+//       execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+//     };
+//   };
 
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
@@ -571,8 +583,8 @@ export type CardEffectConfig<T extends Trigger[]> =
     }
   | {
       executionContext:
-        | 'while_in_hand'
-        | 'while_on_board'
+        | 'trigger_while_in_hand'
+        | 'trigger_while_on_board'
         | 'while_in_deck'
         | 'while_equiped'
         | 'while_in_graveyard';

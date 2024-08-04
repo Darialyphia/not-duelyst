@@ -20,26 +20,30 @@ import { getAmount } from '../helpers/amount';
 
 export type UnitConditionBase =
   | { type: 'any_unit' }
-  | { type: 'is_self' }
-  | { type: 'is_general' }
-  | { type: 'is_minion' }
-  | { type: 'is_ally' }
-  | { type: 'is_enemy' }
+  | { type: 'is_self'; params: { not: boolean } }
+  | { type: 'is_general'; params: { not: boolean } }
+  | { type: 'is_minion'; params: { not: boolean } }
+  | { type: 'is_ally'; params: { not: boolean } }
+  | { type: 'is_enemy'; params: { not: boolean } }
   | {
       type: 'is_nearby';
-      params: { unit?: Filter<UnitCondition>; cell?: Filter<CellCondition> };
+      params: {
+        unit?: Filter<UnitCondition>;
+        cell?: Filter<CellCondition>;
+        not: boolean;
+      };
     }
-  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_in_front'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_behind'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition> } }
-  | { type: 'is_manual_target'; params: { index: number } }
-  | { type: 'is_manual_target_general'; params: { index: number } }
-  | { type: 'has_keyword'; params: { keyword: KeywordId } }
+  | { type: 'is_in_front'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_nearest_in_front'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_behind'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_nearest_behind'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_above'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_nearest_above'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_below'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition>; not: boolean } }
+  | { type: 'is_manual_target'; params: { index: number; not: boolean } }
+  | { type: 'is_manual_target_general'; params: { index: number; not: boolean } }
+  | { type: 'has_keyword'; params: { keyword: KeywordId; not: boolean } }
   | {
       type: 'has_attack';
       params: {
@@ -48,6 +52,7 @@ export type UnitConditionBase =
           card: CardConditionExtras['type'];
         }>;
         operator: NumericOperator;
+        not: boolean;
       };
     }
   | {
@@ -58,18 +63,19 @@ export type UnitConditionBase =
           card: CardConditionExtras['type'];
         }>;
         operator: NumericOperator;
+        not: boolean;
       };
     }
-  | { type: 'is_exhausted' };
+  | { type: 'is_exhausted'; params: { not: boolean } };
 
 export type UnitConditionExtras =
-  | { type: 'attack_target' }
-  | { type: 'attack_source' }
-  | { type: 'healing_target' }
-  | { type: 'healing_source' }
-  | { type: 'moved_unit' }
-  | { type: 'played_unit' }
-  | { type: 'destroyed_unit' };
+  | { type: 'attack_target'; params: { not: boolean } }
+  | { type: 'attack_source'; params: { not: boolean } }
+  | { type: 'healing_target'; params: { not: boolean } }
+  | { type: 'healing_source'; params: { not: boolean } }
+  | { type: 'moved_unit'; params: { not: boolean } }
+  | { type: 'played_unit'; params: { not: boolean } }
+  | { type: 'destroyed_unit'; params: { not: boolean } };
 
 export type UnitCondition = UnitConditionBase | UnitConditionExtras;
 
@@ -358,7 +364,7 @@ export const getUnits = ({
           })
           .exhaustive();
 
-        return isMatch;
+        return 'params' in condition && 'not' in condition.params ? !isMatch : isMatch;
       });
     });
   });

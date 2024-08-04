@@ -35,11 +35,11 @@ const executionContextOptions = computed(() => {
       label: 'When the card is played'
     },
     {
-      value: 'while_on_board',
+      value: 'trigger_while_on_board',
       label: 'While this card is on the board'
     },
     {
-      value: 'while_in_hand',
+      value: 'trigger_while_in_hand',
       label: 'While this card is in your hand'
     },
     {

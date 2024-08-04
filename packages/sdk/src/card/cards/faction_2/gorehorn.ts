@@ -38,7 +38,7 @@ export const f2Gorehorn = defineSerializedBlueprint({
     {
       text: 'After this attacks, this gains +1/+1.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_unit_attack',

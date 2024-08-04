@@ -21,7 +21,7 @@ export const f2ChakriAvatar = defineSerializedBlueprint({
     defineCardEffect({
       text: 'When you play a spell, this gains +1/+1.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_card_played',

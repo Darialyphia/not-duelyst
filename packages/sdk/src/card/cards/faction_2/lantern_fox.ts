@@ -19,7 +19,7 @@ export const f2LanternFox = defineSerializedBlueprint({
     {
       text: 'When this takes damage, add a @Phoenix Fire@ to your hand.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_unit_take_damage',

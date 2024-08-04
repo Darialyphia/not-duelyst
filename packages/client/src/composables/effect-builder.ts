@@ -29,29 +29,32 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       { label: string; params: string[] }
     > = {
       any_unit: { label: 'Any unit', params: [] },
-      is_self: { label: 'This unit', params: [] },
-      is_ally: { label: 'An ally', params: [] },
-      is_enemy: { label: 'An enemy', params: [] },
-      is_general: { label: 'A general', params: [] },
-      is_minion: { label: 'A minion', params: [] },
-      is_nearby: { label: 'A unit nearby', params: ['unit', 'cell'] },
-      is_in_front: { label: 'The unit in front of', params: ['unit'] },
-      is_nearest_in_front: { label: 'The closest unit in front of', params: ['unit'] },
-      is_behind: { label: 'The unit behind', params: ['unit'] },
-      is_nearest_behind: { label: 'The closest unit behind', params: ['unit'] },
-      is_above: { label: 'The unit above', params: ['unit'] },
-      is_nearest_above: { label: 'The closest unit above', params: ['unit'] },
-      is_below: { label: 'The unit below', params: ['unit'] },
-      is_nearest_below: { label: 'The closest unit  below', params: ['unit'] },
-      is_manual_target: { label: "One of this card's target", params: ['index'] },
+      is_self: { label: 'This unit', params: ['not'] },
+      is_ally: { label: 'An ally', params: ['not'] },
+      is_enemy: { label: 'An enemy', params: ['not'] },
+      is_general: { label: 'A general', params: ['not'] },
+      is_minion: { label: 'A minion', params: ['not'] },
+      is_nearby: { label: 'A unit nearby', params: ['not', 'unit', 'cell'] },
+      is_in_front: { label: 'The unit in front of', params: ['not', 'unit'] },
+      is_nearest_in_front: {
+        label: 'The closest unit in front of',
+        params: ['not', 'unit']
+      },
+      is_behind: { label: 'The unit behind', params: ['not', 'unit'] },
+      is_nearest_behind: { label: 'The closest unit behind', params: ['not', 'unit'] },
+      is_above: { label: 'The unit above', params: ['not', 'unit'] },
+      is_nearest_above: { label: 'The closest unit above', params: ['not', 'unit'] },
+      is_below: { label: 'The unit below', params: ['not', 'unit'] },
+      is_nearest_below: { label: 'The closest unit  below', params: ['not', 'unit'] },
+      is_manual_target: { label: "One of this card's target", params: ['not', 'index'] },
       is_manual_target_general: {
         label: "One of this card target's general",
-        params: ['index']
+        params: ['not', 'index']
       },
-      has_keyword: { label: 'A unit with a keyword', params: ['keyword'] },
-      has_attack: { label: 'A unit with attack', params: ['operator', 'amount'] },
-      has_hp: { label: 'A unit with hp', params: ['operator', 'amount'] },
-      is_exhausted: { label: 'An exhausted unit', params: [] }
+      has_keyword: { label: 'A unit with a keyword', params: ['not', 'keyword'] },
+      has_attack: { label: 'A unit with attack', params: ['not', 'operator', 'amount'] },
+      has_hp: { label: 'A unit with hp', params: ['not', 'operator', 'amount'] },
+      is_exhausted: { label: 'An exhausted unit', params: ['not'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));

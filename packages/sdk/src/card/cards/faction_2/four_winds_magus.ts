@@ -21,7 +21,7 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
     defineCardEffect({
       text: 'When you play a spell, deal 1 damage to the enemy general and heal your general for 1.',
       config: {
-        executionContext: 'while_on_board',
+        executionContext: 'trigger_while_on_board',
         triggers: [
           {
             type: 'on_after_card_played',
