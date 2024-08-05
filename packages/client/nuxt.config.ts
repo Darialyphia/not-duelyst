@@ -10,7 +10,7 @@ const prefix = 'pixi-';
 
 export default defineNuxtConfig({
   srcDir: './src',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   experimental: { inlineRouteRules: true },
 
   devServer: {
@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@formkit/auto-animate/nuxt',
     '@nuxt/content',
-    "@nuxt/image"
+    '@nuxt/image'
   ],
 
   runtimeConfig: {

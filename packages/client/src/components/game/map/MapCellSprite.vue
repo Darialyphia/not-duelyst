@@ -35,7 +35,6 @@ const children = computed(() => {
     :anchor="0.5"
     :hit-area="hitArea"
     :y="-14"
-    :is-animated="false"
   />
 
   <!-- <MapEdge :cell-id="cellId" /> -->

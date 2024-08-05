@@ -94,7 +94,6 @@ const listRoot = ref<HTMLElement>();
             :card="item"
             :is-editing-loadout="mode === 'form'"
             :can-add-to-loadout="canAddToLoadout(item.cardId)"
-            animated
             @click="
               addCardToLoadout({
                 id: item.cardId,
@@ -112,6 +111,10 @@ const listRoot = ref<HTMLElement>();
       </template>
 
       <template v-else>
+        <p v-if="!loadouts.length" class="py-3 text-center">
+          You don't have any loadout yet
+        </p>
+
         <ul v-if="loadouts" v-auto-animate>
           <Sound
             v-for="loadout in loadouts"
@@ -128,10 +131,6 @@ const listRoot = ref<HTMLElement>();
             </li>
           </Sound>
         </ul>
-
-        <p v-if="!loadouts.length" class="py-3 text-center">
-          You don't have any loadout yet
-        </p>
 
         <UiFancyButton
           class="primary-button mx-auto"

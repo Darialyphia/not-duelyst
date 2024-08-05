@@ -18,7 +18,8 @@ export type Direction = Values<typeof DIRECTION>;
 
 export const TERRAINS = {
   GROUND: 'ground',
-  WATER: 'water'
+  WATER: 'water',
+  EMPTY: 'empty'
 } as const;
 
 export type Terrain = Values<typeof TERRAINS>;

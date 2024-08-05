@@ -185,22 +185,35 @@ export const testMap: SerializedGameState['map'] = {
   player1StartPosition: { x: 0, y: 2, z: 3 },
   player2StartPosition: { x: 8, y: 2, z: 3 },
   cells: [
-    ...makePlane(9, 5, 0, 'dirt'),
+    ...makePlane(9, 5, 0, 'dirt-edge'),
     ...makePlane(9, 5, 1, 'dirt'),
     ...makePlane(9, 5, 2, 'dirt'),
     ...makeColumn(0, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(1, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(2, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(3, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(4, 3, ['grass', 'grass', 'grass', 'grass', 'grass'], {
-      0: 'gold_coin',
-      4: 'gold_coin'
-    }),
-    ...makeColumn(5, 3, ['grass', 'grass', 'grass', 'grass', 'grass'], {
-      2: 'gold_coin'
-    }),
+    ...makeColumn(4, 3, ['dirt', 'grass', 'grass', 'grass', 'dirt']),
+    ...makeColumn(5, 3, ['grass', 'grass', 'dirt', 'grass', 'grass']),
     ...makeColumn(6, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
     ...makeColumn(7, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
-    ...makeColumn(8, 3, ['grass', 'grass', 'grass', 'grass', 'grass'])
+    ...makeColumn(8, 3, ['grass', 'grass', 'grass', 'grass', 'grass']),
+    {
+      position: { x: 4, y: 0, z: 4 },
+      spriteId: 'grass',
+      terrain: TERRAINS.GROUND,
+      tileBlueprintId: 'gold_coin'
+    },
+    {
+      position: { x: 4, y: 4, z: 4 },
+      spriteId: 'grass',
+      terrain: TERRAINS.GROUND,
+      tileBlueprintId: 'gold_coin'
+    },
+    {
+      position: { x: 5, y: 2, z: 4 },
+      spriteId: 'grass',
+      terrain: TERRAINS.GROUND,
+      tileBlueprintId: 'gold_coin'
+    }
   ]
 };

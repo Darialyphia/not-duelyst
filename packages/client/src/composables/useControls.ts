@@ -111,3 +111,42 @@ export const useGameControls = () => {
     onCleanup(cleanup);
   });
 };
+
+export const useMapEditorControls = () => {
+  const { camera } = useMapEditor();
+
+  const { settings } = useUserSettings();
+
+  watchEffect(onCleanup => {
+    const controls = settings.value.bindings;
+
+    const isMatch = (e: KeyboardEvent, id: ControlId) => {
+      const control = controls.find(c => c.id === id)!.control;
+      if (e.code !== control.key) return false;
+      const match =
+        (control.modifier === null && !e.shiftKey && !e.ctrlKey && !e.altKey) ||
+        (control.modifier == 'shift' && e.shiftKey) ||
+        (control.modifier == 'alt' && e.altKey) ||
+        (control.modifier == 'ctrl' && e.ctrlKey);
+
+      if (match) {
+        e.preventDefault();
+      }
+      return match;
+    };
+
+    const cleanup = useEventListener('keydown', e => {
+      if (e.repeat) return;
+
+      if (isMatch(e, 'rotateMapLeft')) {
+        camera.rotateCCW();
+      }
+
+      if (isMatch(e, 'rotateMapRight')) {
+        camera.rotateCW();
+      }
+    });
+
+    onCleanup(cleanup);
+  });
+};

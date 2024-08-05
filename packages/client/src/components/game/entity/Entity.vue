@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type EntityId } from '@game/sdk';
+import { Entity, type EntityId } from '@game/sdk';
 import { Container } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
 
@@ -39,15 +39,23 @@ const onEnter = (container: Container) => {
 
 const alpha = ref(1);
 
+const checkFlip = (attacker: Entity, target: Entity) => {
+  if (attacker.player.isPlayer1) {
+    if (target.position.x === entity.value.position.x) {
+      return attacker.position.y < target.position.y;
+    }
+    return attacker.position.x > target.position.x;
+  } else {
+    if (target.position.x === entity.value.position.x) {
+      return attacker.position.y > target.position.y;
+    }
+    return attacker.position.x < target.position.x;
+  }
+};
+
 useSessionEvent('entity:before_deal_damage', ([{ entity: attacker, target }]) => {
   if (!attacker.equals(entity.value)) return;
-  if (target.position.x === entity.value.position.x) {
-    shouldFlip.value = entity.value.player.isPlayer1;
-  } else if (entity.value.player.isPlayer1) {
-    shouldFlip.value = target.position.x < entity.value.position.x;
-  } else {
-    shouldFlip.value = target.position.x > entity.value.position.x;
-  }
+  shouldFlip.value = checkFlip(attacker, target);
 });
 useSessionEvent('entity:after_attack', () => {
   shouldFlip.value = false;
@@ -71,25 +79,21 @@ useSessionEvent('entity:before_destroy', ([event]) => {
     <container
       :ref="
         (container: any) => {
-          if (container?.parent) {
-            fx.registerEntityRootContainer(entity.id, container.parent);
-          }
+          if (!container?.parent) return;
+
+          fx.registerEntityRootContainer(entity.id, container.parent);
         }
       "
       :alpha="alpha"
     >
-      <container>
-        <EntityShadow :entity-id="entityId" :scale-x="scaleX" />
+      <EntityShadow :entity-id="entityId" :scale-x="scaleX" />
+      <EntityOrientationIndicator :entity-id="entityId" />
 
-        <PTransition appear @enter="onEnter">
-          <container>
-            <EntityOrientationIndicator :entity-id="entityId" />
-            <EntitySprite :entity-id="entityId" :scale-x="scaleX" />
-            <EntitySimulationResult :entity-id="entityId" />
-          </container>
-        </PTransition>
-      </container>
+      <PTransition appear @enter="onEnter">
+        <EntitySprite :entity-id="entityId" :scale-x="scaleX" />
+      </PTransition>
 
+      <EntitySimulationResult :entity-id="entityId" />
       <EntityVFX :entity-id="entityId" />
 
       <EntityStats v-if="areStatsDisplayed" :entity-id="entityId" />

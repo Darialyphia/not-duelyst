@@ -4,17 +4,19 @@ import { Icon } from '@iconify/vue';
 
 const checked = defineModel<boolean>('checked', { required: true });
 
-const props = defineProps<Omit<CheckboxRootProps, 'checked'>>();
+const props = defineProps<Omit<CheckboxRootProps, 'checked' | 'asChild'>>();
 </script>
 
 <template>
   <label>
-    <CheckboxRoot v-model:checked="checked" class="root" v-bind="props">
-      <CheckboxIndicator class="inner">
-        <Icon icon="radix-icons:check" />
-      </CheckboxIndicator>
+    <CheckboxRoot v-model:checked="checked" as-child v-bind="props">
+      <div class="root">
+        <CheckboxIndicator class="inner">
+          <Icon icon="radix-icons:check" />
+        </CheckboxIndicator>
+      </div>
     </CheckboxRoot>
-    <span class="Label">Accept terms and conditions.</span>
+    <span class="label"><slot /></span>
   </label>
 </template>
 
@@ -27,9 +29,8 @@ const props = defineProps<Omit<CheckboxRootProps, 'checked'>>();
   width: 25px;
   height: 25px;
 
-  background-color: white;
+  border: solid 1px var(--primary);
   border-radius: 4px;
-  box-shadow: 0 2px 10px var(--black-a7);
   &:hover {
     background-color: var(--grass-3);
   }
@@ -45,8 +46,10 @@ const props = defineProps<Omit<CheckboxRootProps, 'checked'>>();
 
 label {
   display: flex;
+  gap: var(--size-2);
   align-items: center;
+
   line-height: 1;
-  color: var(--gray-11);
+  color: white;
 }
 </style>

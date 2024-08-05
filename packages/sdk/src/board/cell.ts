@@ -21,6 +21,7 @@ export class Cell implements Serializable {
   public tile: Nullable<Tile>;
   public terrain: Terrain;
   public defaultRotation: 0 | 90 | 180 | 270;
+
   constructor(
     private session: GameSession,
     public options: SerializedCell

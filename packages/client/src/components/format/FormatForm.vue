@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { formatConfigValidator } from '@game/api/src/convex/formats/format.utils';
 import { type GameSessionConfig, type GenericSerializedBlueprint } from '@game/sdk';
+import MapEditorRoot from './mapEditor/MapEditorRoot.vue';
 
 const emit = defineEmits<{ submit: [typeof form] }>();
 const { initialValues } = defineProps<{
@@ -29,6 +30,7 @@ const tab = useRouteQuery('tab', 'config');
 
       <TabsTrigger value="config">Settings</TabsTrigger>
       <TabsTrigger value="cards">Cards</TabsTrigger>
+      <TabsTrigger value="map">Map</TabsTrigger>
 
       <UiFancyButton
         v-model="form.description"
@@ -51,6 +53,10 @@ const tab = useRouteQuery('tab', 'config');
 
     <TabsContent value="cards" class="tab overflow-hidden">
       <FormatCards :format="form" />
+    </TabsContent>
+
+    <TabsContent value="map" class="tab overflow-hidden">
+      <MapEditorRoot />
     </TabsContent>
   </TabsRoot>
 </template>

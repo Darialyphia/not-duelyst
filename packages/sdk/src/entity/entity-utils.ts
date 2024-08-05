@@ -115,9 +115,12 @@ export const getNearest = (
         return { ...point, x: point.x + n };
       })
       .exhaustive();
+    const above = session.boardSystem.getCellAt({ ...newPoint, z: point.z + 1 });
+    const below = session.boardSystem.getCellAt({ ...newPoint, z: point.z - 1 });
     const cell = session.boardSystem.getCellAt(newPoint);
-    if (!cell) break;
-    found = cell.entity;
+    if (!cell && !below && !above) break;
+
+    found = above?.entity ?? cell?.entity ?? below?.entity ?? null;
   }
 
   return found;

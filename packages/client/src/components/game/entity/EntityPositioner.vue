@@ -6,6 +6,7 @@ const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { session, camera } = useGame();
 const entity = useEntity(entityId);
+const { settings } = useUserSettings();
 
 const position = ref(entity.value.position.serialize());
 const isMoving = ref(false);
@@ -14,14 +15,13 @@ const move = (path: Point3D[]) => {
   isMoving.value = true;
   const timeline = gsap.timeline({
     onComplete() {
-      console.log('move complete');
       isMoving.value = false;
     }
   });
   for (const point of path) {
     timeline.to(position.value, {
       ...point,
-      duration: 0.5,
+      duration: settings.value.a11y.reducedMotions ? 0 : 0.5,
       // ease: Power0.easeNone
       ease: Power1.easeOut
     });
@@ -39,10 +39,14 @@ useSessionEvent('entity:before_move', ([event]) => {
     });
   });
 });
-useSessionEvent('entity:after_move', () => {
+useSessionEvent('entity:after_move', ([event]) => {
+  if (!event.entity.equals(entity.value)) return Promise.resolve();
+
   position.value = entity.value.position.serialize();
 });
-useSessionEvent('entity:after_teleport', () => {
+useSessionEvent('entity:after_teleport', ([event]) => {
+  if (!event.entity.equals(entity.value)) return Promise.resolve();
+
   position.value = entity.value.position.serialize();
 });
 </script>

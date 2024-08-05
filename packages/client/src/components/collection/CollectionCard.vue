@@ -8,7 +8,12 @@ defineOptions({
   inheritAttrs: false
 });
 
-const { canAddToLoadout, animated, isEditingLoadout, card } = defineProps<{
+const {
+  canAddToLoadout,
+  animated = true,
+  isEditingLoadout,
+  card
+} = defineProps<{
   canAddToLoadout: boolean;
   isEditingLoadout: boolean;
   card: {
