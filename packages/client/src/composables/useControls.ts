@@ -113,7 +113,7 @@ export const useGameControls = () => {
 };
 
 export const useMapEditorControls = () => {
-  const { camera } = useMapEditor();
+  const { camera, tool } = useMapEditor();
 
   const { settings } = useUserSettings();
 
@@ -144,6 +144,20 @@ export const useMapEditorControls = () => {
 
       if (isMatch(e, 'rotateMapRight')) {
         camera.rotateCW();
+      }
+
+      if (e.code === 'ShiftLeft') {
+        const prevTool = tool.value;
+        tool.value = 'move';
+        window.addEventListener(
+          'keyup',
+          e => {
+            if (e.code === 'ShiftLeft') {
+              tool.value = prevTool;
+            }
+          },
+          { once: true }
+        );
       }
     });
 

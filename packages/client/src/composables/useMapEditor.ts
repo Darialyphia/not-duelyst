@@ -20,9 +20,10 @@ export type MapEditorContext = {
   removeLayer(floor: number): void;
   getLayer(floor: number): MapEditorLayer | undefined;
   terrain: Ref<Terrain>;
-  tool: Ref<'add' | 'remove' | 'move'>;
+  tool: Ref<'add' | 'remove' | 'move' | 'p1Start' | 'p2Start' | 'tile'>;
   isPainting: Ref<boolean>;
   selectedLayer: Ref<number>;
+  tileId: Ref<string>;
 };
 
 export const MAP_EDITOR_INJECTION_KEY = Symbol(
@@ -122,7 +123,6 @@ export const useMapEditorProvider = () => {
       let layer: MapEditorLayer | undefined = ctx.layers.value[0];
       while (layer) {
         z++;
-        console.log(z);
         layer = ctx.layers.value.find(l => l.floor === z);
       }
 
@@ -161,7 +161,8 @@ export const useMapEditorProvider = () => {
     },
     terrain: ref(TERRAINS.GROUND),
     tool: ref('move'),
-    isPainting: ref(false)
+    isPainting: ref(false),
+    tileId: ref('gold_coin')
   };
   provide(MAP_EDITOR_INJECTION_KEY, ctx);
 

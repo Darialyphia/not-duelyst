@@ -8,10 +8,23 @@ import type { MapEditorLayer } from '~/composables/useMapEditor';
 
 const cell = defineModel<Omit<SerializedCell, 'spriteId'>>('cell', { required: true });
 const { layer } = defineProps<{ layer: MapEditorLayer }>();
-const { dimensions, camera, assets, isPainting, tool, selectedLayer, getLayer, terrain } =
-  useMapEditor();
+const {
+  dimensions,
+  camera,
+  assets,
+  isPainting,
+  tool,
+  selectedLayer,
+  getLayer,
+  terrain,
+  player1Position,
+  player2Position,
+  tileId
+} = useMapEditor();
 
 const textures = ref<FrameObject[]>();
+const p1Texture = ref<FrameObject[]>();
+const p2Texture = ref<FrameObject[]>();
 
 const spriteId = computed(() => {
   return match(cell.value.terrain)
@@ -27,12 +40,17 @@ const spriteId = computed(() => {
     })
     .exhaustive();
 });
+
 watchEffect(async () => {
   const spritesheet = await assets.loadSpritesheet(spriteId.value);
+  const p1Spritesheet = await assets.loadSpritesheet('P1-start');
+  const p2Spritesheet = await assets.loadSpritesheet('P2-start');
   textures.value = createSpritesheetFrameObject(
     `${cell.value.defaultRotation ?? 0 + camera.angle.value}`,
     spritesheet
   );
+  p1Texture.value = createSpritesheetFrameObject(`${camera.angle.value}`, p1Spritesheet);
+  p2Texture.value = createSpritesheetFrameObject(`${camera.angle.value}`, p2Spritesheet);
 });
 
 const shape = assets.getHitbox('tile');
@@ -48,12 +66,29 @@ const applyCurrentTool = () => {
     })
     .with('remove', () => {
       cell.value.terrain = TERRAINS.EMPTY;
+      cell.value.tileBlueprintId = null;
     })
     .with('move', () => {
       return;
     })
+    .with('p1Start', () => {
+      player1Position.value = { ...cell.value.position };
+    })
+    .with('p2Start', () => {
+      player2Position.value = { ...cell.value.position };
+    })
+    .with('tile', () => {
+      cell.value.tileBlueprintId = tileId.value;
+    })
     .exhaustive();
 };
+
+const isP1Start = computed(() =>
+  Vec3.fromPoint3D(cell.value.position).equals(player1Position.value)
+);
+const isP2Start = computed(() =>
+  Vec3.fromPoint3D(cell.value.position).equals(player2Position.value)
+);
 </script>
 
 <template>
@@ -63,7 +98,7 @@ const applyCurrentTool = () => {
     :height="dimensions.y.value"
     :angle="camera.angle.value"
     :animated="false"
-    :alpha="layer.isVisible ? 1 : 0.1"
+    :alpha="layer.isVisible ? 1 : 0.25"
     :event-mode="selectedLayer === layer.floor ? 'static' : 'none'"
     @pointerenter="
       () => {
@@ -87,5 +122,25 @@ const applyCurrentTool = () => {
       :hit-area="hitArea"
       :y="-14"
     />
+    <animated-sprite
+      v-if="p1Texture && isP1Start"
+      :textures="p1Texture"
+      :anchor="0.5"
+      :y="-14"
+      event-mode="none"
+    />
+    <animated-sprite
+      v-if="p2Texture && isP2Start"
+      :textures="p2Texture"
+      :anchor="0.5"
+      :y="-14"
+      event-mode="none"
+    />
   </IsoPositioner>
+
+  <MapEditorTile
+    v-if="cell.tileBlueprintId"
+    :position="cell.position"
+    :tile-id="cell.tileBlueprintId"
+  />
 </template>

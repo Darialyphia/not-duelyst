@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { formatConfigValidator } from '@game/api/src/convex/formats/format.utils';
 import { type GameSessionConfig, type GenericSerializedBlueprint } from '@game/sdk';
-import MapEditorRoot from './mapEditor/MapEditorRoot.vue';
 
 const emit = defineEmits<{ submit: [typeof form] }>();
 const { initialValues } = defineProps<{
@@ -121,12 +119,11 @@ fieldset {
   */
   position: relative;
 
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
   gap: var(--size-4);
 
+  height: 100dvh;
   padding: 0;
 
   border: none;
@@ -173,14 +170,12 @@ p {
 }
 
 .tab {
-  height: 100%;
   padding: var(--size-4);
   padding-bottom: 0;
 }
 
 .config-tab {
   overflow: auto;
-  height: 100%;
 
   > div {
     width: var(--size-md);

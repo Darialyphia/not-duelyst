@@ -35,6 +35,7 @@ const cursors = {
 };
 
 const canvas = ref<HTMLCanvasElement>();
+const pixiRoot = ref<HTMLElement>();
 const assets = useAssets();
 onMounted(async () => {
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
@@ -42,8 +43,8 @@ onMounted(async () => {
   // and we can forward the providers to it
   const pixiApp = new Application({
     view: canvas.value,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    resizeTo: pixiRoot.value!,
+    height: 600,
     autoDensity: true,
     antialias: false
     // backgroundAlpha: 0
@@ -83,7 +84,7 @@ onMounted(async () => {
 
 <template>
   <div class="map-editor">
-    <aside>
+    <aside class="fancy-scrollbar">
       <h3>Dimensions</h3>
       <div class="flex items-center gap-3">
         <div class="flex items-center gap-2">
@@ -118,7 +119,7 @@ onMounted(async () => {
             @click="editor.tool.value = 'move'"
           />
         </UiSimpleTooltip>
-        <UiSimpleTooltip text="Add tiles">
+        <UiSimpleTooltip text="Add terrain">
           <UiIconButton
             name="material-symbols:edit"
             class="primary-button"
@@ -127,7 +128,7 @@ onMounted(async () => {
           />
         </UiSimpleTooltip>
 
-        <UiSimpleTooltip text="Remove tiles">
+        <UiSimpleTooltip text="Remove terrain">
           <UiIconButton
             name="mdi:eraser"
             class="primary-button"
@@ -135,17 +136,56 @@ onMounted(async () => {
             @click="editor.tool.value = 'remove'"
           />
         </UiSimpleTooltip>
+
+        <UiSimpleTooltip text="Add special tile">
+          <UiIconButton
+            name="ph:tree-palm"
+            class="primary-button"
+            :class="editor.tool.value === 'tile' && 'selected'"
+            @click="editor.tool.value = 'tile'"
+          />
+        </UiSimpleTooltip>
+
+        <UiSimpleTooltip text="place Player 1 start position">
+          <UiButton
+            class="primary-button"
+            :class="editor.tool.value === 'p1Start' && 'selected'"
+            @click="editor.tool.value = 'p1Start'"
+          >
+            P2
+          </UiButton>
+        </UiSimpleTooltip>
+
+        <UiSimpleTooltip text="place Player 2 start position">
+          <UiButton
+            class="primary-button"
+            :class="editor.tool.value === 'p2Start' && 'selected'"
+            @click="editor.tool.value = 'p2Start'"
+          >
+            P1
+          </UiButton>
+        </UiSimpleTooltip>
       </div>
 
       <h3>Terrain</h3>
-      <label>
-        <input v-model="editor.terrain.value" type="radio" :value="TERRAINS.GROUND" />
-        Ground
-      </label>
-      <label>
-        <input v-model="editor.terrain.value" type="radio" :value="TERRAINS.WATER" />
-        Water
-      </label>
+      <div class="flex gap-2">
+        <label class="tile" style="--bg: url('/assets/tiles/grass.png')">
+          <input
+            v-model="editor.terrain.value"
+            type="radio"
+            :value="TERRAINS.GROUND"
+            class="sr-only"
+          />
+        </label>
+        <label class="tile" style="--bg: url('/assets/tiles/water.png')">
+          <input
+            v-model="editor.terrain.value"
+            type="radio"
+            :value="TERRAINS.WATER"
+            class="sr-only"
+          />
+        </label>
+      </div>
       <h3>Floors</h3>
       <ul>
         <li
@@ -174,32 +214,33 @@ onMounted(async () => {
         Add Layer
       </UiButton>
     </aside>
-    <canvas ref="canvas" />
+    <div ref="pixiRoot">
+      <canvas ref="canvas" />
+    </div>
   </div>
 </template>
 
 <style scoped lang="postcss">
 .map-editor {
   cursor: v-bind('cursors.default');
-  user-select: none;
-
-  position: relative;
-  transform-style: preserve-3d;
 
   overflow: hidden;
   display: grid;
   grid-template-columns: var(--size-xs) 1fr;
-  gap: var(--size-6);
 
   height: 100%;
 
-  color: var(--gray-0);
-
-  perspective: 1200px;
-
   image-rendering: pixelated;
+  > div {
+    overflow: hidden;
+  }
 }
 
+aside {
+  overflow: auto;
+  height: 100%;
+  padding-inline-end: var(--size-4);
+}
 h3 {
   margin-block: var(--size-5) var(--size-3);
   &:first-of-type {
@@ -209,6 +250,8 @@ h3 {
 
 .toolbar {
   --ui-icon-button-size: var(--font-size-4);
+  --ui-button-size: var(--font-size-0);
+  --ui-button-radius: var(--radius-round);
 
   display: flex;
   gap: var(--size-3);
@@ -234,6 +277,20 @@ li {
 
   &.selected {
     background-color: hsl(var(--color-primary-hsl) / 0.3);
+  }
+}
+
+.tile {
+  display: block;
+
+  width: 96px;
+  height: 96px;
+
+  background: var(--bg);
+  border: solid var(--border-size-2) transparent;
+
+  &:has(input:checked) {
+    border-color: var(--primary);
   }
 }
 </style>

@@ -35,14 +35,12 @@ const initialValues = computed(() => {
 </script>
 
 <template>
-  <div class="page">
-    <div v-if="isLoading">Loading format...</div>
-    <FormatForm
-      v-else-if="format"
-      :initial-values="initialValues"
-      @submit="updateFormat({ id: format._id, ...$event })"
-    />
-  </div>
+  <div v-if="isLoading">Loading format...</div>
+  <FormatForm
+    v-else-if="format"
+    :initial-values="initialValues"
+    @submit="updateFormat({ id: format._id, ...$event })"
+  />
 </template>
 
 <style lang="postcss">
