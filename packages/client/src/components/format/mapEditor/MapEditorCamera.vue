@@ -68,11 +68,6 @@ until(camera.viewport)
       .wheel({ smooth: 5, percent: 0.25 })
       .clampZoom({ minScale: 1, maxScale: 3 })
       .setZoom(2, false)
-      .mouseEdges({
-        distance: 10,
-        speed: 15,
-        allowButtons: true
-      })
       .pinch()
       .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });

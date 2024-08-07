@@ -28,15 +28,14 @@ export {
 export type {
   WidenedGenericCardEffect,
   InitAction,
-  Trigger,
   Filter,
   ExecutionContext,
   Action,
-  Amount,
   NumericOperator,
-  CardEffectConfig,
-  TriggerFrequency
+  CardEffectConfig
 } from './card/card-effect';
+export type { Amount } from './card/helpers/amount';
+export type { Trigger, TriggerFrequency } from './card/card-action-triggers';
 export type { CardTargetsConfig } from './card/card-targets';
 export type {
   UnitConditionBase,

@@ -3,9 +3,87 @@ import { match } from 'ts-pattern';
 import type { Entity } from '../../entity/entity';
 import type { GameSession } from '../../game-session';
 import type { Card } from '../card';
-import type { Amount } from '../card-effect';
-import { getPlayers } from '../conditions/player-condition';
-import { type UnitConditionExtras, getUnits } from '../conditions/unit-conditions';
+import { getPlayers, type PlayerCondition } from '../conditions/player-condition';
+import {
+  type UnitConditionBase,
+  type UnitConditionExtras,
+  getUnits
+} from '../conditions/unit-conditions';
+import type { ConditionOverrides, Filter } from '../card-effect';
+
+export type Amount<T extends ConditionOverrides> =
+  | {
+      type: 'fixed';
+      params: { value: number };
+    }
+  | {
+      type: 'cards_in_hands';
+      params: { player: Filter<PlayerCondition> };
+    }
+  | {
+      type: 'attack';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'lowest_attack';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'highest_attack';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'maxHp';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'hp';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'lowest_hp';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'highest_hp';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    }
+  | {
+      type: 'cost';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+      };
+    };
 
 export const getAmount = ({
   amount,

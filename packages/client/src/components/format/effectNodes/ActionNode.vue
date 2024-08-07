@@ -295,6 +295,18 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  change_replaces_count: {
+    label: 'Change max card replaces',
+    params: {
+      mode: null,
+      amount: AmountNode,
+      player: PlayerNode,
+      duration: null,
+      stackable: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -417,28 +429,36 @@ watch(
         params.filter ??= [];
         params.execute ??= 'now';
         params.amount ??= { type: undefined } as any;
-        params.card = [[{ type: undefined as any }]];
-        params.player = [[{ type: undefined as any }]];
-        params.occurences_count = 0;
-        params.duration = 'always';
+        params.card ??= [[{ type: undefined as any }]];
+        params.player ??= [[{ type: undefined as any }]];
+        params.occurences_count ??= 0;
+        params.duration ??= 'always';
       })
       .with({ type: 'generate_card' }, ({ params }) => {
         params.filter ??= [];
         params.execute ??= 'now';
-        params.ephemeral = false;
-        params.location = 'hand';
+        params.ephemeral ??= false;
+        params.location ??= 'hand';
         params.player ??= [[{ type: undefined as any }]];
         params.blueprint ??= undefined as any;
       })
       .with({ type: 'teleport_unit' }, ({ params }) => {
-        params.unit = [[{ type: undefined as any }]];
-        params.cell = [[{ type: undefined as any }]];
+        params.unit ??= [[{ type: undefined as any }]];
+        params.cell ??= [[{ type: undefined as any }]];
         params.filter ??= [];
         params.execute ??= 'now';
       })
       .with({ type: 'swap_units' }, ({ params }) => {
-        params.unit1 = [[{ type: undefined as any }]];
-        params.unit2 = [[{ type: undefined as any }]];
+        params.unit1 ??= [[{ type: undefined as any }]];
+        params.unit2 ??= [[{ type: undefined as any }]];
+        params.filter ??= [];
+        params.execute ??= 'now';
+      })
+      .with({ type: 'change_replaces_count' }, ({ params }) => {
+        params.player ??= [[{ type: undefined as any }]];
+        params.amount ??= { type: undefined } as any;
+        params.duration ??= 'always';
+        params.stackable ??= true;
         params.filter ??= [];
         params.execute ??= 'now';
       })

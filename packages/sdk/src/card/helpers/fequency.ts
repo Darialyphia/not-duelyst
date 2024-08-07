@@ -1,4 +1,4 @@
-import type { TriggerFrequency } from '../card-effect';
+import type { TriggerFrequency } from '../card-action-triggers';
 
 export const nTimesPerTurn = (n: number): TriggerFrequency => {
   return {

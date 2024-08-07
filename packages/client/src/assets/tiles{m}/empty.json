@@ -50,7 +50,7 @@
    { "name": "270", "from": 3, "to": 3, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "Layer 3", "opacity": 79, "blendMode": "normal" }
+   { "name": "Layer 3", "opacity": 135, "blendMode": "normal" }
   ],
   "slices": [
   ]

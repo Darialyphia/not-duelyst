@@ -9,15 +9,15 @@ export const nearestAllDirections = <T extends UnitConditionExtras['type']>(
   originConditions: Filter<UnitConditionBase | Extract<UnitConditionExtras, { type: T }>>
 ): Filter<UnitConditionBase> => {
   return [
-    [{ type: 'is_nearest_above', params: { unit: originConditions } }],
-    [{ type: 'is_nearest_below', params: { unit: originConditions } }],
+    [{ type: 'is_nearest_above', params: { unit: originConditions, not: false } }],
+    [{ type: 'is_nearest_below', params: { unit: originConditions, not: false } }],
     [
       {
         type: 'is_nearest_in_front',
-        params: { unit: originConditions }
+        params: { unit: originConditions, not: false }
       }
     ],
-    [{ type: 'is_nearest_behind', params: { unit: originConditions } }]
+    [{ type: 'is_nearest_behind', params: { unit: originConditions, not: false } }]
   ];
 };
 
@@ -30,26 +30,38 @@ export const manualTarget = (index: number): Filter<UnitConditionBase> => {
     [
       {
         type: 'is_manual_target',
-        params: { index }
+        params: { index, not: false }
       }
     ]
   ];
 };
 
 export const allyGeneral = (): Filter<UnitConditionBase> => [
-  [{ type: 'is_ally' }, { type: 'is_general' }]
+  [
+    { type: 'is_ally', params: { not: false } },
+    { type: 'is_general', params: { not: false } }
+  ]
 ];
 
 export const allyMinion = (): Filter<UnitConditionBase> => [
-  [{ type: 'is_ally' }, { type: 'is_minion' }]
+  [
+    { type: 'is_ally', params: { not: false } },
+    { type: 'is_minion', params: { not: false } }
+  ]
 ];
 
 export const enemyGeneral = (): Filter<UnitConditionBase> => [
-  [{ type: 'is_enemy' }, { type: 'is_general' }]
+  [
+    { type: 'is_enemy', params: { not: false } },
+    { type: 'is_general', params: { not: false } }
+  ]
 ];
 
 export const enemyMinion = (): Filter<UnitConditionBase> => [
-  [{ type: 'is_enemy' }, { type: 'is_minion' }]
+  [
+    { type: 'is_enemy', params: { not: false } },
+    { type: 'is_minion', params: { not: false } }
+  ]
 ];
 
 export const anyOccupiedCell = (): Filter<CellConditionBase> => [
@@ -60,7 +72,7 @@ export const cellWithAnyMinion = (): Filter<CellConditionBase> => [
   [
     {
       type: 'has_unit',
-      params: { unit: [[{ type: 'is_minion' }]] }
+      params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
     }
   ]
 ];

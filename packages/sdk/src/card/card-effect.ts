@@ -12,6 +12,8 @@ import type {
 } from './conditions/unit-conditions';
 import type { CellCondition } from './conditions/cell-conditions';
 import type { CardKind } from './card-enums';
+import type { Trigger, TriggerFrequency } from './card-action-triggers';
+import type { Amount } from './helpers/amount';
 
 export type Filter<T> = T[][];
 
@@ -21,260 +23,6 @@ export type ConditionOverrides = {
   unit?: UnitCondition['type'];
   card?: CardCondition['type'];
 };
-
-export type TriggerFrequency =
-  | {
-      type: 'always';
-    }
-  | { type: 'once' }
-  | { type: 'n_per_turn'; params: { count: number } };
-
-export type Trigger =
-  | {
-      type: 'on_before_unit_move';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_move';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_teleport';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_teleport';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_deal_damage';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_deal_damage';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_take_damage';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_take_damage';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_attack';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_attack';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_healed';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_healed';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_retaliate';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_retaliate';
-      params: {
-        frequency: TriggerFrequency;
-        target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_unit_play';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_before_unit_destroyed';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_after_unit_destroyed';
-      params: {
-        frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-      };
-    }
-  | {
-      type: 'on_player_turn_start';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_player_turn_end';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_before_player_draw';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_after_player_draw';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_before_player_replace';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_after_player_replace';
-      params: { frequency: TriggerFrequency; player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'on_before_card_played';
-      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
-    }
-  | {
-      type: 'on_after_card_played';
-      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
-    }
-  | {
-      type: 'on_card_drawn';
-      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
-    }
-  | {
-      type: 'on_card_replaced';
-      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
-    }
-  | {
-      type: 'on_artifact_equiped';
-      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
-    };
-
-export type Amount<T extends ConditionOverrides> =
-  | {
-      type: 'fixed';
-      params: { value: number };
-    }
-  | {
-      type: 'cards_in_hands';
-      params: { player: Filter<PlayerCondition> };
-    }
-  | {
-      type: 'attack';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'lowest_attack';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'highest_attack';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'maxHp';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'hp';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'lowest_hp';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'highest_hp';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    }
-  | {
-      type: 'cost';
-      params: {
-        unit: Filter<
-          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
-        >;
-      };
-    };
 
 export type Action<
   T extends ConditionOverrides = {
@@ -509,19 +257,19 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'change_replaces_count';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        mode: 'give' | 'set';
+        amount: Amount<T>;
+        player: Filter<PlayerCondition>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        stackable: boolean;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
-// | {
-//     type: 'change_replaces_count';
-//     params: {
-//       filter?: Filter<GlobalCondition<T>>;
-//       mode: 'give' | 'set';
-//       amount: Amount<T>;
-//       player: Filter<PlayerCondition>;
-//       frequency: TriggerFrequency;
-//       stackable: boolean;
-//       execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
-//     };
-//   };
 
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
@@ -578,7 +326,7 @@ export type OverridesFromTrigger<T extends Trigger[]> = {
 export type CardEffectConfig<T extends Trigger[]> =
   | { executionContext: 'on_init'; actions: InitAction[] }
   | {
-      executionContext: 'immediate';
+      executionContext: 'immediate' | 'while_on_board';
       actions: Action[];
     }
   | {

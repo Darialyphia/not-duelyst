@@ -34,9 +34,13 @@ const spriteId = computed(() => {
       const layerAbove = getLayer(cell.value.position.z + 1);
       if (!layerAbove) return 'grass';
       const cellAbove = layerAbove.cells.find(c =>
-        Vec3.fromPoint3D(cell.value.position).equals(c.position)
+        Vec3.fromPoint3D({ ...cell.value.position, z: cell.value.position.z + 1 }).equals(
+          c.position
+        )
       );
-      return cellAbove ? 'dirt' : 'grass';
+      if (!cellAbove) return 'grass';
+
+      return cellAbove.terrain === TERRAINS.EMPTY ? 'grass' : 'dirt';
     })
     .exhaustive();
 });
@@ -89,6 +93,13 @@ const isP1Start = computed(() =>
 const isP2Start = computed(() =>
   Vec3.fromPoint3D(cell.value.position).equals(player2Position.value)
 );
+
+const alpha = computed(() => {
+  const isSelected = cell.value.position.z === selectedLayer.value;
+  if (!isSelected && cell.value.terrain === TERRAINS.EMPTY) return 0;
+
+  return layer.isVisible ? 1 : 0.25;
+});
 </script>
 
 <template>
@@ -98,7 +109,6 @@ const isP2Start = computed(() =>
     :height="dimensions.y.value"
     :angle="camera.angle.value"
     :animated="false"
-    :alpha="layer.isVisible ? 1 : 0.25"
     :event-mode="selectedLayer === layer.floor ? 'static' : 'none'"
     @pointerenter="
       () => {
@@ -120,6 +130,7 @@ const isP2Start = computed(() =>
       :textures="textures"
       :anchor="0.5"
       :hit-area="hitArea"
+      :alpha="alpha"
       :y="-14"
     />
     <animated-sprite

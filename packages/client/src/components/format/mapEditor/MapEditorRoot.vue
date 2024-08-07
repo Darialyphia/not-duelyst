@@ -152,7 +152,7 @@ onMounted(async () => {
             :class="editor.tool.value === 'p1Start' && 'selected'"
             @click="editor.tool.value = 'p1Start'"
           >
-            P2
+            P1
           </UiButton>
         </UiSimpleTooltip>
 
@@ -162,7 +162,7 @@ onMounted(async () => {
             :class="editor.tool.value === 'p2Start' && 'selected'"
             @click="editor.tool.value = 'p2Start'"
           >
-            P1
+            P2
           </UiButton>
         </UiSimpleTooltip>
       </div>

@@ -94,9 +94,7 @@ const onMouseDown = (e: MouseEvent, index: number) => {
       v-if="gameType !== GAME_TYPES.SPECTATOR"
       :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
       class="replace-button"
-      :disabled="
-        !isActive || !isDefined(ui.selectedCardIndex.value) || !userPlayer.canReplace
-      "
+      :disabled="!isActive || !userPlayer.canReplace()"
       :class="{ dragging: isDefined(draggedIndex) }"
       @mouseup="
         () => {
@@ -106,7 +104,8 @@ const onMouseDown = (e: MouseEvent, index: number) => {
         }
       "
     >
-      Replace
+      Replace ({{ userPlayer.maxReplaces - userPlayer.cardsReplacedThisTurn }} /
+      {{ userPlayer.maxReplaces }})
     </UiFancyButton>
     <UiFancyButton
       v-if="gameType !== GAME_TYPES.SPECTATOR"

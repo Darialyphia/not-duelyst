@@ -220,6 +220,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   }
 
   canReplace() {
+    console.log(this.maxReplaces);
     return this.cardsReplacedThisTurn < this.maxReplaces;
   }
 

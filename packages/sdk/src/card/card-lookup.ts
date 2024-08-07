@@ -57,6 +57,7 @@ import { f1Magnetize } from './cards/faction_1/magnetize';
 import { f2KageLightning } from './cards/faction_2/kage_lightning';
 import { f2StormKage } from './cards/faction_2/storm_kage';
 import { neutralArakiHeadhunter } from './cards/neutral/araki_headhunter';
+import { neutralAethermaster } from './cards/neutral/aethermaster';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -116,7 +117,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralHealingMystic,
   neutralRiftWalker,
   neutralPrimusShieldMaster,
-  neutralArakiHeadhunter
+  neutralArakiHeadhunter,
+  neutralAethermaster
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

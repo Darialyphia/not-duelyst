@@ -23,7 +23,7 @@ import {
   modifierGameEventMixin
 } from '../modifier/mixins/game-event.mixin';
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
-import type { Action, GenericCardEffect, Trigger, TriggerFrequency } from './card-effect';
+import type { Action, GenericCardEffect } from './card-effect';
 import { parseTargets } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
@@ -34,6 +34,7 @@ import { CARDS } from './card-lookup';
 import type { Card } from './card';
 import { getCells } from './conditions/cell-conditions';
 import { Unit } from './unit';
+import type { TriggerFrequency, Trigger } from './card-action-triggers';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -154,6 +155,32 @@ export const parseSerializedBlueprintEffect = (
             cleanups.push(await action(ctx, {}));
           }
           return () => cleanups.forEach(c => c());
+        }
+      }
+    ])
+    .with({ executionContext: 'while_on_board' }, config => [
+      {
+        async onPlay(ctx: EffectCtx) {
+          const cleanups: Array<() => void> = [];
+          const entity = getEffectCtxEntity(ctx);
+          const modifier = whileOnBoard({
+            source: ctx.card,
+            entity,
+            async onApplied() {
+              const actions = config.actions.map(parseCardAction);
+
+              for (const action of actions) {
+                cleanups.push(await action(ctx, {}));
+              }
+            },
+            onRemoved() {
+              cleanups.forEach(c => c());
+            }
+          });
+
+          return () => {
+            return;
+          };
         }
       }
     ])
@@ -913,7 +940,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
               whileEquipped({ artifact: ctx.artifact!, modifier: entityModifier });
             });
           })
-          .with('immediate', async () => {
+          .with('immediate', 'while_on_board', async () => {
             for (const action of effect.actions) {
               await action.onPlay?.(ctx);
             }

@@ -25,6 +25,7 @@ import { GenerateCardCardAction } from './actions/generate-card.card-action';
 import { TeleportCardAction } from './actions/teleport.card-action';
 import { SwapUnitsCardAction } from './actions/swapUnits.card-action';
 import { CelerityCardAction } from './actions/celerity.card-action';
+import { ChangeReplaceCountCardAction } from './actions/change-replaces-count.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -111,6 +112,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'swap_units' }, action => {
         return new SwapUnitsCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'change_replaces_count' }, action => {
+        return new ChangeReplaceCountCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };
