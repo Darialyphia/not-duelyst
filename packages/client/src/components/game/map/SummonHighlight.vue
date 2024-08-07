@@ -18,7 +18,9 @@ const isMatch = (cellToTest: Cell) => {
   return ui.selectedCard.value.canPlayAt(cellToTest.position);
 };
 
-const isEnabled = computed(() => !fx.isPlaying.value && isMatch(cell.getCell()));
+const isEnabled = computed(() => {
+  return !fx.isPlaying.value && isMatch(cell.getCell());
+});
 
 const bitmask = computed(() => {
   return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {

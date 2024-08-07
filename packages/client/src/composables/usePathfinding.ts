@@ -1,12 +1,13 @@
-import type { Entity, EntityId, GameSession } from '@game/sdk';
+import type { Cell, CellId, Entity, EntityId, GameSession } from '@game/sdk';
 import type { DistanceMap } from '@game/sdk/src/board/pathfinding';
-import { type Nullable, type Point3D, type Vec3 } from '@game/shared';
+import { type Nullable, type Point3D, type Vec3, isDefined } from '@game/shared';
 import type { GameUiContext } from './useGameUi';
 
 export type PathfindingContext = {
   canMoveTo(entity: Entity, position: Point3D): boolean;
   getPath(entity: Entity, to: Point3D, maxDistance: number): Nullable<Vec3[]>;
   canAttackAt(entity: Entity, position: Point3D): boolean;
+  canTarget(cell: Nullable<Cell>): boolean;
   movePath: ComputedRef<Nullable<Vec3[]>>;
 };
 
@@ -16,10 +17,20 @@ const PATHFINDING_INJECTION_KEY = Symbol(
 
 export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) => {
   const cache = new Map<EntityId, DistanceMap>();
+  const targetingCache = new Map<CellId, boolean>();
 
-  session.on('*', () => {
+  session.on('scheduler:flushed', () => {
     cache.clear();
+    targetingCache.clear();
   });
+  watch(
+    [ui.summonTarget, ui.cardTargets, ui.selectedCard],
+    () => {
+      console.log('clearing targeting cache');
+      targetingCache.clear();
+    },
+    { deep: true }
+  );
 
   const api: PathfindingContext = {
     movePath: computed(() => {
@@ -66,6 +77,21 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
       return (
         entity.canMove(distanceMap.get(point)) || entity.canAttackAt(point) || canAttack
       );
+    },
+    canTarget(cellToTest) {
+      if (!cellToTest) return false;
+      if (!targetingCache.has(cellToTest.id)) {
+        targetingCache.set(
+          cellToTest.id,
+          ui.selectedCard.value?.blueprint.targets?.isTargetable(cellToTest, {
+            session,
+            playedPoint: ui.summonTarget.value ?? undefined,
+            card: ui.selectedCard.value,
+            targets: ui.cardTargets.value
+          }) ?? false
+        );
+      }
+      return targetingCache.get(cellToTest.id)!;
     }
   };
 

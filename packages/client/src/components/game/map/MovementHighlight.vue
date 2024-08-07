@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Cell } from '@game/sdk';
-import type { CellId } from '@game/sdk/src/board/cell';
 import { match } from 'ts-pattern';
 
 const { cell } = defineProps<{ cell: CellViewModel }>();
