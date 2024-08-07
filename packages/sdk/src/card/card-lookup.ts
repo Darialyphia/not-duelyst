@@ -58,6 +58,7 @@ import { f2KageLightning } from './cards/faction_2/kage_lightning';
 import { f2StormKage } from './cards/faction_2/storm_kage';
 import { neutralArakiHeadhunter } from './cards/neutral/araki_headhunter';
 import { neutralAethermaster } from './cards/neutral/aethermaster';
+import { f2Widowmaker } from './cards/faction_2/widowmaker';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -113,6 +114,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f2Juxtaposition,
   f2KageLightning,
   f2StormKage,
+  f2Widowmaker,
 
   neutralHealingMystic,
   neutralRiftWalker,
