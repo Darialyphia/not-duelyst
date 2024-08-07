@@ -26,7 +26,6 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
   watch(
     [ui.summonTarget, ui.cardTargets, ui.selectedCard],
     () => {
-      console.log('clearing targeting cache');
       targetingCache.clear();
     },
     { deep: true }

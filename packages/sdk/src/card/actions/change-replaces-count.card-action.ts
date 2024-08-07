@@ -6,7 +6,6 @@ export class ChangeReplaceCountCardAction extends CardAction<'change_replaces_co
     const staticValue = this.getAmount(this.action.params.amount);
 
     return (value: number) => {
-      this.session.logger(this.getAmount(this.action.params.amount));
       return match(this.action.params.mode)
         .with('give', () => value + this.getAmount(this.action.params.amount))
         .with('set', () => staticValue)
@@ -18,12 +17,10 @@ export class ChangeReplaceCountCardAction extends CardAction<'change_replaces_co
     const players = this.getPlayers(this.action.params.player);
 
     const cleanups = players.map(player => {
-      this.session.logger('add interceptor');
       return player.addInterceptor('maxReplaces', this.makeInterceptor());
     });
 
     const stop = () => {
-      this.session.logger('cleanup');
       cleanups.forEach(c => c());
     };
 

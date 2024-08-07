@@ -8,12 +8,12 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
 
     const cleanups = this.getPlayers(this.action.params.player).map(player => {
       const cards = this.getCards(this.action.params.card);
-
       let occurences = 0;
 
       const unsub = player.addInterceptor('cost', (value, card) => {
-        if (card.equals(this.card)) return value;
-        if (!player.hand.includes(card as Card)) return value;
+        if (!player.hand.includes(card as Card)) {
+          return value;
+        }
 
         const isMatch = cards.some(c => c.equals(card as Card));
         if (!isMatch) return value;
@@ -26,7 +26,7 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
         }
 
         const amount = this.getAmount(this.action.params.amount);
-        return value + amount;
+        return Math.max(0, value + amount);
       });
 
       if (this.action.params.occurences_count) {
@@ -51,7 +51,9 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
         caster.once('turn_start', unsub);
       }
 
-      return unsub;
+      return () => {
+        unsub();
+      };
     });
 
     return () => cleanups.forEach(c => c());

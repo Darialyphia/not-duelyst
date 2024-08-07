@@ -55,8 +55,10 @@ export class PlayerSystem {
 
   async addPlayer(player: Player) {
     this.playerMap.set(player.id, player);
-    await player.setup();
+    player.setup();
     this.setupListeners(player);
+    player.placeGeneral();
+    await player.drawStartingHand();
   }
 
   removePlayer(playerId: PlayerId) {

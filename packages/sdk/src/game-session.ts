@@ -36,6 +36,7 @@ import type { CardBlueprint, GenericSerializedBlueprint } from './card/card-blue
 import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
 import { TypedEventEmitter } from './utils/typed-emitter';
+import { nanoid } from 'nanoid';
 
 export type SerializedGameState = {
   map: BoardSystemOptions;
@@ -93,6 +94,8 @@ export type StarEvent<T extends Exclude<GameEvent, '*'> = Exclude<GameEvent, '*'
 export type GameEvent = keyof GameEventMap;
 export type GameEventPayload<T extends GameEvent> = GameEventMap[T];
 
+export type SessionLogger = (message?: any, ...optionalParams: any[]) => void;
+
 export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(
     loadout: SerializedGameState['players'][number]['deck'],
@@ -137,24 +140,25 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
 
   winnerId: Nullable<string> = null;
 
-  logger = console.log;
-
+  id: string;
   protected constructor(
     protected initialState: SerializedGameState,
     public rngSystem: RngSystem,
     public fxSystem: FXSystem,
+    public logger: SessionLogger,
     options: {
       winnerId?: string;
       format: GameFormat;
     }
   ) {
     super();
+    this.id = nanoid(6);
     this.format = options.format;
     this.config = options.format.config;
     this.cardBlueprints = Object.fromEntries(
       Object.entries(options.format.cards).map(([key, value]) => [
         key,
-        parseSerializeBlueprint(value, options.format)
+        parseSerializeBlueprint(value, options.format, { noCache: true })
       ])
     );
     this.winnerId = options.winnerId;
@@ -174,7 +178,7 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
       'game:ready'
     ].forEach(eventName => {
       this.on(eventName as any, async event => {
-        // this.logger(`%c[EVENT:${eventName}]`, 'color: #008b8b');
+        // this.logger(`%c[EVENT:${this.id}:${eventName}]`, 'color: #008b8b');
 
         await this.emitAsync('*', { eventName, event } as any);
       });

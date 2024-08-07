@@ -62,7 +62,7 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
   }
 
   protected printError(message: string) {
-    console.log(`%c[${this.name}]`, 'color: red', message);
+    this.session.logger(`%c[${this.name}]`, 'color: red', message);
   }
 
   serialize(): SerializedAction {

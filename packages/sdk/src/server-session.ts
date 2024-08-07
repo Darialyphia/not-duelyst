@@ -1,5 +1,10 @@
 import { noopFXContext, type FXSystem } from './fx-system';
-import { GameSession, type GameFormat, type SerializedGameState } from './game-session';
+import {
+  GameSession,
+  type GameFormat,
+  type SerializedGameState,
+  type SessionLogger
+} from './game-session';
 import type { SerializedAction } from './action/action';
 import { ServerRngSystem, type RngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
@@ -17,6 +22,8 @@ export type SimulationResult = {
     pedestalId: string;
   }>;
 };
+
+const serverLogger: SessionLogger = console.log;
 
 export class ServerSession extends GameSession {
   static create(
@@ -44,7 +51,7 @@ export class ServerSession extends GameSession {
       seed: string;
     }
   ) {
-    super(initialState, rngSystem, fxSystem, options);
+    super(initialState, rngSystem, fxSystem, serverLogger, options);
     this.rngSeed = options.seed;
   }
 
@@ -63,6 +70,7 @@ export class ServerSession extends GameSession {
         { ...this.initialState, history: this.actionSystem.serialize() },
         new ServerRngSystem(this.rngSeed),
         this.fxSystem,
+        () => void 0,
         {
           format: this.format
         }

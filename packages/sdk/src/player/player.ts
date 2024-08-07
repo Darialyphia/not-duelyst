@@ -151,20 +151,17 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     return this.hand.length === this.session.config.MAX_HAND_SIZE;
   }
 
-  async setup() {
+  setup() {
     this.cards = this.options.deck.map((card, index) => {
       return createCard(this.session, card, index, this.id);
     });
-    this.cards.forEach(card => {
-      card.setup();
-    });
+
     this.deck = new Deck(
       this.session,
       this.cards.filter(card => card.blueprint.kind !== CARD_KINDS.GENERAL),
       this.id
     );
     this.deck.shuffle();
-    this.hand = await this.deck.draw(this.session.config.STARTING_HAND_SIZE);
 
     this.deck.on(DECK_EVENTS.BEFORE_DRAW, () =>
       this.emitAsync(PLAYER_EVENTS.BEFORE_DRAW, { player: this })
@@ -182,8 +179,6 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
         replacement
       })
     );
-
-    this.placeGeneral();
 
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
   }
@@ -217,6 +212,10 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
         ? this.session.boardSystem.player1StartPosition
         : this.session.boardSystem.player2StartPosition
     });
+  }
+
+  async drawStartingHand() {
+    this.hand = await this.deck.draw(this.session.config.STARTING_HAND_SIZE);
   }
 
   canReplace() {

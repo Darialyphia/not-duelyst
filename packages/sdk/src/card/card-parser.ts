@@ -163,7 +163,7 @@ export const parseSerializedBlueprintEffect = (
         async onPlay(ctx: EffectCtx) {
           const cleanups: Array<() => void> = [];
           const entity = getEffectCtxEntity(ctx);
-          const modifier = whileOnBoard({
+          whileOnBoard({
             source: ctx.card,
             entity,
             async onApplied() {
@@ -230,6 +230,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
+                  event.blueprintId;
                   return trigger.params.card.length
                     ? getCards({
                         ...ctx,
