@@ -49,18 +49,24 @@ export const getBitMask = (
   const [topLeft, top, topRight, left, center, right, bottomLeft, bottom, bottomRight] =
     rotatedNeighbors.map((_, index) => getCell(index));
 
+  // precompute edges so we dont run the compare function multiple times as bitMasking can be called A LOT in the UI
+  const matchTop = compareFn(top);
+  const matchBottom = compareFn(bottom);
+  const matchLeft = compareFn(left);
+  const matchRight = compareFn(right);
+
   // for a corner to match, both of its sides must match as well
   // see https://gamedevelopment.tutsplus.com/how-to-use-tile-bitmasking-to-auto-tile-your-level-layouts--cms-25673t
   const weight = [
-    compareFn(topLeft) && compareFn(top) && compareFn(left),
-    compareFn(top),
-    compareFn(topRight) && compareFn(top) && compareFn(right),
-    compareFn(left),
+    matchLeft && matchTop && compareFn(topLeft),
+    matchTop,
+    matchRight && matchTop && compareFn(topRight),
+    matchLeft,
     compareFn(center),
-    compareFn(right),
-    compareFn(bottomLeft) && compareFn(bottom) && compareFn(left),
-    compareFn(bottom),
-    compareFn(bottomRight) && compareFn(bottom) && compareFn(right)
+    matchRight,
+    matchLeft && matchBottom && compareFn(bottomLeft),
+    matchBottom,
+    matchRight && matchBottom && compareFn(bottomRight)
   ].reduce((weight, match, index) => {
     return match ? weight + weights[index] : weight;
   }, 0);

@@ -56,11 +56,13 @@ const isMatch = (cellToTest: Cell) => {
 const isEnabled = computed(() => !fx.isPlaying.value && !!isMatch(cell.getCell()));
 
 const bitmask = computed(() => {
-  return getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
+  const res = getBitMask(session, cell.getCell(), camera.angle.value, neighbor => {
     if (!neighbor) return false;
 
     return !!isMatch(neighbor);
   });
+
+  return res;
 });
 
 const sheet = computed(() => {

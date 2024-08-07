@@ -43,6 +43,20 @@ export class Cell implements Serializable {
     return cell.id === this.id;
   }
 
+  get cellAbove(): Cell | null {
+    return this.session.boardSystem.getCellAt({
+      ...this.position,
+      z: this.position.z + 1
+    });
+  }
+
+  get cellBelow(): Cell | null {
+    return this.session.boardSystem.getCellAt({
+      ...this.position,
+      z: this.position.z - 1
+    });
+  }
+
   get isTopMost(): boolean {
     return !this.session.boardSystem.getCellAt({ x: this.x, y: this.y, z: this.z + 1 });
   }

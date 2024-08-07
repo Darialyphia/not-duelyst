@@ -12,11 +12,11 @@ import type { GameSession } from '../../game-session';
 import { getKeywordById, type KeywordId } from '../../utils/keywords';
 import { isWithinCells } from '../../utils/targeting';
 import type { Card } from '../card';
-import type { Amount, Filter, NumericOperator } from '../card-effect';
+import type { Filter, NumericOperator } from '../card-effect';
 import { getCells, type CellCondition } from './cell-conditions';
 import type { CardConditionExtras } from './card-conditions';
 import { matchNumericOperator } from '../card-action';
-import { getAmount } from '../helpers/amount';
+import { getAmount, type Amount } from '../helpers/amount';
 
 export type UnitConditionBase =
   | { type: 'any_unit' }
@@ -364,7 +364,11 @@ export const getUnits = ({
           })
           .exhaustive();
 
-        return 'params' in condition && 'not' in condition.params ? !isMatch : isMatch;
+        return 'params' in condition &&
+          'not' in condition.params &&
+          condition.params.not === true
+          ? !isMatch
+          : isMatch;
       });
     });
   });

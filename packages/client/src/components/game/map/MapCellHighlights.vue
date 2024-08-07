@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Cell } from '@game/sdk';
-
 const { cell } = defineProps<{ cell: CellViewModel }>();
 </script>
 

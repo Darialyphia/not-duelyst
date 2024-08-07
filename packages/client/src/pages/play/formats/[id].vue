@@ -36,11 +36,12 @@ const initialValues = computed(() => {
 
 <template>
   <div v-if="isLoading">Loading format...</div>
-  <FormatForm
-    v-else-if="format"
-    :initial-values="initialValues"
-    @submit="updateFormat({ id: format._id, ...$event })"
-  />
+  <div v-else-if="format" class="page">
+    <FormatForm
+      :initial-values="initialValues"
+      @submit="updateFormat({ id: format._id, ...$event })"
+    />
+  </div>
 </template>
 
 <style lang="postcss">
@@ -57,8 +58,6 @@ const initialValues = computed(() => {
 <style scoped lang="postcss">
 .page {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  height: 100dvh;
 }
 </style>

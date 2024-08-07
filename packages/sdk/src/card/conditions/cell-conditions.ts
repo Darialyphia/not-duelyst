@@ -62,8 +62,10 @@ export const getCells = ({
   event: AnyObject;
   eventName?: string;
   playedPoint?: Point3D;
-}): Cell[] =>
-  session.boardSystem.cells.filter(cell => {
+}): Cell[] => {
+  return session.boardSystem.cells.filter(cell => {
+    if (cell.cellAbove) return false;
+
     return conditions.some(group => {
       return group.every(condition => {
         return match(condition)
@@ -258,3 +260,4 @@ export const getCells = ({
       });
     });
   });
+};

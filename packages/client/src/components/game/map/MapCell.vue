@@ -21,7 +21,7 @@ const boardDimensions = {
 const isActivePlayer = useIsActivePlayer();
 const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.getCell()));
 
-const isTargetable = computed(() => {
+const isTargetable = () => {
   if (!ui.selectedCard.value) return false;
   return ui.selectedCard.value.blueprint.targets?.isTargetable(cell.getCell(), {
     session,
@@ -29,7 +29,7 @@ const isTargetable = computed(() => {
     targets: ui.cardTargets.value,
     card: ui.selectedCard.value!
   });
-});
+};
 
 const pointerenterSound = useSound(
   computed(() => `/assets/sfx/button-hover.mp3`),
@@ -148,7 +148,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
     })
     .with(TARGETING_MODES.TARGETING, () => {
       if (!ui.selectedCard.value) return;
-      if (isTargetable) {
+      if (isTargetable()) {
         ui.cardTargets.value.push(cell.position);
         pointerupSound.play();
       } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
@@ -167,6 +167,10 @@ const runSimulation = debounce(
     ui.isSimulationResultDisplayed.value = true;
   },
   100
+);
+
+const hasCellAbove = computed(
+  () => !!session.boardSystem.getCellAt({ ...cell.position, z: cell.position.z + 1 })
 );
 </script>
 
@@ -243,7 +247,7 @@ const runSimulation = debounce(
           .with(TARGETING_MODES.TARGETING, () => {
             if (!ui.selectedCard.value) return;
 
-            if (isTargetable) {
+            if (isTargetable()) {
               runSimulation({
                 type: 'playCard',
                 payload: {
@@ -270,8 +274,11 @@ const runSimulation = debounce(
     @pointerup="onPointerup"
   >
     <MapCellSprite :cell="cell" />
-    <MapCellHighlights :cell="cell" />
-    <HoveredCell v-if="isHovered" />
+
+    <template v-if="!hasCellAbove">
+      <MapCellHighlights :cell="cell" />
+      <HoveredCell v-if="isHovered" />
+    </template>
   </IsoPositioner>
 
   <Tile :cell="cell" />
