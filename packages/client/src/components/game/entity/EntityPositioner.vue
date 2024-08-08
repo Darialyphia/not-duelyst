@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type EntityId } from '@game/sdk';
-import { type Point3D } from '@game/shared';
+import { KEYWORDS, type EntityId } from '@game/sdk';
+import { dist, type Point3D } from '@game/shared';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
@@ -18,13 +18,22 @@ const move = (path: Point3D[]) => {
       isMoving.value = false;
     }
   });
-  for (const point of path) {
+  const hasFlying = entity.value.hasKeyword(KEYWORDS.FLYING);
+  if (hasFlying) {
+    const end = path.at(-1)!;
     timeline.to(position.value, {
-      ...point,
-      duration: settings.value.a11y.reducedMotions ? 0 : 0.5,
-      // ease: Power0.easeNone
-      ease: Power1.easeOut
+      ...end,
+      duration: dist(entity.value.position, end) * 0.3,
+      ease: Power0.easeNone
     });
+  } else {
+    for (const point of path) {
+      timeline.to(position.value, {
+        ...point,
+        duration: settings.value.a11y.reducedMotions ? 0 : 0.5,
+        ease: Power1.easeOut
+      });
+    }
   }
   timeline.play();
 

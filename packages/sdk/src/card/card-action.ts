@@ -26,6 +26,7 @@ import { CelerityCardAction } from './actions/celerity.card-action';
 import { ChangeReplaceCountCardAction } from './actions/change-replaces-count.card-action';
 import { RushCardAction } from './actions/rush.card-action';
 import { AirdropCardAction } from './actions/airdrop.card-action';
+import { FlyingCardAction } from './actions/flying.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -119,6 +120,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'airdrop' }, action => {
         return new AirdropCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'flying' }, action => {
+        return new FlyingCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

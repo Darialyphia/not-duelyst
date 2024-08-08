@@ -321,6 +321,14 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  flying: {
+    label: 'Flying',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -483,6 +491,11 @@ watch(
       .with({ type: 'rush' }, ({ params }) => {
         params.execute ??= 'now';
         params.filter ??= [];
+      })
+      .with({ type: 'flying' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.activeWhen ??= [];
       })
       .exhaustive();
   },

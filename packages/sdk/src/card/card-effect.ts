@@ -283,6 +283,14 @@ export type Action<
         stackable: boolean;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'flying';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

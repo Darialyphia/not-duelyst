@@ -217,6 +217,14 @@ export const flying = ({
         interceptor: () => () => {
           return true;
         }
+      }),
+      modifierEntityInterceptorMixin({
+        key: 'speed',
+        duration,
+        keywords: [],
+        interceptor: (modifier, session) => () => {
+          return session.boardSystem.height + session.boardSystem.width;
+        }
       })
     ]
   });
