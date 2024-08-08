@@ -10,6 +10,11 @@ import {
   getUnits
 } from '../conditions/unit-conditions';
 import type { ConditionOverrides, Filter } from '../card-effect';
+import {
+  getCards,
+  type CardConditionBase,
+  type CardConditionExtras
+} from '../conditions/card-conditions';
 
 export type Amount<T extends ConditionOverrides> =
   | {
@@ -83,6 +88,15 @@ export type Amount<T extends ConditionOverrides> =
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
       };
+    }
+  | {
+      type: 'card_played_since_last_turn';
+      params: {
+        card: Filter<
+          CardConditionBase | Extract<CardConditionExtras, { type: T['card'] }>
+        >;
+        scale: number;
+      };
     };
 
 export const getAmount = ({
@@ -96,7 +110,7 @@ export const getAmount = ({
   targets: Array<Nullable<Point3D>>;
   event: AnyObject;
   eventName?: string;
-}) => {
+}): number => {
   return match(amount)
     .with({ type: 'fixed' }, amount => amount.params.value)
     .with({ type: 'cards_in_hands' }, amount => {
@@ -167,6 +181,13 @@ export const getAmount = ({
           conditions: amount.params.unit
         }).map(u => u.hp)
       );
+    })
+    .with({ type: 'card_played_since_last_turn' }, amount => {
+      const cards = getCards({ ...ctx, conditions: amount.params.card }).filter(card =>
+        ctx.card.player.playedCardSinceLastTurn.includes(card)
+      );
+
+      return cards.length * amount.params.scale;
     })
     .exhaustive();
 };

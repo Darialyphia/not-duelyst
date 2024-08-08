@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PlayerNode, UnitNode } from '#components';
+import { CardNode, PlayerNode, UnitNode } from '#components';
 import type { Amount, UnitConditionExtras } from '@game/sdk';
 import { match } from 'ts-pattern';
 type GenericAmount = Amount<{ unit: UnitConditionExtras['type'] }>;
@@ -32,7 +32,11 @@ const amountDict: Record<
     label: 'Equals to the lowest health among units',
     params: { unit: UnitNode }
   },
-  maxHp: { label: 'Equals to the maxHp of a unit', params: { unit: UnitNode } }
+  maxHp: { label: 'Equals to the maxHp of a unit', params: { unit: UnitNode } },
+  card_played_since_last_turn: {
+    label: 'Number of cards played this turn',
+    params: { card: CardNode, scale: null }
+  }
 };
 
 const amountOptions = computed(
@@ -89,6 +93,12 @@ const id = useId();
                 };
               }
             )
+            .with({ type: 'card_played_since_last_turn' }, amount => {
+              amount.params = {
+                card: [],
+                scale: 1
+              };
+            })
             .exhaustive();
         }
       "
@@ -97,7 +107,7 @@ const id = useId();
     <div v-for="(param, key) in params" :key="key" class="flex gap-2">
       <span class="capitalize min-w-11">{{ key }}</span>
       <UiTextInput
-        v-if="key === 'value'"
+        v-if="key === 'value' || key === 'scale'"
         :id
         v-model="(amount.params as any)[key]"
         class="mb-3 flex-1"

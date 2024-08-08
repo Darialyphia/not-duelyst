@@ -91,6 +91,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   maxResourceActionsPerTurn = 1;
   resourceActionsTaken = 0;
   cardsReplacedThisTurn = 0;
+  playedCardSinceLastTurn: Card[] = [];
 
   readonly interceptors = {
     maxGold: new Interceptable<number, Player>(),
@@ -301,6 +302,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   async startTurn() {
     this.resourceActionsTaken = 0;
     this.cardsReplacedThisTurn = 0;
+    this.playedCardSinceLastTurn = [];
 
     this.entities.forEach(entity => entity.startTurn());
     if (!this.isP2T1) {
@@ -336,6 +338,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     this.currentGold -= card.cost;
     this.hand.splice(index, 1);
     await card.play(opts);
+    this.playedCardSinceLastTurn.push(card);
     await this.emitAsync(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
   }
 

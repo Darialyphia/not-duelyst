@@ -326,7 +326,7 @@ export type OverridesFromTrigger<T extends Trigger[]> = {
 export type CardEffectConfig<T extends Trigger[]> =
   | { executionContext: 'on_init'; actions: InitAction[] }
   | {
-      executionContext: 'immediate' | 'while_on_board';
+      executionContext: 'immediate' | 'while_on_board' | 'while_in_hand';
       actions: Action[];
     }
   | {

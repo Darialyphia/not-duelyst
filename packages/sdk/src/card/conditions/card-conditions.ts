@@ -1,12 +1,12 @@
 import { match } from 'ts-pattern';
 import type { Card } from '../card';
-import type { Amount, Filter, NumericOperator } from '../card-effect';
+import type { Filter, NumericOperator } from '../card-effect';
 import type { UnitConditionExtras } from './unit-conditions';
 import type { Nullable, Point3D, AnyObject } from '@game/shared';
 import type { Entity } from '../../entity/entity';
 import type { GameSession } from '../../game-session';
 import { CARD_KINDS } from '../card-enums';
-import { getAmount } from '../helpers/amount';
+import { getAmount, type Amount } from '../helpers/amount';
 import { getPlayers, type PlayerCondition } from './player-condition';
 
 export type CardConditionBase =

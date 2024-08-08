@@ -22,32 +22,21 @@ export const f2JadeMonk = defineSerializedBlueprint({
     defineCardEffect({
       text: 'This card costs 1 less for each spell you played this turn.',
       config: {
-        executionContext: 'trigger_while_in_hand',
+        executionContext: 'while_in_hand',
         actions: [
           {
             type: 'change_card_cost',
             params: {
               filter: [],
               execute: 'now',
-              amount: { type: 'fixed', params: { value: -1 } },
+              amount: {
+                type: 'card_played_since_last_turn',
+                params: { card: [[{ type: 'spell' }]], scale: -1 }
+              },
               card: [[{ type: 'self' }]],
               player: [[{ type: 'ally_player' }]],
               occurences_count: 0,
-              duration: 'end_of_turn'
-            }
-          }
-        ],
-        triggers: [
-          {
-            type: 'on_after_card_played',
-            params: {
-              card: [
-                [
-                  { type: 'spell' },
-                  { type: 'from_player', params: { player: [[{ type: 'ally_player' }]] } }
-                ]
-              ],
-              frequency: { type: 'always' }
+              duration: 'always'
             }
           }
         ]

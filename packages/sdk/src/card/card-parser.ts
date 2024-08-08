@@ -184,6 +184,41 @@ export const parseSerializedBlueprintEffect = (
         }
       }
     ])
+    .with({ executionContext: 'while_in_hand' }, config => {
+      return [
+        {
+          getCardModifier() {
+            const cleanups: Array<() => void> = [];
+
+            return createCardModifier({
+              stackable: false,
+              mixins: [
+                {
+                  onApplied(session, card) {
+                    whileInHand(
+                      card,
+                      async () => {
+                        const actions = config.actions.map(parseCardAction);
+
+                        for (const action of actions) {
+                          cleanups.push(await action({ session, card, targets: [] }, {}));
+                        }
+                      },
+                      () => {
+                        cleanups.forEach(c => c());
+                      }
+                    );
+                  },
+                  onRemoved() {
+                    cleanups.forEach(c => c());
+                  }
+                }
+              ]
+            });
+          }
+        }
+      ];
+    })
     .with({ executionContext: 'on_init' }, config => {
       return [
         {
@@ -829,6 +864,15 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
                   }
                 ]
               });
+            })
+            .flat()
+            .filter(isDefined);
+        })
+        .with('while_in_hand', () => {
+          return effect.actions
+            .map(action => {
+              if (!action.getCardModifier) return null;
+              return action.getCardModifier();
             })
             .flat()
             .filter(isDefined);
