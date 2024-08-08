@@ -41,10 +41,10 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
                   {
                     type: 'heal',
                     params: {
-                      targets: [[{ type: 'is_self' }]],
+                      targets: [[{ type: 'is_self', params: { not: false } }]],
                       amount: {
                         type: 'maxHp',
-                        params: { unit: [[{ type: 'is_self' }]] }
+                        params: { unit: [[{ type: 'is_self', params: { not: false } }]] }
                       }
                     }
                   }

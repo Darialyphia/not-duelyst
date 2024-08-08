@@ -6,11 +6,7 @@ import { CARD_KINDS, getFactionById } from './card-enums';
 import { getKeywordById } from '../utils/keywords';
 import { getTagById } from '../utils/tribes';
 import { match } from 'ts-pattern';
-import {
-  parseCardAction,
-  parseCardInitAction,
-  type ParsedActionResult
-} from './card-action';
+import { parseCardAction, type ParsedActionResult } from './card-action';
 import {
   whileEquipped,
   whileInDeck,
@@ -214,19 +210,6 @@ export const parseSerializedBlueprintEffect = (
                   }
                 }
               ]
-            });
-          }
-        }
-      ];
-    })
-    .with({ executionContext: 'on_init' }, config => {
-      return [
-        {
-          onInit(blueprint: CardBlueprint) {
-            const actions = config.actions.map(parseCardInitAction);
-
-            actions.forEach(action => {
-              action({ blueprint });
             });
           }
         }
@@ -829,89 +812,81 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
   }));
 
   // add card modifiers that have already been evaluated
-  const cardModifiers = effects
-    .map(effect => {
-      return match(effect.config.executionContext)
-        .with('on_init', () => {
-          return effect.actions
-            .map(action => {
-              if (!action.getCardModifier) return null;
-              return action.getCardModifier();
-            })
-            .flat()
-            .filter(isDefined);
-        })
-        .with('trigger_while_in_hand', () => {
-          return effect.actions
-            .map(action => {
-              if (!action.getCardModifier) return null;
-              const modifier = action.getCardModifier();
-              return createCardModifier({
-                stackable: false,
-                mixins: [
-                  {
-                    onApplied(session, card) {
-                      whileInHand(
-                        card,
-                        () => {
-                          card.addModifier(modifier);
-                        },
-                        () => {
-                          card.removeModifier(modifier.id);
-                        }
-                      );
+  const cardModifiers = () =>
+    effects
+      .map(effect => {
+        return match(effect.config.executionContext)
+          .with('trigger_while_in_hand', () => {
+            return effect.actions
+              .map(action => {
+                if (!action.getCardModifier) return null;
+                const modifier = action.getCardModifier();
+                return createCardModifier({
+                  stackable: false,
+                  mixins: [
+                    {
+                      onApplied(session, card) {
+                        whileInHand(
+                          card,
+                          () => {
+                            card.addModifier(modifier);
+                          },
+                          () => {
+                            card.removeModifier(modifier.id);
+                          }
+                        );
+                      }
                     }
-                  }
-                ]
-              });
-            })
-            .flat()
-            .filter(isDefined);
-        })
-        .with('while_in_hand', () => {
-          return effect.actions
-            .map(action => {
-              if (!action.getCardModifier) return null;
-              return action.getCardModifier();
-            })
-            .flat()
-            .filter(isDefined);
-        })
-        .with('while_in_deck', () => {
-          return effect.actions
-            .map(action => {
-              if (!action.getCardModifier) return null;
-              const modifier = action.getCardModifier();
-              return createCardModifier({
-                stackable: false,
-                mixins: [
-                  {
-                    onApplied(session, card) {
-                      whileInDeck(
-                        card,
-                        () => {
-                          card.addModifier(modifier);
-                        },
-                        () => {
-                          card.removeModifier(modifier.id);
-                        }
-                      );
+                  ]
+                });
+              })
+              .flat()
+              .filter(isDefined);
+          })
+          .with('while_in_hand', () => {
+            return effect.actions
+              .map(action => {
+                if (!action.getCardModifier) return null;
+                return action.getCardModifier();
+              })
+              .flat()
+              .filter(isDefined);
+          })
+          .with('while_in_deck', () => {
+            return effect.actions
+              .map(action => {
+                if (!action.getCardModifier) return null;
+                const modifier = action.getCardModifier();
+                return createCardModifier({
+                  stackable: false,
+                  mixins: [
+                    {
+                      onApplied(session, card) {
+                        whileInDeck(
+                          card,
+                          () => {
+                            card.addModifier(modifier);
+                          },
+                          () => {
+                            card.removeModifier(modifier.id);
+                          }
+                        );
+                      }
                     }
-                  }
-                ]
-              });
-            })
-            .flat()
-            .filter(isDefined);
-        })
-        .with('while_in_graveyard', () => {
-          // TODO graveyard management not ready yet
-          return null;
-        })
-        .otherwise(() => null);
-    })
-    .flat()
-    .filter(isDefined);
+                  ]
+                });
+              })
+              .flat()
+              .filter(isDefined);
+          })
+          .with('while_in_graveyard', () => {
+            // TODO graveyard management not ready yet
+            return null;
+          })
+          .otherwise(() => null);
+      })
+      .flat()
+      .filter(isDefined);
 
   // define the base blueprint data
   const base: Omit<CardBlueprint, 'kind'> = {

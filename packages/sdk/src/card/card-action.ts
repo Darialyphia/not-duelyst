@@ -1,9 +1,7 @@
 import { match } from 'ts-pattern';
-import type { CardBlueprint } from './card-blueprint';
-import type { Action, InitAction, NumericOperator } from './card-effect';
+import type { Action, NumericOperator } from './card-effect';
 import { type AnyObject } from '@game/shared';
 import { type EffectCtx } from './card-parser';
-import { airdrop, rush } from '../modifier/modifier-utils';
 import { DealDamageCardAction } from './actions/deal-damage.card-action';
 import { HealCardAction } from './actions/heal.card-action';
 import { DrawCardAction } from './actions/draw.card-action';
@@ -26,14 +24,14 @@ import { TeleportCardAction } from './actions/teleport.card-action';
 import { SwapUnitsCardAction } from './actions/swapUnits.card-action';
 import { CelerityCardAction } from './actions/celerity.card-action';
 import { ChangeReplaceCountCardAction } from './actions/change-replaces-count.card-action';
+import { RushCardAction } from './actions/rush.card-action';
+import { AirdropCardAction } from './actions/airdrop.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
   event: AnyObject,
   eventName?: string
 ) => Promise<() => void>;
-
-const noop = () => void 0;
 
 export const matchNumericOperator = (
   amount: number,
@@ -116,28 +114,11 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'change_replaces_count' }, action => {
         return new ChangeReplaceCountCardAction(action, ctx, event, eventName).execute();
       })
-      .exhaustive();
-  };
-};
-
-export const parseCardInitAction = (action: InitAction) => {
-  return ({ blueprint }: { blueprint: CardBlueprint }) => {
-    return match(action)
-      .with({ type: 'airdrop' }, () => {
-        if (!blueprint.modifiers) {
-          blueprint.modifiers = [];
-        }
-        blueprint.modifiers.push(airdrop());
-
-        return noop;
+      .with({ type: 'rush' }, action => {
+        return new RushCardAction(action, ctx, event, eventName).execute();
       })
-      .with({ type: 'rush' }, () => {
-        if (!blueprint.modifiers) {
-          blueprint.modifiers = [];
-        }
-        blueprint.modifiers.push(rush());
-
-        return noop;
+      .with({ type: 'airdrop' }, action => {
+        return new AirdropCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

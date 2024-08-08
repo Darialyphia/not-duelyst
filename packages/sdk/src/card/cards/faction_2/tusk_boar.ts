@@ -20,10 +20,11 @@ export const f2TuskBoar = defineSerializedBlueprint({
     {
       text: '@Rush@.',
       config: {
-        executionContext: 'on_init',
+        executionContext: 'immediate',
         actions: [
           {
-            type: 'rush'
+            type: 'rush',
+            params: {}
           }
         ]
       }
@@ -55,7 +56,8 @@ export const f2TuskBoar = defineSerializedBlueprint({
               targets: [
                 [
                   {
-                    type: 'is_self'
+                    type: 'is_self',
+                    params: { not: false }
                   }
                 ]
               ],

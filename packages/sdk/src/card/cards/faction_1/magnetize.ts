@@ -1,5 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+import { allyGeneral } from '../../helpers/targeting';
 
 export const f1Magnetize = defineSerializedBlueprint({
   id: 'f1_magnetize',
@@ -22,12 +23,12 @@ export const f1Magnetize = defineSerializedBlueprint({
           {
             type: 'teleport_unit',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               cell: [
                 [
                   {
                     type: 'is_in_front',
-                    params: { unit: [[{ type: 'is_ally' }, { type: 'is_general' }]] }
+                    params: { unit: allyGeneral() }
                   }
                 ]
               ],
@@ -41,6 +42,15 @@ export const f1Magnetize = defineSerializedBlueprint({
   ],
   targets: {
     min: 1,
-    targets: [[[{ type: 'has_unit', params: { unit: [[{ type: 'is_minion' }]] } }]]]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+          }
+        ]
+      ]
+    ]
   }
 });

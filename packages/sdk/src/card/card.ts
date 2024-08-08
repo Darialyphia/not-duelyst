@@ -61,7 +61,7 @@ export abstract class Card
   }
 
   setup() {
-    this.blueprint.modifiers?.forEach(modifier => {
+    this.blueprint.modifiers?.().forEach(modifier => {
       this.addModifier(modifier);
     });
   }

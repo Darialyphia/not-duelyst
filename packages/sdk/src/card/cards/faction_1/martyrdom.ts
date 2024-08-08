@@ -27,10 +27,14 @@ export const f1Martyrdom = defineSerializedBlueprint({
           {
             type: 'heal',
             params: {
-              targets: [[{ type: 'is_manual_target_general', params: { index: 0 } }]],
+              targets: [
+                [{ type: 'is_manual_target_general', params: { index: 0, not: false } }]
+              ],
               amount: {
                 type: 'hp',
-                params: { unit: [[{ type: 'is_manual_target', params: { index: 0 } }]] }
+                params: {
+                  unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]]
+                }
               }
             }
           },

@@ -10,7 +10,7 @@ const executionContext = computed({
   },
   set(val) {
     match(val)
-      .with('on_init', 'immediate', () => {
+      .with('immediate', () => {
         effect.value.executionContext = val;
         effect.value.actions = [];
         effect.value.triggers = undefined;
@@ -26,10 +26,6 @@ const executionContext = computed({
 
 const executionContextOptions = computed(() => {
   return [
-    {
-      value: 'on_init',
-      label: 'Start of the game'
-    },
     {
       value: 'immediate',
       label: 'When the card is played'
@@ -93,11 +89,7 @@ const executionContextOptions = computed(() => {
     <h4>Actions</h4>
     <ul>
       <li v-for="(action, index) in effect.actions" :key="index" class="action">
-        <InitActionNode
-          v-if="effect.executionContext === 'on_init'"
-          v-model="effect.actions[index]"
-        />
-        <ActionNode v-else v-model="effect.actions[index]" :triggers="effect.triggers" />
+        <ActionNode v-model="effect.actions[index]" :triggers="effect.triggers" />
         <UiButton class="error-button" @click="effect.actions.splice(index, 1)">
           Remove action
         </UiButton>

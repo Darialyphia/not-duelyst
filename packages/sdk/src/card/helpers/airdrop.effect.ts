@@ -4,7 +4,7 @@ export const airdropEffect = () =>
   defineCardEffect({
     text: '@Airdrop@.',
     config: {
-      executionContext: 'on_init',
-      actions: [{ type: 'airdrop' }]
+      executionContext: 'while_in_hand',
+      actions: [{ type: 'airdrop', params: {} }]
     }
   });

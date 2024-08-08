@@ -307,6 +307,20 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  airdrop: {
+    label: 'Airdrop',
+    params: {
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  rush: {
+    label: 'Rush',
+    params: {
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -461,6 +475,14 @@ watch(
         params.stackable ??= true;
         params.filter ??= [];
         params.execute ??= 'now';
+      })
+      .with({ type: 'airdrop' }, ({ params }) => {
+        params.execute ??= 'now';
+        params.filter ??= [];
+      })
+      .with({ type: 'rush' }, ({ params }) => {
+        params.execute ??= 'now';
+        params.filter ??= [];
       })
       .exhaustive();
   },

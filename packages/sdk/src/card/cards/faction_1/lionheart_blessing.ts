@@ -28,7 +28,7 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
           {
             type: 'add_effect',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               effect: {
                 executionContext: 'immediate',
                 actions: [
@@ -43,7 +43,7 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
                             params: {
                               frequency: { type: 'always' },
                               target: [],
-                              unit: [[{ type: 'is_self' }]]
+                              unit: [[{ type: 'is_self', params: { not: false } }]]
                             }
                           }
                         ],

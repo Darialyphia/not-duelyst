@@ -1,9 +1,5 @@
-import {
-  type Action,
-  type OverridesFromTrigger,
-  type TriggerFrequency,
-  defineCardEffect
-} from '../card-effect';
+import type { TriggerFrequency } from '../card-action-triggers';
+import { type Action, type OverridesFromTrigger, defineCardEffect } from '../card-effect';
 
 export const whileArtifactEquipedEffect = ({
   text,

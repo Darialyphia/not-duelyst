@@ -154,6 +154,20 @@ export type Action<
       };
     }
   | {
+      type: 'airdrop';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'rush';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'backstab';
       params: {
         filter?: Filter<GlobalCondition<T>>;
@@ -324,7 +338,6 @@ export type OverridesFromTrigger<T extends Trigger[]> = {
 };
 
 export type CardEffectConfig<T extends Trigger[]> =
-  | { executionContext: 'on_init'; actions: InitAction[] }
   | {
       executionContext: 'immediate' | 'while_on_board' | 'while_in_hand';
       actions: Action[];

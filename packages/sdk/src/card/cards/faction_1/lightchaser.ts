@@ -32,7 +32,7 @@ export const f1Lightchaser = defineSerializedBlueprint({
           {
             type: 'change_stats',
             params: {
-              targets: [[{ type: 'is_self' }]],
+              targets: [[{ type: 'is_self', params: { not: false } }]],
               mode: 'give',
               stackable: true,
               attack: {

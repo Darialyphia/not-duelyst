@@ -65,7 +65,7 @@ export const f2Gorehorn = defineSerializedBlueprint({
                 amount: fixedAmount(1),
                 activeWhen: []
               },
-              targets: [[{ type: 'is_self' }]],
+              targets: [[{ type: 'is_self', params: { not: false } }]],
               filter: [],
               execute: 'now'
             }

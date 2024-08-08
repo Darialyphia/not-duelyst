@@ -22,7 +22,14 @@ export const f2MistDragonSeal = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_ally' }, { type: 'is_minion' }]] }
+            params: {
+              unit: [
+                [
+                  { type: 'is_ally', params: { not: false } },
+                  { type: 'is_minion', params: { not: false } }
+                ]
+              ]
+            }
           }
         ]
       ],
@@ -41,7 +48,7 @@ export const f2MistDragonSeal = defineSerializedBlueprint({
               stackable: true,
               attack: { amount: fixedAmount(1), activeWhen: [] },
               hp: { amount: fixedAmount(1), activeWhen: [] },
-              targets: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              targets: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               filter: [],
               duration: 'always',
               execute: 'now'
@@ -50,7 +57,7 @@ export const f2MistDragonSeal = defineSerializedBlueprint({
           {
             type: 'teleport_unit',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               cell: [[{ type: 'is_manual_target', params: { index: 1 } }]],
               filter: [],
               execute: 'now'

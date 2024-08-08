@@ -2,6 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
+import { allyGeneral, enemyGeneral } from '../../helpers/targeting';
 
 export const f2FourWindsMagus = defineSerializedBlueprint({
   id: 'f2_four_windw_magus',
@@ -46,7 +47,7 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(1),
-              targets: [[{ type: 'is_general' }, { type: 'is_enemy' }]],
+              targets: enemyGeneral(),
               filter: [],
               execute: 'now'
             }
@@ -55,7 +56,7 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
             type: 'heal',
             params: {
               amount: fixedAmount(1),
-              targets: [[{ type: 'is_general' }, { type: 'is_ally' }]],
+              targets: allyGeneral(),
               filter: [],
               execute: 'now'
             }

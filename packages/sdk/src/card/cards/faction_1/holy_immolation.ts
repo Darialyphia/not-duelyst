@@ -29,7 +29,9 @@ export const f1HolyImmolation = defineSerializedBlueprint({
     [
       {
         type: 'is_nearby',
-        params: { unit: [[{ type: 'is_manual_target', params: { index: 0 } }]] }
+        params: {
+          unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]]
+        }
       }
     ]
   ],
@@ -52,8 +54,8 @@ export const f1HolyImmolation = defineSerializedBlueprint({
               amount: fixedAmount(4),
               targets: [
                 [
-                  { type: 'is_enemy' },
-                  { type: 'is_nearby', params: { unit: manualTarget(0) } }
+                  { type: 'is_enemy', params: { not: false } },
+                  { type: 'is_nearby', params: { unit: manualTarget(0), not: false } }
                 ]
               ]
             }

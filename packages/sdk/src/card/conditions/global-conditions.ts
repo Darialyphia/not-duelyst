@@ -1,5 +1,5 @@
 import { isEmptyObject, type AnyObject } from '@game/shared';
-import type { Amount, ConditionOverrides, Filter, NumericOperator } from '../card-effect';
+import type { ConditionOverrides, Filter, NumericOperator } from '../card-effect';
 import type { CardConditionExtras } from './card-conditions';
 import { getCells, type CellCondition } from './cell-conditions';
 import { getPlayers, type PlayerCondition } from './player-condition';
@@ -12,7 +12,7 @@ import type { EffectCtx } from '../card-parser';
 import { match } from 'ts-pattern';
 import type { Entity } from '../../entity/entity';
 import { matchNumericOperator } from '../card-action';
-import { getAmount } from '../helpers/amount';
+import { getAmount, type Amount } from '../helpers/amount';
 import { getKeywordById, type KeywordId } from '../../utils/keywords';
 
 export type GlobalCondition<

@@ -23,7 +23,7 @@ export const f2Gotatsu = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [[{ type: 'is_minion' }]]
+              unit: [[{ type: 'is_minion', params: { not: false } }]]
             }
           }
         ]

@@ -8,13 +8,18 @@ export const zealCondition = (): Filter<GlobalCondition> => {
         type: 'unit_state',
         params: {
           mode: 'all',
-          unit: [[{ type: 'is_self' }]],
+          unit: [[{ type: 'is_self', params: { not: false } }]],
           position: [
             [
               {
                 type: 'is_nearby',
                 params: {
-                  unit: [[{ type: 'is_ally' }, { type: 'is_general' }]]
+                  unit: [
+                    [
+                      { type: 'is_ally', params: { not: false } },
+                      { type: 'is_general', params: { not: false } }
+                    ]
+                  ]
                 }
               }
             ]

@@ -24,7 +24,7 @@ export type CardBlueprintBase = {
   cost: number;
   tags?: Tag[];
   keywords?: Keyword[];
-  modifiers?: CardModifier[];
+  modifiers?: () => CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];
   cardChoices?: {
     minChoices: number;

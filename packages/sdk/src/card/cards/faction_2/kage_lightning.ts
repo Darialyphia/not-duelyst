@@ -24,7 +24,7 @@ export const f2KageLightning = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(6),
-              targets: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+              targets: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               filter: [],
               execute: 'now'
             }
@@ -35,6 +35,15 @@ export const f2KageLightning = defineSerializedBlueprint({
   ],
   targets: {
     min: 1,
-    targets: [[[{ type: 'has_unit', params: { unit: [[{ type: 'is_minion' }]] } }]]]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+          }
+        ]
+      ]
+    ]
   }
 });

@@ -35,8 +35,14 @@ export const f1Sunriser = defineSerializedBlueprint({
               amount: fixedAmount(2),
               targets: [
                 [
-                  { type: 'is_enemy' },
-                  { type: 'is_nearby', params: { unit: [[{ type: 'is_self' }]] } }
+                  { type: 'is_enemy', params: { not: false } },
+                  {
+                    type: 'is_nearby',
+                    params: {
+                      unit: [[{ type: 'is_self', params: { not: false } }]],
+                      not: false
+                    }
+                  }
                 ]
               ]
             }

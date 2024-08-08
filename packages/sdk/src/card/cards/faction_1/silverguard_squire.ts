@@ -28,17 +28,17 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
             params: {
               targets: [
                 [
-                  { type: 'is_ally' },
+                  { type: 'is_ally', params: { not: false } },
                   {
                     type: 'is_in_front',
-                    params: { unit: allyGeneral() }
+                    params: { unit: allyGeneral(), not: false }
                   }
                 ],
                 [
-                  { type: 'is_ally' },
+                  { type: 'is_ally', params: { not: false } },
                   {
                     type: 'is_behind',
-                    params: { unit: allyGeneral() }
+                    params: { unit: allyGeneral(), not: false }
                   }
                 ]
               ],
