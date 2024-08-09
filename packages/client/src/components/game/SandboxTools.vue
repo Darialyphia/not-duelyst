@@ -21,6 +21,9 @@ const performAction = (cb: (session: GameSession) => void) => {
       <PopoverAnchor />
       <PopoverPortal>
         <PopoverContent class="fancy-surface p-2">
+          <UiButton class="ghost-button" @click="console.log(serverSession)">
+            Debug server session
+          </UiButton>
           <UiButton
             class="ghost-button"
             @click="

@@ -19,7 +19,7 @@ const isDev = import.meta.env.DEV;
         }
       "
     >
-      Debug session
+      Debug client session
     </pixi-text>
     <pixi-text :x="30" :y="60" :style="style">
       {{ ui.targetingMode.value }}

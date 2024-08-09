@@ -77,6 +77,9 @@ import { neutralWingsOfParadise } from './cards/neutral/wings_of_paradise';
 import { neutralPiercingMantis } from './cards/neutral/piercing-mantis';
 import { neutralArchonSpellbinder } from './cards/neutral/archon-spellbinder';
 import { neutralLightbender } from './cards/neutral/lightbender';
+import { neutralFlamebloodWarlock } from './cards/neutral/flameblood_warlock';
+import { neutralAzureHornShaman } from './cards/neutral/azure-horn-shaman';
+import { neutralFrostboneNaga } from './cards/neutral/frostbone-naga';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -156,7 +159,10 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralWingsOfParadise,
   neutralPiercingMantis,
   neutralArchonSpellbinder,
-  neutralLightbender
+  neutralLightbender,
+  neutralFlamebloodWarlock,
+  neutralAzureHornShaman,
+  neutralFrostboneNaga
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

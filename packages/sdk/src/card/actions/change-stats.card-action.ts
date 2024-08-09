@@ -40,7 +40,9 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
       const amount = this.getAmount(this.action.params.hp.amount);
 
       return match(this.action.params.mode)
-        .with('give', () => value + amount)
+        .with('give', () => {
+          return value + amount;
+        })
         .with('set', () => staticValue)
         .exhaustive();
     };
@@ -73,10 +75,11 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
       );
     });
 
-    const stop = () =>
+    const stop = () => {
       units.forEach(target => {
         target.removeModifier(modifierId);
       });
+    };
 
     if (this.action.params.duration === 'end_of_turn') {
       this.ctx.card.player.once('turn_end', stop);
