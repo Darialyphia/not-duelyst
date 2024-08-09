@@ -152,7 +152,7 @@ export const [useCellConditionsProvider, _useCellConditions] = createInjectionSt
       is_bottom_left_corner: { label: 'Is the bottom-left corner', params: [] },
       is_bottom_right_corner: { label: 'Is the bottom-right corner', params: [] },
       has_unit: { label: 'Has a unit on it', params: ['unit'] },
-      is_nearby: { label: 'Is nearby a unit', params: ['unit'] },
+      is_nearby: { label: 'Is nearby a unit or cell', params: ['unit', 'cell'] },
       is_in_front: { label: 'Is in front of a unit', params: ['unit'] },
       is_behind: { label: 'Is behind a unit', params: ['unit'] },
       is_above: { label: 'Is above a unit', params: ['unit'] },

@@ -574,8 +574,10 @@ export const whileOnBoard = ({
         {
           onApplied(session, attachedTo, modifier) {
             onApplied(session, attachedTo, modifier);
-            attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, () => {
-              onRemoved(session, attachedTo, modifier);
+            attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, async () => {
+              await session.actionSystem.schedule(async () => {
+                onRemoved(session, attachedTo, modifier);
+              });
             });
           },
           onRemoved

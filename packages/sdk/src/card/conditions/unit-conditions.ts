@@ -1,4 +1,4 @@
-import type { Nullable, Point3D, AnyObject } from '@game/shared';
+import { type Nullable, type Point3D, type AnyObject, isEmptyArray } from '@game/shared';
 import { match } from 'ts-pattern';
 import type { Entity } from '../../entity/entity';
 import {
@@ -131,25 +131,29 @@ export const getUnits = ({
             return entity.equals(e);
           })
           .with({ type: 'is_nearby' }, condition => {
-            const unitPositions = getUnits({
-              conditions: condition.params.unit ?? [],
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName
-            }).map(u => u.position);
-            const cellPositions = getCells({
-              conditions: condition.params.cell ?? [],
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
-            }).map(c => c.position);
+            const unitPositions = isEmptyArray(condition.params.unit)
+              ? []
+              : getUnits({
+                  conditions: condition.params.unit ?? [],
+                  targets,
+                  session,
+                  entity,
+                  card,
+                  event,
+                  eventName
+                }).map(u => u.position);
+            const cellPositions = isEmptyArray(condition.params.cell)
+              ? []
+              : getCells({
+                  conditions: condition.params.cell ?? [],
+                  targets,
+                  session,
+                  entity,
+                  card,
+                  event,
+                  eventName,
+                  playedPoint
+                }).map(c => c.position);
 
             return [...unitPositions, ...cellPositions].some(
               candidate =>

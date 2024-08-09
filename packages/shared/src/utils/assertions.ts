@@ -23,3 +23,5 @@ export const exhaustiveSwitch = (x: never) => {
 
 export const isEmptyObject = (x: unknown) =>
   isObject(x) && Object.keys(x).length === 0;
+
+export const isEmptyArray = (x: unknown) => Array.isArray(x) && x.length === 0;

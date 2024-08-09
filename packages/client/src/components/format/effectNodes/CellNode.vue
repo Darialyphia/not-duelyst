@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { CellConditionBase, Filter } from '@game/sdk';
+import type { CellCondition, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
 import { UnitNode } from '#components';
 
-const groups = defineModel<Filter<CellConditionBase>>({ required: true });
+const groups = defineModel<Filter<CellCondition>>({ required: true });
 
 const cellDict = useCellConditions();
 
@@ -12,7 +12,7 @@ const cellOptions = computed(
     Object.entries(cellDict.value).map(([id, { label }]) => ({
       label,
       value: id
-    })) as Array<{ label: string; value: CellConditionBase['type'] }>
+    })) as Array<{ label: string; value: CellCondition['type'] }>
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
@@ -55,7 +55,6 @@ const componentNodes: Record<string, Component | string> = {
             })
             .with(
               { type: 'has_unit' },
-              { type: 'is_nearby' },
               { type: 'is_in_front' },
               { type: 'is_behind' },
               { type: 'is_above' },
@@ -66,6 +65,12 @@ const componentNodes: Record<string, Component | string> = {
                 };
               }
             )
+            .with({ type: 'is_nearby' }, condition => {
+              condition.params = {
+                unit: [],
+                cell: []
+              };
+            })
             .with({ type: 'is_at' }, condition => {
               condition.params = {
                 x: 0,
@@ -83,6 +88,19 @@ const componentNodes: Record<string, Component | string> = {
                 center: [[]]
               };
             })
+            .with(
+              { type: 'summon_target' },
+              { type: 'attack_source_position' },
+              { type: 'attack_target_position' },
+              { type: 'heal_source_position' },
+              { type: 'heal_target_position' },
+              { type: 'moved_path' },
+              { type: 'moved_unit_new_position' },
+              { type: 'moved_unit_old_position' },
+              () => {
+                return;
+              }
+            )
             .exhaustive();
         }
       "
@@ -102,6 +120,12 @@ const componentNodes: Record<string, Component | string> = {
         type="number"
       />
       <template v-if="param === 'topLeft' || param === 'center'">
+        <CellNode
+          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        />
+      </template>
+      <template v-if="param === 'cell'">
         <CellNode
           v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"

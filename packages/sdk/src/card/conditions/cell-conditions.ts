@@ -1,4 +1,4 @@
-import { type Nullable, type Point3D, type AnyObject } from '@game/shared';
+import { type Nullable, type Point3D, type AnyObject, isEmptyArray } from '@game/shared';
 import { match } from 'ts-pattern';
 import type { Cell } from '../../board/cell';
 import type { Entity } from '../../entity/entity';
@@ -19,7 +19,10 @@ export type CellConditionBase =
   | { type: 'is_empty' }
   | { type: 'has_unit'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_at'; params: { x: number; y: number; z: number } }
-  | { type: 'is_nearby'; params: { unit: Filter<UnitCondition> } }
+  | {
+      type: 'is_nearby';
+      params: { unit?: Filter<UnitCondition>; cell?: Filter<CellCondition> };
+    }
   | { type: 'is_in_front'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_behind'; params: { unit: Filter<UnitCondition> } }
   | { type: 'is_above'; params: { unit: Filter<UnitCondition> } }
@@ -77,18 +80,32 @@ export const getCells = ({
           })
           .with({ type: 'is_empty' }, () => !cell.entity)
           .with({ type: 'is_nearby' }, condition => {
-            const candidates = getUnits({
-              conditions: condition.params.unit,
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
-            });
-            return candidates.some(candidate =>
-              isWithinCells(candidate.position, cell.position, 1)
+            const unitPositions = isEmptyArray(condition.params.unit)
+              ? []
+              : getUnits({
+                  conditions: condition.params.unit ?? [],
+                  targets,
+                  session,
+                  entity,
+                  card,
+                  event,
+                  eventName
+                }).map(u => u.position);
+            const cellPositions = isEmptyArray(condition.params.cell)
+              ? []
+              : getCells({
+                  conditions: condition.params.cell ?? [],
+                  targets,
+                  session,
+                  entity,
+                  card,
+                  event,
+                  eventName,
+                  playedPoint
+                }).map(c => c.position);
+
+            return [...unitPositions, ...cellPositions].some(candidate =>
+              isWithinCells(candidate, cell.position, 1)
             );
           })
           .with({ type: 'is_in_front' }, condition => {
