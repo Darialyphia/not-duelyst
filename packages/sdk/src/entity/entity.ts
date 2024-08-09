@@ -147,7 +147,10 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     canBeAttackTarget: new Interceptable<boolean, { entity: Entity; source: Entity }>(),
 
     damageDealt: new Interceptable<number, { entity: Entity; amount: number }>(),
-    damageTaken: new Interceptable<number, { entity: Entity; amount: number }>(),
+    damageTaken: new Interceptable<
+      number,
+      { entity: Entity; amount: number; card: Card }
+    >(),
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
 
@@ -420,12 +423,13 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     await this.emitAsync(ENTITY_EVENTS.AFTER_BOUNCE, { entity: this, successful });
   }
 
-  getTakenDamage(amount: number) {
+  getTakenDamage(amount: number, card: Card) {
     const clamped = Math.min(amount, this.hp);
 
     return this.interceptors.damageTaken.getValue(amount, {
       entity: this,
-      amount: clamped
+      amount: clamped,
+      card
     });
   }
 
@@ -454,7 +458,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
   }
 
   async takeDamage(power: number, source: Card) {
-    const amount = this.getTakenDamage(power);
+    const amount = this.getTakenDamage(power, source);
     if (amount <= 0) return;
     const payload = {
       entity: this,

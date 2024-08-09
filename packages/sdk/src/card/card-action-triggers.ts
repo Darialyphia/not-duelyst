@@ -61,6 +61,7 @@ export type Trigger =
         frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
+        card: Filter<CardConditionBase>;
       };
     }
   | {
@@ -69,6 +70,7 @@ export type Trigger =
         frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
         unit: Filter<UnitConditionBase>;
+        card: Filter<CardConditionBase>;
       };
     }
   | {
@@ -92,6 +94,7 @@ export type Trigger =
       params: {
         frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
+        card: Filter<CardConditionBase>;
       };
     }
   | {
@@ -99,6 +102,7 @@ export type Trigger =
       params: {
         frequency: TriggerFrequency;
         unit: Filter<UnitConditionBase>;
+        card: Filter<CardConditionBase>;
       };
     }
   | {

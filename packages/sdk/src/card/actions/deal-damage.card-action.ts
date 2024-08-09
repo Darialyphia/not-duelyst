@@ -3,7 +3,6 @@ import { CardAction, noop } from './_card-action';
 
 export class DealDamageCardAction extends CardAction<'deal_damage'> {
   async executeImpl() {
-    console.log(this.action.params.targets);
     await Promise.all(
       this.getUnits(this.action.params.targets).map(async target => {
         if (this.ctx.card instanceof Unit) {

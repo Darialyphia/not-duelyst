@@ -5,12 +5,11 @@ import { CardAction } from './_card-action';
 import { ENTITY_EVENTS } from '../../entity/entity';
 
 export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
-  private modifierId = this.generateModifierId();
   private shouldApply = true;
 
-  makeModifier() {
+  makeModifier(id: string) {
     return createEntityModifier({
-      id: this.modifierId,
+      id,
       source: this.card,
       stackable: this.action.params.stackable,
       visible: false,
@@ -18,15 +17,23 @@ export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
         modifierEntityInterceptorMixin({
           key: 'damageTaken',
           keywords: [],
-          interceptor: () => value => {
-            if (!this.shouldApply) return value;
-            const amount = this.getAmount(this.action.params.amount);
+          interceptor:
+            () =>
+            (value, { card }) => {
+              if (!this.shouldApply) return value;
+              if (this.action.params.source?.length) {
+                const candidates = this.getCards(this.action.params.source);
+                const isElligible = candidates.some(c => c.equals(card));
+                if (!isElligible) return value;
+              }
 
-            return match(this.action.params.mode)
-              .with('give', () => value + amount)
-              .with('set', () => amount)
-              .exhaustive();
-          }
+              const amount = this.getAmount(this.action.params.amount);
+
+              return match(this.action.params.mode)
+                .with('give', () => value + amount)
+                .with('set', () => amount)
+                .exhaustive();
+            }
         })
       ]
     });
@@ -36,7 +43,7 @@ export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
     const modifierId = this.generateModifierId();
 
     units.forEach(target => {
-      target.addModifier(this.makeModifier());
+      target.addModifier(this.makeModifier(modifierId));
 
       if (this.action.params.frequency.type === 'once') {
         target.once(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, () => {
@@ -62,9 +69,18 @@ export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
       }
     });
 
-    return () =>
+    const unsub = () =>
       units.forEach(target => {
         target.removeModifier(modifierId);
       });
+
+    if (this.action.params.duration === 'end_of_turn') {
+      this.session.once('player:turn_end', unsub);
+    }
+    if (this.action.params.duration === 'start_of_next_turn') {
+      this.session.playerSystem.activePlayer.once('turn_start', unsub);
+    }
+
+    return unsub;
   }
 }

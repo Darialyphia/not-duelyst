@@ -456,14 +456,26 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
-                    ? getUnits({
-                        ...ctx,
-                        conditions: trigger.params.unit,
-                        event,
-                        eventName
-                      }).some(entity => entity.equals(event.entity))
-                    : true;
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.card.length
+                      ? getCards({
+                          ...ctx,
+                          conditions: trigger.params.card,
+                          event,
+                          eventName
+                        }).some(card => {
+                          event.source.equals(card);
+                        })
+                      : true)
+                  );
                 }
               });
             })
@@ -473,14 +485,26 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
-                    ? getUnits({
-                        ...ctx,
-                        conditions: trigger.params.unit,
-                        event,
-                        eventName
-                      }).some(entity => entity.equals(event.entity))
-                    : true;
+                  return (
+                    (trigger.params.unit.length
+                      ? getUnits({
+                          ...ctx,
+                          conditions: trigger.params.unit,
+                          event,
+                          eventName
+                        }).some(entity => entity.equals(event.entity))
+                      : true) &&
+                    (trigger.params.card.length
+                      ? getCards({
+                          ...ctx,
+                          conditions: trigger.params.card,
+                          event,
+                          eventName
+                        }).some(card => {
+                          event.source.equals(card);
+                        })
+                      : true)
+                  );
                 }
               });
             })
@@ -491,6 +515,16 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
+                    (trigger.params.card.length
+                      ? getCards({
+                          ...ctx,
+                          conditions: trigger.params.card,
+                          event,
+                          eventName
+                        }).some(card => {
+                          event.source.equals(card);
+                        })
+                      : true) &&
                     (trigger.params.unit.length
                       ? getUnits({
                           ...ctx,
@@ -521,6 +555,16 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
+                    (trigger.params.card.length
+                      ? getCards({
+                          ...ctx,
+                          conditions: trigger.params.card,
+                          event,
+                          eventName
+                        }).some(card => {
+                          event.source.equals(card);
+                        })
+                      : true) &&
                     (trigger.params.unit.length
                       ? getUnits({
                           ...ctx,

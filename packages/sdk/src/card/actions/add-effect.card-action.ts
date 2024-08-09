@@ -9,32 +9,34 @@ export class AddEffectCardAction extends CardAction<'add_effect'> {
       config: this.action.params.effect
     }).flat();
 
-    units.forEach(unit => {
-      effects.forEach(effect => {
-        if (effect.onPlay) {
-          effect.onPlay({
-            session: this.session,
-            entity: unit,
-            card: unit.card,
-            targets: []
-          });
-        }
-        if (effect.getEntityModifier) {
-          unit.addModifier(
-            effect.getEntityModifier({
+    await Promise.all(
+      units.map(async unit => {
+        for (const effect of effects) {
+          if (effect.onPlay) {
+            await effect.onPlay({
               session: this.session,
               entity: unit,
               card: unit.card,
               targets: []
-            })
-          );
-        }
+            });
+          }
+          if (effect.getEntityModifier) {
+            unit.addModifier(
+              effect.getEntityModifier({
+                session: this.session,
+                entity: unit,
+                card: unit.card,
+                targets: []
+              })
+            );
+          }
 
-        if (effect.getCardModifier) {
-          unit.card.addModifier(effect.getCardModifier());
+          if (effect.getCardModifier) {
+            unit.card.addModifier(effect.getCardModifier());
+          }
         }
-      });
-    });
+      })
+    );
 
     return noop;
   }

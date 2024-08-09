@@ -77,11 +77,11 @@ const triggerDict: Record<Trigger['type'], { label: string; params: string[] }> 
 
   on_before_unit_take_damage: {
     label: 'Before a unit takes damage',
-    params: ['target', 'unit', 'frequency']
+    params: ['target', 'unit', 'card', 'frequency']
   },
   on_after_unit_take_damage: {
     label: 'After a unit takes damage',
-    params: ['target', 'unit', 'frequency']
+    params: ['target', 'unit', 'card', 'frequency']
   },
 
   on_before_unit_destroyed: {
@@ -95,11 +95,11 @@ const triggerDict: Record<Trigger['type'], { label: string; params: string[] }> 
 
   on_before_unit_healed: {
     label: 'Before a unit is healed',
-    params: ['unit', 'frequency']
+    params: ['unit', 'card', 'frequency']
   },
   on_after_unit_healed: {
     label: 'After a unit is healed',
-    params: ['unit', 'frequency']
+    params: ['unit', 'card', 'frequency']
   },
 
   on_artifact_equiped: {

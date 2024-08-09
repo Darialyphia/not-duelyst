@@ -165,6 +165,8 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      source: CardNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -177,6 +179,7 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -189,6 +192,7 @@ const actionDict: Record<
       stackable: null,
       amount: AmountNode,
       frequency: FrequencyNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -394,8 +398,18 @@ watch(
         params.duration ??= 'always';
         params.execute ??= 'now';
       })
+      .with({ type: 'change_damage_taken' }, ({ params }) => {
+        params.mode ??= 'give';
+        params.stackable ??= true;
+        params.targets ??= [[{ type: undefined as any }]];
+        params.source ??= [];
+        params.filter ??= [];
+        params.frequency ??= { type: 'always' };
+        params.amount ??= { type: undefined } as any;
+        params.duration ??= 'always';
+        params.execute ??= 'now';
+      })
       .with(
-        { type: 'change_damage_taken' },
         { type: 'change_damage_dealt' },
         { type: 'change_heal_received' },
         ({ params }) => {
@@ -405,6 +419,7 @@ watch(
           params.filter ??= [];
           params.frequency ??= { type: 'always' };
           params.amount ??= { type: undefined } as any;
+          params.duration ??= 'always';
           params.execute ??= 'now';
         }
       )

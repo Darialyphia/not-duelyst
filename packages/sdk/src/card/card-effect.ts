@@ -86,9 +86,13 @@ export type Action<
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;
+        source?: Filter<
+          CardConditionBase | Extract<CardConditionExtras, { type: T['unit'] }>
+        >;
         frequency: TriggerFrequency;
         stackable: boolean;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -103,6 +107,7 @@ export type Action<
         frequency: TriggerFrequency;
         stackable: boolean;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -117,6 +122,7 @@ export type Action<
         frequency: TriggerFrequency;
         stackable: boolean;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
