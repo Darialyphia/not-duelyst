@@ -604,10 +604,12 @@ export const whileInHand = (
   cleanup: (card: Card) => any
 ) => {
   card.on(CARD_EVENTS.DRAWN, cb);
-  const unsub = () => {
-    cleanup(card);
-    card.off(CARD_EVENTS.AFTER_PLAYED, unsub);
-    card.off(CARD_EVENTS.REPLACED, unsub);
+  const unsub = async () => {
+    await card.session.actionSystem.schedule(async () => {
+      cleanup(card);
+      card.off(CARD_EVENTS.AFTER_PLAYED, unsub);
+      card.off(CARD_EVENTS.REPLACED, unsub);
+    });
   };
   card.on(CARD_EVENTS.AFTER_PLAYED, unsub);
   card.on(CARD_EVENTS.REPLACED, unsub);

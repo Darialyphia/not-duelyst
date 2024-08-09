@@ -513,6 +513,12 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     return this.modifiers.some(m => m.id === id);
   }
 
+  cloneModifiers(to: Entity) {
+    this.modifiers.forEach(modifier => {
+      to.addModifier({ ...modifier });
+    });
+  }
+
   addModifier(modifier: EntityModifier) {
     const existing = this.getModifier(modifier.id);
 

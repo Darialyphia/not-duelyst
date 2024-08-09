@@ -6,7 +6,7 @@ export const f2KageLightning = defineSerializedBlueprint({
   id: 'f2_kage_lightning',
   collectable: false,
   name: 'Kage Lightning',
-  cost: 1,
+  cost: 0,
   faction: FACTION_IDS.F2,
   spriteId: 'icon_f2_kage_lightning',
   keywords: [],
@@ -16,14 +16,14 @@ export const f2KageLightning = defineSerializedBlueprint({
   rarity: RARITIES.TOKEN,
   effects: [
     {
-      text: 'Deal 6 damage to a minion.',
+      text: 'Deal 5 damage to a minion.',
       config: {
         executionContext: 'immediate',
         actions: [
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(6),
+              amount: fixedAmount(5),
               targets: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
               filter: [],
               execute: 'now'

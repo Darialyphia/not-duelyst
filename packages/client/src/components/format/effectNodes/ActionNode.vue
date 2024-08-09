@@ -329,6 +329,16 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  play_card: {
+    label: 'Play a card',
+    params: {
+      card: CardNode,
+      position: CellNode,
+      targets: CellNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -496,6 +506,13 @@ watch(
         params.filter ??= [];
         params.execute ??= 'now';
         params.activeWhen ??= [];
+      })
+      .with({ type: 'play_card' }, ({ params }) => {
+        params.card ??= [[{ type: undefined as any }]];
+        params.position ??= [[{ type: undefined as any }]];
+        params.targets ??= [[{ type: undefined as any }]];
+        params.filter ??= [];
+        params.execute ??= 'now';
       })
       .exhaustive();
   },

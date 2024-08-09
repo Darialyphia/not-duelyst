@@ -88,6 +88,7 @@ export const ensureLoadoutExists = async (
   loadoutId: Id<'loadouts'>
 ) => {
   const loadout = await db.get(loadoutId);
+  console.log(loadoutId);
   if (!loadout) throw new Error(`Loadout not found: ${loadoutId}`);
 
   return loadout;

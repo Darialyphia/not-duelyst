@@ -27,6 +27,7 @@ import { ChangeReplaceCountCardAction } from './actions/change-replaces-count.ca
 import { RushCardAction } from './actions/rush.card-action';
 import { AirdropCardAction } from './actions/airdrop.card-action';
 import { FlyingCardAction } from './actions/flying.card-action';
+import { PlayCardCardAction } from './actions/play-card.Card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -123,6 +124,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'flying' }, action => {
         return new FlyingCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'play_card' }, action => {
+        return new PlayCardCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

@@ -1,11 +1,12 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+import { f2KageLightning } from './kage_lightning';
 
 export const f2StormKage = defineSerializedBlueprint({
   id: 'f2_storm_kage',
   collectable: true,
   keywords: [],
-  relatedBlueprintIds: [],
+  relatedBlueprintIds: [f2KageLightning.id],
   tags: [],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.LEGENDARY,

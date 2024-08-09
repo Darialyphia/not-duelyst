@@ -291,8 +291,19 @@ export type Action<
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'play_card';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        card: Filter<
+          CardConditionBase | Extract<CardConditionExtras, { type: T['card'] }>
+        >;
+        position: Filter<CellCondition>;
+        targets: Filter<CellCondition>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
-
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
 })['params'];

@@ -333,11 +333,28 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
     const card = this.hand[index];
     if (!card) return;
+    await this.playCard(card, opts);
+  }
 
+  async playCard(
+    card: Card,
+    {
+      position,
+      targets,
+      spendGold = true
+    }: { position: Point3D; targets: Point3D[]; spendGold?: boolean }
+  ) {
     await this.emitAsync(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
-    this.currentGold -= card.cost;
-    this.hand.splice(index, 1);
-    await card.play(opts);
+    if (spendGold) {
+      this.currentGold -= card.cost;
+    }
+    const idx = this.hand.indexOf(card);
+    if (idx > -1) {
+      this.hand.splice(idx, 1);
+    }
+    this.deck.pluck(card);
+
+    await card.play({ position, targets });
     this.playedCardSinceLastTurn.push(card);
     await this.emitAsync(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
   }

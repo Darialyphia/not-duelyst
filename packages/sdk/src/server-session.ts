@@ -57,10 +57,12 @@ export class ServerSession extends GameSession {
 
   onUpdate(cb: (action: SerializedAction, opts: { rngValues: number[] }) => void) {
     this.on('scheduler:flushed', () => {
-      cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
-        // events: this.eventsSinceLastDispatch,
-        rngValues: this.rngSystem.values
-      });
+      const lastAction = this.actionSystem.getHistory().at(-1);
+      if (lastAction) {
+        cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
+          rngValues: this.rngSystem.values
+        });
+      }
     });
   }
 

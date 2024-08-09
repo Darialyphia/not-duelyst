@@ -44,7 +44,7 @@ export abstract class Card
   id = nanoid(6);
 
   constructor(
-    protected session: GameSession,
+    public session: GameSession,
     readonly index: CardIndex,
     options: SerializedCard,
     protected playerId: PlayerId

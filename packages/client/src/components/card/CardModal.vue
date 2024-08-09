@@ -17,6 +17,7 @@ const {
 }>();
 const isOpened = defineModel<boolean>('isOpened', { required: true });
 
+const selectedBlueprintId = ref(blueprintId);
 const blueprint = computed(() => CARDS[blueprintId]);
 
 const { settings } = useUserSettings();
@@ -27,16 +28,17 @@ const selectedBlueprint = computed(() =>
 const relatedBlueprints = computed(() =>
   (blueprint.value.relatedBlueprintIds ?? []).map(id => CARDS[id])
 );
-
 const blueprints = computed(() => {
-  return [...new Set([blueprint.value, ...relatedBlueprints.value])]
-    .map(bp => parseSerializeBlueprint(bp))
-    .concat([selectedBlueprint.value]);
+  return [
+    selectedBlueprint.value,
+    ...[blueprint.value, ...relatedBlueprints.value]
+      .filter(bp => bp.id !== selectedBlueprintId.value)
+      .map(bp => parseSerializeBlueprint(bp))
+  ];
 });
 
 const keywords = computed(() => uniqBy(selectedBlueprint.value.keywords ?? [], 'id'));
 
-const selectedBlueprintId = ref(blueprintId);
 const MAX_ANGLE = 30;
 const MAX_OFFSET = 150;
 const angle = computed(() => {
@@ -72,7 +74,12 @@ const offset = computed(() => {
           :key="bp.id"
           :style="{ '--index': index }"
           :class="index === 0 && settings.ui.cardsWith3D && 'card-3d'"
-          @click="selectedBlueprintId = bp.id"
+          @click="
+            () => {
+              console.log(bp.id);
+              selectedBlueprintId = bp.id;
+            }
+          "
         >
           <Card
             :card="{
@@ -100,7 +107,7 @@ const offset = computed(() => {
           {{ selectedBlueprint.name }}
         </DialogTitle>
 
-        <p class="text-3">
+        <p class="text-2">
           <TextWithKeywords :text="selectedBlueprint.description" />
         </p>
 
@@ -152,7 +159,7 @@ const offset = computed(() => {
 .card-modal {
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: calc(var(--size-8) + var(--column-gap) * var(--size-5));
+  column-gap: calc(var(--size-8) + var(--column-gap) * var(--size-9));
 
   height: clamp(50dvh, 30rem, 80dvh);
   padding: var(--size-4);

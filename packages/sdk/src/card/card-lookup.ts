@@ -62,6 +62,7 @@ import { f2Widowmaker } from './cards/faction_2/widowmaker';
 import { neutralRepulsorBeast } from './cards/neutral/repulsor_beast';
 import { f2JadeMonk } from './cards/faction_2/jade_monk';
 import { f2ScarletViper } from './cards/faction_2/scarlet_viper';
+import { neutralDreamgazer } from './cards/neutral/dreamgazer';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -126,7 +127,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralPrimusShieldMaster,
   neutralArakiHeadhunter,
   neutralAethermaster,
-  neutralRepulsorBeast
+  neutralRepulsorBeast,
+  neutralDreamgazer
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<
