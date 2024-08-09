@@ -1,0 +1,717 @@
+{ "frames": [
+   {
+    "filename": "neutral_lady_locke.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.1",
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.2",
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.3",
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.4",
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.5",
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.6",
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.7",
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.8",
+    "frame": { "x": 960, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.9",
+    "frame": { "x": 1080, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.10",
+    "frame": { "x": 1200, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.11",
+    "frame": { "x": 1320, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.12",
+    "frame": { "x": 1440, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.13",
+    "frame": { "x": 1560, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.14",
+    "frame": { "x": 1680, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.15",
+    "frame": { "x": 1800, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.16",
+    "frame": { "x": 1920, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.17",
+    "frame": { "x": 2040, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.18",
+    "frame": { "x": 2160, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.19",
+    "frame": { "x": 2280, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.20",
+    "frame": { "x": 2400, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.21",
+    "frame": { "x": 2520, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.attack.22",
+    "frame": { "x": 2640, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.0",
+    "frame": { "x": 0, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.1",
+    "frame": { "x": 120, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.2",
+    "frame": { "x": 240, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.3",
+    "frame": { "x": 360, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.4",
+    "frame": { "x": 480, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.5",
+    "frame": { "x": 600, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.6",
+    "frame": { "x": 720, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.7",
+    "frame": { "x": 840, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.8",
+    "frame": { "x": 960, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.9",
+    "frame": { "x": 1080, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.10",
+    "frame": { "x": 1200, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.11",
+    "frame": { "x": 1320, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.12",
+    "frame": { "x": 1440, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.breathing.13",
+    "frame": { "x": 1560, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.0",
+    "frame": { "x": 0, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.1",
+    "frame": { "x": 120, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.2",
+    "frame": { "x": 240, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.3",
+    "frame": { "x": 360, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.4",
+    "frame": { "x": 480, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.5",
+    "frame": { "x": 600, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.6",
+    "frame": { "x": 720, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.7",
+    "frame": { "x": 840, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.8",
+    "frame": { "x": 960, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.9",
+    "frame": { "x": 1080, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.10",
+    "frame": { "x": 1200, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.11",
+    "frame": { "x": 1320, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.12",
+    "frame": { "x": 1440, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.13",
+    "frame": { "x": 1560, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.death.14",
+    "frame": { "x": 1680, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.hit.0",
+    "frame": { "x": 0, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.hit.1",
+    "frame": { "x": 120, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.hit.2",
+    "frame": { "x": 240, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.0",
+    "frame": { "x": 0, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.1",
+    "frame": { "x": 120, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.2",
+    "frame": { "x": 240, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.3",
+    "frame": { "x": 360, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.4",
+    "frame": { "x": 480, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.5",
+    "frame": { "x": 600, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.6",
+    "frame": { "x": 720, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.7",
+    "frame": { "x": 840, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.8",
+    "frame": { "x": 960, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.9",
+    "frame": { "x": 1080, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.10",
+    "frame": { "x": 1200, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.11",
+    "frame": { "x": 1320, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.12",
+    "frame": { "x": 1440, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.idle.13",
+    "frame": { "x": 1560, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.0",
+    "frame": { "x": 0, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.1",
+    "frame": { "x": 120, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.2",
+    "frame": { "x": 240, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.3",
+    "frame": { "x": 360, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.4",
+    "frame": { "x": 480, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.5",
+    "frame": { "x": 600, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.6",
+    "frame": { "x": 720, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_lady_locke.run.7",
+    "frame": { "x": 840, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "neutral_lady_locke.png",
+  "format": "RGBA8888",
+  "size": { "w": 2760, "h": 720 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 22, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 23, "to": 36, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 37, "to": 51, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 52, "to": 54, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 55, "to": 68, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 69, "to": 76, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

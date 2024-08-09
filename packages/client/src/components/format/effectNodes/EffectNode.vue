@@ -9,8 +9,9 @@ const executionContext = computed({
     return effect.value.executionContext;
   },
   set(val) {
+    console.log(val);
     match(val)
-      .with('immediate', () => {
+      .with('immediate', 'while_in_hand', 'while_on_board', () => {
         effect.value.executionContext = val;
         effect.value.actions = [];
         effect.value.triggers = undefined;
@@ -37,6 +38,10 @@ const executionContextOptions = computed(() => {
     {
       value: 'trigger_while_on_board',
       label: 'While this card is on the board, whenever...'
+    },
+    {
+      value: 'while_in_hand',
+      label: 'While this card is in your hand'
     },
     {
       value: 'trigger_while_in_hand',

@@ -70,7 +70,7 @@ until(camera.viewport)
       .clamp({
         direction: 'all'
       })
-      .clampZoom({ minScale: 1.5, maxScale: 3 })
+      .clampZoom({ minScale: 1, maxScale: 3 })
       .setZoom(2, false)
       .mouseEdges({
         distance: 10,

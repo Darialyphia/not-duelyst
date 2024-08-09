@@ -299,6 +299,14 @@ export type Action<
       };
     }
   | {
+      type: 'frenzy';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'play_card';
       params: {
         filter?: Filter<GlobalCondition<T>>;

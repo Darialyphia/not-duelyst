@@ -708,6 +708,28 @@ export const deathWatch = ({
   });
 };
 
+export const frenzy = ({ source }: { source: Card }) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierSelfEventMixin({
+        eventName: 'after_deal_damage',
+        async listener([event], ctx) {
+          if (!event.isBattleDamage) return;
+          const nearbyEnemies = ctx.session.entitySystem.getNearbyEnemies(ctx.attachedTo);
+          await Promise.all(
+            nearbyEnemies.map(enemy =>
+              ctx.attachedTo.dealDamage(event.amount, enemy, false)
+            )
+          );
+        }
+      })
+    ]
+  });
+};
+
 export const airdrop = () =>
   createCardModifier({
     id: 'airdrop',

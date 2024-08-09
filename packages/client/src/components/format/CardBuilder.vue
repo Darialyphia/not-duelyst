@@ -4,6 +4,7 @@ import { camelCase } from 'lodash-es';
 import { capitalize } from 'vue';
 import {
   CARD_KINDS,
+  CARDS,
   FACTIONS,
   KEYWORDS,
   RARITIES,
@@ -108,20 +109,34 @@ const iconSprites = import.meta.glob('@/assets/icons{m}/*.png', {
   import: 'default'
 });
 
+const hideUsedSprites = ref(true);
 const spriteOptions = computed(() => {
+  const allCards = [format.cards, ...Object.values(CARDS)];
+  const usedSprites = hideUsedSprites.value ? allCards.map(c => c.spriteId) : [];
+
   return match(blueprint.value.kind)
     .with(CARD_KINDS.GENERAL, CARD_KINDS.MINION, () =>
-      Object.keys(unitSprites).map(k => k.replace('/assets/units{m}/', '').split('.')[0])
+      Object.keys(unitSprites)
+        .map(k => k.replace('/assets/units{m}/', '').split('.')[0])
+        .filter(k => {
+          return !usedSprites.includes(k);
+        })
     )
     .with(CARD_KINDS.SPELL, () =>
       Object.keys(iconSprites)
         .map(k => `icon_${k.replace('/assets/icons{m}/', '').split('.')[0]}`)
         .filter(id => !id.includes('artifact'))
+        .filter(k => {
+          return !usedSprites.includes(k);
+        })
     )
     .with(CARD_KINDS.ARTIFACT, () =>
       Object.keys(iconSprites)
         .map(k => `icon_${k.replace('/assets/icons{m}/', '').split('.')[0]}`)
         .filter(id => id.includes('artifact'))
+        .filter(k => {
+          return !usedSprites.includes(k);
+        })
     )
     .otherwise(() => []);
 });
@@ -200,6 +215,10 @@ watchEffect(() => {
             title="Select a sprite"
             style="--ui-modal-size: var(--size-lg)"
           >
+            <label>
+              <UiSwitch v-model:checked="hideUsedSprites" />
+              Hide used sprites
+            </label>
             <div ref="spriteModalRoot" class="sprite-modal fancy-scrollbar">
               <div
                 v-for="sprite in spriteOptions"

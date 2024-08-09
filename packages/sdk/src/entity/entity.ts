@@ -64,6 +64,7 @@ type DealDamageEvent = {
   entity: Entity;
   target: Entity;
   amount: number;
+  isBattleDamage: boolean;
 };
 type TakeDamageEvent = {
   entity: Entity;
@@ -441,14 +442,15 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     });
   }
 
-  async dealDamage(power: number, target: Entity) {
+  async dealDamage(power: number, target: Entity, isBattleDamage = false) {
     const payload = {
       entity: this,
       amount: this.interceptors.damageDealt.getValue(power, {
         entity: this,
         amount: power
       }),
-      target
+      target,
+      isBattleDamage
     };
     await this.emitAsync(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
@@ -485,7 +487,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
   async performAttack(target: Entity) {
     await this.emitAsync(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
 
-    await this.dealDamage(this.attack, target);
+    await this.dealDamage(this.attack, target, true);
 
     await target.retaliate(target.attack, this);
 

@@ -1,0 +1,789 @@
+{ "frames": [
+   {
+    "filename": "neutral_dilotas.default.0",
+    "frame": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.1",
+    "frame": { "x": 110, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.2",
+    "frame": { "x": 220, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.3",
+    "frame": { "x": 330, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.4",
+    "frame": { "x": 440, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.5",
+    "frame": { "x": 550, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.6",
+    "frame": { "x": 660, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.7",
+    "frame": { "x": 770, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.8",
+    "frame": { "x": 880, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.9",
+    "frame": { "x": 990, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.10",
+    "frame": { "x": 1100, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.11",
+    "frame": { "x": 1210, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.12",
+    "frame": { "x": 1320, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.13",
+    "frame": { "x": 1430, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.14",
+    "frame": { "x": 1540, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.15",
+    "frame": { "x": 1650, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.16",
+    "frame": { "x": 1760, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.17",
+    "frame": { "x": 1870, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.18",
+    "frame": { "x": 1980, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.19",
+    "frame": { "x": 2090, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.20",
+    "frame": { "x": 2200, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.21",
+    "frame": { "x": 2310, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.22",
+    "frame": { "x": 2420, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.23",
+    "frame": { "x": 2530, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.24",
+    "frame": { "x": 2640, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.25",
+    "frame": { "x": 2750, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.default.26",
+    "frame": { "x": 2860, "y": 0, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.0",
+    "frame": { "x": 0, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.1",
+    "frame": { "x": 110, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.2",
+    "frame": { "x": 220, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.3",
+    "frame": { "x": 330, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.4",
+    "frame": { "x": 440, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.5",
+    "frame": { "x": 550, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.6",
+    "frame": { "x": 660, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.7",
+    "frame": { "x": 770, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.8",
+    "frame": { "x": 880, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.9",
+    "frame": { "x": 990, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.10",
+    "frame": { "x": 1100, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.11",
+    "frame": { "x": 1210, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.12",
+    "frame": { "x": 1320, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.breathing.13",
+    "frame": { "x": 1430, "y": 100, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.0",
+    "frame": { "x": 0, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.1",
+    "frame": { "x": 110, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.2",
+    "frame": { "x": 220, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.3",
+    "frame": { "x": 330, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.4",
+    "frame": { "x": 440, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.5",
+    "frame": { "x": 550, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.6",
+    "frame": { "x": 660, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.7",
+    "frame": { "x": 770, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.8",
+    "frame": { "x": 880, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.9",
+    "frame": { "x": 990, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.10",
+    "frame": { "x": 1100, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.11",
+    "frame": { "x": 1210, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.12",
+    "frame": { "x": 1320, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.13",
+    "frame": { "x": 1430, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.14",
+    "frame": { "x": 1540, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.15",
+    "frame": { "x": 1650, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.16",
+    "frame": { "x": 1760, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.17",
+    "frame": { "x": 1870, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.death.18",
+    "frame": { "x": 1980, "y": 200, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.hit.0",
+    "frame": { "x": 0, "y": 300, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.hit.1",
+    "frame": { "x": 110, "y": 300, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.hit.2",
+    "frame": { "x": 220, "y": 300, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.0",
+    "frame": { "x": 0, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.1",
+    "frame": { "x": 110, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.2",
+    "frame": { "x": 220, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.3",
+    "frame": { "x": 330, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.4",
+    "frame": { "x": 440, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.5",
+    "frame": { "x": 550, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.6",
+    "frame": { "x": 660, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.7",
+    "frame": { "x": 770, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.8",
+    "frame": { "x": 880, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.9",
+    "frame": { "x": 990, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.10",
+    "frame": { "x": 1100, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.11",
+    "frame": { "x": 1210, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.12",
+    "frame": { "x": 1320, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.idle.13",
+    "frame": { "x": 1430, "y": 400, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.0",
+    "frame": { "x": 0, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.1",
+    "frame": { "x": 110, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.2",
+    "frame": { "x": 220, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.3",
+    "frame": { "x": 330, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.4",
+    "frame": { "x": 440, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.5",
+    "frame": { "x": 550, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.6",
+    "frame": { "x": 660, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dilotas.run.7",
+    "frame": { "x": 770, "y": 500, "w": 110, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 100 },
+    "sourceSize": { "w": 110, "h": 100 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "neutral_dilotas.png",
+  "format": "RGBA8888",
+  "size": { "w": 2970, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "default", "from": 0, "to": 26, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 27, "to": 40, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 41, "to": 59, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 60, "to": 62, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 63, "to": 76, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 77, "to": 84, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

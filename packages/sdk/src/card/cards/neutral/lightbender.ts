@@ -1,0 +1,48 @@
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { CARD_KINDS, RARITIES } from '../../card-enums';
+
+export const neutralLightbender = defineSerializedBlueprint({
+  id: 'neutral_lightbender',
+  collectable: true,
+  keywords: ['opening_gambit'],
+  relatedBlueprintIds: [],
+  tags: [],
+  kind: CARD_KINDS.MINION,
+  rarity: RARITIES.RARE,
+  targets: { min: 0, targets: [] },
+  cellHighlights: [],
+  spriteId: 'neutral_ligthbender',
+  name: 'Lightbender',
+  cost: 4,
+  attack: 3,
+  maxHp: 3,
+  faction: null,
+  effects: [
+    {
+      text: '@Opening Gambit@: Dispel nearby spaces.',
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'dispel_cell',
+            params: {
+              cells: [
+                [
+                  {
+                    type: 'is_nearby',
+                    params: {
+                      unit: [[{ type: 'is_self', params: { not: false } }]],
+                      cell: []
+                    }
+                  }
+                ]
+              ],
+              filter: [],
+              execute: 'now'
+            }
+          }
+        ]
+      }
+    }
+  ]
+});

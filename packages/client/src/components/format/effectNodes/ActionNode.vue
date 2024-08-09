@@ -343,6 +343,14 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  frenzy: {
+    label: 'Frenzy',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -528,6 +536,11 @@ watch(
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];
         params.execute ??= 'now';
+      })
+      .with({ type: 'frenzy' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.activeWhen ??= [];
       })
       .exhaustive();
   },
