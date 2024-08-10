@@ -365,6 +365,13 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     this.activate();
   }
 
+  async remove() {
+    this.session.entitySystem.removeEntity(this);
+    this.modifiers.forEach(modifier => {
+      modifier.onRemoved(this.session, this, modifier);
+    });
+  }
+
   async destroy() {
     await this.session.actionSystem.schedule(async () => {
       await this.emitAsync(ENTITY_EVENTS.BEFORE_DESTROY, this);

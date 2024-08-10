@@ -80,6 +80,10 @@ import { neutralLightbender } from './cards/neutral/lightbender';
 import { neutralFlamebloodWarlock } from './cards/neutral/flameblood_warlock';
 import { neutralAzureHornShaman } from './cards/neutral/azure-horn-shaman';
 import { neutralFrostboneNaga } from './cards/neutral/frostbone-naga';
+import { f3General2 } from './cards/faction_3/general2';
+import { f3WindDervish } from './cards/faction_3/wind-dervish';
+import { f3EtherealObelysk } from './cards/faction_3/ethereal-obelysk';
+import { f3PortalGuardian } from './cards/faction_3/portal-guardiant';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -138,6 +142,11 @@ const allCards: SerializedBlueprint<any>[] = [
   f2Widowmaker,
   f2JadeMonk,
   f2ScarletViper,
+
+  f3General2,
+  f3WindDervish,
+  f3EtherealObelysk,
+  f3PortalGuardian,
 
   neutralHealingMystic,
   neutralRiftWalker,

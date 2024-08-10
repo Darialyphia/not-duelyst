@@ -1,5 +1,5 @@
 import type { GameSession } from '../game-session';
-import type { Point3D, Serializable, Values } from '@game/shared';
+import type { AnyObject, Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, PlayerId } from '../player/player';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
@@ -41,6 +41,7 @@ export abstract class Card
   public readonly cardBackId: string;
   modifiers: CardModifier[] = [];
 
+  meta: AnyObject = {};
   id = nanoid(6);
 
   constructor(

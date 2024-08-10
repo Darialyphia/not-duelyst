@@ -457,7 +457,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit?.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -465,7 +465,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.card.length
+                    (trigger.params.card?.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -486,7 +486,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit?.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -494,7 +494,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.card.length
+                    (trigger.params.card?.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -515,7 +515,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.card.length
+                    (trigger.params.card?.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -525,7 +525,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.equals(card);
                         })
                       : true) &&
-                    (trigger.params.unit.length
+                    (trigger.params.unit?.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -555,7 +555,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.card.length
+                    (trigger.params.card?.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -565,7 +565,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.equals(card);
                         })
                       : true) &&
-                    (trigger.params.unit.length
+                    (trigger.params.unit?.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,

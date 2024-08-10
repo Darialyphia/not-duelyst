@@ -29,6 +29,9 @@ import { AirdropCardAction } from './actions/airdrop.card-action';
 import { FlyingCardAction } from './actions/flying.card-action';
 import { PlayCardCardAction } from './actions/play-card.Card-action';
 import { FrenzyCardAction } from './actions/frenzy.card-action';
+import { EphemeralCardAction } from './actions/ephemeral.card-action';
+import { StructureCardAction } from './actions/structure.card-action';
+import { SpawnCardAction } from './actions/spawn.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -131,6 +134,15 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'frenzy' }, action => {
         return new FrenzyCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'ephemeral' }, action => {
+        return new EphemeralCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'structure' }, action => {
+        return new StructureCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'spawn' }, action => {
+        return new SpawnCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

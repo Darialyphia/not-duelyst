@@ -1,0 +1,554 @@
+{ "frames": [
+   {
+    "filename": "f3_fireblaze_obelysk.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.1",
+    "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.2",
+    "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.3",
+    "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.4",
+    "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.5",
+    "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.6",
+    "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.7",
+    "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.8",
+    "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.9",
+    "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.10",
+    "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.attack.11",
+    "frame": { "x": 880, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.0",
+    "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.1",
+    "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.2",
+    "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.3",
+    "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.4",
+    "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.5",
+    "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.6",
+    "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.7",
+    "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.8",
+    "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.9",
+    "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.10",
+    "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.11",
+    "frame": { "x": 880, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.breathing.12",
+    "frame": { "x": 960, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.0",
+    "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.1",
+    "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.2",
+    "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.3",
+    "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.4",
+    "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.5",
+    "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.6",
+    "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.7",
+    "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.8",
+    "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.9",
+    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.10",
+    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.11",
+    "frame": { "x": 880, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.12",
+    "frame": { "x": 960, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.13",
+    "frame": { "x": 1040, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.14",
+    "frame": { "x": 1120, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.15",
+    "frame": { "x": 1200, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.16",
+    "frame": { "x": 1280, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.17",
+    "frame": { "x": 1360, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.18",
+    "frame": { "x": 1440, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.death.19",
+    "frame": { "x": 1520, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.hit.0",
+    "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.hit.1",
+    "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.hit.2",
+    "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.0",
+    "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.1",
+    "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.2",
+    "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.3",
+    "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.4",
+    "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.5",
+    "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.6",
+    "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.7",
+    "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.8",
+    "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.9",
+    "frame": { "x": 720, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_fireblaze_obelysk.idle.10",
+    "frame": { "x": 800, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "f3_fireblaze_obelysk.png",
+  "format": "RGBA8888",
+  "size": { "w": 1600, "h": 400 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 11, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 12, "to": 24, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 25, "to": 44, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 45, "to": 47, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 48, "to": 58, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

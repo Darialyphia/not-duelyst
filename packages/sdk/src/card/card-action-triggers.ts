@@ -60,8 +60,8 @@ export type Trigger =
       params: {
         frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-        card: Filter<CardConditionBase>;
+        unit?: Filter<UnitConditionBase>;
+        card?: Filter<CardConditionBase>;
       };
     }
   | {
@@ -69,8 +69,8 @@ export type Trigger =
       params: {
         frequency: TriggerFrequency;
         target: Filter<UnitConditionBase>;
-        unit: Filter<UnitConditionBase>;
-        card: Filter<CardConditionBase>;
+        unit?: Filter<UnitConditionBase>;
+        card?: Filter<CardConditionBase>;
       };
     }
   | {
@@ -93,16 +93,16 @@ export type Trigger =
       type: 'on_before_unit_healed';
       params: {
         frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-        card: Filter<CardConditionBase>;
+        unit?: Filter<UnitConditionBase>;
+        card?: Filter<CardConditionBase>;
       };
     }
   | {
       type: 'on_after_unit_healed';
       params: {
         frequency: TriggerFrequency;
-        unit: Filter<UnitConditionBase>;
-        card: Filter<CardConditionBase>;
+        unit?: Filter<UnitConditionBase>;
+        card?: Filter<CardConditionBase>;
       };
     }
   | {

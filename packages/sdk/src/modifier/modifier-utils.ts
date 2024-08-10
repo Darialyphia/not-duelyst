@@ -359,6 +359,69 @@ export const ranged = ({ source, duration }: { source: Card; duration?: number }
   });
 };
 
+export const ephemeral = ({ source }: { source: Card }) => {
+  return createEntityModifier({
+    source,
+    id: KEYWORDS.EPHEMERAL.id,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierGameEventMixin({
+        eventName: 'player:turn_end',
+        once: true,
+        async listener([event], { attachedTo }) {
+          if (event.equals(attachedTo.player)) {
+            await attachedTo.remove();
+          }
+        }
+      })
+    ]
+  });
+};
+
+export const spawn = ({
+  source,
+  blueprintId,
+  position
+}: {
+  source: Card;
+  blueprintId: string;
+  position: Point3D;
+}) => {
+  return createEntityModifier({
+    source,
+    id: KEYWORDS.EPHEMERAL.id,
+    stackable: false,
+    visible: false,
+    mixins: [
+      modifierGameEventMixin({
+        eventName: 'player:turn_start',
+        async listener([event], { session, attachedTo }) {
+          if (!event.equals(attachedTo.player)) {
+            return;
+          }
+
+          const entity = session.boardSystem.getCellAt(position)!.entity;
+          if (entity) {
+            if (entity.isEnemy(attachedTo.id)) {
+              await entity.takeDamage(2, attachedTo.card);
+            }
+            return;
+          }
+
+          const card = event.generateCard({
+            blueprintId,
+            pedestalId: source.pedestalId,
+            cardBackId: source.cardBackId
+          });
+
+          await card.play({ position, targets: [] });
+        }
+      })
+    ]
+  });
+};
+
 export const barrier = ({ source, duration }: { source: Card; duration?: number }) => {
   return createEntityModifier({
     id: KEYWORDS.BARRIER.id,

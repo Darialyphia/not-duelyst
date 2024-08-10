@@ -5,7 +5,7 @@ import { PTransition } from 'vue3-pixi';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { camera, fx } = useGame();
+const { camera, fx, ui } = useGame();
 const entity = useEntity(entityId);
 
 const shouldFlip = ref(false);
@@ -72,6 +72,8 @@ useSessionEvent('entity:before_destroy', ([event]) => {
     });
   });
 });
+
+const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
 </script>
 
 <template>
@@ -99,4 +101,5 @@ useSessionEvent('entity:before_destroy', ([event]) => {
       <EntityStats v-if="areStatsDisplayed" :entity-id="entityId" />
     </container>
   </EntityPositioner>
+  <EntitySpawnIndicator v-if="isHovered" :entity-id="entityId" />
 </template>

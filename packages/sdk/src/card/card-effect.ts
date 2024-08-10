@@ -14,6 +14,7 @@ import type { CellCondition } from './conditions/cell-conditions';
 import type { CardKind } from './card-enums';
 import type { Trigger, TriggerFrequency } from './card-action-triggers';
 import type { Amount } from './helpers/amount';
+import type { CardBlueprintId } from './card';
 
 export type Filter<T> = T[][];
 
@@ -304,6 +305,40 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'structure';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'ephemeral';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'structure';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'spawn';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        blueprint: CardBlueprintId;
+        position: Filter<CellCondition>;
       };
     }
   | {

@@ -198,6 +198,19 @@ export const KEYWORDS = {
     description:
       "Has an additional effect when on the opponent's side of the battlefield",
     aliases: []
+  },
+  SPAWN: {
+    id: 'spawn',
+    name: 'Spawn',
+    description:
+      'Pick a space when this unit is summoned. At the start of your turn, summon a unit on this space, or deal 2 damage if an enemy unit is standing on it.',
+    aliases: []
+  },
+  EPHEMERAL: {
+    id: 'ephemeral',
+    name: 'Ephemeral',
+    description: 'This unit disappear at the end of its owner turn.',
+    aliases: []
   }
 } as const satisfies Record<string, Keyword>;
 

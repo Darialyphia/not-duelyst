@@ -104,8 +104,10 @@ export const getCells = ({
                   playedPoint
                 }).map(c => c.position);
 
-            return [...unitPositions, ...cellPositions].some(candidate =>
-              isWithinCells(candidate, cell.position, 1)
+            return [...unitPositions, ...cellPositions].some(
+              candidate =>
+                isWithinCells(candidate, cell.position, 1) &&
+                !candidate.equals(cell.position)
             );
           })
           .with({ type: 'is_in_front' }, condition => {

@@ -351,6 +351,32 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  structure: {
+    label: 'Structure',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  ephemeral: {
+    label: 'Ephemeral',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  spawn: {
+    label: 'Spawn',
+    params: {
+      blueprint: BlueprintNode,
+      position: CellNode,
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -538,6 +564,23 @@ watch(
         params.execute ??= 'now';
       })
       .with({ type: 'frenzy' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.activeWhen ??= [];
+      })
+      .with({ type: 'structure' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.activeWhen ??= [];
+      })
+      .with({ type: 'ephemeral' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.activeWhen ??= [];
+      })
+      .with({ type: 'spawn' }, ({ params }) => {
+        params.blueprint ??= undefined as any;
+        params.position ??= [[{ type: undefined as any }]];
         params.filter ??= [];
         params.execute ??= 'now';
         params.activeWhen ??= [];
