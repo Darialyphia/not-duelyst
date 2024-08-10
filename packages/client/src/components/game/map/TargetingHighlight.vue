@@ -15,7 +15,9 @@ const canHighlight = (cellToTest: CellViewModel) => {
     playedPoint: ui.summonTarget.value ?? undefined,
     targets: [
       ...ui.cardTargets.value,
-      pathfinding.canTarget(ui.hoveredCell.value) ? ui.hoveredCell.value : null
+      ui.targetableCells.value.some(c => ui.hoveredCell.value?.equals(c))
+        ? ui.hoveredCell.value
+        : null
     ].filter(isDefined),
     card: ui.selectedCard.value!
   });
@@ -36,7 +38,7 @@ const isMatch = (cellToTest: Cell) => {
       if (!ui.selectedCard.value) return false;
       if (!isDefined(ui.selectedCardIndex.value)) return false;
       if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
-      return pathfinding.canTarget(cellToTest);
+      return ui.targetableCells.value.some(cell => cell.equals(cellToTest));
     })
     .exhaustive();
 };

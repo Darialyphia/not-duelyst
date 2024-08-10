@@ -10,6 +10,7 @@ import type { Filter, GenericCardEffect } from './card-effect';
 import type { CardTargetsConfig } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
 import type { CellConditionBase } from './conditions/cell-conditions';
+import type { Cell } from '../board/cell';
 
 export const MULTICOLOR = 'multicolor' as const;
 
@@ -60,6 +61,12 @@ type CardBlueprintUnit = {
         card: Card;
       }
     ): boolean;
+    getAllTargets(options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }): Cell[];
   };
   onPlay?: (options: {
     session: GameSession;
@@ -91,6 +98,12 @@ type CardBlueprintSpell = {
         card: Card;
       }
     ): boolean;
+    getAllTargets(options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }): Cell[];
   };
 };
 
@@ -117,6 +130,12 @@ type CardBlueprintArtifact = {
         card: Card;
       }
     ): boolean;
+    getAllTargets(options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }): Cell[];
   };
 };
 

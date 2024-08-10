@@ -22,13 +22,7 @@ const isActivePlayer = useIsActivePlayer();
 const isHovered = computed(() => ui.hoveredCell.value?.equals(cell.getCell()));
 
 const isTargetable = () => {
-  if (!ui.selectedCard.value) return false;
-  return ui.selectedCard.value.blueprint.targets?.isTargetable(cell.getCell(), {
-    session,
-    playedPoint: ui.summonTarget.value ?? undefined,
-    targets: ui.cardTargets.value,
-    card: ui.selectedCard.value!
-  });
+  return ui.targetableCells.value.some(c => c.equals(cell.getCell()));
 };
 
 const pointerenterSound = useSound(

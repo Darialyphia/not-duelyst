@@ -38,6 +38,24 @@ export const parseTargets = (
       }).some(cell => {
         return cell.position.equals(point);
       });
+    },
+    getAllTargets(options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }) {
+      if (options.card.blueprint.targets!.maxTargetCount <= options.targets.length) {
+        return [];
+      }
+      return getCells({
+        session: options.session,
+        event: {},
+        card: options.card,
+        targets: options.targets,
+        conditions: config.targets[options.targets.length],
+        playedPoint: options.playedPoint
+      });
     }
   };
 };

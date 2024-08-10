@@ -68,6 +68,8 @@ export type GameUiContext = {
   assignLayer(obj: Nullable<DisplayObject>, layer: LayerName): void;
 
   isSimulationResultDisplayed: Ref<boolean>;
+
+  targetableCells: ComputedRef<Cell[]>;
 };
 
 const GAME_UI_INJECTION_KEY = Symbol('game-ui') as InjectionKey<GameUiContext>;
@@ -219,7 +221,18 @@ export const useGameUiProvider = (session: GameSession) => {
       api.switchTargetingMode(TARGETING_MODES.NONE);
     },
 
-    cardChoiceIndexes: ref([])
+    cardChoiceIndexes: ref([]),
+
+    targetableCells: computed(() => {
+      if (!api.selectedCard.value) return [];
+      if (!api.selectedCard.value.blueprint.targets) return [];
+      return api.selectedCard.value.blueprint.targets.getAllTargets({
+        session,
+        playedPoint: api.summonTarget.value ?? undefined,
+        card: api.selectedCard.value,
+        targets: api.cardTargets.value
+      });
+    })
   };
   provide(GAME_UI_INJECTION_KEY, api);
 
