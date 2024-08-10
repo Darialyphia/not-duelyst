@@ -71,6 +71,7 @@ export type Action<
         mode: 'give' | 'set';
         attack?: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
         hp?: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
+        speed?: { amount: Amount<T>; activeWhen?: Filter<GlobalCondition<T>> };
         targets: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
         >;

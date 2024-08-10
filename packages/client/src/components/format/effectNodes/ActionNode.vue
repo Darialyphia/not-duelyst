@@ -157,6 +157,7 @@ const actionDict: ActionDictionary = {
       stackable: null,
       attack: { amount: AmountNode, activeWhen: GlobalConditionNode },
       hp: { amount: AmountNode, activeWhen: GlobalConditionNode },
+      speed: { amount: AmountNode, activeWhen: GlobalConditionNode },
       execute: null,
       duration: null,
       filter: GlobalConditionNode
@@ -476,6 +477,10 @@ watch(
         params.hp = {
           amount: params.hp?.amount ?? ({ type: undefined } as any),
           activeWhen: params.hp?.activeWhen ?? []
+        };
+        params.speed = {
+          amount: params.speed?.amount ?? ({ type: undefined } as any),
+          activeWhen: params.speed?.activeWhen ?? []
         };
         params.targets ??= [[{ type: undefined as any }]];
         params.filter ??= [];

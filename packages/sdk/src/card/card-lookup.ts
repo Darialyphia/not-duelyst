@@ -93,6 +93,9 @@ import { f3WindShrike } from './cards/faction_3/wind-shrike';
 import { f3Blindscorch } from './cards/faction_3/blindscorch';
 import { f3StarsFury } from './cards/faction_3/stars_fury';
 import { f3ZenuiTheBlghtspawned } from './cards/faction_3/zenrui-the-blightspawned';
+import { f3ScionsFirstWish } from './cards/faction_3/scions-first-wish';
+import { f3ScionssSecondWish } from './cards/faction_3/scions-second-wish';
+import { f3ScionsThirdWish } from './cards/faction_3/scions-third-wish';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -165,6 +168,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f3Blindscorch,
   f3StarsFury,
   f3ZenuiTheBlghtspawned,
+  f3ScionsFirstWish,
+  f3ScionssSecondWish,
+  f3ScionsThirdWish,
 
   neutralHealingMystic,
   neutralRiftWalker,

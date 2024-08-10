@@ -1,0 +1,81 @@
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+
+export const f3ScionsThirdWish = defineSerializedBlueprint({
+  id: 'scions_third_wish',
+  collectable: true,
+  keywords: [],
+  relatedBlueprintIds: [],
+  kind: CARD_KINDS.SPELL,
+  tags: [],
+  rarity: RARITIES.EPIC,
+  targets: { min: 1, targets: [[[{ type: 'any_cell' }]]] },
+  cellHighlights: [],
+  name: "Scion's Third Wish",
+  spriteId: 'icon_f3_scions_third_wish',
+  cost: 3,
+  faction: FACTION_IDS.F3,
+  effects: [
+    {
+      text: 'This turn, give your general +3/+0, and "this can move up to 3 spaces. Reduce damage this takes by 3.',
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'change_stats',
+            params: {
+              mode: 'give',
+              stackable: true,
+              attack: { amount: { type: 'fixed', params: { value: 3 } }, activeWhen: [] },
+              targets: [
+                [
+                  { type: 'is_general', params: { not: false } },
+                  { type: 'is_ally', params: { not: false } }
+                ]
+              ],
+              filter: [],
+              duration: 'end_of_turn',
+              execute: 'now'
+            }
+          },
+          {
+            type: 'change_stats',
+            params: {
+              mode: 'set',
+              stackable: false,
+              speed: { amount: { type: 'fixed', params: { value: 3 } }, activeWhen: [] },
+              targets: [
+                [
+                  { type: 'is_general', params: { not: false } },
+                  { type: 'is_ally', params: { not: false } }
+                ]
+              ],
+              filter: [],
+              duration: 'end_of_turn',
+              execute: 'now'
+            }
+          },
+          {
+            type: 'change_damage_taken',
+            params: {
+              mode: 'give',
+              stackable: true,
+              targets: [
+                [
+                  { type: 'is_general', params: { not: false } },
+                  { type: 'is_ally', params: { not: false } }
+                ]
+              ],
+              source: [],
+              filter: [],
+              frequency: { type: 'always' },
+              amount: { type: 'fixed', params: { value: -3 } },
+              duration: 'end_of_turn',
+              execute: 'now'
+            }
+          }
+        ]
+      }
+    }
+  ]
+});

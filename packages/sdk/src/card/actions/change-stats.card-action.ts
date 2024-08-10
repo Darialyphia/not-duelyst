@@ -48,6 +48,28 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
     };
   }
 
+  private makeSpeedInterceptor() {
+    const staticValue = this.action.params.speed
+      ? this.getAmount(this.action.params.speed.amount)
+      : 0;
+
+    return (value: number) => {
+      if (!this.action.params.speed) return value;
+
+      const shouldApply = this.checkGlobalConditions(this.action.params.speed.activeWhen);
+      if (!shouldApply) return value;
+
+      const amount = this.getAmount(this.action.params.speed.amount);
+
+      return match(this.action.params.mode)
+        .with('give', () => {
+          return value + amount;
+        })
+        .with('set', () => staticValue)
+        .exhaustive();
+    };
+  }
+
   protected async executeImpl() {
     const modifierId = this.generateModifierId();
     const units = this.getUnits(this.action.params.targets);
@@ -69,6 +91,11 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
               key: 'maxHp',
               keywords: [],
               interceptor: () => this.makeHpInterceptor()
+            }),
+            modifierEntityInterceptorMixin({
+              key: 'speed',
+              keywords: [],
+              interceptor: () => this.makeSpeedInterceptor()
             })
           ]
         })
