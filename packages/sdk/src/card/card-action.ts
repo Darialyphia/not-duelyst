@@ -33,6 +33,7 @@ import { EphemeralCardAction } from './actions/ephemeral.card-action';
 import { StructureCardAction } from './actions/structure.card-action';
 import { SpawnCardAction } from './actions/spawn.card-action';
 import { RemoveKeywordCardActon } from './actions/remove-keyword.card-action';
+import { EquipArtifactCardAction } from './actions/equip-artifact.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -147,6 +148,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'remove_keyword' }, action => {
         return new RemoveKeywordCardActon(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'equip_artifact' }, action => {
+        return new EquipArtifactCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

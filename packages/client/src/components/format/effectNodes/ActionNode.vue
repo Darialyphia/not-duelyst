@@ -384,10 +384,19 @@ const actionDict: ActionDictionary = {
     }
   },
   remove_keyword: {
-    label: 'remove a keyword from a unit',
+    label: 'Remove a keyword from a unit',
     params: {
       keyword: KeywordNode,
       unit: UnitNode,
+      execute: null,
+      filter: null
+    }
+  },
+  equip_artifact: {
+    label: 'Equip an artifact',
+    params: {
+      player: PlayerNode,
+      blueprint: BlueprintNode,
       execute: null,
       filter: null
     }
@@ -611,6 +620,12 @@ watch(
         params.execute ??= 'now';
         params.keyword = undefined as any;
         params.unit = [[{ type: undefined as any }]];
+      })
+      .with({ type: 'equip_artifact' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.blueprint = undefined as any;
+        params.player = [[{ type: undefined as any }]];
       })
       .exhaustive();
   },

@@ -88,6 +88,8 @@ import { f3AymaraHealer } from './cards/faction_3/aymara_healer';
 import { f3Chronomancer } from './cards/faction_3/chronomancer';
 import { f3Dunecaster } from './cards/faction_3/dunecaster';
 import { f3SandHowler } from './cards/faction_3/sand-howler';
+import { f3StaffOfYkir } from './cards/faction_3/staff-of-ykir';
+import { f3WindShrike } from './cards/faction_3/wind-shrike';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -155,6 +157,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f3Chronomancer,
   f3Dunecaster,
   f3SandHowler,
+  f3StaffOfYkir,
+  f3WindShrike,
 
   neutralHealingMystic,
   neutralRiftWalker,

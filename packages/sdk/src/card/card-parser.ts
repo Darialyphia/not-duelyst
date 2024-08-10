@@ -832,6 +832,23 @@ export const parseSerializedBlueprintEffect = (
                 }
               });
             })
+            .with({ type: 'on_artifact_destroyed' }, trigger => {
+              return getEffectModifier({
+                actions,
+                frequency: trigger.params.frequency,
+                eventName: 'artifact:before_destroy',
+                filter(ctx, [event], eventName) {
+                  return trigger.params.card.length
+                    ? getCards({
+                        ...ctx,
+                        event,
+                        eventName,
+                        conditions: trigger.params.card
+                      }).some(card => event.card === card)
+                    : true;
+                }
+              });
+            })
             .exhaustive()
         );
       }

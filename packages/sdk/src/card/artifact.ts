@@ -58,8 +58,8 @@ export class Artifact extends Card implements Serializable {
     await this.player.equipArtifact(this.index);
   }
 
-  equip(artifact: PlayerArtifact) {
-    this.blueprint.onPlay?.({
+  async equip(artifact: PlayerArtifact) {
+    await this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       artifact,

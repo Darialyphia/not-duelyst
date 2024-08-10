@@ -1,5 +1,9 @@
 import { type FXSystem } from './fx-system';
-import { type GameFormat, type SerializedGameState } from './game-session';
+import {
+  type GameFormat,
+  type SerializedGameState,
+  type SessionLogger
+} from './game-session';
 import type { SerializedAction } from './action/action';
 import deepEqual from 'deep-equal';
 import type { AnyObject, MaybePromise, Values } from '@game/shared';
@@ -20,6 +24,8 @@ export type TutorialStep = {
   highlightedCardIndex?: number;
   meta: AnyObject;
 };
+
+const tutorialLogger: SessionLogger = () => void 0;
 
 export class TutorialSession extends ClientSession {
   static createTutorialSession(
@@ -56,7 +62,7 @@ export class TutorialSession extends ClientSession {
     },
     public steps: TutorialStep[]
   ) {
-    super(initialState, rngSystem, fxSystem, options);
+    super(initialState, rngSystem, fxSystem, tutorialLogger, options);
 
     this.on('game:action', async () => {
       if (this.isFinished) return;

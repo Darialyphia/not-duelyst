@@ -95,7 +95,7 @@ export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
       ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
       this.onGeneralDamageTaken.bind(this)
     );
-    this.card.equip(this);
+    await this.card.equip(this);
     await this.emitAsync(ARTIFACT_EVENTS.EQUIPED, this);
   }
 

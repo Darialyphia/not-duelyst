@@ -107,6 +107,11 @@ const triggerDict: Record<Trigger['type'], { label: string; params: string[] }> 
     params: ['card', 'frequency']
   },
 
+  on_artifact_destroyed: {
+    label: 'When an artifact is destroyed',
+    params: ['card', 'frequency']
+  },
+
   on_after_card_played: {
     label: 'After a card is played',
     params: ['card', 'frequency']

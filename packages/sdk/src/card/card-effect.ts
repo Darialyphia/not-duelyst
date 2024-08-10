@@ -364,6 +364,15 @@ export type Action<
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         keyword: KeywordId;
       };
+    }
+  | {
+      type: 'equip_artifact';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        player: Filter<PlayerCondition>;
+        blueprint: string;
+      };
     };
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;

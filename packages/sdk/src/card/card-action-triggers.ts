@@ -185,4 +185,8 @@ export type Trigger =
   | {
       type: 'on_artifact_equiped';
       params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
+    }
+  | {
+      type: 'on_artifact_destroyed';
+      params: { frequency: TriggerFrequency; card: Filter<CardConditionBase> };
     };
