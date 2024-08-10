@@ -1,7 +1,7 @@
-import { type Serializable, Vec3, type Values } from '@game/shared';
+import { Vec3, type Values } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
-import type { CardIndex, PlayerId } from '../player/player';
+import type { Player, PlayerId } from '../player/player';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { isAlly, isEnemy } from './entity-utils';
 import { isWithinCells } from '../utils/targeting';
@@ -22,8 +22,6 @@ export type EntityId = number;
 export type SerializedEntity = {
   id: number;
   position: Point3D;
-  cardIndex: CardIndex;
-  playerId: PlayerId;
   hp?: number;
 };
 
@@ -113,10 +111,8 @@ export type EntityEventMap = {
 
 export type EntityInterceptor = Entity['interceptors'];
 
-export class Entity extends TypedEventEmitter<EntityEventMap> implements Serializable {
-  private cardIndex: CardIndex;
+export class Entity extends TypedEventEmitter<EntityEventMap> {
   private _keywords: Keyword[] = [];
-  private playerId: PlayerId;
 
   readonly id: EntityId;
 
@@ -157,15 +153,18 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     healReceived: new Interceptable<number, { entity: Entity; amount: number }>()
   };
 
+  originalOwner: Player;
+
   constructor(
     protected session: GameSession,
+    public card: Unit,
     options: SerializedEntity
   ) {
     super();
     this.id = options.id;
+    this.originalOwner = this.card.player;
+
     this.position = Vec3.fromPoint3D(options.position);
-    this.cardIndex = options.cardIndex;
-    this.playerId = options.playerId;
     this.currentHp = options.hp ?? this.maxHp;
   }
 
@@ -173,31 +172,16 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     return entity.id === this.id;
   }
 
-  serialize(): SerializedEntity {
-    return {
-      id: this.id,
-      position: this.position.serialize(),
-      cardIndex: this.cardIndex,
-      playerId: this.playerId,
-      hp: this.hp
-    };
-  }
-
   get isGeneral() {
     return this.card.blueprint.kind == CARD_KINDS.GENERAL;
   }
 
-  get card() {
-    const card = this.player.cards[this.cardIndex];
-    if (!(card instanceof Unit)) {
-      throw new Error('Entity card is not a Unit');
-    }
-
-    return card;
+  get player(): Player {
+    return this.card.player;
   }
 
-  get player() {
-    return this.session.playerSystem.getPlayerById(this.playerId)!;
+  get playerId() {
+    return this.player.id;
   }
 
   get belongsToActivePlayer() {
@@ -310,7 +294,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
       this.attacksTaken <
         Math.min(this.maxMovements, this.maxMovements - this.movementsTaken + 1) &&
       this.canAttackAt(target.position) &&
-      isEnemy(this.session, target.id, this.playerId);
+      isEnemy(this.session, target.id, this.player.id);
 
     return (
       this.interceptors.canAttack.getValue(baseValue, { entity: this, target }) &&
@@ -378,7 +362,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
     await this.session.actionSystem.schedule(async () => {
       await this.emitAsync(ENTITY_EVENTS.BEFORE_DESTROY, this);
       this.session.entitySystem.removeEntity(this);
-      this.player.graveyard.push(this.card);
+      this.originalOwner.graveyard.push(this.card);
       this.modifiers.forEach(modifier => {
         modifier.onRemoved(this.session, this, modifier);
       });

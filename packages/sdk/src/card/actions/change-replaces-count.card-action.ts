@@ -1,3 +1,4 @@
+import { CARD_EVENTS } from '../card';
 import { CardAction } from './_card-action';
 import { match } from 'ts-pattern';
 
@@ -13,15 +14,27 @@ export class ChangeReplaceCountCardAction extends CardAction<'change_replaces_co
     };
   }
 
-  protected async executeImpl() {
+  applyInterceptors() {
     const players = this.getPlayers(this.action.params.player);
 
-    const cleanups = players.map(player => {
+    return players.map(player => {
       return player.addInterceptor('maxReplaces', this.makeInterceptor());
+    });
+  }
+
+  protected async executeImpl() {
+    const cleanups = {
+      fns: this.applyInterceptors()
+    };
+
+    const stopOnOwnerChanged = this.card.on(CARD_EVENTS.CHANGE_OWNER, () => {
+      cleanups.fns.forEach(c => c());
+      cleanups.fns = this.applyInterceptors();
     });
 
     const stop = () => {
-      cleanups.forEach(c => c());
+      cleanups.fns.forEach(c => c());
+      stopOnOwnerChanged();
     };
 
     if (this.action.params.duration === 'end_of_turn') {

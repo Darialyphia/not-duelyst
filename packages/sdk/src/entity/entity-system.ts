@@ -3,6 +3,7 @@ import type { Point3D } from '../types';
 import { ENTITY_EVENTS, Entity, type EntityId, type SerializedEntity } from './entity';
 import { GameSession } from '../game-session';
 import type { Tag } from '../utils/tribes';
+import type { Unit } from '../card/unit';
 
 export class EntitySystem {
   private entityMap = new Map<EntityId, Entity>();
@@ -12,9 +13,9 @@ export class EntitySystem {
 
   setup(entities: SerializedEntity[]) {
     entities.forEach(rawEntity => {
-      const entity = new Entity(this.session, rawEntity);
-      this.entityMap.set(entity.id, entity);
-      this.setupListeners(entity);
+      // const entity = new Entity(this.session, rawEntity);
+      // this.entityMap.set(entity.id, entity);
+      // this.setupListeners(entity);
     });
     if (entities.length) {
       this.nextEntityId = Math.max(...this.getList().map(e => e.id));
@@ -108,9 +109,9 @@ export class EntitySystem {
     });
   }
 
-  addEntity(rawEntity: Omit<SerializedEntity, 'id'>) {
+  addEntity(rawEntity: Omit<SerializedEntity, 'id'>, card: Unit) {
     const id = ++this.nextEntityId;
-    const entity = new Entity(this.session, { ...rawEntity, id });
+    const entity = new Entity(this.session, card, { ...rawEntity, id });
     this.entityMap.set(id, entity);
     this.setupListeners(entity);
 
@@ -123,7 +124,8 @@ export class EntitySystem {
 
   serialize() {
     return {
-      entities: this.getList().map(e => e.serialize()),
+      // entities: this.getList().map(e => e.serialize()),
+      entities: [],
       nextEntityId: this.nextEntityId
     };
   }

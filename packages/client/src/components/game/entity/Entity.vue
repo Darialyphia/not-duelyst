@@ -60,6 +60,9 @@ useSessionEvent('entity:before_deal_damage', ([{ entity: attacker, target }]) =>
 useSessionEvent('entity:after_attack', () => {
   shouldFlip.value = false;
 });
+useSessionEvent('scheduler:flushed', () => {
+  shouldFlip.value = false;
+});
 
 useSessionEvent('entity:before_destroy', ([event]) => {
   if (!event.equals(entity.value)) return;

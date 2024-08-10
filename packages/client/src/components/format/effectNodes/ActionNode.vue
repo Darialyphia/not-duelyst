@@ -400,6 +400,26 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: null
     }
+  },
+  summon_unit: {
+    label: 'Summon a unit',
+    params: {
+      blueprint: BlueprintNode,
+      player: PlayerNode,
+      position: CellNode,
+      execute: null,
+      filter: null
+    }
+  },
+  change_unit_owner: {
+    label: "Change a unit's owner",
+    params: {
+      unit: UnitNode,
+      player: PlayerNode,
+      duration: null,
+      execute: null,
+      filter: null
+    }
   }
 };
 const actionOptions = computed(
@@ -618,14 +638,28 @@ watch(
       .with({ type: 'remove_keyword' }, ({ params }) => {
         params.filter ??= [];
         params.execute ??= 'now';
-        params.keyword = undefined as any;
-        params.unit = [[{ type: undefined as any }]];
+        params.keyword ??= undefined as any;
+        params.unit ??= [[{ type: undefined as any }]];
       })
       .with({ type: 'equip_artifact' }, ({ params }) => {
         params.filter ??= [];
         params.execute ??= 'now';
+        params.blueprint ??= undefined as any;
+        params.player ??= [[{ type: undefined as any }]];
+      })
+      .with({ type: 'summon_unit' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
         params.blueprint = undefined as any;
-        params.player = [[{ type: undefined as any }]];
+        params.player ??= [[{ type: undefined as any }]];
+        params.position ??= [[{ type: undefined as any }]];
+      })
+      .with({ type: 'change_unit_owner' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.player ??= [[{ type: undefined as any }]];
+        params.unit ??= [[{ type: undefined as any }]];
+        params.duration ??= 'always';
       })
       .exhaustive();
   },
@@ -651,7 +685,7 @@ const id = useId();
           Add amount to current stats
         </label>
         <label>
-          <input v-model="(action.params as any)[key]" type="radio" value="add" />
+          <input v-model="(action.params as any)[key]" type="radio" value="set" />
           Set to amount
         </label>
       </fieldset>

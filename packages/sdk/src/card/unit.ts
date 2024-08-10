@@ -79,11 +79,12 @@ export class Unit extends Card implements Serializable {
   }
 
   async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
-    this.entity = this.session.entitySystem.addEntity({
-      cardIndex: this.index,
-      playerId: this.playerId,
-      position: ctx.position
-    });
+    this.entity = this.session.entitySystem.addEntity(
+      {
+        position: ctx.position
+      },
+      this
+    );
 
     this.blueprint.keywords?.forEach(keyword => {
       this.entity.addKeyword(keyword);

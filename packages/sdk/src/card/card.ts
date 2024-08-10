@@ -1,6 +1,6 @@
 import type { GameSession } from '../game-session';
 import type { AnyObject, Point3D, Serializable, Values } from '@game/shared';
-import type { CardIndex, PlayerId } from '../player/player';
+import type { CardIndex, Player, PlayerId } from '../player/player';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
 import { nanoid } from 'nanoid';
@@ -19,7 +19,8 @@ export const CARD_EVENTS = {
   BEFORE_PLAYED: 'before_played',
   AFTER_PLAYED: 'after_played',
   DRAWN: 'drawn',
-  REPLACED: 'replaced'
+  REPLACED: 'replaced',
+  CHANGE_OWNER: 'change_owner'
 } as const;
 
 export type CardEvent = Values<typeof CARD_EVENTS>;
@@ -29,6 +30,7 @@ export type CardEventMap = {
   [CARD_EVENTS.AFTER_PLAYED]: [Card];
   [CARD_EVENTS.DRAWN]: [Card];
   [CARD_EVENTS.REPLACED]: [Card];
+  [CARD_EVENTS.CHANGE_OWNER]: [Card];
 };
 
 export abstract class Card
@@ -44,9 +46,11 @@ export abstract class Card
   meta: AnyObject = {};
   id = nanoid(6);
 
+  originalOwner: Player;
+
   constructor(
     public session: GameSession,
-    readonly index: CardIndex,
+    public index: CardIndex,
     options: SerializedCard,
     protected playerId: PlayerId
   ) {
@@ -55,6 +59,7 @@ export abstract class Card
     this.pedestalId = options.pedestalId;
     this.cardBackId = options.cardBackId;
     this.isGenerated = options.isGenerated ?? false;
+    this.originalOwner = this.player;
   }
 
   equals(card: Card) {
@@ -126,5 +131,10 @@ export abstract class Card
       pedestalId: this.pedestalId,
       cardBackId: this.cardBackId
     };
+  }
+
+  changePlayer(newPlayerId: PlayerId) {
+    this.playerId = newPlayerId;
+    this.emit(CARD_EVENTS.CHANGE_OWNER, this);
   }
 }

@@ -90,6 +90,9 @@ import { f3Dunecaster } from './cards/faction_3/dunecaster';
 import { f3SandHowler } from './cards/faction_3/sand-howler';
 import { f3StaffOfYkir } from './cards/faction_3/staff-of-ykir';
 import { f3WindShrike } from './cards/faction_3/wind-shrike';
+import { f3Blindscorch } from './cards/faction_3/blindscorch';
+import { f3StarsFury } from './cards/faction_3/stars_fury';
+import { f3ZenuiTheBlghtspawned } from './cards/faction_3/zenrui-the-blightspawned';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -159,6 +162,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f3SandHowler,
   f3StaffOfYkir,
   f3WindShrike,
+  f3Blindscorch,
+  f3StarsFury,
+  f3ZenuiTheBlghtspawned,
 
   neutralHealingMystic,
   neutralRiftWalker,

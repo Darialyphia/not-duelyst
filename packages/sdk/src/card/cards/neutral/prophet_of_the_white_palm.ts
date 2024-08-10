@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralProphetOfTheWhitePalm = defineSerializedBlueprint({
-  id: 'TeXLkG',
+  id: 'neutral_prophet_thewhite_palm',
   name: 'Prophet of the White Palm ',
   spriteId: 'neutral_prophet_of_the_white_palm',
   collectable: true,

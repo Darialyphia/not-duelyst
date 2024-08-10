@@ -373,6 +373,28 @@ export type Action<
         player: Filter<PlayerCondition>;
         blueprint: string;
       };
+    }
+  | {
+      type: 'summon_unit';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        player: Filter<PlayerCondition>;
+        blueprint: string;
+        position: Filter<CellCondition>;
+      };
+    }
+  | {
+      type: 'change_unit_owner';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        player: Filter<PlayerCondition>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;

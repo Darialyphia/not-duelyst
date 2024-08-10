@@ -23,6 +23,7 @@ import {
 } from './player-artifact';
 import type { Entity } from '../entity/entity';
 import { TypedEventEmitter } from '../utils/typed-emitter';
+import type { Unit } from '../card/unit';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -202,17 +203,16 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   }
 
   placeGeneral() {
-    const generalIndex = this.cards.findIndex(
-      card => card.blueprint.kind === CARD_KINDS.GENERAL
-    );
+    const general = this.cards.find(card => card.blueprint.kind === CARD_KINDS.GENERAL)!;
 
-    this.session.entitySystem.addEntity({
-      cardIndex: generalIndex,
-      playerId: this.id,
-      position: this.isPlayer1
-        ? this.session.boardSystem.player1StartPosition
-        : this.session.boardSystem.player2StartPosition
-    });
+    this.session.entitySystem.addEntity(
+      {
+        position: this.isPlayer1
+          ? this.session.boardSystem.player1StartPosition
+          : this.session.boardSystem.player2StartPosition
+      },
+      general as Unit
+    );
   }
 
   async drawStartingHand() {
