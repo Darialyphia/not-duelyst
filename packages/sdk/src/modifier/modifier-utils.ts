@@ -21,6 +21,7 @@ export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
     entity.removeModifier(modifier.id);
   });
+  entity.isDispelled = true;
 };
 
 export const cleanseEntity = (entity: Entity) => {
@@ -37,7 +38,6 @@ export const purgeEntity = (entity: Entity) => {
       entity.removeModifier(modifier.id);
     }
   });
-  entity.isDispelled = true;
 };
 
 export const dispelCell = (cell: Cell) => {

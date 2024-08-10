@@ -395,10 +395,15 @@ const actionDict: ActionDictionary = {
 };
 const actionOptions = computed(
   () =>
-    Object.entries(actionDict).map(([id, { label }]) => ({
-      label,
-      value: id
-    })) as Array<{ label: string; value: Action['type'] }>
+    Object.entries(actionDict)
+      .map(([id, { label }]) => ({
+        label,
+        value: id
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label)) as Array<{
+      label: string;
+      value: Action['type'];
+    }>
 );
 
 const params = computed(
@@ -616,7 +621,7 @@ const id = useId();
 
 <template>
   <div>
-    <UiSelect
+    <UiCombobox
       v-model="action.type"
       class="w-full mb-3"
       :options="actionOptions"

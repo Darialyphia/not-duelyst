@@ -6,7 +6,7 @@ import { PTransition, EasePresets } from 'vue3-pixi';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
 
-const { session, assets } = useGame();
+const { session, assets, ui } = useGame();
 const entity = useEntity(entityId);
 
 const keywordsWithSprite = computed(() => {
@@ -60,6 +60,13 @@ useSessionEvent('card:before_played', async ([card]) => {
 useSessionEvent('card:after_played', () => {
   playedCardTextures.value = null;
 });
+
+const silencedTextures = ref<FrameObject[]>();
+
+watchEffect(async () => {
+  const spritesheet = await assets.loadSpritesheet('silenced');
+  silencedTextures.value = createSpritesheetFrameObject('default', spritesheet);
+});
 </script>
 
 <template>
@@ -68,6 +75,26 @@ useSessionEvent('card:after_played', () => {
     :key="keyword.id"
     :keyword="keyword"
   />
+
+  <PTransition
+    appear
+    :duration="{ enter: 300, leave: 0 }"
+    :before-enter="{ alpha: 0 }"
+    :enter="{ alpha: 1 }"
+  >
+    <animated-sprite
+      v-if="silencedTextures && entity.isDispelled"
+      :ref="(container: any) => ui.assignLayer(container, 'ui')"
+      :textures="silencedTextures"
+      :anchor-x="0.5"
+      :anchor-y="0"
+      event-mode="none"
+      loop
+      playing
+      :z-index="1"
+      :y="-CELL_HEIGHT * 0.6"
+    />
+  </PTransition>
 
   <PTransition
     appear

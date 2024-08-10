@@ -87,7 +87,8 @@ export const KEYWORDS = {
     name: 'Frenzy',
     description:
       'When attacking a nearby enemy, deal its attack damage to other nearby enemies.',
-    aliases: ['frenzy']
+    aliases: ['frenzy'],
+    spriteId: 'fury'
   },
   FROZEN: {
     id: 'frozen',

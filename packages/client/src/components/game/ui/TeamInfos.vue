@@ -12,7 +12,7 @@ const emotePopoverPlayer = ref<0 | 1>(0);
 
 // @TODO get emotes from user collection when it's implemented
 // in the meantime let's just hardcode it
-const EMOTES = ['poggers', 'ahegao', 'sus'];
+const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
 </script>
 
 <template>

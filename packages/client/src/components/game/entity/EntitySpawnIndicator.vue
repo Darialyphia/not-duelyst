@@ -39,7 +39,7 @@ const textures = computed(() =>
 
 <template>
   <IsoPositioner
-    v-if="position"
+    v-if="position && !entity.isDispelled"
     animated
     v-bind="position"
     :z-index-offset="2.5"

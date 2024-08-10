@@ -7,7 +7,7 @@ const { keyword } = defineProps<{
   keyword: Keyword;
 }>();
 
-const { assets } = useGame();
+const { assets, ui } = useGame();
 const textures = ref<FrameObject[]>();
 
 watchEffect(async () => {
@@ -26,6 +26,7 @@ watchEffect(async () => {
   >
     <animated-sprite
       v-if="textures"
+      :ref="(container: any) => ui.assignLayer(container, 'ui')"
       :textures="textures"
       :anchor-x="0.5"
       :anchor-y="0"
