@@ -20,7 +20,7 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
       const amount = this.getAmount(this.action.params.attack.amount);
 
       return match(this.action.params.mode)
-        .with('give', () => value + amount)
+        .with('give', () => Math.max(0, value + amount))
         .with('set', () => staticValue)
         .exhaustive();
     };

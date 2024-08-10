@@ -48,14 +48,9 @@ export type CellConditionExtras =
 export type CellCondition = CellConditionBase | CellConditionExtras;
 
 export const getCells = ({
-  session,
-  entity,
-  card,
   conditions,
-  targets,
-  event,
-  eventName,
-  playedPoint
+  playedPoint,
+  ...ctx
 }: {
   session: GameSession;
   entity?: Entity;
@@ -66,6 +61,8 @@ export const getCells = ({
   eventName?: string;
   playedPoint?: Point3D;
 }): Cell[] => {
+  const { targets, session, event, eventName } = ctx;
+
   return session.boardSystem.cells.filter(cell => {
     if (cell.cellAbove) return false;
 
@@ -80,28 +77,22 @@ export const getCells = ({
           })
           .with({ type: 'is_empty' }, () => !cell.entity)
           .with({ type: 'is_nearby' }, condition => {
-            const unitPositions = isEmptyArray(condition.params.unit)
+            const unitConditions = condition.params.unit ?? [];
+            const cellConditions = condition.params.cell ?? [];
+
+            const unitPositions = isEmptyArray(unitConditions)
               ? []
               : getUnits({
-                  conditions: condition.params.unit ?? [],
-                  targets,
-                  session,
-                  entity,
-                  card,
-                  event,
-                  eventName
+                  conditions: unitConditions,
+                  playedPoint,
+                  ...ctx
                 }).map(u => u.position);
-            const cellPositions = isEmptyArray(condition.params.cell)
+            const cellPositions = isEmptyArray(cellConditions)
               ? []
               : getCells({
-                  conditions: condition.params.cell ?? [],
-                  targets,
-                  session,
-                  entity,
-                  card,
-                  event,
-                  eventName,
-                  playedPoint
+                  conditions: cellConditions,
+                  playedPoint,
+                  ...ctx
                 }).map(c => c.position);
 
             return [...unitPositions, ...cellPositions].some(
@@ -113,13 +104,8 @@ export const getCells = ({
           .with({ type: 'is_in_front' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
             return candidates.some(candidate =>
               getCellInFront(session, candidate)?.equals(cell)
@@ -128,13 +114,8 @@ export const getCells = ({
           .with({ type: 'is_behind' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
             return candidates.some(candidate =>
               getCellBehind(session, candidate)?.equals(cell)
@@ -143,13 +124,8 @@ export const getCells = ({
           .with({ type: 'is_above' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
             return candidates.some(candidate =>
               getCellAbove(session, candidate)?.equals(cell)
@@ -158,13 +134,8 @@ export const getCells = ({
           .with({ type: 'is_below' }, condition => {
             const candidates = getUnits({
               conditions: condition.params.unit,
-              targets,
-              session,
-              entity,
-              card,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
             return candidates.some(candidate =>
               getCellBelow(session, candidate)?.equals(cell)
@@ -196,14 +167,9 @@ export const getCells = ({
             if (!cell.entity) return false;
 
             return getUnits({
-              session,
-              entity,
-              card,
               conditions: condition.params.unit,
-              targets,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             }).some(unit => cell.entity?.equals(unit));
           })
           .with({ type: 'moved_unit_new_position' }, () => {
@@ -241,14 +207,9 @@ export const getCells = ({
           })
           .with({ type: '2x2_area' }, condition => {
             const topLefts = getCells({
-              session,
-              entity,
-              card,
               conditions: condition.params.topLeft,
-              targets,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
 
             return topLefts.some(topLeft => {
@@ -261,14 +222,9 @@ export const getCells = ({
           })
           .with({ type: '3x3_area' }, condition => {
             const centers = getCells({
-              session,
-              entity,
-              card,
               conditions: condition.params.center,
-              targets,
-              event,
-              eventName,
-              playedPoint
+              playedPoint,
+              ...ctx
             });
 
             return centers.some(center => {

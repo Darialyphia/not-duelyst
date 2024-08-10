@@ -552,6 +552,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
   }
 
   removeModifier(modifierId: ModifierId, stacksToRemove = 1) {
+    this.session.logger('remove modifier', modifierId);
     this.modifiers.forEach(mod => {
       if (mod.id !== modifierId) return;
 

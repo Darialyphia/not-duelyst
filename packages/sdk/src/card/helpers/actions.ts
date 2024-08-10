@@ -24,16 +24,22 @@ export const applyModifierConditionally = ({
   session: GameSession;
 }) => {
   const source = ctx.entity ?? ctx.card.player.general;
+  let isDisabled = true;
 
   const tryToApply = () => {
     const shouldApply = checkGlobalConditions(conditions, ctx, event, eventName);
 
+    if (modifier.id === 'spawn') {
+      session.logger('try to apply', shouldApply, isDisabled);
+    }
     if (shouldApply) {
-      if (!source.hasModifier(modifier.id)) {
+      if (!source.hasModifier(modifier.id) && isDisabled) {
+        isDisabled = false;
         source.addModifier(modifier);
       }
     } else {
       source.removeModifier(modifier.id);
+      isDisabled = true;
     }
   };
 

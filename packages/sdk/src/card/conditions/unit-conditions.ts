@@ -134,10 +134,12 @@ export const getUnits = ({
             return entity.equals(e);
           })
           .with({ type: 'is_nearby' }, condition => {
-            const unitPositions = isEmptyArray(condition.params.unit)
+            const unitConditions = condition.params.unit ?? [];
+            const cellConditions = condition.params.cell ?? [];
+            const unitPositions = isEmptyArray(unitConditions)
               ? []
               : getUnits({
-                  conditions: condition.params.unit ?? [],
+                  conditions: unitConditions,
                   targets,
                   session,
                   entity,
@@ -145,10 +147,10 @@ export const getUnits = ({
                   event,
                   eventName
                 }).map(u => u.position);
-            const cellPositions = isEmptyArray(condition.params.cell)
+            const cellPositions = isEmptyArray(cellConditions)
               ? []
               : getCells({
-                  conditions: condition.params.cell ?? [],
+                  conditions: cellConditions,
                   targets,
                   session,
                   entity,

@@ -210,7 +210,8 @@ export const KEYWORDS = {
     id: 'ephemeral',
     name: 'Ephemeral',
     description: 'This unit disappear at the end of its owner turn.',
-    aliases: []
+    aliases: [],
+    spriteId: 'ephemeral'
   }
 } as const satisfies Record<string, Keyword>;
 
