@@ -15,6 +15,7 @@ import { TERRAINS } from '../board/board-utils';
 import { Unit } from '../card/unit';
 import type { Card } from '../card/card';
 import { TypedEventEmitter } from '../utils/typed-emitter';
+import type { TagId } from '../utils/tribes';
 
 export type EntityId = number;
 
@@ -126,6 +127,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
   movementsTaken = 0;
   attacksTaken = 0;
   retaliationsDone = 0;
+  isDispelled = false;
 
   private isScheduledForDeletion = false;
 
@@ -615,7 +617,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
       });
     }
 
-    const addKeyword = (keyword: Keyword, stackable: boolean, stacks?: number) => {
+    const add = (keyword: Keyword, stackable: boolean, stacks?: number) => {
       if (!keywordsWithStacks.has(keyword.id)) {
         keywordsWithStacks.set(keyword.id, {
           ...keyword,
@@ -629,14 +631,18 @@ export class Entity extends TypedEventEmitter<EntityEventMap> implements Seriali
 
     for (const modifier of allModifiers) {
       modifier.keywords.forEach(keyword => {
-        addKeyword(keyword, modifier.stackable, modifier.stacks);
+        add(keyword, modifier.stackable, modifier.stacks);
       });
     }
 
     this._keywords.forEach(keyword => {
-      addKeyword(keyword, false);
+      add(keyword, false);
     });
 
     return uniqBy([...keywordsWithStacks.values()], 'id');
+  }
+
+  hasTag(tag: TagId) {
+    return this.card.blueprint.tags?.some(t => t.id === tag);
   }
 }

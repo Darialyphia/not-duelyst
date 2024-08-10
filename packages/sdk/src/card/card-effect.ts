@@ -15,6 +15,7 @@ import type { CardKind } from './card-enums';
 import type { Trigger, TriggerFrequency } from './card-action-triggers';
 import type { Amount } from './helpers/amount';
 import type { CardBlueprintId } from './card';
+import type { KeywordId } from '../utils/keywords';
 
 export type Filter<T> = T[][];
 
@@ -351,6 +352,17 @@ export type Action<
         position: Filter<CellCondition>;
         targets: Filter<CellCondition>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'remove_keyword';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        keyword: KeywordId;
       };
     };
 export type ActionParams<T extends Action['type']> = (Action & {

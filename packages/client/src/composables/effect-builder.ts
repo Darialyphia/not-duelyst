@@ -54,7 +54,9 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       has_keyword: { label: 'A unit with a keyword', params: ['not', 'keyword'] },
       has_attack: { label: 'A unit with attack', params: ['not', 'operator', 'amount'] },
       has_hp: { label: 'A unit with hp', params: ['not', 'operator', 'amount'] },
-      is_exhausted: { label: 'An exhausted unit', params: ['not'] }
+      is_exhausted: { label: 'An exhausted unit', params: ['not'] },
+      has_blueprint: { label: 'A unit with the name', params: ['blueprint', 'not'] },
+      has_tag: { label: 'A unit with a tag', params: ['tag', 'not'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));

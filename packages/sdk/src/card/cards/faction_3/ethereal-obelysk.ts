@@ -8,7 +8,7 @@ export const f3EtherealObelysk = defineSerializedBlueprint({
   name: 'Ethereal Obelysk',
   collectable: true,
   keywords: [KEYWORDS.SPAWN.id, KEYWORDS.STRUCTURE.id],
-  relatedBlueprintIds: [],
+  relatedBlueprintIds: ['f3_wind_dervish'],
   tags: [],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.COMMON,

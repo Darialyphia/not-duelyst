@@ -37,6 +37,7 @@ export const purgeEntity = (entity: Entity) => {
       entity.removeModifier(modifier.id);
     }
   });
+  entity.isDispelled = true;
 };
 
 export const dispelCell = (cell: Cell) => {
@@ -369,6 +370,7 @@ export const ephemeral = ({ source }: { source: Card }) => {
       modifierGameEventMixin({
         eventName: 'player:turn_end',
         once: true,
+        keywords: [KEYWORDS.EPHEMERAL],
         async listener([event], { attachedTo }) {
           if (event.equals(attachedTo.player)) {
             await attachedTo.remove();
@@ -390,12 +392,13 @@ export const spawn = ({
 }) => {
   return createEntityModifier({
     source,
-    id: KEYWORDS.EPHEMERAL.id,
+    id: KEYWORDS.SPAWN.id,
     stackable: false,
     visible: false,
     mixins: [
       modifierGameEventMixin({
         eventName: 'player:turn_start',
+        keywords: [KEYWORDS.SPAWN],
         async listener([event], { session, attachedTo }) {
           if (!event.equals(attachedTo.player)) {
             return;

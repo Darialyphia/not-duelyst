@@ -64,7 +64,7 @@ export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';
 export { ClientSession } from './client-session';
 export { ServerSession, type SimulationResult } from './server-session';
-export { type Tag } from './utils/tribes';
+export { type Tag, TAGS } from './utils/tribes';
 export type { Unit } from './card/unit';
 export type { Spell } from './card/spell';
 export type { Artifact } from './card/artifact';

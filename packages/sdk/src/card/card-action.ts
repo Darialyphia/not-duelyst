@@ -32,6 +32,7 @@ import { FrenzyCardAction } from './actions/frenzy.card-action';
 import { EphemeralCardAction } from './actions/ephemeral.card-action';
 import { StructureCardAction } from './actions/structure.card-action';
 import { SpawnCardAction } from './actions/spawn.card-action';
+import { RemoveKeywordCardActon } from './actions/remove-keyword.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -143,6 +144,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'spawn' }, action => {
         return new SpawnCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'remove_keyword' }, action => {
+        return new RemoveKeywordCardActon(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

@@ -1,0 +1,73 @@
+import { KEYWORDS } from '../../../utils/keywords';
+import { TAGS } from '../../../utils/tribes';
+import { defineSerializedBlueprint } from '../../card-blueprint';
+import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+
+export const f3Dunecaster = defineSerializedBlueprint({
+  id: 'f3_dunecaster',
+  name: 'Dunecaster',
+  spriteId: 'f3_dunecaster',
+  collectable: true,
+  keywords: [KEYWORDS.OPENING_GAMBIT.id],
+  relatedBlueprintIds: [],
+  tags: [TAGS.DERVISH.id],
+  kind: CARD_KINDS.MINION,
+  rarity: RARITIES.COMMON,
+  cellHighlights: [],
+  cost: 2,
+  attack: 2,
+  maxHp: 1,
+  faction: FACTION_IDS.F3,
+  effects: [
+    {
+      text: '@Opening Gambit@: give +2/+2 and remove @Ephemeral@ to an ally @Dervish@.',
+      config: {
+        executionContext: 'immediate',
+        actions: [
+          {
+            type: 'change_stats',
+            params: {
+              mode: 'give',
+              stackable: true,
+              attack: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
+              hp: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
+              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
+              filter: [],
+              duration: 'always',
+              execute: 'now'
+            }
+          },
+          {
+            type: 'remove_keyword',
+            params: {
+              filter: [],
+              execute: 'now',
+              keyword: 'ephemeral',
+              unit: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  targets: {
+    min: 0,
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: [
+                [
+                  { type: 'has_tag', params: { tag: 'dervish', not: false } },
+                  { type: 'is_ally', params: { not: false } }
+                ]
+              ]
+            }
+          }
+        ]
+      ]
+    ]
+  }
+});

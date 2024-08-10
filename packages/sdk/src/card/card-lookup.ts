@@ -84,6 +84,10 @@ import { f3General2 } from './cards/faction_3/general2';
 import { f3WindDervish } from './cards/faction_3/wind-dervish';
 import { f3EtherealObelysk } from './cards/faction_3/ethereal-obelysk';
 import { f3PortalGuardian } from './cards/faction_3/portal-guardiant';
+import { f3AymaraHealer } from './cards/faction_3/aymara_healer';
+import { f3Chronomancer } from './cards/faction_3/chronomancer';
+import { f3Dunecaster } from './cards/faction_3/dunecaster';
+import { f3SandHowler } from './cards/faction_3/sand-howler';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -147,6 +151,10 @@ const allCards: SerializedBlueprint<any>[] = [
   f3WindDervish,
   f3EtherealObelysk,
   f3PortalGuardian,
+  f3AymaraHealer,
+  f3Chronomancer,
+  f3Dunecaster,
+  f3SandHowler,
 
   neutralHealingMystic,
   neutralRiftWalker,

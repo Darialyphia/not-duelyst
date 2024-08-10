@@ -14,6 +14,7 @@ import { isObject } from '@game/shared';
 import { match } from 'ts-pattern';
 import { intersection } from 'lodash-es';
 import FrequencyNode from './FrequencyNode.vue';
+import KeywordNode from './KeywordNode.vue';
 
 const { triggers } = defineProps<{
   triggers?: WidenedGenericCardEffect['config']['triggers'];
@@ -112,10 +113,14 @@ useCardConditionsProvider(ref(cardOverrides));
 
 type Params = Component | null | { [key: string]: Params };
 
-const actionDict: Record<
-  Action['type'],
-  { label: string; params: Record<string, Params> }
-> = {
+type ActionDictionary = {
+  [Key in Action['type']]: {
+    label: string;
+    params: Record<keyof (Action & { type: Key })['params'], Params>;
+  };
+};
+
+const actionDict: ActionDictionary = {
   deal_damage: {
     label: 'Deal damage',
     params: {
@@ -377,6 +382,15 @@ const actionDict: Record<
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  remove_keyword: {
+    label: 'remove a keyword from a unit',
+    params: {
+      keyword: KeywordNode,
+      unit: UnitNode,
+      execute: null,
+      filter: null
+    }
   }
 };
 const actionOptions = computed(
@@ -387,7 +401,9 @@ const actionOptions = computed(
     })) as Array<{ label: string; value: Action['type'] }>
 );
 
-const params = computed(() => actionDict[action.value.type]?.params ?? []);
+const params = computed(
+  () => (actionDict[action.value.type]?.params ?? {}) as Record<string, Params>
+);
 
 watch(
   () => action.value.type,
@@ -585,6 +601,12 @@ watch(
         params.execute ??= 'now';
         params.activeWhen ??= [];
       })
+      .with({ type: 'remove_keyword' }, ({ params }) => {
+        params.filter ??= [];
+        params.execute ??= 'now';
+        params.keyword = undefined as any;
+        params.unit = [[{ type: undefined as any }]];
+      })
       .exhaustive();
   },
   { immediate: true }
@@ -711,6 +733,10 @@ const id = useId();
 
       <template v-else-if="key === 'blueprint'">
         <BlueprintNode v-model="(action.params as any)[key]" />
+      </template>
+
+      <template v-else-if="key === 'keyword'">
+        <KeywordNode v-model="(action.params as any)[key]" />
       </template>
 
       <template v-else-if="isComponent(param)">

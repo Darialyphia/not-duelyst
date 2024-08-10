@@ -19,6 +19,7 @@ import dedent from 'dedent';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { getKeywordById, type Keyword } from '@game/sdk/src/utils/keywords';
 import { match } from 'ts-pattern';
+import { getTagById, TAGS, type Tag } from '@game/sdk/src/utils/tribes';
 
 const { format } = defineProps<{
   format: {
@@ -75,6 +76,17 @@ const keywordsOptions = computed(() =>
 type UnitBlueprint = GenericSerializedBlueprint & {
   kind: Extract<CardKind, 'MINION' | 'GENERAL'>;
 };
+
+const tags = computed(() => blueprint.value.tags.map(getTagById).filter(isDefined));
+const tagsOptions = computed(() =>
+  Object.values(TAGS)
+    .map(tag => ({
+      value: tag.id,
+      label: capitalize(tag.name),
+      item: tag as Tag
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label))
+);
 
 const isUnit = (kind: CardKind) =>
   kind === CARD_KINDS.GENERAL || kind === CARD_KINDS.MINION;
@@ -368,6 +380,29 @@ watchEffect(() => {
         Adding a keyword does not implement its effect. Use this in conjunction with the
         effect builder below.
       </p>
+
+      <label for="keywords">Tags</label>
+      <div v-auto-animate class="flex gap-2 wrap mb-3">
+        <div v-for="tag in tags" :key="tag.id" class="keyword">
+          {{ tag.name }}
+
+          <UiIconButton
+            name="mdi:close"
+            type="button"
+            @click="
+              () => {
+                blueprint.tags = blueprint.tags.filter(t => t !== tag.id);
+              }
+            "
+          />
+        </div>
+      </div>
+      <UiCombobox
+        v-model="blueprint.tags"
+        :options="tagsOptions"
+        multiple
+        placeholder="Select a tag"
+      />
 
       <h3 class="mt-6">Targets</h3>
       <p>

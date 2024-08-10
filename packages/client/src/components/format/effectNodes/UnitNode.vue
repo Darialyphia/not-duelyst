@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { AmountNode, CellNode, KeywordNode, NumericOperatorNode } from '#components';
+import {
+  AmountNode,
+  CellNode,
+  KeywordNode,
+  NumericOperatorNode,
+  TagNode
+} from '#components';
 import type { Filter, UnitCondition } from '@game/sdk';
 import { match } from 'ts-pattern';
 
@@ -22,7 +28,8 @@ const componentNodes: Record<string, Component | string> = {
   cell: CellNode,
   keyword: KeywordNode,
   amount: AmountNode,
-  operator: NumericOperatorNode
+  operator: NumericOperatorNode,
+  tag: TagNode
 };
 
 const id = useId();
@@ -107,6 +114,18 @@ const id = useId();
                 };
               }
             )
+            .with({ type: 'has_blueprint' }, condition => {
+              condition.params = {
+                blueprint: undefined as any,
+                not: false
+              };
+            })
+            .with({ type: 'has_tag' }, condition => {
+              condition.params = {
+                tag: undefined as any,
+                not: false
+              };
+            })
             .exhaustive();
         }
       "
@@ -121,7 +140,7 @@ const id = useId();
         v-if="param === 'not'"
         v-model:checked="(groups[groupIndex][conditionIndex] as any).params[param]"
       />
-      <div v-if="param === 'index'" class="flex gap-3 items-center">
+      <div v-else-if="param === 'index'" class="flex gap-3 items-center">
         <UiTextInput
           :id
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
@@ -129,16 +148,19 @@ const id = useId();
         />
         <span class="c-orange-5 text-0">(0 = first target, 1 = second target, etc)</span>
       </div>
-      <template v-if="param === 'unit'">
+      <template v-else-if="param === 'unit'">
         <UnitNode
           v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
-      <template v-if="param === 'keyword'">
+      <template v-else-if="param === 'keyword'">
         <KeywordNode
           v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
         />
+      </template>
+      <template v-else-if="param === 'tag'">
+        <TagNode v-model="(groups[groupIndex][conditionIndex] as any).params[param]" />
       </template>
       <template v-else>
         <component
