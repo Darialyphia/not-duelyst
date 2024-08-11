@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
+import type { Card } from '../card/card';
 
 const schema = defaultActionSchema.extend({
   cardIndex: z.number().nonnegative(),
@@ -23,6 +24,9 @@ export class PlayCardAction extends GameAction<typeof schema> {
 
   protected payloadSchema = schema;
 
+  // This is used in cards onPlay effect to detect if a unit summon is an opening gambit or not
+  cachedCard!: Card;
+
   get card() {
     return this.player.getCardFromHand(this.payload.cardIndex);
   }
@@ -37,6 +41,8 @@ export class PlayCardAction extends GameAction<typeof schema> {
     if (!this.card) {
       return this.printError(`Card not found at index ${this.payload.cardIndex}`);
     }
+    this.cachedCard = this.card;
+
     const areTargetsValid = this.payload.targets.every((target, index) => {
       return this.card.blueprint.targets?.isTargetable(target, {
         card: this.card,

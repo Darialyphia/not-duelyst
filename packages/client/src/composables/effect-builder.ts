@@ -219,6 +219,10 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
           },
           keyword: KeywordNode
         }
+      },
+      played_from_hand: {
+        label: 'Only if this card is being played from hand',
+        params: {}
       }
     };
 

@@ -55,6 +55,9 @@ watchEffect(() => {
             operator: params.hp?.operator ?? 'equals'
           };
         })
+        .with({ type: 'played_from_hand' }, () => {
+          return;
+        })
         .exhaustive();
     });
   });
@@ -77,7 +80,6 @@ watchEffect(() => {
           match(condition)
             .with({ type: 'player_gold' }, { type: 'player_hp' }, () => {
               condition.params = {
-                // @ts-expect-error
                 amount: { type: undefined },
                 operator: 'equals',
                 player: { candidates: [[{ type: undefined as any }]], random: false }
@@ -98,6 +100,9 @@ watchEffect(() => {
                 },
                 keyword: undefined as any
               };
+            })
+            .with({ type: 'played_from_hand' }, () => {
+              condition.params = {};
             })
             .exhaustive();
         }

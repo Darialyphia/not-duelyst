@@ -14,6 +14,7 @@ import type { Entity } from '../../entity/entity';
 import { matchNumericOperator } from '../card-action';
 import { getAmount, type Amount } from '../helpers/amount';
 import { getKeywordById, type KeywordId } from '../../utils/keywords';
+import { PlayCardAction } from '../../action/play-card.action';
 
 export type GlobalCondition<
   T extends ConditionOverrides = {
@@ -29,6 +30,8 @@ export type GlobalCondition<
         amount: Amount<T>;
       };
     }
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  | { type: 'played_from_hand'; params: {} }
   | {
       type: 'player_hp';
       params: {
@@ -172,6 +175,14 @@ export const checkGlobalConditions = (
             .with('none', () => entities.every(e => !isMatch(e)))
             .with('some', () => entities.some(isMatch))
             .exhaustive();
+        })
+        .with({ type: 'played_from_hand' }, () => {
+          const currentAction = session.actionSystem.currentAction;
+          if (!currentAction) return false;
+          const isCardBeingPlayed = currentAction instanceof PlayCardAction;
+
+          if (!isCardBeingPlayed) return false;
+          return card.equals(currentAction.cachedCard);
         })
         .exhaustive();
     });
