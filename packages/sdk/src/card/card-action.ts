@@ -36,6 +36,7 @@ import { RemoveKeywordCardActon } from './actions/remove-keyword.card-action';
 import { EquipArtifactCardAction } from './actions/equip-artifact.card-action';
 import { SummonUnitCardAction } from './actions/summon-unit.card-action';
 import { ChangeCardOwnerCardAction } from './actions/change-unit-owner.card-action';
+import { BlastCardAction } from './actions/blast.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -159,6 +160,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'change_unit_owner' }, action => {
         return new ChangeCardOwnerCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'blast' }, action => {
+        return new BlastCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

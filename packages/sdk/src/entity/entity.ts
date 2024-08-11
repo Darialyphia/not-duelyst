@@ -1,13 +1,12 @@
 import { Vec3, type Values } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
-import type { Player, PlayerId } from '../player/player';
+import type { Player } from '../player/player';
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import { isAlly, isEnemy } from './entity-utils';
-import { isWithinCells } from '../utils/targeting';
 import { type EntityModifier, type ModifierId } from '../modifier/entity-modifier';
 import { CARD_KINDS } from '../card/card-enums';
-import { KEYWORDS, type Keyword } from '../utils/keywords';
+import { type Keyword } from '../utils/keywords';
 import { uniqBy } from 'lodash-es';
 import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
@@ -16,6 +15,7 @@ import { Unit } from '../card/unit';
 import type { Card } from '../card/card';
 import { TypedEventEmitter } from '../utils/typed-emitter';
 import type { TagId } from '../utils/tribes';
+import { DefaultAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 
 export type EntityId = number;
 
@@ -128,6 +128,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   private isScheduledForDeletion = false;
 
   private currentHp = 0;
+  public attackPattern: AttackPattern;
 
   private interceptors = {
     attack: new Interceptable<number, Entity>(),
@@ -166,6 +167,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
 
     this.position = Vec3.fromPoint3D(options.position);
     this.currentHp = options.hp ?? this.maxHp;
+    this.attackPattern = new DefaultAttackPattern(this.session, this);
   }
 
   equals(entity: Entity) {
@@ -285,7 +287,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   canAttackAt(point: Point3D, simulatedPosition?: Point3D) {
-    return isWithinCells(simulatedPosition ?? this.position, point, this.range);
+    return this.attackPattern.canAttackAt(point, simulatedPosition);
   }
 
   canAttack(target: Entity) {
@@ -480,9 +482,13 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   async performAttack(target: Entity) {
     await this.emitAsync(ENTITY_EVENTS.BEFORE_ATTACK, { entity: this, target });
 
-    await this.dealDamage(this.attack, target, true);
-
-    await target.retaliate(target.attack, this);
+    const targets = this.attackPattern.getAffectedUnits(target);
+    await Promise.all(
+      targets.map(async t => {
+        await this.dealDamage(this.attack, t, true);
+        await target.retaliate(t.attack, this);
+      })
+    );
 
     this.attacksTaken++;
     await this.emitAsync(ENTITY_EVENTS.AFTER_ATTACK, { entity: this, target });

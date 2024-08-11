@@ -396,7 +396,16 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'blast';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
+
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
 })['params'];

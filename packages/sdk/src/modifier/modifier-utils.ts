@@ -16,6 +16,7 @@ import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
 import { getEntityBehind, isNearbyAlly, isNearbyEnemy } from '../entity/entity-utils';
+import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 
 export const dispelEntity = (entity: Entity) => {
   entity.modifiers.forEach(modifier => {
@@ -817,3 +818,26 @@ export const airdrop = () =>
       }
     ]
   });
+
+export const blast = ({ source }: { source: Card }) => {
+  let originalPattern: AttackPattern;
+
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: [
+      {
+        keywords: [KEYWORDS.BLAST],
+        onApplied(session, attachedTo) {
+          originalPattern = attachedTo.attackPattern;
+
+          attachedTo.attackPattern = new BlastAttackPattern(session, attachedTo);
+        },
+        onRemoved(session, attachedTo) {
+          attachedTo.attackPattern = originalPattern;
+        }
+      }
+    ]
+  });
+};

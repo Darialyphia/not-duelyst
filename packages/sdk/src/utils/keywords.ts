@@ -207,6 +207,13 @@ export const KEYWORDS = {
     description: 'This unit disappear at the end of its owner turn.',
     aliases: [],
     spriteId: 'ephemeral'
+  },
+  BLAST: {
+    id: 'blast',
+    name: 'Blast',
+    description:
+      'Can attack any enemy in front, behind, above of below it. If it does, it attacks all enemies in that direction',
+    aliases: []
   }
 } as const satisfies Record<string, Keyword>;
 

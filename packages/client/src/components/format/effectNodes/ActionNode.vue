@@ -421,6 +421,14 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  blast: {
+    label: 'Blast',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -669,6 +677,11 @@ watch(
         params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.duration ??= 'always';
       })
+      .with({ type: 'blast' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+      })
       .exhaustive();
   },
   { immediate: true }
@@ -683,6 +696,7 @@ const id = useId();
       class="w-full mb-3"
       :options="actionOptions"
       :multiple="false"
+      :display-value="val => actionDict[val].label"
     />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2 my-3">
