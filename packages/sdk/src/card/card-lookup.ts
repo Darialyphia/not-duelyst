@@ -96,6 +96,10 @@ import { f3ZenuiTheBlghtspawned } from './cards/faction_3/zenrui-the-blightspawn
 import { f3ScionsFirstWish } from './cards/faction_3/scions-first-wish';
 import { f3ScionssSecondWish } from './cards/faction_3/scions-second-wish';
 import { f3ScionsThirdWish } from './cards/faction_3/scions-third-wish';
+import { f3BoneSwarm } from './cards/faction_3/boneswarm';
+import { neutralSyvrelTheExile } from './cards/neutral/syvrel-the-exile';
+import { neutralMiniJax } from './cards/neutral/mini-jax';
+import { neutralJaxTruesight } from './cards/neutral/jax-truesight';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -171,6 +175,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f3ScionsFirstWish,
   f3ScionssSecondWish,
   f3ScionsThirdWish,
+  f3BoneSwarm,
 
   neutralHealingMystic,
   neutralRiftWalker,
@@ -195,7 +200,10 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralLightbender,
   neutralFlamebloodWarlock,
   neutralAzureHornShaman,
-  neutralFrostboneNaga
+  neutralFrostboneNaga,
+  neutralSyvrelTheExile,
+  neutralMiniJax,
+  neutralJaxTruesight
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<
