@@ -29,10 +29,20 @@ export const f3Dunecaster = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
-              hp: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
-              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 2 } },
+                activeWhen: { candidates: [] }
+              },
+              hp: {
+                amount: { type: 'fixed', params: { value: 2 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -40,10 +50,14 @@ export const f3Dunecaster = defineSerializedBlueprint({
           {
             type: 'remove_keyword',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               keyword: 'ephemeral',
-              unit: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]]
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              }
             }
           }
         ]
@@ -58,12 +72,14 @@ export const f3Dunecaster = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'has_tag', params: { tag: 'dervish', not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              unit: {
+                candidates: [
+                  [
+                    { type: 'has_tag', params: { tag: 'dervish', not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

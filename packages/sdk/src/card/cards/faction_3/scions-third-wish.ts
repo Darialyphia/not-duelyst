@@ -26,14 +26,19 @@ export const f3ScionsThirdWish = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 3 } }, activeWhen: [] },
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              attack: {
+                amount: { type: 'fixed', params: { value: 3 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               duration: 'end_of_turn',
               execute: 'now'
             }
@@ -43,14 +48,19 @@ export const f3ScionsThirdWish = defineSerializedBlueprint({
             params: {
               mode: 'set',
               stackable: false,
-              speed: { amount: { type: 'fixed', params: { value: 3 } }, activeWhen: [] },
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              speed: {
+                amount: { type: 'fixed', params: { value: 3 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               duration: 'end_of_turn',
               execute: 'now'
             }
@@ -60,14 +70,15 @@ export const f3ScionsThirdWish = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
-              source: [],
-              filter: [],
+              },
+              filter: { candidates: [] },
               frequency: { type: 'always' },
               amount: { type: 'fixed', params: { value: -3 } },
               duration: 'end_of_turn',

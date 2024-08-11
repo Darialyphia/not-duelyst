@@ -25,14 +25,20 @@ export const f1Lightchaser = defineSerializedBlueprint({
         triggers: [
           {
             type: 'on_after_unit_healed',
-            params: { frequency: { type: 'always' }, unit: [[{ type: 'any_unit' }]] }
+            params: {
+              frequency: { type: 'always' },
+              unit: { candidates: [[{ type: 'any_unit' }]], random: false }
+            }
           }
         ],
         actions: [
           {
             type: 'change_stats',
             params: {
-              targets: [[{ type: 'is_self', params: { not: false } }]],
+              targets: {
+                candidates: [[{ type: 'is_self', params: { not: false } }]],
+                random: false
+              },
               mode: 'give',
               stackable: true,
               attack: {

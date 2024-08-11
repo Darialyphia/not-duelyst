@@ -231,7 +231,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         conditions: trigger.params.card,
@@ -249,7 +249,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   event.blueprintId;
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         conditions: trigger.params.card,
@@ -266,7 +266,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -283,7 +283,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -300,7 +300,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -317,7 +317,7 @@ export const parseSerializedBlueprintEffect = (
                 actions,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -334,7 +334,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_move',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -351,7 +351,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_move',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -368,7 +368,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_teleport',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -385,7 +385,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_teleport',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -403,7 +403,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_attack',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -411,7 +411,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -430,7 +430,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_attack',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -438,7 +438,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -457,7 +457,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit?.length
+                    (trigger.params.unit?.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -465,7 +465,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.card?.length
+                    (trigger.params.card?.candidates.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -486,7 +486,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit?.length
+                    (trigger.params.unit?.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -494,7 +494,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.card?.length
+                    (trigger.params.card?.candidates.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -515,7 +515,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.card?.length
+                    (trigger.params.card?.candidates.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -525,7 +525,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.equals(card);
                         })
                       : true) &&
-                    (trigger.params.unit?.length
+                    (trigger.params.unit?.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -536,7 +536,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.entity.equals(entity);
                         })
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -555,7 +555,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.card?.length
+                    (trigger.params.card?.candidates.length
                       ? getCards({
                           ...ctx,
                           conditions: trigger.params.card,
@@ -565,7 +565,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.equals(card);
                         })
                       : true) &&
-                    (trigger.params.unit?.length
+                    (trigger.params.unit?.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -576,7 +576,7 @@ export const parseSerializedBlueprintEffect = (
                           event.source.entity.equals(entity);
                         })
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -595,7 +595,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_deal_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -603,7 +603,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => event.entity.equals(entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -622,7 +622,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_deal_damage',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -630,7 +630,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => event.entity.equals(entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -649,7 +649,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:before_retaliate',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -657,7 +657,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -676,7 +676,7 @@ export const parseSerializedBlueprintEffect = (
                 eventName: 'entity:after_retaliate',
                 filter(ctx, [event], eventName) {
                   return (
-                    (trigger.params.unit.length
+                    (trigger.params.unit.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.unit,
@@ -684,7 +684,7 @@ export const parseSerializedBlueprintEffect = (
                           eventName
                         }).some(entity => entity.equals(event.entity))
                       : true) &&
-                    (trigger.params.target.length
+                    (trigger.params.target.candidates.length
                       ? getUnits({
                           ...ctx,
                           conditions: trigger.params.target,
@@ -702,7 +702,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:created',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -719,7 +719,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_destroy',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -736,7 +736,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_destroy',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.unit.length
+                  return trigger.params.unit.candidates.length
                     ? getUnits({
                         ...ctx,
                         conditions: trigger.params.unit,
@@ -753,7 +753,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'card:drawn',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         conditions: trigger.params.card,
@@ -770,7 +770,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'card:replaced',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         conditions: trigger.params.card,
@@ -787,7 +787,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_start',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -804,7 +804,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_end',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.player.length
+                  return trigger.params.player.candidates.length
                     ? getPlayers({
                         ...ctx,
                         event,
@@ -821,7 +821,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'artifact:equiped',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         event,
@@ -838,7 +838,7 @@ export const parseSerializedBlueprintEffect = (
                 frequency: trigger.params.frequency,
                 eventName: 'artifact:before_destroy',
                 filter(ctx, [event], eventName) {
-                  return trigger.params.card.length
+                  return trigger.params.card.candidates.length
                     ? getCards({
                         ...ctx,
                         event,
@@ -987,7 +987,7 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         event: {},
         card: options.card,
         targets: options.targets,
-        conditions: blueprint.cellHighlights,
+        conditions: { candidates: blueprint.cellHighlights, random: false },
         playedPoint: options.playedPoint
       }).some(cell => {
         return cell.position.equals(point);

@@ -28,31 +28,37 @@ export const neutralPutridMindflayer = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 4 } },
-              targets: [
-                [
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [
-                        [
-                          {
-                            type: 'is_nearby',
-                            params: {
-                              unit: [[{ type: 'is_self', params: { not: false } }]],
-                              cell: [],
-                              not: false
-                            }
-                          }
-                        ]
-                      ],
-                      cell: [],
-                      not: false
-                    }
-                  },
-                  { type: 'is_enemy', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [
+                            [
+                              {
+                                type: 'is_nearby',
+                                params: {
+                                  unit: {
+                                    candidates: [
+                                      [{ type: 'is_self', params: { not: false } }]
+                                    ]
+                                  },
+                                  not: false
+                                }
+                              }
+                            ]
+                          ]
+                        },
+                        not: false
+                      }
+                    },
+                    { type: 'is_enemy', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -61,7 +67,7 @@ export const neutralPutridMindflayer = defineSerializedBlueprint({
           {
             type: 'on_before_unit_destroyed',
             params: {
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

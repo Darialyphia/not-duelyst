@@ -2,7 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
+import { allyMinion, cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f2KillingEdge = defineSerializedBlueprint({
   id: 'f2_killing_edge',
@@ -18,7 +18,16 @@ export const f2KillingEdge = defineSerializedBlueprint({
   faction: FACTION_IDS.F2,
   targets: {
     min: 1,
-    targets: [cellWithAllyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyMinion() }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     defineCardEffect({
@@ -33,14 +42,14 @@ export const f2KillingEdge = defineSerializedBlueprint({
               stackable: true,
               attack: {
                 amount: fixedAmount(4),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
               hp: {
                 amount: fixedAmount(2),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
               targets: manualTarget(0),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -48,19 +57,21 @@ export const f2KillingEdge = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: fixedAmount(1),
-              player: [[{ type: 'ally_player' }]],
-              filter: [
-                [
-                  {
-                    type: 'unit_state',
-                    params: {
-                      unit: manualTarget(0),
-                      mode: 'all',
-                      keyword: 'backstab'
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: {
+                candidates: [
+                  [
+                    {
+                      type: 'unit_state',
+                      params: {
+                        unit: manualTarget(0),
+                        mode: 'all',
+                        keyword: 'backstab'
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
+              },
               execute: 'end_of_turn'
             }
           }

@@ -22,9 +22,17 @@ export const f2Juxtaposition = defineSerializedBlueprint({
           {
             type: 'swap_units',
             params: {
-              unit1: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
-              unit2: [[{ type: 'is_manual_target', params: { index: 1, not: false } }]],
-              filter: [],
+              unit1: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+                ]
+              },
+              unit2: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { index: 1, not: false } }]
+                ]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -39,7 +47,9 @@ export const f2Juxtaposition = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+            params: {
+              unit: { candidates: [[{ type: 'is_minion', params: { not: false } }]] }
+            }
           }
         ]
       ],
@@ -47,7 +57,9 @@ export const f2Juxtaposition = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+            params: {
+              unit: { candidates: [[{ type: 'is_minion', params: { not: false } }]] }
+            }
           }
         ]
       ]

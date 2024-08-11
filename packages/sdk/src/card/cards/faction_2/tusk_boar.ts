@@ -37,14 +37,16 @@ export const f2TuskBoar = defineSerializedBlueprint({
           {
             type: 'on_player_turn_start',
             params: {
-              player: [
-                [
-                  {
-                    type: 'ally_player',
-                    params: {}
-                  }
+              player: {
+                candidates: [
+                  [
+                    {
+                      type: 'ally_player',
+                      params: {}
+                    }
+                  ]
                 ]
-              ],
+              },
               frequency: []
             }
           }
@@ -53,15 +55,17 @@ export const f2TuskBoar = defineSerializedBlueprint({
           {
             type: 'bounce_unit',
             params: {
-              targets: [
-                [
-                  {
-                    type: 'is_self',
-                    params: { not: false }
-                  }
+              targets: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_self',
+                      params: { not: false }
+                    }
+                  ]
                 ]
-              ],
-              filter: []
+              },
+              filter: { candidates: [] }
             }
           }
         ]

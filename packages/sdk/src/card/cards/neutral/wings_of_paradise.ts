@@ -24,7 +24,14 @@ export const neutralWingsOfParadise = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'flying', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'flying',
+            params: {
+              filter: { candidates: [] },
+              execute: 'now',
+              activeWhen: { candidates: [] }
+            }
+          }
         ]
       }
     },
@@ -38,9 +45,12 @@ export const neutralWingsOfParadise = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
-              targets: [[{ type: 'is_self', params: { not: false } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 2 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
+              filter: { candidates: [] },
               duration: 'end_of_turn',
               execute: 'now'
             }
@@ -50,7 +60,7 @@ export const neutralWingsOfParadise = defineSerializedBlueprint({
           {
             type: 'on_after_player_replace',
             params: {
-              player: [[{ type: 'ally_player', params: {} }]],
+              player: { candidates: [[{ type: 'ally_player', params: {} }]] },
               frequency: { type: 'always' }
             }
           }

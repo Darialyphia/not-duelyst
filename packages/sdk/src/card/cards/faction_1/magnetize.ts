@@ -23,16 +23,24 @@ export const f1Magnetize = defineSerializedBlueprint({
           {
             type: 'teleport_unit',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
-              cell: [
-                [
-                  {
-                    type: 'is_in_front',
-                    params: { unit: allyGeneral() }
-                  }
-                ]
-              ],
-              filter: [],
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+                ],
+                random: false
+              },
+              cell: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_in_front',
+                      params: { unit: allyGeneral() }
+                    }
+                  ]
+                ],
+                random: false
+              },
+              filter: { candidates: [], random: false },
               execute: 'now'
             }
           }
@@ -47,7 +55,12 @@ export const f1Magnetize = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+            params: {
+              unit: {
+                candidates: [[{ type: 'is_minion', params: { not: false } }]],
+                random: false
+              }
+            }
           }
         ]
       ]

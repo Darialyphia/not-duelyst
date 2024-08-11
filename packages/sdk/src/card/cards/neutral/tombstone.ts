@@ -2,37 +2,28 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
-export const neutralMiniJax = defineSerializedBlueprint({
-  id: 'neutral_mini_jax',
-  spriteId: 'neutral_minijax',
-  name: 'Mini-jax',
+export const neutralTombstone = defineSerializedBlueprint({
+  spriteId: 'neutral_tombstone',
+  name: 'Tombstone',
+  id: 'neutral_tombstone',
   collectable: false,
-  keywords: [KEYWORDS.RANGED.id],
+  keywords: [KEYWORDS.PROVOKE.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.TOKEN,
   targets: { min: 0, targets: [] },
   cellHighlights: [],
-  cost: 1,
-  attack: 1,
-  maxHp: 1,
+  cost: 3,
+  attack: 0,
+  maxHp: 10,
   faction: null,
   effects: [
     {
-      text: '@Ranged@.',
+      text: '@Provoke@.',
       config: {
         executionContext: 'while_on_board',
-        actions: [
-          {
-            type: 'ranged',
-            params: {
-              filter: { candidates: [] },
-              activeWhen: { candidates: [] },
-              execute: 'now'
-            }
-          }
-        ]
+        actions: [{ type: 'provoke', params: { execute: 'now' } }]
       }
     }
   ]

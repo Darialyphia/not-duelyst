@@ -26,8 +26,10 @@ export const neutralEphemeralShroud = defineSerializedBlueprint({
           {
             type: 'dispel_cell',
             params: {
-              cells: [[{ type: 'is_manual_target', params: { index: 0 } }]],
-              filter: [],
+              cells: {
+                candidates: [[{ type: 'is_manual_target', params: { index: 0 } }]]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -42,7 +44,7 @@ export const neutralEphemeralShroud = defineSerializedBlueprint({
         [
           {
             type: 'is_nearby',
-            params: { unit: [], cell: [[{ type: 'summon_target' }]] }
+            params: { cell: { candidates: [[{ type: 'summon_target' }]] } }
           }
         ]
       ]

@@ -13,13 +13,15 @@ export const whileArtifactEquipedEffect = ({
           type: 'on_artifact_equiped';
           params: {
             frequency: TriggerFrequency;
-            card: [
-              [
-                {
-                  type: 'self';
-                }
-              ]
-            ];
+            card: {
+              candidates: [
+                [
+                  {
+                    type: 'self';
+                  }
+                ]
+              ];
+            };
           };
         }
       ]
@@ -35,7 +37,7 @@ export const whileArtifactEquipedEffect = ({
           type: 'on_artifact_equiped',
           params: {
             frequency: { type: 'always' },
-            card: [[{ type: 'self' }]]
+            card: { candidates: [[{ type: 'self' }]] }
           }
         }
       ],

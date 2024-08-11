@@ -1,6 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f1DivineBond = defineSerializedBlueprint({
   id: 'divine_bond',
@@ -16,7 +16,21 @@ export const f1DivineBond = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAnyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: {
+                candidates: [[{ type: 'is_minion', params: { not: false } }]],
+                random: false
+              }
+            }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {

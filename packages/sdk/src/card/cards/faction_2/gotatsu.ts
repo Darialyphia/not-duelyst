@@ -23,7 +23,7 @@ export const f2Gotatsu = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [[{ type: 'is_minion', params: { not: false } }]]
+              unit: { candidates: [[{ type: 'is_minion', params: { not: false } }]] }
             }
           }
         ]
@@ -41,7 +41,7 @@ export const f2Gotatsu = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(1),
               targets: manualTarget(0),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -49,8 +49,8 @@ export const f2Gotatsu = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: fixedAmount(1),
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'end_of_turn'
             }
           }

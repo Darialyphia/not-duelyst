@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anywhere, enemyMinion } from '../../helpers/targeting';
+import { enemyMinion } from '../../helpers/targeting';
 
 export const f2GhostLightning = defineSerializedBlueprint({
   id: 'f2_ghost_lightning',
@@ -17,7 +17,7 @@ export const f2GhostLightning = defineSerializedBlueprint({
   faction: FACTION_IDS.F2,
   targets: {
     min: 1,
-    targets: [anywhere()]
+    targets: [[[{ type: 'any_cell' }]]]
   },
   effects: [
     {
@@ -30,7 +30,7 @@ export const f2GhostLightning = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(1),
               targets: enemyMinion(),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

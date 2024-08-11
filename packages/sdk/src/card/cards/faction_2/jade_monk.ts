@@ -27,14 +27,14 @@ export const f2JadeMonk = defineSerializedBlueprint({
           {
             type: 'change_card_cost',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               amount: {
                 type: 'card_played_since_last_turn',
-                params: { card: [[{ type: 'spell' }]], scale: -1 }
+                params: { card: { candidates: [[{ type: 'spell' }]] }, scale: -1 }
               },
-              card: [[{ type: 'self' }]],
-              player: [[{ type: 'ally_player' }]],
+              card: { candidates: [[{ type: 'self' }]] },
+              player: { candidates: [[{ type: 'ally_player' }]] },
               occurences_count: 0,
               duration: 'always'
             }

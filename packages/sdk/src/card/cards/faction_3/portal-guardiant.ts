@@ -24,7 +24,14 @@ export const f3PortalGuardian = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'frenzy', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'frenzy',
+            params: {
+              filter: { candidates: [] },
+              execute: 'now',
+              activeWhen: { candidates: [] }
+            }
+          }
         ]
       }
     },
@@ -38,9 +45,12 @@ export const f3PortalGuardian = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 1 } }, activeWhen: [] },
-              targets: [[{ type: 'is_self', params: { not: false } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -50,7 +60,7 @@ export const f3PortalGuardian = defineSerializedBlueprint({
           {
             type: 'on_unit_play',
             params: {
-              unit: [[{ type: 'is_ally', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_ally', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

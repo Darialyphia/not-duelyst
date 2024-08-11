@@ -25,8 +25,8 @@ export const f2Heartseeker = defineSerializedBlueprint({
           {
             type: 'ranged',
             params: {
-              filter: [],
-              activeWhen: [],
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
               execute: 'now'
             }
           }

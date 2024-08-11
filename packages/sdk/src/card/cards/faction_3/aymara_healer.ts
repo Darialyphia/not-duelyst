@@ -24,7 +24,14 @@ export const f3AymaraHealer = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'provoke', params: { filter: [], activeWhen: [], execute: 'now' } }
+          {
+            type: 'provoke',
+            params: {
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
+              execute: 'now'
+            }
+          }
         ]
       }
     },
@@ -37,13 +44,15 @@ export const f3AymaraHealer = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 4 } },
-              targets: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -51,13 +60,15 @@ export const f3AymaraHealer = defineSerializedBlueprint({
             type: 'heal',
             params: {
               amount: { type: 'fixed', params: { value: 5 } },
-              targets: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -66,7 +77,7 @@ export const f3AymaraHealer = defineSerializedBlueprint({
           {
             type: 'on_before_unit_destroyed',
             params: {
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

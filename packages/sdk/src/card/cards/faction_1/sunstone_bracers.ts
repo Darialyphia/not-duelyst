@@ -1,6 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { allyGeneral, cellWithAllyGeneral } from '../../helpers/targeting';
+import { allyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
 export const f1SunstoneBracers = defineSerializedBlueprint({
@@ -17,7 +17,16 @@ export const f1SunstoneBracers = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAllyGeneral()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyGeneral() }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     whileArtifactEquipedEffect({

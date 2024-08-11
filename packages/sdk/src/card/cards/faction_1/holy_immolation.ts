@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
+import { allyMinion, cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1HolyImmolation = defineSerializedBlueprint({
   id: 'holy_immolation',
@@ -17,7 +17,16 @@ export const f1HolyImmolation = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAllyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyMinion() }
+          }
+        ]
+      ]
+    ]
   },
   cellHighlights: [
     [
@@ -30,7 +39,12 @@ export const f1HolyImmolation = defineSerializedBlueprint({
       {
         type: 'is_nearby',
         params: {
-          unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]]
+          unit: {
+            candidates: [
+              [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+            ],
+            random: false
+          }
         }
       }
     ]
@@ -52,12 +66,15 @@ export const f1HolyImmolation = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(4),
-              targets: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_nearby', params: { unit: manualTarget(0), not: false } }
-                ]
-              ]
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_nearby', params: { unit: manualTarget(0), not: false } }
+                  ]
+                ],
+                random: false
+              }
             }
           }
         ]

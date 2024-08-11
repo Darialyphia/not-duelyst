@@ -17,7 +17,7 @@ import type { Amount } from './helpers/amount';
 import type { CardBlueprintId } from './card';
 import type { KeywordId } from '../utils/keywords';
 
-export type Filter<T> = T[][];
+export type Filter<T> = { candidates: T[][]; random?: boolean };
 
 export type NumericOperator = 'equals' | 'more_than' | 'less_than';
 

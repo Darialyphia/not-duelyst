@@ -26,17 +26,19 @@ export const f2ChakriAvatar = defineSerializedBlueprint({
           {
             type: 'on_after_card_played',
             params: {
-              card: [
-                [
-                  { type: 'spell' },
-                  {
-                    type: 'from_player',
-                    params: {
-                      player: [[{ type: 'ally_player' }]]
+              card: {
+                candidates: [
+                  [
+                    { type: 'spell' },
+                    {
+                      type: 'from_player',
+                      params: {
+                        player: { candidates: [[{ type: 'ally_player' }]] }
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
+              },
               frequency: { type: 'always' }
             }
           }
@@ -49,14 +51,14 @@ export const f2ChakriAvatar = defineSerializedBlueprint({
               stackable: true,
               attack: {
                 amount: fixedAmount(1),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
               hp: {
                 amount: fixedAmount(1),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
-              targets: [[{ type: 'is_self', params: { not: false } }]],
-              filter: [],
+              targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

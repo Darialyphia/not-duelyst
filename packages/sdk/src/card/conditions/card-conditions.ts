@@ -54,7 +54,7 @@ export const getCards = ({
     .map(player => player.cards)
     .flat()
     .filter(c => {
-      return conditions.some(group => {
+      return conditions.candidates.some(group => {
         return group.every(condition => {
           return match(condition)
             .with({ type: 'any_card' }, () => true)

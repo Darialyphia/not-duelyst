@@ -26,11 +26,11 @@ export const f2StormKage = defineSerializedBlueprint({
           {
             type: 'generate_card',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               ephemeral: true,
               location: 'hand',
-              player: [[{ type: 'ally_player' }]],
+              player: { candidates: [[{ type: 'ally_player' }]] },
               blueprint: 'f2_kage_lightning'
             }
           }
@@ -40,7 +40,7 @@ export const f2StormKage = defineSerializedBlueprint({
             type: 'on_after_unit_take_damage',
             params: {
               target: [[{ type: 'is_enemy', params: {} }]],
-              unit: [],
+              unit: { candidates: [] },
               frequency: { type: 'n_per_turn', params: { count: 3 } }
             }
           }

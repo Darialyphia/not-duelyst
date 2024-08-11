@@ -30,22 +30,28 @@ export const neutralPrimusFist = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 1 } }, activeWhen: [] },
-              targets: [
-                [
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      cell: [],
-                      not: false
-                    }
-                  },
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } }
+              attack: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        },
+                        not: false
+                      }
+                    },
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }

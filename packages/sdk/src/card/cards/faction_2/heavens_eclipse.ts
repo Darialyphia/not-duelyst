@@ -28,8 +28,8 @@ export const f2HeavensEclipse = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: fixedAmount(3),
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'now',
               kind: 'SPELL'
             }

@@ -29,10 +29,16 @@ export const neutralArakiHeadhunter = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
-              hp: { amount: { type: 'fixed', params: { value: 0 } }, activeWhen: [] },
-              targets: [[{ type: 'is_self', params: { not: false } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 2 } },
+                activeWhen: { candidates: [] }
+              },
+              hp: {
+                amount: { type: 'fixed', params: { value: 0 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -42,15 +48,17 @@ export const neutralArakiHeadhunter = defineSerializedBlueprint({
           {
             type: 'on_unit_play',
             params: {
-              unit: [
-                [
-                  {
-                    type: 'has_keyword',
-                    params: { keyword: 'opening_gambit', not: false }
-                  },
-                  { type: 'is_ally', params: { not: false } }
+              unit: {
+                candidates: [
+                  [
+                    {
+                      type: 'has_keyword',
+                      params: { keyword: 'opening_gambit', not: false }
+                    },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
+              },
               frequency: { type: 'always' }
             }
           }

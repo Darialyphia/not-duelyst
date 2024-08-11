@@ -7,7 +7,7 @@ import type { Card } from './card';
 
 export type CardTargetsConfig = {
   min: number;
-  targets: Array<Filter<CellConditionBase>>;
+  targets: CellConditionBase[][][];
 };
 
 export const parseTargets = (
@@ -33,7 +33,10 @@ export const parseTargets = (
         event: {},
         card: options.card,
         targets: options.targets,
-        conditions: config.targets[options.targets.length],
+        conditions: {
+          candidates: config.targets[options.targets.length],
+          random: false
+        },
         playedPoint: options.playedPoint
       }).some(cell => {
         return cell.position.equals(point);
@@ -53,7 +56,10 @@ export const parseTargets = (
         event: {},
         card: options.card,
         targets: options.targets,
-        conditions: config.targets[options.targets.length],
+        conditions: {
+          candidates: config.targets[options.targets.length],
+          random: false
+        },
         playedPoint: options.playedPoint
       });
     }

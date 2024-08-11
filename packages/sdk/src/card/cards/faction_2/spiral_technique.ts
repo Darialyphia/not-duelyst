@@ -17,7 +17,16 @@ export const f2SpiralTechnique = defineSerializedBlueprint({
   rarity: RARITIES.LEGENDARY,
   targets: {
     min: 1,
-    targets: [anyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {
@@ -29,7 +38,7 @@ export const f2SpiralTechnique = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(8),
               targets: manualTarget(0),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

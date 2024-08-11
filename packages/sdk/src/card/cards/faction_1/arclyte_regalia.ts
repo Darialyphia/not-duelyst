@@ -19,7 +19,16 @@ export const f1ArclyteRegalia = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAllyGeneral()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyGeneral() }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     whileArtifactEquipedEffect({
@@ -45,7 +54,6 @@ export const f1ArclyteRegalia = defineSerializedBlueprint({
             mode: 'give',
             stackable: true,
             targets: allyGeneral(),
-            filter: [],
             frequency: nTimesPerTurn(1),
             amount: fixedAmount(-2)
           }

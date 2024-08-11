@@ -30,9 +30,9 @@ export const neutralRiftWalker = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(2),
-              targets: nearestAllDirections([
-                [{ type: 'is_self', params: { not: false } }]
-              ])
+              targets: nearestAllDirections({
+                candidates: [[{ type: 'is_self', params: { not: false } }]]
+              })
             }
           }
         ]

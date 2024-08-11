@@ -25,8 +25,8 @@ export const f2CelestialPhantom = defineSerializedBlueprint({
           {
             type: 'on_after_unit_deal_damage',
             params: {
-              target: [[{ type: 'is_minion', params: { not: false } }]],
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              target: { candidates: [[{ type: 'is_minion', params: { not: false } }]] },
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: {
                 type: 'always'
               }
@@ -37,8 +37,10 @@ export const f2CelestialPhantom = defineSerializedBlueprint({
           {
             type: 'destroy_unit',
             params: {
-              targets: [[{ type: 'attack_target', params: { not: false } }]],
-              filter: [],
+              targets: {
+                candidates: [[{ type: 'attack_target', params: { not: false } }]]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

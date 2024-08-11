@@ -25,8 +25,8 @@ export const f3ScionssSecondWish = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -34,13 +34,15 @@ export const f3ScionssSecondWish = defineSerializedBlueprint({
             type: 'heal',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

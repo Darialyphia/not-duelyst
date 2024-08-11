@@ -27,11 +27,11 @@ export const f3Chronomancer = defineSerializedBlueprint({
           {
             type: 'change_card_cost',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               amount: { type: 'fixed', params: { value: -2 } },
-              card: [[{ type: 'spell' }]],
-              player: [[{ type: 'ally_player' }]],
+              card: { candidates: [[{ type: 'spell' }]] },
+              player: { candidates: [[{ type: 'ally_player' }]] },
               occurences_count: 1,
               duration: 'end_of_turn'
             }

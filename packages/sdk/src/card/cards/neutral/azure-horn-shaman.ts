@@ -27,20 +27,23 @@ export const neutralAzureHornShaman = defineSerializedBlueprint({
           {
             type: 'add_effect',
             params: {
-              unit: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      cell: [],
-                      not: false
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
+              },
               effect: {
                 executionContext: 'while_on_board',
                 actions: [
@@ -51,10 +54,12 @@ export const neutralAzureHornShaman = defineSerializedBlueprint({
                       stackable: true,
                       hp: {
                         amount: { type: 'fixed', params: { value: 4 } },
-                        activeWhen: []
+                        activeWhen: { candidates: [] }
                       },
-                      targets: [[{ type: 'is_self', params: { not: false } }]],
-                      filter: [],
+                      targets: {
+                        candidates: [[{ type: 'is_self', params: { not: false } }]]
+                      },
+                      filter: { candidates: [] },
                       duration: 'always',
                       execute: 'now'
                     }
@@ -68,7 +73,7 @@ export const neutralAzureHornShaman = defineSerializedBlueprint({
           {
             type: 'on_before_unit_destroyed',
             params: {
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

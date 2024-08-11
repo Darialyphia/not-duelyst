@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { provokeEffect } from '../../helpers/provoke.effect';
-import { cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
+import { allyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1ElyxStormblade = defineSerializedBlueprint({
   id: 'elyx_stormblade',
@@ -19,7 +19,19 @@ export const f1ElyxStormblade = defineSerializedBlueprint({
   relatedBlueprintIds: [],
   spriteId: 'f1_elyx_stormblade',
   tags: [],
-  targets: { min: 0, targets: [cellWithAllyMinion()] },
+  targets: {
+    min: 0,
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyMinion() }
+          }
+        ]
+      ]
+    ]
+  },
   effects: [
     provokeEffect(),
     defineCardEffect({

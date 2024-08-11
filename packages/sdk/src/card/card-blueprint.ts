@@ -157,7 +157,7 @@ export type SerializedBlueprintBase<T extends GenericCardEffect[]> = {
   relatedBlueprintIds: string[];
   effects: T;
   targets?: CardTargetsConfig;
-  cellHighlights?: Filter<CellConditionBase>;
+  cellHighlights?: CellConditionBase[][];
 };
 
 type SerializedBlueprintUnit = {

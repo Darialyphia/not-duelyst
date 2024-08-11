@@ -26,22 +26,25 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
           {
             type: 'change_stats',
             params: {
-              targets: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  {
-                    type: 'is_in_front',
-                    params: { unit: allyGeneral(), not: false }
-                  }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    {
+                      type: 'is_in_front',
+                      params: { unit: allyGeneral(), not: false }
+                    }
+                  ],
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    {
+                      type: 'is_behind',
+                      params: { unit: allyGeneral(), not: false }
+                    }
+                  ]
                 ],
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  {
-                    type: 'is_behind',
-                    params: { unit: allyGeneral(), not: false }
-                  }
-                ]
-              ],
+                random: false
+              },
               mode: 'give',
               attack: { amount: { type: 'fixed', params: { value: 1 } } },
               hp: { amount: { type: 'fixed', params: { value: 1 } } },

@@ -26,10 +26,14 @@ export const f3ZenuiTheBlghtspawned = defineSerializedBlueprint({
           {
             type: 'change_unit_owner',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
-              player: [[{ type: 'ally_player' }]],
-              unit: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
               duration: 'always'
             }
           }
@@ -45,24 +49,26 @@ export const f3ZenuiTheBlghtspawned = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'has_attack',
-                    params: {
-                      not: false,
-                      amount: { type: 'fixed', params: { value: 3 } },
-                      operator: 'less_than'
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'has_attack',
+                      params: {
+                        not: false,
+                        amount: { type: 'fixed', params: { value: 3 } },
+                        operator: 'less_than'
+                      }
                     }
-                  }
+                  ]
                 ]
-              ]
+              }
             }
           },
           {
             type: 'is_nearby',
-            params: { unit: [], cell: [[{ type: 'summon_target' }]] }
+            params: { cell: { candidates: [[{ type: 'summon_target' }]] } }
           }
         ]
       ]

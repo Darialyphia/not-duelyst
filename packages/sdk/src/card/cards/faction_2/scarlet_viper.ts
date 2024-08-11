@@ -24,7 +24,14 @@ export const f2ScarletViper = defineSerializedBlueprint({
       config: {
         executionContext: 'immediate',
         actions: [
-          { type: 'flying', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'flying',
+            params: {
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
+              execute: 'now'
+            }
+          }
         ]
       }
     },
@@ -36,8 +43,8 @@ export const f2ScarletViper = defineSerializedBlueprint({
           {
             type: 'backstab',
             params: {
-              filter: [],
-              activeWhen: [],
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
               amount: { type: 'fixed', params: { value: 3 } },
               execute: 'now'
             }

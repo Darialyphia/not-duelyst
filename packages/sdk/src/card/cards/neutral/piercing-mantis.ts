@@ -23,7 +23,14 @@ export const neutralPiercingMantis = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'frenzy', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'frenzy',
+            params: {
+              filter: { candidates: [] },
+              execute: 'now',
+              activeWhen: { candidates: [] }
+            }
+          }
         ]
       }
     }

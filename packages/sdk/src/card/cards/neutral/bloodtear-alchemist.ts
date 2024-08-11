@@ -13,7 +13,9 @@ export const neutralBloodtearAlchemist = defineSerializedBlueprint({
   rarity: RARITIES.COMMON,
   targets: {
     min: 0,
-    targets: [[[{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]]]
+    targets: [
+      [[{ type: 'has_unit', params: { unit: { candidates: [[{ type: 'any_unit' }]] } } }]]
+    ]
   },
   cellHighlights: [],
   cost: 2,
@@ -30,8 +32,12 @@ export const neutralBloodtearAlchemist = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 1 } },
-              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              filter: [],
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

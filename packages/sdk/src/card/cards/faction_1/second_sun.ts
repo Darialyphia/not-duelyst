@@ -33,7 +33,10 @@ export const f1SecondSun = defineSerializedBlueprint({
                   {
                     type: 'change_stats',
                     params: {
-                      targets: [[{ type: 'is_self', params: { not: false } }]],
+                      targets: {
+                        candidates: [[{ type: 'is_self', params: { not: false } }]],
+                        random: false
+                      },
                       mode: 'give',
                       stackable: false,
                       attack: { amount: fixedAmount(8) }

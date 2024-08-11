@@ -24,30 +24,34 @@ export const f3BoneSwarm = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_enemy', params: { not: false } }
-                ],
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [
-                        [
-                          { type: 'is_general', params: { not: false } },
-                          { type: 'is_enemy', params: { not: false } }
-                        ]
-                      ],
-                      cell: [],
-                      not: false
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_enemy', params: { not: false } }
+                  ],
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [
+                            [
+                              { type: 'is_general', params: { not: false } },
+                              { type: 'is_enemy', params: { not: false } }
+                            ]
+                          ]
+                        },
+                        cell: { candidates: [] },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -63,12 +67,14 @@ export const f3BoneSwarm = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

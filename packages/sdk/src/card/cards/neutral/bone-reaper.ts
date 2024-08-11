@@ -29,20 +29,24 @@ export const neutralBonereaper = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [
-                  { type: 'is_minion', params: { not: false } },
-                  { type: 'is_enemy', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      not: false
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_minion', params: { not: false } },
+                    { type: 'is_enemy', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -51,7 +55,7 @@ export const neutralBonereaper = defineSerializedBlueprint({
           {
             type: 'on_player_turn_end',
             params: {
-              player: [[{ type: 'ally_player', params: {} }]],
+              player: { candidates: [[{ type: 'ally_player', params: {} }]] },
               frequency: { type: 'always' }
             }
           }

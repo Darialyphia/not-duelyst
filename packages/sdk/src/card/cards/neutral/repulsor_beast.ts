@@ -26,9 +26,17 @@ export const neutralRepulsorBeast = defineSerializedBlueprint({
           {
             type: 'teleport_unit',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              cell: [[{ type: 'is_manual_target', params: { not: false, index: 1 } }]],
-              filter: [],
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              cell: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 1 } }]
+                ]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -44,19 +52,21 @@ export const neutralRepulsorBeast = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      cell: [[{ type: 'summon_target' }]],
-                      not: false
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        cell: { candidates: [[{ type: 'summon_target' }]] },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

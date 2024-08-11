@@ -1,5 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 
@@ -26,8 +27,8 @@ export const f2Gorehorn = defineSerializedBlueprint({
           {
             type: 'backstab',
             params: {
-              filter: [],
-              activeWhen: [],
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
               amount: fixedAmount(2),
               execute: 'now'
             }
@@ -35,7 +36,7 @@ export const f2Gorehorn = defineSerializedBlueprint({
         ]
       }
     },
-    {
+    defineCardEffect({
       text: 'After this attacks, this gains +1/+1.',
       config: {
         executionContext: 'trigger_while_on_board',
@@ -43,8 +44,8 @@ export const f2Gorehorn = defineSerializedBlueprint({
           {
             type: 'on_after_unit_attack',
             params: {
-              target: [],
-              unit: [[{ type: 'is_self' }]],
+              target: { candidates: [] },
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: {
                 type: 'always'
               }
@@ -59,19 +60,19 @@ export const f2Gorehorn = defineSerializedBlueprint({
               stackable: true,
               attack: {
                 amount: fixedAmount(1),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
               hp: {
                 amount: fixedAmount(1),
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
-              targets: [[{ type: 'is_self', params: { not: false } }]],
-              filter: [],
+              targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
         ]
       }
-    }
+    })
   ]
 });

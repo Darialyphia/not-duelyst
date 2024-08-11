@@ -22,7 +22,9 @@ export const neutralSaberspineTiger = defineSerializedBlueprint({
       text: '@Rush@.',
       config: {
         executionContext: 'immediate',
-        actions: [{ type: 'rush', params: { execute: 'now', filter: [] } }]
+        actions: [
+          { type: 'rush', params: { execute: 'now', filter: { candidates: [] } } }
+        ]
       }
     }
   ]

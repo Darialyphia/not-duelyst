@@ -25,8 +25,8 @@ export const f2Rythmweaver = defineSerializedBlueprint({
           {
             type: 'on_after_unit_take_damage',
             params: {
-              target: [[{ type: 'is_self', params: {} }]],
-              unit: [],
+              target: { candidates: [[{ type: 'is_self', params: {} }]] },
+              unit: { candidates: [] },
               frequency: {
                 type: 'always'
               }
@@ -38,8 +38,8 @@ export const f2Rythmweaver = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: fixedAmount(1),
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'now',
               kind: CARD_KINDS.SPELL
             }

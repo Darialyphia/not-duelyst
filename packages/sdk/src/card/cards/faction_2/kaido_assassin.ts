@@ -26,8 +26,8 @@ export const f2KaidoAssassin = defineSerializedBlueprint({
           {
             type: 'backstab',
             params: {
-              filter: [],
-              activeWhen: [],
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
               amount: fixedAmount(2)
             }
           }

@@ -17,7 +17,16 @@ export const f1SundropElixir = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [anyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {

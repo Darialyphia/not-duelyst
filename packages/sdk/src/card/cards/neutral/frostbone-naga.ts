@@ -28,19 +28,22 @@ export const neutralFrostboneNaga = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      cell: [],
-                      not: false
+              targets: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

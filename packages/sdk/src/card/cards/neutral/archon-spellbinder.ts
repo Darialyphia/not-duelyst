@@ -26,11 +26,11 @@ export const neutralArchonSpellbinder = defineSerializedBlueprint({
           {
             type: 'change_card_cost',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               amount: { type: 'fixed', params: { value: 1 } },
-              card: [[{ type: 'spell' }]],
-              player: [[{ type: 'enemy_player' }]],
+              card: { candidates: [[{ type: 'spell' }]] },
+              player: { candidates: [[{ type: 'enemy_player' }]] },
               occurences_count: 0,
               duration: 'always'
             }

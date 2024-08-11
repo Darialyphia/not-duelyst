@@ -27,17 +27,19 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
           {
             type: 'on_after_card_played',
             params: {
-              card: [
-                [
-                  { type: 'spell' },
-                  {
-                    type: 'from_player',
-                    params: {
-                      player: [[{ type: 'ally_player' }]]
+              card: {
+                candidates: [
+                  [
+                    { type: 'spell' },
+                    {
+                      type: 'from_player',
+                      params: {
+                        player: { candidates: [[{ type: 'ally_player' }]] }
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
+              },
               frequency: { type: 'always' }
             }
           }
@@ -48,7 +50,7 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(1),
               targets: enemyGeneral(),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -57,7 +59,7 @@ export const f2FourWindsMagus = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(1),
               targets: allyGeneral(),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

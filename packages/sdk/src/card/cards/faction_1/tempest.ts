@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anywhere } from '../../helpers/targeting';
 
 export const f1Tempest = defineSerializedBlueprint({
   id: 'tempest',
@@ -17,13 +16,13 @@ export const f1Tempest = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [anywhere()]
+    targets: [[[{ type: 'any_cell' }]]]
   },
   cellHighlights: [
     [
       {
         type: 'has_unit',
-        params: { unit: [[{ type: 'any_unit' }]] }
+        params: { unit: { candidates: [[{ type: 'any_unit' }]] } }
       }
     ]
   ],
@@ -36,7 +35,7 @@ export const f1Tempest = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              targets: [[{ type: 'any_unit' }]],
+              targets: { candidates: [[{ type: 'any_unit' }]] },
               amount: fixedAmount(2)
             }
           }

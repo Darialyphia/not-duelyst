@@ -27,10 +27,14 @@ export const f3SandHowler = defineSerializedBlueprint({
               stackable: true,
               attack: {
                 amount: { type: 'fixed', params: { value: -4 } },
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
-              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              filter: [],
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              filter: { candidates: [] },
               duration: 'start_of_next_turn',
               execute: 'now'
             }
@@ -48,18 +52,20 @@ export const f3SandHowler = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      cell: [[{ type: 'summon_target' }]],
-                      not: false
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        cell: { candidates: [[{ type: 'summon_target' }]] },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

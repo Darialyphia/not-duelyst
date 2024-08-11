@@ -26,24 +26,28 @@ export const neutralDreamgazer = defineSerializedBlueprint({
           {
             type: 'play_card',
             params: {
-              card: [[{ type: 'self' }]],
-              position: [
-                [
-                  {
-                    type: 'is_behind',
-                    params: {
-                      unit: [
-                        [
-                          { type: 'is_ally', params: { not: false } },
-                          { type: 'is_general', params: { not: false } }
-                        ]
-                      ]
+              card: { candidates: [[{ type: 'self' }]] },
+              position: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_behind',
+                      params: {
+                        unit: {
+                          candidates: [
+                            [
+                              { type: 'is_ally', params: { not: false } },
+                              { type: 'is_general', params: { not: false } }
+                            ]
+                          ]
+                        }
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
-              targets: [],
-              filter: [],
+              },
+              targets: { candidates: [] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           },
@@ -51,13 +55,15 @@ export const neutralDreamgazer = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 2 } },
-              targets: [
-                [
-                  { type: 'is_general', params: { not: false } },
-                  { type: 'is_ally', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -66,7 +72,7 @@ export const neutralDreamgazer = defineSerializedBlueprint({
           {
             type: 'on_card_replaced',
             params: {
-              card: [[{ type: 'self', params: {} }]],
+              card: { candidates: [[{ type: 'self', params: {} }]] },
               frequency: { type: 'always' }
             }
           }

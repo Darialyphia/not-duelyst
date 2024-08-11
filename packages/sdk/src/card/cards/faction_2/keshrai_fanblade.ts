@@ -27,11 +27,11 @@ export const f2KeshraiFanblade = defineSerializedBlueprint({
           {
             type: 'change_card_cost',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               amount: fixedAmount(2),
-              card: [[{ type: 'spell' }]],
-              player: [[{ type: 'enemy_player' }]],
+              card: { candidates: [[{ type: 'spell' }]] },
+              player: { candidates: [[{ type: 'enemy_player' }]] },
               occurences_count: 0,
               duration: 'start_of_next_turn'
             }

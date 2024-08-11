@@ -66,7 +66,7 @@ export const getCells = ({
   return session.boardSystem.cells.filter(cell => {
     if (cell.cellAbove) return false;
 
-    return conditions.some(group => {
+    return conditions.candidates.some(group => {
       return group.every(condition => {
         return match(condition)
           .with({ type: 'any_cell' }, () => true)
@@ -77,17 +77,23 @@ export const getCells = ({
           })
           .with({ type: 'is_empty' }, () => !cell.entity)
           .with({ type: 'is_nearby' }, condition => {
-            const unitConditions = condition.params.unit ?? [];
-            const cellConditions = condition.params.cell ?? [];
+            const unitConditions = condition.params.unit ?? {
+              candidates: [],
+              random: false
+            };
+            const cellConditions = condition.params.cell ?? {
+              candidates: [],
+              random: false
+            };
 
-            const unitPositions = isEmptyArray(unitConditions)
+            const unitPositions = isEmptyArray(unitConditions.candidates)
               ? []
               : getUnits({
                   conditions: unitConditions,
                   playedPoint,
                   ...ctx
                 }).map(u => u.position);
-            const cellPositions = isEmptyArray(cellConditions)
+            const cellPositions = isEmptyArray(cellConditions.candidates)
               ? []
               : getCells({
                   conditions: cellConditions,

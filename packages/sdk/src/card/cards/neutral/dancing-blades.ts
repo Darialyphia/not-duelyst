@@ -29,19 +29,23 @@ export const neutralDancingBlades = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(3),
-              targets: [
-                [
-                  {
-                    type: 'is_in_front',
-                    params: {
-                      not: false,
-                      unit: [[{ type: 'is_self', params: { not: false } }]]
-                    }
-                  },
-                  { type: 'is_minion', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_in_front',
+                      params: {
+                        not: false,
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        }
+                      }
+                    },
+                    { type: 'is_minion', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

@@ -22,20 +22,22 @@ export const f2InnerFocus = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } },
-                  {
-                    type: 'has_attack',
-                    params: {
-                      not: false,
-                      operator: 'less_than',
-                      amount: { type: 'fixed', params: { value: 4 } }
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } },
+                    {
+                      type: 'has_attack',
+                      params: {
+                        not: false,
+                        operator: 'less_than',
+                        amount: { type: 'fixed', params: { value: 4 } }
+                      }
                     }
-                  }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

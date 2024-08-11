@@ -25,7 +25,10 @@ export const f1Sunriser = defineSerializedBlueprint({
         triggers: [
           {
             type: 'on_after_unit_healed',
-            params: { frequency: { type: 'always' }, unit: [[{ type: 'any_unit' }]] }
+            params: {
+              frequency: { type: 'always' },
+              unit: { candidates: [[{ type: 'any_unit' }]], random: false }
+            }
           }
         ],
         actions: [
@@ -33,18 +36,22 @@ export const f1Sunriser = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: fixedAmount(2),
-              targets: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      not: false
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        },
+                        not: false
+                      }
                     }
-                  }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

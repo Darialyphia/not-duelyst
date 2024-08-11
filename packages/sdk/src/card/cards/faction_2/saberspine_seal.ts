@@ -2,7 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f2SaberspineSeal = defineSerializedBlueprint({
   id: 'f2_saberspine_seal',
@@ -29,19 +29,10 @@ export const f2SaberspineSeal = defineSerializedBlueprint({
               stackable: true,
               attack: {
                 amount: fixedAmount(3),
-                activeWhen: []
-              },
-              hp: {
-                amount: {
-                  type: 'fixed',
-                  params: {
-                    value: 0
-                  }
-                },
-                activeWhen: []
+                activeWhen: { candidates: [] }
               },
               targets: manualTarget(0),
-              filter: [],
+              filter: { candidates: [] },
               duration: 'end_of_turn',
               execute: 'now'
             }
@@ -52,6 +43,15 @@ export const f2SaberspineSeal = defineSerializedBlueprint({
   ],
   targets: {
     min: 1,
-    targets: [anyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+          }
+        ]
+      ]
+    ]
   }
 });

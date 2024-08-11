@@ -20,7 +20,16 @@ export const neutralHealingMystic = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 0,
-    targets: [anyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     defineCardEffect({

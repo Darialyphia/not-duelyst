@@ -27,14 +27,14 @@ export const neutralProphetOfTheWhitePalm = defineSerializedBlueprint({
           {
             type: 'change_damage_taken',
             params: {
-              unit: [[{}]],
+              unit: { candidates: [[{}]] },
               effect: { actions: [] },
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               mode: 'set',
               stackable: true,
-              targets: [[{ type: 'any_unit' }]],
-              source: [[{ type: 'spell' }]],
+              targets: { candidates: [[{ type: 'any_unit' }]] },
+              source: { candidates: [[{ type: 'spell' }]] },
               frequency: { type: 'always' },
               duration: 'start_of_next_turn',
               amount: { type: 'fixed', params: { value: 0 } }

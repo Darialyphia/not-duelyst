@@ -16,13 +16,18 @@ export const f1SunBloom = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [anywhere()]
+    targets: [[[{ type: 'any_cell' }]]]
   },
   cellHighlights: [
     [
       {
         type: '2x2_area',
-        params: { topLeft: [[{ type: 'is_manual_target', params: { index: 0 } }]] }
+        params: {
+          topLeft: {
+            candidates: [[{ type: 'is_manual_target', params: { index: 0 } }]],
+            random: false
+          }
+        }
       }
     ]
   ],
@@ -35,16 +40,24 @@ export const f1SunBloom = defineSerializedBlueprint({
           {
             type: 'dispel_cell',
             params: {
-              cells: [
-                [
-                  {
-                    type: '2x2_area',
-                    params: {
-                      topLeft: [[{ type: 'is_manual_target', params: { index: 0 } }]]
+              cells: {
+                candidates: [
+                  [
+                    {
+                      type: '2x2_area',
+                      params: {
+                        topLeft: {
+                          candidates: [
+                            [{ type: 'is_manual_target', params: { index: 0 } }]
+                          ],
+                          random: false
+                        }
+                      }
                     }
-                  }
-                ]
-              ]
+                  ]
+                ],
+                random: true
+              }
             }
           }
         ]

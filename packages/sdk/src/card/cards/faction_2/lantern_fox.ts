@@ -32,7 +32,7 @@ export const f2LanternFox = defineSerializedBlueprint({
                   }
                 ]
               ],
-              unit: [],
+              unit: { candidates: [] },
               frequency: {
                 type: 'always'
               }
@@ -43,17 +43,19 @@ export const f2LanternFox = defineSerializedBlueprint({
           {
             type: 'generate_card',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               ephemeral: false,
               location: 'hand',
-              player: [
-                [
-                  {
-                    type: 'ally_player'
-                  }
+              player: {
+                candidates: [
+                  [
+                    {
+                      type: 'ally_player'
+                    }
+                  ]
                 ]
-              ],
+              },
               blueprint: 'f2_phoenix_fire'
             }
           }

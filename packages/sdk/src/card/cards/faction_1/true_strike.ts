@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { cellWithEnemyMinion, manualTarget } from '../../helpers/targeting';
+import { enemyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1TrueStrike = defineSerializedBlueprint({
   id: 'true_strike',
@@ -17,7 +17,16 @@ export const f1TrueStrike = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithEnemyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: enemyMinion() }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {

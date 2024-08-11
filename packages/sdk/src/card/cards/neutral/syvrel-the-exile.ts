@@ -34,16 +34,26 @@ export const neutralSyvrelTheExile = defineSerializedBlueprint({
           {
             type: 'teleport_unit',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              cell: [
-                [
-                  {
-                    type: 'is_in_front',
-                    params: { unit: [[{ type: 'is_self', params: { not: false } }]] }
-                  }
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
                 ]
-              ],
-              filter: [],
+              },
+              cell: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_in_front',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        }
+                      }
+                    }
+                  ]
+                ]
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -59,12 +69,14 @@ export const neutralSyvrelTheExile = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_minion', params: { not: false } }
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_minion', params: { not: false } }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

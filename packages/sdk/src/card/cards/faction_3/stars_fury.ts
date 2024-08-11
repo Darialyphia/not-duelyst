@@ -16,7 +16,7 @@ export const f3StarsFury = defineSerializedBlueprint({
     [
       {
         type: 'is_in_front',
-        params: { unit: [[{ type: 'is_enemy', params: { not: false } }]] }
+        params: { unit: { candidates: [[{ type: 'is_enemy', params: { not: false } }]] } }
       },
       { type: 'is_empty' }
     ]
@@ -32,18 +32,24 @@ export const f3StarsFury = defineSerializedBlueprint({
           {
             type: 'summon_unit',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               blueprint: 'f3_wind_dervish',
-              player: [[{ type: 'ally_player' }]],
-              position: [
-                [
-                  {
-                    type: 'is_in_front',
-                    params: { unit: [[{ type: 'is_enemy', params: { not: false } }]] }
-                  }
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              position: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_in_front',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_enemy', params: { not: false } }]]
+                        }
+                      }
+                    }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

@@ -26,18 +26,21 @@ export const neutralLightbender = defineSerializedBlueprint({
           {
             type: 'dispel_cell',
             params: {
-              cells: [
-                [
-                  {
-                    type: 'is_nearby',
-                    params: {
-                      unit: [[{ type: 'is_self', params: { not: false } }]],
-                      cell: []
+              cells: {
+                candidates: [
+                  [
+                    {
+                      type: 'is_nearby',
+                      params: {
+                        unit: {
+                          candidates: [[{ type: 'is_self', params: { not: false } }]]
+                        }
+                      }
                     }
-                  }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

@@ -33,7 +33,7 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
                     type: 'on_player_turn_end',
                     params: {
                       frequency: { type: 'always' },
-                      player: [[{ type: 'ally_player' }]]
+                      player: { candidates: [[{ type: 'ally_player' }]] }
                     }
                   }
                 ],
@@ -41,10 +41,16 @@ export const f1SuntideMaiden = defineSerializedBlueprint({
                   {
                     type: 'heal',
                     params: {
-                      targets: [[{ type: 'is_self', params: { not: false } }]],
+                      targets: {
+                        candidates: [[{ type: 'is_self', params: { not: false } }]]
+                      },
                       amount: {
                         type: 'maxHp',
-                        params: { unit: [[{ type: 'is_self', params: { not: false } }]] }
+                        params: {
+                          unit: {
+                            candidates: [[{ type: 'is_self', params: { not: false } }]]
+                          }
+                        }
                       }
                     }
                   }

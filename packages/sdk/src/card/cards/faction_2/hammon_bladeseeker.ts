@@ -27,7 +27,7 @@ export const f2HammonBladeseeker = defineSerializedBlueprint({
           {
             type: 'on_player_turn_start',
             params: {
-              player: [[{ type: 'ally_player' }]],
+              player: { candidates: [[{ type: 'ally_player' }]] },
               frequency: { type: 'always' }
             }
           }
@@ -38,7 +38,7 @@ export const f2HammonBladeseeker = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(2),
               targets: allyGeneral(),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

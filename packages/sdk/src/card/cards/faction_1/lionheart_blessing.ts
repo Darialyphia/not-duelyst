@@ -1,7 +1,7 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { cellWithAllyMinion } from '../../helpers/targeting';
+import { allyMinion } from '../../helpers/targeting';
 
 export const f1LionheartBlessing = defineSerializedBlueprint({
   id: 'lionheart_blessing',
@@ -17,7 +17,16 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAllyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: allyMinion() }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {
@@ -28,7 +37,12 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
           {
             type: 'add_effect',
             params: {
-              unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]],
+              unit: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+                ],
+                random: false
+              },
               effect: {
                 executionContext: 'immediate',
                 actions: [
@@ -42,8 +56,16 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
                             type: 'on_after_unit_deal_damage',
                             params: {
                               frequency: { type: 'always' },
-                              target: [],
-                              unit: [[{ type: 'is_self', params: { not: false } }]]
+                              target: {
+                                candidates: [],
+                                random: false
+                              },
+                              unit: {
+                                candidates: [
+                                  [{ type: 'is_self', params: { not: false } }]
+                                ],
+                                random: false
+                              }
                             }
                           }
                         ],
@@ -51,7 +73,10 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
                           {
                             type: 'draw_cards',
                             params: {
-                              player: [[{ type: 'attack_source_owner' }]],
+                              player: {
+                                candidates: [[{ type: 'attack_source_owner' }]],
+                                random: false
+                              },
                               amount: { type: 'fixed', params: { value: 1 } }
                             }
                           }

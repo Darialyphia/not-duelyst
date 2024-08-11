@@ -27,11 +27,11 @@ export const neutralAethermaster = defineSerializedBlueprint({
           {
             type: 'change_replaces_count',
             params: {
-              player: [[{ type: 'ally_player' }]],
+              player: { candidates: [[{ type: 'ally_player' }]] },
               amount: { type: 'fixed', params: { value: 1 } },
               duration: 'always',
               stackable: true,
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               mode: 'give'
             }

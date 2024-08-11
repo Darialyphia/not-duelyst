@@ -28,8 +28,8 @@ export const neutralFlamebloodWarlock = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 3 } },
-              targets: [[{ type: 'is_general', params: { not: false } }]],
-              filter: [],
+              targets: { candidates: [[{ type: 'is_general', params: { not: false } }]] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

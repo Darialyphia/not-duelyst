@@ -29,7 +29,14 @@ export const f3WindDervish = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'ephemeral', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'ephemeral',
+            params: {
+              filter: { candidates: [] },
+              execute: 'now',
+              activeWhen: { candidates: [] }
+            }
+          }
         ]
       }
     }

@@ -8,107 +8,153 @@ import type {
 export const nearestAllDirections = <T extends UnitConditionExtras['type']>(
   originConditions: Filter<UnitConditionBase | Extract<UnitConditionExtras, { type: T }>>
 ): Filter<UnitConditionBase> => {
-  return [
-    [{ type: 'is_nearest_above', params: { unit: originConditions, not: false } }],
-    [{ type: 'is_nearest_below', params: { unit: originConditions, not: false } }],
-    [
-      {
-        type: 'is_nearest_in_front',
-        params: { unit: originConditions, not: false }
-      }
+  return {
+    candidates: [
+      [{ type: 'is_nearest_above', params: { unit: originConditions, not: false } }],
+      [{ type: 'is_nearest_below', params: { unit: originConditions, not: false } }],
+      [
+        {
+          type: 'is_nearest_in_front',
+          params: { unit: originConditions, not: false }
+        }
+      ],
+      [{ type: 'is_nearest_behind', params: { unit: originConditions, not: false } }]
     ],
-    [{ type: 'is_nearest_behind', params: { unit: originConditions, not: false } }]
-  ];
+    random: false
+  };
 };
 
-export const anywhere = (): Filter<CellConditionBase> => {
-  return [[{ type: 'any_cell' }]];
+export const anywhere = (random = false): Filter<CellConditionBase> => {
+  return { candidates: [[{ type: 'any_cell' }]], random };
 };
 
 export const manualTarget = (index: number): Filter<UnitConditionBase> => {
-  return [
-    [
-      {
-        type: 'is_manual_target',
-        params: { index, not: false }
-      }
-    ]
-  ];
+  return {
+    candidates: [
+      [
+        {
+          type: 'is_manual_target',
+          params: { index, not: false }
+        }
+      ]
+    ],
+    random: false
+  };
 };
 
-export const allyGeneral = (): Filter<UnitConditionBase> => [
-  [
-    { type: 'is_ally', params: { not: false } },
-    { type: 'is_general', params: { not: false } }
-  ]
-];
+export const allyGeneral = (): Filter<UnitConditionBase> => ({
+  candidates: [
+    [
+      { type: 'is_ally', params: { not: false } },
+      { type: 'is_general', params: { not: false } }
+    ]
+  ],
+  random: false
+});
 
-export const allyMinion = (): Filter<UnitConditionBase> => [
-  [
-    { type: 'is_ally', params: { not: false } },
-    { type: 'is_minion', params: { not: false } }
-  ]
-];
+export const allyMinion = (random = false): Filter<UnitConditionBase> => ({
+  candidates: [
+    [
+      { type: 'is_ally', params: { not: false } },
+      { type: 'is_minion', params: { not: false } }
+    ]
+  ],
+  random
+});
 
-export const enemyGeneral = (): Filter<UnitConditionBase> => [
-  [
-    { type: 'is_enemy', params: { not: false } },
-    { type: 'is_general', params: { not: false } }
-  ]
-];
+export const enemyGeneral = (): Filter<UnitConditionBase> => ({
+  candidates: [
+    [
+      { type: 'is_enemy', params: { not: false } },
+      { type: 'is_general', params: { not: false } }
+    ]
+  ],
+  random: false
+});
 
-export const enemyMinion = (): Filter<UnitConditionBase> => [
-  [
-    { type: 'is_enemy', params: { not: false } },
-    { type: 'is_minion', params: { not: false } }
-  ]
-];
+export const enemyMinion = (random = false): Filter<UnitConditionBase> => ({
+  candidates: [
+    [
+      { type: 'is_enemy', params: { not: false } },
+      { type: 'is_minion', params: { not: false } }
+    ]
+  ],
+  random
+});
 
-export const anyOccupiedCell = (): Filter<CellConditionBase> => [
-  [{ type: 'has_unit', params: { unit: [[{ type: 'any_unit' }]] } }]
-];
+export const anyOccupiedCell = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+      }
+    ]
+  ],
+  random: false
+});
 
-export const cellWithAnyMinion = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
-    }
-  ]
-];
+export const cellWithAnyMinion = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: {
+          unit: {
+            candidates: [[{ type: 'is_minion', params: { not: false } }]],
+            random: false
+          }
+        }
+      }
+    ]
+  ],
+  random: false
+});
 
-export const cellWithEnemyMinion = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: { unit: enemyMinion() }
-    }
-  ]
-];
+export const cellWithEnemyMinion = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: enemyMinion() }
+      }
+    ]
+  ],
+  random: false
+});
 
-export const cellWithAllyMinion = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: { unit: allyMinion() }
-    }
-  ]
-];
+export const cellWithAllyMinion = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: allyMinion() }
+      }
+    ]
+  ],
+  random: false
+});
 
-export const cellWithAllyGeneral = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: { unit: allyGeneral() }
-    }
-  ]
-];
+export const cellWithAllyGeneral = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: allyGeneral() }
+      }
+    ]
+  ],
+  random: false
+});
 
-export const cellWithEnemyGeneral = (): Filter<CellConditionBase> => [
-  [
-    {
-      type: 'has_unit',
-      params: { unit: enemyGeneral() }
-    }
-  ]
-];
+export const cellWithEnemyGeneral = (): Filter<CellConditionBase> => ({
+  candidates: [
+    [
+      {
+        type: 'has_unit',
+        params: { unit: enemyGeneral() }
+      }
+    ]
+  ],
+  random: false
+});

@@ -1,6 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f1Martyrdom = defineSerializedBlueprint({
   id: 'martyrdom',
@@ -16,7 +16,21 @@ export const f1Martyrdom = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAnyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: {
+                candidates: [[{ type: 'is_minion', params: { not: false } }]],
+                random: false
+              }
+            }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {
@@ -27,13 +41,21 @@ export const f1Martyrdom = defineSerializedBlueprint({
           {
             type: 'heal',
             params: {
-              targets: [
-                [{ type: 'is_manual_target_general', params: { index: 0, not: false } }]
-              ],
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target_general', params: { index: 0, not: false } }]
+                ],
+                random: false
+              },
               amount: {
                 type: 'hp',
                 params: {
-                  unit: [[{ type: 'is_manual_target', params: { index: 0, not: false } }]]
+                  unit: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+                    ],
+                    random: false
+                  }
                 }
               }
             }

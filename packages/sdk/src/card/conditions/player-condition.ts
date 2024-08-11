@@ -38,7 +38,7 @@ export const getPlayers = ({
   eventName?: string;
 }): Player[] =>
   session.playerSystem.getList().filter(p => {
-    return conditions.some(group => {
+    return conditions.candidates.some(group => {
       return group.every(condition => {
         return match(condition)
           .with({ type: 'ally_player' }, () => card.player.equals(p))

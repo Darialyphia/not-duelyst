@@ -25,10 +25,20 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 1 } }, activeWhen: [] },
-              hp: { amount: { type: 'fixed', params: { value: 1 } }, activeWhen: [] },
-              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
+              hp: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -37,8 +47,8 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: { type: 'fixed', params: { value: 1 } },
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -53,7 +63,9 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+            params: {
+              unit: { candidates: [[{ type: 'is_minion', params: { not: false } }]] }
+            }
           }
         ]
       ]

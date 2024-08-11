@@ -23,7 +23,14 @@ export const f3WindShrike = defineSerializedBlueprint({
       text: '@Flying@.',
       config: {
         actions: [
-          { type: 'flying', params: { filter: [], execute: 'now', activeWhen: [] } }
+          {
+            type: 'flying',
+            params: {
+              filter: { candidates: [] },
+              execute: 'now',
+              activeWhen: { candidates: [] }
+            }
+          }
         ],
         executionContext: 'while_on_board'
       }
@@ -36,10 +43,10 @@ export const f3WindShrike = defineSerializedBlueprint({
           {
             type: 'equip_artifact',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               blueprint: 'f3_staff_of_ykir',
-              player: [[{ type: 'ally_player' }]]
+              player: { candidates: [[{ type: 'ally_player' }]] }
             }
           }
         ],
@@ -47,7 +54,7 @@ export const f3WindShrike = defineSerializedBlueprint({
           {
             type: 'on_before_unit_destroyed',
             params: {
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

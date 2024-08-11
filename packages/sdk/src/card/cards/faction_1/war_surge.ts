@@ -17,7 +17,7 @@ export const f1WarSurge = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [anywhere()]
+    targets: [[[{ type: 'any_cell' }]]]
   },
   effects: [
     {

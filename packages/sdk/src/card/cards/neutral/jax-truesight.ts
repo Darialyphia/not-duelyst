@@ -24,7 +24,14 @@ export const neutralJaxTruesight = defineSerializedBlueprint({
       config: {
         executionContext: 'while_on_board',
         actions: [
-          { type: 'ranged', params: { filter: [], activeWhen: [], execute: 'now' } }
+          {
+            type: 'ranged',
+            params: {
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
+              execute: 'now'
+            }
+          }
         ]
       }
     },
@@ -36,16 +43,18 @@ export const neutralJaxTruesight = defineSerializedBlueprint({
           {
             type: 'summon_unit',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               blueprint: 'neutral_mini_jax',
-              player: [[{ type: 'ally_player' }]],
-              position: [
-                [{ type: 'is_top_left_corner' }],
-                [{ type: 'is_top_right_corner', params: {} }],
-                [{ type: 'is_bottom_left_corner', params: {} }],
-                [{ type: 'is_bottom_right_corner', params: {} }]
-              ]
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              position: {
+                candidates: [
+                  [{ type: 'is_top_left_corner' }],
+                  [{ type: 'is_top_right_corner', params: {} }],
+                  [{ type: 'is_bottom_left_corner', params: {} }],
+                  [{ type: 'is_bottom_right_corner', params: {} }]
+                ]
+              }
             }
           }
         ]

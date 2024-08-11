@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f2PhoenixFire = defineSerializedBlueprint({
   id: 'f2_phoenix_fire',
@@ -17,7 +17,16 @@ export const f2PhoenixFire = defineSerializedBlueprint({
   rarity: RARITIES.COMMON,
   targets: {
     min: 1,
-    targets: [anyOccupiedCell()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: { unit: { candidates: [[{ type: 'any_unit' }]], random: false } }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     {
@@ -29,7 +38,7 @@ export const f2PhoenixFire = defineSerializedBlueprint({
             params: {
               amount: fixedAmount(3),
               targets: manualTarget(0),
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now'
             }
           }

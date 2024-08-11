@@ -2,7 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { allyGeneral, cellWithAnyMinion, manualTarget } from '../../helpers/targeting';
+import { allyGeneral, manualTarget } from '../../helpers/targeting';
 
 export const f1CircleOfLife = defineSerializedBlueprint({
   id: 'circle_of_life',
@@ -18,7 +18,21 @@ export const f1CircleOfLife = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 1,
-    targets: [cellWithAnyMinion()]
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: {
+                candidates: [[{ type: 'is_minion', params: { not: false } }]],
+                random: false
+              }
+            }
+          }
+        ]
+      ]
+    ]
   },
   effects: [
     defineCardEffect({

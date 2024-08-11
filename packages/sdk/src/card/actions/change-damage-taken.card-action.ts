@@ -21,7 +21,7 @@ export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
             () =>
             (value, { card }) => {
               if (!this.shouldApply) return value;
-              if (this.action.params.source?.length) {
+              if (this.action.params.source?.candidates.length) {
                 const candidates = this.getCards(this.action.params.source);
                 const isElligible = candidates.some(c => c.equals(card));
                 if (!isElligible) return value;

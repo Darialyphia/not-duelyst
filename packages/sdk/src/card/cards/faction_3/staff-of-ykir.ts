@@ -25,14 +25,19 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 2 } }, activeWhen: [] },
-              targets: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              attack: {
+                amount: { type: 'fixed', params: { value: 2 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -42,7 +47,7 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
           {
             type: 'on_artifact_equiped',
             params: {
-              card: [[{ type: 'self', params: {} }]],
+              card: { candidates: [[{ type: 'self', params: {} }]] },
               frequency: { type: 'always' }
             }
           }
@@ -57,12 +62,12 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
           {
             type: 'generate_card',
             params: {
-              filter: [],
+              filter: { candidates: [] },
               execute: 'now',
               ephemeral: false,
               blueprint: 'f3_staff_of_ykir',
               location: 'deck',
-              player: [[{ type: 'ally_player' }]]
+              player: { candidates: [[{ type: 'ally_player' }]] }
             }
           }
         ],
@@ -70,7 +75,7 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
           {
             type: 'on_artifact_destroyed',
             params: {
-              card: [[{ type: 'self', params: {} }]],
+              card: { candidates: [[{ type: 'self', params: {} }]] },
               frequency: { type: 'always' }
             }
           }
@@ -86,12 +91,14 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
           {
             type: 'has_unit',
             params: {
-              unit: [
-                [
-                  { type: 'is_ally', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_ally', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ]
+              }
             }
           }
         ]

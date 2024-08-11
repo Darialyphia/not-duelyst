@@ -69,9 +69,9 @@ export const checkGlobalConditions = (
   eventName?: string
 ): boolean => {
   if (!conditions) return true;
-  if (!conditions.length) return true;
+  if (!conditions.candidates.length) return true;
 
-  return conditions.some(group => {
+  return conditions.candidates.some(group => {
     return group.every(condition => {
       return match(condition)
         .with({ type: 'player_gold' }, condition => {
@@ -131,7 +131,7 @@ export const checkGlobalConditions = (
             const { attack, hp, position, keyword } = condition.params;
             const ctx = { session, card, entity, targets, event, eventName };
             const attackMatch =
-              // xe need this check because GUI generated all optional ârameters with empty values
+              // we need this check because GUI generated all optional parameters with empty values
               attack && !isEmptyObject(attack.amount)
                 ? matchNumericOperator(
                     getAmount({
@@ -156,7 +156,7 @@ export const checkGlobalConditions = (
                 : true;
 
             const positionMatch =
-              position && !isEmptyObject(position[0][0])
+              position && !isEmptyObject(position.candidates[0][0])
                 ? getCells({ ...ctx, conditions: position }).some(cell => {
                     return cell.position.equals(e.position);
                   })

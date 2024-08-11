@@ -102,9 +102,9 @@ export const getUnits = ({
   playedPoint?: Point3D;
 }): Entity[] =>
   session.entitySystem.getList().filter(e => {
-    if (!conditions.length) return true;
+    if (!conditions.candidates.length) return true;
 
-    return conditions.some(group => {
+    return conditions.candidates.some(group => {
       return group.every(condition => {
         const isMatch = match(condition)
           .with({ type: 'any_unit' }, () => true)
@@ -134,9 +134,15 @@ export const getUnits = ({
             return entity.equals(e);
           })
           .with({ type: 'is_nearby' }, condition => {
-            const unitConditions = condition.params.unit ?? [];
-            const cellConditions = condition.params.cell ?? [];
-            const unitPositions = isEmptyArray(unitConditions)
+            const unitConditions = condition.params.unit ?? {
+              candidates: [],
+              random: false
+            };
+            const cellConditions = condition.params.cell ?? {
+              candidates: [],
+              random: false
+            };
+            const unitPositions = isEmptyArray(unitConditions.candidates)
               ? []
               : getUnits({
                   conditions: unitConditions,
@@ -147,7 +153,7 @@ export const getUnits = ({
                   event,
                   eventName
                 }).map(u => u.position);
-            const cellPositions = isEmptyArray(cellConditions)
+            const cellPositions = isEmptyArray(cellConditions.candidates)
               ? []
               : getCells({
                   conditions: cellConditions,

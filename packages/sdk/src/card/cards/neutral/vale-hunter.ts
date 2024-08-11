@@ -24,7 +24,14 @@ export const neutralValeHunter = defineSerializedBlueprint({
       config: {
         executionContext: 'immediate',
         actions: [
-          { type: 'ranged', params: { filter: [], activeWhen: [], execute: 'now' } }
+          {
+            type: 'ranged',
+            params: {
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
+              execute: 'now'
+            }
+          }
         ]
       }
     }

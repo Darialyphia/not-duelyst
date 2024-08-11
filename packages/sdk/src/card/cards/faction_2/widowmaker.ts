@@ -25,7 +25,14 @@ export const f2Widowmaker = defineSerializedBlueprint({
       config: {
         executionContext: 'immediate',
         actions: [
-          { type: 'ranged', params: { filter: [], activeWhen: [], execute: 'now' } }
+          {
+            type: 'ranged',
+            params: {
+              filter: { candidates: [] },
+              activeWhen: { candidates: [] },
+              execute: 'now'
+            }
+          }
         ]
       }
     }),
@@ -38,8 +45,8 @@ export const f2Widowmaker = defineSerializedBlueprint({
             type: 'draw_cards',
             params: {
               amount: { type: 'fixed', params: { value: 1 } },
-              player: [[{ type: 'ally_player' }]],
-              filter: [],
+              player: { candidates: [[{ type: 'ally_player' }]] },
+              filter: { candidates: [] },
               execute: 'end_of_turn'
             }
           }
@@ -48,8 +55,8 @@ export const f2Widowmaker = defineSerializedBlueprint({
           {
             type: 'on_after_unit_attack',
             params: {
-              target: [],
-              unit: [[{ type: 'is_self', params: { not: false } }]],
+              target: { candidates: [] },
+              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

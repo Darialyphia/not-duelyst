@@ -27,13 +27,15 @@ export const neutralVenomToth = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               amount: { type: 'fixed', params: { value: 1 } },
-              targets: [
-                [
-                  { type: 'is_enemy', params: { not: false } },
-                  { type: 'is_general', params: { not: false } }
+              targets: {
+                candidates: [
+                  [
+                    { type: 'is_enemy', params: { not: false } },
+                    { type: 'is_general', params: { not: false } }
+                  ]
                 ]
-              ],
-              filter: [],
+              },
+              filter: { candidates: [] },
               execute: 'now'
             }
           }
@@ -42,7 +44,7 @@ export const neutralVenomToth = defineSerializedBlueprint({
           {
             type: 'on_unit_play',
             params: {
-              unit: [[{ type: 'is_enemy', params: { not: false } }]],
+              unit: { candidates: [[{ type: 'is_enemy', params: { not: false } }]] },
               frequency: { type: 'always' }
             }
           }

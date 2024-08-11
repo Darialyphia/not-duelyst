@@ -25,9 +25,16 @@ export const f3Blindscorch = defineSerializedBlueprint({
             params: {
               mode: 'set',
               stackable: true,
-              attack: { amount: { type: 'fixed', params: { value: 0 } }, activeWhen: [] },
-              targets: [[{ type: 'is_manual_target', params: { not: false, index: 0 } }]],
-              filter: [],
+              attack: {
+                amount: { type: 'fixed', params: { value: 0 } },
+                activeWhen: { candidates: [] }
+              },
+              targets: {
+                candidates: [
+                  [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                ]
+              },
+              filter: { candidates: [] },
               duration: 'start_of_next_turn',
               execute: 'now'
             }
@@ -43,7 +50,9 @@ export const f3Blindscorch = defineSerializedBlueprint({
         [
           {
             type: 'has_unit',
-            params: { unit: [[{ type: 'is_minion', params: { not: false } }]] }
+            params: {
+              unit: { candidates: [[{ type: 'is_minion', params: { not: false } }]] }
+            }
           }
         ]
       ]
