@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CellConditionBase, Filter } from '@game/sdk';
 
-const highlights = defineModel<Filter<CellConditionBase>>({ required: true });
+const highlights = defineModel<CellConditionBase[][]>({ required: true });
 
 useCellConditionsProvider(
   ref({
@@ -11,11 +11,20 @@ useCellConditionsProvider(
 useUnitConditionsProvider(ref({}));
 useCardConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
+
+const vModel = computed({
+  get() {
+    return { candidates: highlights.value, random: false };
+  },
+  set(val) {
+    highlights.value = val.candidates;
+  }
+});
 </script>
 
 <template>
   <div class="highlights-node">
-    <CellNode v-model="highlights" />
+    <CellNode v-model="vModel" />
   </div>
 </template>
 

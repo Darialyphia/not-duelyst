@@ -11,6 +11,18 @@ useCellConditionsProvider(
 useUnitConditionsProvider(ref({}));
 useCardConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
+
+const groupsVModel = computed({
+  get() {
+    return targets.value.targets.map(t => ({
+      candidates: t,
+      random: false
+    }));
+  },
+  set(val) {
+    targets.value.targets = val.map(v => v.candidates);
+  }
+});
 </script>
 
 <template>
@@ -24,7 +36,7 @@ usePlayerConditionsProvider(ref({}));
       :max="targets.targets.length"
     />
     <div v-for="(target, index) in targets.targets" :key="index" class="target">
-      <CellNode v-model="targets.targets[index]" />
+      <CellNode v-model="groupsVModel[index]" />
       <UiButton class="error-button" @click="targets.targets.splice(index, 1)">
         Remove target
       </UiButton>
