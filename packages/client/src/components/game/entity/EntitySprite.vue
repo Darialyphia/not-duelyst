@@ -82,9 +82,11 @@ const filters = computed(() => {
 
   if (
     ui.selectedEntity.value &&
-    ui.hoveredEntity.value?.equals(entity.value) &&
     ui.hoveredEntity.value?.isEnemy(ui.selectedEntity.value.id) &&
     ui.selectedEntity.value.canAttack(ui.hoveredEntity.value) &&
+    ui.selectedEntity.value.attackPattern
+      .getAffectedUnits(ui.hoveredEntity.value)
+      .includes(entity.value) &&
     ui.targetingMode.value === TARGETING_MODES.BASIC
   ) {
     result.push(attackTargetFilter);
