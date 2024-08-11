@@ -101,6 +101,7 @@ import { neutralSyvrelTheExile } from './cards/neutral/syvrel-the-exile';
 import { neutralMiniJax } from './cards/neutral/mini-jax';
 import { neutralJaxTruesight } from './cards/neutral/jax-truesight';
 import { neutralTombstone } from './cards/neutral/tombstone';
+import { neutralDioltas } from './cards/neutral/dioltas';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -205,7 +206,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralSyvrelTheExile,
   neutralMiniJax,
   neutralJaxTruesight,
-  neutralTombstone
+  neutralTombstone,
+  neutralDioltas
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

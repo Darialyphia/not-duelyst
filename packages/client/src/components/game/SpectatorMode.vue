@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { api } from '@game/api';
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import { ClientSession, type SerializedGameState } from '@game/sdk';
+import { ClientSession, defaultConfig, type SerializedGameState } from '@game/sdk';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import { type Socket } from 'socket.io-client';
 
@@ -30,7 +30,13 @@ const { error } = useGameSocket({
       until(game)
         .toBeTruthy()
         .then(() => {
-          const session = ClientSession.create(serializedState, fx.ctx);
+          const session = ClientSession.create(serializedState, {
+            fxSystem: fx.ctx,
+            format: {
+              config: defaultConfig,
+              cards: {}
+            }
+          });
 
           session.onReady(() => {
             gameSession.value = session;

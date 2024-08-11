@@ -74,7 +74,7 @@ const id = useId();
               },
               amount => {
                 amount.params = {
-                  player: []
+                  player: { candidates: [], random: false }
                 };
               }
             )
@@ -89,13 +89,13 @@ const id = useId();
               { type: 'highest_hp' },
               amount => {
                 amount.params = {
-                  unit: []
+                  unit: { candidates: [], random: false }
                 };
               }
             )
             .with({ type: 'card_played_since_last_turn' }, amount => {
               amount.params = {
-                card: [],
+                card: { candidates: [], random: false },
                 scale: 1
               };
             })

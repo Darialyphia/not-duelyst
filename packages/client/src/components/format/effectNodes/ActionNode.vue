@@ -450,20 +450,20 @@ watch(
     match(action.value)
       .with({ type: 'deal_damage' }, ({ params }) => {
         params.amount ??= { type: undefined } as any;
-        params.targets ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'heal' }, ({ params }) => {
         params.amount ??= { type: undefined } as any;
-        params.targets ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'draw_cards' }, ({ params }) => {
         params.amount ??= { type: undefined } as any;
-        params.player ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.kind ??= undefined;
       })
@@ -472,27 +472,27 @@ watch(
         params.stackable ??= true;
         params.attack = {
           amount: params.attack?.amount ?? ({ type: undefined } as any),
-          activeWhen: params.attack?.activeWhen ?? []
+          activeWhen: params.attack?.activeWhen ?? { candidates: [], random: false }
         };
         params.hp = {
           amount: params.hp?.amount ?? ({ type: undefined } as any),
-          activeWhen: params.hp?.activeWhen ?? []
+          activeWhen: params.hp?.activeWhen ?? { candidates: [], random: false }
         };
         params.speed = {
           amount: params.speed?.amount ?? ({ type: undefined } as any),
-          activeWhen: params.speed?.activeWhen ?? []
+          activeWhen: params.speed?.activeWhen ?? { candidates: [], random: false }
         };
-        params.targets ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.duration ??= 'always';
         params.execute ??= 'now';
       })
       .with({ type: 'change_damage_taken' }, ({ params }) => {
         params.mode ??= 'give';
         params.stackable ??= true;
-        params.targets ??= [[{ type: undefined as any }]];
-        params.source ??= [];
-        params.filter ??= [];
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.source ??= { candidates: [], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.frequency ??= { type: 'always' };
         params.amount ??= { type: undefined } as any;
         params.duration ??= 'always';
@@ -504,8 +504,11 @@ watch(
         ({ params }) => {
           params.mode ??= 'give';
           params.stackable ??= true;
-          params.targets ??= [[{ type: undefined as any }]];
-          params.filter ??= [];
+          params.targets ??= {
+            candidates: [[{ type: undefined as any }]],
+            random: false
+          };
+          params.filter ??= { candidates: [], random: false };
           params.frequency ??= { type: 'always' };
           params.amount ??= { type: undefined } as any;
           params.duration ??= 'always';
@@ -513,157 +516,157 @@ watch(
         }
       )
       .with({ type: 'destroy_unit' }, { type: 'bounce_unit' }, ({ params }) => {
-        params.targets ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'provoke' }, ({ params }) => {
-        params.filter ??= [];
-        params.activeWhen ??= [];
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'celerity' }, ({ params }) => {
-        params.filter ??= [];
-        params.activeWhen ??= [];
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'ranged' }, ({ params }) => {
-        params.filter ??= [];
-        params.activeWhen ??= [];
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'backstab' }, ({ params }) => {
-        params.filter ??= [];
-        params.activeWhen ??= [];
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
         params.amount ??= { type: undefined } as any;
         params.execute ??= 'now';
       })
       .with({ type: 'zeal' }, ({ params }) => {
         // @ts-expect-error
         params.effect ??= { executionContext: undefined, actions: [] };
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'add_effect' }, ({ params }) => {
-        params.unit ??= [[{ type: undefined as any }]];
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
         // @ts-expect-error
         params.effect ??= { executionContext: undefined, actions: [] };
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'dispel_cell' }, ({ params }) => {
-        params.cells ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.cells ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'activate_unit' }, ({ params }) => {
-        params.filter ??= [];
-        params.targets ??= [[{ type: undefined as any }]];
+        params.filter ??= { candidates: [], random: false };
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'change_card_cost' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.amount ??= { type: undefined } as any;
-        params.card ??= [[{ type: undefined as any }]];
-        params.player ??= [[{ type: undefined as any }]];
+        params.card ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.occurences_count ??= 0;
         params.duration ??= 'always';
       })
       .with({ type: 'generate_card' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.ephemeral ??= false;
         params.location ??= 'hand';
-        params.player ??= [[{ type: undefined as any }]];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.blueprint ??= undefined as any;
       })
       .with({ type: 'teleport_unit' }, ({ params }) => {
-        params.unit ??= [[{ type: undefined as any }]];
-        params.cell ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.cell ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'swap_units' }, ({ params }) => {
-        params.unit1 ??= [[{ type: undefined as any }]];
-        params.unit2 ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.unit1 ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.unit2 ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'change_replaces_count' }, ({ params }) => {
-        params.player ??= [[{ type: undefined as any }]];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.amount ??= { type: undefined } as any;
         params.duration ??= 'always';
         params.stackable ??= true;
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'airdrop' }, ({ params }) => {
         params.execute ??= 'now';
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'rush' }, ({ params }) => {
         params.execute ??= 'now';
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'flying' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.activeWhen ??= [];
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'play_card' }, ({ params }) => {
-        params.card ??= [[{ type: undefined as any }]];
-        params.position ??= [[{ type: undefined as any }]];
-        params.targets ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.card ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.position ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'frenzy' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.activeWhen ??= [];
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'structure' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.activeWhen ??= [];
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'ephemeral' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.activeWhen ??= [];
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'spawn' }, ({ params }) => {
         params.blueprint ??= undefined as any;
-        params.position ??= [[{ type: undefined as any }]];
-        params.filter ??= [];
+        params.position ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.activeWhen ??= [];
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'remove_keyword' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.keyword ??= undefined as any;
-        params.unit ??= [[{ type: undefined as any }]];
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
       .with({ type: 'equip_artifact' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.blueprint ??= undefined as any;
-        params.player ??= [[{ type: undefined as any }]];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
       .with({ type: 'summon_unit' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.blueprint = undefined as any;
-        params.player ??= [[{ type: undefined as any }]];
-        params.position ??= [[{ type: undefined as any }]];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.position ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
       .with({ type: 'change_unit_owner' }, ({ params }) => {
-        params.filter ??= [];
+        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.player ??= [[{ type: undefined as any }]];
-        params.unit ??= [[{ type: undefined as any }]];
+        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.duration ??= 'always';
       })
       .exhaustive();

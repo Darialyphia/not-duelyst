@@ -15,19 +15,20 @@ const playerOptions = computed(
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  playerDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  playerDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ??
+  [];
 </script>
 
 <template>
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiSelect
       class="w-full"
-      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="playerOptions"
       @update:model-value="
         type => {
-          const condition = groups[groupIndex][conditionIndex];
+          const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;
 
@@ -60,7 +61,7 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
       <span class="capitalize">{{ param }}</span>
       <input
         v-if="param === 'index'"
-        v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />
     </div>

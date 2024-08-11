@@ -16,7 +16,7 @@ const cellOptions = computed(
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  cellDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  cellDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
   unit: UnitNode
@@ -27,12 +27,12 @@ const componentNodes: Record<string, Component | string> = {
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiSelect
       class="w-full"
-      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="cellOptions"
       @update:model-value="
         type => {
-          const condition = groups[groupIndex][conditionIndex];
+          const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;
 
@@ -61,14 +61,14 @@ const componentNodes: Record<string, Component | string> = {
               { type: 'is_below' },
               condition => {
                 condition.params = {
-                  unit: [[]]
+                  unit: { candidates: [[]], random: false }
                 };
               }
             )
             .with({ type: 'is_nearby' }, condition => {
               condition.params = {
-                unit: [],
-                cell: []
+                unit: { candidates: [], random: false },
+                cell: { candidates: [], random: false }
               };
             })
             .with({ type: 'is_at' }, condition => {
@@ -80,12 +80,12 @@ const componentNodes: Record<string, Component | string> = {
             })
             .with({ type: '2x2_area' }, condition => {
               condition.params = {
-                topLeft: [[]]
+                topLeft: { candidates: [[]], random: false }
               };
             })
             .with({ type: '3x3_area' }, condition => {
               condition.params = {
-                center: [[]]
+                center: { candidates: [[]], random: false }
               };
             })
             .with(
@@ -116,26 +116,26 @@ const componentNodes: Record<string, Component | string> = {
       <span class="capitalize">{{ param }}</span>
       <input
         v-if="['index', 'x', 'y', 'z'].includes(param)"
-        v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />
       <template v-if="param === 'topLeft' || param === 'center'">
         <CellNode
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
       <template v-if="param === 'cell'">
         <CellNode
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
       <template v-else>
         <component
           :is="componentNodes[param]"
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
     </div>

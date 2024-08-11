@@ -100,8 +100,8 @@ export const getUnits = ({
   event: AnyObject;
   eventName?: string;
   playedPoint?: Point3D;
-}): Entity[] =>
-  session.entitySystem.getList().filter(e => {
+}): Entity[] => {
+  const results = session.entitySystem.getList().filter(e => {
     if (!conditions.candidates.length) return true;
 
     return conditions.candidates.some(group => {
@@ -393,3 +393,11 @@ export const getUnits = ({
       });
     });
   });
+
+  if (conditions.random) {
+    const index = session.rngSystem.nextInt(results.length - 1);
+    return [results[index]];
+  }
+
+  return results;
+};

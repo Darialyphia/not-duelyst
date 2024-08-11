@@ -6,7 +6,7 @@ const groups = defineModel<Filter<T>>({ required: true });
 
 <template>
   <div class="w-full">
-    <div v-for="(group, groupIndex) in groups" :key="groupIndex">
+    <div v-for="(group, groupIndex) in groups.candidates" :key="groupIndex">
       <div class="group">
         <div v-for="(condition, conditionIndex) in group" :key="conditionIndex">
           <div class="flex items-start gap-2">
@@ -15,9 +15,9 @@ const groups = defineModel<Filter<T>>({ required: true });
               class="ghost-error-button shrink-0"
               @click="
                 () => {
-                  groups[groupIndex].splice(conditionIndex, 1);
-                  if (!groups[groupIndex].length) {
-                    groups.splice(groupIndex, 1);
+                  groups.candidates[groupIndex].splice(conditionIndex, 1);
+                  if (!groups.candidates[groupIndex].length) {
+                    groups.candidates.splice(groupIndex, 1);
                   }
                 }
               "
@@ -31,26 +31,30 @@ const groups = defineModel<Filter<T>>({ required: true });
         <footer class="group-actions">
           <UiButton
             class="subtle-button button-sm my-2"
-            @click="groups[groupIndex].push({ type: undefined as any } as any)"
+            @click="groups.candidates[groupIndex].push({ type: undefined as any } as any)"
           >
             Add a condtion
           </UiButton>
           <UiButton
             class="error-button button-sm my-2"
-            @click="groups.splice(groupIndex, 1)"
+            @click="groups.candidates.splice(groupIndex, 1)"
           >
             Remove group
           </UiButton>
         </footer>
       </div>
-      <div v-if="groupIndex < groups.length - 1" class="text-center">OR</div>
+      <div v-if="groupIndex < groups.candidates.length - 1" class="text-center">OR</div>
     </div>
     <UiButton
       class="subtle-button my-2"
-      @click="groups.push([{ type: undefined, params: {} } as any])"
+      @click="groups.candidates.push([{ type: undefined, params: {} } as any])"
     >
       Add a condtion group
     </UiButton>
+    <div class="flex items-center gap-3 mt-2 mb-5">
+      <UiSwitch v-model:checked="groups.random" />
+      Pick a random candidate from the results
+    </div>
   </div>
 </template>
 

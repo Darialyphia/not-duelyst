@@ -150,7 +150,7 @@ watch(
         if (param === 'frequency') {
           trigger.value.params.frequency = { type: 'always' };
         } else {
-          (trigger.value.params as any)[param] = [];
+          (trigger.value.params as any)[param] = { candidates: [], random: false };
         }
       }
       Object.keys(trigger.value.params).forEach(k => {

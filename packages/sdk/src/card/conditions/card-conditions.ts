@@ -48,8 +48,8 @@ export const getCards = ({
   entity?: Entity;
   event: AnyObject;
   eventName?: string;
-}) =>
-  session.playerSystem
+}) => {
+  const results = session.playerSystem
     .getList()
     .map(player => player.cards)
     .flat()
@@ -124,3 +124,11 @@ export const getCards = ({
         });
       });
     });
+
+  if (conditions.random) {
+    const index = session.rngSystem.nextInt(results.length - 1);
+    return [results[index]];
+  }
+
+  return results;
+};

@@ -36,8 +36,8 @@ export const getPlayers = ({
   conditions: Filter<PlayerCondition>;
   event: AnyObject;
   eventName?: string;
-}): Player[] =>
-  session.playerSystem.getList().filter(p => {
+}): Player[] => {
+  const results = session.playerSystem.getList().filter(p => {
     return conditions.candidates.some(group => {
       return group.every(condition => {
         return match(condition)
@@ -112,3 +112,11 @@ export const getPlayers = ({
       });
     });
   });
+
+  if (conditions.random) {
+    const index = session.rngSystem.nextInt(results.length - 1);
+    return [results[index]];
+  }
+
+  return results;
+};

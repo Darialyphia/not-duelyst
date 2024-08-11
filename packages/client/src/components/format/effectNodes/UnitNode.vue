@@ -22,7 +22,7 @@ const unitOptions = computed(
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  unitDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  unitDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
   cell: CellNode,
@@ -39,12 +39,12 @@ const id = useId();
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiSelect
       class="w-full mb-2"
-      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="unitOptions"
       @update:model-value="
         type => {
-          const condition = groups[groupIndex][conditionIndex];
+          const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;
 
@@ -61,7 +61,7 @@ const id = useId();
               condition => {
                 condition.params = {
                   not: false,
-                  unit: [[{ type: undefined as any }]]
+                  unit: { candidates: [[{ type: undefined as any }]], random: false }
                 };
               }
             )
@@ -76,7 +76,11 @@ const id = useId();
               }
             )
             .with({ type: 'is_nearby' }, condition => {
-              condition.params = { unit: [], cell: [], not: false };
+              condition.params = {
+                unit: { candidates: [], random: false },
+                cell: { candidates: [], random: false },
+                not: false
+              };
             })
             .with({ type: 'has_keyword' }, condtion => {
               condtion.params = {
@@ -138,35 +142,39 @@ const id = useId();
       <span class="capitalize min-w-10">{{ param }}</span>
       <UiSwitch
         v-if="param === 'not'"
-        v-model:checked="(groups[groupIndex][conditionIndex] as any).params[param]"
+        v-model:checked="
+          (groups.candidates[groupIndex][conditionIndex] as any).params[param]
+        "
       />
       <div v-else-if="param === 'index'" class="flex gap-3 items-center">
         <UiTextInput
           :id
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
           type="number"
         />
         <span class="c-orange-5 text-0">(0 = first target, 1 = second target, etc)</span>
       </div>
       <template v-else-if="param === 'unit'">
         <UnitNode
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
       <template v-else-if="param === 'keyword'">
         <KeywordNode
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
       <template v-else-if="param === 'tag'">
-        <TagNode v-model="(groups[groupIndex][conditionIndex] as any).params[param]" />
+        <TagNode
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+        />
       </template>
       <template v-else>
         <component
           :is="componentNodes[param]"
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
     </div>

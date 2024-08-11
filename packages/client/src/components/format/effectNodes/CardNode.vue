@@ -16,7 +16,7 @@ const cardOptions = computed(
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  cardDict.value[groups.value[groupIndex][conditionIndex].type]?.params ?? [];
+  cardDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
   operator: NumericOperatorNode,
@@ -29,12 +29,12 @@ const componentNodes: Record<string, Component | string> = {
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiSelect
       class="w-full"
-      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="cardOptions"
       @update:model-value="
         type => {
-          const condition = groups[groupIndex][conditionIndex];
+          const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;
 
@@ -62,7 +62,7 @@ const componentNodes: Record<string, Component | string> = {
             })
             .with({ type: 'from_player' }, condition => {
               condition.params = {
-                player: [[{ type: undefined as any }]]
+                player: { candidates: [[{ type: undefined as any }]], random: false }
               };
             })
             .exhaustive();
@@ -80,14 +80,14 @@ const componentNodes: Record<string, Component | string> = {
       <span class="capitalize">{{ param }}</span>
       <input
         v-if="param === 'index'"
-        v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+        v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />
       <template v-else>
         <component
           :is="componentNodes[param]"
-          v-if="(groups[groupIndex][conditionIndex] as any).params[param]"
-          v-model="(groups[groupIndex][conditionIndex] as any).params[param]"
+          v-if="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
     </div>

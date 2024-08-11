@@ -16,7 +16,7 @@ const globalOptions = computed(
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  globalDict.value[groups.value[groupIndex][conditionIndex].type]?.params as
+  globalDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params as
     | Record<string, Params>
     | undefined;
 
@@ -25,7 +25,7 @@ const isComponent = (x: unknown): x is Component => {
 };
 
 watchEffect(() => {
-  groups.value.forEach(group => {
+  groups.value.candidates.forEach(group => {
     group.forEach(condition => {
       if (!condition.type) return;
       if (!condition.params) {
@@ -37,12 +37,15 @@ watchEffect(() => {
           // @ts-expect-error
           params.amount ??= { type: undefined };
           params.operator ??= 'equals';
-          params.player ??= [[{ type: undefined as any }]];
+          params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         })
         .with({ type: 'unit_state' }, ({ params }) => {
-          params.unit ??= [[{ type: undefined as any }]];
+          params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
           params.mode ??= 'all';
-          params.position ??= [[{ type: undefined as any }]];
+          params.position ??= {
+            candidates: [[{ type: undefined as any }]],
+            random: false
+          };
           params.attack = {
             amount: params.attack?.amount ?? ({ type: undefined } as any),
             operator: params.attack?.operator ?? 'equals'
@@ -62,12 +65,12 @@ watchEffect(() => {
   <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
     <UiSelect
       class="w-full mb-2"
-      :model-value="groups[groupIndex][conditionIndex]['type']"
+      :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
       :options="globalOptions"
       @update:model-value="
         type => {
-          const condition = groups[groupIndex][conditionIndex];
+          const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;
 
@@ -77,14 +80,14 @@ watchEffect(() => {
                 // @ts-expect-error
                 amount: { type: undefined },
                 operator: 'equals',
-                player: [[{ type: undefined as any }]]
+                player: { candidates: [[{ type: undefined as any }]], random: false }
               };
             })
             .with({ type: 'unit_state' }, () => {
               condition.params = {
-                unit: [[{ type: undefined as any }]],
+                unit: { candidates: [[{ type: undefined as any }]], random: false },
                 mode: 'all',
-                position: [[{ type: undefined as any }]],
+                position: { candidates: [[{ type: undefined as any }]], random: false },
                 attack: {
                   amount: { type: undefined } as any,
                   operator: 'equals'
@@ -110,7 +113,9 @@ watchEffect(() => {
       <fieldset v-if="key === 'mode'" class="flex flex-col">
         <label>
           <input
-            v-model.number="(groups[groupIndex][conditionIndex].params as any)[key]"
+            v-model.number="
+              (groups.candidates[groupIndex][conditionIndex].params as any)[key]
+            "
             type="radio"
             value="all"
             step="1"
@@ -119,7 +124,7 @@ watchEffect(() => {
         </label>
         <label>
           <input
-            v-model="(groups[groupIndex][conditionIndex].params as any)[key]"
+            v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
             type="radio"
             value="some"
           />
@@ -127,7 +132,9 @@ watchEffect(() => {
         </label>
         <label>
           <input
-            v-model.number="(groups[groupIndex][conditionIndex].params as any)[key]"
+            v-model.number="
+              (groups.candidates[groupIndex][conditionIndex].params as any)[key]
+            "
             type="radio"
             value="none"
             step="1"
@@ -137,14 +144,16 @@ watchEffect(() => {
       </fieldset>
 
       <template v-else-if="key === 'keyword'">
-        <KeywordNode v-model="(groups[groupIndex][conditionIndex].params as any)[key]" />
+        <KeywordNode
+          v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
+        />
       </template>
 
       <template v-else-if="isComponent(param)">
         <component
           :is="param"
-          v-if="(groups[groupIndex][conditionIndex].params as any)[key]"
-          v-model="(groups[groupIndex][conditionIndex].params as any)[key]"
+          v-if="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
+          v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
         />
       </template>
 
@@ -154,8 +163,12 @@ watchEffect(() => {
 
           <component
             :is="childParam"
-            v-if="(groups[groupIndex][conditionIndex].params as any)[key][childKey]"
-            v-model="(groups[groupIndex][conditionIndex].params as any)[key][childKey]"
+            v-if="
+              (groups.candidates[groupIndex][conditionIndex].params as any)[key][childKey]
+            "
+            v-model="
+              (groups.candidates[groupIndex][conditionIndex].params as any)[key][childKey]
+            "
           />
         </div>
       </div>

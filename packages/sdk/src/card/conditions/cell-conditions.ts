@@ -63,7 +63,7 @@ export const getCells = ({
 }): Cell[] => {
   const { targets, session, event, eventName } = ctx;
 
-  return session.boardSystem.cells.filter(cell => {
+  const results = session.boardSystem.cells.filter(cell => {
     if (cell.cellAbove) return false;
 
     return conditions.candidates.some(group => {
@@ -241,4 +241,11 @@ export const getCells = ({
       });
     });
   });
+
+  if (conditions.random) {
+    const index = session.rngSystem.nextInt(results.length - 1);
+    return [results[index]];
+  }
+
+  return results;
 };
