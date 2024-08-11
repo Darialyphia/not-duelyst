@@ -45,6 +45,7 @@ export const f1SilverguardSquire = defineSerializedBlueprint({
                 ],
                 random: false
               },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               mode: 'give',
               attack: { amount: { type: 'fixed', params: { value: 1 } } },
               hp: { amount: { type: 'fixed', params: { value: 1 } } },

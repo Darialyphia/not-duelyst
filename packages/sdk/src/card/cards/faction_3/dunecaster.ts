@@ -28,6 +28,7 @@ export const f3Dunecaster = defineSerializedBlueprint({
             type: 'change_stats',
             params: {
               mode: 'give',
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               stackable: true,
               attack: {
                 amount: { type: 'fixed', params: { value: 2 } },
@@ -42,7 +43,6 @@ export const f3Dunecaster = defineSerializedBlueprint({
                   [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
                 ]
               },
-              filter: { candidates: [] },
               duration: 'always',
               execute: 'now'
             }
@@ -50,7 +50,7 @@ export const f3Dunecaster = defineSerializedBlueprint({
           {
             type: 'remove_keyword',
             params: {
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now',
               keyword: 'ephemeral',
               unit: {

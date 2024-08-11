@@ -53,7 +53,7 @@ export const neutralSyvrelTheExile = defineSerializedBlueprint({
                   ]
                 ]
               },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now'
             }
           }

@@ -29,7 +29,7 @@ export const neutralProphetOfTheWhitePalm = defineSerializedBlueprint({
             params: {
               unit: { candidates: [[{}]] },
               effect: { actions: [] },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now',
               mode: 'set',
               stackable: true,

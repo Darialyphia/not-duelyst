@@ -36,7 +36,7 @@ export const neutralRepulsorBeast = defineSerializedBlueprint({
                   [{ type: 'is_manual_target', params: { not: false, index: 1 } }]
                 ]
               },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now'
             }
           }

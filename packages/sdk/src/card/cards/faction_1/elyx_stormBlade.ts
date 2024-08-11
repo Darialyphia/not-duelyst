@@ -43,6 +43,7 @@ export const f1ElyxStormblade = defineSerializedBlueprint({
             type: 'add_effect',
             params: {
               unit: manualTarget(0),
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               effect: {
                 executionContext: 'immediate',
                 actions: [{ type: 'celerity', params: {} }]

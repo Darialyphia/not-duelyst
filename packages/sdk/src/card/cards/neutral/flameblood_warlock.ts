@@ -29,7 +29,7 @@ export const neutralFlamebloodWarlock = defineSerializedBlueprint({
             params: {
               amount: { type: 'fixed', params: { value: 3 } },
               targets: { candidates: [[{ type: 'is_general', params: { not: false } }]] },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now'
             }
           }

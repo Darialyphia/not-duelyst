@@ -2,7 +2,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { fixedAmount } from '../../helpers/amount';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const neutralHealingMystic = defineSerializedBlueprint({
   id: 'healing_mystic',
@@ -40,6 +40,7 @@ export const neutralHealingMystic = defineSerializedBlueprint({
           {
             type: 'heal',
             params: {
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               targets: manualTarget(0),
               amount: fixedAmount(2)
             }

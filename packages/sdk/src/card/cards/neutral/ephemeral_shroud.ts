@@ -29,7 +29,7 @@ export const neutralEphemeralShroud = defineSerializedBlueprint({
               cells: {
                 candidates: [[{ type: 'is_manual_target', params: { index: 0 } }]]
               },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now'
             }
           }

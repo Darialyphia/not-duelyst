@@ -26,7 +26,7 @@ export const f3ZenuiTheBlghtspawned = defineSerializedBlueprint({
           {
             type: 'change_unit_owner',
             params: {
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now',
               player: { candidates: [[{ type: 'ally_player' }]] },
               unit: {

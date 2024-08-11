@@ -51,7 +51,7 @@ export const neutralPrimusFist = defineSerializedBlueprint({
                   ]
                 ]
               },
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               duration: 'always',
               execute: 'now'
             }

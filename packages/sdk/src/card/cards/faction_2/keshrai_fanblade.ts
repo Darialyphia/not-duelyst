@@ -27,7 +27,7 @@ export const f2KeshraiFanblade = defineSerializedBlueprint({
           {
             type: 'change_card_cost',
             params: {
-              filter: { candidates: [] },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now',
               amount: fixedAmount(2),
               card: { candidates: [[{ type: 'spell' }]] },
