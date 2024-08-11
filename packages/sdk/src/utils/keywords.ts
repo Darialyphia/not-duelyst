@@ -153,12 +153,6 @@ export const KEYWORDS = {
     aliases: [],
     description: 'Cannot move, attack, retaliate or gain attack.'
   },
-  SUMMON: {
-    id: 'summon',
-    name: 'Summon',
-    description: 'A summoned unit didn`t come from your action bar.',
-    aliases: []
-  },
   PROVOKE: {
     id: 'provoke',
     name: 'Provoke',

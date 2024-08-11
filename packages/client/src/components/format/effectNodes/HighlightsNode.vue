@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CellConditionBase, Filter } from '@game/sdk';
+import type { CellConditionBase } from '@game/sdk';
 
 const highlights = defineModel<CellConditionBase[][]>({ required: true });
 

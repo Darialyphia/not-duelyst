@@ -390,7 +390,7 @@ const actionDict: ActionDictionary = {
       keyword: KeywordNode,
       unit: UnitNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   },
   equip_artifact: {
@@ -399,7 +399,7 @@ const actionDict: ActionDictionary = {
       player: PlayerNode,
       blueprint: BlueprintNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   },
   summon_unit: {
@@ -409,7 +409,7 @@ const actionDict: ActionDictionary = {
       player: PlayerNode,
       position: CellNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   },
   change_unit_owner: {
@@ -419,7 +419,7 @@ const actionDict: ActionDictionary = {
       player: PlayerNode,
       duration: null,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   }
 };
@@ -710,7 +710,7 @@ const id = useId();
         </p>
       </div>
 
-      <fieldset v-if="key === 'kind'" class="flex flex-col">
+      <fieldset v-else-if="key === 'kind'" class="flex flex-col">
         <label>
           <input v-model="(action.params as any)[key]" type="radio" :value="undefined" />
           Any kind of card
@@ -729,7 +729,7 @@ const id = useId();
         </label>
       </fieldset>
 
-      <fieldset v-if="key === 'location'" class="flex flex-col">
+      <fieldset v-else-if="key === 'location'" class="flex flex-col">
         <label>
           <input v-model="(action.params as any)[key]" type="radio" value="hand" />
           In the player's hand
@@ -740,7 +740,7 @@ const id = useId();
         </label>
       </fieldset>
 
-      <fieldset v-if="key === 'execute'" class="flex flex-col">
+      <fieldset v-else-if="key === 'execute'" class="flex flex-col">
         <label>
           <input v-model="(action.params as any)[key]" type="radio" value="now" />
           Now
@@ -763,7 +763,7 @@ const id = useId();
         </p>
       </fieldset>
 
-      <fieldset v-if="key === 'duration'" class="flex flex-col">
+      <fieldset v-else-if="key === 'duration'" class="flex flex-col">
         <label>
           <input v-model="(action.params as any)[key]" type="radio" value="always" />
           Always
@@ -782,7 +782,7 @@ const id = useId();
         </label>
       </fieldset>
 
-      <div v-if="key === 'occurences_count'" class="flex items-center gap-3">
+      <div v-else-if="key === 'occurences_count'" class="flex items-center gap-3">
         <UiTextInput
           :id="`${id}-occurences-count`"
           v-model="(action.params as any)[key]"

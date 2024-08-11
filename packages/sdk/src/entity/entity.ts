@@ -595,13 +595,6 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
 
     const keywordsWithStacks = new Map<string, Keyword & { stacks?: number }>();
 
-    if (this.card.isGenerated) {
-      keywordsWithStacks.set(KEYWORDS.SUMMON.id, {
-        ...KEYWORDS.SUMMON,
-        stacks: undefined
-      });
-    }
-
     const add = (keyword: Keyword, stackable: boolean, stacks?: number) => {
       if (!keywordsWithStacks.has(keyword.id)) {
         keywordsWithStacks.set(keyword.id, {
