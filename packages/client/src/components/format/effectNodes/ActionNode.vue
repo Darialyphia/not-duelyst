@@ -429,6 +429,17 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  change_can_attack: {
+    label: 'Prevent the attacks of a unit',
+    params: {
+      unit: UnitNode,
+      target: UnitNode,
+      duration: null,
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -681,6 +692,14 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
+      })
+      .with({ type: 'change_can_attack' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.target ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.duration ??= 'always';
       })
       .exhaustive();
   },

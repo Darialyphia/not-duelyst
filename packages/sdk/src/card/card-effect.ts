@@ -404,6 +404,21 @@ export type Action<
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'change_can_attack';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        target: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

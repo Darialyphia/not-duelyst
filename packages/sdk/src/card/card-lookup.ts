@@ -104,6 +104,7 @@ import { neutralTombstone } from './cards/neutral/tombstone';
 import { neutralDioltas } from './cards/neutral/dioltas';
 import { f3OrbWeaver } from './cards/faction_3/orb-weaver';
 import { f3Pyromancer } from './cards/faction_3/pyromancer';
+import { f3FusionBanshee } from './cards/faction_3/fusion-banshee';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -182,6 +183,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f3BoneSwarm,
   f3OrbWeaver,
   f3Pyromancer,
+  f3FusionBanshee,
 
   neutralHealingMystic,
   neutralRiftWalker,

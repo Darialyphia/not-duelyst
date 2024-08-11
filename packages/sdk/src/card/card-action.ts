@@ -37,6 +37,7 @@ import { EquipArtifactCardAction } from './actions/equip-artifact.card-action';
 import { SummonUnitCardAction } from './actions/summon-unit.card-action';
 import { ChangeCardOwnerCardAction } from './actions/change-unit-owner.card-action';
 import { BlastCardAction } from './actions/blast.card-action';
+import { ChangeCanAttackCardAction } from './actions/change-can-attack.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -163,6 +164,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'blast' }, action => {
         return new BlastCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'change_can_attack' }, action => {
+        return new ChangeCanAttackCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

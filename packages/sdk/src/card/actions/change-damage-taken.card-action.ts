@@ -38,6 +38,7 @@ export class ChangeDamageTakenAction extends CardAction<'change_damage_taken'> {
       ]
     });
   }
+
   protected async executeImpl() {
     const units = this.getUnits(this.action.params.targets);
     const modifierId = this.generateModifierId();
