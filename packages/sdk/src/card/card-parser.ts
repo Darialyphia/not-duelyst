@@ -1,4 +1,11 @@
-import { isDefined, isObject, Vec3, type Defined, type Point3D } from '@game/shared';
+import {
+  isDefined,
+  isObject,
+  Vec3,
+  waitFor,
+  type Defined,
+  type Point3D
+} from '@game/shared';
 import { type Entity } from '../entity/entity';
 import type { GameEvent, GameEventMap, GameFormat, GameSession } from '../game-session';
 import { createCardModifier, type CardModifier } from '../modifier/card-modifier';
@@ -19,7 +26,7 @@ import {
   modifierGameEventMixin
 } from '../modifier/mixins/game-event.mixin';
 import type { CardBlueprint, SerializedBlueprint } from './card-blueprint';
-import type { Action, GenericCardEffect } from './card-effect';
+import type { Action, GenericCardEffect, VFXSequence } from './card-effect';
 import { parseTargets } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
 import { getCards } from './conditions/card-conditions';
@@ -31,6 +38,7 @@ import type { Card } from './card';
 import { getCells } from './conditions/cell-conditions';
 import { Unit } from './unit';
 import type { TriggerFrequency, Trigger } from './card-action-triggers';
+import { checkGlobalConditions } from './conditions/global-conditions';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -39,6 +47,38 @@ export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
 };
 
 const getEffectCtxEntity = (ctx: EffectCtx) => ctx.entity ?? ctx.card.player.general;
+
+const playVFXSequence = (
+  sequence: VFXSequence,
+  ctx: EffectCtx,
+  event?: any,
+  eventName?: string
+) => {
+  return Promise.all(
+    sequence.tracks.map(async track => {
+      const shouldPlay = checkGlobalConditions(track.filter, ctx, event, eventName);
+      if (!shouldPlay) return;
+
+      for (const step of track.steps) {
+        if (step.type === 'wait') {
+          await waitFor(step.params.duration);
+        } else {
+          await match(step)
+            .with({ type: 'addLightOnEntity' }, step => {
+              return ctx.session.fxSystem.addLightOnEntity(step.params.entity);
+            })
+            .with({ type: 'playSfxOnEntity' }, step => {})
+            .with({ type: 'playSfxOnScreenCenter' }, step => {})
+            .with({ type: 'shakeEntity' }, step => {})
+            .with({ type: 'shakeScreen' }, step => {})
+            .with({ type: 'tintEntity' }, () => {})
+            .with({ type: 'tintScreen' }, () => {})
+            .exhaustive();
+        }
+      }
+    })
+  );
+};
 export const getEffectModifier = <T extends GameEvent>({
   filter,
   frequency,

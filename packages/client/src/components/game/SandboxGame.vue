@@ -50,11 +50,8 @@ const state: SerializedGameState = {
   ]
 };
 
-const fx = useFXProvider();
-
 const serverSession = ServerSession.create(state, { seed: seed ?? nanoid(), format });
 const clientSession = ClientSession.create(serverSession.serialize(), {
-  fxSystem: fx.ctx,
   format
 });
 serverSession.onUpdate((action, opts) => {

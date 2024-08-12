@@ -16,6 +16,8 @@ import type { Trigger, TriggerFrequency } from './card-action-triggers';
 import type { Amount } from './helpers/amount';
 import type { CardBlueprintId } from './card';
 import type { KeywordId } from '../utils/keywords';
+import type { FXSystem } from '../fx-system';
+import type { Point } from '@game/shared';
 
 export type Filter<T> = { candidates: T[][]; random?: boolean };
 
@@ -489,9 +491,92 @@ export type CardEffectConfig<T extends Trigger[]> =
       actions: Action<OverridesFromTrigger<T>>[];
     };
 
+export type VFXStep =
+  | {
+      type: 'shakeEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        axis: 'x' | 'y' | 'both';
+        amplitude: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'shakeScreen';
+      params: {
+        axis: 'x' | 'y' | 'both';
+        amplitude: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'playSfxOnEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        resourceName: string;
+        animationName: string;
+        offset: Point;
+        duration: number;
+      };
+    }
+  | {
+      type: 'playSfxOnScreenCenter';
+      params: {
+        resourceName: string;
+        animationName: string;
+        offset: Point;
+        duration: number;
+      };
+    }
+  | {
+      type: 'tintEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        color: string;
+        strength: number;
+        alpha: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'tintScreen';
+      params: {
+        color: string;
+        strength: number;
+        alpha: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'addLightOnEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        color: number;
+        strength: number;
+        offset: Point;
+        alpha: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'wait';
+      params: {
+        duration: number;
+      };
+    };
+
+export type VFXSequenceTrack = {
+  steps: VFXStep[];
+  filter: Filter<GlobalCondition>;
+};
+export type VFXSequence = {
+  tracks: VFXSequenceTrack[];
+};
+
 export type CardEffect<T extends Trigger[]> = {
   config: CardEffectConfig<T>;
   text: string;
+  vfx?: VFXSequence;
 };
 export type GenericCardEffect = CardEffect<any>;
 // used in custom card GUI code
@@ -504,6 +589,7 @@ export type WidenedGenericCardEffect = {
       params: any;
     }>;
     actions: any;
+    vfx?: VFXSequence;
   };
 };
 

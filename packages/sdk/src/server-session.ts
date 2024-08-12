@@ -1,4 +1,3 @@
-import { noopFXContext, type FXSystem } from './fx-system';
 import {
   GameSession,
   type GameFormat,
@@ -30,7 +29,7 @@ export class ServerSession extends GameSession {
     state: SerializedGameState,
     options: { seed: string; format: GameFormat }
   ) {
-    return new ServerSession(state, new ServerRngSystem(options.seed), noopFXContext, {
+    return new ServerSession(state, new ServerRngSystem(options.seed), {
       seed: options.seed,
       format: {
         config: options.format.config,
@@ -44,14 +43,13 @@ export class ServerSession extends GameSession {
   protected constructor(
     initialState: SerializedGameState,
     rngSystem: RngSystem,
-    fxSystem: FXSystem,
     options: {
       winnerId?: string;
       format: GameFormat;
       seed: string;
     }
   ) {
-    super(initialState, rngSystem, fxSystem, serverLogger, options);
+    super(initialState, rngSystem, serverLogger, options);
     this.rngSeed = options.seed;
   }
 
@@ -71,7 +69,6 @@ export class ServerSession extends GameSession {
       const session = new GameSession(
         { ...this.initialState, history: this.actionSystem.serialize() },
         new ServerRngSystem(this.rngSeed),
-        this.fxSystem,
         () => void 0,
         {
           format: this.format

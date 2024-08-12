@@ -1,4 +1,3 @@
-import type { FXSystem } from './fx-system';
 import {
   GameSession,
   type GameFormat,
@@ -17,12 +16,12 @@ export class ClientSession extends GameSession {
 
   static create(
     state: SerializedGameState,
-    options: { fxSystem: FXSystem; format: GameFormat; winnerId?: string }
+    options: { format: GameFormat; winnerId?: string }
   ) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
 
-    const session = new ClientSession(state, rngSystem, options.fxSystem, clientLogger, {
+    const session = new ClientSession(state, rngSystem, clientLogger, {
       winnerId: options.winnerId,
       format: {
         config: options.format.config,

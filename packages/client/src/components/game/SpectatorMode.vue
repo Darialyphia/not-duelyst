@@ -31,7 +31,6 @@ const { error } = useGameSocket({
         .toBeTruthy()
         .then(() => {
           const session = ClientSession.create(serializedState, {
-            fxSystem: fx.ctx,
             format: {
               config: defaultConfig,
               cards: {}
@@ -62,8 +61,6 @@ const { error } = useGameSocket({
     socket.value?.on('p2:emote', addP2);
   }
 });
-
-const fx = useFXProvider();
 
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
 </script>

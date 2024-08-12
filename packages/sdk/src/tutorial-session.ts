@@ -1,4 +1,3 @@
-import { type FXSystem } from './fx-system';
 import {
   type GameFormat,
   type SerializedGameState,
@@ -28,17 +27,12 @@ export type TutorialStep = {
 const tutorialLogger: SessionLogger = () => void 0;
 
 export class TutorialSession extends ClientSession {
-  static createTutorialSession(
-    state: SerializedGameState,
-    fxSystem: FXSystem,
-    steps: TutorialStep[]
-  ) {
+  static createTutorialSession(state: SerializedGameState, steps: TutorialStep[]) {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
     return new TutorialSession(
       state,
       rngSystem,
-      fxSystem,
       {
         format: {
           config: defaultConfig,
@@ -55,14 +49,13 @@ export class TutorialSession extends ClientSession {
   protected constructor(
     initialState: SerializedGameState,
     rngSystem: RngSystem,
-    fxSystem: FXSystem,
     options: {
       winnerId?: string;
       format: GameFormat;
     },
     public steps: TutorialStep[]
   ) {
-    super(initialState, rngSystem, fxSystem, tutorialLogger, options);
+    super(initialState, rngSystem, tutorialLogger, options);
 
     this.on('game:action', async () => {
       if (this.isFinished) return;

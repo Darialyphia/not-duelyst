@@ -1,5 +1,6 @@
-import type { Point, Point3D } from '@game/shared';
-import type { EntityId } from './entity/entity';
+import type { Point } from '@game/shared';
+import type { Entity } from './entity/entity';
+import { TypedEventEmitter } from './utils/typed-emitter';
 
 export type Animation =
   | 'idle'
@@ -15,125 +16,97 @@ export type Animation =
   | 'castend'
   | 'projectile';
 
-export type FXSystem = {
-  moveEntity(
-    entityId: EntityId,
-    path: Array<{ point: Point3D; duration: number }>
-  ): Promise<void>;
-
-  displayDamageIndicator(from: EntityId, to: EntityId, amount: number): Promise<void>;
-
-  attack(attackerId: EntityId, targetId: EntityId): Promise<void>;
-
-  fadeOutEntity(entityId: EntityId, duration: number): Promise<void>;
-
-  displayText(
-    text: string,
-    entityId: EntityId,
-    options: {
-      color: string | string[] | number | number[];
-      path: { x?: number; y?: number; scale?: number; alpha?: number }[];
+export type IFxSystem = {
+  shakeEntity(
+    entity: Entity,
+    opts?: {
+      axis: 'x' | 'y' | 'both';
+      amplitude: number;
       duration: number;
     }
   ): Promise<void>;
 
-  shakeEntity(
-    entityId: EntityId,
-    opts?: {
-      count?: number;
-      axis?: 'x' | 'y' | 'both';
-      amount?: number;
-      totalDuration?: number;
-    }
-  ): Promise<void>;
-
-  playAnimationUntil(entityId: EntityId, animationName: Animation): () => void;
-
-  playAnimation(
-    entityId: EntityId,
-    animationName: Animation,
-    opts?: {
-      framePercentage?: number;
-    }
-  ): Promise<void>;
+  shakeScreen(opts?: {
+    axis: 'x' | 'y' | 'both';
+    amplitude: number;
+    duration: number;
+  }): Promise<void>;
 
   playSfxOnEntity(
-    entityId: EntityId,
+    entity: Entity,
     options: {
       resourceName: string;
       animationName: string;
-      offset?: Point;
-      delay?: number;
+      offset: Point;
+      duration: number;
     }
   ): Promise<void>;
 
   playSfxOnScreenCenter(options: {
     resourceName: string;
     animationName: string;
-    offset?: Point;
-    delay?: number;
+    offset: Point;
+    duration: number;
   }): Promise<void>;
 
-  changeAmbientLightUntil(color: string, strength: number): () => void;
+  tintEntity(
+    entity: Entity,
+    options: {
+      color: string;
+      strength: number;
+      alpha: number;
+      duration: number;
+    }
+  ): Promise<void>;
 
-  addLightOnEntityUntil(
-    entityId: EntityId,
-    options: { color: number; strength: number; offset?: Point }
-  ): () => void;
+  tintScreen(options: {
+    color: string;
+    strength: number;
+    alpha: number;
+    duration: number;
+  }): Promise<void>;
 
-  addSpriteOnCellUntil(cell: Point3D, spriteId: string): () => void;
+  addLightOnEntity(
+    entity: Entity,
+    options: {
+      color: number;
+      strength: number;
+      offset: Point;
+      alpha: number;
+      duration: number;
+    }
+  ): Promise<void>;
+
+  bloom(options: { strength: number; duration: number }): Promise<void>;
 };
 
-export const noopFXContext: FXSystem = {
-  moveEntity() {
-    return Promise.resolve();
-  },
+type FxEventsMap = {
+  [key in keyof IFxSystem]: Parameters<IFxSystem[key]>;
+};
 
-  displayDamageIndicator() {
-    return Promise.resolve();
-  },
-
-  displayText() {
-    return Promise.resolve();
-  },
-
-  shakeEntity() {
-    return Promise.resolve();
-  },
-
-  attack() {
-    return Promise.resolve();
-  },
-
-  fadeOutEntity() {
-    return Promise.resolve();
-  },
-
-  playAnimationUntil() {
-    return () => void 0;
-  },
-
-  playAnimation() {
-    return Promise.resolve();
-  },
-
-  playSfxOnEntity() {
-    return Promise.resolve();
-  },
-
-  playSfxOnScreenCenter() {
-    return Promise.resolve();
-  },
-
-  changeAmbientLightUntil() {
-    return () => void 0;
-  },
-
-  addLightOnEntityUntil() {
-    return () => void 0;
-  },
-
-  addSpriteOnCellUntil() {
-    return () => void 0;
+export class FXSystem extends TypedEventEmitter<FxEventsMap> implements IFxSystem {
+  async addLightOnEntity(...args: Parameters<IFxSystem['addLightOnEntity']>) {
+    await this.emitAsync('addLightOnEntity', ...args);
   }
-};
+  async bloom(...args: Parameters<IFxSystem['bloom']>) {
+    await this.emitAsync('bloom', ...args);
+  }
+  async playSfxOnEntity(...args: Parameters<IFxSystem['playSfxOnEntity']>) {
+    await this.emitAsync('playSfxOnEntity', ...args);
+  }
+  async playSfxOnScreenCenter(...args: Parameters<IFxSystem['playSfxOnScreenCenter']>) {
+    await this.emitAsync('playSfxOnScreenCenter', ...args);
+  }
+  async shakeEntity(...args: Parameters<IFxSystem['shakeEntity']>) {
+    await this.emitAsync('shakeEntity', ...args);
+  }
+  async shakeScreen(...args: Parameters<IFxSystem['shakeScreen']>) {
+    await this.emitAsync('shakeScreen', ...args);
+  }
+  async tintEntity(...args: Parameters<IFxSystem['tintEntity']>) {
+    await this.emitAsync('tintEntity', ...args);
+  }
+  async tintScreen(...args: Parameters<IFxSystem['tintScreen']>) {
+    await this.emitAsync('tintScreen', ...args);
+  }
+}

@@ -13,7 +13,6 @@ const { game, replay, initialState } = defineProps<{
 
 const parsedReplay = parse(replay);
 
-const fx = useFXProvider();
 const parsedState = parse(initialState);
 const format: GameFormat = {
   config: defaultConfig,
@@ -21,7 +20,6 @@ const format: GameFormat = {
 };
 const serverSession = ServerSession.create(parsedState, { seed: game.seed, format });
 const clientSession = ClientSession.create(serverSession.serialize(), {
-  fxSystem: fx.ctx,
   format
 });
 serverSession.onUpdate((action, opts) => {

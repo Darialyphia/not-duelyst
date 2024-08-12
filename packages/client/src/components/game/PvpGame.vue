@@ -42,7 +42,6 @@ const { error } = useGameSocket({
         .toBeTruthy()
         .then(currentGame => {
           const session = ClientSession.create(serializedState, {
-            fxSystem: fx.ctx,
             winnerId: currentGame.players.find(
               player => player.gamePlayerId === game.value?.winnerId
             )?._id,
@@ -76,8 +75,6 @@ const { error } = useGameSocket({
     socket.value?.on('p2:emote', addP2);
   }
 });
-
-const fx = useFXProvider();
 
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
 

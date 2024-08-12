@@ -110,12 +110,7 @@ export const useGameProvider = ({
   const camera = useIsoCameraProvider();
   const assets = useAssets();
   const pathfinding = usePathfindingProvider(session, ui);
-  const fx = useFX();
-
-  fx.provideSession(session);
-  fx.provideUi(ui);
-  fx.provideAssets(assets);
-  fx.provideCamera(camera);
+  const fx = useFXProvider();
 
   onUnmounted(() => {
     session.removeAllListeners();

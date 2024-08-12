@@ -12,7 +12,6 @@ import { parse, stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
-import type { StarEvent } from '@game/sdk/src/game-session';
 
 type GameDto = Defined<FunctionReturnType<typeof api.games.getCurrent>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;

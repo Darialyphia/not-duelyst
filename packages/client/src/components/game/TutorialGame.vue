@@ -144,7 +144,6 @@ until(state)
     serverSession.value = ServerSession.create(state, { seed: 'tutorial', format });
     clientSession.value = TutorialSession.createTutorialSession(
       serverSession.value.serialize(),
-      fx.ctx,
       steps
     );
     serverSession.value.onUpdate((action, opts) => {

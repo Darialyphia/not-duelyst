@@ -108,6 +108,7 @@ import { f3FusionBanshee } from './cards/faction_3/fusion-banshee';
 import { f3StarfireScarab } from './cards/faction_3/starfire-scarab';
 import { neutralRedSynja } from './cards/neutral/red-synja';
 import { neutralLuxIgnis } from './cards/neutral/lux-ignis';
+import { neutralEmeraldRejuvenator } from './cards/neutral/emeral_rejuvenator';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -219,7 +220,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralTombstone,
   neutralDioltas,
   neutralRedSynja,
-  neutralLuxIgnis
+  neutralLuxIgnis,
+  neutralEmeraldRejuvenator
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

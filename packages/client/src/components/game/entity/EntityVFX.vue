@@ -27,12 +27,12 @@ const keywordsWithSprite = computed(() => {
 });
 
 onMounted(() => {
-  session.fxSystem.playSfxOnEntity(entity.value.id, {
-    resourceName: 'fx_smoke2',
-    animationName: 'smokeground',
-    offset: { x: 0, y: 20 },
-    delay: 200
-  });
+  // session.fxSystem.playSfxOnEntity(entity.value.id, {
+  //   resourceName: 'fx_smoke2',
+  //   animationName: 'smokeground',
+  //   offset: { x: 0, y: 20 },
+  //   delay: 200
+  // });
 });
 
 const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
