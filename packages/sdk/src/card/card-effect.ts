@@ -496,7 +496,7 @@ export type VFXStep =
       type: 'shakeEntity';
       params: {
         entity: Filter<UnitCondition>;
-        axis: 'x' | 'y' | 'both';
+        isBidirectional: boolean;
         amplitude: number;
         duration: number;
       };
@@ -504,7 +504,7 @@ export type VFXStep =
   | {
       type: 'shakeScreen';
       params: {
-        axis: 'x' | 'y' | 'both';
+        isBidirectional: boolean;
         amplitude: number;
         duration: number;
       };
@@ -533,6 +533,7 @@ export type VFXStep =
       params: {
         entity: Filter<UnitCondition>;
         color: string;
+        blendMode: 0 | 1 | 2 | 3;
         strength: number;
         alpha: number;
         duration: number;
@@ -542,7 +543,7 @@ export type VFXStep =
       type: 'tintScreen';
       params: {
         color: string;
-        strength: number;
+        blendMode: 0 | 1 | 2 | 3;
         alpha: number;
         duration: number;
       };
@@ -552,10 +553,11 @@ export type VFXStep =
       params: {
         entity: Filter<UnitCondition>;
         color: number;
-        strength: number;
         offset: Point;
         alpha: number;
+        radius: number;
         duration: number;
+        blendMode: 0 | 1 | 2 | 3;
       };
     }
   | {

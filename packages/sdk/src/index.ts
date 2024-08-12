@@ -18,7 +18,7 @@ export {
   type Faction,
   type Rarity
 } from './card/card-enums';
-export { type Animation } from './fx-system';
+export { type Animation, type FXEventMap, FXSystem } from './fx-system';
 export { CARDS } from './card/card-lookup';
 export {
   type CardBlueprint,

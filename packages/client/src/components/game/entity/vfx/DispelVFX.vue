@@ -1,18 +1,17 @@
 <script setup lang="ts">
+import { type EntityId } from '@game/sdk';
+import { type FrameObject } from 'pixi.js';
 import { PTransition } from 'vue3-pixi';
-import type { Keyword } from '@game/sdk';
-import type { FrameObject } from 'pixi.js';
 
-const { keyword } = defineProps<{
-  keyword: Keyword;
-}>();
+const { entityId } = defineProps<{ entityId: EntityId }>();
+const entity = useEntity(entityId);
 
 const { assets, ui } = useGame();
+
 const textures = ref<FrameObject[]>();
 
 watchEffect(async () => {
-  if (!keyword.spriteId) return;
-  const spritesheet = await assets.loadSpritesheet(keyword.spriteId);
+  const spritesheet = await assets.loadSpritesheet('silenced');
   textures.value = createSpritesheetFrameObject('default', spritesheet);
 });
 </script>
@@ -25,8 +24,8 @@ watchEffect(async () => {
     :enter="{ alpha: 1 }"
   >
     <animated-sprite
-      v-if="textures"
-      :ref="(container: any) => ui.assignLayer(container, 'fx')"
+      v-if="textures && entity.isDispelled"
+      :ref="(container: any) => ui.assignLayer(container, 'ui')"
       :textures="textures"
       :anchor-x="0.5"
       :anchor-y="0"

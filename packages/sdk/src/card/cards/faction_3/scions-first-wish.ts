@@ -1,4 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f3ScionsFirstWish = defineSerializedBlueprint({
@@ -15,8 +16,85 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
   cost: 1,
   faction: FACTION_IDS.F3,
   effects: [
-    {
+    defineCardEffect({
       text: 'Give a minion +1/+1. Draw a card.',
+      vfx: {
+        tracks: [
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                type: 'tintScreen',
+                params: {
+                  alpha: 0.5,
+                  color: '#ff0000',
+                  duration: 2000,
+                  blendMode: 2
+                }
+              },
+              { type: 'wait', params: { duration: 500 } },
+              {
+                type: 'playSfxOnEntity',
+                params: {
+                  resourceName: 'fx_f3_scionsfirstwish',
+                  animationName: 'default',
+                  duration: 31 * 64,
+                  offset: { x: 0, y: -50 },
+                  entity: {
+                    candidates: [
+                      [
+                        {
+                          type: 'is_manual_target',
+                          params: {
+                            not: false,
+                            index: 0
+                          }
+                        }
+                      ]
+                    ]
+                  }
+                }
+              },
+              {
+                type: 'addLightOnEntity',
+                params: {
+                  alpha: 0.8,
+                  color: 0xff0000,
+                  duration: 2000,
+                  blendMode: 1,
+                  offset: { x: 0, y: 0 },
+                  radius: 80,
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { index: 0, not: false } }]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                type: 'shakeScreen',
+                params: { amplitude: 15, duration: 2000, isBidirectional: true }
+              },
+              {
+                type: 'shakeEntity',
+                params: {
+                  entity: {
+                    candidates: [[{ type: 'is_general', params: { not: false } }]]
+                  },
+                  amplitude: 10,
+                  duration: 1000,
+                  isBidirectional: false
+                }
+              }
+            ]
+          }
+        ]
+      },
       config: {
         executionContext: 'immediate',
         actions: [
@@ -54,7 +132,7 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
           }
         ]
       }
-    }
+    })
   ],
   targets: {
     min: 1,

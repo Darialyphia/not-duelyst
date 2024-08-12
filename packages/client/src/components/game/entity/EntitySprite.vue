@@ -6,7 +6,7 @@ import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { OutlineFilter } from '@pixi/filter-outline';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
-import type { Nullable } from '@game/shared';
+import { waitFor, type Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
@@ -137,10 +137,30 @@ const cleanups = [
 onUnmounted(() => {
   cleanups.forEach(fn => fn());
 });
+
+const shaker = useShaker();
+useVFX('shakeEntity', async (e, { isBidirectional, amplitude, duration }) => {
+  if (!e.equals(entity.value)) return;
+  shaker.shake({
+    isBidirectional,
+    shakeAmount: amplitude,
+    shakeDelay: 25,
+    shakeCountMax: Math.round(duration / 25)
+  });
+
+  await waitFor(duration);
+});
 </script>
 
 <template>
-  <container :filters="filters">
+  <container
+    :ref="
+      (container: any) => {
+        if (container) shaker.setTarget(container);
+      }
+    "
+    :filters="filters"
+  >
     <EntityPedestal :entity-id="entityId" />
     <animated-sprite
       v-if="unitTextures"
@@ -158,10 +178,10 @@ onUnmounted(() => {
     />
     <!-- <sprite
       :alpha="0.85"
-      :texture="radialGradient(100, 100, 'rgb(255,0,100)', 'rgba(255,255,100,0)')"
-      :blend-mode="BLEND_MODES.SCREEN"
+      :texture="radialGradient(200, 200, 'rgb(255,0,0)', 'rgba(255,255,100,0)')"
       :anchor-x="0.5"
       :anchor-y="0.25"
+      :blend-mode="1"
     /> -->
 
     <animated-sprite

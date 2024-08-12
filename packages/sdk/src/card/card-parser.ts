@@ -65,14 +65,66 @@ const playVFXSequence = (
         } else {
           await match(step)
             .with({ type: 'addLightOnEntity' }, step => {
-              return ctx.session.fxSystem.addLightOnEntity(step.params.entity);
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.addLightOnEntity(entity, step.params)
+                )
+              );
             })
-            .with({ type: 'playSfxOnEntity' }, step => {})
-            .with({ type: 'playSfxOnScreenCenter' }, step => {})
-            .with({ type: 'shakeEntity' }, step => {})
-            .with({ type: 'shakeScreen' }, step => {})
-            .with({ type: 'tintEntity' }, () => {})
-            .with({ type: 'tintScreen' }, () => {})
+            .with({ type: 'playSfxOnEntity' }, step => {
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.playSfxOnEntity(entity, step.params)
+                )
+              );
+            })
+            .with({ type: 'playSfxOnScreenCenter' }, step => {
+              return ctx.session.fxSystem.playSfxOnScreenCenter(step.params);
+            })
+            .with({ type: 'shakeEntity' }, step => {
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.shakeEntity(entity, step.params)
+                )
+              );
+            })
+            .with({ type: 'shakeScreen' }, step => {
+              return ctx.session.fxSystem.shakeScreen(step.params);
+            })
+            .with({ type: 'tintEntity' }, step => {
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.tintEntity(entity, step.params)
+                )
+              );
+            })
+            .with({ type: 'tintScreen' }, step => {
+              return ctx.session.fxSystem.tintScreen(step.params);
+            })
             .exhaustive();
         }
       }
@@ -83,12 +135,14 @@ export const getEffectModifier = <T extends GameEvent>({
   filter,
   frequency,
   eventName,
+  vfx,
   actions
 }: {
   eventName: T;
   filter: (ctx: EffectCtx, event: GameEventMap[T], eventName: T) => boolean;
   actions: ParsedActionResult[];
   frequency: TriggerFrequency;
+  vfx?: VFXSequence;
 }) => {
   return {
     getEntityModifier: (ctx: EffectCtx) => {
@@ -118,6 +172,10 @@ export const getEffectModifier = <T extends GameEvent>({
             async listener(event) {
               if (!filter(ctx, event, eventName)) return;
               if (occurences >= maxOccurences) return;
+
+              if (vfx) {
+                await playVFXSequence(vfx, ctx);
+              }
 
               for (const action of actions) {
                 const [eventPayload] = event;
@@ -155,6 +213,10 @@ export const getEffectModifier = <T extends GameEvent>({
                 targets: []
               };
               if (filter(effectCtx, event, eventName)) {
+                if (vfx) {
+                  await playVFXSequence(vfx, effectCtx);
+                }
+
                 for (const action of actions) {
                   const [eventPayload] = event;
 
@@ -192,6 +254,9 @@ export const parseSerializedBlueprintEffect = (
       {
         async onPlay(ctx: EffectCtx) {
           const actions = config.actions.map(parseCardAction);
+          if (effect.vfx) {
+            await playVFXSequence(effect.vfx, ctx);
+          }
           for (const action of actions) {
             await action(ctx, {});
           }
@@ -204,6 +269,9 @@ export const parseSerializedBlueprintEffect = (
     .with({ executionContext: 'while_on_board' }, config => [
       {
         async onPlay(ctx: EffectCtx) {
+          if (effect.vfx) {
+            await playVFXSequence(effect.vfx, ctx);
+          }
           const cleanups: Array<() => void> = [];
           const entity = getEffectCtxEntity(ctx);
           whileOnBoard({
@@ -211,7 +279,9 @@ export const parseSerializedBlueprintEffect = (
             entity,
             async onApplied() {
               const actions = config.actions.map(parseCardAction);
-
+              if (effect.vfx) {
+                await playVFXSequence(effect.vfx, ctx);
+              }
               for (const action of actions) {
                 cleanups.push(await action(ctx, {}));
               }
@@ -276,6 +346,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'card:before_played',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   return trigger.params.card.candidates.length
@@ -293,6 +364,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'card:after_played',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   event.blueprintId;
@@ -311,6 +383,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_draw',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   return trigger.params.player.candidates.length
@@ -328,6 +401,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_draw',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   return trigger.params.player.candidates.length
@@ -345,6 +419,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:before_replace',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   return trigger.params.player.candidates.length
@@ -362,6 +437,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 eventName: 'player:after_replace',
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 filter(ctx, [event], eventName) {
                   return trigger.params.player.candidates.length
@@ -379,6 +455,7 @@ export const parseSerializedBlueprintEffect = (
               return getEffectModifier({
                 actions,
                 frequency: trigger.params.frequency,
+                vfx: effect.vfx,
                 eventName: 'entity:before_move',
                 filter(ctx, [event], eventName) {
                   return trigger.params.unit.candidates.length
@@ -395,6 +472,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_move' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_move',
                 filter(ctx, [event], eventName) {
@@ -412,6 +490,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_teleport' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_teleport',
                 filter(ctx, [event], eventName) {
@@ -429,6 +508,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_teleport' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_teleport',
                 filter(ctx, [event], eventName) {
@@ -446,6 +526,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_attack' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_attack',
                 filter(ctx, [event], eventName) {
@@ -473,6 +554,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_attack' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_attack',
                 filter(ctx, [event], eventName) {
@@ -500,6 +582,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_healed' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_heal',
                 filter(ctx, [event], eventName) {
@@ -529,6 +612,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_healed' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_heal',
                 filter(ctx, [event], eventName) {
@@ -558,6 +642,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_take_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_take_damage',
                 filter(ctx, [event], eventName) {
@@ -598,6 +683,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_take_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_take_damage',
                 filter(ctx, [event], eventName) {
@@ -638,6 +724,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_deal_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_deal_damage',
                 filter(ctx, [event], eventName) {
@@ -665,6 +752,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_deal_damage' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_deal_damage',
                 filter(ctx, [event], eventName) {
@@ -692,6 +780,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_retaliate' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_retaliate',
                 filter(ctx, [event], eventName) {
@@ -719,6 +808,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_retaliate' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_retaliate',
                 filter(ctx, [event], eventName) {
@@ -746,6 +836,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_unit_play' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:created',
                 filter(ctx, [event], eventName) {
@@ -763,6 +854,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_before_unit_destroyed' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:before_destroy',
                 filter(ctx, [event], eventName) {
@@ -780,6 +872,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_after_unit_destroyed' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'entity:after_destroy',
                 filter(ctx, [event], eventName) {
@@ -797,6 +890,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_card_drawn' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'card:drawn',
                 filter(ctx, [event], eventName) {
@@ -814,6 +908,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_card_replaced' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'card:replaced',
                 filter(ctx, [event], eventName) {
@@ -831,6 +926,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_player_turn_start' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_start',
                 filter(ctx, [event], eventName) {
@@ -848,6 +944,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_player_turn_end' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'player:turn_end',
                 filter(ctx, [event], eventName) {
@@ -865,6 +962,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_artifact_equiped' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'artifact:equiped',
                 filter(ctx, [event], eventName) {
@@ -882,6 +980,7 @@ export const parseSerializedBlueprintEffect = (
             .with({ type: 'on_artifact_destroyed' }, trigger => {
               return getEffectModifier({
                 actions,
+                vfx: effect.vfx,
                 frequency: trigger.params.frequency,
                 eventName: 'artifact:before_destroy',
                 filter(ctx, [event], eventName) {

@@ -1,704 +1,298 @@
-{
-  "frames": [
-    {
-      "filename": "fx_f3_scionsfirstwish_000",
-      "frame": {
-        "x": 543,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_001",
-      "frame": {
-        "x": 905,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_002",
-      "frame": {
-        "x": 905,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_003",
-      "frame": {
-        "x": 905,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_004",
-      "frame": {
-        "x": 905,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_005",
-      "frame": {
-        "x": 905,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_006",
-      "frame": {
-        "x": 724,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_007",
-      "frame": {
-        "x": 724,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_008",
-      "frame": {
-        "x": 724,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_009",
-      "frame": {
-        "x": 724,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_010",
-      "frame": {
-        "x": 724,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_011",
-      "frame": {
-        "x": 543,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_012",
-      "frame": {
-        "x": 543,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_013",
-      "frame": {
-        "x": 543,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_014",
-      "frame": {
-        "x": 543,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_015",
-      "frame": {
-        "x": 1086,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_016",
-      "frame": {
-        "x": 362,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_017",
-      "frame": {
-        "x": 362,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_018",
-      "frame": {
-        "x": 362,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_019",
-      "frame": {
-        "x": 362,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_020",
-      "frame": {
-        "x": 362,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_021",
-      "frame": {
-        "x": 181,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_022",
-      "frame": {
-        "x": 181,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_023",
-      "frame": {
-        "x": 181,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_024",
-      "frame": {
-        "x": 181,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_025",
-      "frame": {
-        "x": 181,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_026",
-      "frame": {
-        "x": 0,
-        "y": 724,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_027",
-      "frame": {
-        "x": 0,
-        "y": 543,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_028",
-      "frame": {
-        "x": 0,
-        "y": 362,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_029",
-      "frame": {
-        "x": 0,
-        "y": 181,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    },
-    {
-      "filename": "fx_f3_scionsfirstwish_030",
-      "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 180,
-        "h": 180
-      },
-      "sourceSize": {
-        "w": 180,
-        "h": 180
-      },
-      "duration": 80
-    }
+{ "frames": [
+   {
+    "filename": "fx_f3_scionsfirstwish.default.0",
+    "frame": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.1",
+    "frame": { "x": 180, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.2",
+    "frame": { "x": 360, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.3",
+    "frame": { "x": 540, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.4",
+    "frame": { "x": 720, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.5",
+    "frame": { "x": 900, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.6",
+    "frame": { "x": 1080, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.7",
+    "frame": { "x": 1260, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.8",
+    "frame": { "x": 1440, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.9",
+    "frame": { "x": 1620, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.10",
+    "frame": { "x": 1800, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.11",
+    "frame": { "x": 1980, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.12",
+    "frame": { "x": 2160, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.13",
+    "frame": { "x": 2340, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.14",
+    "frame": { "x": 2520, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.15",
+    "frame": { "x": 2700, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.16",
+    "frame": { "x": 2880, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.17",
+    "frame": { "x": 3060, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.18",
+    "frame": { "x": 3240, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.19",
+    "frame": { "x": 3420, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.20",
+    "frame": { "x": 3600, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.21",
+    "frame": { "x": 3780, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.22",
+    "frame": { "x": 3960, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.23",
+    "frame": { "x": 4140, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.24",
+    "frame": { "x": 4320, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.25",
+    "frame": { "x": 4500, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.26",
+    "frame": { "x": 4680, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.27",
+    "frame": { "x": 4860, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.28",
+    "frame": { "x": 5040, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.29",
+    "frame": { "x": 5220, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   },
+   {
+    "filename": "fx_f3_scionsfirstwish.default.30",
+    "frame": { "x": 5400, "y": 0, "w": 180, "h": 180 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 180, "h": 180 },
+    "sourceSize": { "w": 180, "h": 180 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "fx_f3_scionsfirstwish.png",
+  "format": "RGBA8888",
+  "size": { "w": 5580, "h": 180 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "default", "from": 0, "to": 30, "direction": "forward", "color": "#000000ff" }
   ],
-  "meta": {
-    "app": "https://www.aseprite.org/",
-    "image": "fx_f3_scionsfirstwish.png",
-    "scale": "1",
-    "size": {
-      "w": 2048,
-      "h": 1024
-    },
-    "frameTags": [
-      {
-        "name": "default",
-        "from": 0,
-        "to": 30,
-        "direction": "forwards",
-        "color": "#000000ff"
-      }
-    ]
-  }
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
 }

@@ -90,6 +90,7 @@ const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
         }
       "
       :alpha="alpha"
+      :sortable-children="true"
     >
       <EntityShadow :entity-id="entityId" :scale-x="scaleX" />
       <EntityOrientationIndicator :entity-id="entityId" />

@@ -19,15 +19,15 @@ export type Animation =
 export type IFxSystem = {
   shakeEntity(
     entity: Entity,
-    opts?: {
-      axis: 'x' | 'y' | 'both';
+    opts: {
+      isBidirectional: boolean;
       amplitude: number;
       duration: number;
     }
   ): Promise<void>;
 
-  shakeScreen(opts?: {
-    axis: 'x' | 'y' | 'both';
+  shakeScreen(opts: {
+    isBidirectional: boolean;
     amplitude: number;
     duration: number;
   }): Promise<void>;
@@ -53,38 +53,39 @@ export type IFxSystem = {
     entity: Entity,
     options: {
       color: string;
-      strength: number;
       alpha: number;
       duration: number;
+      blendMode: 0 | 1 | 2 | 3;
     }
   ): Promise<void>;
 
   tintScreen(options: {
     color: string;
-    strength: number;
     alpha: number;
     duration: number;
+    blendMode: 0 | 1 | 2 | 3;
   }): Promise<void>;
 
   addLightOnEntity(
     entity: Entity,
     options: {
       color: number;
-      strength: number;
       offset: Point;
       alpha: number;
+      radius: number;
       duration: number;
+      blendMode: 0 | 1 | 2 | 3;
     }
   ): Promise<void>;
 
   bloom(options: { strength: number; duration: number }): Promise<void>;
 };
 
-type FxEventsMap = {
+export type FXEventMap = {
   [key in keyof IFxSystem]: Parameters<IFxSystem[key]>;
 };
 
-export class FXSystem extends TypedEventEmitter<FxEventsMap> implements IFxSystem {
+export class FXSystem extends TypedEventEmitter<FXEventMap> implements IFxSystem {
   async addLightOnEntity(...args: Parameters<IFxSystem['addLightOnEntity']>) {
     await this.emitAsync('addLightOnEntity', ...args);
   }
