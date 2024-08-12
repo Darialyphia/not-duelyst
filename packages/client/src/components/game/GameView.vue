@@ -36,6 +36,7 @@ const { settings } = useUserSettings();
   <Tint />
 
   <TargetingOverlay />
+  <Layer :ref="(layer: any) => ui.registerLayer(layer, 'fx')" />
   <Layer :ref="(layer: any) => ui.registerLayer(layer, 'ui')" />
 
   <Fps v-if="isDev" />

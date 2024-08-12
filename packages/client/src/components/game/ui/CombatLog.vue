@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Card, Entity, Player } from '@game/sdk';
 import type { Point3D } from '@game/shared';
+import { vOnClickOutside } from '@vueuse/components';
 
 const { session } = useGame();
 type Token =
@@ -103,10 +104,15 @@ watch(
     });
   }
 );
+
+const close = () => {
+  isCollapsed.value = true;
+};
 </script>
 
 <template>
   <div
+    v-on-click-outside="close"
     class="combat-log combat-log fancy-surface fancy-scrollbar"
     :class="isCollapsed && 'is-collapsed'"
   >

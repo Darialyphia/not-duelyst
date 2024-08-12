@@ -99,7 +99,7 @@ const isHovered = computed(() => ui.hoveredEntity.value?.equals(entity.value));
       </PTransition>
 
       <EntitySimulationResult :entity-id="entityId" />
-      <EntityVFX :entity-id="entityId" />
+      <EntityVFX :entity-id="entityId" :scale-x="scaleX" />
 
       <EntityStats v-if="areStatsDisplayed" :entity-id="entityId" />
     </container>

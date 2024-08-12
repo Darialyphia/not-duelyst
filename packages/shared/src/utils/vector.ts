@@ -88,4 +88,8 @@ export class Vec3 implements Serializable {
 
     return Math.sqrt(diff.x ** 2 + diff.y ** 2 + diff.z ** 2);
   }
+
+  angle() {
+    return Math.atan2(this.y, this.x);
+  }
 }

@@ -27,7 +27,7 @@ export const TARGETING_MODES = {
 } as const;
 
 type TargetingMode = Values<typeof TARGETING_MODES>;
-type LayerName = 'ui' | 'scene';
+type LayerName = 'ui' | 'scene' | 'fx';
 
 export type GameUiContext = {
   isMenuOpened: Ref<boolean>;
@@ -86,7 +86,8 @@ export const useGameUiProvider = (session: GameSession) => {
 
   const layers: Record<LayerName, Ref<Layer | undefined>> = {
     ui: ref(),
-    scene: ref()
+    scene: ref(),
+    fx: ref()
   };
 
   const ambientLightColor = ref(DEFAULT_AMBIENT_LIGHT_COLOR);

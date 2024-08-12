@@ -471,11 +471,16 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   async retaliate(power: number, target: Entity) {
+    console.log(
+      this.card.blueprintId,
+      target.card.blueprintId,
+      this.canRetaliate(target)
+    );
     if (!this.canRetaliate(target)) return;
     await this.emitAsync(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;
 
-    await this.dealDamage(power, target);
+    await this.dealDamage(power, target, true);
     await this.emitAsync(ENTITY_EVENTS.AFTER_RETALIATE, { entity: this, target });
   }
 
@@ -486,7 +491,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     await Promise.all(
       targets.map(async t => {
         await this.dealDamage(this.attack, t, true);
-        await target.retaliate(t.attack, this);
+        await t.retaliate(t.attack, this);
       })
     );
 
@@ -542,7 +547,6 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   removeModifier(modifierId: ModifierId, stacksToRemove = 1) {
-    this.session.logger('remove modifier', modifierId);
     this.modifiers.forEach(mod => {
       if (mod.id !== modifierId) return;
 

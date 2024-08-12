@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { CARD_KINDS, type EntityId } from '@game/sdk';
-import { randomInt, type Nullable } from '@game/shared';
+import { CARD_KINDS, KEYWORDS, type EntityId } from '@game/sdk';
+import { isAxisAligned } from '@game/sdk/src/utils/targeting';
+import { rad2Deg, randomInt, Vec3, waitFor, type Nullable } from '@game/shared';
 import { type FrameObject } from 'pixi.js';
 import { PTransition, EasePresets } from 'vue3-pixi';
 
-const { entityId } = defineProps<{ entityId: EntityId }>();
+const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { session, assets, ui } = useGame();
+const { session, assets, ui, camera } = useGame();
 const entity = useEntity(entityId);
 
 const keywordsWithSprite = computed(() => {
@@ -67,6 +68,44 @@ watchEffect(async () => {
   const spritesheet = await assets.loadSpritesheet('silenced');
   silencedTextures.value = createSpritesheetFrameObject('default', spritesheet);
 });
+
+const blastTextures = ref<FrameObject[]>();
+watchEffect(async () => {
+  const spritesheet = await assets.loadSpritesheet('fx_f3_blast');
+  blastTextures.value = createSpritesheetFrameObject('default', spritesheet);
+});
+
+const isBlastDisplayed = ref(false);
+const blastAngle = ref(0);
+session.on('entity:before_deal_damage', async e => {
+  if (
+    !entity.value ||
+    !e.entity.equals(entity.value) ||
+    !blastTextures.value ||
+    !e.isBattleDamage ||
+    !e.entity.hasKeyword(KEYWORDS.BLAST) ||
+    !isAxisAligned(e.entity.position, e.target.position)
+  ) {
+    return;
+  }
+
+  if (!entity.value) return 0;
+  const originIso = toIso(e.entity.position, camera.angle.value, session.boardSystem);
+  const destIso = toIso(e.target.position, camera.angle.value, session.boardSystem);
+
+  const origin = new Vec3(originIso.isoX, originIso.isoY, originIso.isoZ);
+  const dest = new Vec3(destIso.isoX, destIso.isoY, destIso.isoZ);
+  blastAngle.value = rad2Deg(Vec3.sub(dest, origin).angle());
+  if (scaleX === -1) {
+    blastAngle.value = (blastAngle.value + 180) % 360;
+  }
+
+  await waitFor(500);
+  isBlastDisplayed.value = true;
+  const duration = blastTextures.value?.reduce((total, frame) => total + frame.time, 0);
+  await waitFor(duration);
+  isBlastDisplayed.value = false;
+});
 </script>
 
 <template>
@@ -112,4 +151,18 @@ watchEffect(async () => {
       @complete="playedCardTextures = null"
     />
   </PTransition>
+
+  <animated-sprite
+    v-if="blastTextures && isBlastDisplayed"
+    :ref="(sprite: any) => ui.assignLayer(sprite, 'fx')"
+    :textures="blastTextures"
+    :anchor-x="0"
+    :anchor-y="0"
+    event-mode="none"
+    playing
+    loop
+    :scale-x="scaleX"
+    :angle="blastAngle"
+    :y="-CELL_HEIGHT * 0.6"
+  />
 </template>

@@ -47,3 +47,9 @@ export const objectKeys = <T extends AnyObject>(obj: T) =>
 export const padArray = <T>(arr: T[], len: number, fill: T) => {
   return arr.concat(Array(len).fill(fill)).slice(0, len);
 };
+
+export const waitFor = (ms: number) => {
+  return new Promise<void>(res => {
+    setTimeout(res, ms);
+  });
+};
