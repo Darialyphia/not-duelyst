@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { CARD_KINDS, KEYWORDS, type EntityId } from '@game/sdk';
+import { CARD_KINDS, Entity, KEYWORDS, type EntityId } from '@game/sdk';
 import { isAxisAligned } from '@game/sdk/src/utils/targeting';
 import { rad2Deg, randomInt, Vec3, waitFor, type Nullable } from '@game/shared';
 import { type FrameObject } from 'pixi.js';
 import { PTransition, EasePresets } from 'vue3-pixi';
 
-const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
+const { entityId } = defineProps<{ entityId: EntityId }>();
 
 const { session, assets, ui, camera } = useGame();
 const entity = useEntity(entityId);
@@ -76,7 +76,34 @@ watchEffect(async () => {
 });
 
 const isBlastDisplayed = ref(false);
+const isVerticalBlast = ref(false);
 const blastAngle = ref(0);
+const blastScaleX = computed(() => {
+  let value = entity.value.player.isPlayer1 ? 1 : -1;
+  if (camera.angle.value === 90 || camera.angle.value === 180) {
+    value *= -1;
+  }
+
+  return value;
+});
+
+const getBlastAngle = (attacker: Entity, target: Entity) => {
+  const originIso = toIso(attacker.position, camera.angle.value, session.boardSystem);
+  const destIso = toIso(target.position, camera.angle.value, session.boardSystem);
+
+  const origin = new Vec3(originIso.isoX, originIso.isoY, originIso.isoZ);
+  const dest = new Vec3(destIso.isoX, destIso.isoY, destIso.isoZ);
+  let angle = rad2Deg(Vec3.sub(dest, origin).angle());
+  if (blastScaleX.value < 0) {
+    angle = (angle + 180) % 360;
+  }
+
+  return angle;
+};
+blastAngle.value = getBlastAngle(
+  entity.value.player.general,
+  entity.value.player.opponent.general
+);
 session.on('entity:before_deal_damage', async e => {
   if (
     !entity.value ||
@@ -90,16 +117,8 @@ session.on('entity:before_deal_damage', async e => {
   }
 
   if (!entity.value) return 0;
-  const originIso = toIso(e.entity.position, camera.angle.value, session.boardSystem);
-  const destIso = toIso(e.target.position, camera.angle.value, session.boardSystem);
-
-  const origin = new Vec3(originIso.isoX, originIso.isoY, originIso.isoZ);
-  const dest = new Vec3(destIso.isoX, destIso.isoY, destIso.isoZ);
-  blastAngle.value = rad2Deg(Vec3.sub(dest, origin).angle());
-  if (scaleX === -1) {
-    blastAngle.value = (blastAngle.value + 180) % 360;
-  }
-
+  blastAngle.value = getBlastAngle(e.entity, e.target);
+  isVerticalBlast.value = e.entity.position.x === e.target.position.x;
   await waitFor(500);
   isBlastDisplayed.value = true;
   const duration = blastTextures.value?.reduce((total, frame) => total + frame.time, 0);
@@ -161,8 +180,9 @@ session.on('entity:before_deal_damage', async e => {
     event-mode="none"
     playing
     loop
-    :scale-x="scaleX"
+    :x="10"
+    :scale-x="isVerticalBlast ? blastScaleX * 0.75 : blastScaleX"
     :angle="blastAngle"
-    :y="-CELL_HEIGHT * 0.6"
+    :y="isVerticalBlast ? CELL_HEIGHT * 0.5 : -CELL_HEIGHT * 0.25"
   />
 </template>

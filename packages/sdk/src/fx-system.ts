@@ -12,7 +12,8 @@ export type Animation =
   | 'active'
   | 'caststart'
   | 'castloop'
-  | 'castend';
+  | 'castend'
+  | 'projectile';
 
 export type FXSystem = {
   moveEntity(

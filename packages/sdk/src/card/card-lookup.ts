@@ -105,6 +105,9 @@ import { neutralDioltas } from './cards/neutral/dioltas';
 import { f3OrbWeaver } from './cards/faction_3/orb-weaver';
 import { f3Pyromancer } from './cards/faction_3/pyromancer';
 import { f3FusionBanshee } from './cards/faction_3/fusion-banshee';
+import { f3StarfireScarab } from './cards/faction_3/starfire-scarab';
+import { neutralRedSynja } from './cards/neutral/red-synja';
+import { neutralLuxIgnis } from './cards/neutral/lux-ignis';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -184,6 +187,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f3OrbWeaver,
   f3Pyromancer,
   f3FusionBanshee,
+  f3StarfireScarab,
 
   neutralHealingMystic,
   neutralRiftWalker,
@@ -213,7 +217,9 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralMiniJax,
   neutralJaxTruesight,
   neutralTombstone,
-  neutralDioltas
+  neutralDioltas,
+  neutralRedSynja,
+  neutralLuxIgnis
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

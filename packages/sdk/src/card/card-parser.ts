@@ -52,14 +52,21 @@ export const getEffectModifier = <T extends GameEvent>({
 }) => {
   return {
     getEntityModifier: (ctx: EffectCtx) => {
-      let n = 0;
+      let occurences = 0;
       const resetCount = () => {
-        n = 0;
+        occurences = 0;
       };
       ctx.session.on('player:turn_start', resetCount);
       const cleanups: Array<() => void> = [
         () => ctx.session.off('player:turn_start', resetCount)
       ];
+
+      const INFINITE_LOOP_PREVENTION_MAX_OCCURENCES = 100;
+      const maxOccurences = match(frequency)
+        .with({ type: 'once' }, () => 1)
+        .with({ type: 'n_per_turn' }, frequency => frequency.params.count)
+        .with({ type: 'always' }, () => INFINITE_LOOP_PREVENTION_MAX_OCCURENCES)
+        .exhaustive();
 
       return createEntityModifier({
         source: ctx.card,
@@ -68,10 +75,9 @@ export const getEffectModifier = <T extends GameEvent>({
         mixins: [
           modifierGameEventMixin({
             eventName,
-            once: frequency.type === 'once',
             async listener(event) {
               if (!filter(ctx, event, eventName)) return;
-              if (frequency.type === 'n_per_turn' && frequency.params.count < n) return;
+              if (occurences >= maxOccurences) return;
 
               for (const action of actions) {
                 const [eventPayload] = event;
@@ -80,7 +86,7 @@ export const getEffectModifier = <T extends GameEvent>({
                   isObject(eventPayload) ? eventPayload : {},
                   eventName
                 );
-                n++;
+                occurences++;
                 cleanups.push(cleanup);
               }
             }
@@ -146,11 +152,12 @@ export const parseSerializedBlueprintEffect = (
       {
         async onPlay(ctx: EffectCtx) {
           const actions = config.actions.map(parseCardAction);
-          const cleanups: Array<() => void> = [];
           for (const action of actions) {
-            cleanups.push(await action(ctx, {}));
+            await action(ctx, {});
           }
-          return () => cleanups.forEach(c => c());
+          return () => {
+            return;
+          };
         }
       }
     ])
