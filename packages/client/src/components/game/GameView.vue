@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { waitFor } from '@game/shared';
 import { diffuseGroup, normalGroup, lightGroup } from '@pixi/lights';
-import { BLEND_MODES } from 'pixi.js';
-import { useScreen, useStage } from 'vue3-pixi';
+import { BLEND_MODES, Point } from 'pixi.js';
+import { onTick, useApplication, useScreen, useStage } from 'vue3-pixi';
+import { AdvancedBloomFilter } from '@pixi/filter-advanced-bloom';
+import { ShockwaveFilter } from '@pixi/filter-shockwave';
 
-const { ui } = useGame();
+const { ui, camera } = useGame();
 const screen = useScreen();
+const app = useApplication();
 
 useGameControls();
 const cells = useCellsViewModels();
@@ -42,6 +45,62 @@ useVFX('shakeScreen', async ({ isBidirectional, amplitude, duration }) => {
   });
 
   await waitFor(duration);
+});
+
+const bloom = new AdvancedBloomFilter();
+bloom.brightness = 1;
+useVFX('bloomScreen', async ({ strength, duration }) => {
+  stage.value.filters ??= [];
+  stage.value.filters.push(bloom);
+  bloom.threshold = 0.9;
+  bloom.bloomScale = 0;
+
+  gsap.to(bloom, {
+    threshold: 0.4,
+    bloomScale: strength,
+    duration: 0.4
+  });
+  bloom.threshold = 0.4;
+
+  await waitFor(duration);
+  gsap.to(bloom, {
+    threshold: 0.9,
+    bloomScale: 0,
+    duration: 0.4,
+    onComplete() {
+      stage.value.filters?.splice(stage.value.filters.indexOf(bloom), 1);
+    }
+  });
+});
+
+const shockwave = new ShockwaveFilter();
+shockwave.speed = 500;
+shockwave.amplitude = 30;
+shockwave.brightness = 1;
+shockwave.center = new Point(screen.value.width / 2, screen.value.height / 2);
+
+let shockwaveDuration = 2.5;
+onTick(() => {
+  shockwave.time += app.value.ticker.elapsedMS / 1000;
+  shockwave.time %= shockwaveDuration;
+});
+
+useVFX('shockwaveOnScreenCenter', async ({ offset, duration, radius, wavelength }) => {
+  shockwave.center = new Point(
+    screen.value.width / 2 + offset.x,
+    screen.value.height / 2 + offset.y
+  );
+  shockwave.wavelength = wavelength;
+  shockwave.radius = radius * camera.viewport.value!.scale.x;
+
+  shockwave.time = 0;
+  shockwaveDuration = duration / 1000;
+
+  stage.value.filters ??= [];
+  stage.value.filters.push(shockwave);
+
+  await waitFor(duration);
+  stage.value.filters?.splice(stage.value.filters.indexOf(shockwave), 1);
 });
 </script>
 

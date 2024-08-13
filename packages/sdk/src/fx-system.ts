@@ -78,7 +78,25 @@ export type IFxSystem = {
     }
   ): Promise<void>;
 
-  bloom(options: { strength: number; duration: number }): Promise<void>;
+  bloomScreen(options: { strength: number; duration: number }): Promise<void>;
+  bloomEntity(
+    entity: Entity,
+    options: { strength: number; duration: number }
+  ): Promise<void>;
+  shockwaveOnEntity(
+    entity: Entity,
+    options: {
+      radius: number;
+      duration: number;
+      wavelength: number;
+    }
+  ): Promise<void>;
+  shockwaveOnScreenCenter(options: {
+    offset: Point;
+    radius: number;
+    duration: number;
+    wavelength: number;
+  }): Promise<void>;
 };
 
 export type FXEventMap = {
@@ -89,8 +107,11 @@ export class FXSystem extends TypedEventEmitter<FXEventMap> implements IFxSystem
   async addLightOnEntity(...args: Parameters<IFxSystem['addLightOnEntity']>) {
     await this.emitAsync('addLightOnEntity', ...args);
   }
-  async bloom(...args: Parameters<IFxSystem['bloom']>) {
-    await this.emitAsync('bloom', ...args);
+  async bloomScreen(...args: Parameters<IFxSystem['bloomScreen']>) {
+    await this.emitAsync('bloomScreen', ...args);
+  }
+  async bloomEntity(...args: Parameters<IFxSystem['bloomEntity']>) {
+    await this.emitAsync('bloomEntity', ...args);
   }
   async playSfxOnEntity(...args: Parameters<IFxSystem['playSfxOnEntity']>) {
     await this.emitAsync('playSfxOnEntity', ...args);
@@ -109,5 +130,15 @@ export class FXSystem extends TypedEventEmitter<FXEventMap> implements IFxSystem
   }
   async tintScreen(...args: Parameters<IFxSystem['tintScreen']>) {
     await this.emitAsync('tintScreen', ...args);
+  }
+  async shockwaveOnEntity(
+    ...args: Parameters<IFxSystem['shockwaveOnEntity']>
+  ): Promise<void> {
+    await this.emitAsync('shockwaveOnEntity', ...args);
+  }
+  async shockwaveOnScreenCenter(
+    ...args: Parameters<IFxSystem['shockwaveOnScreenCenter']>
+  ): Promise<void> {
+    await this.emitAsync('shockwaveOnScreenCenter', ...args);
   }
 }

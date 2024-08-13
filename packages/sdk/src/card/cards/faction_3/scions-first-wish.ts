@@ -56,19 +56,46 @@ export const f3ScionsFirstWish = defineSerializedBlueprint({
                 }
               },
               {
-                type: 'addLightOnEntity',
+                type: 'bloomScreen',
                 params: {
-                  alpha: 0.8,
-                  color: 0xff0000,
-                  duration: 2000,
-                  blendMode: 1,
+                  duration: 1000,
+                  strength: 0.6
+                }
+              },
+              {
+                type: 'shockwaveOnScreenCenter',
+                params: {
+                  duration: 500,
                   offset: { x: 0, y: 0 },
-                  radius: 80,
-                  entity: {
-                    candidates: [
-                      [{ type: 'is_manual_target', params: { index: 0, not: false } }]
-                    ]
-                  }
+                  radius: 800,
+                  wavelength: 200
+                }
+              },
+              {
+                type: 'shockwaveOnScreenCenter',
+                params: {
+                  duration: 500,
+                  offset: { x: 0, y: 0 },
+                  radius: 800,
+                  wavelength: 400
+                }
+              },
+              {
+                type: 'shockwaveOnScreenCenter',
+                params: {
+                  duration: 500,
+                  offset: { x: 0, y: 0 },
+                  radius: 1200,
+                  wavelength: 400
+                }
+              },
+              {
+                type: 'shockwaveOnScreenCenter',
+                params: {
+                  duration: 500,
+                  offset: { x: 0, y: 0 },
+                  radius: 1200,
+                  wavelength: 400
                 }
               }
             ]

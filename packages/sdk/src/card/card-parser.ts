@@ -125,6 +125,40 @@ const playVFXSequence = (
             .with({ type: 'tintScreen' }, step => {
               return ctx.session.fxSystem.tintScreen(step.params);
             })
+            .with({ type: 'bloomEntity' }, step => {
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.bloomEntity(entity, step.params)
+                )
+              );
+            })
+            .with({ type: 'bloomScreen' }, step => {
+              return ctx.session.fxSystem.bloomScreen(step.params);
+            })
+            .with({ type: 'shockwaveOnEntity' }, step => {
+              const entities = getUnits({
+                ...ctx,
+                event,
+                eventName,
+                conditions: step.params.entity
+              });
+
+              return Promise.all(
+                entities.map(entity =>
+                  ctx.session.fxSystem.shockwaveOnEntity(entity, step.params)
+                )
+              );
+            })
+            .with({ type: 'shockwaveOnScreenCenter' }, step => {
+              return ctx.session.fxSystem.shockwaveOnScreenCenter(step.params);
+            })
             .exhaustive();
         }
       }

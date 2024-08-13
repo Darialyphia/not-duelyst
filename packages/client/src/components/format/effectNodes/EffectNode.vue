@@ -95,7 +95,7 @@ const executionContextOptions = computed(() => {
     <ul>
       <li v-for="(action, index) in effect.actions" :key="index" class="action">
         <ActionNode v-model="effect.actions[index]" :triggers="effect.triggers" />
-        <UiButton class="error-button" @click="effect.actions.splice(index, 1)">
+        <UiButton class="error-button mb-8" @click="effect.actions.splice(index, 1)">
           Remove action
         </UiButton>
       </li>
@@ -117,3 +117,12 @@ const executionContextOptions = computed(() => {
     </UiButton>
   </div>
 </template>
+
+<style scoped lang="postcss">
+h4 {
+  margin-block: var(--size-2);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
+  color: var(--primary);
+}
+</style>

@@ -16,7 +16,6 @@ import type { Trigger, TriggerFrequency } from './card-action-triggers';
 import type { Amount } from './helpers/amount';
 import type { CardBlueprintId } from './card';
 import type { KeywordId } from '../utils/keywords';
-import type { FXSystem } from '../fx-system';
 import type { Point } from '@game/shared';
 
 export type Filter<T> = { candidates: T[][]; random?: boolean };
@@ -561,6 +560,39 @@ export type VFXStep =
       };
     }
   | {
+      type: 'bloomScreen';
+      params: {
+        strength: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'bloomEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        strength: number;
+        duration: number;
+      };
+    }
+  | {
+      type: 'shockwaveOnEntity';
+      params: {
+        entity: Filter<UnitCondition>;
+        radius: number;
+        duration: number;
+        wavelength: number;
+      };
+    }
+  | {
+      type: 'shockwaveOnScreenCenter';
+      params: {
+        radius: number;
+        duration: number;
+        wavelength: number;
+        offset: Point;
+      };
+    }
+  | {
       type: 'wait';
       params: {
         duration: number;
@@ -591,8 +623,8 @@ export type WidenedGenericCardEffect = {
       params: any;
     }>;
     actions: any;
-    vfx?: VFXSequence;
   };
+  vfx?: VFXSequence;
 };
 
 export type ExecutionContext = GenericCardEffect['config']['executionContext'];

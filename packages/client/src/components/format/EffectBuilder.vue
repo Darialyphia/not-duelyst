@@ -13,7 +13,13 @@ useCellConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
 useGlobalConditionsProvider(ref({}));
 
-const internal = ref(structuredClone(toRaw(effect.value)));
+const copy = () => {
+  const raw = structuredClone(toRaw(effect.value));
+  if (!raw.vfx) raw.vfx = { tracks: [] };
+
+  return raw;
+};
+const internal = ref(copy());
 watchEffect(() => {
   effect.value = internal.value;
 });
@@ -21,12 +27,13 @@ watchEffect(() => {
 watch(
   () => blueprint.id,
   () => {
-    internal.value = effect.value;
+    internal.value = copy();
   }
 );
 
-const isDebugOpen = ref(false);
 const id = useId();
+
+const isVFXOpened = ref(false);
 </script>
 
 <template>
@@ -41,17 +48,11 @@ const id = useId();
     </h4>
     <UiTextInput :id="`${id}-text`" v-model="internal.text" class="mb-3" />
     <EffectNode v-model="internal.config" />
-
-    <CollapsibleRoot v-model:open="isDebugOpen">
-      <div style="display: flex; align-items: center; justify-content: space-between">
-        <CollapsibleTrigger as-child>
-          <UiButton class="ghost-button" type="button">Debug</UiButton>
-        </CollapsibleTrigger>
-      </div>
-      <CollapsibleContent as="pre" class="debug fancy-scrollbar">
-        {{ internal }}
-      </CollapsibleContent>
-    </CollapsibleRoot>
+    <h4>VFX</h4>
+    <UiButton class="primary-button" @click="isVFXOpened = true">Edit VFX</UiButton>
+    <UiBottomDrawer v-model:is-opened="isVFXOpened" title="Edit VFX">
+      <VFXEditor v-if="effect.vfx" v-model="effect.vfx" />
+    </UiBottomDrawer>
   </div>
 </template>
 

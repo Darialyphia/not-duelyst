@@ -38,6 +38,7 @@
     "@pixi/filter-drop-shadow": "^5.2.0",
     "@pixi/filter-glow": "^5.2.1",
     "@pixi/filter-outline": "^5.2.0",
+    "@pixi/filter-shockwave": "^5.1.1",
     "@pixi/layers": "^2.1.0",
     "@pixi/lights": "^4.1.0",
     "@pixi/sound": "^5.2.2",

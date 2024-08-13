@@ -5,6 +5,7 @@ import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { OutlineFilter } from '@pixi/filter-outline';
+import { ShockwaveFilter } from '@pixi/filter-shockwave';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
 import { waitFor, type Nullable } from '@game/shared';
 

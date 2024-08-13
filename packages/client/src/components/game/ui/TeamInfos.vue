@@ -12,7 +12,7 @@ const emotePopoverPlayer = ref<0 | 1>(0);
 
 // @TODO get emotes from user collection when it's implemented
 // in the meantime let's just hardcode it
-const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
+const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
 </script>
 
 <template>
@@ -121,7 +121,12 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
       </div>
 
       <Transition mode="out-in">
-        <img v-if="p1Emote" :key="p1Emote" :src="`/assets/emotes/${p1Emote}.png`" />
+        <img
+          v-if="p1Emote"
+          :key="p1Emote"
+          :src="`/assets/emotes/${p1Emote}.png`"
+          class="emote"
+        />
       </Transition>
     </div>
 
@@ -293,7 +298,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
   width: 100px;
   height: 100px;
   background-position: 0 8px;
-  /* 
+  /*
   mask-image: radial-gradient(
     circle at center,
     black,
@@ -434,7 +439,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
   grid-template-columns: repeat(4, 1fr);
   gap: var(--size-5);
 
-  max-height: var(--size-13);
+  max-height: 99999px;
   padding: var(--size-4);
 
   color: black;
@@ -474,13 +479,16 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy'];
   opacity: 0;
 }
 
-img.v-enter-active,
-img.v-leave-active {
+.emote {
+  align-self: center;
+}
+.emote.v-enter-active,
+.emote.v-leave-active {
   transition: all 0.3s ease-in;
 }
 
-img.v-enter-from,
-img.v-leave-to {
+.emote.v-enter-from,
+.emote.v-leave-to {
   transform: scale(0);
   opacity: 0;
 }

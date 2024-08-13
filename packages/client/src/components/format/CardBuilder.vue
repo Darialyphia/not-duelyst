@@ -459,7 +459,13 @@ watchEffect(() => {
         <UiButton
           class="primary-button"
           left-icon="material-symbols:add"
-          @click="blueprint.effects.push({ text: 'Your effect Text', config: {} })"
+          @click="
+            blueprint.effects.push({
+              text: 'Your effect Text',
+              config: {},
+              vfx: { tracks: [] }
+            })
+          "
         >
           New Effect
         </UiButton>
