@@ -10,7 +10,7 @@ import type { Filter, UnitCondition } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const groups = defineModel<Filter<UnitCondition>>({ required: true });
-
+const { hideRandom } = defineProps<{ hideRandom?: boolean }>();
 const unitDict = useUnitConditions();
 
 const unitOptions = computed(

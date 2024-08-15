@@ -54,6 +54,7 @@
     "@vueuse/nuxt": "^10.6.1",
     "@vueuse/router": "^10.9.0",
     "@vueuse/sound": "^2.0.1",
+    "@wattanx/vue-color-picker": "^1.1.1",
     "chart.js": "^4.4.3",
     "convex": "^1.6.3",
     "css-tree": "^2.3.1",

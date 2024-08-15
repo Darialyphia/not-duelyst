@@ -50,9 +50,9 @@ const isVFXOpened = ref(false);
     <EffectNode v-model="internal.config" />
     <h4>VFX</h4>
     <UiButton class="primary-button" @click="isVFXOpened = true">Edit VFX</UiButton>
-    <UiBottomDrawer v-model:is-opened="isVFXOpened" title="Edit VFX">
+    <UiDrawer v-model:is-opened="isVFXOpened" title="Edit VFX" direction="bottom">
       <VFXEditor v-if="effect.vfx" v-model="effect.vfx" />
-    </UiBottomDrawer>
+    </UiDrawer>
   </div>
 </template>
 

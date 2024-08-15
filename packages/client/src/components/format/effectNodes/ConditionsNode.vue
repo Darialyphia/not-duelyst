@@ -2,6 +2,7 @@
 import type { Filter } from '@game/sdk';
 
 const groups = defineModel<Filter<T>>({ required: true });
+const { hideRandom } = defineProps<{ hideRandom?: boolean }>();
 </script>
 
 <template>
@@ -51,7 +52,7 @@ const groups = defineModel<Filter<T>>({ required: true });
     >
       Add a condtion group
     </UiButton>
-    <div class="flex items-center gap-3 mt-2 mb-5">
+    <div v-if="!hideRandom" class="flex items-center gap-3 mt-2 mb-5">
       <UiSwitch v-model:checked="groups.random" />
       Pick a random candidate from the results
     </div>

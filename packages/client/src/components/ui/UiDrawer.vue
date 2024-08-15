@@ -8,12 +8,14 @@ const {
   title,
   style = {},
   closable = true,
-  usePortal = true
+  usePortal = true,
+  direction
 } = defineProps<{
   title?: string;
   closable?: boolean;
   style?: StyleProp<ModalStyleVariables>;
   usePortal?: boolean;
+  direction: 'top' | 'bottom' | 'left' | 'right';
 }>();
 
 const Content = createReusableTemplate();
@@ -29,6 +31,7 @@ const Content = createReusableTemplate();
       <Transition appear>
         <DialogContent
           class="modal-content"
+          :class="direction"
           :style="style"
           @escape-key-down="
             e => {
@@ -46,12 +49,12 @@ const Content = createReusableTemplate();
             }
           "
         >
-          <div class="fancy-surface">
+          <div class="fancy-surface h-full">
             <DialogTitle v-if="title">
               <slot name="title" :title="title">{{ title }}</slot>
             </DialogTitle>
 
-            <div class="fancy-scrollbar">
+            <div class="fancy-scrollbar py-2">
               <slot />
             </div>
           </div>
@@ -90,13 +93,41 @@ const Content = createReusableTemplate();
 .modal-content {
   position: fixed;
   z-index: 2;
-  bottom: 0%;
-  left: 0;
-
   container-type: inline-size;
   overflow-y: hidden;
 
-  width: 100%;
+  &.bottom {
+    --transform: translateY(100%);
+
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 60dvh;
+  }
+  &.top {
+    --transform: translateY(-100%);
+
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 60dvh;
+  }
+  &.left {
+    --transform: translateX(-100%);
+
+    top: 0;
+    left: 0;
+    width: var(--size-sm);
+    height: 100dvh;
+  }
+  &.right {
+    --transform: translateX(100%);
+
+    top: 0;
+    right: 0;
+    width: var(--size-sm);
+    height: 100dvh;
+  }
 
   &:focus,
   &:focus-visible {
@@ -109,7 +140,6 @@ const Content = createReusableTemplate();
     display: grid;
     grid-template-rows: auto 1fr;
 
-    height: 60dvh;
     padding-inline: 0;
 
     > * {
@@ -128,7 +158,7 @@ const Content = createReusableTemplate();
   }
 
   &:is(.v-enter-from, .v-leave-to) {
-    transform: translateY(100%);
+    transform: var(--transform);
     opacity: 0;
   }
 }

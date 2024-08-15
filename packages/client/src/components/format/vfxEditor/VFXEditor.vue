@@ -2,44 +2,68 @@
 import type { VFXSequence } from '@game/sdk/src/card/card-effect';
 
 const sequence = defineModel<VFXSequence>({ required: true });
+const MAX_TRACKS = 5;
 </script>
 
 <template>
   <div class="vfx-editor">
-    <aside>Nodes</aside>
-    <div>
-      <div v-for="(_, index) in sequence.tracks" :key="index" class="flex gap-3 my-3">
-        <UiIconButton
-          name="material-symbols:delete-outline"
-          class="ghost-error-button shrink-0"
-          @click="
-            () => {
-              sequence.tracks.splice(index, 1);
-            }
-          "
-        />
-        <VFXTrack v-model="sequence.tracks[index]" />
+    <div class="timeline">
+      <div v-for="i in 20" :key="i">
+        <span>{{ ((i - 1) * 500) / 1000 }}s</span>
       </div>
-      <UiButton
-        left-icon="material-symbols:add"
-        class="subtle-button"
-        @click="
-          sequence.tracks.push({
-            filter: { candidates: [] },
-            steps: []
-          })
-        "
-      >
-        Add Track
-      </UiButton>
     </div>
+    <div v-for="(_, index) in sequence.tracks" :key="index" class="track">
+      <UiIconButton
+        name="material-symbols:delete-outline"
+        class="ghost-error-button shrink-0"
+        @click="
+          () => {
+            sequence.tracks.splice(index, 1);
+          }
+        "
+      />
+      <VFXTrack v-model="sequence.tracks[index]" />
+    </div>
+    <UiButton
+      left-icon="material-symbols:add"
+      class="subtle-button"
+      :disabled="sequence.tracks.length >= MAX_TRACKS"
+      @click="
+        sequence.tracks.push({
+          filter: { candidates: [] },
+          steps: []
+        })
+      "
+    >
+      Add Track
+    </UiButton>
+    <p v-if="sequence.tracks.length === MAX_TRACKS" class="text-0 c-orange-5">
+      Cannot add more tracks
+    </p>
   </div>
 </template>
 
 <style scoped lang="postcss">
-.vfx-editor {
+.timeline {
   display: grid;
-  grid-template-columns: minmax(var(--size-13), auto) 1fr;
-  gap: var(--size-4);
+  grid-template-columns: repeat(20, 1fr);
+  padding-top: var(--size-6);
+  padding-left: var(--size-8);
+  > div {
+    border-left: solid var(--border-size-1) var(--border);
+
+    > span {
+      transform: translateY(-100%) translateX(-15%);
+      display: block;
+    }
+  }
+}
+.track {
+  display: flex;
+  gap: var(--size-3);
+
+  & + .track {
+    margin-block: var(--size-3);
+  }
 }
 </style>

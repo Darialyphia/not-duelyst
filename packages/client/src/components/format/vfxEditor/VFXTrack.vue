@@ -1,22 +1,79 @@
 <script setup lang="ts">
+import {
+  AddLightVFXNode,
+  BloomEntityVFXNode,
+  BloomVFXNode,
+  PlaySfxOnEntityVFXNode,
+  PlaySfxVFXNode,
+  ShakeEntityVFXNode,
+  ShakeVFXNode,
+  ShockwaveEntityVFXNode,
+  ShockwaveVFXNode,
+  TintEntityVFXNode,
+  TintVFXNode,
+  WaitVFXNode
+} from '#components';
 import type { VFXSequenceTrack, VFXStep } from '@game/sdk/src/card/card-effect';
 import type { Nullable } from '@game/shared';
 
 const track = defineModel<VFXSequenceTrack>({ required: true });
 
-const stepColors: Record<VFXStep['type'], string> = {
-  addLightOnEntity: 'var(--red-10)',
-  bloomEntity: 'var(--orange-10)',
-  bloomScreen: 'var(--yellow-10)',
-  playSfxOnEntity: 'var(--green-10)',
-  playSfxOnScreenCenter: 'var(--teal-10)',
-  shakeEntity: 'var(--cyan-10)',
-  shakeScreen: 'var(--blue-10)',
-  shockwaveOnEntity: 'var(--indigo-10)',
-  shockwaveOnScreenCenter: 'var(--violet-10)',
-  tintEntity: 'var(--purple-10)',
-  tintScreen: 'var(--pink-9)',
-  wait: 'var(--gray-8)'
+const stepsDict: Record<
+  VFXStep['type'],
+  { label: string; color: string; component: Component }
+> = {
+  addLightOnEntity: {
+    label: 'Add light on a unit',
+    color: 'var(--red-10)',
+    component: AddLightVFXNode
+  },
+  bloomEntity: {
+    label: 'Add bloom on a unit',
+    color: 'var(--orange-10)',
+    component: BloomEntityVFXNode
+  },
+  bloomScreen: {
+    label: 'Add bloom on the screen',
+    color: 'var(--yellow-10)',
+    component: BloomVFXNode
+  },
+  playSfxOnEntity: {
+    label: 'Play fx on unit',
+    color: 'var(--green-10)',
+    component: PlaySfxOnEntityVFXNode
+  },
+  playSfxOnScreenCenter: {
+    label: 'Add bloom on screen',
+    color: 'var(--teal-10)',
+    component: PlaySfxVFXNode
+  },
+  shakeEntity: {
+    label: 'Shake a unit',
+    color: 'var(--cyan-10)',
+    component: ShakeEntityVFXNode
+  },
+  shakeScreen: {
+    label: 'Shake screen',
+    color: 'var(--blue-10)',
+    component: ShakeVFXNode
+  },
+  shockwaveOnEntity: {
+    label: 'Play shockwave on a unit',
+    color: 'var(--indigo-10)',
+    component: ShockwaveEntityVFXNode
+  },
+  shockwaveOnScreenCenter: {
+    label: 'Play shockwave on screen',
+    color: 'var(--violet-10)',
+    component: ShockwaveVFXNode
+  },
+  tintEntity: {
+    label: 'Tint a unit',
+    color: 'var(--purple-10)',
+    component: TintEntityVFXNode
+  },
+  tintScreen: { label: 'Tint screen', color: 'var(--pink-9)', component: TintVFXNode },
+  wait: { label: 'Wait', color: 'var(--gray-8)', component: WaitVFXNode }
 };
 
 const MAX_DURATION = 10_000;
@@ -29,7 +86,9 @@ const trackDuration = computed(() =>
 const trackElement = ref<HTMLElement>();
 const trackRect = useElementBounding(trackElement);
 
+const isResizing = ref(false);
 const startResize = (index: number, e: MouseEvent) => {
+  isResizing.value = true;
   const el = (e.target as HTMLElement).parentElement!;
   const rect = el.getBoundingClientRect();
 
@@ -48,6 +107,7 @@ const startResize = (index: number, e: MouseEvent) => {
   };
 
   const onMouseleave = () => {
+    isResizing.value = false;
     window.removeEventListener('mousemove', onMousemove);
     window.removeEventListener('mouseup', onMouseleave);
   };
@@ -68,40 +128,96 @@ const onDrop = (newIndex: number) => {
 const onDragStart = (index: number) => {
   draggedStepIndex.value = index;
 };
+
+const isAddStepModalOpened = ref(false);
+
+const selectedStepIndex = ref<Nullable<number>>(null);
+const selectedStep = computed(() =>
+  selectedStepIndex.value ? track.value.steps[selectedStepIndex.value] : null
+);
+const isSettingsDrawerOpened = computed({
+  get() {
+    return !!selectedStepIndex.value;
+  },
+  set() {
+    selectedStepIndex.value = null;
+  }
+});
 </script>
 
 <template>
-  <div
-    ref="trackElement"
-    class="track"
-    :class="{
-      invalid: trackDuration > MAX_DURATION
-    }"
-  >
+  <div class="flex gap-2 flex-1 items-center">
     <div
-      v-for="(step, index) in track.steps"
-      :key="index"
-      class="step"
-      :class="{ 'dragged-over': dragHoveredIndex === index }"
-      :style="{
-        '--bg': stepColors[step.type],
-        '--width-percent': (step.params.duration * 100) / MAX_DURATION
+      ref="trackElement"
+      class="track"
+      :class="{
+        invalid: trackDuration > MAX_DURATION
       }"
-      draggable="true"
-      @dragstart="onDragStart(index)"
-      @drop.prevent="onDrop(index)"
-      @dragover.prevent="dragHoveredIndex = index"
-      @dragenter="dragHoveredIndex = index"
-      @dragleave="dragHoveredIndex = null"
     >
-      {{ step.type }}
-
       <div
-        class="resize-handle"
-        @click.stop
-        @mousedown.stop="startResize(index, $event)"
-      />
+        v-for="(step, index) in track.steps"
+        :key="index"
+        class="step"
+        :class="{ 'dragged-over': dragHoveredIndex === index }"
+        :style="{
+          '--bg': stepsDict[step.type].color,
+          '--width-percent': (step.params.duration * 100) / MAX_DURATION
+        }"
+        :draggable="!isResizing"
+        @dragstart="onDragStart(index)"
+        @drop.prevent="onDrop(index)"
+        @dragover.prevent="dragHoveredIndex = index"
+        @dragenter="dragHoveredIndex = index"
+        @dragleave="dragHoveredIndex = null"
+        @dragend="dragHoveredIndex = null"
+        @dblclick="selectedStepIndex = index"
+      >
+        {{ stepsDict[step.type].label }}
+
+        <div
+          v-if="!['playSfcOnEntity', 'playSfxOnScreenCenter'].includes(step.type)"
+          class="resize-handle"
+          @mousedown="startResize(index, $event)"
+        />
+      </div>
     </div>
+    <UiIconButton
+      name="material-symbols:add"
+      class="primary-button"
+      @click="isAddStepModalOpened = true"
+    />
+
+    <UiModal v-model:is-opened="isAddStepModalOpened" title="Add Step to track">
+      <ul class="steps-list">
+        <li v-for="(step, key) in stepsDict" :key="key">
+          <button
+            class="aspect-square"
+            :style="{
+              '--bg': step.color
+            }"
+            @click="
+              () => {
+                track.steps.push({
+                  type: key,
+                  params: { duration: 500 } as any
+                });
+                isAddStepModalOpened = false;
+              }
+            "
+          >
+            {{ step.label }}
+          </button>
+        </li>
+      </ul>
+    </UiModal>
+
+    <UiDrawer v-model:is-opened="isSettingsDrawerOpened" direction="right">
+      <component
+        :is="stepsDict[selectedStep.type].component"
+        v-if="selectedStep"
+        v-model="selectedStep"
+      />
+    </UiDrawer>
   </div>
 </template>
 
@@ -130,9 +246,11 @@ const onDragStart = (index: number) => {
 
   padding: var(--size-2) var(--size-1);
 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   background-color: var(--bg);
   border: solid var(--border-size-1) var(--border);
-
   &.dragged-over {
     opacity: 0.5;
     filter: brightness(120%);
@@ -152,5 +270,20 @@ const onDragStart = (index: number) => {
   background-color: inherit;
   border-right: solid var(--border-size-2) var(--border);
   border-left: solid var(--border-size-2) var(--border);
+}
+
+.steps-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--size-3);
+
+  button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
 }
 </style>
