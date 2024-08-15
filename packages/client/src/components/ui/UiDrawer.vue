@@ -94,7 +94,6 @@ const Content = createReusableTemplate();
   position: fixed;
   z-index: 2;
   container-type: inline-size;
-  overflow-y: hidden;
 
   &.bottom {
     --transform: translateY(100%);

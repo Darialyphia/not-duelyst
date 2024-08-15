@@ -6,19 +6,16 @@ export type UITooltipProps = {
   delay?: number;
   side?: TooltipContentProps['side'];
   align?: TooltipContentProps['align'];
+  usePortal?: boolean;
 };
 
 const {
   sideOffset = 15,
   delay = 400,
   side = 'top',
-  align = 'center'
-} = defineProps<{
-  sideOffset?: number;
-  delay?: number;
-  side?: TooltipContentProps['side'];
-  align?: TooltipContentProps['align'];
-}>();
+  align = 'center',
+  usePortal = true
+} = defineProps<UITooltipProps>();
 </script>
 
 <template>
@@ -27,7 +24,7 @@ const {
       <TooltipTrigger v-slot="triggerProps" as-child>
         <slot name="trigger" v-bind="triggerProps" />
       </TooltipTrigger>
-      <TooltipPortal>
+      <TooltipPortal :disabled="!usePortal">
         <TooltipContent
           v-slot="contentProps"
           class="select-none"

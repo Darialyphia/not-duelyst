@@ -14,7 +14,7 @@ import {
   WaitVFXNode
 } from '#components';
 import type { VFXSequenceTrack, VFXStep } from '@game/sdk/src/card/card-effect';
-import type { Nullable } from '@game/shared';
+import { type Nullable, isDefined } from '@game/shared';
 
 const track = defineModel<VFXSequenceTrack>({ required: true });
 
@@ -38,12 +38,12 @@ const stepsDict: Record<
     component: BloomVFXNode
   },
   playSfxOnEntity: {
-    label: 'Play fx on unit',
+    label: 'Add sprite on unit',
     color: 'var(--green-10)',
     component: PlaySfxOnEntityVFXNode
   },
   playSfxOnScreenCenter: {
-    label: 'Add bloom on screen',
+    label: 'Add sprite on screen',
     color: 'var(--teal-10)',
     component: PlaySfxVFXNode
   },
@@ -133,11 +133,11 @@ const isAddStepModalOpened = ref(false);
 
 const selectedStepIndex = ref<Nullable<number>>(null);
 const selectedStep = computed(() =>
-  selectedStepIndex.value ? track.value.steps[selectedStepIndex.value] : null
+  isDefined(selectedStepIndex.value) ? track.value.steps[selectedStepIndex.value] : null
 );
 const isSettingsDrawerOpened = computed({
   get() {
-    return !!selectedStepIndex.value;
+    return isDefined(selectedStepIndex.value);
   },
   set() {
     selectedStepIndex.value = null;
@@ -174,6 +174,12 @@ const isSettingsDrawerOpened = computed({
       >
         {{ stepsDict[step.type].label }}
 
+        <UiIconButton
+          name="material-symbols:delete-outline"
+          class="error-button mt-2"
+          :style="{ '--ui-icon-button-size': 'var(--font-size-1)' }"
+          @click="track.steps.splice(index, 1)"
+        />
         <div
           v-if="!['playSfcOnEntity', 'playSfxOnScreenCenter'].includes(step.type)"
           class="resize-handle"
@@ -202,6 +208,7 @@ const isSettingsDrawerOpened = computed({
                   params: { duration: 500 } as any
                 });
                 isAddStepModalOpened = false;
+                selectedStepIndex = track.steps.length - 1;
               }
             "
           >
@@ -214,7 +221,7 @@ const isSettingsDrawerOpened = computed({
     <UiDrawer v-model:is-opened="isSettingsDrawerOpened" direction="right">
       <component
         :is="stepsDict[selectedStep.type].component"
-        v-if="selectedStep"
+        v-if="isDefined(selectedStep)"
         v-model="selectedStep"
       />
     </UiDrawer>
@@ -226,7 +233,7 @@ const isSettingsDrawerOpened = computed({
   display: flex;
   flex-grow: 1;
 
-  height: var(--size-8);
+  height: var(--size-10);
 
   background-color: var(--surface-2);
   border: solid var(--border-size-1) var(--border-dimmed);
@@ -251,6 +258,9 @@ const isSettingsDrawerOpened = computed({
 
   background-color: var(--bg);
   border: solid var(--border-size-1) var(--border);
+  &:not(:hover) > button {
+    display: none;
+  }
   &.dragged-over {
     opacity: 0.5;
     filter: brightness(120%);

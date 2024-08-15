@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { BLEND_MODES } from 'pixi.js';
 import type { VFXStep } from '@game/sdk/src/card/card-effect';
 
 const step = defineModel<VFXStep & { type: 'addLightOnEntity' }>({ required: true });
@@ -51,11 +50,12 @@ const blendMode = computed({
     min="0"
     step="100"
   />
-
   <br />
 
   <label>Unit</label>
   <UnitNode v-model="step.params.entity" hide-random />
+  <br />
+
   <label for="alpha">Opacity</label>
   <UiTextInput
     id="alpha"
@@ -66,6 +66,7 @@ const blendMode = computed({
     step="0.01"
   />
   <br />
+
   <fieldset>
     <legend>Offset</legend>
     <label for="offsetX">X axis</label>
@@ -84,9 +85,11 @@ const blendMode = computed({
     />
   </fieldset>
   <br />
+
   <label>Color</label>
   <UiColorPicker v-model="color" />
   <br />
+
   <label>Blend mode</label>
   <UiRadioGroup v-model="blendMode" :options="blendModes" />
 </template>

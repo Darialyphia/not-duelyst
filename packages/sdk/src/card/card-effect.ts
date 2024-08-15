@@ -533,7 +533,6 @@ export type VFXStep =
         entity: Filter<UnitCondition>;
         color: string;
         blendMode: 0 | 1 | 2 | 3;
-        strength: number;
         alpha: number;
         duration: number;
       };

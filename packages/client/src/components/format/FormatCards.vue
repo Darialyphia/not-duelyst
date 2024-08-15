@@ -102,7 +102,7 @@ const filteredCards = computed(() =>
       </p>
 
       <ul v-else class="card-list fancy-scrollbar">
-        <li v-for="card in editedCards" :key="card.id">
+        <li v-for="card in editedCards" :key="card.id" class="flex gap-2">
           <UiButton
             class="ghost-button"
             :class="card.id === selectedCardId && 'selected'"
@@ -111,6 +111,12 @@ const filteredCards = computed(() =>
             <CardSprite :sprite-id="card.spriteId" class="sprite" />
             {{ card.name }}
           </UiButton>
+
+          <UiIconButton
+            name="material-symbols:delete-outline"
+            class="ghost-error-button shrink-0"
+            @click="delete format.cards[card.id]"
+          />
         </li>
       </ul>
       <UiButton

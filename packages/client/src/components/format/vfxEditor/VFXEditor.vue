@@ -40,6 +40,7 @@ const MAX_TRACKS = 5;
     <p v-if="sequence.tracks.length === MAX_TRACKS" class="text-0 c-orange-5">
       Cannot add more tracks
     </p>
+    <p v-if="!sequence.tracks.length">Start by creating a new track to add effects.</p>
   </div>
 </template>
 
