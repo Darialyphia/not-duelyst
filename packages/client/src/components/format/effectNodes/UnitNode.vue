@@ -36,7 +36,11 @@ const id = useId();
 </script>
 
 <template>
-  <ConditionsNode v-slot="{ conditionIndex, groupIndex }" v-model="groups">
+  <ConditionsNode
+    v-slot="{ conditionIndex, groupIndex }"
+    v-model="groups"
+    :hide-random="hideRandom"
+  >
     <UiSelect
       class="w-full mb-2"
       :model-value="groups.candidates[groupIndex][conditionIndex]['type']"

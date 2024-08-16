@@ -86,6 +86,15 @@ const blendMode = computed({
   </fieldset>
   <br />
 
+  <label for="radius">Radius</label>
+  <UiTextInput
+    id="radius"
+    v-model.number="step.params.radius"
+    min="0"
+    type="number"
+    step="1"
+  />
+
   <label>Color</label>
   <UiColorPicker v-model="color" />
   <br />

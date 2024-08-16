@@ -1,7 +1,15 @@
 <script setup lang="ts" generic="T extends string">
-const { options, placeholder = 'Select a value' } = defineProps<{
+import type { SelectPortalProps } from 'radix-vue';
+const {
+  options,
+  placeholder = 'Select a value',
+  usePortal = true,
+  to
+} = defineProps<{
   options: Array<{ label: string; value: T; disabled?: boolean }>;
   placeholder?: string;
+  usePortal?: boolean;
+  to?: SelectPortalProps['to'];
 }>();
 
 const selected = defineModel<T>('modelValue', { required: true });
@@ -9,17 +17,12 @@ const selected = defineModel<T>('modelValue', { required: true });
 
 <template>
   <SelectRoot v-model="selected">
-    <SelectTrigger
-      aria-label="rarity"
-      :placeholder
-      class="ui-select-trigger"
-      v-bind="$attrs"
-    >
+    <SelectTrigger :placeholder class="ui-select-trigger" v-bind="$attrs">
       <SelectValue :placeholder="placeholder" />
       <Icon name="radix-icons:chevron-down" />
     </SelectTrigger>
-    <SelectPortal>
-      <SelectContent :side-offset="5" as-child>
+    <SelectPortal :disabled="!usePortal" :to="to">
+      <SelectContent :side-offset="5" as-child style="z-index: 2">
         <div class="ui-select-content fancy-scrollbar">
           <SelectViewport as-child>
             <SelectGroup>
@@ -80,6 +83,8 @@ const selected = defineModel<T>('modelValue', { required: true });
 }
 
 .ui-select-content {
+  z-index: 999;
+
   overflow-y: auto;
 
   background-color: var(--surface-1);

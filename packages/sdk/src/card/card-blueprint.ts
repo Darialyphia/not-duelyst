@@ -6,7 +6,7 @@ import type { Card, CardBlueprintId } from './card';
 import { type CardKind, type Faction, type FactionId, type Rarity } from './card-enums';
 import { type Keyword, type KeywordId } from '../utils/keywords';
 import { type Tag, type TagId } from '../utils/tribes';
-import type { Filter, GenericCardEffect } from './card-effect';
+import type { GenericCardEffect } from './card-effect';
 import type { CardTargetsConfig } from './card-targets';
 import type { PlayerArtifact } from '../player/player-artifact';
 import type { CellConditionBase } from './conditions/cell-conditions';

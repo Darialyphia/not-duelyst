@@ -40,6 +40,69 @@ export const f1Tempest = defineSerializedBlueprint({
             }
           }
         ]
+      },
+      vfx: {
+        tracks: [
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                params: { amplitude: 8, duration: 500, isBidirectional: true },
+                type: 'shakeScreen'
+              },
+              {
+                params: {
+                  animationName: 'default',
+                  duration: 880,
+                  entity: { candidates: [[{ type: 'any_unit' }]] },
+                  offset: { x: 0, y: -175 },
+                  resourceName: 'fx_heavenlystrike'
+                },
+                type: 'playSfxOnEntity'
+              }
+            ]
+          },
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                params: {
+                  alpha: 0.25,
+                  blendMode: 1,
+                  color: 12292864,
+                  duration: 1541,
+                  entity: {
+                    candidates: [
+                      [
+                        { params: { not: false }, type: 'is_general' },
+                        { params: { not: false }, type: 'is_ally' }
+                      ]
+                    ]
+                  },
+                  offset: { x: 0, y: -250 },
+                  radius: 500
+                },
+                type: 'addLightOnEntity'
+              }
+            ]
+          },
+          {
+            filter: { candidates: [] },
+            steps: [
+              { params: { duration: 500 }, type: 'wait' },
+              {
+                params: {
+                  animationName: 'default',
+                  duration: 1040,
+                  entity: { candidates: [[{ type: 'any_unit' }]] },
+                  offset: { x: 0, y: 0 },
+                  resourceName: 'fx_fireslash'
+                },
+                type: 'playSfxOnEntity'
+              }
+            ]
+          }
+        ]
       }
     }
   ]

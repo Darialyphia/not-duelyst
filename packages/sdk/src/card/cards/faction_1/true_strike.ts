@@ -42,6 +42,65 @@ export const f1TrueStrike = defineSerializedBlueprint({
             }
           }
         ]
+      },
+      vfx: {
+        tracks: [
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                type: 'playSfxOnEntity',
+                params: {
+                  duration: 1360,
+                  resourceName: 'fx_f1_truestrike',
+                  animationName: 'default',
+                  offset: { x: 0, y: -60 },
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                    ]
+                  }
+                }
+              },
+              {
+                type: 'playSfxOnEntity',
+                params: {
+                  duration: 480,
+                  resourceName: 'fx_energyhaloground',
+                  animationName: 'default',
+                  offset: { x: 0, y: 60 },
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            filter: { candidates: [] },
+            steps: [
+              { type: 'wait', params: { duration: 750 } },
+              {
+                type: 'addLightOnEntity',
+                params: {
+                  duration: 400,
+                  alpha: 0.3,
+                  blendMode: 1,
+                  color: 16763904,
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                    ]
+                  },
+                  offset: { x: 0, y: -30 },
+                  radius: 100
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   ]

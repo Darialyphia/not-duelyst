@@ -60,107 +60,104 @@ const playVFXSequence = (
       if (!shouldPlay) return;
 
       for (const step of track.steps) {
-        if (step.type === 'wait') {
-          await waitFor(step.params.duration);
-        } else {
-          await match(step)
-            .with({ type: 'addLightOnEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.addLightOnEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'playSfxOnEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.playSfxOnEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'playSfxOnScreenCenter' }, step => {
-              return ctx.session.fxSystem.playSfxOnScreenCenter(step.params);
-            })
-            .with({ type: 'shakeEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.shakeEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'shakeScreen' }, step => {
-              return ctx.session.fxSystem.shakeScreen(step.params);
-            })
-            .with({ type: 'tintEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.tintEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'tintScreen' }, step => {
-              return ctx.session.fxSystem.tintScreen(step.params);
-            })
-            .with({ type: 'bloomEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
+        await match(step)
+          .with({ type: 'wait' }, step => {
+            return ctx.session.fxSystem.wait(step.params);
+          })
+          .with({ type: 'addLightOnEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
+            return Promise.all(
+              entities.map(entity =>
+                ctx.session.fxSystem.addLightOnEntity(entity, step.params)
+              )
+            );
+          })
+          .with({ type: 'playSfxOnEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
+            return Promise.all(
+              entities.map(entity =>
+                ctx.session.fxSystem.playSfxOnEntity(entity, step.params)
+              )
+            );
+          })
+          .with({ type: 'playSfxOnScreenCenter' }, step => {
+            return ctx.session.fxSystem.playSfxOnScreenCenter(step.params);
+          })
+          .with({ type: 'shakeEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
+            return Promise.all(
+              entities.map(entity =>
+                ctx.session.fxSystem.shakeEntity(entity, step.params)
+              )
+            );
+          })
+          .with({ type: 'shakeScreen' }, step => {
+            return ctx.session.fxSystem.shakeScreen(step.params);
+          })
+          .with({ type: 'tintEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
+            return Promise.all(
+              entities.map(entity => ctx.session.fxSystem.tintEntity(entity, step.params))
+            );
+          })
+          .with({ type: 'tintScreen' }, step => {
+            return ctx.session.fxSystem.tintScreen(step.params);
+          })
+          .with({ type: 'bloomEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
 
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.bloomEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'bloomScreen' }, step => {
-              return ctx.session.fxSystem.bloomScreen(step.params);
-            })
-            .with({ type: 'shockwaveOnEntity' }, step => {
-              const entities = getUnits({
-                ...ctx,
-                event,
-                eventName,
-                conditions: step.params.entity
-              });
+            return Promise.all(
+              entities.map(entity =>
+                ctx.session.fxSystem.bloomEntity(entity, step.params)
+              )
+            );
+          })
+          .with({ type: 'bloomScreen' }, step => {
+            return ctx.session.fxSystem.bloomScreen(step.params);
+          })
+          .with({ type: 'shockwaveOnEntity' }, step => {
+            const entities = getUnits({
+              ...ctx,
+              event,
+              eventName,
+              conditions: step.params.entity
+            });
 
-              return Promise.all(
-                entities.map(entity =>
-                  ctx.session.fxSystem.shockwaveOnEntity(entity, step.params)
-                )
-              );
-            })
-            .with({ type: 'shockwaveOnScreenCenter' }, step => {
-              return ctx.session.fxSystem.shockwaveOnScreenCenter(step.params);
-            })
-            .exhaustive();
-        }
+            return Promise.all(
+              entities.map(entity =>
+                ctx.session.fxSystem.shockwaveOnEntity(entity, step.params)
+              )
+            );
+          })
+          .with({ type: 'shockwaveOnScreenCenter' }, step => {
+            return ctx.session.fxSystem.shockwaveOnScreenCenter(step.params);
+          })
+          .exhaustive();
       }
     })
   );

@@ -72,6 +72,11 @@ const animationOptions = computed(() => {
     />
     <p class="c-orange-5 text-0">Duration is adjusted to match the animation</p>
     <br />
+
+    <label>Unit</label>
+    <UnitNode v-model="step.params.entity" hide-random />
+    <br />
+
     <label>Sprite</label>
     <ListboxRoot v-model="step.params.resourceName" class="sprite-list fancy-scrollbar">
       <ListboxContent>

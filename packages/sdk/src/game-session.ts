@@ -17,7 +17,7 @@ import {
   type SerializedPlayer
 } from './player/player';
 import { ActionSystem } from './action/action-system';
-import { FXSystem } from './fx-system';
+import { ClientFxSystem, type IFxSystem } from './fx-system';
 import type { RngSystem } from './rng-system';
 import {
   CARD_EVENTS,
@@ -136,7 +136,6 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
 
   boardSystem = new BoardSystem(this);
 
-  fxSystem = new FXSystem();
   isReady = false;
 
   winnerId: Nullable<string> = null;
@@ -145,6 +144,7 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
   protected constructor(
     protected initialState: SerializedGameState,
     public rngSystem: RngSystem,
+    public fxSystem: IFxSystem,
     public logger: SessionLogger,
     options: {
       winnerId?: string;

@@ -23,7 +23,9 @@ const Content = createReusableTemplate();
 
 <template>
   <DialogRoot v-model:open="isOpened" modal>
-    <Content.define>
+    <Content.define></Content.define>
+
+    <DialogPortal :disabled="!usePortal">
       <Transition appear>
         <DialogOverlay class="modal-overlay" />
       </Transition>
@@ -60,12 +62,7 @@ const Content = createReusableTemplate();
           </div>
         </DialogContent>
       </Transition>
-    </Content.define>
-
-    <DialogPortal v-if="usePortal">
-      <Content.reuse />
     </DialogPortal>
-    <Content.reuse v-else />
   </DialogRoot>
 </template>
 
@@ -77,7 +74,6 @@ const Content = createReusableTemplate();
 
   background-color: hsl(var(--gray-12-hsl) / 0.5);
   backdrop-filter: blur(5px);
-
   &:focus {
     outline: none;
   }

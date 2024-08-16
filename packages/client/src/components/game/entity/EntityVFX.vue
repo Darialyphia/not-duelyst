@@ -77,6 +77,7 @@ useVFX(
     };
     VFXSprites.value.push(el);
     await waitFor(duration);
+    VFXSprites.value.splice(VFXSprites.value.indexOf(el));
   }
 );
 </script>
@@ -93,7 +94,11 @@ useVFX(
   <animated-sprite
     v-for="element in VFXSprites"
     :key="element.id"
-    :ref="(container: any) => ui.assignLayer(container, 'fx')"
+    :ref="
+      (container: any) => {
+        ui.assignLayer(container, 'fx');
+      }
+    "
     :textures="element.textures"
     :anchor-x="0.5"
     :anchor-y="0"

@@ -52,7 +52,7 @@ useVFX(
     <container v-for="light in lights" :key="light.id">
       <sprite
         :ref="(sprite: any) => ui.assignLayer(sprite, 'fx')"
-        :alpha="0.85"
+        :alpha="light.alpha"
         :texture="
           radialGradient(
             light.radius * 2,

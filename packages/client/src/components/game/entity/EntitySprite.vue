@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { CARD_KINDS, type EntityId } from '@game/sdk';
-import { AnimatedSprite, Container, type Filter, type FrameObject } from 'pixi.js';
+import { AnimatedSprite, Container, Point, type Filter, type FrameObject } from 'pixi.js';
 import { AdjustmentFilter } from '@pixi/filter-adjustment';
 import { match } from 'ts-pattern';
 import { ColorOverlayFilter } from '@pixi/filter-color-overlay';
 import { OutlineFilter } from '@pixi/filter-outline';
-import { ShockwaveFilter } from '@pixi/filter-shockwave';
 import { COLOR_CODED_UNITS } from '~/utils/settings';
 import { waitFor, type Nullable } from '@game/shared';
 
@@ -139,10 +138,11 @@ onUnmounted(() => {
   cleanups.forEach(fn => fn());
 });
 
-const shaker = useShaker();
+const root = ref<Container>();
+const shaker = useShaker(root);
 useVFX('shakeEntity', async (e, { isBidirectional, amplitude, duration }) => {
   if (!e.equals(entity.value)) return;
-  shaker.shake({
+  shaker.trigger({
     isBidirectional,
     shakeAmount: amplitude,
     shakeDelay: 25,
@@ -151,17 +151,25 @@ useVFX('shakeEntity', async (e, { isBidirectional, amplitude, duration }) => {
 
   await waitFor(duration);
 });
+const bloom = useBloom(root);
+useVFX('bloomEntity', async (e, opts) => {
+  if (e.equals(entity.value)) {
+    await bloom.trigger(opts);
+  }
+});
+const shockwave = useShockwave(
+  root,
+  offset => new Point(root.value!.x + offset.x, root.value!.y + offset.y)
+);
+useVFX('shockwaveOnEntity', async (e, opts) => {
+  if (e.equals(entity.value)) {
+    await shockwave.trigger(opts);
+  }
+});
 </script>
 
 <template>
-  <container
-    :ref="
-      (container: any) => {
-        if (container) shaker.setTarget(container);
-      }
-    "
-    :filters="filters"
-  >
+  <container ref="root" :filters="filters">
     <EntityPedestal :entity-id="entityId" />
     <animated-sprite
       v-if="unitTextures"

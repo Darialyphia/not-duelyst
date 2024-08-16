@@ -9,6 +9,7 @@ import { ServerRngSystem, type RngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
 import type { EntityId } from './entity/entity';
 import type { Point3D } from '@game/shared';
+import { ServerFxSystem, type IFxSystem } from './fx-system';
 
 export type SimulationResult = {
   damageTaken: Record<EntityId, number>;
@@ -29,13 +30,18 @@ export class ServerSession extends GameSession {
     state: SerializedGameState,
     options: { seed: string; format: GameFormat }
   ) {
-    return new ServerSession(state, new ServerRngSystem(options.seed), {
-      seed: options.seed,
-      format: {
-        config: options.format.config,
-        cards: { ...CARDS, ...options.format.cards }
+    return new ServerSession(
+      state,
+      new ServerRngSystem(options.seed),
+      new ServerFxSystem(),
+      {
+        seed: options.seed,
+        format: {
+          config: options.format.config,
+          cards: { ...CARDS, ...options.format.cards }
+        }
       }
-    });
+    );
   }
 
   protected rngSeed: string;
@@ -43,13 +49,14 @@ export class ServerSession extends GameSession {
   protected constructor(
     initialState: SerializedGameState,
     rngSystem: RngSystem,
+    fxSystem: IFxSystem,
     options: {
       winnerId?: string;
       format: GameFormat;
       seed: string;
     }
   ) {
-    super(initialState, rngSystem, serverLogger, options);
+    super(initialState, rngSystem, fxSystem, serverLogger, options);
     this.rngSeed = options.seed;
   }
 
@@ -69,12 +76,12 @@ export class ServerSession extends GameSession {
       const session = new GameSession(
         { ...this.initialState, history: this.actionSystem.serialize() },
         new ServerRngSystem(this.rngSeed),
+        this.fxSystem,
         () => void 0,
         {
           format: this.format
         }
       );
-
       session.once('game:ready', () => {
         const result: SimulationResult = {
           damageTaken: {},
@@ -82,7 +89,6 @@ export class ServerSession extends GameSession {
           deaths: [],
           newEntities: []
         };
-
         session.on('entity:after_take_damage', event => {
           if (result.damageTaken[event.entity.id]) {
             result.damageTaken[event.entity.id] += event.amount;
@@ -90,7 +96,6 @@ export class ServerSession extends GameSession {
             result.damageTaken[event.entity.id] = event.amount;
           }
         });
-
         session.on('entity:after_heal', event => {
           if (result.healReceived[event.entity.id]) {
             result.healReceived[event.entity.id] += event.amount;
@@ -98,11 +103,9 @@ export class ServerSession extends GameSession {
             result.healReceived[event.entity.id] = event.amount;
           }
         });
-
         session.on('entity:after_destroy', event => {
           result.deaths.push(event.id);
         });
-
         session.on('entity:created', event => {
           result.newEntities.push({
             id: event.id,
@@ -111,7 +114,6 @@ export class ServerSession extends GameSession {
             position: event.position.serialize()
           });
         });
-
         session.on('scheduler:flushed', () => {
           resolve(result);
         });

@@ -121,7 +121,9 @@ export abstract class Card
 
   async play(ctx: { position: Point3D; targets: Point3D[] }) {
     await this.emitAsync(CARD_EVENTS.BEFORE_PLAYED, this);
+
     await this.playImpl(ctx);
+
     await this.emitAsync(CARD_EVENTS.AFTER_PLAYED, this);
   }
 

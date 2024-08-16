@@ -23,21 +23,22 @@ const vfxTint = {
 };
 
 useVFX('tintScreen', async ({ color, alpha, blendMode, duration }) => {
-  gsap.to(vfxTint.alpha, { value: alpha, duration: 0.5 });
-  gsap.to(vfxTint.color, { value: color, duration: 0.5 });
+  gsap.to(vfxTint.alpha, { value: alpha, duration: 0.15 });
+  gsap.to(vfxTint.color, { value: color, duration: 0.15 });
   vfxTint.blendMode.value = blendMode;
 
-  await waitFor(duration);
-  gsap.to(vfxTint.alpha, { value: 0, duration: 0.3 });
-  gsap.to(vfxTint.color, { value: '#ffffff', duration: 0.3 });
+  await waitFor(duration - 150);
+  gsap.to(vfxTint.alpha, { value: 0, duration: 0.15 });
+  gsap.to(vfxTint.color, { value: '#ffffff', duration: 0.15 });
+  await waitFor(150);
   vfxTint.blendMode.value = BLEND_MODES.NORMAL;
 });
 
 const stage = useStage();
-const shaker = useShaker();
-shaker.setTarget(stage.value);
+
+const shaker = useShaker(stage);
 useVFX('shakeScreen', async ({ isBidirectional, amplitude, duration }) => {
-  shaker.shake({
+  shaker.trigger({
     isBidirectional,
     shakeAmount: amplitude,
     shakeDelay: 25,
@@ -47,61 +48,15 @@ useVFX('shakeScreen', async ({ isBidirectional, amplitude, duration }) => {
   await waitFor(duration);
 });
 
-const bloom = new AdvancedBloomFilter();
-bloom.brightness = 1;
-useVFX('bloomScreen', async ({ strength, duration }) => {
-  stage.value.filters ??= [];
-  stage.value.filters.push(bloom);
-  bloom.threshold = 0.9;
-  bloom.bloomScale = 0;
+const bloom = useBloom(stage);
+useVFX('bloomScreen', bloom.trigger);
 
-  gsap.to(bloom, {
-    threshold: 0.4,
-    bloomScale: strength,
-    duration: 0.4
-  });
-  bloom.threshold = 0.4;
-
-  await waitFor(duration);
-  gsap.to(bloom, {
-    threshold: 0.9,
-    bloomScale: 0,
-    duration: 0.4,
-    onComplete() {
-      stage.value.filters?.splice(stage.value.filters.indexOf(bloom), 1);
-    }
-  });
-});
-
-const shockwave = new ShockwaveFilter();
-shockwave.speed = 500;
-shockwave.amplitude = 30;
-shockwave.brightness = 1;
-shockwave.center = new Point(screen.value.width / 2, screen.value.height / 2);
-
-let shockwaveDuration = 2.5;
-onTick(() => {
-  shockwave.time += app.value.ticker.elapsedMS / 1000;
-  shockwave.time %= shockwaveDuration;
-});
-
-useVFX('shockwaveOnScreenCenter', async ({ offset, duration, radius, wavelength }) => {
-  shockwave.center = new Point(
-    screen.value.width / 2 + offset.x,
-    screen.value.height / 2 + offset.y
-  );
-  shockwave.wavelength = wavelength;
-  shockwave.radius = radius * camera.viewport.value!.scale.x;
-
-  shockwave.time = 0;
-  shockwaveDuration = duration / 1000;
-
-  stage.value.filters ??= [];
-  stage.value.filters.push(shockwave);
-
-  await waitFor(duration);
-  stage.value.filters?.splice(stage.value.filters.indexOf(shockwave), 1);
-});
+const shockwave = useShockwave(
+  stage,
+  offset =>
+    new Point(screen.value.width / 2 + offset.x, screen.value.height / 2 + offset.y)
+);
+useVFX('shockwaveOnScreenCenter', shockwave.trigger);
 </script>
 
 <template>

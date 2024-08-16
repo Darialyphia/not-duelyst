@@ -7,6 +7,7 @@ import {
 import { ClientRngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
 import type { SerializedAction } from './action/action';
+import { ClientFxSystem } from './fx-system';
 
 const clientLogger: SessionLogger = () => void 0;
 // console.log(`[CLIENT_SESSION] - ${message}`, ...args);
@@ -21,13 +22,19 @@ export class ClientSession extends GameSession {
     const rngSystem = new ClientRngSystem();
     rngSystem.values = state.rng.values;
 
-    const session = new ClientSession(state, rngSystem, clientLogger, {
-      winnerId: options.winnerId,
-      format: {
-        config: options.format.config,
-        cards: { ...CARDS, ...options.format.cards }
+    const session = new ClientSession(
+      state,
+      rngSystem,
+      new ClientFxSystem(),
+      clientLogger,
+      {
+        winnerId: options.winnerId,
+        format: {
+          config: options.format.config,
+          cards: { ...CARDS, ...options.format.cards }
+        }
       }
-    });
+    );
 
     const rng = new ClientRngSystem();
     rng.values = [...state.rng.values];
