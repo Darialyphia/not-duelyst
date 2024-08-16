@@ -112,6 +112,9 @@ export const useGameProvider = ({
   const pathfinding = usePathfindingProvider(session, ui);
   const fx = useFXProvider();
 
+  session.on('*', () => {
+    simulationResult.value = null;
+  });
   onUnmounted(() => {
     session.removeAllListeners();
   });

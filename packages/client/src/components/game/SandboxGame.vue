@@ -78,12 +78,12 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
 <template>
   <div class="relative">
     <GameRoot
+      v-model:simulation-result="simulationResult"
       :p1-emote="p1Emote"
       :p2-emote="p2Emote"
       :game-session="clientSession"
       :player-id="null"
       :game-type="GAME_TYPES.SANDBOX"
-      :simulation-result="simulationResult"
       @simulate-action="
         async ($event: any) => {
           simulationResult = await serverSession.simulateAction({

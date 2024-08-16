@@ -21,23 +21,19 @@ import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
 import type { Nullable } from '@game/shared';
 
-const {
-  gameSession,
-  playerId,
-  gameType,
-  p1Emote,
-  p2Emote,
-  currentTutorialStep,
-  simulationResult
-} = defineProps<{
-  gameSession: ClientSession;
-  playerId: string | null;
-  gameType: GameType;
-  p1Emote: Nullable<string>;
-  p2Emote: Nullable<string>;
-  currentTutorialStep?: TutorialStep;
-  simulationResult?: Nullable<SimulationResult>;
-}>();
+const { gameSession, playerId, gameType, p1Emote, p2Emote, currentTutorialStep } =
+  defineProps<{
+    gameSession: ClientSession;
+    playerId: string | null;
+    gameType: GameType;
+    p1Emote: Nullable<string>;
+    p2Emote: Nullable<string>;
+    currentTutorialStep?: TutorialStep;
+  }>();
+
+const simulationResult = defineModel<Nullable<SimulationResult>>('simulationResult', {
+  required: false
+});
 const emit = defineEmits<GameEmits>();
 
 const game = useGameProvider({
@@ -48,7 +44,7 @@ const game = useGameProvider({
   p1Emote: computed(() => p1Emote),
   p2Emote: computed(() => p2Emote),
   currentTutorialStep: computed(() => currentTutorialStep),
-  simulationResult: computed(() => simulationResult)
+  simulationResult
 });
 
 const settings = useUserSettings();
