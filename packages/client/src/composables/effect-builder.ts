@@ -4,7 +4,8 @@ import {
   NumericOperatorNode,
   PlayerNode,
   UnitNode,
-  KeywordNode
+  KeywordNode,
+  TagNode
 } from '#components';
 import type {
   CardConditionBase,
@@ -217,7 +218,8 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
             operator: NumericOperatorNode,
             amount: AmountNode
           },
-          keyword: KeywordNode
+          keyword: KeywordNode,
+          tag: TagNode
         }
       },
       played_from_hand: {

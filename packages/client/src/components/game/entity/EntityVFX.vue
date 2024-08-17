@@ -25,12 +25,14 @@ const keywordsWithSprite = computed(() => {
 });
 
 onMounted(() => {
-  // session.fxSystem.playSfxOnEntity(entity.value.id, {
-  //   resourceName: 'fx_smoke2',
-  //   animationName: 'smokeground',
-  //   offset: { x: 0, y: 20 },
-  //   delay: 200
-  // });
+  setTimeout(() => {
+    session.fxSystem.playSfxOnEntity(entity.value, {
+      resourceName: 'fx_smoke2',
+      animationName: 'smokeground',
+      offset: { x: 0, y: 55 },
+      duration: 500
+    });
+  }, 250);
 });
 
 const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
@@ -38,14 +40,15 @@ const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
 useSessionEvent('entity:before_take_damage', ([event]) => {
   if (!event.entity.equals(entity.value)) return;
   const bloodFx = randomInt(4);
-  // session.fxSystem.playSfxOnEntity(event.entity.id, {
-  //   resourceName: 'fx_bloodground',
-  //   animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
-  //   offset: {
-  //     x: 0,
-  //     y: 20
-  //   }
-  // });
+  session.fxSystem.playSfxOnEntity(event.entity, {
+    resourceName: 'fx_bloodground',
+    animationName: bloodFx <= 1 ? 'default' : `bloodground${bloodFx ? bloodFx : ''}`,
+    offset: {
+      x: 0,
+      y: 20
+    },
+    duration: 500
+  });
 });
 
 useSessionEvent('card:before_played', async ([card]) => {

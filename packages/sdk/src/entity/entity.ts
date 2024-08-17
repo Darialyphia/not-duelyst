@@ -471,11 +471,6 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   async retaliate(power: number, target: Entity) {
-    console.log(
-      this.card.blueprintId,
-      target.card.blueprintId,
-      this.canRetaliate(target)
-    );
     if (!this.canRetaliate(target)) return;
     await this.emitAsync(ENTITY_EVENTS.BEFORE_RETALIATE, { entity: this, target });
     this.retaliationsDone++;

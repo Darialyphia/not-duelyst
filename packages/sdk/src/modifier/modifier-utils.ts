@@ -501,6 +501,7 @@ export const aura = ({
     session.off('entity:created', checkListener);
     session.off('entity:after_destroy', checkListener);
     session.off('entity:after_move', checkListener);
+    session.off('entity:after_teleport', checkListener);
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
@@ -525,9 +526,8 @@ export const aura = ({
 
           session.on('entity:created', checkListener);
           session.on('entity:after_destroy', checkListener);
-          session.on('entity:after_move', () => {
-            checkListener();
-          });
+          session.on('entity:after_move', checkListener);
+          session.on('entity:after_teleport', checkListener);
 
           attachedTo.once('after_destroy', () => {
             cleanup(session, attachedTo);

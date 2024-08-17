@@ -108,7 +108,13 @@ export const useEntityTexture = (
 
   const cleanups = [
     session.on(
-      'entity:before_deal_damage',
+      'entity:before_attack',
+      playAnimation('attack', 0.75, e => {
+        return e.entity.equals(entity.value);
+      })
+    ),
+    session.on(
+      'entity:before_retaliate',
       playAnimation('attack', 0.75, e => {
         return e.entity.equals(entity.value);
       })

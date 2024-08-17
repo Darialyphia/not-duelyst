@@ -420,6 +420,28 @@ export type Action<
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
+    }
+  | {
+      type: 'dispel_entity';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'aura';
+      params: {
+        effect: CardEffectConfig<Trigger[]>;
+        isElligible: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

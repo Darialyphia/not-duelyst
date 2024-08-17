@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CARDS, FACTION_IDS, KEYWORDS, TAGS } from '@game/sdk';
+import { CARDS, KEYWORDS, TAGS } from '@game/sdk';
 import { isString } from '@game/shared';
 const { text, highlighted = true } = defineProps<{
   text: string;
@@ -26,7 +26,10 @@ const tokens = computed(() => {
     if (isKeyword) return { type: 'keyword', text: part };
     const isCard = CARD_NAMES.has(part);
     if (isCard) return { type: 'card', text: part };
-    const isTag = Object.values(TAGS).some(tag => part === tag.name);
+    const isTag = Object.values(TAGS).some(
+      tag =>
+        part === tag.name || tag.aliases.some(alias => alias === part.toLocaleLowerCase())
+    );
     if (isTag) return { type: 'tag', text: part };
 
     return { type: 'text', text: part };

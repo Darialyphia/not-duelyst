@@ -1,6 +1,10 @@
 import { Texture } from 'pixi.js';
 
-export function radialGradient(width: number, height: number, from: string, to: string) {
+export function radialGradient(
+  width: number,
+  height: number,
+  stops: [ratio: number, color: string][]
+) {
   const c = document.createElement('canvas');
   c.width = width;
   c.height = height;
@@ -13,8 +17,10 @@ export function radialGradient(width: number, height: number, from: string, to: 
     height / 2,
     Math.max(height / 2, width / 2)
   );
-  grd.addColorStop(0, from);
-  grd.addColorStop(0.9, to);
+  stops.forEach(([ratio, color]) => {
+    grd.addColorStop(ratio, color);
+  });
+
   ctx.fillStyle = grd;
   ctx.fillRect(0, 0, width, height);
 

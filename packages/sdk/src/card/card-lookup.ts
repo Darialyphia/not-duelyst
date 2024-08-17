@@ -109,6 +109,10 @@ import { f3StarfireScarab } from './cards/faction_3/starfire-scarab';
 import { neutralRedSynja } from './cards/neutral/red-synja';
 import { neutralLuxIgnis } from './cards/neutral/lux-ignis';
 import { neutralEmeraldRejuvenator } from './cards/neutral/emeral_rejuvenator';
+import { f1SunstoneTemplar } from './cards/faction_1/sunstone-templar';
+import { neutralSwornAvenger } from './cards/neutral/sworn-avenger';
+import { neutralVoidHunter } from './cards/neutral/void-hunter';
+import { f3FireblazeObelisk } from './cards/faction_3/fireblaze-obelisk';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -138,6 +142,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f1SunBloom,
   f1ElyxStormblade,
   f1Magnetize,
+  f1SunstoneTemplar,
 
   f2General,
   f2InnerFocus,
@@ -189,6 +194,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f3Pyromancer,
   f3FusionBanshee,
   f3StarfireScarab,
+  f3FireblazeObelisk,
 
   neutralHealingMystic,
   neutralRiftWalker,
@@ -221,7 +227,9 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralDioltas,
   neutralRedSynja,
   neutralLuxIgnis,
-  neutralEmeraldRejuvenator
+  neutralEmeraldRejuvenator,
+  neutralSwornAvenger,
+  neutralVoidHunter
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

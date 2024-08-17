@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { waitFor } from '@game/shared';
 import { diffuseGroup, normalGroup, lightGroup } from '@pixi/lights';
-import { BLEND_MODES, Point } from 'pixi.js';
-import { onTick, useApplication, useScreen, useStage } from 'vue3-pixi';
-import { AdvancedBloomFilter } from '@pixi/filter-advanced-bloom';
-import { ShockwaveFilter } from '@pixi/filter-shockwave';
-
-const { ui, camera } = useGame();
+import { BLEND_MODES, Point, Rectangle } from 'pixi.js';
+import { useApplication, useScreen, useStage } from 'vue3-pixi';
+import { AdjustmentFilter } from '@pixi/filter-adjustment';
+const { ui } = useGame();
 const screen = useScreen();
-const app = useApplication();
 
 useGameControls();
 const cells = useCellsViewModels();
@@ -57,6 +54,25 @@ const shockwave = useShockwave(
     new Point(screen.value.width / 2 + offset.x, screen.value.height / 2 + offset.y)
 );
 useVFX('shockwaveOnScreenCenter', shockwave.trigger);
+
+// const adjustment = new AdjustmentFilter({
+//   contrast: 1,
+//   saturation: 1,
+//   brightness: 1
+// });
+// stage.value.filters ??= [];
+// stage.value.filters.push(adjustment);
+// useSessionEvent('card:before_played', () => {
+//   gsap.to(adjustment, {
+//     duration: 0.25,
+//     contrast: 1.7,
+//     brightness: 0.8
+//   });
+// });
+// useSessionEvent('card:after_played', () => {
+//   gsap.killTweensOf(adjustment);
+//   gsap.to(adjustment, { duration: 0.25, brightness: 1, contrast: 1 });
+// });
 </script>
 
 <template>

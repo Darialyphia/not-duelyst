@@ -54,12 +54,10 @@ useVFX(
         :ref="(sprite: any) => ui.assignLayer(sprite, 'fx')"
         :alpha="light.alpha"
         :texture="
-          radialGradient(
-            light.radius * 2,
-            light.radius * 2,
-            `#${light.color.toString(16)}`,
-            'rgba(255,255,100,0)'
-          )
+          radialGradient(light.radius * 2, light.radius * 2, [
+            [0, `#${light.color.toString(16)}`],
+            [0.9, 'rgba(255,255,100,0)']
+          ])
         "
         :blend-mode="light.blendMode"
         :anchor-x="0.5"

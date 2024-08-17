@@ -153,6 +153,11 @@ watchEffect(() => {
           v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
         />
       </template>
+      <template v-else-if="key === 'tag'">
+        <TagNode
+          v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
+        />
+      </template>
 
       <template v-else-if="isComponent(param)">
         <component

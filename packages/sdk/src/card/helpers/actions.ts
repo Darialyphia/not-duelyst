@@ -29,9 +29,6 @@ export const applyModifierConditionally = ({
   const tryToApply = () => {
     const shouldApply = checkGlobalConditions(conditions, ctx, event, eventName);
 
-    if (modifier.id === 'spawn') {
-      session.logger('try to apply', shouldApply, isDisabled);
-    }
     if (shouldApply) {
       if (!source.hasModifier(modifier.id) && isDisabled) {
         isDisabled = false;

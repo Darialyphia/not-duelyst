@@ -53,11 +53,18 @@ const checkFlip = (attacker: Entity, target: Entity) => {
   }
 };
 
-useSessionEvent('entity:before_deal_damage', ([{ entity: attacker, target }]) => {
+useSessionEvent('entity:before_attack', ([{ entity: attacker, target }]) => {
+  if (!attacker.equals(entity.value)) return;
+  shouldFlip.value = checkFlip(attacker, target);
+});
+useSessionEvent('entity:before_retaliate', ([{ entity: attacker, target }]) => {
   if (!attacker.equals(entity.value)) return;
   shouldFlip.value = checkFlip(attacker, target);
 });
 useSessionEvent('entity:after_attack', () => {
+  shouldFlip.value = false;
+});
+useSessionEvent('entity:after_retaliate', () => {
   shouldFlip.value = false;
 });
 useSessionEvent('scheduler:flushed', () => {

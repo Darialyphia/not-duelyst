@@ -39,6 +39,7 @@ const debouncedResize = debounce(() => {
 }, 100);
 useEventListener(window, 'resize', debouncedResize);
 const userPlayer = useUserPlayer();
+
 const isDisplayed = computed(() => {
   if (!isDefined(ui.selectedCardIndex.value)) return false;
   if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;

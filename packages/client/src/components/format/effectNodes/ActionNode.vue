@@ -440,6 +440,24 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  dispel_entity: {
+    label: 'Dispel a unit',
+    params: {
+      unit: UnitNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  aura: {
+    label: 'Add aura to a unit',
+    params: {
+      isElligible: UnitNode,
+      effect: EffectNode,
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -700,6 +718,21 @@ watch(
         params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.target ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.duration ??= 'always';
+      })
+      .with({ type: 'dispel_entity' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
+      })
+      .with({ type: 'aura' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.isElligible ??= {
+          candidates: [[{ type: undefined as any }]],
+          random: false
+        };
+        params.effect ??= { executionContext: undefined as any, actions: [] };
+        params.activeWhen ??= { candidates: [], random: false };
       })
       .exhaustive();
   },

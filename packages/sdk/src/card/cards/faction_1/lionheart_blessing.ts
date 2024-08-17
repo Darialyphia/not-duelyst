@@ -89,6 +89,50 @@ export const f1LionheartBlessing = defineSerializedBlueprint({
             }
           }
         ]
+      },
+      vfx: {
+        tracks: [
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                type: 'playSfxOnEntity',
+                params: {
+                  duration: 2000,
+                  resourceName: 'fx_f1_lionheartblessing',
+                  animationName: 'default',
+                  offset: { x: 0, y: -100 },
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            filter: { candidates: [] },
+            steps: [
+              {
+                type: 'addLightOnEntity',
+                params: {
+                  duration: 1669,
+                  alpha: 0.4,
+                  blendMode: 1,
+                  color: 13865219,
+                  entity: {
+                    candidates: [
+                      [{ type: 'is_manual_target', params: { not: false, index: 0 } }]
+                    ]
+                  },
+                  offset: { x: 0, y: -50 },
+                  radius: 100
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   ]

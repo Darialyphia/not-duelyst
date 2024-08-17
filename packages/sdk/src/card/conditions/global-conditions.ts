@@ -15,6 +15,7 @@ import { matchNumericOperator } from '../card-action';
 import { getAmount, type Amount } from '../helpers/amount';
 import { getKeywordById, type KeywordId } from '../../utils/keywords';
 import { PlayCardAction } from '../../action/play-card.action';
+import { getTagById, type TagId } from '../../utils/tribes';
 
 export type GlobalCondition<
   T extends ConditionOverrides = {
@@ -54,6 +55,7 @@ export type GlobalCondition<
           amount: Amount<T>;
         };
         keyword?: KeywordId;
+        tag?: TagId;
         position?: Filter<CellCondition>;
       };
     };
@@ -131,7 +133,7 @@ export const checkGlobalConditions = (
             conditions: condition.params.unit
           });
           const isMatch = (e: Entity) => {
-            const { attack, hp, position, keyword } = condition.params;
+            const { attack, hp, position, keyword, tag } = condition.params;
             const ctx = { session, card, entity, targets, event, eventName };
             const attackMatch =
               // we need this check because GUI generated all optional parameters with empty values
@@ -166,8 +168,9 @@ export const checkGlobalConditions = (
                 : true;
 
             const keywordMatch = keyword ? e.hasKeyword(getKeywordById(keyword)!) : true;
+            const tagMatch = tag ? e.hasTag(tag) : true;
 
-            return attackMatch && hpMatch && positionMatch && keywordMatch;
+            return attackMatch && hpMatch && positionMatch && keywordMatch && tagMatch;
           };
 
           return match(condition.params.mode)

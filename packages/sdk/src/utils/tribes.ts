@@ -3,28 +3,34 @@ import type { Values } from '@game/shared';
 export type Tag = {
   id: string;
   name: string;
+  aliases: string[];
 };
 
 export const TAGS = {
   ELEMENTAL: {
     id: 'elemental',
-    name: 'Elemental'
+    name: 'Elemental',
+    aliases: []
   },
   VESPYR: {
     id: 'vespyr',
-    name: 'Vespyr'
+    name: 'Vespyr',
+    aliases: []
   },
   ARCANYST: {
     id: 'arcanyst',
-    name: 'Arcanyst'
+    name: 'Arcanyst',
+    aliases: []
   },
   DERVISH: {
     id: 'dervish',
-    name: 'Dervish'
+    name: 'Dervish',
+    aliases: ['dervishes']
   },
   GOLEM: {
     id: 'golem',
-    name: 'Golem'
+    name: 'Golem',
+    aliases: []
   }
 } as const satisfies Record<string, Tag>;
 
