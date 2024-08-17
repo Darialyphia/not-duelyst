@@ -6,6 +6,7 @@ import { uniqBy } from 'lodash-es';
 
 const emit = defineEmits<{
   back: [];
+  importCode: [code: string];
 }>();
 
 const { formValues, save, isSaving, removeCard } = useLoadoutForm();
@@ -80,6 +81,16 @@ watch(groupedCards, (newGroups, oldGroups) => {
     }
   });
 });
+
+const importCode = ref('');
+const { copy } = useClipboard();
+
+const exportCode = () => {
+  const json = JSON.stringify(formValues.value.cards.map(c => c.id));
+  const code = `${formValues.value.name}|${btoa(json)}`;
+  copy(code);
+  importCode.value = code;
+};
 </script>
 
 <template>
@@ -189,16 +200,33 @@ watch(groupedCards, (newGroups, oldGroups) => {
     />
 
     <footer class="mt-auto">
-      <UiButton
-        class="ghost-button"
-        left-icon="mdi:undo"
-        type="button"
-        :is-loading="isSaving"
-        @click="emit('back')"
-      >
-        Back
-      </UiButton>
-      <UiFancyButton :is-loading="isSaving">Save</UiFancyButton>
+      <div class="flex justify-end gap-3">
+        <UiButton
+          class="ghost-button"
+          left-icon="mdi:undo"
+          type="button"
+          :is-loading="isSaving"
+          @click="emit('back')"
+        >
+          Back
+        </UiButton>
+        <UiFancyButton :is-loading="isSaving">Save</UiFancyButton>
+      </div>
+      <div class="export">
+        <UiTextInput id="import-code" v-model="importCode" placeholder="Import deck" />
+        <UiIconButton
+          class="subtle-button"
+          name="solar:import-linear"
+          type="button"
+          @click="emit('importCode', importCode)"
+        />
+        <UiIconButton
+          class="subtle-button"
+          name="material-symbols:content-copy-outline-rounded"
+          type="button"
+          @click="exportCode"
+        />
+      </div>
     </footer>
   </form>
 </template>
@@ -228,9 +256,6 @@ ul {
 }
 
 footer {
-  display: flex;
-  gap: var(--size-3);
-  justify-content: flex-end;
   padding-block: var(--size-3);
 }
 
@@ -340,5 +365,12 @@ li {
   position: absolute;
   right: 0;
   bottom: calc(-1 * var(--size-3));
+}
+
+.export {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--size-1);
+  margin-block-start: var(--size-2);
 }
 </style>

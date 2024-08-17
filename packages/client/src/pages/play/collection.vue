@@ -13,16 +13,17 @@ definePageMeta({
 });
 
 const mode = ref<'list' | 'form'>('list');
-const { initEmpty, initFromLoadout, canAddCard, addCard, general } =
+const { factionFilter, textFilter, costFilter, displayedCards, loadouts, collection } =
+  useCollection();
+
+const { initEmpty, initFromLoadout, initFromCode, canAddCard, addCard, general } =
   useLoadoutFormProvider({
+    collection,
     defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
     onSuccess() {
       mode.value = 'list';
     }
   });
-
-const { factionFilter, textFilter, costFilter, displayedCards, loadouts } =
-  useCollection();
 
 watch(mode, () => {
   factionFilter.value = undefined;
@@ -68,6 +69,13 @@ const onIntersectionObserver =
   };
 
 const listRoot = ref<HTMLElement>();
+
+watch(relevantCards, () => {
+  listRoot.value?.scrollTo({
+    top: 0,
+    behavior: 'instant'
+  });
+});
 </script>
 
 <template>
@@ -107,7 +115,7 @@ const listRoot = ref<HTMLElement>();
     </section>
     <section class="sidebar">
       <template v-if="mode === 'form'">
-        <LoadoutForm @back="mode = 'list'" />
+        <LoadoutForm @back="mode = 'list'" @import-code="initFromCode" />
       </template>
 
       <template v-else>
@@ -169,7 +177,7 @@ const listRoot = ref<HTMLElement>();
 .collection-page {
   overflow-x: hidden;
   display: grid;
-  grid-template-columns: 1fr var(--size-xs);
+  grid-template-columns: 1fr var(--size-14);
   grid-template-rows: auto 1fr auto;
 
   height: 100vh;

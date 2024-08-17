@@ -1,5 +1,7 @@
 import { api } from '@game/api';
+import { isDefined } from '@game/shared';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
+import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS, type CardBlueprint } from '@game/sdk';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
@@ -20,6 +22,7 @@ type LodoutFormContext = {
   general: ComputedRef<CardBlueprint | null>;
   initEmpty(): void;
   initFromLoadout(loadout: LoadoutDto): void;
+  initFromCode(code: string): void;
   canAddCard(cardId: CardBlueprintId): boolean;
   isInLoadout(cardId: CardBlueprintId): boolean;
   loadoutIsFull: ComputedRef<boolean>;
@@ -33,9 +36,11 @@ export const LOADOUT_FORM_INJECTION_KEY = Symbol(
 ) as InjectionKey<LodoutFormContext>;
 
 export const useLoadoutFormProvider = ({
+  collection,
   defaultName,
   onSuccess
 }: {
+  collection: Ref<CollectionItemDto[]>;
   defaultName: MaybeRefOrGetter<string>;
   onSuccess: () => void;
 }) => {
@@ -66,6 +71,24 @@ export const useLoadoutFormProvider = ({
       loadoutId: loadout._id,
       cards: loadout.cards,
       name: loadout.name
+    };
+  };
+
+  const initFromCode = (code: string) => {
+    const [name, cardsBase64] = code.split('|');
+    const decodedCards = JSON.parse(atob(cardsBase64)) as string[];
+    formValues.value = {
+      name,
+      cards: decodedCards
+        .map(id => collection.value.find(collectionItem => collectionItem.cardId === id))
+        .filter(isDefined)
+        .map(collectionItem => {
+          return {
+            id: collectionItem.cardId,
+            pedestalId: collectionItem.pedestalId,
+            cardBackId: collectionItem.cardBackId
+          };
+        })
     };
   };
 
@@ -152,6 +175,7 @@ export const useLoadoutFormProvider = ({
     general,
     initEmpty,
     initFromLoadout,
+    initFromCode,
     canAddCard,
     isInLoadout,
     loadoutIsFull,
