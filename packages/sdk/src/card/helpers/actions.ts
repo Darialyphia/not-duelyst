@@ -23,7 +23,7 @@ export const applyModifierConditionally = ({
   eventName?: string;
   session: GameSession;
 }) => {
-  const source = ctx.entity ?? ctx.card.player.general;
+  const source = ctx.modifierRecipient ?? ctx.entity ?? ctx.card.player.general;
   let isDisabled = true;
 
   const tryToApply = () => {

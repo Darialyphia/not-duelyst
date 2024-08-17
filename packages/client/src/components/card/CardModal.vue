@@ -76,7 +76,6 @@ const offset = computed(() => {
           :class="index === 0 && settings.ui.cardsWith3D && 'card-3d'"
           @click="
             () => {
-              console.log(bp.id);
               selectedBlueprintId = bp.id;
             }
           "

@@ -19,10 +19,7 @@ import { getEntityBehind, isNearbyAlly, isNearbyEnemy } from '../entity/entity-u
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 
 export const dispelEntity = (entity: Entity) => {
-  entity.modifiers.forEach(modifier => {
-    entity.removeModifier(modifier.id);
-  });
-  entity.isDispelled = true;
+  entity.dispel();
 };
 
 export const cleanseEntity = (entity: Entity) => {
@@ -458,7 +455,8 @@ export const aura = ({
   onLoseAura,
   id,
   keywords = [],
-  isElligible = (target, source) => isWithinCells(source.position, target.position, 1)
+  isElligible = (target, source) => isWithinCells(source.position, target.position, 1),
+  origin
 }: {
   source: Card;
   id?: string;
@@ -466,6 +464,7 @@ export const aura = ({
   onLoseAura: (entity: Entity, source: Entity, session: GameSession) => void;
   keywords?: Keyword[];
   isElligible?: (target: Entity, source: Entity, session: GameSession) => boolean;
+  origin?: Entity;
 }) => {
   const affectedEntitiesIds = new Set<EntityId>();
   // we need to track this variable because of how the event emitter works
@@ -521,7 +520,7 @@ export const aura = ({
         keywords,
         onApplied(session, attachedTo) {
           isApplied = true;
-          checkListener = () => checkAura(session, attachedTo);
+          checkListener = () => checkAura(session, origin ?? attachedTo);
           checkListener();
 
           session.on('entity:created', checkListener);
@@ -530,12 +529,12 @@ export const aura = ({
           session.on('entity:after_teleport', checkListener);
 
           attachedTo.once('after_destroy', () => {
-            cleanup(session, attachedTo);
+            cleanup(session, origin ?? attachedTo);
           });
         },
         onRemoved(session, attachedTo) {
           isApplied = false;
-          cleanup(session, attachedTo);
+          cleanup(session, origin ?? attachedTo);
         }
       }
     ]
@@ -570,7 +569,7 @@ export const zeal = ({
   });
 };
 
-export const provoke = ({ source }: { source: Card }) => {
+export const provoke = ({ source, provoker }: { source: Card; provoker?: Entity }) => {
   const interceptorMap = new Map<
     EntityId,
     {
@@ -594,7 +593,7 @@ export const provoke = ({ source }: { source: Card }) => {
     source,
     keywords: [KEYWORDS.PROVOKE],
     isElligible(target, source, session) {
-      return isNearbyEnemy(session, source, target.position);
+      return isNearbyEnemy(session, provoker ?? source, target.position);
     },
     onGainAura(entity, taunter) {
       const interceptors = makeInterceptors(taunter);
@@ -641,7 +640,7 @@ export const whileOnBoard = ({
         {
           onApplied(session, attachedTo, modifier) {
             onApplied(session, attachedTo, modifier);
-            attachedTo.once(ENTITY_EVENTS.BEFORE_DESTROY, async () => {
+            attachedTo.once(ENTITY_EVENTS.AFTER_DESTROY, async () => {
               await session.actionSystem.schedule(async () => {
                 onRemoved(session, attachedTo, modifier);
               });

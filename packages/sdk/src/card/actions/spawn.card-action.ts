@@ -10,6 +10,8 @@ export class SpawnCardAction extends CardAction<'spawn'> {
       position
     });
 
+    if (!this.ctx.card.meta) this.ctx.card.meta = {};
+
     this.ctx.card.meta.spawnPosition = position.position;
 
     return this.applyModifierConditionally(modifier, this.action.params.activeWhen);

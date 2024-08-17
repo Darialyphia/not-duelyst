@@ -8,7 +8,7 @@ export const neutralJaxTruesight = defineSerializedBlueprint({
   spriteId: 'neutral_jax_truesight',
   collectable: true,
   keywords: [KEYWORDS.RANGED.id, KEYWORDS.OPENING_GAMBIT.id],
-  relatedBlueprintIds: [],
+  relatedBlueprintIds: ['neutral_mini_jax'],
   tags: [],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.LEGENDARY,

@@ -75,7 +75,7 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
     const units = this.getUnits(this.action.params.targets);
 
     units.forEach(target => {
-      target.addModifier(
+      (this.ctx.modifierRecipient ?? target).addModifier(
         createEntityModifier({
           id: modifierId,
           source: this.card,
@@ -85,16 +85,19 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
             modifierEntityInterceptorMixin({
               key: 'attack',
               keywords: [],
+              entity: target,
               interceptor: () => this.makeAttackInterceptor()
             }),
             modifierEntityInterceptorMixin({
               key: 'maxHp',
               keywords: [],
+              entity: target,
               interceptor: () => this.makeHpInterceptor()
             }),
             modifierEntityInterceptorMixin({
               key: 'speed',
               keywords: [],
+              entity: target,
               interceptor: () => this.makeSpeedInterceptor()
             })
           ]
@@ -104,7 +107,7 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
 
     const stop = () => {
       units.forEach(target => {
-        target.removeModifier(modifierId);
+        (this.ctx.modifierRecipient ?? target).removeModifier(modifierId);
       });
     };
 

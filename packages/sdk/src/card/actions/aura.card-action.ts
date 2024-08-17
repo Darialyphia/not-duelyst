@@ -33,6 +33,7 @@ export class AuraCardAction extends CardAction<'aura'> {
                 session: this.session,
                 entity,
                 card: entity.card,
+                modifierRecipient: this.ctx.entity,
                 targets: []
               })
             );
@@ -42,6 +43,7 @@ export class AuraCardAction extends CardAction<'aura'> {
               session: this.session,
               entity,
               card: entity.card,
+              modifierRecipient: this.ctx.entity,
               targets: []
             });
             source.addModifier(mod);

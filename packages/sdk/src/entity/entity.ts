@@ -628,4 +628,12 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   hasTag(tag: TagId) {
     return this.card.blueprint.tags?.some(t => t.id === tag);
   }
+
+  dispel() {
+    this.modifiers.forEach(modifier => {
+      this.removeModifier(modifier.id);
+    });
+    this.isDispelled = true;
+    this._keywords = [];
+  }
 }

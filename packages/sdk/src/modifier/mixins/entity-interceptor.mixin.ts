@@ -1,4 +1,4 @@
-import type { EntityInterceptor } from '../../entity/entity';
+import type { Entity, EntityInterceptor } from '../../entity/entity';
 import type { GameSession } from '../../game-session';
 import type { inferInterceptor } from '../../utils/helpers';
 import type { Keyword } from '../../utils/keywords';
@@ -11,7 +11,8 @@ export const modifierEntityInterceptorMixin = <T extends keyof EntityInterceptor
   interceptor,
   tickOn,
   keywords,
-  priority
+  priority,
+  entity
 }: {
   key: T;
   keywords: Keyword[];
@@ -22,6 +23,7 @@ export const modifierEntityInterceptorMixin = <T extends keyof EntityInterceptor
     modifier: EntityModifier,
     session: GameSession
   ) => inferInterceptor<EntityInterceptor[T]>;
+  entity?: Entity;
 }) => {
   let _interceptor: any;
   return modifierEntityDurationMixin({
@@ -30,10 +32,10 @@ export const modifierEntityInterceptorMixin = <T extends keyof EntityInterceptor
     tickOn,
     onApplied(session, attachedTo, modifier) {
       _interceptor = interceptor(modifier, session);
-      attachedTo.addInterceptor(key, _interceptor, priority);
+      (entity ?? attachedTo).addInterceptor(key, _interceptor, priority);
     },
     onRemoved(session, attachedTo) {
-      attachedTo.removeInterceptor(key, _interceptor);
+      (entity ?? attachedTo).removeInterceptor(key, _interceptor);
     }
   });
 };

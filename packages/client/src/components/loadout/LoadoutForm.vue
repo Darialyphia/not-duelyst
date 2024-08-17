@@ -144,9 +144,10 @@ const exportCode = () => {
             </div>
 
             <div class="flex items-center ml-auto" style="aspect-ratio: 1; width: 64px">
-              <div class="sprite mx-auto">
-                <CardSprite :sprite-id="group.card.spriteId" />
-              </div>
+              <CardSprite
+                :sprite-id="group.card.spriteId"
+                class="h-full w-full card-sprite"
+              />
             </div>
           </li>
         </HoverCardTrigger>
@@ -275,8 +276,7 @@ li {
   gap: var(--size-2);
   align-items: center;
 
-  height: 88px;
-  padding-block: var(--size-2);
+  height: 72px;
 
   font-size: var(--font-size-3);
 
@@ -331,10 +331,6 @@ li {
   border-radius: var(--radius-round); */
 }
 
-.sprite {
-  transform: translateY(24px);
-}
-
 .name {
   overflow: hidden;
   display: grid;
@@ -372,5 +368,12 @@ li {
   grid-template-columns: 1fr auto auto;
   gap: var(--size-1);
   margin-block-start: var(--size-2);
+}
+
+:is(.general, .minion) .card-sprite {
+  transform: translateY(8px);
+}
+:is(.spell, .artifact) .card-sprite {
+  transform: translateY(-8px);
 }
 </style>
