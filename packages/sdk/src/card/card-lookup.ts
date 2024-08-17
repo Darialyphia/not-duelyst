@@ -113,6 +113,8 @@ import { f1SunstoneTemplar } from './cards/faction_1/sunstone-templar';
 import { neutralSwornAvenger } from './cards/neutral/sworn-avenger';
 import { neutralVoidHunter } from './cards/neutral/void-hunter';
 import { f3FireblazeObelisk } from './cards/faction_3/fireblaze-obelisk';
+import { neutralSpellspark } from './cards/neutral/spellspark';
+import { neutralFlameAcolyte } from './cards/neutral/flame-acolyte';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -229,7 +231,9 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralLuxIgnis,
   neutralEmeraldRejuvenator,
   neutralSwornAvenger,
-  neutralVoidHunter
+  neutralVoidHunter,
+  neutralSpellspark,
+  neutralFlameAcolyte
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<
