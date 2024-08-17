@@ -12,32 +12,30 @@ export class AuraCardAction extends CardAction<'aura'> {
       config: this.action.params.effect
     }).flat();
 
-    const entityModifiersPerEntity = new Map<Entity, EntityModifier[]>();
-    const cardModifiersPerEntity = new Map<Entity, CardModifier[]>();
+    const cleanupsByEntity = new Map<Entity, Array<() => void>>();
 
     const modifier = aura({
       source: this.card,
       isElligible: target => {
-        console.log(target.card.blueprintId);
         return this.getUnits(this.action.params.isElligible).some(unit =>
           unit.equals(target)
         );
       },
-      onGainAura: async entity => {
-        if (!entityModifiersPerEntity.has(entity)) {
-          entityModifiersPerEntity.set(entity, []);
+      onGainAura: async (entity, source) => {
+        if (!cleanupsByEntity.has(entity)) {
+          cleanupsByEntity.set(entity, []);
         }
-        if (!entityModifiersPerEntity.has(entity)) {
-          cardModifiersPerEntity.set(entity, []);
-        }
+        const cleanups = cleanupsByEntity.get(entity)!;
         for (const effect of effects) {
           if (effect.onPlay) {
-            await effect.onPlay({
-              session: this.session,
-              entity,
-              card: entity.card,
-              targets: []
-            });
+            cleanups.push(
+              await effect.onPlay({
+                session: this.session,
+                entity,
+                card: entity.card,
+                targets: []
+              })
+            );
           }
           if (effect.getEntityModifier) {
             const mod = effect.getEntityModifier({
@@ -46,22 +44,26 @@ export class AuraCardAction extends CardAction<'aura'> {
               card: entity.card,
               targets: []
             });
-            entityModifiersPerEntity.get(entity)!.push(mod);
-            entity.addModifier(mod);
+            source.addModifier(mod);
+            cleanups.push(() => {
+              source.removeModifier(mod.id);
+            });
           }
 
           if (effect.getCardModifier) {
             const mod = effect.getCardModifier();
-            cardModifiersPerEntity.get(entity)!.push(mod);
-            entity.card.addModifier(mod);
+            source.card.addModifier(mod);
+            cleanups.push(() => {
+              source.removeModifier(mod.id);
+            });
           }
         }
       },
       onLoseAura(entity) {
-        entityModifiersPerEntity.get(entity)?.forEach(m => entity.removeModifier(m.id));
-        cardModifiersPerEntity
-          .get(entity)
-          ?.forEach(m => entity.card.removeModifier(m.id));
+        cleanupsByEntity.get(entity)?.forEach(cleanup => {
+          cleanup();
+        });
+        cleanupsByEntity.set(entity, []);
       }
     });
 

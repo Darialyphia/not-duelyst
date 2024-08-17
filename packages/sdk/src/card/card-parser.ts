@@ -323,7 +323,7 @@ export const parseSerializedBlueprintEffect = (
           });
 
           return () => {
-            return;
+            cleanups.forEach(c => c());
           };
         }
       }
