@@ -204,7 +204,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.1",
@@ -213,7 +213,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.2",
@@ -222,7 +222,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.3",
@@ -231,7 +231,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.4",
@@ -240,7 +240,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.5",
@@ -249,7 +249,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.6",
@@ -258,7 +258,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.7",
@@ -267,7 +267,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.8",
@@ -276,7 +276,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.9",
@@ -285,7 +285,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.10",
@@ -294,7 +294,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.11",
@@ -303,7 +303,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.12",
@@ -312,7 +312,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.breathing.13",
@@ -321,7 +321,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
     "sourceSize": { "w": 110, "h": 110 },
-    "duration": 64
+    "duration": 96
    },
    {
     "filename": "f3_general2.cast.0",

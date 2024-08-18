@@ -12,6 +12,7 @@ export type Animation =
   | 'default'
   | 'active'
   | 'caststart'
+  | 'cast'
   | 'castloop'
   | 'castend'
   | 'projectile';

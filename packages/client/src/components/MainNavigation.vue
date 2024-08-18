@@ -94,7 +94,7 @@ li {
 
     padding: 0;
 
-    font-size: var(--font-size-4);
+    font-size: var(--font-size-5);
     text-align: left;
     text-shadow: black 0px 4px 1px;
     &::after {

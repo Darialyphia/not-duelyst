@@ -12,9 +12,9 @@ definePageMeta({
 
 <template>
   <div class="page">
-    <ProfileButton class="fixed top-6 left-2" />
+    <ProfileButton class="fixed top-6 left-10" />
 
-    <MainNavigation class="pl-9 pt-12" />
+    <MainNavigation class="pl-11 pt-12" />
 
     <section class="fancy-surface fancy-scrollbar">
       <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />

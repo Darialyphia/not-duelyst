@@ -47,9 +47,10 @@ export const useCollection = () => {
     if (factionDiff !== 0) return factionDiff * -1;
 
     // put generals first
-    if (a.card.kind === CARD_KINDS.GENERAL && b.card.kind === CARD_KINDS.MINION)
+    if (a.card.kind === CARD_KINDS.GENERAL && b.card.kind !== CARD_KINDS.GENERAL)
       return -1;
-    if (b.card.kind === CARD_KINDS.GENERAL && a.card.kind === CARD_KINDS.MINION) return 1;
+    if (b.card.kind === CARD_KINDS.GENERAL && a.card.kind !== CARD_KINDS.GENERAL)
+      return 1;
 
     if (a.card.cost !== b.card.cost) {
       return a.card.cost - b.card.cost;

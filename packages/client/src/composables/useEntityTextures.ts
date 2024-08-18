@@ -131,11 +131,11 @@ export const useEntityTexture = (
       sprite.value.loop = false;
     }),
     session.on('card:before_played', async event => {
-      if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
       if (!event.player.general.equals(entity.value)) return;
+      if (event.kind !== CARD_KINDS.SPELL && event.kind !== CARD_KINDS.ARTIFACT) return;
       await playAnimation('caststart', 1, () => true)(event);
       await playAnimation('castloop', 1, () => true)(event);
-
+      await playAnimation('cast', 1, () => true)(event);
       await playAnimation('castend', 1, () => true)(event);
     }),
     session.on('entity:before_move', event => {

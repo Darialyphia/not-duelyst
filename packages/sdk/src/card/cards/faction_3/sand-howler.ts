@@ -17,7 +17,7 @@ export const f3SandHowler = defineSerializedBlueprint({
   faction: 'f3',
   effects: [
     {
-      text: '@Opening Gambit@: Give a nearby minion -4 / -0 until the your next turn.',
+      text: '@Opening Gambit@: Give a nearby minion -4 / -0 until your next turn.',
       config: {
         actions: [
           {

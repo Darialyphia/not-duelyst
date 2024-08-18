@@ -125,9 +125,26 @@ import { f3EntropicDecay } from './cards/faction_3/entropic-decay';
 import { f3RashasCurse } from './cards/faction_3/rashas_curse';
 import { f3FountainOfYouth } from './cards/faction_3/fountain_of_youth';
 import { f3Hexblade } from './cards/faction_3/hexblade';
+import { f1General2 } from './cards/faction_1/general2';
+import { f1General3 } from './cards/faction_1/general3';
+import { f2General2 } from './cards/faction_2/general2';
+import { f2General3 } from './cards/faction_2/general3';
+import { f3General } from './cards/faction_3/general';
+import { f3General3 } from './cards/faction_3/general3';
+import { f4General } from './cards/faction_4/general';
+import { f4General2 } from './cards/faction_4/general2';
+import { f4General3 } from './cards/faction_4/general3';
+import { f5General } from './cards/faction_5/general';
+import { f5General2 } from './cards/faction_5/general2';
+import { f5General3 } from './cards/faction_5/general3';
+import { f6General } from './cards/faction_6/general';
+import { f6General2 } from './cards/faction_6/general2';
+import { f6General3 } from './cards/faction_6/general3';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
+  f1General2,
+  f1General3,
   f1IroncliffeGuardian,
   f1TrueStrike,
   f1LionheartBlessing,
@@ -157,6 +174,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f1SunstoneTemplar,
 
   f2General,
+  f2General2,
+  f2General3,
   f2InnerFocus,
   f2KaidoAssassin,
   f2TuskBoar,
@@ -185,7 +204,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f2JadeMonk,
   f2ScarletViper,
 
+  f3General,
   f3General2,
+  f3General3,
   f3WindDervish,
   f3EtherealObelysk,
   f3PortalGuardian,
@@ -215,6 +236,18 @@ const allCards: SerializedBlueprint<any>[] = [
   f3RashasCurse,
   f3FountainOfYouth,
   f3Hexblade,
+
+  f4General,
+  f4General2,
+  f4General3,
+
+  f5General,
+  f5General2,
+  f5General3,
+
+  f6General,
+  f6General2,
+  f6General3,
 
   neutralHealingMystic,
   neutralRiftWalker,
