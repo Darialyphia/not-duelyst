@@ -116,6 +116,10 @@ import { f3FireblazeObelisk } from './cards/faction_3/fireblaze-obelisk';
 import { neutralSpellspark } from './cards/neutral/spellspark';
 import { neutralFlameAcolyte } from './cards/neutral/flame-acolyte';
 import { neutralJaxi } from './cards/neutral/jaxi';
+import { f3SiphonEnergy } from './cards/faction_3/siphon-energy';
+import { neutralGhostLynx } from './cards/neutral/ghost-lynx';
+import { f3InnerOasis } from './cards/faction_3/inner-oasis';
+import { f3CosmicFlesh } from './cards/neutral/cosmic_flesh';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -198,6 +202,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f3FusionBanshee,
   f3StarfireScarab,
   f3FireblazeObelisk,
+  f3SiphonEnergy,
+  f3InnerOasis,
+  f3CosmicFlesh,
 
   neutralHealingMystic,
   neutralRiftWalker,
@@ -235,7 +242,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralVoidHunter,
   neutralSpellspark,
   neutralFlameAcolyte,
-  neutralJaxi
+  neutralJaxi,
+  neutralGhostLynx
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<

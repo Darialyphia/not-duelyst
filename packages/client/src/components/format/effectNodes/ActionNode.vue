@@ -486,19 +486,19 @@ watch(
     }
     match(action.value)
       .with({ type: 'deal_damage' }, ({ params }) => {
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'heal' }, ({ params }) => {
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'draw_cards' }, ({ params }) => {
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
@@ -508,15 +508,15 @@ watch(
         params.mode ??= 'give';
         params.stackable ??= true;
         params.attack = {
-          amount: params.attack?.amount ?? ({ type: undefined } as any),
+          amount: params.attack?.amount ?? { type: 'fixed', params: { value: 0 } },
           activeWhen: params.attack?.activeWhen ?? { candidates: [], random: false }
         };
         params.hp = {
-          amount: params.hp?.amount ?? ({ type: undefined } as any),
+          amount: params.hp?.amount ?? { type: 'fixed', params: { value: 0 } },
           activeWhen: params.hp?.activeWhen ?? { candidates: [], random: false }
         };
         params.speed = {
-          amount: params.speed?.amount ?? ({ type: undefined } as any),
+          amount: params.speed?.amount ?? { type: 'fixed', params: { value: 0 } },
           activeWhen: params.speed?.activeWhen ?? { candidates: [], random: false }
         };
         params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
@@ -531,7 +531,7 @@ watch(
         params.source ??= { candidates: [], random: false };
         params.filter ??= { candidates: [], random: false };
         params.frequency ??= { type: 'always' };
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.duration ??= 'always';
         params.execute ??= 'now';
       })
@@ -547,7 +547,7 @@ watch(
           };
           params.filter ??= { candidates: [], random: false };
           params.frequency ??= { type: 'always' };
-          params.amount ??= { type: undefined } as any;
+          params.amount ??= { type: 'fixed', params: { value: 0 } };
           params.duration ??= 'always';
           params.execute ??= 'now';
         }
@@ -575,7 +575,7 @@ watch(
       .with({ type: 'backstab' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.execute ??= 'now';
       })
       .with({ type: 'zeal' }, ({ params }) => {
@@ -604,7 +604,7 @@ watch(
       .with({ type: 'change_card_cost' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.card ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.occurences_count ??= 0;
@@ -632,7 +632,7 @@ watch(
       })
       .with({ type: 'change_replaces_count' }, ({ params }) => {
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
-        params.amount ??= { type: undefined } as any;
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.duration ??= 'always';
         params.stackable ??= true;
         params.filter ??= { candidates: [], random: false };

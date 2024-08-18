@@ -10,7 +10,7 @@ export const neutralJaxi = defineSerializedBlueprint({
   rarity: 'common',
   effects: [
     {
-      text: 'Your effect Text',
+      text: '@Dying Wish@: summon a @Mini-jax@ on this space.',
       config: {
         executionContext: 'trigger_while_on_board',
         actions: [

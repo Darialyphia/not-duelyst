@@ -51,7 +51,11 @@ export const useCollection = () => {
       return -1;
     if (b.card.kind === CARD_KINDS.GENERAL && a.card.kind === CARD_KINDS.MINION) return 1;
 
-    return a.card.cost - b.card.cost;
+    if (a.card.cost !== b.card.cost) {
+      return a.card.cost - b.card.cost;
+    }
+
+    return a.card.name.localeCompare(b.card.name);
   };
 
   const matchesTextFilter = (str: string) =>
