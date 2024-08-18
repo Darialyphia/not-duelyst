@@ -4,7 +4,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f2Gotatsu = defineSerializedBlueprint({
-  id: 'KSF_eA',
+  id: 'f2_gotatsu',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],

@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3SandHowler = defineSerializedBlueprint({
-  id: 'heV0uf',
+  id: 'f3_sand_howler',
   collectable: true,
   keywords: ['opening_gambit'],
   relatedBlueprintIds: [],

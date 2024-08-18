@@ -105,9 +105,7 @@ const componentNodes: Record<string, Component | string> = {
         }
       "
     />
-    <div v-if="getParams(groupIndex, conditionIndex).length" class="my-2 font-500">
-      Conditions
-    </div>
+
     <div
       v-for="param in getParams(groupIndex, conditionIndex)"
       :key="param"

@@ -7,7 +7,7 @@ export const neutralEphemeralShroud = defineSerializedBlueprint({
   name: 'Ephemeral Shroud',
   spriteId: 'neutral_ephemeral_shroud',
   collectable: true,
-  keywords: [KEYWORDS.OPENING_GAMBIT.id],
+  keywords: [KEYWORDS.OPENING_GAMBIT.id, KEYWORDS.DISPEL.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: CARD_KINDS.MINION,
@@ -19,7 +19,7 @@ export const neutralEphemeralShroud = defineSerializedBlueprint({
   faction: null,
   effects: [
     {
-      text: '@Opening Gambit@: Dispel a nearby space.',
+      text: '@Opening Gambit@: @Dispel@ a nearby space.',
       config: {
         executionContext: 'immediate',
         actions: [

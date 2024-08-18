@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f3StarfireScarab = defineSerializedBlueprint({
-  id: 'ofCpMH',
+  id: 'f3_starfire_scarab',
   spriteId: 'f3_starfire_scarab',
   name: 'Starfire Scarab',
   collectable: true,

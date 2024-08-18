@@ -497,10 +497,8 @@ export const aura = ({
   };
 
   const cleanup = (session: GameSession, attachedTo: Entity) => {
-    session.off('entity:created', checkListener);
-    session.off('entity:after_destroy', checkListener);
-    session.off('entity:after_move', checkListener);
-    session.off('entity:after_teleport', checkListener);
+    session.off('*', checkListener);
+
     affectedEntitiesIds.forEach(id => {
       const entity = session.entitySystem.getEntityById(id);
       if (!entity) return;
@@ -523,10 +521,7 @@ export const aura = ({
           checkListener = () => checkAura(session, origin ?? attachedTo);
           checkListener();
 
-          session.on('entity:created', checkListener);
-          session.on('entity:after_destroy', checkListener);
-          session.on('entity:after_move', checkListener);
-          session.on('entity:after_teleport', checkListener);
+          session.on('*', checkListener);
 
           attachedTo.once('after_destroy', () => {
             cleanup(session, origin ?? attachedTo);
@@ -640,11 +635,13 @@ export const whileOnBoard = ({
         {
           onApplied(session, attachedTo, modifier) {
             onApplied(session, attachedTo, modifier);
-            attachedTo.once(ENTITY_EVENTS.AFTER_DESTROY, async () => {
+            const remove = async () => {
               await session.actionSystem.schedule(async () => {
                 onRemoved(session, attachedTo, modifier);
               });
-            });
+            };
+            attachedTo.once(ENTITY_EVENTS.AFTER_DESTROY, remove);
+            attachedTo.once(ENTITY_EVENTS.AFTER_BOUNCE, remove);
           },
           onRemoved
         }

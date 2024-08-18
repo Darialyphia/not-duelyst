@@ -2,7 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 import { nTimesPerTurn } from '../../helpers/fequency';
-import { allyGeneral, cellWithAllyGeneral } from '../../helpers/targeting';
+import { allyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
 export const f1ArclyteRegalia = defineSerializedBlueprint({

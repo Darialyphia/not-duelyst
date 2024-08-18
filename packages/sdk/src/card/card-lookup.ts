@@ -120,6 +120,11 @@ import { f3SiphonEnergy } from './cards/faction_3/siphon-energy';
 import { neutralGhostLynx } from './cards/neutral/ghost-lynx';
 import { f3InnerOasis } from './cards/faction_3/inner-oasis';
 import { f3CosmicFlesh } from './cards/neutral/cosmic_flesh';
+import { f3DominateWill } from './cards/faction_3/dominate-will';
+import { f3EntropicDecay } from './cards/faction_3/entropic-decay';
+import { f3RashasCurse } from './cards/faction_3/rashas_curse';
+import { f3FountainOfYouth } from './cards/faction_3/fountain_of_youth';
+import { f3Hexblade } from './cards/faction_3/hexblade';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -205,6 +210,11 @@ const allCards: SerializedBlueprint<any>[] = [
   f3SiphonEnergy,
   f3InnerOasis,
   f3CosmicFlesh,
+  f3DominateWill,
+  f3EntropicDecay,
+  f3RashasCurse,
+  f3FountainOfYouth,
+  f3Hexblade,
 
   neutralHealingMystic,
   neutralRiftWalker,

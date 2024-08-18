@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f2Heartseeker = defineSerializedBlueprint({
-  id: 'heartseeker',
+  id: 'f2_heartseeker',
   collectable: true,
   name: 'Heartseeker',
   spriteId: 'f2_heartseeker',

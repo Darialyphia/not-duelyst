@@ -40,6 +40,8 @@ import { BlastCardAction } from './actions/blast.card-action';
 import { ChangeCanAttackCardAction } from './actions/change-can-attack.card-action';
 import { DispelEntityCardAction } from './actions/dispel-entity.card-action';
 import { AuraCardAction } from './actions/aura.card-action';
+import { UnequipArtifactCardAction } from './actions/unequip-artifact.card-action';
+import { CleanseEntityCardAction } from './actions/cleanse-entity.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -173,8 +175,14 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'dispel_entity' }, action => {
         return new DispelEntityCardAction(action, ctx, event, eventName).execute();
       })
+      .with({ type: 'cleanse_entity' }, action => {
+        return new CleanseEntityCardAction(action, ctx, event, eventName).execute();
+      })
       .with({ type: 'aura' }, action => {
         return new AuraCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'unequip_artifact' }, action => {
+        return new UnequipArtifactCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

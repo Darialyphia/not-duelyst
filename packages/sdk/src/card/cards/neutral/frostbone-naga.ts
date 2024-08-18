@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralFrostboneNaga = defineSerializedBlueprint({
-  id: '_ppCI7',
+  id: 'neutral_frostbone_naga',
   collectable: true,
   keywords: [KEYWORDS.OPENING_GAMBIT.id],
   relatedBlueprintIds: [],

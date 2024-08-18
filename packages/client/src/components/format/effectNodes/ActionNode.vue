@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   AmountNode,
+  ArtifactNode,
   BlueprintNode,
   CardNode,
   CellNode,
@@ -449,12 +450,28 @@ const actionDict: ActionDictionary = {
       filter: GlobalConditionNode
     }
   },
+  cleanse_entity: {
+    label: 'Cleanse a unit',
+    params: {
+      unit: UnitNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
   aura: {
     label: 'Add aura to a unit',
     params: {
       isElligible: UnitNode,
       effect: EffectNode,
       activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  unequip_artifact: {
+    label: 'Destroy an artifact',
+    params: {
+      artifact: ArtifactNode,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -724,6 +741,11 @@ watch(
         params.execute ??= 'now';
         params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
+      .with({ type: 'cleanse_entity' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
+      })
       .with({ type: 'aura' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
@@ -733,6 +755,11 @@ watch(
         };
         params.effect ??= { executionContext: undefined as any, actions: [] };
         params.activeWhen ??= { candidates: [], random: false };
+      })
+      .with({ type: 'unequip_artifact' }, ({ params }) => {
+        params.artifact ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .exhaustive();
   },

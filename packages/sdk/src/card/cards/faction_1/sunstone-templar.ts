@@ -1,3 +1,4 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
@@ -6,7 +7,7 @@ export const f1SunstoneTemplar = defineSerializedBlueprint({
   name: 'Sunstone Templar',
   spriteId: 'f1_sunstone_templar',
   collectable: true,
-  keywords: [],
+  keywords: [KEYWORDS.DISPEL.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: CARD_KINDS.MINION,
@@ -19,7 +20,7 @@ export const f1SunstoneTemplar = defineSerializedBlueprint({
   maxHp: 4,
   effects: [
     {
-      text: 'When this deals damage to a minion dispel that unit.',
+      text: 'When this deals damage to a minion, @Dispel@ that unit.',
       config: {
         executionContext: 'trigger_while_on_board',
         actions: [

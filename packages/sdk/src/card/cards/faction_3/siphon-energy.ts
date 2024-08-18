@@ -1,3 +1,4 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3SiphonEnergy = defineSerializedBlueprint({
@@ -8,14 +9,14 @@ export const f3SiphonEnergy = defineSerializedBlueprint({
   cost: 0,
   faction: 'f3',
   collectable: true,
-  keywords: [],
+  keywords: [KEYWORDS.DISPEL.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: 'SPELL',
   rarity: 'common',
   effects: [
     {
-      text: 'Dispel a minion.',
+      text: '@Dispel@ a minion.',
       config: {
         executionContext: 'immediate',
         actions: [

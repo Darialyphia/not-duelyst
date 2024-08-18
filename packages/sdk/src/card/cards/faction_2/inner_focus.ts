@@ -3,7 +3,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f2InnerFocus = defineSerializedBlueprint({
-  id: 'inner_focus',
+  id: 'f2_inner_focus',
   collectable: true,
   name: 'Inner Focus',
   cost: 1,

@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f2TuskBoar = defineSerializedBlueprint({
-  id: 'HNtZ8Z',
+  id: 'f2_tusk_boar',
   collectable: true,
   keywords: [KEYWORDS.RUSH.id],
   relatedBlueprintIds: [],

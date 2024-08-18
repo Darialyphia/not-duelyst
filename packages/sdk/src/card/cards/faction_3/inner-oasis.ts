@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3InnerOasis = defineSerializedBlueprint({
-  id: 'FtMCzb',
+  id: 'f3_inner_oasis',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],

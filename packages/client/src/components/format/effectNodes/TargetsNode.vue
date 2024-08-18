@@ -10,6 +10,7 @@ useCellConditionsProvider(
 );
 useUnitConditionsProvider(ref({}));
 useCardConditionsProvider(ref({}));
+useArtifactConditionsProvider();
 usePlayerConditionsProvider(ref({}));
 
 const groupsVModel = computed({

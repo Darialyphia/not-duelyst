@@ -541,6 +541,20 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     return modifier.onApplied(this.session, this, modifier);
   }
 
+  private _removeModifier(modifier: EntityModifier) {
+    modifier.onRemoved(this.session, this, modifier);
+    modifier.keywords.forEach(keyword => {
+      const shouldRemove =
+        this.modifiers.some(
+          mod => mod !== modifier && mod.keywords.some(k => keyword.id === k.id)
+        ) || this.card.modifiers.some(mod => mod.keywords.some(k => keyword.id === k.id));
+
+      if (shouldRemove) {
+        this.removeKeyword(keyword);
+      }
+    });
+  }
+
   removeModifier(modifierId: ModifierId, stacksToRemove = 1) {
     this.modifiers.forEach(mod => {
       if (mod.id !== modifierId) return;
@@ -548,10 +562,10 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
       if (mod.stackable) {
         mod.stacks -= stacksToRemove;
         if (mod.stacks < 1) {
-          mod.onRemoved(this.session, this, mod);
+          this._removeModifier(mod);
         }
       } else {
-        mod.onRemoved(this.session, this, mod);
+        this._removeModifier(mod);
       }
     });
 
@@ -635,5 +649,12 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     });
     this.isDispelled = true;
     this._keywords = [];
+  }
+
+  cleanse() {
+    this.modifiers.forEach(modifier => {
+      if (modifier.source.player.equals(this.player)) return;
+      this.removeModifier(modifier.id);
+    });
   }
 }

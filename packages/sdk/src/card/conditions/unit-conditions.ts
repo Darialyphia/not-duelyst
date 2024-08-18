@@ -44,6 +44,8 @@ export type UnitConditionBase =
   | { type: 'is_nearest_below'; params: { unit: Filter<UnitCondition>; not: boolean } }
   | { type: 'is_manual_target'; params: { index: number; not: boolean } }
   | { type: 'is_manual_target_general'; params: { index: number; not: boolean } }
+  | { type: 'is_same_row'; params: { cell: Filter<CellCondition>; not: boolean } }
+  | { type: 'is_same_column'; params: { cell: Filter<CellCondition>; not: boolean } }
   | { type: 'has_keyword'; params: { keyword: KeywordId; not: boolean } }
   | { type: 'has_blueprint'; params: { blueprint: string; not: boolean } }
   | { type: 'has_tag'; params: { tag: TagId; not: boolean } }
@@ -382,6 +384,32 @@ export const getUnits = ({
           })
           .with({ type: 'has_tag' }, condition => {
             return e.hasTag(condition.params.tag);
+          })
+          .with({ type: 'is_same_row' }, condition => {
+            const cells = getCells({
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName,
+              conditions: condition.params.cell
+            });
+
+            return cells.some(c => c.y === e.position.y);
+          })
+          .with({ type: 'is_same_column' }, condition => {
+            const cells = getCells({
+              targets,
+              session,
+              entity,
+              card,
+              event,
+              eventName,
+              conditions: condition.params.cell
+            });
+
+            return cells.some(c => c.x === e.position.x);
           })
           .exhaustive();
 

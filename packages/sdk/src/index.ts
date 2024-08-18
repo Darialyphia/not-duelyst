@@ -57,7 +57,7 @@ export type {
   CellCondition,
   CellConditionExtras
 } from './card/conditions/cell-conditions';
-
+export type { ArtifactCondition } from './card/conditions/artifact-conditions';
 export type { GlobalCondition } from './card/conditions/global-conditions';
 export type { GameAction } from './action/action';
 export { TutorialSession, type TutorialStep } from './tutorial-session';

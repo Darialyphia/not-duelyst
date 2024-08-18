@@ -8,6 +8,7 @@ import {
   TagNode
 } from '#components';
 import type {
+  ArtifactCondition,
   CardConditionBase,
   CardConditionExtras,
   CellConditionBase,
@@ -57,7 +58,9 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       has_hp: { label: 'A unit with hp', params: ['not', 'operator', 'amount'] },
       is_exhausted: { label: 'An exhausted unit', params: ['not'] },
       has_blueprint: { label: 'A unit with the name', params: ['blueprint', 'not'] },
-      has_tag: { label: 'A unit with a tag', params: ['tag', 'not'] }
+      has_tag: { label: 'A unit with a tag', params: ['tag', 'not'] },
+      is_same_column: { label: 'A unit on the same column', params: ['cell', 'not'] },
+      is_same_row: { label: 'A unit on the same row', params: ['cell', 'not'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));
@@ -235,6 +238,29 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
 export const useGlobalConditions = () => {
   const value = _useGlobalConditions();
   if (!value) throw new Error('Use useGlobalConditions() inside its provider');
+
+  return value;
+};
+
+export const [useArtifactConditionsProvider, _useArtifactConditions] =
+  createInjectionState(() => {
+    const baseDict: Record<
+      ArtifactCondition['type'],
+      { label: string; params: string[] }
+    > = {
+      equiped_by_ally: { label: 'Is equiped to your general', params: [] },
+      equiped_by_enemy: { label: 'Is equiped to the enemy general', params: [] },
+      last_equiped: { label: 'The last equiped artifact', params: [] },
+      has_durability: { label: 'Has durability', params: ['amount'] },
+      position: { label: 'Is on position', params: ['index'] }
+    };
+
+    return computed(() => ({ ...baseDict }));
+  });
+
+export const useArtifactConditions = () => {
+  const value = _useArtifactConditions();
+  if (!value) throw new Error('Use useArtifactConditions() inside its provider');
 
   return value;
 };

@@ -13,6 +13,7 @@ import { nanoid } from 'nanoid';
 import { applyModifierConditionally } from '../helpers/actions';
 import type { EntityModifier } from '../../modifier/entity-modifier';
 import { getAmount } from '../helpers/amount';
+import { getEquipedArtifact } from '../conditions/artifact-conditions';
 
 export const noop = () => void 0;
 
@@ -84,6 +85,17 @@ export abstract class CardAction<T extends Action['type']> {
 
   protected getCells(conditions: Parameters<typeof getCells>[0]['conditions']) {
     return getCells({
+      ...this.ctx,
+      conditions,
+      event: this.event,
+      eventName: this.eventName
+    });
+  }
+
+  protected getEquipedArtifacts(
+    conditions: Parameters<typeof getEquipedArtifact>[0]['conditions']
+  ) {
+    return getEquipedArtifact({
       ...this.ctx,
       conditions,
       event: this.event,

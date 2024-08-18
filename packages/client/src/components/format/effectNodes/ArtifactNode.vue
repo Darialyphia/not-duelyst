@@ -1,27 +1,26 @@
 <script setup lang="ts">
-import type { CardConditionBase, Filter } from '@game/sdk';
+import type { ArtifactCondition, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
-import { NumericOperatorNode, AmountNode, PlayerNode } from '#components';
+import { AmountNode } from '#components';
 
-const groups = defineModel<Filter<CardConditionBase>>({ required: true });
+const groups = defineModel<Filter<ArtifactCondition>>({ required: true });
 
-const cardDict = useCardConditions();
+const artifactDict = useArtifactConditions();
 
-const cardOptions = computed(
+const options = computed(
   () =>
-    Object.entries(cardDict.value).map(([id, { label }]) => ({
+    Object.entries(artifactDict.value).map(([id, { label }]) => ({
       label,
       value: id
-    })) as Array<{ label: string; value: CardConditionBase['type'] }>
+    })) as Array<{ label: string; value: ArtifactCondition['type'] }>
 );
 
 const getParams = (groupIndex: number, conditionIndex: number) =>
-  cardDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ?? [];
+  artifactDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ??
+  [];
 
 const componentNodes: Record<string, Component | string> = {
-  operator: NumericOperatorNode,
-  amount: AmountNode,
-  player: PlayerNode
+  amount: AmountNode
 };
 </script>
 
@@ -31,7 +30,7 @@ const componentNodes: Record<string, Component | string> = {
       class="w-full"
       :model-value="groups.candidates[groupIndex][conditionIndex]['type']"
       :multiple="false"
-      :options="cardOptions"
+      :options="options"
       @update:model-value="
         type => {
           const condition = groups.candidates[groupIndex][conditionIndex];
@@ -40,29 +39,21 @@ const componentNodes: Record<string, Component | string> = {
 
           match(condition)
             .with(
-              { type: 'any_card' },
-              { type: 'self' },
-              { type: 'minion' },
-              { type: 'spell' },
-              { type: 'artifact' },
+              { type: 'equiped_by_ally' },
+              { type: 'equiped_by_enemy' },
+              { type: 'last_equiped' },
               () => {
                 return;
               }
             )
-            .with({ type: 'index_in_hand' }, condition => {
+            .with({ type: 'has_durability' }, condition => {
+              condition.params = {
+                amount: { type: 'fixed', params: { value: 3 } }
+              };
+            })
+            .with({ type: 'position' }, condition => {
               condition.params = {
                 index: 0
-              };
-            })
-            .with({ type: 'cost' }, condition => {
-              condition.params = {
-                // @ts-expect-error
-                amount: { type: undefined }
-              };
-            })
-            .with({ type: 'from_player' }, condition => {
-              condition.params = {
-                player: { candidates: [[{ type: undefined as any }]], random: false }
               };
             })
             .exhaustive();

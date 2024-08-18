@@ -1,10 +1,10 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { allyMinion, anywhere } from '../../helpers/targeting';
+import { allyMinion } from '../../helpers/targeting';
 
 export const f1WarSurge = defineSerializedBlueprint({
-  id: 'war_surge',
+  id: 'f1_war_surge',
   collectable: true,
   name: 'War Surge',
   cost: 2,

@@ -6,7 +6,7 @@ import { provokeEffect } from '../../helpers/provoke.effect';
 import { allyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1ElyxStormblade = defineSerializedBlueprint({
-  id: 'elyx_stormblade',
+  id: 'f1_elyx_stormblade',
   collectable: true,
   name: 'Elyx Stormblade',
   cost: 7,

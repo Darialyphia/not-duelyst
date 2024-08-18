@@ -59,6 +59,18 @@ export const KEYWORDS = {
     description: 'Triggers effect whenever a unit is destroyed.',
     aliases: []
   },
+  DISPEL: {
+    id: 'dispel',
+    name: 'Dispel',
+    description: 'Nullifies all abilities and enchantments previously added.',
+    aliases: []
+  },
+  CLEANSE: {
+    id: 'cleanse',
+    name: 'Cleanse',
+    description: 'Remove enchantments previously added from enemy sources.',
+    aliases: []
+  },
   FEARSOME: {
     id: 'fearsomem',
     name: 'Fearsome',

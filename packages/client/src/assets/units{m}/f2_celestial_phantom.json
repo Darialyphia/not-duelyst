@@ -132,7 +132,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.1",
@@ -141,7 +141,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.2",
@@ -150,7 +150,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.3",
@@ -159,7 +159,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.4",
@@ -168,7 +168,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.5",
@@ -177,7 +177,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.6",
@@ -186,7 +186,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.7",
@@ -195,7 +195,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.8",
@@ -204,7 +204,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.9",
@@ -213,7 +213,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.10",
@@ -222,7 +222,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.11",
@@ -231,7 +231,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.12",
@@ -240,7 +240,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.breathing.13",
@@ -249,7 +249,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
     "sourceSize": { "w": 80, "h": 80 },
-    "duration": 64
+    "duration": 128
    },
    {
     "filename": "f2_celestial_phantom.run.0",

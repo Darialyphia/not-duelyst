@@ -134,6 +134,12 @@ const id = useId();
                 not: false
               };
             })
+            .with({ type: 'is_same_column' }, { type: 'is_same_row' }, condition => {
+              condition.params = {
+                cell: { candidates: [], random: false },
+                not: false
+              };
+            })
             .exhaustive();
         }
       "

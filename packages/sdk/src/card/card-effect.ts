@@ -17,6 +17,7 @@ import type { Amount } from './helpers/amount';
 import type { CardBlueprintId } from './card';
 import type { KeywordId } from '../utils/keywords';
 import type { Point } from '@game/shared';
+import type { ArtifactCondition } from './conditions/artifact-conditions';
 
 export type Filter<T> = { candidates: T[][]; random?: boolean };
 
@@ -377,6 +378,14 @@ export type Action<
       };
     }
   | {
+      type: 'unequip_artifact';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        artifact: Filter<ArtifactCondition>;
+      };
+    }
+  | {
       type: 'summon_unit';
       params: {
         filter?: Filter<GlobalCondition<T>>;
@@ -423,6 +432,16 @@ export type Action<
     }
   | {
       type: 'dispel_entity';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
+      type: 'cleanse_entity';
       params: {
         unit: Filter<
           UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>

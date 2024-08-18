@@ -11,6 +11,7 @@ useUnitConditionsProvider(ref({}));
 useCardConditionsProvider(ref({}));
 useCellConditionsProvider(ref({}));
 usePlayerConditionsProvider(ref({}));
+useArtifactConditionsProvider();
 useGlobalConditionsProvider(ref({}));
 
 const copy = () => {

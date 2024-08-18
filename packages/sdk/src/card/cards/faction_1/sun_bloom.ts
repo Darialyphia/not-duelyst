@@ -1,15 +1,15 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { anywhere } from '../../helpers/targeting';
 
 export const f1SunBloom = defineSerializedBlueprint({
-  id: 'sun_bloom',
+  id: 'f1_sun_bloom',
   collectable: true,
   name: 'Sun Bloom',
   cost: 2,
   kind: CARD_KINDS.SPELL,
   faction: FACTION_IDS.F1,
-  keywords: [],
+  keywords: [KEYWORDS.DISPEL.id],
   rarity: RARITIES.RARE,
   relatedBlueprintIds: [],
   spriteId: 'icon_f1_sun_bloom',
@@ -33,7 +33,7 @@ export const f1SunBloom = defineSerializedBlueprint({
   ],
   effects: [
     {
-      text: 'Dispel spaces in a 2x2 area.',
+      text: '@Dispel@ spaces in a 2x2 area.',
       config: {
         executionContext: 'immediate',
         actions: [
