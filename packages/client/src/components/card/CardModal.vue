@@ -53,10 +53,19 @@ const offset = computed(() => {
     Math.max(relatedBlueprints.value.length, 1)
   );
 });
+
+const { isMobile } = useResponsive();
 </script>
 
 <template>
   <UiModal v-model:is-opened="isOpened" :style="{ '--ui-modal-size': 'var(--size-md)' }">
+    <UiIconButton
+      v-if="isMobile"
+      name="mdi:close"
+      class="fixed right-2 top-0 ghost-button z-1"
+      :style="{ '--ui-icon-button-size': 'var(--font-size-5)' }"
+      @click="isOpened = false"
+    />
     <div
       class="card-modal fancy-scrollbar"
       :style="{ '--column-gap': relatedBlueprints.length }"
@@ -164,6 +173,11 @@ const offset = computed(() => {
   padding: var(--size-4);
 
   perspective: 80rem;
+
+  @screen lt-lg {
+    height: clamp(50dvh, 30rem, 85dvh);
+    padding-block: 0;
+  }
 }
 
 .cards-wrapper {
@@ -182,12 +196,18 @@ const offset = computed(() => {
   animation-iteration-count: 1, infinite;
 
   > div {
+    --y-offset: 0;
+
+    @screen lt-lg {
+      --y-offset: -1rem;
+    }
+
     cursor: pointer;
 
     position: relative;
     z-index: calc(10 - var(--index));
     transform: translateX(calc(var(--index) * var(--offset) * 1px))
-      rotateZ(calc(var(--index) * var(--angle) * 1deg));
+      rotateZ(calc(var(--index) * var(--angle) * 1deg)) translateY(var(--y-offset));
 
     grid-column: 1;
     grid-row: 1;

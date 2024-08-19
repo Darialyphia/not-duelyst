@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { api } from '@game/api';
-
 definePageMeta({
   layout: 'default',
   name: 'Home'

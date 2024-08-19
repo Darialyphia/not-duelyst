@@ -92,6 +92,11 @@ const pendingChallenges = computed(() => {
 
   display: grid;
 
+  @screen lt-lg {
+    bottom: var(--size-2);
+    left: var(--size-2);
+  }
+
   > button {
     display: grid;
     place-content: center;

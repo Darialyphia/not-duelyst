@@ -12,6 +12,10 @@ const cost = defineModel<Nullable<CostFilter>>('cost', { required: true });
 const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
 
 const isFilterPopoverOpened = ref(false);
+
+const { isMobile } = useResponsive();
+
+const isMobileFilterDrawerOpened = ref(false);
 </script>
 
 <template>
@@ -58,7 +62,7 @@ const isFilterPopoverOpened = ref(false);
           Neutral
         </button>
       </Sound>
-      <PopoverRoot v-model:open="isFilterPopoverOpened">
+      <PopoverRoot v-if="!isMobile" v-model:open="isFilterPopoverOpened">
         <PopoverTrigger as-child>
           <UiButton class="ml-auto mr-3 ghost-button">Filters</UiButton>
         </PopoverTrigger>
@@ -94,6 +98,77 @@ const isFilterPopoverOpened = ref(false);
         </PopoverPortal>
       </PopoverRoot>
 
+      <UiIconButton
+        v-if="isMobile"
+        class="ml-auto ghost-button"
+        name="game-icons:settings-knobs"
+        :style="{ '--ui-icon-button-size': 'var(--font-size-4)' }"
+        @click="isMobileFilterDrawerOpened = true"
+      />
+      <UiDrawer v-model:is-opened="isMobileFilterDrawerOpened" direction="left" size="xs">
+        <h4>Faction</h4>
+        <div class="flex gap-2 flex-wrap">
+          <Sound
+            v-for="faction in factions"
+            :key="faction.id"
+            sound="button-hover"
+            :triggers="['mouseenter']"
+          >
+            <button
+              class="faction"
+              :class="filter?.equals(faction) && 'active'"
+              :disabled="!!general && !general?.faction?.equals(faction)"
+              :style="{ '--bg': `url(/assets/ui/icon_${faction.id}.png)` }"
+              @click="
+                () => {
+                  if (filter?.equals(faction)) {
+                    filter = undefined;
+                  } else {
+                    filter = faction;
+                  }
+                }
+              "
+            />
+          </Sound>
+          <Sound sound="button-hover" :triggers="['mouseenter']">
+            <button
+              class="faction"
+              :class="filter === null && 'active'"
+              :style="{ '--bg': `url(/assets/ui/icon_neutral.png)` }"
+              @click="
+                () => {
+                  if (filter === null) {
+                    filter = undefined;
+                  } else {
+                    filter = null;
+                  }
+                }
+              "
+            />
+          </Sound>
+        </div>
+        <h4>Cost</h4>
+
+        <div class="grid grid-cols-5 gap-1">
+          <button
+            v-for="i in 9"
+            :key="i"
+            class="cost"
+            :class="cost === i - 1 && 'active'"
+            @click="
+              () => {
+                if (cost === i - 1) {
+                  cost = null;
+                } else {
+                  cost = (i - 1) as CostFilter;
+                }
+              }
+            "
+          >
+            {{ i === 9 ? '8+' : i - 1 }}
+          </button>
+        </div>
+      </UiDrawer>
       <UiTextInput
         id="collection-search"
         v-model="search"
@@ -105,12 +180,23 @@ const isFilterPopoverOpened = ref(false);
   </header>
 </template>
 
-<style scoped lanh="postcss">
+<style scoped lang="postcss">
 header {
   display: flex;
   gap: var(--size-8);
   padding: var(--size-2) var(--size-6);
   box-shadow: none;
+
+  @screen lt-lg {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+
+    width: calc(100% - var(--sidebar-width));
+
+    background: transparent;
+    backdrop-filter: blur(5px);
+  }
 }
 
 .faction {
@@ -126,6 +212,16 @@ header {
   font-weight: var(--font-weight-5);
   text-transform: capitalize;
 
+  @screen lt-xl {
+    aspect-ratio: 1;
+    width: 64px;
+    background: var(--bg);
+    background-size: contain;
+    header > div > & {
+      display: none;
+    }
+  }
+
   &:hover:not(:disabled) {
     color: var(--primary);
   }
@@ -135,10 +231,14 @@ header {
   }
 
   &.active {
-    border-bottom: solid var(--border-size-1) var(--primary);
-    > img {
-      transform: scale(1.25);
-      filter: contrast(1.5) brightness(1.3);
+    @screen lt-lg {
+      filter: drop-shadow(0 0 10px hsl(var(--color-primary-hsl) / 0.5))
+        drop-shadow(3px 3px 0 var(--cyan-5)) drop-shadow(-3px -3px 0 var(--orange-5));
+      transition: filter 0.3s;
+    }
+
+    @screen lg {
+      border-bottom: solid var(--border-size-1) var(--primary);
     }
   }
 

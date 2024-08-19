@@ -211,6 +211,10 @@ header {
   width: 100%;
   padding-block: var(--size-6);
   text-shadow: black 0px 4px 1px;
+
+  @screen lt-lg {
+    padding-block-end: 0;
+  }
 }
 form {
   padding-block-end: var(--size-5);

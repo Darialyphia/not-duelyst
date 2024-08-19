@@ -4,8 +4,7 @@ import { clamp, type Nullable } from '@game/shared';
 import { Teleport } from 'vue';
 
 const userPlayer = useUserPlayer();
-const { ui, gameType, dispatch } = useGame();
-const isActive = useIsActivePlayer();
+const { ui, gameType, camera } = useGame();
 
 const MAX_ANGLE = 30;
 const angle = computed(() => {
@@ -20,6 +19,7 @@ const { x, y } = useMouse();
 const offset = ref({ x: 0, y: 0 });
 
 const onMouseDown = (e: MouseEvent, index: number) => {
+  if (isMobile.value && !isMobileActive.value) return;
   ui.selectCardAtIndex(index);
 
   const rect = (e.target as HTMLElement).getBoundingClientRect();
@@ -37,6 +37,14 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   };
   document.body.addEventListener('mouseup', stopDragging);
 };
+
+const isMobileActive = ref(false);
+watchEffect(() => {
+  if (ui.selectedCard.value) {
+    isMobileActive.value = false;
+  }
+});
+const { isMobile } = useResponsive();
 </script>
 
 <template>
@@ -58,6 +66,11 @@ const onMouseDown = (e: MouseEvent, index: number) => {
         '--angle': angle,
         '--hand-size': userPlayer.hand.length
       }"
+      @mouseup="
+        () => {
+          if (isMobile) isMobileActive = true;
+        }
+      "
     >
       <li
         v-for="(card, index) in userPlayer.hand"
@@ -90,38 +103,16 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   </div>
 
   <div class="right-side">
-    <UiFancyButton
-      v-if="gameType !== GAME_TYPES.SPECTATOR"
-      :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
-      class="replace-button"
-      :disabled="!isActive || !userPlayer.canReplace()"
-      :class="{ dragging: isDefined(draggedIndex) }"
-      @mouseup="
-        () => {
-          dispatch('replace', { cardIndex: ui.selectedCardIndex.value! });
-          ui.unselectCard();
-          ui.unselectEntity();
-        }
-      "
-    >
-      Replace ({{ userPlayer.maxReplaces - userPlayer.cardsReplacedThisTurn }} /
-      {{ userPlayer.maxReplaces }})
-    </UiFancyButton>
-    <UiFancyButton
-      v-if="gameType !== GAME_TYPES.SPECTATOR"
-      :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-      class="end-turn-button"
-      :disabled="!isActive"
-      @click="
-        () => {
-          dispatch('endTurn');
-          ui.unselectCard();
-          ui.unselectEntity();
-        }
-      "
-    >
-      End turn
-    </UiFancyButton>
+    <ReplaceButton :dragged-index="draggedIndex" />
+    <EndTurnButton />
+  </div>
+
+  <div class="mobile-left-side">
+    <UiIconButton
+      class="subtle-button"
+      name="tabler:rotate-360"
+      @click="camera.rotateCW"
+    />
   </div>
 </template>
 
@@ -174,14 +165,14 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   width: fit-content;
 }
 
-.end-turn-button {
-  min-width: 10ch;
-}
-
 .cards {
   display: grid;
   align-self: start;
   justify-self: center;
+
+  @screen lt-lg {
+    transform: scale(0.8) translateX(var(--size-9));
+  }
 }
 
 .card-wrapper {
@@ -213,13 +204,14 @@ const onMouseDown = (e: MouseEvent, index: number) => {
       --scale: 0.9;
     }
   }
+  &.active {
+    @screen lt-lg {
+      --angle: 0;
+      --scale: 1;
+      --offset-y: -60px;
 
-  &:hover {
-    --offset-y: -90px;
-    --angle: 0;
-    --scale: 1;
-
-    z-index: var(--hand-size);
+      z-index: var(--hand-size);
+    }
   }
 
   &:is(.v-enter-active, .v-leave-active) {
@@ -242,6 +234,20 @@ const onMouseDown = (e: MouseEvent, index: number) => {
     opacity: 0;
     filter: brightness(1000%) contrast(300%);
   }
+
+  @media (hover) and (pointer: fine) {
+    &:hover {
+      --offset-y: -90px;
+      --angle: 0;
+      --scale: 1;
+
+      z-index: var(--hand-size);
+    }
+  }
+
+  @screen lt-lg {
+    --offset-y: 100px;
+  }
 }
 
 .right-side {
@@ -254,8 +260,24 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   align-items: flex-end;
 
   height: var(--size-9);
+
+  @screen lt-lg {
+    right: var(--size-4);
+    bottom: calc(var(--size-12) - var(--size-2));
+    flex-direction: column;
+    gap: var(--size-1);
+  }
 }
 
+.mobile-left-side {
+  position: absolute;
+  bottom: var(--size-10);
+  left: var(--size-4);
+
+  @screen lg {
+    display: none;
+  }
+}
 #dragged-card {
   pointer-events: none !important;
 
@@ -269,12 +291,5 @@ const onMouseDown = (e: MouseEvent, index: number) => {
   /* opacity: var(--opacity); */
 
   transition: opacity 0.5s;
-}
-
-.replace-button {
-  &:not(:disabled):hover {
-    scale: 1.1;
-    filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
-  }
 }
 </style>

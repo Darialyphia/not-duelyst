@@ -30,8 +30,6 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
   gap: var(--size-3);
   align-items: center;
 
-  padding: var(--size-2) var(--size-4);
-
   font-size: var(--font-size-3);
   line-height: 1;
   text-shadow: black 0px 3px 1px;
@@ -39,6 +37,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
   border-radius: var(--radius-3);
 
   transition: background-color 0.3s;
+
   > img {
     transition: filter 0.3s;
   }

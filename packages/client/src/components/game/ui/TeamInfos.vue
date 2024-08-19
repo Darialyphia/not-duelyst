@@ -215,6 +215,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
 
 <style scoped lang="postcss">
 .player {
+  pointer-events: none;
+
   isolation: isolate;
   position: absolute;
   top: var(--size-7);
@@ -224,6 +226,12 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
   gap: var(--size-3);
 
   text-shadow: black 1px 0 5px;
+
+  @screen lt-lg {
+    top: var(--size-1);
+    scale: 0.7;
+    align-items: center;
+  }
 
   &:not(.active) .portrait {
     filter: grayscale(100%);
@@ -258,6 +266,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
 .img-wrapper {
   --size: 140px;
   --corner-clip: 15px;
+
+  pointer-events: auto;
 
   position: relative;
 
@@ -311,12 +321,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
   left: var(--size-5);
 
   @screen lt-lg {
-    top: var(--size-1);
     left: var(--size-1);
     transform-origin: top left;
-    scale: 0.7;
-
-    flex-direction: column;
   }
 }
 .player-2 {
@@ -325,12 +331,8 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
   text-align: right;
 
   @screen lt-lg {
-    top: var(--size-1);
     right: var(--size-1);
     transform-origin: top right;
-    scale: 0.7;
-
-    flex-direction: column;
   }
 
   .portrait {
@@ -496,6 +498,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
 .artifact {
   transform: scale(1.5);
   width: var(--size-6);
+  margin-inline: var(--size-4);
 }
 
 .durability {

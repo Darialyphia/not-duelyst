@@ -88,7 +88,7 @@ watch(relevantCards, () => {
       :general="mode === 'form' ? general : undefined"
     />
 
-    <section ref="listRoot" class="card-list fancy-scrollbar pb-5">
+    <section ref="listRoot" class="card-list fancy-scrollbar">
       <p v-if="!relevantCards.length">No card found matching this filter.</p>
       <div
         v-for="item in relevantCards"
@@ -119,7 +119,7 @@ watch(relevantCards, () => {
       </template>
 
       <template v-else>
-        <p v-if="!loadouts.length" class="py-3 text-center">
+        <p v-if="!loadouts?.length" class="py-3 text-center">
           You don't have any loadout yet
         </p>
 
@@ -175,16 +175,24 @@ watch(relevantCards, () => {
 
 <style scoped lang="postcss">
 .collection-page {
+  --sidebar-width: var(--size-14);
+
   overflow-x: hidden;
   display: grid;
-  grid-template-columns: 1fr var(--size-14);
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr var(--sidebar-width);
+  grid-template-rows: auto 1fr;
 
   height: 100vh;
 
   backdrop-filter: blur(5px) brightness(50%);
   > .loader {
     grid-column: 1 / -1;
+  }
+
+  @screen lt-lg {
+    --sidebar-width: 15rem;
+
+    grid-template-rows: 1fr;
   }
 }
 
@@ -194,13 +202,15 @@ watch(relevantCards, () => {
 }
 
 .card-list {
-  transform-style: preserve-3d;
   /* scroll-snap-type: y mandatory; */
+  --min-card-size: 17rem;
+
+  transform-style: preserve-3d;
 
   overflow-x: hidden;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-card-size), 1fr));
   row-gap: var(--size-6);
   column-gap: var(--size-4);
   justify-items: center;
@@ -208,11 +218,18 @@ watch(relevantCards, () => {
   padding: var(--size-3) var(--size-8) var(--size-11);
 
   border-radius: var(--radius-2);
-  /* 
-  > * {
-    scroll-margin-block-start: var(--size-4);
-    scroll-snap-align: start;
-  } */
+
+  @screen lt-xl {
+    column-gap: var(--size-2);
+    padding: var(--size-3) var(--size-2) var(--size-11);
+  }
+
+  @screen lt-lg {
+    --min-card-size: 8.5rem;
+
+    column-gap: var(--size-2);
+    padding: var(--size-9) 0 var(--size-11) var(--size-6);
+  }
 }
 
 .sidebar {
@@ -228,20 +245,38 @@ watch(relevantCards, () => {
   transition: transform 0.7s;
   transition-delay: 0.3s;
   transition-timing-function: var(--ease-bounce-1);
+
+  @screen lt-lg {
+    overflow-x: hidden;
+    height: 100dvh;
+  }
 }
 
 .card-wrapper {
   transform-style: preserve-3d;
   width: 286px;
   height: 410px;
-  > * {
-    &:is(.v-enter-active, .v-leave-active) {
-      transition: all 0.3s;
-    }
 
-    &:is(.v-enter-from, .v-leave-to) {
-      transform: translateX(-20px);
-      opacity: 0.5;
+  @screen lt-lg {
+    width: 130px;
+    height: 186px;
+
+    > * {
+      transform-origin: top left;
+      transform: scale(0.5);
+    }
+  }
+
+  @screen lg {
+    > * {
+      &:is(.v-enter-active, .v-leave-active) {
+        transition: all 0.3s;
+      }
+
+      &:is(.v-enter-from, .v-leave-to) {
+        transform: translateX(-20px);
+        opacity: 0.5;
+      }
     }
   }
 }

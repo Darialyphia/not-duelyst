@@ -171,6 +171,13 @@ const isUnit = computed(
   image-rendering: pixelated;
 
   transition: background-image 0.5s ease-in;
+
+  @screen lt-lg {
+    width: 260px;
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
 }
 
 header {
@@ -295,6 +302,11 @@ footer {
 
   width: 100%;
   max-width: calc(var(--size-12) + var(--size-7));
+
+  @screen lt-lg {
+    max-width: calc(var(--size-12) + var(--size-3));
+  }
+
   margin-top: var(--size-2);
 
   font-size: var(--font-size-0);
@@ -319,5 +331,9 @@ footer {
   padding: var(--size-3);
 
   background-color: black;
+
+  @screen lt-lg {
+    display: none;
+  }
 }
 </style>

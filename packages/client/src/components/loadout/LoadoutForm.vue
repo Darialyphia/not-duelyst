@@ -91,31 +91,35 @@ const exportCode = () => {
   copy(code);
   importCode.value = code;
 };
+
+const { isMobile } = useResponsive();
 </script>
 
 <template>
   <form @submit.prevent="save">
     <header>
-      <input v-model="formValues.name" class="py-2 flex-1 w-full" />
-      <LoadoutStats :loadout="formValues.cards" />
-      <div class="counts">
-        <div>
-          <span>{{ getCountByKind('MINION') }}</span>
-          Minions
+      <UiTextInput id="loadout-name" v-model="formValues.name" class="flex-1 w-full" />
+      <template v-if="!isMobile">
+        <LoadoutStats :loadout="formValues.cards" />
+        <div class="counts">
+          <div>
+            <span>{{ getCountByKind('MINION') }}</span>
+            Minions
+          </div>
+          <div>
+            <span>{{ getCountByKind('SPELL') }}</span>
+            Spells
+          </div>
+          <div>
+            <span>{{ getCountByKind('ARTIFACT') }}</span>
+            Artifacts
+          </div>
+          <div>
+            <span>{{ cardsCount }}</span>
+            Total
+          </div>
         </div>
-        <div>
-          <span>{{ getCountByKind('SPELL') }}</span>
-          Spells
-        </div>
-        <div>
-          <span>{{ getCountByKind('ARTIFACT') }}</span>
-          Artifacts
-        </div>
-        <div>
-          <span>{{ cardsCount }}</span>
-          Total
-        </div>
-      </div>
+      </template>
     </header>
 
     <ul v-if="formValues.cards.length" class="flex-1 fancy-scrollbar">
@@ -200,7 +204,7 @@ const exportCode = () => {
       @submit="updateCosmetics($event)"
     />
 
-    <footer class="mt-auto">
+    <footer>
       <div class="flex justify-end gap-3">
         <UiButton
           class="ghost-button"
@@ -257,7 +261,12 @@ ul {
 }
 
 footer {
+  margin-block-start: auto;
   padding-block: var(--size-3);
+
+  @screen lt-lg {
+    padding-block: var(--size-1);
+  }
 }
 
 @keyframes loadout-card-flash {
@@ -277,6 +286,10 @@ li {
   align-items: center;
 
   height: 72px;
+
+  @screen lt-lg {
+    height: 64px;
+  }
 
   font-size: var(--font-size-3);
 
@@ -368,12 +381,18 @@ li {
   grid-template-columns: 1fr auto auto;
   gap: var(--size-1);
   margin-block-start: var(--size-2);
+
+  @screen lt-lg {
+    display: none;
+  }
 }
 
 :is(.general, .minion) .card-sprite {
   transform: translateY(8px);
 }
 :is(.spell, .artifact) .card-sprite {
-  transform: translateY(-8px);
+  @screen lg {
+    transform: translateY(-8px);
+  }
 }
 </style>

@@ -9,7 +9,7 @@ import { throttle } from 'lodash-es';
 const app = useApplication();
 
 const { fx, ui, camera, session } = useGame();
-
+const { isMobile } = useResponsive();
 const cells = session.boardSystem.cells;
 const boardDimensions = {
   width: session.boardSystem.width,
@@ -71,13 +71,13 @@ until(camera.viewport)
         direction: 'all'
       })
       .clampZoom({ minScale: 1, maxScale: 3 })
-      .setZoom(2, false)
+      .setZoom(isMobile ? 1 : 2, false)
       .mouseEdges({
         distance: 10,
         speed: 15,
         allowButtons: true
       })
-      .pinch()
+      .pinch({ noDrag: true })
       .moveCenter(worldSize.value.width / 2, worldSize.value.height / 2);
   });
 useEventListener('resize', () => {

@@ -9,13 +9,15 @@ const {
   style = {},
   closable = true,
   usePortal = true,
-  direction
+  direction,
+  size = 'sm'
 } = defineProps<{
   title?: string;
   closable?: boolean;
   style?: StyleProp<ModalStyleVariables>;
   usePortal?: boolean;
   direction: 'top' | 'bottom' | 'left' | 'right';
+  size?: 'xs' | 'sm' | 'md';
 }>();
 
 const Content = createReusableTemplate();
@@ -33,7 +35,7 @@ const Content = createReusableTemplate();
       <Transition appear>
         <DialogContent
           class="modal-content"
-          :class="direction"
+          :class="[direction, size]"
           :style="style"
           @escape-key-down="
             e => {
@@ -112,7 +114,7 @@ const Content = createReusableTemplate();
 
     top: 0;
     left: 0;
-    width: var(--size-sm);
+    width: var(--drawer-size);
     height: 100dvh;
   }
   &.right {
@@ -120,8 +122,20 @@ const Content = createReusableTemplate();
 
     top: 0;
     right: 0;
-    width: var(--size-sm);
+    width: var(--drawer-size);
     height: 100dvh;
+  }
+
+  &.xs {
+    --drawer-size: var(--size-xs);
+  }
+
+  &.sm {
+    --drawer-size: var(--size-xs);
+  }
+
+  &.md {
+    --drawer-size: var(--size-xs);
   }
 
   &:focus,

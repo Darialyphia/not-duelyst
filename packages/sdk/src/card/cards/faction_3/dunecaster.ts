@@ -2,6 +2,7 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { TAGS } from '../../../utils/tribes';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
+import { f3WindDervish } from './wind-dervish';
 
 export const f3Dunecaster = defineSerializedBlueprint({
   id: 'f3_dunecaster',
@@ -9,7 +10,7 @@ export const f3Dunecaster = defineSerializedBlueprint({
   spriteId: 'f3_dunecaster',
   collectable: true,
   keywords: [KEYWORDS.OPENING_GAMBIT.id],
-  relatedBlueprintIds: [],
+  relatedBlueprintIds: [f3WindDervish.id],
   tags: [TAGS.DERVISH.id],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.COMMON,

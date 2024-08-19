@@ -71,6 +71,8 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
     }
   }
 );
+
+const { isMobile } = useResponsive();
 </script>
 
 <template>
@@ -117,7 +119,7 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
 
     <Transition>
       <UiIconButton
-        v-if="isHovered"
+        v-if="isMobile ? true : isHovered"
         class="ghost-button cosmetics-toggle"
         name="mdi:palette"
         @click="isCosmeticsModalOpened = true"
@@ -180,6 +182,10 @@ const { isLoading, mutate: updateCosmetics } = useConvexAuthedMutation(
   right: 0;
   bottom: calc(-1 * var(--size-3));
 
+  @screen lt-lg {
+    right: 40%;
+    bottom: 0;
+  }
   &:is(.v-enter-active, .v-leave-active) {
     transition: opacity 0.2s;
   }

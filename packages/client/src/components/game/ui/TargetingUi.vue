@@ -80,5 +80,9 @@ watchEffect(() => {
   display: flex;
   gap: var(--size-6);
   align-items: center;
+
+  @screen lt-lg {
+    bottom: var(--size-8);
+  }
 }
 </style>

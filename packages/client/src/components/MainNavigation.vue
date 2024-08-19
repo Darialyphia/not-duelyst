@@ -7,11 +7,16 @@ defineOptions({
 const isSettingsOpened = ref(false);
 
 const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff);
+
+const { isMobile } = useResponsive();
 </script>
 
 <template>
   <nav v-bind="$attrs">
     <ul class="grid gap-2">
+      <li v-if="isMobile">
+        <ProfileButton />
+      </li>
       <li>
         <Sound sound="button-hover" :triggers="['mouseenter']">
           <Sound sound="button-click" :triggers="['mousedown']">
@@ -79,9 +84,20 @@ const { mutate: signOff } = useConvexAuthedMutation(api.auth.signOff);
   }
 }
 
+nav {
+  padding-block-start: var(--size-12);
+  padding-inline-start: var(--size-11);
+
+  @screen lt-lg {
+    padding-block-start: var(--size-4);
+    padding-inline-start: var(--size-8);
+  }
+}
+
 ul {
   width: fit-content;
 }
+
 li {
   opacity: 0;
   animation: main-navigation-item 0.5s ease-out forwards;
@@ -95,6 +111,11 @@ li {
     padding: 0;
 
     font-size: var(--font-size-5);
+
+    @screen lt-lg {
+      font-size: var(--font-size-4);
+    }
+
     text-align: left;
     text-shadow: black 0px 4px 1px;
     &::after {

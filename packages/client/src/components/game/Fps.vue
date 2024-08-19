@@ -5,10 +5,11 @@ const { session, ui } = useGame();
 
 const style = new TextStyle({ fill: 'white', fontSize: 12, fontFamily: 'monospace' });
 const isDev = import.meta.env.DEV;
+const { isMobile } = useResponsive();
 </script>
 
 <template>
-  <container v-if="isDev" :y="0" :x="300">
+  <container v-if="isDev && !isMobile" :y="0" :x="300">
     <pixi-text
       :x="30"
       :y="30"
@@ -20,9 +21,6 @@ const isDev = import.meta.env.DEV;
       "
     >
       Debug client session
-    </pixi-text>
-    <pixi-text :x="30" :y="60" :style="style">
-      {{ ui.targetingMode.value }}
     </pixi-text>
   </container>
 </template>

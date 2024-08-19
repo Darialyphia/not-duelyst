@@ -87,5 +87,9 @@ const performAction = (cb: (session: GameSession) => void) => {
 
   font-family: monospace;
   color: white;
+
+  @screen lt-lg {
+    display: none;
+  }
 }
 </style>

@@ -7,6 +7,7 @@ const { spriteId, pedestalId, animation } = defineProps<{
   animation?: Animation;
 }>();
 const assets = useAssets();
+const { settings } = useUserSettings();
 
 const sheet = ref<SpritesheetWithAnimations>();
 watchEffect(async () => {
@@ -34,6 +35,7 @@ const frameDuration = computed(() => {
 });
 
 useIntervalFn(() => {
+  if (settings.value.a11y.reducedMotions) return;
   if (!currentAnimation.value) return;
   frame.value = (frame.value + 1) % (currentAnimation.value.length - 1);
 }, frameDuration);

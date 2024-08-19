@@ -70,16 +70,21 @@ definePageMeta({
 
   display: flex;
   flex-wrap: wrap;
+  gap: var(--size-2);
   align-items: flex-start;
   justify-content: space-between;
 
   perspective: 600px;
   perspective-origin: 75% center;
+
   > header {
     width: 100%;
-    margin-bottom: var(--size-6);
     padding-block: var(--size-6);
     text-shadow: black 0px 4px 1px;
+
+    @screen lg {
+      margin-bottom: var(--size-6);
+    }
   }
 }
 
@@ -88,6 +93,11 @@ definePageMeta({
   height: var(--size-14);
   transition: all 0.3s;
 
+  @screen lt-lg {
+    flex-basis: 32%;
+    width: auto;
+    height: var(--size-13);
+  }
   &:hover {
     transform: translateY(-1rem);
     box-shadow: 0 5px 1rem hsl(var(--color-primary-hsl) / 0.5);

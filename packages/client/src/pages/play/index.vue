@@ -8,13 +8,15 @@ definePageMeta({
     appear: true
   }
 });
+
+const { isMobile } = useResponsive();
 </script>
 
 <template>
   <div class="page">
-    <ProfileButton class="fixed top-6 left-10" />
+    <ProfileButton v-if="!isMobile" class="fixed top-6 left-10" />
 
-    <MainNavigation class="pl-11 pt-12" />
+    <MainNavigation />
 
     <section class="fancy-surface fancy-scrollbar">
       <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
@@ -49,6 +51,11 @@ definePageMeta({
 
   min-height: 100vh;
   padding-inline: var(--size-8);
+
+  @screen lt-lg {
+    grid-template-columns: 6fr minmax(var(--size-xs), 50ch);
+    padding-inline: var(--size-6);
+  }
 }
 
 section {
