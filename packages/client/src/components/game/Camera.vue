@@ -71,7 +71,7 @@ until(camera.viewport)
         direction: 'all'
       })
       .clampZoom({ minScale: 1, maxScale: 3 })
-      .setZoom(isMobile ? 1 : 2, false)
+      .setZoom(isMobile.value ? 1 : 2, false)
       .mouseEdges({
         distance: 10,
         speed: 15,

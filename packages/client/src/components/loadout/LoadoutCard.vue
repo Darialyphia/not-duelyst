@@ -36,8 +36,9 @@ const general = computed(() => {
 article {
   user-select: none;
 
+  overflow: hidden;
   display: flex;
-  gap: var(--size-2);
+  gap: var(--size-4);
   align-items: center;
 
   padding: 0;
@@ -53,16 +54,19 @@ span {
 }
 
 .sprite {
+  scale: 2;
+
   overflow: hidden;
 
   width: var(--size-8);
   height: var(--size-8);
 
-  border: var(--fancy-border);
+  /* border: var(--fancy-border); */
   border-radius: var(--radius-round);
 
   image-rendering: pixelated;
 
+  mask-image: linear-gradient(to right, black, hsl(0 0 0 / 0.25));
   > * {
     transform: translateY(50%);
     height: 100%;

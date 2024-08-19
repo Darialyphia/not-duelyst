@@ -62,7 +62,8 @@ const gamesByFactionChartData = computed(() => {
           gamesByFaction[FACTIONS.F2.id].played,
           gamesByFaction[FACTIONS.F3.id].played,
           gamesByFaction[FACTIONS.F4.id].played,
-          gamesByFaction[FACTIONS.F5.id].played
+          gamesByFaction[FACTIONS.F5.id].played,
+          gamesByFaction[FACTIONS.F6.id].played
         ]
       }
     ]
@@ -125,7 +126,7 @@ const mostPlayedCards = computed(() => {
       <section v-if="profile.profile" class="text-center">
         <h2>Games summary</h2>
         <p v-if="!profile.profile.stats.totalGames">
-          This player haven't played any game yet.
+          This player hasn't played any game yet.
         </p>
         <dl v-else class="stats">
           <div class="fancy-surface">

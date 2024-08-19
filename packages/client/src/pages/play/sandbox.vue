@@ -124,7 +124,7 @@ const isValid = computed(() => {
                         <Icon name="mdi:information-slab-circle" />
                       </span>
                     </template>
-                    <FormatRules :format="standardFormat" class="fancy-surface" />
+                    <FormatRules :format="format" class="fancy-surface" />
                   </UiTooltip>
                 </div>
                 <div class="text-0">by {{ format.author.name }}</div>
