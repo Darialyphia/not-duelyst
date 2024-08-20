@@ -8,7 +8,7 @@ export const f2Widowmaker = defineSerializedBlueprint({
   name: 'Widowmaker',
   spriteId: 'f2_widowmaker',
   collectable: true,
-  keywords: [KEYWORDS.RANGED.id],
+  keywords: [KEYWORDS.ELUSIVE.id, KEYWORDS.BACKSTAB.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: CARD_KINDS.MINION,
@@ -18,15 +18,15 @@ export const f2Widowmaker = defineSerializedBlueprint({
   faction: FACTION_IDS.F2,
   cost: 3,
   attack: 3,
-  maxHp: 1,
+  maxHp: 3,
   effects: [
     defineCardEffect({
-      text: '@Ranged@.',
+      text: '@Elusive@.',
       config: {
         executionContext: 'immediate',
         actions: [
           {
-            type: 'ranged',
+            type: 'elusive',
             params: {
               filter: { candidates: [] },
               activeWhen: { candidates: [] },
@@ -37,27 +37,16 @@ export const f2Widowmaker = defineSerializedBlueprint({
       }
     }),
     defineCardEffect({
-      text: 'When this attacks, draw a card at the end of your turn.',
+      text: '@Backstab@: 1.',
       config: {
-        executionContext: 'trigger_while_on_board',
+        executionContext: 'while_on_board',
         actions: [
           {
-            type: 'draw_cards',
+            type: 'backstab',
             params: {
-              amount: { type: 'fixed', params: { value: 1 } },
-              player: { candidates: [[{ type: 'ally_player' }]] },
               filter: { candidates: [] },
-              execute: 'end_of_turn'
-            }
-          }
-        ],
-        triggers: [
-          {
-            type: 'on_after_unit_attack',
-            params: {
-              target: { candidates: [] },
-              unit: { candidates: [[{ type: 'is_self', params: { not: false } }]] },
-              frequency: { type: 'always' }
+              amount: { type: 'fixed', params: { value: 1 } },
+              execute: 'now'
             }
           }
         ]

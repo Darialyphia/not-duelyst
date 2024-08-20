@@ -65,10 +65,13 @@ type DealDamageEvent = {
   amount: number;
   isBattleDamage: boolean;
 };
-type TakeDamageEvent = {
+type HealEvent = {
   entity: Entity;
   source: Card;
   amount: number;
+};
+type TakeDamageEvent = HealEvent & {
+  isBattleDamage: boolean;
 };
 type AttackEvent = {
   entity: Entity;
@@ -99,8 +102,8 @@ export type EntityEventMap = {
   [ENTITY_EVENTS.BEFORE_TAKE_DAMAGE]: [event: TakeDamageEvent];
   [ENTITY_EVENTS.AFTER_TAKE_DAMAGE]: [event: TakeDamageEvent];
 
-  [ENTITY_EVENTS.BEFORE_HEAL]: [event: TakeDamageEvent];
-  [ENTITY_EVENTS.AFTER_HEAL]: [event: TakeDamageEvent];
+  [ENTITY_EVENTS.BEFORE_HEAL]: [event: HealEvent];
+  [ENTITY_EVENTS.AFTER_HEAL]: [event: HealEvent];
 
   [ENTITY_EVENTS.BEFORE_ATTACK]: [event: AttackEvent];
   [ENTITY_EVENTS.AFTER_ATTACK]: [event: AttackEvent];
@@ -449,18 +452,19 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     };
     await this.emitAsync(ENTITY_EVENTS.BEFORE_DEAL_DAMAGE, payload);
 
-    await target.takeDamage(payload.amount, this.card);
+    await target.takeDamage(payload.amount, this.card, isBattleDamage);
 
     await this.emitAsync(ENTITY_EVENTS.AFTER_DEAL_DAMAGE, payload);
   }
 
-  async takeDamage(power: number, source: Card) {
+  async takeDamage(power: number, source: Card, isBattleDamage = false) {
     const amount = this.getTakenDamage(power, source);
     if (amount <= 0) return;
     const payload = {
       entity: this,
       amount,
-      source
+      source,
+      isBattleDamage
     };
     await this.emitAsync(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 

@@ -15,8 +15,15 @@ import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
-import { getEntityBehind, isNearbyAlly, isNearbyEnemy } from '../entity/entity-utils';
+import {
+  getCellBehind,
+  getEntityBehind,
+  isNearbyAlly,
+  isNearbyEnemy
+} from '../entity/entity-utils';
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
+import { Artifact } from '../card/artifact';
+import { Spell } from '../card/spell';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -190,6 +197,37 @@ export const fearsome = ({
         listener([event]) {
           const unsub = event.target.addInterceptor('canRetaliate', () => false);
           event.entity.once('after_attack', unsub);
+        }
+      })
+    ]
+  });
+};
+
+export const elusive = ({ source }: { source: Card; entity?: Entity }) => {
+  return createEntityModifier({
+    id: KEYWORDS.ELUSIVE.id,
+    source,
+    visible: false,
+    stackable: false,
+    mixins: [
+      modifierGameEventMixin({
+        eventName: 'entity:before_attack',
+        keywords: [KEYWORDS.ELUSIVE],
+        async listener([event], ctx) {
+          if (!event.target.equals(ctx.attachedTo)) return;
+
+          const behind = getCellBehind(ctx.session, event.entity);
+          if (!behind) return;
+          if (!behind?.isWalkable || behind.entity) return;
+          await event.target.teleport(behind, { ignoreCollisions: true });
+          const cleanups = [
+            event.target.addInterceptor('canRetaliate', () => false),
+            event.target.addInterceptor('damageTaken', () => 0)
+          ];
+
+          ctx.session.once('entity:after_attack', () => {
+            cleanups.forEach(c => c());
+          });
         }
       })
     ]

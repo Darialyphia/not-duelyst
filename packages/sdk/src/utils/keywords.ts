@@ -88,6 +88,13 @@ export const KEYWORDS = {
       return isWithinCells(entity.position, entity.player.general.position, 1);
     }
   },
+  ELUSIVE: {
+    id: 'elusive',
+    name: 'Elusive',
+    description:
+      'When this gets attacked, this teleports behnd the attacker if possible instead of counterattacking. If it does, this unit takes no damage from the attack.',
+    aliases: []
+  },
   FLYING: {
     id: 'flying',
     name: 'Flying',
@@ -124,7 +131,7 @@ export const KEYWORDS = {
   PLUNDER: {
     id: 'plunder',
     name: 'Plunder',
-    description: 'Gain 1 gold when it deals damage to another unit.',
+    description: 'Gain 1 gold when this deals damage to another unit.',
     aliases: []
   },
   RANGED: {

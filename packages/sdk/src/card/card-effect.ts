@@ -328,6 +328,14 @@ export type Action<
       };
     }
   | {
+      type: 'elusive';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'structure';
       params: {
         filter?: Filter<GlobalCondition<T>>;

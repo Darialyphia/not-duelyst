@@ -5,6 +5,7 @@ import type { CostFilter } from '~/composables/useCollection';
 
 const factions = Object.values(FACTIONS);
 
+const listMode = defineModel<'cards' | 'compact'>('listMode', { required: true });
 const filter = defineModel<Faction | null | undefined>('filter', { required: true });
 const search = defineModel<Nullable<string>>('search', { required: true });
 const cost = defineModel<Nullable<CostFilter>>('cost', { required: true });
@@ -100,75 +101,35 @@ const isMobileFilterDrawerOpened = ref(false);
 
       <UiIconButton
         v-if="isMobile"
-        class="ml-auto ghost-button"
+        class="ghost-button ml-auto"
         name="game-icons:settings-knobs"
         :style="{ '--ui-icon-button-size': 'var(--font-size-4)' }"
         @click="isMobileFilterDrawerOpened = true"
       />
-      <UiDrawer v-model:is-opened="isMobileFilterDrawerOpened" direction="left" size="xs">
-        <h4>Faction</h4>
-        <div class="flex gap-2 flex-wrap">
-          <Sound
-            v-for="faction in factions"
-            :key="faction.id"
-            sound="button-hover"
-            :triggers="['mouseenter']"
-          >
-            <button
-              class="faction"
-              :class="filter?.equals(faction) && 'active'"
-              :disabled="!!general && !general?.faction?.equals(faction)"
-              :style="{ '--bg': `url(/assets/ui/icon_${faction.id}.png)` }"
-              @click="
-                () => {
-                  if (filter?.equals(faction)) {
-                    filter = undefined;
-                  } else {
-                    filter = faction;
-                  }
-                }
-              "
-            />
-          </Sound>
-          <Sound sound="button-hover" :triggers="['mouseenter']">
-            <button
-              class="faction"
-              :class="filter === null && 'active'"
-              :style="{ '--bg': `url(/assets/ui/icon_neutral.png)` }"
-              @click="
-                () => {
-                  if (filter === null) {
-                    filter = undefined;
-                  } else {
-                    filter = null;
-                  }
-                }
-              "
-            />
-          </Sound>
-        </div>
-        <h4>Cost</h4>
+      <UiIconButton
+        v-if="isMobile"
+        class="ghost-button"
+        name="material-symbols-light:view-column-2"
+        :style="{
+          '--ui-icon-button-size': 'var(--font-size-4)',
+          '--ui-button-color': listMode === 'cards' ? 'var(--primary)' : undefined,
+          '--ui-button-border-color': listMode === 'cards' ? 'var(--primary)' : undefined
+        }"
+        @click="listMode = 'cards'"
+      />
+      <UiIconButton
+        v-if="isMobile"
+        class="ghost-button"
+        name="heroicons:squares-2x2-16-solid"
+        :style="{
+          '--ui-icon-button-size': 'var(--font-size-4)',
+          '--ui-button-color': listMode === 'compact' ? 'var(--primary)' : undefined,
+          '--ui-button-border-color':
+            listMode === 'compact' ? 'var(--primary)' : undefined
+        }"
+        @click="listMode = 'compact'"
+      />
 
-        <div class="grid grid-cols-5 gap-1">
-          <button
-            v-for="i in 9"
-            :key="i"
-            class="cost"
-            :class="cost === i - 1 && 'active'"
-            @click="
-              () => {
-                if (cost === i - 1) {
-                  cost = null;
-                } else {
-                  cost = (i - 1) as CostFilter;
-                }
-              }
-            "
-          >
-            {{ i === 9 ? '8+' : i - 1 }}
-          </button>
-        </div>
-      </UiDrawer>
       <UiTextInput
         id="collection-search"
         v-model="search"
@@ -177,6 +138,70 @@ const isMobileFilterDrawerOpened = ref(false);
         left-icon="material-symbols:search"
       />
     </div>
+    <UiDrawer v-model:is-opened="isMobileFilterDrawerOpened" direction="left" size="xs">
+      <h4>Faction</h4>
+      <div class="flex gap-2 flex-wrap">
+        <Sound
+          v-for="faction in factions"
+          :key="faction.id"
+          sound="button-hover"
+          :triggers="['mouseenter']"
+        >
+          <button
+            class="faction"
+            :class="filter?.equals(faction) && 'active'"
+            :disabled="!!general && !general?.faction?.equals(faction)"
+            :style="{ '--bg': `url(/assets/ui/icon_${faction.id}.png)` }"
+            @click="
+              () => {
+                if (filter?.equals(faction)) {
+                  filter = undefined;
+                } else {
+                  filter = faction;
+                }
+              }
+            "
+          />
+        </Sound>
+        <Sound sound="button-hover" :triggers="['mouseenter']">
+          <button
+            class="faction"
+            :class="filter === null && 'active'"
+            :style="{ '--bg': `url(/assets/ui/icon_neutral.png)` }"
+            @click="
+              () => {
+                if (filter === null) {
+                  filter = undefined;
+                } else {
+                  filter = null;
+                }
+              }
+            "
+          />
+        </Sound>
+      </div>
+      <h4>Cost</h4>
+
+      <div class="grid grid-cols-5 gap-1">
+        <button
+          v-for="i in 9"
+          :key="i"
+          class="cost"
+          :class="cost === i - 1 && 'active'"
+          @click="
+            () => {
+              if (cost === i - 1) {
+                cost = null;
+              } else {
+                cost = (i - 1) as CostFilter;
+              }
+            }
+          "
+        >
+          {{ i === 9 ? '8+' : i - 1 }}
+        </button>
+      </div>
+    </UiDrawer>
   </header>
 </template>
 

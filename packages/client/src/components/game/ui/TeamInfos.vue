@@ -230,7 +230,7 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
   @screen lt-lg {
     top: var(--size-1);
     scale: 0.7;
-    align-items: center;
+    align-items: flex-start;
   }
 
   &:not(.active) .portrait {
@@ -355,12 +355,14 @@ const EMOTES = ['poggers', 'ahegao', 'sus', 'yussy', 'ezpepe'];
   font-size: var(--font-size-4);
 
   @screen lt-lg {
-    gap: var(--size-1);
-    font-size: var(--font-size-4);
-  }
+    transform-origin: top left;
+    scale: 0.75;
 
-  @screen lt-lg {
-    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+    align-items: flex-start;
+
+    font-size: var(--font-size-4);
   }
 
   .player-2 & {

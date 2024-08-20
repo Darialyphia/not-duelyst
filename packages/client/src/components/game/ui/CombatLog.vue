@@ -157,6 +157,12 @@ const close = () => {
 
   width: 26rem;
   height: var(--size-15);
+
+  @screen lt-lg {
+    width: 20rem;
+    height: var(--size-13);
+  }
+
   padding-inline: 0;
 
   line-height: 2;
@@ -213,6 +219,10 @@ li {
   > svg {
     aspect-ratio: 1;
     width: 100%;
+  }
+
+  @screen lt-lg {
+    height: var(--size-9);
   }
 }
 

@@ -375,6 +375,14 @@ const actionDict: ActionDictionary = {
       filter: GlobalConditionNode
     }
   },
+  elusive: {
+    label: 'Elusive',
+    params: {
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
   spawn: {
     label: 'Spawn',
     params: {
@@ -585,6 +593,11 @@ watch(
         params.execute ??= 'now';
       })
       .with({ type: 'ranged' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+      })
+      .with({ type: 'elusive' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';

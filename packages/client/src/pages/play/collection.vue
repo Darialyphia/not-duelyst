@@ -3,6 +3,8 @@ import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import { vIntersectionObserver } from '@vueuse/components';
+import { match } from 'ts-pattern';
+import { CollectionCard, CollectionSmallCard } from '#components';
 
 definePageMeta({
   name: 'Collection',
@@ -13,6 +15,7 @@ definePageMeta({
 });
 
 const mode = ref<'list' | 'form'>('list');
+const listMode = ref<'cards' | 'compact'>('cards');
 const { factionFilter, textFilter, costFilter, displayedCards, loadouts, collection } =
   useCollection();
 
@@ -76,6 +79,19 @@ watch(relevantCards, () => {
     behavior: 'instant'
   });
 });
+
+const collectionItemComponent = computed(() =>
+  match(listMode.value)
+    .with('cards', () => CollectionCard)
+    .with('compact', () => CollectionSmallCard)
+    .exhaustive()
+);
+const { isMobile } = useResponsive();
+watchEffect(() => {
+  if (!isMobile.value) {
+    listMode.value = 'cards';
+  }
+});
 </script>
 
 <template>
@@ -85,10 +101,11 @@ watch(relevantCards, () => {
       v-model:filter="factionFilter"
       v-model:search="textFilter"
       v-model:cost="costFilter"
+      v-model:list-mode="listMode"
       :general="mode === 'form' ? general : undefined"
     />
 
-    <section ref="listRoot" class="card-list fancy-scrollbar">
+    <section ref="listRoot" class="card-list fancy-scrollbar" :class="listMode">
       <p v-if="!relevantCards.length">No card found matching this filter.</p>
       <div
         v-for="item in relevantCards"
@@ -97,7 +114,8 @@ watch(relevantCards, () => {
         class="card-wrapper"
       >
         <Transition>
-          <CollectionCard
+          <component
+            :is="collectionItemComponent"
             v-if="visibleCards.has(item._id)"
             :card="item"
             :is-editing-loadout="mode === 'form'"
@@ -225,10 +243,11 @@ watch(relevantCards, () => {
   }
 
   @screen lt-lg {
-    --min-card-size: 8.5rem;
-
     column-gap: var(--size-2);
     padding: var(--size-9) 0 var(--size-11) var(--size-6);
+    &.compact {
+      --min-card-size: 6rem;
+    }
   }
 }
 
@@ -258,12 +277,17 @@ watch(relevantCards, () => {
   height: 410px;
 
   @screen lt-lg {
-    width: 130px;
-    height: 186px;
+    .cards & {
+      width: 260px;
+      height: 350px;
 
-    > * {
-      transform-origin: top left;
-      transform: scale(0.5);
+      > * {
+        transform-origin: top left;
+      }
+    }
+    .compact & {
+      width: auto;
+      height: 107px;
     }
   }
 

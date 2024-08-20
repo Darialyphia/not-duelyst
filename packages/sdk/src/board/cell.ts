@@ -101,7 +101,7 @@ export class Cell implements Serializable {
       z: this.position.z + 1
     });
     if (above) return false;
-
+    if (this.terrain !== TERRAINS.GROUND) return false;
     return true;
   }
 
