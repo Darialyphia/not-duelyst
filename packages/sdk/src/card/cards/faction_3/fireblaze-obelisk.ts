@@ -2,12 +2,13 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
+import { f3WindDervish } from './wind-dervish';
 
 export const f3FireblazeObelisk = defineSerializedBlueprint({
   id: 'f3_fireblaze_obelisk',
   collectable: true,
   keywords: [KEYWORDS.SPAWN.id],
-  relatedBlueprintIds: [],
+  relatedBlueprintIds: [f3WindDervish.id],
   tags: [],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.RARE,
@@ -20,7 +21,7 @@ export const f3FireblazeObelisk = defineSerializedBlueprint({
           {
             type: 'spawn',
             params: {
-              blueprint: 'f3_wind_dervish',
+              blueprint: ['f3_wind_dervish'],
               position: {
                 candidates: [[{ type: 'is_manual_target', params: { index: 0 } }]],
                 random: false

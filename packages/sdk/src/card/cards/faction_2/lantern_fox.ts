@@ -56,7 +56,7 @@ export const f2LanternFox = defineSerializedBlueprint({
                   ]
                 ]
               },
-              blueprint: 'f2_phoenix_fire'
+              blueprint: ['f2_phoenix_fire']
             }
           }
         ]

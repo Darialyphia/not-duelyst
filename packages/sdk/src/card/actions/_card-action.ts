@@ -14,6 +14,7 @@ import { applyModifierConditionally } from '../helpers/actions';
 import type { EntityModifier } from '../../modifier/entity-modifier';
 import { getAmount } from '../helpers/amount';
 import { getEquipedArtifact } from '../conditions/artifact-conditions';
+import type { CardBlueprintId } from '../card';
 
 export const noop = () => void 0;
 
@@ -54,6 +55,14 @@ export abstract class CardAction<T extends Action['type']> {
       event: this.event,
       eventName: this.eventName
     });
+  }
+
+  protected getBlueprint(blueprints: CardBlueprintId[]) {
+    if (!blueprints.length) return blueprints[0]!;
+
+    const idx = this.session.rngSystem.nextInt(blueprints.length - 1);
+    this.session.logger(idx);
+    return blueprints[idx]!;
   }
 
   protected getUnits(conditions: Parameters<typeof getUnits>[0]['conditions']) {

@@ -46,6 +46,13 @@ export const KEYWORDS = {
     description: 'Triggers when the unit enters the battlefield.',
     aliases: []
   },
+  ESSENCE: {
+    id: 'essence',
+    name: 'Essence',
+    description:
+      "If you don't have enough gold, you can play this minion as a spell by paying its accelerate cost instead.",
+    aliases: [/essence\([0-9]+\)/]
+  },
   CELERITY: {
     id: 'celerity',
     name: 'Celerity',

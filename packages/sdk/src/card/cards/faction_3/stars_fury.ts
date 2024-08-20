@@ -34,7 +34,7 @@ export const f3StarsFury = defineSerializedBlueprint({
             params: {
               filter: { candidates: [] },
               execute: 'now',
-              blueprint: 'f3_wind_dervish',
+              blueprint: ['f3_wind_dervish'],
               player: { candidates: [[{ type: 'ally_player' }]] },
               position: {
                 candidates: [

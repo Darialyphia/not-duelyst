@@ -73,8 +73,8 @@ onTick(() => {
         <Card
           :card="{
             blueprintId: entity.card.blueprint.id,
-            name: entity.card.blueprint.name,
-            description: entity.card.blueprint.description,
+            name: entity.card.name,
+            description: entity.card.description,
             kind: entity.card.kind,
             spriteId: entity.card.blueprint.spriteId,
             rarity: entity.card.blueprint.rarity,

@@ -1,26 +1,30 @@
-import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
-import { CARD_KINDS, RARITIES } from '../../card-enums';
 
-export const neutralDioltas = defineSerializedBlueprint({
-  id: 'nautral_dioltas',
-  name: 'Dioltas',
-  spriteId: 'neutral_dilotas',
+export const neutralPandora = defineSerializedBlueprint({
+  id: 'neutral_pandora',
+  spriteId: 'neutral_pandora',
+  name: 'Pandora',
   collectable: true,
-  keywords: [KEYWORDS.DYING_WISH.id],
-  relatedBlueprintIds: [],
+  keywords: ['essence'],
   tags: [],
-  kind: CARD_KINDS.MINION,
-  rarity: RARITIES.EPIC,
+  kind: 'MINION',
+  rarity: 'legendary',
   targets: { min: 0, targets: [] },
   cellHighlights: [],
-  cost: 4,
-  attack: 6,
-  maxHp: 2,
+  relatedBlueprintIds: [
+    'neutral_pandora_blue',
+    'neutral_pandora_green',
+    'neutral_pandora_red',
+    'neutral_pandora_yellow',
+    'neutral_pandora_purple'
+  ],
+  cost: 7,
+  attack: 3,
+  maxHp: 10,
   faction: null,
   effects: [
     {
-      text: '@Dying Wish@: Summon a @Tombstone@ on a random space nearby your General.',
+      text: 'At the end of your turn, summon @Envy@, @Serenity@, @Fear@, @Rage@or @Wrath@ at random on a random nearby space.',
       config: {
         executionContext: 'trigger_while_on_board',
         actions: [
@@ -29,21 +33,23 @@ export const neutralDioltas = defineSerializedBlueprint({
             params: {
               filter: { candidates: [], random: false },
               execute: 'now',
-              blueprint: ['neutral_tombstone'],
+              blueprint: [
+                'neutral_pandora_purple',
+                'neutral_pandora_green',
+                'neutral_pandora_red',
+                'neutral_pandora_yellow',
+                'neutral_pandora_blue'
+              ],
               player: { candidates: [[{ type: 'ally_player' }]], random: false },
               position: {
                 candidates: [
                   [
+                    { type: 'is_empty' },
                     {
                       type: 'is_nearby',
                       params: {
                         unit: {
-                          candidates: [
-                            [
-                              { type: 'is_ally', params: { not: false } },
-                              { type: 'is_general', params: { not: false } }
-                            ]
-                          ],
+                          candidates: [[{ type: 'is_self', params: { not: false } }]],
                           random: false
                         },
                         cell: { candidates: [], random: false }
@@ -58,17 +64,18 @@ export const neutralDioltas = defineSerializedBlueprint({
         ],
         triggers: [
           {
-            type: 'on_before_unit_destroyed',
+            type: 'on_player_turn_end',
             params: {
-              unit: {
-                candidates: [[{ type: 'is_self', params: { not: false } }]],
+              player: {
+                candidates: [[{ type: 'ally_player', params: {} }]],
                 random: false
               },
               frequency: { type: 'always' }
             }
           }
         ]
-      }
+      },
+      vfx: { tracks: [] }
     }
   ]
 });

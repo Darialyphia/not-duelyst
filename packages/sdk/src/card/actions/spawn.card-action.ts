@@ -6,7 +6,7 @@ export class SpawnCardAction extends CardAction<'spawn'> {
     const [position] = this.getCells(this.action.params.position);
     const modifier = spawn({
       source: this.card,
-      blueprintId: this.action.params.blueprint,
+      blueprintId: this.getBlueprint(this.action.params.blueprint),
       position
     });
 

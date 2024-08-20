@@ -19,7 +19,7 @@ export const neutralFlameAcolyte = defineSerializedBlueprint({
             params: {
               filter: { candidates: [], random: false },
               execute: 'now',
-              blueprint: 'neutral_spellspark',
+              blueprint: ['neutral_spellspark'],
               player: { candidates: [[{ type: 'ally_player' }]], random: false },
               position: {
                 candidates: [

@@ -65,7 +65,7 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
               filter: { candidates: [] },
               execute: 'now',
               ephemeral: false,
-              blueprint: 'f3_staff_of_ykir',
+              blueprint: ['f3_staff_of_ykir'],
               location: 'deck',
               player: { candidates: [[{ type: 'ally_player' }]] }
             }

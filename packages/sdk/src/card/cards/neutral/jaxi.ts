@@ -19,7 +19,7 @@ export const neutralJaxi = defineSerializedBlueprint({
             params: {
               filter: { candidates: [], random: false },
               execute: 'now',
-              blueprint: 'neutral_mini_jax',
+              blueprint: ['neutral_mini_jax'],
               player: { candidates: [[{ type: 'ally_player' }]], random: false },
               position: {
                 candidates: [

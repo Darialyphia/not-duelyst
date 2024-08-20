@@ -41,6 +41,9 @@ export abstract class Card
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
   public readonly cardBackId: string;
+  public name: string;
+  public description: string;
+
   modifiers: CardModifier[] = [];
 
   meta: AnyObject = {};
@@ -60,6 +63,8 @@ export abstract class Card
     this.cardBackId = options.cardBackId;
     this.isGenerated = options.isGenerated ?? false;
     this.originalOwner = this.player;
+    this.name = this.blueprint.name;
+    this.description = this.blueprint.description;
   }
 
   equals(card: Card) {

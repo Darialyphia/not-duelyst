@@ -646,7 +646,7 @@ watch(
         params.ephemeral ??= false;
         params.location ??= 'hand';
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
-        params.blueprint ??= undefined as any;
+        params.blueprint ??= [];
       })
       .with({ type: 'teleport_unit' }, ({ params }) => {
         params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
@@ -704,7 +704,7 @@ watch(
         params.activeWhen ??= { candidates: [], random: false };
       })
       .with({ type: 'spawn' }, ({ params }) => {
-        params.blueprint ??= undefined as any;
+        params.blueprint ??= [];
         params.position ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
@@ -719,13 +719,13 @@ watch(
       .with({ type: 'equip_artifact' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.blueprint ??= undefined as any;
+        params.blueprint ??= [];
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
       .with({ type: 'summon_unit' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
-        params.blueprint = undefined as any;
+        params.blueprint ??= [];
         params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.position ??= { candidates: [[{ type: undefined as any }]], random: false };
       })
@@ -785,7 +785,7 @@ const id = useId();
   <div>
     <UiCombobox
       v-model="action.type"
-      class="w-full mb-3"
+      class="mb-3"
       :options="actionOptions"
       :multiple="false"
       :display-value="val => actionDict[val].label"

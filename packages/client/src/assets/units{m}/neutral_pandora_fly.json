@@ -1,0 +1,663 @@
+{ "frames": [
+   {
+    "filename": "neutral_pandora_fly.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.1",
+    "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.2",
+    "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.3",
+    "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.4",
+    "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.5",
+    "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.6",
+    "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.7",
+    "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.8",
+    "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.9",
+    "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.10",
+    "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.11",
+    "frame": { "x": 880, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.12",
+    "frame": { "x": 960, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.13",
+    "frame": { "x": 1040, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.14",
+    "frame": { "x": 1120, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.15",
+    "frame": { "x": 1200, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.16",
+    "frame": { "x": 1280, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.17",
+    "frame": { "x": 1360, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.18",
+    "frame": { "x": 1440, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.attack.19",
+    "frame": { "x": 1520, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.0",
+    "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.1",
+    "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.2",
+    "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.3",
+    "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.4",
+    "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.5",
+    "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.6",
+    "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.7",
+    "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.8",
+    "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.9",
+    "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.10",
+    "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.11",
+    "frame": { "x": 880, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.12",
+    "frame": { "x": 960, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.breathing.13",
+    "frame": { "x": 1040, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.0",
+    "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.1",
+    "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.2",
+    "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.3",
+    "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.4",
+    "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.5",
+    "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.6",
+    "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.7",
+    "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.8",
+    "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.9",
+    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.10",
+    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.11",
+    "frame": { "x": 880, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.12",
+    "frame": { "x": 960, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.13",
+    "frame": { "x": 1040, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.14",
+    "frame": { "x": 1120, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.death.15",
+    "frame": { "x": 1200, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.hit.0",
+    "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.hit.1",
+    "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.hit.2",
+    "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.0",
+    "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.1",
+    "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.2",
+    "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.3",
+    "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.4",
+    "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.5",
+    "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.6",
+    "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.7",
+    "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.8",
+    "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.9",
+    "frame": { "x": 720, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.10",
+    "frame": { "x": 800, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.idle.11",
+    "frame": { "x": 880, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.0",
+    "frame": { "x": 0, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.1",
+    "frame": { "x": 80, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.2",
+    "frame": { "x": 160, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.3",
+    "frame": { "x": 240, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.4",
+    "frame": { "x": 320, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_pandora_fly.run.5",
+    "frame": { "x": 400, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.7-x64",
+  "image": "neutral_pandora_fly.png",
+  "format": "RGBA8888",
+  "size": { "w": 1600, "h": 480 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 20, "to": 33, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 34, "to": 49, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 50, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 53, "to": 64, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 65, "to": 70, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

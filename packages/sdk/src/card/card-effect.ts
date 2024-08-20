@@ -253,7 +253,7 @@ export type Action<
       params: {
         location: 'hand' | 'deck';
         player: Filter<PlayerCondition>;
-        blueprint: string;
+        blueprint: CardBlueprintId[];
         ephemeral: boolean;
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
@@ -349,7 +349,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
-        blueprint: CardBlueprintId;
+        blueprint: CardBlueprintId[];
         position: Filter<CellCondition>;
       };
     }
@@ -382,7 +382,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         player: Filter<PlayerCondition>;
-        blueprint: string;
+        blueprint: CardBlueprintId[];
       };
     }
   | {
@@ -399,7 +399,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         player: Filter<PlayerCondition>;
-        blueprint: string;
+        blueprint: CardBlueprintId[];
         position: Filter<CellCondition>;
       };
     }

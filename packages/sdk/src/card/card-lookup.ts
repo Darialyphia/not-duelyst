@@ -140,6 +140,12 @@ import { f5General3 } from './cards/faction_5/general3';
 import { f6General } from './cards/faction_6/general';
 import { f6General2 } from './cards/faction_6/general2';
 import { f6General3 } from './cards/faction_6/general3';
+import { neutralPandora } from './cards/neutral/pandora';
+import { neutralPandoraBlue } from './cards/neutral/pandora-blue';
+import { neutralPandoraGreen } from './cards/neutral/pandora-green';
+import { neutralPandoraPurple } from './cards/neutral/pandora-purple';
+import { neutralPandoraRed } from './cards/neutral/pandora-red';
+import { neutralPandoraYellow } from './cards/neutral/pandora-yellow';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -286,7 +292,13 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralSpellspark,
   neutralFlameAcolyte,
   neutralJaxi,
-  neutralGhostLynx
+  neutralGhostLynx,
+  neutralPandora,
+  neutralPandoraBlue,
+  neutralPandoraGreen,
+  neutralPandoraPurple,
+  neutralPandoraRed,
+  neutralPandoraYellow
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<
