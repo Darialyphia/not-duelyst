@@ -5,6 +5,7 @@ import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
 import { nanoid } from 'nanoid';
 import { TypedEventEmitter } from '../utils/typed-emitter';
+import type { CardKind } from './card-enums';
 
 export type CardBlueprintId = string;
 
@@ -43,6 +44,7 @@ export abstract class Card
   public readonly cardBackId: string;
   public name: string;
   public description: string;
+  public kind: CardKind;
 
   modifiers: CardModifier[] = [];
 
@@ -65,6 +67,7 @@ export abstract class Card
     this.originalOwner = this.player;
     this.name = this.blueprint.name;
     this.description = this.blueprint.description;
+    this.kind = this.blueprint.kind;
   }
 
   equals(card: Card) {
@@ -83,10 +86,6 @@ export abstract class Card
 
   get blueprint() {
     return this.session.cardBlueprints[this.blueprintId];
-  }
-
-  get kind() {
-    return this.blueprint.kind;
   }
 
   abstract get cost(): number;

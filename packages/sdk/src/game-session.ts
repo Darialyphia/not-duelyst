@@ -17,7 +17,7 @@ import {
   type SerializedPlayer
 } from './player/player';
 import { ActionSystem } from './action/action-system';
-import { ClientFxSystem, type IFxSystem } from './fx-system';
+import { type IFxSystem } from './fx-system';
 import type { RngSystem } from './rng-system';
 import {
   CARD_EVENTS,
@@ -176,6 +176,7 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
       ...Object.values(ARTIFACT_EVENTS).map(e => `artifact:${e}`),
       'game:action',
       'game:ready'
+      // 'scheduler:flushed'
     ].forEach(eventName => {
       this.on(eventName as any, async event => {
         // this.logger(`%c[EVENT:${this.id}:${eventName}]`, 'color: #008b8b');

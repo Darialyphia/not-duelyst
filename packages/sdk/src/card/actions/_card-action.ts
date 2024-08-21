@@ -61,7 +61,6 @@ export abstract class CardAction<T extends Action['type']> {
     if (!blueprints.length) return blueprints[0]!;
 
     const idx = this.session.rngSystem.nextInt(blueprints.length - 1);
-    this.session.logger(idx);
     return blueprints[idx]!;
   }
 

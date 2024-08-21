@@ -483,6 +483,15 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  essence: {
+    label: 'Essence',
+    params: {
+      effect: EffectNode,
+      cost: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -512,19 +521,19 @@ watch(
     match(action.value)
       .with({ type: 'deal_damage' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 0 } };
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'heal' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 0 } };
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'draw_cards' }, ({ params }) => {
-        params.amount ??= { type: 'fixed', params: { value: 0 } };
-        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.amount ??= { type: 'fixed', params: { value: 1 } };
+        params.player ??= { candidates: [[{ type: 'ally_player' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.kind ??= undefined;
@@ -544,7 +553,7 @@ watch(
           amount: params.speed?.amount ?? { type: 'fixed', params: { value: 0 } },
           activeWhen: params.speed?.activeWhen ?? { candidates: [], random: false }
         };
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.duration ??= 'always';
         params.execute ??= 'now';
@@ -552,7 +561,7 @@ watch(
       .with({ type: 'change_damage_taken' }, ({ params }) => {
         params.mode ??= 'give';
         params.stackable ??= true;
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.source ??= { candidates: [], random: false };
         params.filter ??= { candidates: [], random: false };
         params.frequency ??= { type: 'always' };
@@ -567,7 +576,7 @@ watch(
           params.mode ??= 'give';
           params.stackable ??= true;
           params.targets ??= {
-            candidates: [[{ type: undefined as any }]],
+            candidates: [[{ type: 'any_unit' }]],
             random: false
           };
           params.filter ??= { candidates: [], random: false };
@@ -578,7 +587,7 @@ watch(
         }
       )
       .with({ type: 'destroy_unit' }, { type: 'bounce_unit' }, ({ params }) => {
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
@@ -615,28 +624,27 @@ watch(
         params.execute ??= 'now';
       })
       .with({ type: 'add_effect' }, ({ params }) => {
-        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
-        // @ts-expect-error
-        params.effect ??= { executionContext: undefined, actions: [] };
+        params.unit ??= { candidates: [[{ type: 'any_unit' }]], random: false };
+        params.effect ??= { executionContext: 'immediate', actions: [] };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'dispel_cell' }, ({ params }) => {
-        params.cells ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.cells ??= { candidates: [[{ type: 'any_cell' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'activate_unit' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
-        params.targets ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.execute ??= 'now';
       })
       .with({ type: 'change_card_cost' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.amount ??= { type: 'fixed', params: { value: 0 } };
-        params.card ??= { candidates: [[{ type: undefined as any }]], random: false };
-        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.card ??= { candidates: [[{ type: 'any_card' }]], random: false };
+        params.player ??= { candidates: [[{ type: 'any_player' }]], random: false };
         params.occurences_count ??= 0;
         params.duration ??= 'always';
       })
@@ -645,12 +653,12 @@ watch(
         params.execute ??= 'now';
         params.ephemeral ??= false;
         params.location ??= 'hand';
-        params.player ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.player ??= { candidates: [[{ type: 'any_player' }]], random: false };
         params.blueprint ??= [];
       })
       .with({ type: 'teleport_unit' }, ({ params }) => {
-        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
-        params.cell ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.unit ??= { candidates: [[{ type: 'any_unit' }]], random: false };
+        params.cell ??= { candidates: [[{ type: 'any_cell' }]], random: false };
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
       })
@@ -774,6 +782,12 @@ watch(
         params.execute ??= 'now';
         params.filter ??= { candidates: [], random: false };
       })
+      .with({ type: 'essence' }, ({ params }) => {
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
+        params.effect ??= { executionContext: 'immediate', actions: [] };
+        params.cost ??= 1;
+      })
       .exhaustive();
   },
   { immediate: true }
@@ -888,7 +902,10 @@ const id = useId();
         </label>
       </fieldset>
 
-      <div v-else-if="key === 'occurences_count'" class="flex items-center gap-3">
+      <div
+        v-else-if="key === 'occurences_count' || key === 'cost'"
+        class="flex items-center gap-3"
+      >
         <UiTextInput
           :id="`${id}-occurences-count`"
           v-model="(action.params as any)[key]"

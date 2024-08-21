@@ -4,11 +4,11 @@ import {
   type SerializedGameState,
   type SessionLogger
 } from './game-session';
-import type { SerializedAction } from './action/action';
+import type { GameAction, SerializedAction } from './action/action';
 import { ServerRngSystem, type RngSystem } from './rng-system';
 import { CARDS } from './card/card-lookup';
 import type { EntityId } from './entity/entity';
-import type { Point3D } from '@game/shared';
+import type { Nullable, Point3D } from '@game/shared';
 import { ServerFxSystem, type IFxSystem } from './fx-system';
 
 export type SimulationResult = {
@@ -26,6 +26,7 @@ export type SimulationResult = {
 const serverLogger: SessionLogger = console.log;
 
 export class ServerSession extends GameSession {
+  latestAction: Nullable<GameAction<any>> = null;
   static create(
     state: SerializedGameState,
     options: { seed: string; format: GameFormat }
@@ -63,10 +64,12 @@ export class ServerSession extends GameSession {
   onUpdate(cb: (action: SerializedAction, opts: { rngValues: number[] }) => void) {
     this.on('scheduler:flushed', () => {
       const lastAction = this.actionSystem.getHistory().at(-1);
+      if (this.latestAction === lastAction) return;
       if (lastAction) {
         cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
           rngValues: this.rngSystem.values
         });
+        this.latestAction = lastAction;
       }
     });
   }

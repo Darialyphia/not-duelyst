@@ -688,6 +688,60 @@ export const whileOnBoard = ({
   );
 };
 
+export const essence = ({
+  source,
+  essenceOnPlay,
+  essenceCost
+}: {
+  source: Card;
+  essenceOnPlay: () => Promise<void>;
+  essenceCost: number;
+}) => {
+  let unsub: () => void;
+  let costInterceptorUnsub: () => void;
+
+  return createCardModifier({
+    id: KEYWORDS.ESSENCE.id,
+    stackable: false,
+    mixins: [
+      {
+        keywords: [KEYWORDS.ESSENCE],
+        onApplied(session, _card) {
+          const card = _card as Unit;
+          const originalCost = card.cost;
+
+          unsub = session.on('scheduler:flushed', () => {
+            if (card.player.currentGold < originalCost) {
+              if (card.meta.originalOnPlay) return;
+              card.meta.originalOnPlay = card.playImpl;
+              card.playImpl = async () => {
+                await essenceOnPlay();
+              };
+              costInterceptorUnsub = card.addInterceptor('cost', () => essenceCost);
+            } else if (card.meta.originalOnPlay) {
+              card.playImpl = card.meta.originalOnPlay;
+              card.meta.originalOnPlay = undefined;
+              costInterceptorUnsub();
+            }
+          });
+        },
+        async onRemoved(session, card) {
+          await session.actionSystem.schedule(async () => {
+            if (card.meta.originalOnPlay) {
+              card.playImpl = card.meta.originalOnPlay;
+              card.meta.originalOnPlay = undefined;
+              costInterceptorUnsub();
+            }
+            if (unsub) {
+              unsub();
+            }
+          });
+        }
+      }
+    ]
+  });
+};
+
 export const whileEquipped = ({
   artifact,
   modifier

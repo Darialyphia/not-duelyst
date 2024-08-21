@@ -14,9 +14,7 @@ export const useCollection = () => {
     {},
     { enabled: !!me.value }
   );
-  watchEffect(() => {
-    console.log(collection.value);
-  });
+
   const factions = Object.values(FACTIONS).map(f => f.id);
 
   const factionFilter = ref<Nullable<Faction>>(undefined);

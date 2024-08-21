@@ -43,6 +43,7 @@ import { AuraCardAction } from './actions/aura.card-action';
 import { UnequipArtifactCardAction } from './actions/unequip-artifact.card-action';
 import { CleanseEntityCardAction } from './actions/cleanse-entity.card-action';
 import { ElusiveCardAction } from './actions/elusive.card-action';
+import { EssenceCardAction } from './actions/essence.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -187,6 +188,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'elusive' }, action => {
         return new ElusiveCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'essence' }, action => {
+        return new EssenceCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

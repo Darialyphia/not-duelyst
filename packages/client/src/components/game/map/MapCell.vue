@@ -79,6 +79,7 @@ const summon = () => {
     ui.switchTargetingMode(TARGETING_MODES.TARGETING);
   } else {
     pointerupSound.play();
+
     dispatch('playCard', {
       cardIndex: ui.selectedCardIndex.value!,
       position: ui.summonTarget.value!,

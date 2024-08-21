@@ -76,6 +76,66 @@ export const neutralPandora = defineSerializedBlueprint({
         ]
       },
       vfx: { tracks: [] }
+    },
+    {
+      text: '@Essence(2)@:  Summon one of those at random on a random space nearby your general. ',
+      config: {
+        executionContext: 'while_in_hand',
+        actions: [
+          {
+            type: 'essence',
+            params: {
+              execute: 'now',
+              filter: { candidates: [], random: false },
+              effect: {
+                executionContext: 'immediate',
+                actions: [
+                  {
+                    type: 'summon_unit',
+                    params: {
+                      filter: { candidates: [], random: false },
+                      execute: 'now',
+                      blueprint: [
+                        'neutral_pandora_green',
+                        'neutral_pandora_yellow',
+                        'neutral_pandora_blue',
+                        'neutral_pandora_purple',
+                        'neutral_pandora_red'
+                      ],
+                      player: { candidates: [[{ type: 'ally_player' }]], random: false },
+                      position: {
+                        candidates: [
+                          [
+                            { type: 'is_empty' },
+                            {
+                              type: 'is_nearby',
+                              params: {
+                                unit: {
+                                  candidates: [
+                                    [
+                                      { type: 'is_general', params: { not: false } },
+                                      { type: 'is_ally', params: { not: false } }
+                                    ]
+                                  ],
+                                  random: false
+                                },
+                                cell: { candidates: [], random: false }
+                              }
+                            }
+                          ]
+                        ],
+                        random: true
+                      }
+                    }
+                  }
+                ]
+              },
+              cost: 3
+            }
+          }
+        ]
+      },
+      vfx: { tracks: [] }
     }
   ]
 });
