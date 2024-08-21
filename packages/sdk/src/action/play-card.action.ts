@@ -44,7 +44,7 @@ export class PlayCardAction extends GameAction<typeof schema> {
     this.cachedCard = this.card;
 
     const areTargetsValid = this.payload.targets.every((target, index) => {
-      return this.card.blueprint.targets?.isTargetable(target, {
+      return this.card.targets?.isTargetable(target, {
         card: this.card,
         session: this.session,
         playedPoint: this.payload.position,

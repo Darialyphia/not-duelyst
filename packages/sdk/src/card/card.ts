@@ -6,6 +6,7 @@ import type { CardModifier } from '../modifier/card-modifier';
 import { nanoid } from 'nanoid';
 import { TypedEventEmitter } from '../utils/typed-emitter';
 import type { CardKind } from './card-enums';
+import type { CardBlueprint } from './card-blueprint';
 
 export type CardBlueprintId = string;
 
@@ -45,7 +46,7 @@ export abstract class Card
   public name: string;
   public description: string;
   public kind: CardKind;
-
+  public targets: CardBlueprint['targets'];
   modifiers: CardModifier[] = [];
 
   meta: AnyObject = {};
@@ -68,6 +69,7 @@ export abstract class Card
     this.name = this.blueprint.name;
     this.description = this.blueprint.description;
     this.kind = this.blueprint.kind;
+    this.targets = this.blueprint.targets;
   }
 
   equals(card: Card) {

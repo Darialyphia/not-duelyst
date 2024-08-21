@@ -58,7 +58,7 @@ const { isMobile } = useResponsive();
 </script>
 
 <template>
-  <UiModal v-model:is-opened="isOpened" :style="{ '--ui-modal-size': 'var(--size-md)' }">
+  <UiModal v-model:is-opened="isOpened" :style="{ '--ui-modal-size': 'var(--size-lg)' }">
     <UiIconButton
       v-if="isMobile"
       name="mdi:close"

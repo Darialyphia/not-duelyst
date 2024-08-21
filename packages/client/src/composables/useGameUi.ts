@@ -226,8 +226,8 @@ export const useGameUiProvider = (session: GameSession) => {
 
     targetableCells: computed(() => {
       if (!api.selectedCard.value) return [];
-      if (!api.selectedCard.value.blueprint.targets) return [];
-      return api.selectedCard.value.blueprint.targets.getAllTargets({
+      if (!api.selectedCard.value.targets) return [];
+      return api.selectedCard.value.targets.getAllTargets({
         session,
         playedPoint: api.summonTarget.value ?? undefined,
         card: api.selectedCard.value,

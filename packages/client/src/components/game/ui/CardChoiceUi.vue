@@ -23,7 +23,7 @@ watchEffect(() => {
   if (!ui.selectedCard.value) return;
   if (!cardChoices.value) return;
   if (cardChoices.value.maxChoices === ui.cardChoiceIndexes.value.length) {
-    if (ui.selectedCard.value.blueprint.targets) {
+    if (ui.selectedCard.value.targets) {
       ui.switchTargetingMode(TARGETING_MODES.TARGETING);
     } else {
       dispatch('playCard', {

@@ -1,4 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 
 export const neutralPandora = defineSerializedBlueprint({
   id: 'neutral_pandora',
@@ -77,8 +78,8 @@ export const neutralPandora = defineSerializedBlueprint({
       },
       vfx: { tracks: [] }
     },
-    {
-      text: '@Essence(2)@:  Summon one of those at random on a random space nearby your general. ',
+    defineCardEffect({
+      text: '@Essence(3)@:  Summon one of those at random nearby your general. ',
       config: {
         executionContext: 'while_in_hand',
         actions: [
@@ -87,6 +88,29 @@ export const neutralPandora = defineSerializedBlueprint({
             params: {
               execute: 'now',
               filter: { candidates: [], random: false },
+              targets: {
+                min: 1,
+                targets: [
+                  [
+                    [
+                      { type: 'is_empty' },
+                      {
+                        type: 'is_nearby',
+                        params: {
+                          unit: {
+                            candidates: [
+                              [
+                                { type: 'is_ally', params: { not: false } },
+                                { type: 'is_general', params: { not: false } }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  ]
+                ]
+              },
               effect: {
                 executionContext: 'immediate',
                 actions: [
@@ -105,26 +129,9 @@ export const neutralPandora = defineSerializedBlueprint({
                       player: { candidates: [[{ type: 'ally_player' }]], random: false },
                       position: {
                         candidates: [
-                          [
-                            { type: 'is_empty' },
-                            {
-                              type: 'is_nearby',
-                              params: {
-                                unit: {
-                                  candidates: [
-                                    [
-                                      { type: 'is_general', params: { not: false } },
-                                      { type: 'is_ally', params: { not: false } }
-                                    ]
-                                  ],
-                                  random: false
-                                },
-                                cell: { candidates: [], random: false }
-                              }
-                            }
-                          ]
+                          [{ type: 'is_manual_target', params: { index: 0 } }]
                         ],
-                        random: true
+                        random: false
                       }
                     }
                   }
@@ -136,6 +143,6 @@ export const neutralPandora = defineSerializedBlueprint({
         ]
       },
       vfx: { tracks: [] }
-    }
+    })
   ]
 });

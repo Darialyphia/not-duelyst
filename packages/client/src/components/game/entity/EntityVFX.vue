@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CARD_KINDS, type EntityId } from '@game/sdk';
-import { randomInt, waitFor, type Nullable, type Point } from '@game/shared';
+import { type EntityId } from '@game/sdk';
+import { randomInt, waitFor, type Point } from '@game/shared';
 import { type FrameObject } from 'pixi.js';
 
 const { entityId } = defineProps<{ entityId: EntityId }>();
@@ -35,8 +35,6 @@ onMounted(() => {
   }, 250);
 });
 
-const playedCardTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
-
 useSessionEvent('entity:before_take_damage', ([event]) => {
   if (!event.entity.equals(entity.value)) return;
   const bloodFx = randomInt(4);
@@ -49,18 +47,6 @@ useSessionEvent('entity:before_take_damage', ([event]) => {
     },
     duration: 500
   });
-});
-
-useSessionEvent('card:before_played', async ([card]) => {
-  if (!entity.value.isGeneral) return;
-  if (!card.player.equals(entity.value.player)) return;
-  if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
-  const spritesheet = await assets.loadSpritesheet(card.blueprint.spriteId);
-  playedCardTextures.value = createSpritesheetFrameObject('active', spritesheet);
-});
-
-useSessionEvent('card:after_played', () => {
-  playedCardTextures.value = null;
 });
 
 const VFXSprites = ref([]) as Ref<

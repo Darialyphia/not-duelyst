@@ -18,6 +18,7 @@ import type { CardBlueprintId } from './card';
 import type { KeywordId } from '../utils/keywords';
 import type { Point } from '@game/shared';
 import type { ArtifactCondition } from './conditions/artifact-conditions';
+import type { CardTargetsConfig } from './card-targets';
 
 export type Filter<T> = { candidates: T[][]; random?: boolean };
 
@@ -477,6 +478,7 @@ export type Action<
         cost: number;
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        targets: CardTargetsConfig;
       };
     };
 

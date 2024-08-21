@@ -7,7 +7,7 @@ const canSkip = computed(() => {
   const card = ui.selectedCard.value;
   if (!card) return false;
 
-  return ui.cardTargets.value.length <= (card.blueprint.targets?.minTargetCount ?? 0);
+  return ui.cardTargets.value.length <= (card.targets?.minTargetCount ?? 0);
 });
 
 const cancel = () => {
@@ -40,7 +40,7 @@ watchEffect(() => {
     .with(TARGETING_MODES.TARGETING, () => {
       const card = ui.selectedCard.value;
       if (!card) return false;
-      if (ui.cardTargets.value.length === card.blueprint.targets?.maxTargetCount) {
+      if (ui.cardTargets.value.length === card.targets?.maxTargetCount) {
         commitPlay();
       }
     })
@@ -52,8 +52,8 @@ watchEffect(() => {
   <div
     v-if="
       ui.targetingMode.value === TARGETING_MODES.TARGETING &&
-      ((ui.selectedCard.value?.blueprint.targets?.maxTargetCount ?? 0) > 1 ||
-        ui.selectedCard.value?.blueprint.targets?.minTargetCount === 0)
+      ((ui.selectedCard.value?.targets?.maxTargetCount ?? 0) > 1 ||
+        ui.selectedCard.value?.targets?.minTargetCount === 0)
     "
     class="targeting-ui"
   >

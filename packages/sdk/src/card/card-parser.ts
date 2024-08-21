@@ -39,6 +39,7 @@ import { getCells } from './conditions/cell-conditions';
 import { Unit } from './unit';
 import type { TriggerFrequency, Trigger } from './card-action-triggers';
 import { checkGlobalConditions } from './conditions/global-conditions';
+import { Artifact } from './artifact';
 
 export type EffectCtx = Parameters<Defined<CardBlueprint['onPlay']>>[0] & {
   entity?: Entity;
@@ -1017,7 +1018,7 @@ export const parseSerializedBlueprintEffect = (
                         event,
                         eventName,
                         conditions: trigger.params.card
-                      }).some(card => event.card === card)
+                      }).some(card => card instanceof Artifact && event.card)
                     : true;
                 }
               });
@@ -1035,7 +1036,7 @@ export const parseSerializedBlueprintEffect = (
                         event,
                         eventName,
                         conditions: trigger.params.card
-                      }).some(card => event.card === card)
+                      }).some(card => card instanceof Artifact && event.card === card)
                     : true;
                 }
               });

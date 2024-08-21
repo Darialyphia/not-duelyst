@@ -1,5 +1,6 @@
 import { essence } from '../../modifier/modifier-utils';
 import { parseSerializedBlueprintEffect } from '../card-parser';
+import { parseTargets } from '../card-targets';
 import { CardAction } from './_card-action';
 
 export class EssenceCardAction extends CardAction<'essence'> {
@@ -10,12 +11,16 @@ export class EssenceCardAction extends CardAction<'essence'> {
     }).flat();
 
     const modifier = essence({
-      source: this.ctx.card,
       essenceCost: this.action.params.cost,
-      essenceOnPlay: async () => {
+      essenceTargets: parseTargets(this.action.params.targets),
+      essenceOnPlay: async ctx => {
         for (const effect of effects) {
           if (effect.onPlay) {
-            await effect.onPlay(this.ctx);
+            await effect.onPlay({
+              card: this.card,
+              session: this.session,
+              targets: ctx.targets
+            });
           }
           // if (effect.getEntityModifier) {
           //   unit.addModifier(

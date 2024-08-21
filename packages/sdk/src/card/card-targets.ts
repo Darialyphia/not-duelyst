@@ -25,7 +25,7 @@ export const parseTargets = (
         card: Card;
       }
     ) {
-      if (options.card.blueprint.targets!.maxTargetCount <= options.targets.length) {
+      if (options.card.targets!.maxTargetCount <= options.targets.length) {
         return false;
       }
       return getCells({
@@ -48,7 +48,7 @@ export const parseTargets = (
       targets: Point3D[];
       card: Card;
     }) {
-      if (options.card.blueprint.targets!.maxTargetCount <= options.targets.length) {
+      if (options.card.targets!.maxTargetCount <= options.targets.length) {
         return [];
       }
       return getCells({

@@ -11,7 +11,7 @@ import { modifierGameEventMixin } from './mixins/game-event.mixin';
 import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
-import { INTERCEPTOR_PRIORITIES } from '../card/card-enums';
+import { CARD_KINDS, INTERCEPTOR_PRIORITIES } from '../card/card-enums';
 import { Card, CARD_EVENTS } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
@@ -22,8 +22,7 @@ import {
   isNearbyEnemy
 } from '../entity/entity-utils';
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
-import { Artifact } from '../card/artifact';
-import { Spell } from '../card/spell';
+import type { CardBlueprint } from '../card/card-blueprint';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -689,13 +688,13 @@ export const whileOnBoard = ({
 };
 
 export const essence = ({
-  source,
   essenceOnPlay,
-  essenceCost
+  essenceCost,
+  essenceTargets
 }: {
-  source: Card;
-  essenceOnPlay: () => Promise<void>;
+  essenceOnPlay: (ctx: { position: Point3D; targets: Point3D[] }) => Promise<void>;
   essenceCost: number;
+  essenceTargets: Exclude<CardBlueprint['targets'], undefined>;
 }) => {
   let unsub: () => void;
   let costInterceptorUnsub: () => void;
@@ -708,30 +707,40 @@ export const essence = ({
         keywords: [KEYWORDS.ESSENCE],
         onApplied(session, _card) {
           const card = _card as Unit;
-          const originalCost = card.cost;
+          const essenceCache = {
+            cost: card.cost,
+            originalPlaympl: card.playImpl,
+            kind: card.kind,
+            targets: card.targets
+          };
 
           unsub = session.on('scheduler:flushed', () => {
-            if (card.player.currentGold < originalCost) {
-              if (card.meta.originalOnPlay) return;
-              card.meta.originalOnPlay = card.playImpl;
-              card.playImpl = async () => {
-                await essenceOnPlay();
+            if (card.player.currentGold < essenceCache.cost) {
+              card.meta.essence = essenceCache;
+              card.playImpl = async ctx => {
+                await essenceOnPlay(ctx);
               };
+              card.kind = CARD_KINDS.SPELL;
+              card.targets = essenceTargets;
               costInterceptorUnsub = card.addInterceptor('cost', () => essenceCost);
-            } else if (card.meta.originalOnPlay) {
-              card.playImpl = card.meta.originalOnPlay;
-              card.meta.originalOnPlay = undefined;
+            } else {
+              card.playImpl = essenceCache.originalPlaympl;
+              card.kind = essenceCache.kind;
+              card.targets = essenceCache.targets;
               costInterceptorUnsub();
             }
           });
         },
         async onRemoved(session, card) {
           await session.actionSystem.schedule(async () => {
-            if (card.meta.originalOnPlay) {
-              card.playImpl = card.meta.originalOnPlay;
-              card.meta.originalOnPlay = undefined;
+            if (card.meta.essence) {
+              card.playImpl = card.meta.essence.originalPlaympl;
+              card.kind = card.meta.essence.kind;
+              card.targets = card.meta.essence.targets;
               costInterceptorUnsub();
+              card.meta.essence = undefined;
             }
+
             if (unsub) {
               unsub();
             }

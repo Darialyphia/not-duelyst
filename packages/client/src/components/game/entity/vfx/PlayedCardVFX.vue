@@ -16,7 +16,9 @@ useSessionEvent('card:before_played', async ([card]) => {
   if (!card.player.equals(entity.value.player)) return;
   if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;
   const spritesheet = await assets.loadSpritesheet(card.blueprint.spriteId);
-  playedCardTextures.value = createSpritesheetFrameObject('active', spritesheet);
+  if (spritesheet.animations.active) {
+    playedCardTextures.value = createSpritesheetFrameObject('active', spritesheet);
+  }
 });
 
 useSessionEvent('card:after_played', () => {

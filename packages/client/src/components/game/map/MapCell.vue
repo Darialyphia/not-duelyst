@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { CellId } from '@game/sdk/src/board/cell';
 import type { FederatedPointerEvent } from 'pixi.js';
 import { match } from 'ts-pattern';
 import {
@@ -75,7 +74,7 @@ const summon = () => {
   ui.summonTarget.value = cell.position;
   if (ui.selectedCard.value.blueprint.cardChoices) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
-  } else if (ui.selectedCard.value.blueprint.targets) {
+  } else if (ui.selectedCard.value.targets) {
     ui.switchTargetingMode(TARGETING_MODES.TARGETING);
   } else {
     pointerupSound.play();
@@ -146,7 +145,7 @@ const onPointerup = (event: FederatedPointerEvent) => {
       if (isTargetable()) {
         ui.cardTargets.value.push(cell.position);
         pointerupSound.play();
-      } else if (ui.selectedCard.value.blueprint.targets?.maxTargetCount === 1) {
+      } else if (ui.selectedCard.value.targets?.maxTargetCount === 1) {
         ui.unselectCard();
       }
     })
@@ -196,7 +195,7 @@ const hasCellAbove = computed(
             }
             if (ui.selectedCard.value.blueprint.cardChoices) {
               return;
-            } else if (ui.selectedCard.value.blueprint.targets) {
+            } else if (ui.selectedCard.value.targets) {
               return;
             }
             runSimulation({

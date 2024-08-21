@@ -1,6 +1,6 @@
 import type { Cell, CellId, Entity, EntityId, GameSession } from '@game/sdk';
 import type { DistanceMap } from '@game/sdk/src/board/pathfinding';
-import { type Nullable, type Point3D, type Vec3, isDefined } from '@game/shared';
+import { type Nullable, type Point3D, type Vec3 } from '@game/shared';
 import type { GameUiContext } from './useGameUi';
 
 export type PathfindingContext = {
@@ -82,7 +82,7 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
       if (!targetingCache.has(cellToTest.id)) {
         targetingCache.set(
           cellToTest.id,
-          ui.selectedCard.value?.blueprint.targets?.isTargetable(cellToTest, {
+          ui.selectedCard.value?.targets?.isTargetable(cellToTest, {
             session,
             playedPoint: ui.summonTarget.value ?? undefined,
             card: ui.selectedCard.value,
