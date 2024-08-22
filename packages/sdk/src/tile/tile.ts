@@ -59,5 +59,10 @@ export class Tile {
   destroy() {
     this.blueprint.onDestroyed?.(this.session, this.occupant, this);
     this.session.boardSystem.getCellAt(this.position)!.tile = null;
+    this.session.off('entity:created', this.checkOccupation);
+    this.session.off('entity:after_destroy', this.checkOccupation);
+    this.session.off('entity:after_move', this.checkOccupation);
+    this.session.off('entity:after_teleport', this.checkOccupation);
+    this.session.off('entity:after_bounce', this.checkOccupation);
   }
 }

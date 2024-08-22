@@ -488,8 +488,17 @@ export type Action<
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         targets: CardTargetsConfig;
       };
+    }
+  | {
+      type: 'create_tile';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        player: Filter<PlayerCondition>;
+        tile: string;
+        position: Filter<CellCondition>;
+      };
     };
-
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
 })['params'];

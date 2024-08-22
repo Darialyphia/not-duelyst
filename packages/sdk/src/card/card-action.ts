@@ -45,6 +45,7 @@ import { CleanseEntityCardAction } from './actions/cleanse-entity.card-action';
 import { ElusiveCardAction } from './actions/elusive.card-action';
 import { EssenceCardAction } from './actions/essence.card-action';
 import { FearsomeCardAction } from './actions/fearsome.card-action';
+import { CreateTileCardAction } from './actions/create_tile.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -195,6 +196,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'fearsome' }, action => {
         return new FearsomeCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'create_tile' }, action => {
+        return new CreateTileCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

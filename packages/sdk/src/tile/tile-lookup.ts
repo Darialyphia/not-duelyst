@@ -73,13 +73,13 @@ const allTiles: TileBlueprint[] = [
     name: 'Shadow Creep',
     description:
       'Deal 3 damage to enemy units standing on it at the end of its owner turn.',
-    spriteId: 'burning-ground',
+    spriteId: 'creep',
     onCreated(session, entity, tile) {
       const player = tile.player;
       if (!player) return;
       tile.meta.unsub = player.on(PLAYER_EVENTS.TURN_END, async () => {
         if (!tile.occupant) return;
-        if (!tile.occupant.player.equals(player)) return;
+        if (tile.occupant.player.equals(player)) return;
         await tile.occupant.takeDamage(3, player.general.card, false);
       });
     },

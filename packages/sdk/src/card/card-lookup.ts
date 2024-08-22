@@ -153,6 +153,7 @@ import { f4BloodSiren } from './cards/faction_4/blood-siren';
 import { f4NightsorrowAssassin } from './cards/faction_4/nightsorrow-assassin';
 import { f4ShadowWatcher } from './cards/faction_4/shadow-watcher';
 import { f4VorpalReaver } from './cards/faction_4/vorpal-reaver';
+import { f4AbyssalCrawler } from './cards/faction_4/abyssal-crawler';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -260,6 +261,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f4NightsorrowAssassin,
   f4ShadowWatcher,
   f4VorpalReaver,
+  f4AbyssalCrawler,
 
   f5General,
   f5General2,

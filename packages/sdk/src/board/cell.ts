@@ -4,6 +4,7 @@ import { pointToCellId } from '../utils/helpers';
 import type { GameSession } from '../game-session';
 import { TERRAINS, type Direction, type Terrain } from './board-utils';
 import { Tile } from '../tile/tile';
+import type { PlayerId } from '../player/player';
 
 export type CellId = `${string}:${string}:${string}`;
 
@@ -67,11 +68,12 @@ export class Cell implements Serializable {
     }
   }
 
-  addTile(newTileId: string) {
+  addTile(newTileId: string, playerId?: PlayerId) {
     this.removeTile();
     this.tile = new Tile(this.session, {
       position: this.position,
-      blueprintId: newTileId
+      blueprintId: newTileId,
+      playerId
     });
   }
 

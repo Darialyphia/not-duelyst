@@ -728,7 +728,7 @@ export const essence = ({
               card.kind = essenceCache.kind;
               card.targets = essenceCache.targets;
               card.meta.essence = undefined;
-              costInterceptorUnsub();
+              costInterceptorUnsub?.();
             }
           });
         },
@@ -738,7 +738,7 @@ export const essence = ({
               card.playImpl = card.meta.essence.originalPlaympl;
               card.kind = card.meta.essence.kind;
               card.targets = card.meta.essence.targets;
-              costInterceptorUnsub();
+              costInterceptorUnsub?.();
               card.meta.essence = undefined;
             }
 

@@ -9,7 +9,8 @@ import {
   GlobalConditionNode,
   PlayerNode,
   TargetsNode,
-  UnitNode
+  UnitNode,
+  TileNode
 } from '#components';
 import type { Action, WidenedGenericCardEffect } from '@game/sdk';
 import { isObject } from '@game/shared';
@@ -502,6 +503,16 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  create_tile: {
+    label: 'Create a special tile',
+    params: {
+      tile: TileNode,
+      player: PlayerNode,
+      position: CellNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -803,6 +814,13 @@ watch(
         params.effect ??= { executionContext: 'immediate', actions: [] };
         params.cost ??= 1;
         params.targets ??= { min: 1, targets: [[[{ type: 'any_cell' }]]] };
+      })
+      .with({ type: 'create_tile' }, ({ params }) => {
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
+        params.player ??= { candidates: [[{ type: 'ally_player' }]] };
+        params.tile ??= 'gold_coin';
+        params.position ??= { candidates: [[{ type: 'any_cell' }]] };
       })
       .exhaustive();
   },

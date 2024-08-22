@@ -27,13 +27,13 @@ export {
 } from './card/card-blueprint';
 export type {
   WidenedGenericCardEffect,
-  InitAction,
   Filter,
   ExecutionContext,
   Action,
   NumericOperator,
   CardEffectConfig
 } from './card/card-effect';
+export { TILES } from './tile/tile-lookup';
 export type { Amount } from './card/helpers/amount';
 export type { Trigger, TriggerFrequency } from './card/card-action-triggers';
 export type { CardTargetsConfig } from './card/card-targets';
