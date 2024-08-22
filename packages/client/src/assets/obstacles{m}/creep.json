@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "burning-ground.idle.0",
+    "filename": "creep.idle.0",
     "frame": { "x": 0, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 120
    },
    {
-    "filename": "burning-ground.idle.1",
+    "filename": "creep.idle.1",
     "frame": { "x": 96, "y": 0, "w": 96, "h": 112 },
     "rotated": false,
     "trimmed": false,
@@ -21,7 +21,7 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.7-x64",
-  "image": "burning-ground.png",
+  "image": "creep.png",
   "format": "RGBA8888",
   "size": { "w": 192, "h": 112 },
   "scale": "1",
@@ -29,7 +29,9 @@
    { "name": "idle", "from": 0, "to": 1, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
-   { "name": "Layer 3", "opacity": 255, "blendMode": "normal" }
+   { "name": "Layer 4", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 3", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 5", "opacity": 102, "blendMode": "overlay" }
   ],
   "slices": [
    { "name": "hitArea", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 26, "w": 34, "h": 34 } }] }

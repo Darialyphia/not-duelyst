@@ -2,15 +2,18 @@ import { Vec3, type AnyObject, type Nullable, type Point3D } from '@game/shared'
 import type { GameSession } from '../game-session';
 import { TILES, type TileblueprintId } from './tile-lookup';
 import type { Entity } from '../entity/entity';
+import type { PlayerId } from '../player/player';
 
 export type TileOptions = {
   blueprintId: TileblueprintId;
   position: Point3D;
+  playerId?: PlayerId;
 };
 
 export class Tile {
   position: Vec3;
   blueprintId: TileblueprintId;
+  playerId?: PlayerId;
   occupant: Nullable<Entity> = null;
 
   meta: AnyObject = {};
@@ -21,14 +24,21 @@ export class Tile {
   ) {
     this.blueprintId = options.blueprintId;
     this.position = Vec3.fromPoint3D(options.position);
-
+    this.playerId = options.playerId;
     this.checkOccupation = this.checkOccupation.bind(this);
     this.session.on('entity:created', this.checkOccupation);
     this.session.on('entity:after_destroy', this.checkOccupation);
     this.session.on('entity:after_move', this.checkOccupation);
+    this.session.on('entity:after_teleport', this.checkOccupation);
+    this.session.on('entity:after_bounce', this.checkOccupation);
     void this.checkOccupation().then(() => {
       this.blueprint.onCreated?.(this.session, this.occupant, this);
     });
+  }
+
+  get player() {
+    if (!this.playerId) return null;
+    return this.session.playerSystem.getPlayerById(this.playerId);
   }
 
   get blueprint() {
