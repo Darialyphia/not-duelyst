@@ -146,6 +146,13 @@ import { neutralPandoraGreen } from './cards/neutral/pandora-green';
 import { neutralPandoraPurple } from './cards/neutral/pandora-purple';
 import { neutralPandoraRed } from './cards/neutral/pandora-red';
 import { neutralPandoraYellow } from './cards/neutral/pandora-yellow';
+import { f4Wraithling } from './cards/faction_4/wraithling';
+import { f4ShadowDancer } from './cards/faction_4/shadow-dancer';
+import { f4BloodmoonPriestess } from './cards/faction_4/bloodmoon-priestess';
+import { f4BloodSiren } from './cards/faction_4/blood-siren';
+import { f4NightsorrowAssassin } from './cards/faction_4/nightsorrow-assassin';
+import { f4ShadowWatcher } from './cards/faction_4/shadow-watcher';
+import { f4VorpalReaver } from './cards/faction_4/vorpal-reaver';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -246,6 +253,13 @@ const allCards: SerializedBlueprint<any>[] = [
   f4General,
   f4General2,
   f4General3,
+  f4Wraithling,
+  f4ShadowDancer,
+  f4BloodmoonPriestess,
+  f4BloodSiren,
+  f4NightsorrowAssassin,
+  f4ShadowWatcher,
+  f4VorpalReaver,
 
   f5General,
   f5General2,

@@ -727,6 +727,7 @@ export const essence = ({
               card.playImpl = essenceCache.originalPlaympl;
               card.kind = essenceCache.kind;
               card.targets = essenceCache.targets;
+              card.meta.essence = undefined;
               costInterceptorUnsub();
             }
           });
@@ -879,15 +880,21 @@ export const frenzy = ({ source }: { source: Card }) => {
     visible: false,
     mixins: [
       modifierSelfEventMixin({
-        eventName: 'after_deal_damage',
-        async listener([event], ctx) {
-          if (!event.isBattleDamage) return;
-          const nearbyEnemies = ctx.session.entitySystem.getNearbyEnemies(ctx.attachedTo);
-          await Promise.all(
-            nearbyEnemies.map(enemy =>
-              ctx.attachedTo.dealDamage(event.amount, enemy, false)
-            )
-          );
+        eventName: 'before_attack',
+        async listener(_, ctx) {
+          const unsub = ctx.attachedTo.on('after_deal_damage', async event => {
+            if (!event.isBattleDamage) return;
+            const nearbyEnemies = ctx.session.entitySystem.getNearbyEnemies(
+              ctx.attachedTo
+            );
+            await Promise.all(
+              nearbyEnemies.map(enemy =>
+                ctx.attachedTo.dealDamage(event.amount, enemy, false)
+              )
+            );
+          });
+
+          ctx.attachedTo.once('after_attack', unsub);
         }
       })
     ]

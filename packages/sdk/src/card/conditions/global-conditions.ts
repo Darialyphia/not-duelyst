@@ -15,7 +15,7 @@ import { matchNumericOperator } from '../card-action';
 import { getAmount, type Amount } from '../helpers/amount';
 import { getKeywordById, type KeywordId } from '../../utils/keywords';
 import { PlayCardAction } from '../../action/play-card.action';
-import { getTagById, type TagId } from '../../utils/tribes';
+import { type TagId } from '../../utils/tribes';
 
 export type GlobalCondition<
   T extends ConditionOverrides = {
@@ -23,6 +23,7 @@ export type GlobalCondition<
     card: CardConditionExtras['type'];
   }
 > =
+  | { type: 'active_player'; params: { player: Filter<PlayerCondition> } }
   | {
       type: 'player_gold';
       params: {
@@ -79,6 +80,18 @@ export const checkGlobalConditions = (
   return conditions.candidates.some(group => {
     return group.every(condition => {
       return match(condition)
+        .with({ type: 'active_player' }, condition => {
+          const [player] = getPlayers({
+            session,
+            card,
+            event,
+            eventName,
+            targets,
+            conditions: condition.params.player
+          });
+
+          return player.isActive;
+        })
         .with({ type: 'player_gold' }, condition => {
           const amount = getAmount({
             session,

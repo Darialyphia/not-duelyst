@@ -37,7 +37,7 @@ export const neutralEmeraldRejuvenator = defineSerializedBlueprint({
                 ],
                 random: false
               },
-              filter: { candidates: [], random: false },
+              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now'
             }
           }

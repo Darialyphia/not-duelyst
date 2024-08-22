@@ -133,7 +133,7 @@ const canSeeGame = computed(() => {
       <div v-if="timeRemainingForTurn" class="remaining" />
     </template>
     <UiModal
-      title="We hit a snag :yussy:"
+      title="There is no escape from the snagging"
       :is-opened="!!error || game?.status === 'CANCELLED'"
       :style="{ '--ui-modal-size': 'var(--size-sm)' }"
       :closable="false"

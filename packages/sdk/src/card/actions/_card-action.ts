@@ -58,7 +58,7 @@ export abstract class CardAction<T extends Action['type']> {
   }
 
   protected getBlueprint(blueprints: CardBlueprintId[]) {
-    if (!blueprints.length) return blueprints[0]!;
+    if (blueprints.length === 1) return blueprints[0]!;
 
     const idx = this.session.rngSystem.nextInt(blueprints.length - 1);
     return blueprints[idx]!;

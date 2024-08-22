@@ -191,6 +191,10 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
       GlobalCondition['type'],
       { label: string; params: Record<string, Params> }
     > = {
+      active_player: {
+        label: 'Only if the active player is',
+        params: { player: PlayerNode }
+      },
       player_gold: {
         label: "Only if a player's gold...",
         params: {

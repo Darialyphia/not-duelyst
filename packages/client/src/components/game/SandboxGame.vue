@@ -58,6 +58,11 @@ serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);
 });
 
+const error = ref<Nullable<Error>>(null);
+serverSession.on('game:error', err => {
+  error.value = err;
+});
+
 const dispatch = (
   type: Parameters<(typeof serverSession)['dispatch']>[0]['type'],
   payload: any
@@ -108,5 +113,22 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
     />
 
     <SandboxTools :server-session="serverSession" :client-session="clientSession" />
+
+    <UiModal
+      title="There is no escape from the snagging"
+      :is-opened="!!error"
+      :style="{ '--ui-modal-size': 'var(--size-sm)' }"
+      :closable="false"
+    >
+      <p>An error has occured and the game has been cancelled.</p>
+      <div v-if="error">
+        <code>{{ error }}</code>
+      </div>
+      <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
+        <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
+          Back to home
+        </UiFancyButton>
+      </NuxtLink>
+    </UiModal>
   </div>
 </template>

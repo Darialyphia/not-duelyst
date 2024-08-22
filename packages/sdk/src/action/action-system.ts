@@ -64,16 +64,13 @@ export class ActionSystem implements Serializable {
     this.isRunning = true;
     try {
       for (const fn of this.scheduledActions) {
-        try {
-          await fn();
-        } catch (err) {
-          console.error(err);
-        }
+        await fn();
       }
       this.scheduledActions = [];
       this.isRunning = false;
       this.session.emit('scheduler:flushed');
     } catch (err) {
+      console.error(err);
       this.session.emit('game:error', err as Error);
     }
   }

@@ -62,6 +62,8 @@ const executionContextOptions = computed(() => {
     }
   ];
 });
+
+const isRecipeModalOpened = ref(false);
 </script>
 
 <template>
@@ -124,5 +126,15 @@ h4 {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
   color: var(--primary);
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--size-4) var(--size-3);
+  > * {
+    aspect-ratio: 1;
+    width: 100%;
+  }
 }
 </style>

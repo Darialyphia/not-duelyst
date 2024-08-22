@@ -8,6 +8,7 @@ import {
   EffectNode,
   GlobalConditionNode,
   PlayerNode,
+  TargetsNode,
   UnitNode
 } from '#components';
 import type { Action, WidenedGenericCardEffect } from '@game/sdk';
@@ -489,6 +490,15 @@ const actionDict: ActionDictionary = {
     params: {
       effect: EffectNode,
       cost: null,
+      targets: TargetsNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  fearsome: {
+    label: 'Fearsome',
+    params: {
+      activeWhen: GlobalConditionNode,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -701,6 +711,11 @@ watch(
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
       })
+      .with({ type: 'fearsome' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+      })
       .with({ type: 'structure' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
@@ -787,6 +802,7 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.effect ??= { executionContext: 'immediate', actions: [] };
         params.cost ??= 1;
+        params.targets ??= { min: 1, targets: [[[{ type: 'any_cell' }]]] };
       })
       .exhaustive();
   },
@@ -797,13 +813,7 @@ const id = useId();
 
 <template>
   <div>
-    <UiCombobox
-      v-model="action.type"
-      class="mb-3"
-      :options="actionOptions"
-      :multiple="false"
-      :display-value="val => actionDict[val].label"
-    />
+    <UiSelect v-model="action.type" class="mb-3" :options="actionOptions" />
 
     <div v-for="(param, key) in params" :key="key" class="flex gap-2 my-3">
       <span class="capitalize min-w-11">{{ key }}</span>

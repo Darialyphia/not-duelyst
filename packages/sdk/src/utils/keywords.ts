@@ -50,7 +50,7 @@ export const KEYWORDS = {
     id: 'essence',
     name: 'Essence',
     description:
-      "If you don't have enough gold, you can play this minion as a spell by paying its accelerate cost instead.",
+      "If you don't have enough gold, you can play this minion as a spell by paying its essence cost instead.",
     aliases: [/essence\([0-9]+\)/]
   },
   CELERITY: {
@@ -79,9 +79,9 @@ export const KEYWORDS = {
     aliases: []
   },
   FEARSOME: {
-    id: 'fearsomem',
+    id: 'fearsome',
     name: 'Fearsome',
-    description: 'Prevents targeted units from retaliating.',
+    description: "When this is unit attacks a minion, the target doesn't counterattack.",
     aliases: [],
     spriteId: 'fearsome'
   },

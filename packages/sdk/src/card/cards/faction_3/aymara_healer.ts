@@ -83,6 +83,63 @@ export const f3AymaraHealer = defineSerializedBlueprint({
           }
         ]
       }
+    },
+    {
+      text: '@Essence(2)@: Deal 2 damage to the enemy general and heal your general for 2.',
+      config: {
+        executionContext: 'while_in_hand',
+        actions: [
+          {
+            type: 'essence',
+            params: {
+              execute: 'now',
+              targets: { min: 1, targets: [[[{ type: 'any_cell' }]]] },
+              filter: { candidates: [], random: false },
+              effect: {
+                executionContext: 'immediate',
+                actions: [
+                  {
+                    type: 'deal_damage',
+                    params: {
+                      amount: { type: 'fixed', params: { value: 2 } },
+                      targets: {
+                        candidates: [
+                          [
+                            { type: 'is_enemy', params: { not: false } },
+                            { type: 'is_general', params: { not: false } }
+                          ]
+                        ],
+                        random: false
+                      },
+                      filter: { candidates: [], random: false },
+                      execute: 'now'
+                    }
+                  },
+                  {
+                    type: 'heal',
+                    params: {
+                      amount: { type: 'fixed', params: { value: 2 } },
+                      targets: {
+                        candidates: [
+                          [
+                            { type: 'is_general', params: { not: false } },
+                            { type: 'is_ally', params: { not: false } }
+                          ]
+                        ],
+                        random: false
+                      },
+                      filter: { candidates: [], random: false },
+                      execute: 'now'
+                    }
+                  }
+                ]
+              },
+              cost: 2
+            }
+          }
+        ]
+      },
+      vfx: { tracks: [] }
     }
   ]
 });

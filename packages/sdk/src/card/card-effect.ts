@@ -425,6 +425,14 @@ export type Action<
       };
     }
   | {
+      type: 'fearsome';
+      params: {
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'change_can_attack';
       params: {
         unit: Filter<

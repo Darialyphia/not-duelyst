@@ -58,6 +58,9 @@ watchEffect(() => {
         .with({ type: 'played_from_hand' }, () => {
           return;
         })
+        .with({ type: 'active_player' }, ({ params }) => {
+          params.player ??= { candidates: [[{ type: 'ally_player' }]] };
+        })
         .exhaustive();
     });
   });
@@ -80,9 +83,9 @@ watchEffect(() => {
           match(condition)
             .with({ type: 'player_gold' }, { type: 'player_hp' }, () => {
               condition.params = {
-                amount: { type: undefined },
+                amount: { type: 'fixed', params: { value: 0 } },
                 operator: 'equals',
-                player: { candidates: [[{ type: undefined as any }]], random: false }
+                player: { candidates: [[{ type: 'ally_player' }]], random: false }
               };
             })
             .with({ type: 'unit_state' }, () => {
@@ -91,11 +94,11 @@ watchEffect(() => {
                 mode: 'all',
                 position: { candidates: [[{ type: undefined as any }]], random: false },
                 attack: {
-                  amount: { type: undefined } as any,
+                  amount: { type: 'fixed', params: { value: 0 } },
                   operator: 'equals'
                 },
                 hp: {
-                  amount: { type: undefined } as any,
+                  amount: { type: 'fixed', params: { value: 0 } },
                   operator: 'equals'
                 },
                 keyword: undefined as any
@@ -103,6 +106,11 @@ watchEffect(() => {
             })
             .with({ type: 'played_from_hand' }, () => {
               condition.params = {};
+            })
+            .with({ type: 'active_player' }, () => {
+              condition.params = {
+                player: { candidates: [[{ type: 'ally_player' }]] }
+              };
             })
             .exhaustive();
         }
