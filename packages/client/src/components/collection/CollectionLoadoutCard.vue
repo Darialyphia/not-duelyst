@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 
-const props = defineProps<{
+defineProps<{
   loadout: LoadoutDto;
 }>();
+
 const emit = defineEmits<{
   edit: [];
-  delete: [];
 }>();
+
+const isDeleteModalOpened = ref(false);
 </script>
 
 <template>
+  <CollectionDeleteModal v-model:is-opened="isDeleteModalOpened" :loadout="loadout" />
+
   <LoadoutCard
     :loadout="loadout"
     tabindex="0"
@@ -26,7 +30,7 @@ const emit = defineEmits<{
         '--ui-icon-button-size': 'var(--font-size-4)',
         '--ui-icon-button-radius': '0'
       }"
-      @click="emit('delete')"
+      @click="isDeleteModalOpened = true"
     />
   </div>
 </template>

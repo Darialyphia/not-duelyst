@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS } from '@game/sdk';
-import type { Nullable } from '@game/shared';
 import { vIntersectionObserver } from '@vueuse/components';
 import { match } from 'ts-pattern';
 import { CollectionCard, CollectionSmallCard } from '#components';
@@ -14,43 +12,43 @@ definePageMeta({
   }
 });
 
-const mode = ref<'list' | 'form'>('list');
+const isEditingLoadout = ref(false);
+
 const listMode = ref<'cards' | 'compact'>('cards');
+const { isMobile } = useResponsive();
+watchEffect(() => {
+  if (!isMobile.value) {
+    listMode.value = 'cards';
+  }
+});
+
 const { factionFilter, textFilter, costFilter, displayedCards, loadouts, collection } =
   useCollection();
 
-const { initEmpty, initFromLoadout, initFromCode, canAddCard, addCard, general } =
-  useLoadoutFormProvider({
-    collection,
-    defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
-    onSuccess() {
-      mode.value = 'list';
-    }
-  });
+const { canAddCard, addCard, general } = useLoadoutFormProvider({
+  collection,
+  defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
+  onSuccess() {
+    isEditingLoadout.value = false;
+  }
+});
 
-watch(mode, () => {
+watch(isEditingLoadout, () => {
   factionFilter.value = undefined;
 });
 
 const addCardToLoadout = (opts: Parameters<typeof addCard>[0]) => {
-  if (mode.value === 'list') return;
+  if (!isEditingLoadout.value) return;
   addCard(opts);
 };
 
 const canAddToLoadout = (unitId: string) => {
-  if (mode.value === 'list') return false;
+  if (!isEditingLoadout.value) return false;
   return canAddCard(unitId);
 };
 
-const loadoutToDelete = ref<Nullable<LoadoutDto>>(null);
-
-const editLoadout = (loadout: LoadoutDto) => {
-  initFromLoadout(loadout);
-  mode.value = 'form';
-};
-
 const relevantCards = computed(() => {
-  if (mode.value === 'list') return displayedCards.value;
+  if (isEditingLoadout.value) return displayedCards.value;
   if (!general.value)
     return displayedCards.value.filter(card => card.card.kind === CARD_KINDS.GENERAL);
 
@@ -72,7 +70,6 @@ const onIntersectionObserver =
   };
 
 const listRoot = ref<HTMLElement>();
-
 watch(relevantCards, () => {
   listRoot.value?.scrollTo({
     top: 0,
@@ -86,23 +83,16 @@ const collectionItemComponent = computed(() =>
     .with('compact', () => CollectionSmallCard)
     .exhaustive()
 );
-const { isMobile } = useResponsive();
-watchEffect(() => {
-  if (!isMobile.value) {
-    listMode.value = 'cards';
-  }
-});
 </script>
 
 <template>
   <div class="collection-page">
-    <CollectionDeleteModal v-model:loadout="loadoutToDelete" />
     <CollectionHeader
       v-model:filter="factionFilter"
       v-model:search="textFilter"
       v-model:cost="costFilter"
       v-model:list-mode="listMode"
-      :general="mode === 'form' ? general : undefined"
+      :general="isEditingLoadout ? general : undefined"
     />
 
     <section ref="listRoot" class="card-list fancy-scrollbar" :class="listMode">
@@ -118,7 +108,7 @@ watchEffect(() => {
             :is="collectionItemComponent"
             v-if="visibleCards.has(item._id)"
             :card="item"
-            :is-editing-loadout="mode === 'form'"
+            :is-editing-loadout="isEditingLoadout"
             :can-add-to-loadout="canAddToLoadout(item.cardId)"
             @click="
               addCardToLoadout({
@@ -131,47 +121,11 @@ watchEffect(() => {
         </Transition>
       </div>
     </section>
-    <section class="sidebar">
-      <template v-if="mode === 'form'">
-        <LoadoutForm @back="mode = 'list'" @import-code="initFromCode" />
-      </template>
 
-      <template v-else>
-        <p v-if="!loadouts?.length" class="py-3 text-center">
-          You don't have any loadout yet
-        </p>
-
-        <ul v-if="loadouts" v-auto-animate>
-          <Sound
-            v-for="loadout in loadouts"
-            :key="loadout._id"
-            sound="button-hover"
-            :triggers="['mouseenter']"
-          >
-            <li class="m-2 relative">
-              <CollectionLoadoutCard
-                :loadout="loadout"
-                @edit="editLoadout(loadout)"
-                @delete="loadoutToDelete = loadout"
-              />
-            </li>
-          </Sound>
-        </ul>
-
-        <UiFancyButton
-          class="primary-button mx-auto"
-          left-icon="material-symbols:add"
-          @click="
-            () => {
-              initEmpty();
-              mode = 'form';
-            }
-          "
-        >
-          New Deck
-        </UiFancyButton>
-      </template>
-    </section>
+    <CollectionSidebar
+      v-model:is-editing-loadout="isEditingLoadout"
+      :loadouts="loadouts"
+    />
   </div>
 </template>
 
@@ -184,10 +138,6 @@ watchEffect(() => {
 .collection-leave-to {
   opacity: 0;
   filter: blur(15px);
-
-  /* .sidebar {
-    transform: translateX(100%);
-  } */
 }
 </style>
 
@@ -248,26 +198,6 @@ watchEffect(() => {
     &.compact {
       --min-card-size: 6rem;
     }
-  }
-}
-
-.sidebar {
-  will-change: transform;
-
-  grid-column: 2;
-  grid-row: 1 / -1;
-
-  background: var(--fancy-bg);
-  background-blend-mode: overlay;
-  border-left: var(--fancy-border);
-
-  transition: transform 0.7s;
-  transition-delay: 0.3s;
-  transition-timing-function: var(--ease-bounce-1);
-
-  @screen lt-lg {
-    overflow-x: hidden;
-    height: 100dvh;
   }
 }
 

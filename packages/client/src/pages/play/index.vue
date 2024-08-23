@@ -15,11 +15,11 @@ const { isMobile } = useResponsive();
 useEventListener('mousemove', e => {
   document.body.style.setProperty(
     '--app-bg-offset-x',
-    `${mapRange(e.clientX, [0, window.innerWidth], [-50, 50])}px`
+    `${mapRange(e.clientX, [0, window.innerWidth], [-30, 30])}px`
   );
   document.body.style.setProperty(
     '--app-bg-offset-y',
-    `${mapRange(e.clientY, [0, window.innerHeight], [-30, 10])}px`
+    `${mapRange(e.clientY, [0, window.innerHeight], [-20, 10])}px`
   );
 });
 </script>

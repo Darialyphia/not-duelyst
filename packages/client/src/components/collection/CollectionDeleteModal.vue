@@ -4,15 +4,7 @@ import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import type { Nullable } from '@game/shared';
 
 const loadout = defineModel<Nullable<LoadoutDto>>('loadout', { required: true });
-
-const isOpened = computed({
-  get() {
-    return !!loadout.value;
-  },
-  set(val) {
-    if (!val) loadout.value = null;
-  }
-});
+const isOpened = defineModel<boolean>('isOpened', { required: true });
 
 const { mutate } = useConvexAuthedMutation(api.loadout.remove);
 </script>
