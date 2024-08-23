@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VERSION } from '@game/sdk';
+import { clamp, mapRange } from '@game/shared';
 definePageMeta({
   name: 'ClientHome',
   pageTransition: {
@@ -10,6 +11,17 @@ definePageMeta({
 });
 
 const { isMobile } = useResponsive();
+
+useEventListener('mousemove', e => {
+  document.body.style.setProperty(
+    '--app-bg-offset-x',
+    `${mapRange(e.clientX, [0, window.innerWidth], [-50, 50])}px`
+  );
+  document.body.style.setProperty(
+    '--app-bg-offset-y',
+    `${mapRange(e.clientY, [0, window.innerHeight], [-30, 10])}px`
+  );
+});
 </script>
 
 <template>
@@ -18,12 +30,15 @@ const { isMobile } = useResponsive();
 
     <MainNavigation />
 
-    <section class="fancy-surface fancy-scrollbar">
-      <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
+    <section>
+      <img src="/assets/ui/logo@2x.png" />
+      <div class="fancy-surface fancy-scrollbar">
+        <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
 
-      <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
-        Previous patch notes
-      </NuxtLink>
+        <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
+          Previous patch notes
+        </NuxtLink>
+      </div>
     </section>
 
     <ClientOnly>
@@ -59,9 +74,17 @@ const { isMobile } = useResponsive();
 }
 
 section {
-  overflow-y: auto;
-  max-height: 80dvh;
-  margin-block: var(--size-8);
-  line-height: 1.8;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+
+  max-height: 90dvh;
+  padding-block-start: var(--size-6);
+  > div {
+    overflow-y: auto;
+    width: 100%;
+    margin-block: var(--size-8);
+    line-height: 1.8;
+  }
 }
 </style>

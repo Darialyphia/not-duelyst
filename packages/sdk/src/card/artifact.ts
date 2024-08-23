@@ -7,7 +7,7 @@ import type { PlayerArtifact } from '../player/player-artifact';
 export type ArtifactInterceptor = Artifact['interceptors'];
 
 export class Artifact extends Card implements Serializable {
-  private targets: Point3D[] = [];
+  private playTargets: Point3D[] = [];
 
   override get blueprint() {
     const blueprint = this.session.cardBlueprints[this.blueprintId];
@@ -20,7 +20,7 @@ export class Artifact extends Card implements Serializable {
 
   protected interceptors = {
     cost: new Interceptable<number, Card>(),
-    canPlayAt: new Interceptable<boolean, { unit: Card; point: Point3D }>()
+    canPlayAt: new Interceptable<boolean, { point: Point3D }>()
   };
 
   get cost(): number {
@@ -48,14 +48,17 @@ export class Artifact extends Card implements Serializable {
 
   canPlayAt(point: Point3D): boolean {
     return this.interceptors.canPlayAt.getValue(
-      this.player.general.position.equals(point),
-      { unit: this, point }
+      this.player.general.position.equals(point) && this.player.artifacts.length < 3,
+      { point }
     );
   }
 
   async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
-    this.targets = ctx.targets;
+    if (!this.canPlayAt(ctx.position)) return false;
+    this.playTargets = ctx.targets;
     await this.player.equipArtifact(this.index);
+
+    return true;
   }
 
   async equip(artifact: PlayerArtifact) {
@@ -63,7 +66,7 @@ export class Artifact extends Card implements Serializable {
       session: this.session,
       card: this,
       artifact,
-      targets: this.targets
+      targets: this.playTargets
     });
   }
 }

@@ -56,8 +56,8 @@ const componentNodes: Record<string, Component | string> = {
             })
             .with({ type: 'cost' }, condition => {
               condition.params = {
-                // @ts-expect-error
-                amount: { type: undefined }
+                operator: 'equals',
+                amount: { type: 'fixed', params: { value: 0 } }
               };
             })
             .with({ type: 'from_player' }, condition => {

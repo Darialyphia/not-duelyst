@@ -63,7 +63,7 @@ section {
 
 main {
   height: 100dvh;
-  padding-block-start: 15vh;
+  padding-block-start: 10dvh;
 
   background: url('/assets/backgrounds/main-bg.jpg');
   background-attachment: fixed;

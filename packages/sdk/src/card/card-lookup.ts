@@ -154,6 +154,7 @@ import { f4NightsorrowAssassin } from './cards/faction_4/nightsorrow-assassin';
 import { f4ShadowWatcher } from './cards/faction_4/shadow-watcher';
 import { f4VorpalReaver } from './cards/faction_4/vorpal-reaver';
 import { f4AbyssalCrawler } from './cards/faction_4/abyssal-crawler';
+import { f4ReaperOfTheNineMoons } from './cards/faction_4/reaper-of-the-nine-moons';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -262,6 +263,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f4ShadowWatcher,
   f4VorpalReaver,
   f4AbyssalCrawler,
+  f4ReaperOfTheNineMoons,
 
   f5General,
   f5General2,

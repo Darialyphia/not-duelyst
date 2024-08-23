@@ -25,7 +25,7 @@ export const parseTargets = (
         card: Card;
       }
     ) {
-      if (options.card.targets!.maxTargetCount <= options.targets.length) {
+      if (options.targets.length > options.card.targets!.maxTargetCount) {
         return false;
       }
       return getCells({

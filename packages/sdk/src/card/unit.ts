@@ -79,6 +79,8 @@ export class Unit extends Card implements Serializable {
   }
 
   async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+    if (!this.canPlayAt(ctx.position)) return false;
+
     this.entity = this.session.entitySystem.addEntity(
       {
         position: ctx.position
@@ -107,5 +109,7 @@ export class Unit extends Card implements Serializable {
     if (!this.interceptors.canRetaliateAfterSummon.getValue(true, this)) {
       this.entity.retaliationsDone = this.entity.maxRetaliations;
     }
+
+    return true;
   }
 }

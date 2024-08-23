@@ -7,7 +7,6 @@ export class PlayCardCardAction extends CardAction<'play_card'> {
 
     const [position] = this.getCells(this.action.params.position);
     if (!position) return noop;
-
     if (!card.canPlayAt(position)) return noop;
 
     await card.player.playCard(card, {

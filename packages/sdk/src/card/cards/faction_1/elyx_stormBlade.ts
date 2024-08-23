@@ -3,7 +3,6 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { provokeEffect } from '../../helpers/provoke.effect';
-import { allyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1ElyxStormblade = defineSerializedBlueprint({
   id: 'f1_elyx_stormblade',
@@ -13,7 +12,7 @@ export const f1ElyxStormblade = defineSerializedBlueprint({
   attack: 7,
   maxHp: 7,
   faction: FACTION_IDS.F1,
-  keywords: [KEYWORDS.PROVOKE.id, KEYWORDS.OPENING_GAMBIT.id, KEYWORDS.CELERITY.id],
+  keywords: [KEYWORDS.PROVOKE.id],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.LEGENDARY,
   relatedBlueprintIds: [],
@@ -21,32 +20,51 @@ export const f1ElyxStormblade = defineSerializedBlueprint({
   tags: [],
   targets: {
     min: 0,
-    targets: [
-      [
-        [
-          {
-            type: 'has_unit',
-            params: { unit: allyMinion() }
-          }
-        ]
-      ]
-    ]
+    targets: []
   },
   effects: [
     provokeEffect(),
     defineCardEffect({
-      text: '@Opening Gambit@: give an ally minion @Celerity@',
+      text: 'Your minions and general can move an additional space.',
       config: {
-        executionContext: 'immediate',
+        executionContext: 'while_on_board',
         actions: [
           {
-            type: 'add_effect',
+            type: 'change_stats',
             params: {
-              unit: manualTarget(0),
-              filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
+              mode: 'give',
+              stackable: true,
+              targets: {
+                candidates: [[{ type: 'is_self', params: { not: false } }]]
+              },
+              speed: {
+                amount: { type: 'fixed', params: { value: 1 } }
+              }
+            }
+          },
+          {
+            type: 'aura',
+            params: {
+              isElligible: {
+                candidates: [[{ type: 'is_ally', params: { not: false } }]]
+              },
               effect: {
-                executionContext: 'immediate',
-                actions: [{ type: 'celerity', params: {} }]
+                executionContext: 'while_on_board',
+                actions: [
+                  {
+                    type: 'change_stats',
+                    params: {
+                      mode: 'give',
+                      stackable: true,
+                      targets: {
+                        candidates: [[{ type: 'is_self', params: { not: false } }]]
+                      },
+                      speed: {
+                        amount: { type: 'fixed', params: { value: 1 } }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }

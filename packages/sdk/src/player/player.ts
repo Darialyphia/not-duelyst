@@ -155,7 +155,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
 
   setup() {
     this.cards = this.options.deck.map((card, index) => {
-      return createCard(this.session, card, index, this.id);
+      return createCard(this.session, card, index, this.id) as Card;
     });
 
     this.deck = new Deck(
@@ -256,7 +256,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
       );
     });
     modifiers.forEach(mod => card.addModifier(mod));
-    this.cards.push(card);
+    this.cards.push(card as Card);
     card.setup();
 
     return card;
@@ -345,16 +345,34 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     }: { position: Point3D; targets: Point3D[]; spendGold?: boolean }
   ) {
     await this.emitAsync(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
+
     if (spendGold) {
       this.currentGold -= card.cost;
     }
-    const idx = this.hand.indexOf(card);
-    if (idx > -1) {
-      this.hand.splice(idx, 1);
-    }
-    this.deck.pluck(card);
 
-    await card.play({ position, targets });
+    const idxInHand = this.hand.indexOf(card);
+    if (idxInHand > -1) {
+      this.hand.splice(idxInHand, 1);
+    }
+    const idxInDeck = this.deck.cards.indexOf(card);
+    if (idxInDeck > -1) {
+      this.deck.pluck(card);
+    }
+
+    const isSuccess = await card.play({ position, targets });
+    if (!isSuccess) {
+      if (spendGold) {
+        this.currentGold += card.cost;
+      }
+      if (idxInHand > -1) {
+        this.hand.splice(idxInHand, 0, card);
+      }
+      if (idxInDeck > -1) {
+        this.deck.cards.splice(idxInDeck, 0, card);
+      }
+      return;
+    }
+
     this.playedCardSinceLastTurn.push(card);
     await this.emitAsync(PLAYER_EVENTS.AFTER_PLAY_CARD, { player: this, card });
   }

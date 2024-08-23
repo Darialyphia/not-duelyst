@@ -27,7 +27,7 @@ import { ChangeReplaceCountCardAction } from './actions/change-replaces-count.ca
 import { RushCardAction } from './actions/rush.card-action';
 import { AirdropCardAction } from './actions/airdrop.card-action';
 import { FlyingCardAction } from './actions/flying.card-action';
-import { PlayCardCardAction } from './actions/play-card.Card-action';
+import { PlayCardCardAction } from './actions/play-card.card-action';
 import { FrenzyCardAction } from './actions/frenzy.card-action';
 import { EphemeralCardAction } from './actions/ephemeral.card-action';
 import { StructureCardAction } from './actions/structure.card-action';

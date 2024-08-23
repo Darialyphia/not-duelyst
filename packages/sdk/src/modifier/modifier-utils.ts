@@ -719,6 +719,7 @@ export const essence = ({
               card.meta.essence = essenceCache;
               card.playImpl = async ctx => {
                 await essenceOnPlay(ctx);
+                return true;
               };
               card.kind = CARD_KINDS.SPELL;
               card.targets = essenceTargets;
