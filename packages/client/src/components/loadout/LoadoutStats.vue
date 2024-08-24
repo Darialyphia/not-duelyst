@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { CARD_KINDS, CARDS } from '@game/sdk';
 
-const { loadout } = defineProps<{
+export type StyleVariables = '--bar-size';
+
+const { loadout, style = {} } = defineProps<{
   loadout: Array<{ id: string; pedestalId: string }>;
+  style?: StyleProp<StyleVariables>;
 }>();
 
 const cards = computed(() =>
@@ -21,7 +24,7 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
 </script>
 
 <template>
-  <div class="loadout-stats">
+  <div class="loadout-stats" :style="style as any">
     <div class="flex justify-between mb-3">
       <div class="average">
         Average Gold:
@@ -40,6 +43,8 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
 
 <style scoped lang="postcss">
 .loadout-stats {
+  --_bar-size: var(--bar-size, var(--size-10));
+
   padding: var(--size-2);
 }
 
@@ -56,7 +61,7 @@ const getCountForCost = (cost: number) => cards.value.filter(c => c.cost === cos
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: var(--size-1);
-  height: var(--size-10);
+  height: var(--_bar-size);
 
   > div {
     display: grid;

@@ -9,21 +9,27 @@ const editLoadout = (loadout: LoadoutDto) => {
   initFromLoadout(loadout);
   isEditing.value = true;
 };
+
+const importCode = ref('');
+const isPopoverOpened = ref(false);
+const onImport = () => {
+  initFromCode(importCode.value);
+  isEditing.value = true;
+};
 </script>
 
 <template>
   <section class="collection-sidebar">
-    <template v-if="isEditing">
-      <LoadoutForm
-        @back="isEditing = false"
-        @import-code="
-          () => {
-            initFromCode;
-            isEditing = true;
-          }
-        "
-      />
-    </template>
+    <LoadoutForm
+      v-if="isEditing"
+      @back="isEditing = false"
+      @import-code="
+        () => {
+          initFromCode;
+          isEditing = true;
+        }
+      "
+    />
 
     <template v-else>
       <p v-if="!loadouts?.length" class="py-3 text-center">
@@ -38,31 +44,50 @@ const editLoadout = (loadout: LoadoutDto) => {
           :triggers="['mouseenter']"
         >
           <li class="m-2 relative">
-            <CollectionLoadoutCard
-              :loadout="loadout"
-              @edit="
-                () => {
-                  initFromLoadout(loadout);
-                  isEditing = true;
-                }
-              "
-            />
+            <CollectionLoadoutCard :loadout="loadout" @edit="editLoadout(loadout)" />
           </li>
         </Sound>
       </ul>
 
-      <UiFancyButton
-        class="primary-button mx-auto"
-        left-icon="material-symbols:add"
-        @click="
-          () => {
-            initEmpty();
-            isEditing = true;
-          }
-        "
-      >
-        New Deck
-      </UiFancyButton>
+      <PopoverRoot v-model:open="isPopoverOpened">
+        <div class="primary-button create-button-wrapper">
+          <UiButton
+            left-icon="material-symbols:add"
+            @click="
+              () => {
+                initEmpty();
+                isEditing = true;
+              }
+            "
+          >
+            New Deck
+          </UiButton>
+          <PopoverTrigger as-child>
+            <UiIconButton name="tdesign:caret-down" @click="isPopoverOpened = true" />
+          </PopoverTrigger>
+        </div>
+        <PopoverAnchor />
+
+        <PopoverPortal>
+          <PopoverContent as-child :collision-padding="20" :align-offset="20">
+            <div class="fancy-surface">
+              <div class="flex mt-2 gap-4 items-center">
+                <UiTextInput
+                  id="import-code"
+                  v-model="importCode"
+                  placeholder="Import deck"
+                />
+                <UiIconButton
+                  class="primary-button"
+                  name="solar:import-linear"
+                  type="button"
+                  @click="onImport"
+                />
+              </div>
+            </div>
+          </PopoverContent>
+        </PopoverPortal>
+      </PopoverRoot>
     </template>
   </section>
 </template>
@@ -85,6 +110,23 @@ const editLoadout = (loadout: LoadoutDto) => {
   @screen lt-lg {
     overflow-x: hidden;
     height: 100dvh;
+  }
+}
+
+.create-button-wrapper {
+  --ui-button-radius: var(--radius-2);
+  --ui-icon-button-radius: var(--radius-2);
+
+  display: flex;
+  justify-content: center;
+  > button:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  > button:last-of-type {
+    border-left: solid var(--border-size-1) hsl(from var(--primary) h s 30%);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 </style>

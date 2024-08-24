@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import type { Animation } from '@game/sdk';
 
-const { spriteId, pedestalId, animation } = defineProps<{
+const {
+  spriteId,
+  pedestalId,
+  animation,
+  animated = true
+} = defineProps<{
   spriteId?: string;
   pedestalId?: string;
   animation?: Animation;
+  animated?: boolean;
 }>();
 const assets = useAssets();
 const { settings } = useUserSettings();
@@ -37,6 +43,7 @@ const frameDuration = computed(() => {
 useIntervalFn(() => {
   if (settings.value.a11y.reducedMotions) return;
   if (!currentAnimation.value) return;
+  if (!animated) return;
   frame.value = (frame.value + 1) % (currentAnimation.value.length - 1);
 }, frameDuration);
 
@@ -80,7 +87,7 @@ const animatedStyle = computed(() => {
 });
 
 const style = computed(() =>
-  currentAnimation.value ? animatedStyle.value : staticStyle.value
+  currentAnimation.value && animated ? animatedStyle.value : staticStyle.value
 );
 </script>
 

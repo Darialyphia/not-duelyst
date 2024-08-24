@@ -3,19 +3,17 @@ import { FACTIONS, type CardBlueprint, type Faction } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import type { CostFilter } from '~/composables/useCollection';
 
-const factions = Object.values(FACTIONS);
+const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
 
 const listMode = defineModel<'cards' | 'compact'>('listMode', { required: true });
 const filter = defineModel<Faction | null | undefined>('filter', { required: true });
 const search = defineModel<Nullable<string>>('search', { required: true });
 const cost = defineModel<Nullable<CostFilter>>('cost', { required: true });
 
-const { general } = defineProps<{ general: Nullable<CardBlueprint> }>();
+const { isMobile } = useResponsive();
+const factions = Object.values(FACTIONS);
 
 const isFilterPopoverOpened = ref(false);
-
-const { isMobile } = useResponsive();
-
 const isMobileFilterDrawerOpened = ref(false);
 </script>
 
@@ -63,6 +61,7 @@ const isMobileFilterDrawerOpened = ref(false);
           Neutral
         </button>
       </Sound>
+
       <PopoverRoot v-if="!isMobile" v-model:open="isFilterPopoverOpened">
         <PopoverTrigger as-child>
           <UiButton class="ml-auto mr-3 ghost-button">Filters</UiButton>
@@ -99,36 +98,36 @@ const isMobileFilterDrawerOpened = ref(false);
         </PopoverPortal>
       </PopoverRoot>
 
-      <UiIconButton
-        v-if="isMobile"
-        class="ghost-button ml-auto"
-        name="game-icons:settings-knobs"
-        :style="{ '--ui-icon-button-size': 'var(--font-size-4)' }"
-        @click="isMobileFilterDrawerOpened = true"
-      />
-      <UiIconButton
-        v-if="isMobile"
-        class="ghost-button"
-        name="material-symbols-light:view-column-2"
-        :style="{
-          '--ui-icon-button-size': 'var(--font-size-4)',
-          '--ui-button-color': listMode === 'cards' ? 'var(--primary)' : undefined,
-          '--ui-button-border-color': listMode === 'cards' ? 'var(--primary)' : undefined
-        }"
-        @click="listMode = 'cards'"
-      />
-      <UiIconButton
-        v-if="isMobile"
-        class="ghost-button"
-        name="heroicons:squares-2x2-16-solid"
-        :style="{
-          '--ui-icon-button-size': 'var(--font-size-4)',
-          '--ui-button-color': listMode === 'compact' ? 'var(--primary)' : undefined,
-          '--ui-button-border-color':
-            listMode === 'compact' ? 'var(--primary)' : undefined
-        }"
-        @click="listMode = 'compact'"
-      />
+      <template v-if="isMobile">
+        <UiIconButton
+          class="ghost-button ml-auto"
+          name="game-icons:settings-knobs"
+          :style="{ '--ui-icon-button-size': 'var(--font-size-4)' }"
+          @click="isMobileFilterDrawerOpened = true"
+        />
+        <UiIconButton
+          class="ghost-button"
+          name="material-symbols-light:view-column-2"
+          :style="{
+            '--ui-icon-button-size': 'var(--font-size-4)',
+            '--ui-button-color': listMode === 'cards' ? 'var(--primary)' : undefined,
+            '--ui-button-border-color':
+              listMode === 'cards' ? 'var(--primary)' : undefined
+          }"
+          @click="listMode = 'cards'"
+        />
+        <UiIconButton
+          class="ghost-button"
+          name="heroicons:squares-2x2-16-solid"
+          :style="{
+            '--ui-icon-button-size': 'var(--font-size-4)',
+            '--ui-button-color': listMode === 'compact' ? 'var(--primary)' : undefined,
+            '--ui-button-border-color':
+              listMode === 'compact' ? 'var(--primary)' : undefined
+          }"
+          @click="listMode = 'compact'"
+        />
+      </template>
 
       <UiTextInput
         id="collection-search"
