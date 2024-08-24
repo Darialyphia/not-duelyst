@@ -7,6 +7,17 @@
 </template>
 
 <style>
+@property --app-bg-offset-x {
+  inherits: true;
+  initial-value: 0px;
+  syntax: '<length>';
+}
+
+@property --app-bg-offset-y {
+  inherits: true;
+  initial-value: 0px;
+  syntax: '<length>';
+}
 body {
   --app-bg-offset-x: 0px;
   --app-bg-offset-y: 0px;
@@ -31,5 +42,7 @@ body {
     110% auto,
     450px 650px,
     cover;
+
+  transition: background-position 0.5s ease-in-out;
 }
 </style>

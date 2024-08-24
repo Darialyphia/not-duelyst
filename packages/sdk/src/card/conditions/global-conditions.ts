@@ -24,6 +24,7 @@ export type GlobalCondition<
   }
 > =
   | { type: 'active_player'; params: { player: Filter<PlayerCondition> } }
+  | { type: 'target_exists'; params: { index: number } }
   | {
       type: 'player_gold';
       params: {
@@ -199,6 +200,9 @@ export const checkGlobalConditions = (
 
           if (!isCardBeingPlayed) return false;
           return card.equals(currentAction.cachedCard);
+        })
+        .with({ type: 'target_exists' }, condition => {
+          return !!targets[condition.params.index];
         })
         .exhaustive();
     });

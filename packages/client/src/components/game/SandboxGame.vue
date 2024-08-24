@@ -122,7 +122,7 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
     >
       <p>An error has occured and the game has been cancelled.</p>
       <div v-if="error">
-        <code>{{ error }}</code>
+        <code class="error">{{ error }}</code>
       </div>
       <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
         <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
@@ -132,3 +132,10 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
     </UiModal>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.error {
+  display: block;
+  white-space: normal;
+}
+</style>

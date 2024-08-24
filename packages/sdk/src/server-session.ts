@@ -75,54 +75,53 @@ export class ServerSession extends GameSession {
   }
 
   simulateAction(action: SerializedAction) {
-    return;
-    // return new Promise<SimulationResult>(resolve => {
-    //   const session = new GameSession(
-    //     { ...this.initialState, history: this.actionSystem.serialize() },
-    //     new ServerRngSystem(this.rngSeed),
-    //     this.fxSystem,
-    //     () => void 0,
-    //     {
-    //       format: this.format
-    //     }
-    //   );
-    //   session.once('game:ready', () => {
-    //     const result: SimulationResult = {
-    //       damageTaken: {},
-    //       healReceived: {},
-    //       deaths: [],
-    //       newEntities: []
-    //     };
-    //     session.on('entity:after_take_damage', event => {
-    //       if (result.damageTaken[event.entity.id]) {
-    //         result.damageTaken[event.entity.id] += event.amount;
-    //       } else {
-    //         result.damageTaken[event.entity.id] = event.amount;
-    //       }
-    //     });
-    //     session.on('entity:after_heal', event => {
-    //       if (result.healReceived[event.entity.id]) {
-    //         result.healReceived[event.entity.id] += event.amount;
-    //       } else {
-    //         result.healReceived[event.entity.id] = event.amount;
-    //       }
-    //     });
-    //     session.on('entity:after_destroy', event => {
-    //       result.deaths.push(event.id);
-    //     });
-    //     session.on('entity:created', event => {
-    //       result.newEntities.push({
-    //         id: event.id,
-    //         spriteId: event.card.blueprint.spriteId,
-    //         pedestalId: event.card.pedestalId,
-    //         position: event.position.serialize()
-    //       });
-    //     });
-    //     session.on('scheduler:flushed', () => {
-    //       resolve(result);
-    //     });
-    //     void session.dispatch(action);
-    //   });
-    // });
+    return new Promise<SimulationResult>(resolve => {
+      const session = new GameSession(
+        { ...this.initialState, history: this.actionSystem.serialize() },
+        new ServerRngSystem(this.rngSeed),
+        this.fxSystem,
+        () => void 0,
+        {
+          format: this.format
+        }
+      );
+      session.once('game:ready', () => {
+        const result: SimulationResult = {
+          damageTaken: {},
+          healReceived: {},
+          deaths: [],
+          newEntities: []
+        };
+        session.on('entity:after_take_damage', event => {
+          if (result.damageTaken[event.entity.id]) {
+            result.damageTaken[event.entity.id] += event.amount;
+          } else {
+            result.damageTaken[event.entity.id] = event.amount;
+          }
+        });
+        session.on('entity:after_heal', event => {
+          if (result.healReceived[event.entity.id]) {
+            result.healReceived[event.entity.id] += event.amount;
+          } else {
+            result.healReceived[event.entity.id] = event.amount;
+          }
+        });
+        session.on('entity:after_destroy', event => {
+          result.deaths.push(event.id);
+        });
+        session.on('entity:created', event => {
+          result.newEntities.push({
+            id: event.id,
+            spriteId: event.card.blueprint.spriteId,
+            pedestalId: event.card.pedestalId,
+            position: event.position.serialize()
+          });
+        });
+        session.on('scheduler:flushed', () => {
+          resolve(result);
+        });
+        void session.dispatch(action);
+      });
+    });
   }
 }

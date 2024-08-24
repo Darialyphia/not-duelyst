@@ -61,10 +61,15 @@ watchEffect(() => {
         .with({ type: 'active_player' }, ({ params }) => {
           params.player ??= { candidates: [[{ type: 'ally_player' }]] };
         })
+        .with({ type: 'target_exists' }, ({ params }) => {
+          params.index ??= 0;
+        })
         .exhaustive();
     });
   });
 });
+
+const id = useId();
 </script>
 
 <template>
@@ -94,11 +99,13 @@ watchEffect(() => {
                 mode: 'all',
                 position: { candidates: [[{ type: undefined as any }]], random: false },
                 attack: {
-                  amount: { type: 'fixed', params: { value: 0 } },
+                  // keep as is : parser ignores empty object in this specific case
+                  amount: { type: undefined as any },
                   operator: 'equals'
                 },
                 hp: {
-                  amount: { type: 'fixed', params: { value: 0 } },
+                  // keep as is : parser ignores empty object in this specific case
+                  amount: { type: undefined as any },
                   operator: 'equals'
                 },
                 keyword: undefined as any
@@ -111,6 +118,9 @@ watchEffect(() => {
               condition.params = {
                 player: { candidates: [[{ type: 'ally_player' }]] }
               };
+            })
+            .with({ type: 'target_exists' }, () => {
+              condition.params = { index: 0 };
             })
             .exhaustive();
         }
@@ -166,6 +176,15 @@ watchEffect(() => {
           v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
         />
       </template>
+
+      <div v-else-if="key === 'index'" class="flex gap-3 items-center">
+        <UiTextInput
+          :id
+          v-model="(groups.candidates[groupIndex][conditionIndex].params as any)[key]"
+          type="number"
+        />
+        <span class="c-orange-5 text-0">(0 = first target, 1 = second target, etc)</span>
+      </div>
 
       <template v-else-if="isComponent(param)">
         <component

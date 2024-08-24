@@ -191,6 +191,7 @@ const isDetailModalOpened = ref(false);
     />
 
     <footer>
+      <div class="text-right">{{ formValues.cards.length }} Cards</div>
       <div class="flex justify-end gap-3">
         <UiButton
           class="ghost-button"

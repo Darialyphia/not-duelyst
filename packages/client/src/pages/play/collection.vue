@@ -33,8 +33,12 @@ const { canAddCard, addCard, general } = useLoadoutFormProvider({
   }
 });
 
-watch(isEditingLoadout, () => {
-  factionFilter.value = undefined;
+watch(isEditingLoadout, editing => {
+  if (editing && general.value) {
+    factionFilter.value = general.value.faction;
+  } else {
+    factionFilter.value = undefined;
+  }
 });
 
 const addCardToLoadout = (opts: Parameters<typeof addCard>[0]) => {
@@ -48,7 +52,7 @@ const canAddToLoadout = (unitId: string) => {
 };
 
 const relevantCards = computed(() => {
-  if (isEditingLoadout.value) return displayedCards.value;
+  if (!isEditingLoadout.value) return displayedCards.value;
   if (!general.value)
     return displayedCards.value.filter(card => card.card.kind === CARD_KINDS.GENERAL);
 

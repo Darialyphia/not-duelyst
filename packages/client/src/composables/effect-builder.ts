@@ -232,6 +232,12 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
       played_from_hand: {
         label: 'Only if this card is being played from hand',
         params: {}
+      },
+      target_exists: {
+        label: 'A target had been selected',
+        params: {
+          index: null
+        }
       }
     };
 

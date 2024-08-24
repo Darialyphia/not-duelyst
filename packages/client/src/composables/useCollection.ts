@@ -75,7 +75,6 @@ export const useCollection = () => {
 
   const displayedCards = computed(() => {
     if (!collection.value) return [];
-
     return allCards.value
       .filter(({ card }) => {
         if (factionFilter.value !== undefined) {

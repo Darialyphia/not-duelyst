@@ -31,7 +31,7 @@ useBgmProvider();
 </script>
 
 <template>
-  <div class="h-full">
+  <div class="h-full isolate">
     <CurrentGameModal />
     <UsernameModal />
     <OnboardingModal />
