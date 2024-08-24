@@ -40,6 +40,10 @@ const amountDict: Record<
   equiped_artifact_count: {
     label: 'Equals to the amount of equiped artifacts',
     params: { player: PlayerNode }
+  },
+  destroyed_units: {
+    label: 'The amount of units destroyed by this effect.',
+    params: {}
   }
 };
 
@@ -108,7 +112,9 @@ const id = useId();
                 player: { candidates: [[{ type: 'ally_player' }]] }
               };
             })
-            .exhaustive();
+            .with({ type: 'destroyed_units' }, amount => {
+              amount.params = {};
+            });
         }
       "
     />

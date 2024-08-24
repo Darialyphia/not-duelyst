@@ -1,4 +1,4 @@
-import { Vec3, type Values } from '@game/shared';
+import { Vec3, type Nullable, type Values } from '@game/shared';
 import type { GameSession } from '../game-session';
 import type { Point3D } from '../types';
 import type { Player } from '../player/player';
@@ -127,6 +127,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   attacksTaken = 0;
   retaliationsDone = 0;
   isDispelled = false;
+  destroyedBy: Nullable<Card> = null;
 
   private isScheduledForDeletion = false;
 
@@ -307,12 +308,12 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     );
   }
 
-  private checkHpForDeletion() {
+  private checkHpForDeletion(source?: Card) {
     if (this.isScheduledForDeletion) return;
 
     if (this.hp <= 0) {
       this.isScheduledForDeletion = true;
-      void this.destroy();
+      void this.destroy(source);
     }
   }
   addInterceptor<T extends keyof EntityInterceptor>(
@@ -363,7 +364,8 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     });
   }
 
-  async destroy() {
+  async destroy(card?: Card) {
+    this.destroyedBy = card;
     await this.session.actionSystem.schedule(async () => {
       await this.emitAsync(ENTITY_EVENTS.BEFORE_DESTROY, this);
       this.session.entitySystem.removeEntity(this);
@@ -469,7 +471,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     await this.emitAsync(ENTITY_EVENTS.BEFORE_TAKE_DAMAGE, payload);
 
     this.hp = this.currentHp - amount;
-    this.checkHpForDeletion();
+    this.checkHpForDeletion(source);
 
     await this.emitAsync(ENTITY_EVENTS.AFTER_TAKE_DAMAGE, payload);
   }
@@ -509,7 +511,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     await this.emitAsync(ENTITY_EVENTS.BEFORE_HEAL, payload);
 
     this.hp += amount;
-    this.checkHpForDeletion();
+    this.checkHpForDeletion(source);
 
     await this.emitAsync(ENTITY_EVENTS.AFTER_HEAL, payload);
   }

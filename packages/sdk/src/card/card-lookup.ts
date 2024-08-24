@@ -169,6 +169,13 @@ import { f4DaemonicLure } from './cards/faction_4/daemonic-lure';
 import { f4DarkSeed } from './cards/faction_4/dark-seed';
 import { f4VoidPulse } from './cards/faction_4/void-pulse';
 import { f4ShadowNova } from './cards/faction_4/shadow-nova';
+import { f4BreathOfTheUnborn } from './cards/faction_4/breath-of-the-unborn';
+import { f4DarkReflection } from './cards/faction_4/dark-reflection';
+import { f4DarkTransormation } from './cards/faction_4/dark-terminus';
+import { f4DarkfireSacrifice } from './cards/faction_4/darkfire-sacrifice';
+import { f4DarkfireCrescendo } from './cards/faction_4/darkfire-crescendo';
+import { f4RitualBanishing } from './cards/faction_4/ritual-banishing';
+import { f4SoulshatterPact } from './cards/faction_4/soulshatter-pact';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -291,6 +298,13 @@ const allCards: SerializedBlueprint<any>[] = [
   f4DarkSeed,
   f4VoidPulse,
   f4ShadowNova,
+  f4BreathOfTheUnborn,
+  f4DarkReflection,
+  f4DarkTransormation,
+  f4DarkfireSacrifice,
+  f4DarkfireCrescendo,
+  f4RitualBanishing,
+  f4SoulshatterPact,
 
   f5General,
   f5General2,

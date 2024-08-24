@@ -4,7 +4,7 @@ export class DestroyUnitCardAction extends CardAction<'destroy_unit'> {
   protected async executeImpl() {
     await Promise.all(
       this.getUnits(this.action.params.targets).map(async unit => {
-        await unit.destroy();
+        await unit.destroy(this.card);
       })
     );
 

@@ -103,6 +103,11 @@ export type Amount<T extends ConditionOverrides> =
       params: {
         player: Filter<PlayerCondition>;
       };
+    }
+  | {
+      type: 'destroyed_units';
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      params: {};
     };
 
 export const getAmount = ({
@@ -199,6 +204,11 @@ export const getAmount = ({
       const [player] = getPlayers({ ...ctx, conditions: amount.params.player });
 
       return player.artifacts.length;
+    })
+    .with({ type: 'destroyed_units' }, () => {
+      return ctx.session.entitySystem
+        .getList()
+        .filter(e => e.destroyedBy?.equals(ctx.card)).length;
     })
     .exhaustive();
 };
