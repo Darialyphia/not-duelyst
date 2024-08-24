@@ -522,6 +522,16 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  slay: {
+    label: 'Slay',
+    params: {
+      effect: EffectNode,
+      duration: null,
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: null
+    }
   }
 };
 const actionOptions = computed(
@@ -839,6 +849,13 @@ watch(
         params.player ??= { candidates: [[{ type: 'ally_player' }]] };
         params.tile ??= 'gold_coin';
         params.position ??= { candidates: [[{ type: 'any_cell' }]] };
+      })
+      .with({ type: 'slay' }, ({ params }) => {
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
+        params.duration ??= 'always';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.effect ??= { executionContext: undefined as any, actions: [] };
       })
       .exhaustive();
   },

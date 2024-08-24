@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f4BlackSolus = defineSerializedBlueprint({
-  id: '4vc_mM',
+  id: 'f4_black_solus',
   collectable: true,
   keywords: ['opening_gambit', 'essence'],
   relatedBlueprintIds: [],

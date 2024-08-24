@@ -951,11 +951,31 @@ export const blast = ({ source }: { source: Card }) => {
   });
 };
 
-export const slay = ({ source }: { source: Card }) => {
+export const slay = ({
+  source,
+  onTriggered
+}: {
+  source: Card;
+  onTriggered: () => MaybePromise<void>;
+}) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.SLAY.id,
     stackable: false,
     visible: false,
-    mixins: []
+    mixins: [
+      modifierSelfEventMixin({
+        keywords: [KEYWORDS.SLAY],
+        eventName: 'after_deal_damage',
+        async listener([event], ctx) {
+          if (!event.isBattleDamage) return;
+          if (event.target.hp <= 0) {
+            await ctx.session.actionSystem.schedule(async () => {
+              await onTriggered();
+            });
+          }
+        }
+      })
+    ]
   });
 };

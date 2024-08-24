@@ -500,6 +500,16 @@ export type Action<
       };
     }
   | {
+      type: 'slay';
+      params: {
+        effect: CardEffectConfig<Trigger[]>;
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'create_tile';
       params: {
         filter?: Filter<GlobalCondition<T>>;

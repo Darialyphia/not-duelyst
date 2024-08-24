@@ -432,7 +432,7 @@
     "duration": 64
    },
    {
-    "filename": "f4_spectral_revenant.hurt.0",
+    "filename": "f4_spectral_revenant.hit.0",
     "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -441,7 +441,7 @@
     "duration": 64
    },
    {
-    "filename": "f4_spectral_revenant.hurt.1",
+    "filename": "f4_spectral_revenant.hit.1",
     "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -450,7 +450,7 @@
     "duration": 64
    },
    {
-    "filename": "f4_spectral_revenant.hurt.2",
+    "filename": "f4_spectral_revenant.hit.2",
     "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
     "rotated": false,
     "trimmed": false,
@@ -686,7 +686,7 @@
    { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
    { "name": "breathing", "from": 20, "to": 35, "direction": "forward", "color": "#000000ff" },
    { "name": "death", "from": 36, "to": 47, "direction": "forward", "color": "#000000ff" },
-   { "name": "hurt", "from": 48, "to": 50, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 48, "to": 50, "direction": "forward", "color": "#000000ff" },
    { "name": "idle", "from": 51, "to": 66, "direction": "forward", "color": "#000000ff" },
    { "name": "run", "from": 67, "to": 74, "direction": "forward", "color": "#000000ff" }
   ],

@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f4BloodSiren = defineSerializedBlueprint({
-  id: 'sEQz75',
+  id: 'f4_blood_siren',
   collectable: true,
   keywords: ['dying_wish'],
   relatedBlueprintIds: [],
