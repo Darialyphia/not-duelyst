@@ -13,7 +13,7 @@ export const f2MistDragonSeal = defineSerializedBlueprint({
   kind: CARD_KINDS.SPELL,
   rarity: RARITIES.RARE,
   spriteId: 'icon_f2_mist_dragon_seal',
-  cost: 2,
+  cost: 1,
   faction: FACTION_IDS.F2,
   targets: {
     min: 1,

@@ -30,6 +30,8 @@ const actionMap = validateActionMap({
   replaceCard: ReplaceCardAction
 });
 
+export type GameActionName = keyof typeof actionMap;
+
 type ScheduledAction = () => Promise<void>;
 export class ActionSystem implements Serializable {
   private history: GameAction<any>[] = [];
@@ -85,6 +87,7 @@ export class ActionSystem implements Serializable {
     this.session.logger(`%c[ACTION:${type}]`, 'color: blue', payload);
     const ctor = actionMap[type];
     const action = new ctor(payload, this.session);
+    this.session.emit('game:action-start', action);
     this.currentAction = action;
     await action.execute();
     this.history.push(action);

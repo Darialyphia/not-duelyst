@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Card, Entity, Player } from '@game/sdk';
+import type { Card, Entity, GameActionName, Player } from '@game/sdk';
 import type { Point3D } from '@game/shared';
 import { vOnClickOutside } from '@vueuse/components';
+import { match } from 'ts-pattern';
 
 const { session } = useGame();
 type Token =
@@ -19,10 +20,29 @@ type Token =
       player: Player;
     }
   | { kind: 'position'; point: Point3D }
-  | { kind: 'turn_start'; player: Player };
+  | { kind: 'turn_start'; player: Player }
+  | { kind: 'action'; text: string };
 
-const events = ref<Token[][]>([]);
+const events = ref<Token[][]>([
+  [{ kind: 'turn_start', player: session.playerSystem.activePlayer }]
+]);
 
+session.on('game:action-start', event => {
+  events.value.push([
+    { kind: 'player', player: session.playerSystem.activePlayer },
+    {
+      kind: 'action',
+      text: match(event.name as GameActionName)
+        .with('attack', () => 'attacks with a unit')
+        .with('endTurn', () => 'ends their turn')
+        .with('move', () => 'moves a unit')
+        .with('playCard', () => 'plays a card')
+        .with('replaceCard', () => 'replaces a card')
+        .with('surrender', () => 'surrenders')
+        .exhaustive()
+    }
+  ]);
+});
 session.on('card:before_played', event => {
   events.value.push([
     { kind: 'player', player: event.player },
@@ -108,6 +128,8 @@ watch(
 const close = () => {
   isCollapsed.value = true;
 };
+
+const isAction = (event: Pick<Token, 'kind'>[]) => event.some(t => t.kind === 'action');
 </script>
 
 <template>
@@ -118,9 +140,14 @@ const close = () => {
   >
     <h4>Battle Log</h4>
     <ul v-if="!isCollapsed" ref="listEl" class="fancy-scrollbar">
-      <li v-for="(event, index) in events" :key="index">
+      <li
+        v-for="(event, index) in events"
+        :key="index"
+        :class="isAction(event) && 'action'"
+      >
         <span v-for="(token, tokenIndex) in event" :key="tokenIndex" :class="token.kind">
           <template v-if="token.kind === 'text'">{{ token.text }}</template>
+          <template v-else-if="token.kind === 'action'">{{ token.text }}</template>
           <template v-else-if="token.kind === 'card'">
             {{ token.card.blueprint.name }}
           </template>
@@ -195,13 +222,16 @@ li {
   flex-wrap: wrap;
   gap: 1ch;
 
-  margin-block: var(--size-2);
-  padding-block: var(--size-2);
+  padding-block: var(--size-1);
   padding-inline-start: var(--size-3);
 
   font-size: var(--font-size-0);
 
   border-bottom: solid var(--border-size-1) var(--border-dimmed);
+
+  &.action {
+    background-color: hsl(0 0 100% / 0.05);
+  }
 }
 
 .toggle {

@@ -71,6 +71,7 @@ type GlobalArtifactEvents = {
 
 type GameEventsBase = {
   '*': [e: StarEvent];
+  'game:action-start': [GameAction<any>];
   'game:action': [GameAction<any>];
   'scheduler:flushed': [];
   'game:ready': [];
@@ -175,6 +176,7 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
       ...Object.values(CARD_EVENTS).map(e => `card:${e}`),
       ...Object.values(ARTIFACT_EVENTS).map(e => `artifact:${e}`),
       'game:action',
+      'game:action-start',
       'game:ready'
       // 'scheduler:flushed'
     ].forEach(eventName => {

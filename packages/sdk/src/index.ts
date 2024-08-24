@@ -8,6 +8,7 @@ export {
   type EntityModifier as Modifier,
   type ModifierId
 } from './modifier/entity-modifier';
+
 export { Card } from './card/card';
 export {
   CARD_KINDS,
@@ -60,6 +61,7 @@ export type {
 export type { ArtifactCondition } from './card/conditions/artifact-conditions';
 export type { GlobalCondition } from './card/conditions/global-conditions';
 export type { GameAction } from './action/action';
+export type { GameActionName } from './action/action-system';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';
 export { ClientSession } from './client-session';

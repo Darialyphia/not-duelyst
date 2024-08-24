@@ -23,6 +23,7 @@ import {
 } from '../entity/entity-utils';
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 import type { CardBlueprint } from '../card/card-blueprint';
+import { mixin } from 'lodash-es';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -930,6 +931,7 @@ export const blast = ({ source }: { source: Card }) => {
   let originalPattern: AttackPattern;
 
   return createEntityModifier({
+    id: KEYWORDS.BLAST.id,
     source,
     stackable: false,
     visible: false,
@@ -946,5 +948,14 @@ export const blast = ({ source }: { source: Card }) => {
         }
       }
     ]
+  });
+};
+
+export const slay = ({ source }: { source: Card }) => {
+  return createEntityModifier({
+    source,
+    stackable: false,
+    visible: false,
+    mixins: []
   });
 };
