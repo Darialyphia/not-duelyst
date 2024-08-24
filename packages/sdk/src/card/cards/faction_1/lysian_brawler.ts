@@ -5,7 +5,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { airdropEffect } from '../../helpers/airdrop.effect';
 
 export const f1LysianBrawler = defineSerializedBlueprint({
-  id: 'lysian_brawler',
+  id: 'f1_lysian_brawler',
   collectable: true,
   name: 'Lysian Brawler',
   cost: 4,

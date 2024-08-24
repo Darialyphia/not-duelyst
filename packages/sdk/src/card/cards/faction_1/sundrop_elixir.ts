@@ -1,10 +1,10 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f1SundropElixir = defineSerializedBlueprint({
-  id: 'sundrop_elixir',
+  id: 'f1_sundrop_elixir',
   collectable: true,
   name: 'Sundrop Elixir',
   cost: 1,

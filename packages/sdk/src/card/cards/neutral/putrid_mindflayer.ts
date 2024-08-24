@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralPutridMindflayer = defineSerializedBlueprint({
-  id: 'neutrla_putrid_mindflayer',
+  id: 'neutral_putrid_mindflayer',
   name: 'Putrid Mindflayer',
   spriteId: 'neutral_putrid_mindflayer',
   collectable: true,

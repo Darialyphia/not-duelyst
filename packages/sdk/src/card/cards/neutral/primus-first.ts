@@ -4,7 +4,7 @@ import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralPrimusFist = defineSerializedBlueprint({
-  id: 'neutrla_primus_fist',
+  id: 'neutral_primus_fist',
   name: 'Primus Fist',
   spriteId: 'neutral_primus_fist',
   collectable: true,

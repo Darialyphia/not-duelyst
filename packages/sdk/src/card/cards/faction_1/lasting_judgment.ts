@@ -3,7 +3,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1LastingJudgement = defineSerializedBlueprint({
-  id: 'lasting_judgment',
+  id: 'f1_lasting_judgment',
   collectable: true,
   name: 'Lasting Judgement',
   cost: 2,

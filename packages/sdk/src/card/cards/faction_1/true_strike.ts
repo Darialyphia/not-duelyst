@@ -4,7 +4,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { enemyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1TrueStrike = defineSerializedBlueprint({
-  id: 'true_strike',
+  id: 'f1_true_strike',
   collectable: true,
   name: 'True Strike',
   cost: 1,

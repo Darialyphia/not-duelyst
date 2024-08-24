@@ -6,7 +6,13 @@ import {
   type EntityId,
   type GameSession
 } from '@game/sdk';
-import { type Nullable, type Point, type Point3D, type Values } from '@game/shared';
+import {
+  isDefined,
+  type Nullable,
+  type Point,
+  type Point3D,
+  type Values
+} from '@game/shared';
 import type { Layer } from '@pixi/layers';
 import type { DisplayObject } from 'pixi.js';
 import { match } from 'ts-pattern';
@@ -70,6 +76,7 @@ export type GameUiContext = {
   isSimulationResultDisplayed: Ref<boolean>;
 
   targetableCells: ComputedRef<Cell[]>;
+  highlightableCells: ComputedRef<Cell[]>;
 };
 
 const GAME_UI_INJECTION_KEY = Symbol('game-ui') as InjectionKey<GameUiContext>;
@@ -232,6 +239,22 @@ export const useGameUiProvider = (session: GameSession) => {
         playedPoint: api.summonTarget.value ?? undefined,
         card: api.selectedCard.value,
         targets: api.cardTargets.value
+      });
+    }),
+
+    highlightableCells: computed(() => {
+      if (!api.selectedCard.value) return [];
+      if (!api.hoveredCell.value) return [];
+      return api.selectedCard.value.blueprint.getHighlightedCells({
+        session,
+        playedPoint: api.summonTarget.value ?? undefined,
+        targets: [
+          ...api.cardTargets.value,
+          api.targetableCells.value.some(c => api.hoveredCell.value?.equals(c))
+            ? api.hoveredCell.value
+            : null
+        ].filter(isDefined),
+        card: api.selectedCard.value!
       });
     })
   };

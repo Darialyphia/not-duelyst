@@ -5,7 +5,7 @@ import { airdropEffect } from '../../helpers/airdrop.effect';
 import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const f1IroncliffeGuardian = defineSerializedBlueprint({
-  id: 'ironcliffe_guardian',
+  id: 'f1_ironcliffe_guardian',
   collectable: true,
   name: 'Ironcliffe Guardian',
   cost: 5,

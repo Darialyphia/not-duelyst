@@ -4,7 +4,7 @@ import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f1SuntideMaiden = defineSerializedBlueprint({
-  id: 'suntide_maiden',
+  id: 'f1_suntide_maiden',
   collectable: true,
   name: 'Suntide Maiden',
   cost: 4,

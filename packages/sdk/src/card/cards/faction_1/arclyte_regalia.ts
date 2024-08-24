@@ -6,7 +6,7 @@ import { allyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
 export const f1ArclyteRegalia = defineSerializedBlueprint({
-  id: 'arclyte_regalia',
+  id: 'f1_arclyte_regalia',
   collectable: true,
   name: 'Arclyte Regalia',
   cost: 4,

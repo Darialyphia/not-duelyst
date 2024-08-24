@@ -1,150 +1,51 @@
 { "frames": [
    {
-    "filename": "icon_f3_cosmic_flesh.default.0",
+    "filename": "f3_aurorastear.default.0",
     "frame": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 128
    },
    {
-    "filename": "icon_f3_cosmic_flesh.default.1",
+    "filename": "f3_aurorastear.default.1",
     "frame": { "x": 48, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 128
    },
    {
-    "filename": "icon_f3_cosmic_flesh.default.2",
+    "filename": "f3_aurorastear.default.2",
     "frame": { "x": 96, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 128
    },
    {
-    "filename": "icon_f3_cosmic_flesh.default.3",
+    "filename": "f3_aurorastear.default.3",
     "frame": { "x": 144, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 128
    },
    {
-    "filename": "icon_f3_cosmic_flesh.default.4",
+    "filename": "f3_aurorastear.default.4",
     "frame": { "x": 192, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 128
    },
    {
-    "filename": "icon_f3_cosmic_flesh.default.5",
-    "frame": { "x": 240, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.6",
-    "frame": { "x": 288, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.7",
-    "frame": { "x": 336, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.8",
-    "frame": { "x": 384, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.9",
-    "frame": { "x": 432, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.10",
-    "frame": { "x": 480, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.11",
-    "frame": { "x": 528, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.12",
-    "frame": { "x": 576, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.13",
-    "frame": { "x": 624, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.14",
-    "frame": { "x": 672, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.default.15",
-    "frame": { "x": 720, "y": 0, "w": 48, "h": 48 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
-    "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
-   },
-   {
-    "filename": "icon_f3_cosmic_flesh.active.0",
+    "filename": "f3_aurorastear.active.0",
     "frame": { "x": 0, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -153,7 +54,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.1",
+    "filename": "f3_aurorastear.active.1",
     "frame": { "x": 48, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -162,7 +63,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.2",
+    "filename": "f3_aurorastear.active.2",
     "frame": { "x": 96, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -171,7 +72,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.3",
+    "filename": "f3_aurorastear.active.3",
     "frame": { "x": 144, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -180,7 +81,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.4",
+    "filename": "f3_aurorastear.active.4",
     "frame": { "x": 192, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -189,7 +90,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.5",
+    "filename": "f3_aurorastear.active.5",
     "frame": { "x": 240, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -198,7 +99,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.6",
+    "filename": "f3_aurorastear.active.6",
     "frame": { "x": 288, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -207,7 +108,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.7",
+    "filename": "f3_aurorastear.active.7",
     "frame": { "x": 336, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -216,7 +117,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.8",
+    "filename": "f3_aurorastear.active.8",
     "frame": { "x": 384, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -225,7 +126,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.9",
+    "filename": "f3_aurorastear.active.9",
     "frame": { "x": 432, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -234,7 +135,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.10",
+    "filename": "f3_aurorastear.active.10",
     "frame": { "x": 480, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -243,7 +144,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.11",
+    "filename": "f3_aurorastear.active.11",
     "frame": { "x": 528, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -252,7 +153,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.12",
+    "filename": "f3_aurorastear.active.12",
     "frame": { "x": 576, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -261,7 +162,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.13",
+    "filename": "f3_aurorastear.active.13",
     "frame": { "x": 624, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -270,7 +171,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.14",
+    "filename": "f3_aurorastear.active.14",
     "frame": { "x": 672, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -279,7 +180,7 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.15",
+    "filename": "f3_aurorastear.active.15",
     "frame": { "x": 720, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -288,8 +189,26 @@
     "duration": 64
    },
    {
-    "filename": "icon_f3_cosmic_flesh.active.16",
+    "filename": "f3_aurorastear.active.16",
     "frame": { "x": 768, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_aurorastear.active.17",
+    "frame": { "x": 816, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_aurorastear.active.18",
+    "frame": { "x": 864, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
@@ -300,13 +219,13 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.7-x64",
-  "image": "icon_f3_cosmic_flesh.png",
+  "image": "f3_aurorastear.png",
   "format": "RGBA8888",
-  "size": { "w": 816, "h": 96 },
+  "size": { "w": 912, "h": 96 },
   "scale": "1",
   "frameTags": [
-   { "name": "default", "from": 0, "to": 15, "direction": "forward", "color": "#000000ff" },
-   { "name": "active", "from": 16, "to": 32, "direction": "forward", "color": "#000000ff" }
+   { "name": "default", "from": 0, "to": 4, "direction": "forward", "color": "#000000ff" },
+   { "name": "active", "from": 5, "to": 23, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }

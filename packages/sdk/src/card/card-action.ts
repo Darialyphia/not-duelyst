@@ -47,6 +47,7 @@ import { EssenceCardAction } from './actions/essence.card-action';
 import { FearsomeCardAction } from './actions/fearsome.card-action';
 import { CreateTileCardAction } from './actions/create_tile.card-action';
 import { SlayCardAction } from './actions/slay.card-action';
+import { GiveGoldCardAction } from './actions/give-gold.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -203,6 +204,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'slay' }, action => {
         return new SlayCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'give_gold' }, action => {
+        return new GiveGoldCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

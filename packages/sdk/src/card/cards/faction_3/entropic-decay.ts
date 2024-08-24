@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3EntropicDecay = defineSerializedBlueprint({
-  id: 'entropic_decay',
+  id: 'f3_entropic_decay',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],
@@ -63,7 +63,7 @@ export const f3EntropicDecay = defineSerializedBlueprint({
   ],
   targets: { min: 1, targets: [[[{ type: 'any_cell' }]]] },
   cellHighlights: [],
-  spriteId: 'icon_icon_f3_entropic_decay',
+  spriteId: 'icon_f3_entropic_decay',
   name: 'Entropic Decay',
   cost: 3,
   faction: 'f3'

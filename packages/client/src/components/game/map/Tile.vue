@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Nullable } from '@game/shared';
 import type { FrameObject } from 'pixi.js';
+import { PTransition } from 'vue3-pixi';
 
 const { cell } = defineProps<{ cell: CellViewModel }>();
 
@@ -13,7 +14,7 @@ watchEffect(async () => {
     textures.value = null;
     return;
   }
-  const spritesheet = await assets.loadSpritesheet(cell.tile.blueprint.spriteId);
+  const spritesheet = await assets.loadSpritesheet(cell.tile.spriteId);
   textures.value = createSpritesheetFrameObject('idle', spritesheet);
 });
 
@@ -32,8 +33,16 @@ const boardDimensions = {
     :width="boardDimensions.width"
     :z-index-offset="1"
   >
-    <container v-if="cell.tile && textures" :y="-CELL_HEIGHT * 0.4" event-mode="none">
-      <animated-sprite :textures="textures" :anchor="0.5" playing loop />
-    </container>
+    <PTransition
+      appear
+      :duration="{ enter: 300, leave: 300 }"
+      :before-enter="{ alpha: 0 }"
+      :enter="{ alpha: 1 }"
+      :leave="{ alpha: 0 }"
+    >
+      <container v-if="cell.tile && textures" :y="-CELL_HEIGHT * 0.4" event-mode="none">
+        <animated-sprite :textures="textures" :anchor="0.5" playing loop />
+      </container>
+    </PTransition>
   </IsoPositioner>
 </template>

@@ -97,6 +97,12 @@ export type Amount<T extends ConditionOverrides> =
         >;
         scale: number;
       };
+    }
+  | {
+      type: 'equiped_artifact_count';
+      params: {
+        player: Filter<PlayerCondition>;
+      };
     };
 
 export const getAmount = ({
@@ -188,6 +194,11 @@ export const getAmount = ({
       );
 
       return cards.length * amount.params.scale;
+    })
+    .with({ type: 'equiped_artifact_count' }, amount => {
+      const [player] = getPlayers({ ...ctx, conditions: amount.params.player });
+
+      return player.artifacts.length;
     })
     .exhaustive();
 };

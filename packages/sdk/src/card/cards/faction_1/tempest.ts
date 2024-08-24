@@ -3,7 +3,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 
 export const f1Tempest = defineSerializedBlueprint({
-  id: 'tempest',
+  id: 'f1_tempest',
   collectable: true,
   name: 'Tempest',
   cost: 2,

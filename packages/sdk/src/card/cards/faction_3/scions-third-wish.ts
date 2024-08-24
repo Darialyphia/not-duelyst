@@ -2,7 +2,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f3ScionsThirdWish = defineSerializedBlueprint({
-  id: 'scions_third_wish',
+  id: 'f3_scions_third_wish',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],

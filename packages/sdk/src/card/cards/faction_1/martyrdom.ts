@@ -3,7 +3,7 @@ import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1Martyrdom = defineSerializedBlueprint({
-  id: 'martyrdom',
+  id: 'f1_martyrdom',
   collectable: true,
   name: 'Martyrdom',
   cost: 2,

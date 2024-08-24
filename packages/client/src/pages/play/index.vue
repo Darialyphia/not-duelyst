@@ -83,8 +83,19 @@ section {
   > div {
     overflow-y: auto;
     width: 100%;
-    margin-block: var(--size-8);
     line-height: 1.8;
+
+    @screen lg {
+      margin-block: var(--size-8);
+    }
+  }
+}
+
+img {
+  @screen lt-lg {
+    justify-self: end;
+    width: 5rem;
+    height: auto;
   }
 }
 </style>

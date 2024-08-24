@@ -15,7 +15,7 @@ export class Tile {
   blueprintId: TileblueprintId;
   playerId?: PlayerId;
   occupant: Nullable<Entity> = null;
-
+  spriteId: string;
   meta: AnyObject = {};
 
   constructor(
@@ -23,6 +23,7 @@ export class Tile {
     options: TileOptions
   ) {
     this.blueprintId = options.blueprintId;
+    this.spriteId = this.blueprint.spriteId;
     this.position = Vec3.fromPoint3D(options.position);
     this.playerId = options.playerId;
     this.checkOccupation = this.checkOccupation.bind(this);

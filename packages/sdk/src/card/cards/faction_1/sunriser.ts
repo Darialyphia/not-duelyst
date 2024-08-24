@@ -4,7 +4,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 
 export const f1Sunriser = defineSerializedBlueprint({
-  id: 'sunriser',
+  id: 'f1_sunriser',
   collectable: true,
   name: 'Sunriser',
   cost: 4,

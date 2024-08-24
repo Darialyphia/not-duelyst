@@ -3,7 +3,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1DivineBond = defineSerializedBlueprint({
-  id: 'divine_bond',
+  id: 'f1_divine_bond',
   collectable: true,
   name: 'Divine Bond',
   cost: 3,

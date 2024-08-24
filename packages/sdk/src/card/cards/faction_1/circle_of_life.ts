@@ -5,7 +5,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { allyGeneral, manualTarget } from '../../helpers/targeting';
 
 export const f1CircleOfLife = defineSerializedBlueprint({
-  id: 'circle_of_life',
+  id: 'f1_circle_of_life',
   collectable: true,
   name: 'Circle Of Life',
   cost: 5,

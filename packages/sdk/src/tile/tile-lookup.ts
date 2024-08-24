@@ -75,6 +75,10 @@ const allTiles: TileBlueprint[] = [
       'Deal 3 damage to enemy units standing on it at the end of its owner turn.',
     spriteId: 'creep',
     onCreated(session, entity, tile) {
+      if (!tile.player?.isPlayer1) {
+        tile.spriteId = 'creep-p2';
+      }
+
       const player = tile.player;
       if (!player) return;
       tile.meta.unsub = player.on(PLAYER_EVENTS.TURN_END, async () => {

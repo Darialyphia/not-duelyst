@@ -6,7 +6,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const f1SilverguardKnight = defineSerializedBlueprint({
-  id: 'silverguard_knight',
+  id: 'f1_silverguard_knight',
   collectable: true,
   name: 'Silverguard Knight',
   cost: 3,

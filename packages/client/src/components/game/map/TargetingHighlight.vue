@@ -4,23 +4,13 @@ import type { Cell } from '@game/sdk';
 import { match } from 'ts-pattern';
 
 const { cell } = defineProps<{ cell: CellViewModel }>();
-const { session, assets, camera, ui, fx, pathfinding } = useGame();
+const { session, assets, camera, ui, fx } = useGame();
 const userPlayer = useUserPlayer();
 const targetSheet = computed(() => assets.getSpritesheet('deploy-zone'));
 const highlightSheet = computed(() => assets.getSpritesheet('skill-targeting'));
 
 const canHighlight = (cellToTest: CellViewModel) => {
-  return ui.selectedCard.value?.blueprint.shouldHighlightCell(cellToTest.getCell(), {
-    session,
-    playedPoint: ui.summonTarget.value ?? undefined,
-    targets: [
-      ...ui.cardTargets.value,
-      ui.targetableCells.value.some(c => ui.hoveredCell.value?.equals(c))
-        ? ui.hoveredCell.value
-        : null
-    ].filter(isDefined),
-    card: ui.selectedCard.value!
-  });
+  return ui.highlightableCells.value.some(c => c.equals(cellToTest.getCell()));
 };
 
 const isHighlighted = computed(() => canHighlight(cell));

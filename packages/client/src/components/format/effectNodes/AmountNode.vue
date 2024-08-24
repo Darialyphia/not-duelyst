@@ -36,6 +36,10 @@ const amountDict: Record<
   card_played_since_last_turn: {
     label: 'Number of cards played this turn',
     params: { card: CardNode, scale: null }
+  },
+  equiped_artifact_count: {
+    label: 'Equals to the amount of equiped artifacts',
+    params: { player: PlayerNode }
   }
 };
 
@@ -97,6 +101,11 @@ const id = useId();
               amount.params = {
                 card: { candidates: [], random: false },
                 scale: 1
+              };
+            })
+            .with({ type: 'equiped_artifact_count' }, amount => {
+              amount.params = {
+                player: { candidates: [[{ type: 'ally_player' }]] }
               };
             })
             .exhaustive();

@@ -532,6 +532,15 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: null
     }
+  },
+  give_gold: {
+    label: 'Give gold',
+    params: {
+      amount: AmountNode,
+      player: PlayerNode,
+      execute: null,
+      filter: null
+    }
   }
 };
 const actionOptions = computed(
@@ -856,6 +865,12 @@ watch(
         params.duration ??= 'always';
         params.activeWhen ??= { candidates: [], random: false };
         params.effect ??= { executionContext: undefined as any, actions: [] };
+      })
+      .with({ type: 'give_gold' }, ({ params }) => {
+        params.amount ??= { type: 'fixed', params: { value: 0 } };
+        params.player ??= { candidates: [[{ type: 'ally_player' }]] };
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .exhaustive();
   },

@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f4NightsorrowAssassin = defineSerializedBlueprint({
-  id: 'nightsorrow-assassin',
+  id: 'f4_nightsorrow-assassin',
   collectable: true,
   keywords: ['fearsome', 'rush'],
   relatedBlueprintIds: [],

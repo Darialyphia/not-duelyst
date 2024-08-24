@@ -41,6 +41,12 @@ export type CardBlueprintBase = {
       card: Card;
     }
   ) => boolean;
+  getHighlightedCells(options: {
+    session: GameSession;
+    playedPoint?: Point3D;
+    targets: Point3D[];
+    card: Card;
+  }): Cell[];
 };
 
 type CardBlueprintUnit = {

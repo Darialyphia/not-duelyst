@@ -21,6 +21,8 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
 const componentNodes: Record<string, Component | string> = {
   unit: UnitNode
 };
+
+const id = useId();
 </script>
 
 <template>
@@ -112,8 +114,9 @@ const componentNodes: Record<string, Component | string> = {
       class="flex gap-2"
     >
       <span class="capitalize">{{ param }}</span>
-      <input
+      <UiTextInput
         v-if="['index', 'x', 'y', 'z'].includes(param)"
+        :id
         v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         type="number"
       />

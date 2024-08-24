@@ -6,7 +6,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { nearestAllDirections } from '../../helpers/targeting';
 
 export const neutralRiftWalker = defineSerializedBlueprint({
-  id: 'rift_walker',
+  id: 'neutral_rift_walker',
   collectable: true,
   name: 'Rift Walker',
   cost: 3,

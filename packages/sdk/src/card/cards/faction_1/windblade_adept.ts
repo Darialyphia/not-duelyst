@@ -5,7 +5,7 @@ import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { fixedAmount } from '../../helpers/amount';
 
 export const f1WindbladeAdept = defineSerializedBlueprint({
-  id: 'windblade_adept',
+  id: 'f1_windblade_adept',
   collectable: true,
   name: 'Windblade Adept',
   cost: 2,

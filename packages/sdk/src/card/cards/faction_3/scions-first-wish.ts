@@ -3,7 +3,7 @@ import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f3ScionsFirstWish = defineSerializedBlueprint({
-  id: 'scions_first_wish',
+  id: 'f3_scions_first_wish',
   spriteId: 'icon_f3_scions_first_wish',
   name: "Scion's First Wish",
   collectable: true,

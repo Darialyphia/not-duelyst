@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3DominateWill = defineSerializedBlueprint({
-  id: 'GPOVCK',
+  id: 'f3_dominate_will',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],
@@ -73,7 +73,7 @@ export const f3DominateWill = defineSerializedBlueprint({
     ]
   },
   cellHighlights: [],
-  spriteId: 'icon_icon_f3_dominate_will',
+  spriteId: 'icon_f3_dominate_will',
   name: 'Dominate Will',
   cost: 7,
   faction: 'f3'

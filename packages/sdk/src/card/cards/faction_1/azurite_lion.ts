@@ -4,7 +4,7 @@ import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 
 export const f1AzuriteLion = defineSerializedBlueprint({
-  id: 'azurite_lion',
+  id: 'f1_azurite_lion',
   collectable: true,
   name: 'Azurite Lion',
   cost: 2,

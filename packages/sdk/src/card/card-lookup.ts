@@ -160,6 +160,15 @@ import { f4SoulScythe } from './cards/faction_4/soul-scythe';
 import { f4Gloomchaser } from './cards/faction_4/gloomchaser';
 import { f4BlackSolus } from './cards/faction_4/black-solus';
 import { f4SpectralRevenant } from './cards/faction_4/spectral-revenant';
+import { f3TimeMaelstrom } from './cards/faction_3/time-maelstrom';
+import { f3AurorasTears } from './cards/faction_3/auroras-tears';
+import { f4GraspOfAgony } from './cards/faction_4/grasp-of-agony';
+import { f4WraithlingSwarm } from './cards/faction_4/wraithling-swarm';
+import { f4SphereOfDarkness } from './cards/faction_4/sphere-of-darkness';
+import { f4DaemonicLure } from './cards/faction_4/daemonic-lure';
+import { f4DarkSeed } from './cards/faction_4/dark-seed';
+import { f4VoidPulse } from './cards/faction_4/void-pulse';
+import { f4ShadowNova } from './cards/faction_4/shadow-nova';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -256,6 +265,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f3RashasCurse,
   f3FountainOfYouth,
   f3Hexblade,
+  f3TimeMaelstrom,
+  f3AurorasTears,
 
   f4General,
   f4General2,
@@ -273,6 +284,13 @@ const allCards: SerializedBlueprint<any>[] = [
   f4Gloomchaser,
   f4BlackSolus,
   f4SpectralRevenant,
+  f4GraspOfAgony,
+  f4WraithlingSwarm,
+  f4SphereOfDarkness,
+  f4DaemonicLure,
+  f4DarkSeed,
+  f4VoidPulse,
+  f4ShadowNova,
 
   f5General,
   f5General2,

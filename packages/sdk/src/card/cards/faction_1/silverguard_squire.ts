@@ -4,7 +4,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { allyGeneral } from '../../helpers/targeting';
 
 export const f1SilverguardSquire = defineSerializedBlueprint({
-  id: 'silverguard_squire',
+  id: 'f1_silverguard_squire',
   collectable: true,
   name: 'Silverguard Squire',
   cost: 1,

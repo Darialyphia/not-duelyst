@@ -1,7 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3CosmicFlesh = defineSerializedBlueprint({
-  id: 'WXfF60',
+  id: 'f3_cosmic_flesh',
   collectable: true,
   keywords: [],
   relatedBlueprintIds: [],
@@ -88,7 +88,7 @@ export const f3CosmicFlesh = defineSerializedBlueprint({
     ]
   },
   cellHighlights: [],
-  spriteId: 'icon_icon_f3_cosmic_flesh',
+  spriteId: 'icon_f3_cosmic_flesh',
   name: 'Cosmic Flesh',
   cost: 2,
   faction: 'f3'

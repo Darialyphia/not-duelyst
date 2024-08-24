@@ -1,4 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 
 export const f4SpectralRevenant = defineSerializedBlueprint({
   id: 'f4_spectral_revenant',
@@ -8,6 +9,14 @@ export const f4SpectralRevenant = defineSerializedBlueprint({
   tags: [],
   kind: 'MINION',
   rarity: 'legendary',
+  targets: { min: 0, targets: [] },
+  cellHighlights: [],
+  spriteId: 'f4_spectral_revenant',
+  name: 'Spectral Revenant',
+  cost: 7,
+  attack: 6,
+  maxHp: 6,
+  faction: 'f4',
   effects: [
     {
       text: '@Rush@.',
@@ -22,8 +31,8 @@ export const f4SpectralRevenant = defineSerializedBlueprint({
       },
       vfx: { tracks: [] }
     },
-    {
-      text: '@Slay@: Reactivate this unit.',
+    defineCardEffect({
+      text: '@Slay@: Deal 3 damage to the enemy general.',
       config: {
         executionContext: 'while_on_board',
         actions: [
@@ -38,14 +47,17 @@ export const f4SpectralRevenant = defineSerializedBlueprint({
                 executionContext: 'immediate',
                 actions: [
                   {
-                    type: 'activate_unit',
+                    type: 'deal_damage',
                     params: {
-                      filter: { candidates: [], random: false },
+                      amount: { type: 'fixed', params: { value: 3 } },
                       targets: {
-                        candidates: [[{ type: 'is_self', params: { not: false } }]],
-                        random: false
-                      },
-                      execute: 'now'
+                        candidates: [
+                          [
+                            { type: 'is_enemy', params: { not: false } },
+                            { type: 'is_general', params: { not: false } }
+                          ]
+                        ]
+                      }
                     }
                   }
                 ]
@@ -55,14 +67,6 @@ export const f4SpectralRevenant = defineSerializedBlueprint({
         ]
       },
       vfx: { tracks: [] }
-    }
-  ],
-  targets: { min: 0, targets: [] },
-  cellHighlights: [],
-  spriteId: 'f4_spectral_revenant',
-  name: 'Spectral Revenant',
-  cost: 7,
-  attack: 6,
-  maxHp: 6,
-  faction: 'f4'
+    })
+  ]
 });

@@ -4,7 +4,7 @@ import { allyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
 
 export const f1SunstoneBracers = defineSerializedBlueprint({
-  id: 'sunstone_bracers',
+  id: 'f1_sunstone_bracers',
   collectable: true,
   name: 'Sunstone Bracers',
   cost: 0,

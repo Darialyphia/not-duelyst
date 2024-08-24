@@ -518,7 +518,17 @@ export type Action<
         tile: string;
         position: Filter<CellCondition>;
       };
+    }
+  | {
+      type: 'give_gold';
+      params: {
+        amount: Amount<T>;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        player: Filter<PlayerCondition>;
+      };
     };
+
 export type ActionParams<T extends Action['type']> = (Action & {
   type: T;
 })['params'];

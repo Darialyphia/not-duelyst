@@ -1185,6 +1185,32 @@ export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
         return cell.position.equals(point);
       });
     },
+    getHighlightedCells(options: {
+      session: GameSession;
+      playedPoint?: Point3D;
+      targets: Point3D[];
+      card: Card;
+    }) {
+      if (!blueprint.cellHighlights || !blueprint.cellHighlights.length) {
+        return match(blueprint.kind)
+          .with(CARD_KINDS.MINION, CARD_KINDS.GENERAL, CARD_KINDS.ARTIFACT, () => [])
+          .with(CARD_KINDS.SPELL, () => {
+            return options.targets
+              .map(point => options.session.boardSystem.getCellAt(point))
+              .filter(isDefined);
+          })
+          .exhaustive();
+      }
+
+      return getCells({
+        session: options.session,
+        event: {},
+        card: options.card,
+        targets: options.targets,
+        conditions: { candidates: blueprint.cellHighlights, random: false },
+        playedPoint: options.playedPoint
+      });
+    },
     async onPlay(ctx: EffectCtx) {
       for (const effect of effects) {
         await match(effect.config.executionContext)

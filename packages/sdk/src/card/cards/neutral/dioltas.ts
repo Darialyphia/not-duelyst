@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralDioltas = defineSerializedBlueprint({
-  id: 'nautral_dioltas',
+  id: 'neutral_dioltas',
   name: 'Dioltas',
   spriteId: 'neutral_dilotas',
   collectable: true,

@@ -5,7 +5,7 @@ import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1ArclyteSentinel = defineSerializedBlueprint({
-  id: 'arclyte_sentinel',
+  id: 'f1_arclyte_sentinel',
   collectable: true,
   name: 'Arclyte Sentinel',
   cost: 3,

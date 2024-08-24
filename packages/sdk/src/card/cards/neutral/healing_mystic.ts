@@ -5,7 +5,7 @@ import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const neutralHealingMystic = defineSerializedBlueprint({
-  id: 'healing_mystic',
+  id: 'neutral_healing_mystic',
   collectable: true,
   name: 'Healing Mystic',
   cost: 2,

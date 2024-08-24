@@ -4,7 +4,7 @@ import { CARD_KINDS, RARITIES } from '../../card-enums';
 import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const neutralPrimusShieldMaster = defineSerializedBlueprint({
-  id: 'primus_shieldmaster',
+  id: 'neutral_primus_shieldmaster',
   collectable: true,
   name: 'Primus Shieldmaster',
   cost: 4,

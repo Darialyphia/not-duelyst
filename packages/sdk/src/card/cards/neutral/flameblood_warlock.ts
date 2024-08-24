@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
 
 export const neutralFlamebloodWarlock = defineSerializedBlueprint({
-  id: 'neutrla_flameblood_warlock',
+  id: 'neutral_flameblood_warlock',
   spriteId: 'neutral_flameblood_warlock',
   name: 'Flameblood Warlock',
   collectable: true,

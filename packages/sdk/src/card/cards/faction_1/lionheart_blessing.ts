@@ -4,7 +4,7 @@ import { FACTION_IDS, RARITIES } from '../../card-enums';
 import { allyMinion } from '../../helpers/targeting';
 
 export const f1LionheartBlessing = defineSerializedBlueprint({
-  id: 'lionheart_blessing',
+  id: 'f1_lionheart_blessing',
   collectable: true,
   name: 'Lionheart Blessing',
   cost: 0,
