@@ -10,6 +10,7 @@ import { ClientRngSystem, type RngSystem } from './rng-system';
 import { ClientSession } from './client-session';
 import type { FACTION_IDS } from './card/card-enums';
 import { defaultConfig } from './config';
+import { ClientFxSystem } from './fx-system';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -55,7 +56,7 @@ export class TutorialSession extends ClientSession {
     },
     public steps: TutorialStep[]
   ) {
-    super(initialState, rngSystem, tutorialLogger, options);
+    super(initialState, rngSystem, new ClientFxSystem(), tutorialLogger, options);
 
     this.on('game:action', async () => {
       if (this.isFinished) return;

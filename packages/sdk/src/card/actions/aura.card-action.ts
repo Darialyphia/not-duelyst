@@ -1,9 +1,7 @@
 import { aura } from '../../modifier/modifier-utils';
 import { parseSerializedBlueprintEffect } from '../card-parser';
 import { CardAction } from './_card-action';
-import type { EntityModifier } from '../../modifier/entity-modifier';
 import type { Entity } from '../../entity/entity';
-import type { CardModifier } from '../../modifier/card-modifier';
 
 export class AuraCardAction extends CardAction<'aura'> {
   async executeImpl() {

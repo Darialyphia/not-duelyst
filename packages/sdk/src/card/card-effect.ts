@@ -146,6 +146,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -154,6 +155,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -162,6 +164,7 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -185,6 +188,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         amount: Amount<T>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -301,6 +305,8 @@ export type Action<
       params: {
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
@@ -310,6 +316,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -334,6 +341,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {
@@ -412,16 +420,17 @@ export type Action<
         >;
         player: Filter<PlayerCondition>;
         duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
-        filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
       };
     }
   | {
       type: 'blast';
       params: {
-        filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
       };
     }
   | {
@@ -430,6 +439,7 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         activeWhen?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
       };
     }
   | {

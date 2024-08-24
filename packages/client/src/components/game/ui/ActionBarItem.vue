@@ -16,16 +16,25 @@ const { ui, currentTutorialStep } = useGame();
 const userPlayer = useUserPlayer();
 
 const card = computed(() => userPlayer.value.hand[index]);
-const hasEssence = computed(() => {
+const hasEssence = () => {
   return (
     card.value.modifiers.some(m => m.id === KEYWORDS.ESSENCE.id) &&
     card.value.meta.essence
   );
-});
+};
+const isEssenceEnabled = ref(hasEssence());
+const canPlay = ref(userPlayer.value.canPlayCardAtIndex(index));
 
+useSessionEvent('scheduler:flushed', () => {
+  // :yussy:
+  setTimeout(() => {
+    isEssenceEnabled.value = hasEssence();
+    canPlay.value = userPlayer.value.canPlayCardAtIndex(index);
+  }, 50);
+});
 const isDisabled = computed(
   () =>
-    !userPlayer.value.canPlayCardAtIndex(index) ||
+    !canPlay.value ||
     (isDefined(currentTutorialStep.value?.highlightedCardIndex) &&
       currentTutorialStep.value.highlightedCardIndex !== index)
 );
@@ -38,7 +47,7 @@ const isDisabled = computed(
         class="card"
         :class="{
           disabled: isDisabled,
-          essence: hasEssence
+          essence: isEssenceEnabled
         }"
         :card="{
           blueprintId: blueprint.id,

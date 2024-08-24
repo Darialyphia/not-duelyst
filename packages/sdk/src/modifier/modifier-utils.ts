@@ -716,6 +716,7 @@ export const essence = ({
 
           unsub = session.on('scheduler:flushed', () => {
             if (card.player.currentGold < essenceCache.cost) {
+              if (card.meta.essence) return;
               card.meta.essence = essenceCache;
               card.playImpl = async ctx => {
                 await essenceOnPlay(ctx);
@@ -725,6 +726,7 @@ export const essence = ({
               card.targets = essenceTargets;
               costInterceptorUnsub = card.addInterceptor('cost', () => essenceCost);
             } else {
+              if (!card.meta.essence) return;
               card.playImpl = essenceCache.originalPlaympl;
               card.kind = essenceCache.kind;
               card.targets = essenceCache.targets;

@@ -157,6 +157,8 @@ import { f4AbyssalCrawler } from './cards/faction_4/abyssal-crawler';
 import { f4ReaperOfTheNineMoons } from './cards/faction_4/reaper-of-the-nine-moons';
 import { neutralPaddo } from './cards/neutral/paddo';
 import { f4SoulScythe } from './cards/faction_4/soul-scythe';
+import { f4Gloomchaser } from './cards/faction_4/gloomchaser';
+import { f4BlackSolus } from './cards/faction_4/black-solus';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -267,6 +269,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f4AbyssalCrawler,
   f4ReaperOfTheNineMoons,
   f4SoulScythe,
+  f4Gloomchaser,
+  f4BlackSolus,
 
   f5General,
   f5General2,

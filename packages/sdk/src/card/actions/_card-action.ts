@@ -121,7 +121,7 @@ export abstract class CardAction<T extends Action['type']> {
     modifier: EntityModifier,
     conditions?: Filter<GlobalCondition>
   ) {
-    return applyModifierConditionally({
+    const cleanup = applyModifierConditionally({
       modifier,
       ctx: this.ctx,
       event: this.event,
@@ -129,6 +129,18 @@ export abstract class CardAction<T extends Action['type']> {
       session: this.ctx.session,
       conditions
     });
+
+    if ('duration' in this.action.params) {
+      if (this.action.params.duration === 'end_of_turn') {
+        this.session.playerSystem.activePlayer.once('turn_end', () => {
+          cleanup();
+        });
+      }
+      if (this.action.params.duration === 'start_of_next_turn') {
+        cleanup();
+      }
+    }
+    return cleanup;
   }
 
   async execute(): Promise<() => void> {

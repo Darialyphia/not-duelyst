@@ -210,6 +210,7 @@ const actionDict: ActionDictionary = {
     label: 'Celerity',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -218,6 +219,7 @@ const actionDict: ActionDictionary = {
     label: 'Ranged',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -226,6 +228,7 @@ const actionDict: ActionDictionary = {
     label: 'Provoke',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -264,6 +267,7 @@ const actionDict: ActionDictionary = {
     params: {
       amount: AmountNode,
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -339,6 +343,7 @@ const actionDict: ActionDictionary = {
     label: 'Flying',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -357,6 +362,7 @@ const actionDict: ActionDictionary = {
     label: 'Frenzy',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -381,6 +387,7 @@ const actionDict: ActionDictionary = {
     label: 'Elusive',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -437,6 +444,7 @@ const actionDict: ActionDictionary = {
     label: 'Blast',
     params: {
       activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -501,6 +509,7 @@ const actionDict: ActionDictionary = {
     params: {
       activeWhen: GlobalConditionNode,
       execute: null,
+      duration: null,
       filter: GlobalConditionNode
     }
   },
@@ -616,27 +625,32 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.duration ??= 'always';
       })
       .with({ type: 'celerity' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.duration ??= 'always';
       })
       .with({ type: 'ranged' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.duration ??= 'always';
       })
       .with({ type: 'elusive' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.duration ??= 'always';
       })
       .with({ type: 'backstab' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.activeWhen ??= { candidates: [], random: false };
         params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.execute ??= 'now';
+        params.duration ??= 'always';
       })
       .with({ type: 'zeal' }, ({ params }) => {
         // @ts-expect-error
@@ -709,6 +723,7 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
       })
       .with({ type: 'play_card' }, ({ params }) => {
         params.card ??= { candidates: [[{ type: undefined as any }]], random: false };
@@ -721,11 +736,13 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
       })
       .with({ type: 'fearsome' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
       })
       .with({ type: 'structure' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
@@ -774,6 +791,7 @@ watch(
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
       })
       .with({ type: 'change_can_attack' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
