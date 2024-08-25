@@ -252,7 +252,7 @@ const actionDict: ActionDictionary = {
     }
   },
   zeal: {
-    label: 'Gain an effect when zealed',
+    label: 'Zeal',
     params: { effect: EffectNode, execute: null, filter: GlobalConditionNode }
   },
   dispel_cell: {
@@ -337,6 +337,15 @@ const actionDict: ActionDictionary = {
   rush: {
     label: 'Rush',
     params: {
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  barrier: {
+    label: 'Barrier',
+    params: {
+      activeWhen: GlobalConditionNode,
+      duration: null,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -763,6 +772,12 @@ watch(
         params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'flying' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
+      })
+      .with({ type: 'barrier' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.activeWhen ??= { candidates: [], random: false };

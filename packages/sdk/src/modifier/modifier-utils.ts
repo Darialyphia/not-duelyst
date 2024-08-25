@@ -706,8 +706,9 @@ export const essence = ({
     mixins: [
       {
         keywords: [KEYWORDS.ESSENCE],
-        onApplied(session, _card) {
-          const card = _card as Unit;
+        onApplied(session, card) {
+          if (!(card instanceof Unit)) return;
+
           const essenceCache = {
             cost: card.cost,
             originalPlaympl: card.playImpl,

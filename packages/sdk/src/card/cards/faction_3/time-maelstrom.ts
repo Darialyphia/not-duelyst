@@ -13,7 +13,7 @@ export const f3TimeMaelstrom = defineSerializedBlueprint({
   cellHighlights: [],
   spriteId: 'icon_f3_time_maelstrom',
   name: 'Time maelstrom',
-  cost: 6,
+  cost: 5,
   faction: 'f3',
   effects: [
     {

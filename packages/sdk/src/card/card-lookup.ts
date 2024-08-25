@@ -185,6 +185,9 @@ import { f2Panddo } from './cards/faction_2/panddo';
 import { f2OnyxBearSeal } from './cards/faction_2/onyx-bear-seal';
 import { f2CycloneMask } from './cards/faction_2/cyclone-mask';
 import { f2MistWalking } from './cards/faction_2/mist-walking';
+import { f1Decimate } from './cards/faction_1/decimate';
+import { f1AegisBarrier } from './cards/faction_1/aegis-barrier';
+import { f1SkywindGlaives } from './cards/faction_1/skywind-glaives';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -217,6 +220,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f1ElyxStormblade,
   f1Magnetize,
   f1SunstoneTemplar,
+  f1Decimate,
+  f1AegisBarrier,
+  f1SkywindGlaives,
 
   f2General,
   f2General2,

@@ -50,6 +50,7 @@ import { SlayCardAction } from './actions/slay.card-action';
 import { GiveGoldCardAction } from './actions/give-gold.card-action';
 import { ChangeCanBeAttackedCardAction } from './actions/change-can-be-attacked.card-action';
 import { TransformUnitCardAction } from './actions/transform-unit.card-action';
+import { BarrierCardAction } from './actions/barrier.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -215,6 +216,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'transform_unit' }, action => {
         return new TransformUnitCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'barrier' }, action => {
+        return new BarrierCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };
