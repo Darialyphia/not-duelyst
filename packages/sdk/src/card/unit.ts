@@ -1,7 +1,7 @@
 import { Interceptable, type inferInterceptor } from '../utils/helpers';
 import type { Point3D, Serializable } from '@game/shared';
 import { Entity, ENTITY_EVENTS } from '../entity/entity';
-import { Card } from './card';
+import { Card, type CardBlueprintId } from './card';
 import { CARD_KINDS } from './card-enums';
 
 export type UnitInterceptor = Unit['interceptors'];
@@ -111,5 +111,24 @@ export class Unit extends Card implements Serializable {
     }
 
     return true;
+  }
+
+  async transform(newblueprintId: CardBlueprintId, position: Point3D) {
+    this.blueprintId = newblueprintId;
+    this.name = this.blueprint.name;
+    this.description = this.blueprint.description;
+    this.kind = this.blueprint.kind;
+    this.targets = this.blueprint.targets;
+
+    this.blueprint.keywords?.forEach(keyword => {
+      this.entity.addKeyword(keyword);
+    });
+
+    await this.blueprint.onPlay?.({
+      session: this.session,
+      card: this,
+      entity: this.entity,
+      targets: []
+    });
   }
 }

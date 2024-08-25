@@ -6,6 +6,10 @@ const { gameType, ui, dispatch } = useGame();
 const isActive = useIsActivePlayer();
 const userPlayer = useUserPlayer();
 const { isMobile } = useResponsive();
+
+const isDisabled = computed(
+  () => !ui.selectedCard.value || !isActive.value || !userPlayer.value.canReplace()
+);
 </script>
 
 <template>
@@ -14,7 +18,7 @@ const { isMobile } = useResponsive();
       v-if="isMobile"
       :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
       class="replace-button--mobile"
-      :disabled="!isActive || !userPlayer.canReplace()"
+      :disabled="isDisabled"
       :class="{ dragging: isDefined(draggedIndex) }"
       @mouseup="
         () => {
@@ -31,7 +35,7 @@ const { isMobile } = useResponsive();
       v-else
       :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
       class="replace-button"
-      :disabled="!isActive || !userPlayer.canReplace()"
+      :disabled="isDisabled"
       :class="{ dragging: isDefined(draggedIndex) }"
       @mouseup="
         () => {

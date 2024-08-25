@@ -15,6 +15,10 @@ export class DefaultAttackPattern implements AttackPattern {
   ) {}
 
   canAttackAt(position: Point3D, simulatedPosition?: Point3D) {
+    const cell = this.session.boardSystem.getCellAt(position)!;
+
+    if (!cell.entity?.canBeAttacked(this.entity)) return false;
+
     return isWithinCells(
       simulatedPosition ?? this.entity.position,
       position,
@@ -34,6 +38,9 @@ export class BlastAttackPattern implements AttackPattern {
   ) {}
 
   canAttackAt(position: Point3D, simulatedPosition?: Point3D) {
+    const cell = this.session.boardSystem.getCellAt(position)!;
+    if (!cell.entity?.canBeAttacked(this.entity)) return false;
+
     if (isAxisAligned(this.entity.position, position)) {
       return Math.abs(position.z - this.entity.position.z) <= 1;
     }

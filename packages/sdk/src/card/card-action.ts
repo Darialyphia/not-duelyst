@@ -48,6 +48,8 @@ import { FearsomeCardAction } from './actions/fearsome.card-action';
 import { CreateTileCardAction } from './actions/create_tile.card-action';
 import { SlayCardAction } from './actions/slay.card-action';
 import { GiveGoldCardAction } from './actions/give-gold.card-action';
+import { ChangeCanBeAttackedCardAction } from './actions/change-can-be-attacked.card-action';
+import { TransformUnitCardAction } from './actions/transform-unit.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -178,6 +180,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       .with({ type: 'change_can_attack' }, action => {
         return new ChangeCanAttackCardAction(action, ctx, event, eventName).execute();
       })
+      .with({ type: 'change_can_be_attacked' }, action => {
+        return new ChangeCanBeAttackedCardAction(action, ctx, event, eventName).execute();
+      })
       .with({ type: 'dispel_entity' }, action => {
         return new DispelEntityCardAction(action, ctx, event, eventName).execute();
       })
@@ -207,6 +212,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'give_gold' }, action => {
         return new GiveGoldCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'transform_unit' }, action => {
+        return new TransformUnitCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

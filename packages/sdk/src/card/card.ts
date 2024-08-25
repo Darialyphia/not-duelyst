@@ -45,7 +45,7 @@ export abstract class Card
   extends TypedEventEmitter<CardEventMap>
   implements Serializable
 {
-  readonly blueprintId: CardBlueprintId;
+  blueprintId: CardBlueprintId;
   readonly isGenerated: boolean;
   public readonly pedestalId: string;
   public readonly cardBackId: string;

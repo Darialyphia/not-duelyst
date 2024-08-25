@@ -56,6 +56,7 @@ export const useEntityTexture = (
     }
   });
 
+  watch(() => entity.value.card.blueprint.spriteId, updateAnimation);
   let pendingAnimations: { animation: Animation; handler: () => Promise<void> }[] = [];
   let isPlaying = false;
   const playAnimations = async () => {

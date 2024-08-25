@@ -178,6 +178,11 @@ import { f4RitualBanishing } from './cards/faction_4/ritual-banishing';
 import { f4SoulshatterPact } from './cards/faction_4/soulshatter-pact';
 import { f4RiteOfTheUndervault } from './cards/faction_4/rite-of-the-undervault';
 import { f2MaskOfShadows } from './cards/faction_2/mask-of-shadows';
+import { f4SpectralBlade } from './cards/faction_4/spectral-blade';
+import { f4SoulGrimoire } from './cards/faction_4/soul-grimoire';
+import { f4HornOfTheForsaken } from './cards/faction_4/horn-of-the-forsaken';
+import { f2Panddo } from './cards/faction_2/panddo';
+import { f2OnyxBearSeal } from './cards/faction_2/onyx-bear-seal';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -242,6 +247,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f2JadeMonk,
   f2ScarletViper,
   f2MaskOfShadows,
+  f2Panddo,
+  f2OnyxBearSeal,
 
   f3General,
   f3General2,
@@ -309,6 +316,9 @@ const allCards: SerializedBlueprint<any>[] = [
   f4RitualBanishing,
   f4SoulshatterPact,
   f4RiteOfTheUndervault,
+  f4SpectralBlade,
+  f4SoulGrimoire,
+  f4HornOfTheForsaken,
 
   f5General,
   f5General2,

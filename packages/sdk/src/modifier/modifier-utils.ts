@@ -405,9 +405,9 @@ export const ephemeral = ({ source }: { source: Card }) => {
     mixins: [
       modifierGameEventMixin({
         eventName: 'player:turn_end',
-        once: true,
         keywords: [KEYWORDS.EPHEMERAL],
         async listener([event], { attachedTo }) {
+          console.log(attachedTo.card.blueprintId);
           if (event.equals(attachedTo.player)) {
             await attachedTo.remove();
           }

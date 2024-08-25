@@ -8,25 +8,30 @@ export const f3TimeMaelstrom = defineSerializedBlueprint({
   tags: [],
   kind: 'SPELL',
   rarity: 'rare',
+  targets: { min: 1, targets: [[[{ type: 'any_cell' }]]] },
+  cellHighlights: [],
+  spriteId: 'icon_f3_time_maelstrom',
+  name: 'Time maelstrom',
+  cost: 6,
+  faction: 'f3',
   effects: [
     {
-      text: 'Reactivate your general.',
+      text: 'Give @Ephemeral@ to all minions.',
       config: {
         executionContext: 'immediate',
         actions: [
           {
-            type: 'activate_unit',
+            type: 'add_effect',
             params: {
-              filter: { candidates: [], random: false },
-              targets: {
-                candidates: [
-                  [
-                    { type: 'is_ally', params: { not: false } },
-                    { type: 'is_general', params: { not: false } }
-                  ]
-                ],
+              unit: {
+                candidates: [[{ type: 'is_minion', params: { not: false } }]],
                 random: false
               },
+              effect: {
+                executionContext: 'while_on_board',
+                actions: [{ type: 'ephemeral', params: {} }]
+              },
+              linkToCard: false,
               execute: 'now'
             }
           }
@@ -34,11 +39,5 @@ export const f3TimeMaelstrom = defineSerializedBlueprint({
       },
       vfx: { tracks: [] }
     }
-  ],
-  targets: { min: 1, targets: [[[{ type: 'any_cell' }]]] },
-  cellHighlights: [],
-  spriteId: 'icon_f3_time_maelstrom',
-  name: 'Time maelstrom',
-  cost: 3,
-  faction: 'f3'
+  ]
 });

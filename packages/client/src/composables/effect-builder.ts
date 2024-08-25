@@ -238,6 +238,12 @@ export const [useGlobalConditionsProvider, _useGlobalConditions] = createInjecti
         params: {
           index: null
         }
+      },
+      player_has_more_minions: {
+        label: 'A player controls more minions',
+        params: {
+          player: PlayerNode
+        }
       }
     };
 

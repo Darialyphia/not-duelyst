@@ -14,6 +14,9 @@ export class ChangeCardCostCardAction extends CardAction<'change_card_cost'> {
       const isMatch = cards.some(c => c.equals(card as Card));
       if (!isMatch) return value;
 
+      const isActive = this.checkGlobalConditions(this.action.params.activeWhen);
+      if (!isActive) return value;
+
       if (
         this.action.params.occurences_count &&
         meta.occurences >= this.action.params.occurences_count

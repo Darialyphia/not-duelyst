@@ -281,6 +281,7 @@ const actionDict: ActionDictionary = {
       card: CardNode,
       duration: null,
       occurences_count: null,
+      activeWhen: GlobalConditionNode,
       execute: null,
       filter: GlobalConditionNode
     }
@@ -461,6 +462,17 @@ const actionDict: ActionDictionary = {
       filter: GlobalConditionNode
     }
   },
+  change_can_be_attacked: {
+    label: 'Prevent a unit from being attacked',
+    params: {
+      unit: UnitNode,
+      target: UnitNode,
+      duration: null,
+      activeWhen: GlobalConditionNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
   dispel_entity: {
     label: 'Dispel a unit',
     params: {
@@ -539,6 +551,15 @@ const actionDict: ActionDictionary = {
     params: {
       amount: AmountNode,
       player: PlayerNode,
+      execute: null,
+      filter: null
+    }
+  },
+  transform_unit: {
+    label: 'Transform a unit',
+    params: {
+      blueprint: BlueprintNode,
+      unit: UnitNode,
       execute: null,
       filter: null
     }
@@ -697,6 +718,7 @@ watch(
       })
       .with({ type: 'change_card_cost' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.card ??= { candidates: [[{ type: 'any_card' }]], random: false };
@@ -822,6 +844,14 @@ watch(
         params.target ??= { candidates: [[{ type: undefined as any }]], random: false };
         params.duration ??= 'always';
       })
+      .with({ type: 'change_can_be_attacked' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.unit ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.target ??= { candidates: [[{ type: undefined as any }]], random: false };
+        params.duration ??= 'always';
+      })
       .with({ type: 'dispel_entity' }, ({ params }) => {
         params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
@@ -871,6 +901,12 @@ watch(
       .with({ type: 'give_gold' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.player ??= { candidates: [[{ type: 'ally_player' }]] };
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
+      })
+      .with({ type: 'transform_unit' }, ({ params }) => {
+        params.blueprint ??= [];
+        params.unit ??= { candidates: [[{ type: 'any_unit' }]] };
         params.execute ??= 'now';
         params.filter ??= { candidates: [], random: false };
       })

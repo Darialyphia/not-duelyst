@@ -12,11 +12,11 @@ export const f3AurorasTears = defineSerializedBlueprint({
   cellHighlights: [],
   spriteId: 'icon_f3_aurorastear',
   name: "Aurora's Tears",
-  cost: 1,
+  cost: 2,
   faction: 'f3',
   effects: [
     {
-      text: 'Gain one gold for each artifact equipped to your general, then destroy them.',
+      text: 'Gain 2 gold for each artifact equipped to your general, then destroy them.',
       config: {
         executionContext: 'immediate',
         actions: [

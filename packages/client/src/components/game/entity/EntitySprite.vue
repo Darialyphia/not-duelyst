@@ -10,7 +10,7 @@ import { waitFor, type Nullable } from '@game/shared';
 
 const { entityId, scaleX } = defineProps<{ entityId: EntityId; scaleX: number }>();
 
-const { ui, fx, pathfinding, gameType, assets, session } = useGame();
+const { ui, fx, pathfinding, gameType, session } = useGame();
 const entity = useEntity(entityId);
 const { settings } = useUserSettings();
 const userPlayer = useUserPlayer();

@@ -12,7 +12,7 @@ import type { CardModifier } from '../modifier/card-modifier';
 import { type Cell } from '../board/cell';
 import { TERRAINS } from '../board/board-utils';
 import { Unit } from '../card/unit';
-import type { Card } from '../card/card';
+import type { Card, CardBlueprintId } from '../card/card';
 import { TypedEventEmitter } from '../utils/typed-emitter';
 import type { TagId } from '../utils/tribes';
 import { DefaultAttackPattern, type AttackPattern } from '../utils/attack-patterns';
@@ -531,7 +531,6 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   addModifier(modifier: EntityModifier) {
-    console.log('add modifier', modifier.id);
     const existing = this.getModifier(modifier.id);
 
     if (existing) {
@@ -587,6 +586,12 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     });
   }
 
+  clearModifiers() {
+    this.modifiers.forEach(modifier => {
+      modifier.onRemoved(this.session, this, modifier);
+    });
+  }
+
   isAlly(entityId: EntityId) {
     return isAlly(this.session, entityId, this.playerId);
   }
@@ -599,6 +604,10 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     const idx = this._keywords.indexOf(keyword);
     if (idx === -1) return;
     this._keywords.splice(idx, 1);
+  }
+
+  clearKeywords() {
+    this._keywords = [];
   }
 
   addKeyword(keyword: Keyword) {
@@ -663,5 +672,11 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
       if (modifier.source.player.equals(this.player)) return;
       this.removeModifier(modifier.id);
     });
+  }
+
+  async transform(blueprintId: CardBlueprintId) {
+    this.clearKeywords();
+    this.clearModifiers();
+    await this.card.transform(blueprintId, this.position);
   }
 }

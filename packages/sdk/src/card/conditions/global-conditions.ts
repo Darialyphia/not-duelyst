@@ -60,6 +60,12 @@ export type GlobalCondition<
         tag?: TagId;
         position?: Filter<CellCondition>;
       };
+    }
+  | {
+      type: 'player_has_more_minions';
+      params: {
+        player: Filter<PlayerCondition>;
+      };
     };
 
 export const checkGlobalConditions = (
@@ -203,6 +209,18 @@ export const checkGlobalConditions = (
         })
         .with({ type: 'target_exists' }, condition => {
           return !!targets[condition.params.index];
+        })
+        .with({ type: 'player_has_more_minions' }, condition => {
+          const [player] = getPlayers({
+            session,
+            card,
+            event,
+            eventName,
+            targets,
+            conditions: condition.params.player
+          });
+
+          return player.entities.length > player.opponent.entities.length;
         })
         .exhaustive();
     });

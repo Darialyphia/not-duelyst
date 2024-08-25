@@ -250,6 +250,7 @@ export type Action<
         amount: Amount<T>;
         occurences_count?: number;
         duration: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        activeWhen?: Filter<GlobalCondition<T>>;
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
@@ -459,6 +460,21 @@ export type Action<
       };
     }
   | {
+      type: 'change_can_be_attacked';
+      params: {
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        target: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+      };
+    }
+  | {
       type: 'dispel_entity';
       params: {
         unit: Filter<
@@ -527,6 +543,17 @@ export type Action<
         filter?: Filter<GlobalCondition<T>>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         player: Filter<PlayerCondition>;
+      };
+    }
+  | {
+      type: 'transform_unit';
+      params: {
+        blueprint: CardBlueprintId[];
+        unit: Filter<
+          UnitConditionBase | Extract<UnitConditionExtras, { type: T['unit'] }>
+        >;
+        filter?: Filter<GlobalCondition<T>>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
       };
     };
 

@@ -31,8 +31,12 @@ useEventListener('mousemove', e => {
     <MainNavigation />
 
     <section>
-      <img src="/assets/ui/logo2@3x.png" />
-      <div class="fancy-surface fancy-scrollbar">
+      <div class="logo">
+        <div />
+        <img src="/assets/ui/logo2@3x.png" />
+        <div />
+      </div>
+      <div class="fancy-surface fancy-scrollbar patch-notes">
         <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
 
         <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
@@ -80,14 +84,33 @@ section {
 
   max-height: 90dvh;
   padding-block-start: var(--size-6);
-  > div {
-    overflow-y: auto;
-    width: 100%;
-    line-height: 1.8;
+}
 
-    @screen lg {
-      margin-block: var(--size-8);
-    }
+.patch-notes {
+  overflow-y: auto;
+  width: 100%;
+  line-height: 1.8;
+
+  @screen lg {
+    margin-block: var(--size-8);
+  }
+}
+
+.logo {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  > :is(div:first-of-type, div:last-of-type) {
+    width: 50%;
+    height: 2px;
+    background-color: white;
+  }
+
+  > div:first-of-type {
+    justify-self: end;
+  }
+  > div:last-of-type {
+    justify-self: start;
   }
 }
 

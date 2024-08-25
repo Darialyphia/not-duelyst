@@ -64,6 +64,9 @@ watchEffect(() => {
         .with({ type: 'target_exists' }, ({ params }) => {
           params.index ??= 0;
         })
+        .with({ type: 'player_has_more_minions' }, ({ params }) => {
+          params.player = { candidates: [[{ type: 'ally_player' }]] };
+        })
         .exhaustive();
     });
   });
@@ -121,6 +124,11 @@ const id = useId();
             })
             .with({ type: 'target_exists' }, () => {
               condition.params = { index: 0 };
+            })
+            .with({ type: 'player_has_more_minions' }, () => {
+              condition.params = {
+                player: { candidates: [[{ type: 'ally_player' }]] }
+              };
             })
             .exhaustive();
         }
