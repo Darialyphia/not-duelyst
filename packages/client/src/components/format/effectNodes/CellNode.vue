@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CellCondition, Filter } from '@game/sdk';
 import { match } from 'ts-pattern';
-import { UnitNode } from '#components';
+import { AmountNode, UnitNode } from '#components';
 
 const groups = defineModel<Filter<CellCondition>>({ required: true });
 
@@ -19,7 +19,8 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
   cellDict.value[groups.value.candidates[groupIndex][conditionIndex].type]?.params ?? [];
 
 const componentNodes: Record<string, Component | string> = {
-  unit: UnitNode
+  unit: UnitNode,
+  amount: AmountNode
 };
 
 const id = useId();
@@ -103,6 +104,12 @@ const id = useId();
                 return;
               }
             )
+            .with({ type: 'within_cells' }, condition => {
+              condition.params = {
+                amount: { type: 'fixed', params: { value: 0 } },
+                cell: { candidates: [[{ type: 'any_cell' }]] }
+              };
+            })
             .exhaustive();
         }
       "

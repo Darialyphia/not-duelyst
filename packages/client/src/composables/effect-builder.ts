@@ -166,7 +166,8 @@ export const [useCellConditionsProvider, _useCellConditions] = createInjectionSt
       is_manual_target: { label: 'Is one of this card target', params: ['index'] },
       is_at: { label: 'Is at coordinates', params: ['x', 'y', 'z'] },
       '2x2_area': { label: 'Is a 2x2 area', params: ['topLeft'] },
-      '3x3_area': { label: 'Is a 3x3 area', params: ['center'] }
+      '3x3_area': { label: 'Is a 3x3 area', params: ['center'] },
+      within_cells: { label: 'Within X cells', params: ['cell', 'amount'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));

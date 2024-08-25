@@ -32,7 +32,7 @@ export const f2OnyxBearSeal = defineSerializedBlueprint({
       vfx: { tracks: [] }
     },
     {
-      text: 'If you control less minion than your opponent, reduce the cost of this card by 1.',
+      text: 'If you control less minions than your opponent, reduce the cost of this card by 1.',
       config: {
         executionContext: 'while_in_hand',
         actions: [

@@ -1,9 +1,10 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f3TimeMaelstrom = defineSerializedBlueprint({
   id: 'f3_time_maelstrom',
   collectable: true,
-  keywords: [],
+  keywords: [KEYWORDS.EPHEMERAL.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: 'SPELL',

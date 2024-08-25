@@ -183,6 +183,8 @@ import { f4SoulGrimoire } from './cards/faction_4/soul-grimoire';
 import { f4HornOfTheForsaken } from './cards/faction_4/horn-of-the-forsaken';
 import { f2Panddo } from './cards/faction_2/panddo';
 import { f2OnyxBearSeal } from './cards/faction_2/onyx-bear-seal';
+import { f2CycloneMask } from './cards/faction_2/cyclone-mask';
+import { f2MistWalking } from './cards/faction_2/mist-walking';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -249,6 +251,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f2MaskOfShadows,
   f2Panddo,
   f2OnyxBearSeal,
+  f2CycloneMask,
+  f2MistWalking,
 
   f3General,
   f3General2,

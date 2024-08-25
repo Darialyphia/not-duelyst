@@ -9,10 +9,16 @@ import {
   getCellBelow
 } from '../../entity/entity-utils';
 import type { GameSession } from '../../game-session';
-import { isWithinCells } from '../../utils/targeting';
+import { isWithinCells, isWithinDistance } from '../../utils/targeting';
 import type { Card } from '../card';
 import type { Filter } from '../card-effect';
-import { getUnits, type UnitCondition } from './unit-conditions';
+import {
+  getUnits,
+  type UnitCondition,
+  type UnitConditionExtras
+} from './unit-conditions';
+import { getAmount, type Amount } from '../helpers/amount';
+import type { CardConditionExtras } from './card-conditions';
 
 export type CellConditionBase =
   | { type: 'any_cell' }
@@ -33,7 +39,17 @@ export type CellConditionBase =
   | { type: 'is_bottom_right_corner' }
   | { type: 'is_bottom_left_corner' }
   | { type: '2x2_area'; params: { topLeft: Filter<CellConditionBase> } }
-  | { type: '3x3_area'; params: { center: Filter<CellConditionBase> } };
+  | { type: '3x3_area'; params: { center: Filter<CellConditionBase> } }
+  | {
+      type: 'within_cells';
+      params: {
+        cell: Filter<CellCondition>;
+        amount: Amount<{
+          unit: UnitConditionExtras['type'];
+          card: CardConditionExtras['type'];
+        }>;
+      };
+    };
 
 export type CellConditionExtras =
   | { type: 'moved_unit_old_position' }
@@ -235,6 +251,24 @@ export const getCells = ({
 
             return centers.some(center => {
               return isWithinCells(center, cell, 1);
+            });
+          })
+          .with({ type: 'within_cells' }, condition => {
+            const centers = getCells({
+              conditions: condition.params.cell,
+              playedPoint,
+              ...ctx
+            });
+
+            return centers.some(center => {
+              return isWithinDistance(
+                center,
+                cell,
+                getAmount({
+                  amount: condition.params.amount,
+                  ...ctx
+                })
+              );
             });
           })
           .exhaustive();

@@ -230,7 +230,7 @@ export const KEYWORDS = {
   EPHEMERAL: {
     id: 'ephemeral',
     name: 'Ephemeral',
-    description: 'This unit disappear at the end of its owner turn.',
+    description: "This unit disappears at the end of its owner's turn.",
     aliases: [],
     spriteId: 'ephemeral'
   },

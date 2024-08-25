@@ -36,6 +36,14 @@ export const isWithinCells = (
   );
 };
 
+export const isWithinDistance = (origin: Point3D, point: Point3D, range: number) => {
+  const diffX = Math.abs(point.x - origin.x);
+  const diffY = Math.abs(point.y - origin.y);
+  const diffZ = Math.abs(point.z - origin.z);
+
+  return diffX + diffY <= range && diffZ <= range;
+};
+
 export const isMinCells = (origin: Point3D, point: Point3D, range: number | Point3D) => {
   if (isNumber(range)) {
     range = { x: range, y: range, z: range };
