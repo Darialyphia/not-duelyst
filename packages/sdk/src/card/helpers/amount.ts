@@ -108,6 +108,11 @@ export type Amount<T extends ConditionOverrides> =
       type: 'destroyed_units';
       // eslint-disable-next-line @typescript-eslint/ban-types
       params: {};
+    }
+  | {
+      type: 'missing_cards_in_hand';
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      params: {};
     };
 
 export const getAmount = ({
@@ -209,6 +214,9 @@ export const getAmount = ({
       return ctx.session.entitySystem
         .getList()
         .filter(e => e.destroyedBy?.equals(ctx.card)).length;
+    })
+    .with({ type: 'missing_cards_in_hand' }, () => {
+      return ctx.session.config.MAX_HAND_SIZE - ctx.card.player.hand.length;
     })
     .exhaustive();
 };

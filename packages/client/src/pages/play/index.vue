@@ -31,7 +31,7 @@ useEventListener('mousemove', e => {
     <MainNavigation />
 
     <section>
-      <img src="/assets/ui/logo@2x.png" />
+      <img src="/assets/ui/logo2@3x.png" />
       <div class="fancy-surface fancy-scrollbar">
         <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
 

@@ -531,6 +531,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   }
 
   addModifier(modifier: EntityModifier) {
+    console.log('add modifier', modifier.id);
     const existing = this.getModifier(modifier.id);
 
     if (existing) {

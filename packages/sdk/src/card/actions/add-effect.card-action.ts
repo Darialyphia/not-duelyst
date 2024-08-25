@@ -9,20 +9,13 @@ export class AddEffectCardAction extends CardAction<'add_effect'> {
       config: this.action.params.effect
     }).flat();
 
+    const cleanups: Array<() => void> = [];
     await Promise.all(
       units.map(async unit => {
         for (const effect of effects) {
           if (effect.onPlay) {
-            await effect.onPlay({
-              session: this.session,
-              entity: unit,
-              card: unit.card,
-              targets: []
-            });
-          }
-          if (effect.getEntityModifier) {
-            unit.addModifier(
-              effect.getEntityModifier({
+            cleanups.push(
+              await effect.onPlay({
                 session: this.session,
                 entity: unit,
                 card: unit.card,
@@ -30,14 +23,32 @@ export class AddEffectCardAction extends CardAction<'add_effect'> {
               })
             );
           }
+          if (effect.getEntityModifier) {
+            const modifier = effect.getEntityModifier({
+              session: this.session,
+              entity: unit,
+              card: unit.card,
+              targets: []
+            });
+            unit.addModifier(modifier);
+            cleanups.push(() => unit.removeModifier(modifier.id));
+          }
 
           if (effect.getCardModifier) {
-            unit.card.addModifier(effect.getCardModifier());
+            const modifier = effect.getCardModifier();
+            unit.card.addModifier(modifier);
+            cleanups.push(() => unit.removeModifier(modifier.id));
           }
         }
       })
     );
 
-    return noop;
+    return () => {
+      if (this.action.params.linkToCard) {
+        cleanups.forEach(c => {
+          c();
+        });
+      }
+    };
   }
 }

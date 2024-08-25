@@ -229,6 +229,7 @@ export type Action<
         >;
         effect: CardEffectConfig<Trigger[]>;
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        linkToCard?: boolean;
       };
     }
   | {

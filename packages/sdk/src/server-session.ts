@@ -75,6 +75,7 @@ export class ServerSession extends GameSession {
   }
 
   simulateAction(action: SerializedAction) {
+    return;
     return new Promise<SimulationResult>(resolve => {
       const session = new GameSession(
         { ...this.initialState, history: this.actionSystem.serialize() },

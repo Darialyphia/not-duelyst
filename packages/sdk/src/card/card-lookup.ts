@@ -176,6 +176,8 @@ import { f4DarkfireSacrifice } from './cards/faction_4/darkfire-sacrifice';
 import { f4DarkfireCrescendo } from './cards/faction_4/darkfire-crescendo';
 import { f4RitualBanishing } from './cards/faction_4/ritual-banishing';
 import { f4SoulshatterPact } from './cards/faction_4/soulshatter-pact';
+import { f4RiteOfTheUndervault } from './cards/faction_4/rite-of-the-undervault';
+import { f2MaskOfShadows } from './cards/faction_2/mask-of-shadows';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -239,6 +241,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f2Widowmaker,
   f2JadeMonk,
   f2ScarletViper,
+  f2MaskOfShadows,
 
   f3General,
   f3General2,
@@ -305,6 +308,7 @@ const allCards: SerializedBlueprint<any>[] = [
   f4DarkfireCrescendo,
   f4RitualBanishing,
   f4SoulshatterPact,
+  f4RiteOfTheUndervault,
 
   f5General,
   f5General2,

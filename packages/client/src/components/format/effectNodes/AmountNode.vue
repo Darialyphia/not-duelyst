@@ -44,6 +44,10 @@ const amountDict: Record<
   destroyed_units: {
     label: 'The amount of units destroyed by this effect.',
     params: {}
+  },
+  missing_cards_in_hand: {
+    label: 'The amount of cards needed to have a full hand.',
+    params: {}
   }
 };
 
@@ -112,9 +116,13 @@ const id = useId();
                 player: { candidates: [[{ type: 'ally_player' }]] }
               };
             })
-            .with({ type: 'destroyed_units' }, amount => {
-              amount.params = {};
-            });
+            .with(
+              { type: 'destroyed_units' },
+              { type: 'missing_cards_in_hand' },
+              amount => {
+                amount.params = {};
+              }
+            );
         }
       "
     />

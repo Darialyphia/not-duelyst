@@ -2,7 +2,7 @@
   <main>
     <section class="container" style="--container-size: var(--size-sm)">
       <h1>
-        <img src="/assets/ui/logo@2x.png" />
+        <img src="/assets/ui/logo2@3x.png" />
         <span class="sr-only">Not Duelyst</span>
       </h1>
 

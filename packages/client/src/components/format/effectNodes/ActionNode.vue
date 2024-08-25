@@ -247,6 +247,7 @@ const actionDict: ActionDictionary = {
       unit: UnitNode,
       effect: EffectNode,
       execute: null,
+      linkToCard: null,
       filter: GlobalConditionNode
     }
   },
@@ -571,21 +572,21 @@ watch(
       .with({ type: 'deal_damage' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
-        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'heal' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 0 } };
         params.targets ??= { candidates: [[{ type: 'any_unit' }]], random: false };
-        params.filter ??= { candidates: [], random: false };
         params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'draw_cards' }, ({ params }) => {
         params.amount ??= { type: 'fixed', params: { value: 1 } };
         params.player ??= { candidates: [[{ type: 'ally_player' }]], random: false };
-        params.filter ??= { candidates: [], random: false };
-        params.execute ??= 'now';
         params.kind ??= undefined;
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'change_stats' }, ({ params }) => {
         params.mode ??= 'give';
@@ -680,8 +681,9 @@ watch(
       .with({ type: 'add_effect' }, ({ params }) => {
         params.unit ??= { candidates: [[{ type: 'any_unit' }]], random: false };
         params.effect ??= { executionContext: 'immediate', actions: [] };
-        params.filter ??= { candidates: [], random: false };
+        params.linkToCard ??= false;
         params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
       })
       .with({ type: 'dispel_cell' }, ({ params }) => {
         params.cells ??= { candidates: [[{ type: 'any_cell' }]], random: false };
@@ -905,6 +907,14 @@ const id = useId();
         <UiSwitch v-model:checked="(action.params as any)[key]" />
         <p class="c-orange-5 text-0">
           Wether this cards disappears at the end of the turn or not.
+        </p>
+      </div>
+
+      <div v-else-if="key === 'linkToCard'" class="flex gap-2 items-center">
+        <UiSwitch v-model:checked="(action.params as any)[key]" />
+        <p class="c-orange-5 text-0">
+          Wether this effect is removed when the card granting this effect leaves the
+          field.
         </p>
       </div>
 
