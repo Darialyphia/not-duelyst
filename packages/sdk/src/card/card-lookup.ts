@@ -201,6 +201,8 @@ import { f5Vindicator } from './cards/faction_5/vindicator';
 import { f5YoungSilithar } from './cards/faction_5/young-silithar';
 import { f5VeteranSilithar } from './cards/faction_5/veteran-silithar';
 import { f5SilitharElder } from './cards/faction_5/silithar-elder';
+import { f5UnstableLeviathan } from './cards/faction_5/unstable-leviathan';
+import { f5FlashReincranation } from './cards/faction_5/flash-reincarnation';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -359,6 +361,8 @@ const allCards: SerializedBlueprint<any>[] = [
   f5YoungSilithar,
   f5VeteranSilithar,
   f5SilitharElder,
+  f5UnstableLeviathan,
+  f5FlashReincranation,
 
   f6General,
   f6General2,

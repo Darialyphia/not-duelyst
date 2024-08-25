@@ -85,13 +85,13 @@ onUnmounted(() => {
     :x="0"
     event-mode="none"
   >
-    <animated-sprite :textures="attackTextures" :x="-28" :y="-5" :anchor="0.5">
+    <animated-sprite :textures="attackTextures" :x="-10" :y="-5" :anchor="0.5">
       <pixi-text :style="attackStyle" :scale="0.25" :anchor="0.5" :y="-1">
         {{ entity.attack }}
       </pixi-text>
     </animated-sprite>
 
-    <animated-sprite :textures="hpTextures" :x="28" :y="-5" :anchor="0.5">
+    <animated-sprite :textures="hpTextures" :x="10" :y="-5" :anchor="0.5">
       <pixi-text :style="hpStyle" :scale="0.25" :anchor="0.5" :y="-1">
         {{ Math.max(0, entity.hp) }}
       </pixi-text>
