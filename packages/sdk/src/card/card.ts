@@ -135,7 +135,6 @@ export abstract class Card
     await this.emitAsync(CARD_EVENTS.BEFORE_PLAYED, this);
 
     const isSuccess = await this.playImpl(ctx);
-
     if (!isSuccess) return false;
 
     await this.emitAsync(CARD_EVENTS.AFTER_PLAYED, this);

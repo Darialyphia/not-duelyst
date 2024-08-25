@@ -23,7 +23,7 @@ import {
 } from '../entity/entity-utils';
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 import type { CardBlueprint } from '../card/card-blueprint';
-import { mixin } from 'lodash-es';
+import { f5Egg } from '../card/cards/faction_5/egg';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -974,6 +974,94 @@ export const slay = ({
             await ctx.session.actionSystem.schedule(async () => {
               await onTriggered();
             });
+          }
+        }
+      })
+    ]
+  });
+};
+
+export const grow = ({ source }: { source: Card }) => {
+  return createEntityModifier({
+    source,
+    id: KEYWORDS.GROW.id,
+    stackable: true,
+    stacks: 0,
+    visible: false,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        keywords: [],
+        key: 'attack',
+        interceptor(modifier) {
+          return val => val + (modifier.stacks ?? 1);
+        }
+      }),
+      modifierEntityInterceptorMixin({
+        keywords: [],
+        key: 'maxHp',
+        interceptor(modifier) {
+          return val => val + (modifier.stacks ?? 1);
+        }
+      }),
+      modifierGameEventMixin({
+        keywords: [KEYWORDS.GROW],
+        eventName: 'player:turn_start',
+        listener([player], ctx) {
+          if (!player.equals(ctx.attachedTo.player)) return;
+          if (!ctx.modifier.stacks) ctx.modifier.stacks = 1;
+          ctx.modifier.stacks++;
+        }
+      })
+    ]
+  });
+};
+
+export const rebirth = ({ source }: { source: Card }) => {
+  return createEntityModifier({
+    source,
+    id: KEYWORDS.REBIRTH.id,
+    stackable: false,
+    visible: false,
+    mixins: [
+      {
+        onRemoved() {
+          console.log('rmeove rebirth');
+        }
+      },
+      modifierSelfEventMixin({
+        eventName: 'after_destroy',
+        once: true,
+        async listener(event, ctx) {
+          const egg = ctx.attachedTo.player.generateCard({
+            blueprintId: f5Egg.id,
+            pedestalId: ctx.attachedTo.card.pedestalId,
+            cardBackId: ctx.attachedTo.card.cardBackId
+          }) as Unit;
+          await egg.play({ position: ctx.attachedTo.position, targets: [] });
+          const bluprintId = ctx.attachedTo.card.blueprintId;
+
+          const eggModifier = createEntityModifier({
+            source: ctx.attachedTo.card,
+            stackable: false,
+            visible: false,
+            mixins: [
+              modifierGameEventMixin({
+                eventName: 'player:turn_end',
+                async listener([player], ctx) {
+                  if (!player.equals(ctx.attachedTo.player)) return;
+                  await ctx.attachedTo.transform(bluprintId);
+                  ctx.attachedTo.removeModifier(eggModifier.id);
+                }
+              })
+            ]
+          });
+
+          if (ctx.session.playerSystem.activePlayer.equals(ctx.attachedTo.player)) {
+            ctx.session.once('player:turn_end', () => {
+              egg.entity.addModifier(eggModifier);
+            });
+          } else {
+            egg.entity.addModifier(eggModifier);
           }
         }
       })

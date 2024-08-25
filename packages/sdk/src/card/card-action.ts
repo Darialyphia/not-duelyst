@@ -51,6 +51,8 @@ import { GiveGoldCardAction } from './actions/give-gold.card-action';
 import { ChangeCanBeAttackedCardAction } from './actions/change-can-be-attacked.card-action';
 import { TransformUnitCardAction } from './actions/transform-unit.card-action';
 import { BarrierCardAction } from './actions/barrier.card-action';
+import { GrowCardAction } from './actions/grow.card-action';
+import { RebirthCardAction } from './actions/rebirth.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -219,6 +221,12 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'barrier' }, action => {
         return new BarrierCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'grow' }, action => {
+        return new GrowCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'rebirth' }, action => {
+        return new RebirthCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

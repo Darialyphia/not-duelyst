@@ -188,6 +188,19 @@ import { f2MistWalking } from './cards/faction_2/mist-walking';
 import { f1Decimate } from './cards/faction_1/decimate';
 import { f1AegisBarrier } from './cards/faction_1/aegis-barrier';
 import { f1SkywindGlaives } from './cards/faction_1/skywind-glaives';
+import { f5MakantorWarbeast } from './cards/faction_5/makantor-warbeast';
+import { f5Kujata } from './cards/faction_5/kujata';
+import { f5Egg } from './cards/faction_5/egg';
+import { f5Elucidator } from './cards/faction_5/elucidator';
+import { f5Earthwalker } from './cards/faction_5/earthwalker';
+import { f5Grimrock } from './cards/faction_5/grimrock';
+import { f5Phalanxar } from './cards/faction_5/phalanxar';
+import { f5SpiritHarvester } from './cards/faction_5/spirit-harvester';
+import { f5Kolossus } from './cards/faction_5/kolossus';
+import { f5Vindicator } from './cards/faction_5/vindicator';
+import { f5YoungSilithar } from './cards/faction_5/young-silithar';
+import { f5VeteranSilithar } from './cards/faction_5/veteran-silithar';
+import { f5SilitharElder } from './cards/faction_5/silithar-elder';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -333,6 +346,19 @@ const allCards: SerializedBlueprint<any>[] = [
   f5General,
   f5General2,
   f5General3,
+  f5MakantorWarbeast,
+  f5Kujata,
+  f5Egg,
+  f5Elucidator,
+  f5Earthwalker,
+  f5Grimrock,
+  f5Phalanxar,
+  f5SpiritHarvester,
+  f5Kolossus,
+  f5Vindicator,
+  f5YoungSilithar,
+  f5VeteranSilithar,
+  f5SilitharElder,
 
   f6General,
   f6General2,

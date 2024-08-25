@@ -170,6 +170,11 @@ const id = useId();
           v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
+      <template v-else-if="param === 'blueprint'">
+        <Blueprint
+          v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
+        />
+      </template>
       <template v-else-if="param === 'keyword'">
         <KeywordNode
           v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"

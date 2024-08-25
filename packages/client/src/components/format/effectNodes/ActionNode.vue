@@ -552,7 +552,7 @@ const actionDict: ActionDictionary = {
       duration: null,
       activeWhen: GlobalConditionNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   },
   give_gold: {
@@ -561,7 +561,7 @@ const actionDict: ActionDictionary = {
       amount: AmountNode,
       player: PlayerNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
     }
   },
   transform_unit: {
@@ -570,7 +570,25 @@ const actionDict: ActionDictionary = {
       blueprint: BlueprintNode,
       unit: UnitNode,
       execute: null,
-      filter: null
+      filter: GlobalConditionNode
+    }
+  },
+  grow: {
+    label: 'Grow',
+    params: {
+      attack: null,
+      hp: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  rebirth: {
+    label: 'Rebirth',
+    params: {
+      activeWhen: GlobalConditionNode,
+      duration: null,
+      execute: null,
+      filter: GlobalConditionNode
     }
   }
 };
@@ -925,6 +943,18 @@ watch(
         params.execute ??= 'now';
         params.filter ??= { candidates: [], random: false };
       })
+      .with({ type: 'grow' }, ({ params }) => {
+        params.attack ??= 1;
+        params.hp ??= 1;
+        params.execute ??= 'now';
+        params.filter ??= { candidates: [], random: false };
+      })
+      .with({ type: 'rebirth' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.activeWhen ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.duration ??= 'always';
+      })
       .exhaustive();
   },
   { immediate: true }
@@ -1053,6 +1083,17 @@ const id = useId();
         <p class="color-orange-5 text-0">
           Keep at 0 if it can happens any number of times
         </p>
+      </div>
+
+      <div
+        v-else-if="action.type === 'grow' && (key === 'attack' || key === 'hp')"
+        class="flex items-center gap-3"
+      >
+        <UiTextInput
+          :id="`${id}-${key}`"
+          v-model="(action.params as any)[key]"
+          type="number"
+        />
       </div>
 
       <template v-else-if="key === 'blueprint'">

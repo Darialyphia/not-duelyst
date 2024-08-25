@@ -123,6 +123,7 @@ watch(sprite, newSprite => {
 const castFxTextures = ref(null) as Ref<Nullable<FrameObject[]>>;
 const cleanups = [
   session.on('card:before_played', async card => {
+    if (!entity.value) return;
     if (!entity.value.isGeneral) return;
     if (!card.player.equals(entity.value.player)) return;
     if (card.kind !== CARD_KINDS.SPELL && card.kind !== CARD_KINDS.ARTIFACT) return;

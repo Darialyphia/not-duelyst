@@ -19,7 +19,7 @@ export const neutralRedSynja = defineSerializedBlueprint({
   faction: null,
   effects: [
     {
-      text: 'When your general takes damage, deal 7 damage to ta rando! nearby enemy.',
+      text: 'When your general takes damage, deal 7 damage to ta random nearby enemy.',
       config: {
         executionContext: 'trigger_while_on_board',
         actions: [

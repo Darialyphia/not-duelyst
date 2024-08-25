@@ -432,7 +432,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_jade_monk.hurt.0",
+    "filename": "f2_jade_monk.hit.0",
     "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -441,7 +441,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_jade_monk.hurt.1",
+    "filename": "f2_jade_monk.hit.1",
     "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -450,7 +450,7 @@
     "duration": 64
    },
    {
-    "filename": "f2_jade_monk.hurt.2",
+    "filename": "f2_jade_monk.hit.2",
     "frame": { "x": 200, "y": 300, "w": 100, "h": 100 },
     "rotated": false,
     "trimmed": false,
@@ -641,7 +641,7 @@
    { "name": "attack", "from": 0, "to": 13, "direction": "forward", "color": "#000000ff" },
    { "name": "breathing", "from": 14, "to": 24, "direction": "forward", "color": "#000000ff" },
    { "name": "death", "from": 25, "to": 47, "direction": "forward", "color": "#000000ff" },
-   { "name": "hurt", "from": 48, "to": 50, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 48, "to": 50, "direction": "forward", "color": "#000000ff" },
    { "name": "idle", "from": 51, "to": 61, "direction": "forward", "color": "#000000ff" },
    { "name": "run", "from": 62, "to": 69, "direction": "forward", "color": "#000000ff" }
   ],
