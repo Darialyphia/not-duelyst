@@ -61,7 +61,7 @@ export type GameUiContext = {
   selectedCard: ComputedRef<Nullable<Card>>;
   selectedCardIndex: Ref<Nullable<number>>;
 
-  cardChoiceIndexes: Ref<number[]>;
+  cardChoice: Ref<Nullable<number>>;
   cardTargets: Ref<Point3D[]>;
   summonTarget: Ref<Nullable<Point3D>>;
 
@@ -225,11 +225,11 @@ export const useGameUiProvider = (session: GameSession) => {
     unselectCard() {
       selectedCardIndex.value = null;
       cardTargets.value = [];
-      this.cardChoiceIndexes.value = [];
+      this.cardChoice.value = null;
       api.switchTargetingMode(TARGETING_MODES.NONE);
     },
 
-    cardChoiceIndexes: ref([]),
+    cardChoice: ref(null),
 
     targetableCells: computed(() => {
       if (!api.selectedCard.value) return [];

@@ -13,7 +13,7 @@ export class SummonUnitCardAction extends CardAction<'summon_unit'> {
         cardBackId: this.card.cardBackId
       });
 
-      return card.play({ position, targets: [] });
+      return card.play({ position, targets: [], choice: 0 });
     };
     await Promise.all(
       cells.map(cell => {

@@ -90,12 +90,12 @@ export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
     return this.id === artifact.id;
   }
 
-  async setup() {
+  async setup(choice: number) {
     this.player.general.on(
       ENTITY_EVENTS.AFTER_TAKE_DAMAGE,
       this.onGeneralDamageTaken.bind(this)
     );
-    await this.card.equip(this);
+    await this.card.equip(this, choice);
     await this.emitAsync(ARTIFACT_EVENTS.EQUIPED, this);
   }
 

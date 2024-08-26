@@ -72,7 +72,7 @@ const summon = () => {
   }
 
   ui.summonTarget.value = cell.position;
-  if (ui.selectedCard.value.blueprint.cardChoices) {
+  if (ui.selectedCard.value.meta.choices) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
   } else if (ui.selectedCard.value.targets) {
     ui.switchTargetingMode(TARGETING_MODES.TARGETING);
@@ -83,7 +83,7 @@ const summon = () => {
       cardIndex: ui.selectedCardIndex.value!,
       position: ui.summonTarget.value!,
       targets: [],
-      cardChoices: ui.cardChoiceIndexes.value
+      choice: ui.cardChoice.value ?? 0
     });
     ui.unselectCard();
   }
@@ -193,7 +193,7 @@ const hasCellAbove = computed(
             if (!userPlayer.canPlayCardAtIndex(ui.selectedCardIndex.value!)) {
               return;
             }
-            if (ui.selectedCard.value.blueprint.cardChoices) {
+            if (ui.selectedCard.value.meta.adapt) {
               return;
             } else if (ui.selectedCard.value.targets) {
               return;
@@ -204,7 +204,7 @@ const hasCellAbove = computed(
                 cardIndex: ui.selectedCardIndex.value!,
                 position: cell.position.serialize(),
                 targets: [],
-                cardChoices: ui.cardChoiceIndexes.value
+                choice: ui.cardChoice.value ?? 0
               }
             });
           })
@@ -248,7 +248,7 @@ const hasCellAbove = computed(
                   cardIndex: ui.selectedCardIndex.value!,
                   position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
                   targets: ui.cardTargets.value.concat(cell.position),
-                  cardChoices: ui.cardChoiceIndexes.value
+                  choice: ui.cardChoice.value ?? 0
                 }
               });
             }

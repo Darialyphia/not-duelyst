@@ -18,7 +18,8 @@ export class SlayCardAction extends CardAction<'slay'> {
               card: this.card,
               entity: this.ctx.entity,
               session: this.session,
-              targets: []
+              targets: [],
+              choice: 0
             });
           }
         }

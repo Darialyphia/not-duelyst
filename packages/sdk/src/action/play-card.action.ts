@@ -16,7 +16,7 @@ const schema = defaultActionSchema.extend({
       z: z.number()
     })
     .array(),
-  cardChoices: z.number().array()
+  choice: z.number()
 });
 
 export class PlayCardAction extends GameAction<typeof schema> {

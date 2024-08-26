@@ -12,7 +12,8 @@ export class PlayCardCardAction extends CardAction<'play_card'> {
     await card.player.playCard(card, {
       position,
       targets: this.getCells(this.action.params.targets),
-      spendGold: false
+      spendGold: false,
+      choice: 0
     });
 
     return noop;

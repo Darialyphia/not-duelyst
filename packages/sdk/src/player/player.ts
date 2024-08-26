@@ -185,7 +185,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
   }
 
-  async equipArtifact(cardIndex: CardIndex) {
+  async equipArtifact(cardIndex: CardIndex, choice: number) {
     const artifact = new PlayerArtifact(this.session, { cardIndex, playerId: this.id });
     Object.values(ARTIFACT_EVENTS).forEach(eventName => {
       artifact.on(eventName, async event => {
@@ -193,7 +193,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
       });
     });
     this.artifacts.push(artifact);
-    await artifact.setup();
+    await artifact.setup(choice);
   }
 
   unequipArtifact(id: PlayerArtifactId) {
@@ -330,7 +330,10 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     return true;
   }
 
-  async playCardAtIndex(index: number, opts: { position: Point3D; targets: Point3D[] }) {
+  async playCardAtIndex(
+    index: number,
+    opts: { position: Point3D; targets: Point3D[]; choice: number }
+  ) {
     const card = this.hand[index];
     if (!card) return;
     await this.playCard(card, opts);
@@ -341,8 +344,9 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     {
       position,
       targets,
+      choice,
       spendGold = true
-    }: { position: Point3D; targets: Point3D[]; spendGold?: boolean }
+    }: { position: Point3D; targets: Point3D[]; spendGold?: boolean; choice: number }
   ) {
     await this.emitAsync(PLAYER_EVENTS.BEFORE_PLAY_CARD, { player: this, card });
 
@@ -359,7 +363,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
       this.deck.pluck(card);
     }
 
-    const isSuccess = await card.play({ position, targets });
+    const isSuccess = await card.play({ position, targets, choice });
     if (!isSuccess) {
       if (spendGold) {
         this.currentGold += card.cost;

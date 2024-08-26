@@ -10,7 +10,7 @@ export class EquipArtifactCardAction extends CardAction<'equip_artifact'> {
       cardBackId: this.card.cardBackId
     });
 
-    await player.equipArtifact(card.index);
+    await player.equipArtifact(card.index, 0);
 
     return noop;
   }

@@ -32,7 +32,8 @@ export class AuraCardAction extends CardAction<'aura'> {
                 entity,
                 card: entity.card,
                 modifierRecipient: this.ctx.entity,
-                targets: []
+                targets: [],
+                choice: 0
               })
             );
           }
@@ -42,7 +43,8 @@ export class AuraCardAction extends CardAction<'aura'> {
               entity,
               card: entity.card,
               modifierRecipient: this.ctx.entity,
-              targets: []
+              targets: [],
+              choice: 0
             });
             source.addModifier(mod);
             cleanups.push(() => {

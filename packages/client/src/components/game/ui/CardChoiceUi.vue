@@ -1,39 +1,54 @@
 <script setup lang="ts">
-const { ui, dispatch } = useGame();
+import type { CardBlueprintId } from '@game/sdk/src/card/card';
+import type { Point3D } from '@game/shared';
+
+const { ui, dispatch, session } = useGame();
 const isOpened = computed(() => {
   return ui.targetingMode.value === TARGETING_MODES.CARD_CHOICE;
 });
 
+type Cardchoice = {
+  type: 'card';
+  blueprintId: CardBlueprintId;
+  description: string;
+  onPlay: (options: { position: Point3D; targets: Point3D[] }) => Promise<void>;
+};
+
 const cardChoices = computed(() => {
   if (ui.selectedCard.value) {
-    return ui.selectedCard.value.blueprint.cardChoices;
+    return ui.selectedCard.value.meta.adapt as Cardchoice[] | undefined;
   } else return null;
 });
 
 const blueprints = computed(() => {
-  return cardChoices.value?.getChoices();
+  if (!cardChoices.value) return [];
+  return cardChoices.value.map(choice => {
+    const blueprint = session.cardBlueprints[choice.blueprintId];
+    return {
+      ...blueprint,
+      description: choice.description
+    };
+  });
 });
 
 const cancel = () => {
   ui.unselectCard();
-  ui.cardChoiceIndexes.value = [];
+  ui.cardChoice.value = null;
 };
 
 watchEffect(() => {
   if (!ui.selectedCard.value) return;
   if (!cardChoices.value) return;
-  if (cardChoices.value.maxChoices === ui.cardChoiceIndexes.value.length) {
-    if (ui.selectedCard.value.targets) {
-      ui.switchTargetingMode(TARGETING_MODES.TARGETING);
-    } else {
-      dispatch('playCard', {
-        cardIndex: ui.selectedCardIndex.value!,
-        position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
-        targets: [],
-        cardChoices: ui.cardChoiceIndexes.value
-      });
-      ui.unselectCard();
-    }
+  if (ui.selectedCard.value.targets) {
+    ui.switchTargetingMode(TARGETING_MODES.TARGETING);
+  } else {
+    dispatch('playCard', {
+      cardIndex: ui.selectedCardIndex.value!,
+      position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+      targets: [],
+      choice: ui.cardChoice.value ?? 0
+    });
+    ui.unselectCard();
   }
 });
 </script>
@@ -67,11 +82,18 @@ watchEffect(() => {
         }"
         @click="
           () => {
-            const idx = ui.cardChoiceIndexes.value.indexOf(index);
-            if (idx >= 0) {
-              ui.cardChoiceIndexes.value.splice(idx, 1);
+            ui.cardChoice.value = index;
+            if (!ui.selectedCard.value) return;
+            if (ui.selectedCard.value.targets) {
+              ui.switchTargetingMode(TARGETING_MODES.TARGETING);
             } else {
-              ui.cardChoiceIndexes.value.push(index);
+              dispatch('playCard', {
+                cardIndex: ui.selectedCardIndex.value!,
+                position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
+                targets: [],
+                choice: ui.cardChoice.value ?? 0
+              });
+              ui.unselectCard();
             }
           }
         "

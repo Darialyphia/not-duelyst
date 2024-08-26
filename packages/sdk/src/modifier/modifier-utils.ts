@@ -12,7 +12,7 @@ import { modifierEntityDurationMixin } from './mixins/duration.mixin';
 import { isWithinCells } from '../utils/targeting';
 import { modifierSelfEventMixin } from './mixins/self-event.mixin';
 import { CARD_KINDS, INTERCEPTOR_PRIORITIES } from '../card/card-enums';
-import { Card, CARD_EVENTS } from '../card/card';
+import { Card, CARD_EVENTS, type CardBlueprintId } from '../card/card';
 import { Unit } from '../card/unit';
 import { ARTIFACT_EVENTS, type PlayerArtifact } from '../player/player-artifact';
 import {
@@ -24,6 +24,7 @@ import {
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 import type { CardBlueprint } from '../card/card-blueprint';
 import { f5Egg } from '../card/cards/faction_5/egg';
+import type { EffectCtx } from '../card/card-parser';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -454,7 +455,7 @@ export const spawn = ({
             cardBackId: source.cardBackId
           });
 
-          await card.play({ position, targets: [] });
+          await card.play({ position, targets: [], choice: 0 });
         }
       })
     ]
@@ -693,7 +694,11 @@ export const essence = ({
   essenceCost,
   essenceTargets
 }: {
-  essenceOnPlay: (ctx: { position: Point3D; targets: Point3D[] }) => Promise<void>;
+  essenceOnPlay: (ctx: {
+    position: Point3D;
+    targets: Point3D[];
+    choice: number;
+  }) => Promise<void>;
   essenceCost: number;
   essenceTargets: Exclude<CardBlueprint['targets'], undefined>;
 }) => {
@@ -1037,7 +1042,7 @@ export const rebirth = ({ source }: { source: Card }) => {
             pedestalId: ctx.attachedTo.card.pedestalId,
             cardBackId: ctx.attachedTo.card.cardBackId
           }) as Unit;
-          await egg.play({ position: ctx.attachedTo.position, targets: [] });
+          await egg.play({ position: ctx.attachedTo.position, targets: [], choice: 0 });
           const bluprintId = ctx.attachedTo.card.blueprintId;
 
           const eggModifier = createEntityModifier({
@@ -1065,6 +1070,41 @@ export const rebirth = ({ source }: { source: Card }) => {
           }
         }
       })
+    ]
+  });
+};
+
+export type AdaptChoice = {
+  // type: 'card';
+  blueprintId: CardBlueprintId;
+  description: string;
+  onPlay: (options: { position: Point3D; targets: Point3D[] }) => Promise<void>;
+};
+export const adapt = ({ choices }: { choices: AdaptChoice[] }) => {
+  let cleanup: any;
+
+  return createCardModifier({
+    stackable: false,
+    mixins: [
+      {
+        keywords: [KEYWORDS.ADAPT],
+        onApplied(session, card) {
+          card.meta.adapt = choices;
+
+          cleanup = card.once('before_played', () => {
+            const originalPlaympl = card.playImpl;
+            card.playImpl = async ({ position, targets, choice }) => {
+              const result = await originalPlaympl({ position, targets, choice });
+              const choiceToApply = card.meta.adapt[choice] as AdaptChoice;
+              await choiceToApply.onPlay({ position, targets });
+              return result;
+            };
+          });
+        },
+        onRemoved() {
+          cleanup?.();
+        }
+      }
     ]
   });
 };

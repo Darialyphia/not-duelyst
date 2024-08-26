@@ -44,7 +44,7 @@ export type GameEmits = {
       cardIndex: number;
       position?: Point3D;
       targets: Point3D[];
-      cardChoices: number[];
+      choice: number;
     }
   ];
   replace: [

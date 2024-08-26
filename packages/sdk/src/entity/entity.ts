@@ -677,7 +677,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
   async transform(blueprintId: CardBlueprintId) {
     this.clearKeywords();
     this.clearModifiers();
-    await this.card.transform(blueprintId, this.position);
+    await this.card.transform(blueprintId);
     this.hp = this.maxHp;
   }
 }

@@ -19,7 +19,8 @@ export class EssenceCardAction extends CardAction<'essence'> {
             await effect.onPlay({
               card: this.card,
               session: this.session,
-              targets: ctx.targets
+              targets: ctx.targets,
+              choice: ctx.choice
             });
           }
           // if (effect.getEntityModifier) {

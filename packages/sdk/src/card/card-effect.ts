@@ -581,6 +581,17 @@ export type Action<
         execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
         filter?: Filter<GlobalCondition<T>>;
       };
+    }
+  | {
+      type: 'adapt';
+      params: {
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+        choices: Array<{
+          effect: CardEffectConfig<Trigger[]>;
+          text: string;
+        }>;
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {

@@ -78,7 +78,7 @@ export class Unit extends Card implements Serializable {
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
   }
 
-  async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+  async playImpl(ctx: { position: Point3D; targets: Point3D[]; choice: number }) {
     if (!this.canPlayAt(ctx.position)) return false;
 
     this.entity = this.session.entitySystem.addEntity(
@@ -97,7 +97,8 @@ export class Unit extends Card implements Serializable {
       session: this.session,
       card: this,
       entity: this.entity,
-      targets: ctx.targets
+      targets: ctx.targets,
+      choice: ctx.choice
     });
 
     if (!this.interceptors.canMoveAfterSummon.getValue(false, this)) {
@@ -113,7 +114,7 @@ export class Unit extends Card implements Serializable {
     return true;
   }
 
-  async transform(newblueprintId: CardBlueprintId, position: Point3D) {
+  async transform(newblueprintId: CardBlueprintId) {
     this.blueprintId = newblueprintId;
     this.name = this.blueprint.name;
     this.description = this.blueprint.description;
@@ -128,7 +129,8 @@ export class Unit extends Card implements Serializable {
       session: this.session,
       card: this,
       entity: this.entity,
-      targets: []
+      targets: [],
+      choice: 0
     });
   }
 }

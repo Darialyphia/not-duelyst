@@ -72,6 +72,12 @@ export const KEYWORDS = {
     description: 'Nullifies all abilities and enchantments previously added.',
     aliases: []
   },
+  ADAPT: {
+    id: 'adapt',
+    name: 'ADAPT',
+    description: 'When you play this card, choose one of multiple possible effects.',
+    aliases: []
+  },
   CLEANSE: {
     id: 'cleanse',
     name: 'Cleanse',

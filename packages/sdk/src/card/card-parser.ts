@@ -246,7 +246,8 @@ export const getEffectModifier = <T extends GameEvent>({
               const effectCtx = {
                 session: ctx.session,
                 card: ctx.attachedTo,
-                targets: []
+                targets: [],
+                choice: 0
               };
               if (filter(effectCtx, event, eventName)) {
                 if (vfx) {
@@ -356,7 +357,9 @@ export const parseSerializedBlueprintEffect = (
                         const actions = config.actions.map(parseCardAction);
 
                         for (const action of actions) {
-                          cleanups.push(await action({ session, card, targets: [] }, {}));
+                          cleanups.push(
+                            await action({ session, card, targets: [], choice: 0 }, {})
+                          );
                         }
                       },
                       () => {

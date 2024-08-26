@@ -1,11 +1,5 @@
 import type { GameSession } from '../game-session';
-import type {
-  AnyObject,
-  MaybePromise,
-  Point3D,
-  Serializable,
-  Values
-} from '@game/shared';
+import type { AnyObject, Point3D, Serializable, Values } from '@game/shared';
 import type { CardIndex, Player, PlayerId } from '../player/player';
 import type { ModifierId } from '../modifier/entity-modifier';
 import type { CardModifier } from '../modifier/card-modifier';
@@ -53,6 +47,7 @@ export abstract class Card
   public description: string;
   public kind: CardKind;
   public targets: CardBlueprint['targets'];
+
   modifiers: CardModifier[] = [];
 
   meta: AnyObject = {};
@@ -100,7 +95,11 @@ export abstract class Card
 
   abstract canPlayAt(point: Point3D): boolean;
 
-  abstract playImpl(ctx: { position: Point3D; targets: Point3D[] }): Promise<boolean>;
+  abstract playImpl(ctx: {
+    position: Point3D;
+    targets: Point3D[];
+    choice: number;
+  }): Promise<boolean>;
 
   getModifier(id: ModifierId) {
     return this.modifiers.find(m => m.id === id);
@@ -131,7 +130,7 @@ export abstract class Card
     return this.emitAsync(CARD_EVENTS.REPLACED, this);
   }
 
-  async play(ctx: { position: Point3D; targets: Point3D[] }) {
+  async play(ctx: { position: Point3D; targets: Point3D[]; choice: number }) {
     await this.emitAsync(CARD_EVENTS.BEFORE_PLAYED, this);
 
     const isSuccess = await this.playImpl(ctx);

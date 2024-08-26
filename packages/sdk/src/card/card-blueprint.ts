@@ -27,11 +27,6 @@ export type CardBlueprintBase = {
   keywords?: Keyword[];
   modifiers?: () => CardModifier[];
   relatedBlueprintIds?: CardBlueprintId[];
-  cardChoices?: {
-    minChoices: number;
-    maxChoices: number;
-    getChoices(): CardBlueprint[];
-  };
   shouldHighlightCell: (
     point: Point3D,
     options: {
@@ -79,6 +74,7 @@ type CardBlueprintUnit = {
     card: Card;
     entity: Entity;
     targets: Array<Nullable<Point3D>>;
+    choice: number;
   }) => Promise<void>;
 };
 
@@ -92,6 +88,7 @@ type CardBlueprintSpell = {
     session: GameSession;
     card: Card;
     targets: Array<Nullable<Point3D>>;
+    choice: number;
   }) => Promise<void>;
   targets?: {
     minTargetCount: number;
@@ -124,6 +121,7 @@ type CardBlueprintArtifact = {
     card: Card;
     artifact: PlayerArtifact;
     targets: Array<Nullable<Point3D>>;
+    choice: number;
   }) => Promise<void>;
   targets?: {
     minTargetCount: number;

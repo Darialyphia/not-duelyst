@@ -1,5 +1,5 @@
 import { parseSerializedBlueprintEffect } from '../card-parser';
-import { CardAction, noop } from './_card-action';
+import { CardAction } from './_card-action';
 
 export class AddEffectCardAction extends CardAction<'add_effect'> {
   async executeImpl() {
@@ -19,7 +19,8 @@ export class AddEffectCardAction extends CardAction<'add_effect'> {
                 session: this.session,
                 entity: unit,
                 card: unit.card,
-                targets: []
+                targets: [],
+                choice: 0
               })
             );
           }
@@ -28,7 +29,8 @@ export class AddEffectCardAction extends CardAction<'add_effect'> {
               session: this.session,
               entity: unit,
               card: unit.card,
-              targets: []
+              targets: [],
+              choice: 0
             });
             unit.addModifier(modifier);
             cleanups.push(() => unit.removeModifier(modifier.id));

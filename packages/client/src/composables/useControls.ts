@@ -83,7 +83,7 @@ export const useGameControls = () => {
             cardIndex: ui.selectedCardIndex.value!,
             position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
             targets: ui.cardTargets.value,
-            cardChoices: ui.cardChoiceIndexes.value
+            choice: ui.cardChoice.value ?? 0
           });
           ui.unselectCard();
         }

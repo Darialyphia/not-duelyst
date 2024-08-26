@@ -53,20 +53,21 @@ export class Artifact extends Card implements Serializable {
     );
   }
 
-  async playImpl(ctx: { position: Point3D; targets: Point3D[] }) {
+  async playImpl(ctx: { position: Point3D; targets: Point3D[]; choice: number }) {
     if (!this.canPlayAt(this.player.general.position)) return false;
     this.playTargets = ctx.targets;
-    await this.player.equipArtifact(this.index);
+    await this.player.equipArtifact(this.index, ctx.choice);
 
     return true;
   }
 
-  async equip(artifact: PlayerArtifact) {
+  async equip(artifact: PlayerArtifact, choice: number) {
     await this.blueprint.onPlay?.({
       session: this.session,
       card: this,
       artifact,
-      targets: this.playTargets
+      targets: this.playTargets,
+      choice
     });
   }
 }

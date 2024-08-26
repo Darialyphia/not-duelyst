@@ -21,7 +21,8 @@ export class ZealCardAction extends CardAction<'zeal'> {
               session,
               card: this.card,
               entity: zealed,
-              targets: this.targets
+              targets: this.targets,
+              choice: 0
             });
           },
           onLoseAura() {
@@ -37,7 +38,8 @@ export class ZealCardAction extends CardAction<'zeal'> {
           session: this.session,
           entity: zealTarget,
           card: zealTarget.card,
-          targets: []
+          targets: [],
+          choice: 0
         });
         const zealModifier = zeal({
           source: this.card,

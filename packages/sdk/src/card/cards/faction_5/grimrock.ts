@@ -26,6 +26,49 @@ export const f5Grimrock = defineSerializedBlueprint({
         ]
       },
       vfx: { tracks: [] }
+    },
+    {
+      text: '@Adapt@: @Frenzy@ or +0/+2.',
+      config: {
+        executionContext: 'while_in_hand',
+        actions: [
+          {
+            type: 'adapt',
+            params: {
+              choices: [
+                {
+                  text: '@Frenzy@',
+                  effect: {
+                    executionContext: 'while_on_board',
+                    actions: [{ type: 'frenzy', params: {} }]
+                  }
+                },
+                {
+                  text: '+0/+2',
+                  effect: {
+                    executionContext: 'while_on_board',
+                    actions: [
+                      {
+                        type: 'change_stats',
+                        params: {
+                          mode: 'give',
+                          stackable: true,
+                          targets: {
+                            candidates: [[{ type: 'is_self', params: { not: true } }]]
+                          },
+                          hp: {
+                            amount: { type: 'fixed', params: { value: 2 } }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
   ],
   targets: { min: 0, targets: [] },
@@ -33,7 +76,7 @@ export const f5Grimrock = defineSerializedBlueprint({
   name: 'Grimrock',
   cost: 4,
   attack: 2,
-  maxHp: 5,
+  maxHp: 4,
   spriteId: 'f5_grimrock',
   faction: 'f5'
 });
