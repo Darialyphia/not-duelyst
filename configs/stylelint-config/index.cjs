@@ -1,43 +1,44 @@
 module.exports = {
   extends: [
-    'stylelint-config-recommended-vue',
-    'stylelint-config-html',
-    'stylelint-config-clean-order'
+    "stylelint-config-recommended-vue",
+    "stylelint-config-html",
+    "stylelint-config-clean-order",
   ],
   rules: {
-    'no-descending-specificity': null,
-    'selector-pseudo-class-no-unknown': [
+    "no-descending-specificity": null,
+    "selector-pseudo-class-no-unknown": [
       true,
       {
-        ignorePseudoClasses: ['deep', 'global']
-      }
+        ignorePseudoClasses: ["deep", "global"],
+      },
     ],
-    'selector-pseudo-element-no-unknown': [
+    "selector-pseudo-element-no-unknown": [
       true,
       {
-        ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted']
-      }
+        ignorePseudoElements: ["v-deep", "v-global", "v-slotted"],
+      },
     ],
-    'at-rule-no-unknown': [
+    "at-rule-no-unknown": [
       true,
       {
         ignoreAtRules: [
-          'apply',
-          'config',
-          'layer',
-          'responsive',
-          'screen',
-          'tailwind',
-          'unocss',
-          'variants'
-        ]
-      }
+          "apply",
+          "config",
+          "layer",
+          "responsive",
+          "screen",
+          "starting-style",
+          "tailwind",
+          "unocss",
+          "variants",
+        ],
+      },
     ],
-    'function-no-unknown': [
+    "function-no-unknown": [
       true,
       {
-        ignoreFunctions: ['theme', 'v-bind']
-      }
-    ]
-  }
+        ignoreFunctions: ["theme", "v-bind"],
+      },
+    ],
+  },
 };

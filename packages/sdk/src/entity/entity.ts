@@ -678,5 +678,6 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     this.clearKeywords();
     this.clearModifiers();
     await this.card.transform(blueprintId, this.position);
+    this.hp = this.maxHp;
   }
 }
