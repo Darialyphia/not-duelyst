@@ -36,7 +36,7 @@ useEventListener('mousemove', e => {
         <img src="/assets/ui/logo2@3x.png" />
         <div />
       </div>
-      <div class="fancy-surface fancy-scrollbar patch-notes">
+      <div class="fancy-scrollbar patch-notes">
         <ContentDoc :path="`/${VERSION}`" :head="false" class="markdown" />
 
         <NuxtLink :to="{ name: 'PatchNotesList' }" class="underline" target="_blank">
@@ -88,8 +88,13 @@ section {
 
 .patch-notes {
   overflow-y: auto;
+
   width: 100%;
+  padding: var(--size-6);
+
   line-height: 1.8;
+
+  background: hsl(0 0 0 / 0.6);
 
   @screen lg {
     margin-block: var(--size-8);
