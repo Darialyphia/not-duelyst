@@ -140,6 +140,13 @@ const id = useId();
                 not: false
               };
             })
+            .with(
+              { type: 'has_highest_attack' },
+              { type: 'has_lowest_attack' },
+              condition => {
+                condition.params = { not: false };
+              }
+            )
             .exhaustive();
         }
       "

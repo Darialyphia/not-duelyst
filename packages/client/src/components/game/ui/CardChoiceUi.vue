@@ -35,32 +35,11 @@ const cancel = () => {
   ui.unselectCard();
   ui.cardChoice.value = null;
 };
-
-watchEffect(() => {
-  if (!ui.selectedCard.value) return;
-  if (!cardChoices.value) return;
-  if (ui.selectedCard.value.targets) {
-    ui.switchTargetingMode(TARGETING_MODES.TARGETING);
-  } else {
-    dispatch('playCard', {
-      cardIndex: ui.selectedCardIndex.value!,
-      position: ui.summonTarget.value ?? { x: 0, y: 0, z: 0 },
-      targets: [],
-      choice: ui.cardChoice.value ?? 0
-    });
-    ui.unselectCard();
-  }
-});
 </script>
 
 <template>
-  <UiModal
-    :closable="false"
-    :is-opened="isOpened"
-    title="Select a unit"
-    :style="{ '--ui-modal-size': 'var(--size-xl)' }"
-  >
-    <div v-if="blueprints" class="flex justify-between">
+  <UiModal :closable="false" :is-opened="isOpened" title="Choose one">
+    <div v-if="blueprints" class="cards" :style="{ '--cols': cardChoices?.length }">
       <Card
         v-for="(blueprint, index) in blueprints"
         :key="index"
@@ -115,5 +94,10 @@ watchEffect(() => {
   &:hover {
     filter: drop-shadow(4px 4px 0 var(--cyan-5)) drop-shadow(-4px -4px 0 var(--orange-5));
   }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
 }
 </style>

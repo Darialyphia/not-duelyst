@@ -71,6 +71,14 @@ export type UnitConditionBase =
         not: boolean;
       };
     }
+  | {
+      type: 'has_lowest_attack';
+      params: { not: false };
+    }
+  | {
+      type: 'has_highest_attack';
+      params: { not: false };
+    }
   | { type: 'is_exhausted'; params: { not: boolean } };
 
 export type UnitConditionExtras =
@@ -410,6 +418,32 @@ export const getUnits = ({
             });
 
             return cells.some(c => c.x === e.position.x);
+          })
+          .with({ type: 'has_lowest_attack' }, () => {
+            let entities: Entity[] = [];
+            let lowest = Infinity;
+            session.entitySystem.getList().forEach(entity => {
+              if (entity.attack < lowest) {
+                entities = [entity];
+              } else if (entity.attack === lowest) {
+                entities.push(entity);
+                lowest = entity.attack;
+              }
+            });
+            return entities;
+          })
+          .with({ type: 'has_highest_attack' }, () => {
+            let entities: Entity[] = [];
+            let highest = 0;
+            session.entitySystem.getList().forEach(entity => {
+              if (entity.attack > highest) {
+                entities = [entity];
+              } else if (entity.attack === highest) {
+                entities.push(entity);
+                highest = entity.attack;
+              }
+            });
+            return entities;
           })
           .exhaustive();
 

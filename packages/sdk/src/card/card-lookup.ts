@@ -203,6 +203,10 @@ import { f5VeteranSilithar } from './cards/faction_5/veteran-silithar';
 import { f5SilitharElder } from './cards/faction_5/silithar-elder';
 import { f5UnstableLeviathan } from './cards/faction_5/unstable-leviathan';
 import { f5FlashReincranation } from './cards/faction_5/flash-reincarnation';
+import { f5Overload } from './cards/faction_5/overload';
+import { f5NaturalSelection } from './cards/faction_5/natural-selection';
+import { f5GreaterFortitude } from './cards/faction_5/greater-fortitude';
+import { f5EarthSphere } from './cards/faction_5/earth-sphere';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -363,6 +367,10 @@ const allCards: SerializedBlueprint<any>[] = [
   f5SilitharElder,
   f5UnstableLeviathan,
   f5FlashReincranation,
+  f5Overload,
+  f5NaturalSelection,
+  f5GreaterFortitude,
+  f5EarthSphere,
 
   f6General,
   f6General2,

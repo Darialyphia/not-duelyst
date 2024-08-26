@@ -74,7 +74,7 @@ export const KEYWORDS = {
   },
   ADAPT: {
     id: 'adapt',
-    name: 'ADAPT',
+    name: 'Adapt',
     description: 'When you play this card, choose one of multiple possible effects.',
     aliases: []
   },

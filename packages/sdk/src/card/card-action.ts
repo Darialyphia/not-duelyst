@@ -53,6 +53,7 @@ import { TransformUnitCardAction } from './actions/transform-unit.card-action';
 import { BarrierCardAction } from './actions/barrier.card-action';
 import { GrowCardAction } from './actions/grow.card-action';
 import { RebirthCardAction } from './actions/rebirth.card-action';
+import { AdaptCardAction } from './actions/adapt.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -227,6 +228,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'rebirth' }, action => {
         return new RebirthCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'adapt' }, action => {
+        return new AdaptCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

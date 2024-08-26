@@ -14,7 +14,6 @@ export class AdaptCardAction extends CardAction<'adapt'> {
             text: '',
             config: choice.effect
           }).flat();
-
           for (const effect of effects) {
             if (effect.onPlay) {
               await effect.onPlay({

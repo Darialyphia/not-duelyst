@@ -72,7 +72,7 @@ const summon = () => {
   }
 
   ui.summonTarget.value = cell.position;
-  if (ui.selectedCard.value.meta.choices) {
+  if (ui.selectedCard.value.meta.adapt) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
   } else if (ui.selectedCard.value.targets) {
     ui.switchTargetingMode(TARGETING_MODES.TARGETING);

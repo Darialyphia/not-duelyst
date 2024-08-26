@@ -73,7 +73,6 @@ export class ChangeStatsCardAction extends CardAction<'change_stats'> {
   protected async executeImpl() {
     const modifierId = this.generateModifierId();
     const units = this.getUnits(this.action.params.targets);
-
     units.forEach(target => {
       (this.ctx.modifierRecipient ?? target).addModifier(
         createEntityModifier({

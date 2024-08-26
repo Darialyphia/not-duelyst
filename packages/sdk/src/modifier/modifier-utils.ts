@@ -870,6 +870,7 @@ export const deathWatch = ({
 }) => {
   return createEntityModifier({
     source,
+    id: KEYWORDS.DEATHWATCH.id,
     stackable: false,
     visible: false,
     mixins: [
@@ -885,12 +886,14 @@ export const deathWatch = ({
 
 export const frenzy = ({ source }: { source: Card }) => {
   return createEntityModifier({
+    id: KEYWORDS.FRENZY.id,
     source,
     stackable: false,
     visible: false,
     mixins: [
       modifierSelfEventMixin({
         eventName: 'before_attack',
+        keywords: [KEYWORDS.FRENZY],
         async listener(_, ctx) {
           const unsub = ctx.attachedTo.on('after_deal_damage', async event => {
             if (!event.isBattleDamage) return;
@@ -1036,6 +1039,7 @@ export const rebirth = ({ source }: { source: Card }) => {
       modifierSelfEventMixin({
         eventName: 'after_destroy',
         once: true,
+        keywords: [KEYWORDS.REBIRTH],
         async listener(event, ctx) {
           const egg = ctx.attachedTo.player.generateCard({
             blueprintId: f5Egg.id,
@@ -1092,9 +1096,13 @@ export const adapt = ({ choices }: { choices: AdaptChoice[] }) => {
           card.meta.adapt = choices;
 
           cleanup = card.once('before_played', () => {
-            const originalPlaympl = card.playImpl;
+            const originalPlayImpl = card.playImpl;
             card.playImpl = async ({ position, targets, choice }) => {
-              const result = await originalPlaympl({ position, targets, choice });
+              const result = await originalPlayImpl.call(card, {
+                position,
+                targets,
+                choice
+              });
               const choiceToApply = card.meta.adapt[choice] as AdaptChoice;
               await choiceToApply.onPlay({ position, targets });
               return result;

@@ -3,7 +3,7 @@ import { defineSerializedBlueprint } from '../../card-blueprint';
 export const f5Grimrock = defineSerializedBlueprint({
   id: 'f5_grimrock',
   collectable: true,
-  keywords: ['grow'],
+  keywords: ['grow', 'adapt'],
   relatedBlueprintIds: [],
   tags: [],
   kind: 'MINION',
@@ -54,7 +54,7 @@ export const f5Grimrock = defineSerializedBlueprint({
                           mode: 'give',
                           stackable: true,
                           targets: {
-                            candidates: [[{ type: 'is_self', params: { not: true } }]]
+                            candidates: [[{ type: 'is_self', params: { not: false } }]]
                           },
                           hp: {
                             amount: { type: 'fixed', params: { value: 2 } }

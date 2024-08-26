@@ -60,7 +60,9 @@ export const [useUnitConditionsProvider, _useUnitConditions] = createInjectionSt
       has_blueprint: { label: 'A unit with the name', params: ['blueprint', 'not'] },
       has_tag: { label: 'A unit with a tag', params: ['tag', 'not'] },
       is_same_column: { label: 'A unit on the same column', params: ['cell', 'not'] },
-      is_same_row: { label: 'A unit on the same row', params: ['cell', 'not'] }
+      is_same_row: { label: 'A unit on the same row', params: ['cell', 'not'] },
+      has_lowest_attack: { label: 'A unit with the lowest attack', params: ['not'] },
+      has_highest_attack: { label: 'A unit with the highest attack', params: ['not'] }
     };
 
     return computed(() => ({ ...baseDict, ...extrasDict.value }));
