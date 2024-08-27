@@ -1094,6 +1094,7 @@ export const adapt = ({ choices }: { choices: AdaptChoice[] }) => {
         keywords: [KEYWORDS.ADAPT],
         onApplied(session, card) {
           card.meta.adapt = choices;
+          console.log(card.meta.adapt);
 
           cleanup = card.once('before_played', () => {
             const originalPlayImpl = card.playImpl;
@@ -1113,6 +1114,62 @@ export const adapt = ({ choices }: { choices: AdaptChoice[] }) => {
           cleanup?.();
         }
       }
+    ]
+  });
+};
+
+export const tough = ({
+  duration,
+  source,
+  stacks = 1
+}: {
+  source: Card;
+  duration?: number;
+  stacks?: number;
+}) => {
+  return createEntityModifier({
+    id: KEYWORDS.TOUGH.id,
+    visible: false,
+    stackable: true,
+    stacks,
+    source,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'damageTaken',
+        interceptor: modifier => amount => {
+          return Math.max(amount - modifier.stacks!, 1);
+        },
+        tickOn: 'start',
+        duration,
+        keywords: [KEYWORDS.TOUGH]
+      })
+    ]
+  });
+};
+
+export const vulnerable = ({
+  duration,
+  source,
+  stacks = 1
+}: {
+  source: Card;
+  duration?: number;
+  stacks?: number;
+}) => {
+  return createEntityModifier({
+    id: KEYWORDS.VULNERABLE.id,
+    visible: false,
+    stackable: true,
+    stacks,
+    source,
+    mixins: [
+      modifierEntityInterceptorMixin({
+        key: 'damageTaken',
+        interceptor: modifier => amount => amount + modifier.stacks!,
+        tickOn: 'start',
+        duration,
+        keywords: [KEYWORDS.VULNERABLE]
+      })
     ]
   });
 };

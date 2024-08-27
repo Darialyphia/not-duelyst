@@ -40,6 +40,20 @@ export const KEYWORDS = {
       'When attacking from behind, this deals extra damaged and cannot be counterattacked.',
     aliases: []
   },
+  TOUGH: {
+    id: 'tough',
+    name: 'Tough',
+    spriteId: 'tough',
+    description: 'This unit takes less damage from all sources (minimum. 1).',
+    aliases: [/though\([0-9]+\)/, 'tough']
+  },
+  VULNERABLE: {
+    id: 'vulnerable',
+    name: 'Vulnerable',
+    description: 'This unit takes more damage from all sources.',
+    spriteId: 'vulnerable',
+    aliases: [/vulnerable\([0-9]+\)/]
+  },
   OPENING_GAMBIT: {
     id: 'opening_gambit',
     name: 'Opening Gambit',

@@ -460,6 +460,26 @@ const actionDict: ActionDictionary = {
       filter: GlobalConditionNode
     }
   },
+  tough: {
+    label: 'Blast',
+    params: {
+      stacks: AmountNode,
+      activeWhen: GlobalConditionNode,
+      duration: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  vulnerable: {
+    label: 'Blast',
+    params: {
+      stacks: AmountNode,
+      activeWhen: GlobalConditionNode,
+      duration: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
   change_can_attack: {
     label: 'Prevent the attacks of a unit',
     params: {
@@ -587,6 +607,14 @@ const actionDict: ActionDictionary = {
     params: {
       activeWhen: GlobalConditionNode,
       duration: null,
+      execute: null,
+      filter: GlobalConditionNode
+    }
+  },
+  adapt: {
+    label: 'Adapt',
+    params: {
+      choices: null, //TODO
       execute: null,
       filter: GlobalConditionNode
     }
@@ -954,6 +982,25 @@ watch(
         params.activeWhen ??= { candidates: [], random: false };
         params.execute ??= 'now';
         params.duration ??= 'always';
+      })
+      .with({ type: 'adapt' }, ({ params }) => {
+        params.choices ??= [];
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+      })
+      .with({ type: 'tough' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
+        params.stacks ??= { type: 'fixed', params: { value: 1 } };
+      })
+      .with({ type: 'vulnerable' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.activeWhen ??= { candidates: [], random: false };
+        params.duration ??= 'always';
+        params.stacks ??= { type: 'fixed', params: { value: 1 } };
       })
       .exhaustive();
   },

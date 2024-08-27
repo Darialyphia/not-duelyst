@@ -247,6 +247,10 @@ dt {
   margin-top: 0 !important;
 }
 
+dd {
+  max-inline-size: 100%;
+}
+
 ul {
   margin-block-end: var(--size-4);
 }

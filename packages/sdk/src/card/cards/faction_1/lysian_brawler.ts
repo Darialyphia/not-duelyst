@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { airdropEffect } from '../../helpers/airdrop.effect';
 
 export const f1LysianBrawler = defineSerializedBlueprint({
   id: 'f1_lysian_brawler',
@@ -12,19 +11,69 @@ export const f1LysianBrawler = defineSerializedBlueprint({
   attack: 4,
   maxHp: 4,
   faction: FACTION_IDS.F1,
-  keywords: [KEYWORDS.CELERITY.id],
+  keywords: [KEYWORDS.ADAPT.id],
   kind: CARD_KINDS.MINION,
   rarity: RARITIES.RARE,
   relatedBlueprintIds: [],
   spriteId: 'f1_lysian_brawler',
   tags: [],
   effects: [
-    airdropEffect(),
     defineCardEffect({
-      text: '@Celerity@.',
+      text: '@Adapt@: +1/+0 and @Celerity@ OR +0/+1 and @Tough@: 1.',
       config: {
-        executionContext: 'immediate',
-        actions: [{ type: 'celerity', params: {} }]
+        executionContext: 'while_in_hand',
+        actions: [
+          {
+            type: 'adapt',
+            params: {
+              choices: [
+                {
+                  text: '+1/+0 and @Celerity@.',
+                  effect: {
+                    executionContext: 'while_on_board',
+                    actions: [
+                      {
+                        type: 'change_stats',
+                        params: {
+                          mode: 'give',
+                          stackable: true,
+                          targets: {
+                            candidates: [[{ type: 'is_self', params: { not: false } }]]
+                          },
+                          attack: { amount: { type: 'fixed', params: { value: 1 } } }
+                        }
+                      },
+                      { type: 'celerity', params: {} }
+                    ]
+                  }
+                },
+                {
+                  text: '+0/+1 and @Tough@.',
+                  effect: {
+                    executionContext: 'while_on_board',
+                    actions: [
+                      {
+                        type: 'change_stats',
+                        params: {
+                          mode: 'give',
+                          stackable: true,
+                          targets: {
+                            candidates: [[{ type: 'is_self', params: { not: false } }]]
+                          },
+                          hp: { amount: { type: 'fixed', params: { value: 1 } } }
+                        }
+                      },
+                      {
+                        type: 'tough',
+                        params: { stacks: { type: 'fixed', params: { value: 1 } } }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
       }
     })
   ]

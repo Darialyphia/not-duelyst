@@ -444,6 +444,26 @@ export type Action<
       };
     }
   | {
+      type: 'tough';
+      params: {
+        stacks: Amount<T>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+      };
+    }
+  | {
+      type: 'vulnerable';
+      params: {
+        stacks: Amount<T>;
+        activeWhen?: Filter<GlobalCondition<T>>;
+        duration?: 'always' | 'end_of_turn' | 'start_of_next_turn';
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+      };
+    }
+  | {
       type: 'fearsome';
       params: {
         filter?: Filter<GlobalCondition<T>>;

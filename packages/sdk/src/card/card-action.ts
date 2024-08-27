@@ -54,6 +54,8 @@ import { BarrierCardAction } from './actions/barrier.card-action';
 import { GrowCardAction } from './actions/grow.card-action';
 import { RebirthCardAction } from './actions/rebirth.card-action';
 import { AdaptCardAction } from './actions/adapt.card-action';
+import { ToughCardAction } from './actions/tough.card-action';
+import { VulnerableCardAction } from './actions/vulnerable.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -231,6 +233,12 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'adapt' }, action => {
         return new AdaptCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'tough' }, action => {
+        return new ToughCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'vulnerable' }, action => {
+        return new VulnerableCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };
