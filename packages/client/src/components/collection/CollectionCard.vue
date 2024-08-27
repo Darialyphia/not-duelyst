@@ -106,7 +106,6 @@ const { isMobile } = useResponsive();
           speed: card.card.speed,
           cost: card.card.cost,
           faction: card.card.faction,
-          keywords: keywords,
           tags: card.card.tags ?? [],
           cardbackId: card.cardBackId,
           pedestalId: card.pedestalId
