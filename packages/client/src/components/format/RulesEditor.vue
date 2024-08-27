@@ -73,10 +73,19 @@ const roundNumberField = ($event: FocusEvent) => {
       @blur="roundNumberField"
     />
 
-    <label for="starting_hand_size">Starting hand size</label>
+    <label for="p1-starting_hand_size">Player 1 starting hand size</label>
     <UiTextInput
-      id="starting_hand_size"
-      v-model.number="form.config.STARTING_HAND_SIZE"
+      id="p1-starting_hand_size"
+      v-model.number="form.config.PLAYER_1_STARTING_HAND_SIZE"
+      type="number"
+      step="1"
+      @blur="roundNumberField"
+    />
+
+    <label for="p2-starting_hand_size">Player 2 starting hand size</label>
+    <UiTextInput
+      id="p2-starting_hand_size"
+      v-model.number="form.config.PLAYER_2_STARTING_HAND_SIZE"
       type="number"
       step="1"
       @blur="roundNumberField"
@@ -84,6 +93,7 @@ const roundNumberField = ($event: FocusEvent) => {
 
     <label for="draw_time">Player draw at the end of their turn</label>
     <UiSwitch id="draw_turn" v-model:checked="form.config.DRAW_AT_END_OF_TURN" />
+    <p>If unchecked, players draw at the start of the turn instead.</p>
   </fieldset>
 
   <fieldset>

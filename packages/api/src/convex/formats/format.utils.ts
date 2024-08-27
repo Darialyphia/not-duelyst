@@ -28,7 +28,8 @@ export const formatConfigValidator = v.object({
   PLAYER_1_STARTING_GOLD: v.number(),
   PLAYER_2_STARTING_GOLD: v.number(),
   UNIT_DEFAULT_SPEED: v.number(),
-  STARTING_HAND_SIZE: v.number(),
+  PLAYER_1_STARTING_HAND_SIZE: v.number(),
+  PLAYER_2_STARTING_HAND_SIZE: v.number(),
   CARD_DRAW_PER_TURN: v.number(),
   MAX_REPLACES_PER_TURN: v.number(),
   UNLIMITED_RETALIATION: v.boolean(),
@@ -52,4 +53,14 @@ export const getFormatsByAuthor = async (db: QueryCtx['db'], authorId: Id<'users
     await getManyFrom(db, 'formats', 'by_authorId', authorId),
     async format => getFormatWithMapAndAuthor(db, format)
   );
+};
+
+export const ensureFormatExists = async (
+  { db }: { db: QueryCtx['db'] },
+  formatId: Id<'formats'>
+) => {
+  const format = await db.get(formatId);
+  if (!format) throw new Error(`Format not found: ${formatId}`);
+
+  return format;
 };

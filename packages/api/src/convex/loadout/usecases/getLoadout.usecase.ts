@@ -2,6 +2,7 @@ import { v } from 'convex/values';
 import { authedQuery } from '../../auth/auth.utils';
 import { toLoadoutDto } from '../loadout.mapper';
 import { ensureLoadoutExists, ensureOwnsLoadout } from '../loadout.utils';
+import { ensureFormatExists } from '../../formats/format.utils';
 
 export const getLoadoutUsecase = authedQuery({
   args: {
@@ -12,6 +13,8 @@ export const getLoadoutUsecase = authedQuery({
 
     ensureOwnsLoadout(loadout, ctx.user._id);
 
-    return toLoadoutDto(loadout);
+    const format = await ensureFormatExists(ctx, loadout.formatId);
+
+    return toLoadoutDto({ ...loadout, format });
   }
 });

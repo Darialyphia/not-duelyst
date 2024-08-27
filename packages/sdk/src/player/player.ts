@@ -216,7 +216,11 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   }
 
   async drawStartingHand() {
-    this.hand = await this.deck.draw(this.session.config.STARTING_HAND_SIZE);
+    this.hand = await this.deck.draw(
+      this.isPlayer1
+        ? this.session.config.PLAYER_1_STARTING_HAND_SIZE
+        : this.session.config.PLAYER_2_STARTING_HAND_SIZE
+    );
   }
 
   canReplace() {

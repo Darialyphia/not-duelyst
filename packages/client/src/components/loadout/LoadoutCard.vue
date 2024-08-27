@@ -26,8 +26,9 @@ const general = computed(() => {
     <div class="sprite">
       <CardSprite :sprite-id="getSpriteId(general.id)" />
     </div>
-    <div class="grid grid-cols-6 gap-1">
-      <span>{{ loadout.name }}</span>
+    <div class="space-y-1">
+      <span class="font-semibold">{{ loadout.name }}</span>
+      <span class="c-text-3 text-00">{{ loadout.format.name }}</span>
     </div>
   </article>
 </template>

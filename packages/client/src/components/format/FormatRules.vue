@@ -33,8 +33,12 @@ const { format } = defineProps<{
       times per turn.
     </li>
     <li>
-      Starting hand size is
-      <span class="param">{{ format.config.STARTING_HAND_SIZE }}</span>
+      Player 1 Starting hand size is
+      <span class="param">{{ format.config.PLAYER_1_STARTING_HAND_SIZE }}</span>
+    </li>
+    <li>
+      Player 2 Starting hand size is
+      <span class="param">{{ format.config.PLAYER_2_STARTING_HAND_SIZE }}</span>
     </li>
     <li>
       Max gold is

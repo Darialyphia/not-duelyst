@@ -1,4 +1,5 @@
 import { authedQuery } from '../../auth/auth.utils';
+import { ensureFormatExists } from '../../formats/format.utils';
 import { toLoadoutDto } from '../loadout.mapper';
 
 export const getMyLoadoutsUsecase = authedQuery({
@@ -9,6 +10,14 @@ export const getMyLoadoutsUsecase = authedQuery({
       .withIndex('by_owner_id', q => q.eq('ownerId', ctx.user._id))
       .collect();
 
-    return loadouts.map(toLoadoutDto);
+    const loadoutsWithFormat = await Promise.all(
+      loadouts.map(async loadout => {
+        return {
+          ...loadout,
+          format: await ensureFormatExists(ctx, loadout.formatId)
+        };
+      })
+    );
+    return loadoutsWithFormat.map(toLoadoutDto);
   }
 });

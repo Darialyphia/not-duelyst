@@ -114,14 +114,26 @@ onTick(() => {
   position: absolute;
   z-index: 1;
   top: 16rem;
+
+  @screen lt-lg {
+    top: 0;
+  }
   &.left {
     left: var(--size-5);
+
+    @screen lt-lg {
+      left: 0;
+    }
     &:is(.v-enter-from, .v-leave-to) {
       transform: translateX(-50%) rotateY(45deg);
     }
   }
   &.right {
     right: var(--size-5);
+
+    @screen lt-lg {
+      right: 0;
+    }
     > * {
       margin-left: auto;
     }

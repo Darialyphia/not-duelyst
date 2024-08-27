@@ -241,7 +241,7 @@ li {
   transform: translateY(-2px);
 
   width: var(--size-7);
-  height: var(--size-10);
+  height: calc(var(--size-9) + var(--size-1) + 1px);
   padding: 0;
 
   background-color: red;
