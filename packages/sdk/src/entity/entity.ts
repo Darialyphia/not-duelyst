@@ -661,6 +661,11 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
 
   dispel() {
     this.modifiers.forEach(modifier => {
+      const isArtifactModifier =
+        this.card.kind === CARD_KINDS.GENERAL &&
+        modifier.source.kind === CARD_KINDS.ARTIFACT;
+      if (isArtifactModifier) return;
+
       this.removeModifier(modifier.id);
     });
     this.isDispelled = true;
