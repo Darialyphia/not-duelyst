@@ -10,6 +10,7 @@ import { featureflagSchemas } from './featureFlags/featureFlags.schemas';
 import { analyticsSchemas } from './analytics/analytics.schemas';
 import { friendSchemas } from './friend/friend.schemas';
 import { formatSchemas } from './formats/format.schemas';
+import { lobbySchemas } from './lobby/lobby.schemas';
 
 export default defineSchema({
   ...authSchemas,
@@ -22,5 +23,6 @@ export default defineSchema({
   ...featureflagSchemas,
   ...analyticsSchemas,
   ...friendSchemas,
-  ...formatSchemas
+  ...formatSchemas,
+  ...lobbySchemas
 });

@@ -1,27 +1,8 @@
-import {
-  CARD_KINDS,
-  CARDS,
-  GameSession,
-  type GenericSerializedBlueprint
-} from '@game/sdk';
+import { CARD_KINDS, CARDS } from '@game/sdk';
 import type { Doc, Id } from '../_generated/dataModel';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import { defaultFormat } from '../formats/format.utils';
-
-export const ensureMaxCopies = (cardIds: string[]) => {
-  const copies: Record<string, number> = {};
-  cardIds.forEach(id => {
-    if (!copies[id]) {
-      copies[id] = 1;
-    } else {
-      copies[id]++;
-    }
-    if (copies[id] > defaultFormat.config.MAX_COPIES_PER_CARD) {
-      throw new Error('Max copies of card exceeded..');
-    }
-  });
-};
 
 export const ensureOwnsUnit = async (
   { db }: { db: MutationCtx['db'] },

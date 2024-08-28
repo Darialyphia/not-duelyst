@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { FEATURE_FLAGS } from '@game/api/src/convex/featureFlags/featureFlags.constants';
 
 definePageMeta({
   name: 'SelectGameMode',
@@ -11,6 +10,39 @@ definePageMeta({
 });
 
 const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
+
+const modes = [
+  {
+    link: { name: 'Tutorial' },
+    name: 'Tutorial',
+    description: 'Learn how to play the game.',
+    enabled: featureFlags.value.tutorial
+  },
+  {
+    link: { name: 'Sandbox' },
+    name: 'Sandbox',
+    description: 'Play a practice game where you control both players.',
+    enabled: true
+  },
+  {
+    link: { name: 'Lobbies' },
+    name: 'PvP',
+    description: 'Pleay against another player in a friendly game.',
+    enabled: featureFlags.value.lobbies
+  },
+  {
+    link: { name: 'Ranked' },
+    name: 'Ranked',
+    description: 'Play competitively against another player and climb up the ladder.',
+    enabled: featureFlags.value.matchmaking
+  },
+  {
+    link: { name: 'Tournaments' },
+    name: 'Tournaments',
+    description: 'Participate and organize tournaments.',
+    enabled: featureFlags.value.tournament
+  }
+];
 </script>
 
 <template>
@@ -20,41 +52,12 @@ const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
       <h1 class="text-5">Select game mode</h1>
     </header>
 
-    <InteractableSounds>
-      <div class="mode" :class="!featureFlags.tutorial && 'disabled'">
-        <NuxtLink
-          :to="featureFlags.tutorial ? { name: 'Tutorial' } : undefined"
-          class="fancy-surface"
-        >
+    <InteractableSounds v-for="mode in modes" :key="mode.name">
+      <div class="mode" :class="!mode.enabled && 'disabled'">
+        <NuxtLink :to="mode.enabled ? mode.link : undefined" class="fancy-surface">
           <div>
-            <h2>Tutorial</h2>
-            <p>Learn how to play the game.</p>
-          </div>
-        </NuxtLink>
-      </div>
-    </InteractableSounds>
-
-    <InteractableSounds>
-      <div class="mode" :class="!featureFlags.matchmaking && 'disabled'">
-        <NuxtLink
-          :to="featureFlags.matchmaking ? { name: 'Matchmaking' } : undefined"
-          class="fancy-surface"
-        >
-          <div>
-            <h2>Ranked</h2>
-            <p>Play against another player.</p>
-          </div>
-        </NuxtLink>
-      </div>
-    </InteractableSounds>
-
-    <InteractableSounds>
-      <div class="mode">
-        <NuxtLink :to="{ name: 'Sandbox' }" class="fancy-surface">
-          <div>
-            <h2>Sandbox</h2>
-
-            <p>Play a practice game where you control both players.</p>
+            <h2>{{ mode.name }}</h2>
+            <p>{{ mode.description }}</p>
           </div>
         </NuxtLink>
       </div>
@@ -81,9 +84,8 @@ const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
 
   display: flex;
   flex-wrap: wrap;
-  gap: var(--size-2);
+  gap: var(--size-4) var(--size-8);
   align-items: flex-start;
-  justify-content: space-between;
 
   perspective: 600px;
   perspective-origin: 75% center;
@@ -125,6 +127,7 @@ const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
       font-weight: bold;
       line-height: 1.8;
       color: #fff;
+      text-transform: uppercase;
 
       background-color: var(--error);
       clip-path: polygon(
