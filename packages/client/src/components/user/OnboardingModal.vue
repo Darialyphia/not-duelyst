@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { api } from '@game/api';
+import { FEATURE_FLAGS } from '@game/api/src/convex/featureFlags/featureFlags.constants';
 
 const sessionId = useSessionId();
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
+const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
 const isOpened = computed(() => {
+  if (!featureFlags.value?.[FEATURE_FLAGS.TUTORIAL]) return false;
   if (!sessionId.value) return false;
   if (!me.value) return false;
   return !me.value.hasOnboarded;
@@ -18,10 +21,9 @@ const { mutate: skipTutorial, isLoading: isSubmitting } = useConvexAuthedMutatio
 <template>
   <UiModal
     :is-opened="isOpened && $route.name !== 'Tutorial'"
-    title="Welcome to Not Duelyst !"
+    title="Welcome to Darialyst !"
     :closable="false"
   >
-    <small>100% certified no Songhai !</small>
     <p class="c-orange-5">
       <span class="text-5">
         <Icon name="ph:warning-octagon" />

@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { CARD_KINDS, CARDS, type CardBlueprint, type CardKind } from '@game/sdk';
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
+import {
+  CARD_KINDS,
+  CARDS,
+  GameSession,
+  type CardBlueprint,
+  type CardKind,
+  type LoadoutViolation
+} from '@game/sdk';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import type { Nullable } from '@game/shared';
 import { uniqBy } from 'lodash-es';
@@ -8,7 +16,8 @@ const emit = defineEmits<{
   back: [];
 }>();
 
-const { formValues, save, isSaving, removeCard } = useLoadoutForm();
+const { format } = defineProps<{ format: Pick<GameFormatDto, 'cards' | 'config'> }>();
+const { formValues, save, isSaving } = useLoadoutForm();
 
 const groupedCards = computed(() => {
   const copies: Record<string, number> = {};
@@ -92,6 +101,15 @@ const exportCode = () => {
 };
 
 const isDetailModalOpened = ref(false);
+
+const violations = computed(() => {
+  return GameSession.getLoadoutViolations(
+    formValues.value.cards.map(c => ({ ...c, blueprintId: c.id })),
+    format
+  );
+});
+const hasViolation = (type: LoadoutViolation['type']) =>
+  violations.value.some(v => v.type === type);
 </script>
 
 <template>
@@ -159,6 +177,26 @@ const isDetailModalOpened = ref(false);
           />
         </PopoverRoot>
       </div>
+      <div class="flex my-3 pl-3">
+        <HoverCardRoot v-if="violations.length" :open-delay="0" :close-delay="0">
+          <HoverCardTrigger class="c-error">
+            <Icon name="material-symbols:warning" />
+            Invalid deck
+          </HoverCardTrigger>
+          <HoverCardPortal>
+            <HoverCardContent as="ul" class="fancy-surface">
+              <li v-for="(violation, index) in violations" :key="index">
+                {{ violation.message }}
+              </li>
+            </HoverCardContent>
+          </HoverCardPortal>
+        </HoverCardRoot>
+        <span class="ml-auto" :class="hasViolation('too_big') && 'c-error'">
+          {{ formValues.cards.length }}
+        </span>
+        / {{ format.config.MAX_DECK_SIZE }}
+        <Icon name="mdi:cards" class="text-4" />
+      </div>
     </header>
 
     <ul v-if="formValues.cards.length" class="flex-1 fancy-scrollbar">
@@ -191,7 +229,6 @@ const isDetailModalOpened = ref(false);
     />
 
     <footer>
-      <div class="text-right">{{ formValues.cards.length }} Cards</div>
       <div class="flex justify-end gap-3">
         <UiButton
           class="ghost-button"

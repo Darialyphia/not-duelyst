@@ -54,10 +54,6 @@ const onMousemove = (e: MouseEvent) => {
   };
 };
 
-const keywords = computed(() => {
-  return uniqBy(card.card.keywords ?? [], 'id');
-});
-
 const wrapperEl = ref<HTMLElement>();
 const isHovered = useElementHover(wrapperEl);
 

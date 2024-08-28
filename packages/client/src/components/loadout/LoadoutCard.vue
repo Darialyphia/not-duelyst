@@ -22,7 +22,7 @@ const general = computed(() => {
 </script>
 
 <template>
-  <article class="fancy-surface">
+  <article class="fancy-surface" :class="!loadout.isValid && 'is-invalid'">
     <div class="sprite">
       <CardSprite :sprite-id="getSpriteId(general.id)" />
     </div>
@@ -47,6 +47,10 @@ article {
 
   border-top-right-radius: var(--radius-3);
   border-bottom-left-radius: var(--radius-3);
+
+  &.is-invalid {
+    border-color: var(--error);
+  }
 }
 
 span {

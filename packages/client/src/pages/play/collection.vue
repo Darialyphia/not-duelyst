@@ -29,12 +29,14 @@ const {
   displayedCards,
   loadouts,
   allCards,
-  selectedFormatId
+  selectedFormatId,
+  selectedFormat
 } = useCollection();
 
 const { canAddCard, addCard, general, reset } = useLoadoutFormProvider({
   cards: allCards,
   selectedFormatId,
+  format: selectedFormat,
   defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
   onSuccess() {
     isEditingLoadout.value = false;
@@ -141,8 +143,8 @@ const collectionItemComponent = computed(() =>
     </section>
 
     <CollectionSidebar
-      v-model:selected-format-id="selectedFormatId"
       v-model:is-editing-loadout="isEditingLoadout"
+      :format="selectedFormat"
       :loadouts="loadouts"
     />
   </div>

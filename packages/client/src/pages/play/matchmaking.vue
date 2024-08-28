@@ -69,6 +69,10 @@ const { data: loadouts, isLoading: isLoadingLoadouts } = useConvexAuthedQuery(
   api.loadout.myLoadouts,
   {}
 );
+
+const availableLoadouts = computed(() =>
+  loadouts.value.filter(loadout => loadout.isValid && !isDefined(loadout.format._id))
+);
 const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
   matchmakingUser.value?.loadoutId
 );
@@ -84,7 +88,7 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
     <h2 class="text-3">Select your loadout</h2>
     <div class="loadouts">
       <div v-if="isLoadingLoadouts">Loading your loadouts...</div>
-      <label v-for="loadout in loadouts" :key="loadout._id">
+      <label v-for="loadout in availableLoadouts" :key="loadout._id">
         <LoadoutCard :loadout="loadout"></LoadoutCard>
 
         <input

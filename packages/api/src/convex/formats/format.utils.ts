@@ -57,8 +57,9 @@ export const getFormatsByAuthor = async (db: QueryCtx['db'], authorId: Id<'users
 
 export const ensureFormatExists = async (
   { db }: { db: QueryCtx['db'] },
-  formatId: Id<'formats'>
+  formatId?: Id<'formats'>
 ) => {
+  if (!formatId) return defaultFormat;
   const format = await db.get(formatId);
   if (!format) throw new Error(`Format not found: ${formatId}`);
 

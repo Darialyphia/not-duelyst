@@ -81,21 +81,21 @@ export const validateLoadout = async (
   cards: Array<{ id: CardBlueprintId; pedestalId: string; cardBackId: string }>;
   ownerId: Id<'users'>;
 }> => {
-  const format = formatId ? await db.get(formatId) : defaultFormat;
-  if (!format) throw new Error('Format not found.');
-  const formatCards = JSON.parse(format!.cards) as Record<
-    string,
-    GenericSerializedBlueprint
-  >;
-  const violations = GameSession.getLoadoutViolations(
-    cards.map(c => ({ ...c, blueprintId: c.id })),
-    {
-      config: format!.config,
-      cards: formatCards
-    }
-  );
-  if (violations.length)
-    throw new Error("This loadout doesn't respect the format constraints.");
+  // const format = formatId ? await db.get(formatId) : defaultFormat;
+  // if (!format) throw new Error('Format not found.');
+  // const formatCards = JSON.parse(format!.cards) as Record<
+  //   string,
+  //   GenericSerializedBlueprint
+  // >;
+  // const violations = GameSession.getLoadoutViolations(
+  //   cards.map(c => ({ ...c, blueprintId: c.id })),
+  //   {
+  //     config: format!.config,
+  //     cards: formatCards
+  //   }
+  // );
+  // if (violations.length)
+  // throw new Error("This loadout doesn't respect the format constraints.");
   // await Promise.all(cards.map(card => ensureOwnsUnit({ db }, ownerId, card.id)));
 
   // ensureMaxCopies(cards.map(c => c.id));

@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="T extends string, TItem">
 import type { SelectPortalProps } from 'radix-vue';
 const {
   options,
@@ -6,19 +6,25 @@ const {
   usePortal = true,
   to
 } = defineProps<{
-  options: Array<{ label: string; value: T; disabled?: boolean }>;
+  options: Array<{ label: string; value: T; disabled?: boolean; item?: TItem }>;
   placeholder?: string;
   usePortal?: boolean;
   to?: SelectPortalProps['to'];
 }>();
 
 const selected = defineModel<T | undefined>('modelValue', { required: true });
+
+const selectedLabel = computed(
+  () => options.find(o => o.value === selected.value)?.label
+);
 </script>
 
 <template>
   <SelectRoot v-model="selected">
     <SelectTrigger :placeholder class="ui-select-trigger" v-bind="$attrs">
-      <SelectValue :placeholder="placeholder" />
+      <SelectValue :placeholder="placeholder">
+        {{ selectedLabel }}
+      </SelectValue>
       <Icon name="radix-icons:chevron-down" />
     </SelectTrigger>
     <SelectPortal :disabled="!usePortal" :to="to">

@@ -76,7 +76,7 @@ const cardsCount = computed(() => {
       <div class="header">
         <img :src="`/assets/ui/icon_${general.card.faction!.id}.png`" />
         <div>
-          {{ loadout.name }}
+          <div>{{ loadout.name }}</div>
         </div>
         <div class="flex text-1 font-4">
           <div class="counts">

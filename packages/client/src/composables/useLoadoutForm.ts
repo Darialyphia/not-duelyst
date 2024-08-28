@@ -7,6 +7,7 @@ import type { CardBlueprintId } from '@game/sdk/src/card/card';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { match } from 'ts-pattern';
 import type { InjectionKey } from 'vue';
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 
 type LodoutFormContext = {
   formValues: Ref<{
@@ -39,10 +40,12 @@ export const useLoadoutFormProvider = ({
   cards,
   selectedFormatId,
   defaultName,
-  onSuccess
+  onSuccess,
+  format
 }: {
   cards: Ref<CollectionItemWithCard[]>;
   selectedFormatId: Ref<Id<'formats'> | undefined>;
+  format: ComputedRef<Pick<GameFormatDto, 'config' | 'cards'>>;
   defaultName: MaybeRefOrGetter<string>;
   onSuccess: () => void;
 }) => {
@@ -51,6 +54,12 @@ export const useLoadoutFormProvider = ({
     name: string;
     cards: Array<{ id: string; pedestalId: string; cardBackId: string }>;
   }>({ name: '', cards: [] });
+
+  watch(format, newFormat => {
+    formValues.value.cards = formValues.value.cards.filter(card => {
+      return newFormat.cards[card.id];
+    });
+  });
 
   const general = computed(() => {
     const card = formValues.value?.cards.find(c => {
@@ -74,12 +83,19 @@ export const useLoadoutFormProvider = ({
       cards: loadout.cards,
       name: loadout.name
     };
+    selectedFormatId.value = loadout.format._id;
   };
 
   const initFromCode = (code: string) => {
-    const [name, formatId, cardsBase64] = code.split('|');
-    selectedFormatId.value = formatId as Id<'formats'>;
+    const [name, formatId, cardsBase64] = code.split('|') as [
+      string,
+      Id<'formats'>,
+      string
+    ];
+    selectedFormatId.value = formatId;
     const decodedCards = JSON.parse(atob(cardsBase64)) as string[];
+    selectedFormatId.value = formatId;
+
     formValues.value = {
       name,
       cards: decodedCards

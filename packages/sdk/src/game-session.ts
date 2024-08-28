@@ -97,26 +97,65 @@ export type GameEventPayload<T extends GameEvent> = GameEventMap[T];
 
 export type SessionLogger = (message?: any, ...optionalParams: any[]) => void;
 
+export const DECK_TOO_SMALL = "Deck doesn't have enough cards.";
+export const DECK_TOO_BIG = 'Deck has too many cards.';
+export const UNKNOWN_CARD = "Deck uses a card that doesn't belong to this format.";
+
+export type LoadoutViolation =
+  | {
+      type: 'too_big';
+      message: string;
+    }
+  | {
+      type: 'too_small';
+      message: string;
+    }
+  | {
+      type: 'unknown_card';
+      blueprintId: CardBlueprintId;
+      message: string;
+    }
+  | {
+      type: 'too_many_copies';
+      blueprintId: string;
+      message: string;
+    };
+
 export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(
     loadout: SerializedGameState['players'][number]['deck'],
     format: GameFormat
   ) {
     const formatCards = { ...CARDS, ...format.cards };
-    const violations: string[] = [];
-    if (loadout.length !== format.config.MAX_DECK_SIZE) {
-      violations.push('deck size is incorrect');
+    const violations: LoadoutViolation[] = [];
+    if (loadout.length < format.config.MAX_DECK_SIZE) {
+      violations.push({ type: 'too_small', message: 'Deck doesn\t have enough cards.' });
+    }
+
+    if (loadout.length > format.config.MAX_DECK_SIZE) {
+      violations.push({ type: 'too_big', message: 'Deck has too many cards.' });
     }
 
     loadout.forEach(card => {
-      if (!formatCards[card.blueprintId]) {
-        violations.push(`a card that doesn't belong to this format: ${card.blueprintId}`);
+      const blueprint = formatCards[card.blueprintId];
+      if (!blueprint) {
+        violations.push({
+          type: 'unknown_card',
+          message: `Deck uses a card that doesn't belong to this format.`,
+          blueprintId: card.blueprintId
+        });
       }
       const copies = loadout.reduce((total, current) => {
         return current.blueprintId === card.blueprintId ? total + 1 : total;
       }, 0);
       if (copies > format.config.MAX_COPIES_PER_CARD) {
-        violations.push(`Max copies exceeded for ${card.blueprintId}`);
+        const violation: LoadoutViolation = {
+          type: 'too_many_copies',
+          message: `Max copies exceeded for ${blueprint.name}`,
+          blueprintId: card.blueprintId
+        };
+        if (violations.some(v => v.message === violation.message)) return;
+        violations.push(violation);
       }
     });
 

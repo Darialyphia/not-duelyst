@@ -43,31 +43,21 @@ const standardFormat = {
   cards: {}
 };
 
-const violations = computed(() => {
-  if (!form.format) return [];
-  return [
-    ...(form.player1Loadout
-      ? GameSession.getLoadoutViolations(
-          (form.player1Loadout.cards ?? []).map(l => ({ ...l, blueprintId: l.id })),
-          form.format
-        )
-      : []),
-    ...(form.player2Loadout
-      ? GameSession.getLoadoutViolations(
-          (form.player2Loadout.cards ?? []).map(l => ({ ...l, blueprintId: l.id })),
-          form.format
-        )
-      : [])
-  ];
+const isValid = computed(() => {
+  return !!form.format && !!form.player1Loadout && !!form.player2Loadout;
 });
 
-const isValid = computed(() => {
-  return (
-    !!form.format &&
-    !!form.player1Loadout &&
-    !!form.player2Loadout &&
-    !violations.value.length
-  );
+watch(
+  () => form.format,
+  () => {
+    form.player1Loadout = null;
+    form.player2Loadout = null;
+  }
+);
+
+const availableLoadouts = computed(() => {
+  if (!form.format) return [];
+  return loadouts.value.filter(l => l.isValid && l.format._id === form.format?._id);
 });
 </script>
 
@@ -139,49 +129,45 @@ const isValid = computed(() => {
           </div>
         </fieldset>
 
-        <fieldset class="fancy-surface player-loadout">
-          <legend>Player 1 loadout</legend>
-          <InteractableSounds v-for="loadout in loadouts" :key="loadout._id">
-            <label class="cursor-pointer">
-              <LoadoutCard :loadout="loadout" />
-              <input
-                v-model="form.player1Loadout"
-                name="playr-1-loadout"
-                type="radio"
-                :value="loadout"
-                class="sr-only"
-              />
-            </label>
-          </InteractableSounds>
-        </fieldset>
-        <fieldset class="fancy-surface player-loadout">
-          <legend>Player 2 loadout</legend>
-          <InteractableSounds v-for="loadout in loadouts" :key="loadout._id">
-            <label class="cursor-pointer">
-              <LoadoutCard :loadout="loadout" />
-              <input
-                v-model="form.player2Loadout"
-                name="playr-2-loadout"
-                type="radio"
-                :value="loadout"
-                class="sr-only"
-              />
-            </label>
-          </InteractableSounds>
-        </fieldset>
+        <template v-if="form.format !== null">
+          <fieldset class="fancy-surface player-loadout">
+            <legend>Player 1 loadout</legend>
+            <p v-if="!availableLoadouts.length">No deck available for this format</p>
+            <InteractableSounds v-for="loadout in availableLoadouts" :key="loadout._id">
+              <label class="cursor-pointer">
+                <LoadoutCard :loadout="loadout" />
+                <input
+                  v-model="form.player1Loadout"
+                  name="playr-1-loadout"
+                  type="radio"
+                  :value="loadout"
+                  class="sr-only"
+                />
+              </label>
+            </InteractableSounds>
+          </fieldset>
+          <fieldset class="fancy-surface player-loadout">
+            <legend>Player 2 loadout</legend>
+            <p v-if="!availableLoadouts.length">No deck available for this format</p>
+            <InteractableSounds v-for="loadout in availableLoadouts" :key="loadout._id">
+              <label class="cursor-pointer">
+                <LoadoutCard :loadout="loadout" />
+                <input
+                  v-model="form.player2Loadout"
+                  name="playr-2-loadout"
+                  type="radio"
+                  :value="loadout"
+                  class="sr-only"
+                />
+              </label>
+            </InteractableSounds>
+          </fieldset>
+        </template>
 
         <Transition>
           <UiFancyButton v-if="isValid" class="primary-button start-button">
             Start
           </UiFancyButton>
-        </Transition>
-
-        <Transition>
-          <ul v-if="violations.length" class="fancy-surface violations">
-            <li v-for="violation in violations" :key="violation" class="c-red-5">
-              {{ violation }}
-            </li>
-          </ul>
         </Transition>
       </form>
     </section>
