@@ -11,7 +11,7 @@ export type LoadoutDto = {
     cardBackId: string;
   }>;
   format: {
-    _id: Id<'formats'>;
+    _id?: Id<'formats'>;
     name: string;
   };
 };

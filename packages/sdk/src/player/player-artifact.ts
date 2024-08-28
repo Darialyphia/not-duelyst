@@ -30,7 +30,7 @@ export type ArtifactEventMap = {
 };
 
 export type PLayerArtifactOptions = {
-  cardIndex: CardIndex;
+  card: Artifact;
   playerId: PlayerId;
 };
 
@@ -39,7 +39,7 @@ export type ArtifactInterceptor = PlayerArtifact['interceptors'];
 export type PlayerArtifactId = string;
 
 export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
-  private cardIndex: CardIndex;
+  private card: Artifact;
 
   private playerId: PlayerId;
 
@@ -58,17 +58,8 @@ export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
     super();
     this.durability = this.session.config.ARTIFACT_DURABILITY;
     this.id = nanoid(6);
-    this.cardIndex = options.cardIndex;
+    this.card = options.card;
     this.playerId = options.playerId;
-  }
-
-  get card() {
-    const card = this.player.cards[this.cardIndex];
-    if (!(card instanceof Artifact)) {
-      throw new Error('Entity card is not a Unit');
-    }
-
-    return card;
   }
 
   get player() {

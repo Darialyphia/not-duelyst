@@ -22,11 +22,19 @@ watchEffect(() => {
   }
 });
 
-const { factionFilter, textFilter, costFilter, displayedCards, loadouts, collection } =
-  useCollection();
+const {
+  factionFilter,
+  textFilter,
+  costFilter,
+  displayedCards,
+  loadouts,
+  allCards,
+  selectedFormatId
+} = useCollection();
 
-const { canAddCard, addCard, general } = useLoadoutFormProvider({
-  collection,
+const { canAddCard, addCard, general, reset } = useLoadoutFormProvider({
+  cards: allCards,
+  selectedFormatId,
   defaultName: computed(() => `New Deck ${loadouts.value.length || ''}`),
   onSuccess() {
     isEditingLoadout.value = false;
@@ -36,8 +44,10 @@ const { canAddCard, addCard, general } = useLoadoutFormProvider({
 watch(isEditingLoadout, editing => {
   if (editing && general.value) {
     factionFilter.value = general.value.faction;
-  } else {
+  } else if (!editing) {
+    reset();
     factionFilter.value = undefined;
+    selectedFormatId.value = undefined;
   }
 });
 
@@ -63,12 +73,12 @@ const relevantCards = computed(() => {
 
 const visibleCards = ref(new Set<string>());
 const onIntersectionObserver =
-  (sprite: string) => (entries: IntersectionObserverEntry[]) => {
+  (cardId: string) => (entries: IntersectionObserverEntry[]) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        visibleCards.value.add(sprite);
+        visibleCards.value.add(cardId);
       } else {
-        visibleCards.value.delete(sprite);
+        visibleCards.value.delete(cardId);
       }
     });
   };
@@ -96,6 +106,7 @@ const collectionItemComponent = computed(() =>
       v-model:search="textFilter"
       v-model:cost="costFilter"
       v-model:list-mode="listMode"
+      v-model:selected-format-id="selectedFormatId"
       :general="isEditingLoadout ? general : undefined"
     />
 
@@ -103,14 +114,17 @@ const collectionItemComponent = computed(() =>
       <p v-if="!relevantCards.length">No card found matching this filter.</p>
       <div
         v-for="item in relevantCards"
-        :key="item._id"
-        v-intersection-observer="[onIntersectionObserver(item._id), { root: listRoot }]"
+        :key="item.cardId"
+        v-intersection-observer="[
+          onIntersectionObserver(item.cardId),
+          { root: listRoot }
+        ]"
         class="card-wrapper"
       >
         <Transition>
           <component
             :is="collectionItemComponent"
-            v-if="visibleCards.has(item._id)"
+            v-if="visibleCards.has(item.cardId)"
             :card="item"
             :is-editing-loadout="isEditingLoadout"
             :can-add-to-loadout="canAddToLoadout(item.cardId)"
@@ -127,6 +141,7 @@ const collectionItemComponent = computed(() =>
     </section>
 
     <CollectionSidebar
+      v-model:selected-format-id="selectedFormatId"
       v-model:is-editing-loadout="isEditingLoadout"
       :loadouts="loadouts"
     />

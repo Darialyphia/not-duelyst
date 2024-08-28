@@ -7,12 +7,14 @@ export const createLoadoutUsecase = authedMutation({
     name: v.string(),
     cards: v.array(
       v.object({ id: v.string(), pedestalId: v.string(), cardBackId: v.string() })
-    )
+    ),
+    formatId: v.optional(v.id('formats'))
   },
   async handler(ctx, args) {
     const validData = await validateLoadout(ctx, {
       ownerId: ctx.user._id,
-      cards: args.cards
+      cards: args.cards,
+      formatId: args.formatId
     });
 
     ctx.db.insert('loadouts', {

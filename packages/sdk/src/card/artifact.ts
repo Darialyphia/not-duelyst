@@ -47,16 +47,20 @@ export class Artifact extends Card implements Serializable {
   }
 
   canPlayAt(point: Point3D): boolean {
+    const entity = this.session.entitySystem.getEntityAt(point);
+    if (!entity) return false;
+
     return this.interceptors.canPlayAt.getValue(
-      this.player.general.position.equals(point) && this.player.artifacts.length < 3,
+      entity.isGeneral && this.player.artifacts.length < 3,
       { point }
     );
   }
 
   async playImpl(ctx: { position: Point3D; targets: Point3D[]; choice: number }) {
     if (!this.canPlayAt(this.player.general.position)) return false;
-    this.playTargets = ctx.targets;
-    await this.player.equipArtifact(this.index, ctx.choice);
+    const entity = this.session.entitySystem.getEntityAt(ctx.targets[0]);
+    this.playTargets = ctx.targets.slice(1);
+    await entity?.player.equipArtifact(this, ctx.choice);
 
     return true;
   }

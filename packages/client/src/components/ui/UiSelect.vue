@@ -12,7 +12,7 @@ const {
   to?: SelectPortalProps['to'];
 }>();
 
-const selected = defineModel<T>('modelValue', { required: true });
+const selected = defineModel<T | undefined>('modelValue', { required: true });
 </script>
 
 <template>

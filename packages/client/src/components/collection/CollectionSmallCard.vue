@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { api } from '@game/api';
-import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import { CARD_KINDS, type CardBlueprint } from '@game/sdk';
-import { uniqBy } from 'lodash-es';
 import { match } from 'ts-pattern';
 
 defineOptions({
@@ -14,7 +11,6 @@ const { canAddToLoadout, isEditingLoadout, card } = defineProps<{
   isEditingLoadout: boolean;
   card: {
     card: CardBlueprint;
-    _id: Id<'collectionItems'>;
     cardId: string;
     pedestalId: string;
     cardBackId: string;

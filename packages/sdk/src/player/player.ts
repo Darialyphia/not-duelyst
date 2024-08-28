@@ -24,6 +24,7 @@ import {
 import type { Entity } from '../entity/entity';
 import { TypedEventEmitter } from '../utils/typed-emitter';
 import type { Unit } from '../card/unit';
+import type { Artifact } from '../card/artifact';
 
 export type PlayerId = string;
 export type CardIndex = number;
@@ -185,8 +186,8 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     this.graveyard = this.options.graveyard.map(index => this.cards[index]);
   }
 
-  async equipArtifact(cardIndex: CardIndex, choice: number) {
-    const artifact = new PlayerArtifact(this.session, { cardIndex, playerId: this.id });
+  async equipArtifact(card: Artifact, choice: number) {
+    const artifact = new PlayerArtifact(this.session, { card, playerId: this.id });
     Object.values(ARTIFACT_EVENTS).forEach(eventName => {
       artifact.on(eventName, async event => {
         await this.session.emitAsync(`artifact:${eventName}`, event as any);

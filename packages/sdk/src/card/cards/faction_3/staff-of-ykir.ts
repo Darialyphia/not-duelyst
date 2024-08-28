@@ -84,7 +84,7 @@ export const f3StaffOfYkir = defineSerializedBlueprint({
     }
   ],
   targets: {
-    min: 0,
+    min: 1,
     targets: [
       [
         [

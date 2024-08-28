@@ -1,3 +1,4 @@
+import type { Artifact } from '../artifact';
 import { CardAction, noop } from './_card-action';
 
 export class EquipArtifactCardAction extends CardAction<'equip_artifact'> {
@@ -10,7 +11,7 @@ export class EquipArtifactCardAction extends CardAction<'equip_artifact'> {
       cardBackId: this.card.cardBackId
     });
 
-    await player.equipArtifact(card.index, 0);
+    await player.equipArtifact(card as Artifact, 0);
 
     return noop;
   }

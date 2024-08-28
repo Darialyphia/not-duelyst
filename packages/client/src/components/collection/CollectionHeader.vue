@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { api } from '@game/api';
+import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import { FACTIONS, type CardBlueprint, type Faction } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 import type { CostFilter } from '~/composables/useCollection';
@@ -9,12 +11,45 @@ const listMode = defineModel<'cards' | 'compact'>('listMode', { required: true }
 const filter = defineModel<Faction | null | undefined>('filter', { required: true });
 const search = defineModel<Nullable<string>>('search', { required: true });
 const cost = defineModel<Nullable<CostFilter>>('cost', { required: true });
+const selectedFormatId = defineModel<Id<'formats'> | undefined>('selectedFormatId', {
+  required: true
+});
 
 const { isMobile } = useResponsive();
 const factions = Object.values(FACTIONS);
 
 const isFilterPopoverOpened = ref(false);
 const isMobileFilterDrawerOpened = ref(false);
+
+const { data: formats } = useConvexAuthedQuery(api.formats.all, {});
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
+
+const formatOptions = computed(() => {
+  const options: Array<{ label: string; value: string }> = (formats.value ?? [])
+    .toSorted((a, b) => {
+      if (a.author._id === me.value._id && b.author._id !== me.value._id) return -1;
+      if (b.author._id === me.value._id && a.author._id !== me.value._id) return 1;
+
+      return a.name.localeCompare(b.name);
+    })
+    .map(format => ({ label: format.name, value: format._id }));
+
+  options.unshift({
+    label: 'Standard Format',
+    value: 'standard'
+  });
+
+  return options;
+});
+
+const formatVModel = computed({
+  get() {
+    return selectedFormatId.value ?? 'standard';
+  },
+  set(val) {
+    selectedFormatId.value = val === 'standard' ? undefined : val;
+  }
+});
 </script>
 
 <template>
@@ -129,6 +164,7 @@ const isMobileFilterDrawerOpened = ref(false);
         />
       </template>
 
+      <UiSelect v-model="formatVModel" :options="formatOptions" />
       <UiTextInput
         id="collection-search"
         v-model="search"
@@ -308,6 +344,7 @@ header {
 }
 
 .search {
+  margin-left: var(--size-4);
   padding-left: var(--size-2);
   border-radius: var(--radius-pill);
 }

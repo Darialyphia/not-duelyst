@@ -1,7 +1,6 @@
 import { api } from '@game/api';
-import { isDefined } from '@game/shared';
+import { isDefined, type Nullable } from '@game/shared';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS, type CardBlueprint } from '@game/sdk';
 import type { CardBlueprintId } from '@game/sdk/src/card/card';
@@ -29,6 +28,7 @@ type LodoutFormContext = {
   addCard(card: { id: string; pedestalId: string; cardBackId: string }): void;
   removeCard(cardId: CardBlueprintId): void;
   save: () => void;
+  reset: () => void;
   isSaving: ComputedRef<boolean>;
 };
 export const LOADOUT_FORM_INJECTION_KEY = Symbol(
@@ -36,11 +36,13 @@ export const LOADOUT_FORM_INJECTION_KEY = Symbol(
 ) as InjectionKey<LodoutFormContext>;
 
 export const useLoadoutFormProvider = ({
-  collection,
+  cards,
+  selectedFormatId,
   defaultName,
   onSuccess
 }: {
-  collection: Ref<CollectionItemDto[]>;
+  cards: Ref<CollectionItemWithCard[]>;
+  selectedFormatId: Ref<Id<'formats'> | undefined>;
   defaultName: MaybeRefOrGetter<string>;
   onSuccess: () => void;
 }) => {
@@ -75,12 +77,13 @@ export const useLoadoutFormProvider = ({
   };
 
   const initFromCode = (code: string) => {
-    const [name, cardsBase64] = code.split('|');
+    const [name, formatId, cardsBase64] = code.split('|');
+    selectedFormatId.value = formatId as Id<'formats'>;
     const decodedCards = JSON.parse(atob(cardsBase64)) as string[];
     formValues.value = {
       name,
       cards: decodedCards
-        .map(id => collection.value.find(collectionItem => collectionItem.cardId === id))
+        .map(id => cards.value.find(card => card.cardId === id))
         .filter(isDefined)
         .map(collectionItem => {
           return {
@@ -163,11 +166,19 @@ export const useLoadoutFormProvider = ({
     if (formValues.value.loadoutId) {
       updateDeck({
         loadoutId: formValues.value.loadoutId,
-        ...formValues.value
+        ...formValues.value,
+        formatId: selectedFormatId.value ?? undefined
       });
     } else {
-      saveNewDeck(formValues.value);
+      saveNewDeck({ ...formValues.value, formatId: selectedFormatId.value ?? undefined });
     }
+  };
+
+  const reset = () => {
+    formValues.value = {
+      name: '',
+      cards: []
+    };
   };
 
   const ctx: LodoutFormContext = {
@@ -182,6 +193,7 @@ export const useLoadoutFormProvider = ({
     addCard,
     removeCard,
     save,
+    reset,
     isSaving
   };
 

@@ -1,12 +1,41 @@
 import { api } from '@game/api';
+import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
-import { CARD_KINDS, CARDS, type Faction, FACTIONS } from '@game/sdk';
+import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
+import { CARD_KINDS, CARDS, defaultConfig, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';
 import { parseSerializeBlueprint } from '@game/sdk/src/card/card-parser';
 import { isString, isDefined, type Nullable } from '@game/shared';
 
 export type CostFilter = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+export type CollectionItemWithCard = {
+  cardId: string;
+  pedestalId: string;
+  cardBackId: string;
+  _id?: Id<'collectionItems'>;
+} & {
+  card: CardBlueprint;
+};
+
 export const useCollection = () => {
+  const { data: formats } = useConvexAuthedQuery(api.formats.all, {});
+
+  const selectedFormatId = ref<Id<'formats'> | undefined>();
+
+  const standardFormat: Pick<GameFormatDto, 'config' | 'cards'> = {
+    config: defaultConfig,
+    cards: CARDS
+  };
+
+  const selectedFormat = computed(() => {
+    if (!formats.value) return standardFormat;
+    return (
+      formats.value.find(format => format._id === selectedFormatId.value) ??
+      standardFormat
+    );
+  });
+
   const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
   const { data: collection, isLoading: isCollectionLoading } = useConvexAuthedQuery(
@@ -22,17 +51,20 @@ export const useCollection = () => {
   const textFilter = ref<Nullable<string>>(null);
   const textFilterDebounced = refDebounced(textFilter, 100);
 
-  const allCards = computed(() =>
-    collection.value
-      .map(item => {
-        return { ...item, card: parseSerializeBlueprint(CARDS[item.cardId]) };
-      })
-      .filter(item => {
-        return item.card.collectable;
-      })
-  );
-
-  type CollectionItemWithCard = CollectionItemDto & { card: CardBlueprint };
+  const allCards = computed(() => {
+    return Object.values({ ...CARDS, ...selectedFormat.value.cards })
+      .filter(c => c.collectable)
+      .map(card => {
+        const collectionItem = collection.value.find(item => item.cardId === card.id);
+        return {
+          _id: collectionItem?._id,
+          cardId: card.id,
+          card: parseSerializeBlueprint(card),
+          pedestalId: collectionItem?.pedestalId ?? 'default',
+          cardBackId: collectionItem?.cardBackId ?? 'default'
+        };
+      });
+  });
 
   const sortUnitFunction = (a: CollectionItemWithCard, b: CollectionItemWithCard) => {
     const aFaction = a.card.faction;
@@ -113,6 +145,9 @@ export const useCollection = () => {
     isLoadoutsLoading,
     collection,
     isCollectionLoading,
-    displayedCards
+    displayedCards,
+    allCards,
+    selectedFormat,
+    selectedFormatId
   };
 };

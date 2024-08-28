@@ -5,7 +5,7 @@ export const loadoutSchemas = {
   loadouts: defineTable({
     name: v.string(),
     ownerId: v.id('users'),
-    formatId: v.id('formats'),
+    formatId: v.optional(v.id('formats')),
     cards: v.array(
       v.object({
         id: v.string(),

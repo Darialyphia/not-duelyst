@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
+import type { Nullable } from '@game/shared';
 
 const { loadouts } = defineProps<{ loadouts: LoadoutDto[] }>();
 const isEditing = defineModel<boolean>('isEditingLoadout', { required: true });
+const selectedFormatId = defineModel<Nullable<Id<'formats'>>>('selectedFormatId', {
+  required: true
+});
 const { initFromCode, initFromLoadout, initEmpty } = useLoadoutForm();
 
 const editLoadout = (loadout: LoadoutDto) => {
   initFromLoadout(loadout);
   isEditing.value = true;
+  selectedFormatId.value = loadout.format._id;
 };
 
 const importCode = ref('');

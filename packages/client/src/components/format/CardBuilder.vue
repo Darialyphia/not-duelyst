@@ -414,8 +414,8 @@ watchEffect(() => {
       <p class="c-orange-5">
         <Icon name="material-symbols:warning-outline" />
         Spells and Artifacts MUST have at least one target or you won't be able to cast
-        them ! Furthermore, the first target of an artifact must be the general equiping
-        the artifact.
+        them ! Furthermore, the first target of an artifact MUST be a general or the card
+        won't work.
       </p>
       <TargetsNode v-model="blueprint.targets!" />
 

@@ -99,7 +99,29 @@ export const f4HornOfTheForsaken = defineSerializedBlueprint({
       vfx: { tracks: [] }
     }
   ],
-  targets: { min: 0, targets: [] },
+  targets: {
+    min: 1,
+    targets: [
+      [
+        [
+          {
+            type: 'has_unit',
+            params: {
+              unit: {
+                candidates: [
+                  [
+                    { type: 'is_general', params: { not: false } },
+                    { type: 'is_ally', params: { not: false } }
+                  ]
+                ],
+                random: false
+              }
+            }
+          }
+        ]
+      ]
+    ]
+  },
   cellHighlights: [],
   spriteId: 'icon_f4_artifact_hornofforsaken',
   name: 'Horn of the Forsaken',
