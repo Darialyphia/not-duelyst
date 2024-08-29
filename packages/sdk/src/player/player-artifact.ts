@@ -39,7 +39,7 @@ export type ArtifactInterceptor = PlayerArtifact['interceptors'];
 export type PlayerArtifactId = string;
 
 export class PlayerArtifact extends TypedEventEmitter<ArtifactEventMap> {
-  private card: Artifact;
+  readonly card: Artifact;
 
   private playerId: PlayerId;
 
