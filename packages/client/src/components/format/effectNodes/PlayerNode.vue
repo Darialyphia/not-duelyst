@@ -28,6 +28,7 @@ const getParams = (groupIndex: number, conditionIndex: number) =>
       :options="playerOptions"
       @update:model-value="
         type => {
+          if (!type) return;
           const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;

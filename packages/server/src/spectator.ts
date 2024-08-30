@@ -10,7 +10,7 @@ export const handleSpectatorSocket = async (
   gameId: Id<'games'>
 ) => {
   try {
-    const game = await socket.data.convexClient.query(api.games.getById, {
+    const game = await socket.data.convexClient.query(api.games.byId, {
       gameId
     });
     if (!game) {

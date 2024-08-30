@@ -2,6 +2,7 @@ import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
 import { ensureHasNoCurrentLobby, ensureLobbyExists } from '../lobby.utils';
 import { LOBBY_USER_ROLES, MAX_PLAYERS_PER_LOBBY } from '../lobby.constants';
+import { api } from '../../_generated/api';
 
 export const joinLobbyUsecase = authedMutation({
   args: {
@@ -29,6 +30,10 @@ export const joinLobbyUsecase = authedMutation({
         MAX_PLAYERS_PER_LOBBY
           ? LOBBY_USER_ROLES.SPECTATOR
           : LOBBY_USER_ROLES.PLAYER
+    });
+
+    ctx.scheduler.runAfter(0, api.matchmaking.leave, {
+      sessionId: ctx.session.sessionId
     });
   }
 });

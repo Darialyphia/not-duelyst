@@ -34,6 +34,7 @@ const componentNodes: Record<string, Component | string> = {
       :options="cardOptions"
       @update:model-value="
         type => {
+          if (!type) return;
           const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;

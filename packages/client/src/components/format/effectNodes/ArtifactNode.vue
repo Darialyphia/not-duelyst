@@ -33,6 +33,7 @@ const componentNodes: Record<string, Component | string> = {
       :options="options"
       @update:model-value="
         type => {
+          if (!type) return;
           const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;

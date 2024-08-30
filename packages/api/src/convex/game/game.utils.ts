@@ -69,6 +69,19 @@ export const getGameById = async ({ db }: { db: QueryCtx['db'] }, id: Id<'games'
   };
 };
 
+export const getGameByRoomId = async ({ db }: { db: QueryCtx['db'] }, roomId: string) => {
+  const game = await db
+    .query('games')
+    .withIndex('by_roomId', q => q.eq('roomId', roomId))
+    .unique();
+  if (!game) return null;
+
+  return {
+    ...game,
+    players: await getGamePlayers({ db }, game)
+  };
+};
+
 export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game) => {
   const gamePlayers = await db
     .query('gamePlayers')
@@ -150,6 +163,7 @@ export const createGame = async (
   arg: {
     roomId: string;
     players: Array<{ userId: Id<'users'>; loadoutId: Id<'loadouts'> }>;
+    formatId?: Id<'formats'>;
   }
 ) => {
   const { mapId, firstPlayer, status, seed } = await getGameInitialState(
@@ -162,7 +176,8 @@ export const createGame = async (
     mapId,
     status,
     seed,
-    roomId: arg.roomId
+    roomId: arg.roomId,
+    formatId: arg.formatId
   });
 
   await Promise.all(
@@ -176,4 +191,5 @@ export const createGame = async (
   );
 
   ctx.scheduler.runAfter(45_000, internal.games.timeout, { roomId: arg.roomId });
+  return gameId;
 };

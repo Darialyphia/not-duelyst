@@ -139,6 +139,13 @@ export const useEntityTexture = (
       await playAnimation('cast', 1, () => true)(event);
       await playAnimation('castend', 1, () => true)(event);
     }),
+    session.on('card:replaced', async event => {
+      if (!entity.value) return;
+      if (!event.player.general.equals(entity.value)) return;
+      await playAnimation('caststart', 1, () => true)(event);
+      await playAnimation('castloop', 1, () => true)(event);
+      await playAnimation('castend', 1, () => true)(event);
+    }),
     session.on('entity:before_move', event => {
       if (!event.entity.equals(entity.value)) return;
 

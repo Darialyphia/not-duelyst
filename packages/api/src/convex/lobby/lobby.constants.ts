@@ -2,6 +2,7 @@ import type { Values } from '@game/shared';
 
 export const LOBBY_STATUS = {
   WAITING_FOR_PLAYERS: 'WAITING_FOR_PLAYERS',
+  CREATING_GAME: 'CREATING_GAME',
   ONGOING: 'ONGOING'
 } as const;
 

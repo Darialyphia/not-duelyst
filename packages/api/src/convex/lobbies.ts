@@ -1,16 +1,17 @@
 import { createLobbyUsecase } from './lobby/usecases/createLobby.usecase';
-import { deleteLobbyUsecase } from './lobby/usecases/deleteLobby.usecase';
 import { getAllLobbiesUsecase } from './lobby/usecases/getAllLobbies.usecase';
 import { getLobbyDetailsUsecase } from './lobby/usecases/getLobbyDetails.usecase';
+import { internalCreateLobbyGameUsecase } from './lobby/usecases/internalCreateLobbyGame.usecase';
+import { internalGetLobbyRoomIdUsecase } from './lobby/usecases/internalGetLobbyRoomId.usecase';
 import { joinLobbyUsecase } from './lobby/usecases/joinLobby.usecase';
 import { leaveLobbyUsecase } from './lobby/usecases/leaveLobby.usecase';
 import { selectLobbyFormatUsecase } from './lobby/usecases/selectLobbyFormat.usecase';
 import { selectLobbyLoadoutUsecase } from './lobby/usecases/selectLobbyLoadout.usecase';
 import { selectLobbyRoleUsecase } from './lobby/usecases/selectLobbyRole.usecase';
 import { sendLobbyMesageUsecase } from './lobby/usecases/sendLobbyMessage.usecase';
+import { startLobbyGameUsecase } from './lobby/usecases/startLobbyGame.usecase';
 
 export const all = getAllLobbiesUsecase;
-export const remove = deleteLobbyUsecase;
 export const create = createLobbyUsecase;
 export const join = joinLobbyUsecase;
 export const leave = leaveLobbyUsecase;
@@ -19,3 +20,6 @@ export const selectFormat = selectLobbyFormatUsecase;
 export const changeRole = selectLobbyRoleUsecase;
 export const sendMessage = sendLobbyMesageUsecase;
 export const byId = getLobbyDetailsUsecase;
+export const start = startLobbyGameUsecase;
+export const getRoomId = internalGetLobbyRoomIdUsecase;
+export const createGame = internalCreateLobbyGameUsecase;

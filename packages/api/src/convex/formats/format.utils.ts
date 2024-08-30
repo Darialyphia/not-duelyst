@@ -8,14 +8,14 @@ import type { QueryCtx } from '../_generated/server';
 
 export const DEFAULT_MAP_ID = 'jn77k33k3z5zdajcwhnjee2e7d6x928n' as Id<'gameMaps'>;
 
-export const defaultFormat = {
+export const defaultFormat: Omit<GameFormat, '_id' | '_creationTime'> = {
   name: 'Standard',
   description: 'The standard Darialyst format.',
   authorId: '_system' as Id<'users'>,
   config: defaultConfig,
   cards: '{}',
   mapId: DEFAULT_MAP_ID
-} satisfies Omit<GameFormat, '_id' | '_creationTime'>;
+};
 
 export const formatConfigValidator = v.object({
   MAX_COPIES_PER_CARD: v.number(),

@@ -13,7 +13,7 @@ import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 
-type GameDto = Defined<FunctionReturnType<typeof api.games.getCurrent>>;
+type GameDto = Defined<FunctionReturnType<typeof api.games.byRoomId>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
 
 const defaultFormat = {
@@ -39,7 +39,7 @@ export class Game {
   ) {
     this.session = ServerSession.create(this.getInitialState(), {
       seed: this.game.seed,
-      format: defaultFormat
+      format: this.game.format
     });
     this.session.on('game:error', this.onGameError.bind(this));
     this.session.onUpdate(this.onGameAction.bind(this));

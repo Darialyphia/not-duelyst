@@ -112,14 +112,18 @@ const mostPlayedCards = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="page">
     <header class="container">
       <BackButton class="inline-flex" />
     </header>
     <div v-if="isLoading">Loading profile...</div>
-    <div v-else class="container" :style="{ '--container-size': 'var(--size-xl)' }">
+    <div
+      v-else
+      class="content container"
+      :style="{ '--container-size': 'var(--size-xl)' }"
+    >
       <h1 class="text-center my-8 text-8 font-4 flex items-center justify-center gap-3">
-        <img src="/assets/portraits/f1-general.png" />
+        <img src="/assets/portraits/tree.jpg" />
         {{ profile.user.name }}
         <span class="text-2 opacity-40">#{{ profile.user.discriminator }}</span>
       </h1>
@@ -253,6 +257,14 @@ header {
   padding-block: var(--size-6);
 }
 
+.content {
+  background-color: hsl(220 50% 15% / 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
 header,
 h1,
 h2 {
@@ -295,6 +307,15 @@ h1 {
   }
   img {
     transform: translateY(10px);
+
+    overflow: hidden;
+
+    aspect-ratio: 1;
+    width: 1.5em;
+
+    filter: drop-shadow(0 3px 8px hsl(0 0 0 / 0.7));
+    border: var(--fancy-border);
+    border-radius: var(--radius-round);
   }
 }
 

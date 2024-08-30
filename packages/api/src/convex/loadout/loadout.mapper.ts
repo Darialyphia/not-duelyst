@@ -49,3 +49,25 @@ export const toLoadoutDto = (
     isValid: !violations.length
   };
 };
+
+export type GameLoadoutDto = {
+  _id: Id<'loadouts'>;
+  name: string;
+  cards: Array<{
+    id: string;
+    pedestalId: string;
+    cardBackId: string;
+  }>;
+};
+
+export const toGameLoadoutDto = (loadout: Loadout): GameLoadoutDto => {
+  return {
+    _id: loadout._id,
+    name: loadout.name,
+    cards: loadout.cards.map(card => ({
+      id: card.id,
+      pedestalId: card.pedestalId,
+      cardBackId: card.cardBackId
+    }))
+  };
+};

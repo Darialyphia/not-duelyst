@@ -85,11 +85,6 @@ const pendingChallenges = computed(() => {
 
 <style scoped lang="postcss">
 .friends-popover-toggle {
-  position: fixed;
-  z-index: 1;
-  bottom: var(--size-6);
-  left: var(--size-6);
-
   display: grid;
 
   @screen lt-lg {

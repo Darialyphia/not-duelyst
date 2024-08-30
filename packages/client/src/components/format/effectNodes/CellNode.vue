@@ -35,6 +35,7 @@ const id = useId();
       :options="cellOptions"
       @update:model-value="
         type => {
+          if (!type) return;
           const condition = groups.candidates[groupIndex][conditionIndex];
 
           condition.type = type;

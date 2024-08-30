@@ -3,6 +3,8 @@ import { LuciaError } from 'lucia';
 import type { Id } from '../../_generated/dataModel';
 import { DEFAULT_MMR } from '../../users/user.utils';
 import { mutationWithAuth } from '../auth.utils';
+import { getFeatureFlag } from '../../featureFlags/featureFlags.utils';
+import { FEATURE_FLAGS } from '../../featureFlags/featureFlags.constants';
 
 export const signupUsecase = mutationWithAuth({
   args: {
@@ -11,6 +13,7 @@ export const signupUsecase = mutationWithAuth({
   },
   handler: async (ctx, { email, password }) => {
     try {
+      const tutorialEnabled = await getFeatureFlag(ctx.db, FEATURE_FLAGS.TUTORIAL);
       const user = await ctx.auth.createUser({
         key: {
           password: password,
@@ -19,7 +22,7 @@ export const signupUsecase = mutationWithAuth({
         },
         attributes: {
           email,
-          hasOnboarded: false,
+          hasOnboarded: !tutorialEnabled,
           mmr: DEFAULT_MMR,
           presence: 'offline',
           _id: '' as Id<'users'>,

@@ -72,6 +72,7 @@ const id = useId();
       :multiple="false"
       @update:model-value="
         type => {
+          if (!type) return;
           amount.type = type;
 
           match(amount)

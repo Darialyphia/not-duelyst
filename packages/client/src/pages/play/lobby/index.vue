@@ -14,7 +14,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 </script>
 
 <template>
-  <div class="page container pt-2 px-5 lg:pt-10">
+  <div class="page container">
     <header>
       <BackButton class="inline-flex" :to="{ name: 'SelectGameMode' }" />
       <h1 class="text-5">Casual Mode</h1>

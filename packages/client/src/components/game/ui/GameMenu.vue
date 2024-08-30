@@ -12,7 +12,7 @@ useEventListener('keydown', e => {
     })
     .with('CARD_CHOICE', () => {
       ui.unselectCard();
-      ui.cardChoiceIndexes.value = [];
+      ui.cardChoice.value = null;
     })
     .otherwise(() => {
       isMenuOpened.value = true;

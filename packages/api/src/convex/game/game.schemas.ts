@@ -14,6 +14,8 @@ export const gameSchemas = {
       v.literal(GAME_STATUS.WAITING_FOR_PLAYERS)
     ) as Validator<GameStatus>,
     roomId: v.string(),
+    formatId: v.optional(v.id('formats')),
+    lobbyId: v.optional(v.id('lobbies')),
     winnerId: v.optional(v.id('gamePlayers'))
   })
     .index('by_status', ['status'])

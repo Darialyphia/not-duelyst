@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
+import type { GameLoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
 import { CARD_KINDS, CARDS } from '@game/sdk';
 import type { RouteLocationNamedRaw } from 'vue-router';
 
 const { game, link } = defineProps<{ game: GameDto; link: RouteLocationNamedRaw }>();
 
-const getGeneralSpriteIds = (loadout: LoadoutDto) => {
+const getGeneralSpriteIds = (loadout: GameLoadoutDto) => {
   const { spriteId, pedestalId } = loadout.cards
     .map(c => ({ ...CARDS[c.id], pedestalId: c.pedestalId }))
     .find(c => {

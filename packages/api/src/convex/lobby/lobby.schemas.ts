@@ -9,6 +9,7 @@ import {
 
 export const LOBBY_STATUS_VALIDATOR = v.union(
   v.literal(LOBBY_STATUS.ONGOING),
+  v.literal(LOBBY_STATUS.CREATING_GAME),
   v.literal(LOBBY_STATUS.WAITING_FOR_PLAYERS)
 ) as Validator<LobbyStatus>;
 
@@ -21,6 +22,7 @@ export const lobbySchemas = {
   lobbies: defineTable({
     name: v.string(),
     ownerId: v.id('users'),
+    gameId: v.optional(v.id('games')),
     formatId: v.optional(v.id('formats')),
     password: v.optional(v.string()),
     status: LOBBY_STATUS_VALIDATOR,
@@ -30,7 +32,9 @@ export const lobbySchemas = {
         text: v.string()
       })
     )
-  }).index('by_owner_id', ['ownerId']),
+  })
+    .index('by_owner_id', ['ownerId'])
+    .index('by_game_id', ['gameId']),
 
   lobbyUsers: defineTable({
     userId: v.id('users'),

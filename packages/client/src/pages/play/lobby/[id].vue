@@ -2,6 +2,7 @@
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import {
+  LOBBY_STATUS,
   LOBBY_USER_ROLES,
   MAX_PLAYERS_PER_LOBBY
 } from '@game/api/src/convex/lobby/lobby.constants';
@@ -23,6 +24,7 @@ const { data: lobby, isLoading } = useConvexAuthedQuery(
     lobbyId: lobbyId.value
   }))
 );
+
 const players = computed(() =>
   lobby.value.users.filter(u => u.role === LOBBY_USER_ROLES.PLAYER)
 );
@@ -30,8 +32,12 @@ const spectators = computed(() =>
   lobby.value.users.filter(u => u.role === LOBBY_USER_ROLES.SPECTATOR)
 );
 
+const { mutate: start, isLoading: isStarting } = useConvexAuthedMutation(
+  api.lobbies.start
+);
+
 const { mutate: join } = useConvexAuthedMutation(api.lobbies.join, {});
-const myLobbyUser = computed(() => lobby.value.users.find(u => u._id === me.value?._id));
+const myLobbyUser = computed(() => lobby.value?.users.find(u => u._id === me.value?._id));
 
 until(lobby)
   .toBeTruthy()
@@ -46,6 +52,13 @@ until(lobby)
 const isPlayer = computed(() => myLobbyUser.value?.role === LOBBY_USER_ROLES.PLAYER);
 const isOwner = computed(() => lobby.value.owner._id === me.value._id);
 
+watchEffect(() => {
+  if (isPlayer.value) return;
+  if (lobby.value?.gameId && lobby.value?.status === LOBBY_STATUS.ONGOING) {
+    navigateTo({ name: 'WatchGame', params: { id: lobby.value.gameId } });
+  }
+});
+
 const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(
   api.lobbies.leave,
   {
@@ -54,14 +67,7 @@ const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(
     }
   }
 );
-const { mutate: deleteLobby, isLoading: isDeleting } = useConvexAuthedMutation(
-  api.lobbies.remove,
-  {
-    onSuccess() {
-      navigateTo({ name: 'Lobbies' });
-    }
-  }
-);
+
 const { mutate: changeRole } = useConvexAuthedMutation(api.lobbies.changeRole, {});
 
 const chatMessage = ref('');
@@ -122,8 +128,10 @@ const isReady = computed(
 </script>
 
 <template>
-  <div class="page container pt-2 px-5 lg:pt-10">
-    <UiLoader v-if="isLoading || !myLobbyUser" />
+  <div class="page container" style="--container-size: var(--size-xl)">
+    <div v-if="isLoading || !myLobbyUser" class="loader">
+      <UiLoader />
+    </div>
     <template v-else-if="lobby">
       <header>
         <BackButton class="inline-flex" :to="{ name: 'Lobbies' }" />
@@ -162,6 +170,11 @@ const isReady = computed(
           <p v-if="!players.length">There are no players at the moment.</p>
           <ul v-auto-animate>
             <li v-for="player in players" :key="player._id" class="lobby-user">
+              <Icon
+                :class="player._id !== lobby.owner._id && 'opacity-0'"
+                name="mdi:crown"
+                class="c-primary"
+              />
               <img src="/assets/portraits/tree.jpg" width="32" />
               <Icon
                 v-if="player.loadout"
@@ -241,19 +254,30 @@ const isReady = computed(
           <p v-if="!spectators.length">There are no spectators at the moment.</p>
           <ul v-auto-animate>
             <li v-for="spectator in spectators" :key="spectator._id" class="lobby-user">
+              <Icon
+                :class="spectator._id !== lobby.owner._id && 'opacity-0'"
+                name="mdi:crown"
+                class="c-primary"
+              />
               <img src="/assets/portraits/tree.jpg" width="32" />
               {{ spectator.name }}
             </li>
           </ul>
 
           <footer class="flex mt-auto">
-            <UiButton v-if="isOwner" class="primary-button" :disabled="!isReady">
+            <UiButton
+              v-if="isOwner"
+              class="primary-button"
+              :disabled="!isReady"
+              :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
+              @click="start({ lobbyId: lobbyId })"
+            >
               Start game
             </UiButton>
             <UiButton
-              :is-loading="isDeleting || isLeaving"
+              :is-loading="isLeaving"
               class="error-button ml-auto"
-              @click="isOwner ? deleteLobby({ lobbyId }) : leaveLobby({ lobbyId })"
+              @click="leaveLobby({ lobbyId })"
             >
               Leave lobby
             </UiButton>
@@ -288,7 +312,7 @@ const isReady = computed(
   padding-inline: var(--size-5);
 
   @screen lg {
-    padding-block: var(--size-10) var(--size-8);
+    padding-block: var(--size-8);
   }
 
   > header {
@@ -297,6 +321,14 @@ const isReady = computed(
   }
 }
 
+.loader {
+  display: grid;
+  grid-row: 1 / -1;
+  place-content: center;
+
+  width: 100%;
+  height: 100%;
+}
 h2 {
   font-size: var(--font-size-3);
 }
@@ -304,7 +336,7 @@ h2 {
 section {
   overflow-y: hidden;
   display: grid;
-  grid-template-columns: 1fr var(--size-xs);
+  grid-template-columns: 1fr var(--size-sm);
   gap: var(--size-3);
 
   height: 100%;

@@ -50,7 +50,7 @@ async function main() {
       const gameId = socket.handshake.query.gameId as Id<'games'>;
 
       if (!isSpectator) {
-        handlePlayerSocket(io, socket, ongoingGames);
+        handlePlayerSocket(io, socket, ongoingGames, gameId);
       } else {
         handleSpectatorSocket(io, socket, ongoingGames, gameId);
       }
