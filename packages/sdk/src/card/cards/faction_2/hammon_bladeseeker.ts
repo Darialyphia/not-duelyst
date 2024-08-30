@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { allyGeneral } from '../../helpers/targeting';
 
 export const f2HammonBladeseeker = defineSerializedBlueprint({
@@ -36,7 +35,7 @@ export const f2HammonBladeseeker = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(2),
+              amount: { type: 'fixed', params: { value: 2 } },
               targets: allyGeneral(),
               filter: { candidates: [] },
               execute: 'now'

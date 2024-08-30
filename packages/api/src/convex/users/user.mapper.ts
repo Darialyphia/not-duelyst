@@ -1,11 +1,14 @@
 import { ONE_MINUTE_IN_MS } from '@game/shared';
 import type { Id } from '../_generated/dataModel';
 import type { User } from './user.entity';
+import { toLobbyDto, type LobbyDto } from '../lobby/lobby.mapper';
+import type { Lobby } from '../lobby/lobby.entity';
 
 export type UserDto = {
   _id: Id<'users'>;
   _creationTime: number;
   name: string;
+  slug: string;
   fullName: string;
   discriminator?: string;
   hasOnboarded: boolean;
@@ -35,6 +38,16 @@ export const toUserDto = (user: User): UserDto => {
     discriminator: user.discriminator,
     fullName: `${user.name}#${user.discriminator}`,
     mmr: user.mmr,
+    slug: user.slug ?? '',
     presence: getPresence(user)
+  };
+};
+
+export type MeDto = UserDto & { currentLobby?: Id<'lobbies'> };
+
+export const toMeDto = (user: User & { lobby?: Lobby }): MeDto => {
+  return {
+    ...toUserDto(user),
+    currentLobby: user.lobby?._id
   };
 };

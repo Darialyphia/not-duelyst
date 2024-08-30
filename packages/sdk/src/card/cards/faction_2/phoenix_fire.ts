@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f2PhoenixFire = defineSerializedBlueprint({
@@ -36,7 +35,7 @@ export const f2PhoenixFire = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(3),
+              amount: { type: 'fixed', params: { value: 3 } },
               targets: manualTarget(0),
               filter: { candidates: [] },
               execute: 'now'

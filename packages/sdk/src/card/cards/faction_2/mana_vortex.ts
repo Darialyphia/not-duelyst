@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2ManaVortex = defineSerializedBlueprint({
   id: 'f2_mana_vortex',
@@ -29,7 +28,7 @@ export const f2ManaVortex = defineSerializedBlueprint({
             params: {
               filter: { candidates: [] },
               execute: 'now',
-              amount: fixedAmount(-1),
+              amount: { type: 'fixed', params: { value: -1 } },
               card: { candidates: [[{ type: 'spell' }]] },
               player: { candidates: [[{ type: 'ally_player' }]] },
               occurences_count: 1,
@@ -39,7 +38,7 @@ export const f2ManaVortex = defineSerializedBlueprint({
           {
             type: 'draw_cards',
             params: {
-              amount: fixedAmount(1),
+              amount: { type: 'fixed', params: { value: 1 } },
               player: { candidates: [[{ type: 'ally_player' }]] },
               filter: { candidates: [] },
               execute: 'end_of_turn'

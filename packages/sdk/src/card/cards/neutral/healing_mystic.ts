@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
-import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const neutralHealingMystic = defineSerializedBlueprint({
@@ -42,7 +41,7 @@ export const neutralHealingMystic = defineSerializedBlueprint({
             params: {
               filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               targets: manualTarget(0),
-              amount: fixedAmount(2)
+              amount: { type: 'fixed', params: { value: 2 } }
             }
           }
         ]

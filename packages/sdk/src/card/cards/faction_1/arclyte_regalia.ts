@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { nTimesPerTurn } from '../../helpers/fequency';
 import { allyGeneral } from '../../helpers/targeting';
 import { whileArtifactEquipedEffect } from '../../helpers/while-artifact-equiped.effect';
@@ -39,7 +38,7 @@ export const f1ArclyteRegalia = defineSerializedBlueprint({
           params: {
             targets: allyGeneral(),
             mode: 'give',
-            attack: { amount: fixedAmount(2) },
+            attack: { amount: { type: 'fixed', params: { value: 2 } } },
             stackable: true
           }
         }
@@ -55,7 +54,7 @@ export const f1ArclyteRegalia = defineSerializedBlueprint({
             stackable: true,
             targets: allyGeneral(),
             frequency: nTimesPerTurn(1),
-            amount: fixedAmount(-2)
+            amount: { type: 'fixed', params: { value: -2 } }
           }
         }
       ]

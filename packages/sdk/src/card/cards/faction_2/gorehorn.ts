@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2Gorehorn = defineSerializedBlueprint({
   id: 'f2_gorehorn',
@@ -20,7 +19,7 @@ export const f2Gorehorn = defineSerializedBlueprint({
   faction: FACTION_IDS.F2,
   effects: [
     {
-      text: '@Backstab@: 2.',
+      text: '@Backstab@: 1.',
       config: {
         executionContext: 'immediate',
         actions: [
@@ -29,7 +28,7 @@ export const f2Gorehorn = defineSerializedBlueprint({
             params: {
               filter: { candidates: [] },
               activeWhen: { candidates: [] },
-              amount: fixedAmount(2),
+              amount: { type: 'fixed', params: { value: 1 } },
               execute: 'now'
             }
           }
@@ -59,11 +58,11 @@ export const f2Gorehorn = defineSerializedBlueprint({
               mode: 'give',
               stackable: true,
               attack: {
-                amount: fixedAmount(1),
+                amount: { type: 'fixed', params: { value: 1 } },
                 activeWhen: { candidates: [] }
               },
               hp: {
-                amount: fixedAmount(1),
+                amount: { type: 'fixed', params: { value: 1 } },
                 activeWhen: { candidates: [] }
               },
               targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },

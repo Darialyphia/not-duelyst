@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { enemyMinion } from '../../helpers/targeting';
 
 export const f2GhostLightning = defineSerializedBlueprint({
@@ -28,7 +27,7 @@ export const f2GhostLightning = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(1),
+              amount: { type: 'fixed', params: { value: 1 } },
               targets: enemyMinion(),
               filter: { candidates: [] },
               execute: 'now'

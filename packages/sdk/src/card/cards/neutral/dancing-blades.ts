@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const neutralDancingBlades = defineSerializedBlueprint({
   id: 'neutral_dancing_blades',
@@ -28,7 +27,7 @@ export const neutralDancingBlades = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(3),
+              amount: { type: 'fixed', params: { value: 3 } },
               targets: {
                 candidates: [
                   [

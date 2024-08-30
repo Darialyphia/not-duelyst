@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { allyGeneral, manualTarget } from '../../helpers/targeting';
 
 export const f1CircleOfLife = defineSerializedBlueprint({
@@ -44,13 +43,13 @@ export const f1CircleOfLife = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               targets: manualTarget(0),
-              amount: fixedAmount(5)
+              amount: { type: 'fixed', params: { value: 5 } }
             }
           },
           {
             type: 'heal',
             params: {
-              amount: fixedAmount(5),
+              amount: { type: 'fixed', params: { value: 5 } },
               targets: allyGeneral()
             }
           }

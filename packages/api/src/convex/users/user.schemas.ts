@@ -8,6 +8,7 @@ export const userSchemas = {
     email: v.string(),
     name: v.optional(v.string()),
     discriminator: v.optional(v.string()),
+    slug: v.optional(v.string()),
     mmr: v.number(),
     hasOnboarded: v.boolean(),
     presence: v.union(v.literal('offline'), v.literal('online'), v.literal('away')),
@@ -15,6 +16,7 @@ export const userSchemas = {
   })
     .index('byId', ['id'])
     .index('by_fullname', ['name', 'discriminator'])
+    .index('by_slug', ['slug'])
     .index('by_mmr', ['mmr']),
 
   userSettings: defineTable({

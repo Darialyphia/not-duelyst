@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2HeavensEclipse = defineSerializedBlueprint({
   id: 'f2_heavens_eclipse',
@@ -27,7 +26,7 @@ export const f2HeavensEclipse = defineSerializedBlueprint({
           {
             type: 'draw_cards',
             params: {
-              amount: fixedAmount(3),
+              amount: { type: 'fixed', params: { value: 3 } },
               player: { candidates: [[{ type: 'ally_player' }]] },
               filter: { candidates: [] },
               execute: 'now',

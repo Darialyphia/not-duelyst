@@ -4,15 +4,12 @@ import { toUserDto } from '../user.mapper';
 
 export const getProfileUsecase = authedQuery({
   args: {
-    fullname: v.string()
+    slug: v.string()
   },
   handler: async (ctx, args) => {
-    const [name, discriminator] = args.fullname.split('#');
     const user = await ctx.db
       .query('users')
-      .withIndex('by_fullname', q =>
-        q.eq('name', name).eq('discriminator', discriminator)
-      )
+      .withIndex('by_slug', q => q.eq('slug', args.slug))
       .unique();
     if (!user) throw new ConvexError('User not found.');
 

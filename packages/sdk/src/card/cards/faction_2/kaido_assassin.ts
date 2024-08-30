@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2KaidoAssassin = defineSerializedBlueprint({
   id: 'f2_kaido_assassin',
@@ -28,7 +27,7 @@ export const f2KaidoAssassin = defineSerializedBlueprint({
             params: {
               filter: { candidates: [] },
               activeWhen: { candidates: [] },
-              amount: fixedAmount(2)
+              amount: { type: 'fixed', params: { value: 2 } }
             }
           }
         ]

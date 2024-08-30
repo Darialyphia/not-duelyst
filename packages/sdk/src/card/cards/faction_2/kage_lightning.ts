@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2KageLightning = defineSerializedBlueprint({
   id: 'f2_kage_lightning',
@@ -23,7 +22,7 @@ export const f2KageLightning = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(5),
+              amount: { type: 'fixed', params: { value: 5 } },
               targets: {
                 candidates: [
                   [{ type: 'is_manual_target', params: { index: 0, not: false } }]

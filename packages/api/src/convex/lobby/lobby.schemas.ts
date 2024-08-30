@@ -23,7 +23,13 @@ export const lobbySchemas = {
     ownerId: v.id('users'),
     formatId: v.optional(v.id('formats')),
     password: v.optional(v.string()),
-    status: LOBBY_STATUS_VALIDATOR
+    status: LOBBY_STATUS_VALIDATOR,
+    messages: v.array(
+      v.object({
+        author: v.string(),
+        text: v.string()
+      })
+    )
   }).index('by_owner_id', ['ownerId']),
 
   lobbyUsers: defineTable({
@@ -34,10 +40,5 @@ export const lobbySchemas = {
   })
     .index('by_lobby_id', ['lobbyId'])
     .index('by_user_id', ['userId'])
-    .index('by_lobby_user', ['lobbyId', 'userId']),
-
-  lobbyMessages: defineTable({
-    userId: v.id('users'),
-    lobbyId: v.id('lobbies')
-  }).index('by_lobby_id', ['lobbyId'])
+    .index('by_lobby_user', ['lobbyId', 'userId'])
 };

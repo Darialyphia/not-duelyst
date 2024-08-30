@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2MistDragonSeal = defineSerializedBlueprint({
   id: 'f2_mist_dragon_seal',
@@ -48,8 +47,14 @@ export const f2MistDragonSeal = defineSerializedBlueprint({
             params: {
               mode: 'give',
               stackable: true,
-              attack: { amount: fixedAmount(1), activeWhen: { candidates: [] } },
-              hp: { amount: fixedAmount(1), activeWhen: { candidates: [] } },
+              attack: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
+              hp: {
+                amount: { type: 'fixed', params: { value: 1 } },
+                activeWhen: { candidates: [] }
+              },
               targets: {
                 candidates: [
                   [{ type: 'is_manual_target', params: { index: 0, not: false } }]

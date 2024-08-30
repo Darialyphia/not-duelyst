@@ -72,7 +72,9 @@ const hasOngoingGame = computed(
         <NuxtLink
           v-slot="{ href, navigate }"
           custom
-          :to="{ name: 'Profile', params: { name: friend.fullName } }"
+          :to="
+            friend.slug ? { name: 'Profile', params: { slug: friend.slug } } : undefined
+          "
         >
           <UiIconButton
             name="material-symbols-light:search-rounded"

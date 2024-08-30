@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { airdropEffect } from '../../helpers/airdrop.effect';
-import { fixedAmount } from '../../helpers/amount';
 import { nearestAllDirections } from '../../helpers/targeting';
 
 export const neutralRiftWalker = defineSerializedBlueprint({
@@ -30,7 +29,7 @@ export const neutralRiftWalker = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
-              amount: fixedAmount(2),
+              amount: { type: 'fixed', params: { value: 2 } },
               targets: nearestAllDirections({
                 candidates: [[{ type: 'is_self', params: { not: false } }]]
               })

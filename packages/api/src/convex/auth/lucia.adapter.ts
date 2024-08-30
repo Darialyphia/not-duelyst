@@ -25,6 +25,7 @@ export function getAuth(db: DatabaseWriter) {
         email: user.email,
         name: user.name,
         mmr: user.mmr,
+        slug: user.slug,
         presence: user.presence,
         discriminator: user.discriminator,
         hasOnboarded: user.hasOnboarded

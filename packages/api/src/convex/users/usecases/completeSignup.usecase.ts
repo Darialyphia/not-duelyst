@@ -5,7 +5,7 @@ import { FEATURE_FLAGS } from '../../featureFlags/featureFlags.constants';
 import { getFeatureFlag } from '../../featureFlags/featureFlags.utils';
 import { ensureAuthorized } from '../../utils/ability.utils';
 import { createUserAbility } from '../user.ability';
-import { generateDiscriminator, DEFAULT_MMR } from '../user.utils';
+import { generateDiscriminator, DEFAULT_MMR, slugify } from '../user.utils';
 
 export const completeSignupUsecase = authedMutation({
   args: {
@@ -15,9 +15,12 @@ export const completeSignupUsecase = authedMutation({
     const userAbility = await createUserAbility(session);
     await ensureAuthorized(userAbility.can('create', 'user'));
 
+    const discriminator = await generateDiscriminator({ db }, name);
+    const slug = slugify(`${name}-${discriminator}`);
     const updatedUser = await db.patch(user._id, {
       name: name,
-      discriminator: await generateDiscriminator({ db }, name),
+      discriminator: discriminator,
+      slug,
       mmr: DEFAULT_MMR
     });
 

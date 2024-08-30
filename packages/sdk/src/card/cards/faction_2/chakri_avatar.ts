@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2ChakriAvatar = defineSerializedBlueprint({
   id: 'f2_chakri_avatar',
@@ -50,11 +49,11 @@ export const f2ChakriAvatar = defineSerializedBlueprint({
               mode: 'give',
               stackable: true,
               attack: {
-                amount: fixedAmount(1),
+                amount: { type: 'fixed', params: { value: 1 } },
                 activeWhen: { candidates: [] }
               },
               hp: {
-                amount: fixedAmount(1),
+                amount: { type: 'fixed', params: { value: 1 } },
                 activeWhen: { candidates: [] }
               },
               targets: { candidates: [[{ type: 'is_self', params: { not: false } }]] },

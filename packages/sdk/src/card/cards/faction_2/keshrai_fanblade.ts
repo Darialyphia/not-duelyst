@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2KeshraiFanblade = defineSerializedBlueprint({
   id: 'f2_keshrai_fanblade',
@@ -29,7 +28,7 @@ export const f2KeshraiFanblade = defineSerializedBlueprint({
             params: {
               filter: { candidates: [[{ type: 'played_from_hand', params: {} }]] },
               execute: 'now',
-              amount: fixedAmount(2),
+              amount: { type: 'fixed', params: { value: 2 } },
               card: { candidates: [[{ type: 'spell' }]] },
               player: { candidates: [[{ type: 'enemy_player' }]] },
               occurences_count: 0,

@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f1Lightchaser = defineSerializedBlueprint({
   id: 'f1_lightchaser',
@@ -42,7 +41,7 @@ export const f1Lightchaser = defineSerializedBlueprint({
               mode: 'give',
               stackable: true,
               attack: {
-                amount: fixedAmount(2)
+                amount: { type: 'fixed', params: { value: 2 } }
               }
             }
           }

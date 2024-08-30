@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f1SundropElixir = defineSerializedBlueprint({
@@ -38,7 +37,7 @@ export const f1SundropElixir = defineSerializedBlueprint({
             type: 'heal',
             params: {
               targets: manualTarget(0),
-              amount: fixedAmount(5)
+              amount: { type: 'fixed', params: { value: 5 } }
             }
           }
         ]

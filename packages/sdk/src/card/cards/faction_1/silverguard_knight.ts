@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { provokeEffect } from '../../helpers/provoke.effect';
 
 export const f1SilverguardKnight = defineSerializedBlueprint({
@@ -42,7 +41,7 @@ export const f1SilverguardKnight = defineSerializedBlueprint({
                       mode: 'give',
                       stackable: false,
                       attack: {
-                        amount: fixedAmount(2)
+                        amount: { type: 'fixed', params: { value: 2 } }
                       }
                     }
                   }

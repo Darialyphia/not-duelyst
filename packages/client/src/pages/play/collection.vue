@@ -30,7 +30,9 @@ const {
   loadouts,
   allCards,
   selectedFormatId,
-  selectedFormat
+  selectedFormat,
+  isCollectionLoading,
+  isLoadoutsLoading
 } = useCollection();
 
 const { canAddCard, addCard, general, reset } = useLoadoutFormProvider({
@@ -113,6 +115,7 @@ const collectionItemComponent = computed(() =>
     />
 
     <section ref="listRoot" class="card-list fancy-scrollbar" :class="listMode">
+      <UiLoader v-if="isCollectionLoading || isLoadoutsLoading" />
       <p v-if="!relevantCards.length">No card found matching this filter.</p>
       <div
         v-for="item in relevantCards"

@@ -6,16 +6,12 @@ export const deleteLobbyUsecase = authedMutation({
     lobbyId: v.id('lobbies')
   },
   async handler(ctx, args) {
-    const messages = await ctx.db
-      .query('lobbyMessages')
-      .withIndex('by_lobby_id', q => q.eq('lobbyId', args.lobbyId))
-      .collect();
     const users = await ctx.db
       .query('lobbyUsers')
       .withIndex('by_lobby_id', q => q.eq('lobbyId', args.lobbyId))
       .collect();
 
-    await Promise.all([...messages, ...users].map(el => ctx.db.delete(el._id)));
+    await Promise.all(users.map(el => ctx.db.delete(el._id)));
 
     await ctx.db.delete(args.lobbyId);
 

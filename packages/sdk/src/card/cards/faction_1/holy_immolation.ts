@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { allyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1HolyImmolation = defineSerializedBlueprint({
@@ -59,13 +58,13 @@ export const f1HolyImmolation = defineSerializedBlueprint({
             type: 'heal',
             params: {
               targets: manualTarget(0),
-              amount: fixedAmount(4)
+              amount: { type: 'fixed', params: { value: 4 } }
             }
           },
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(4),
+              amount: { type: 'fixed', params: { value: 4 } },
               targets: {
                 candidates: [
                   [

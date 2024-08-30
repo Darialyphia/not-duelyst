@@ -1,8 +1,7 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
-import { allyMinion, cellWithAllyMinion, manualTarget } from '../../helpers/targeting';
+import { allyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f2KillingEdge = defineSerializedBlueprint({
   id: 'f2_killing_edge',
@@ -41,11 +40,11 @@ export const f2KillingEdge = defineSerializedBlueprint({
               mode: 'give',
               stackable: true,
               attack: {
-                amount: fixedAmount(4),
+                amount: { type: 'fixed', params: { value: 4 } },
                 activeWhen: { candidates: [] }
               },
               hp: {
-                amount: fixedAmount(2),
+                amount: { type: 'fixed', params: { value: 2 } },
                 activeWhen: { candidates: [] }
               },
               targets: manualTarget(0),
@@ -56,7 +55,7 @@ export const f2KillingEdge = defineSerializedBlueprint({
           {
             type: 'draw_cards',
             params: {
-              amount: fixedAmount(1),
+              amount: { type: 'fixed', params: { value: 1 } },
               player: { candidates: [[{ type: 'ally_player' }]] },
               filter: {
                 candidates: [

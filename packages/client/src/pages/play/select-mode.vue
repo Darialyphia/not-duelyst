@@ -27,7 +27,7 @@ const modes = [
   },
   {
     link: { name: 'Lobbies' },
-    name: 'PvP',
+    name: 'Casual',
     description: 'Pleay against another player in a friendly game.',
     enabled: featureFlags.value.lobbies
   },
@@ -49,7 +49,7 @@ const { isMobile } = useResponsive();
 </script>
 
 <template>
-  <div class="page container pt-2 px-5 lg:pt-10">
+  <div class="page container">
     <header>
       <BackButton class="inline-flex" />
       <h1 class="text-5">Select game mode</h1>
@@ -121,10 +121,6 @@ const { isMobile } = useResponsive();
     width: 100%;
     padding-block: var(--size-6);
     text-shadow: black 0px 4px 1px;
-
-    @screen lg {
-      margin-bottom: var(--size-6);
-    }
   }
 }
 

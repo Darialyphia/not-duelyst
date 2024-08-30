@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { enemyMinion, manualTarget } from '../../helpers/targeting';
 
 export const f1TrueStrike = defineSerializedBlueprint({
@@ -38,7 +37,7 @@ export const f1TrueStrike = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               targets: manualTarget(0),
-              amount: fixedAmount(2)
+              amount: { type: 'fixed', params: { value: 2 } }
             }
           }
         ]

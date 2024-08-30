@@ -2,7 +2,6 @@ import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f1WindbladeAdept = defineSerializedBlueprint({
   id: 'f1_windblade_adept',
@@ -38,7 +37,7 @@ export const f1WindbladeAdept = defineSerializedBlueprint({
                       },
                       mode: 'give',
                       stackable: false,
-                      attack: { amount: fixedAmount(2) }
+                      attack: { amount: { type: 'fixed', params: { value: 2 } } }
                     }
                   }
                 ]

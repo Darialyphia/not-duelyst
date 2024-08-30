@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { manualTarget } from '../../helpers/targeting';
 
 export const f2SaberspineSeal = defineSerializedBlueprint({
@@ -28,7 +27,7 @@ export const f2SaberspineSeal = defineSerializedBlueprint({
               mode: 'give',
               stackable: true,
               attack: {
-                amount: fixedAmount(3),
+                amount: { type: 'fixed', params: { value: 3 } },
                 activeWhen: { candidates: [] }
               },
               targets: manualTarget(0),

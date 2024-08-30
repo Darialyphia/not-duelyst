@@ -12,11 +12,11 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
     <Sound sound="button-click" :triggers="['mousedown']">
       <NuxtLink
         v-slot="{ navigate, href }"
-        :to="{ name: 'Profile', params: { name: me.fullName } }"
+        :to="me.slug ? { name: 'Profile', params: { slug: me.slug ?? '' } } : undefined"
         custom
       >
         <button class="profile-button" :href v-bind="$attrs" @click="navigate">
-          <img src="/assets/portraits/f1-general.png" />
+          <img src="/assets/portraits/tree.jpg" width="64" />
           {{ me.fullName }}
         </button>
       </NuxtLink>
@@ -30,6 +30,8 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
   gap: var(--size-3);
   align-items: center;
 
+  padding: var(--size-3);
+
   font-size: var(--font-size-3);
   line-height: 1;
   text-shadow: black 0px 3px 1px;
@@ -39,6 +41,12 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
   transition: background-color 0.3s;
 
   > img {
+    overflow: hidden;
+
+    filter: drop-shadow(0 3px 8px hsl(0 0 0 / 0.7));
+    border: var(--fancy-border);
+    border-radius: var(--radius-round);
+
     transition: filter 0.3s;
   }
   &:hover,

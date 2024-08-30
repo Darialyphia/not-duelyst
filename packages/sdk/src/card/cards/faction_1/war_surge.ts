@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { allyMinion } from '../../helpers/targeting';
 
 export const f1WarSurge = defineSerializedBlueprint({
@@ -32,10 +31,10 @@ export const f1WarSurge = defineSerializedBlueprint({
               stackable: false,
               mode: 'give',
               attack: {
-                amount: fixedAmount(1)
+                amount: { type: 'fixed', params: { value: 1 } }
               },
               hp: {
-                amount: fixedAmount(1)
+                amount: { type: 'fixed', params: { value: 1 } }
               }
             }
           }

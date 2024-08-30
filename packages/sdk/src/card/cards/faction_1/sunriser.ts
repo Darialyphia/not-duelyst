@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { defineCardEffect } from '../../card-effect';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f1Sunriser = defineSerializedBlueprint({
   id: 'f1_sunriser',
@@ -35,7 +34,7 @@ export const f1Sunriser = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(2),
+              amount: { type: 'fixed', params: { value: 2 } },
               targets: {
                 candidates: [
                   [

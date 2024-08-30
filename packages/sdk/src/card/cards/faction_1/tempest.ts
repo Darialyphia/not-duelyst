@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f1Tempest = defineSerializedBlueprint({
   id: 'f1_tempest',
@@ -36,7 +35,7 @@ export const f1Tempest = defineSerializedBlueprint({
             type: 'deal_damage',
             params: {
               targets: { candidates: [[{ type: 'any_unit' }]] },
-              amount: fixedAmount(2)
+              amount: { type: 'fixed', params: { value: 2 } }
             }
           }
         ]

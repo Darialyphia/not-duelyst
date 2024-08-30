@@ -1,7 +1,6 @@
 import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 import { f3WindDervish } from './wind-dervish';
 
 export const f3FireblazeObelisk = defineSerializedBlueprint({
@@ -63,7 +62,7 @@ export const f3FireblazeObelisk = defineSerializedBlueprint({
                         candidates: [[{ type: 'is_self', params: { not: false } }]]
                       },
                       attack: {
-                        amount: fixedAmount(1)
+                        amount: { type: 'fixed', params: { value: 1 } }
                       }
                     }
                   }

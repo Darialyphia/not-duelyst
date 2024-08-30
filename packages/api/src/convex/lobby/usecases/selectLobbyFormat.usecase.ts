@@ -5,7 +5,7 @@ import { ensureLobbyExists } from '../lobby.utils';
 export const selectLobbyFormatUsecase = authedMutation({
   args: {
     lobbyId: v.id('lobbies'),
-    formatId: v.id('formats')
+    formatId: v.optional(v.id('formats'))
   },
   async handler(ctx, args) {
     const lobby = await ensureLobbyExists(ctx, args.lobbyId);

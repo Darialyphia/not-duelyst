@@ -1,6 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
 
 export const f2Rythmweaver = defineSerializedBlueprint({
   id: 'f2_rythmweaver',
@@ -37,7 +36,7 @@ export const f2Rythmweaver = defineSerializedBlueprint({
           {
             type: 'draw_cards',
             params: {
-              amount: fixedAmount(1),
+              amount: { type: 'fixed', params: { value: 1 } },
               player: { candidates: [[{ type: 'ally_player' }]] },
               filter: { candidates: [] },
               execute: 'now',

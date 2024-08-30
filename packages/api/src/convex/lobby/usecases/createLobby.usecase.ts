@@ -6,7 +6,8 @@ import { LOBBY_STATUS, LOBBY_USER_ROLES } from '../lobby.constants';
 export const createLobbyUsecase = authedMutation({
   args: {
     name: v.string(),
-    password: v.optional(v.string())
+    password: v.optional(v.string()),
+    formatId: v.optional(v.id('formats'))
   },
   async handler(ctx, args) {
     await ensureHasNoCurrentLobby(ctx, ctx.user._id);
@@ -15,7 +16,9 @@ export const createLobbyUsecase = authedMutation({
       name: args.name,
       ownerId: ctx.user._id,
       password: args.password,
-      status: LOBBY_STATUS.WAITING_FOR_PLAYERS
+      formatId: args.formatId,
+      status: LOBBY_STATUS.WAITING_FOR_PLAYERS,
+      messages: []
     });
 
     await ctx.db.insert('lobbyUsers', {
@@ -24,6 +27,6 @@ export const createLobbyUsecase = authedMutation({
       role: LOBBY_USER_ROLES.PLAYER
     });
 
-    return true;
+    return lobbyId;
   }
 });

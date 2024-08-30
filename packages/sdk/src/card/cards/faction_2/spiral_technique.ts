@@ -1,7 +1,6 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
 import { CARD_KINDS, FACTION_IDS, RARITIES } from '../../card-enums';
-import { fixedAmount } from '../../helpers/amount';
-import { anyOccupiedCell, manualTarget } from '../../helpers/targeting';
+import { manualTarget } from '../../helpers/targeting';
 
 export const f2SpiralTechnique = defineSerializedBlueprint({
   id: 'f2_spiral_technique',
@@ -36,7 +35,7 @@ export const f2SpiralTechnique = defineSerializedBlueprint({
           {
             type: 'deal_damage',
             params: {
-              amount: fixedAmount(8),
+              amount: { type: 'fixed', params: { value: 8 } },
               targets: manualTarget(0),
               filter: { candidates: [] },
               execute: 'now'

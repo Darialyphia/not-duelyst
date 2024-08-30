@@ -1,9 +1,14 @@
 import { authedQuery } from '../../auth/auth.utils';
-import { toUserDto } from '../user.mapper';
+import { getCurrentLobby } from '../../lobby/lobby.utils';
+import { toMeDto } from '../user.mapper';
 
 export const getMeUsecase = authedQuery({
   args: {},
   handler: async ctx => {
-    return toUserDto(ctx.user);
+    const lobby = await getCurrentLobby(ctx, ctx.user._id);
+    return toMeDto({
+      ...ctx.user,
+      lobby: lobby ?? undefined
+    });
   }
 });
