@@ -11,6 +11,7 @@ import { getReceivedFriendRequestsUsecase } from './friend/usecases/getReceivedF
 import { internalCancelPendingChallengesUsecase } from './friend/usecases/internalCancelPendingChallenges.usecase';
 import { createChallengeGameUsecase } from './friend/usecases/internalCreateChallengeGame.usecase';
 import { internalSetupChallengeGame } from './friend/usecases/internalSetupChallengeGame.usecase';
+import { markConversationAsReadUsecase } from './friend/usecases/markConversationAsRead.usecase';
 import { markFriendRequestAsSeenUsecase } from './friend/usecases/markFriendRequestAsSeen.usecase';
 import { sendFriendlyChallengeUsecase } from './friend/usecases/sendFriendlyChallenge.usecase';
 import { sendFriendRequestUsecase } from './friend/usecases/sendFriendRequest.usecase';
@@ -23,8 +24,10 @@ export const markAsSeen = markFriendRequestAsSeenUsecase;
 export const acceptFriendRequest = acceptFriendRequestUsecase;
 export const declineFriendRequest = declineFriendRequestUsecase;
 export const all = getFriendsUsecase;
+
 export const conversation = getFriendMessagesUsecase;
 export const sendMessage = sendMessageUsecase;
+export const markAsRead = markConversationAsReadUsecase;
 
 export const internalCancelPendingChallenges = internalCancelPendingChallengesUsecase;
 export const sendFriendlyChallenge = sendFriendlyChallengeUsecase;

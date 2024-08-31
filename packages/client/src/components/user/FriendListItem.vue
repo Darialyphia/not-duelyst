@@ -8,6 +8,7 @@ const { friend } = defineProps<{
   friend: UserDto & {
     challenge: Nullable<FriendlyChallenge>;
     friendRequestId: Id<'friendRequests'>;
+    unreadMessagesCount: number;
   };
 }>();
 
@@ -75,6 +76,7 @@ const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
       <UiIconButton
         name="system-uicons:speech-bubble"
         class="subtle-button"
+        :data-count="friend.unreadMessagesCount || undefined"
         @click="emit('conversationClick')"
       />
       <NuxtLink
@@ -134,5 +136,31 @@ li {
   aspect-ratio: 1;
   width: 32px;
   border-radius: var(--radius-round);
+}
+
+[data-count] {
+  position: relative;
+  &::after {
+    content: attr(data-count);
+
+    position: absolute;
+    z-index: 999;
+    top: calc(100% - var(--size-3));
+    right: calc(-1 * var(--size-1));
+    scale: 0.75;
+    display: grid;
+    place-content: center;
+
+    min-width: 1.5em;
+    height: 1.5em;
+    padding: var(--size-1);
+
+    font-size: var(--notification-size, var(--font-size-00));
+    color: white;
+    text-shadow: none;
+
+    background: var(--red-8);
+    border-radius: var(--radius-pill);
+  }
 }
 </style>

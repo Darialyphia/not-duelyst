@@ -34,6 +34,14 @@ watch(
   },
   { immediate: true }
 );
+
+const { mutate: markAsRead } = useConvexAuthedMutation(api.friends.markAsRead);
+
+watch(messages, newVal => {
+  if (newVal) {
+    markAsRead({ friendRequestId: friend.friendRequestId });
+  }
+});
 </script>
 
 <template>

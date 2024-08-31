@@ -26,6 +26,7 @@ export const friendSchemas = {
   friendMessages: defineTable({
     friendRequestId: v.id('friendRequests'),
     userId: v.id('users'),
-    text: v.string()
+    text: v.string(),
+    readAt: v.optional(v.number())
   }).index('by_friend_request_id', ['friendRequestId'])
 };

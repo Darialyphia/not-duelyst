@@ -1,7 +1,7 @@
 import { isDefined } from '@game/shared';
 import { authedQuery } from '../../auth/auth.utils';
 import { toUserDto } from '../../users/user.mapper';
-import { getAllFriendIds, getAllFriendRequests } from '../friend.utils';
+import { getAllFriendRequests } from '../friend.utils';
 
 export const getFriendsUsecase = authedQuery({
   args: {},
@@ -25,7 +25,19 @@ export const getFriendsUsecase = authedQuery({
           )
           .first();
 
-        return { ...user, challenge, friendRequestId: fr._id };
+        const unreadMessages = await ctx.db
+          .query('friendMessages')
+          .withIndex('by_friend_request_id', q => q.eq('friendRequestId', fr._id))
+          .filter(q => q.eq(q.field('readAt'), undefined))
+          .filter(q => q.neq(q.field('userId'), ctx.user._id))
+          .collect();
+
+        return {
+          ...user,
+          challenge,
+          friendRequestId: fr._id,
+          unreadMessagesCount: unreadMessages.length
+        };
       })
     );
 
@@ -33,7 +45,8 @@ export const getFriendsUsecase = authedQuery({
       return {
         ...toUserDto(user),
         challenge: user.challenge,
-        friendRequestId: user.friendRequestId
+        friendRequestId: user.friendRequestId,
+        unreadMessagesCount: user.unreadMessagesCount
       };
     });
   }

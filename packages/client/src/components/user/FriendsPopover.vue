@@ -27,12 +27,28 @@ const pendingChallenges = computed(() => {
     .filter(friend => friend.challenge && friend.challenge.challengedId === me.value?._id)
     .map(friend => friend.challenge);
 });
+const unreadMessagescount = computed(() => {
+  if (!friends.value) return 0;
+
+  return friends.value.reduce((total, friend) => total + friend.unreadMessagesCount, 0);
+});
+
+const notificationsCount = computed(() => {
+  const total =
+    unseenRequests.value.length +
+    pendingChallenges.value.length +
+    unreadMessagescount.value;
+
+  if (total > 100) return '99+';
+
+  return total || undefined;
+});
 </script>
 
 <template>
   <PopoverRoot v-model:open="isOpened">
     <div
-      :data-count="unseenRequests.length + pendingChallenges.length || undefined"
+      :data-count="notificationsCount"
       class="friends-popover-toggle"
       :style="{ '--notification-size': 'var(--font-size-2)' }"
     >
