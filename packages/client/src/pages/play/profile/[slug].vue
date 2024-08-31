@@ -123,7 +123,7 @@ const mostPlayedCards = computed(() => {
       :style="{ '--container-size': 'var(--size-xl)' }"
     >
       <h1 class="text-center my-8 text-8 font-4 flex items-center justify-center gap-3">
-        <img src="/assets/portraits/tree.jpg" />
+        <img :src="profile.user.avatar" />
         {{ profile.user.name }}
         <span class="text-2 opacity-40">#{{ profile.user.discriminator }}</span>
       </h1>

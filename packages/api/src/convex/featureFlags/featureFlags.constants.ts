@@ -6,7 +6,8 @@ export const FEATURE_FLAGS = {
   TUTORIAL: 'tutorial',
   MATCHMAKING: 'matchmaking',
   LOBBIES: 'lobbies',
-  TOURNAMENT: 'tournament'
+  TOURNAMENT: 'tournament',
+  FRIENDLIES: 'friendlies'
 } as const;
 
 export type FeatureFlag = Values<typeof FEATURE_FLAGS>;

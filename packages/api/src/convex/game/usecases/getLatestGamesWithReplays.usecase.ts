@@ -22,6 +22,9 @@ export const getLatestGamesWithReplaysUsecase = queryWithAuth({
       })
     );
 
-    return games.filter(isDefined).map(toGameDto);
+    return games
+      .filter(isDefined)
+      .filter(g => !g.private)
+      .map(toGameDto);
   }
 });

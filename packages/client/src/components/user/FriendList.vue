@@ -22,6 +22,8 @@ const hasOngoingGame = computed(
     currentGame.value?.status !== 'FINISHED' &&
     currentGame.value?.status !== 'CANCELLED'
 );
+
+const { data: featureFlags } = useConvexQuery(api.featureFlags.all, {});
 </script>
 
 <template>
@@ -32,7 +34,7 @@ const hasOngoingGame = computed(
     <p v-if="!friends.length">You have no friends...yet</p>
     <ul v-else class="friends-list fancy-scrollbar">
       <li v-for="friend in friends" :key="friend._id" :data-presence="friend.presence">
-        <img src="/assets/portraits/f1-general.png" />
+        <img :src="friend.avatar" class="avatar" />
         {{ friend.name }}
 
         <template v-if="friend.challenge">
@@ -61,27 +63,30 @@ const hasOngoingGame = computed(
             Cancel
           </UiButton>
         </template>
-        <UiIconButton
-          v-else
-          name="mdi:sword-cross"
-          :disabled="hasOngoingGame"
-          class="ml-auto"
-          @click="sendChallenge({ challengedId: friend._id })"
-        />
-        <UiIconButton name="system-uicons:speech-bubble" />
-        <NuxtLink
-          v-slot="{ href, navigate }"
-          custom
-          :to="
-            friend.slug ? { name: 'Profile', params: { slug: friend.slug } } : undefined
-          "
-        >
+        <div class="flex gap-2 ml-auto">
           <UiIconButton
-            name="material-symbols-light:search-rounded"
-            :href="href"
-            @click="navigate"
+            v-if="featureFlags.friendlies"
+            name="mdi:sword-cross"
+            class="subtle-button"
+            :disabled="hasOngoingGame"
+            @click="sendChallenge({ challengedId: friend._id })"
           />
-        </NuxtLink>
+          <UiIconButton name="system-uicons:speech-bubble" class="subtle-button" />
+          <NuxtLink
+            v-slot="{ href, navigate }"
+            custom
+            :to="
+              friend.slug ? { name: 'Profile', params: { slug: friend.slug } } : undefined
+            "
+          >
+            <UiIconButton
+              class="subtle-button"
+              name="material-symbols-light:search-rounded"
+              :href="href"
+              @click="navigate"
+            />
+          </NuxtLink>
+        </div>
       </li>
     </ul>
     <UiButton
@@ -136,5 +141,12 @@ const hasOngoingGame = computed(
       --color: var(--orange-4);
     }
   }
+}
+
+.avatar {
+  overflow: hidden;
+  aspect-ratio: 1;
+  width: 32px;
+  border-radius: var(--radius-round);
 }
 </style>

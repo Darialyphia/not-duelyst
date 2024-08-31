@@ -3,6 +3,7 @@ import { LOBBY_STATUS } from '../lobby.constants';
 import { internal } from '../../_generated/api';
 import { createGame } from '../../game/game.utils';
 import { internalMutation } from '../../_generated/server';
+import { ensureLobbyExists } from '../lobby.utils';
 
 export const internalCreateLobbyGameUsecase = internalMutation({
   args: {
@@ -20,9 +21,13 @@ export const internalCreateLobbyGameUsecase = internalMutation({
       userIds: args.players.map(l => l.userId)
     });
 
+    const lobby = await ensureLobbyExists(ctx, args.lobbyId);
+
     const gameId = await createGame(ctx, {
       roomId: args.roomId,
-      players: args.players
+      players: args.players,
+      formatId: lobby.formatId,
+      private: !!lobby.password
     });
 
     await ctx.db.patch(args.lobbyId, {

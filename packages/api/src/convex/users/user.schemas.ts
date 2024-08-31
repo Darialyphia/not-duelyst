@@ -10,6 +10,7 @@ export const userSchemas = {
     discriminator: v.optional(v.string()),
     slug: v.optional(v.string()),
     mmr: v.number(),
+    avatar: v.string(),
     hasOnboarded: v.boolean(),
     presence: v.union(v.literal('offline'), v.literal('online'), v.literal('away')),
     presenceLastUpdatedAt: v.optional(v.number())

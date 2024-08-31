@@ -139,6 +139,7 @@ export const createGame = async (
     roomId: string;
     players: Array<{ userId: Id<'users'>; loadoutId: Id<'loadouts'> }>;
     formatId?: Id<'formats'>;
+    private: boolean;
   }
 ) => {
   const { mapId, firstPlayerIndex, status, seed } = await getGameInitialState(ctx);
@@ -150,6 +151,7 @@ export const createGame = async (
     mapId,
     status,
     seed,
+    private: arg.private,
     roomId: arg.roomId,
     formatId: arg.formatId,
     cachedFormat: {

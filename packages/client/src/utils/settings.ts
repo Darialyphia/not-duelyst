@@ -37,7 +37,7 @@ export const getDefaultSettings = () => ({
   fx: {
     dynamicLighting: false,
     shadows: true,
-    tintStrength: [40]
+    tintStrength: [0]
   },
   a11y: {
     colorCodeUnits: COLOR_CODED_UNITS.OFF as ColorCodedUnitsValue,

@@ -1,7 +1,7 @@
 import { defineTable } from 'convex/server';
 import { v, type Validator } from 'convex/values';
 import { GAME_STATUS, type GameStatus } from './game.constants';
-import type { GameSessionConfig, GenericSerializedBlueprint } from '@game/sdk';
+import type { GameSessionConfig } from '@game/sdk';
 
 export const gameSchemas = {
   games: defineTable({
@@ -13,6 +13,7 @@ export const gameSchemas = {
       v.literal(GAME_STATUS.ONGOING),
       v.literal(GAME_STATUS.WAITING_FOR_PLAYERS)
     ) as Validator<GameStatus>,
+    private: v.boolean(),
     roomId: v.string(),
     formatId: v.optional(v.id('formats')),
     lobbyId: v.optional(v.id('lobbies')),

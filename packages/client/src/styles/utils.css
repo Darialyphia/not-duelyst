@@ -102,8 +102,8 @@ button:is(.primary-button, .error-button) {
 }
 
 .subtle-button {
-  --ui-button-bg: var(--gray-11);
-  --ui-button-hover-bg: var(--gray-12);
+  --ui-button-bg: var(--gray-9);
+  --ui-button-hover-bg: var(--gray-8);
 }
 
 .button-sm {

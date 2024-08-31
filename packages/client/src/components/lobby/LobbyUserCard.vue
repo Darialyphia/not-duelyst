@@ -24,7 +24,7 @@ const isLoadoutDrawerOpened = ref(false);
 <template>
   <li class="lobby-user">
     <Icon :class="!isOwner && 'opacity-0'" name="mdi:crown" class="c-primary" />
-    <img src="/assets/portraits/tree.jpg" width="32" />
+    <img :src="lobbyUser.avatar" width="32" />
     <Icon v-if="lobbyUser.loadout" name="material-symbols:check" class="c-green-6" />
     {{ lobbyUser.name }}
 

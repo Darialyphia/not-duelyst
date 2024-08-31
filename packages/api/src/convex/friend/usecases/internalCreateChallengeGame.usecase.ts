@@ -37,7 +37,8 @@ export const createChallengeGameUsecase = internalMutation({
           userId: challenge.challengerId,
           loadoutId: challenge.challengerLoadoutId!
         }
-      ]
+      ],
+      private: true
     });
 
     await ctx.db.delete(args.challengeId);

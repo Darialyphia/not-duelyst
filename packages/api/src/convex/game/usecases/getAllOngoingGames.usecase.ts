@@ -7,6 +7,7 @@ export const getAllOngoingGamesUsecase = query(async ctx => {
   const games = await ctx.db
     .query('games')
     .withIndex('by_status', q => q.eq('status', GAME_STATUS.ONGOING))
+    .filter(q => q.eq(q.field('private'), false))
     .collect();
 
   return Promise.all(

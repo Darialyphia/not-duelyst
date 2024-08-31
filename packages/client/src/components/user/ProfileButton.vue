@@ -16,7 +16,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
         custom
       >
         <button class="profile-button" :href v-bind="$attrs" @click="navigate">
-          <img src="/assets/portraits/tree.jpg" width="64" />
+          <img :src="me.avatar" width="64" />
           {{ me.fullName }}
         </button>
       </NuxtLink>

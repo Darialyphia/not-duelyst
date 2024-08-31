@@ -7,6 +7,7 @@ declare namespace Lucia {
     name?: string;
     discriminator?: string;
     mmr: number;
+    avatar: string;
     slug?: string;
     hasOnboarded: boolean;
     presence: 'offline' | 'online' | 'away';

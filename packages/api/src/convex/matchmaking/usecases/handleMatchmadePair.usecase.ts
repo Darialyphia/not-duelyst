@@ -23,7 +23,7 @@ export const handleMatchmadePairUsecase = internalMutation({
       userIds: arg.players.map(p => p.userId)
     });
 
-    await createGame(ctx, arg);
+    await createGame(ctx, { ...arg, private: false });
 
     return true;
   }

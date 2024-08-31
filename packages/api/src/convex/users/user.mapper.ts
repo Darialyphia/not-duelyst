@@ -1,7 +1,6 @@
 import { ONE_MINUTE_IN_MS } from '@game/shared';
 import type { Id } from '../_generated/dataModel';
 import type { User } from './user.entity';
-import { toLobbyDto, type LobbyDto } from '../lobby/lobby.mapper';
 import type { Lobby } from '../lobby/lobby.entity';
 
 export type UserDto = {
@@ -11,6 +10,7 @@ export type UserDto = {
   slug: string;
   fullName: string;
   discriminator?: string;
+  avatar: string;
   hasOnboarded: boolean;
   mmr: number;
   presence: 'offline' | 'online' | 'away';
@@ -36,6 +36,7 @@ export const toUserDto = (user: User): UserDto => {
     hasOnboarded: !!user.hasOnboarded,
     name: user.name ?? 'Anonymous',
     discriminator: user.discriminator,
+    avatar: user.avatar,
     fullName: `${user.name}#${user.discriminator}`,
     mmr: user.mmr,
     slug: user.slug ?? '',
