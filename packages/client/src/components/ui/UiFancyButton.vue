@@ -36,29 +36,27 @@ const tag = computed(() => {
 </script>
 
 <template>
-  <Sound sound="button-hover" :triggers="['mouseenter']">
-    <Sound sound="button-click" :triggers="['mousedown']">
-      <component
-        :is="tag"
-        class="ui-fancy-button"
-        :class="{
-          'is-inline': isInline,
-          'is-cta': isCta,
-          'is-loading': isLoading
-        }"
-        :style="style"
-        v-bind="attrs"
-        :disabled="attrs.disabled || isLoading"
-      >
-        <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
+  <InteractableSounds>
+    <component
+      :is="tag"
+      class="ui-fancy-button"
+      :class="{
+        'is-inline': isInline,
+        'is-cta': isCta,
+        'is-loading': isLoading
+      }"
+      :style="style"
+      v-bind="attrs"
+      :disabled="attrs.disabled || isLoading"
+    >
+      <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
 
-        <!-- <UiSpinner v-if="isLoading" /> -->
-        <slot />
+      <!-- <UiSpinner v-if="isLoading" /> -->
+      <slot />
 
-        <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
-      </component>
-    </Sound>
-  </Sound>
+      <Icon v-if="rightIcon && !isLoading" :name="rightIcon" aria-hidden="true" />
+    </component>
+  </InteractableSounds>
 </template>
 
 <style scoped lang="postcss">

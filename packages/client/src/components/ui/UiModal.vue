@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DialogPortal } from 'radix-vue';
+import { isDefined } from '@game/shared';
 
 export type ModalStyleVariables = '--ui-modal-size';
 
@@ -17,6 +17,24 @@ const {
   style?: StyleProp<ModalStyleVariables>;
   usePortal?: boolean;
 }>();
+
+const openSound = useSound('modal-open.m4a');
+const closeSound = useSound('modal-close.m4a');
+
+watch(
+  isOpened,
+  (newVal, oldVal) => {
+    console.log(newVal, oldVal);
+    if (!isDefined(oldVal) && !newVal) return;
+
+    if (newVal) {
+      openSound.play();
+    } else {
+      closeSound.play();
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

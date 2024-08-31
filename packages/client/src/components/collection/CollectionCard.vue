@@ -77,7 +77,7 @@ const { isMobile } = useResponsive();
     class="perspective-wrapper"
     :class="[settings.ui.cardsWith3D && '3d']"
   >
-    <Sound sound="button-hover" :triggers="['mouseenter']">
+    <Sound sound="button-hover.m4a" :triggers="['mouseenter']">
       <Card
         ref="cardEl"
         has-modal

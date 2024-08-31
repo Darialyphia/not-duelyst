@@ -10,7 +10,7 @@ export const f3CosmicFlesh = defineSerializedBlueprint({
   rarity: 'common',
   effects: [
     {
-      text: 'Give a minino +1/+3 and @Provoke@.',
+      text: 'Give a minion +1/+3 and @Provoke@.',
       config: {
         executionContext: 'immediate',
         actions: [

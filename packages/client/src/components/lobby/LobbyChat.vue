@@ -48,7 +48,9 @@ watch(
       aria-label="Send a message"
       placeholder="Type your message here..."
     />
-    <UiButton class="primary-button">Send</UiButton>
+    <InteractableSounds>
+      <UiButton class="primary-button">Send</UiButton>
+    </InteractableSounds>
   </form>
 </template>
 

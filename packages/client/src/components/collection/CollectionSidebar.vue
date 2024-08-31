@@ -45,31 +45,28 @@ const onImport = () => {
       </p>
 
       <ul v-if="loadouts" v-auto-animate>
-        <Sound
-          v-for="loadout in loadouts"
-          :key="loadout._id"
-          sound="button-hover"
-          :triggers="['mouseenter']"
-        >
+        <InteractableSounds v-for="loadout in loadouts" :key="loadout._id">
           <li class="m-2 relative">
             <CollectionLoadoutCard :loadout="loadout" @edit="editLoadout(loadout)" />
           </li>
-        </Sound>
+        </InteractableSounds>
       </ul>
 
       <PopoverRoot v-model:open="isPopoverOpened">
         <div class="primary-button create-button-wrapper">
-          <UiButton
-            left-icon="material-symbols:add"
-            @click="
-              () => {
-                initEmpty();
-                isEditing = true;
-              }
-            "
-          >
-            New Deck
-          </UiButton>
+          <InteractableSounds>
+            <UiButton
+              left-icon="material-symbols:add"
+              @click="
+                () => {
+                  initEmpty();
+                  isEditing = true;
+                }
+              "
+            >
+              New Deck
+            </UiButton>
+          </InteractableSounds>
           <PopoverTrigger as-child>
             <UiIconButton name="tdesign:caret-down" @click="isPopoverOpened = true" />
           </PopoverTrigger>
@@ -85,12 +82,14 @@ const onImport = () => {
                   v-model="importCode"
                   placeholder="Import deck"
                 />
-                <UiIconButton
-                  class="primary-button"
-                  name="solar:import-linear"
-                  type="button"
-                  @click="onImport"
-                />
+                <InteractableSounds>
+                  <UiIconButton
+                    class="primary-button"
+                    name="solar:import-linear"
+                    type="button"
+                    @click="onImport"
+                  />
+                </InteractableSounds>
               </div>
             </div>
           </PopoverContent>

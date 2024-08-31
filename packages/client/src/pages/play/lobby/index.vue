@@ -44,14 +44,16 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
               :to="{ name: 'Lobby', params: { id: lobby._id } }"
               custom
             >
-              <UiButton
-                class="primary-button"
-                left-icon="fluent-emoji-high-contrast:crossed-swords"
-                :href="href"
-                @click="navigate"
-              >
-                Join
-              </UiButton>
+              <LinkSounds>
+                <UiButton
+                  class="primary-button"
+                  left-icon="fluent-emoji-high-contrast:crossed-swords"
+                  :href="href"
+                  @click="navigate"
+                >
+                  Join
+                </UiButton>
+              </LinkSounds>
             </NuxtLink>
           </li>
         </ul>

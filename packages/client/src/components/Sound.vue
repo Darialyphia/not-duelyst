@@ -2,7 +2,6 @@
 import { type Nullable, isFunction, isString } from '@game/shared';
 import { Slot as RadixSlot } from 'radix-vue';
 import { nanoid } from 'nanoid';
-import { Howl } from 'howler';
 
 const {
   sound,
@@ -16,20 +15,10 @@ const {
   enabled?: boolean;
 }>();
 
-const SCALE_FACTOR = 3;
-const { settings: userSettings } = useUserSettings();
-
 const id = `_${nanoid(6).replaceAll('-', '_')}`;
 const el = ref<Nullable<HTMLElement>>(null);
 
-const howl = new Howl({
-  src: `/assets/sfx/${sound}.mp3`,
-  volume: (userSettings.value.sound.sfxVolume[0] / 100) * SCALE_FACTOR
-});
-
-watchEffect(() => {
-  howl.volume((userSettings.value.sound.sfxVolume[0] / 100) * SCALE_FACTOR);
-});
+const howl = useSound(sound);
 
 onMounted(async () => {
   if (enabled) {

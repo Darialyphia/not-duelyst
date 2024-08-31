@@ -41,34 +41,32 @@ const isDisabled = computed(
 </script>
 
 <template>
-  <Sound sound="button-hover" :triggers="['mouseenter']">
-    <Sound sound="button-click" :triggers="['mousedown']">
-      <Card
-        class="card"
-        :class="{
-          disabled: isDisabled,
-          essence: isEssenceEnabled
-        }"
-        :card="{
-          blueprintId: blueprint.id,
-          name: blueprint.name,
-          description: blueprint.description,
-          kind: blueprint.kind,
-          spriteId: blueprint.spriteId,
-          rarity: blueprint.rarity,
-          attack: attack,
-          hp: maxHp,
-          speed: blueprint.speed,
-          cost: cost,
-          pedestalId: pedestalId,
-          cardbackId: cardBackId,
-          faction: blueprint.faction,
-          tags: blueprint.tags ?? []
-        }"
-        @contextmenu.prevent="ui.highlightedCard.value = userPlayer.hand[index]"
-      />
-    </Sound>
-  </Sound>
+  <InteractableSounds>
+    <Card
+      class="card"
+      :class="{
+        disabled: isDisabled,
+        essence: isEssenceEnabled
+      }"
+      :card="{
+        blueprintId: blueprint.id,
+        name: blueprint.name,
+        description: blueprint.description,
+        kind: blueprint.kind,
+        spriteId: blueprint.spriteId,
+        rarity: blueprint.rarity,
+        attack: attack,
+        hp: maxHp,
+        speed: blueprint.speed,
+        cost: cost,
+        pedestalId: pedestalId,
+        cardbackId: cardBackId,
+        faction: blueprint.faction,
+        tags: blueprint.tags ?? []
+      }"
+      @contextmenu.prevent="ui.highlightedCard.value = userPlayer.hand[index]"
+    />
+  </InteractableSounds>
 </template>
 
 <style scoped lang="postcss">

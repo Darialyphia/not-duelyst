@@ -28,7 +28,7 @@ const modes = [
   {
     link: { name: 'Lobbies' },
     name: 'Casual',
-    description: 'Pleay against another player in a friendly game.',
+    description: 'Play against another player in a friendly game.',
     enabled: featureFlags.value.lobbies
   },
   {
@@ -56,7 +56,7 @@ const { isMobile } = useResponsive();
     </header>
 
     <div v-if="isLoading">Loading Game modes...</div>
-    <div v-else-if="isMobile" class="flex-1">
+    <!-- <div v-else-if="isMobile" class="flex-1">
       <Carousel :items-to-show="2.5" wrap-around snap-align="start">
         <Slide v-for="mode in modes" :key="mode.name">
           <InteractableSounds>
@@ -71,10 +71,10 @@ const { isMobile } = useResponsive();
           </InteractableSounds>
         </Slide>
       </Carousel>
-    </div>
+    </div> -->
 
     <template v-else>
-      <InteractableSounds v-for="mode in modes" :key="mode.name">
+      <LinkSounds v-for="mode in modes" :key="mode.name">
         <div class="mode" :class="!mode.enabled && 'disabled'">
           <NuxtLink :to="mode.enabled ? mode.link : undefined" class="fancy-surface">
             <div>
@@ -83,7 +83,7 @@ const { isMobile } = useResponsive();
             </div>
           </NuxtLink>
         </div>
-      </InteractableSounds>
+      </LinkSounds>
     </template>
   </div>
 </template>

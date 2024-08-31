@@ -10,7 +10,7 @@ export const f1AegisBarrier = defineSerializedBlueprint({
   rarity: 'common',
   effects: [
     {
-      text: 'Give an allied minino @Barrier@.',
+      text: 'Give an allied minion @Barrier@.',
       config: {
         executionContext: 'immediate',
         actions: [

@@ -19,23 +19,27 @@ const isPlayer = computed(() => myLobbyUser.value?.role === LOBBY_USER_ROLES.PLA
 </script>
 
 <template>
-  <UiButton
-    v-if="!isPlayer"
-    class="ghost-button"
-    :disabled="players.length === MAX_PLAYERS_PER_LOBBY"
-    left-icon="material-symbols:switch-access-shortcut"
-    @click="changeRole({ role: LOBBY_USER_ROLES.PLAYER, lobbyId: lobby._id })"
-  >
-    Switch to player
-  </UiButton>
-  <UiButton
-    v-if="isPlayer"
-    class="ghost-button switch-to-spectator"
-    left-icon="material-symbols:switch-access-shortcut"
-    @click="changeRole({ role: LOBBY_USER_ROLES.SPECTATOR, lobbyId: lobby._id })"
-  >
-    Switch to spectator
-  </UiButton>
+  <InteractableSounds>
+    <UiButton
+      v-if="!isPlayer"
+      class="ghost-button"
+      :disabled="players.length === MAX_PLAYERS_PER_LOBBY"
+      left-icon="material-symbols:switch-access-shortcut"
+      @click="changeRole({ role: LOBBY_USER_ROLES.PLAYER, lobbyId: lobby._id })"
+    >
+      Switch to player
+    </UiButton>
+  </InteractableSounds>
+  <InteractableSounds>
+    <UiButton
+      v-if="isPlayer"
+      class="ghost-button switch-to-spectator"
+      left-icon="material-symbols:switch-access-shortcut"
+      @click="changeRole({ role: LOBBY_USER_ROLES.SPECTATOR, lobbyId: lobby._id })"
+    >
+      Switch to spectator
+    </UiButton>
+  </InteractableSounds>
 </template>
 
 <style scoped lang="postcss">

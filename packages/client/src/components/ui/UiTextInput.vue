@@ -62,33 +62,35 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div
-    class="ui-input-text"
-    :class="[props.size, props.isError && !attrs.disabled && 'error']"
-    v-bind="wrapperAttrs"
-  >
-    <UiCenter v-if="slots.left || props.leftIcon" class="left">
-      <slot name="left">
-        <Icon v-if="props.leftIcon" :name="props.leftIcon" class="icon" />
-      </slot>
-    </UiCenter>
+  <Sound sound="button-hover.m4a" :triggers="['mouseenter']">
+    <div
+      class="ui-input-text"
+      :class="[props.size, props.isError && !attrs.disabled && 'error']"
+      v-bind="wrapperAttrs"
+    >
+      <UiCenter v-if="slots.left || props.leftIcon" class="left">
+        <slot name="left">
+          <Icon v-if="props.leftIcon" :name="props.leftIcon" class="icon" />
+        </slot>
+      </UiCenter>
 
-    <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-    <input
-      :id="props.id"
-      :ref="props.focusRef"
-      v-model="internalValue"
-      :name="props.name"
-      :type="props.type"
-      v-bind="inputAttrs"
-    />
+      <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
+      <input
+        :id="props.id"
+        :ref="props.focusRef"
+        v-model="internalValue"
+        :name="props.name"
+        :type="props.type"
+        v-bind="inputAttrs"
+      />
 
-    <UiCenter v-if="slots.right || props.rightIcon" class="right">
-      <slot name="right">
-        <Icon v-if="props.rightIcon" :name="props.rightIcon" class="icon" />
-      </slot>
-    </UiCenter>
-  </div>
+      <UiCenter v-if="slots.right || props.rightIcon" class="right">
+        <slot name="right">
+          <Icon v-if="props.rightIcon" :name="props.rightIcon" class="icon" />
+        </slot>
+      </UiCenter>
+    </div>
+  </Sound>
 </template>
 
 <style scoped lang="postcss">

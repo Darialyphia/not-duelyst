@@ -7,14 +7,12 @@ const { to = { name: 'ClientHome' }, ...props } = defineProps<{
 </script>
 
 <template>
-  <Sound sound="button-hover" :triggers="['mouseenter']">
-    <Sound sound="button-click" :triggers="['mousedown']">
-      <NuxtLink :to="to" v-bind="props">
-        <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
-        Go Back
-      </NuxtLink>
-    </Sound>
-  </Sound>
+  <InteractableSounds>
+    <NuxtLink :to="to" v-bind="props">
+      <span class="i-material-symbols-arrow-back-rounded w-5 h-5 block" />
+      Go Back
+    </NuxtLink>
+  </InteractableSounds>
 </template>
 
 <style scoped lang="postcss">

@@ -30,18 +30,27 @@ const isLoadoutDrawerOpened = ref(false);
 
     <template v-if="isMe">
       <template v-if="selectedLoadout">
-        <button class="w-full">
-          <LoadoutCard :loadout="selectedLoadout" @click="isLoadoutDrawerOpened = true" />
-        </button>
-        <UiIconButton
-          name="mdi:close"
-          class="c-red-6"
-          @click="selectLoadout({ lobbyId: lobby._id, loadoutId: undefined })"
-        />
+        <InteractableSounds>
+          <button class="w-full">
+            <LoadoutCard
+              :loadout="selectedLoadout"
+              @click="isLoadoutDrawerOpened = true"
+            />
+          </button>
+        </InteractableSounds>
+        <InteractableSounds>
+          <UiIconButton
+            name="mdi:close"
+            class="c-red-6"
+            @click="selectLoadout({ lobbyId: lobby._id, loadoutId: undefined })"
+          />
+        </InteractableSounds>
       </template>
-      <UiButton v-else class="ghost-button" @click="isLoadoutDrawerOpened = true">
-        Select your deck
-      </UiButton>
+      <InteractableSounds v-else>
+        <UiButton class="ghost-button" @click="isLoadoutDrawerOpened = true">
+          Select your deck
+        </UiButton>
+      </InteractableSounds>
 
       <LobbyLoadoutDrawer v-model:is-opened="isLoadoutDrawerOpened" :lobby="lobby" />
     </template>

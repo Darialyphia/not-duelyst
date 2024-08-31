@@ -17,6 +17,8 @@ const formData = ref({
 const onSubmit = () => {
   createLobby(formData.value);
 };
+
+const { data: me } = useConvexAuthedQuery(api.users.me);
 </script>
 
 <template>
@@ -35,7 +37,18 @@ const onSubmit = () => {
     <label for="lobby-format">Format</label>
     <FormatSelector v-model="formData.formatId" class="w-full mb-3" />
 
-    <UiButton :is-loading="isLoading" class="primary-button">Create</UiButton>
+    <LinkSounds>
+      <UiButton
+        :is-loading="isLoading"
+        class="primary-button"
+        :disabled="me.currentLobby"
+      >
+        Create
+      </UiButton>
+    </LinkSounds>
+    <p v-if="me.currentLobby" class="c-orange-5 text-0">
+      You cannot create a lobby because you are already in one.
+    </p>
   </form>
 </template>
 

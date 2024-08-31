@@ -34,18 +34,20 @@ const selectedLoadoutId = computed({
         Go to collection
       </NuxtLink>
     </p>
-    <button
-      v-for="loadout in availableLoadouts"
-      :key="loadout._id"
-      class="w-full my-2"
-      @click="
-        () => {
-          selectedLoadoutId = loadout._id;
-          isOpened = false;
-        }
-      "
-    >
-      <LoadoutCard :loadout="loadout" />
-    </button>
+    <InteractableSounds>
+      <button
+        v-for="loadout in availableLoadouts"
+        :key="loadout._id"
+        class="w-full my-2"
+        @click="
+          () => {
+            selectedLoadoutId = loadout._id;
+            isOpened = false;
+          }
+        "
+      >
+        <LoadoutCard :loadout="loadout" />
+      </button>
+    </InteractableSounds>
   </UiDrawer>
 </template>

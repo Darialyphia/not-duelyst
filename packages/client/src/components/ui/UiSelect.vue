@@ -21,12 +21,14 @@ const selectedLabel = computed(
 
 <template>
   <SelectRoot v-model="selected">
-    <SelectTrigger :placeholder class="ui-select-trigger" v-bind="$attrs">
-      <SelectValue :placeholder="placeholder">
-        {{ selectedLabel }}
-      </SelectValue>
-      <Icon name="radix-icons:chevron-down" />
-    </SelectTrigger>
+    <InteractableSounds>
+      <SelectTrigger :placeholder class="ui-select-trigger" v-bind="$attrs">
+        <SelectValue :placeholder="placeholder">
+          {{ selectedLabel }}
+        </SelectValue>
+        <Icon name="radix-icons:chevron-down" />
+      </SelectTrigger>
+    </InteractableSounds>
     <SelectPortal :disabled="!usePortal" :to="to">
       <SelectContent :side-offset="5" as-child style="z-index: 2">
         <div class="ui-select-content fancy-scrollbar">

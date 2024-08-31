@@ -14,7 +14,7 @@ export type BGMContext = {
 const BGM_INJECTION_KEY = Symbol('bgm') as InjectionKey<BGMContext>;
 
 const FADE_DURATION = 1500;
-const SCALE_FACTOR = 0.4;
+const SCALE_FACTOR = 0.5;
 
 const supportsOgg = () => {
   return document.createElement('audio').canPlayType('audio/ogg');

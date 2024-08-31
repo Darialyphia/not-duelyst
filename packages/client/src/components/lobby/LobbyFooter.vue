@@ -36,21 +36,25 @@ const isReady = computed(
 
 <template>
   <footer class="flex mt-auto">
-    <UiButton
-      v-if="isOwner"
-      class="primary-button"
-      :disabled="!isReady"
-      :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
-      @click="start({ lobbyId: lobby._id })"
-    >
-      Start game
-    </UiButton>
-    <UiButton
-      :is-loading="isLeaving"
-      class="error-button ml-auto"
-      @click="leaveLobby({ lobbyId: lobby._id })"
-    >
-      Leave lobby
-    </UiButton>
+    <LinkSounds>
+      <UiButton
+        v-if="isOwner"
+        class="primary-button"
+        :disabled="!isReady"
+        :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
+        @click="start({ lobbyId: lobby._id })"
+      >
+        Start game
+      </UiButton>
+    </LinkSounds>
+    <LinkSounds>
+      <UiButton
+        :is-loading="isLeaving"
+        class="error-button ml-auto"
+        @click="leaveLobby({ lobbyId: lobby._id })"
+      >
+        Leave lobby
+      </UiButton>
+    </LinkSounds>
   </footer>
 </template>

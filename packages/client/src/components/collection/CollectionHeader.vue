@@ -25,12 +25,7 @@ const isMobileFilterDrawerOpened = ref(false);
   <header class="fancy-surface border-none">
     <BackButton class="flex-self-center" />
     <div class="flex flex-1 gap-1">
-      <Sound
-        v-for="faction in factions"
-        :key="faction.id"
-        sound="button-hover"
-        :triggers="['mouseenter']"
-      >
+      <InteractableSounds v-for="faction in factions" :key="faction.id">
         <button
           class="faction"
           :class="filter?.equals(faction) && 'active'"
@@ -47,8 +42,8 @@ const isMobileFilterDrawerOpened = ref(false);
         >
           {{ faction.name }}
         </button>
-      </Sound>
-      <Sound sound="button-hover" :triggers="['mouseenter']">
+      </InteractableSounds>
+      <InteractableSounds>
         <button
           class="faction"
           :class="filter === null && 'active'"
@@ -64,7 +59,7 @@ const isMobileFilterDrawerOpened = ref(false);
         >
           Neutral
         </button>
-      </Sound>
+      </InteractableSounds>
 
       <PopoverRoot v-if="!isMobile" v-model:open="isFilterPopoverOpened">
         <PopoverTrigger as-child>
@@ -145,12 +140,7 @@ const isMobileFilterDrawerOpened = ref(false);
     <UiDrawer v-model:is-opened="isMobileFilterDrawerOpened" direction="left" size="xs">
       <h4>Faction</h4>
       <div class="flex gap-2 flex-wrap">
-        <Sound
-          v-for="faction in factions"
-          :key="faction.id"
-          sound="button-hover"
-          :triggers="['mouseenter']"
-        >
+        <Interactable v-for="faction in factions" :key="faction.id">
           <button
             class="faction"
             :class="filter?.equals(faction) && 'active'"
@@ -166,8 +156,8 @@ const isMobileFilterDrawerOpened = ref(false);
               }
             "
           />
-        </Sound>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
+        </Interactable>
+        <InteractableSounds>
           <button
             class="faction"
             :class="filter === null && 'active'"
@@ -182,7 +172,7 @@ const isMobileFilterDrawerOpened = ref(false);
               }
             "
           />
-        </Sound>
+        </InteractableSounds>
       </div>
       <h4>Cost</h4>
 

@@ -18,47 +18,34 @@ const { isMobile } = useResponsive();
         <ProfileButton />
       </li>
       <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink>
-          </Sound>
-        </Sound>
+        <LinkSounds>
+          <NuxtLink :to="{ name: 'SelectGameMode' }">Play</NuxtLink>
+        </LinkSounds>
       </li>
       <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink>
-          </Sound>
-        </Sound>
+        <LinkSounds>
+          <NuxtLink :to="{ name: 'Collection' }">Collection</NuxtLink>
+        </LinkSounds>
       </li>
       <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <NuxtLink :to="{ name: 'FormatList' }">Formats</NuxtLink>
-          </Sound>
-        </Sound>
+        <LinkSounds>
+          <NuxtLink :to="{ name: 'FormatList' }">Formats</NuxtLink>
+        </LinkSounds>
       </li>
       <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
-          </Sound>
-        </Sound>
-      </li>
-      <li></li>
-      <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <button @click="isSettingsOpened = true">Settings</button>
-          </Sound>
-        </Sound>
+        <LinkSounds>
+          <NuxtLink :to="{ name: 'WatchList' }">Watch</NuxtLink>
+        </LinkSounds>
       </li>
       <li>
-        <Sound sound="button-hover" :triggers="['mouseenter']">
-          <Sound sound="button-click" :triggers="['mousedown']">
-            <button @click="signOff({})">Sign Off</button>
-          </Sound>
-        </Sound>
+        <LinkSounds>
+          <button @click="isSettingsOpened = true">Settings</button>
+        </LinkSounds>
+      </li>
+      <li>
+        <LinkSounds>
+          <button @click="signOff({})">Sign Off</button>
+        </LinkSounds>
       </li>
     </ul>
   </nav>
