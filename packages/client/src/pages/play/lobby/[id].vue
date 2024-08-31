@@ -6,6 +6,7 @@ import {
   LOBBY_USER_ROLES,
   MAX_PLAYERS_PER_LOBBY
 } from '@game/api/src/convex/lobby/lobby.constants';
+import UiTextInput from '~/components/ui/UiTextInput.vue';
 
 definePageMeta({
   name: 'Lobby',
@@ -34,16 +35,16 @@ const spectators = computed(() =>
 const myLobbyUser = computed(() => lobby.value?.users.find(u => u._id === me.value?._id));
 const isPlayer = computed(() => myLobbyUser.value?.role === LOBBY_USER_ROLES.PLAYER);
 
-const { mutate: join } = useConvexAuthedMutation(api.lobbies.join, {});
+const { mutate: join, error: joinError } = useConvexAuthedMutation(api.lobbies.join, {});
 
 until(lobby)
   .toBeTruthy()
-  .then(() => {
-    if (!myLobbyUser.value) {
-      join({
-        lobbyId: lobbyId.value
-      });
-    }
+  .then(lobby => {
+    if (myLobbyUser.value) return;
+    if (lobby.needsPassword) return;
+    join({
+      lobbyId: lobbyId.value
+    });
   });
 
 watchEffect(() => {
@@ -52,13 +53,32 @@ watchEffect(() => {
     navigateTo({ name: 'WatchGame', params: { id: lobby.value.gameId } });
   }
 });
+
+const password = ref('');
 </script>
 
 <template>
   <div class="page container" style="--container-size: var(--size-xl)">
-    <div v-if="isLoading || !myLobbyUser" class="loader">
+    <div v-if="isLoading || (!myLobbyUser && !lobby.needsPassword)" class="loader">
       <UiLoader />
     </div>
+
+    <UiModal
+      v-else-if="!myLobbyUser && lobby.needsPassword"
+      :is-opened="true"
+      title="Protected Lobby"
+    >
+      <p class="mb-5">
+        This Lobby is private. Pleas enter the password below to access it.
+      </p>
+
+      <form @submit.prevent="join({ lobbyId: lobby._id, password })">
+        <UiTextInput id="password" v-model="password" type="password" />
+        <UiButton class="primary-button my-5">Join</UiButton>
+        <p v-if="joinError" class="c-red-6">{{ joinError.message }}</p>
+      </form>
+    </UiModal>
+
     <template v-else-if="lobby">
       <header>
         <BackButton class="inline-flex" :to="{ name: 'Lobbies' }" />
@@ -66,7 +86,7 @@ watchEffect(() => {
       </header>
 
       <section class="fancy-surface">
-        <div class="left-side">
+        <div>
           <h2>Chat</h2>
           <LobbyChat :lobby="lobby" />
         </div>
@@ -160,15 +180,14 @@ section {
   > div {
     padding: var(--size-2);
   }
-}
+  > div:first-of-type {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-3);
 
-.left-side {
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-3);
-
-  height: 100%;
+    height: 100%;
+  }
 }
 
 .switch-to-spectator:deep(svg) {

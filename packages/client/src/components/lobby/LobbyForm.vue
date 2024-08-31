@@ -10,6 +10,7 @@ const { mutate: createLobby, isLoading } = useConvexAuthedMutation(api.lobbies.c
 
 const formData = ref({
   name: '',
+  password: undefined as string | undefined,
   formatId: undefined as Id<'formats'> | undefined
 });
 
@@ -22,6 +23,14 @@ const onSubmit = () => {
   <form class="flex flex-col" @submit.prevent="onSubmit">
     <label for="lobby-name">Name</label>
     <UiTextInput id="lobby-name" v-model="formData.name" class="mb-3" />
+
+    <label for="lobby-password">Password (optional)</label>
+    <UiTextInput
+      id="lobby-password"
+      v-model="formData.password"
+      type="password"
+      class="mb-3"
+    />
 
     <label for="lobby-format">Format</label>
     <FormatSelector v-model="formData.formatId" class="w-full mb-3" />

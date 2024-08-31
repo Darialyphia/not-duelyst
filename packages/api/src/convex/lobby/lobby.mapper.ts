@@ -11,6 +11,7 @@ export type LobbyDto = {
   _id: Id<'lobbies'>;
   name: string;
   owner: UserDto;
+  needsPassword: boolean;
   gameId?: Id<'games'>;
   format: {
     _id?: Id<'formats'>;
@@ -29,6 +30,7 @@ export const toLobbyDto = (
 ): LobbyDto => {
   return {
     _id: lobby._id,
+    needsPassword: !!lobby.password,
     gameId: lobby.gameId,
     name: lobby.name,
     format: {
@@ -61,6 +63,7 @@ export const toLobbyDetailsDto = (
   return {
     _id: lobby._id,
     name: lobby.name,
+    needsPassword: !!lobby.password,
     gameId: lobby.gameId,
     status: lobby.status,
     format: {

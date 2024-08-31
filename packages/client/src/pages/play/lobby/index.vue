@@ -33,6 +33,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
           >
             <div>
               <div class="tetx-3 font-semibold">
+                <Icon v-if="lobby.needsPassword" name="material-symbols:lock" />
                 {{ lobby.name }}
               </div>
               <div class="c-text-3">{{ lobby.format.name }}</div>
