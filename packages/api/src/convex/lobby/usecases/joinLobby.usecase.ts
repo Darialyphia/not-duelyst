@@ -6,12 +6,15 @@ import { api } from '../../_generated/api';
 
 export const joinLobbyUsecase = authedMutation({
   args: {
-    lobbyId: v.id('lobbies')
+    lobbyId: v.id('lobbies'),
+    password: v.optional(v.string())
   },
   async handler(ctx, args) {
     await ensureHasNoCurrentLobby(ctx, ctx.user._id);
-    await ensureLobbyExists(ctx, args.lobbyId);
-
+    const lobby = await ensureLobbyExists(ctx, args.lobbyId);
+    if (lobby.password && lobby.password !== args.password) {
+      throw new Error('The password is incorrect.');
+    }
     const lobbyUsers = await ctx.db
       .query('lobbyUsers')
       .withIndex('by_lobby_id', q => q.eq('lobbyId', args.lobbyId))

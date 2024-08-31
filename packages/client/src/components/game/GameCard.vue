@@ -20,14 +20,14 @@ const getGeneralSpriteIds = (loadout: GameLoadoutDto) => {
 <template>
   <article>
     <div class="flex-1 flex gap-4 items-center">
-      <CardSprite v-bind="getGeneralSpriteIds(game.players[0]!.loadout)" />
+      <CardSprite v-bind="getGeneralSpriteIds(game.players[0]!.loadout)" class="sprite" />
 
       {{ game.players[0].name }}
 
       <span class="mx-auto">VS</span>
 
       {{ game.players[1].name }}
-      <CardSprite v-bind="getGeneralSpriteIds(game.players[1]!.loadout)" />
+      <CardSprite v-bind="getGeneralSpriteIds(game.players[1]!.loadout)" class="sprite" />
     </div>
     <NuxtLink v-slot="{ navigate, href }" :to="link" custom>
       <UiButton class="primary-button" :href="href" @click="navigate">Watch</UiButton>
@@ -49,11 +49,16 @@ article {
 
   background-color: hsl(0 0% 0% / 0.3);
   backdrop-filter: blur(5px);
-  border: var(--fancy-border);
+  border: solid var(--border-size-1) var(--border-dimmed);
 
   span {
     font-size: var(--font-size-5);
     font-weight: var(--font-weight-6);
   }
+}
+
+.sprite {
+  aspect-ratio: 1;
+  width: 64px;
 }
 </style>

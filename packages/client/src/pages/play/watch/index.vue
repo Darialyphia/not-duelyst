@@ -33,7 +33,7 @@ const {
 
       <TabsContent class="tab" value="ongoing">
         <div v-if="isLoadingOngoing">Loading...</div>
-        <div v-else class="fancy-surface">
+        <div v-else class="fancy-surface flex flex-col gap-4">
           <p v-if="!ongoingGames.length">
             There are no ongoing game at the moment. Check back later !
           </p>
@@ -55,7 +55,7 @@ const {
         <div v-if="isLoadingLatest">Loading...</div>
         <div v-else-if="latestError" class="fancy-surface c-red-6">{{ latestError }}</div>
 
-        <div v-else class="fancy-surface">
+        <div v-else class="fancy-surface flex flex-col gap-4">
           <p v-if="!latestReplays.length">
             No replays are available at the moment. Check back later !
           </p>

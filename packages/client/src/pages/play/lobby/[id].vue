@@ -31,13 +31,10 @@ const players = computed(() =>
 const spectators = computed(() =>
   lobby.value.users.filter(u => u.role === LOBBY_USER_ROLES.SPECTATOR)
 );
-
-const { mutate: start, isLoading: isStarting } = useConvexAuthedMutation(
-  api.lobbies.start
-);
+const myLobbyUser = computed(() => lobby.value?.users.find(u => u._id === me.value?._id));
+const isPlayer = computed(() => myLobbyUser.value?.role === LOBBY_USER_ROLES.PLAYER);
 
 const { mutate: join } = useConvexAuthedMutation(api.lobbies.join, {});
-const myLobbyUser = computed(() => lobby.value?.users.find(u => u._id === me.value?._id));
 
 until(lobby)
   .toBeTruthy()
@@ -49,82 +46,12 @@ until(lobby)
     }
   });
 
-const isPlayer = computed(() => myLobbyUser.value?.role === LOBBY_USER_ROLES.PLAYER);
-const isOwner = computed(() => lobby.value.owner._id === me.value._id);
-
 watchEffect(() => {
   if (isPlayer.value) return;
   if (lobby.value?.gameId && lobby.value?.status === LOBBY_STATUS.ONGOING) {
     navigateTo({ name: 'WatchGame', params: { id: lobby.value.gameId } });
   }
 });
-
-const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(
-  api.lobbies.leave,
-  {
-    onSuccess() {
-      navigateTo({ name: 'Lobbies' });
-    }
-  }
-);
-
-const { mutate: changeRole } = useConvexAuthedMutation(api.lobbies.changeRole, {});
-
-const chatMessage = ref('');
-const { mutate: sendMessage } = useConvexAuthedMutation(api.lobbies.sendMessage, {
-  onSuccess() {
-    chatMessage.value = '';
-  }
-});
-const chatRoot = ref<HTMLElement>();
-const messageCount = computed(() => lobby.value?.messages.length);
-watch(
-  messageCount,
-  () => {
-    nextTick(() => {
-      const el = unrefElement(chatRoot);
-      if (!el) return;
-      el.scrollTo({
-        top: el.scrollHeight,
-        behavior: 'smooth'
-      });
-    });
-  },
-  { immediate: true }
-);
-
-const { mutate: changeFormat } = useConvexAuthedMutation(api.lobbies.selectFormat);
-const formatId = computed({
-  get() {
-    return lobby.value?.format._id;
-  },
-  set(val) {
-    changeFormat({ lobbyId: lobbyId.value, formatId: val });
-  }
-});
-
-const { data: loadouts } = useConvexAuthedQuery(api.loadout.myLoadouts, {});
-const availableLoadouts = computed(() => {
-  return loadouts.value.filter(l => l.isValid && l.format._id === lobby.value.format._id);
-});
-const { mutate: selectLoadout } = useConvexAuthedMutation(api.lobbies.chooseLoadout);
-const selectedLoadoutId = computed({
-  get() {
-    return myLobbyUser.value!.loadout?._id;
-  },
-  set(val) {
-    selectLoadout({ lobbyId: lobbyId.value, loadoutId: val as Id<'loadouts'> });
-  }
-});
-const selectedLoadout = computed(() =>
-  loadouts.value.find(l => l._id === selectedLoadoutId.value)
-);
-const isLoadoutDrawerOpened = ref(false);
-
-const isReady = computed(
-  () =>
-    players.value.length === MAX_PLAYERS_PER_LOBBY && players.value.every(p => p.loadout)
-);
 </script>
 
 <template>
@@ -141,147 +68,37 @@ const isReady = computed(
       <section class="fancy-surface">
         <div class="left-side">
           <h2>Chat</h2>
-          <TransitionGroup ref="chatRoot" tag="ul" class="chat fancy-scrollbar">
-            <li v-for="(message, index) in lobby.messages" :key="index">
-              <span>{{ message.author }}</span>
-              : {{ message.text }}
-            </li>
-          </TransitionGroup>
-
-          <form
-            class="flex gap-3"
-            @submit.prevent="sendMessage({ lobbyId, text: chatMessage })"
-          >
-            <UiTextInput
-              id="message"
-              v-model="chatMessage"
-              class="flex-1"
-              aria-label="Send a message"
-              placeholder="Type your message here..."
-            />
-            <UiButton class="primary-button">Send</UiButton>
-          </form>
+          <LobbyChat :lobby="lobby" />
         </div>
 
         <div class="flex flex-col pt-8">
-          <FormatSelector v-if="isOwner" v-model="formatId" class="mb-4" />
+          <LobbyFormatSelector :lobby="lobby" class="mb-4" />
 
           <h2>Players ({{ players.length }}/{{ MAX_PLAYERS_PER_LOBBY }})</h2>
           <p v-if="!players.length">There are no players at the moment.</p>
           <ul v-auto-animate>
-            <li v-for="player in players" :key="player._id" class="lobby-user">
-              <Icon
-                :class="player._id !== lobby.owner._id && 'opacity-0'"
-                name="mdi:crown"
-                class="c-primary"
-              />
-              <img src="/assets/portraits/tree.jpg" width="32" />
-              <Icon
-                v-if="player.loadout"
-                name="material-symbols:check"
-                class="c-green-6"
-              />
-              {{ player.name }}
-              <template v-if="player._id === me._id">
-                <template v-if="selectedLoadout">
-                  <button class="w-full">
-                    <LoadoutCard
-                      :loadout="selectedLoadout"
-                      @click="isLoadoutDrawerOpened = true"
-                    />
-                  </button>
-                  <UiIconButton
-                    name="mdi:close"
-                    class="c-red-6"
-                    @click="selectLoadout({ lobbyId, loadoutId: undefined })"
-                  />
-                </template>
-                <UiButton
-                  v-else
-                  class="ghost-button"
-                  @click="isLoadoutDrawerOpened = true"
-                >
-                  Select your deck
-                </UiButton>
-
-                <UiDrawer v-model:is-opened="isLoadoutDrawerOpened" direction="right">
-                  <p v-if="!availableLoadouts.length">
-                    You have no valid deck in this format.
-                    <br />
-                    <NuxtLink :to="{ name: 'Collection' }" class="c-primary underline">
-                      Go to collection
-                    </NuxtLink>
-                  </p>
-                  <button
-                    v-for="loadout in availableLoadouts"
-                    :key="loadout._id"
-                    class="w-full my-2"
-                    @click="
-                      () => {
-                        selectedLoadoutId = loadout._id;
-                        isLoadoutDrawerOpened = false;
-                      }
-                    "
-                  >
-                    <LoadoutCard :loadout="loadout" />
-                  </button>
-                </UiDrawer>
-              </template>
-              <template v-else>
-                <p v-if="!player.loadout">Choosing deck...</p>
-              </template>
-            </li>
+            <LobbyUserCard
+              v-for="player in players"
+              :key="player._id"
+              :lobby-user="player"
+              :lobby="lobby"
+            />
           </ul>
-          <UiButton
-            v-if="!isPlayer"
-            class="ghost-button"
-            :disabled="players.length === MAX_PLAYERS_PER_LOBBY"
-            left-icon="material-symbols:switch-access-shortcut"
-            @click="changeRole({ role: LOBBY_USER_ROLES.PLAYER, lobbyId })"
-          >
-            Switch to player
-          </UiButton>
-          <UiButton
-            v-if="isPlayer"
-            class="ghost-button switch-to-spectator"
-            left-icon="material-symbols:switch-access-shortcut"
-            @click="changeRole({ role: LOBBY_USER_ROLES.SPECTATOR, lobbyId })"
-          >
-            Switch to spectator
-          </UiButton>
+
+          <LobbyRoleButton :lobby="lobby" />
 
           <h2 class="mt-5">Spectators</h2>
           <p v-if="!spectators.length">There are no spectators at the moment.</p>
           <ul v-auto-animate>
-            <li v-for="spectator in spectators" :key="spectator._id" class="lobby-user">
-              <Icon
-                :class="spectator._id !== lobby.owner._id && 'opacity-0'"
-                name="mdi:crown"
-                class="c-primary"
-              />
-              <img src="/assets/portraits/tree.jpg" width="32" />
-              {{ spectator.name }}
-            </li>
+            <LobbyUserCard
+              v-for="spectator in spectators"
+              :key="spectator._id"
+              :lobby-user="spectator"
+              :lobby="lobby"
+            />
           </ul>
 
-          <footer class="flex mt-auto">
-            <UiButton
-              v-if="isOwner"
-              class="primary-button"
-              :disabled="!isReady"
-              :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
-              @click="start({ lobbyId: lobbyId })"
-            >
-              Start game
-            </UiButton>
-            <UiButton
-              :is-loading="isLeaving"
-              class="error-button ml-auto"
-              @click="leaveLobby({ lobbyId })"
-            >
-              Leave lobby
-            </UiButton>
-          </footer>
+          <LobbyFooter :lobby="lobby" />
         </div>
       </section>
     </template>
@@ -342,52 +159,6 @@ section {
   height: 100%;
   > div {
     padding: var(--size-2);
-  }
-}
-
-.lobby-user {
-  display: flex;
-  gap: var(--size-2);
-  align-items: center;
-
-  margin-block: var(--size-2);
-
-  font-size: var(--font-size-2);
-  font-weight: var(--font-weight-5);
-  > img {
-    overflow: hidden;
-    border-radius: var(--radius-round);
-  }
-  > img,
-  > svg {
-    flex-shrink: 0;
-  }
-}
-
-.chat {
-  overflow-y: auto;
-  flex-grow: 1;
-
-  padding: var(--size-3);
-
-  background-color: oklch(from var(--surface-2) l c h / 30%);
-  border: solid 1px var(--border-dimmed);
-  li {
-    line-height: 2;
-
-    &.v-enter-active {
-      transition: all 0.3s;
-    }
-
-    &.v-enter-from {
-      transform: translateX(var(--size-8));
-      opacity: 0;
-    }
-
-    > span {
-      font-weight: var(--font-weight-5);
-      color: var(--primary);
-    }
   }
 }
 
