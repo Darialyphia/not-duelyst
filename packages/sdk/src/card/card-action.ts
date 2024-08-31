@@ -56,6 +56,7 @@ import { RebirthCardAction } from './actions/rebirth.card-action';
 import { AdaptCardAction } from './actions/adapt.card-action';
 import { ToughCardAction } from './actions/tough.card-action';
 import { VulnerableCardAction } from './actions/vulnerable.card-action';
+import { DestroyCardsInDeckCardAction } from './actions/destroy-cards-in-deck.card-action';
 
 export type ParsedActionResult = (
   ctx: EffectCtx,
@@ -239,6 +240,9 @@ export const parseCardAction = (action: Action): ParsedActionResult => {
       })
       .with({ type: 'vulnerable' }, action => {
         return new VulnerableCardAction(action, ctx, event, eventName).execute();
+      })
+      .with({ type: 'destroy_cards_in_deck' }, action => {
+        return new DestroyCardsInDeckCardAction(action, ctx, event, eventName).execute();
       })
       .exhaustive();
   };

@@ -76,7 +76,7 @@ export const f5SilitharElder = defineSerializedBlueprint({
                     {
                       type: 'has_blueprint',
                       params: {
-                        blueprint: f5Egg.id,
+                        blueprint: [f5Egg.id],
                         not: false
                       }
                     }

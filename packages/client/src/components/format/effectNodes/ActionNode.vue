@@ -618,6 +618,15 @@ const actionDict: ActionDictionary = {
       execute: null,
       filter: GlobalConditionNode
     }
+  },
+  destroy_cards_in_deck: {
+    label: "Destroy cards in a player's deck",
+    params: {
+      player: PlayerNode,
+      card: CardNode,
+      execute: null,
+      filter: GlobalConditionNode
+    }
   }
 };
 const actionOptions = computed(
@@ -1001,6 +1010,12 @@ watch(
         params.activeWhen ??= { candidates: [], random: false };
         params.duration ??= 'always';
         params.stacks ??= { type: 'fixed', params: { value: 1 } };
+      })
+      .with({ type: 'destroy_cards_in_deck' }, ({ params }) => {
+        params.filter ??= { candidates: [], random: false };
+        params.execute ??= 'now';
+        params.card ??= { candidates: [[{ type: 'any_card' }]] };
+        params.player ??= { candidates: [[{ type: 'any_player' }]] };
       })
       .exhaustive();
   },

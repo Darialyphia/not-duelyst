@@ -77,6 +77,7 @@ const filteredCards = computed(() =>
               const id = nanoid(6);
               format.cards[id] = {
                 id,
+                name: '',
                 collectable: true,
                 keywords: [],
                 relatedBlueprintIds: [],

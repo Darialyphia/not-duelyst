@@ -23,7 +23,8 @@ export type CardConditionBase =
         operator: NumericOperator;
         amount: Amount<{ unit: UnitConditionExtras['type'] }>;
       };
-    };
+    }
+  | { type: 'has_blueprint'; params: { blueprint: string[] } };
 
 export type CardConditionExtras =
   | { type: 'drawn_card' }
@@ -119,6 +120,9 @@ export const getCards = ({
               });
 
               return players.some(p => p.equals(c.player));
+            })
+            .with({ type: 'has_blueprint' }, condition => {
+              return condition.params.blueprint.includes(c.blueprintId);
             })
             .exhaustive();
         });

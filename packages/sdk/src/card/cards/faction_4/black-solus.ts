@@ -73,7 +73,7 @@ export const f4BlackSolus = defineSerializedBlueprint({
                             { type: 'is_ally', params: { not: false } },
                             {
                               type: 'has_blueprint',
-                              params: { blueprint: 'f4_wraithling', not: false }
+                              params: { blueprint: ['f4_wraithling'], not: false }
                             }
                           ]
                         ],

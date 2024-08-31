@@ -129,6 +129,10 @@ export const [useCardConditionsProvider, _useCardConditions] = createInjectionSt
       from_player: {
         label: 'Belongs to a player',
         params: ['player']
+      },
+      has_blueprint: {
+        label: 'A card with the name',
+        params: ['blueprint']
       }
     };
 

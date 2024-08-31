@@ -6,6 +6,7 @@ const blueprintIds = defineModel<string[]>({ required: true });
 const format = useFormat();
 
 const allCards = computed(() => ({ ...format.value.cards, ...CARDS }));
+console.log(allCards.value);
 const options = computed(() =>
   Object.entries(allCards.value)
     .map(([key, value]) => ({

@@ -612,6 +612,17 @@ export type Action<
           text: string;
         }>;
       };
+    }
+  | {
+      type: 'destroy_cards_in_deck';
+      params: {
+        card: Filter<
+          CardConditionBase | Extract<CardConditionExtras, { type: T['unit'] }>
+        >;
+        player: Filter<PlayerCondition>;
+        execute?: 'now' | 'end_of_turn' | 'start_of_next_turn';
+        filter?: Filter<GlobalCondition<T>>;
+      };
     };
 
 export type ActionParams<T extends Action['type']> = (Action & {
