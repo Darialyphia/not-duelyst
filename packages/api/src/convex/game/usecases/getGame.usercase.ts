@@ -2,7 +2,6 @@ import { v } from 'convex/values';
 import { query } from '../../_generated/server';
 import { toGameDetailsDto } from '../game.mapper';
 import { getGameById } from '../game.utils';
-import { defaultFormat } from '../../formats/format.utils';
 
 export const getGameUsecase = query({
   args: {
@@ -11,9 +10,7 @@ export const getGameUsecase = query({
   async handler(ctx, args) {
     const game = await getGameById(ctx, args.gameId);
     if (!game) return null;
-    const format = game.formatId ? await ctx.db.get(game.formatId) : defaultFormat;
 
-    if (!format) throw Error('Could not find game format');
-    return toGameDetailsDto({ ...game, format });
+    return toGameDetailsDto(game);
   }
 });

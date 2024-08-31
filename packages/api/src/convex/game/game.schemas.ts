@@ -1,11 +1,11 @@
 import { defineTable } from 'convex/server';
 import { v, type Validator } from 'convex/values';
 import { GAME_STATUS, type GameStatus } from './game.constants';
+import type { GameSessionConfig, GenericSerializedBlueprint } from '@game/sdk';
 
 export const gameSchemas = {
   games: defineTable({
     seed: v.string(),
-    firstPlayer: v.id('users'),
     mapId: v.id('gameMaps'),
     status: v.union(
       v.literal(GAME_STATUS.CANCELLED),
@@ -16,7 +16,25 @@ export const gameSchemas = {
     roomId: v.string(),
     formatId: v.optional(v.id('formats')),
     lobbyId: v.optional(v.id('lobbies')),
-    winnerId: v.optional(v.id('gamePlayers'))
+    winnerId: v.optional(v.id('gamePlayers')),
+    cachedPlayers: v.array(
+      v.object({
+        id: v.id('users'),
+        name: v.string(),
+        isPlayer1: v.boolean(),
+        deck: v.array(
+          v.object({
+            blueprintId: v.string(),
+            pedestalId: v.string(),
+            cardBackId: v.string()
+          })
+        )
+      })
+    ),
+    cachedFormat: v.object({
+      config: v.any() as Validator<GameSessionConfig>,
+      cards: v.string()
+    })
   })
     .index('by_status', ['status'])
     .index('by_roomId', ['roomId']),

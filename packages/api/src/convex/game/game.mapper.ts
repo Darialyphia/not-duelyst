@@ -6,11 +6,7 @@ import { toUserDto, type UserDto } from '../users/user.mapper';
 import type { Game } from './game.entity';
 import type { User } from '../users/user.entity';
 import type { Loadout } from '../loadout/loadout.entity';
-import {
-  toSimpleGameFormatDto,
-  type SimpleGameFormatDto,
-  type SimpleGameFormatInput
-} from '../formats/format.mapper';
+import { type SimpleGameFormatDto } from '../formats/format.mapper';
 
 export type GameDto = {
   _id: Id<'games'>;
@@ -51,22 +47,20 @@ export type GameDetailsDto = {
   startedAt: number;
   winnerId: Nullable<Id<'gamePlayers'>>;
   seed: string;
-  firstPlayer: Id<'users'>;
   mapId: Id<'gameMaps'>;
   roomId: string;
   status: GameStatus;
   format: SimpleGameFormatDto;
-  players: Array<
-    UserDto & {
-      loadout: GameLoadoutDto;
-      gamePlayerId: Id<'gamePlayers'>;
-    }
-  >;
+  players: Array<{
+    id: Id<'users'>;
+    name: string;
+    isPlayer1: boolean;
+    deck: Array<{ blueprintId: string; pedestalId: string; cardBackId: string }>;
+  }>;
 };
 
 type GameDetailsMapperInput = Game & {
   players: Array<User & { loadout: Loadout; gamePlayerId: Id<'gamePlayers'> }>;
-  format: SimpleGameFormatInput;
 };
 export const toGameDetailsDto = (game: GameDetailsMapperInput): GameDetailsDto => {
   return {
@@ -74,15 +68,13 @@ export const toGameDetailsDto = (game: GameDetailsMapperInput): GameDetailsDto =
     startedAt: game._creationTime,
     winnerId: game.winnerId,
     seed: game.seed,
-    firstPlayer: game.firstPlayer,
     mapId: game.mapId,
     roomId: game.roomId,
     status: game.status,
-    format: toSimpleGameFormatDto(game.format),
-    players: game.players.map(player => ({
-      ...toUserDto(player),
-      gamePlayerId: player.gamePlayerId,
-      loadout: toGameLoadoutDto(player.loadout)
-    }))
+    format: {
+      config: game.cachedFormat.config,
+      cards: JSON.parse(game.cachedFormat.cards)
+    },
+    players: game.cachedPlayers
   };
 };

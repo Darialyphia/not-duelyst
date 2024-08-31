@@ -12,6 +12,7 @@ import { parse, stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
+import type { SerializedPlayer } from '@game/sdk/src/player/player';
 
 type GameDto = Defined<FunctionReturnType<typeof api.games.byRoomId>>;
 type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
@@ -73,8 +74,8 @@ export class Game {
                 winnerId: winnerId as Id<'users'>,
                 duration: Date.now() - this.startDate,
                 players: this.game.players.map(player => ({
-                  id: player._id,
-                  loadout: player.loadout!.cards.map(card => card.id)
+                  id: player.id,
+                  loadout: player.deck.map(card => card.blueprintId)
                 }))
               }
             }
@@ -121,40 +122,18 @@ export class Game {
   }
 
   private getInitialState(): SerializedGameState {
-    const players = this.game.players
-      .slice()
-      .sort(a => (a._id === this.game.firstPlayer ? -1 : 1));
     return {
       history: [],
       entities: [],
-      players: [
-        {
-          id: players[0]._id,
-          isPlayer1: true,
-          name: players[0].name,
-          currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-          maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-          deck: players[0].loadout!.cards.map(({ id, cardBackId, pedestalId }) => ({
-            pedestalId,
-            cardBackId,
-            blueprintId: id
-          })),
-          graveyard: []
-        },
-        {
-          id: players[1]._id,
-          isPlayer1: false,
-          name: players[1].name,
-          currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-          maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-          deck: players[1].loadout!.cards.map(({ id, cardBackId, pedestalId }) => ({
-            pedestalId,
-            cardBackId,
-            blueprintId: id
-          })),
-          graveyard: []
-        }
-      ],
+      players: this.game.players.map(p => ({
+        id: p.id,
+        isPlayer1: p.isPlayer1,
+        name: p.name,
+        deck: p.deck,
+        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+        graveyard: []
+      })) as unknown as [SerializedPlayer, SerializedPlayer],
       map: {
         width: this.map.width,
         height: this.map.height,

@@ -6,8 +6,9 @@ import type { Game } from './game.entity';
 import { parse } from 'zipson';
 import { toGameDto } from './game.mapper';
 import { internal } from '../_generated/api';
-import type { SerializedGameState } from '@game/sdk';
+import { CARDS, type SerializedGameState } from '@game/sdk';
 import { defaultFormat } from '../formats/format.utils';
+import type { SerializedPlayer } from '@game/sdk/src/player/player';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -42,17 +43,14 @@ export const ensureHasNoCurrentGame = async (
   }
 };
 
-export const getGameInitialState = async (
-  { db }: { db: QueryCtx['db'] },
-  playerIds: Id<'users'>[]
-) => {
+export const getGameInitialState = async ({ db }: { db: QueryCtx['db'] }) => {
   const maps = await db.query('gameMaps').collect();
   const firstPlayerIndex = Math.round(Math.random());
   const mapIndex = randomInt(maps.length - 1);
   const seed = (Math.random() + 1).toString(36).substring(2);
 
   return {
-    firstPlayer: playerIds[firstPlayerIndex],
+    firstPlayerIndex,
     mapId: maps[mapIndex]._id,
     status: GAME_STATUS.WAITING_FOR_PLAYERS,
     seed
@@ -108,43 +106,20 @@ export const getReplayInitialState = async (
   { db }: { db: QueryCtx['db'] },
   game: Game
 ): Promise<SerializedGameState> => {
-  const players = (await getGamePlayers({ db }, game)).sort(a =>
-    a._id === game.firstPlayer ? -1 : 1
-  );
-
   const map = await db.get(game.mapId);
 
   return {
     history: [],
     entities: [],
-    players: [
-      {
-        id: players[0]._id,
-        isPlayer1: true,
-        name: players[0].name!,
-        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        deck: players[0].loadout!.cards.map(({ id, pedestalId, cardBackId }) => ({
-          pedestalId,
-          cardBackId,
-          blueprintId: id
-        })),
-        graveyard: []
-      },
-      {
-        id: players[1]._id,
-        isPlayer1: false,
-        name: players[1].name!,
-        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        deck: players[1].loadout!.cards.map(({ id, pedestalId, cardBackId }) => ({
-          pedestalId,
-          cardBackId,
-          blueprintId: id
-        })),
-        graveyard: []
-      }
-    ],
+    players: game.cachedPlayers.map(p => ({
+      id: p.id,
+      isPlayer1: p.isPlayer1,
+      name: p.name,
+      deck: p.deck,
+      currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+      maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
+      graveyard: []
+    })) as unknown as [SerializedPlayer, SerializedPlayer],
     map: {
       width: map!.width,
       height: map!.height,
@@ -166,18 +141,31 @@ export const createGame = async (
     formatId?: Id<'formats'>;
   }
 ) => {
-  const { mapId, firstPlayer, status, seed } = await getGameInitialState(
-    ctx,
-    arg.players.map(p => p.userId)
-  );
+  const { mapId, firstPlayerIndex, status, seed } = await getGameInitialState(ctx);
 
+  const players = await Promise.all(arg.players.map(p => ctx.db.get(p.userId)));
+  const format = arg.formatId ? await ctx.db.get(arg.formatId) : defaultFormat;
+  const playerLoaouts = await Promise.all(arg.players.map(p => ctx.db.get(p.loadoutId)));
   const gameId = await ctx.db.insert('games', {
-    firstPlayer,
     mapId,
     status,
     seed,
     roomId: arg.roomId,
-    formatId: arg.formatId
+    formatId: arg.formatId,
+    cachedFormat: {
+      config: format!.config,
+      cards: JSON.stringify({ ...CARDS, ...JSON.parse(format!.cards) })
+    },
+    cachedPlayers: arg.players.map((_, index) => ({
+      isPlayer1: index === firstPlayerIndex,
+      id: players[index]!._id,
+      name: players[index]!.name!,
+      deck: playerLoaouts[index]!.cards.map(({ id, cardBackId, pedestalId }) => ({
+        pedestalId,
+        cardBackId,
+        blueprintId: id
+      }))
+    }))
   });
 
   await Promise.all(

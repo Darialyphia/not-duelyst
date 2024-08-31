@@ -31,8 +31,6 @@ export const toGameFormatDto = (format: GameFormatInput): GameFormatDto => {
 };
 
 export type SimpleGameFormatDto = {
-  name: string;
-  description: string;
   config: GameSessionConfig;
   cards: Record<string, GenericSerializedBlueprint>;
 };
@@ -43,8 +41,6 @@ export const toSimpleGameFormatDto = (
   format: Pick<GameFormat, keyof SimpleGameFormatDto>
 ): SimpleGameFormatDto => {
   return {
-    name: format.name,
-    description: format.description,
     config: format.config,
     cards: JSON.parse(format.cards)
   };

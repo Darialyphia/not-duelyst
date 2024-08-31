@@ -6,7 +6,8 @@
     "dev": "convex dev",
     "codegen": "convex codegen",
     "deploy": "convex deploy",
-    "convex": "convex"
+    "convex": "convex",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@game/tsconfig": "*",
