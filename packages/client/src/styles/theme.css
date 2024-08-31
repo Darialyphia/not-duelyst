@@ -41,6 +41,7 @@ html.dark {
 
   --color-primary-hsl: var(--yellow-4-hsl);
   --color-primary-dark-hsl: var(--yellow-6-hsl);
+  --color-primary-darker-hsl: var(--yellow-11-hsl);
   --color-primary-hover-hsl: var(--yellow-5-hsl);
   --color-text-on-primary-hsl: var(--gray-11-hsl);
 
@@ -69,6 +70,7 @@ html.dark {
 
   --primary: hsl(var(--color-primary-hsl));
   --primary-dark: hsl(var(--color-primary-dark-hsl));
+  --primary-darker: hsl(var(--color-primary-darker-hsl));
   --primary-hover: hsl(var(--color-primary-hover-hsl));
   --text-on-primary: hsl(var(--color-text-on-primary-hsl));
 

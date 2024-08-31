@@ -21,5 +21,11 @@ export const friendSchemas = {
   })
     .index('by_challenger_id', ['challengerId'])
     .index('by_challenged_id', ['challengedId'])
-    .index('by_user_id', ['challengerId', 'challengedId'])
+    .index('by_user_id', ['challengerId', 'challengedId']),
+
+  friendMessages: defineTable({
+    friendRequestId: v.id('friendRequests'),
+    userId: v.id('users'),
+    text: v.string()
+  }).index('by_friend_request_id', ['friendRequestId'])
 };

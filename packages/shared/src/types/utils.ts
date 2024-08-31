@@ -102,3 +102,6 @@ export type TuplifyUnion<
 > = true extends N ? [] : Push<TuplifyUnion<Exclude<T, L>>, L>;
 
 export type StrictExtract<T, U extends T> = T extends U ? T : never;
+export type DistributiveOmit<T, K extends keyof T> = {
+  [Property in keyof T as Property extends K ? never : Property]: T[Property];
+};

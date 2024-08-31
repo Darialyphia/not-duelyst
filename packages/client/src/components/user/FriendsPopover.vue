@@ -17,7 +17,7 @@ watchEffect(() => {
   }
 });
 
-const { data: friends, isLoading: isLoading } = useConvexAuthedQuery(api.friends.all, {});
+const { data: friends } = useConvexAuthedQuery(api.friends.all, {});
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
 const pendingChallenges = computed(() => {
@@ -48,35 +48,39 @@ const pendingChallenges = computed(() => {
     <Transition name="friends-popover">
       <PopoverContent :side-offset="10" as-child :collision-padding="20">
         <div class="popover-content fancy-surface">
-          <TabsRoot v-model="openedTab" class="tabs" default-value="ongoing">
-            <TabsList aria-label="select section" class="tabs-list">
-              <TabsIndicator class="tabs-indicator">
-                <div class="w-full h-full bg-white" />
-              </TabsIndicator>
-              <TabsTrigger
-                class="tab-trigger"
-                value="friends"
-                :data-count="pendingChallenges.length || undefined"
-              >
-                Friends
-              </TabsTrigger>
-              <TabsTrigger
-                class="tab-trigger"
-                :data-count="unseenRequests.length || undefined"
-                value="friendRequests"
-              >
-                Friend Requests
-              </TabsTrigger>
-            </TabsList>
+          <div>
+            <TabsRoot v-model="openedTab" class="tabs" default-value="ongoing">
+              <TabsList aria-label="select section" class="tabs-list">
+                <TabsIndicator class="tabs-indicator">
+                  <div class="w-full h-full bg-white" />
+                </TabsIndicator>
+                <TabsTrigger
+                  class="tab-trigger"
+                  value="friends"
+                  :data-count="pendingChallenges.length || undefined"
+                >
+                  Friends
+                </TabsTrigger>
+                <TabsTrigger
+                  class="tab-trigger"
+                  :data-count="unseenRequests.length || undefined"
+                  value="friendRequests"
+                >
+                  Friend Requests
+                </TabsTrigger>
+              </TabsList>
 
-            <TabsContent class="tab" value="friends">
-              <FriendList />
-            </TabsContent>
+              <TabsContent class="tab" value="friends">
+                <FriendList />
+              </TabsContent>
 
-            <TabsContent class="tab" value="friendRequests">
-              <FriendRequestList />
-            </TabsContent>
-          </TabsRoot>
+              <TabsContent class="tab" value="friendRequests">
+                <FriendRequestList />
+              </TabsContent>
+            </TabsRoot>
+          </div>
+
+          <div id="conversation"></div>
         </div>
       </PopoverContent>
     </Transition>
@@ -107,11 +111,13 @@ const pendingChallenges = computed(() => {
 
 .popover-content {
   z-index: 1;
-
-  width: var(--size-14);
+  display: flex;
   height: var(--size-15);
-  padding-block-end: 0;
-  padding-inline: 0;
+  padding: 0;
+
+  > div:first-of-type {
+    width: var(--size-14);
+  }
 }
 
 .tabs {
@@ -128,7 +134,7 @@ const pendingChallenges = computed(() => {
   flex-shrink: 0;
   gap: var(--size-2);
 
-  padding-inline: var(--size-3);
+  padding: var(--size-5) var(--size-3) 0;
 }
 
 .tabs-indicator {
