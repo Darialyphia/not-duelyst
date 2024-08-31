@@ -24,7 +24,6 @@ import {
 import { BlastAttackPattern, type AttackPattern } from '../utils/attack-patterns';
 import type { CardBlueprint } from '../card/card-blueprint';
 import { f5Egg } from '../card/cards/faction_5/egg';
-import type { EffectCtx } from '../card/card-parser';
 
 export const dispelEntity = (entity: Entity) => {
   entity.dispel();
@@ -1094,7 +1093,6 @@ export const adapt = ({ choices }: { choices: AdaptChoice[] }) => {
         keywords: [KEYWORDS.ADAPT],
         onApplied(session, card) {
           card.meta.adapt = choices;
-          console.log(card.meta.adapt);
 
           cleanup = card.once('before_played', () => {
             const originalPlayImpl = card.playImpl;
