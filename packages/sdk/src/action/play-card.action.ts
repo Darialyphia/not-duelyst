@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
 import type { Card } from '../card/card';
+import { GAME_PHASES } from '../game-session';
 
 const schema = defaultActionSchema.extend({
   cardIndex: z.number().nonnegative(),
@@ -21,6 +22,7 @@ const schema = defaultActionSchema.extend({
 
 export class PlayCardAction extends GameAction<typeof schema> {
   readonly name = 'playCard';
+  readonly phase = GAME_PHASES.BATTLE;
 
   protected payloadSchema = schema;
 

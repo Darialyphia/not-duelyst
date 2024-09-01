@@ -15,7 +15,6 @@ const isReady = ref(false);
 until(assets.loaded)
   .toBe(true)
   .then(() => {
-    console.log('loaded');
     // Removed the loader code before the SPA got loaded
     const loader = document.getElementById('app-loader');
     if (!loader) {

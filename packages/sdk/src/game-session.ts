@@ -8,7 +8,7 @@ import {
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Nullable, Prettify } from '@game/shared';
+import type { Nullable, Prettify, Values } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,
@@ -33,10 +33,10 @@ import {
 } from './player/player-artifact';
 import { type GameSessionConfig } from './config';
 import type { CardBlueprint, GenericSerializedBlueprint } from './card/card-blueprint';
-import { CARDS } from './card/card-lookup';
 import { parseSerializeBlueprint } from './card/card-parser';
 import { TypedEventEmitter } from './utils/typed-emitter';
 import { nanoid } from 'nanoid';
+import { validateLoadout } from './utils/loader-validator';
 
 export type SerializedGameState = {
   entities: Array<SerializedEntity>;
@@ -97,70 +97,22 @@ export type GameEventPayload<T extends GameEvent> = GameEventMap[T];
 
 export type SessionLogger = (message?: any, ...optionalParams: any[]) => void;
 
-export const DECK_TOO_SMALL = "Deck doesn't have enough cards.";
-export const DECK_TOO_BIG = 'Deck has too many cards.';
-export const UNKNOWN_CARD = "Deck uses a card that doesn't belong to this format.";
+export const GAME_PHASES = {
+  MULLIGAN: 'MULLIGAN',
+  BATTLE: 'BATTLE'
+} as const;
 
-export type LoadoutViolation =
-  | {
-      type: 'too_big';
-      message: string;
-    }
-  | {
-      type: 'too_small';
-      message: string;
-    }
-  | {
-      type: 'unknown_card';
-      blueprintId: CardBlueprintId;
-      message: string;
-    }
-  | {
-      type: 'too_many_copies';
-      blueprintId: string;
-      message: string;
-    };
+export type GamePhase = Values<typeof GAME_PHASES>;
 
 export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(
     loadout: SerializedGameState['players'][number]['deck'],
     format: GameFormat
   ) {
-    const formatCards = { ...CARDS, ...format.cards };
-    const violations: LoadoutViolation[] = [];
-    if (loadout.length < format.config.MAX_DECK_SIZE) {
-      violations.push({ type: 'too_small', message: 'Deck doesn\t have enough cards.' });
-    }
-
-    if (loadout.length > format.config.MAX_DECK_SIZE) {
-      violations.push({ type: 'too_big', message: 'Deck has too many cards.' });
-    }
-
-    loadout.forEach(card => {
-      const blueprint = formatCards[card.blueprintId];
-      if (!blueprint) {
-        violations.push({
-          type: 'unknown_card',
-          message: `Deck uses a card that doesn't belong to this format.`,
-          blueprintId: card.blueprintId
-        });
-      }
-      const copies = loadout.reduce((total, current) => {
-        return current.blueprintId === card.blueprintId ? total + 1 : total;
-      }, 0);
-      if (copies > format.config.MAX_COPIES_PER_CARD) {
-        const violation: LoadoutViolation = {
-          type: 'too_many_copies',
-          message: `Max copies exceeded for ${blueprint.name}`,
-          blueprintId: card.blueprintId
-        };
-        if (violations.some(v => v.message === violation.message)) return;
-        violations.push(violation);
-      }
-    });
-
-    return [...new Set(violations)];
+    return validateLoadout(loadout, format);
   }
+
+  phase: GamePhase = GAME_PHASES.MULLIGAN;
 
   format: GameFormat;
 

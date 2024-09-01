@@ -76,6 +76,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   public _maxGold: number;
   public currentGold: number;
   private isP2T1: boolean;
+  public hasMulliganed = false;
 
   artifacts: PlayerArtifact[] = [];
   graveyard!: Card[];

@@ -1,5 +1,5 @@
 import { GameAction, type DefaultSchema, type SerializedAction } from './action';
-import { GameSession } from '../game-session';
+import { GameSession, type GamePhase } from '../game-session';
 import type { Constructor, Nullable, Serializable, Values } from '@game/shared';
 import { AttackAction } from './attack.action';
 import { EndTurnAction } from './end-turn.action';
@@ -7,6 +7,7 @@ import { MoveAction } from './move.action';
 import { PlayCardAction } from './play-card.action';
 import { SurrenderAction } from './surrender.action';
 import { ReplaceCardAction } from './replace.action';
+import { MulliganAction } from './mulligan.action';
 
 type GenericActionMap = Record<string, Constructor<GameAction<DefaultSchema>>>;
 
@@ -27,7 +28,8 @@ const actionMap = validateActionMap({
   move: MoveAction,
   playCard: PlayCardAction,
   surrender: SurrenderAction,
-  replaceCard: ReplaceCardAction
+  replaceCard: ReplaceCardAction,
+  mulligan: MulliganAction
 });
 
 export type GameActionName = keyof typeof actionMap;
@@ -36,6 +38,7 @@ type ScheduledAction = () => Promise<void>;
 export class ActionSystem implements Serializable {
   private history: GameAction<any>[] = [];
   private isRunning = false;
+
   currentAction?: Nullable<InstanceType<Values<typeof actionMap>>> = null;
 
   private scheduledActions: ScheduledAction[] = [];

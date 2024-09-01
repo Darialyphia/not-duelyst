@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { GameAction, defaultActionSchema } from './action';
+import { GAME_PHASES } from '../game-session';
 
 const schema = defaultActionSchema.extend({
   entityId: z.number(),
@@ -12,6 +13,7 @@ const schema = defaultActionSchema.extend({
 
 export class MoveAction extends GameAction<typeof schema> {
   readonly name = 'move';
+  readonly phase = GAME_PHASES.BATTLE;
 
   protected payloadSchema = schema;
 

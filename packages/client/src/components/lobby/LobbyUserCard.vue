@@ -15,7 +15,7 @@ const { data: loadouts } = useConvexAuthedQuery(api.loadout.myLoadouts, {});
 const { mutate: selectLoadout } = useConvexAuthedMutation(api.lobbies.chooseLoadout);
 
 const selectedLoadout = computed(() =>
-  loadouts.value.find(l => l._id === lobbyUser.loadout?._id)
+  loadouts.value?.find(l => l._id === lobbyUser.loadout?._id)
 );
 
 const isLoadoutDrawerOpened = ref(false);

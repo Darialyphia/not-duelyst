@@ -1,8 +1,5 @@
-export {
-  GameSession,
-  type SerializedGameState,
-  type LoadoutViolation
-} from './game-session';
+export { GameSession, type SerializedGameState } from './game-session';
+export { type LoadoutViolation } from './utils/loader-validator';
 export { Entity, type EntityId } from './entity/entity';
 export { Player, type PlayerId } from './player/player';
 export { BoardSystem as GameMap } from './board/board-system';

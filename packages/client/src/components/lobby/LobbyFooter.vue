@@ -45,7 +45,7 @@ watchEffect(() => {
 <template>
   <footer class="flex mt-auto">
     <LinkSounds>
-      <div class="start-wrapper">
+      <div class="start-wrapper" :class="isReady && 'is-ready'">
         <UiButton
           v-if="isOwner"
           class="primary-button"
@@ -91,7 +91,10 @@ watchEffect(() => {
 
   border: 3px solid #0000;
   border-radius: 12px;
-  background: linear-gradient(var(--angle), transparent, var(--primary-dark)) border-box;
-  animation: 4s lobby-ready linear infinite;
+
+  &.is-ready {
+    background: linear-gradient(var(--angle), transparent, var(--primary-dark)) border-box;
+    animation: 4s lobby-ready linear infinite;
+  }
 }
 </style>

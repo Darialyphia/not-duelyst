@@ -28,7 +28,6 @@ const closeSound = useSoundEffect('modal-close.m4a');
 watch(
   isOpened,
   (newVal, oldVal) => {
-    console.log(newVal, oldVal);
     if (!isDefined(oldVal) && !newVal) return;
 
     if (newVal) {

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { JSONValue, Serializable } from '@game/shared';
-import { GameSession } from '../game-session';
+import { GameSession, type GamePhase } from '../game-session';
 
 export const defaultActionSchema = z.object({
   playerId: z.string()
@@ -16,6 +16,7 @@ export type AnyGameAction = GameAction<any>;
 
 export abstract class GameAction<TSchema extends DefaultSchema> implements Serializable {
   abstract readonly name: string;
+  abstract readonly phase: GamePhase;
   protected abstract payloadSchema: TSchema;
 
   protected payload!: z.infer<TSchema>;
@@ -42,6 +43,11 @@ export abstract class GameAction<TSchema extends DefaultSchema> implements Seria
   }
 
   async execute() {
+    if (this.session.phase != this.phase) {
+      return this.printError(
+        `${this.name} action cannot be executed during ${this.session.phase}`
+      );
+    }
     this.parsePayload();
 
     if (!this.player) {
