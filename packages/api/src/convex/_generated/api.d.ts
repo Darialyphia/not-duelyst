@@ -20,7 +20,6 @@ import type * as collection from "../collection.js";
 import type * as featureFlags from "../featureFlags.js";
 import type * as formats from "../formats.js";
 import type * as friends from "../friends.js";
-import type * as gameMaps from "../gameMaps.js";
 import type * as games from "../games.js";
 import type * as hathora from "../hathora.js";
 import type * as loadout from "../loadout.js";
@@ -43,7 +42,6 @@ declare const fullApi: ApiFromModules<{
   featureFlags: typeof featureFlags;
   formats: typeof formats;
   friends: typeof friends;
-  gameMaps: typeof gameMaps;
   games: typeof games;
   hathora: typeof hathora;
   loadout: typeof loadout;

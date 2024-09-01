@@ -1054,7 +1054,7 @@ export const parseSerializedBlueprintEffect = (
 const cache = new Map<string, CardBlueprint>();
 export const parseSerializeBlueprint = <T extends GenericCardEffect[]>(
   blueprint: SerializedBlueprint<T>,
-  format: GameFormat = { config: defaultConfig, cards: CARDS },
+  format: Pick<GameFormat, 'config' | 'cards'> = { config: defaultConfig, cards: CARDS },
   { noCache }: { noCache: boolean } = { noCache: false }
 ) => {
   const cacheKey = `${blueprint.id}:${JSON.stringify(format)}`;

@@ -10,7 +10,7 @@ export const createGameReplayUsecase = internalMutation({
   },
   async handler(ctx, args) {
     const game = await ctx.db.get(args.gameId);
-    const initialState = await getReplayInitialState(ctx, game!);
+    const initialState = await getReplayInitialState(game!);
 
     return ctx.db.insert('gameReplays', {
       ...args,

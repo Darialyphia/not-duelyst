@@ -1,6 +1,7 @@
-import { TERRAINS, type SerializedGameState } from '@game/sdk';
 import { isDefined } from '@game/shared';
 import { match } from 'ts-pattern';
+import type { GameFormat } from '../game-session';
+import { TERRAINS } from './board-utils';
 
 const dirtTile = (
   x: number,
@@ -72,7 +73,7 @@ const makeColumn = (
     .filter(isDefined);
 };
 
-export const tutorialMap: SerializedGameState['map'] = {
+export const tutorialMap: GameFormat['map'] = {
   width: 8,
   height: 8,
   player1StartPosition: { x: 0, y: 3, z: 0 },
@@ -179,7 +180,7 @@ const makePlane = (
   ).flat();
 };
 
-export const testMap: SerializedGameState['map'] = {
+export const defaultMap: GameFormat['map'] = {
   width: 9,
   height: 5,
   player1StartPosition: { x: 0, y: 2, z: 3 },

@@ -12,7 +12,7 @@ export {
   type EntityModifier as Modifier,
   type ModifierId
 } from './modifier/entity-modifier';
-
+export { tutorialMap, defaultMap } from './board/maps';
 export { Card } from './card/card';
 export {
   CARD_KINDS,

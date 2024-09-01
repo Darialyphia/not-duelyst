@@ -39,7 +39,6 @@ import { TypedEventEmitter } from './utils/typed-emitter';
 import { nanoid } from 'nanoid';
 
 export type SerializedGameState = {
-  map: BoardSystemOptions;
   entities: Array<SerializedEntity>;
   players: [SerializedPlayer, SerializedPlayer];
   history: SerializedAction[];
@@ -51,6 +50,7 @@ export type SerializedGameState = {
 export type GameFormat = {
   config: GameSessionConfig;
   cards: Record<string, GenericSerializedBlueprint>;
+  map: BoardSystemOptions;
 };
 
 type GlobalEntityEvents = {
@@ -231,7 +231,7 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
     if (this.isReady) return;
     this.setupStarEvents();
 
-    this.boardSystem.setup(this.initialState.map);
+    this.boardSystem.setup(this.format.map);
     await this.playerSystem.setup(this.initialState.players);
     this.entitySystem.setup(this.initialState.entities);
     await this.actionSystem.setup(this.initialState.history);

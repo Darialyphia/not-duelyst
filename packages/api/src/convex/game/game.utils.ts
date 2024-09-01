@@ -1,14 +1,12 @@
-import { randomInt } from '@game/shared';
 import type { Id } from '../_generated/dataModel';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import { GAME_STATUS } from './game.constants';
 import type { Game } from './game.entity';
-import { parse } from 'zipson';
-import { toGameDto } from './game.mapper';
 import { internal } from '../_generated/api';
 import { CARDS, type SerializedGameState } from '@game/sdk';
 import { defaultFormat } from '../formats/format.utils';
 import type { SerializedPlayer } from '@game/sdk/src/player/player';
+import { parse, stringify } from 'zipson';
 
 export const getCurrentGame = async (
   { db }: { db: QueryCtx['db'] },
@@ -23,13 +21,7 @@ export const getCurrentGame = async (
 
   if (!currentGameUser) return null;
 
-  const game = await db.get(currentGameUser?.gameId);
-  if (!game) return null;
-
-  return toGameDto({
-    ...game,
-    players: await getGamePlayers({ db }, game)
-  });
+  return getGameById({ db }, currentGameUser.gameId);
 };
 
 export const ensureHasNoCurrentGame = async (
@@ -43,15 +35,12 @@ export const ensureHasNoCurrentGame = async (
   }
 };
 
-export const getGameInitialState = async ({ db }: { db: QueryCtx['db'] }) => {
-  const maps = await db.query('gameMaps').collect();
+export const getGameInitialState = async () => {
   const firstPlayerIndex = Math.round(Math.random());
-  const mapIndex = randomInt(maps.length - 1);
   const seed = (Math.random() + 1).toString(36).substring(2);
 
   return {
     firstPlayerIndex,
-    mapId: maps[mapIndex]._id,
     status: GAME_STATUS.WAITING_FOR_PLAYERS,
     seed
   };
@@ -102,12 +91,7 @@ export const getGamePlayers = async ({ db }: { db: QueryCtx['db'] }, game: Game)
   );
 };
 
-export const getReplayInitialState = async (
-  { db }: { db: QueryCtx['db'] },
-  game: Game
-): Promise<SerializedGameState> => {
-  const map = await db.get(game.mapId);
-
+export const getReplayInitialState = async (game: Game): Promise<SerializedGameState> => {
   return {
     history: [],
     entities: [],
@@ -120,13 +104,6 @@ export const getReplayInitialState = async (
       maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
       graveyard: []
     })) as unknown as [SerializedPlayer, SerializedPlayer],
-    map: {
-      width: map!.width,
-      height: map!.height,
-      player1StartPosition: map!.startPositions[0],
-      player2StartPosition: map!.startPositions[1],
-      cells: parse(map!.cells)
-    },
     rng: {
       values: []
     }
@@ -142,13 +119,12 @@ export const createGame = async (
     private: boolean;
   }
 ) => {
-  const { mapId, firstPlayerIndex, status, seed } = await getGameInitialState(ctx);
+  const { firstPlayerIndex, status, seed } = await getGameInitialState();
 
   const players = await Promise.all(arg.players.map(p => ctx.db.get(p.userId)));
   const format = arg.formatId ? await ctx.db.get(arg.formatId) : defaultFormat;
   const playerLoaouts = await Promise.all(arg.players.map(p => ctx.db.get(p.loadoutId)));
   const gameId = await ctx.db.insert('games', {
-    mapId,
     status,
     seed,
     private: arg.private,
@@ -156,7 +132,8 @@ export const createGame = async (
     formatId: arg.formatId,
     cachedFormat: {
       config: format!.config,
-      cards: JSON.stringify({ ...CARDS, ...JSON.parse(format!.cards) })
+      map: stringify(format!.map!),
+      cards: stringify({ ...CARDS, ...parse(format!.cards) })
     },
     cachedPlayers: arg.players.map((_, index) => ({
       isPlayer1: index === firstPlayerIndex,

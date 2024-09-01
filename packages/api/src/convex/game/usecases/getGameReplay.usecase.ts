@@ -16,9 +16,6 @@ export const getGameReplayUsecase = query({
     const game = await ctx.db.get(replay.gameId);
     if (!game) throw new Error('Game not found.');
 
-    const map = await ctx.db.get(game!.mapId);
-    if (!map) throw new Error('Map not found.');
-
     return {
       game: toGameDto({
         ...game,

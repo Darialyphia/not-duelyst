@@ -16,9 +16,5 @@ export const acceptFriendRequestUsecase = authedMutation({
     await ensureAuthorized(() => friendRequest.receiverId === ctx.user._id);
 
     await ctx.db.patch(friendRequest._id, { status: FRIEND_REQUEST_STATUS.ACCEPTED });
-    await ctx.db.insert('friendConversations', {
-      friendRequestId: friendRequest._id,
-      messages: []
-    });
   }
 });

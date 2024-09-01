@@ -7,11 +7,12 @@ import type { Game } from './game.entity';
 import type { User } from '../users/user.entity';
 import type { Loadout } from '../loadout/loadout.entity';
 import { type SimpleGameFormatDto } from '../formats/format.mapper';
+import { parse } from 'zipson';
 
 export type GameDto = {
   _id: Id<'games'>;
   startedAt: number;
-  winnerId: Nullable<Id<'gamePlayers'>>;
+  winnerId: Nullable<Id<'users'>>;
   roomId: string;
   seed: string;
   status: GameStatus;
@@ -45,9 +46,8 @@ export const toGameDto = (game: GameMapperInput): GameDto => {
 export type GameDetailsDto = {
   _id: Id<'games'>;
   startedAt: number;
-  winnerId: Nullable<Id<'gamePlayers'>>;
+  winnerId: Nullable<Id<'users'>>;
   seed: string;
-  mapId: Id<'gameMaps'>;
   roomId: string;
   status: GameStatus;
   format: SimpleGameFormatDto;
@@ -68,12 +68,12 @@ export const toGameDetailsDto = (game: GameDetailsMapperInput): GameDetailsDto =
     startedAt: game._creationTime,
     winnerId: game.winnerId,
     seed: game.seed,
-    mapId: game.mapId,
     roomId: game.roomId,
     status: game.status,
     format: {
       config: game.cachedFormat.config,
-      cards: JSON.parse(game.cachedFormat.cards)
+      cards: parse(game.cachedFormat.cards),
+      map: parse(game.cachedFormat.map)
     },
     players: game.cachedPlayers
   };

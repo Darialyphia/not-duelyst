@@ -8,14 +8,13 @@ import type { GameServer, GameSocket } from './types';
 import type { Defined } from '@game/shared';
 import { type FunctionReturnType } from 'convex/server';
 import { api } from '@game/api';
-import { parse, stringify } from 'zipson';
+import { stringify } from 'zipson';
 import { ConvexHttpClient } from 'convex/browser';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import type { SerializedPlayer } from '@game/sdk/src/player/player';
 
 type GameDto = Defined<FunctionReturnType<typeof api.games.byRoomId>>;
-type MapDto = Defined<FunctionReturnType<typeof api.gameMaps.getById>>;
 
 const defaultFormat = {
   config: defaultConfig,
@@ -35,7 +34,6 @@ export class Game {
     private io: GameServer,
     private convexClient: ConvexHttpClient,
     private game: GameDto,
-    private map: MapDto,
     public roomId: string
   ) {
     this.session = ServerSession.create(this.getInitialState(), {
@@ -134,13 +132,6 @@ export class Game {
         maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         graveyard: []
       })) as unknown as [SerializedPlayer, SerializedPlayer],
-      map: {
-        width: this.map.width,
-        height: this.map.height,
-        player1StartPosition: this.map.startPositions[0],
-        player2StartPosition: this.map.startPositions[1],
-        cells: parse(this.map.cells)
-      },
       rng: {
         values: []
       }

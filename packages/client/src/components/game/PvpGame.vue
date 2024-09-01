@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import {
-  ClientSession,
-  defaultConfig,
-  GameSession,
-  type SerializedGameState
-} from '@game/sdk';
+import { ClientSession, GameSession, type SerializedGameState } from '@game/sdk';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import { type Socket } from 'socket.io-client';
 
@@ -42,13 +37,8 @@ const { error } = useGameSocket({
         .toBeTruthy()
         .then(currentGame => {
           const session = ClientSession.create(serializedState, {
-            winnerId: currentGame.players.find(
-              player => player.gamePlayerId === game.value?.winnerId
-            )?._id,
-            format: {
-              config: defaultConfig,
-              cards: {}
-            }
+            winnerId: currentGame.winnerId ?? undefined,
+            format: currentGame.format
           });
 
           session.onReady(() => {
@@ -83,7 +73,7 @@ const isLoading = computed(() => isMeLoading.value || isGameLoading.value);
 const canSeeGame = computed(() => {
   if (isLoading.value) return true;
 
-  return game.value?.players.some(p => p._id === me.value?._id);
+  return game.value?.players.some(p => p.id === me.value?._id);
 });
 </script>
 

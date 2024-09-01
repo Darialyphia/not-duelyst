@@ -3,23 +3,22 @@ import { api } from '@game/api';
 import {
   defaultConfig,
   ServerSession,
+  tutorialMap,
   TutorialSession,
   type SerializedGameState
 } from '@game/sdk';
 import type { GameFormat } from '@game/sdk/src/game-session';
 import type { Nullable } from '@game/shared';
-import { tutorialMap } from '~/utils/fixtures';
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
-const { addP1, p1Emote, p2Emote } = useEmoteQueue();
+const { p1Emote, p2Emote } = useEmoteQueue();
 const isFinished = ref(false);
 const state = computed(() =>
   me.value
     ? ({
         history: [],
         entities: [],
-        map: tutorialMap,
         rng: {
           values: []
         },
@@ -98,7 +97,6 @@ const state = computed(() =>
     : null
 );
 
-const fx = useFXProvider();
 const serverSession = shallowRef(null) as Ref<Nullable<ServerSession>>;
 const clientSession = shallowRef(null) as Ref<Nullable<TutorialSession>>;
 
@@ -136,7 +134,8 @@ const { currentStep, currentTextIndex, steps } = useTutorial([
 const isReady = ref(false);
 const format: GameFormat = {
   config: defaultConfig,
-  cards: {}
+  cards: {},
+  map: tutorialMap
 };
 until(state)
   .toBeTruthy()

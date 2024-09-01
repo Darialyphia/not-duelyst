@@ -3,6 +3,7 @@ import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import {
   CARD_KINDS,
   CARDS,
+  defaultMap,
   GameSession,
   type CardBlueprint,
   type CardKind,
@@ -105,7 +106,10 @@ const isDetailModalOpened = ref(false);
 const violations = computed(() => {
   return GameSession.getLoadoutViolations(
     formValues.value.cards.map(c => ({ ...c, blueprintId: c.id })),
-    format
+    {
+      ...format,
+      map: defaultMap
+    }
   );
 });
 const hasViolation = (type: LoadoutViolation['type']) =>

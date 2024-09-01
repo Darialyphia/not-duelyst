@@ -1,12 +1,11 @@
-import { defaultConfig } from '@game/sdk';
+import { defaultConfig, defaultMap } from '@game/sdk';
 import type { GameFormat } from './format.entity';
 import { v } from 'convex/values';
 import type { Doc, Id } from '../_generated/dataModel';
 import { asyncMap } from 'convex-helpers';
 import { getManyFrom, getOneFromOrThrow } from 'convex-helpers/server/relationships';
 import type { QueryCtx } from '../_generated/server';
-
-export const DEFAULT_MAP_ID = 'jn77k33k3z5zdajcwhnjee2e7d6x928n' as Id<'gameMaps'>;
+import { stringify } from 'zipson';
 
 export const defaultFormat: Omit<GameFormat, '_id' | '_creationTime'> = {
   name: 'Standard',
@@ -14,7 +13,7 @@ export const defaultFormat: Omit<GameFormat, '_id' | '_creationTime'> = {
   authorId: '_system' as Id<'users'>,
   config: defaultConfig,
   cards: '{}',
-  mapId: DEFAULT_MAP_ID
+  map: stringify(defaultMap)
 };
 
 export const formatConfigValidator = v.object({
@@ -43,9 +42,8 @@ export const getFormatWithMapAndAuthor = async (
   db: QueryCtx['db'],
   format: Doc<'formats'>
 ) => {
-  const map = await getOneFromOrThrow(db, 'gameMaps', 'by_id', format.mapId, '_id');
   const author = await getOneFromOrThrow(db, 'users', 'by_id', format.authorId, '_id');
-  return { ...format, map, author };
+  return { ...format, author };
 };
 
 export const getFormatsByAuthor = async (db: QueryCtx['db'], authorId: Id<'users'>) => {

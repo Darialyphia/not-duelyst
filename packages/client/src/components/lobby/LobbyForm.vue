@@ -18,7 +18,7 @@ const onSubmit = () => {
   createLobby(formData.value);
 };
 
-const { data: me } = useConvexAuthedQuery(api.users.me);
+const { data: me } = useConvexAuthedQuery(api.users.me, {});
 </script>
 
 <template>

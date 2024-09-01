@@ -11,6 +11,7 @@ import { ClientSession } from './client-session';
 import type { FACTION_IDS } from './card/card-enums';
 import { defaultConfig } from './config';
 import { ClientFxSystem } from './fx-system';
+import { tutorialMap } from './board/maps';
 
 export type TutorialStep = {
   action: SerializedAction;
@@ -37,6 +38,7 @@ export class TutorialSession extends ClientSession {
       {
         format: {
           config: defaultConfig,
+          map: tutorialMap,
           cards: {}
         }
       },

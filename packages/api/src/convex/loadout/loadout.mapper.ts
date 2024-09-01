@@ -1,8 +1,9 @@
-import { GameSession, type GenericSerializedBlueprint } from '@game/sdk';
+import { defaultMap, GameSession, type GenericSerializedBlueprint } from '@game/sdk';
 import type { Id } from '../_generated/dataModel';
 import type { GameFormat } from '../formats/format.entity';
 import type { Loadout } from './loadout.entity';
 import type { PartialBy } from '@game/shared';
+import { parse } from 'zipson';
 
 export type LoadoutDto = {
   _id: Id<'loadouts'>;
@@ -22,7 +23,7 @@ export type LoadoutDto = {
 export const toLoadoutDto = (
   loadout: Loadout & { format: PartialBy<GameFormat, '_id' | '_creationTime'> }
 ): LoadoutDto => {
-  const formatCards = JSON.parse(loadout.format!.cards) as Record<
+  const formatCards = parse(loadout.format!.cards) as Record<
     string,
     GenericSerializedBlueprint
   >;
@@ -30,7 +31,8 @@ export const toLoadoutDto = (
     loadout.cards.map(c => ({ ...c, blueprintId: c.id })),
     {
       config: loadout.format!.config,
-      cards: formatCards
+      cards: formatCards,
+      map: loadout.format.map ? parse(loadout.format.map) : defaultMap
     }
   );
 

@@ -16,16 +16,10 @@ const { data: game } = useConvexQuery(api.games.byId, {
 
 <template>
   <div class="page">
-    <ClientOnly>
-      <template #default>
-        <SpectatorMode v-if="game" :game="game" />
-        <div v-else>Spectator mode</div>
-      </template>
-
-      <template #fallback>
-        <div />
-      </template>
-    </ClientOnly>
+    <SpectatorMode v-if="game" :game="game" />
+    <div else class="h-full grid place-content-center">
+      <UiLoader />
+    </div>
   </div>
 </template>
 

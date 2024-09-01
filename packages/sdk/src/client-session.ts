@@ -31,6 +31,7 @@ export class ClientSession extends GameSession {
         winnerId: options.winnerId,
         format: {
           config: options.format.config,
+          map: options.format.map,
           cards: { ...CARDS, ...options.format.cards }
         }
       }

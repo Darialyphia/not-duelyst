@@ -1,10 +1,14 @@
 import type { Id } from '../_generated/dataModel';
 import { toUserDto, type UserDto } from '../users/user.mapper';
 import type { User } from '../users/user.entity';
-import type { GameSessionConfig, GenericSerializedBlueprint } from '@game/sdk';
-import { toGameMapDto, type GameMapDto } from '../gameMap/gameMap.mapper';
+import {
+  defaultMap,
+  type GameSessionConfig,
+  type GenericSerializedBlueprint
+} from '@game/sdk';
 import type { GameFormat } from './format.entity';
-import type { GameMap } from '../gameMap/gameMap.entity';
+import type { BoardSystemOptions } from '@game/sdk/src/board/board-system';
+import { parse } from 'zipson';
 
 export type GameFormatDto = {
   _id: Id<'formats'>;
@@ -13,10 +17,10 @@ export type GameFormatDto = {
   author: UserDto;
   config: GameSessionConfig;
   cards: Record<string, GenericSerializedBlueprint>;
-  map: GameMapDto;
+  map: BoardSystemOptions;
 };
 
-export type GameFormatInput = GameFormat & { author: User; map: GameMap };
+export type GameFormatInput = GameFormat & { author: User };
 
 export const toGameFormatDto = (format: GameFormatInput): GameFormatDto => {
   return {
@@ -24,15 +28,16 @@ export const toGameFormatDto = (format: GameFormatInput): GameFormatDto => {
     name: format.name,
     description: format.description,
     config: format.config,
-    cards: JSON.parse(format.cards),
+    cards: parse(format.cards),
     author: toUserDto(format.author),
-    map: toGameMapDto(format.map)
+    map: format.map ? parse(format.map) : defaultMap
   };
 };
 
 export type SimpleGameFormatDto = {
   config: GameSessionConfig;
   cards: Record<string, GenericSerializedBlueprint>;
+  map: BoardSystemOptions;
 };
 
 export type SimpleGameFormatInput = Pick<GameFormat, keyof SimpleGameFormatDto>;
@@ -42,6 +47,7 @@ export const toSimpleGameFormatDto = (
 ): SimpleGameFormatDto => {
   return {
     config: format.config,
-    cards: JSON.parse(format.cards)
+    cards: parse(format.cards),
+    map: format.map ? parse(format.map) : defaultMap
   };
 };

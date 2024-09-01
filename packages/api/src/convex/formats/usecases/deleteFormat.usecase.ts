@@ -14,5 +14,14 @@ export const deleteFormatUsecase = authedMutation({
     }
 
     await ctx.db.delete(format._id);
+
+    const loadouts = await ctx.db
+      .query('loadouts')
+      .withIndex('by_format_id', q => q.eq('formatId', args.id))
+      .collect();
+
+    await Promise.all(
+      loadouts.map(loadout => ctx.db.patch(loadout._id, { formatId: undefined }))
+    );
   }
 });

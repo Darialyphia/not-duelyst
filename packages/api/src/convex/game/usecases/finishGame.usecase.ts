@@ -15,15 +15,9 @@ export const finishGameUsecase = internalMutation({
       throw new Error('Game is not ongoing');
     }
 
-    const gamePlayer = await ctx.db
-      .query('gamePlayers')
-      .withIndex('by_user_id', q => q.eq('userId', args.winnerId))
-      .filter(q => q.eq(q.field('gameId'), args.gameId))
-      .unique();
-
     await ctx.db.patch(game._id, {
       status: GAME_STATUS.FINISHED,
-      winnerId: gamePlayer!._id
+      winnerId: args.winnerId
     });
 
     const lobby = await ctx.db

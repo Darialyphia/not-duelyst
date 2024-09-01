@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import type { GameDto } from '@game/api/src/convex/game/game.mapper';
-import { ClientSession, defaultConfig, type SerializedGameState } from '@game/sdk';
+import type { GameDetailsDto } from '@game/api/src/convex/game/game.mapper';
+import { ClientSession, type SerializedGameState } from '@game/sdk';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import { type Socket } from 'socket.io-client';
 
-const { game } = defineProps<{ game: GameDto }>();
+const { game } = defineProps<{ game: GameDetailsDto }>();
 const route = useRoute();
 
 const { data: me } = useConvexAuthedQuery(api.users.me, {});
@@ -31,10 +31,7 @@ const { error } = useGameSocket({
         .toBeTruthy()
         .then(() => {
           const session = ClientSession.create(serializedState, {
-            format: {
-              config: defaultConfig,
-              cards: {}
-            }
+            format: game.format
           });
 
           session.onReady(() => {

@@ -1,6 +1,7 @@
 import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
-import { DEFAULT_MAP_ID, formatConfigValidator } from '../format.utils';
+import { formatConfigValidator } from '../format.utils';
+import { stringify } from 'zipson';
 
 export const createFormatUsecase = authedMutation({
   args: {
@@ -13,8 +14,7 @@ export const createFormatUsecase = authedMutation({
     const format = await ctx.db.insert('formats', {
       ...args,
       authorId: ctx.user._id,
-      cards: JSON.stringify(args.cards),
-      mapId: DEFAULT_MAP_ID
+      cards: stringify(args.cards)
     });
 
     return format;

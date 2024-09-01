@@ -1,6 +1,7 @@
 import { v } from 'convex/values';
 import { authedMutation } from '../../auth/auth.utils';
 import { formatConfigValidator } from '../format.utils';
+import { stringify } from 'zipson';
 
 export const updateFormatUsecase = authedMutation({
   args: {
@@ -21,6 +22,6 @@ export const updateFormatUsecase = authedMutation({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...data } = args;
 
-    await ctx.db.patch(format._id, { ...data, cards: JSON.stringify(data.cards) });
+    await ctx.db.patch(format._id, { ...data, cards: stringify(data.cards) });
   }
 });

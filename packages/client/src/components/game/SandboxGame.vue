@@ -20,7 +20,6 @@ const { player1Loadout, player2Loadout, seed, format } = defineProps<{
 const state: SerializedGameState = {
   history: [],
   entities: [],
-  map: testMap,
   rng: {
     values: []
   },

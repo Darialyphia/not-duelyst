@@ -22,6 +22,7 @@ export const signupUsecase = mutationWithAuth({
         },
         attributes: {
           email,
+          avatar: '/assets/portraits/tree.jpg',
           hasOnboarded: !tutorialEnabled,
           mmr: DEFAULT_MMR,
           presence: 'offline',

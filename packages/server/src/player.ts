@@ -19,19 +19,9 @@ export const handlePlayerSocket = async (
       socket.disconnect();
       throw new Error('Game not found');
     }
-    const map = await socket.data.convexClient.query(api.gameMaps.getById, {
-      mapId: game.mapId
-    });
-    if (!map) {
-      socket.disconnect();
-      throw new Error('Map not found');
-    }
 
     if (!ongoingGames.has(game._id)) {
-      ongoingGames.set(
-        game._id,
-        new Game(io, socket.data.convexClient, game, map, roomId)
-      );
+      ongoingGames.set(game._id, new Game(io, socket.data.convexClient, game, roomId));
     }
 
     const gameSession = ongoingGames.get(game._id)!;

@@ -6,7 +6,6 @@ import type { GameSessionConfig } from '@game/sdk';
 export const gameSchemas = {
   games: defineTable({
     seed: v.string(),
-    mapId: v.id('gameMaps'),
     status: v.union(
       v.literal(GAME_STATUS.CANCELLED),
       v.literal(GAME_STATUS.FINISHED),
@@ -17,7 +16,7 @@ export const gameSchemas = {
     roomId: v.string(),
     formatId: v.optional(v.id('formats')),
     lobbyId: v.optional(v.id('lobbies')),
-    winnerId: v.optional(v.id('gamePlayers')),
+    winnerId: v.optional(v.id('users')),
     cachedPlayers: v.array(
       v.object({
         id: v.id('users'),
@@ -34,7 +33,8 @@ export const gameSchemas = {
     ),
     cachedFormat: v.object({
       config: v.any() as Validator<GameSessionConfig>,
-      cards: v.string()
+      cards: v.string(),
+      map: v.string()
     })
   })
     .index('by_status', ['status'])

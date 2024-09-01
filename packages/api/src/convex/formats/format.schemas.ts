@@ -1,7 +1,5 @@
-import { type GenericSerializedBlueprint } from '@game/sdk';
-
 import { defineTable } from 'convex/server';
-import { v, type Validator } from 'convex/values';
+import { v } from 'convex/values';
 import { formatConfigValidator } from './format.utils';
 
 export const formatSchemas = {
@@ -11,7 +9,7 @@ export const formatSchemas = {
     config: formatConfigValidator,
     cards: v.string(),
     authorId: v.id('users'),
-    mapId: v.id('gameMaps')
+    map: v.optional(v.string())
   })
     .index('by_name', ['name'])
     .index('by_authorId', ['authorId'])

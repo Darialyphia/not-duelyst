@@ -13,5 +13,7 @@ export const loadoutSchemas = {
         cardBackId: v.string()
       })
     )
-  }).index('by_owner_id', ['ownerId'])
+  })
+    .index('by_owner_id', ['ownerId'])
+    .index('by_format_id', ['formatId'])
 };

@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "build": "esbuild src/index.ts --platform=node --tsconfig=tsconfig.json --bundle  --outfile=dist/index.js",
     "deploy": "hathora-cloud deploy",
-    "hathora": "hathora-cloud"
+    "hathora": "hathora-cloud",
+    "typecheck": "tsc --noEmit"
   },
   "license": "MIT",
   "dependencies": {
