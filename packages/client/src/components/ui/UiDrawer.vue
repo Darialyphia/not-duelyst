@@ -22,8 +22,8 @@ const {
 
 const Content = createReusableTemplate();
 
-const openSound = useSound('modal-open.m4a');
-const closeSound = useSound('modal-close.m4a');
+const openSound = useSoundEffect('modal-open.m4a');
+const closeSound = useSoundEffect('modal-close.m4a');
 
 watch(
   isOpened,

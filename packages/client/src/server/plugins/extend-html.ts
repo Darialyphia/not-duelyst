@@ -13,7 +13,7 @@ export default defineNitroPlugin(nitroApp => {
             inset: 0;
             z-index: 1"
           >
-            <img src="/assets/ui/loading.gif">
+            <img src="/assets/ui/mystic_loading.gif">
           </div>`);
     }
   });

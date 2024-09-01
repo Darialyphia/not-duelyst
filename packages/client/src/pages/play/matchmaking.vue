@@ -102,10 +102,9 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
     </div>
 
     <footer class="flex gap-3 items-center">
-      <UiFancyButton
+      <UiButton
         :disabled="!isInMatchmaking && !selectedLoadoutId"
         class="primary-button"
-        :style="{ '--hue': isInMatchmaking ? '0' : undefined }"
         @click="
           () => {
             if (isInMatchmaking) {
@@ -117,7 +116,7 @@ const selectedLoadoutId = ref<Id<'loadouts'> | undefined>(
         "
       >
         {{ isInMatchmaking ? 'Leave' : 'Join' }}
-      </UiFancyButton>
+      </UiButton>
       <Transition>
         <p v-if="isInMatchmaking">Searching for opponent...{{ duration }}</p>
       </Transition>

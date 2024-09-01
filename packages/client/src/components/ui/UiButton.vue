@@ -22,6 +22,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   isInline?: boolean;
   isCta?: boolean;
+  isFullwidth?: boolean;
   style?: StyleProp<ButtonStyleVariables>;
 };
 
@@ -50,6 +51,7 @@ const tag = computed(() => {
     :class="{
       'is-inline': isInline,
       'is-cta': isCta,
+      'w-full': isFullwidth,
       'is-loading': isLoading
     }"
     :style="style"
@@ -133,7 +135,7 @@ const tag = computed(() => {
     }
 
     &.is-cta {
-      width: 100%;
+      min-width: 15ch;
     }
 
     & > .icon {

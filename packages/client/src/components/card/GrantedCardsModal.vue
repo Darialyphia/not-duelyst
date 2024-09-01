@@ -50,7 +50,7 @@ const assets = useAssets();
     </ul>
 
     <footer>
-      <UiFancyButton @click="acknowledge({})">Got it !</UiFancyButton>
+      <UiButton class="primary-button" @click="acknowledge({})">Got it !</UiButton>
     </footer>
   </UiModal>
 </template>

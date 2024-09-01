@@ -57,16 +57,8 @@ watchEffect(() => {
     "
     class="targeting-ui"
   >
-    <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
-      Cancel
-    </UiFancyButton>
-    <UiFancyButton
-      v-if="canSkip"
-      :style="{ '--hue': '230DEG', '--hue2': '210DEG' }"
-      @click="commitPlay"
-    >
-      Skip
-    </UiFancyButton>
+    <UiButton class="error-button" @click="cancel">Cancel</UiButton>
+    <UiButton v-if="canSkip" class="primary-button" @click="commitPlay">Skip</UiButton>
   </div>
 </template>
 

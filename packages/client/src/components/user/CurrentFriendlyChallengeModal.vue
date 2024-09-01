@@ -63,13 +63,14 @@ const { mutate: setLoadout } = useConvexAuthedMutation(api.friends.setLoadout);
     </div>
 
     <footer class="flex justify-center gap-6">
-      <UiFancyButton
-        :style="{ '--hue': '0' }"
+      <UiButton
+        class="error-button"
         @click="cancel({ challengeId: currentChallenge!._id })"
       >
         Leave
-      </UiFancyButton>
-      <UiFancyButton
+      </UiButton>
+      <UiButton
+        class="primary-button"
         :disabled="!selectedLoadoutId"
         @click="
           () => {
@@ -88,7 +89,7 @@ const { mutate: setLoadout } = useConvexAuthedMutation(api.friends.setLoadout);
         "
       >
         {{ challengeLoadout ? 'Waiting for opponent' : 'Ready' }}
-      </UiFancyButton>
+      </UiButton>
     </footer>
   </UiModal>
 </template>

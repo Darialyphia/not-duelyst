@@ -19,7 +19,7 @@ import cursorAttackUrl from '../../assets/cursors/cursor_attack.png';
 import cursorMoveUrl from '../../assets/cursors/cursor_move.png';
 import cursorSummonUrl from '../../assets/cursors/cursor_summon.png';
 import type { GameEmits, GameType } from '#imports';
-import type { Nullable } from '@game/shared';
+import { randomInt, type Nullable } from '@game/shared';
 
 const { gameSession, playerId, gameType, p1Emote, p2Emote, currentTutorialStep } =
   defineProps<{
@@ -34,7 +34,12 @@ const { gameSession, playerId, gameType, p1Emote, p2Emote, currentTutorialStep }
 const simulationResult = defineModel<Nullable<SimulationResult>>('simulationResult', {
   required: false
 });
-const emit = defineEmits<GameEmits>();
+const emit = defineEmits<GameEmits & { ready: [] }>();
+
+const bgm = useBgm();
+const battleBgms = [BGMS.BATTLE, BGMS.BATTLE2, BGMS.BATTLE3, BGMS.BATTLE4];
+const musicIndex = randomInt(battleBgms.length - 1);
+bgm.next(battleBgms[musicIndex]);
 
 const game = useGameProvider({
   session: gameSession,
@@ -130,6 +135,7 @@ onMounted(async () => {
 
     ready.value = true;
     app.mount(pixiApp.stage);
+    emit('ready');
   });
 });
 </script>

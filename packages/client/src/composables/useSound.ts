@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 
-export const useSound = (sound: string) => {
+export const useSoundEffect = (sound: string) => {
   const SCALE_FACTOR = 0.8;
   const { settings: userSettings } = useUserSettings();
 

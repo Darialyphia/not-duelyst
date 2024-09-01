@@ -45,14 +45,19 @@ const isDisabled = computed(
         }
       "
     >
-      Replace ({{ userPlayer.maxReplaces - userPlayer.cardsReplacedThisTurn }} /
-      {{ userPlayer.maxReplaces }})
+      <span class="flex flex-col leading-snug">
+        <span>Replace</span>
+        <span>({{ userPlayer.maxReplaces - userPlayer.cardsReplacedThisTurn }})</span>
+      </span>
     </UiFancyButton>
   </template>
 </template>
 
 <style scoped lang="postcss">
 .replace-button {
+  aspect-ratio: 1;
+  width: var(--size-11);
+  font-size: var(--font-size-1);
   &:not(:disabled):hover {
     scale: 1.1;
     filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));

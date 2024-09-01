@@ -3,7 +3,10 @@ import { Howl } from 'howler';
 
 export const BGMS = {
   MENU: '/assets/sfx/bgm_menu',
-  BATTLE: '/assets/sfx/bgm_battle'
+  BATTLE: '/assets/sfx/bgm_battle',
+  BATTLE2: '/assets/sfx/bgm_battle2',
+  BATTLE3: '/assets/sfx/bgm_battle3',
+  BATTLE4: '/assets/sfx/bgm_battle4'
 } as const;
 export type Bgm = Values<typeof BGMS>;
 

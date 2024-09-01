@@ -35,14 +35,20 @@ const { isMobile } = useResponsive();
         }
       "
     >
-      End turn
+      <span class="flex flex-col leading-snug">
+        <span>End</span>
+        <span>Turn</span>
+      </span>
     </UiFancyButton>
   </template>
 </template>
 
 <style scoped lang="postcss">
 .end-turn-button {
-  min-width: 10ch;
+  width: var(--size-11);
+  font-size: var(--font-size-1);
+
+  aspect-ratio: 1;
 }
 .end-turn-button--mobile {
   display: grid;

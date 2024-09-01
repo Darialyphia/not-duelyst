@@ -143,9 +143,9 @@ const canSeeGame = computed(() => {
         <code>{{ error }}</code>
       </div>
       <NuxtLink v-slot="{ href, navigate }" :to="{ name: 'ClientHome' }" custom>
-        <UiFancyButton :href class="mx-auto mt-4" @click="navigate">
+        <UiButton :href class="error-button mx-auto mt-4" @click="navigate">
           Back to home
-        </UiFancyButton>
+        </UiButton>
       </NuxtLink>
     </UiModal>
   </div>

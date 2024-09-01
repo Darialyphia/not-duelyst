@@ -45,10 +45,10 @@ const { mutate: sendFriendRequest } = useConvexAuthedMutation(
       </p>
 
       <footer>
-        <UiFancyButton :style="{ '--hue': '0' }" type="button" @click="isOpened = false">
+        <UiButton class="ghost-button" type="button" @click="isOpened = false">
           Cancel
-        </UiFancyButton>
-        <UiFancyButton :disabled="!isNameCorrect">Send</UiFancyButton>
+        </UiButton>
+        <UiButton class="primary-button" :disabled="!isNameCorrect">Send</UiButton>
       </footer>
     </form>
   </UiModal>
@@ -59,11 +59,13 @@ const { mutate: sendFriendRequest } = useConvexAuthedMutation(
   > input {
     border: var(--fancy-border);
   }
+
   > p {
     margin-top: var(--size-2);
     font-size: var(--font-size-00);
     color: var(--gray-5-hsl);
   }
+
   > footer {
     display: flex;
     gap: var(--size-6);

@@ -2,7 +2,7 @@
 import { api } from '@game/api';
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { defaultConfig, GameSession } from '@game/sdk';
+import { defaultConfig } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 definePageMeta({
@@ -25,13 +25,6 @@ const form = reactive<{
 
 const isReady = ref(false);
 
-const bgm = useBgm();
-until(isReady)
-  .toBeTruthy()
-  .then(() => {
-    bgm.next(BGMS.BATTLE);
-  });
-
 const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
   api.loadout.myLoadouts,
   {}
@@ -45,6 +38,12 @@ const standardFormat = {
 
 const isValid = computed(() => {
   return !!form.format && !!form.player1Loadout && !!form.player2Loadout;
+});
+const validSound = useSoundEffect('tab_in.m4a');
+watch(isValid, valid => {
+  if (valid) {
+    validSound.play();
+  }
 });
 
 watch(
@@ -165,9 +164,9 @@ const availableLoadouts = computed(() => {
         </template>
 
         <Transition>
-          <UiFancyButton v-if="isValid" class="primary-button start-button">
-            Start
-          </UiFancyButton>
+          <LinkSounds v-if="isValid">
+            <UiButton class="primary-button start-button">Start</UiButton>
+          </LinkSounds>
         </Transition>
       </form>
     </section>
@@ -268,6 +267,7 @@ label {
 }
 
 .format {
+  user-select: none;
   padding: var(--size-3);
   border: solid var(--border-size-2) var(--border);
   &:has(input:checked) {

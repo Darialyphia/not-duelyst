@@ -40,7 +40,7 @@ onMounted(() => {
     <label>Password</label>
     <input v-model="formData.password" type="password" />
 
-    <UiFancyButton :is-loading="isLoading" class="primary-button">Login</UiFancyButton>
+    <UiButton :is-loading="isLoading" class="primary-button">Login</UiButton>
     <Transition>
       <p v-if="error" class="color-red-5 mt-2">{{ error }}</p>
     </Transition>
@@ -48,7 +48,7 @@ onMounted(() => {
     <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'SignUp' }">
       <UiButton
         :is-loading="isLoading"
-        is-cta
+        is-fullwidth
         class="link-button"
         :href="href"
         @click="navigate"

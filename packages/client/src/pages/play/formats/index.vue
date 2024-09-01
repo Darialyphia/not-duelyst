@@ -78,14 +78,14 @@ const formatToDelete = ref<Nullable<GameFormatDto>>(null);
         </AccordionItem>
 
         <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'CreateFormat' }">
-          <UiFancyButton
+          <UiButton
             class="primary-button mt-6"
             left-icon="material-symbols:add"
             :href="href"
             @click="navigate"
           >
             New Format
-          </UiFancyButton>
+          </UiButton>
         </NuxtLink>
       </AccordionRoot>
     </section>

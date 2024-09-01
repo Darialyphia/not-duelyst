@@ -33,10 +33,10 @@ const isSettingsOpened = ref(false);
     :style="{ '--ui-modal-size': 'var(--size-xs)' }"
   >
     <div class="menu">
-      <UiButton is-cta @click="isSettingsOpened = true">Settings</UiButton>
+      <UiButton is-fullwidth @click="isSettingsOpened = true">Settings</UiButton>
       <UiButton
         v-if="gameType === GAME_TYPES.PVP"
-        is-cta
+        is-fullwidth
         @click="
           () => {
             isMenuOpened = false;
@@ -47,11 +47,11 @@ const isSettingsOpened = ref(false);
         Surrender
       </UiButton>
       <NuxtLink v-else v-slot="{ navigate, href }" :to="{ name: 'ClientHome' }" custom>
-        <UiButton is-cta :href="href" @click="navigate">Exit game</UiButton>
+        <UiButton is-fullwidth :href="href" @click="navigate">Exit game</UiButton>
       </NuxtLink>
 
       <DialogClose as-child>
-        <UiButton is-cta @click="isMenuOpened = false">Resume</UiButton>
+        <UiButton is-fullwidth @click="isMenuOpened = false">Resume</UiButton>
       </DialogClose>
     </div>
   </UiModal>

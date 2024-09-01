@@ -32,20 +32,30 @@ const isReady = computed(
   () =>
     players.value.length === MAX_PLAYERS_PER_LOBBY && players.value.every(p => p.loadout)
 );
+
+const readySound = useSoundEffect('tab_in.m4a');
+watchEffect(() => {
+  if (!isOwner.value) return;
+  if (isReady.value) {
+    readySound.play();
+  }
+});
 </script>
 
 <template>
   <footer class="flex mt-auto">
     <LinkSounds>
-      <UiButton
-        v-if="isOwner"
-        class="primary-button"
-        :disabled="!isReady"
-        :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
-        @click="start({ lobbyId: lobby._id })"
-      >
-        Start game
-      </UiButton>
+      <div class="start-wrapper">
+        <UiButton
+          v-if="isOwner"
+          class="primary-button"
+          :disabled="!isReady"
+          :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
+          @click="start({ lobbyId: lobby._id })"
+        >
+          Start game
+        </UiButton>
+      </div>
     </LinkSounds>
     <LinkSounds>
       <UiButton
@@ -58,3 +68,30 @@ const isReady = computed(
     </LinkSounds>
   </footer>
 </template>
+
+<style scoped lang="postcss">
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes lobby-ready {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.start-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+
+  border: 3px solid #0000;
+  border-radius: 12px;
+  background: linear-gradient(var(--angle), transparent, var(--primary-dark)) border-box;
+  animation: 4s lobby-ready linear infinite;
+}
+</style>

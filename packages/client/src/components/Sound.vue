@@ -18,7 +18,7 @@ const {
 const id = `_${nanoid(6).replaceAll('-', '_')}`;
 const el = ref<Nullable<HTMLElement>>(null);
 
-const howl = useSound(sound);
+const howl = useSoundEffect(sound);
 
 onMounted(async () => {
   if (enabled) {

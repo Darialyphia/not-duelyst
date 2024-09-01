@@ -1,10 +1,8 @@
-<script setup lang="ts">
-import { neutralHealingMystic } from '@game/sdk/src/card/cards/neutral/healing_mystic';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="loader">
-    <CardSprite :sprite-id="neutralHealingMystic.spriteId" animation="run" />
+    <img src="/assets/ui/mystic_loading.gif" />
   </div>
 </template>
 
@@ -13,6 +11,7 @@ import { neutralHealingMystic } from '@game/sdk/src/card/cards/neutral/healing_m
   position: relative;
   aspect-ratio: 1;
   width: 128px;
+  filter: drop-shadow(0 15px hsl(0 0 0 / 0.8));
   &::after {
     content: '';
 

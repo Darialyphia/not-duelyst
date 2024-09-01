@@ -11,6 +11,7 @@ const { game, replay, initialState } = defineProps<{
   initialState: string;
 }>();
 
+const emit = defineEmits<{ ready: [] }>();
 const parsedReplay = parse(replay);
 
 const parsedState = parse(initialState);
@@ -82,6 +83,7 @@ const dispatch = (
       @play-card="dispatch('playCard', $event)"
       @p1-emote="addP1($event)"
       @p2-emote="addP2($event)"
+      @ready="emit('ready')"
     />
     <div
       v-if="gameType === GAME_TYPES.SPECTATOR"

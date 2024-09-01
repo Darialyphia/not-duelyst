@@ -94,9 +94,9 @@ const onSubmit = form.handleSubmit(({ email, password }) => {
       <p class="color-red-5">{{ form.errors.value.passwordConfirm }}</p>
     </fieldset>
 
-    <UiFancyButton class="primary-button" :is-loading="isLoading || isLoginLoading">
+    <UiButton class="primary-button" :is-loading="isLoading || isLoginLoading">
       Create account
-    </UiFancyButton>
+    </UiButton>
     <Transition>
       <p v-if="error" class="color-red-5 mt-2">{{ (error as ConvexError<string>).data }}</p>
     </Transition>
@@ -104,7 +104,7 @@ const onSubmit = form.handleSubmit(({ email, password }) => {
     <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'Login' }">
       <UiButton
         :is-loading="isLoading || isLoginLoading"
-        is-cta
+        is-fullwidth
         class="link-button"
         :href="href"
         @click="navigate"

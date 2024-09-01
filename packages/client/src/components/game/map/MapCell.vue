@@ -24,14 +24,8 @@ const isTargetable = () => {
   return ui.targetableCells.value.some(c => c.equals(cell.getCell()));
 };
 
-const pointerenterSound = useSound(
-  computed(() => `/assets/sfx/button-hover.mp3`),
-  { volume: userSettings.value.sound.sfxVolume[0] / 100 }
-);
-const pointerupSound = useSound(
-  computed(() => `/assets/sfx/button-click.mp3`),
-  { volume: userSettings.value.sound.sfxVolume[0] / 100 }
-);
+const pointerenterSound = useSoundEffect(`button-hover.m4a`);
+const pointerupSound = useSoundEffect(`button-click-old.mp3`);
 
 const move = () => {
   if (pathfinding.canMoveTo(ui.selectedEntity.value!, cell.position)) {

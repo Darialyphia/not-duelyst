@@ -30,17 +30,16 @@ const tab = useRouteQuery('tab', 'config');
       <TabsTrigger value="cards">Cards</TabsTrigger>
       <TabsTrigger value="map">Map</TabsTrigger>
 
-      <UiFancyButton
-        v-model="form.description"
-        class="ml-auto"
-        type="button"
-        :style="{ '--hue': '10DEG', '--hue2': '20DEG' }"
-      >
+      <UiButton v-model="form.description" class="error-button ml-auto" type="button">
         Reset
-      </UiFancyButton>
-      <UiFancyButton v-model="form.description" @click="emit('submit', form)">
+      </UiButton>
+      <UiButton
+        v-model="form.description"
+        class="primary-button"
+        @click="emit('submit', form)"
+      >
         Save
-      </UiFancyButton>
+      </UiButton>
     </TabsList>
 
     <TabsContent value="config" class="tab config-tab fancy-scrollbar">

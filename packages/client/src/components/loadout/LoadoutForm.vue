@@ -239,7 +239,7 @@ const hasViolation = (type: LoadoutViolation['type']) =>
         >
           Back
         </UiButton>
-        <UiFancyButton :is-loading="isSaving">Save</UiFancyButton>
+        <UiButton class="primary-button" :is-loading="isSaving">Save</UiButton>
       </div>
     </footer>
   </form>

@@ -8,18 +8,18 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 </script>
 
 <template>
-  <InteractableSounds>
-    <NuxtLink
-      v-slot="{ navigate, href }"
-      :to="me.slug ? { name: 'Profile', params: { slug: me.slug ?? '' } } : undefined"
-      custom
-    >
+  <NuxtLink
+    v-slot="{ navigate, href }"
+    :to="me.slug ? { name: 'Profile', params: { slug: me.slug ?? '' } } : undefined"
+    custom
+  >
+    <LinkSounds>
       <button class="profile-button" :href v-bind="$attrs" @click="navigate">
         <img :src="me.avatar" width="64" />
         {{ me.fullName }}
       </button>
-    </NuxtLink>
-  </InteractableSounds>
+    </LinkSounds>
+  </NuxtLink>
 </template>
 
 <style scoped lang="postcss">

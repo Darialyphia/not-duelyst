@@ -12,7 +12,7 @@ const { mutate } = useConvexAuthedMutation(api.loadout.remove);
 <template>
   <UiConfirmationModal
     v-model:is-opened="isOpened"
-    title="Delete loadout"
+    title="Delete deck"
     is-destructive
     :description="`Are you sure you want to delete ${loadout?.name} ?`"
     @ok="

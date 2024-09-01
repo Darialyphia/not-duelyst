@@ -130,14 +130,15 @@ watchEffect(() => {
     </div>
     <footer class="flex justify-end gap-3">
       <UiButton class="ghost-button" @click="isOpened = false">Cancel</UiButton>
-      <UiFancyButton
+      <UiButton
+        class="primary-button"
         :disabled="isLoading"
         @click="
           emit('submit', { pedestalId: selectedPedestal!, cardBackId: selectedCardBack! })
         "
       >
         Save
-      </UiFancyButton>
+      </UiButton>
     </footer>
   </UiModal>
 </template>

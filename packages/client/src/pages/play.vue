@@ -57,9 +57,11 @@ const isLobbyLinkDisplayed = computed(
         custom
         :to="{ name: 'Lobby', params: { id: me.currentLobby } }"
       >
-        <UiButton class="primary-button" :href="href" @click="navigate">
-          Return to Lobby
-        </UiButton>
+        <LinkSounds>
+          <UiButton class="primary-button" :href="href" @click="navigate">
+            Return to Lobby
+          </UiButton>
+        </LinkSounds>
       </NuxtLink>
     </div>
   </div>

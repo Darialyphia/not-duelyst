@@ -80,9 +80,7 @@ const cancel = () => {
     </div>
 
     <footer class="mt-4 flex justify-center">
-      <UiFancyButton :style="{ '--hue': '0DEG', '--hue2': '30DEG' }" @click="cancel">
-        Cancel
-      </UiFancyButton>
+      <UiButton class="error-button" @click="cancel">Cancel</UiButton>
     </footer>
   </UiModal>
 </template>

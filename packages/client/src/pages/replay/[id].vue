@@ -38,13 +38,23 @@ until(assets.loaded)
     });
     loader.classList.add('loader-fadeout');
   });
+
+const ready = ref(false);
 </script>
 
 <template>
   <div v-if="isReady" class="page">
-    <div v-if="isLoading">Loading...</div>
+    <div v-if="isLoading || !ready" class="h-full grid place-content-center">
+      <UiLoader />
+    </div>
     <ClientOnly>
-      <Replay v-if="game" v-bind="game" />
+      <Replay
+        v-if="game"
+        v-bind="game"
+        class="replay"
+        :class="ready && 'is-ready'"
+        @ready="ready = true"
+      />
       <div v-else>Replay not found</div>
       <template #fallback>
         <div
@@ -64,7 +74,7 @@ until(assets.loaded)
             background-size: cover;
           "
         >
-          <img src="/assets/ui/loading.gif" />
+          <img src="/assets/ui/mystic_loading.gif" />
         </div>
       </template>
     </ClientOnly>
@@ -74,6 +84,14 @@ until(assets.loaded)
 <style lang="postcss" scoped>
 .page {
   overflow: hidden;
-  min-height: 100dvh;
+  height: 100dvh;
+}
+
+.replay {
+  opacity: 0;
+  transition: opacity 1s;
+  &.is-ready {
+    opacity: 1;
+  }
 }
 </style>
