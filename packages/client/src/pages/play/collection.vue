@@ -176,7 +176,8 @@ const collectionItemComponent = computed(() =>
 
   height: 100vh;
 
-  backdrop-filter: blur(5px) brightness(50%);
+  background-color: hsl(220 50% 15% / 0.5);
+  backdrop-filter: blur(5px);
   > .loader {
     grid-column: 1 / -1;
   }

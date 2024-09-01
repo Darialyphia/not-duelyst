@@ -32,7 +32,16 @@ const pedestals = [
   'pedestal-vanar'
 ];
 
-const cardBacks = ['default', 'fire', 'clouds', 'wood', 'lyonar'];
+const cardBacks = [
+  'default',
+  'fire',
+  'clouds',
+  'wood',
+  'lyonar',
+  'vetruvian',
+  'magmar',
+  'vanar'
+];
 
 const isUnit = computed(
   () =>
