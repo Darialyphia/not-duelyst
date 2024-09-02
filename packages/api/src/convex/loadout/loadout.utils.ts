@@ -61,6 +61,7 @@ export const validateLoadout = async (
 ): Promise<{
   cards: Array<{ id: CardBlueprintId; pedestalId: string; cardBackId: string }>;
   ownerId: Id<'users'>;
+  formatId?: Id<'formats'>;
 }> => {
   // const format = formatId ? await db.get(formatId) : defaultFormat;
   // if (!format) throw new Error('Format not found.');
@@ -83,7 +84,7 @@ export const validateLoadout = async (
   // ensureHasCorrectSize(cards);
   ensureHasGeneral(cards);
 
-  return { cards, ownerId };
+  return { cards, ownerId, formatId };
 };
 
 export const ensureLoadoutExists = async (

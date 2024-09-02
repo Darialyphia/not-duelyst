@@ -12,7 +12,6 @@ export class SummonUnitCardAction extends CardAction<'summon_unit'> {
         pedestalId: this.card.pedestalId,
         cardBackId: this.card.cardBackId
       });
-
       return card.play({ position, targets: [], choice: 0 });
     };
     await Promise.all(

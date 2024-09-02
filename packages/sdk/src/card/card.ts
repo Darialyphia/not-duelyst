@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid';
 import { TypedEventEmitter } from '../utils/typed-emitter';
 import type { CardKind } from './card-enums';
 import type { CardBlueprint } from './card-blueprint';
+import { PlayCardAction } from '../action/play-card.action';
 
 export type CardBlueprintId = string;
 
@@ -89,6 +90,15 @@ export abstract class Card
 
   get blueprint() {
     return this.session.cardBlueprints[this.blueprintId];
+  }
+
+  get isBeingPlayedFromHand() {
+    const currentAction = this.session.actionSystem.currentAction;
+    if (!currentAction) return false;
+    const isCardBeingPlayed = currentAction instanceof PlayCardAction;
+
+    if (!isCardBeingPlayed) return false;
+    return this.equals(currentAction.cachedCard);
   }
 
   abstract get cost(): number;

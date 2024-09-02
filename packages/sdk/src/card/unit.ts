@@ -3,6 +3,7 @@ import type { Point3D, Serializable } from '@game/shared';
 import { Entity, ENTITY_EVENTS } from '../entity/entity';
 import { Card, type CardBlueprintId } from './card';
 import { CARD_KINDS } from './card-enums';
+import { PlayCardAction } from '../action/play-card.action';
 
 export type UnitInterceptor = Unit['interceptors'];
 
@@ -72,8 +73,11 @@ export class Unit extends Card implements Serializable {
     if (!cell) return false;
     if (!cell.canSummonAt) return false;
 
-    const nearby = this.session.boardSystem.getNeighbors3D(point);
-    const predicate = nearby.some(cell => cell.entity?.player.equals(this.player));
+    const predicate = this.isBeingPlayedFromHand
+      ? this.session.boardSystem
+          .getNeighbors3D(point)
+          .some(cell => cell.entity?.player.equals(this.player))
+      : true;
 
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
   }

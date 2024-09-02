@@ -456,7 +456,7 @@ export const getUnits = ({
     });
   });
 
-  if (conditions.random) {
+  if (conditions.random && results.length) {
     const index = session.rngSystem.nextInt(results.length - 1);
     return [results[index]];
   }
