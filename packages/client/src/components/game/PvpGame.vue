@@ -38,7 +38,7 @@ const { error } = useGameSocket({
         .then(currentGame => {
           const session = ClientSession.create(serializedState, {
             winnerId: currentGame.winnerId ?? undefined,
-            format: currentGame.format
+            format: toRaw(currentGame.format)
           });
 
           session.onReady(() => {
@@ -75,11 +75,13 @@ const canSeeGame = computed(() => {
 
   return game.value?.players.some(p => p.id === me.value?._id);
 });
+
+const isReady = ref(false);
 </script>
 
 <template>
   <div>
-    <div v-if="isLoading" class="full-page">Loading...</div>
+    <div v-if="isLoading" class="full-page"><UiLoader /></div>
 
     <div v-if="!canSeeGame" class="full-page">
       You are not authorized to see this game
@@ -92,6 +94,9 @@ const canSeeGame = computed(() => {
       Waiting for opponent to connect...
     </div>
 
+    <div v-else-if="!gameSession" class="full-page">
+      <UiLoader />
+    </div>
     <template v-else-if="gameSession && me">
       <GameRoot
         :game-session="gameSession"
@@ -119,6 +124,7 @@ const canSeeGame = computed(() => {
             socket?.emit('p2:emote', emote);
           }
         "
+        @ready="isReady = true"
       />
 
       <div v-if="timeRemainingForTurn" class="remaining" />
@@ -158,7 +164,6 @@ const canSeeGame = computed(() => {
   display: grid;
   place-content: center;
   height: 100dvh;
-  font-size: var(--font-size-5);
 }
 .remaining {
   position: fixed;

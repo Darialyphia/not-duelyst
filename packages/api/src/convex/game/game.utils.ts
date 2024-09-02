@@ -132,7 +132,7 @@ export const createGame = async (
     formatId: arg.formatId,
     cachedFormat: {
       config: format!.config,
-      map: stringify(format!.map!),
+      map: format!.map ?? defaultFormat.map,
       cards: stringify({ ...CARDS, ...parse(format!.cards) })
     },
     cachedPlayers: arg.players.map((_, index) => ({

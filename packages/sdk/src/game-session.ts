@@ -148,10 +148,13 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
     this.format = options.format;
     this.config = options.format.config;
     this.cardBlueprints = Object.fromEntries(
-      Object.entries(options.format.cards).map(([key, value]) => [
-        key,
-        parseSerializeBlueprint(value, options.format, { noCache: true })
-      ])
+      Object.entries(options.format.cards).map(([key, value]) => {
+        const res = [
+          key,
+          parseSerializeBlueprint(value, options.format, { noCache: true })
+        ];
+        return res;
+      })
     );
     this.winnerId = options.winnerId;
     void this.setup().then(() => {

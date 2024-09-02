@@ -1,9 +1,11 @@
+import { GAME_PHASES } from '@game/sdk/src/game-session';
 import type { ControlId } from '../utils/key-bindings';
 
 export const useGameControls = () => {
   const { camera, ui, dispatch, fx, session } = useGame();
 
   const activePlayer = useGameSelector(session => session.playerSystem.activePlayer);
+  const phase = useGameSelector(session => session.phase);
   const { settings } = useUserSettings();
   const isActivePlayer = useIsActivePlayer();
 
@@ -26,6 +28,7 @@ export const useGameControls = () => {
     };
 
     const selectEntity = (diff: number) => {
+      if (phase.value === GAME_PHASES.MULLIGAN) return;
       if (!ui.selectedEntity.value) {
         ui.selectEntity(activePlayer.value.general.id);
       } else {
@@ -57,6 +60,7 @@ export const useGameControls = () => {
     };
 
     const cleanup = useEventListener('keydown', e => {
+      if (phase.value === GAME_PHASES.MULLIGAN) return;
       if (ui.isMenuOpened.value) return;
       if (e.repeat) return;
 

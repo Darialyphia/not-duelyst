@@ -6,8 +6,12 @@ import { asyncMap } from 'convex-helpers';
 import { getManyFrom, getOneFromOrThrow } from 'convex-helpers/server/relationships';
 import type { QueryCtx } from '../_generated/server';
 import { stringify } from 'zipson';
+import type { RequiredBy } from '@game/shared';
 
-export const defaultFormat: Omit<GameFormat, '_id' | '_creationTime'> = {
+export const defaultFormat: RequiredBy<
+  Omit<GameFormat, '_id' | '_creationTime'>,
+  'map'
+> = {
   name: 'Standard',
   description: 'The standard Darialyst format.',
   authorId: '_system' as Id<'users'>,

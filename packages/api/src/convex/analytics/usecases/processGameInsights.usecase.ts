@@ -9,6 +9,8 @@ import { match } from 'ts-pattern';
 import { CARD_KINDS, CARDS } from '@game/sdk';
 import { getGamePlayers } from '../../game/game.utils';
 import { isDefined } from '@game/shared';
+import { getFeatureFlag } from '../../featureFlags/featureFlags.utils';
+import { FEATURE_FLAGS } from '../../featureFlags/featureFlags.constants';
 
 export const procesGameInsightsUsecase = mutation({
   args: {
@@ -21,7 +23,9 @@ export const procesGameInsightsUsecase = mutation({
     )
   },
   async handler(ctx, args) {
-    console.log('PROCESSING GAME', args.gameId);
+    const isEnabled = await getFeatureFlag(ctx.db, FEATURE_FLAGS.ANALYTICS);
+    if (!isEnabled) return;
+
     const globalStats = await getGlobalStats(ctx);
 
     const game = await ctx.db.get(args.gameId);

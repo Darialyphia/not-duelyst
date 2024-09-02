@@ -14,7 +14,7 @@ import type { Id } from '@game/api/src/convex/_generated/dataModel';
 import type { SerializedAction } from '@game/sdk/src/action/action';
 import type { SerializedPlayer } from '@game/sdk/src/player/player';
 
-type GameDto = Defined<FunctionReturnType<typeof api.games.byRoomId>>;
+type GameInput = Defined<FunctionReturnType<typeof api.games.byRoomId>>;
 
 const defaultFormat = {
   config: defaultConfig,
@@ -33,7 +33,7 @@ export class Game {
   constructor(
     private io: GameServer,
     private convexClient: ConvexHttpClient,
-    private game: GameDto,
+    private game: GameInput,
     public roomId: string
   ) {
     this.session = ServerSession.create(this.getInitialState(), {

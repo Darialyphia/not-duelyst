@@ -10,7 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="overflow-hidden" style="background: black">
+  <div class="overflow-hidden">
     <PvpGame />
   </div>
 </template>

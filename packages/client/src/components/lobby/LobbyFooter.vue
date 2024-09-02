@@ -16,7 +16,12 @@ const players = computed(() =>
 const isOwner = computed(() => lobby.owner._id === me.value._id);
 
 const { mutate: start, isLoading: isStarting } = useConvexAuthedMutation(
-  api.lobbies.start
+  api.lobbies.start,
+  {
+    onSuccess() {
+      console.log('starting game success');
+    }
+  }
 );
 
 const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(
@@ -45,13 +50,17 @@ watchEffect(() => {
 <template>
   <footer class="flex mt-auto">
     <LinkSounds>
-      <div class="start-wrapper" :class="isReady && 'is-ready'">
+      <div v-if="isOwner" class="start-wrapper" :class="isReady && 'is-ready'">
         <UiButton
-          v-if="isOwner"
           class="primary-button"
           :disabled="!isReady"
           :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
-          @click="start({ lobbyId: lobby._id })"
+          @click="
+            () => {
+              console.log('start game');
+              start({ lobbyId: lobby._id });
+            }
+          "
         >
           Start game
         </UiButton>
@@ -70,7 +79,7 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="postcss">
-@property --angle {
+@property --lobby-footer-angle {
   syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
@@ -78,7 +87,7 @@ watchEffect(() => {
 
 @keyframes lobby-ready {
   to {
-    --angle: 360deg;
+    --lobby-footer-angle: 360deg;
   }
 }
 
@@ -93,7 +102,12 @@ watchEffect(() => {
   border-radius: 12px;
 
   &.is-ready {
-    background: linear-gradient(var(--angle), transparent, var(--primary-dark)) border-box;
+    background: linear-gradient(
+        var(--lobby-footer-angle),
+        transparent,
+        var(--primary-dark)
+      )
+      border-box;
     animation: 4s lobby-ready linear infinite;
   }
 }

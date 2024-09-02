@@ -15,10 +15,8 @@ export class MulliganAction extends GameAction<typeof schema> {
 
   async impl() {
     if (this.player.hasMulliganed) return;
-    for (const index of this.payload.cardIndices) {
-      await this.player.replaceCard(index);
-    }
 
+    this.player.mulliganIndices = this.payload.cardIndices;
     this.player.hasMulliganed = true;
 
     const shouldSwitchToBattlePhase = this.session.playerSystem
@@ -26,7 +24,7 @@ export class MulliganAction extends GameAction<typeof schema> {
       .every(player => player.hasMulliganed);
 
     if (shouldSwitchToBattlePhase) {
-      this.session.phase = GAME_PHASES.BATTLE;
+      await this.session.playerSystem.switchToBattlePhase();
     }
   }
 }

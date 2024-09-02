@@ -24,7 +24,7 @@ export const startLobbyGameUsecase = authedMutation({
       throw new Error('Not all players have chosen their loadout.');
     }
     await ctx.db.patch(args.lobbyId, { status: LOBBY_STATUS.CREATING_GAME });
-    ctx.scheduler.runAfter(0, internal.lobbies.getRoomId, {
+    await ctx.scheduler.runAfter(250, internal.lobbies.getRoomId, {
       lobbyId: args.lobbyId,
       players: lobbyUsers.map(l => ({ userId: l.userId, loadoutId: l.loadoutId! }))
     });

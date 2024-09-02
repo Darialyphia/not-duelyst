@@ -1,5 +1,5 @@
 import { CARD_EVENTS } from '../card/card';
-import { GameSession } from '../game-session';
+import { GAME_PHASES, GameSession } from '../game-session';
 import { type PlayerId, Player, type SerializedPlayer, PLAYER_EVENTS } from './player';
 
 export class PlayerSystem {
@@ -71,6 +71,16 @@ export class PlayerSystem {
       player => player.id !== this.activePlayerId
     )!.id;
     await this.activePlayer.startTurn();
+  }
+
+  async switchToBattlePhase() {
+    for (const player of this.getList()) {
+      for (const index of player.mulliganIndices) {
+        await player.replaceCard(index);
+      }
+    }
+
+    this.session.phase = GAME_PHASES.BATTLE;
   }
 
   serialize() {
