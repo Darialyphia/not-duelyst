@@ -55,7 +55,7 @@ onTick(() => {
     <NewTurnIndicator />
     <CombatLog />
     <PlayedCard />
-
+    <MulliganOverlay />
     <CardModal
       v-if="ui.highlightedCard.value"
       v-model:is-opened="isModalOpened"

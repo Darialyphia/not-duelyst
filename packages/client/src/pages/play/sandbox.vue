@@ -2,7 +2,7 @@
 import { api } from '@game/api';
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import type { LoadoutDto } from '@game/api/src/convex/loadout/loadout.mapper';
-import { defaultConfig } from '@game/sdk';
+import { defaultConfig, defaultMap } from '@game/sdk';
 import type { Nullable } from '@game/shared';
 
 definePageMeta({
@@ -33,7 +33,8 @@ const { data: loadouts, isLoading: isLoadoutsLoading } = useConvexAuthedQuery(
 const { data: formats } = useConvexAuthedQuery(api.formats.all, {});
 const standardFormat = {
   config: defaultConfig,
-  cards: {}
+  cards: {},
+  map: defaultMap
 };
 
 const isValid = computed(() => {
@@ -78,7 +79,6 @@ const availableLoadouts = computed(() => {
       <form v-else class="grid grid-cols-2 gap-2" @submit.prevent="isReady = true">
         <fieldset class="fancy-surface formats">
           <legend>Format</legend>
-
           <div v-if="formats" class="grid grid-cols-3 gap-4">
             <InteractableSounds>
               <label class="format">

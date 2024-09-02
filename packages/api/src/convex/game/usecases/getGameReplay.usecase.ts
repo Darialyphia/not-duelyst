@@ -1,7 +1,7 @@
 import { v } from 'convex/values';
 import { query } from '../../_generated/server';
-import { toGameDto } from '../game.mapper';
-import { getGamePlayers } from '../game.utils';
+import { toGameDetailsDto } from '../game.mapper';
+import { getGameById } from '../game.utils';
 
 export const getGameReplayUsecase = query({
   args: { gameId: v.id('games') },
@@ -13,14 +13,11 @@ export const getGameReplayUsecase = query({
 
     if (!replay) throw new Error('Replay not found.');
 
-    const game = await ctx.db.get(replay.gameId);
+    const game = await getGameById(ctx, replay.gameId);
     if (!game) throw new Error('Game not found.');
 
     return {
-      game: toGameDto({
-        ...game,
-        players: await getGamePlayers(ctx, game)
-      }),
+      game: toGameDetailsDto(game),
       replay: replay.replay,
       initialState: replay.initialState
     };

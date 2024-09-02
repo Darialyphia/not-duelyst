@@ -3,12 +3,13 @@ import { GAME_PHASES } from '../game-session';
 import { GameAction, defaultActionSchema } from './action';
 
 const schema = defaultActionSchema.extend({
-  cardIndices: z.number().positive().array()
+  cardIndices: z.number().nonnegative().array()
 });
 
 export class MulliganAction extends GameAction<typeof schema> {
   readonly name = 'mulligan';
   readonly phase = GAME_PHASES.MULLIGAN;
+  protected allowDuringEnemyTurn = true;
 
   protected payloadSchema = schema;
 

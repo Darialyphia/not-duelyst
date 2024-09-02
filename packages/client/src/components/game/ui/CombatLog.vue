@@ -28,11 +28,12 @@ const events = ref<Token[][]>([
 ]);
 
 session.on('game:action-start', event => {
+  if (event.name === 'mulligan') return;
   events.value.push([
     { kind: 'player', player: session.playerSystem.activePlayer },
     {
       kind: 'action',
-      text: match(event.name as GameActionName)
+      text: match(event.name as Exclude<GameActionName, 'mulligan'>)
         .with('attack', () => 'attacks with a unit')
         .with('endTurn', () => 'ends their turn')
         .with('move', () => 'moves a unit')

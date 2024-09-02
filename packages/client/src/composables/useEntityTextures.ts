@@ -1,4 +1,5 @@
 import { CARD_KINDS, type Animation, type EntityId } from '@game/sdk';
+import { GAME_PHASES } from '@game/sdk/src/game-session';
 import { AnimatedSprite, Texture, type FrameObject } from 'pixi.js';
 
 export const useEntityTexture = (
@@ -142,6 +143,7 @@ export const useEntityTexture = (
     session.on('card:replaced', async event => {
       if (!entity.value) return;
       if (!event.player.general.equals(entity.value)) return;
+      if (session.phase === GAME_PHASES.MULLIGAN) return;
       await playAnimation('caststart', 1, () => true)(event);
       await playAnimation('castloop', 1, () => true)(event);
       await playAnimation('castend', 1, () => true)(event);

@@ -140,7 +140,7 @@ const isMobileFilterDrawerOpened = ref(false);
     <UiDrawer v-model:is-opened="isMobileFilterDrawerOpened" direction="left" size="xs">
       <h4>Faction</h4>
       <div class="flex gap-2 flex-wrap">
-        <Interactable v-for="faction in factions" :key="faction.id">
+        <InteractableSounds v-for="faction in factions" :key="faction.id">
           <button
             class="faction"
             :class="filter?.equals(faction) && 'active'"
@@ -156,7 +156,7 @@ const isMobileFilterDrawerOpened = ref(false);
               }
             "
           />
-        </Interactable>
+        </InteractableSounds>
         <InteractableSounds>
           <button
             class="faction"

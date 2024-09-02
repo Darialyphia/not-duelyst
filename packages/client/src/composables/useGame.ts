@@ -53,6 +53,7 @@ export type GameEmits = {
     }
   ];
   surrender: [];
+  mulligan: [{ cardIndices: number[]; playerId: string }];
   p1Emote: [string];
   p2Emote: [string];
   simulateAction: [

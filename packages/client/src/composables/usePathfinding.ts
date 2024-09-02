@@ -22,7 +22,6 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
   session.on('scheduler:flushed', () => {
     cache.clear();
     targetingCache.clear();
-    console.log('cache cleared');
   });
   watch(
     [ui.summonTarget, ui.cardTargets, ui.selectedCard],
@@ -70,15 +69,6 @@ export const usePathfindingProvider = (session: GameSession, ui: GameUiContext) 
       const distanceMap = cache.get(entity.id)!;
       const neighbors = session.boardSystem.getNeighborsDestinations(point);
       const canAttack = neighbors.some(neighbor => {
-        if (entity.id === 2 && point.x === 3 && point.y === 2) {
-          console.log(
-            neighbor.x,
-            neighbor.y,
-            entity.canMove(distanceMap.get(neighbor), { countAllMovements: true }),
-            entity.canAttackAt(point, neighbor)
-          );
-        }
-
         return (
           entity.canMove(distanceMap.get(neighbor), { countAllMovements: true }) &&
           entity.canAttackAt(point, neighbor)
