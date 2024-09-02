@@ -17,6 +17,7 @@ export type SpritesheetWithAnimations = Spritesheet & {
 };
 export type AssetsContext = {
   loaded: Ref<boolean>;
+  fullyLoaded: Ref<boolean>;
   loadSpritesheet(key: string): Promise<SpritesheetWithAnimations>;
   loadTexture(key: string): Promise<Texture>;
   loadNormalSpritesheet(
@@ -64,7 +65,10 @@ const getNormalAssetData = (
 };
 
 export const useAssetsProvider = () => {
+  // means the essentials are loaded and the app is ready to run
   const loaded = ref(false);
+  // means that all bundles have been loaded, except units and icons that are lazy loaded. The game screen s ready to be displayed
+  const fullyLoaded = ref(false);
 
   const init = async () => {
     extensions.add(asepriteSpriteSheetParser, asepriteTilesetParser);
@@ -82,25 +86,33 @@ export const useAssetsProvider = () => {
     Assets.init({ manifest });
   };
 
+  const loadNonCriticalResources = async () => {
+    await Promise.all(
+      ['tiles', 'obstacles', 'tilesets', 'hitboxes', 'modifiers'].map(bundle => {
+        return new Promise(resolve => {
+          window.requestIdleCallback(() => {
+            Assets.loadBundle(bundle).then(resolve);
+          });
+        });
+      })
+    );
+    fullyLoaded.value = true;
+  };
+
   const load = async () => {
     if (loaded.value) return;
     await init();
-    await Promise.all([
-      Assets.loadBundle('tiles'),
-      Assets.loadBundle('ui'),
-      Assets.loadBundle('obstacles'),
-      Assets.loadBundle('tilesets'),
-      Assets.loadBundle('pedestals'),
-      Assets.loadBundle('hitboxes'),
-      Assets.loadBundle('modifiers')
-    ]);
+    await Promise.all([Assets.loadBundle('ui'), Assets.loadBundle('pedestals')]);
     loaded.value = true;
+
+    loadNonCriticalResources();
   };
 
   const bundlesPromises = new Map<string, Promise<any>>();
   const normalPromises = new Map<string, Promise<SpritesheetWithAnimations>>();
   const api: AssetsContext = {
     loaded,
+    fullyLoaded,
     load,
     async loadNormalSpritesheet(key: string, diffuseSheet: Spritesheet) {
       const normalKey = `${key}_n`;
@@ -127,7 +139,7 @@ export const useAssetsProvider = () => {
       return normalPromises.get(normalKey)!;
     },
     async loadSpritesheet(key) {
-      // avoids pixi warning messages when wetry to load a bundle multiple times
+      // avoids pixi warning messages when we try to load a bundle multiple times
       if (!bundlesPromises.has(key)) {
         bundlesPromises.set(key, Assets.loadBundle(key));
       }
@@ -135,7 +147,7 @@ export const useAssetsProvider = () => {
       return Assets.get<SpritesheetWithAnimations>(key);
     },
     async loadTexture(key) {
-      // avoids pixi warning messages when wetry to load a bundle multiple times
+      // avoids pixi warning messages when we try to load a bundle multiple times
       if (!bundlesPromises.has(key)) {
         bundlesPromises.set(key, Assets.loadBundle(key));
       }

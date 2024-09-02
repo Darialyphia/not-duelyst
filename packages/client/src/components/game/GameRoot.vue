@@ -10,7 +10,8 @@ import {
   CARDS,
   type ClientSession,
   type SimulationResult,
-  type TutorialStep
+  type TutorialStep,
+  type Unit
 } from '@game/sdk';
 // import type { GameEmits } from '../../composables/useGame';
 import cursorUrl from '../../assets/cursors/cursor.png';
@@ -39,7 +40,6 @@ const emit = defineEmits<GameEmits & { ready: [] }>();
 const bgm = useBgm();
 const battleBgms = [BGMS.BATTLE, BGMS.BATTLE2, BGMS.BATTLE3, BGMS.BATTLE4];
 const musicIndex = randomInt(battleBgms.length - 1);
-bgm.next(battleBgms[musicIndex]);
 
 const game = useGameProvider({
   session: gameSession,
@@ -71,7 +71,44 @@ const cursors = {
 const canvas = ref<HTMLCanvasElement>();
 const ready = ref(false);
 const assets = useAssets();
+
+const generals = computed(() => {
+  const players = gameSession.playerSystem.getList();
+  const p1 = players.find(p => p.isPlayer1);
+
+  return [p1!.general.card, p1?.opponent.general.card] as [Unit, Unit];
+});
+
+const p1Sound = useSoundEffect(
+  `sfx_announcer_${generals.value[0].blueprint.faction?.name.toLocaleLowerCase()}_1st.m4a`
+);
+const versusSound = useSoundEffect('sfx_announcer_versus.m4a');
+const p2Sound = useSoundEffect(
+  `sfx_announcer_${generals.value[1].blueprint.faction?.name.toLocaleLowerCase()}_2nd.m4a`
+);
+
+const durations = [p1Sound, versusSound, p2Sound].map(
+  sound =>
+    new Promise<number>(resolve => {
+      sound.once('load', () => {
+        // duration is only available once 'load' fires
+        resolve(sound.duration());
+      });
+    })
+);
+
+const playSoundSequence = async () => {
+  const [p1Duration, versusDuration] = await Promise.all(durations);
+  p1Sound.play();
+  setTimeout(() => {
+    versusSound.play();
+    setTimeout(() => {
+      p2Sound.play();
+    }, versusDuration * 333);
+  }, p1Duration * 333);
+};
 onMounted(async () => {
+  playSoundSequence();
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
   // and we can forward the providers to it
@@ -110,7 +147,7 @@ onMounted(async () => {
   Object.assign(app._context.provides, parent._context.provides);
 
   gameSession.onReady(async () => {
-    await until(assets.loaded).toBe(true);
+    await until(assets.fullyLoaded).toBe(true);
     // we only load the spritesheets we need for the cards because there are way too many of them !
     await Promise.all(
       [
@@ -135,6 +172,7 @@ onMounted(async () => {
 
     ready.value = true;
     app.mount(pixiApp.stage);
+    bgm.next(battleBgms[musicIndex]);
     emit('ready');
   });
 });
@@ -142,9 +180,13 @@ onMounted(async () => {
 
 <template>
   <div class="pixi-app-container" @contextmenu.prevent>
-    <!-- <div class="background" /> -->
     <canvas ref="canvas" />
     <GameUi v-if="ready" />
+    <Teleport to="body">
+      <Transition>
+        <GameLoadingScreen v-if="!ready" :session="gameSession" />
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -165,5 +207,14 @@ onMounted(async () => {
   perspective: 1200px;
 
   image-rendering: pixelated;
+}
+
+.v-leave-active {
+  transition: opacity 1.5s;
+  transition-delay: 500ms;
+}
+
+.v-leave-to {
+  opacity: 0;
 }
 </style>

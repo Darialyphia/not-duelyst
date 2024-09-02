@@ -1,4 +1,4 @@
-import { GameSession } from '../game-session';
+import { GAME_PHASES, GameSession } from '../game-session';
 import {
   type JSONObject,
   type Point3D,
@@ -236,7 +236,9 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
 
     const replacement = await this.deck.replace(card);
     this.hand[index] = replacement;
-    this.cardsReplacedThisTurn++;
+    if (this.session.phase === GAME_PHASES.MULLIGAN) {
+      this.cardsReplacedThisTurn++;
+    }
   }
 
   generateCard({

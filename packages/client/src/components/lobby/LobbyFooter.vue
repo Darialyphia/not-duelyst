@@ -55,17 +55,13 @@ watchEffect(() => {
           class="primary-button"
           :disabled="!isReady"
           :is-loading="isStarting || lobby.status === LOBBY_STATUS.CREATING_GAME"
-          @click="
-            () => {
-              console.log('start game');
-              start({ lobbyId: lobby._id });
-            }
-          "
+          @click="start({ lobbyId: lobby._id })"
         >
           Start game
         </UiButton>
       </div>
     </LinkSounds>
+    {{ lobby.status }}
     <LinkSounds>
       <UiButton
         :is-loading="isLeaving"

@@ -58,7 +58,11 @@ const tag = computed(() => {
     :disabled="attrs.disabled || isLoading"
     v-bind="attrs"
   >
-    <Icon v-if="leftIcon && !isLoading" :name="leftIcon" aria-hidden="true" />
+    <Icon
+      v-if="leftIcon || isLoading"
+      :name="isLoading ? 'svg-spinners:90-ring-with-bg' : leftIcon!"
+      aria-hidden="true"
+    />
 
     <!-- <UiSpinner v-if="isLoading" /> -->
     <slot />

@@ -49,7 +49,10 @@ const state: SerializedGameState = {
   ]
 };
 
-const serverSession = ServerSession.create(state, { seed: seed ?? nanoid(), format });
+const serverSession = ServerSession.create(state, {
+  seed: seed ?? nanoid(),
+  format: toRaw(format)
+});
 const clientSession = ClientSession.create(serverSession.serialize(), {
   format
 });
