@@ -6,9 +6,10 @@ export const getMeUsecase = authedQuery({
   args: {},
   handler: async ctx => {
     const lobby = await getCurrentLobby(ctx, ctx.user._id);
-    return toMeDto({
+    const res = toMeDto({
       ...ctx.user,
       lobby: lobby ?? undefined
     });
+    return res;
   }
 });

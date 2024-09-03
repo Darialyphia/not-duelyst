@@ -9,6 +9,7 @@ const { data: me } = useConvexAuthedQuery(api.users.me, {});
 
 <template>
   <NuxtLink
+    v-if="me"
     v-slot="{ navigate, href }"
     :to="me.slug ? { name: 'Profile', params: { slug: me.slug ?? '' } } : undefined"
     custom

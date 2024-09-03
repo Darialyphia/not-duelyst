@@ -63,10 +63,6 @@ type GameDetailsMapperInput = Game & {
   players: Array<User & { loadout: Loadout; gamePlayerId: Id<'gamePlayers'> }>;
 };
 export const toGameDetailsDto = (game: GameDetailsMapperInput): GameDetailsDto => {
-  console.log(
-    'to game detailsDto',
-    game.cachedFormat.map === parse(game.cachedFormat.map)
-  );
   return {
     _id: game._id,
     startedAt: game._creationTime,

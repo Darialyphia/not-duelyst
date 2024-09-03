@@ -38,7 +38,15 @@ const colors = computed(() =>
 <style scoped lang="postcss">
 .loading-screen {
   position: fixed;
+  z-index: 99999;
   inset: 0;
+
+  display: grid;
+  place-content: center;
+
+  font-size: 8rem;
+  font-weight: var(--font-weight-7);
+
   background: linear-gradient(
       135deg,
       var(--color-1),
@@ -47,54 +55,50 @@ const colors = computed(() =>
       var(--color-2)
     ),
     url('/assets/backgrounds/loading.jpg');
-  background-blend-mode: overlay;
   background-size: cover, cover;
-  z-index: 99999;
-  font-size: 8rem;
-  font-weight: var(--font-weight-7);
+  background-blend-mode: overlay;
+
   -webkit-text-fill-color: black;
   -webkit-text-stroke: 2px white;
-  display: grid;
-  place-content: center;
   > div {
     filter: drop-shadow(6px 6px 0 var(--cyan-5)) drop-shadow(-6px -6px 0 var(--orange-5));
   }
 }
 
 .general {
-  width: 150px;
-  aspect-ratio: 1;
   transform-origin: center;
+  aspect-ratio: 1;
+  width: 150px;
   &:deep(> div) {
     transform: translateX(-50%) translateY(-50px);
   }
 }
 
 .p1 {
-  transform: scale(3);
   position: absolute;
   top: 25%;
   left: 15%;
+  transform: scale(3);
   &.v-enter-active {
     transition: all 0.3s var(--ease-2);
   }
   &.v-enter-from {
-    opacity: 0;
     translate: -200px;
+    opacity: 0;
   }
 }
 
 .p2 {
-  transform: scaleX(-3) scaleY(3);
   position: absolute;
-  bottom: 25%;
   right: 15%;
+  bottom: 25%;
+  transform: scaleX(-3) scaleY(3);
   &.v-enter-active {
     transition: all 0.3s var(--ease-2);
   }
   &.v-enter-from {
-    opacity: 0;
     translate: 200px;
+    opacity: 0;
   }
 }
 </style>
