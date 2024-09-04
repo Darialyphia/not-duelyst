@@ -7,9 +7,9 @@ const { p1Emote, p2Emote } = useGame();
 <template>
   <div class="player player-1" :class="activePlayer.equals(players[0]) && 'active'">
     <div>
-      <PlayerPortrait :player="players[0]" />
+      <PlayerPortrait :player-id="players[0].id" />
       <div class="flex">
-        <PlayerEquipedArtifacts :player="players[0]" />
+        <PlayerEquipedArtifacts :player-id="players[0].id" />
       </div>
     </div>
 
@@ -17,7 +17,7 @@ const { p1Emote, p2Emote } = useGame();
       <div class="player-name">{{ players[0].name }}</div>
 
       <div class="indicators">
-        <PlayerIndicators :player="players[0]" />
+        <PlayerIndicators :player-id="players[0].id" />
       </div>
     </div>
 
@@ -33,16 +33,16 @@ const { p1Emote, p2Emote } = useGame();
 
   <div class="player player-2" :class="activePlayer.equals(players[1]) && 'active'">
     <div>
-      <PlayerPortrait :player="players[1]" />
+      <PlayerPortrait :player-id="players[1].id" />
       <div class="flex flex-row-reverse">
-        <PlayerEquipedArtifacts :player="players[1]" />
+        <PlayerEquipedArtifacts :player-id="players[1].id" />
       </div>
     </div>
     <div>
       <div class="player-name">{{ players[1].name }}</div>
 
       <div class="indicators">
-        <PlayerIndicators :player="players[1]" />
+        <PlayerIndicators :player-id="players[1].id" />
       </div>
     </div>
 

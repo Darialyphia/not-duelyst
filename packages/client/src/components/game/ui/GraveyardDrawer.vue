@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { Player } from '@game/sdk';
-
-const { player } = defineProps<{ player: Player }>();
+const { playerId } = defineProps<{ playerId: string }>();
+const player = useGameSelector(session => session.playerSystem.getPlayerById(playerId)!);
 const isOpened = defineModel<boolean>('isOpened', { required: true });
 </script>
 

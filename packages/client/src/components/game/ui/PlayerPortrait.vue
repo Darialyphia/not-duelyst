@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { Player } from '@game/sdk';
 import { match } from 'ts-pattern';
 
-const { player } = defineProps<{ player: Player }>();
+const { playerId } = defineProps<{ playerId: string }>();
+const player = useGameSelector(session => session.playerSystem.getPlayerById(playerId)!);
 
 const { dispatch, gameType } = useGame();
 
 const isEmotePopoverOpened = ref(false);
 
 const playerIndex = useGameSelector(session => {
-  const p = session.playerSystem.getPlayerById(player.id)!;
+  const p = session.playerSystem.getPlayerById(playerId)!;
 
   return session.playerSystem.getList().indexOf(p);
 });

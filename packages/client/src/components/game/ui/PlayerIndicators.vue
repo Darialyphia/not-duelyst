@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { Player } from '@game/sdk';
-
-const { player } = defineProps<{ player: Player }>();
-
+const { playerId } = defineProps<{ playerId: string }>();
+const player = useGameSelector(session => session.playerSystem.getPlayerById(playerId)!);
 const isGraveyardOpened = ref(false);
 </script>
 
@@ -35,7 +33,7 @@ const isGraveyardOpened = ref(false);
       </span>
     </Transition>
   </div>
-  <GraveyardDrawer v-model:is-opened="isGraveyardOpened" :player="player" />
+  <GraveyardDrawer v-model:is-opened="isGraveyardOpened" :player-id="playerId" />
 </template>
 
 <style scoped lang="postcss">
