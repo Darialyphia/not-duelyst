@@ -132,6 +132,8 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
 
   winnerId: Nullable<string> = null;
 
+  currentTurn = 0;
+
   id: string;
   protected constructor(
     protected initialState: SerializedGameState,

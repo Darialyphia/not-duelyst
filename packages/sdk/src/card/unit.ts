@@ -68,16 +68,17 @@ export class Unit extends Card implements Serializable {
     return this.interceptors.maxHp.getValue(this.blueprint.maxHp, this);
   }
 
-  canPlayAt(point: Point3D): boolean {
+  canPlayAt(point: Point3D, forcePlayedFromHand = false): boolean {
     const cell = this.session.boardSystem.getCellAt(point);
     if (!cell) return false;
     if (!cell.canSummonAt) return false;
 
-    const predicate = this.isBeingPlayedFromHand
-      ? this.session.boardSystem
-          .getNeighbors3D(point)
-          .some(cell => cell.entity?.player.equals(this.player))
-      : true;
+    const predicate =
+      this.isBeingPlayedFromHand || forcePlayedFromHand
+        ? this.session.boardSystem
+            .getNeighbors3D(point)
+            .some(cell => cell.entity?.player.equals(this.player))
+        : true;
 
     return this.interceptors.canPlayAt.getValue(predicate, { unit: this, point });
   }

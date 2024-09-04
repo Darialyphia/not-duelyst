@@ -62,6 +62,7 @@ export class Spell extends Card implements Serializable {
       choice: ctx.choice
     });
 
+    this.player.sendToGraveyard(this);
     return true;
   }
 }

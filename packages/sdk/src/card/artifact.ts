@@ -73,5 +73,9 @@ export class Artifact extends Card implements Serializable {
       targets: this.playTargets,
       choice
     });
+
+    artifact.once('after_destroy', () => {
+      this.player.sendToGraveyard(this);
+    });
   }
 }

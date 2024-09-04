@@ -79,7 +79,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
   public hasMulliganed = false;
   public mulliganIndices: number[] = [];
   artifacts: PlayerArtifact[] = [];
-  graveyard!: Card[];
+  graveyard!: Array<{ card: Card; deletedAt: number }>;
   cards!: Card[];
   deck!: Deck;
   hand!: Card[];
@@ -184,7 +184,10 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
       })
     );
 
-    this.graveyard = this.options.graveyard.map(index => this.cards[index]);
+    this.graveyard = this.options.graveyard.map(index => ({
+      card: this.cards[index],
+      deletedAt: this.session.currentTurn
+    }));
   }
 
   async equipArtifact(card: Artifact, choice: number) {
@@ -270,10 +273,14 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     return card;
   }
 
+  sendToGraveyard(card: Card) {
+    this.graveyard.unshift({ card, deletedAt: this.session.currentTurn });
+  }
+
   bounceToHand(entity: Entity) {
     this.session.entitySystem.removeEntity(entity);
     if (this.isHandFull) {
-      this.graveyard.push(entity.card);
+      this.sendToGraveyard(entity.card);
       return false;
     } else {
       this.hand.push(entity.card);
@@ -286,7 +293,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
       id: this.id,
       name: this.name,
       deck: this.cards.map(card => card.serialize()),
-      graveyard: this.graveyard.map(card => this.cards.indexOf(card)),
+      graveyard: this.graveyard.map(card => this.cards.indexOf(card.card)),
       isPlayer1: this.isPlayer1,
       maxGold: this.maxGold,
       currentGold: this.currentGold

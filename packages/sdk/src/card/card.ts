@@ -103,7 +103,7 @@ export abstract class Card
 
   abstract get cost(): number;
 
-  abstract canPlayAt(point: Point3D): boolean;
+  abstract canPlayAt(point: Point3D, forcePlayedFromHand?: boolean): boolean;
 
   abstract playImpl(ctx: {
     position: Point3D;

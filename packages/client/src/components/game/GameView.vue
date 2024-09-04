@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { waitFor } from '@game/shared';
 import { diffuseGroup, normalGroup, lightGroup } from '@pixi/lights';
-import { BLEND_MODES, Point, Rectangle } from 'pixi.js';
-import { useApplication, useScreen, useStage } from 'vue3-pixi';
-import { AdjustmentFilter } from '@pixi/filter-adjustment';
+import { BLEND_MODES, Point } from 'pixi.js';
+import { useScreen, useStage } from 'vue3-pixi';
 const { ui } = useGame();
 const screen = useScreen();
 
@@ -54,25 +53,6 @@ const shockwave = useShockwave(
     new Point(screen.value.width / 2 + offset.x, screen.value.height / 2 + offset.y)
 );
 useVFX('shockwaveOnScreenCenter', shockwave.trigger);
-
-// const adjustment = new AdjustmentFilter({
-//   contrast: 1,
-//   saturation: 1,
-//   brightness: 1
-// });
-// stage.value.filters ??= [];
-// stage.value.filters.push(adjustment);
-// useSessionEvent('card:before_played', () => {
-//   gsap.to(adjustment, {
-//     duration: 0.25,
-//     contrast: 1.7,
-//     brightness: 0.8
-//   });
-// });
-// useSessionEvent('card:after_played', () => {
-//   gsap.killTweensOf(adjustment);
-//   gsap.to(adjustment, { duration: 0.25, brightness: 1, contrast: 1 });
-// });
 </script>
 
 <template>
@@ -81,21 +61,21 @@ useVFX('shockwaveOnScreenCenter', shockwave.trigger);
   <Layer :group="normalGroup" />
   <Layer :group="lightGroup" />
   <Camera>
-    <AmbientLight
+    <!-- <AmbientLight
       :color="ui.ambientLightColor.value"
       :brightness="ui.ambientLightStrength.value"
-    />
+    /> -->
 
     <MapCell v-for="cell in cells" :key="cell.id" :cell="cell" />
     <Entity v-for="entity in entities" :key="entity.id" :entity-id="entity.id" />
     <SummonPreview />
     <AttackTargetArrows v-if="settings.ui.displayDangerArrows" />
-    <PointLight
+    <!-- <PointLight
       v-if="ui.mouseLightStrength.value > 0"
       :brightness="ui.mouseLightStrength.value"
       :color="ui.mouseLightColor.value"
       :position="{ x: ui.mousePosition.value.x, y: ui.mousePosition.value.y - 50 }"
-    />
+    /> -->
   </Camera>
 
   <Tint />

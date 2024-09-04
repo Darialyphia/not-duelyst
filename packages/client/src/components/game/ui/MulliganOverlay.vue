@@ -23,7 +23,7 @@ const player = useGameSelector(() => {
 <template>
   <UiModal
     :is-opened="phase === GAME_PHASES.MULLIGAN"
-    title="Select the card you wish to replace"
+    title="Select the cards you wish to replace"
     :style="{ '--ui-modal-size': 'var(--size-xl)' }"
   >
     <div class="flex justify-evenly">
@@ -74,7 +74,12 @@ const player = useGameSelector(() => {
 </template>
 
 <style scoped lang="postcss">
+label {
+  transition: all 0.3s;
+}
 label:has(input:checked) {
-  filter: drop-shadow(2px 2px 0 var(--cyan-5)) drop-shadow(-2px -2px 0 var(--orange-5));
+  filter: drop-shadow(2px 2px 0 var(--cyan-5)) drop-shadow(-2px -2px 0 var(--orange-5))
+    grayscale(80%);
+  scale: 0.95;
 }
 </style>

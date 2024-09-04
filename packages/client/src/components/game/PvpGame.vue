@@ -75,8 +75,6 @@ const canSeeGame = computed(() => {
 
   return game.value?.players.some(p => p.id === me.value?._id);
 });
-
-const isReady = ref(false);
 </script>
 
 <template>
@@ -124,7 +122,6 @@ const isReady = ref(false);
             socket?.emit('p2:emote', emote);
           }
         "
-        @ready="isReady = true"
       />
 
       <div v-if="timeRemainingForTurn" class="remaining" />

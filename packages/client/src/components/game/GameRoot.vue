@@ -97,18 +97,25 @@ const durations = [p1Sound, versusSound, p2Sound].map(
     })
 );
 
-const playSoundSequence = async () => {
-  const [p1Duration, versusDuration] = await Promise.all(durations);
-  p1Sound.play();
-  setTimeout(() => {
+const wait = (duration: number) =>
+  new Promise(res => {
+    setTimeout(res, duration);
+  });
+const playSoundSequence = () => {
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise<void>(async resolve => {
+    const [p1Duration, versusDuration, p2Duration] = await Promise.all(durations);
+    p1Sound.play();
+    await wait(p1Duration * 333);
     versusSound.play();
-    setTimeout(() => {
-      p2Sound.play();
-    }, versusDuration * 333);
-  }, p1Duration * 333);
+    await wait(versusDuration * 333);
+    p2Sound.play();
+    await wait(p2Duration * 500);
+    resolve();
+  });
 };
 onMounted(async () => {
-  playSoundSequence();
+  const soundSequence = playSoundSequence();
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
   // and we can forward the providers to it
@@ -170,10 +177,11 @@ onMounted(async () => {
 
     await until(settings.settings).toBeTruthy();
 
+    await soundSequence;
     ready.value = true;
+    emit('ready');
     app.mount(pixiApp.stage);
     bgm.next(battleBgms[musicIndex]);
-    emit('ready');
   });
 });
 </script>

@@ -15,7 +15,7 @@ const isMatch = (cellToTest: Cell) => {
   if (!isDefined(ui.selectedCardIndex.value)) return false;
   if (!userPlayer.value.canPlayCardAtIndex(ui.selectedCardIndex.value)) return false;
 
-  return ui.selectedCard.value.canPlayAt(cellToTest.position);
+  return ui.selectedCard.value.canPlayAt(cellToTest.position, true);
 };
 
 const isEnabled = computed(() => {

@@ -369,7 +369,7 @@ export class Entity extends TypedEventEmitter<EntityEventMap> {
     await this.session.actionSystem.schedule(async () => {
       await this.emitAsync(ENTITY_EVENTS.BEFORE_DESTROY, this);
       this.session.entitySystem.removeEntity(this);
-      this.originalOwner.graveyard.push(this.card);
+      this.originalOwner.sendToGraveyard(this.card);
 
       await this.emitAsync(ENTITY_EVENTS.AFTER_DESTROY, this);
       this.modifiers.forEach(modifier => {
