@@ -1,0 +1,680 @@
+{ "frames": [
+   {
+    "filename": "f3_buildminion.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.1",
+    "frame": { "x": 100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.2",
+    "frame": { "x": 200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.3",
+    "frame": { "x": 300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.4",
+    "frame": { "x": 400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.5",
+    "frame": { "x": 500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.6",
+    "frame": { "x": 600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.7",
+    "frame": { "x": 700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.8",
+    "frame": { "x": 800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.9",
+    "frame": { "x": 900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.10",
+    "frame": { "x": 1000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.11",
+    "frame": { "x": 1100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.12",
+    "frame": { "x": 1200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.13",
+    "frame": { "x": 1300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.14",
+    "frame": { "x": 1400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.15",
+    "frame": { "x": 1500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.16",
+    "frame": { "x": 1600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.17",
+    "frame": { "x": 1700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.18",
+    "frame": { "x": 1800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.attack.19",
+    "frame": { "x": 1900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.0",
+    "frame": { "x": 0, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.1",
+    "frame": { "x": 100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.2",
+    "frame": { "x": 200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.3",
+    "frame": { "x": 300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.4",
+    "frame": { "x": 400, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.5",
+    "frame": { "x": 500, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.6",
+    "frame": { "x": 600, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.7",
+    "frame": { "x": 700, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.8",
+    "frame": { "x": 800, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.9",
+    "frame": { "x": 900, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.10",
+    "frame": { "x": 1000, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.11",
+    "frame": { "x": 1100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.12",
+    "frame": { "x": 1200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.breathing.13",
+    "frame": { "x": 1300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.0",
+    "frame": { "x": 0, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.1",
+    "frame": { "x": 100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.2",
+    "frame": { "x": 200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.3",
+    "frame": { "x": 300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.4",
+    "frame": { "x": 400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.5",
+    "frame": { "x": 500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.6",
+    "frame": { "x": 600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.7",
+    "frame": { "x": 700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.8",
+    "frame": { "x": 800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.9",
+    "frame": { "x": 900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.10",
+    "frame": { "x": 1000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.11",
+    "frame": { "x": 1100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.12",
+    "frame": { "x": 1200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.13",
+    "frame": { "x": 1300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.14",
+    "frame": { "x": 1400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.15",
+    "frame": { "x": 1500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.16",
+    "frame": { "x": 1600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.17",
+    "frame": { "x": 1700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.18",
+    "frame": { "x": 1800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.19",
+    "frame": { "x": 1900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.20",
+    "frame": { "x": 2000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.death.21",
+    "frame": { "x": 2100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.hit.0",
+    "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.hit.1",
+    "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.hit.2",
+    "frame": { "x": 200, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.0",
+    "frame": { "x": 0, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.1",
+    "frame": { "x": 100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.2",
+    "frame": { "x": 200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.3",
+    "frame": { "x": 300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.4",
+    "frame": { "x": 400, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.5",
+    "frame": { "x": 500, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.6",
+    "frame": { "x": 600, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.7",
+    "frame": { "x": 700, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.8",
+    "frame": { "x": 800, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.9",
+    "frame": { "x": 900, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.10",
+    "frame": { "x": 1000, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.11",
+    "frame": { "x": 1100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.12",
+    "frame": { "x": 1200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_buildminion.idle.13",
+    "frame": { "x": 1300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f3_buildminion.png",
+  "format": "RGBA8888",
+  "size": { "w": 2200, "h": 500 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 20, "to": 33, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 34, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 56, "to": 58, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 59, "to": 72, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -2,6 +2,7 @@
 import { onTick } from 'vue3-pixi';
 import EndGameModal from './EndGameModal.vue';
 import Stats from 'stats.js';
+import { GAME_PHASES } from '@game/sdk/src/game-session';
 
 const { ui, session } = useGame();
 
@@ -10,6 +11,8 @@ const entity = computed(() => {
 });
 
 const winner = ref<string | null>(null);
+
+const phase = useGameSelector(session => session.phase);
 
 session.on('game:ended', winnerId => {
   winner.value = winnerId;
@@ -46,16 +49,15 @@ onTick(() => {
   <div v-if="isDev" ref="statsRoot" class="absolute bottom-10 left-5" />
   <EndGameModal v-if="winner" />
 
+  <MulliganOverlay v-else-if="phase === GAME_PHASES.MULLIGAN" />
   <template v-else>
     <TeamInfos />
     <ActionBar />
     <TargetingUi />
     <CardChoiceUi />
-    <GameMenu />
     <NewTurnIndicator />
     <CombatLog />
     <PlayedCard />
-    <MulliganOverlay />
     <CardModal
       v-if="ui.highlightedCard.value"
       v-model:is-opened="isModalOpened"
@@ -64,7 +66,7 @@ onTick(() => {
       disable-right-click
     />
 
-    <Transition>
+    <Transition v-if="phase === GAME_PHASES.BATTLE">
       <div
         v-if="entity"
         class="card-preview"
@@ -106,6 +108,7 @@ onTick(() => {
       </div>
     </Transition>
   </template>
+  <GameMenu />
 </template>
 
 <style scoped lang="postcss">

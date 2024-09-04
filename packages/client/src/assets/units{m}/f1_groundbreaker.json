@@ -1,0 +1,906 @@
+{ "frames": [
+   {
+    "filename": "f1_groundbreaker.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.1",
+    "frame": { "x": 140, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.2",
+    "frame": { "x": 280, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.3",
+    "frame": { "x": 420, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.4",
+    "frame": { "x": 560, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.5",
+    "frame": { "x": 700, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.6",
+    "frame": { "x": 840, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.7",
+    "frame": { "x": 980, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.8",
+    "frame": { "x": 1120, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.9",
+    "frame": { "x": 1260, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.10",
+    "frame": { "x": 1400, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.11",
+    "frame": { "x": 1540, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.12",
+    "frame": { "x": 1680, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.13",
+    "frame": { "x": 1820, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.14",
+    "frame": { "x": 1960, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.15",
+    "frame": { "x": 2100, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.16",
+    "frame": { "x": 2240, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.17",
+    "frame": { "x": 2380, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.18",
+    "frame": { "x": 2520, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.19",
+    "frame": { "x": 2660, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.20",
+    "frame": { "x": 2800, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.21",
+    "frame": { "x": 2940, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.22",
+    "frame": { "x": 3080, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.23",
+    "frame": { "x": 3220, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.24",
+    "frame": { "x": 3360, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.25",
+    "frame": { "x": 3500, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.26",
+    "frame": { "x": 3640, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.27",
+    "frame": { "x": 3780, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.attack.28",
+    "frame": { "x": 3920, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.0",
+    "frame": { "x": 0, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.1",
+    "frame": { "x": 140, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.2",
+    "frame": { "x": 280, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.3",
+    "frame": { "x": 420, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.4",
+    "frame": { "x": 560, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.5",
+    "frame": { "x": 700, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.6",
+    "frame": { "x": 840, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.7",
+    "frame": { "x": 980, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.8",
+    "frame": { "x": 1120, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.9",
+    "frame": { "x": 1260, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.10",
+    "frame": { "x": 1400, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.11",
+    "frame": { "x": 1540, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.12",
+    "frame": { "x": 1680, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.breathing.13",
+    "frame": { "x": 1820, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.0",
+    "frame": { "x": 0, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.1",
+    "frame": { "x": 140, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.2",
+    "frame": { "x": 280, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.3",
+    "frame": { "x": 420, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.4",
+    "frame": { "x": 560, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.5",
+    "frame": { "x": 700, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.6",
+    "frame": { "x": 840, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.7",
+    "frame": { "x": 980, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.8",
+    "frame": { "x": 1120, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.9",
+    "frame": { "x": 1260, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.10",
+    "frame": { "x": 1400, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.11",
+    "frame": { "x": 1540, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.12",
+    "frame": { "x": 1680, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.13",
+    "frame": { "x": 1820, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.14",
+    "frame": { "x": 1960, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.15",
+    "frame": { "x": 2100, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.16",
+    "frame": { "x": 2240, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.17",
+    "frame": { "x": 2380, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.18",
+    "frame": { "x": 2520, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.19",
+    "frame": { "x": 2660, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.20",
+    "frame": { "x": 2800, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.21",
+    "frame": { "x": 2940, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.22",
+    "frame": { "x": 3080, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.23",
+    "frame": { "x": 3220, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.24",
+    "frame": { "x": 3360, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.25",
+    "frame": { "x": 3500, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.26",
+    "frame": { "x": 3640, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.death.27",
+    "frame": { "x": 3780, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.hit.0",
+    "frame": { "x": 0, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.hit.1",
+    "frame": { "x": 140, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.hit.2",
+    "frame": { "x": 280, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.0",
+    "frame": { "x": 0, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.1",
+    "frame": { "x": 140, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.2",
+    "frame": { "x": 280, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.3",
+    "frame": { "x": 420, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.4",
+    "frame": { "x": 560, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.5",
+    "frame": { "x": 700, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.6",
+    "frame": { "x": 840, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.7",
+    "frame": { "x": 980, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.8",
+    "frame": { "x": 1120, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.9",
+    "frame": { "x": 1260, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.10",
+    "frame": { "x": 1400, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.11",
+    "frame": { "x": 1540, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.12",
+    "frame": { "x": 1680, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.13",
+    "frame": { "x": 1820, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.14",
+    "frame": { "x": 1960, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.15",
+    "frame": { "x": 2100, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.16",
+    "frame": { "x": 2240, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.idle.17",
+    "frame": { "x": 2380, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.0",
+    "frame": { "x": 0, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.1",
+    "frame": { "x": 140, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.2",
+    "frame": { "x": 280, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.3",
+    "frame": { "x": 420, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.4",
+    "frame": { "x": 560, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_groundbreaker.run.5",
+    "frame": { "x": 700, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f1_groundbreaker.png",
+  "format": "RGBA8888",
+  "size": { "w": 4060, "h": 840 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 28, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 29, "to": 42, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 43, "to": 70, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 71, "to": 73, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 74, "to": 91, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 92, "to": 97, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

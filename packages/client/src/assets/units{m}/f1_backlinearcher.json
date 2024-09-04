@@ -1,0 +1,736 @@
+{ "frames": [
+   {
+    "filename": "f1_backlinearcher.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.1",
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.2",
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.3",
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.4",
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.5",
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.6",
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.7",
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.8",
+    "frame": { "x": 960, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.9",
+    "frame": { "x": 1080, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.10",
+    "frame": { "x": 1200, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.11",
+    "frame": { "x": 1320, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.12",
+    "frame": { "x": 1440, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.13",
+    "frame": { "x": 1560, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.14",
+    "frame": { "x": 1680, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.15",
+    "frame": { "x": 1800, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.16",
+    "frame": { "x": 1920, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.17",
+    "frame": { "x": 2040, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.18",
+    "frame": { "x": 2160, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.19",
+    "frame": { "x": 2280, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.20",
+    "frame": { "x": 2400, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.21",
+    "frame": { "x": 2520, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.22",
+    "frame": { "x": 2640, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.attack.23",
+    "frame": { "x": 2760, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.0",
+    "frame": { "x": 0, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.1",
+    "frame": { "x": 120, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.2",
+    "frame": { "x": 240, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.3",
+    "frame": { "x": 360, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.4",
+    "frame": { "x": 480, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.5",
+    "frame": { "x": 600, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.6",
+    "frame": { "x": 720, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.7",
+    "frame": { "x": 840, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.8",
+    "frame": { "x": 960, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.9",
+    "frame": { "x": 1080, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.10",
+    "frame": { "x": 1200, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.11",
+    "frame": { "x": 1320, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.12",
+    "frame": { "x": 1440, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.breathing.13",
+    "frame": { "x": 1560, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.0",
+    "frame": { "x": 0, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.1",
+    "frame": { "x": 120, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.2",
+    "frame": { "x": 240, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.3",
+    "frame": { "x": 360, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.4",
+    "frame": { "x": 480, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.5",
+    "frame": { "x": 600, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.6",
+    "frame": { "x": 720, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.7",
+    "frame": { "x": 840, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.8",
+    "frame": { "x": 960, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.9",
+    "frame": { "x": 1080, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.10",
+    "frame": { "x": 1200, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.11",
+    "frame": { "x": 1320, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.12",
+    "frame": { "x": 1440, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.13",
+    "frame": { "x": 1560, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.death.14",
+    "frame": { "x": 1680, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.hit.0",
+    "frame": { "x": 0, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.hit.1",
+    "frame": { "x": 120, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.hit.2",
+    "frame": { "x": 240, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.0",
+    "frame": { "x": 0, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.1",
+    "frame": { "x": 120, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.2",
+    "frame": { "x": 240, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.3",
+    "frame": { "x": 360, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.4",
+    "frame": { "x": 480, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.5",
+    "frame": { "x": 600, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.6",
+    "frame": { "x": 720, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.7",
+    "frame": { "x": 840, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.8",
+    "frame": { "x": 960, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.9",
+    "frame": { "x": 1080, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.10",
+    "frame": { "x": 1200, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.idle.11",
+    "frame": { "x": 1320, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.projectile.0",
+    "frame": { "x": 0, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.projectile.1",
+    "frame": { "x": 120, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.projectile.2",
+    "frame": { "x": 240, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.0",
+    "frame": { "x": 0, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.1",
+    "frame": { "x": 120, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.2",
+    "frame": { "x": 240, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.3",
+    "frame": { "x": 360, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.4",
+    "frame": { "x": 480, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.5",
+    "frame": { "x": 600, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.6",
+    "frame": { "x": 720, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_backlinearcher.run.7",
+    "frame": { "x": 840, "y": 720, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f1_backlinearcher.png",
+  "format": "RGBA8888",
+  "size": { "w": 2880, "h": 840 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 23, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 24, "to": 37, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 38, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 53, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 56, "to": 67, "direction": "forward", "color": "#000000ff" },
+   { "name": "projectile", "from": 68, "to": 70, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 71, "to": 78, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

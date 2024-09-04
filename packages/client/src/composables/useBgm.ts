@@ -73,6 +73,7 @@ export const useBgmProvider = () => {
   provide(BGM_INJECTION_KEY, api);
 
   const unsub = useRouter().afterEach(to => {
+    if (to.meta.bgm === null) return;
     api.next((to.meta.bgm ?? BGMS.MENU) as Bgm);
   });
 

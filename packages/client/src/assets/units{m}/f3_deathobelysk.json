@@ -1,0 +1,653 @@
+{ "frames": [
+   {
+    "filename": "f3_deathobelysk.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.1",
+    "frame": { "x": 90, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.2",
+    "frame": { "x": 180, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.3",
+    "frame": { "x": 270, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.4",
+    "frame": { "x": 360, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.5",
+    "frame": { "x": 450, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.6",
+    "frame": { "x": 540, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.7",
+    "frame": { "x": 630, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.8",
+    "frame": { "x": 720, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.9",
+    "frame": { "x": 810, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.10",
+    "frame": { "x": 900, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.11",
+    "frame": { "x": 990, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.12",
+    "frame": { "x": 1080, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.13",
+    "frame": { "x": 1170, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.14",
+    "frame": { "x": 1260, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.15",
+    "frame": { "x": 1350, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.attack.16",
+    "frame": { "x": 1440, "y": 0, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.0",
+    "frame": { "x": 0, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.1",
+    "frame": { "x": 90, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.2",
+    "frame": { "x": 180, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.3",
+    "frame": { "x": 270, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.4",
+    "frame": { "x": 360, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.5",
+    "frame": { "x": 450, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.6",
+    "frame": { "x": 540, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.7",
+    "frame": { "x": 630, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.8",
+    "frame": { "x": 720, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.9",
+    "frame": { "x": 810, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.10",
+    "frame": { "x": 900, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.11",
+    "frame": { "x": 990, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.12",
+    "frame": { "x": 1080, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.breathing.13",
+    "frame": { "x": 1170, "y": 90, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.0",
+    "frame": { "x": 0, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.1",
+    "frame": { "x": 90, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.2",
+    "frame": { "x": 180, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.3",
+    "frame": { "x": 270, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.4",
+    "frame": { "x": 360, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.5",
+    "frame": { "x": 450, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.6",
+    "frame": { "x": 540, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.7",
+    "frame": { "x": 630, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.8",
+    "frame": { "x": 720, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.9",
+    "frame": { "x": 810, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.10",
+    "frame": { "x": 900, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.11",
+    "frame": { "x": 990, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.12",
+    "frame": { "x": 1080, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.13",
+    "frame": { "x": 1170, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.14",
+    "frame": { "x": 1260, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.15",
+    "frame": { "x": 1350, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.16",
+    "frame": { "x": 1440, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.17",
+    "frame": { "x": 1530, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.18",
+    "frame": { "x": 1620, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.19",
+    "frame": { "x": 1710, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.20",
+    "frame": { "x": 1800, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.death.21",
+    "frame": { "x": 1890, "y": 180, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.hit.0",
+    "frame": { "x": 0, "y": 270, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.hit.1",
+    "frame": { "x": 90, "y": 270, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.hit.2",
+    "frame": { "x": 180, "y": 270, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.0",
+    "frame": { "x": 0, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.1",
+    "frame": { "x": 90, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.2",
+    "frame": { "x": 180, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.3",
+    "frame": { "x": 270, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.4",
+    "frame": { "x": 360, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.5",
+    "frame": { "x": 450, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.6",
+    "frame": { "x": 540, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.7",
+    "frame": { "x": 630, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.8",
+    "frame": { "x": 720, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.9",
+    "frame": { "x": 810, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.10",
+    "frame": { "x": 900, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.11",
+    "frame": { "x": 990, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.12",
+    "frame": { "x": 1080, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_deathobelysk.idle.13",
+    "frame": { "x": 1170, "y": 360, "w": 90, "h": 90 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 90 },
+    "sourceSize": { "w": 90, "h": 90 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f3_deathobelysk.png",
+  "format": "RGBA8888",
+  "size": { "w": 1980, "h": 450 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 16, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 17, "to": 30, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 31, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 53, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 56, "to": 69, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

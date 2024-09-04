@@ -58,49 +58,51 @@ const { isMobile } = useResponsive();
       opacity: ui.hoveredCell.value ? 0.5 : 1
     }"
   />
-  <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
-    <TransitionGroup
-      tag="ul"
-      class="cards"
-      :style="{
-        '--angle': angle,
-        '--hand-size': userPlayer.hand.length
-      }"
-      @mouseup="
-        () => {
-          if (isMobile) isMobileActive = true;
-        }
-      "
-    >
-      <li
-        v-for="(card, index) in userPlayer.hand"
-        :key="`${card.index}:${card.player.id}`"
-        class="card-wrapper"
-        :class="[
-          {
-            selected: card && ui.selectedCard.value === card,
-            dragging: draggedIndex === index
+  <Transition name="action-bar" appear>
+    <div v-if="userPlayer" class="action-bar" :class="gameType.toLowerCase()">
+      <TransitionGroup
+        tag="ul"
+        class="cards"
+        :style="{
+          '--angle': angle,
+          '--hand-size': userPlayer.hand.length
+        }"
+        @mouseup="
+          () => {
+            if (isMobile) isMobileActive = true;
           }
-        ]"
-        :style="{ '--index': index }"
-        @mousedown="onMouseDown($event, index)"
+        "
       >
-        <component :is="draggedIndex === index ? Teleport : 'div'" to="#dragged-card">
-          <div @mouseup="draggedIndex = null">
-            <ActionBarItem
-              :index="index"
-              :blueprint="card.blueprint"
-              :cost="card.cost"
-              :attack="(card as Unit).attack"
-              :max-hp="(card as Unit).maxHp"
-              :pedestal-id="card.pedestalId"
-              :card-back-id="card.cardBackId"
-            />
-          </div>
-        </component>
-      </li>
-    </TransitionGroup>
-  </div>
+        <li
+          v-for="(card, index) in userPlayer.hand"
+          :key="`${card.index}:${card.player.id}`"
+          class="card-wrapper"
+          :class="[
+            {
+              selected: card && ui.selectedCard.value === card,
+              dragging: draggedIndex === index
+            }
+          ]"
+          :style="{ '--index': index }"
+          @mousedown="onMouseDown($event, index)"
+        >
+          <component :is="draggedIndex === index ? Teleport : 'div'" to="#dragged-card">
+            <div @mouseup="draggedIndex = null">
+              <ActionBarItem
+                :index="index"
+                :blueprint="card.blueprint"
+                :cost="card.cost"
+                :attack="(card as Unit).attack"
+                :max-hp="(card as Unit).maxHp"
+                :pedestal-id="card.pedestalId"
+                :card-back-id="card.cardBackId"
+              />
+            </div>
+          </component>
+        </li>
+      </TransitionGroup>
+    </div>
+  </Transition>
 
   <div class="right-side">
     <ReplaceButton :dragged-index="draggedIndex" />
@@ -291,5 +293,9 @@ const { isMobile } = useResponsive();
   /* opacity: var(--opacity); */
 
   transition: opacity 0.5s;
+}
+
+.action-bar-enter-from {
+  --y-offset: var(--size-12);
 }
 </style>

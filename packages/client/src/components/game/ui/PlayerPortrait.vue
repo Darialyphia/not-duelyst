@@ -45,28 +45,30 @@ const EMOTES = ['poggers', 'ahegao', 'yussy', 'ezpepe', 'omegalul'];
         </PopoverContent>
       </Transition>
     </PopoverPortal>
-    <div
-      class="img-wrapper"
-      @contextmenu.prevent="
-        () => {
-          match(gameType)
-            .with(GAME_TYPES.SPECTATOR, () => null)
-            .with(GAME_TYPES.SANDBOX, () => {
-              isEmotePopoverOpened = true;
-            })
-            .with(GAME_TYPES.PVP, () => {
-              isEmotePopoverOpened = true;
-            })
-            .exhaustive();
-        }
-      "
-    >
-      <CardSprite
-        :sprite-id="player.general.card.blueprint.spriteId"
-        class="portrait"
-        :class="{ flipped: playerIndex === 1 }"
-      />
-    </div>
+    <Transition appear name="portrait">
+      <div
+        class="img-wrapper"
+        :class="playerIndex === 1 && 'is-p2'"
+        @contextmenu.prevent="
+          () => {
+            match(gameType)
+              .with(GAME_TYPES.SPECTATOR, () => null)
+              .with(GAME_TYPES.SANDBOX, () => {
+                isEmotePopoverOpened = true;
+              })
+              .with(GAME_TYPES.PVP, () => {
+                isEmotePopoverOpened = true;
+              })
+              .exhaustive();
+          }
+        "
+      >
+        <CardSprite
+          :sprite-id="player.general.card.blueprint.spriteId"
+          class="portrait"
+        />
+      </div>
+    </Transition>
     <PopoverAnchor />
   </PopoverRoot>
 </template>
@@ -118,7 +120,7 @@ const EMOTES = ['poggers', 'ahegao', 'yussy', 'ezpepe', 'omegalul'];
   height: 100px;
   background-position: 0 8px;
 
-  &.flipped {
+  .is-p2 & {
     transform: scale(3) translateY(-5px) rotateY(0.5turn);
   }
 }
@@ -170,5 +172,16 @@ const EMOTES = ['poggers', 'ahegao', 'yussy', 'ezpepe', 'omegalul'];
 :is(.emote-popover-enter-from, .emote-popover-leave-to) .emote-popover {
   scale: 0;
   opacity: 0;
+}
+
+.portrait-enter-active {
+  transition: all 0.5s var(--ease-3);
+}
+.portrait-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+  &.is-p2 {
+    transform: translateX(100%);
+  }
 }
 </style>

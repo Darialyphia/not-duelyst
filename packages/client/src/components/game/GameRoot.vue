@@ -106,19 +106,13 @@ const wait = (duration: number) =>
     setTimeout(res, duration);
   });
 const playSoundSequence = () => {
-  console.log('play sound sequence');
   // eslint-disable-next-line no-async-promise-executor
   return new Promise<void>(async resolve => {
-    console.log('getting durations');
     const [p1Duration, versusDuration, p2Duration] = await Promise.all(durations);
-    console.log(p1Duration, versusDuration, p2Duration);
-    console.log('play p1');
     p1Sound.play();
     await wait(p1Duration * 333);
-    console.log('play versus');
     versusSound.play();
     await wait(versusDuration * 333);
-    console.log('play p2');
     p2Sound.play();
     await wait(p2Duration * 500);
     resolve();
@@ -191,6 +185,7 @@ onMounted(async () => {
     await soundSequence;
     ready.value = true;
     emit('ready');
+    console.log('mount pixi app');
     app.mount(pixiApp.stage);
     bgm.next(battleBgms[musicIndex]);
   });
@@ -199,7 +194,7 @@ onMounted(async () => {
 
 <template>
   <div class="pixi-app-container" @contextmenu.prevent>
-    <canvas ref="canvas" />
+    <canvas ref="canvas" :class="ready && 'is-ready'" />
     <GameUi v-if="ready" />
     <Teleport to="body">
       <Transition>

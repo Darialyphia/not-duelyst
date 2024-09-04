@@ -1,0 +1,798 @@
+{ "frames": [
+   {
+    "filename": "f2_buildlegendary.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.1",
+    "frame": { "x": 100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.2",
+    "frame": { "x": 200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.3",
+    "frame": { "x": 300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.4",
+    "frame": { "x": 400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.5",
+    "frame": { "x": 500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.6",
+    "frame": { "x": 600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.7",
+    "frame": { "x": 700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.8",
+    "frame": { "x": 800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.9",
+    "frame": { "x": 900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.10",
+    "frame": { "x": 1000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.11",
+    "frame": { "x": 1100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.12",
+    "frame": { "x": 1200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.13",
+    "frame": { "x": 1300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.14",
+    "frame": { "x": 1400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.15",
+    "frame": { "x": 1500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.16",
+    "frame": { "x": 1600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.17",
+    "frame": { "x": 1700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.18",
+    "frame": { "x": 1800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.19",
+    "frame": { "x": 1900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.20",
+    "frame": { "x": 2000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.21",
+    "frame": { "x": 2100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.attack.22",
+    "frame": { "x": 2200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.0",
+    "frame": { "x": 0, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.1",
+    "frame": { "x": 100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.2",
+    "frame": { "x": 200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.3",
+    "frame": { "x": 300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.4",
+    "frame": { "x": 400, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.5",
+    "frame": { "x": 500, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.6",
+    "frame": { "x": 600, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.7",
+    "frame": { "x": 700, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.8",
+    "frame": { "x": 800, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.9",
+    "frame": { "x": 900, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.10",
+    "frame": { "x": 1000, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.11",
+    "frame": { "x": 1100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.12",
+    "frame": { "x": 1200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.breathing.13",
+    "frame": { "x": 1300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.0",
+    "frame": { "x": 0, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.1",
+    "frame": { "x": 100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.2",
+    "frame": { "x": 200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.3",
+    "frame": { "x": 300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.4",
+    "frame": { "x": 400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.5",
+    "frame": { "x": 500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.6",
+    "frame": { "x": 600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.7",
+    "frame": { "x": 700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.8",
+    "frame": { "x": 800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.9",
+    "frame": { "x": 900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.10",
+    "frame": { "x": 1000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.11",
+    "frame": { "x": 1100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.12",
+    "frame": { "x": 1200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.13",
+    "frame": { "x": 1300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.14",
+    "frame": { "x": 1400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.15",
+    "frame": { "x": 1500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.16",
+    "frame": { "x": 1600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.17",
+    "frame": { "x": 1700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.death.18",
+    "frame": { "x": 1800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.hit.0",
+    "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.hit.1",
+    "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.hit.2",
+    "frame": { "x": 200, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.0",
+    "frame": { "x": 0, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.1",
+    "frame": { "x": 100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.2",
+    "frame": { "x": 200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.3",
+    "frame": { "x": 300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.4",
+    "frame": { "x": 400, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.5",
+    "frame": { "x": 500, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.6",
+    "frame": { "x": 600, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.7",
+    "frame": { "x": 700, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.8",
+    "frame": { "x": 800, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.9",
+    "frame": { "x": 900, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.10",
+    "frame": { "x": 1000, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.11",
+    "frame": { "x": 1100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.12",
+    "frame": { "x": 1200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.13",
+    "frame": { "x": 1300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.14",
+    "frame": { "x": 1400, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.15",
+    "frame": { "x": 1500, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.16",
+    "frame": { "x": 1600, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.17",
+    "frame": { "x": 1700, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.idle.18",
+    "frame": { "x": 1800, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.0",
+    "frame": { "x": 0, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.1",
+    "frame": { "x": 100, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.2",
+    "frame": { "x": 200, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.3",
+    "frame": { "x": 300, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.4",
+    "frame": { "x": 400, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.5",
+    "frame": { "x": 500, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.6",
+    "frame": { "x": 600, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "f2_buildlegendary.run.7",
+    "frame": { "x": 700, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f2_buildlegendary.png",
+  "format": "RGBA8888",
+  "size": { "w": 2300, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 22, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 23, "to": 36, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 37, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 56, "to": 58, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 59, "to": 77, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 78, "to": 85, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

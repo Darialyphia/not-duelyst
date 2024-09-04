@@ -1,0 +1,654 @@
+{ "frames": [
+   {
+    "filename": "f1_sunbreaker.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.1",
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.2",
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.3",
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.4",
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.5",
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.6",
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.7",
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.8",
+    "frame": { "x": 960, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.9",
+    "frame": { "x": 1080, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.10",
+    "frame": { "x": 1200, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.11",
+    "frame": { "x": 1320, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.12",
+    "frame": { "x": 1440, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.13",
+    "frame": { "x": 1560, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.14",
+    "frame": { "x": 1680, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.15",
+    "frame": { "x": 1800, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.16",
+    "frame": { "x": 1920, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.17",
+    "frame": { "x": 2040, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.attack.18",
+    "frame": { "x": 2160, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.0",
+    "frame": { "x": 0, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.1",
+    "frame": { "x": 120, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.2",
+    "frame": { "x": 240, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.3",
+    "frame": { "x": 360, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.4",
+    "frame": { "x": 480, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.5",
+    "frame": { "x": 600, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.6",
+    "frame": { "x": 720, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.7",
+    "frame": { "x": 840, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.8",
+    "frame": { "x": 960, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.9",
+    "frame": { "x": 1080, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.10",
+    "frame": { "x": 1200, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.11",
+    "frame": { "x": 1320, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.12",
+    "frame": { "x": 1440, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.breathing.13",
+    "frame": { "x": 1560, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.0",
+    "frame": { "x": 0, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.1",
+    "frame": { "x": 120, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.2",
+    "frame": { "x": 240, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.3",
+    "frame": { "x": 360, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.4",
+    "frame": { "x": 480, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.5",
+    "frame": { "x": 600, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.6",
+    "frame": { "x": 720, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.7",
+    "frame": { "x": 840, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.8",
+    "frame": { "x": 960, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.9",
+    "frame": { "x": 1080, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.10",
+    "frame": { "x": 1200, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.11",
+    "frame": { "x": 1320, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.12",
+    "frame": { "x": 1440, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.death.13",
+    "frame": { "x": 1560, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.hit.0",
+    "frame": { "x": 0, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.hit.1",
+    "frame": { "x": 120, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.hit.2",
+    "frame": { "x": 240, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.0",
+    "frame": { "x": 0, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.1",
+    "frame": { "x": 120, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.2",
+    "frame": { "x": 240, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.3",
+    "frame": { "x": 360, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.4",
+    "frame": { "x": 480, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.5",
+    "frame": { "x": 600, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.6",
+    "frame": { "x": 720, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.7",
+    "frame": { "x": 840, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.8",
+    "frame": { "x": 960, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.9",
+    "frame": { "x": 1080, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.10",
+    "frame": { "x": 1200, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.idle.11",
+    "frame": { "x": 1320, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.0",
+    "frame": { "x": 0, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.1",
+    "frame": { "x": 120, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.2",
+    "frame": { "x": 240, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.3",
+    "frame": { "x": 360, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.4",
+    "frame": { "x": 480, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.5",
+    "frame": { "x": 600, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.6",
+    "frame": { "x": 720, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f1_sunbreaker.run.7",
+    "frame": { "x": 840, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f1_sunbreaker.png",
+  "format": "RGBA8888",
+  "size": { "w": 2280, "h": 720 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 18, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 19, "to": 32, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 33, "to": 46, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 47, "to": 49, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 50, "to": 61, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 62, "to": 69, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

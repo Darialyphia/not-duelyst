@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
   name: 'Game',
-  bgm: BGMS.BATTLE,
   pageTransition: {
     name: 'tutorial',
     mode: 'out-in'

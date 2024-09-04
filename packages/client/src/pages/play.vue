@@ -58,7 +58,7 @@ const isLobbyLinkDisplayed = computed(
         :to="{ name: 'Lobby', params: { id: me.currentLobby } }"
       >
         <LinkSounds>
-          <UiButton class="primary-button" :href="href" @click="navigate">
+          <UiButton class="primary-button lobby-button" :href="href" @click="navigate">
             Return to Lobby
           </UiButton>
         </LinkSounds>
@@ -83,5 +83,9 @@ const isLobbyLinkDisplayed = computed(
   > * {
     pointer-events: auto;
   }
+}
+
+.lobby-button {
+  box-shadow: 0 3px 0.5rem hsl(var(--gray-11-hsl) / 0.4);
 }
 </style>

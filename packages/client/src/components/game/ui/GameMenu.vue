@@ -77,7 +77,7 @@ const isSettingsOpened = ref(false);
   aspect-ratio: 1;
   min-width: 0;
   padding: var(--size-3);
-
+  z-index: 11;
   font-size: var(--font-size-4);
 }
 

@@ -1,0 +1,690 @@
+{ "frames": [
+   {
+    "filename": "f3_eurus.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.1",
+    "frame": { "x": 140, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.2",
+    "frame": { "x": 280, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.3",
+    "frame": { "x": 420, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.4",
+    "frame": { "x": 560, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.5",
+    "frame": { "x": 700, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.6",
+    "frame": { "x": 840, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.7",
+    "frame": { "x": 980, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.8",
+    "frame": { "x": 1120, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.9",
+    "frame": { "x": 1260, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.10",
+    "frame": { "x": 1400, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.11",
+    "frame": { "x": 1540, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.12",
+    "frame": { "x": 1680, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.13",
+    "frame": { "x": 1820, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.14",
+    "frame": { "x": 1960, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.15",
+    "frame": { "x": 2100, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.16",
+    "frame": { "x": 2240, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.17",
+    "frame": { "x": 2380, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.18",
+    "frame": { "x": 2520, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.19",
+    "frame": { "x": 2660, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.20",
+    "frame": { "x": 2800, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.attack.21",
+    "frame": { "x": 2940, "y": 0, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.0",
+    "frame": { "x": 0, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.1",
+    "frame": { "x": 140, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.2",
+    "frame": { "x": 280, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.3",
+    "frame": { "x": 420, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.4",
+    "frame": { "x": 560, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.5",
+    "frame": { "x": 700, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.6",
+    "frame": { "x": 840, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.7",
+    "frame": { "x": 980, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.8",
+    "frame": { "x": 1120, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.9",
+    "frame": { "x": 1260, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.10",
+    "frame": { "x": 1400, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.11",
+    "frame": { "x": 1540, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.12",
+    "frame": { "x": 1680, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.breathing.13",
+    "frame": { "x": 1820, "y": 140, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.0",
+    "frame": { "x": 0, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.1",
+    "frame": { "x": 140, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.2",
+    "frame": { "x": 280, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.3",
+    "frame": { "x": 420, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.4",
+    "frame": { "x": 560, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.5",
+    "frame": { "x": 700, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.6",
+    "frame": { "x": 840, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.7",
+    "frame": { "x": 980, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.8",
+    "frame": { "x": 1120, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.9",
+    "frame": { "x": 1260, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.10",
+    "frame": { "x": 1400, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.11",
+    "frame": { "x": 1540, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.death.12",
+    "frame": { "x": 1680, "y": 280, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.hit.0",
+    "frame": { "x": 0, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.hit.1",
+    "frame": { "x": 140, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.hit.2",
+    "frame": { "x": 280, "y": 420, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.0",
+    "frame": { "x": 0, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.1",
+    "frame": { "x": 140, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.2",
+    "frame": { "x": 280, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.3",
+    "frame": { "x": 420, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.4",
+    "frame": { "x": 560, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.5",
+    "frame": { "x": 700, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.6",
+    "frame": { "x": 840, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.7",
+    "frame": { "x": 980, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.8",
+    "frame": { "x": 1120, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.9",
+    "frame": { "x": 1260, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.10",
+    "frame": { "x": 1400, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.11",
+    "frame": { "x": 1540, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.12",
+    "frame": { "x": 1680, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.idle.13",
+    "frame": { "x": 1820, "y": 560, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.0",
+    "frame": { "x": 0, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.1",
+    "frame": { "x": 140, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.2",
+    "frame": { "x": 280, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.3",
+    "frame": { "x": 420, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.4",
+    "frame": { "x": 560, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.5",
+    "frame": { "x": 700, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.6",
+    "frame": { "x": 840, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   },
+   {
+    "filename": "f3_eurus.run.7",
+    "frame": { "x": 980, "y": 700, "w": 140, "h": 140 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 140 },
+    "sourceSize": { "w": 140, "h": 140 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f3_eurus.png",
+  "format": "RGBA8888",
+  "size": { "w": 3080, "h": 840 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 21, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 22, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 36, "to": 48, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 49, "to": 51, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 52, "to": 65, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 66, "to": 73, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

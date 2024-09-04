@@ -137,6 +137,7 @@ const { p1Emote, p2Emote } = useGame();
   display: flex;
   gap: var(--size-2);
   font-size: var(--font-size-4);
+  transform-style: preserve-3d;
 
   @screen lt-lg {
     transform-origin: top left;
@@ -150,7 +151,7 @@ const { p1Emote, p2Emote } = useGame();
   }
 
   .player-2 & {
-    justify-items: end;
+    flex-direction: row-reverse;
   }
 }
 
