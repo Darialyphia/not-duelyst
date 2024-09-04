@@ -30,14 +30,16 @@ const formatToDelete = ref<Nullable<GameFormatDto>>(null);
         <p class="text-3">You haven't created any format yet.</p>
 
         <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'CreateFormat' }">
-          <UiButton
-            :href
-            class="ghost-button create-button"
-            :style="{ '--ui-button-hover-bg': 'transparent' }"
-            @click="navigate"
-          >
-            Create you first format
-          </UiButton>
+          <LinkSounds>
+            <UiButton
+              :href
+              class="ghost-button create-button"
+              :style="{ '--ui-button-hover-bg': 'transparent' }"
+              @click="navigate"
+            >
+              Create you first format
+            </UiButton>
+          </LinkSounds>
         </NuxtLink>
       </div>
 
@@ -54,20 +56,24 @@ const formatToDelete = ref<Nullable<GameFormatDto>>(null);
               custom
               :to="{ name: 'EditFormat', params: { id: format._id } }"
             >
-              <UiIconButton
-                name="material-symbols:edit"
-                class="primary-button ml-auto"
-                :href
-                @click="navigate"
-              />
+              <LinkSounds>
+                <UiIconButton
+                  name="material-symbols:edit"
+                  class="primary-button ml-auto"
+                  :href
+                  @click="navigate"
+                />
+              </LinkSounds>
             </NuxtLink>
-            <UiIconButton
-              name="material-symbols:delete-outline"
-              class="error-button"
-              @click="formatToDelete = format"
-            >
-              Delete
-            </UiIconButton>
+            <LinkSounds>
+              <UiIconButton
+                name="material-symbols:delete-outline"
+                class="error-button"
+                @click="formatToDelete = format"
+              >
+                Delete
+              </UiIconButton>
+            </LinkSounds>
           </AccordionHeader>
 
           <AccordionContent class="accordion-content">
@@ -78,14 +84,16 @@ const formatToDelete = ref<Nullable<GameFormatDto>>(null);
         </AccordionItem>
 
         <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'CreateFormat' }">
-          <UiButton
-            class="primary-button mt-6"
-            left-icon="material-symbols:add"
-            :href="href"
-            @click="navigate"
-          >
-            New Format
-          </UiButton>
+          <LinkSounds>
+            <UiButton
+              class="primary-button mt-6"
+              left-icon="material-symbols:add"
+              :href="href"
+              @click="navigate"
+            >
+              New Format
+            </UiButton>
+          </LinkSounds>
         </NuxtLink>
       </AccordionRoot>
     </section>
