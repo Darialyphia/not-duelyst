@@ -8,7 +8,7 @@ import {
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Nullable, Prettify, Values } from '@game/shared';
+import type { Nullable, Override, Prettify, Values } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,
@@ -143,21 +143,24 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
     options: {
       winnerId?: string;
       format: GameFormat;
+      parsedBlueprints?: Record<CardBlueprintId, CardBlueprint>;
     }
   ) {
     super();
     this.id = nanoid(6);
     this.format = options.format;
     this.config = options.format.config;
-    this.cardBlueprints = Object.fromEntries(
-      Object.entries(options.format.cards).map(([key, value]) => {
-        const res = [
-          key,
-          parseSerializeBlueprint(value, options.format, { noCache: true })
-        ];
-        return res;
-      })
-    );
+    this.cardBlueprints =
+      options.parsedBlueprints ??
+      Object.fromEntries(
+        Object.entries(options.format.cards).map(([key, value]) => {
+          const res = [
+            key,
+            parseSerializeBlueprint(value, options.format, { noCache: true })
+          ];
+          return res;
+        })
+      );
     this.winnerId = options.winnerId;
     void this.setup().then(() => {
       this.emit('game:ready');

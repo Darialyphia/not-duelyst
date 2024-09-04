@@ -1,4 +1,5 @@
 import { defineSerializedBlueprint } from '../../card-blueprint';
+import { defineCardEffect } from '../../card-effect';
 import { FACTION_IDS } from '../../card-enums';
 
 export const f4ReaperOfTheNineMoons = defineSerializedBlueprint({
@@ -35,7 +36,7 @@ export const f4ReaperOfTheNineMoons = defineSerializedBlueprint({
       },
       vfx: { tracks: [] }
     },
-    {
+    defineCardEffect({
       text: 'When your opponent plays a spell that costs 3 or more, summon this behind the enemy general.',
       config: {
         executionContext: 'trigger_while_in_hand',
@@ -78,7 +79,11 @@ export const f4ReaperOfTheNineMoons = defineSerializedBlueprint({
               card: {
                 candidates: [
                   [
-                    { type: 'spell', params: {} },
+                    {
+                      type: 'from_player',
+                      params: { player: { candidates: [[{ type: 'enemy_player' }]] } }
+                    },
+                    { type: 'spell' },
                     {
                       type: 'cost',
                       params: {
@@ -96,6 +101,6 @@ export const f4ReaperOfTheNineMoons = defineSerializedBlueprint({
         ]
       },
       vfx: { tracks: [] }
-    }
+    })
   ]
 });
