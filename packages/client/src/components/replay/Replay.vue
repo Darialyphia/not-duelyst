@@ -17,10 +17,10 @@ const parsedState = parse(initialState);
 
 const serverSession = ServerSession.create(parsedState, {
   seed: game.seed,
-  format: game.format
+  format: toRaw(game.format)
 });
 const clientSession = ClientSession.create(serverSession.serialize(), {
-  format: game.format
+  format: toRaw(game.format)
 });
 serverSession.onUpdate((action, opts) => {
   clientSession.dispatch(action, opts);

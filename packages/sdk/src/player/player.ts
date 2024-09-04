@@ -31,8 +31,6 @@ export type CardIndex = number;
 export type SerializedPlayer = JSONObject & {
   id: PlayerId;
   name: string;
-  maxGold?: number;
-  currentGold?: number;
   isPlayer1: boolean;
   deck: SerializedCard[];
   graveyard: CardIndex[];
@@ -110,12 +108,11 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
     this.id = options.id;
     this.name = options.name;
     this.isPlayer1 = options.isPlayer1;
-    this._maxGold =
-      (options.maxMana ?? this.isPlayer1)
-        ? this.session.config.PLAYER_1_STARTING_GOLD
-        : this.session.config.PLAYER_2_STARTING_GOLD;
+    this._maxGold = this.isPlayer1
+      ? this.session.config.PLAYER_1_STARTING_GOLD
+      : this.session.config.PLAYER_2_STARTING_GOLD;
     this.isP2T1 = !this.isPlayer1;
-    this.currentGold = options.currentGold ?? this.maxGold;
+    this.currentGold = this.maxGold;
   }
 
   get maxGold(): number {
@@ -239,7 +236,7 @@ export class Player extends TypedEventEmitter<PlayerEventMap> implements Seriali
 
     const replacement = await this.deck.replace(card);
     this.hand[index] = replacement;
-    if (this.session.phase === GAME_PHASES.MULLIGAN) {
+    if (this.session.phase !== GAME_PHASES.MULLIGAN) {
       this.cardsReplacedThisTurn++;
     }
   }

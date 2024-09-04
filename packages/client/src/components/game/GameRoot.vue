@@ -90,6 +90,10 @@ const p2Sound = useSoundEffect(
 const durations = [p1Sound, versusSound, p2Sound].map(
   sound =>
     new Promise<number>(resolve => {
+      // load even doesnt fire after your first game since it was already loaded !
+      const duration = sound.duration();
+      if (duration !== 0) return resolve(duration);
+
       sound.once('load', () => {
         // duration is only available once 'load' fires
         resolve(sound.duration());
@@ -102,19 +106,26 @@ const wait = (duration: number) =>
     setTimeout(res, duration);
   });
 const playSoundSequence = () => {
+  console.log('play sound sequence');
   // eslint-disable-next-line no-async-promise-executor
   return new Promise<void>(async resolve => {
+    console.log('getting durations');
     const [p1Duration, versusDuration, p2Duration] = await Promise.all(durations);
+    console.log(p1Duration, versusDuration, p2Duration);
+    console.log('play p1');
     p1Sound.play();
     await wait(p1Duration * 333);
+    console.log('play versus');
     versusSound.play();
     await wait(versusDuration * 333);
+    console.log('play p2');
     p2Sound.play();
     await wait(p2Duration * 500);
     resolve();
   });
 };
 onMounted(async () => {
+  console.log('on mounted');
   const soundSequence = playSoundSequence();
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app

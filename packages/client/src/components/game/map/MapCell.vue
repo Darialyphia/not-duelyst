@@ -25,7 +25,7 @@ const isTargetable = () => {
 };
 
 const pointerenterSound = useSoundEffect(`button-hover.m4a`);
-const pointerupSound = useSoundEffect(`button-click-old.mp3`);
+const pointerupSound = useSoundEffect(`board-click.m4a`);
 
 const move = () => {
   if (pathfinding.canMoveTo(ui.selectedEntity.value!, cell.position)) {
@@ -66,13 +66,12 @@ const summon = () => {
   }
 
   ui.summonTarget.value = cell.position;
+  pointerupSound.play();
   if (ui.selectedCard.value.meta.adapt) {
     ui.switchTargetingMode(TARGETING_MODES.CARD_CHOICE);
   } else if (ui.selectedCard.value.targets) {
     ui.switchTargetingMode(TARGETING_MODES.TARGETING);
   } else {
-    pointerupSound.play();
-
     dispatch('playCard', {
       cardIndex: ui.selectedCardIndex.value!,
       position: ui.summonTarget.value!,

@@ -22,7 +22,7 @@ const isLoadoutDrawerOpened = ref(false);
 </script>
 
 <template>
-  <li class="lobby-user">
+  <li class="lobby-user" :class="lobbyUser.presence">
     <Icon :class="!isOwner && 'opacity-0'" name="mdi:crown" class="c-primary" />
     <img :src="lobbyUser.avatar" width="32" />
     <Icon v-if="lobbyUser.loadout" name="material-symbols:check" class="c-green-6" />
@@ -56,7 +56,10 @@ const isLoadoutDrawerOpened = ref(false);
     </template>
 
     <template v-else>
-      <p v-if="!lobbyUser.loadout">Choosing deck...</p>
+      <p v-if="lobbyUser.presence === 'offline'" class="c-error">
+        This player is offline
+      </p>
+      <p v-else-if="!lobbyUser.loadout">Choosing deck...</p>
     </template>
   </li>
 </template>
@@ -78,6 +81,10 @@ const isLoadoutDrawerOpened = ref(false);
   > img,
   > svg {
     flex-shrink: 0;
+  }
+
+  &.offline {
+    opacity: 0.5;
   }
 }
 </style>

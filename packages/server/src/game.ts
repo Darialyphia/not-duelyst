@@ -128,8 +128,6 @@ export class Game {
         isPlayer1: p.isPlayer1,
         name: p.name,
         deck: p.deck,
-        currentGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
-        maxGold: defaultFormat.config.PLAYER_1_STARTING_GOLD,
         graveyard: []
       })) as unknown as [SerializedPlayer, SerializedPlayer],
       rng: {

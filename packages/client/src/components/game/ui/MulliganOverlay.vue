@@ -22,7 +22,7 @@ const player = useGameSelector(() => {
 
 <template>
   <UiModal
-    :is-opened="phase === GAME_PHASES.MULLIGAN"
+    :is-opened="gameType !== GAME_TYPES.SPECTATOR && phase === GAME_PHASES.MULLIGAN"
     title="Select the cards you wish to replace"
     :style="{ '--ui-modal-size': 'var(--size-xl)' }"
   >

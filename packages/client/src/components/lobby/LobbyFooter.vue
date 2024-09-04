@@ -33,10 +33,13 @@ const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(
   }
 );
 
-const isReady = computed(
-  () =>
-    players.value.length === MAX_PLAYERS_PER_LOBBY && players.value.every(p => p.loadout)
-);
+const isReady = computed(() => {
+  const isFull = players.value.length === MAX_PLAYERS_PER_LOBBY;
+  const playersHaveLoadout = players.value.every(p => p.loadout);
+  const playersAreOnline = players.value.every(p => p.presence !== 'offline');
+
+  return isFull && playersHaveLoadout && playersAreOnline;
+});
 
 const readySound = useSoundEffect('tab_in.m4a');
 watchEffect(() => {
@@ -61,7 +64,6 @@ watchEffect(() => {
         </UiButton>
       </div>
     </LinkSounds>
-    {{ lobby.status }}
     <LinkSounds>
       <UiButton
         :is-loading="isLeaving"
