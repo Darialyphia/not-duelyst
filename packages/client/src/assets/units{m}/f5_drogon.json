@@ -1,0 +1,735 @@
+{ "frames": [
+   {
+    "filename": "f5_drogon.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.1",
+    "frame": { "x": 115, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.2",
+    "frame": { "x": 230, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.3",
+    "frame": { "x": 345, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.4",
+    "frame": { "x": 460, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.5",
+    "frame": { "x": 575, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.6",
+    "frame": { "x": 690, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.7",
+    "frame": { "x": 805, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.8",
+    "frame": { "x": 920, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.9",
+    "frame": { "x": 1035, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.10",
+    "frame": { "x": 1150, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.11",
+    "frame": { "x": 1265, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.12",
+    "frame": { "x": 1380, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.13",
+    "frame": { "x": 1495, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.14",
+    "frame": { "x": 1610, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.15",
+    "frame": { "x": 1725, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.16",
+    "frame": { "x": 1840, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.17",
+    "frame": { "x": 1955, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.18",
+    "frame": { "x": 2070, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.attack.19",
+    "frame": { "x": 2185, "y": 0, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.0",
+    "frame": { "x": 0, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.1",
+    "frame": { "x": 115, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.2",
+    "frame": { "x": 230, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.3",
+    "frame": { "x": 345, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.4",
+    "frame": { "x": 460, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.5",
+    "frame": { "x": 575, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.6",
+    "frame": { "x": 690, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.7",
+    "frame": { "x": 805, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.8",
+    "frame": { "x": 920, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.9",
+    "frame": { "x": 1035, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.10",
+    "frame": { "x": 1150, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.11",
+    "frame": { "x": 1265, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.12",
+    "frame": { "x": 1380, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.breathing.13",
+    "frame": { "x": 1495, "y": 115, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.0",
+    "frame": { "x": 0, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.1",
+    "frame": { "x": 115, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.2",
+    "frame": { "x": 230, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.3",
+    "frame": { "x": 345, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.4",
+    "frame": { "x": 460, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.5",
+    "frame": { "x": 575, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.6",
+    "frame": { "x": 690, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.7",
+    "frame": { "x": 805, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.8",
+    "frame": { "x": 920, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.9",
+    "frame": { "x": 1035, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.10",
+    "frame": { "x": 1150, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.11",
+    "frame": { "x": 1265, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.12",
+    "frame": { "x": 1380, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.13",
+    "frame": { "x": 1495, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.14",
+    "frame": { "x": 1610, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.15",
+    "frame": { "x": 1725, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.16",
+    "frame": { "x": 1840, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.17",
+    "frame": { "x": 1955, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.18",
+    "frame": { "x": 2070, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.death.19",
+    "frame": { "x": 2185, "y": 230, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.hit.0",
+    "frame": { "x": 0, "y": 345, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.hit.1",
+    "frame": { "x": 115, "y": 345, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.hit.2",
+    "frame": { "x": 230, "y": 345, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.0",
+    "frame": { "x": 0, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.1",
+    "frame": { "x": 115, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.2",
+    "frame": { "x": 230, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.3",
+    "frame": { "x": 345, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.4",
+    "frame": { "x": 460, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.5",
+    "frame": { "x": 575, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.6",
+    "frame": { "x": 690, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.7",
+    "frame": { "x": 805, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.8",
+    "frame": { "x": 920, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.9",
+    "frame": { "x": 1035, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.10",
+    "frame": { "x": 1150, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.11",
+    "frame": { "x": 1265, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.12",
+    "frame": { "x": 1380, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.idle.13",
+    "frame": { "x": 1495, "y": 460, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.0",
+    "frame": { "x": 0, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.1",
+    "frame": { "x": 115, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.2",
+    "frame": { "x": 230, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.3",
+    "frame": { "x": 345, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.4",
+    "frame": { "x": 460, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.5",
+    "frame": { "x": 575, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.6",
+    "frame": { "x": 690, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   },
+   {
+    "filename": "f5_drogon.run.7",
+    "frame": { "x": 805, "y": 575, "w": 115, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 115, "h": 115 },
+    "sourceSize": { "w": 115, "h": 115 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f5_drogon.png",
+  "format": "RGBA8888",
+  "size": { "w": 2300, "h": 690 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 20, "to": 33, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 34, "to": 53, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 54, "to": 56, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 57, "to": 70, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 71, "to": 78, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -1,0 +1,753 @@
+{ "frames": [
+   {
+    "filename": "f4_husk.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.1",
+    "frame": { "x": 150, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.2",
+    "frame": { "x": 300, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.3",
+    "frame": { "x": 450, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.4",
+    "frame": { "x": 600, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.5",
+    "frame": { "x": 750, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.6",
+    "frame": { "x": 900, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.7",
+    "frame": { "x": 1050, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.8",
+    "frame": { "x": 1200, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.9",
+    "frame": { "x": 1350, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.10",
+    "frame": { "x": 1500, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.11",
+    "frame": { "x": 1650, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.12",
+    "frame": { "x": 1800, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.13",
+    "frame": { "x": 1950, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.14",
+    "frame": { "x": 2100, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.15",
+    "frame": { "x": 2250, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.16",
+    "frame": { "x": 2400, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.17",
+    "frame": { "x": 2550, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.18",
+    "frame": { "x": 2700, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.19",
+    "frame": { "x": 2850, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.20",
+    "frame": { "x": 3000, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.attack.21",
+    "frame": { "x": 3150, "y": 0, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.0",
+    "frame": { "x": 0, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.1",
+    "frame": { "x": 150, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.2",
+    "frame": { "x": 300, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.3",
+    "frame": { "x": 450, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.4",
+    "frame": { "x": 600, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.5",
+    "frame": { "x": 750, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.6",
+    "frame": { "x": 900, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.7",
+    "frame": { "x": 1050, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.8",
+    "frame": { "x": 1200, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.9",
+    "frame": { "x": 1350, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.10",
+    "frame": { "x": 1500, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.11",
+    "frame": { "x": 1650, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.12",
+    "frame": { "x": 1800, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.breathing.13",
+    "frame": { "x": 1950, "y": 150, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.0",
+    "frame": { "x": 0, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.1",
+    "frame": { "x": 150, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.2",
+    "frame": { "x": 300, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.3",
+    "frame": { "x": 450, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.4",
+    "frame": { "x": 600, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.5",
+    "frame": { "x": 750, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.6",
+    "frame": { "x": 900, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.7",
+    "frame": { "x": 1050, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.8",
+    "frame": { "x": 1200, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.9",
+    "frame": { "x": 1350, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.10",
+    "frame": { "x": 1500, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.11",
+    "frame": { "x": 1650, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.12",
+    "frame": { "x": 1800, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.13",
+    "frame": { "x": 1950, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.14",
+    "frame": { "x": 2100, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.15",
+    "frame": { "x": 2250, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.16",
+    "frame": { "x": 2400, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.17",
+    "frame": { "x": 2550, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.18",
+    "frame": { "x": 2700, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.19",
+    "frame": { "x": 2850, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.20",
+    "frame": { "x": 3000, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.death.21",
+    "frame": { "x": 3150, "y": 300, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.hit.0",
+    "frame": { "x": 0, "y": 450, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.hit.1",
+    "frame": { "x": 150, "y": 450, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.hit.2",
+    "frame": { "x": 300, "y": 450, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.0",
+    "frame": { "x": 0, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.1",
+    "frame": { "x": 150, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.2",
+    "frame": { "x": 300, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.3",
+    "frame": { "x": 450, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.4",
+    "frame": { "x": 600, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.5",
+    "frame": { "x": 750, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.6",
+    "frame": { "x": 900, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.7",
+    "frame": { "x": 1050, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.8",
+    "frame": { "x": 1200, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.9",
+    "frame": { "x": 1350, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.10",
+    "frame": { "x": 1500, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.idle.11",
+    "frame": { "x": 1650, "y": 600, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.0",
+    "frame": { "x": 0, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.1",
+    "frame": { "x": 150, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.2",
+    "frame": { "x": 300, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.3",
+    "frame": { "x": 450, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.4",
+    "frame": { "x": 600, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.5",
+    "frame": { "x": 750, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.6",
+    "frame": { "x": 900, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   },
+   {
+    "filename": "f4_husk.run.7",
+    "frame": { "x": 1050, "y": 750, "w": 150, "h": 150 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 150, "h": 150 },
+    "sourceSize": { "w": 150, "h": 150 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f4_husk.png",
+  "format": "RGBA8888",
+  "size": { "w": 3300, "h": 900 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 21, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 22, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 36, "to": 57, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 58, "to": 60, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 61, "to": 72, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 73, "to": 80, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

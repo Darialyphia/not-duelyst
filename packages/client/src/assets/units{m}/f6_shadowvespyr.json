@@ -1,0 +1,789 @@
+{ "frames": [
+   {
+    "filename": "f6_shadowvespyr.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.1",
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.2",
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.3",
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.4",
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.5",
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.6",
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.7",
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.8",
+    "frame": { "x": 960, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.9",
+    "frame": { "x": 1080, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.10",
+    "frame": { "x": 1200, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.11",
+    "frame": { "x": 1320, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.12",
+    "frame": { "x": 1440, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.13",
+    "frame": { "x": 1560, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.14",
+    "frame": { "x": 1680, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.15",
+    "frame": { "x": 1800, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.16",
+    "frame": { "x": 1920, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.17",
+    "frame": { "x": 2040, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.18",
+    "frame": { "x": 2160, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.19",
+    "frame": { "x": 2280, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.20",
+    "frame": { "x": 2400, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.21",
+    "frame": { "x": 2520, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.22",
+    "frame": { "x": 2640, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.23",
+    "frame": { "x": 2760, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.24",
+    "frame": { "x": 2880, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.25",
+    "frame": { "x": 3000, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.attack.26",
+    "frame": { "x": 3120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.0",
+    "frame": { "x": 0, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.1",
+    "frame": { "x": 120, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.2",
+    "frame": { "x": 240, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.3",
+    "frame": { "x": 360, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.4",
+    "frame": { "x": 480, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.5",
+    "frame": { "x": 600, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.6",
+    "frame": { "x": 720, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.7",
+    "frame": { "x": 840, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.8",
+    "frame": { "x": 960, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.9",
+    "frame": { "x": 1080, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.10",
+    "frame": { "x": 1200, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.11",
+    "frame": { "x": 1320, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.12",
+    "frame": { "x": 1440, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.breathing.13",
+    "frame": { "x": 1560, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.0",
+    "frame": { "x": 0, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.1",
+    "frame": { "x": 120, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.2",
+    "frame": { "x": 240, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.3",
+    "frame": { "x": 360, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.4",
+    "frame": { "x": 480, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.5",
+    "frame": { "x": 600, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.6",
+    "frame": { "x": 720, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.7",
+    "frame": { "x": 840, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.8",
+    "frame": { "x": 960, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.9",
+    "frame": { "x": 1080, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.10",
+    "frame": { "x": 1200, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.11",
+    "frame": { "x": 1320, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.12",
+    "frame": { "x": 1440, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.13",
+    "frame": { "x": 1560, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.14",
+    "frame": { "x": 1680, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.15",
+    "frame": { "x": 1800, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.16",
+    "frame": { "x": 1920, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.death.17",
+    "frame": { "x": 2040, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.hit.0",
+    "frame": { "x": 0, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.hit.1",
+    "frame": { "x": 120, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.hit.2",
+    "frame": { "x": 240, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.0",
+    "frame": { "x": 0, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.1",
+    "frame": { "x": 120, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.2",
+    "frame": { "x": 240, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.3",
+    "frame": { "x": 360, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.4",
+    "frame": { "x": 480, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.5",
+    "frame": { "x": 600, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.6",
+    "frame": { "x": 720, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.7",
+    "frame": { "x": 840, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.8",
+    "frame": { "x": 960, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.9",
+    "frame": { "x": 1080, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.10",
+    "frame": { "x": 1200, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.11",
+    "frame": { "x": 1320, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.12",
+    "frame": { "x": 1440, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.13",
+    "frame": { "x": 1560, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.idle.14",
+    "frame": { "x": 1680, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.0",
+    "frame": { "x": 0, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.1",
+    "frame": { "x": 120, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.2",
+    "frame": { "x": 240, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.3",
+    "frame": { "x": 360, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.4",
+    "frame": { "x": 480, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.5",
+    "frame": { "x": 600, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.6",
+    "frame": { "x": 720, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_shadowvespyr.run.7",
+    "frame": { "x": 840, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f6_shadowvespyr.png",
+  "format": "RGBA8888",
+  "size": { "w": 3240, "h": 720 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 26, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 27, "to": 40, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 41, "to": 58, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 59, "to": 61, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 62, "to": 76, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 77, "to": 84, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

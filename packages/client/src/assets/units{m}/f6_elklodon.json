@@ -1,0 +1,627 @@
+{ "frames": [
+   {
+    "filename": "f6_elklodon.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.1",
+    "frame": { "x": 125, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.2",
+    "frame": { "x": 250, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.3",
+    "frame": { "x": 375, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.4",
+    "frame": { "x": 500, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.5",
+    "frame": { "x": 625, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.6",
+    "frame": { "x": 750, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.7",
+    "frame": { "x": 875, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.8",
+    "frame": { "x": 1000, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.9",
+    "frame": { "x": 1125, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.10",
+    "frame": { "x": 1250, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.11",
+    "frame": { "x": 1375, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.attack.12",
+    "frame": { "x": 1500, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.0",
+    "frame": { "x": 0, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.1",
+    "frame": { "x": 125, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.2",
+    "frame": { "x": 250, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.3",
+    "frame": { "x": 375, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.4",
+    "frame": { "x": 500, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.5",
+    "frame": { "x": 625, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.6",
+    "frame": { "x": 750, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.7",
+    "frame": { "x": 875, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.8",
+    "frame": { "x": 1000, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.9",
+    "frame": { "x": 1125, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.10",
+    "frame": { "x": 1250, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.11",
+    "frame": { "x": 1375, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.12",
+    "frame": { "x": 1500, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.breathing.13",
+    "frame": { "x": 1625, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.0",
+    "frame": { "x": 0, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.1",
+    "frame": { "x": 125, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.2",
+    "frame": { "x": 250, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.3",
+    "frame": { "x": 375, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.4",
+    "frame": { "x": 500, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.5",
+    "frame": { "x": 625, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.6",
+    "frame": { "x": 750, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.7",
+    "frame": { "x": 875, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.8",
+    "frame": { "x": 1000, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.9",
+    "frame": { "x": 1125, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.10",
+    "frame": { "x": 1250, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.11",
+    "frame": { "x": 1375, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.12",
+    "frame": { "x": 1500, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.13",
+    "frame": { "x": 1625, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.14",
+    "frame": { "x": 1750, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.15",
+    "frame": { "x": 1875, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.16",
+    "frame": { "x": 2000, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.death.17",
+    "frame": { "x": 2125, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.hit.0",
+    "frame": { "x": 0, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.hit.1",
+    "frame": { "x": 125, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.hit.2",
+    "frame": { "x": 250, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.0",
+    "frame": { "x": 0, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.1",
+    "frame": { "x": 125, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.2",
+    "frame": { "x": 250, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.3",
+    "frame": { "x": 375, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.4",
+    "frame": { "x": 500, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.5",
+    "frame": { "x": 625, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.6",
+    "frame": { "x": 750, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.7",
+    "frame": { "x": 875, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.8",
+    "frame": { "x": 1000, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.9",
+    "frame": { "x": 1125, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.idle.10",
+    "frame": { "x": 1250, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.0",
+    "frame": { "x": 0, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.1",
+    "frame": { "x": 125, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.2",
+    "frame": { "x": 250, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.3",
+    "frame": { "x": 375, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.4",
+    "frame": { "x": 500, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.5",
+    "frame": { "x": 625, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.6",
+    "frame": { "x": 750, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "f6_elklodon.run.7",
+    "frame": { "x": 875, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "f6_elklodon.png",
+  "format": "RGBA8888",
+  "size": { "w": 2250, "h": 750 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 12, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 13, "to": 26, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 27, "to": 44, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 45, "to": 47, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 48, "to": 58, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 59, "to": 66, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
