@@ -1,9 +1,10 @@
+import { KEYWORDS } from '../../../utils/keywords';
 import { defineSerializedBlueprint } from '../../card-blueprint';
 
 export const f1AegisBarrier = defineSerializedBlueprint({
   id: 'f1_aegis_barrier',
   collectable: true,
-  keywords: [],
+  keywords: [KEYWORDS.BARRIER.id],
   relatedBlueprintIds: [],
   tags: [],
   kind: 'SPELL',
