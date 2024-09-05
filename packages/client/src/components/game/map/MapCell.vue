@@ -187,8 +187,6 @@ const hasCellAbove = computed(
             }
             if (ui.selectedCard.value.meta.adapt) {
               return;
-            } else if (ui.selectedCard.value.targets) {
-              return;
             }
             runSimulation({
               type: 'playCard',
