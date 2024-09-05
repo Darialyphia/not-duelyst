@@ -119,7 +119,6 @@ const playSoundSequence = () => {
   });
 };
 onMounted(async () => {
-  console.log('on mounted');
   const soundSequence = playSoundSequence();
   // We create the pixi app manually instead of using vue3-pixi's <Application /> component
   // because we want to be able to provide a bunch of stuff so we need access to the underlying vue-pixi app
@@ -185,7 +184,6 @@ onMounted(async () => {
     await soundSequence;
     ready.value = true;
     emit('ready');
-    console.log('mount pixi app');
     app.mount(pixiApp.stage);
     bgm.next(battleBgms[musicIndex]);
   });

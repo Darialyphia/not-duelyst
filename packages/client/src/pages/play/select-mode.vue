@@ -16,7 +16,7 @@ const modes = [
     link: { name: 'Tutorial' },
     name: 'Tutorial',
     description: 'Learn how to play the game.',
-    enabled: featureFlags.value.tutorial
+    enabled: featureFlags.value?.tutorial
   },
   {
     link: { name: 'Sandbox' },
@@ -28,23 +28,21 @@ const modes = [
     link: { name: 'Lobbies' },
     name: 'Casual',
     description: 'Play against another player in a friendly game.',
-    enabled: featureFlags.value.lobbies
+    enabled: featureFlags.value?.lobbies
   },
   {
     link: { name: 'Ranked' },
     name: 'Ranked',
     description: 'Play competitively against another player and climb up the ladder.',
-    enabled: featureFlags.value.matchmaking
+    enabled: featureFlags.value?.matchmaking
   },
   {
     link: { name: 'Tournaments' },
     name: 'Tournaments',
     description: 'Participate and organize tournaments.',
-    enabled: featureFlags.value.tournament
+    enabled: featureFlags.value?.tournament
   }
 ];
-
-const { isMobile } = useResponsive();
 </script>
 
 <template>

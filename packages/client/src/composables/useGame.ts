@@ -160,7 +160,7 @@ export const useGameProvider = ({
     simulationResult,
     requestSimulation: debounce(action => {
       emit('simulateAction', action as any);
-    }, 100),
+    }, 20),
     isActivePlayer,
     userPlayer
   };
