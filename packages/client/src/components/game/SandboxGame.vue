@@ -79,7 +79,29 @@ const dispatch = (
 };
 
 const { addP1, addP2, p1Emote, p2Emote } = useEmoteQueue();
+
 const simulationResult = ref<Nullable<SimulationResult>>(null);
+const simulationsCache = new Map<string, SimulationResult>();
+const simulateAction = async (event: any) => {
+  const key = JSON.stringify(event);
+  if (simulationsCache.has(key)) {
+    simulationResult.value = simulationsCache.get(key);
+    return;
+  }
+
+  const result = await serverSession.simulateAction({
+    type: event.type,
+    payload: {
+      ...event.payload,
+      playerId: serverSession.playerSystem.activePlayer.id
+    }
+  });
+  simulationsCache.set(key, result);
+  simulationResult.value = result;
+};
+clientSession.on('game:action', () => {
+  simulationsCache.clear();
+});
 </script>
 
 <template>
@@ -91,17 +113,7 @@ const simulationResult = ref<Nullable<SimulationResult>>(null);
       :game-session="clientSession"
       :player-id="null"
       :game-type="GAME_TYPES.SANDBOX"
-      @simulate-action="
-        async ($event: any) => {
-          simulationResult = await serverSession.simulateAction({
-            type: $event.type,
-            payload: {
-              ...$event.payload,
-              playerId: serverSession.playerSystem.activePlayer.id
-            }
-          });
-        }
-      "
+      @simulate-action="simulateAction"
       @move="dispatch('move', $event)"
       @attack="dispatch('attack', $event)"
       @end-turn="dispatch('endTurn', $event)"

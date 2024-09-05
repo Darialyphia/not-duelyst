@@ -76,10 +76,17 @@ export class Deck extends TypedEventEmitter<DeckEventMap> implements Serializabl
     let replacement: Card;
     let index: number;
 
+    const shouldForceDifferentCard = this.cards.some(
+      c => c.blueprintId !== replacedCard.blueprintId
+    );
+
     do {
       index = this.session.rngSystem.nextInt(this.cards.length - 1);
       replacement = this.cards[index];
-    } while (replacement.blueprintId === replacedCard.blueprintId);
+    } while (
+      shouldForceDifferentCard &&
+      replacement.blueprintId === replacedCard.blueprintId
+    );
 
     await replacedCard.replace();
 

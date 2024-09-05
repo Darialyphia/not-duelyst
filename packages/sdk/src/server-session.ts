@@ -2,7 +2,8 @@ import {
   GameSession,
   type GameFormat,
   type SerializedGameState,
-  type SessionLogger
+  type SessionLogger,
+  type SimulationResult
 } from './game-session';
 import type { GameAction, SerializedAction } from './action/action';
 import { ServerRngSystem, type RngSystem } from './rng-system';
@@ -10,18 +11,6 @@ import { CARDS } from './card/card-lookup';
 import type { EntityId } from './entity/entity';
 import type { Nullable, Point3D } from '@game/shared';
 import { ServerFxSystem, type IFxSystem } from './fx-system';
-
-export type SimulationResult = {
-  damageTaken: Record<EntityId, number>;
-  healReceived: Record<EntityId, number>;
-  deaths: EntityId[];
-  newEntities: Array<{
-    id: EntityId;
-    position: Point3D;
-    spriteId: string;
-    pedestalId: string;
-  }>;
-};
 
 const serverLogger: SessionLogger = console.log;
 
@@ -63,69 +52,33 @@ export class ServerSession extends GameSession {
   }
 
   onUpdate(cb: (action: SerializedAction, opts: { rngValues: number[] }) => void) {
+    let lastIndexSent = 0;
     this.on('scheduler:flushed', () => {
       const lastAction = this.actionSystem.getHistory().at(-1);
       if (this.latestAction === lastAction) return;
       if (lastAction) {
         cb(this.actionSystem.getHistory().at(-1)!.serialize(), {
-          rngValues: this.rngSystem.values
+          rngValues: this.rngSystem.values.slice(lastIndexSent)
         });
+        lastIndexSent = this.rngSystem.values.length;
         this.latestAction = lastAction;
       }
     });
   }
 
   simulateAction(action: SerializedAction) {
-    return new Promise<SimulationResult>(resolve => {
-      const session = new GameSession(
+    return this.runSimulation(
+      action,
+      new GameSession(
         { ...this.initialState, history: this.actionSystem.serialize() },
         new ServerRngSystem(this.rngSeed),
         this.fxSystem,
         () => void 0,
         {
-          format: this.format
+          format: this.format,
+          parsedBlueprints: this.cardBlueprints
         }
-      );
-
-      session.once('game:ready', () => {
-        const result: SimulationResult = {
-          damageTaken: {},
-          healReceived: {},
-          deaths: [],
-          newEntities: []
-        };
-        session.on('entity:after_take_damage', event => {
-          if (result.damageTaken[event.entity.id]) {
-            result.damageTaken[event.entity.id] += event.amount;
-          } else {
-            result.damageTaken[event.entity.id] = event.amount;
-          }
-        });
-        session.on('entity:after_heal', event => {
-          if (result.healReceived[event.entity.id]) {
-            result.healReceived[event.entity.id] += event.amount;
-          } else {
-            result.healReceived[event.entity.id] = event.amount;
-          }
-        });
-        session.on('entity:after_destroy', event => {
-          result.deaths.push(event.id);
-        });
-        session.on('entity:created', event => {
-          result.newEntities.push({
-            id: event.id,
-            spriteId: event.card.blueprint.spriteId,
-            pedestalId: event.card.pedestalId,
-            position: event.position.serialize()
-          });
-        });
-
-        session.on('scheduler:flushed', () => {
-          resolve(result);
-          session.removeAllListeners();
-        });
-        void session.dispatch(action);
-      });
-    });
+      )
+    );
   }
 }

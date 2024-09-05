@@ -21,7 +21,6 @@ export class AttackAction extends GameAction<typeof schema> {
   }
 
   async impl() {
-    console.log('attack action impl');
     if (!this.entity) {
       return this.printError(`Entity not found: ${this.payload.entityId}`);
     }

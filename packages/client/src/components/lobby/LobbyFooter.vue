@@ -16,12 +16,7 @@ const players = computed(() =>
 const isOwner = computed(() => lobby.owner._id === me.value._id);
 
 const { mutate: start, isLoading: isStarting } = useConvexAuthedMutation(
-  api.lobbies.start,
-  {
-    onSuccess() {
-      console.log('starting game success');
-    }
-  }
+  api.lobbies.start
 );
 
 const { mutate: leaveLobby, isLoading: isLeaving } = useConvexAuthedMutation(

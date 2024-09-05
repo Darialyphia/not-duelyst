@@ -147,13 +147,13 @@ const onPointerup = (event: FederatedPointerEvent) => {
     .exhaustive();
 };
 
-const runSimulation = debounce(
-  <T extends keyof GameEmits>(action: { type: T; payload: GameEmits[T][0] }) => {
-    requestSimulation(action);
-    ui.isSimulationResultDisplayed.value = true;
-  },
-  100
-);
+const runSimulation = <T extends keyof GameEmits>(action: {
+  type: T;
+  payload: GameEmits[T][0];
+}) => {
+  requestSimulation(action);
+  ui.isSimulationResultDisplayed.value = true;
+};
 
 const hasCellAbove = computed(
   () => !!session.boardSystem.getCellAt({ ...cell.position, z: cell.position.z + 1 })
@@ -190,7 +190,6 @@ const hasCellAbove = computed(
             } else if (ui.selectedCard.value.targets) {
               return;
             }
-            console.log('request simulation');
             runSimulation({
               type: 'playCard',
               payload: {

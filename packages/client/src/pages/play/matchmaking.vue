@@ -35,7 +35,6 @@ until(matchmakingUser)
   .not.toBeUndefined()
   .then(() => {
     if (matchmakingUser.value) {
-      console.log(matchmakingUser.value);
       inc(matchmakingUser.value.timeElapsed);
       resume();
     }

@@ -22,6 +22,28 @@ const { data: me, isLoading: isMeLoading } = useConvexAuthedQuery(api.users.me, 
 const socket = ref<Socket>();
 const gameSession = shallowRef<ClientSession>();
 const simulationResult = ref<Nullable<SimulationResult>>(null);
+const simulationsCache = new Map<string, SimulationResult>();
+const simulateAction = async (event: any) => {
+  if (!gameSession.value) return;
+  const key = JSON.stringify(event);
+  if (simulationsCache.has(key)) {
+    simulationResult.value = simulationsCache.get(key);
+  }
+  try {
+    const result = await gameSession.value.simulateAction({
+      type: event.type,
+      payload: {
+        ...event.payload,
+        playerId: gameSession.value.playerSystem.activePlayer.id
+      }
+    });
+    simulationsCache.set(key, result);
+    simulationResult.value = result;
+  } catch (err) {
+    console.error(err);
+    socket.value?.emit('game:simulation', event);
+  }
+};
 
 const dispatch = (type: Parameters<GameSession['dispatch']>[0]['type'], payload: any) => {
   socket.value?.emit('game:action', { type, payload });
@@ -46,6 +68,9 @@ const { error } = useGameSocket({
           const session = ClientSession.create(serializedState, {
             winnerId: currentGame.winnerId ?? undefined,
             format: toRaw(currentGame.format)
+          });
+          session.on('game:action', () => {
+            simulationsCache.clear();
           });
 
           session.onReady(() => {
@@ -120,6 +145,7 @@ const canSeeGame = computed(() => {
         @replace="dispatch('replaceCard', $event)"
         @surrender="dispatch('surrender', $event)"
         @mulligan="dispatch('mulligan', $event)"
+        @simulate-action="simulateAction"
         @draw="dispatch('draw', $event)"
         @get-gold="dispatch('getGold', $event)"
         @add-rune="dispatch('addRune', $event)"

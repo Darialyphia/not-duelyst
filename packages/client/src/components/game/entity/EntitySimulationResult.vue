@@ -9,7 +9,10 @@ const simulationDeathTexture = assets.getTexture('simulation-death.png');
 </script>
 
 <template>
-  <template v-if="ui.isSimulationResultDisplayed.value && simulationResult">
+  <container
+    v-if="ui.isSimulationResultDisplayed.value && simulationResult"
+    :ref="(container: any) => ui.assignLayer(container, 'ui')"
+  >
     <pixi-text
       v-if="simulationResult.damageTaken[entityId]"
       :anchor="0.5"
@@ -47,5 +50,5 @@ const simulationDeathTexture = assets.getTexture('simulation-death.png');
       :y="-12"
       :x="15"
     />
-  </template>
+  </container>
 </template>

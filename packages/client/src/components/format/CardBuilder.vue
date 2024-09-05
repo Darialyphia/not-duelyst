@@ -125,7 +125,6 @@ const hideUsedSprites = ref(true);
 const spriteOptions = computed(() => {
   const allCards = [format.cards, ...Object.values(CARDS)];
 
-  console.log(allCards);
   const usedSprites = hideUsedSprites.value ? allCards.map(c => c.spriteId) : [];
 
   return match(blueprint.value.kind)

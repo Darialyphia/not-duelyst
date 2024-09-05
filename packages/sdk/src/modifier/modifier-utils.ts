@@ -407,7 +407,6 @@ export const ephemeral = ({ source }: { source: Card }) => {
         eventName: 'player:turn_end',
         keywords: [KEYWORDS.EPHEMERAL],
         async listener([event], { attachedTo }) {
-          console.log(attachedTo.card.blueprintId);
           if (event.equals(attachedTo.player)) {
             await attachedTo.remove();
           }
@@ -1030,11 +1029,6 @@ export const rebirth = ({ source }: { source: Card }) => {
     stackable: false,
     visible: false,
     mixins: [
-      {
-        onRemoved() {
-          console.log('rmeove rebirth');
-        }
-      },
       modifierSelfEventMixin({
         eventName: 'after_destroy',
         once: true,

@@ -48,11 +48,30 @@ export class ClientSession extends GameSession {
     meta: { rngValues: number[] } = { rngValues: [] }
   ) {
     try {
-      this.rngSystem.values = meta.rngValues;
+      this.rngSystem.values.push(...meta.rngValues);
 
       return super.dispatch(action);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  simulateAction(action: SerializedAction) {
+    const rngSystem = new ClientRngSystem();
+    rngSystem.values = this.rngSystem.values;
+
+    return this.runSimulation(
+      action,
+      new GameSession(
+        { ...this.initialState, history: this.actionSystem.serialize() },
+        rngSystem,
+        this.fxSystem,
+        () => void 0,
+        {
+          format: this.format,
+          parsedBlueprints: this.cardBlueprints
+        }
+      )
+    );
   }
 }

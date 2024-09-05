@@ -9,7 +9,6 @@ const executionContext = computed({
     return effect.value.executionContext;
   },
   set(val) {
-    console.log(val);
     match(val)
       .with('immediate', 'while_in_hand', 'while_on_board', () => {
         effect.value.executionContext = val;

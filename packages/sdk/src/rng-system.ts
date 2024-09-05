@@ -33,6 +33,8 @@ export class ServerRngSystem implements RngSystem {
   }
 }
 
+export class MissingRngError extends Error {}
+
 export class ClientRngSystem implements RngSystem {
   values: number[] = [];
   private index = 0;
@@ -40,7 +42,7 @@ export class ClientRngSystem implements RngSystem {
   private rng() {
     const i = this.index++;
     const val = this.values[i];
-    if (!isDefined(val)) throw new Error('Missing rng value');
+    if (!isDefined(val)) throw new MissingRngError('Missing rng value');
     return val;
   }
 

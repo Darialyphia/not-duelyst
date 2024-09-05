@@ -11,7 +11,6 @@ export const grantCards = async (
     .withIndex('by_owner_id', q => q.eq('ownerId', userId))
     .collect();
 
-  console.log(cards);
   const unitsToAdd = cards.filter(
     unit => unit.collectable && !collection.some(item => item.itemId === unit.id)
   );

@@ -5,10 +5,11 @@ import {
   ENTITY_EVENTS,
   type EntityEvent,
   type EntityEventMap,
+  type EntityId,
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Nullable, Prettify, Values } from '@game/shared';
+import type { Nullable, Point3D, Prettify, Values } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,
@@ -103,6 +104,18 @@ export const GAME_PHASES = {
 } as const;
 
 export type GamePhase = Values<typeof GAME_PHASES>;
+
+export type SimulationResult = {
+  damageTaken: Record<EntityId, number>;
+  healReceived: Record<EntityId, number>;
+  deaths: EntityId[];
+  newEntities: Array<{
+    id: EntityId;
+    position: Point3D;
+    spriteId: string;
+    pedestalId: string;
+  }>;
+};
 
 export class GameSession extends TypedEventEmitter<GameEventMap> {
   static getLoadoutViolations(
@@ -219,5 +232,54 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
       rng: this.rngSystem.serialize(),
       history: this.actionSystem.serialize()
     };
+  }
+
+  runSimulation(action: SerializedAction, session: GameSession) {
+    return new Promise<SimulationResult>(resolve => {
+      session.once('game:ready', () => {
+        const result: SimulationResult = {
+          damageTaken: {},
+          healReceived: {},
+          deaths: [],
+          newEntities: []
+        };
+        session.on('entity:after_take_damage', event => {
+          if (result.damageTaken[event.entity.id]) {
+            result.damageTaken[event.entity.id] += event.amount;
+          } else {
+            result.damageTaken[event.entity.id] = event.amount;
+          }
+        });
+        session.on('entity:after_heal', event => {
+          if (result.healReceived[event.entity.id]) {
+            result.healReceived[event.entity.id] += event.amount;
+          } else {
+            result.healReceived[event.entity.id] = event.amount;
+          }
+        });
+        session.on('entity:after_destroy', event => {
+          result.deaths.push(event.id);
+        });
+        session.on('entity:created', event => {
+          result.newEntities.push({
+            id: event.id,
+            spriteId: event.card.blueprint.spriteId,
+            pedestalId: event.card.pedestalId,
+            position: event.position.serialize()
+          });
+        });
+
+        session.on('*', event => {
+          console.log(event.eventName);
+        });
+        const now = performance.now();
+        session.on('scheduler:flushed', () => {
+          resolve(result);
+          session.removeAllListeners();
+          console.log(performance.now() - now);
+        });
+        void session.dispatch(action);
+      });
+    });
   }
 }

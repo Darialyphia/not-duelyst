@@ -1,4 +1,8 @@
-export { GameSession, type SerializedGameState } from './game-session';
+export {
+  GameSession,
+  type SerializedGameState,
+  type SimulationResult
+} from './game-session';
 export { type LoadoutViolation } from './utils/loader-validator';
 export { Entity, type EntityId } from './entity/entity';
 export { Player, type PlayerId } from './player/player';
@@ -66,10 +70,11 @@ export type { GameActionName } from './action/action-system';
 export { TutorialSession, type TutorialStep } from './tutorial-session';
 export { TERRAINS, type Terrain } from './board/board-utils';
 export { ClientSession } from './client-session';
-export { ServerSession, type SimulationResult } from './server-session';
+export { ServerSession } from './server-session';
 export { type Tag, TAGS } from './utils/tribes';
 export type { Unit } from './card/unit';
 export type { Spell } from './card/spell';
 export type { Artifact } from './card/artifact';
 export type { Cell, CellId } from './board/cell';
 export type { GameEvent, GameEventPayload } from './game-session';
+export { MissingRngError } from './rng-system';

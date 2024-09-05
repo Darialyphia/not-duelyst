@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TextStyle } from 'pixi.js';
 
-const { session, ui } = useGame();
+const { session } = useGame();
 
 const style = new TextStyle({ fill: 'white', fontSize: 12, fontFamily: 'monospace' });
 const isDev = import.meta.env.DEV;
