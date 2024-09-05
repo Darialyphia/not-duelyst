@@ -269,14 +269,9 @@ export class GameSession extends TypedEventEmitter<GameEventMap> {
           });
         });
 
-        session.on('*', event => {
-          console.log(event.eventName);
-        });
-        const now = performance.now();
         session.on('scheduler:flushed', () => {
           resolve(result);
           session.removeAllListeners();
-          console.log(performance.now() - now);
         });
         void session.dispatch(action);
       });

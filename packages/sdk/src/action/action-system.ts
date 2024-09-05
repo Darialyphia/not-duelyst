@@ -1,5 +1,5 @@
 import { GameAction, type DefaultSchema, type SerializedAction } from './action';
-import { GameSession, type GamePhase } from '../game-session';
+import { GameSession } from '../game-session';
 import type { Constructor, Nullable, Serializable, Values } from '@game/shared';
 import { AttackAction } from './attack.action';
 import { EndTurnAction } from './end-turn.action';
@@ -38,6 +38,7 @@ type ScheduledAction = () => Promise<void>;
 export class ActionSystem implements Serializable {
   private history: GameAction<any>[] = [];
   private isRunning = false;
+  private isSilent = true;
 
   currentAction?: Nullable<InstanceType<Values<typeof actionMap>>> = null;
 
@@ -46,8 +47,10 @@ export class ActionSystem implements Serializable {
   constructor(private session: GameSession) {}
 
   async setup(rawHistory: SerializedAction[]) {
-    this.scheduledActions = rawHistory.map(action => () => this.handleAction(action));
-    await this.flushSchedule();
+    for (const action of rawHistory) {
+      await this.schedule(() => this.handleAction(action));
+    }
+    this.isSilent = false;
   }
 
   private isActionType(type: string): type is keyof typeof actionMap {
@@ -73,7 +76,9 @@ export class ActionSystem implements Serializable {
       }
       this.scheduledActions = [];
       this.isRunning = false;
-      this.session.emit('scheduler:flushed');
+      if (!this.isSilent) {
+        this.session.emit('scheduler:flushed');
+      }
     } catch (err) {
       console.error(err);
       this.session.emit('game:error', err as Error);

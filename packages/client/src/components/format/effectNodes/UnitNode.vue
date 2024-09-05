@@ -179,7 +179,7 @@ const id = useId();
         />
       </template>
       <template v-else-if="param === 'blueprint'">
-        <Blueprint
+        <BlueprintNode
           v-model="(groups.candidates[groupIndex][conditionIndex] as any).params[param]"
         />
       </template>
