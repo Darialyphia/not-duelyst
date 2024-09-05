@@ -209,6 +209,7 @@ import { f5GreaterFortitude } from './cards/faction_5/greater-fortitude';
 import { f5EarthSphere } from './cards/faction_5/earth-sphere';
 import { f5PlasmaStorm } from './cards/faction_5/plasma-storm';
 import { f5DiretideFrenzy } from './cards/faction_5/diretide-frenzy';
+import { neutralAstralCrusader } from './cards/neutral/astral-crusader';
 
 const allCards: SerializedBlueprint<any>[] = [
   f1General,
@@ -424,7 +425,8 @@ const allCards: SerializedBlueprint<any>[] = [
   neutralPandoraPurple,
   neutralPandoraRed,
   neutralPandoraYellow,
-  neutralPaddo
+  neutralPaddo,
+  neutralAstralCrusader
 ];
 
 export const CARDS = keyBy(allCards, 'id') as Record<
