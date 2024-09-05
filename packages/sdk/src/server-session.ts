@@ -86,6 +86,7 @@ export class ServerSession extends GameSession {
           format: this.format
         }
       );
+
       session.once('game:ready', () => {
         const result: SimulationResult = {
           damageTaken: {},
@@ -118,8 +119,10 @@ export class ServerSession extends GameSession {
             position: event.position.serialize()
           });
         });
+
         session.on('scheduler:flushed', () => {
           resolve(result);
+          session.removeAllListeners();
         });
         void session.dispatch(action);
       });

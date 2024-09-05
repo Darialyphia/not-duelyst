@@ -8,7 +8,7 @@ import {
   type SerializedEntity
 } from './entity/entity';
 import type { GameAction, SerializedAction } from './action/action';
-import type { Nullable, Override, Prettify, Values } from '@game/shared';
+import type { Nullable, Prettify, Values } from '@game/shared';
 import {
   PLAYER_EVENTS,
   type PlayerEvent,

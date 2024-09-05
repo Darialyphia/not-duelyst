@@ -56,8 +56,9 @@ export const useLoadoutFormProvider = ({
   }>({ name: '', cards: [] });
 
   watch(format, newFormat => {
+    const cards = { ...CARDS, ...newFormat.cards };
     formValues.value.cards = formValues.value.cards.filter(card => {
-      return newFormat.cards[card.id];
+      return cards[card.id];
     });
   });
 

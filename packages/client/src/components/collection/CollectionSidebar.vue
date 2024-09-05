@@ -103,9 +103,6 @@ const onImport = () => {
 .collection-sidebar {
   will-change: transform;
 
-  grid-column: 2;
-  grid-row: 1 / -1;
-
   background: var(--fancy-bg);
   background-blend-mode: overlay;
   border-left: var(--fancy-border);

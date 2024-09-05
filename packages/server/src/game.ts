@@ -5,7 +5,7 @@ import {
   defaultConfig
 } from '@game/sdk';
 import type { GameServer, GameSocket } from './types';
-import type { Defined } from '@game/shared';
+import type { AnyObject, Defined } from '@game/shared';
 import { type FunctionReturnType } from 'convex/server';
 import { api } from '@game/api';
 import { stringify } from 'zipson';
@@ -156,12 +156,24 @@ export class Game {
       this.onPlayerInput(socket, arg);
     });
     socket.on('p1:emote', (emote: string) => {
-      console.log('p1 emote');
       this.io.in(this.game._id).emit('p1:emote', emote);
     });
     socket.on('p2:emote', (emote: string) => {
-      console.log('p2 emote');
       this.io.in(this.game._id).emit('p2:emote', emote);
+    });
+    socket.on('game:simulation', async (event: { type: string; payload: AnyObject }) => {
+      try {
+        const result = await this.session.simulateAction({
+          type: event.type,
+          payload: {
+            ...event.payload,
+            playerId: this.session.playerSystem.activePlayer.id
+          }
+        });
+        socket.emit('game:simulation-result', result);
+      } catch (err) {
+        console.log(err);
+      }
     });
 
     this.playerJoined.add(socket.data.user._id);

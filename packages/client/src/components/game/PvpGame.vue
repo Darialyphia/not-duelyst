@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import { ClientSession, GameSession, type SerializedGameState } from '@game/sdk';
+import {
+  ClientSession,
+  GameSession,
+  type SerializedGameState,
+  type SimulationResult
+} from '@game/sdk';
 import type { SerializedAction } from '@game/sdk/src/action/action';
+import type { Nullable } from '@game/shared';
 import { type Socket } from 'socket.io-client';
 
 const route = useRoute();
@@ -15,6 +21,7 @@ const { data: me, isLoading: isMeLoading } = useConvexAuthedQuery(api.users.me, 
 
 const socket = ref<Socket>();
 const gameSession = shallowRef<ClientSession>();
+const simulationResult = ref<Nullable<SimulationResult>>(null);
 
 const dispatch = (type: Parameters<GameSession['dispatch']>[0]['type'], payload: any) => {
   socket.value?.emit('game:action', { type, payload });
@@ -58,6 +65,9 @@ const { error } = useGameSocket({
           socket.value?.on('time-remaining', time => {
             timeRemainingForTurn.value = time;
           });
+          socket.value?.on('game:simulation-result', result => {
+            simulationResult.value = result;
+          });
         });
     });
 
@@ -97,6 +107,7 @@ const canSeeGame = computed(() => {
     </div>
     <template v-else-if="gameSession && me">
       <GameRoot
+        v-model:simulation-result="simulationResult"
         :game-session="gameSession"
         :p1-emote="p1Emote"
         :p2-emote="p2Emote"

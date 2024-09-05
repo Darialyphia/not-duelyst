@@ -10,7 +10,6 @@ import { debounce } from 'lodash-es';
 const { cell } = defineProps<{ cell: CellViewModel }>();
 
 const { camera, ui, dispatch, pathfinding, fx, session, requestSimulation } = useGame();
-const { settings: userSettings } = useUserSettings();
 
 const boardDimensions = {
   width: session.boardSystem.width,
@@ -191,6 +190,7 @@ const hasCellAbove = computed(
             } else if (ui.selectedCard.value.targets) {
               return;
             }
+            console.log('request simulation');
             runSimulation({
               type: 'playCard',
               payload: {

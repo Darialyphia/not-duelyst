@@ -115,8 +115,13 @@ const collectionItemComponent = computed(() =>
     />
 
     <section ref="listRoot" class="card-list fancy-scrollbar" :class="listMode">
-      <UiLoader v-if="isCollectionLoading || isLoadoutsLoading" />
-      <p v-if="!relevantCards.length">No card found matching this filter.</p>
+      <div
+        v-if="isCollectionLoading || isLoadoutsLoading"
+        class="h-full flex items-center"
+      >
+        <UiLoader v-if="isCollectionLoading || isLoadoutsLoading" />
+      </div>
+      <p v-else-if="!relevantCards.length">No card found matching this filter.</p>
       <div
         v-for="item in relevantCards"
         :key="item.cardId"
@@ -146,10 +151,13 @@ const collectionItemComponent = computed(() =>
     </section>
 
     <CollectionSidebar
+      v-if="loadouts"
       v-model:is-editing-loadout="isEditingLoadout"
+      class="sidebar"
       :format="selectedFormat"
       :loadouts="loadouts"
     />
+    <div v-else class="sidebar" />
   </div>
 </template>
 
@@ -258,5 +266,10 @@ const collectionItemComponent = computed(() =>
       }
     }
   }
+}
+
+.sidebar {
+  grid-column: 2;
+  grid-row: 1 / -1;
 }
 </style>
