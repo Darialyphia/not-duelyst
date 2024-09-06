@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "f5_boundedlifeforce.default.0",
+    "filename": "f5_toothandtrial.default.0",
     "frame": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 128
    },
    {
-    "filename": "f5_boundedlifeforce.default.1",
+    "filename": "f5_toothandtrial.default.1",
     "frame": { "x": 48, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 128
    },
    {
-    "filename": "f5_boundedlifeforce.default.2",
+    "filename": "f5_toothandtrial.default.2",
     "frame": { "x": 96, "y": 0, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
@@ -27,88 +27,142 @@
     "duration": 128
    },
    {
-    "filename": "f5_boundedlifeforce.active.0",
+    "filename": "f5_toothandtrial.default.3",
+    "frame": { "x": 144, "y": 0, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 128
+   },
+   {
+    "filename": "f5_toothandtrial.active.0",
     "frame": { "x": 0, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.1",
+    "filename": "f5_toothandtrial.active.1",
     "frame": { "x": 48, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.2",
+    "filename": "f5_toothandtrial.active.2",
     "frame": { "x": 96, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.3",
+    "filename": "f5_toothandtrial.active.3",
     "frame": { "x": 144, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.4",
+    "filename": "f5_toothandtrial.active.4",
     "frame": { "x": 192, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.5",
+    "filename": "f5_toothandtrial.active.5",
     "frame": { "x": 240, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.6",
+    "filename": "f5_toothandtrial.active.6",
     "frame": { "x": 288, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
    },
    {
-    "filename": "f5_boundedlifeforce.active.7",
+    "filename": "f5_toothandtrial.active.7",
     "frame": { "x": 336, "y": 48, "w": 48, "h": 48 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
     "sourceSize": { "w": 48, "h": 48 },
-    "duration": 64
+    "duration": 6
+   },
+   {
+    "filename": "f5_toothandtrial.active.8",
+    "frame": { "x": 384, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 6
+   },
+   {
+    "filename": "f5_toothandtrial.active.9",
+    "frame": { "x": 432, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 6
+   },
+   {
+    "filename": "f5_toothandtrial.active.10",
+    "frame": { "x": 480, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 6
+   },
+   {
+    "filename": "f5_toothandtrial.active.11",
+    "frame": { "x": 528, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 6
+   },
+   {
+    "filename": "f5_toothandtrial.active.12",
+    "frame": { "x": 576, "y": 48, "w": 48, "h": 48 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "duration": 6
    }
  ],
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3.8.1-x64",
-  "image": "f5_boundedlifeforce.png",
+  "image": "f5_toothandtrial.png",
   "format": "RGBA8888",
-  "size": { "w": 384, "h": 96 },
+  "size": { "w": 624, "h": 96 },
   "scale": "1",
   "frameTags": [
-   { "name": "default", "from": 0, "to": 2, "direction": "forward", "color": "#000000ff" },
-   { "name": "active", "from": 3, "to": 10, "direction": "forward", "color": "#000000ff" }
+   { "name": "default", "from": 0, "to": 3, "direction": "forward", "color": "#000000ff" },
+   { "name": "active", "from": 4, "to": 16, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
