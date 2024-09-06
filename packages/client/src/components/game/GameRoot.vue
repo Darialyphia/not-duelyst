@@ -222,11 +222,13 @@ onMounted(async () => {
 }
 
 .v-leave-active {
-  transition: opacity 1.5s;
+  transition: all 1s;
   transition-delay: 500ms;
+  transform-origin: center;
 }
 
 .v-leave-to {
   opacity: 0;
+  transform: scale(0);
 }
 </style>

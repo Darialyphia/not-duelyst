@@ -57,8 +57,10 @@ watchEffect(() => {
     "
     class="targeting-ui"
   >
-    <UiButton class="error-button" @click="cancel">Cancel</UiButton>
-    <UiButton v-if="canSkip" class="primary-button" @click="commitPlay">Skip</UiButton>
+    <UiButton class="error-button" is-cta @click="cancel">Cancel</UiButton>
+    <UiButton v-if="canSkip" is-cta class="primary-button" @click="commitPlay">
+      Skip
+    </UiButton>
   </div>
 </template>
 
@@ -70,11 +72,27 @@ watchEffect(() => {
   transform: translateX(-50%);
 
   display: flex;
-  gap: var(--size-6);
+  gap: 0;
   align-items: center;
 
   @screen lt-lg {
     bottom: var(--size-8);
+  }
+}
+
+button {
+  box-shadow: 0 5px 0.25rem hsl(var(--gray-11-hsl) / 0.6);
+  --ui-button-size: var(--font-size-3);
+
+  &:first-of-type {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--radius-4);
+  }
+  &:last-of-type {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: var(--radius-4);
   }
 }
 </style>
