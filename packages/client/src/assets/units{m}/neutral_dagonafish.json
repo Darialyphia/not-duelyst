@@ -1,0 +1,699 @@
+{ "frames": [
+   {
+    "filename": "neutral_dagonafish.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.1",
+    "frame": { "x": 130, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.2",
+    "frame": { "x": 260, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.3",
+    "frame": { "x": 390, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.4",
+    "frame": { "x": 520, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.5",
+    "frame": { "x": 650, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.6",
+    "frame": { "x": 780, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.7",
+    "frame": { "x": 910, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.8",
+    "frame": { "x": 1040, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.9",
+    "frame": { "x": 1170, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.10",
+    "frame": { "x": 1300, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.11",
+    "frame": { "x": 1430, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.12",
+    "frame": { "x": 1560, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.13",
+    "frame": { "x": 1690, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.14",
+    "frame": { "x": 1820, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.15",
+    "frame": { "x": 1950, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.16",
+    "frame": { "x": 2080, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.17",
+    "frame": { "x": 2210, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.18",
+    "frame": { "x": 2340, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.attack.19",
+    "frame": { "x": 2470, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.0",
+    "frame": { "x": 0, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.1",
+    "frame": { "x": 130, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.2",
+    "frame": { "x": 260, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.3",
+    "frame": { "x": 390, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.4",
+    "frame": { "x": 520, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.5",
+    "frame": { "x": 650, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.6",
+    "frame": { "x": 780, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.7",
+    "frame": { "x": 910, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.8",
+    "frame": { "x": 1040, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.9",
+    "frame": { "x": 1170, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.10",
+    "frame": { "x": 1300, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.11",
+    "frame": { "x": 1430, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.12",
+    "frame": { "x": 1560, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.13",
+    "frame": { "x": 1690, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.14",
+    "frame": { "x": 1820, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.breathing.15",
+    "frame": { "x": 1950, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.0",
+    "frame": { "x": 0, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.1",
+    "frame": { "x": 130, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.2",
+    "frame": { "x": 260, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.3",
+    "frame": { "x": 390, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.4",
+    "frame": { "x": 520, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.5",
+    "frame": { "x": 650, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.6",
+    "frame": { "x": 780, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.7",
+    "frame": { "x": 910, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.8",
+    "frame": { "x": 1040, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.9",
+    "frame": { "x": 1170, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.10",
+    "frame": { "x": 1300, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.11",
+    "frame": { "x": 1430, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.12",
+    "frame": { "x": 1560, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.death.13",
+    "frame": { "x": 1690, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.hit.0",
+    "frame": { "x": 0, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.hit.1",
+    "frame": { "x": 130, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.hit.2",
+    "frame": { "x": 260, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.0",
+    "frame": { "x": 0, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.1",
+    "frame": { "x": 130, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.2",
+    "frame": { "x": 260, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.3",
+    "frame": { "x": 390, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.4",
+    "frame": { "x": 520, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.5",
+    "frame": { "x": 650, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.6",
+    "frame": { "x": 780, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.7",
+    "frame": { "x": 910, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.8",
+    "frame": { "x": 1040, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.9",
+    "frame": { "x": 1170, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.10",
+    "frame": { "x": 1300, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.idle.11",
+    "frame": { "x": 1430, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.0",
+    "frame": { "x": 0, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.1",
+    "frame": { "x": 130, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.2",
+    "frame": { "x": 260, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.3",
+    "frame": { "x": 390, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.4",
+    "frame": { "x": 520, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.5",
+    "frame": { "x": 650, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.6",
+    "frame": { "x": 780, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.7",
+    "frame": { "x": 910, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.8",
+    "frame": { "x": 1040, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_dagonafish.run.9",
+    "frame": { "x": 1170, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_dagonafish.png",
+  "format": "RGBA8888",
+  "size": { "w": 2600, "h": 780 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 20, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 36, "to": 49, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 50, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 53, "to": 64, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 65, "to": 74, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

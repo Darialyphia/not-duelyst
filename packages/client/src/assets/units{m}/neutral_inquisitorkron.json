@@ -1,0 +1,726 @@
+{ "frames": [
+   {
+    "filename": "neutral_inquisitorkron.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.1",
+    "frame": { "x": 110, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.2",
+    "frame": { "x": 220, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.3",
+    "frame": { "x": 330, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.4",
+    "frame": { "x": 440, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.5",
+    "frame": { "x": 550, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.6",
+    "frame": { "x": 660, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.7",
+    "frame": { "x": 770, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.8",
+    "frame": { "x": 880, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.9",
+    "frame": { "x": 990, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.10",
+    "frame": { "x": 1100, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.11",
+    "frame": { "x": 1210, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.12",
+    "frame": { "x": 1320, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.13",
+    "frame": { "x": 1430, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.14",
+    "frame": { "x": 1540, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.15",
+    "frame": { "x": 1650, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.16",
+    "frame": { "x": 1760, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.17",
+    "frame": { "x": 1870, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.18",
+    "frame": { "x": 1980, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.19",
+    "frame": { "x": 2090, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.20",
+    "frame": { "x": 2200, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.21",
+    "frame": { "x": 2310, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.attack.22",
+    "frame": { "x": 2420, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.0",
+    "frame": { "x": 0, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.1",
+    "frame": { "x": 110, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.2",
+    "frame": { "x": 220, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.3",
+    "frame": { "x": 330, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.4",
+    "frame": { "x": 440, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.5",
+    "frame": { "x": 550, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.6",
+    "frame": { "x": 660, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.7",
+    "frame": { "x": 770, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.8",
+    "frame": { "x": 880, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.9",
+    "frame": { "x": 990, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.10",
+    "frame": { "x": 1100, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.11",
+    "frame": { "x": 1210, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.12",
+    "frame": { "x": 1320, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.breathing.13",
+    "frame": { "x": 1430, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.0",
+    "frame": { "x": 0, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.1",
+    "frame": { "x": 110, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.2",
+    "frame": { "x": 220, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.3",
+    "frame": { "x": 330, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.4",
+    "frame": { "x": 440, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.5",
+    "frame": { "x": 550, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.6",
+    "frame": { "x": 660, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.7",
+    "frame": { "x": 770, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.8",
+    "frame": { "x": 880, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.9",
+    "frame": { "x": 990, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.10",
+    "frame": { "x": 1100, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.11",
+    "frame": { "x": 1210, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.12",
+    "frame": { "x": 1320, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.13",
+    "frame": { "x": 1430, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.death.14",
+    "frame": { "x": 1540, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.hit.0",
+    "frame": { "x": 0, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.hit.1",
+    "frame": { "x": 110, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.hit.2",
+    "frame": { "x": 220, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.0",
+    "frame": { "x": 0, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.1",
+    "frame": { "x": 110, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.2",
+    "frame": { "x": 220, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.3",
+    "frame": { "x": 330, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.4",
+    "frame": { "x": 440, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.5",
+    "frame": { "x": 550, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.6",
+    "frame": { "x": 660, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.7",
+    "frame": { "x": 770, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.8",
+    "frame": { "x": 880, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.9",
+    "frame": { "x": 990, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.10",
+    "frame": { "x": 1100, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.11",
+    "frame": { "x": 1210, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.12",
+    "frame": { "x": 1320, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.13",
+    "frame": { "x": 1430, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.idle.14",
+    "frame": { "x": 1540, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.0",
+    "frame": { "x": 0, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.1",
+    "frame": { "x": 110, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.2",
+    "frame": { "x": 220, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.3",
+    "frame": { "x": 330, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.4",
+    "frame": { "x": 440, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.5",
+    "frame": { "x": 550, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.6",
+    "frame": { "x": 660, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_inquisitorkron.run.7",
+    "frame": { "x": 770, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_inquisitorkron.png",
+  "format": "RGBA8888",
+  "size": { "w": 2530, "h": 660 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 22, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 23, "to": 36, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 37, "to": 51, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 52, "to": 54, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 55, "to": 69, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 70, "to": 77, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -1,0 +1,771 @@
+{ "frames": [
+   {
+    "filename": "neutral_goldenjusticar.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.1",
+    "frame": { "x": 130, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.2",
+    "frame": { "x": 260, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.3",
+    "frame": { "x": 390, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.4",
+    "frame": { "x": 520, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.5",
+    "frame": { "x": 650, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.6",
+    "frame": { "x": 780, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.7",
+    "frame": { "x": 910, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.8",
+    "frame": { "x": 1040, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.9",
+    "frame": { "x": 1170, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.10",
+    "frame": { "x": 1300, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.11",
+    "frame": { "x": 1430, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.12",
+    "frame": { "x": 1560, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.13",
+    "frame": { "x": 1690, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.14",
+    "frame": { "x": 1820, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.15",
+    "frame": { "x": 1950, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.16",
+    "frame": { "x": 2080, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.17",
+    "frame": { "x": 2210, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.18",
+    "frame": { "x": 2340, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.attack.19",
+    "frame": { "x": 2470, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.0",
+    "frame": { "x": 0, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.1",
+    "frame": { "x": 130, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.2",
+    "frame": { "x": 260, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.3",
+    "frame": { "x": 390, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.4",
+    "frame": { "x": 520, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.5",
+    "frame": { "x": 650, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.6",
+    "frame": { "x": 780, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.7",
+    "frame": { "x": 910, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.8",
+    "frame": { "x": 1040, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.9",
+    "frame": { "x": 1170, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.10",
+    "frame": { "x": 1300, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.11",
+    "frame": { "x": 1430, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.12",
+    "frame": { "x": 1560, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.breathing.13",
+    "frame": { "x": 1690, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.0",
+    "frame": { "x": 0, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.1",
+    "frame": { "x": 130, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.2",
+    "frame": { "x": 260, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.3",
+    "frame": { "x": 390, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.4",
+    "frame": { "x": 520, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.5",
+    "frame": { "x": 650, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.6",
+    "frame": { "x": 780, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.7",
+    "frame": { "x": 910, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.8",
+    "frame": { "x": 1040, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.9",
+    "frame": { "x": 1170, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.10",
+    "frame": { "x": 1300, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.11",
+    "frame": { "x": 1430, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.12",
+    "frame": { "x": 1560, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.13",
+    "frame": { "x": 1690, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.14",
+    "frame": { "x": 1820, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.15",
+    "frame": { "x": 1950, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.16",
+    "frame": { "x": 2080, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.17",
+    "frame": { "x": 2210, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.18",
+    "frame": { "x": 2340, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.19",
+    "frame": { "x": 2470, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.20",
+    "frame": { "x": 2600, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.death.21",
+    "frame": { "x": 2730, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.hit.0",
+    "frame": { "x": 0, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.hit.1",
+    "frame": { "x": 130, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.hit.2",
+    "frame": { "x": 260, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.0",
+    "frame": { "x": 0, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.1",
+    "frame": { "x": 130, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.2",
+    "frame": { "x": 260, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.3",
+    "frame": { "x": 390, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.4",
+    "frame": { "x": 520, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.5",
+    "frame": { "x": 650, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.6",
+    "frame": { "x": 780, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.7",
+    "frame": { "x": 910, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.8",
+    "frame": { "x": 1040, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.9",
+    "frame": { "x": 1170, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.10",
+    "frame": { "x": 1300, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.11",
+    "frame": { "x": 1430, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.12",
+    "frame": { "x": 1560, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.13",
+    "frame": { "x": 1690, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.14",
+    "frame": { "x": 1820, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.idle.15",
+    "frame": { "x": 1950, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.0",
+    "frame": { "x": 0, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.1",
+    "frame": { "x": 130, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.2",
+    "frame": { "x": 260, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.3",
+    "frame": { "x": 390, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.4",
+    "frame": { "x": 520, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.5",
+    "frame": { "x": 650, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.6",
+    "frame": { "x": 780, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_goldenjusticar.run.7",
+    "frame": { "x": 910, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_goldenjusticar.png",
+  "format": "RGBA8888",
+  "size": { "w": 2860, "h": 780 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 19, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 20, "to": 33, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 34, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 56, "to": 58, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 59, "to": 74, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 75, "to": 82, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

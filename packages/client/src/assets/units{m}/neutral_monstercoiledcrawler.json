@@ -1,0 +1,573 @@
+{ "frames": [
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.1",
+    "frame": { "x": 80, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.2",
+    "frame": { "x": 160, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.3",
+    "frame": { "x": 240, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.4",
+    "frame": { "x": 320, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.5",
+    "frame": { "x": 400, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.6",
+    "frame": { "x": 480, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.7",
+    "frame": { "x": 560, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.8",
+    "frame": { "x": 640, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.9",
+    "frame": { "x": 720, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.attack.10",
+    "frame": { "x": 800, "y": 0, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.0",
+    "frame": { "x": 0, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.1",
+    "frame": { "x": 80, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.2",
+    "frame": { "x": 160, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.3",
+    "frame": { "x": 240, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.4",
+    "frame": { "x": 320, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.5",
+    "frame": { "x": 400, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.6",
+    "frame": { "x": 480, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.7",
+    "frame": { "x": 560, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.8",
+    "frame": { "x": 640, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.9",
+    "frame": { "x": 720, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.10",
+    "frame": { "x": 800, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.breathing.11",
+    "frame": { "x": 880, "y": 80, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.0",
+    "frame": { "x": 0, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.1",
+    "frame": { "x": 80, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.2",
+    "frame": { "x": 160, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.3",
+    "frame": { "x": 240, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.4",
+    "frame": { "x": 320, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.5",
+    "frame": { "x": 400, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.6",
+    "frame": { "x": 480, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.7",
+    "frame": { "x": 560, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.8",
+    "frame": { "x": 640, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.9",
+    "frame": { "x": 720, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.10",
+    "frame": { "x": 800, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.11",
+    "frame": { "x": 880, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.12",
+    "frame": { "x": 960, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.13",
+    "frame": { "x": 1040, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.14",
+    "frame": { "x": 1120, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.death.15",
+    "frame": { "x": 1200, "y": 160, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.hit.0",
+    "frame": { "x": 0, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.hit.1",
+    "frame": { "x": 80, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.hit.2",
+    "frame": { "x": 160, "y": 240, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.0",
+    "frame": { "x": 0, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.1",
+    "frame": { "x": 80, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.2",
+    "frame": { "x": 160, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.3",
+    "frame": { "x": 240, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.4",
+    "frame": { "x": 320, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.5",
+    "frame": { "x": 400, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.6",
+    "frame": { "x": 480, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.7",
+    "frame": { "x": 560, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.8",
+    "frame": { "x": 640, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.idle.9",
+    "frame": { "x": 720, "y": 320, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.0",
+    "frame": { "x": 0, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.1",
+    "frame": { "x": 80, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.2",
+    "frame": { "x": 160, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.3",
+    "frame": { "x": 240, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.4",
+    "frame": { "x": 320, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.5",
+    "frame": { "x": 400, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.6",
+    "frame": { "x": 480, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.7",
+    "frame": { "x": 560, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_monstercoiledcrawler.run.8",
+    "frame": { "x": 640, "y": 400, "w": 80, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_monstercoiledcrawler.png",
+  "format": "RGBA8888",
+  "size": { "w": 1280, "h": 480 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 10, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 11, "to": 22, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 23, "to": 38, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 39, "to": 41, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 42, "to": 51, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 52, "to": 60, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

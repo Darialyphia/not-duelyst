@@ -1,0 +1,726 @@
+{ "frames": [
+   {
+    "filename": "neutral_calculator.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.1",
+    "frame": { "x": 125, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.2",
+    "frame": { "x": 250, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.3",
+    "frame": { "x": 375, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.4",
+    "frame": { "x": 500, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.5",
+    "frame": { "x": 625, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.6",
+    "frame": { "x": 750, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.7",
+    "frame": { "x": 875, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.8",
+    "frame": { "x": 1000, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.9",
+    "frame": { "x": 1125, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.10",
+    "frame": { "x": 1250, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.11",
+    "frame": { "x": 1375, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.12",
+    "frame": { "x": 1500, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.13",
+    "frame": { "x": 1625, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.14",
+    "frame": { "x": 1750, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.15",
+    "frame": { "x": 1875, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.16",
+    "frame": { "x": 2000, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.17",
+    "frame": { "x": 2125, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.18",
+    "frame": { "x": 2250, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.19",
+    "frame": { "x": 2375, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.20",
+    "frame": { "x": 2500, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.21",
+    "frame": { "x": 2625, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.22",
+    "frame": { "x": 2750, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.23",
+    "frame": { "x": 2875, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.attack.24",
+    "frame": { "x": 3000, "y": 0, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.0",
+    "frame": { "x": 0, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.1",
+    "frame": { "x": 125, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.2",
+    "frame": { "x": 250, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.3",
+    "frame": { "x": 375, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.4",
+    "frame": { "x": 500, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.5",
+    "frame": { "x": 625, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.6",
+    "frame": { "x": 750, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.7",
+    "frame": { "x": 875, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.8",
+    "frame": { "x": 1000, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.9",
+    "frame": { "x": 1125, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.10",
+    "frame": { "x": 1250, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.11",
+    "frame": { "x": 1375, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.12",
+    "frame": { "x": 1500, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.breathing.13",
+    "frame": { "x": 1625, "y": 125, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.0",
+    "frame": { "x": 0, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.1",
+    "frame": { "x": 125, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.2",
+    "frame": { "x": 250, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.3",
+    "frame": { "x": 375, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.4",
+    "frame": { "x": 500, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.5",
+    "frame": { "x": 625, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.6",
+    "frame": { "x": 750, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.7",
+    "frame": { "x": 875, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.8",
+    "frame": { "x": 1000, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.9",
+    "frame": { "x": 1125, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.10",
+    "frame": { "x": 1250, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.11",
+    "frame": { "x": 1375, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.12",
+    "frame": { "x": 1500, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.death.13",
+    "frame": { "x": 1625, "y": 250, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.hit.0",
+    "frame": { "x": 0, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.hit.1",
+    "frame": { "x": 125, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.hit.2",
+    "frame": { "x": 250, "y": 375, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.0",
+    "frame": { "x": 0, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.1",
+    "frame": { "x": 125, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.2",
+    "frame": { "x": 250, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.3",
+    "frame": { "x": 375, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.4",
+    "frame": { "x": 500, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.5",
+    "frame": { "x": 625, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.6",
+    "frame": { "x": 750, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.7",
+    "frame": { "x": 875, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.8",
+    "frame": { "x": 1000, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.9",
+    "frame": { "x": 1125, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.10",
+    "frame": { "x": 1250, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.11",
+    "frame": { "x": 1375, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.12",
+    "frame": { "x": 1500, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.13",
+    "frame": { "x": 1625, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.14",
+    "frame": { "x": 1750, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.idle.15",
+    "frame": { "x": 1875, "y": 500, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.0",
+    "frame": { "x": 0, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.1",
+    "frame": { "x": 125, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.2",
+    "frame": { "x": 250, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.3",
+    "frame": { "x": 375, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.4",
+    "frame": { "x": 500, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_calculator.run.5",
+    "frame": { "x": 625, "y": 625, "w": 125, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 125 },
+    "sourceSize": { "w": 125, "h": 125 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_calculator.png",
+  "format": "RGBA8888",
+  "size": { "w": 3125, "h": 750 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 24, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 25, "to": 38, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 39, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 53, "to": 55, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 56, "to": 71, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 72, "to": 77, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

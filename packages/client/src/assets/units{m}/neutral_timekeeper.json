@@ -1,0 +1,951 @@
+{ "frames": [
+   {
+    "filename": "neutral_timekeeper.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.1",
+    "frame": { "x": 100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.2",
+    "frame": { "x": 200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.3",
+    "frame": { "x": 300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.4",
+    "frame": { "x": 400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.5",
+    "frame": { "x": 500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.6",
+    "frame": { "x": 600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.7",
+    "frame": { "x": 700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.8",
+    "frame": { "x": 800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.9",
+    "frame": { "x": 900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.10",
+    "frame": { "x": 1000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.11",
+    "frame": { "x": 1100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.12",
+    "frame": { "x": 1200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.13",
+    "frame": { "x": 1300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.14",
+    "frame": { "x": 1400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.15",
+    "frame": { "x": 1500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.16",
+    "frame": { "x": 1600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.17",
+    "frame": { "x": 1700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.18",
+    "frame": { "x": 1800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.19",
+    "frame": { "x": 1900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.20",
+    "frame": { "x": 2000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.21",
+    "frame": { "x": 2100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.22",
+    "frame": { "x": 2200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.23",
+    "frame": { "x": 2300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.24",
+    "frame": { "x": 2400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.25",
+    "frame": { "x": 2500, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.26",
+    "frame": { "x": 2600, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.27",
+    "frame": { "x": 2700, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.28",
+    "frame": { "x": 2800, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.29",
+    "frame": { "x": 2900, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.30",
+    "frame": { "x": 3000, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.31",
+    "frame": { "x": 3100, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.32",
+    "frame": { "x": 3200, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.33",
+    "frame": { "x": 3300, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.attack.34",
+    "frame": { "x": 3400, "y": 0, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.0",
+    "frame": { "x": 0, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.1",
+    "frame": { "x": 100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.2",
+    "frame": { "x": 200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.3",
+    "frame": { "x": 300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.4",
+    "frame": { "x": 400, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.5",
+    "frame": { "x": 500, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.6",
+    "frame": { "x": 600, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.7",
+    "frame": { "x": 700, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.8",
+    "frame": { "x": 800, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.9",
+    "frame": { "x": 900, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.10",
+    "frame": { "x": 1000, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.11",
+    "frame": { "x": 1100, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.12",
+    "frame": { "x": 1200, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.breathing.13",
+    "frame": { "x": 1300, "y": 100, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.0",
+    "frame": { "x": 0, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.1",
+    "frame": { "x": 100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.2",
+    "frame": { "x": 200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.3",
+    "frame": { "x": 300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.4",
+    "frame": { "x": 400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.5",
+    "frame": { "x": 500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.6",
+    "frame": { "x": 600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.7",
+    "frame": { "x": 700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.8",
+    "frame": { "x": 800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.9",
+    "frame": { "x": 900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.10",
+    "frame": { "x": 1000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.11",
+    "frame": { "x": 1100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.12",
+    "frame": { "x": 1200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.13",
+    "frame": { "x": 1300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.14",
+    "frame": { "x": 1400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.15",
+    "frame": { "x": 1500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.16",
+    "frame": { "x": 1600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.17",
+    "frame": { "x": 1700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.18",
+    "frame": { "x": 1800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.19",
+    "frame": { "x": 1900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.20",
+    "frame": { "x": 2000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.21",
+    "frame": { "x": 2100, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.22",
+    "frame": { "x": 2200, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.23",
+    "frame": { "x": 2300, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.24",
+    "frame": { "x": 2400, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.25",
+    "frame": { "x": 2500, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.26",
+    "frame": { "x": 2600, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.27",
+    "frame": { "x": 2700, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.28",
+    "frame": { "x": 2800, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.29",
+    "frame": { "x": 2900, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.death.30",
+    "frame": { "x": 3000, "y": 200, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.hit.0",
+    "frame": { "x": 0, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.hit.1",
+    "frame": { "x": 100, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.hit.2",
+    "frame": { "x": 200, "y": 300, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.0",
+    "frame": { "x": 0, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.1",
+    "frame": { "x": 100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.2",
+    "frame": { "x": 200, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.3",
+    "frame": { "x": 300, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.4",
+    "frame": { "x": 400, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.5",
+    "frame": { "x": 500, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.6",
+    "frame": { "x": 600, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.7",
+    "frame": { "x": 700, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.8",
+    "frame": { "x": 800, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.9",
+    "frame": { "x": 900, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.10",
+    "frame": { "x": 1000, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.idle.11",
+    "frame": { "x": 1100, "y": 400, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.0",
+    "frame": { "x": 0, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.1",
+    "frame": { "x": 100, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.2",
+    "frame": { "x": 200, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.3",
+    "frame": { "x": 300, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.4",
+    "frame": { "x": 400, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.5",
+    "frame": { "x": 500, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.6",
+    "frame": { "x": 600, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_timekeeper.run.7",
+    "frame": { "x": 700, "y": 500, "w": 100, "h": 100 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 100, "h": 100 },
+    "sourceSize": { "w": 100, "h": 100 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_timekeeper.png",
+  "format": "RGBA8888",
+  "size": { "w": 3500, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 34, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 35, "to": 48, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 49, "to": 79, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 80, "to": 82, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 83, "to": 94, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 95, "to": 102, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

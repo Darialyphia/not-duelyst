@@ -1,0 +1,735 @@
+{ "frames": [
+   {
+    "filename": "neutral_veteranflamewing.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.1",
+    "frame": { "x": 120, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.2",
+    "frame": { "x": 240, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.3",
+    "frame": { "x": 360, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.4",
+    "frame": { "x": 480, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.5",
+    "frame": { "x": 600, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.6",
+    "frame": { "x": 720, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.7",
+    "frame": { "x": 840, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.8",
+    "frame": { "x": 960, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.9",
+    "frame": { "x": 1080, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.10",
+    "frame": { "x": 1200, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.11",
+    "frame": { "x": 1320, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.12",
+    "frame": { "x": 1440, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.13",
+    "frame": { "x": 1560, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.14",
+    "frame": { "x": 1680, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.15",
+    "frame": { "x": 1800, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.16",
+    "frame": { "x": 1920, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.17",
+    "frame": { "x": 2040, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.18",
+    "frame": { "x": 2160, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.19",
+    "frame": { "x": 2280, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.attack.20",
+    "frame": { "x": 2400, "y": 0, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.0",
+    "frame": { "x": 0, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.1",
+    "frame": { "x": 120, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.2",
+    "frame": { "x": 240, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.3",
+    "frame": { "x": 360, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.4",
+    "frame": { "x": 480, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.5",
+    "frame": { "x": 600, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.6",
+    "frame": { "x": 720, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.7",
+    "frame": { "x": 840, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.8",
+    "frame": { "x": 960, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.9",
+    "frame": { "x": 1080, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.10",
+    "frame": { "x": 1200, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.11",
+    "frame": { "x": 1320, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.12",
+    "frame": { "x": 1440, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.breathing.13",
+    "frame": { "x": 1560, "y": 120, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.0",
+    "frame": { "x": 0, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.1",
+    "frame": { "x": 120, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.2",
+    "frame": { "x": 240, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.3",
+    "frame": { "x": 360, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.4",
+    "frame": { "x": 480, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.5",
+    "frame": { "x": 600, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.6",
+    "frame": { "x": 720, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.7",
+    "frame": { "x": 840, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.8",
+    "frame": { "x": 960, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.9",
+    "frame": { "x": 1080, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.10",
+    "frame": { "x": 1200, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.11",
+    "frame": { "x": 1320, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.12",
+    "frame": { "x": 1440, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.13",
+    "frame": { "x": 1560, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.14",
+    "frame": { "x": 1680, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.15",
+    "frame": { "x": 1800, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.16",
+    "frame": { "x": 1920, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.17",
+    "frame": { "x": 2040, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.death.18",
+    "frame": { "x": 2160, "y": 240, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.hit.0",
+    "frame": { "x": 0, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.hit.1",
+    "frame": { "x": 120, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.hit.2",
+    "frame": { "x": 240, "y": 360, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.0",
+    "frame": { "x": 0, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.1",
+    "frame": { "x": 120, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.2",
+    "frame": { "x": 240, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.3",
+    "frame": { "x": 360, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.4",
+    "frame": { "x": 480, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.5",
+    "frame": { "x": 600, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.6",
+    "frame": { "x": 720, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.7",
+    "frame": { "x": 840, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.8",
+    "frame": { "x": 960, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.9",
+    "frame": { "x": 1080, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.10",
+    "frame": { "x": 1200, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.11",
+    "frame": { "x": 1320, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.12",
+    "frame": { "x": 1440, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.idle.13",
+    "frame": { "x": 1560, "y": 480, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.0",
+    "frame": { "x": 0, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.1",
+    "frame": { "x": 120, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.2",
+    "frame": { "x": 240, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.3",
+    "frame": { "x": 360, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.4",
+    "frame": { "x": 480, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.5",
+    "frame": { "x": 600, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.6",
+    "frame": { "x": 720, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_veteranflamewing.run.7",
+    "frame": { "x": 840, "y": 600, "w": 120, "h": 120 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 120, "h": 120 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_veteranflamewing.png",
+  "format": "RGBA8888",
+  "size": { "w": 2520, "h": 720 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 20, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 21, "to": 34, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 35, "to": 53, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 54, "to": 56, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 57, "to": 70, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 71, "to": 78, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

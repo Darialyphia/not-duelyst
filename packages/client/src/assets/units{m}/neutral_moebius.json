@@ -1,0 +1,834 @@
+{ "frames": [
+   {
+    "filename": "neutral_moebius.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.1",
+    "frame": { "x": 110, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.2",
+    "frame": { "x": 220, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.3",
+    "frame": { "x": 330, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.4",
+    "frame": { "x": 440, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.5",
+    "frame": { "x": 550, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.6",
+    "frame": { "x": 660, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.7",
+    "frame": { "x": 770, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.8",
+    "frame": { "x": 880, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.9",
+    "frame": { "x": 990, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.10",
+    "frame": { "x": 1100, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.11",
+    "frame": { "x": 1210, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.12",
+    "frame": { "x": 1320, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.13",
+    "frame": { "x": 1430, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.14",
+    "frame": { "x": 1540, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.15",
+    "frame": { "x": 1650, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.16",
+    "frame": { "x": 1760, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.17",
+    "frame": { "x": 1870, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.18",
+    "frame": { "x": 1980, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.19",
+    "frame": { "x": 2090, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.20",
+    "frame": { "x": 2200, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.21",
+    "frame": { "x": 2310, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.22",
+    "frame": { "x": 2420, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.23",
+    "frame": { "x": 2530, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.24",
+    "frame": { "x": 2640, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.25",
+    "frame": { "x": 2750, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.26",
+    "frame": { "x": 2860, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.27",
+    "frame": { "x": 2970, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.28",
+    "frame": { "x": 3080, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.29",
+    "frame": { "x": 3190, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.30",
+    "frame": { "x": 3300, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.31",
+    "frame": { "x": 3410, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.32",
+    "frame": { "x": 3520, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.33",
+    "frame": { "x": 3630, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.34",
+    "frame": { "x": 3740, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.attack.35",
+    "frame": { "x": 3850, "y": 0, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.0",
+    "frame": { "x": 0, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.1",
+    "frame": { "x": 110, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.2",
+    "frame": { "x": 220, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.3",
+    "frame": { "x": 330, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.4",
+    "frame": { "x": 440, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.5",
+    "frame": { "x": 550, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.6",
+    "frame": { "x": 660, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.7",
+    "frame": { "x": 770, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.8",
+    "frame": { "x": 880, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.9",
+    "frame": { "x": 990, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.10",
+    "frame": { "x": 1100, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.11",
+    "frame": { "x": 1210, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.12",
+    "frame": { "x": 1320, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.breathing.13",
+    "frame": { "x": 1430, "y": 110, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.0",
+    "frame": { "x": 0, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.1",
+    "frame": { "x": 110, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.2",
+    "frame": { "x": 220, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.3",
+    "frame": { "x": 330, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.4",
+    "frame": { "x": 440, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.5",
+    "frame": { "x": 550, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.6",
+    "frame": { "x": 660, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.7",
+    "frame": { "x": 770, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.8",
+    "frame": { "x": 880, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.9",
+    "frame": { "x": 990, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.10",
+    "frame": { "x": 1100, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.11",
+    "frame": { "x": 1210, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.12",
+    "frame": { "x": 1320, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.13",
+    "frame": { "x": 1430, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.14",
+    "frame": { "x": 1540, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.15",
+    "frame": { "x": 1650, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.16",
+    "frame": { "x": 1760, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.17",
+    "frame": { "x": 1870, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.death.18",
+    "frame": { "x": 1980, "y": 220, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.hit.0",
+    "frame": { "x": 0, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.hit.1",
+    "frame": { "x": 110, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.hit.2",
+    "frame": { "x": 220, "y": 330, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.0",
+    "frame": { "x": 0, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.1",
+    "frame": { "x": 110, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.2",
+    "frame": { "x": 220, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.3",
+    "frame": { "x": 330, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.4",
+    "frame": { "x": 440, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.5",
+    "frame": { "x": 550, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.6",
+    "frame": { "x": 660, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.7",
+    "frame": { "x": 770, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.8",
+    "frame": { "x": 880, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.idle.9",
+    "frame": { "x": 990, "y": 440, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.0",
+    "frame": { "x": 0, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.1",
+    "frame": { "x": 110, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.2",
+    "frame": { "x": 220, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.3",
+    "frame": { "x": 330, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.4",
+    "frame": { "x": 440, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.5",
+    "frame": { "x": 550, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.6",
+    "frame": { "x": 660, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_moebius.run.7",
+    "frame": { "x": 770, "y": 550, "w": 110, "h": 110 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 110, "h": 110 },
+    "sourceSize": { "w": 110, "h": 110 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_moebius.png",
+  "format": "RGBA8888",
+  "size": { "w": 3960, "h": 660 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 35, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 36, "to": 49, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 50, "to": 68, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 69, "to": 71, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 72, "to": 81, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 82, "to": 89, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

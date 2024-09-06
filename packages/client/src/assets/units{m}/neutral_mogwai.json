@@ -1,0 +1,717 @@
+{ "frames": [
+   {
+    "filename": "neutral_mogwai.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.1",
+    "frame": { "x": 130, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.2",
+    "frame": { "x": 260, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.3",
+    "frame": { "x": 390, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.4",
+    "frame": { "x": 520, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.5",
+    "frame": { "x": 650, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.6",
+    "frame": { "x": 780, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.7",
+    "frame": { "x": 910, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.8",
+    "frame": { "x": 1040, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.9",
+    "frame": { "x": 1170, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.10",
+    "frame": { "x": 1300, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.11",
+    "frame": { "x": 1430, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.12",
+    "frame": { "x": 1560, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.13",
+    "frame": { "x": 1690, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.14",
+    "frame": { "x": 1820, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.15",
+    "frame": { "x": 1950, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.16",
+    "frame": { "x": 2080, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.17",
+    "frame": { "x": 2210, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.18",
+    "frame": { "x": 2340, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.19",
+    "frame": { "x": 2470, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.20",
+    "frame": { "x": 2600, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.21",
+    "frame": { "x": 2730, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.22",
+    "frame": { "x": 2860, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.attack.23",
+    "frame": { "x": 2990, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.0",
+    "frame": { "x": 0, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.1",
+    "frame": { "x": 130, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.2",
+    "frame": { "x": 260, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.3",
+    "frame": { "x": 390, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.4",
+    "frame": { "x": 520, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.5",
+    "frame": { "x": 650, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.6",
+    "frame": { "x": 780, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.7",
+    "frame": { "x": 910, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.8",
+    "frame": { "x": 1040, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.9",
+    "frame": { "x": 1170, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.10",
+    "frame": { "x": 1300, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.11",
+    "frame": { "x": 1430, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.12",
+    "frame": { "x": 1560, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.breathing.13",
+    "frame": { "x": 1690, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.0",
+    "frame": { "x": 0, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.1",
+    "frame": { "x": 130, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.2",
+    "frame": { "x": 260, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.3",
+    "frame": { "x": 390, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.4",
+    "frame": { "x": 520, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.5",
+    "frame": { "x": 650, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.6",
+    "frame": { "x": 780, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.7",
+    "frame": { "x": 910, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.8",
+    "frame": { "x": 1040, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.9",
+    "frame": { "x": 1170, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.10",
+    "frame": { "x": 1300, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.11",
+    "frame": { "x": 1430, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.12",
+    "frame": { "x": 1560, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.death.13",
+    "frame": { "x": 1690, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.hit.0",
+    "frame": { "x": 0, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.hit.1",
+    "frame": { "x": 130, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.hit.2",
+    "frame": { "x": 260, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.0",
+    "frame": { "x": 0, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.1",
+    "frame": { "x": 130, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.2",
+    "frame": { "x": 260, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.3",
+    "frame": { "x": 390, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.4",
+    "frame": { "x": 520, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.5",
+    "frame": { "x": 650, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.6",
+    "frame": { "x": 780, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.7",
+    "frame": { "x": 910, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.8",
+    "frame": { "x": 1040, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.9",
+    "frame": { "x": 1170, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.10",
+    "frame": { "x": 1300, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.11",
+    "frame": { "x": 1430, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.12",
+    "frame": { "x": 1560, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.idle.13",
+    "frame": { "x": 1690, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.0",
+    "frame": { "x": 0, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.1",
+    "frame": { "x": 130, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.2",
+    "frame": { "x": 260, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.3",
+    "frame": { "x": 390, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.4",
+    "frame": { "x": 520, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.5",
+    "frame": { "x": 650, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.6",
+    "frame": { "x": 780, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_mogwai.run.7",
+    "frame": { "x": 910, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_mogwai.png",
+  "format": "RGBA8888",
+  "size": { "w": 3120, "h": 780 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 23, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 24, "to": 37, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 38, "to": 51, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 52, "to": 54, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 55, "to": 68, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 69, "to": 76, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -1,0 +1,735 @@
+{ "frames": [
+   {
+    "filename": "neutral_thegreatprotector.attack.0",
+    "frame": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.1",
+    "frame": { "x": 130, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.2",
+    "frame": { "x": 260, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.3",
+    "frame": { "x": 390, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.4",
+    "frame": { "x": 520, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.5",
+    "frame": { "x": 650, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.6",
+    "frame": { "x": 780, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.7",
+    "frame": { "x": 910, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.8",
+    "frame": { "x": 1040, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.9",
+    "frame": { "x": 1170, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.10",
+    "frame": { "x": 1300, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.11",
+    "frame": { "x": 1430, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.12",
+    "frame": { "x": 1560, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.13",
+    "frame": { "x": 1690, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.14",
+    "frame": { "x": 1820, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.15",
+    "frame": { "x": 1950, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.16",
+    "frame": { "x": 2080, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.17",
+    "frame": { "x": 2210, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.18",
+    "frame": { "x": 2340, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.19",
+    "frame": { "x": 2470, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.attack.20",
+    "frame": { "x": 2600, "y": 0, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.0",
+    "frame": { "x": 0, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.1",
+    "frame": { "x": 130, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.2",
+    "frame": { "x": 260, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.3",
+    "frame": { "x": 390, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.4",
+    "frame": { "x": 520, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.5",
+    "frame": { "x": 650, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.6",
+    "frame": { "x": 780, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.7",
+    "frame": { "x": 910, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.8",
+    "frame": { "x": 1040, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.9",
+    "frame": { "x": 1170, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.10",
+    "frame": { "x": 1300, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.11",
+    "frame": { "x": 1430, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.12",
+    "frame": { "x": 1560, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.breathing.13",
+    "frame": { "x": 1690, "y": 130, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.0",
+    "frame": { "x": 0, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.1",
+    "frame": { "x": 130, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.2",
+    "frame": { "x": 260, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.3",
+    "frame": { "x": 390, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.4",
+    "frame": { "x": 520, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.5",
+    "frame": { "x": 650, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.6",
+    "frame": { "x": 780, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.7",
+    "frame": { "x": 910, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.8",
+    "frame": { "x": 1040, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.9",
+    "frame": { "x": 1170, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.10",
+    "frame": { "x": 1300, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.11",
+    "frame": { "x": 1430, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.12",
+    "frame": { "x": 1560, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.13",
+    "frame": { "x": 1690, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.death.14",
+    "frame": { "x": 1820, "y": 260, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.hit.0",
+    "frame": { "x": 0, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.hit.1",
+    "frame": { "x": 130, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.hit.2",
+    "frame": { "x": 260, "y": 390, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.0",
+    "frame": { "x": 0, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.1",
+    "frame": { "x": 130, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.2",
+    "frame": { "x": 260, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.3",
+    "frame": { "x": 390, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.4",
+    "frame": { "x": 520, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.5",
+    "frame": { "x": 650, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.6",
+    "frame": { "x": 780, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.7",
+    "frame": { "x": 910, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.8",
+    "frame": { "x": 1040, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.9",
+    "frame": { "x": 1170, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.10",
+    "frame": { "x": 1300, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.11",
+    "frame": { "x": 1430, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.12",
+    "frame": { "x": 1560, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.idle.13",
+    "frame": { "x": 1690, "y": 520, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.0",
+    "frame": { "x": 0, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.1",
+    "frame": { "x": 130, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.2",
+    "frame": { "x": 260, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.3",
+    "frame": { "x": 390, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.4",
+    "frame": { "x": 520, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.5",
+    "frame": { "x": 650, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.6",
+    "frame": { "x": 780, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.7",
+    "frame": { "x": 910, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.8",
+    "frame": { "x": 1040, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.9",
+    "frame": { "x": 1170, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.10",
+    "frame": { "x": 1300, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   },
+   {
+    "filename": "neutral_thegreatprotector.run.11",
+    "frame": { "x": 1430, "y": 650, "w": 130, "h": 130 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 130, "h": 130 },
+    "sourceSize": { "w": 130, "h": 130 },
+    "duration": 64
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "neutral_thegreatprotector.png",
+  "format": "RGBA8888",
+  "size": { "w": 2730, "h": 780 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack", "from": 0, "to": 20, "direction": "forward", "color": "#000000ff" },
+   { "name": "breathing", "from": 21, "to": 34, "direction": "forward", "color": "#000000ff" },
+   { "name": "death", "from": 35, "to": 49, "direction": "forward", "color": "#000000ff" },
+   { "name": "hit", "from": 50, "to": 52, "direction": "forward", "color": "#000000ff" },
+   { "name": "idle", "from": 53, "to": 66, "direction": "forward", "color": "#000000ff" },
+   { "name": "run", "from": 67, "to": 78, "direction": "forward", "color": "#000000ff" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
