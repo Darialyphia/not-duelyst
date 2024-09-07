@@ -142,4 +142,7 @@ form {
     margin-inline: auto;
   }
 }
+label {
+  font-weight: var(--font-weight-5);
+}
 </style>

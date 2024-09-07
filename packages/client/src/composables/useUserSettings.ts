@@ -9,12 +9,14 @@ export const USER_SETTINGS_INJECTION_KEY = Symbol(
 
 export const useUserSettingsProvider = () => {
   const sessionId = useSessionId();
+
   const settings = ref(getDefaultSettings());
+  const isLoggedIn = computed(() => !!sessionId.value);
 
   const { data: savedSettings } = useConvexQuery(
     api.users.settings,
-    { sessionId: sessionId.value! },
-    { enabled: !!sessionId.value }
+    computed(() => ({ sessionId: sessionId.value! })),
+    { enabled: isLoggedIn }
   );
   watchEffect(() => {
     if (savedSettings.value) {

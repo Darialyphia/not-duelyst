@@ -21,6 +21,7 @@
     "convex": "^1.13.2",
     "convex-helpers": "^0.1.48",
     "lucia": "^2.7.6",
+    "resend": "^4.0.0",
     "ts-pattern": "^5.1.1",
     "zipson": "^0.2.12"
   }

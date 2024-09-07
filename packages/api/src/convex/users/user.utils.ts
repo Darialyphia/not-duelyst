@@ -59,3 +59,17 @@ export const slugify = (str: string): string =>
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+export const ensureUserByEmail = async (
+  { db }: { db: QueryCtx['db'] },
+  email: string
+) => {
+  const user = await db
+    .query('users')
+    .withIndex('by_email', q => q.eq('email', email))
+    .unique();
+
+  if (!user) throw new Error('user not found');
+
+  return user;
+};

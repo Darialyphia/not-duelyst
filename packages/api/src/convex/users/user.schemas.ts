@@ -18,6 +18,7 @@ export const userSchemas = {
     .index('byId', ['id'])
     .index('by_fullname', ['name', 'discriminator'])
     .index('by_slug', ['slug'])
+    .index('by_email', ['email'])
     .index('by_mmr', ['mmr']),
 
   userSettings: defineTable({

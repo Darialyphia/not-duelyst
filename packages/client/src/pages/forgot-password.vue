@@ -1,47 +1,51 @@
 <script setup lang="ts">
+import { api } from '@game/api';
+
 definePageMeta({
   middleware: ['public'],
-  name: 'Login',
+  name: 'ForgotPassword',
   layout: 'auth'
 });
 
 const formData = reactive({
-  email: '',
-  password: ''
+  email: ''
 });
 
-const { isLoading, mutate: login, error } = useSignIn();
-
-onMounted(() => {
-  // Removed the loader code before the SPA got loaded in case we get redirected to login page at app start
-  const loader = document.getElementById('app-loader');
-  if (!loader) return;
-
-  loader.addEventListener('animationend', () => {
-    loader.remove();
-  });
-  loader.classList.add('loader-fadeout');
-});
+const isSuccess = ref(false);
+const { isLoading, mutate, error } = useConvexMutation(
+  api.auth.generatePasswordResetLink,
+  {
+    onSuccess() {
+      isSuccess.value = true;
+    }
+  }
+);
 </script>
 
 <template>
-  <form @submit.prevent="login({ ...formData, sessionId: null })">
-    <h2 class="mb-4">Login</h2>
+  <form @submit.prevent="mutate(formData)">
+    <h2 class="mb-4">Forgot your password</h2>
+    <p class="mb-5">
+      Fill out your email-adress and you will receive an e-mail with a link to reset your
+      password.
+    </p>
     <label>E-mail address</label>
     <input v-model="formData.email" type="email" />
 
-    <label>Password</label>
-    <input v-model="formData.password" type="password" />
-    <NuxtLink :to="{ name: 'ForgotPassword' }" class="mb-3 underline">
-      Forgot password ?
-    </NuxtLink>
-
-    <UiButton :is-loading="isLoading" class="primary-button">Login</UiButton>
+    <UiButton :is-loading="isLoading" class="primary-button">
+      Send password reset link
+    </UiButton>
     <Transition>
       <p v-if="error" class="color-red-5 mt-2">{{ error }}</p>
     </Transition>
-    <span>OR</span>
-    <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'SignUp' }">
+
+    <Transition>
+      <p v-if="isSuccess" class="color-green-5 mt-2">
+        All done ! Check your inbox for the password reset e-mail.
+      </p>
+    </Transition>
+
+    <NuxtLink v-slot="{ href, navigate }" custom :to="{ name: 'Login' }">
       <UiButton
         :is-loading="isLoading"
         is-fullwidth
@@ -49,7 +53,7 @@ onMounted(() => {
         :href="href"
         @click="navigate"
       >
-        Create an account
+        Back to login
       </UiButton>
     </NuxtLink>
   </form>
@@ -63,10 +67,8 @@ form {
   padding: var(--size-6) var(--size-8) var(--size-4);
   border-radius: var(--radius-3);
   > input {
+    margin-block-end: var(--size-5);
     border: var(--fancy-border);
-    &:not(:last-of-type) {
-      margin-block-end: var(--size-3);
-    }
   }
 
   > span {
@@ -86,6 +88,7 @@ form {
 label {
   font-weight: var(--font-weight-5);
 }
+
 p {
   &:is(.v-enter-active, .v-leave-active) {
     transition: all 0.3s;

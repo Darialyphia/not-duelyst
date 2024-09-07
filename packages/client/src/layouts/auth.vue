@@ -11,7 +11,7 @@
       </section>
 
       <footer class="text-center text-00 mt-2">
-        <NuxtLink :to="{ name: 'Home' }">Go to the Not Duelyst website</NuxtLink>
+        <NuxtLink :to="{ name: 'Home' }">Go to the Darialyst website</NuxtLink>
       </footer>
     </section>
   </main>

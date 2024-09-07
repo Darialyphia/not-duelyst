@@ -17,5 +17,13 @@ export const authSchemas = {
     user_id: v.string()
   })
     .index('byId', ['id'])
-    .index('byUserId', ['user_id'])
+    .index('byUserId', ['user_id']),
+
+  password_reset_token: defineTable({
+    token: v.string(),
+    expires: v.float64(),
+    user_id: v.id('users')
+  })
+    .index('by_user_id', ['user_id'])
+    .index('by_token', ['token'])
 };
