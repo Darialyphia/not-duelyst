@@ -1,6 +1,5 @@
 import { api } from '@game/api';
 import type { Id } from '@game/api/src/convex/_generated/dataModel';
-import type { CollectionItemDto } from '@game/api/src/convex/collection/collection.mapper';
 import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 import { CARD_KINDS, CARDS, defaultConfig, type Faction, FACTIONS } from '@game/sdk';
 import type { CardBlueprint } from '@game/sdk/src/card/card-blueprint';

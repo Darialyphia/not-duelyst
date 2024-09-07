@@ -42,10 +42,7 @@ export const formatConfigValidator = v.object({
   DRAW_AT_END_OF_TURN: v.boolean()
 });
 
-export const getFormatWithMapAndAuthor = async (
-  db: QueryCtx['db'],
-  format: Doc<'formats'>
-) => {
+export const getFormatWithAuthor = async (db: QueryCtx['db'], format: Doc<'formats'>) => {
   const author = await getOneFromOrThrow(db, 'users', 'by_id', format.authorId, '_id');
   return { ...format, author };
 };
@@ -53,7 +50,7 @@ export const getFormatWithMapAndAuthor = async (
 export const getFormatsByAuthor = async (db: QueryCtx['db'], authorId: Id<'users'>) => {
   return asyncMap(
     await getManyFrom(db, 'formats', 'by_authorId', authorId),
-    async format => getFormatWithMapAndAuthor(db, format)
+    async format => getFormatWithAuthor(db, format)
   );
 };
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { api } from '@game/api';
-import type { GameFormatDto } from '@game/api/src/convex/formats/format.mapper';
 
 const format = defineModel<string | undefined>({ required: true });
 

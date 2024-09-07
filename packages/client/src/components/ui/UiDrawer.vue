@@ -10,7 +10,7 @@ const {
   closable = true,
   usePortal = true,
   direction,
-  size = 'sm'
+  size = 'xs'
 } = defineProps<{
   title?: string;
   closable?: boolean;
@@ -148,11 +148,11 @@ watch(
   }
 
   &.sm {
-    --drawer-size: var(--size-xs);
+    --drawer-size: var(--size-sm);
   }
 
   &.md {
-    --drawer-size: var(--size-xs);
+    --drawer-size: var(--size-md);
   }
 
   &:focus,

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
 useUserSettingsProvider();
-const sessionId = useSessionId();
 colorMode.preference = 'dark';
 
 useHead({
@@ -35,7 +34,6 @@ useHead({
 
 <template>
   <div>
-    SessionId: {{ sessionId }}
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

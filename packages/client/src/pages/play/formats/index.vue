@@ -78,7 +78,6 @@ const formatToDelete = ref<Nullable<GameFormatDto>>(null);
 
           <AccordionContent class="accordion-content">
             <p>{{ format.description }}</p>
-            <h3>Rules :</h3>
             <FormatRules :format="format" />
           </AccordionContent>
         </AccordionItem>

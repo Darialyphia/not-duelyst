@@ -55,6 +55,9 @@ watchEffect(() => {
 });
 
 const password = ref('');
+const isOwner = computed(() => lobby.value.owner._id === me.value?._id);
+
+const isFormatDetailsOpened = ref(false);
 </script>
 
 <template>
@@ -92,7 +95,14 @@ const password = ref('');
         </div>
 
         <div class="flex flex-col pt-8">
-          <LobbyFormatSelector :lobby="lobby" class="mb-4" />
+          <h2>Format</h2>
+          <div class="flex items-center text-3 mb-4">
+            <LobbyFormatSelector :lobby="lobby" />
+
+            <div v-if="!isOwner">{{ lobby.format.name }}</div>
+
+            <LobbyFormatDetails :lobby="lobby" />
+          </div>
 
           <h2>Players ({{ players.length }}/{{ MAX_PLAYERS_PER_LOBBY }})</h2>
           <p v-if="!players.length">There are no players at the moment.</p>
